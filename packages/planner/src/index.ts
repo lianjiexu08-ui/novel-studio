@@ -1,10 +1,10 @@
-import { ModelGateway, OpenAICompatibleAdapter, UsageLedger } from '../../model-gateway/src/index.ts';
+import { ModelGateway, OpenAICompatibleAdapter, UsageLedger, type ModelRole } from '../../model-gateway/src/index.ts';
 import { parseGenerateChapterResponse, parseStoryBible, parseWorldPack } from 'novel-studio-contracts';
 import type { ContextManifest, CreativeCovenant, GeneratedChapter, ModelProvider, Work } from '../../../novel-service-core/src/core.ts';
 import type { StoryBible, WorldPack } from '../../../novel-service-core/src/world.ts';
 
 export interface PlanningClient {
-  complete(input: { system: string; user: string; maxOutputTokens: number }): Promise<string>;
+  complete(input: { system: string; user: string; maxOutputTokens: number; role?: ModelRole }): Promise<string>;
 }
 
 export class PlanningParseError extends Error {}
@@ -54,9 +54,9 @@ export class OpenAICompatiblePlanningClient implements PlanningClient {
     this.gateway = new ModelGateway(new Map([['openai-compatible', new OpenAICompatibleAdapter(fetch, 60_000)]]), new UsageLedger(budgetUsd));
   }
 
-  async complete(input: { system: string; user: string; maxOutputTokens: number }): Promise<string> {
+  async complete(input: { system: string; user: string; maxOutputTokens: number; role?: ModelRole }): Promise<string> {
     const response = await this.gateway.complete({
-      role: 'planning', model: this.model, system: input.system, user: input.user,
+      role: input.role ?? 'planning', model: this.model, system: input.system, user: input.user,
       maxOutputTokens: input.maxOutputTokens, responseFormat: 'json', temperature: 0.2,
     }, 'openai-compatible', { endpoint: this.endpoint, apiKey: this.apiKey });
     return response.text;
@@ -89,6 +89,7 @@ export class OpenAICompatibleChapterProvider implements ModelProvider {
         context: input.context, recentChapters,
       }, null, 2),
       maxOutputTokens: Math.max(4_000, Math.min(12_000, Math.ceil(input.work.covenant.chapterWords * 1.8))),
+      role: 'writing',
     });
     return parseGenerateChapterResponse(readJson(response)) as GeneratedChapter;
   }
