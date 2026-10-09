@@ -4,9 +4,9 @@ const { Text } = Typography;
 
 const ROLES = [
   { role: '规划', model: '服务端 OpenAI-compatible', note: '世界包、人物关系、力量体系和分卷大纲；配置缺失时明确报错' },
-  { role: '写作', model: '本地占位生成器', note: '固定样例正文，不调用外部 API' },
+  { role: '写作', model: '服务端 OpenAI-compatible（未配置时回退）', note: '按锁定设计和最近章节生成结构化正文与事实事件' },
   { role: '审稿', model: '确定性规则', note: '目前只检查正文是否为空；语义审查未接入' },
-  { role: '抽取', model: '与写作同一占位结果', note: '声明和抽取目前被写成同一份事件' },
+  { role: '抽取', model: '正文模型返回 observedEvents', note: '声明与观察结果必须一致，否则候选不能采用' },
 ];
 
 export function SystemPage() {
