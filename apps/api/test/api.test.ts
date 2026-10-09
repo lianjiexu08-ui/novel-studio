@@ -88,6 +88,50 @@ test('local API maps invalid payloads to VALIDATION_FAILED and unknown works to 
   }
 });
 
+test('settings API keeps characters, locked relationships and plot nodes under author control', async () => {
+  const { app } = createApiServer({ repository: new InMemoryWorkRepository() });
+  try {
+    const work = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('设定') })).json();
+    const base = `/works/${work.id}`;
+    const master = (await app.inject({ method: 'POST', url: `${base}/characters`, payload: { name: '玄机子', role: 'major' } })).json();
+    const hero = (await app.inject({ method: 'POST', url: `${base}/characters`, payload: { name: '林渊', aliases: ['渊哥'], role: 'protagonist' } })).json();
+    assert.equal(hero.role, 'protagonist');
+
+    const clash = await app.inject({ method: 'POST', url: `${base}/characters`, payload: { name: '渊哥' } });
+    assert.equal(clash.statusCode, 409);
+    assert.equal(clash.json().error.code, 'CONFLICT');
+
+    const bond = (await app.inject({
+      method: 'POST', url: `${base}/relationships`,
+      payload: { fromCharacterId: master.id, toCharacterId: hero.id, kind: '师徒', value: '亲传' },
+    })).json();
+    assert.equal(bond.layer, 'objective');
+    await app.inject({ method: 'PATCH', url: `${base}/relationships/${bond.id}`, payload: { locked: true } });
+    const blocked = await app.inject({ method: 'PATCH', url: `${base}/relationships/${bond.id}`, payload: { value: '反目' } });
+    assert.equal(blocked.statusCode, 409);
+    assert.equal(blocked.json().error.code, 'LOCKED_CONSTRAINT');
+
+    const inUse = await app.inject({ method: 'DELETE', url: `${base}/characters/${hero.id}` });
+    assert.equal(inUse.json().error.code, 'CONFLICT');
+
+    await app.inject({ method: 'POST', url: `${base}/world-rules`, payload: { category: 'power', title: '境界', content: '炼气、筑基' } });
+    const node = (await app.inject({ method: 'POST', url: `${base}/plot-nodes`, payload: { level: 'volume', title: '三年之约', targetChapter: 30 } })).json();
+    assert.equal(node.realization.status, 'unrealized');
+
+    const bible = (await app.inject({ method: 'GET', url: `${base}/bible` })).json();
+    assert.equal(bible.characters.length, 2);
+    assert.equal(bible.relationships[0].locked, true);
+    assert.equal(bible.worldRules.length, 1);
+    assert.equal(bible.plotNodes.length, 1);
+    assert.equal((await app.inject({ method: 'GET', url: base })).json().stateRevision, 0);
+
+    const missing = await app.inject({ method: 'PATCH', url: `${base}/characters/character_missing`, payload: { goal: 'x' } });
+    assert.equal(missing.statusCode, 404);
+  } finally {
+    await app.close();
+  }
+});
+
 test('local API enforces bearer auth when a token is configured', async () => {
   const { app } = createApiServer({ repository: new InMemoryWorkRepository(), authToken: 'secret' });
   try {

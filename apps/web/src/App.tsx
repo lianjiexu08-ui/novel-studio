@@ -16,6 +16,7 @@ import { ChaptersPage } from './pages/ChaptersPage';
 import { WritePage } from './pages/WritePage';
 import { BookSettingsPage } from './pages/BookSettingsPage';
 import { PlaceholderPage } from './pages/PlaceholderPage';
+import { OutlinePage } from './pages/OutlinePage';
 import { useWorkChrome, WorkChromeContext } from './work-chrome';
 
 const { Sider, Header, Content } = Layout;
@@ -115,7 +116,7 @@ function Shell() {
                 <Route path="chapters" element={<ChaptersPage />} />
                 <Route path="write" element={<WritePage />} />
                 <Route path="settings" element={<BookSettingsPage />} />
-                <Route path="outline" element={<PlaceholderPage title="大纲" description="全书/分卷大纲、章节计划、伏笔与节点落实 — 待实现" />} />
+                <Route path="outline" element={<OutlinePage />} />
                 <Route path="quality" element={<PlaceholderPage title="质量" description="本书的硬冲突、语义疑点、检查覆盖与变更影响 — 待实现" />} />
               </Route>
             </Routes>

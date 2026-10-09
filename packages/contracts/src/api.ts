@@ -31,6 +31,97 @@ export type CreateWorkRequest = z.infer<typeof createWorkRequestSchema>;
 export const updateWorkRequestSchema = createWorkRequestSchema;
 export type UpdateWorkRequest = z.infer<typeof updateWorkRequestSchema>;
 
+// ---------- Settings: characters, relationships, world rules, plot nodes ----------
+
+const shortText = z.string().trim().max(1000).default('');
+
+export const characterRoleSchema = z.enum(['protagonist', 'major', 'supporting', 'minor']);
+export const characterInputSchema = z.object({
+  name: z.string().trim().min(1).max(50),
+  aliases: z.array(z.string().trim().min(1).max(50)).max(20).default([]),
+  role: characterRoleSchema.default('supporting'),
+  identity: shortText,
+  goal: shortText,
+  principles: shortText,
+  voice: shortText,
+  notes: shortText,
+});
+export type CharacterInput = z.infer<typeof characterInputSchema>;
+export const characterPatchSchema = characterInputSchema.partial().extend({ locked: z.boolean().optional() });
+export type CharacterPatch = z.infer<typeof characterPatchSchema>;
+export const characterDtoSchema = characterInputSchema.extend({ id: z.string(), locked: z.boolean(), createdAt: z.string() });
+export type CharacterDto = z.infer<typeof characterDtoSchema>;
+
+export const relationshipLayerSchema = z.enum(['objective', 'belief']);
+export const relationshipInputSchema = z.object({
+  fromCharacterId: z.string().min(1),
+  toCharacterId: z.string().min(1),
+  layer: relationshipLayerSchema.default('objective'),
+  kind: z.string().trim().min(1).max(30),
+  value: z.string().trim().max(200).default(''),
+  note: z.string().trim().max(500).default(''),
+  sinceChapter: z.number().int().min(1).optional(),
+});
+export type RelationshipInput = z.infer<typeof relationshipInputSchema>;
+export const relationshipPatchSchema = relationshipInputSchema.partial().extend({ locked: z.boolean().optional() });
+export type RelationshipPatch = z.infer<typeof relationshipPatchSchema>;
+export const relationshipDtoSchema = relationshipInputSchema.extend({ id: z.string(), locked: z.boolean() });
+export type RelationshipDto = z.infer<typeof relationshipDtoSchema>;
+
+export const worldRuleCategorySchema = z.enum(['power', 'cost', 'resource', 'institution', 'geography', 'other']);
+export const worldRuleInputSchema = z.object({
+  category: worldRuleCategorySchema,
+  title: z.string().trim().min(1).max(100),
+  content: z.string().trim().max(2000).default(''),
+});
+export type WorldRuleInput = z.infer<typeof worldRuleInputSchema>;
+export const worldRulePatchSchema = worldRuleInputSchema.partial().extend({ locked: z.boolean().optional() });
+export type WorldRulePatch = z.infer<typeof worldRulePatchSchema>;
+export const worldRuleDtoSchema = worldRuleInputSchema.extend({ id: z.string(), locked: z.boolean(), createdAt: z.string() });
+export type WorldRuleDto = z.infer<typeof worldRuleDtoSchema>;
+
+export const plotLevelSchema = z.enum(['book', 'volume', 'chapter']);
+export const plotNodeInputSchema = z.object({
+  level: plotLevelSchema.default('chapter'),
+  title: z.string().trim().min(1).max(100),
+  expectedResult: z.string().trim().max(1000).default(''),
+  targetChapter: z.number().int().min(1).optional(),
+  prerequisites: z.array(z.string().min(1)).max(50).default([]),
+});
+export type PlotNodeInput = z.infer<typeof plotNodeInputSchema>;
+/** Realization is set only by adopted chapters, never by an edit request. */
+export const plotNodePatchSchema = plotNodeInputSchema.partial();
+export type PlotNodePatch = z.infer<typeof plotNodePatchSchema>;
+export const plotNodeDtoSchema = plotNodeInputSchema.extend({
+  id: z.string(),
+  realization: z.object({
+    status: z.enum(['unrealized', 'partial', 'realized', 'diverged', 'insufficient']),
+    chapterVersionId: z.string().optional(),
+    evidence: z.string().optional(),
+    updatedAt: z.string(),
+  }),
+});
+export type PlotNodeDto = z.infer<typeof plotNodeDtoSchema>;
+
+export const characterStateDtoSchema = z.object({
+  characterId: z.string(),
+  field: z.string(),
+  value: z.unknown(),
+  sourceChapterVersionId: z.string(),
+  storyTime: z.number().optional(),
+});
+export type CharacterStateDto = z.infer<typeof characterStateDtoSchema>;
+
+export const bibleDtoSchema = z.object({
+  characters: z.array(characterDtoSchema),
+  relationships: z.array(relationshipDtoSchema),
+  worldRules: z.array(worldRuleDtoSchema),
+  plotNodes: z.array(plotNodeDtoSchema),
+  /** Projection rebuilt from adopted chapters only. */
+  states: z.array(characterStateDtoSchema),
+});
+export type BibleDto = z.infer<typeof bibleDtoSchema>;
+
 export const generateChapterRequestSchema = z.object({
   runId: z.string().min(1).max(200).optional(),
 });
@@ -129,6 +220,7 @@ export const apiErrorCodes = [
   'ADOPTION_BLOCKED',
   'STALE_CANDIDATE',
   'LOCKED_CONSTRAINT',
+  'CONFLICT',
   'UNAUTHORIZED',
   'INTERNAL',
 ] as const;

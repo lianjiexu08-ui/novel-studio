@@ -75,6 +75,27 @@ test('prisma repository persists a full adoption roundtrip', async (t) => {
   assert.equal(outbox.length, 3);
   assert.ok(outbox.every((event) => event.workId === work.id));
 
+  const { addCharacter, addSettingRelationship, addWorldRule, removeSettingRelationship } = await import('../../../novel-service-core/src/bible.ts');
+  const person = (name: string) => ({ name, aliases: [], role: 'major' as const, identity: '', goal: '', principles: '', voice: '', notes: '' });
+  const created = await workflow.editSettings(work.id, (draft) => {
+    const a = addCharacter(draft, { ...person('林渊'), aliases: ['渊哥'] });
+    const b = addCharacter(draft, person('苏晚'));
+    const objective = addSettingRelationship(draft, { fromCharacterId: b.id, toCharacterId: a.id, kind: '身份', value: '亲兄妹', layer: 'objective', note: '' });
+    const belief = addSettingRelationship(draft, { fromCharacterId: b.id, toCharacterId: a.id, kind: '身份', value: '仇人之子', layer: 'belief', note: '' });
+    addWorldRule(draft, { category: 'cost', title: '禁术', content: '折寿' });
+    return { objective, belief };
+  });
+  await workflow.editSettings(work.id, (draft) => removeSettingRelationship(draft, created.belief.id));
+  const settingsRepository = new PrismaWorkRepository();
+  repositories.push(settingsRepository);
+  const withSettings = await settingsRepository.get(work.id);
+  assert.ok(withSettings);
+  assert.equal(withSettings.stateRevision, 1, 'settings edits do not advance story revision');
+  assert.deepEqual([...withSettings.characters.values()].map((item) => item.name), ['林渊', '苏晚']);
+  assert.deepEqual([...withSettings.characters.values()][0].aliases, ['渊哥']);
+  assert.deepEqual([...withSettings.relationships.keys()], [created.objective.id], 'removed relationship is deleted');
+  assert.equal(withSettings.worldRules.size, 1);
+
   // Idempotent re-adoption must not duplicate outbox events.
   const again = await workflow.adopt(work.id, candidate.id, 1);
   assert.equal(again.version.id, adopted.version.id);

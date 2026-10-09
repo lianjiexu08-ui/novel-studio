@@ -3,7 +3,9 @@ import { mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
 import { dirname } from 'node:path';
 import { parseCovenant, Work } from '../../../novel-service-core/src/core.ts';
 import type { CreativeCovenant } from '../../../novel-service-core/src/core.ts';
-import type { CandidateChecker, ChapterCandidate, ChapterVersion, CharacterState, ImpactRecord, Relationship, StoryEvent, PlotNode } from '../../../novel-service-core/src/core.ts';
+import type {
+  ChapterCandidate, ChapterVersion, Character, CharacterState, ImpactRecord, PlotNode, Relationship, StoryEvent, WorldRule,
+} from '../../../novel-service-core/src/core.ts';
 import type { OutboxEvent, WorkRepository, WorkTransaction } from '../../application/src/index.ts';
 
 interface PersistedWork {
@@ -16,6 +18,8 @@ interface PersistedWork {
   events: StoryEvent[];
   states: CharacterState[];
   relationships: Relationship[];
+  characters?: Character[];
+  worldRules?: WorldRule[];
   plotNodes: PlotNode[];
   checkpoints: Array<[string, unknown]>;
   impacts: ImpactRecord[];
@@ -137,6 +141,8 @@ function serializeWork(work: Work): PersistedWork {
     events: [...work.events.values()],
     states: [...work.states.values()],
     relationships: [...work.relationships.values()],
+    characters: [...work.characters.values()],
+    worldRules: [...work.worldRules.values()],
     plotNodes: [...work.plotNodes.values()],
     checkpoints: [...work.checkpoints.entries()],
     impacts: work.impacts,
@@ -151,7 +157,9 @@ function deserializeWork(value: PersistedWork): Work {
   for (const version of value.versions) work.versions.set(version.id, version);
   for (const event of value.events) work.events.set(event.id, event);
   for (const state of value.states) work.states.set(`${state.characterId}|${state.field}`, state);
-  for (const relationship of value.relationships) work.relationships.set(`${relationship.fromCharacterId}|${relationship.toCharacterId}|${relationship.kind}`, relationship);
+  for (const relationship of value.relationships) work.relationships.set(relationship.id, relationship);
+  for (const character of value.characters ?? []) work.characters.set(character.id, character);
+  for (const rule of value.worldRules ?? []) work.worldRules.set(rule.id, rule);
   for (const node of value.plotNodes) work.plotNodes.set(node.id, node);
   for (const checkpoint of value.checkpoints) work.checkpoints.set(checkpoint[0], checkpoint[1] as any);
   work.impacts.push(...value.impacts);

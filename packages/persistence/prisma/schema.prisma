@@ -27,6 +27,8 @@ model Project {
   candidates    ChapterCandidate[]
   events        StoryEvent[]
   relationships Relationship[]
+  characters    Character[]
+  worldRules    WorldRule[]
   plotNodes     PlotNode[]
   outboxEvents  OutboxEvent[]
   impacts       ImpactRecord[]
@@ -114,25 +116,61 @@ model StoryEvent {
   @@index([subjectId, predicate, active])
 }
 
+model Character {
+  id         String   @id
+  projectId  String
+  name       String
+  aliases    String   @default("[]") // JSON: string[]
+  role       String   @default("supporting") // protagonist | major | supporting | minor
+  identity   String   @default("")
+  goal       String   @default("")
+  principles String   @default("")
+  voice      String   @default("")
+  notes      String   @default("")
+  locked     Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  project    Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId])
+}
+
+model WorldRule {
+  id        String   @id
+  projectId String
+  category  String // power | cost | resource | institution | geography | other
+  title     String
+  content   String   @default("")
+  locked    Boolean  @default(false)
+  createdAt DateTime @default(now())
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId])
+}
+
 model Relationship {
   id              String   @id
   projectId       String
   fromCharacterId String
   toCharacterId   String
+  layer           String   @default("objective") // objective | belief
   kind            String
   value           String
+  note            String   @default("")
+  sinceChapter    Int?
   locked          Boolean  @default(false)
   sourceEventId   String?
   project         Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
 
-  @@unique([projectId, fromCharacterId, toCharacterId, kind])
+  @@unique([projectId, fromCharacterId, toCharacterId, kind, layer])
 }
 
 model PlotNode {
   id             String            @id
   projectId      String
+  level          String            @default("chapter") // book | volume | chapter
   title          String
   expectedResult String
+  targetChapter  Int?
   prerequisites  String // JSON: string[]
   project        Project           @relation(fields: [projectId], references: [id], onDelete: Cascade)
   realization    PlanRealization?

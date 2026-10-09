@@ -104,6 +104,11 @@ export class ChapterWorkflow {
     return work;
   }
 
+  /** Author edits to settings. Runs in the work transaction but does not advance stateRevision. */
+  async editSettings<T>(workId: string, edit: (work: Work) => T): Promise<T> {
+    return this.repository.transaction(workId, ({ work }) => edit(work));
+  }
+
   async updateWork(workId: string, input: { title: string; covenant: CreativeCovenant }): Promise<Work> {
     return this.repository.transaction(workId, ({ work }) => {
       work.title = input.title;

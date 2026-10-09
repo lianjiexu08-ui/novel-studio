@@ -1,7 +1,9 @@
 import { randomUUID } from 'node:crypto';
 import { PrismaClient } from '@prisma/client';
 import { parseCovenant, rebuildCharacterStates, StaleCandidateError, Work } from '../../../novel-service-core/src/core.ts';
-import type { ChapterCandidate, ChapterVersion, EventDraft, PlotNode, Relationship, StoryEvent } from '../../../novel-service-core/src/core.ts';
+import type {
+  ChapterCandidate, ChapterVersion, Character, EventDraft, PlotNode, Relationship, StoryEvent, WorldRule,
+} from '../../../novel-service-core/src/core.ts';
 import type { OutboxEvent, WorkRepository, WorkTransaction } from '../../application/src/index.ts';
 
 function readCovenant(raw: string | null | undefined) {
@@ -123,11 +125,13 @@ export class PrismaWorkRepository implements WorkRepository {
 
   private async loadAggregate(project: { id: string; title: string; stateRevision: number; covenant: string }, tx: PrismaTx | PrismaClient = this.prisma): Promise<Work> {
     const workId = project.id;
-    const [chapters, candidates, events, relationships, plotNodes, impacts] = await Promise.all([
+    const [chapters, candidates, events, relationships, characters, worldRules, plotNodes, impacts] = await Promise.all([
       tx.chapter.findMany({ where: { projectId: workId }, include: { versions: true } }),
       tx.chapterCandidate.findMany({ where: { projectId: workId }, include: { checks: true } }),
       tx.storyEvent.findMany({ where: { projectId: workId } }),
       tx.relationship.findMany({ where: { projectId: workId } }),
+      tx.character.findMany({ where: { projectId: workId }, orderBy: { createdAt: 'asc' } }),
+      tx.worldRule.findMany({ where: { projectId: workId }, orderBy: { createdAt: 'asc' } }),
       tx.plotNode.findMany({ where: { projectId: workId }, include: { realization: true } }),
       tx.impactRecord.findMany({ where: { projectId: workId }, orderBy: { createdAt: 'asc' } }),
     ]);
@@ -179,13 +183,31 @@ export class PrismaWorkRepository implements WorkRepository {
       const mapped: Relationship = {
         id: row.id, fromCharacterId: row.fromCharacterId, toCharacterId: row.toCharacterId,
         kind: row.kind, value: row.value, locked: row.locked, sourceEventId: row.sourceEventId ?? undefined,
+        layer: row.layer as Relationship['layer'], note: row.note, sinceChapter: row.sinceChapter ?? undefined,
       };
-      work.relationships.set(`${row.fromCharacterId}|${row.toCharacterId}|${row.kind}`, mapped);
+      work.relationships.set(mapped.id, mapped);
+    }
+    for (const row of characters) {
+      const mapped: Character = {
+        id: row.id, name: row.name, aliases: JSON.parse(row.aliases) as string[],
+        role: row.role as Character['role'], identity: row.identity, goal: row.goal,
+        principles: row.principles, voice: row.voice, notes: row.notes, locked: row.locked,
+        createdAt: row.createdAt.toISOString(),
+      };
+      work.characters.set(mapped.id, mapped);
+    }
+    for (const row of worldRules) {
+      const mapped: WorldRule = {
+        id: row.id, category: row.category as WorldRule['category'], title: row.title,
+        content: row.content, locked: row.locked, createdAt: row.createdAt.toISOString(),
+      };
+      work.worldRules.set(mapped.id, mapped);
     }
     for (const row of plotNodes) {
       const mapped: PlotNode = {
         id: row.id, title: row.title, expectedResult: row.expectedResult,
         prerequisites: JSON.parse(row.prerequisites) as string[],
+        level: row.level as PlotNode['level'], targetChapter: row.targetChapter ?? undefined,
         realization: {
           status: (row.realization?.status ?? 'unrealized') as PlotNode['realization']['status'],
           chapterVersionId: row.realization?.chapterVersionId ?? undefined,
@@ -206,7 +228,10 @@ export class PrismaWorkRepository implements WorkRepository {
     return work;
   }
 
-  /** Upserts the whole aggregate. Child rows are never deleted: history is append-only. */
+  /**
+   * Upserts the whole aggregate. Story history (versions, candidates, events) is append-only.
+   * Author settings (characters, rules, relationships, plot nodes) mirror the aggregate, so removed ones are deleted.
+   */
   private async persist(tx: PrismaTx, work: Work, _loadedRevision: number | null): Promise<void> {
     const chapterIds = new Map<number, string>();
     const chapterNumberOf = (chapterNumber: number) => {
@@ -283,32 +308,55 @@ export class PrismaWorkRepository implements WorkRepository {
       });
     }
 
+    await tx.relationship.deleteMany({ where: { projectId: work.id, id: { notIn: [...work.relationships.keys()] } } });
     for (const relationship of work.relationships.values()) {
+      const fields = {
+        fromCharacterId: relationship.fromCharacterId, toCharacterId: relationship.toCharacterId,
+        layer: relationship.layer ?? 'objective', kind: relationship.kind, value: relationship.value,
+        note: relationship.note ?? '', sinceChapter: relationship.sinceChapter ?? null,
+        locked: relationship.locked, sourceEventId: relationship.sourceEventId ?? null,
+      };
       await tx.relationship.upsert({
-        where: {
-          projectId_fromCharacterId_toCharacterId_kind: {
-            projectId: work.id, fromCharacterId: relationship.fromCharacterId,
-            toCharacterId: relationship.toCharacterId, kind: relationship.kind,
-          },
-        },
-        create: {
-          id: relationship.id, projectId: work.id, fromCharacterId: relationship.fromCharacterId,
-          toCharacterId: relationship.toCharacterId, kind: relationship.kind,
-          value: relationship.value, locked: relationship.locked,
-          sourceEventId: relationship.sourceEventId ?? null,
-        },
-        update: { value: relationship.value, locked: relationship.locked, sourceEventId: relationship.sourceEventId ?? null },
+        where: { id: relationship.id },
+        create: { id: relationship.id, projectId: work.id, ...fields },
+        update: fields,
       });
     }
 
+    await tx.character.deleteMany({ where: { projectId: work.id, id: { notIn: [...work.characters.keys()] } } });
+    for (const character of work.characters.values()) {
+      const fields = {
+        name: character.name, aliases: JSON.stringify(character.aliases), role: character.role,
+        identity: character.identity, goal: character.goal, principles: character.principles,
+        voice: character.voice, notes: character.notes, locked: character.locked,
+      };
+      await tx.character.upsert({
+        where: { id: character.id },
+        create: { id: character.id, projectId: work.id, createdAt: new Date(character.createdAt), ...fields },
+        update: fields,
+      });
+    }
+
+    await tx.worldRule.deleteMany({ where: { projectId: work.id, id: { notIn: [...work.worldRules.keys()] } } });
+    for (const rule of work.worldRules.values()) {
+      const fields = { category: rule.category, title: rule.title, content: rule.content, locked: rule.locked };
+      await tx.worldRule.upsert({
+        where: { id: rule.id },
+        create: { id: rule.id, projectId: work.id, createdAt: new Date(rule.createdAt), ...fields },
+        update: fields,
+      });
+    }
+
+    await tx.plotNode.deleteMany({ where: { projectId: work.id, id: { notIn: [...work.plotNodes.keys()] } } });
     for (const node of work.plotNodes.values()) {
+      const fields = {
+        level: node.level ?? 'chapter', title: node.title, expectedResult: node.expectedResult,
+        targetChapter: node.targetChapter ?? null, prerequisites: JSON.stringify(node.prerequisites),
+      };
       await tx.plotNode.upsert({
         where: { id: node.id },
-        create: {
-          id: node.id, projectId: work.id, title: node.title,
-          expectedResult: node.expectedResult, prerequisites: JSON.stringify(node.prerequisites),
-        },
-        update: { title: node.title, expectedResult: node.expectedResult, prerequisites: JSON.stringify(node.prerequisites) },
+        create: { id: node.id, projectId: work.id, ...fields },
+        update: fields,
       });
       await tx.planRealization.upsert({
         where: { plotNodeId: node.id },

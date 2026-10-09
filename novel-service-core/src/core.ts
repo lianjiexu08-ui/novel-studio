@@ -11,6 +11,8 @@ export type RealizationStatus = 'unrealized' | 'partial' | 'realized' | 'diverge
 export class AdoptionBlocked extends Error {}
 export class LockedConstraintError extends AdoptionBlocked {}
 export class StaleCandidateError extends AdoptionBlocked {}
+/** An author edit to settings conflicts with existing settings (duplicate name, dangling reference). */
+export class SettingConflictError extends Error {}
 
 export interface EventDraft {
   eventType: string;
@@ -108,6 +110,8 @@ export interface ChapterVersion {
   createdAt: string;
 }
 
+export type RelationshipLayer = 'objective' | 'belief';
+
 export interface Relationship {
   id: string;
   fromCharacterId: string;
@@ -116,7 +120,40 @@ export interface Relationship {
   value: string;
   locked: boolean;
   sourceEventId?: string;
+  /** objective: true in the story world. belief: how `from` sees `to`, which may be mistaken. */
+  layer?: RelationshipLayer;
+  note?: string;
+  sinceChapter?: number;
 }
+
+export type CharacterRole = 'protagonist' | 'major' | 'supporting' | 'minor';
+
+export interface Character {
+  id: string;
+  name: string;
+  aliases: string[];
+  role: CharacterRole;
+  identity: string;
+  goal: string;
+  principles: string;
+  voice: string;
+  notes: string;
+  locked: boolean;
+  createdAt: string;
+}
+
+export type WorldRuleCategory = 'power' | 'cost' | 'resource' | 'institution' | 'geography' | 'other';
+
+export interface WorldRule {
+  id: string;
+  category: WorldRuleCategory;
+  title: string;
+  content: string;
+  locked: boolean;
+  createdAt: string;
+}
+
+export type PlotLevel = 'book' | 'volume' | 'chapter';
 
 export interface PlotNode {
   id: string;
@@ -124,6 +161,8 @@ export interface PlotNode {
   expectedResult: string;
   prerequisites: string[];
   realization: PlanRealization;
+  level?: PlotLevel;
+  targetChapter?: number;
 }
 
 export interface PlanRealization {
@@ -214,6 +253,8 @@ export class Work {
   readonly events = new Map<string, StoryEvent>();
   readonly states = new Map<string, CharacterState>();
   readonly relationships = new Map<string, Relationship>();
+  readonly characters = new Map<string, Character>();
+  readonly worldRules = new Map<string, WorldRule>();
   readonly plotNodes = new Map<string, PlotNode>();
   readonly checkpoints = new Map<string, Checkpoint>();
   readonly impacts: ImpactRecord[] = [];
@@ -255,7 +296,7 @@ export class NovelService {
   addRelationship(workId: string, input: Omit<Relationship, 'id'>): Relationship {
     const work = this.getWork(workId);
     const relationship: Relationship = { id: id('relationship'), ...input };
-    work.relationships.set(this.relationshipKey(relationship.fromCharacterId, relationship.toCharacterId, relationship.kind), relationship);
+    work.relationships.set(relationship.id, relationship);
     return relationship;
   }
 
@@ -449,10 +490,6 @@ export class NovelService {
     const candidate = work.candidates.get(candidateId);
     if (!candidate) throw new Error(`unknown candidate ${candidateId}`);
     return candidate;
-  }
-
-  private relationshipKey(from: string, to: string, kind: string): string {
-    return `${from}|${to}|${kind}`;
   }
 }
 

@@ -1,12 +1,25 @@
 import type {
   AdoptionResponse,
   ApiError,
+  BibleDto,
   CandidateDto,
   ChapterVersionDto,
+  CharacterDto,
+  CharacterInput,
+  CharacterPatch,
   CreateWorkRequest,
   OutboxEventDto,
+  PlotNodeDto,
+  PlotNodeInput,
+  PlotNodePatch,
+  RelationshipDto,
+  RelationshipInput,
+  RelationshipPatch,
   UpdateWorkRequest,
   WorkDto,
+  WorldRuleDto,
+  WorldRuleInput,
+  WorldRulePatch,
 } from 'novel-studio-contracts';
 
 const BASE_URL = import.meta.env.VITE_API_URL ?? 'http://127.0.0.1:8787';
@@ -52,4 +65,26 @@ export const api = {
   adopt: (workId: string, candidateId: string, expectedStateRevision: number) =>
     call<AdoptionResponse>(`/works/${workId}/candidates/${candidateId}/adopt`, { method: 'POST', body: { expectedStateRevision } }),
   outbox: (workId: string) => call<{ events: OutboxEventDto[] }>(`/works/${workId}/outbox`),
+
+  bible: (workId: string) => call<BibleDto>(`/works/${workId}/bible`),
+  addCharacter: (workId: string, body: Partial<CharacterInput> & { name: string }) =>
+    call<CharacterDto>(`/works/${workId}/characters`, { method: 'POST', body }),
+  updateCharacter: (workId: string, id: string, body: CharacterPatch) =>
+    call<CharacterDto>(`/works/${workId}/characters/${id}`, { method: 'PATCH', body }),
+  removeCharacter: (workId: string, id: string) => call<{ ok: true }>(`/works/${workId}/characters/${id}`, { method: 'DELETE' }),
+  addRelationship: (workId: string, body: Partial<RelationshipInput> & Pick<RelationshipInput, 'fromCharacterId' | 'toCharacterId' | 'kind'>) =>
+    call<RelationshipDto>(`/works/${workId}/relationships`, { method: 'POST', body }),
+  updateRelationship: (workId: string, id: string, body: RelationshipPatch) =>
+    call<RelationshipDto>(`/works/${workId}/relationships/${id}`, { method: 'PATCH', body }),
+  removeRelationship: (workId: string, id: string) => call<{ ok: true }>(`/works/${workId}/relationships/${id}`, { method: 'DELETE' }),
+  addWorldRule: (workId: string, body: Partial<WorldRuleInput> & Pick<WorldRuleInput, 'category' | 'title'>) =>
+    call<WorldRuleDto>(`/works/${workId}/world-rules`, { method: 'POST', body }),
+  updateWorldRule: (workId: string, id: string, body: WorldRulePatch) =>
+    call<WorldRuleDto>(`/works/${workId}/world-rules/${id}`, { method: 'PATCH', body }),
+  removeWorldRule: (workId: string, id: string) => call<{ ok: true }>(`/works/${workId}/world-rules/${id}`, { method: 'DELETE' }),
+  addPlotNode: (workId: string, body: Partial<PlotNodeInput> & Pick<PlotNodeInput, 'title'>) =>
+    call<PlotNodeDto>(`/works/${workId}/plot-nodes`, { method: 'POST', body }),
+  updatePlotNode: (workId: string, id: string, body: PlotNodePatch) =>
+    call<PlotNodeDto>(`/works/${workId}/plot-nodes/${id}`, { method: 'PATCH', body }),
+  removePlotNode: (workId: string, id: string) => call<{ ok: true }>(`/works/${workId}/plot-nodes/${id}`, { method: 'DELETE' }),
 };

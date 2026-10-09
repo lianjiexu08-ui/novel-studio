@@ -13,6 +13,7 @@ import {
 import {
   AdoptionBlocked,
   LockedConstraintError,
+  SettingConflictError,
   StaleCandidateError,
   passChecker,
   type ChapterCandidate,
@@ -25,6 +26,7 @@ import {
   type WorkRepository,
 } from '../../../packages/application/src/index.ts';
 import { PrismaWorkRepository } from '../../../packages/persistence/src/prisma-repository.ts';
+import { registerSettingsRoutes } from './settings-routes.ts';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { mkdirSync } from 'node:fs';
@@ -177,6 +179,8 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     return workflow.adopt(workId, candidateId, body.expectedStateRevision);
   });
 
+  registerSettingsRoutes(app, { workflow, repository, notFound: (message) => new NotFoundError(message) });
+
   app.get('/works/:workId/outbox', async (request) => {
     const { workId } = workParamSchema.parse(request.params);
     return { events: (await repository.outbox()).filter((event) => event.workId === workId) };
@@ -199,7 +203,8 @@ function mapError(error: unknown): { status: number; body: ApiError } {
   if (error instanceof LockedConstraintError) return { status: 409, body: apiError('LOCKED_CONSTRAINT', error.message) };
   if (error instanceof StaleCandidateError) return { status: 409, body: apiError('STALE_CANDIDATE', error.message) };
   if (error instanceof AdoptionBlocked) return { status: 409, body: apiError('ADOPTION_BLOCKED', error.message) };
-  if (error instanceof NotFoundError || /unknown work|unknown candidate/.test(String(error))) {
+  if (error instanceof SettingConflictError) return { status: 409, body: apiError('CONFLICT', error.message) };
+  if (error instanceof NotFoundError || /unknown (work|candidate|character|relationship|rule|plot node)\b/.test(String(error))) {
     return { status: 404, body: apiError('NOT_FOUND', error instanceof Error ? error.message : 'not found') };
   }
   return { status: 500, body: apiError('INTERNAL', 'internal error') };
