@@ -19,6 +19,7 @@ import { PlaceholderPage } from './pages/PlaceholderPage';
 import { OutlinePage } from './pages/OutlinePage';
 import { OverviewPage } from './pages/OverviewPage';
 import { DesignPage } from './pages/DesignPage';
+import { QualityPage } from './pages/QualityPage';
 import { useWorkChrome, WorkChromeContext } from './work-chrome';
 
 const { Sider, Header, Content } = Layout;
@@ -125,7 +126,7 @@ function Shell() {
                 <Route path="write" element={<WritePage />} />
                 <Route path="settings" element={<BookSettingsPage />} />
                 <Route path="outline" element={<OutlinePage />} />
-                <Route path="quality" element={<PlaceholderPage title="质量" description="本书的硬冲突、语义疑点、检查覆盖与变更影响 — 待实现" />} />
+                <Route path="quality" element={<QualityPage />} />
               </Route>
             </Routes>
           </div>

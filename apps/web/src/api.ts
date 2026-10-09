@@ -23,6 +23,15 @@ import type {
   WorldRulePatch,
 } from 'novel-studio-contracts';
 
+export interface ChapterHistoryDto {
+  chapterNumber: number;
+  events: Array<{ id: string; chapterNumber: number; eventType: string; subjectId: string; predicate: string; value: unknown; evidence: string; storyTime?: number }>;
+  characterStates: Array<{ characterId: string; field: string; value: unknown; sourceEventId: string; sourceChapterVersionId: string; storyTime?: number }>;
+  relationships: Array<RelationshipDto | undefined>;
+  arcStates: Array<{ arcId: string; status: string; value: unknown; sourceEventId: string; sourceChapterVersionId: string; storyTime?: number }>;
+  secretStates: Array<{ secretId: string; revealed: boolean; value: unknown; sourceEventId: string; sourceChapterVersionId: string; storyTime?: number }>;
+}
+
 const BASE_URL = import.meta.env.VITE_API_URL ?? 'http://127.0.0.1:8787';
 const TOKEN = import.meta.env.VITE_API_TOKEN ?? '';
 
@@ -73,6 +82,7 @@ export const api = {
   runUntil: (workId: string, targetChapter: number, runId?: string) =>
     call<{ checkpoint: { runId: string; targetChapter: number; nextChapter: number; phase: string; candidateIds: Record<number, string> } }>(`/works/${workId}/runs`, { method: 'POST', body: { targetChapter, runId } }),
   checkpoints: (workId: string) => call<{ checkpoints: Array<{ runId: string; targetChapter: number; nextChapter: number; phase: string; candidateIds: Record<number, string> }> }>(`/works/${workId}/runs`),
+  history: (workId: string, chapterNumber: number) => call<ChapterHistoryDto>(`/works/${workId}/state/${chapterNumber}`),
   check: (workId: string, candidateId: string) =>
     call<{ candidate: CandidateDto }>(`/works/${workId}/candidates/${candidateId}/check`, { method: 'POST' }),
   adopt: (workId: string, candidateId: string, expectedStateRevision: number) =>
