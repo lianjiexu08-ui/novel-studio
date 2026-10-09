@@ -170,6 +170,21 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     return { manuscripts: [...work.manuscripts.values()].map(toManuscriptDto) };
   });
 
+  app.get('/works/:workId/manuscripts/:manuscriptId/export', async (request) => {
+    const params = workParamSchema.extend({ manuscriptId: z.string().min(1) }).parse(request.params);
+    const { workId } = params;
+    const work = await repository.get(workId);
+    if (!work) throw new NotFoundError(`unknown work ${workId}`);
+    const manuscript = work.manuscripts.get(params.manuscriptId);
+    if (!manuscript) throw new NotFoundError(`unknown manuscript ${params.manuscriptId}`);
+    const chapters = manuscript.chapterVersionIds.map((versionId) => work.versions.get(versionId)).filter((version): version is NonNullable<typeof version> => Boolean(version));
+    if (chapters.length !== manuscript.chapterVersionIds.length) throw new Error('manuscript references missing chapter versions');
+    return {
+      manuscript: toManuscriptDto(manuscript),
+      chapters: chapters.map((chapter) => ({ id: chapter.id, chapterNumber: chapter.chapterNumber, content: chapter.content, revision: chapter.revision })),
+    };
+  });
+
   app.post('/works/:workId/manuscripts/finalize', async (request) => {
     const { workId } = workParamSchema.parse(request.params);
     return { manuscript: toManuscriptDto(await workflow.finalizeManuscript(workId)) };
