@@ -3,6 +3,8 @@ import { randomUUID } from 'node:crypto';
 const id = (prefix: string) => `${prefix}_${randomUUID().replaceAll('-', '')}`;
 const now = () => new Date().toISOString();
 
+export class CanonGateError extends Error {}
+
 export type CanonStatus = 'draft' | 'proposed' | 'reviewed' | 'locked' | 'deprecated';
 
 export interface WorldAxiom {
@@ -269,10 +271,10 @@ export function validateWorldPack(pack: WorldPack): GateResult {
 }
 
 export function lockWorldPack(pack: WorldPack): WorldPack {
-  if (pack.status !== 'reviewed') throw new Error('world pack must be reviewed before locking');
+  if (pack.status !== 'reviewed') throw new CanonGateError('world pack must be reviewed before locking');
   const result = validateWorldPack(pack);
-  if (!result.ready) throw new Error(`world pack is invalid: ${result.errors.join('; ')}`);
-  if (hasBlockingQuestions(pack.unresolvedQuestions)) throw new Error('blocking world pack questions must be resolved before locking');
+  if (!result.ready) throw new CanonGateError(`world pack is invalid: ${result.errors.join('; ')}`);
+  if (hasBlockingQuestions(pack.unresolvedQuestions)) throw new CanonGateError('blocking world pack questions must be resolved before locking');
   return { ...pack, status: 'locked', revision: pack.revision + 1, lockedAt: now() };
 }
 
@@ -314,11 +316,11 @@ export function validateStoryBible(bible: StoryBible, worldPack: WorldPack): Gat
 }
 
 export function lockStoryBible(bible: StoryBible, worldPack: WorldPack): StoryBible {
-  if (worldPack.status !== 'locked') throw new Error('world pack must be locked before locking the story bible');
-  if (bible.status !== 'reviewed') throw new Error('story bible must be reviewed before locking');
+  if (worldPack.status !== 'locked') throw new CanonGateError('world pack must be locked before locking the story bible');
+  if (bible.status !== 'reviewed') throw new CanonGateError('story bible must be reviewed before locking');
   const result = validateStoryBible(bible, worldPack);
-  if (!result.ready) throw new Error(`story bible is invalid: ${result.errors.join('; ')}`);
-  if (hasBlockingQuestions(bible.unresolvedQuestions)) throw new Error('blocking story questions must be resolved before locking');
+  if (!result.ready) throw new CanonGateError(`story bible is invalid: ${result.errors.join('; ')}`);
+  if (hasBlockingQuestions(bible.unresolvedQuestions)) throw new CanonGateError('blocking story questions must be resolved before locking');
   return { ...bible, status: 'locked', revision: bible.revision + 1, worldPackRevision: worldPack.revision, lockedAt: now() };
 }
 

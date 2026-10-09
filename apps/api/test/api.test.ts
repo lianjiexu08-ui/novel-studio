@@ -148,3 +148,38 @@ test('local API enforces bearer auth when a token is configured', async () => {
     await app.close();
   }
 });
+
+test('design API saves and locks the world pack before the story bible', async () => {
+  const { app } = createApiServer({ repository: new InMemoryWorkRepository() });
+  try {
+    const work = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('世界包门禁') })).json();
+    const base = `/works/${work.id}`;
+    const worldPack = {
+      id: 'world_api', revision: 1, title: '九霄界', summary: '三界玄幻', status: 'reviewed',
+      axioms: [], powerSystems: [{ id: 'system', name: '灵力', source: '天地', unit: '灵气', realmIds: ['realm'], status: 'reviewed' }],
+      realms: [{ id: 'realm', systemId: 'system', name: '炼气', rank: 1, prerequisites: [], capabilities: ['引气'], cost: '时间', counters: [], status: 'reviewed' }],
+      techniques: [], artifacts: [], resources: [], locations: [{ id: 'home', name: '青州', kind: 'continent', entryConditions: [], status: 'reviewed' }],
+      factions: [{ id: 'sect', name: '青云宗', kind: 'sect', locationIds: ['home'], goals: ['守护青州'], resources: [], status: 'reviewed' }],
+      historicalEvents: [], terminology: [], unresolvedQuestions: [], createdAt: new Date().toISOString(),
+    };
+    assert.equal((await app.inject({ method: 'PUT', url: `${base}/world-pack`, payload: worldPack })).statusCode, 200);
+    const lockedWorld = (await app.inject({ method: 'POST', url: `${base}/world-pack/lock`, payload: {} })).json().worldPack;
+    assert.equal(lockedWorld.status, 'locked');
+    const storyBible = {
+      id: 'bible_api', revision: 1, worldPackId: lockedWorld.id, worldPackRevision: lockedWorld.revision, status: 'reviewed',
+      coreConflict: '宗门存亡', endingDirection: '守住家园',
+      characters: [{ id: 'hero', name: '林渊', role: 'protagonist', goal: '守护青州', identity: '弟子', locationId: 'home', factionId: 'sect', startingRealmId: 'realm' }],
+      relationships: [], arcs: [], volumes: [{ id: 'v1', order: 1, title: '入门', goal: '成长', climax: '守城', endState: '入筑基', plannedChapterCount: 10, arcIds: [] }],
+      unresolvedQuestions: [], createdAt: new Date().toISOString(),
+    };
+    assert.equal((await app.inject({ method: 'PUT', url: `${base}/story-bible`, payload: storyBible })).statusCode, 200);
+    const lockedBible = (await app.inject({ method: 'POST', url: `${base}/story-bible/lock`, payload: {} })).json().storyBible;
+    assert.equal(lockedBible.status, 'locked');
+    const design = (await app.inject({ method: 'GET', url: `${base}/design` })).json();
+    assert.equal(design.worldPack.status, 'locked');
+    assert.equal(design.storyBible.status, 'locked');
+    assert.ok(design.constraintRevision >= 4);
+  } finally {
+    await app.close();
+  }
+});

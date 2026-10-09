@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { storyBibleSchema, worldPackSchema } from './world.ts';
 
 /**
  * API contracts: the single source of truth shared by apps/web and apps/api.
@@ -30,6 +31,11 @@ export type CreateWorkRequest = z.infer<typeof createWorkRequestSchema>;
 
 export const updateWorkRequestSchema = createWorkRequestSchema;
 export type UpdateWorkRequest = z.infer<typeof updateWorkRequestSchema>;
+
+export const saveWorldPackRequestSchema = worldPackSchema;
+export type SaveWorldPackRequest = z.infer<typeof saveWorldPackRequestSchema>;
+export const saveStoryBibleRequestSchema = storyBibleSchema;
+export type SaveStoryBibleRequest = z.infer<typeof saveStoryBibleRequestSchema>;
 
 // ---------- Settings: characters, relationships, world rules, plot nodes ----------
 
@@ -121,6 +127,13 @@ export const bibleDtoSchema = z.object({
   states: z.array(characterStateDtoSchema),
 });
 export type BibleDto = z.infer<typeof bibleDtoSchema>;
+
+export const designDtoSchema = z.object({
+  worldPack: worldPackSchema.optional(),
+  storyBible: storyBibleSchema.optional(),
+  constraintRevision: z.number().int().min(0),
+});
+export type DesignDto = z.infer<typeof designDtoSchema>;
 
 export const generateChapterRequestSchema = z.object({
   runId: z.string().min(1).max(200).optional(),

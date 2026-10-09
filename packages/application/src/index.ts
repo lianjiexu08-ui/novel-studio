@@ -1,6 +1,8 @@
 import { randomUUID } from 'node:crypto';
 import { AdoptionBlocked, NovelService, StaleCandidateError, Work } from '../../../novel-service-core/src/core.ts';
 import type { CandidateChecker, ChapterCandidate, ChapterVersion, CreativeCovenant, ModelProvider } from '../../../novel-service-core/src/core.ts';
+import { lockStoryBible, lockWorldPack } from '../../../novel-service-core/src/world.ts';
+import type { StoryBible, WorldPack } from '../../../novel-service-core/src/world.ts';
 
 export type OutboxKind = 'projection' | 'search_index' | 'export' | 'publication_check';
 
@@ -120,6 +122,41 @@ export class ChapterWorkflow {
       work.covenant = input.covenant;
       work.constraintRevision += 1;
       return work;
+    });
+  }
+
+  async saveWorldPack(workId: string, worldPack: WorldPack): Promise<WorldPack> {
+    return this.repository.transaction(workId, ({ work }) => {
+      work.worldPack = worldPack;
+      work.constraintRevision += 1;
+      return work.worldPack;
+    });
+  }
+
+  async lockWorldPack(workId: string): Promise<WorldPack> {
+    return this.repository.transaction(workId, ({ work }) => {
+      if (!work.worldPack) throw new Error('world pack has not been generated');
+      work.worldPack = lockWorldPack(work.worldPack);
+      work.constraintRevision += 1;
+      return work.worldPack;
+    });
+  }
+
+  async saveStoryBible(workId: string, storyBible: StoryBible): Promise<StoryBible> {
+    return this.repository.transaction(workId, ({ work }) => {
+      work.storyBible = storyBible;
+      work.constraintRevision += 1;
+      return work.storyBible;
+    });
+  }
+
+  async lockStoryBible(workId: string): Promise<StoryBible> {
+    return this.repository.transaction(workId, ({ work }) => {
+      if (!work.worldPack) throw new Error('world pack has not been generated');
+      if (!work.storyBible) throw new Error('story bible has not been generated');
+      work.storyBible = lockStoryBible(work.storyBible, work.worldPack);
+      work.constraintRevision += 1;
+      return work.storyBible;
     });
   }
 

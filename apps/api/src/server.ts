@@ -5,6 +5,8 @@ import {
   createWorkRequestSchema,
   generateChapterRequestSchema,
   updateWorkRequestSchema,
+  saveStoryBibleRequestSchema,
+  saveWorldPackRequestSchema,
   type ApiError,
   type ApiErrorCode,
   type CandidateDto,
@@ -20,6 +22,7 @@ import {
   type ModelProvider,
   type Work,
 } from '../../../novel-service-core/src/core.ts';
+import { CanonGateError } from '../../../novel-service-core/src/world.ts';
 import {
   ChapterWorkflow,
   InMemoryWorkRepository,
@@ -147,6 +150,35 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     return toWorkDto(work);
   });
 
+  app.get('/works/:workId/design', async (request) => {
+    const { workId } = workParamSchema.parse(request.params);
+    const work = await repository.get(workId);
+    if (!work) throw new NotFoundError(`unknown work ${workId}`);
+    return { worldPack: work.worldPack, storyBible: work.storyBible, constraintRevision: work.constraintRevision };
+  });
+
+  app.put('/works/:workId/world-pack', async (request) => {
+    const { workId } = workParamSchema.parse(request.params);
+    const worldPack = saveWorldPackRequestSchema.parse(request.body ?? {});
+    return { worldPack: await workflow.saveWorldPack(workId, worldPack) };
+  });
+
+  app.post('/works/:workId/world-pack/lock', async (request) => {
+    const { workId } = workParamSchema.parse(request.params);
+    return { worldPack: await workflow.lockWorldPack(workId) };
+  });
+
+  app.put('/works/:workId/story-bible', async (request) => {
+    const { workId } = workParamSchema.parse(request.params);
+    const storyBible = saveStoryBibleRequestSchema.parse(request.body ?? {});
+    return { storyBible: await workflow.saveStoryBible(workId, storyBible) };
+  });
+
+  app.post('/works/:workId/story-bible/lock', async (request) => {
+    const { workId } = workParamSchema.parse(request.params);
+    return { storyBible: await workflow.lockStoryBible(workId) };
+  });
+
   app.get('/works/:workId/chapters', async (request) => {
     const { workId } = workParamSchema.parse(request.params);
     const work = await repository.get(workId);
@@ -205,6 +237,7 @@ function mapError(error: unknown): { status: number; body: ApiError } {
   if (error instanceof StaleCandidateError) return { status: 409, body: apiError('STALE_CANDIDATE', error.message) };
   if (error instanceof AdoptionBlocked) return { status: 409, body: apiError('ADOPTION_BLOCKED', error.message) };
   if (error instanceof SettingConflictError) return { status: 409, body: apiError('CONFLICT', error.message) };
+  if (error instanceof CanonGateError) return { status: 409, body: apiError('CONFLICT', error.message) };
   if (error instanceof NotFoundError || /unknown (work|candidate|character|relationship|rule|plot node)\b/.test(String(error))) {
     return { status: 404, body: apiError('NOT_FOUND', error instanceof Error ? error.message : 'not found') };
   }
