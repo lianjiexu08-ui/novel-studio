@@ -24,6 +24,24 @@ test('candidate events stay isolated until adoption', () => {
   assert.equal(work.states.get('hero|power')?.value, 1);
 });
 
+test('async model providers use the same candidate and adoption gates', async () => {
+  const asyncProvider: ModelProvider = {
+    generateChapter: () => ({ content: '同步回退', proposedEvents: [] }),
+    generateChapterAsync: async ({ chapterNumber }) => ({
+      content: `网络章节 ${chapterNumber}`,
+      proposedEvents: [],
+      observedEvents: [],
+    }),
+  };
+  const service = new NovelService(asyncProvider);
+  const work = service.createWork('异步模型');
+  const candidate = await service.generateCandidateAsync(work.id, 1, 'async-run');
+  assert.equal(candidate.content, '网络章节 1');
+  service.runChecks(work.id, candidate.id, [passChecker]);
+  service.adoptCandidate(work.id, candidate.id);
+  assert.equal(work.currentVersion(1)?.content, '网络章节 1');
+});
+
 test('unavailable required checker blocks adoption', () => {
   const service = new NovelService(provider);
   const work = service.createWork('质量门');

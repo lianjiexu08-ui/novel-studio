@@ -215,16 +215,16 @@ export class ChapterWorkflow {
   }
 
   async generate(workId: string, chapterNumber: number, runId: string): Promise<ChapterCandidate> {
-    return this.repository.transaction(workId, ({ work }) => {
+    return this.repository.transaction(workId, async ({ work }) => {
       this.service.works.set(work.id, work);
-      return this.service.generateCandidate(workId, chapterNumber, runId);
+      return this.service.generateCandidateAsync(workId, chapterNumber, runId);
     });
   }
 
   async runUntil(workId: string, targetChapter: number, checkers: CandidateChecker[], runId: string): Promise<Checkpoint> {
-    return this.repository.transaction(workId, ({ work }) => {
+    return this.repository.transaction(workId, async ({ work }) => {
       this.service.works.set(work.id, work);
-      return this.service.runUntil(workId, targetChapter, checkers, runId);
+      return this.service.runUntilAsync(workId, targetChapter, checkers, runId);
     });
   }
 

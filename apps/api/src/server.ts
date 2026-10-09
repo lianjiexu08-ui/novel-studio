@@ -33,7 +33,7 @@ import {
   type WorkRepository,
 } from '../../../packages/application/src/index.ts';
 import { PrismaWorkRepository } from '../../../packages/persistence/src/prisma-repository.ts';
-import { JsonDesignPlanner, OpenAICompatiblePlanningClient } from '../../../packages/planner/src/index.ts';
+import { JsonDesignPlanner, OpenAICompatibleChapterProvider, OpenAICompatiblePlanningClient } from '../../../packages/planner/src/index.ts';
 import { registerSettingsRoutes } from './settings-routes.ts';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
@@ -60,6 +60,12 @@ export interface ApiDependencies {
 }
 
 export function defaultProvider(): ModelProvider {
+  const endpoint = process.env.NOVEL_MODEL_ENDPOINT;
+  const apiKey = process.env.NOVEL_MODEL_API_KEY;
+  const model = process.env.NOVEL_WRITING_MODEL ?? process.env.NOVEL_PLANNING_MODEL;
+  if (endpoint && apiKey && model) {
+    return new OpenAICompatibleChapterProvider(endpoint, apiKey, model, Number(process.env.NOVEL_MODEL_BUDGET_USD ?? Number.POSITIVE_INFINITY));
+  }
   return {
     generateChapter: ({ chapterNumber, context }) => {
       const event = { eventType: 'character_state', subjectId: 'hero', predicate: 'power', value: chapterNumber + context.includedEventIds.length, storyTime: chapterNumber, evidence: 'paragraph 1' };

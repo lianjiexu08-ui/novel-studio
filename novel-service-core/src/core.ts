@@ -36,6 +36,8 @@ export interface GeneratedChapter {
 
 export interface ModelProvider {
   generateChapter(input: { work: Work; chapterNumber: number; context: ContextManifest }): GeneratedChapter;
+  /** Optional network-backed path. The synchronous path remains for local tests and fallback mode. */
+  generateChapterAsync?(input: { work: Work; chapterNumber: number; context: ContextManifest }): Promise<GeneratedChapter>;
 }
 
 export interface CheckResult {
@@ -478,6 +480,31 @@ export class NovelService {
     return candidate;
   }
 
+  async generateCandidateAsync(workId: string, chapterNumber: number, runId = id('run')): Promise<ChapterCandidate> {
+    const work = this.getWork(workId);
+    const existing = [...work.candidates.values()].find((candidate) => candidate.runId === runId && candidate.chapterNumber === chapterNumber);
+    if (existing) return existing;
+    const context = this.contextFor(work, chapterNumber);
+    if (work.worldPack || work.storyBible) {
+      if (!work.worldPack || !work.storyBible) throw new AdoptionBlocked('world pack and story bible must be configured together');
+      const gate = chapterGenerationGate(work.worldPack, work.storyBible);
+      if (!gate.ready) throw new AdoptionBlocked(`chapter generation gate blocked: ${gate.errors.join('; ')}`);
+    }
+    if (context.requiredMaterialStatus !== 'complete') throw new AdoptionBlocked('required context is incomplete');
+    const generated = this.provider.generateChapterAsync
+      ? await this.provider.generateChapterAsync({ work, chapterNumber, context })
+      : this.provider.generateChapter({ work, chapterNumber, context });
+    const candidate: ChapterCandidate = {
+      id: id('candidate'), workId, chapterNumber,
+      content: generated.content, proposedEvents: generated.proposedEvents, observedEvents: generated.observedEvents,
+      runId, generatedAgainstRevision: context.stateRevision, generatedAgainstConstraintRevision: context.constraintRevision,
+      generatedAgainstWorldPackRevision: context.worldPackRevision, generatedAgainstStoryBibleRevision: context.storyBibleRevision,
+      status: 'candidate', checks: [], createdAt: now(),
+    };
+    work.candidates.set(candidate.id, candidate);
+    return candidate;
+  }
+
   runChecks(workId: string, candidateId: string, checkers: CandidateChecker[]): CheckResult[] {
     const work = this.getWork(workId);
     const candidate = this.getCandidate(work, candidateId);
@@ -561,6 +588,30 @@ export class NovelService {
       const candidate = checkpoint.candidateIds[chapter]
         ? this.getCandidate(work, checkpoint.candidateIds[chapter])
         : this.generateCandidate(workId, chapter, runId);
+      checkpoint.candidateIds[chapter] = candidate.id;
+      checkpoint.phase = 'generated';
+      this.runChecks(workId, candidate.id, checkers);
+      checkpoint.phase = 'checked';
+      this.adoptCandidate(workId, candidate.id);
+      checkpoint.nextChapter = chapter + 1;
+      checkpoint.phase = 'adopted';
+    }
+    checkpoint.phase = 'complete';
+    return checkpoint;
+  }
+
+  async runUntilAsync(workId: string, targetChapter: number, checkers: CandidateChecker[], runId = id('run')): Promise<Checkpoint> {
+    const work = this.getWork(workId);
+    let checkpoint = work.checkpoints.get(runId);
+    if (!checkpoint) {
+      checkpoint = { runId, targetChapter, nextChapter: nextChapterAfterAdopted(work), phase: 'idle', candidateIds: {} };
+      work.checkpoints.set(runId, checkpoint);
+    } else checkpoint.targetChapter = Math.max(checkpoint.targetChapter, targetChapter);
+    while (checkpoint.nextChapter <= checkpoint.targetChapter) {
+      const chapter = checkpoint.nextChapter;
+      const candidate = checkpoint.candidateIds[chapter]
+        ? this.getCandidate(work, checkpoint.candidateIds[chapter])
+        : await this.generateCandidateAsync(workId, chapter, runId);
       checkpoint.candidateIds[chapter] = candidate.id;
       checkpoint.phase = 'generated';
       this.runChecks(workId, candidate.id, checkers);
