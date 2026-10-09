@@ -222,10 +222,18 @@ export class ChapterWorkflow {
   }
 
   async runUntil(workId: string, targetChapter: number, checkers: CandidateChecker[], runId: string): Promise<Checkpoint> {
-    return this.repository.transaction(workId, async ({ work }) => {
-      this.service.works.set(work.id, work);
-      return this.service.runUntilAsync(workId, targetChapter, checkers, runId);
-    });
+    let checkpoint: Checkpoint | undefined;
+    do {
+      checkpoint = await this.repository.transaction(workId, async ({ work }) => {
+        this.service.works.set(work.id, work);
+        const nextChapter = work.checkpoints.get(runId)?.nextChapter ?? 1;
+        if (nextChapter > targetChapter) return work.checkpoints.get(runId)!;
+        // Commit one chapter per transaction. A model timeout or process restart
+        // therefore preserves every previously adopted chapter and its checkpoint.
+        return this.service.runUntilAsync(workId, nextChapter, checkers, runId);
+      });
+    } while (checkpoint.nextChapter <= targetChapter);
+    return checkpoint;
   }
 
   async check(workId: string, candidateId: string, checkers: CandidateChecker[]): Promise<void> {

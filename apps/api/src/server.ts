@@ -85,6 +85,7 @@ function defaultDesignProvider(): DesignProvider | undefined {
 const chapterNumberParamSchema = z.object({ workId: z.string().min(1), chapterNumber: z.coerce.number().int().min(1) });
 const candidateParamSchema = z.object({ workId: z.string().min(1), candidateId: z.string().min(1) });
 const workParamSchema = z.object({ workId: z.string().min(1) });
+const runRequestSchema = z.object({ targetChapter: z.number().int().min(1).max(450), runId: z.string().min(1).max(200).optional() });
 
 function toWorkDto(work: Work): WorkDto {
   return { id: work.id, title: work.title, stateRevision: work.stateRevision, constraintRevision: work.constraintRevision, covenant: work.covenant };
@@ -265,6 +266,20 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     const body = generateChapterRequestSchema.parse(request.body ?? {});
     const candidate = await workflow.generate(workId, chapterNumber, body.runId ?? `api:${workId}:${chapterNumber}`);
     return reply.code(201).send({ candidate: toCandidateDto(candidate) });
+  });
+
+  app.post('/works/:workId/runs', async (request) => {
+    const { workId } = workParamSchema.parse(request.params);
+    const body = runRequestSchema.parse(request.body ?? {});
+    const checkpoint = await workflow.runUntil(workId, body.targetChapter, [passChecker], body.runId ?? `api-run:${workId}`);
+    return { checkpoint };
+  });
+
+  app.get('/works/:workId/runs', async (request) => {
+    const { workId } = workParamSchema.parse(request.params);
+    const work = await repository.get(workId);
+    if (!work) throw new NotFoundError(`unknown work ${workId}`);
+    return { checkpoints: [...work.checkpoints.values()] };
   });
 
   app.post('/works/:workId/candidates/:candidateId/check', async (request) => {

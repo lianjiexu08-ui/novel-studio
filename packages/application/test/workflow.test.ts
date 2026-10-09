@@ -65,3 +65,24 @@ test('same-work transactions are serialized', async () => {
   await Promise.all([first, second]);
   assert.deepEqual(order, ['first-start', 'first-end', 'second']);
 });
+
+test('long runs commit each chapter so a failed model call can resume', async () => {
+  let failChapterTwo = true;
+  const flakyProvider: ModelProvider = {
+    generateChapter: ({ chapterNumber }) => ({ content: `回退 ${chapterNumber}`, proposedEvents: [] }),
+    generateChapterAsync: async ({ chapterNumber }) => {
+      if (chapterNumber === 2 && failChapterTwo) throw new Error('model timeout');
+      return { content: `网络 ${chapterNumber}`, proposedEvents: [], observedEvents: [] };
+    },
+  };
+  const repository = new InMemoryWorkRepository();
+  const workflow = new ChapterWorkflow(repository, flakyProvider);
+  const work = await workflow.createWork('可恢复长跑');
+  await assert.rejects(() => workflow.runUntil(work.id, 3, [passChecker], 'resume-run'), /model timeout/);
+  assert.deepEqual((await repository.get(work.id))?.adoptedVersions().map((version) => version.chapterNumber), [1]);
+  assert.equal((await repository.get(work.id))?.checkpoints.get('resume-run')?.nextChapter, 2);
+  failChapterTwo = false;
+  const checkpoint = await workflow.runUntil(work.id, 3, [passChecker], 'resume-run');
+  assert.equal(checkpoint.nextChapter, 4);
+  assert.deepEqual((await repository.get(work.id))?.adoptedVersions().map((version) => version.chapterNumber), [1, 2, 3]);
+});

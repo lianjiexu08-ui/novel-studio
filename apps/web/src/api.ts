@@ -70,6 +70,9 @@ export const api = {
   listChapters: (workId: string) => call<{ chapters: ChapterVersionDto[] }>(`/works/${workId}/chapters`),
   generate: (workId: string, chapterNumber: number) =>
     call<{ candidate: CandidateDto }>(`/works/${workId}/chapters/${chapterNumber}/generate`, { method: 'POST', body: {} }),
+  runUntil: (workId: string, targetChapter: number, runId?: string) =>
+    call<{ checkpoint: { runId: string; targetChapter: number; nextChapter: number; phase: string; candidateIds: Record<number, string> } }>(`/works/${workId}/runs`, { method: 'POST', body: { targetChapter, runId } }),
+  checkpoints: (workId: string) => call<{ checkpoints: Array<{ runId: string; targetChapter: number; nextChapter: number; phase: string; candidateIds: Record<number, string> }> }>(`/works/${workId}/runs`),
   check: (workId: string, candidateId: string) =>
     call<{ candidate: CandidateDto }>(`/works/${workId}/candidates/${candidateId}/check`, { method: 'POST' }),
   adopt: (workId: string, candidateId: string, expectedStateRevision: number) =>

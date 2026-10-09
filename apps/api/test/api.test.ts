@@ -223,3 +223,18 @@ test('design generation route stores a proposed world pack from the planner', as
     await app.close();
   }
 });
+
+test('run API commits a resumable checkpoint one chapter at a time', async () => {
+  const { app } = createApiServer({ repository: new InMemoryWorkRepository() });
+  try {
+    const work = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('连续生成') })).json();
+    const run = await app.inject({ method: 'POST', url: `/works/${work.id}/runs`, payload: { targetChapter: 3, runId: 'api-continuous' } });
+    assert.equal(run.statusCode, 200);
+    assert.equal(run.json().checkpoint.nextChapter, 4);
+    const checkpoints = await app.inject({ method: 'GET', url: `/works/${work.id}/runs` });
+    assert.equal(checkpoints.statusCode, 200);
+    assert.equal(checkpoints.json().checkpoints[0].phase, 'complete');
+  } finally {
+    await app.close();
+  }
+});

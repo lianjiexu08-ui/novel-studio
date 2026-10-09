@@ -29,10 +29,13 @@ export function WritePage() {
   const [chapterNumber, setChapterNumber] = useState(1);
   const [candidate, setCandidate] = useState<CandidateDto | null>(null);
   const [outbox, setOutbox] = useState<OutboxEventDto[]>([]);
+  const [targetChapter, setTargetChapter] = useState(100);
+  const [checkpoint, setCheckpoint] = useState<{ runId: string; targetChapter: number; nextChapter: number; phase: string } | null>(null);
   const [busy, setBusy] = useState<string | null>(null);
 
   useEffect(() => {
     api.outbox(work.id).then((result) => setOutbox(result.events)).catch(() => {});
+    api.checkpoints(work.id).then((result) => setCheckpoint(result.checkpoints.at(-1) ?? null)).catch(() => {});
   }, [work.id, work.stateRevision]);
 
   async function run(step: string, action: () => Promise<void>, success?: string) {
@@ -106,6 +109,19 @@ export function WritePage() {
               await refresh();
               setOutbox((await api.outbox(work.id)).events);
             }, `第 ${chapterNumber} 章已采用`)}>采用</Button>
+        </div>
+
+        <div className="pipeline-actions" style={{ marginTop: 12 }}>
+          <span className="toc-meta">连续生成到</span>
+          <InputNumber min={1} max={450} value={targetChapter} onChange={(v) => setTargetChapter(v ?? 100)} />
+          <Button type="primary" disabled={!ready} loading={busy === 'run'}
+            onClick={() => run('run', async () => {
+              const result = await api.runUntil(work.id, targetChapter, `ui-run:${work.id}`);
+              setCheckpoint(result.checkpoint);
+              setChapterNumber(result.checkpoint.nextChapter);
+              await refresh();
+            }, `已完成到第 ${targetChapter} 章`)}>按蓝图连续生成</Button>
+          {checkpoint && <span className="toc-meta">检查点：第 {checkpoint.nextChapter} 章，状态 {checkpoint.phase}。每章单独提交，可从这里恢复。</span>}
         </div>
 
         {candidate && (
