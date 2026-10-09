@@ -8,6 +8,7 @@
     "novel-service-core"
   ],
   "scripts": {
+    "pretest": "npm run generate -w novel-studio-persistence",
     "test": "node scripts/test-all.mjs",
     "dev:api": "npm run start -w novel-studio-api",
     "dev:web": "npm run dev -w novel-studio-web"

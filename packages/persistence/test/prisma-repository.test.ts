@@ -1,17 +1,19 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
-import { mkdtempSync, rmSync } from 'node:fs';
+import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { pathToFileURL } from 'node:url';
+import { fileURLToPath } from 'node:url';
 import type { ModelProvider } from '../../../novel-service-core/src/core.ts';
 
-const persistenceDir = new URL('..', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1').replaceAll('/', '\\');
+const persistenceDir = fileURLToPath(new URL('..', import.meta.url));
 
 function createDatabase(): string {
   const dir = mkdtempSync(join(tmpdir(), 'novel-persistence-'));
-  const databaseUrl = `file:${join(dir, 'test.db').replaceAll('\\', '/')}`;
+  const databasePath = join(dir, 'test.db');
+  writeFileSync(databasePath, '');
+  const databaseUrl = `file:${databasePath.replaceAll('\\', '/')}`;
   execFileSync('npx', ['prisma', 'db', 'push', '--skip-generate', '--force-reset'], {
     cwd: persistenceDir,
     env: { ...process.env, DATABASE_URL: databaseUrl },
