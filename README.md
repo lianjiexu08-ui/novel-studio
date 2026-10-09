@@ -8,8 +8,9 @@
 
 1. `docs/MASTER-PLAN.md`
 2. `docs/PRODUCT-AND-ARCHITECTURE.md`
-3. `IMPLEMENTATION-HANDOFF.md`
-4. `novel-service-spike/README.md`
+3. `docs/NOVEL-CONTENT-MODEL.md`
+4. `IMPLEMENTATION-HANDOFF.md`
+5. `novel-service-spike/README.md`
 
 ## 目录
 
