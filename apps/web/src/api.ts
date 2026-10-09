@@ -30,6 +30,8 @@ export interface ChapterHistoryDto {
   relationships: Array<RelationshipDto | undefined>;
   arcStates: Array<{ arcId: string; status: string; value: unknown; sourceEventId: string; sourceChapterVersionId: string; storyTime?: number }>;
   secretStates: Array<{ secretId: string; revealed: boolean; value: unknown; sourceEventId: string; sourceChapterVersionId: string; storyTime?: number }>;
+  promiseStates: Array<{ promiseId: string; status: string; value: unknown; sourceEventId: string; sourceChapterVersionId: string; storyTime?: number }>;
+  threadStates: Array<{ threadId: string; status: string; value: unknown; sourceEventId: string; sourceChapterVersionId: string; storyTime?: number }>;
 }
 
 const BASE_URL = import.meta.env.VITE_API_URL ?? 'http://127.0.0.1:8787';

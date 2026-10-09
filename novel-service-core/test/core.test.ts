@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { AdoptionBlocked, canonConsistencyChecker, chapterLengthChecker, characterStateAt, knowledgeAt, LockedConstraintError, NovelService, passChecker, relationshipAt, storyArcAt, storySecretAt, unavailableChecker } from '../src/core.ts';
+import { AdoptionBlocked, canonConsistencyChecker, chapterLengthChecker, characterStateAt, knowledgeAt, LockedConstraintError, NovelService, passChecker, relationshipAt, storyArcAt, storyPromiseAt, storySecretAt, storyThreadAt, unavailableChecker } from '../src/core.ts';
 import type { ModelProvider } from '../src/core.ts';
 import { lockStoryBible, lockWorldPack } from '../src/world.ts';
 import type { StoryBible } from '../src/world.ts';
@@ -214,6 +214,23 @@ test('arc progress and secret reveals are reconstructed at a chapter', () => {
   assert.equal(storyArcAt(work, 'arc', 2)?.status, 'active');
   assert.equal(storySecretAt(work, 'secret', 1), undefined);
   assert.equal(storySecretAt(work, 'secret', 2)?.revealed, true);
+});
+
+test('promise payoffs and open thread resolutions are reconstructed at a chapter', () => {
+  const service = new NovelService({
+    generateChapter: ({ chapterNumber }) => {
+      const eventType = chapterNumber === 1 ? 'promise_payoff' : 'thread_resolution';
+      const subjectId = chapterNumber === 1 ? 'promise' : 'thread';
+      const value = chapterNumber === 1 ? { status: 'paid', evidence: '兑现约定' } : { status: 'resolved', evidence: '揭开真相' };
+      const event = { eventType, subjectId, predicate: 'status', value, evidence: value.evidence };
+      return { content: `第${chapterNumber}章`, proposedEvents: [event], observedEvents: [event] };
+    },
+  });
+  const work = service.createWork('承诺回放');
+  service.runUntil(work.id, 2, [passChecker], 'promise-run');
+  assert.equal(storyPromiseAt(work, 'promise', 1)?.status, 'paid');
+  assert.equal(storyThreadAt(work, 'thread', 1), undefined);
+  assert.equal(storyThreadAt(work, 'thread', 2)?.status, 'resolved');
 });
 
 test('chapter candidates bind to the locked world pack and story bible revisions', () => {

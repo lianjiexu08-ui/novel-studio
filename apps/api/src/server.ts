@@ -22,7 +22,9 @@ import {
   StaleCandidateError,
   relationshipAt,
   storyArcAt,
+  storyPromiseAt,
   storySecretAt,
+  storyThreadAt,
   canonConsistencyChecker,
   chapterLengthChecker,
   passChecker,
@@ -305,6 +307,8 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
       relationships: [...work.relationships.values()].map((relationship) => relationshipAt(work, relationship.id, chapterNumber)),
       arcStates: (work.storyBible?.arcs ?? []).map((arc) => storyArcAt(work, arc.id, chapterNumber)).filter((state): state is NonNullable<typeof state> => Boolean(state)),
       secretStates: (work.storyBible?.secrets ?? []).map((secret) => storySecretAt(work, secret.id, chapterNumber)).filter((state): state is NonNullable<typeof state> => Boolean(state)),
+      promiseStates: (work.storyBible?.promises ?? []).map((promise) => storyPromiseAt(work, promise.id, chapterNumber)).filter((state): state is NonNullable<typeof state> => Boolean(state)),
+      threadStates: (work.storyBible?.openThreads ?? []).map((thread) => storyThreadAt(work, thread.id, chapterNumber)).filter((state): state is NonNullable<typeof state> => Boolean(state)),
     };
   });
 

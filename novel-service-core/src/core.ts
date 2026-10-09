@@ -128,6 +128,24 @@ export interface StorySecretState {
   storyTime?: number;
 }
 
+export interface StoryPromiseState {
+  promiseId: string;
+  status: 'open' | 'paid' | 'broken';
+  value: unknown;
+  sourceEventId: string;
+  sourceChapterVersionId: string;
+  storyTime?: number;
+}
+
+export interface StoryThreadState {
+  threadId: string;
+  status: 'open' | 'resolved' | 'deferred';
+  value: unknown;
+  sourceEventId: string;
+  sourceChapterVersionId: string;
+  storyTime?: number;
+}
+
 export interface ChapterCandidate {
   id: string;
   workId: string;
@@ -765,6 +783,26 @@ export function storySecretAt(work: Work, secretId: string, chapterNumber: numbe
   return { secretId, revealed: true, value: event.value, sourceEventId: event.id, sourceChapterVersionId: event.chapterVersionId, storyTime: event.storyTime };
 }
 
+export function storyPromiseAt(work: Work, promiseId: string, chapterNumber: number): StoryPromiseState | undefined {
+  const event = [...work.events.values()]
+    .filter((item) => item.active && item.eventType === 'promise_payoff' && item.subjectId === promiseId && item.chapterNumber <= chapterNumber)
+    .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id)).at(-1);
+  if (!event) return undefined;
+  const raw = event.value && typeof event.value === 'object' ? event.value as Record<string, unknown> : {};
+  const status: StoryPromiseState['status'] = raw.status === 'broken' ? 'broken' : raw.status === 'open' ? 'open' : 'paid';
+  return { promiseId, status, value: event.value, sourceEventId: event.id, sourceChapterVersionId: event.chapterVersionId, storyTime: event.storyTime };
+}
+
+export function storyThreadAt(work: Work, threadId: string, chapterNumber: number): StoryThreadState | undefined {
+  const event = [...work.events.values()]
+    .filter((item) => item.active && item.eventType === 'thread_resolution' && item.subjectId === threadId && item.chapterNumber <= chapterNumber)
+    .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id)).at(-1);
+  if (!event) return undefined;
+  const raw = event.value && typeof event.value === 'object' ? event.value as Record<string, unknown> : {};
+  const status: StoryThreadState['status'] = raw.status === 'deferred' ? 'deferred' : raw.status === 'open' ? 'open' : 'resolved';
+  return { threadId, status, value: event.value, sourceEventId: event.id, sourceChapterVersionId: event.chapterVersionId, storyTime: event.storyTime };
+}
+
 /** Reconstructs a relationship value at a chapter without mutating the author seed. */
 export function relationshipAt(work: Work, relationshipId: string, chapterNumber: number): Relationship | undefined {
   const base = work.relationships.get(relationshipId);
@@ -814,6 +852,8 @@ export const canonConsistencyChecker: CandidateChecker = {
       if (event.eventType === 'artifact_change' && artifactIds.size && !artifactIds.has(event.subjectId)) errors.push(`unknown artifact ${event.subjectId}`);
       if (event.eventType === 'arc_progress' && work.storyBible && !work.storyBible.arcs.some((arc) => arc.id === event.subjectId)) errors.push(`unknown story arc ${event.subjectId}`);
       if (event.eventType === 'secret_reveal' && work.storyBible && !(work.storyBible.secrets ?? []).some((secret) => secret.id === event.subjectId)) errors.push(`unknown story secret ${event.subjectId}`);
+      if (event.eventType === 'promise_payoff' && work.storyBible && !(work.storyBible.promises ?? []).some((promise) => promise.id === event.subjectId)) errors.push(`unknown story promise ${event.subjectId}`);
+      if (event.eventType === 'thread_resolution' && work.storyBible && !(work.storyBible.openThreads ?? []).some((thread) => thread.id === event.subjectId)) errors.push(`unknown story thread ${event.subjectId}`);
       if (event.storyTime !== undefined && event.storyTime < 0) errors.push(`negative story time in ${event.subjectId}`);
     }
     return {
