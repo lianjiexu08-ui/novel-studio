@@ -31,13 +31,26 @@ export function WritePage() {
   const [outbox, setOutbox] = useState<OutboxEventDto[]>([]);
   const [targetChapter, setTargetChapter] = useState(100);
   const [checkpoint, setCheckpoint] = useState<{ runId: string; targetChapter: number; nextChapter: number; phase: string } | null>(null);
+  const [runActive, setRunActive] = useState(false);
   const [manuscriptId, setManuscriptId] = useState<string | null>(null);
   const [busy, setBusy] = useState<string | null>(null);
 
   useEffect(() => {
     api.outbox(work.id).then((result) => setOutbox(result.events)).catch(() => {});
-    api.checkpoints(work.id).then((result) => setCheckpoint(result.checkpoints.at(-1) ?? null)).catch(() => {});
+    api.checkpoints(work.id).then((result) => { setCheckpoint(result.checkpoints.at(-1) ?? null); setRunActive(result.activeRunIds.length > 0); }).catch(() => {});
   }, [work.id, work.stateRevision]);
+
+  useEffect(() => {
+    if (!runActive) return undefined;
+    const timer = window.setInterval(() => {
+      api.checkpoints(work.id).then((result) => {
+        const current = result.checkpoints.find((item) => item.runId === `ui-run:${work.id}`) ?? result.checkpoints.at(-1);
+        if (current) setCheckpoint(current);
+        if (!result.activeRunIds.includes(`ui-run:${work.id}`)) setRunActive(false);
+      }).catch(() => {});
+    }, 2000);
+    return () => window.clearInterval(timer);
+  }, [runActive, work.id]);
 
   async function run(step: string, action: () => Promise<void>, success?: string) {
     setBusy(step);
@@ -117,11 +130,11 @@ export function WritePage() {
           <InputNumber min={1} max={450} value={targetChapter} onChange={(v) => setTargetChapter(v ?? 100)} />
           <Button type="primary" disabled={!ready} loading={busy === 'run'}
             onClick={() => run('run', async () => {
-              const result = await api.runUntil(work.id, targetChapter, `ui-run:${work.id}`);
-              setCheckpoint(result.checkpoint);
-              setChapterNumber(result.checkpoint.nextChapter);
+              const result = await api.runUntil(work.id, targetChapter, `ui-run:${work.id}`, true);
+              if (result.checkpoint) { setCheckpoint(result.checkpoint); setChapterNumber(result.checkpoint.nextChapter); }
+              setRunActive(true);
               await refresh();
-            }, `已完成到第 ${targetChapter} 章`)}>按蓝图连续生成</Button>
+            }, `已启动到第 ${targetChapter} 章的后台生成`)}>按蓝图连续生成</Button>
           {checkpoint && <span className="toc-meta">检查点：第 {checkpoint.nextChapter} 章，状态 {checkpoint.phase}。每章单独提交，可从这里恢复。</span>}
           <Button disabled={checkpoint?.phase !== 'complete'} loading={busy === 'finalize'}
             onClick={() => run('finalize', async () => {

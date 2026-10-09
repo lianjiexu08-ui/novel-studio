@@ -247,3 +247,19 @@ test('run API commits a resumable checkpoint one chapter at a time', async () =>
     await app.close();
   }
 });
+
+test('run API can launch a background run and expose its checkpoint', async () => {
+  const { app } = createApiServer({ repository: new InMemoryWorkRepository() });
+  try {
+    const work = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('后台连续生成') })).json();
+    const started = await app.inject({ method: 'POST', url: `/works/${work.id}/runs`, payload: { targetChapter: 2, runId: 'background-run', background: true } });
+    assert.equal(started.statusCode, 202);
+    assert.equal(started.json().runId, 'background-run');
+    await new Promise((resolve) => setTimeout(resolve, 20));
+    const status = await app.inject({ method: 'GET', url: `/works/${work.id}/runs` });
+    assert.equal(status.statusCode, 200);
+    assert.equal(status.json().checkpoints[0].nextChapter, 3);
+  } finally {
+    await app.close();
+  }
+});

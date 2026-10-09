@@ -90,7 +90,7 @@ function defaultDesignProvider(): DesignProvider | undefined {
 const chapterNumberParamSchema = z.object({ workId: z.string().min(1), chapterNumber: z.coerce.number().int().min(1) });
 const candidateParamSchema = z.object({ workId: z.string().min(1), candidateId: z.string().min(1) });
 const workParamSchema = z.object({ workId: z.string().min(1) });
-const runRequestSchema = z.object({ targetChapter: z.number().int().min(1).max(450), runId: z.string().min(1).max(200).optional() });
+const runRequestSchema = z.object({ targetChapter: z.number().int().min(1).max(450), runId: z.string().min(1).max(200).optional(), background: z.boolean().optional() });
 const chapterStateParamSchema = z.object({ workId: z.string().min(1), chapterNumber: z.coerce.number().int().min(1) });
 
 function toWorkDto(work: Work): WorkDto {
@@ -122,6 +122,7 @@ function toManuscriptDto(manuscript: ManuscriptRevision): ManuscriptRevisionDto 
 export function createApiServer(dependencies: ApiDependencies = {}): { app: FastifyInstance; repository: WorkRepository } {
   const repository = dependencies.repository ?? createDefaultRepository();
   const workflow = new ChapterWorkflow(repository, dependencies.provider ?? defaultProvider(), dependencies.designProvider ?? defaultDesignProvider());
+  const activeRuns = new Map<string, Promise<void>>();
   const app = Fastify({ logger: false });
 
   // Tolerate empty JSON bodies on POST endpoints that take no payload.
@@ -297,10 +298,23 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     return reply.code(201).send({ candidate: toCandidateDto(candidate) });
   });
 
-  app.post('/works/:workId/runs', async (request) => {
+  app.post('/works/:workId/runs', async (request, reply) => {
     const { workId } = workParamSchema.parse(request.params);
     const body = runRequestSchema.parse(request.body ?? {});
-    const checkpoint = await workflow.runUntil(workId, body.targetChapter, [passChecker, canonConsistencyChecker], body.runId ?? `api-run:${workId}`);
+    const runId = body.runId ?? `api-run:${workId}`;
+    if (body.background) {
+      const key = `${workId}:${runId}`;
+      if (!activeRuns.has(key)) {
+        const task = workflow.runUntil(workId, body.targetChapter, [passChecker, canonConsistencyChecker], runId)
+          .then(() => undefined)
+          .catch(() => undefined)
+          .finally(() => { activeRuns.delete(key); });
+        activeRuns.set(key, task);
+      }
+      const current = await repository.get(workId);
+      return reply.code(202).send({ runId, status: 'running', checkpoint: current?.checkpoints.get(runId) });
+    }
+    const checkpoint = await workflow.runUntil(workId, body.targetChapter, [passChecker, canonConsistencyChecker], runId);
     return { checkpoint };
   });
 
@@ -308,7 +322,7 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     const { workId } = workParamSchema.parse(request.params);
     const work = await repository.get(workId);
     if (!work) throw new NotFoundError(`unknown work ${workId}`);
-    return { checkpoints: [...work.checkpoints.values()] };
+    return { checkpoints: [...work.checkpoints.values()], activeRunIds: [...activeRuns.keys()].filter((key) => key.startsWith(`${workId}:`)).map((key) => key.slice(workId.length + 1)) };
   });
 
   app.post('/works/:workId/candidates/:candidateId/check', async (request) => {

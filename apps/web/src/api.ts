@@ -79,9 +79,9 @@ export const api = {
   listChapters: (workId: string) => call<{ chapters: ChapterVersionDto[] }>(`/works/${workId}/chapters`),
   generate: (workId: string, chapterNumber: number) =>
     call<{ candidate: CandidateDto }>(`/works/${workId}/chapters/${chapterNumber}/generate`, { method: 'POST', body: {} }),
-  runUntil: (workId: string, targetChapter: number, runId?: string) =>
-    call<{ checkpoint: { runId: string; targetChapter: number; nextChapter: number; phase: string; candidateIds: Record<number, string> } }>(`/works/${workId}/runs`, { method: 'POST', body: { targetChapter, runId } }),
-  checkpoints: (workId: string) => call<{ checkpoints: Array<{ runId: string; targetChapter: number; nextChapter: number; phase: string; candidateIds: Record<number, string> }> }>(`/works/${workId}/runs`),
+  runUntil: (workId: string, targetChapter: number, runId?: string, background = false) =>
+    call<{ checkpoint?: { runId: string; targetChapter: number; nextChapter: number; phase: string; candidateIds: Record<number, string>; error?: string }; runId?: string; status?: string }>(`/works/${workId}/runs`, { method: 'POST', body: { targetChapter, runId, background } }),
+  checkpoints: (workId: string) => call<{ checkpoints: Array<{ runId: string; targetChapter: number; nextChapter: number; phase: string; candidateIds: Record<number, string>; error?: string }>; activeRunIds: string[] }>(`/works/${workId}/runs`),
   history: (workId: string, chapterNumber: number) => call<ChapterHistoryDto>(`/works/${workId}/state/${chapterNumber}`),
   finalizeManuscript: (workId: string) => call<{ manuscript: import('novel-studio-contracts').ManuscriptRevisionDto }>(`/works/${workId}/manuscripts/finalize`, { method: 'POST', body: {} }),
   check: (workId: string, candidateId: string) =>
