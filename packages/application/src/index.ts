@@ -134,7 +134,9 @@ export class ChapterWorkflow {
 
   async saveWorldPack(workId: string, worldPack: WorldPack): Promise<WorldPack> {
     return this.repository.transaction(workId, ({ work }) => {
-      work.worldPack = worldPack;
+      // A submitted JSON document never carries review authority. Even if a
+      // caller sends reviewed/locked, it must pass the server review endpoint.
+      work.worldPack = { ...worldPack, status: worldPack.status === 'draft' ? 'draft' : 'proposed', lockedAt: undefined };
       work.constraintRevision += 1;
       return work.worldPack;
     });
@@ -170,7 +172,7 @@ export class ChapterWorkflow {
 
   async saveStoryBible(workId: string, storyBible: StoryBible): Promise<StoryBible> {
     return this.repository.transaction(workId, ({ work }) => {
-      work.storyBible = storyBible;
+      work.storyBible = { ...storyBible, status: storyBible.status === 'draft' ? 'draft' : 'proposed', lockedAt: undefined };
       work.constraintRevision += 1;
       return work.storyBible;
     });
