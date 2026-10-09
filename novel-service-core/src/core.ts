@@ -98,6 +98,16 @@ export interface CharacterState {
   storyTime?: number;
 }
 
+export interface CharacterKnowledge {
+  characterId: string;
+  subjectId: string;
+  proposition: string;
+  belief: unknown;
+  sourceEventId: string;
+  sourceChapterVersionId: string;
+  storyTime?: number;
+}
+
 export interface ChapterCandidate {
   id: string;
   workId: string;
@@ -401,8 +411,8 @@ export class NovelService {
     const allEvents = [...work.events.values()].filter((event) => event.active && event.chapterNumber < chapterNumber);
     const latestByState = new Map<string, StoryEvent>();
     for (const event of allEvents) {
-      if (event.eventType !== 'character_state') continue;
-      latestByState.set(`${event.subjectId}|${event.predicate}`, event);
+      if (event.eventType !== 'character_state' && event.eventType !== 'knowledge_belief') continue;
+      latestByState.set(`${event.eventType}|${event.subjectId}|${event.predicate}`, event);
     }
     const selected = new Map<string, StoryEvent>();
     for (const event of [...latestByState.values()].sort((a, b) => a.chapterNumber - b.chapterNumber)) selected.set(event.id, event);
@@ -641,6 +651,21 @@ export function characterStateAt(work: Work, characterId: string, field: string,
   if (!event) return undefined;
   return {
     characterId, field, value: event.value, sourceEventId: event.id,
+    sourceChapterVersionId: event.chapterVersionId, storyTime: event.storyTime,
+  };
+}
+
+/** Returns what a character believed about a proposition at a story chapter. */
+export function knowledgeAt(work: Work, characterId: string, proposition: string, chapterNumber: number): CharacterKnowledge | undefined {
+  const event = [...work.events.values()]
+    .filter((item) => item.active && item.eventType === 'knowledge_belief' && item.subjectId === characterId && item.predicate === proposition && item.chapterNumber <= chapterNumber)
+    .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id))
+    .at(-1);
+  if (!event) return undefined;
+  const raw = event.value && typeof event.value === 'object' ? event.value as Record<string, unknown> : {};
+  return {
+    characterId, subjectId: typeof raw.subjectId === 'string' ? raw.subjectId : '', proposition,
+    belief: 'belief' in raw ? raw.belief : event.value, sourceEventId: event.id,
     sourceChapterVersionId: event.chapterVersionId, storyTime: event.storyTime,
   };
 }

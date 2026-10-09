@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { AdoptionBlocked, characterStateAt, LockedConstraintError, NovelService, passChecker, unavailableChecker } from '../src/core.ts';
+import { AdoptionBlocked, characterStateAt, knowledgeAt, LockedConstraintError, NovelService, passChecker, unavailableChecker } from '../src/core.ts';
 import type { ModelProvider } from '../src/core.ts';
 import { lockStoryBible, lockWorldPack } from '../src/world.ts';
 import type { StoryBible } from '../src/world.ts';
@@ -123,6 +123,21 @@ test('context manifests cap long history while retaining latest character facts'
   assert.equal(context.contextBudget, 5000);
   assert.equal(context.canonHash.length, 64);
   assert.equal(context.stateHash.length, 64);
+});
+
+test('character knowledge is reconstructed independently from world facts', () => {
+  const providerWithBelief: ModelProvider = {
+    generateChapter: ({ chapterNumber }) => {
+      const event = { eventType: 'knowledge_belief', subjectId: 'hero', predicate: 'enemy_identity', value: { subjectId: 'rival', belief: chapterNumber === 1 ? 'unknown' : 'traitor' }, storyTime: chapterNumber, evidence: 'paragraph 2' };
+      return { content: `第${chapterNumber}章`, proposedEvents: [event], observedEvents: [event] };
+    },
+  };
+  const service = new NovelService(providerWithBelief);
+  const work = service.createWork('角色认知');
+  service.runUntil(work.id, 2, [passChecker], 'belief-run');
+  assert.equal(knowledgeAt(work, 'hero', 'enemy_identity', 1)?.belief, 'unknown');
+  assert.equal(knowledgeAt(work, 'hero', 'enemy_identity', 2)?.belief, 'traitor');
+  assert.equal(knowledgeAt(work, 'hero', 'enemy_identity', 2)?.subjectId, 'rival');
 });
 
 test('chapter candidates bind to the locked world pack and story bible revisions', () => {

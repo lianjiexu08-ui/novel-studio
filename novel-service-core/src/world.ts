@@ -151,6 +151,26 @@ export interface StoryRelationshipSeed {
   kind: 'kinship' | 'social' | 'trust' | 'emotion' | 'allegiance' | 'private_intent' | 'belief';
   value: string;
   locked: boolean;
+  sinceChapter?: number;
+  untilChapter?: number;
+}
+
+export interface StorySecretSeed {
+  id: string;
+  ownerCharacterId: string;
+  title: string;
+  truth: string;
+  revealCondition: string;
+  status: CanonStatus;
+}
+
+export interface StoryArcBeatSeed {
+  id: string;
+  arcId: string;
+  characterId: string;
+  kind: 'trigger' | 'belief_shift' | 'choice' | 'cost' | 'consequence' | 'resolution';
+  plannedChapter?: number;
+  expectedChange: string;
 }
 
 export interface StoryArcSeed {
@@ -183,6 +203,8 @@ export interface StoryBible {
   endingDirection: string;
   characters: StoryCharacterSeed[];
   relationships: StoryRelationshipSeed[];
+  secrets?: StorySecretSeed[];
+  arcBeats?: StoryArcBeatSeed[];
   arcs: StoryArcSeed[];
   volumes: StoryVolumeSeed[];
   unresolvedQuestions: UnresolvedQuestion[];
@@ -301,9 +323,17 @@ export function validateStoryBible(bible: StoryBible, worldPack: WorldPack): Gat
   for (const relationship of bible.relationships) {
     if (!characterIds.has(relationship.fromCharacterId) || !characterIds.has(relationship.toCharacterId)) errors.push(`relationship ${relationship.id} references unknown character`);
     if (relationship.fromCharacterId === relationship.toCharacterId) errors.push(`relationship ${relationship.id} cannot connect a character to itself`);
+    if (relationship.sinceChapter !== undefined && relationship.untilChapter !== undefined && relationship.untilChapter < relationship.sinceChapter) errors.push(`relationship ${relationship.id} has an invalid chapter interval`);
+  }
+  for (const secret of bible.secrets ?? []) {
+    if (!characterIds.has(secret.ownerCharacterId)) errors.push(`secret ${secret.id} references unknown owner ${secret.ownerCharacterId}`);
   }
   for (const arc of bible.arcs) {
     for (const characterId of arc.characterIds) if (!characterIds.has(characterId)) errors.push(`arc ${arc.id} references unknown character ${characterId}`);
+  }
+  for (const beat of bible.arcBeats ?? []) {
+    if (!arcIds.has(beat.arcId)) errors.push(`arc beat ${beat.id} references unknown arc ${beat.arcId}`);
+    if (!characterIds.has(beat.characterId)) errors.push(`arc beat ${beat.id} references unknown character ${beat.characterId}`);
   }
   for (const volume of bible.volumes) {
     if (volumeOrders.has(volume.order)) errors.push(`volumes have duplicate order ${volume.order}`);
