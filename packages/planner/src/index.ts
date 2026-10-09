@@ -47,7 +47,8 @@ export class OpenAICompatiblePlanningClient implements PlanningClient {
   private readonly model: string;
 
   constructor(endpoint: string, apiKey: string, model: string, budgetUsd = Number.POSITIVE_INFINITY) {
-    this.endpoint = endpoint;
+    const normalizedEndpoint = endpoint.replace(/\/$/, '');
+    this.endpoint = /\/v1$/i.test(normalizedEndpoint) ? normalizedEndpoint : `${normalizedEndpoint}/v1`;
     this.apiKey = apiKey;
     this.model = model;
     this.gateway = new ModelGateway(new Map([['openai-compatible', new OpenAICompatibleAdapter(fetch, 60_000)]]), new UsageLedger(budgetUsd));

@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createApiServer } from '../src/server.ts';
 import { InMemoryWorkRepository } from '../../../packages/application/src/index.ts';
+import { createEmptyWorldPack } from '../../../novel-service-core/src/world.ts';
 
 function createPayload(title: string) {
   return {
@@ -197,6 +198,25 @@ test('design API saves and locks the world pack before the story bible', async (
     assert.equal(design.storyBible.status, 'locked');
     assert.ok(design.constraintRevision >= 4);
     assert.equal((await app.inject({ method: 'GET', url: `${base}/manuscripts` })).json().manuscripts.length, 1);
+  } finally {
+    await app.close();
+  }
+});
+
+test('design generation route stores a proposed world pack from the planner', async () => {
+  const { app } = createApiServer({
+    repository: new InMemoryWorkRepository(),
+    designProvider: {
+      generateWorldPack: async () => ({ ...createEmptyWorldPack('模型生成世界'), status: 'proposed' }),
+      generateStoryBible: async () => { throw new Error('not used'); },
+    },
+  });
+  try {
+    const work = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('规划器接入') })).json();
+    const response = await app.inject({ method: 'POST', url: `/works/${work.id}/design/generate`, payload: { stage: 'world_pack' } });
+    assert.equal(response.statusCode, 200);
+    assert.equal(response.json().worldPack.status, 'proposed');
+    assert.equal((await app.inject({ method: 'GET', url: `/works/${work.id}/design` })).json().worldPack.title, '模型生成世界');
   } finally {
     await app.close();
   }

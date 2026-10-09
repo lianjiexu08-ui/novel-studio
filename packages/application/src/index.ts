@@ -4,6 +4,11 @@ import type { CandidateChecker, ChapterCandidate, ChapterVersion, Checkpoint, Cr
 import { lockStoryBible, lockWorldPack } from '../../../novel-service-core/src/world.ts';
 import type { StoryBible, WorldPack } from '../../../novel-service-core/src/world.ts';
 
+export interface DesignProvider {
+  generateWorldPack(input: { title: string; covenant: CreativeCovenant }): Promise<WorldPack>;
+  generateStoryBible(input: { title: string; covenant: CreativeCovenant; worldPack: WorldPack }): Promise<StoryBible>;
+}
+
 export type OutboxKind = 'projection' | 'search_index' | 'export' | 'publication_check';
 
 export interface OutboxEvent {
@@ -95,10 +100,12 @@ export interface AdoptionResult {
 export class ChapterWorkflow {
   private readonly service: NovelService;
   private readonly repository: WorkRepository;
+  private readonly designProvider?: DesignProvider;
 
-  constructor(repository: WorkRepository, provider: ModelProvider) {
+  constructor(repository: WorkRepository, provider: ModelProvider, designProvider?: DesignProvider) {
     this.repository = repository;
     this.service = new NovelService(provider);
+    this.designProvider = designProvider;
   }
 
   async createWork(title: string, covenant?: CreativeCovenant): Promise<Work> {
@@ -133,6 +140,16 @@ export class ChapterWorkflow {
     });
   }
 
+  async generateWorldPack(workId: string): Promise<WorldPack> {
+    if (!this.designProvider) throw new Error('design provider is not configured');
+    return this.repository.transaction(workId, async ({ work }) => {
+      const worldPack = await this.designProvider!.generateWorldPack({ title: work.title, covenant: work.covenant });
+      work.worldPack = worldPack;
+      work.constraintRevision += 1;
+      return worldPack;
+    });
+  }
+
   async lockWorldPack(workId: string): Promise<WorldPack> {
     return this.repository.transaction(workId, ({ work }) => {
       if (!work.worldPack) throw new Error('world pack has not been generated');
@@ -147,6 +164,17 @@ export class ChapterWorkflow {
       work.storyBible = storyBible;
       work.constraintRevision += 1;
       return work.storyBible;
+    });
+  }
+
+  async generateStoryBible(workId: string): Promise<StoryBible> {
+    if (!this.designProvider) throw new Error('design provider is not configured');
+    return this.repository.transaction(workId, async ({ work }) => {
+      if (!work.worldPack) throw new Error('world pack has not been generated');
+      const storyBible = await this.designProvider!.generateStoryBible({ title: work.title, covenant: work.covenant, worldPack: work.worldPack });
+      work.storyBible = storyBible;
+      work.constraintRevision += 1;
+      return storyBible;
     });
   }
 

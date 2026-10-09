@@ -4,6 +4,7 @@ import {
   adoptCandidateRequestSchema,
   createWorkRequestSchema,
   generateChapterRequestSchema,
+  generateDesignRequestSchema,
   updateWorkRequestSchema,
   saveStoryBibleRequestSchema,
   saveWorldPackRequestSchema,
@@ -28,9 +29,11 @@ import { CanonGateError } from '../../../novel-service-core/src/world.ts';
 import {
   ChapterWorkflow,
   InMemoryWorkRepository,
+  type DesignProvider,
   type WorkRepository,
 } from '../../../packages/application/src/index.ts';
 import { PrismaWorkRepository } from '../../../packages/persistence/src/prisma-repository.ts';
+import { JsonDesignPlanner, OpenAICompatiblePlanningClient } from '../../../packages/planner/src/index.ts';
 import { registerSettingsRoutes } from './settings-routes.ts';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
@@ -51,6 +54,7 @@ function createDefaultRepository(): WorkRepository {
 export interface ApiDependencies {
   repository?: WorkRepository;
   provider?: ModelProvider;
+  designProvider?: DesignProvider;
   /** When set, all non-/health routes require `Authorization: Bearer <token>`. */
   authToken?: string;
 }
@@ -62,6 +66,14 @@ export function defaultProvider(): ModelProvider {
       return { content: `第${chapterNumber}章：主角踏入新的修行阶段。`, proposedEvents: [event], observedEvents: [event] };
     },
   };
+}
+
+function defaultDesignProvider(): DesignProvider | undefined {
+  const endpoint = process.env.NOVEL_MODEL_ENDPOINT;
+  const apiKey = process.env.NOVEL_MODEL_API_KEY;
+  const model = process.env.NOVEL_PLANNING_MODEL;
+  if (!endpoint || !apiKey || !model) return undefined;
+  return new JsonDesignPlanner(new OpenAICompatiblePlanningClient(endpoint, apiKey, model, Number(process.env.NOVEL_MODEL_BUDGET_USD ?? Number.POSITIVE_INFINITY)));
 }
 
 const chapterNumberParamSchema = z.object({ workId: z.string().min(1), chapterNumber: z.coerce.number().int().min(1) });
@@ -96,7 +108,7 @@ function toManuscriptDto(manuscript: ManuscriptRevision): ManuscriptRevisionDto 
 
 export function createApiServer(dependencies: ApiDependencies = {}): { app: FastifyInstance; repository: WorkRepository } {
   const repository = dependencies.repository ?? createDefaultRepository();
-  const workflow = new ChapterWorkflow(repository, dependencies.provider ?? defaultProvider());
+  const workflow = new ChapterWorkflow(repository, dependencies.provider ?? defaultProvider(), dependencies.designProvider ?? defaultDesignProvider());
   const app = Fastify({ logger: false });
 
   // Tolerate empty JSON bodies on POST endpoints that take no payload.
@@ -194,6 +206,13 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     const { workId } = workParamSchema.parse(request.params);
     const worldPack = saveWorldPackRequestSchema.parse(request.body ?? {});
     return { worldPack: await workflow.saveWorldPack(workId, worldPack) };
+  });
+
+  app.post('/works/:workId/design/generate', async (request) => {
+    const { workId } = workParamSchema.parse(request.params);
+    const body = generateDesignRequestSchema.parse(request.body ?? {});
+    const generated = body.stage === 'world_pack' ? await workflow.generateWorldPack(workId) : await workflow.generateStoryBible(workId);
+    return body.stage === 'world_pack' ? { worldPack: generated } : { storyBible: generated };
   });
 
   app.post('/works/:workId/world-pack/lock', async (request) => {

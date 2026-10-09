@@ -36,6 +36,8 @@ export const saveWorldPackRequestSchema = worldPackSchema;
 export type SaveWorldPackRequest = z.infer<typeof saveWorldPackRequestSchema>;
 export const saveStoryBibleRequestSchema = storyBibleSchema;
 export type SaveStoryBibleRequest = z.infer<typeof saveStoryBibleRequestSchema>;
+export const generateDesignRequestSchema = z.object({ stage: z.enum(['world_pack', 'story_bible']) });
+export type GenerateDesignRequest = z.infer<typeof generateDesignRequestSchema>;
 
 // ---------- Settings: characters, relationships, world rules, plot nodes ----------
 
