@@ -8,6 +8,7 @@ import type {
   CharacterInput,
   CharacterPatch,
   CreateWorkRequest,
+  DesignDto,
   OutboxEventDto,
   PlotNodeDto,
   PlotNodeInput,
@@ -57,6 +58,7 @@ export const api = {
   updateWork: (workId: string, body: UpdateWorkRequest) => call<WorkDto>(`/works/${workId}`, { method: 'PATCH', body }),
   listWorks: () => call<{ works: WorkDto[] }>('/works'),
   getWork: (workId: string) => call<WorkDto>(`/works/${workId}`),
+  design: (workId: string) => call<DesignDto>(`/works/${workId}/design`),
   listChapters: (workId: string) => call<{ chapters: ChapterVersionDto[] }>(`/works/${workId}/chapters`),
   generate: (workId: string, chapterNumber: number) =>
     call<{ candidate: CandidateDto }>(`/works/${workId}/chapters/${chapterNumber}/generate`, { method: 'POST', body: {} }),

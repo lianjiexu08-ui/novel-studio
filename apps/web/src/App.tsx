@@ -18,6 +18,7 @@ import { BookSettingsPage } from './pages/BookSettingsPage';
 import { PlaceholderPage } from './pages/PlaceholderPage';
 import { OutlinePage } from './pages/OutlinePage';
 import { OverviewPage } from './pages/OverviewPage';
+import { DesignPage } from './pages/DesignPage';
 import { useWorkChrome, WorkChromeContext } from './work-chrome';
 
 const { Sider, Header, Content } = Layout;
@@ -37,6 +38,7 @@ const SECTION_LABEL: Record<string, string> = {
   settings: '设定',
   outline: '大纲',
   quality: '质量',
+  design: '世界构建',
 };
 
 function workspaceNav(workId: string) {
@@ -44,6 +46,7 @@ function workspaceNav(workId: string) {
     { key: '__back', icon: <ArrowLeftOutlined />, label: '返回书架' },
     { type: 'divider' as const },
     { key: `/works/${workId}/overview`, icon: <DashboardOutlined />, label: '概览' },
+    { key: `/works/${workId}/design`, icon: <NodeIndexOutlined />, label: '世界构建' },
     { key: `/works/${workId}/covenant`, icon: <FormOutlined />, label: '约定' },
     { key: `/works/${workId}/chapters`, icon: <UnorderedListOutlined />, label: '章节' },
     { key: `/works/${workId}/write`, icon: <FileTextOutlined />, label: '章节创作' },
@@ -116,6 +119,7 @@ function Shell() {
               <Route path="/works/:workId" element={<Workspace />}>
                 <Route index element={<Navigate to="overview" replace />} />
                 <Route path="overview" element={<OverviewPage />} />
+                <Route path="design" element={<DesignPage />} />
                 <Route path="covenant" element={<CovenantPage />} />
                 <Route path="chapters" element={<ChaptersPage />} />
                 <Route path="write" element={<WritePage />} />
