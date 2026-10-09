@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { AdoptionBlocked, characterStateAt, knowledgeAt, LockedConstraintError, NovelService, passChecker, relationshipAt, unavailableChecker } from '../src/core.ts';
+import { AdoptionBlocked, canonConsistencyChecker, characterStateAt, knowledgeAt, LockedConstraintError, NovelService, passChecker, relationshipAt, unavailableChecker } from '../src/core.ts';
 import type { ModelProvider } from '../src/core.ts';
 import { lockStoryBible, lockWorldPack } from '../src/world.ts';
 import type { StoryBible } from '../src/world.ts';
@@ -40,6 +40,18 @@ test('async model providers use the same candidate and adoption gates', async ()
   service.runChecks(work.id, candidate.id, [passChecker]);
   service.adoptCandidate(work.id, candidate.id);
   assert.equal(work.currentVersion(1)?.content, '网络章节 1');
+});
+
+test('canon consistency checker blocks facts for unknown design entities', () => {
+  const service = new NovelService({
+    generateChapter: () => ({ content: '越界事实', proposedEvents: [{ eventType: 'character_state', subjectId: 'missing', predicate: 'power', value: 9 }], observedEvents: [{ eventType: 'character_state', subjectId: 'missing', predicate: 'power', value: 9 }] }),
+  });
+  const work = service.createWork('事实校验');
+  work.characters.set('hero', { id: 'hero', name: '主角', aliases: [], role: 'protagonist', identity: '', goal: '', principles: '', voice: '', notes: '', locked: false, createdAt: new Date().toISOString() });
+  const candidate = service.generateCandidate(work.id, 1);
+  const checks = service.runChecks(work.id, candidate.id, [canonConsistencyChecker]);
+  assert.equal(checks[0].status, 'failed');
+  assert.match(checks[0].message, /unknown character/);
 });
 
 test('unavailable required checker blocks adoption', () => {

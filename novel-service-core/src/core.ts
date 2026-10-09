@@ -744,6 +744,40 @@ export const passChecker: CandidateChecker = {
   check: ({ candidate }) => ({ checker: 'deterministic_rules', status: candidate.content.trim() ? 'passed' : 'failed', message: candidate.content.trim() ? 'ok' : 'empty chapter', candidateId: candidate.id, checkedAt: now() }),
 };
 
+/** Checks model-declared facts against the locked design before adoption. */
+export const canonConsistencyChecker: CandidateChecker = {
+  name: 'canon_consistency',
+  check: ({ work, candidate }) => {
+    const characterIds = new Set([
+      ...(work.storyBible?.characters.map((character) => character.id) ?? []),
+      ...work.characters.keys(),
+    ]);
+    const relationshipIds = new Set([
+      ...(work.storyBible?.relationships.map((relationship) => relationship.id) ?? []),
+      ...work.relationships.keys(),
+    ]);
+    const resourceIds = new Set(work.worldPack?.resources.map((resource) => resource.id) ?? []);
+    const artifactIds = new Set(work.worldPack?.artifacts.map((artifact) => artifact.id) ?? []);
+    const errors: string[] = [];
+    for (const event of candidate.proposedEvents) {
+      if (['character_state', 'knowledge_belief'].includes(event.eventType) && characterIds.size && !characterIds.has(event.subjectId)) errors.push(`unknown character ${event.subjectId}`);
+      if (event.eventType === 'relationship_change' && relationshipIds.size && !relationshipIds.has(event.subjectId)) errors.push(`unknown relationship ${event.subjectId}`);
+      if (event.eventType === 'relationship_change' && (
+        work.relationships.get(event.subjectId)?.locked
+        || work.storyBible?.relationships.some((relationship) => relationship.id === event.subjectId && relationship.locked)
+      )) errors.push(`locked relationship ${event.subjectId}`);
+      if (event.eventType === 'resource_change' && resourceIds.size && !resourceIds.has(event.subjectId)) errors.push(`unknown resource ${event.subjectId}`);
+      if (event.eventType === 'artifact_change' && artifactIds.size && !artifactIds.has(event.subjectId)) errors.push(`unknown artifact ${event.subjectId}`);
+      if (event.storyTime !== undefined && event.storyTime < 0) errors.push(`negative story time in ${event.subjectId}`);
+    }
+    return {
+      checker: 'canon_consistency', status: errors.length ? 'failed' : 'passed',
+      message: errors.length ? errors.join('; ') : 'all declared facts reference known canon',
+      candidateId: candidate.id, checkedAt: now(),
+    };
+  },
+};
+
 export const unavailableChecker: CandidateChecker = {
   name: 'semantic_checker',
   check: ({ candidate }) => ({ checker: 'semantic_checker', status: 'unavailable', message: 'checker unavailable', candidateId: candidate.id, checkedAt: now() }),

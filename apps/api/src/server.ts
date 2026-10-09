@@ -19,6 +19,7 @@ import {
   LockedConstraintError,
   SettingConflictError,
   StaleCandidateError,
+  canonConsistencyChecker,
   passChecker,
   type ChapterCandidate,
   type ManuscriptRevision,
@@ -271,7 +272,7 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
   app.post('/works/:workId/runs', async (request) => {
     const { workId } = workParamSchema.parse(request.params);
     const body = runRequestSchema.parse(request.body ?? {});
-    const checkpoint = await workflow.runUntil(workId, body.targetChapter, [passChecker], body.runId ?? `api-run:${workId}`);
+    const checkpoint = await workflow.runUntil(workId, body.targetChapter, [passChecker, canonConsistencyChecker], body.runId ?? `api-run:${workId}`);
     return { checkpoint };
   });
 
@@ -284,7 +285,7 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
 
   app.post('/works/:workId/candidates/:candidateId/check', async (request) => {
     const { workId, candidateId } = candidateParamSchema.parse(request.params);
-    await workflow.check(workId, candidateId, [passChecker]);
+    await workflow.check(workId, candidateId, [passChecker, canonConsistencyChecker]);
     const candidate = (await repository.get(workId))?.candidates.get(candidateId);
     return { ok: true, candidate: candidate ? toCandidateDto(candidate) : undefined };
   });
