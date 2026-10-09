@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Alert, App as AntApp, Button, Card, Collapse, Col, Empty, List, Row, Space, Spin, Statistic, Table, Tag, Typography } from 'antd';
-import { LockOutlined, PlayCircleOutlined, SafetyCertificateOutlined } from '@ant-design/icons';
+import { LockOutlined, PlayCircleOutlined, RocketOutlined, SafetyCertificateOutlined } from '@ant-design/icons';
 import { api, ApiRequestError } from '../api';
 import type { DesignDto } from 'novel-studio-contracts';
 import type { StoryBibleContract as StoryBible, WorldPackContract as WorldPack } from 'novel-studio-contracts';
@@ -71,7 +71,7 @@ export function DesignPage() {
           : <Button icon={<SafetyCertificateOutlined />} loading={busy === 'bible-review'} onClick={() => void run('bible-review', () => api.reviewStoryBible(work.id), 'Story Bible 结构检查通过，已进入审核态')}>审核 Story Bible</Button>;
 
   return <Space direction="vertical" size={20} style={{ width: '100%' }}>
-    <div><Title level={4} style={{ margin: 0 }}>世界构建与全书蓝图</Title><Text type="secondary">作者提供创意和偏好，模型先产出世界包，再产出人物关系、人物弧光、伏笔和分卷大纲；每一步都要审核并锁定。</Text></div>
+    <div><Space align="start" style={{ width: '100%', justifyContent: 'space-between' }}><div><Title level={4} style={{ margin: 0 }}>世界构建与全书蓝图</Title><Text type="secondary">作者提供创意和偏好，模型先产出世界包，再产出人物关系、人物弧光、伏笔和分卷大纲；每一步都要审核并锁定。</Text></div><Button type="primary" icon={<RocketOutlined />} loading={busy === 'milestone'} onClick={() => void run('milestone', () => api.startMilestone100(work.id), '已启动首个 100 章里程碑后台任务')}>一键启动 100 章里程碑</Button></Space></div>
     {!ready && <Alert type="warning" showIcon message="正文生产尚未开放" description="World Pack 和 Story Bible 都锁定后，章节候选才会通过生成门禁。" />}
     {ready && <Alert type="success" showIcon message="可以开始章节生产" description="章节候选会绑定当前世界包与 Story Bible 版本。任何设定修改都会让旧候选失效。" />}
     <Row gutter={16}>

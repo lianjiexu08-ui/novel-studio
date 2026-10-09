@@ -70,6 +70,7 @@ export const api = {
   design: (workId: string) => call<DesignDto>(`/works/${workId}/design`),
   generateDesign: (workId: string, stage: 'world_pack' | 'story_bible') =>
     call<{ worldPack?: DesignDto['worldPack']; storyBible?: DesignDto['storyBible'] }>(`/works/${workId}/design/generate`, { method: 'POST', body: { stage } }),
+  startMilestone100: (workId: string) => call<{ runId: string; status: string; milestone: { targetChapter: number; worldPack?: DesignDto['worldPack']; storyBible?: DesignDto['storyBible'] } }>(`/works/${workId}/milestones/100/start`, { method: 'POST', body: {} }),
   reviewWorldPack: (workId: string) => call<{ worldPack: NonNullable<DesignDto['worldPack']> }>(`/works/${workId}/world-pack/review`, { method: 'POST', body: {} }),
   lockWorldPack: (workId: string) => call<{ worldPack: NonNullable<DesignDto['worldPack']> }>(`/works/${workId}/world-pack/lock`, { method: 'POST', body: {} }),
   reviewStoryBible: (workId: string) => call<{ storyBible: NonNullable<DesignDto['storyBible']> }>(`/works/${workId}/story-bible/review`, { method: 'POST', body: {} }),

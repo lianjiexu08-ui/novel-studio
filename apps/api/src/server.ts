@@ -98,6 +98,7 @@ const chapterNumberParamSchema = z.object({ workId: z.string().min(1), chapterNu
 const candidateParamSchema = z.object({ workId: z.string().min(1), candidateId: z.string().min(1) });
 const workParamSchema = z.object({ workId: z.string().min(1) });
 const runRequestSchema = z.object({ targetChapter: z.number().int().min(1).max(450), runId: z.string().min(1).max(200).optional(), background: z.boolean().optional() });
+const milestoneRequestSchema = z.object({ runId: z.string().min(1).max(200).optional() });
 const chapterStateParamSchema = z.object({ workId: z.string().min(1), chapterNumber: z.coerce.number().int().min(1) });
 
 function toWorkDto(work: Work): WorkDto {
@@ -130,6 +131,15 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
   const repository = dependencies.repository ?? createDefaultRepository();
   const workflow = new ChapterWorkflow(repository, dependencies.provider ?? defaultProvider(), dependencies.designProvider ?? defaultDesignProvider());
   const activeRuns = new Map<string, Promise<void>>();
+  async function launchBackgroundRun(workId: string, targetChapter: number, runId: string): Promise<void> {
+    const key = `${workId}:${runId}`;
+    if (activeRuns.has(key)) return;
+    const task = workflow.runUntil(workId, targetChapter, generationCheckers(), runId)
+      .then(() => undefined)
+      .catch(() => undefined)
+      .finally(() => { activeRuns.delete(key); });
+    activeRuns.set(key, task);
+  }
   const app = Fastify({ logger: false });
 
   // Tolerate empty JSON bodies on POST endpoints that take no payload.
@@ -310,19 +320,41 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     const body = runRequestSchema.parse(request.body ?? {});
     const runId = body.runId ?? `api-run:${workId}`;
     if (body.background) {
-      const key = `${workId}:${runId}`;
-      if (!activeRuns.has(key)) {
-      const task = workflow.runUntil(workId, body.targetChapter, generationCheckers(), runId)
-          .then(() => undefined)
-          .catch(() => undefined)
-          .finally(() => { activeRuns.delete(key); });
-        activeRuns.set(key, task);
-      }
+      await launchBackgroundRun(workId, body.targetChapter, runId);
       const current = await repository.get(workId);
       return reply.code(202).send({ runId, status: 'running', checkpoint: current?.checkpoints.get(runId) });
     }
     const checkpoint = await workflow.runUntil(workId, body.targetChapter, generationCheckers(), runId);
     return { checkpoint };
+  });
+
+  app.post('/works/:workId/milestones/100/start', async (request, reply) => {
+    const { workId } = workParamSchema.parse(request.params);
+    const body = milestoneRequestSchema.parse(request.body ?? {});
+    let work = await repository.get(workId);
+    if (!work) throw new NotFoundError(`unknown work ${workId}`);
+    if (!work.worldPack) await workflow.generateWorldPack(workId);
+    work = await repository.get(workId);
+    if (!work?.worldPack) throw new Error('world pack generation did not produce a world pack');
+    if (work.worldPack.status !== 'locked') {
+      if (work.worldPack.status !== 'reviewed') await workflow.reviewWorldPack(workId);
+      await workflow.lockWorldPack(workId);
+    }
+    work = await repository.get(workId);
+    if (!work?.storyBible) await workflow.generateStoryBible(workId);
+    work = await repository.get(workId);
+    if (!work?.storyBible) throw new Error('story bible generation did not produce a story bible');
+    if (work.storyBible.status !== 'locked') {
+      if (work.storyBible.status !== 'reviewed') await workflow.reviewStoryBible(workId);
+      await workflow.lockStoryBible(workId);
+    }
+    const runId = body.runId ?? `milestone-100:${workId}`;
+    await launchBackgroundRun(workId, 100, runId);
+    const ready = await repository.get(workId);
+    return reply.code(202).send({
+      milestone: { targetChapter: 100, worldPack: ready?.worldPack, storyBible: ready?.storyBible },
+      runId, status: 'running', checkpoint: ready?.checkpoints.get(runId),
+    });
   });
 
   app.get('/works/:workId/runs', async (request) => {
