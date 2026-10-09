@@ -249,6 +249,7 @@ export class PrismaWorkRepository implements WorkRepository {
         targetChapter: row.targetChapter,
         nextChapter: row.nextChapter,
         phase: row.phase as Checkpoint['phase'],
+        error: row.error ?? undefined,
         candidateIds: JSON.parse(row.candidateIds) as Record<number, string>,
       });
     }
@@ -428,11 +429,11 @@ export class PrismaWorkRepository implements WorkRepository {
         where: { id: checkpoint.runId },
         create: {
           id: checkpoint.runId, projectId: work.id, targetChapter: checkpoint.targetChapter,
-          nextChapter: checkpoint.nextChapter, phase: checkpoint.phase, candidateIds: JSON.stringify(checkpoint.candidateIds),
+          nextChapter: checkpoint.nextChapter, phase: checkpoint.phase, error: checkpoint.error, candidateIds: JSON.stringify(checkpoint.candidateIds),
         },
         update: {
           targetChapter: checkpoint.targetChapter, nextChapter: checkpoint.nextChapter,
-          phase: checkpoint.phase, candidateIds: JSON.stringify(checkpoint.candidateIds),
+          phase: checkpoint.phase, error: checkpoint.error, candidateIds: JSON.stringify(checkpoint.candidateIds),
         },
       });
     }

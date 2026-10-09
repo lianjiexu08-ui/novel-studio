@@ -59,6 +59,7 @@ model RunCheckpoint {
   targetChapter Int
   nextChapter   Int
   phase         String
+  error         String?
   candidateIds  String   // JSON: Record<number, string>
   project       Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
   updatedAt     DateTime @updatedAt

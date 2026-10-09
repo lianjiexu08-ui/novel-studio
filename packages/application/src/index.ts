@@ -226,14 +226,32 @@ export class ChapterWorkflow {
   async runUntil(workId: string, targetChapter: number, checkers: CandidateChecker[], runId: string): Promise<Checkpoint> {
     let checkpoint: Checkpoint | undefined;
     do {
-      checkpoint = await this.repository.transaction(workId, async ({ work }) => {
-        this.service.works.set(work.id, work);
-        const nextChapter = work.checkpoints.get(runId)?.nextChapter ?? 1;
-        if (nextChapter > targetChapter) return work.checkpoints.get(runId)!;
-        // Commit one chapter per transaction. A model timeout or process restart
-        // therefore preserves every previously adopted chapter and its checkpoint.
-        return this.service.runUntilAsync(workId, nextChapter, checkers, runId);
-      });
+      try {
+        checkpoint = await this.repository.transaction(workId, async ({ work }) => {
+          this.service.works.set(work.id, work);
+          const nextChapter = work.checkpoints.get(runId)?.nextChapter ?? 1;
+          if (nextChapter > targetChapter) return work.checkpoints.get(runId)!;
+          // Commit one chapter per transaction. A model timeout or process restart
+          // therefore preserves every previously adopted chapter and its checkpoint.
+          return this.service.runUntilAsync(workId, nextChapter, checkers, runId);
+        });
+      } catch (error) {
+        // The failed chapter transaction rolls back its candidate. Persist an
+        // explicit paused checkpoint in a second transaction so the UI and a
+        // later retry can distinguish a failure from an idle run.
+        await this.repository.transaction(workId, ({ work }) => {
+          const previous = work.checkpoints.get(runId);
+          const paused: Checkpoint = previous ?? {
+            runId, targetChapter, nextChapter: 1, phase: 'idle', candidateIds: {},
+          };
+          paused.targetChapter = Math.max(paused.targetChapter, targetChapter);
+          paused.phase = 'paused';
+          paused.error = error instanceof Error ? error.message : String(error);
+          work.checkpoints.set(runId, paused);
+          return paused;
+        });
+        throw error;
+      }
     } while (checkpoint.nextChapter <= targetChapter);
     return checkpoint;
   }

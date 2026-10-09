@@ -304,8 +304,9 @@ export interface Checkpoint {
   runId: string;
   targetChapter: number;
   nextChapter: number;
-  phase: 'idle' | 'generated' | 'checked' | 'adopted' | 'complete';
+  phase: 'idle' | 'generated' | 'checked' | 'adopted' | 'complete' | 'paused';
   candidateIds: Record<number, string>;
+  error?: string;
 }
 
 export class Work {
@@ -601,6 +602,7 @@ export class NovelService {
       checkpoint = { runId, targetChapter, nextChapter: nextChapterAfterAdopted(work), phase: 'idle', candidateIds: {} };
       work.checkpoints.set(runId, checkpoint);
     } else checkpoint.targetChapter = Math.max(checkpoint.targetChapter, targetChapter);
+    checkpoint.error = undefined;
     while (checkpoint.nextChapter <= checkpoint.targetChapter) {
       const chapter = checkpoint.nextChapter;
       const candidate = checkpoint.candidateIds[chapter]
@@ -625,6 +627,7 @@ export class NovelService {
       checkpoint = { runId, targetChapter, nextChapter: nextChapterAfterAdopted(work), phase: 'idle', candidateIds: {} };
       work.checkpoints.set(runId, checkpoint);
     } else checkpoint.targetChapter = Math.max(checkpoint.targetChapter, targetChapter);
+    checkpoint.error = undefined;
     while (checkpoint.nextChapter <= checkpoint.targetChapter) {
       const chapter = checkpoint.nextChapter;
       const candidate = checkpoint.candidateIds[chapter]

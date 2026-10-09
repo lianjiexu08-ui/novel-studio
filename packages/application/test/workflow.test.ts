@@ -81,6 +81,8 @@ test('long runs commit each chapter so a failed model call can resume', async ()
   await assert.rejects(() => workflow.runUntil(work.id, 3, [passChecker], 'resume-run'), /model timeout/);
   assert.deepEqual((await repository.get(work.id))?.adoptedVersions().map((version) => version.chapterNumber), [1]);
   assert.equal((await repository.get(work.id))?.checkpoints.get('resume-run')?.nextChapter, 2);
+  assert.equal((await repository.get(work.id))?.checkpoints.get('resume-run')?.phase, 'paused');
+  assert.equal((await repository.get(work.id))?.checkpoints.get('resume-run')?.error, 'model timeout');
   failChapterTwo = false;
   const checkpoint = await workflow.runUntil(work.id, 3, [passChecker], 'resume-run');
   assert.equal(checkpoint.nextChapter, 4);
