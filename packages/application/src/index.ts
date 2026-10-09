@@ -25,6 +25,7 @@ export interface WorkSummary {
   id: string;
   title: string;
   stateRevision: number;
+  constraintRevision: number;
   covenant: CreativeCovenant;
 }
 
@@ -47,7 +48,7 @@ export class InMemoryWorkRepository implements WorkRepository {
 
   async get(workId: string): Promise<Work | undefined> { return this.works.get(workId); }
   async list(): Promise<WorkSummary[]> {
-    return [...this.works.values()].map((work) => ({ id: work.id, title: work.title, stateRevision: work.stateRevision, covenant: work.covenant }));
+    return [...this.works.values()].map((work) => ({ id: work.id, title: work.title, stateRevision: work.stateRevision, constraintRevision: work.constraintRevision, covenant: work.covenant }));
   }
   save(work: Work): void { this.works.set(work.id, work); }
   async outbox(): Promise<OutboxEvent[]> { return [...this.events.values()].map((event) => ({ ...event, payload: { ...event.payload } })); }
@@ -104,15 +105,20 @@ export class ChapterWorkflow {
     return work;
   }
 
-  /** Author edits to settings. Runs in the work transaction but does not advance stateRevision. */
+  /** Author edits to settings. They invalidate planned candidates without changing story facts. */
   async editSettings<T>(workId: string, edit: (work: Work) => T): Promise<T> {
-    return this.repository.transaction(workId, ({ work }) => edit(work));
+    return this.repository.transaction(workId, ({ work }) => {
+      const result = edit(work);
+      work.constraintRevision += 1;
+      return result;
+    });
   }
 
   async updateWork(workId: string, input: { title: string; covenant: CreativeCovenant }): Promise<Work> {
     return this.repository.transaction(workId, ({ work }) => {
       work.title = input.title;
       work.covenant = input.covenant;
+      work.constraintRevision += 1;
       return work;
     });
   }

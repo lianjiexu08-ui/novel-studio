@@ -20,6 +20,11 @@ model Project {
   /// Author covenant (CreativeCovenant JSON). Not story fact.
   covenant      String   @default("{}")
   stateRevision Int      @default(0)
+  constraintRevision Int  @default(0)
+  /// Structured WorldPack JSON; an empty object means it has not been generated yet.
+  worldPack     String   @default("{}")
+  /// Structured StoryBible JSON; an empty object means it has not been generated yet.
+  storyBible     String   @default("{}")
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
@@ -73,6 +78,7 @@ model ChapterCandidate {
   proposedEvents      String // JSON: EventDraft[]
   observedEvents      String? // JSON: EventDraft[]
   generatedAgainstRev Int
+  generatedAgainstConstraintRev Int @default(0)
   status              String          @default("candidate") // candidate | adopted | rejected
   adoptedVersionId    String?
   createdAt           DateTime        @default(now())

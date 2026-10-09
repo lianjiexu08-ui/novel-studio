@@ -43,6 +43,18 @@ test('stale state revision blocks an adoption request', async () => {
   assert.equal(work.versions.size, 0);
 });
 
+test('author settings invalidate planned candidates while preserving story revision', async () => {
+  const repository = new InMemoryWorkRepository();
+  const workflow = new ChapterWorkflow(repository, provider);
+  const work = await workflow.createWork('设定版本作品');
+  const candidate = await workflow.generate(work.id, 1, 'settings-run');
+  await workflow.check(work.id, candidate.id, [passChecker]);
+  await workflow.editSettings(work.id, (draft) => { draft.covenant = { ...draft.covenant, hook: '新的核心冲突', audience: '玄幻读者' }; });
+  assert.equal((await repository.get(work.id))?.stateRevision, 0);
+  assert.equal((await repository.get(work.id))?.constraintRevision, 1);
+  await assert.rejects(() => workflow.adopt(work.id, candidate.id, 0), /stale/);
+});
+
 test('same-work transactions are serialized', async () => {
   const repository = new InMemoryWorkRepository();
   const workflow = new ChapterWorkflow(repository, provider);

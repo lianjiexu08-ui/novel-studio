@@ -2,6 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { AdoptionBlocked, LockedConstraintError, NovelService, passChecker, unavailableChecker } from '../src/core.ts';
 import type { ModelProvider } from '../src/core.ts';
+import { lockStoryBible, lockWorldPack } from '../src/world.ts';
+import type { StoryBible } from '../src/world.ts';
 
 const provider: ModelProvider = {
   generateChapter: ({ chapterNumber, context }) => {
@@ -67,4 +69,48 @@ test('run checkpoint is idempotent for a completed run', () => {
   assert.equal(first.phase, 'complete');
   assert.equal(second.phase, 'complete');
   assert.deepEqual([...work.versions.values()].map((version) => version.id), ids);
+});
+
+test('author constraint edits stale a generated candidate without changing story revision', () => {
+  const service = new NovelService(provider);
+  const work = service.createWork('约束版本');
+  const candidate = service.generateCandidate(work.id, 1, 'constraint-run');
+  service.runChecks(work.id, candidate.id, [passChecker]);
+  work.constraintRevision += 1;
+  assert.equal(work.stateRevision, 0);
+  assert.throws(() => service.adoptCandidate(work.id, candidate.id), /stale/);
+});
+
+test('a new run resumes after the highest contiguous adopted chapter', () => {
+  const service = new NovelService(provider);
+  const work = service.createWork('续写游标');
+  service.runUntil(work.id, 3, [passChecker], 'first-run');
+  const checkpoint = service.runUntil(work.id, 5, [passChecker], 'second-run');
+  assert.equal(checkpoint.nextChapter, 6);
+  assert.deepEqual(work.adoptedVersions().map((version) => version.chapterNumber), [1, 2, 3, 4, 5]);
+});
+
+test('chapter candidates bind to the locked world pack and story bible revisions', () => {
+  const world = {
+    id: 'world_core', revision: 1, title: '九霄', summary: '三界', status: 'reviewed' as const,
+    axioms: [], powerSystems: [{ id: 'system', name: '灵力', source: '天地', unit: '灵气', realmIds: ['realm'], status: 'reviewed' as const }],
+    realms: [{ id: 'realm', systemId: 'system', name: '炼气', rank: 1, prerequisites: [], capabilities: ['引气'], cost: '时间', counters: [], status: 'reviewed' as const }],
+    techniques: [], artifacts: [], resources: [], locations: [{ id: 'home', name: '青州', kind: 'continent' as const, entryConditions: [], status: 'reviewed' as const }],
+    factions: [{ id: 'sect', name: '青云宗', kind: 'sect' as const, locationIds: ['home'], goals: ['守护青州'], resources: [], status: 'reviewed' as const }],
+    historicalEvents: [], terminology: [], unresolvedQuestions: [], createdAt: new Date().toISOString(),
+  };
+  const lockedWorld = lockWorldPack(world);
+  const bible: StoryBible = {
+    id: 'bible_core', revision: 1, worldPackId: lockedWorld.id, worldPackRevision: lockedWorld.revision, status: 'reviewed',
+    coreConflict: '宗门存亡', endingDirection: '守住家园', characters: [{ id: 'hero', name: '林渊', role: 'protagonist', goal: '守护青州', identity: '弟子', locationId: 'home', factionId: 'sect', startingRealmId: 'realm' }],
+    relationships: [], arcs: [], volumes: [{ id: 'v1', order: 1, title: '入门', goal: '成长', climax: '守城', endState: '入筑基', plannedChapterCount: 10, arcIds: [] }], unresolvedQuestions: [], createdAt: new Date().toISOString(),
+  };
+  const lockedBible = lockStoryBible(bible, lockedWorld);
+  const service = new NovelService(provider);
+  const work = service.createWork('门禁验证');
+  service.setWorldPack(work.id, lockedWorld);
+  service.setStoryBible(work.id, lockedBible);
+  const candidate = service.generateCandidate(work.id, 1, 'locked-design');
+  assert.equal(candidate.generatedAgainstWorldPackRevision, lockedWorld.revision);
+  assert.equal(candidate.generatedAgainstStoryBibleRevision, lockedBible.revision);
 });

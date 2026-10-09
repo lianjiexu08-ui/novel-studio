@@ -1,4 +1,6 @@
 import { randomUUID } from 'node:crypto';
+import { chapterGenerationGate } from './world.ts';
+import type { StoryBible, WorldPack } from './world.ts';
 
 const id = (prefix: string) => `${prefix}_${randomUUID().replaceAll('-', '')}`;
 const now = () => new Date().toISOString();
@@ -52,6 +54,9 @@ export interface ContextManifest {
   workId: string;
   chapterNumber: number;
   stateRevision: number;
+  constraintRevision: number;
+  worldPackRevision?: number;
+  storyBibleRevision?: number;
   adoptedVersionIds: string[];
   includedEventIds: string[];
   requiredMaterialStatus: 'complete' | 'needs_split' | 'blocked';
@@ -91,6 +96,9 @@ export interface ChapterCandidate {
   observedEvents?: EventDraft[];
   runId: string;
   generatedAgainstRevision: number;
+  generatedAgainstConstraintRevision: number;
+  generatedAgainstWorldPackRevision?: number;
+  generatedAgainstStoryBibleRevision?: number;
   status: CandidateStatus;
   checks: CheckResult[];
   adoptedVersionId?: string;
@@ -248,6 +256,9 @@ export class Work {
   readonly id: string;
   title: string;
   covenant: CreativeCovenant = defaultCovenant();
+  /** The locked design inputs used to plan future chapters. */
+  worldPack?: WorldPack;
+  storyBible?: StoryBible;
   readonly candidates = new Map<string, ChapterCandidate>();
   readonly versions = new Map<string, ChapterVersion>();
   readonly events = new Map<string, StoryEvent>();
@@ -259,6 +270,8 @@ export class Work {
   readonly checkpoints = new Map<string, Checkpoint>();
   readonly impacts: ImpactRecord[] = [];
   stateRevision = 0;
+  /** Advances when author-owned constraints change; story facts keep stateRevision. */
+  constraintRevision = 0;
 
   constructor(title: string, workId = id('work')) {
     this.id = workId;
@@ -293,6 +306,20 @@ export class NovelService {
     return work;
   }
 
+  setWorldPack(workId: string, worldPack: WorldPack): Work {
+    const work = this.getWork(workId);
+    work.worldPack = worldPack;
+    work.constraintRevision += 1;
+    return work;
+  }
+
+  setStoryBible(workId: string, storyBible: StoryBible): Work {
+    const work = this.getWork(workId);
+    work.storyBible = storyBible;
+    work.constraintRevision += 1;
+    return work;
+  }
+
   addRelationship(workId: string, input: Omit<Relationship, 'id'>): Relationship {
     const work = this.getWork(workId);
     const relationship: Relationship = { id: id('relationship'), ...input };
@@ -321,6 +348,9 @@ export class NovelService {
       workId: work.id,
       chapterNumber,
       stateRevision: work.stateRevision,
+      constraintRevision: work.constraintRevision,
+      worldPackRevision: work.worldPack?.revision,
+      storyBibleRevision: work.storyBible?.revision,
       adoptedVersionIds: versions.map((version) => version.id),
       includedEventIds: events.map((event) => event.id),
       requiredMaterialStatus: 'complete',
@@ -334,6 +364,11 @@ export class NovelService {
     const existing = [...work.candidates.values()].find((candidate) => candidate.runId === runId && candidate.chapterNumber === chapterNumber);
     if (existing) return existing;
     const context = this.contextFor(work, chapterNumber);
+    if (work.worldPack || work.storyBible) {
+      if (!work.worldPack || !work.storyBible) throw new AdoptionBlocked('world pack and story bible must be configured together');
+      const gate = chapterGenerationGate(work.worldPack, work.storyBible);
+      if (!gate.ready) throw new AdoptionBlocked(`chapter generation gate blocked: ${gate.errors.join('; ')}`);
+    }
     if (context.requiredMaterialStatus !== 'complete') throw new AdoptionBlocked('required context is incomplete');
     const generated = this.provider.generateChapter({ work, chapterNumber, context });
     const candidate: ChapterCandidate = {
@@ -345,6 +380,9 @@ export class NovelService {
       observedEvents: generated.observedEvents,
       runId,
       generatedAgainstRevision: context.stateRevision,
+      generatedAgainstConstraintRevision: context.constraintRevision,
+      generatedAgainstWorldPackRevision: context.worldPackRevision,
+      generatedAgainstStoryBibleRevision: context.storyBibleRevision,
       status: 'candidate',
       checks: [],
       createdAt: now(),
@@ -367,7 +405,8 @@ export class NovelService {
     const candidate = this.getCandidate(work, candidateId);
     if (candidate.status === 'adopted' && candidate.adoptedVersionId) return work.versions.get(candidate.adoptedVersionId)!;
     this.qualityGate(candidate);
-    if (candidate.generatedAgainstRevision !== work.stateRevision) throw new StaleCandidateError('candidate context is stale; regenerate or re-check');
+    if (candidate.generatedAgainstRevision !== work.stateRevision || candidate.generatedAgainstConstraintRevision !== work.constraintRevision) throw new StaleCandidateError('candidate context is stale; regenerate or re-check');
+    if (candidate.generatedAgainstWorldPackRevision !== work.worldPack?.revision || candidate.generatedAgainstStoryBibleRevision !== work.storyBible?.revision) throw new StaleCandidateError('candidate design inputs are stale; regenerate or re-check');
     this.verifyChanges(candidate);
     this.verifyLockedRelationships(work, candidate);
 
@@ -396,7 +435,9 @@ export class NovelService {
     if (!work.currentVersion(chapterNumber)) throw new Error(`chapter ${chapterNumber} is not adopted`);
     const candidate: ChapterCandidate = {
       id: id('candidate'), workId, chapterNumber, content, proposedEvents: [], runId: id('edit'),
-      generatedAgainstRevision: work.stateRevision, status: 'candidate', checks: [], createdAt: now(),
+      generatedAgainstRevision: work.stateRevision, generatedAgainstConstraintRevision: work.constraintRevision,
+      generatedAgainstWorldPackRevision: work.worldPack?.revision, generatedAgainstStoryBibleRevision: work.storyBible?.revision,
+      status: 'candidate', checks: [], createdAt: now(),
     };
     work.candidates.set(candidate.id, candidate);
     this.runChecks(workId, candidate.id, checkers);
@@ -415,7 +456,7 @@ export class NovelService {
     const work = this.getWork(workId);
     let checkpoint = work.checkpoints.get(runId);
     if (!checkpoint) {
-      checkpoint = { runId, targetChapter, nextChapter: 1, phase: 'idle', candidateIds: {} };
+      checkpoint = { runId, targetChapter, nextChapter: nextChapterAfterAdopted(work), phase: 'idle', candidateIds: {} };
       work.checkpoints.set(runId, checkpoint);
     } else checkpoint.targetChapter = Math.max(checkpoint.targetChapter, targetChapter);
     while (checkpoint.nextChapter <= checkpoint.targetChapter) {
@@ -502,6 +543,12 @@ export function rebuildCharacterStates(work: Work): void {
       sourceEventId: event.id, sourceChapterVersionId: event.chapterVersionId, storyTime: event.storyTime,
     });
   }
+}
+
+function nextChapterAfterAdopted(work: Work): number {
+  let next = 1;
+  while (work.currentVersion(next)) next += 1;
+  return next;
 }
 
 export const passChecker: CandidateChecker = {

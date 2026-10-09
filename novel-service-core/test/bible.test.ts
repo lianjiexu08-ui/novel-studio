@@ -23,6 +23,8 @@ test('settings edits never advance the story revision', () => {
   addWorldRule(work, { category: 'power', title: '境界', content: '炼气、筑基、金丹' });
   updateCharacter(work, hero.id, { goal: '查清灭门真相' });
   assert.equal(work.stateRevision, 0);
+  work.constraintRevision += 1;
+  assert.equal(work.constraintRevision, 1);
 });
 
 test('locked settings must be unlocked before they change', () => {

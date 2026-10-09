@@ -6,13 +6,17 @@ import type { CreativeCovenant } from '../../../novel-service-core/src/core.ts';
 import type {
   ChapterCandidate, ChapterVersion, Character, CharacterState, ImpactRecord, PlotNode, Relationship, StoryEvent, WorldRule,
 } from '../../../novel-service-core/src/core.ts';
+import type { StoryBible, WorldPack } from '../../../novel-service-core/src/world.ts';
 import type { OutboxEvent, WorkRepository, WorkTransaction } from '../../application/src/index.ts';
 
 interface PersistedWork {
   id: string;
   title: string;
   stateRevision: number;
+  constraintRevision?: number;
   covenant?: CreativeCovenant;
+  worldPack?: WorldPack;
+  storyBible?: StoryBible;
   candidates: ChapterCandidate[];
   versions: ChapterVersion[];
   events: StoryEvent[];
@@ -44,8 +48,8 @@ export class JsonWorkRepository implements WorkRepository {
 
   async get(workId: string): Promise<Work | undefined> { return this.works.get(workId); }
 
-  async list(): Promise<{ id: string; title: string; stateRevision: number; covenant: CreativeCovenant }[]> {
-    return [...this.works.values()].map((work) => ({ id: work.id, title: work.title, stateRevision: work.stateRevision, covenant: work.covenant }));
+  async list(): Promise<{ id: string; title: string; stateRevision: number; constraintRevision: number; covenant: CreativeCovenant }[]> {
+    return [...this.works.values()].map((work) => ({ id: work.id, title: work.title, stateRevision: work.stateRevision, constraintRevision: work.constraintRevision, covenant: work.covenant }));
   }
 
   save(work: Work): void {
@@ -135,7 +139,10 @@ function serializeWork(work: Work): PersistedWork {
     id: work.id,
     title: work.title,
     stateRevision: work.stateRevision,
+    constraintRevision: work.constraintRevision,
     covenant: work.covenant,
+    worldPack: work.worldPack,
+    storyBible: work.storyBible,
     candidates: [...work.candidates.values()],
     versions: [...work.versions.values()],
     events: [...work.events.values()],
@@ -152,8 +159,13 @@ function serializeWork(work: Work): PersistedWork {
 function deserializeWork(value: PersistedWork): Work {
   const work = new Work(value.title, value.id);
   work.stateRevision = value.stateRevision;
+  work.constraintRevision = value.constraintRevision ?? 0;
   work.covenant = parseCovenant(value.covenant);
-  for (const candidate of value.candidates) work.candidates.set(candidate.id, candidate);
+  work.worldPack = value.worldPack;
+  work.storyBible = value.storyBible;
+  for (const candidate of value.candidates) {
+    work.candidates.set(candidate.id, { ...candidate, generatedAgainstConstraintRevision: candidate.generatedAgainstConstraintRevision ?? 0 });
+  }
   for (const version of value.versions) work.versions.set(version.id, version);
   for (const event of value.events) work.events.set(event.id, event);
   for (const state of value.states) work.states.set(`${state.characterId}|${state.field}`, state);

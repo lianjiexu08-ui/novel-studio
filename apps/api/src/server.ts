@@ -64,7 +64,7 @@ const candidateParamSchema = z.object({ workId: z.string().min(1), candidateId: 
 const workParamSchema = z.object({ workId: z.string().min(1) });
 
 function toWorkDto(work: Work): WorkDto {
-  return { id: work.id, title: work.title, stateRevision: work.stateRevision, covenant: work.covenant };
+  return { id: work.id, title: work.title, stateRevision: work.stateRevision, constraintRevision: work.constraintRevision, covenant: work.covenant };
 }
 
 function toCandidateDto(candidate: ChapterCandidate): CandidateDto {
@@ -78,6 +78,7 @@ function toCandidateDto(candidate: ChapterCandidate): CandidateDto {
     proposedEvents: candidate.proposedEvents,
     observedEvents: candidate.observedEvents,
     generatedAgainstRevision: candidate.generatedAgainstRevision,
+    generatedAgainstConstraintRevision: candidate.generatedAgainstConstraintRevision,
     checks: candidate.checks,
     adoptedVersionId: candidate.adoptedVersionId,
     createdAt: candidate.createdAt,

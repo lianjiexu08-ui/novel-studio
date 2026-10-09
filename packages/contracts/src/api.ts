@@ -138,6 +138,7 @@ export const workDtoSchema = z.object({
   id: z.string(),
   title: z.string(),
   stateRevision: z.number().int().min(0),
+  constraintRevision: z.number().int().min(0),
   covenant: creativeCovenantSchema,
 });
 export type WorkDto = z.infer<typeof workDtoSchema>;
@@ -172,6 +173,7 @@ export const candidateDtoSchema = z.object({
   status: z.enum(['candidate', 'adopted', 'rejected']),
   runId: z.string(),
   generatedAgainstRevision: z.number().int().min(0),
+  generatedAgainstConstraintRevision: z.number().int().min(0),
   checks: z.array(checkResultDtoSchema),
   adoptedVersionId: z.string().optional(),
   createdAt: z.string(),

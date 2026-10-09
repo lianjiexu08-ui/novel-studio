@@ -25,6 +25,9 @@ export interface ContextManifestContract {
   workId: string;
   chapterNumber: number;
   stateRevision: number;
+  constraintRevision: number;
+  worldPackRevision?: number;
+  storyBibleRevision?: number;
   adoptedVersionIds: string[];
   includedEventIds: string[];
   requiredMaterialStatus: 'complete' | 'needs_split' | 'blocked';
@@ -107,6 +110,8 @@ export function parseContextManifest(input: unknown): ContextManifestContract {
   if (!isNonEmptyString(input.workId)) issues.push({ path: '$.workId', message: 'must be a non-empty string' });
   if (!Number.isInteger(input.chapterNumber) || (input.chapterNumber as number) < 1) issues.push({ path: '$.chapterNumber', message: 'must be a positive integer' });
   if (!Number.isInteger(input.stateRevision) || (input.stateRevision as number) < 0) issues.push({ path: '$.stateRevision', message: 'must be a non-negative integer' });
+  if (input.constraintRevision !== undefined && (!Number.isInteger(input.constraintRevision) || (input.constraintRevision as number) < 0)) issues.push({ path: '$.constraintRevision', message: 'must be a non-negative integer' });
+  for (const field of ['worldPackRevision', 'storyBibleRevision']) if (input[field] !== undefined && (!Number.isInteger(input[field]) || (input[field] as number) < 1)) issues.push({ path: `$.${field}`, message: 'must be a positive integer' });
   if (!isStringArray(input.adoptedVersionIds)) issues.push({ path: '$.adoptedVersionIds', message: 'must be a string array' });
   if (!isStringArray(input.includedEventIds)) issues.push({ path: '$.includedEventIds', message: 'must be a string array' });
   if (!['complete', 'needs_split', 'blocked'].includes(String(input.requiredMaterialStatus))) issues.push({ path: '$.requiredMaterialStatus', message: 'has an invalid status' });
