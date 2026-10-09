@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { AdoptionBlocked, canonConsistencyChecker, characterStateAt, knowledgeAt, LockedConstraintError, NovelService, passChecker, relationshipAt, storyArcAt, storySecretAt, unavailableChecker } from '../src/core.ts';
+import { AdoptionBlocked, canonConsistencyChecker, chapterLengthChecker, characterStateAt, knowledgeAt, LockedConstraintError, NovelService, passChecker, relationshipAt, storyArcAt, storySecretAt, unavailableChecker } from '../src/core.ts';
 import type { ModelProvider } from '../src/core.ts';
 import { lockStoryBible, lockWorldPack } from '../src/world.ts';
 import type { StoryBible } from '../src/world.ts';
@@ -52,6 +52,17 @@ test('canon consistency checker blocks facts for unknown design entities', () =>
   const checks = service.runChecks(work.id, candidate.id, [canonConsistencyChecker]);
   assert.equal(checks[0].status, 'failed');
   assert.match(checks[0].message, /unknown character/);
+});
+
+test('chapter length checker protects configured model output', () => {
+  const service = new NovelService(provider);
+  const work = service.createWork('篇幅校验');
+  work.covenant = { ...work.covenant, chapterWords: 1000 };
+  const candidate = service.generateCandidate(work.id, 1);
+  const short = chapterLengthChecker.check({ work, candidate: { ...candidate, content: '太短' } });
+  assert.equal(short.status, 'failed');
+  const long = chapterLengthChecker.check({ work, candidate: { ...candidate, content: '中'.repeat(400) } });
+  assert.equal(long.status, 'passed');
 });
 
 test('unavailable required checker blocks adoption', () => {

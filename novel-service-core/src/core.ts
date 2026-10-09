@@ -824,6 +824,20 @@ export const canonConsistencyChecker: CandidateChecker = {
   },
 };
 
+export const chapterLengthChecker: CandidateChecker = {
+  name: 'chapter_length',
+  check: ({ work, candidate }) => {
+    const expected = work.covenant.chapterWords;
+    const minimum = Math.max(200, Math.floor(expected * 0.35));
+    const passed = candidate.content.trim().length >= minimum;
+    return {
+      checker: 'chapter_length', status: passed ? 'passed' : 'failed',
+      message: passed ? `length ${candidate.content.trim().length}/${expected}` : `chapter is too short (${candidate.content.trim().length}; minimum ${minimum})`,
+      candidateId: candidate.id, checkedAt: now(),
+    };
+  },
+};
+
 export const unavailableChecker: CandidateChecker = {
   name: 'semantic_checker',
   check: ({ candidate }) => ({ checker: 'semantic_checker', status: 'unavailable', message: 'checker unavailable', candidateId: candidate.id, checkedAt: now() }),

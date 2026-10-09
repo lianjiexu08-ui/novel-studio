@@ -24,6 +24,7 @@ import {
   storyArcAt,
   storySecretAt,
   canonConsistencyChecker,
+  chapterLengthChecker,
   passChecker,
   type ChapterCandidate,
   type ManuscriptRevision,
@@ -85,6 +86,12 @@ function defaultDesignProvider(): DesignProvider | undefined {
   const model = process.env.NOVEL_PLANNING_MODEL;
   if (!endpoint || !apiKey || !model) return undefined;
   return new JsonDesignPlanner(new OpenAICompatiblePlanningClient(endpoint, apiKey, model, Number(process.env.NOVEL_MODEL_BUDGET_USD ?? Number.POSITIVE_INFINITY)));
+}
+
+function generationCheckers() {
+  const checkers = [passChecker, canonConsistencyChecker];
+  if (process.env.NOVEL_MODEL_ENDPOINT && process.env.NOVEL_MODEL_API_KEY && (process.env.NOVEL_WRITING_MODEL || process.env.NOVEL_PLANNING_MODEL)) checkers.push(chapterLengthChecker);
+  return checkers;
 }
 
 const chapterNumberParamSchema = z.object({ workId: z.string().min(1), chapterNumber: z.coerce.number().int().min(1) });
@@ -305,7 +312,7 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     if (body.background) {
       const key = `${workId}:${runId}`;
       if (!activeRuns.has(key)) {
-        const task = workflow.runUntil(workId, body.targetChapter, [passChecker, canonConsistencyChecker], runId)
+      const task = workflow.runUntil(workId, body.targetChapter, generationCheckers(), runId)
           .then(() => undefined)
           .catch(() => undefined)
           .finally(() => { activeRuns.delete(key); });
@@ -314,7 +321,7 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
       const current = await repository.get(workId);
       return reply.code(202).send({ runId, status: 'running', checkpoint: current?.checkpoints.get(runId) });
     }
-    const checkpoint = await workflow.runUntil(workId, body.targetChapter, [passChecker, canonConsistencyChecker], runId);
+    const checkpoint = await workflow.runUntil(workId, body.targetChapter, generationCheckers(), runId);
     return { checkpoint };
   });
 
@@ -327,7 +334,7 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
 
   app.post('/works/:workId/candidates/:candidateId/check', async (request) => {
     const { workId, candidateId } = candidateParamSchema.parse(request.params);
-    await workflow.check(workId, candidateId, [passChecker, canonConsistencyChecker]);
+    await workflow.check(workId, candidateId, generationCheckers());
     const candidate = (await repository.get(workId))?.candidates.get(candidateId);
     return { ok: true, candidate: candidate ? toCandidateDto(candidate) : undefined };
   });
