@@ -304,6 +304,16 @@ export function lockWorldPack(pack: WorldPack): WorldPack {
   return { ...pack, status: 'locked', revision: pack.revision + 1, lockedAt: now() };
 }
 
+/** Mark a proposed world pack as reviewed after running all structural checks. */
+export function reviewWorldPack(pack: WorldPack): WorldPack {
+  if (pack.status === 'locked') return { ...pack };
+  if (!['draft', 'proposed', 'reviewed'].includes(pack.status)) throw new CanonGateError('deprecated world pack cannot be reviewed');
+  const result = validateWorldPack(pack);
+  if (!result.ready) throw new CanonGateError(`world pack is invalid: ${result.errors.join('; ')}`);
+  if (hasBlockingQuestions(pack.unresolvedQuestions)) throw new CanonGateError('blocking world pack questions must be resolved before review');
+  return { ...pack, status: 'reviewed', revision: pack.status === 'reviewed' ? pack.revision : pack.revision + 1 };
+}
+
 export function validateStoryBible(bible: StoryBible, worldPack: WorldPack): GateResult {
   const errors: string[] = [];
   const warnings: string[] = [];
@@ -360,6 +370,16 @@ export function lockStoryBible(bible: StoryBible, worldPack: WorldPack): StoryBi
   if (!result.ready) throw new CanonGateError(`story bible is invalid: ${result.errors.join('; ')}`);
   if (hasBlockingQuestions(bible.unresolvedQuestions)) throw new CanonGateError('blocking story questions must be resolved before locking');
   return { ...bible, status: 'locked', revision: bible.revision + 1, worldPackRevision: worldPack.revision, lockedAt: now() };
+}
+
+/** Mark a proposed story bible as reviewed after checking all references. */
+export function reviewStoryBible(bible: StoryBible, worldPack: WorldPack): StoryBible {
+  if (bible.status === 'locked') return { ...bible };
+  if (!['draft', 'proposed', 'reviewed'].includes(bible.status)) throw new CanonGateError('deprecated story bible cannot be reviewed');
+  const result = validateStoryBible(bible, worldPack);
+  if (!result.ready) throw new CanonGateError(`story bible is invalid: ${result.errors.join('; ')}`);
+  if (hasBlockingQuestions(bible.unresolvedQuestions)) throw new CanonGateError('blocking story questions must be resolved before review');
+  return { ...bible, status: 'reviewed', revision: bible.status === 'reviewed' ? bible.revision : bible.revision + 1 };
 }
 
 export function chapterGenerationGate(worldPack: WorldPack, bible: StoryBible, currentVolumeId?: string): GateResult {

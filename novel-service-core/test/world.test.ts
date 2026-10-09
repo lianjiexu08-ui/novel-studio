@@ -5,6 +5,8 @@ import {
   createEmptyWorldPack,
   lockStoryBible,
   lockWorldPack,
+  reviewStoryBible,
+  reviewWorldPack,
   type StoryBible,
   validateStoryBible,
   validateWorldPack,
@@ -49,6 +51,19 @@ test('world pack validates references before it can be locked', () => {
   const locked = lockWorldPack(world);
   assert.equal(locked.status, 'locked');
   assert.equal(locked.revision, 2);
+});
+
+test('review transitions a proposed design only after structural validation', () => {
+  const world = reviewedWorld();
+  world.status = 'proposed';
+  const reviewed = reviewWorldPack(world);
+  assert.equal(reviewed.status, 'reviewed');
+  assert.equal(reviewed.revision, world.revision + 1);
+  const bible = reviewedBible(reviewed.id, reviewed.revision);
+  bible.status = 'proposed';
+  const reviewedBiblePack = reviewStoryBible(bible, reviewed);
+  assert.equal(reviewedBiblePack.status, 'reviewed');
+  assert.equal(reviewedBiblePack.revision, bible.revision + 1);
 });
 
 test('world pack rejects location cycles and unknown power references', () => {

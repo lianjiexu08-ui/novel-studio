@@ -30,7 +30,7 @@ export function CovenantForm({
           <Radio.Button value="discover" disabled>帮我找故事方向</Radio.Button>
         </Radio.Group>
         <div style={{ marginTop: 8 }}>
-          <Text type="secondary">规划模型还没接入，所以这里不会编几个故事方向让你挑。</Text>
+          <Text type="secondary">保存后进入“世界构建”，规划模型会先生成世界包，再生成 Story Bible；作者可以逐步审核和锁定。</Text>
         </div>
       </div>
       <Form

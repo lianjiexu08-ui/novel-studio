@@ -220,6 +220,11 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     return { worldPack: await workflow.lockWorldPack(workId) };
   });
 
+  app.post('/works/:workId/world-pack/review', async (request) => {
+    const { workId } = workParamSchema.parse(request.params);
+    return { worldPack: await workflow.reviewWorldPack(workId) };
+  });
+
   app.put('/works/:workId/story-bible', async (request) => {
     const { workId } = workParamSchema.parse(request.params);
     const storyBible = saveStoryBibleRequestSchema.parse(request.body ?? {});
@@ -229,6 +234,11 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
   app.post('/works/:workId/story-bible/lock', async (request) => {
     const { workId } = workParamSchema.parse(request.params);
     return { storyBible: await workflow.lockStoryBible(workId) };
+  });
+
+  app.post('/works/:workId/story-bible/review', async (request) => {
+    const { workId } = workParamSchema.parse(request.params);
+    return { storyBible: await workflow.reviewStoryBible(workId) };
   });
 
   app.get('/works/:workId/chapters', async (request) => {

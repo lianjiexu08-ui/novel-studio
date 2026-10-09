@@ -164,6 +164,7 @@ test('design API saves and locks the world pack before the story bible', async (
       historicalEvents: [{ id: 'history', title: '立宗', storyTime: '百年前', causes: ['动荡'], consequences: ['建宗'], factionIds: ['sect'], status: 'reviewed' }], terminology: [{ id: 'term', canonical: '灵气', aliases: [], kind: 'other', status: 'reviewed' }], unresolvedQuestions: [], createdAt: new Date().toISOString(),
     };
     assert.equal((await app.inject({ method: 'PUT', url: `${base}/world-pack`, payload: worldPack })).statusCode, 200);
+    assert.equal((await app.inject({ method: 'POST', url: `${base}/world-pack/review`, payload: {} })).json().worldPack.status, 'reviewed');
     const lockedWorld = (await app.inject({ method: 'POST', url: `${base}/world-pack/lock`, payload: {} })).json().worldPack;
     assert.equal(lockedWorld.status, 'locked');
     const storyBible = {
@@ -174,6 +175,7 @@ test('design API saves and locks the world pack before the story bible', async (
       unresolvedQuestions: [], createdAt: new Date().toISOString(),
     };
     assert.equal((await app.inject({ method: 'PUT', url: `${base}/story-bible`, payload: storyBible })).statusCode, 200);
+    assert.equal((await app.inject({ method: 'POST', url: `${base}/story-bible/review`, payload: {} })).json().storyBible.status, 'reviewed');
     const lockedBible = (await app.inject({ method: 'POST', url: `${base}/story-bible/lock`, payload: {} })).json().storyBible;
     assert.equal(lockedBible.status, 'locked');
     let stateRevision = 0;

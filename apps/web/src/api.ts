@@ -59,6 +59,14 @@ export const api = {
   listWorks: () => call<{ works: WorkDto[] }>('/works'),
   getWork: (workId: string) => call<WorkDto>(`/works/${workId}`),
   design: (workId: string) => call<DesignDto>(`/works/${workId}/design`),
+  generateDesign: (workId: string, stage: 'world_pack' | 'story_bible') =>
+    call<{ worldPack?: DesignDto['worldPack']; storyBible?: DesignDto['storyBible'] }>(`/works/${workId}/design/generate`, { method: 'POST', body: { stage } }),
+  reviewWorldPack: (workId: string) => call<{ worldPack: NonNullable<DesignDto['worldPack']> }>(`/works/${workId}/world-pack/review`, { method: 'POST', body: {} }),
+  lockWorldPack: (workId: string) => call<{ worldPack: NonNullable<DesignDto['worldPack']> }>(`/works/${workId}/world-pack/lock`, { method: 'POST', body: {} }),
+  reviewStoryBible: (workId: string) => call<{ storyBible: NonNullable<DesignDto['storyBible']> }>(`/works/${workId}/story-bible/review`, { method: 'POST', body: {} }),
+  lockStoryBible: (workId: string) => call<{ storyBible: NonNullable<DesignDto['storyBible']> }>(`/works/${workId}/story-bible/lock`, { method: 'POST', body: {} }),
+  manuscripts: (workId: string) => call<{ manuscripts: import('novel-studio-contracts').ManuscriptRevisionDto[] }>(`/works/${workId}/manuscripts`),
+  exportManuscript: (workId: string, manuscriptId: string) => call<{ manuscript: import('novel-studio-contracts').ManuscriptRevisionDto; chapters: ChapterVersionDto[] }>(`/works/${workId}/manuscripts/${manuscriptId}/export`),
   listChapters: (workId: string) => call<{ chapters: ChapterVersionDto[] }>(`/works/${workId}/chapters`),
   generate: (workId: string, chapterNumber: number) =>
     call<{ candidate: CandidateDto }>(`/works/${workId}/chapters/${chapterNumber}/generate`, { method: 'POST', body: {} }),

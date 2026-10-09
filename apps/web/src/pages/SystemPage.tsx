@@ -3,7 +3,7 @@ import { Alert, Card, Descriptions, Table, Tag, Typography } from 'antd';
 const { Text } = Typography;
 
 const ROLES = [
-  { role: '规划', model: '未配置', note: '章节计划和前置条件' },
+  { role: '规划', model: '服务端 OpenAI-compatible', note: '世界包、人物关系、力量体系和分卷大纲；配置缺失时明确报错' },
   { role: '写作', model: '本地占位生成器', note: '固定样例正文，不调用外部 API' },
   { role: '审稿', model: '确定性规则', note: '目前只检查正文是否为空；语义审查未接入' },
   { role: '抽取', model: '与写作同一占位结果', note: '声明和抽取目前被写成同一份事件' },
@@ -16,8 +16,8 @@ export function SystemPage() {
         type="info"
         showIcon
         style={{ marginBottom: 16 }}
-        message="密钥、预算和平台连接还不能在这里保存"
-        description="模型调用走服务端的占位生成器。升级配置要先在固定场景上比较，评估本身不会改采用稿、故事状态或发布队列。"
+        message="模型连接由服务端环境变量管理"
+        description="世界构建页会按 NOVEL_MODEL_ENDPOINT、NOVEL_MODEL_API_KEY 和 NOVEL_PLANNING_MODEL 调用规划模型；密钥不会写入浏览器或作品数据。"
       />
       <Descriptions
         column={1}
@@ -25,9 +25,9 @@ export function SystemPage() {
         items={[
           { key: 'store', label: '数据', children: '本地 SQLite，文件在 data/novel-studio.db。重启后作品还在。' },
           { key: 'auth', label: '鉴权', children: '未在页面配置。服务端只有设置了 API_TOKEN 才会要求 Bearer。' },
-          { key: 'budget', label: '调用预算', children: <Tag>未配置</Tag> },
+          { key: 'budget', label: '调用预算', children: '可由 NOVEL_MODEL_BUDGET_USD 设置' },
           { key: 'platform', label: '平台连接', children: <Tag>未连接</Tag> },
-          { key: 'pause', label: '紧急暂停', children: '调度器还没接到页面，这里不能暂停后台任务。' },
+          { key: 'pause', label: '紧急暂停', children: '章节生成仍采用候选 → 检查 → 采用门禁；任务中心的后台暂停控制待接入。' },
         ]}
       />
       <Table
