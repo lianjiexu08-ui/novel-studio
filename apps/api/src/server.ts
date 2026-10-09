@@ -1,0 +1,212 @@
+import Fastify, { type FastifyInstance } from 'fastify';
+import { z, ZodError } from 'zod';
+import {
+  adoptCandidateRequestSchema,
+  createWorkRequestSchema,
+  generateChapterRequestSchema,
+  updateWorkRequestSchema,
+  type ApiError,
+  type ApiErrorCode,
+  type CandidateDto,
+  type WorkDto,
+} from 'novel-studio-contracts';
+import {
+  AdoptionBlocked,
+  LockedConstraintError,
+  StaleCandidateError,
+  passChecker,
+  type ChapterCandidate,
+  type ModelProvider,
+  type Work,
+} from '../../../novel-service-core/src/core.ts';
+import {
+  ChapterWorkflow,
+  InMemoryWorkRepository,
+  type WorkRepository,
+} from '../../../packages/application/src/index.ts';
+import { PrismaWorkRepository } from '../../../packages/persistence/src/prisma-repository.ts';
+import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
+import { mkdirSync } from 'node:fs';
+
+/**
+ * Local-first default: SQLite via Prisma, one file at data/novel-studio.db.
+ * Set NOVEL_REPOSITORY=memory to force the in-memory repository (used by tests).
+ */
+function createDefaultRepository(): WorkRepository {
+  if (process.env.NOVEL_REPOSITORY === 'memory') return new InMemoryWorkRepository();
+  const dataDir = join(dirname(fileURLToPath(import.meta.url)), '..', '..', '..', 'data');
+  mkdirSync(dataDir, { recursive: true });
+  process.env.DATABASE_URL ??= `file:${join(dataDir, 'novel-studio.db')}`;
+  return new PrismaWorkRepository();
+}
+
+export interface ApiDependencies {
+  repository?: WorkRepository;
+  provider?: ModelProvider;
+  /** When set, all non-/health routes require `Authorization: Bearer <token>`. */
+  authToken?: string;
+}
+
+export function defaultProvider(): ModelProvider {
+  return {
+    generateChapter: ({ chapterNumber, context }) => {
+      const event = { eventType: 'character_state', subjectId: 'hero', predicate: 'power', value: chapterNumber + context.includedEventIds.length, storyTime: chapterNumber, evidence: 'paragraph 1' };
+      return { content: `第${chapterNumber}章：主角踏入新的修行阶段。`, proposedEvents: [event], observedEvents: [event] };
+    },
+  };
+}
+
+const chapterNumberParamSchema = z.object({ workId: z.string().min(1), chapterNumber: z.coerce.number().int().min(1) });
+const candidateParamSchema = z.object({ workId: z.string().min(1), candidateId: z.string().min(1) });
+const workParamSchema = z.object({ workId: z.string().min(1) });
+
+function toWorkDto(work: Work): WorkDto {
+  return { id: work.id, title: work.title, stateRevision: work.stateRevision, covenant: work.covenant };
+}
+
+function toCandidateDto(candidate: ChapterCandidate): CandidateDto {
+  return {
+    id: candidate.id,
+    workId: candidate.workId,
+    chapterNumber: candidate.chapterNumber,
+    status: candidate.status,
+    runId: candidate.runId,
+    content: candidate.content,
+    proposedEvents: candidate.proposedEvents,
+    observedEvents: candidate.observedEvents,
+    generatedAgainstRevision: candidate.generatedAgainstRevision,
+    checks: candidate.checks,
+    adoptedVersionId: candidate.adoptedVersionId,
+    createdAt: candidate.createdAt,
+  };
+}
+
+export function createApiServer(dependencies: ApiDependencies = {}): { app: FastifyInstance; repository: WorkRepository } {
+  const repository = dependencies.repository ?? createDefaultRepository();
+  const workflow = new ChapterWorkflow(repository, dependencies.provider ?? defaultProvider());
+  const app = Fastify({ logger: false });
+
+  // Tolerate empty JSON bodies on POST endpoints that take no payload.
+  app.addContentTypeParser('application/json', { parseAs: 'string' }, (_request, body, done) => {
+    if (body === '' || body === undefined) return done(null, {});
+    try {
+      done(null, JSON.parse(body as string));
+    } catch {
+      done(null, { __invalidJson: true });
+    }
+  });
+
+  // CORS: local dev default, tighten via env when deploying.
+  app.addHook('onSend', async (request, reply) => {
+    reply.header('access-control-allow-origin', process.env.API_CORS_ORIGIN ?? 'http://localhost:5173');
+    reply.header('access-control-allow-methods', 'GET,POST,PATCH,DELETE,OPTIONS');
+    reply.header('access-control-allow-headers', 'content-type,authorization');
+  });
+  app.options('*', async (_request, reply) => reply.code(204).send());
+
+  // Optional single-user bearer auth (enabled by setting API_TOKEN).
+  const token = dependencies.authToken ?? process.env.API_TOKEN;
+  app.addHook('onRequest', async (request, reply) => {
+    if (!token || request.url === '/health' || request.method === 'OPTIONS') return;
+    if (request.headers.authorization !== `Bearer ${token}`) {
+      return reply.code(401).send(apiError('UNAUTHORIZED', 'missing or invalid bearer token'));
+    }
+  });
+
+  app.setErrorHandler((error, _request, reply) => {
+    const { status, body } = mapError(error);
+    reply.code(status).send(body);
+  });
+
+  app.get('/health', async () => ({ ok: true }));
+
+  app.post('/works', async (request, reply) => {
+    const body = createWorkRequestSchema.parse(request.body ?? {});
+    const work = await workflow.createWork(body.title, body.covenant);
+    return reply.code(201).send(toWorkDto(work));
+  });
+
+  app.patch('/works/:workId', async (request) => {
+    const { workId } = workParamSchema.parse(request.params);
+    const body = updateWorkRequestSchema.parse(request.body ?? {});
+    return toWorkDto(await workflow.updateWork(workId, body));
+  });
+
+  app.get('/works', async () => {
+    return { works: await repository.list() };
+  });
+
+  app.get('/works/:workId', async (request) => {
+    const { workId } = workParamSchema.parse(request.params);
+    const work = await repository.get(workId);
+    if (!work) throw new NotFoundError(`unknown work ${workId}`);
+    return toWorkDto(work);
+  });
+
+  app.get('/works/:workId/chapters', async (request) => {
+    const { workId } = workParamSchema.parse(request.params);
+    const work = await repository.get(workId);
+    if (!work) throw new NotFoundError(`unknown work ${workId}`);
+    const chapters = work.adoptedVersions().map((version) => ({
+      id: version.id, workId: version.workId, chapterNumber: version.chapterNumber,
+      revision: version.revision, content: version.content, status: version.status, stale: version.stale,
+      parentVersionId: version.parentVersionId, sourceCandidateId: version.sourceCandidateId,
+      createdAt: version.createdAt,
+    }));
+    return { chapters };
+  });
+
+  app.post('/works/:workId/chapters/:chapterNumber/generate', async (request, reply) => {
+    const { workId, chapterNumber } = chapterNumberParamSchema.parse(request.params);
+    const body = generateChapterRequestSchema.parse(request.body ?? {});
+    const candidate = await workflow.generate(workId, chapterNumber, body.runId ?? `api:${workId}:${chapterNumber}`);
+    return reply.code(201).send({ candidate: toCandidateDto(candidate) });
+  });
+
+  app.post('/works/:workId/candidates/:candidateId/check', async (request) => {
+    const { workId, candidateId } = candidateParamSchema.parse(request.params);
+    await workflow.check(workId, candidateId, [passChecker]);
+    const candidate = (await repository.get(workId))?.candidates.get(candidateId);
+    return { ok: true, candidate: candidate ? toCandidateDto(candidate) : undefined };
+  });
+
+  app.post('/works/:workId/candidates/:candidateId/adopt', async (request) => {
+    const { workId, candidateId } = candidateParamSchema.parse(request.params);
+    const body = adoptCandidateRequestSchema.parse(request.body ?? {});
+    return workflow.adopt(workId, candidateId, body.expectedStateRevision);
+  });
+
+  app.get('/works/:workId/outbox', async (request) => {
+    const { workId } = workParamSchema.parse(request.params);
+    return { events: (await repository.outbox()).filter((event) => event.workId === workId) };
+  });
+
+  return { app, repository };
+}
+
+class NotFoundError extends Error {}
+
+function apiError(code: ApiErrorCode, message: string, details?: unknown): ApiError {
+  return { error: { code, message, details } };
+}
+
+function mapError(error: unknown): { status: number; body: ApiError } {
+  if (error instanceof ZodError || (typeof (error as { statusCode?: unknown }).statusCode === 'number' && (error as { statusCode: number }).statusCode === 400)) {
+    const issues = error instanceof ZodError ? error.issues.map((issue) => ({ path: issue.path.join('.'), message: issue.message })) : [{ path: '$', message: error.message }];
+    return { status: 400, body: apiError('VALIDATION_FAILED', 'request failed contract validation', issues) };
+  }
+  if (error instanceof LockedConstraintError) return { status: 409, body: apiError('LOCKED_CONSTRAINT', error.message) };
+  if (error instanceof StaleCandidateError) return { status: 409, body: apiError('STALE_CANDIDATE', error.message) };
+  if (error instanceof AdoptionBlocked) return { status: 409, body: apiError('ADOPTION_BLOCKED', error.message) };
+  if (error instanceof NotFoundError || /unknown work|unknown candidate/.test(String(error))) {
+    return { status: 404, body: apiError('NOT_FOUND', error instanceof Error ? error.message : 'not found') };
+  }
+  return { status: 500, body: apiError('INTERNAL', 'internal error') };
+}
+
+if (process.argv[1] && process.argv[1].endsWith('server.ts')) {
+  const { app } = createApiServer();
+  const port = Number(process.env.PORT ?? 8787);
+  app.listen({ port, host: '127.0.0.1' }).then(() => console.log(`novel-studio API listening on http://127.0.0.1:${port}`));
+}

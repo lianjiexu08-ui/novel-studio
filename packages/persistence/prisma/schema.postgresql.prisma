@@ -1,0 +1,362 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ChapterVersionStatus {
+  ADOPTED
+  SUPERSEDED
+}
+
+enum CandidateStatus {
+  CANDIDATE
+  ADOPTED
+  REJECTED
+}
+
+enum CheckStatus {
+  PASSED
+  FAILED
+  INCONCLUSIVE
+  UNAVAILABLE
+  NOT_APPLICABLE
+}
+
+enum RunStatus {
+  QUEUED
+  RUNNING
+  PAUSED
+  SUCCEEDED
+  FAILED
+  CANCELLED
+  STALE
+}
+
+enum PublicationState {
+  SCHEDULED
+  SUBMITTING
+  VERIFYING
+  PUBLISHED
+  UNKNOWN
+  FAILED
+  BLOCKED
+}
+
+enum RealizationStatus {
+  UNREALIZED
+  PARTIAL
+  REALIZED
+  DIVERGED
+  INSUFFICIENT
+}
+
+model Project {
+  id                    String                  @id @default(cuid())
+  title                 String
+  genre                 String                  @default("xuanhuan")
+  stateRevision         Int                     @default(0)
+  createdAt             DateTime                @default(now())
+  updatedAt             DateTime                @updatedAt
+  chapters              Chapter[]
+  characters            Character[]
+  relationships         Relationship[]
+  plotNodes             PlotNode[]
+  candidates            ChapterCandidate[]
+  events                StoryEvent[]
+  runs                  Run[]
+  modelConfigs          ModelConfigVersion[]
+  publicationIntents    PublicationIntent[]
+  creativeBrief         CreativeBrief?
+}
+
+model CreativeBrief {
+  id                    String   @id @default(cuid())
+  projectId             String   @unique
+  entryMode             String
+  audience              String?
+  premise               String?
+  constraints           Json
+  styleProfile          Json
+  project               Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+}
+
+model ModelConfigVersion {
+  id                    String   @id @default(cuid())
+  projectId             String
+  role                  String
+  provider              String
+  model                 String
+  endpoint              String
+  encryptedCredential   String
+  config                Json
+  active                Boolean  @default(false)
+  createdAt             DateTime @default(now())
+  project               Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  runs                  Run[]
+  @@index([projectId, role, active])
+}
+
+model Chapter {
+  id                    String            @id @default(cuid())
+  projectId             String
+  number                Int
+  title                 String
+  currentVersionId      String?
+  project               Project           @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  versions              ChapterVersion[]
+  candidates            ChapterCandidate[]
+  @@unique([projectId, number])
+}
+
+model ChapterVersion {
+  id                    String                @id @default(cuid())
+  chapterId             String
+  revision               Int
+  content               String
+  status                ChapterVersionStatus
+  stale                 Boolean               @default(false)
+  parentVersionId       String?
+  sourceCandidateId     String?
+  contentHash           String
+  createdAt             DateTime              @default(now())
+  chapter               Chapter               @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  sourceCandidate       ChapterCandidate?     @relation("CandidateSource", fields: [sourceCandidateId], references: [id])
+  adoptedFromCandidate  ChapterCandidate?     @relation("CandidateAdopted")
+  parentVersion         ChapterVersion?       @relation("VersionRevision", fields: [parentVersionId], references: [id])
+  childVersions         ChapterVersion[]      @relation("VersionRevision")
+  events                StoryEvent[]
+  checks                CheckExecution[]
+  planRealizations      PlanRealization[]
+  publicationSnapshots  PublicationSnapshot[]
+  @@unique([chapterId, revision])
+  @@index([chapterId, status, stale])
+}
+
+model ChapterCandidate {
+  id                    String                @id @default(cuid())
+  projectId             String
+  chapterId             String
+  runId                 String?
+  content               String
+  proposedEvents        Json
+  observedEvents        Json?
+  generatedAgainstRev   Int
+  status                CandidateStatus       @default(CANDIDATE)
+  adoptedVersionId      String?
+  createdAt             DateTime              @default(now())
+  project               Project               @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  chapter               Chapter               @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  sourceVersions        ChapterVersion[]      @relation("CandidateSource")
+  adoptedVersion        ChapterVersion?       @relation("CandidateAdopted", fields: [adoptedVersionId], references: [id])
+  checks                CheckExecution[]
+  @@index([projectId, chapterId, status])
+  @@index([runId, chapterId])
+}
+
+model Character {
+  id                    String          @id @default(cuid())
+  projectId             String
+  canonicalName         String
+  profile               Json
+  locked                Boolean         @default(false)
+  project               Project         @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  aliases               CharacterAlias[]
+  fromRelationships     Relationship[]  @relation("FromCharacter")
+  toRelationships       Relationship[]  @relation("ToCharacter")
+  @@index([projectId, canonicalName])
+}
+
+model CharacterAlias {
+  id                    String    @id @default(cuid())
+  characterId           String
+  alias                 String
+  character             Character @relation(fields: [characterId], references: [id], onDelete: Cascade)
+  @@unique([characterId, alias])
+}
+
+model Relationship {
+  id                    String    @id @default(cuid())
+  projectId             String
+  fromCharacterId       String
+  toCharacterId         String
+  kind                  String
+  value                 String
+  locked                Boolean   @default(false)
+  sourceEventId         String?
+  project               Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  fromCharacter         Character @relation("FromCharacter", fields: [fromCharacterId], references: [id])
+  toCharacter           Character @relation("ToCharacter", fields: [toCharacterId], references: [id])
+  @@index([projectId, fromCharacterId, toCharacterId])
+}
+
+model PlotNode {
+  id                    String           @id @default(cuid())
+  projectId             String
+  title                 String
+  expectedResult        String
+  prerequisites         Json
+  project               Project          @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  realization           PlanRealization?
+}
+
+model PlanRealization {
+  id                    String             @id @default(cuid())
+  plotNodeId            String             @unique
+  chapterVersionId      String?
+  status                RealizationStatus  @default(UNREALIZED)
+  evidence              String?
+  updatedAt             DateTime           @updatedAt
+  plotNode              PlotNode           @relation(fields: [plotNodeId], references: [id], onDelete: Cascade)
+  chapterVersion        ChapterVersion?    @relation(fields: [chapterVersionId], references: [id])
+}
+
+model StoryEvent {
+  id                    String          @id @default(cuid())
+  projectId             String
+  chapterVersionId      String
+  chapterNumber         Int
+  eventType             String
+  subjectId             String
+  predicate             String
+  value                 Json
+  storyTime             Int?
+  evidence              String
+  active                Boolean         @default(true)
+  project               Project         @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  chapterVersion        ChapterVersion  @relation(fields: [chapterVersionId], references: [id], onDelete: Cascade)
+  provenance             StateProvenance?
+  @@index([projectId, chapterNumber, active])
+  @@index([subjectId, predicate, active])
+}
+
+model StateProvenance {
+  id                    String      @id @default(cuid())
+  eventId               String      @unique
+  storyTime             Int?
+  evidenceStart         Int?
+  evidenceEnd           Int?
+  invalidatedAt         DateTime?
+  invalidReason         String?
+  event                 StoryEvent  @relation(fields: [eventId], references: [id], onDelete: Cascade)
+}
+
+model CheckExecution {
+  id                    String           @id @default(cuid())
+  candidateId           String?
+  chapterVersionId      String?
+  checker               String
+  status                CheckStatus
+  message               String?
+  evidence              Json?
+  constraintRevision    Int
+  stateRevision         Int
+  createdAt             DateTime         @default(now())
+  candidate             ChapterCandidate? @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  chapterVersion        ChapterVersion?  @relation(fields: [chapterVersionId], references: [id], onDelete: Cascade)
+  @@index([candidateId, checker])
+  @@index([chapterVersionId, status])
+}
+
+model Run {
+  id                    String               @id @default(cuid())
+  projectId             String
+  modelConfigVersionId  String?
+  kind                  String
+  status                RunStatus            @default(QUEUED)
+  targetChapter         Int?
+  nextChapter           Int?
+  inputVersions         Json
+  attempts              Int                  @default(0)
+  createdAt             DateTime             @default(now())
+  updatedAt             DateTime             @updatedAt
+  project               Project              @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  modelConfigVersion    ModelConfigVersion?  @relation(fields: [modelConfigVersionId], references: [id])
+  steps                 RunStep[]
+  checkpoints           Checkpoint[]
+  outboxEvents          OutboxEvent[]
+  @@index([projectId, status])
+}
+
+model RunStep {
+  id                    String    @id @default(cuid())
+  runId                 String
+  name                  String
+  status                RunStatus @default(QUEUED)
+  inputVersionIds       Json
+  outputVersionIds      Json?
+  attempts              Int       @default(0)
+  error                 String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  run                   Run       @relation(fields: [runId], references: [id], onDelete: Cascade)
+  @@index([runId, status])
+}
+
+model Checkpoint {
+  id                    String    @id @default(cuid())
+  runId                 String
+  phase                 String
+  payload               Json
+  createdAt             DateTime  @default(now())
+  run                   Run       @relation(fields: [runId], references: [id], onDelete: Cascade)
+  @@index([runId, createdAt])
+}
+
+model OutboxEvent {
+  id                    String    @id @default(cuid())
+  runId                 String?
+  kind                  String
+  aggregateId           String
+  payload               Json
+  publishedAt           DateTime?
+  attempts              Int       @default(0)
+  createdAt             DateTime  @default(now())
+  run                   Run?      @relation(fields: [runId], references: [id], onDelete: SetNull)
+  @@index([publishedAt, createdAt])
+}
+
+model PublicationIntent {
+  id                    String             @id @default(cuid())
+  projectId             String
+  chapterVersionId      String
+  platform              String
+  state                 PublicationState    @default(SCHEDULED)
+  scheduledAt           DateTime?
+  snapshotHash          String
+  createdAt             DateTime           @default(now())
+  updatedAt             DateTime           @updatedAt
+  project               Project            @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  snapshots             PublicationSnapshot[]
+  attempts              PublicationAttempt[]
+  @@index([projectId, state, scheduledAt])
+}
+
+model PublicationSnapshot {
+  id                    String             @id @default(cuid())
+  publicationIntentId   String
+  chapterVersionId      String
+  content               String
+  contentHash           String
+  createdAt             DateTime           @default(now())
+  publicationIntent     PublicationIntent  @relation(fields: [publicationIntentId], references: [id], onDelete: Cascade)
+  chapterVersion        ChapterVersion    @relation(fields: [chapterVersionId], references: [id])
+}
+
+model PublicationAttempt {
+  id                    String             @id @default(cuid())
+  publicationIntentId   String
+  attempt                Int
+  state                 PublicationState
+  externalId            String?
+  responseMeta          Json?
+  startedAt             DateTime           @default(now())
+  finishedAt            DateTime?
+  publicationIntent     PublicationIntent  @relation(fields: [publicationIntentId], references: [id], onDelete: Cascade)
+  @@unique([publicationIntentId, attempt])
+}

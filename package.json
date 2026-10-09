@@ -1,0 +1,15 @@
+{
+  "name": "novel-studio",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "novel-service-core"
+  ],
+  "scripts": {
+    "test": "node scripts/test-all.mjs",
+    "dev:api": "npm run start -w novel-studio-api",
+    "dev:web": "npm run dev -w novel-studio-web"
+  }
+}

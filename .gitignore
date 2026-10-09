@@ -1,0 +1,25 @@
+node_modules/
+dist/
+.vite/
+*.tsbuildinfo
+
+# Local data and secrets
+data/
+*.db
+*.db-journal
+.env
+.env.*
+!.env.example
+
+# Third-party source snapshots kept locally for research; licenses do not allow public redistribution here
+docs/research/sources/
+docs/research/tianming-source/
+
+# Python / tooling
+__pycache__/
+*.pyc
+.pytest_cache/
+*.tmp
+*.log
+.DS_Store
+Thumbs.db

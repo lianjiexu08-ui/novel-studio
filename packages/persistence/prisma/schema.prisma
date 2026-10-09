@@ -1,0 +1,177 @@
+// SQLite-compatible schema for local-first mode.
+// Enums and Json columns from schema.postgresql.prisma are stored as String
+// (JSON-serialized) here; enum values are lowercase domain values validated by
+// packages/contracts. When moving to PostgreSQL, switch provider back and map
+// the string columns to real enums/Json.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Project {
+  id            String   @id
+  title         String
+  genre         String   @default("xuanhuan")
+  /// Author covenant (CreativeCovenant JSON). Not story fact.
+  covenant      String   @default("{}")
+  stateRevision Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  chapters      Chapter[]
+  candidates    ChapterCandidate[]
+  events        StoryEvent[]
+  relationships Relationship[]
+  plotNodes     PlotNode[]
+  outboxEvents  OutboxEvent[]
+  impacts       ImpactRecord[]
+}
+
+model Chapter {
+  id               String           @id
+  projectId        String
+  number           Int
+  currentVersionId String?
+  project          Project          @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  versions         ChapterVersion[]
+  candidates       ChapterCandidate[]
+
+  @@unique([projectId, number])
+}
+
+model ChapterVersion {
+  id                String          @id
+  chapterId         String
+  revision          Int
+  content           String
+  status            String // adopted | superseded
+  stale             Boolean         @default(false)
+  parentVersionId   String?
+  sourceCandidateId String?
+  createdAt         DateTime        @default(now())
+  chapter           Chapter         @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  events            StoryEvent[]
+  realizations      PlanRealization[]
+
+  @@unique([chapterId, revision])
+  @@index([chapterId, status, stale])
+}
+
+model ChapterCandidate {
+  id                  String          @id
+  projectId           String
+  chapterId           String
+  runId               String?
+  content             String
+  proposedEvents      String // JSON: EventDraft[]
+  observedEvents      String? // JSON: EventDraft[]
+  generatedAgainstRev Int
+  status              String          @default("candidate") // candidate | adopted | rejected
+  adoptedVersionId    String?
+  createdAt           DateTime        @default(now())
+  project             Project         @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  chapter             Chapter         @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  checks              CheckExecution[]
+
+  @@index([projectId, chapterId, status])
+  @@index([runId, chapterId])
+}
+
+model CheckExecution {
+  id           String           @id
+  candidateId  String?
+  checker      String
+  status       String // passed | failed | inconclusive | unavailable
+  message      String?
+  stateRevision Int             @default(0)
+  createdAt    DateTime         @default(now())
+  candidate    ChapterCandidate? @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+
+  @@index([candidateId, checker])
+}
+
+model StoryEvent {
+  id               String         @id
+  projectId        String
+  chapterVersionId String
+  chapterNumber    Int
+  eventType        String
+  subjectId        String
+  predicate        String
+  value            String // JSON
+  storyTime        Int?
+  evidence         String
+  active           Boolean        @default(true)
+  project          Project        @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  chapterVersion   ChapterVersion @relation(fields: [chapterVersionId], references: [id], onDelete: Cascade)
+
+  @@index([projectId, chapterNumber, active])
+  @@index([subjectId, predicate, active])
+}
+
+model Relationship {
+  id              String   @id
+  projectId       String
+  fromCharacterId String
+  toCharacterId   String
+  kind            String
+  value           String
+  locked          Boolean  @default(false)
+  sourceEventId   String?
+  project         Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@unique([projectId, fromCharacterId, toCharacterId, kind])
+}
+
+model PlotNode {
+  id             String            @id
+  projectId      String
+  title          String
+  expectedResult String
+  prerequisites  String // JSON: string[]
+  project        Project           @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  realization    PlanRealization?
+}
+
+model PlanRealization {
+  id               String         @id
+  plotNodeId       String         @unique
+  chapterVersionId String?
+  status           String         @default("unrealized") // unrealized | partial | realized | diverged | insufficient
+  evidence         String?
+  updatedAt        DateTime       @updatedAt
+  plotNode         PlotNode       @relation(fields: [plotNodeId], references: [id], onDelete: Cascade)
+  chapterVersion   ChapterVersion? @relation(fields: [chapterVersionId], references: [id])
+}
+
+model OutboxEvent {
+  id          String    @id
+  projectId   String
+  dedupeKey   String    @unique
+  kind        String
+  aggregateId String
+  payload     String // JSON
+  publishedAt DateTime?
+  attempts    Int       @default(0)
+  createdAt   DateTime  @default(now())
+  project     Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([publishedAt, createdAt])
+}
+
+model ImpactRecord {
+  id                    String   @id
+  projectId             String
+  changedChapterNumber  Int
+  affectedChapterNumbers String // JSON: number[]
+  reason                String
+  createdAt             DateTime @default(now())
+  project               Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId, createdAt])
+}

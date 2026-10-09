@@ -1,0 +1,14 @@
+{
+  "name": "novel-studio-api",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-strip-types --test test/*.test.ts",
+    "start": "node --experimental-strip-types src/server.ts"
+  },
+  "dependencies": {
+    "fastify": "^4.28.1",
+    "novel-studio-contracts": "*",
+    "zod": "^3.23.8"
+  }
+}
