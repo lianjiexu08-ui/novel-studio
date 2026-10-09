@@ -66,7 +66,7 @@ export const api = {
   reviewStoryBible: (workId: string) => call<{ storyBible: NonNullable<DesignDto['storyBible']> }>(`/works/${workId}/story-bible/review`, { method: 'POST', body: {} }),
   lockStoryBible: (workId: string) => call<{ storyBible: NonNullable<DesignDto['storyBible']> }>(`/works/${workId}/story-bible/lock`, { method: 'POST', body: {} }),
   manuscripts: (workId: string) => call<{ manuscripts: import('novel-studio-contracts').ManuscriptRevisionDto[] }>(`/works/${workId}/manuscripts`),
-  exportManuscript: (workId: string, manuscriptId: string) => call<{ manuscript: import('novel-studio-contracts').ManuscriptRevisionDto; chapters: ChapterVersionDto[] }>(`/works/${workId}/manuscripts/${manuscriptId}/export`),
+  exportManuscript: (workId: string, manuscriptId: string) => call<{ manuscript: import('novel-studio-contracts').ManuscriptRevisionDto; chapters: Array<Pick<ChapterVersionDto, 'id' | 'chapterNumber' | 'content' | 'revision'>> }>(`/works/${workId}/manuscripts/${manuscriptId}/export`),
   listChapters: (workId: string) => call<{ chapters: ChapterVersionDto[] }>(`/works/${workId}/chapters`),
   generate: (workId: string, chapterNumber: number) =>
     call<{ candidate: CandidateDto }>(`/works/${workId}/chapters/${chapterNumber}/generate`, { method: 'POST', body: {} }),
