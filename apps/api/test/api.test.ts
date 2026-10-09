@@ -14,6 +14,31 @@ function createPayload(title: string) {
   };
 }
 
+function milestoneDesign() {
+  const world = {
+    id: 'milestone-world', revision: 1, title: '百章世界', summary: '可验证的三卷世界', status: 'locked' as const,
+    axioms: [{ id: 'axiom', title: '因果有价', content: '力量有代价', scope: 'all', precedence: 1, status: 'locked' as const }],
+    powerSystems: [{ id: 'qi', name: '灵力', source: '天地', unit: '灵力', realmIds: ['r1', 'r2', 'r3'], status: 'locked' as const }],
+    realms: [1, 2, 3].map((rank) => ({ id: `r${rank}`, systemId: 'qi', name: `境界${rank}`, rank, prerequisites: [], capabilities: ['修行'], cost: '时间', counters: [], status: 'locked' as const })),
+    techniques: [1, 2, 3].map((n) => ({ id: `t${n}`, name: `功法${n}`, kind: 'technique' as const, allowedRealmIds: ['r1', 'r2', 'r3'], effect: '提升', cost: '灵力', limitations: [], counters: [], status: 'locked' as const })),
+    artifacts: [1, 2, 3].map((n) => ({ id: `a${n}`, name: `法宝${n}`, tier: `${n}阶`, effect: '增幅', cost: '资源', limitations: [], status: 'locked' as const })),
+    resources: [1, 2, 3].map((n) => ({ id: `res${n}`, name: `资源${n}`, unit: '枚', source: '矿脉', scarcity: '有限', status: 'locked' as const })),
+    locations: [{ id: 'east', name: '东陆', kind: 'continent' as const, entryConditions: [], status: 'locked' as const }, { id: 'city', name: '青城', kind: 'city' as const, parentId: 'east', entryConditions: [], status: 'locked' as const }, { id: 'ruin', name: '古遗迹', kind: 'ruin' as const, parentId: 'east', entryConditions: [], status: 'locked' as const }],
+    factions: [1, 2, 3].map((n) => ({ id: `f${n}`, name: `势力${n}`, kind: 'sect' as const, locationIds: ['east'], goals: ['存续'], resources: ['res1'], status: 'locked' as const })),
+    historicalEvents: [1, 2, 3].map((n) => ({ id: `h${n}`, title: `历史${n}`, storyTime: `${n}百年前`, causes: ['冲突'], consequences: ['变局'], factionIds: ['f1'], status: 'locked' as const })),
+    terminology: [{ id: 'term', canonical: '灵力', aliases: ['灵气'], kind: 'other' as const, status: 'locked' as const }], unresolvedQuestions: [], createdAt: new Date().toISOString(),
+  };
+  const bible = {
+    id: 'milestone-bible', revision: 1, worldPackId: world.id, worldPackRevision: world.revision, status: 'locked' as const,
+    coreConflict: '界门战争', endingDirection: '封印界门并承担代价',
+    characters: [{ id: 'hero', name: '林渊', role: 'protagonist' as const, goal: '守护故乡', identity: '弟子', locationId: 'city', factionId: 'f1', startingRealmId: 'r1' }, { id: 'rival', name: '沈烬', role: 'major' as const, goal: '开启界门', identity: '遗族', locationId: 'east', factionId: 'f2', startingRealmId: 'r2' }],
+    relationships: [{ id: 'rel', fromCharacterId: 'hero', toCharacterId: 'rival', kind: 'trust' as const, value: '戒备', locked: false }], secrets: [], arcBeats: [], promises: [], openThreads: [],
+    arcs: [{ id: 'arc', title: '守护故乡', characterIds: ['hero'], goal: '查清战争', stakes: '三陆存亡', plannedOutcome: '封印界门' }],
+    volumes: [1, 2, 3].map((order) => ({ id: `v${order}`, order, title: `第${order}卷`, goal: '推进主线', climax: '卷末决战', endState: '继续前进', plannedChapterCount: order === 1 ? 34 : 33, arcIds: ['arc'] })), unresolvedQuestions: [], createdAt: new Date().toISOString(),
+  };
+  return { world, bible };
+}
+
 test('local API runs create -> generate -> check -> adopt -> outbox', async () => {
   const { app } = createApiServer({ repository: new InMemoryWorkRepository() });
   try {
@@ -259,6 +284,30 @@ test('run API can launch a background run and expose its checkpoint', async () =
     const status = await app.inject({ method: 'GET', url: `/works/${work.id}/runs` });
     assert.equal(status.statusCode, 200);
     assert.equal(status.json().checkpoints[0].nextChapter, 3);
+  } finally {
+    await app.close();
+  }
+});
+
+test('100-chapter milestone endpoint starts from locked design and reaches a final checkpoint', async () => {
+  const design = milestoneDesign();
+  const { app } = createApiServer({
+    repository: new InMemoryWorkRepository(),
+    provider: { generateChapter: ({ chapterNumber }) => ({ content: `第${chapterNumber}章`, proposedEvents: [{ eventType: 'character_state', subjectId: 'hero', predicate: 'power', value: chapterNumber }], observedEvents: [{ eventType: 'character_state', subjectId: 'hero', predicate: 'power', value: chapterNumber }] }) },
+    designProvider: { generateWorldPack: async () => design.world, generateStoryBible: async () => design.bible },
+  });
+  try {
+    const work = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('一键百章') })).json();
+    const started = await app.inject({ method: 'POST', url: `/works/${work.id}/milestones/100/start`, payload: {} });
+    assert.equal(started.statusCode, 202);
+    assert.equal(started.json().milestone.targetChapter, 100);
+    for (let attempt = 0; attempt < 20; attempt += 1) {
+      const status = await app.inject({ method: 'GET', url: `/works/${work.id}/runs` });
+      if (status.json().checkpoints[0]?.nextChapter === 101) break;
+      await new Promise((resolve) => setTimeout(resolve, 10));
+    }
+    const status = await app.inject({ method: 'GET', url: `/works/${work.id}/runs` });
+    assert.equal(status.json().checkpoints[0].nextChapter, 101);
   } finally {
     await app.close();
   }
