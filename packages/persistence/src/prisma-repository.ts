@@ -2,7 +2,7 @@ import { randomUUID } from 'node:crypto';
 import { PrismaClient } from '@prisma/client';
 import { parseCovenant, rebuildCharacterStates, StaleCandidateError, Work } from '../../../novel-service-core/src/core.ts';
 import type {
-  ChapterCandidate, ChapterVersion, Character, EventDraft, PlotNode, Relationship, StoryEvent, WorldRule,
+  ChapterCandidate, ChapterVersion, Character, Checkpoint, EventDraft, PlotNode, Relationship, StoryEvent, WorldRule,
 } from '../../../novel-service-core/src/core.ts';
 import type { StoryBible, WorldPack } from '../../../novel-service-core/src/world.ts';
 import type { OutboxEvent, WorkRepository, WorkTransaction } from '../../application/src/index.ts';
@@ -138,7 +138,7 @@ export class PrismaWorkRepository implements WorkRepository {
 
   private async loadAggregate(project: { id: string; title: string; stateRevision: number; constraintRevision: number; covenant: string; worldPack: string | object; storyBible: string | object }, tx: PrismaTx | PrismaClient = this.prisma): Promise<Work> {
     const workId = project.id;
-    const [chapters, candidates, events, relationships, characters, worldRules, plotNodes, impacts] = await Promise.all([
+    const [chapters, candidates, events, relationships, characters, worldRules, plotNodes, impacts, runCheckpoints] = await Promise.all([
       tx.chapter.findMany({ where: { projectId: workId }, include: { versions: true } }),
       tx.chapterCandidate.findMany({ where: { projectId: workId }, include: { checks: true } }),
       tx.storyEvent.findMany({ where: { projectId: workId } }),
@@ -147,6 +147,7 @@ export class PrismaWorkRepository implements WorkRepository {
       tx.worldRule.findMany({ where: { projectId: workId }, orderBy: { createdAt: 'asc' } }),
       tx.plotNode.findMany({ where: { projectId: workId }, include: { realization: true } }),
       tx.impactRecord.findMany({ where: { projectId: workId }, orderBy: { createdAt: 'asc' } }),
+      tx.runCheckpoint.findMany({ where: { projectId: workId } }),
     ]);
 
     const work = new Work(project.title, workId);
@@ -239,6 +240,15 @@ export class PrismaWorkRepository implements WorkRepository {
         id: row.id, changedChapterNumber: row.changedChapterNumber,
         affectedChapterNumbers: JSON.parse(row.affectedChapterNumbers) as number[],
         reason: row.reason, createdAt: row.createdAt.toISOString(),
+      });
+    }
+    for (const row of runCheckpoints) {
+      work.checkpoints.set(row.id, {
+        runId: row.id,
+        targetChapter: row.targetChapter,
+        nextChapter: row.nextChapter,
+        phase: row.phase as Checkpoint['phase'],
+        candidateIds: JSON.parse(row.candidateIds) as Record<number, string>,
       });
     }
     rebuildCharacterStates(work);
@@ -399,6 +409,21 @@ export class PrismaWorkRepository implements WorkRepository {
           reason: impact.reason, createdAt: new Date(impact.createdAt),
         },
         update: {},
+      });
+    }
+
+    await tx.runCheckpoint.deleteMany({ where: { projectId: work.id, id: { notIn: [...work.checkpoints.keys()] } } });
+    for (const checkpoint of work.checkpoints.values()) {
+      await tx.runCheckpoint.upsert({
+        where: { id: checkpoint.runId },
+        create: {
+          id: checkpoint.runId, projectId: work.id, targetChapter: checkpoint.targetChapter,
+          nextChapter: checkpoint.nextChapter, phase: checkpoint.phase, candidateIds: JSON.stringify(checkpoint.candidateIds),
+        },
+        update: {
+          targetChapter: checkpoint.targetChapter, nextChapter: checkpoint.nextChapter,
+          phase: checkpoint.phase, candidateIds: JSON.stringify(checkpoint.candidateIds),
+        },
       });
     }
   }

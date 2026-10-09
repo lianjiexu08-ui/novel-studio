@@ -103,3 +103,40 @@ test('prisma repository persists a full adoption roundtrip', async (t) => {
   assert.equal(again.version.id, adopted.version.id);
   assert.equal((await repository.outbox()).length, 3);
 });
+
+test('prisma repository resumes the same generation checkpoint after restart', async (t) => {
+  const databaseUrl = createDatabase();
+  const repositories: Array<{ disconnect(): Promise<void> }> = [];
+  t.after(async () => {
+    for (const repository of repositories) await repository.disconnect();
+    rmSync(databaseUrl.slice(5), { force: true });
+  });
+  process.env.DATABASE_URL = databaseUrl;
+
+  const { PrismaWorkRepository } = await import('../src/prisma-repository.ts');
+  const { ChapterWorkflow } = await import('../../application/src/index.ts');
+  const { passChecker } = await import('../../../novel-service-core/src/core.ts');
+  const provider: ModelProvider = {
+    generateChapter: ({ chapterNumber }) => {
+      const event = { eventType: 'character_state', subjectId: 'hero', predicate: 'power', value: chapterNumber, storyTime: chapterNumber, evidence: 'p1' };
+      return { content: `第${chapterNumber}章`, proposedEvents: [event], observedEvents: [event] };
+    },
+  };
+
+  const firstRepository = new PrismaWorkRepository();
+  repositories.push(firstRepository);
+  const firstWorkflow = new ChapterWorkflow(firstRepository, provider);
+  const work = await firstWorkflow.createWork('断点恢复');
+  const firstCheckpoint = await firstWorkflow.runUntil(work.id, 3, [passChecker], 'durable-run');
+  assert.equal(firstCheckpoint.nextChapter, 4);
+
+  const freshRepository = new PrismaWorkRepository();
+  repositories.push(freshRepository);
+  const freshWorkflow = new ChapterWorkflow(freshRepository, provider);
+  const resumed = await freshWorkflow.runUntil(work.id, 5, [passChecker], 'durable-run');
+  assert.equal(resumed.nextChapter, 6);
+  const reloaded = await freshRepository.get(work.id);
+  assert.ok(reloaded);
+  assert.equal(reloaded.versions.size, 5);
+  assert.equal(reloaded.checkpoints.get('durable-run')?.nextChapter, 6);
+});

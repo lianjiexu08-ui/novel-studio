@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto';
 import { AdoptionBlocked, NovelService, StaleCandidateError, Work } from '../../../novel-service-core/src/core.ts';
-import type { CandidateChecker, ChapterCandidate, ChapterVersion, CreativeCovenant, ModelProvider } from '../../../novel-service-core/src/core.ts';
+import type { CandidateChecker, ChapterCandidate, ChapterVersion, Checkpoint, CreativeCovenant, ModelProvider } from '../../../novel-service-core/src/core.ts';
 import { lockStoryBible, lockWorldPack } from '../../../novel-service-core/src/world.ts';
 import type { StoryBible, WorldPack } from '../../../novel-service-core/src/world.ts';
 
@@ -164,6 +164,13 @@ export class ChapterWorkflow {
     return this.repository.transaction(workId, ({ work }) => {
       this.service.works.set(work.id, work);
       return this.service.generateCandidate(workId, chapterNumber, runId);
+    });
+  }
+
+  async runUntil(workId: string, targetChapter: number, checkers: CandidateChecker[], runId: string): Promise<Checkpoint> {
+    return this.repository.transaction(workId, ({ work }) => {
+      this.service.works.set(work.id, work);
+      return this.service.runUntil(workId, targetChapter, checkers, runId);
     });
   }
 

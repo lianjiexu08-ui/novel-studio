@@ -244,7 +244,7 @@ export function parseCovenant(input: unknown): CreativeCovenant {
   };
 }
 
-interface Checkpoint {
+export interface Checkpoint {
   runId: string;
   targetChapter: number;
   nextChapter: number;

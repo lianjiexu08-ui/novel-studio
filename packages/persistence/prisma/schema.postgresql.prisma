@@ -74,6 +74,19 @@ model Project {
   modelConfigs          ModelConfigVersion[]
   publicationIntents    PublicationIntent[]
   creativeBrief         CreativeBrief?
+  runCheckpoints        RunCheckpoint[]
+}
+
+model RunCheckpoint {
+  id            String   @id @default(cuid())
+  projectId     String
+  targetChapter Int
+  nextChapter   Int
+  phase         String
+  candidateIds  String
+  updatedAt     DateTime @updatedAt
+  project       Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  @@index([projectId])
 }
 
 model CreativeBrief {
