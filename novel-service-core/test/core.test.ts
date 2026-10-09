@@ -111,6 +111,20 @@ test('character facts can be queried as of a story chapter', () => {
   assert.equal(characterStateAt(work, 'hero', 'power', 0), undefined);
 });
 
+test('context manifests cap long history while retaining latest character facts', () => {
+  const service = new NovelService(provider);
+  const work = service.createWork('上下文预算');
+  service.runUntil(work.id, 300, [passChecker], 'context-budget');
+  const context = service.contextFor(work, 301, { maxEvents: 40, maxVersions: 20, contextBudget: 5000 });
+  assert.equal(context.requiredMaterialStatus, 'complete');
+  assert.ok(context.includedEventIds.length <= 40);
+  assert.ok(context.adoptedVersionIds.length <= 20);
+  assert.ok(context.omittedOptionalMaterial.length > 0);
+  assert.equal(context.contextBudget, 5000);
+  assert.equal(context.canonHash.length, 64);
+  assert.equal(context.stateHash.length, 64);
+});
+
 test('chapter candidates bind to the locked world pack and story bible revisions', () => {
   const world = {
     id: 'world_core', revision: 1, title: '九霄', summary: '三界', status: 'reviewed' as const,

@@ -62,7 +62,17 @@ export interface ContextManifest {
   includedEventIds: string[];
   requiredMaterialStatus: 'complete' | 'needs_split' | 'blocked';
   omittedOptionalMaterial: string[];
+  estimatedTokens: number;
+  contextBudget: number;
+  canonHash: string;
+  stateHash: string;
   createdAt: string;
+}
+
+export interface ContextPolicy {
+  maxEvents?: number;
+  maxVersions?: number;
+  contextBudget?: number;
 }
 
 export interface StoryEvent {
@@ -382,9 +392,31 @@ export class NovelService {
     return node;
   }
 
-  contextFor(work: Work, chapterNumber: number): ContextManifest {
-    const versions = work.adoptedVersions().filter((version) => version.chapterNumber < chapterNumber);
-    const events = [...work.events.values()].filter((event) => event.active && event.chapterNumber < chapterNumber);
+  contextFor(work: Work, chapterNumber: number, policy: ContextPolicy = {}): ContextManifest {
+    const maxEvents = policy.maxEvents ?? 240;
+    const maxVersions = policy.maxVersions ?? 40;
+    const contextBudget = policy.contextBudget ?? 120_000;
+    const allVersions = work.adoptedVersions().filter((version) => version.chapterNumber < chapterNumber);
+    const versions = allVersions.slice(-maxVersions);
+    const allEvents = [...work.events.values()].filter((event) => event.active && event.chapterNumber < chapterNumber);
+    const latestByState = new Map<string, StoryEvent>();
+    for (const event of allEvents) {
+      if (event.eventType !== 'character_state') continue;
+      latestByState.set(`${event.subjectId}|${event.predicate}`, event);
+    }
+    const selected = new Map<string, StoryEvent>();
+    for (const event of [...latestByState.values()].sort((a, b) => a.chapterNumber - b.chapterNumber)) selected.set(event.id, event);
+    for (const event of allEvents.slice().sort((a, b) => b.chapterNumber - a.chapterNumber || b.id.localeCompare(a.id))) {
+      if (selected.size >= maxEvents) break;
+      selected.set(event.id, event);
+    }
+    const events = [...selected.values()].sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id));
+    const omittedOptionalMaterial: string[] = [];
+    if (allVersions.length > versions.length) omittedOptionalMaterial.push(`older chapter versions omitted: ${allVersions.length - versions.length}`);
+    if (allEvents.length > events.length) omittedOptionalMaterial.push(`older events omitted: ${allEvents.length - events.length}`);
+    const estimatedTokens = Math.ceil((versions.reduce((sum, version) => sum + version.content.length, 0) + events.reduce((sum, event) => sum + JSON.stringify(event).length, 0)) / 4);
+    const canonHash = createHash('sha256').update(JSON.stringify({ worldPack: work.worldPack, storyBible: work.storyBible, covenant: work.covenant })).digest('hex');
+    const stateHash = createHash('sha256').update(JSON.stringify(events.map((event) => [event.id, event.value]))).digest('hex');
     return {
       workId: work.id,
       chapterNumber,
@@ -395,7 +427,11 @@ export class NovelService {
       adoptedVersionIds: versions.map((version) => version.id),
       includedEventIds: events.map((event) => event.id),
       requiredMaterialStatus: 'complete',
-      omittedOptionalMaterial: [],
+      omittedOptionalMaterial,
+      estimatedTokens,
+      contextBudget,
+      canonHash,
+      stateHash,
       createdAt: now(),
     };
   }

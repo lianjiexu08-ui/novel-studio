@@ -25,13 +25,17 @@ export interface ContextManifestContract {
   workId: string;
   chapterNumber: number;
   stateRevision: number;
-  constraintRevision: number;
+  constraintRevision?: number;
   worldPackRevision?: number;
   storyBibleRevision?: number;
   adoptedVersionIds: string[];
   includedEventIds: string[];
   requiredMaterialStatus: 'complete' | 'needs_split' | 'blocked';
   omittedOptionalMaterial: string[];
+  estimatedTokens?: number;
+  contextBudget?: number;
+  canonHash?: string;
+  stateHash?: string;
 }
 
 export interface CheckExecutionContract {
