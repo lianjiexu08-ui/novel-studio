@@ -670,6 +670,18 @@ export function knowledgeAt(work: Work, characterId: string, proposition: string
   };
 }
 
+/** Reconstructs a relationship value at a chapter without mutating the author seed. */
+export function relationshipAt(work: Work, relationshipId: string, chapterNumber: number): Relationship | undefined {
+  const base = work.relationships.get(relationshipId);
+  if (!base) return undefined;
+  const change = [...work.events.values()]
+    .filter((item) => item.active && item.eventType === 'relationship_change' && item.subjectId === relationshipId && item.chapterNumber <= chapterNumber)
+    .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id))
+    .at(-1);
+  if (!change) return { ...base };
+  return { ...base, value: typeof change.value === 'string' ? change.value : JSON.stringify(change.value), sourceEventId: change.id, sinceChapter: base.sinceChapter ?? change.chapterNumber };
+}
+
 function nextChapterAfterAdopted(work: Work): number {
   let next = 1;
   while (work.currentVersion(next)) next += 1;

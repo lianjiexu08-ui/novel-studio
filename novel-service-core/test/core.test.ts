@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { AdoptionBlocked, characterStateAt, knowledgeAt, LockedConstraintError, NovelService, passChecker, unavailableChecker } from '../src/core.ts';
+import { AdoptionBlocked, characterStateAt, knowledgeAt, LockedConstraintError, NovelService, passChecker, relationshipAt, unavailableChecker } from '../src/core.ts';
 import type { ModelProvider } from '../src/core.ts';
 import { lockStoryBible, lockWorldPack } from '../src/world.ts';
 import type { StoryBible } from '../src/world.ts';
@@ -138,6 +138,24 @@ test('character knowledge is reconstructed independently from world facts', () =
   assert.equal(knowledgeAt(work, 'hero', 'enemy_identity', 1)?.belief, 'unknown');
   assert.equal(knowledgeAt(work, 'hero', 'enemy_identity', 2)?.belief, 'traitor');
   assert.equal(knowledgeAt(work, 'hero', 'enemy_identity', 2)?.subjectId, 'rival');
+});
+
+test('relationship changes are reconstructed at the requested chapter', () => {
+  let relationshipId = '';
+  const relationshipProvider: ModelProvider = {
+    generateChapter: ({ chapterNumber }) => {
+      const event = { eventType: 'relationship_change', subjectId: relationshipId, predicate: 'value', value: chapterNumber === 1 ? '互相戒备' : '并肩作战', storyTime: chapterNumber, evidence: 'paragraph 3' };
+      return { content: `第${chapterNumber}章`, proposedEvents: [event], observedEvents: [event] };
+    },
+  };
+  const service = new NovelService(relationshipProvider);
+  const work = service.createWork('关系回放');
+  const relationship = service.addRelationship(work.id, { fromCharacterId: 'hero', toCharacterId: 'rival', kind: 'trust', value: '陌生', locked: false });
+  relationshipId = relationship.id;
+  service.runUntil(work.id, 2, [passChecker], 'relationship-run');
+  assert.equal(relationshipAt(work, relationshipId, 1)?.value, '互相戒备');
+  assert.equal(relationshipAt(work, relationshipId, 2)?.value, '并肩作战');
+  assert.equal(work.relationships.get(relationshipId)?.value, '陌生');
 });
 
 test('chapter candidates bind to the locked world pack and story bible revisions', () => {
