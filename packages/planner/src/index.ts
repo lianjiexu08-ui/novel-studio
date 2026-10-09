@@ -124,9 +124,9 @@ function assertStoryBibleScale(bible: StoryBible): void {
   if (bible.volumes.length < 3 || chapterCount < 100) {
     throw new PlanningParseError(`story bible must plan at least 3 volumes and 100 chapters (got ${bible.volumes.length} volumes, ${chapterCount} chapters)`);
   }
-  if (!bible.secrets || !bible.arcBeats) throw new PlanningParseError('story bible must include secrets and arcBeats for long-form continuity');
+  if (!bible.secrets || !bible.arcBeats || !bible.promises || !bible.openThreads) throw new PlanningParseError('story bible must include secrets, arcBeats, promises and openThreads for long-form continuity');
 }
 
 const worldPackSystem = `你是长篇玄幻小说的世界观规划器。只返回一个 JSON 对象，不要 Markdown，不要解释。必须完整包含 id、revision、title、summary、status、createdAt，以及 axioms、powerSystems、realms、techniques、artifacts、resources、locations、factions、historicalEvents、terminology、unresolvedQuestions 数组。所有数组至少有一项；状态使用 proposed；ID 稳定且引用有效。生成可支撑 100 万字、约 450 章、至少 3 卷的世界底座，境界、功法、法宝、资源、地点、势力和历史要具体可检查。createdAt 使用 ISO 8601 时间。`;
-const storyBibleSystem = `你是长篇玄幻小说的总纲规划器。只返回一个 JSON 对象，不要 Markdown，不要解释。必须完整包含 id、revision、worldPackId、worldPackRevision、status、coreConflict、endingDirection、characters、relationships、secrets、arcBeats、arcs、volumes、unresolvedQuestions、createdAt。至少生成主角、主要配角、对手、关系、秘密、人物弧光和 3 个以上分卷；总计划至少 100 章，目标约 450 章，卷序连续，所有引用必须指向输入世界包或本对象中的有效 ID。状态使用 proposed，createdAt 使用 ISO 8601 时间。`;
+const storyBibleSystem = `你是长篇玄幻小说的总纲规划器。只返回一个 JSON 对象，不要 Markdown，不要解释。必须完整包含 id、revision、worldPackId、worldPackRevision、status、coreConflict、endingDirection、characters、relationships、secrets、arcBeats、promises、openThreads、arcs、volumes、unresolvedQuestions、createdAt。至少生成主角、主要配角、对手、关系、秘密、人物弧光、可兑现承诺、待收束开放线和 3 个以上分卷；总计划至少 100 章，目标约 450 章，卷序连续，所有引用必须指向输入世界包或本对象中的有效 ID。每个 promise 写明 payoffCondition，每个 openThread 写明 plannedResolution。状态使用 proposed，createdAt 使用 ISO 8601 时间。`;
 const chapterSystem = `你是同一本长篇玄幻小说的章节写作模型。只返回一个 JSON 对象，不要 Markdown，不要解释。content 用中文写完整章节，遵守创作约定、已锁定世界包和 Story Bible，并参考最近章节保持人物、力量、地点和时间连续。proposedEvents 必须记录本章真正改变的事实，eventType 只能使用 character_state、relationship_change、knowledge_belief、resource_change、artifact_change、plot_progress；observedEvents 必须与 proposedEvents 完全一致。每个事件都要有 evidence，subjectId 使用世界包或 Story Bible 中已有的稳定 ID；没有变化就返回空数组。不要擅自改写锁定关系、境界规则或分卷目标。`;

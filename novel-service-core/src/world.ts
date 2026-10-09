@@ -173,6 +173,24 @@ export interface StoryArcBeatSeed {
   expectedChange: string;
 }
 
+export interface StoryPromiseSeed {
+  id: string;
+  title: string;
+  promise: string;
+  payoffCondition: string;
+  plannedChapter?: number;
+  status: CanonStatus;
+}
+
+export interface StoryThreadSeed {
+  id: string;
+  title: string;
+  kind: 'main' | 'subplot' | 'mystery' | 'open';
+  question: string;
+  plannedResolution: string;
+  status: CanonStatus;
+}
+
 export interface StoryArcSeed {
   id: string;
   title: string;
@@ -205,6 +223,8 @@ export interface StoryBible {
   relationships: StoryRelationshipSeed[];
   secrets?: StorySecretSeed[];
   arcBeats?: StoryArcBeatSeed[];
+  promises?: StoryPromiseSeed[];
+  openThreads?: StoryThreadSeed[];
   arcs: StoryArcSeed[];
   volumes: StoryVolumeSeed[];
   unresolvedQuestions: UnresolvedQuestion[];

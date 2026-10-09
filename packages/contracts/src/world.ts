@@ -52,6 +52,12 @@ export const storySecretSeedSchema = z.object({
 export const storyArcBeatSeedSchema = z.object({
   id: z.string().min(1), arcId: z.string().min(1), characterId: z.string().min(1), kind: z.enum(['trigger', 'belief_shift', 'choice', 'cost', 'consequence', 'resolution']), plannedChapter: z.number().int().positive().optional(), expectedChange: z.string(),
 });
+export const storyPromiseSeedSchema = z.object({
+  id: z.string().min(1), title: z.string().trim().min(1), promise: z.string(), payoffCondition: z.string(), plannedChapter: z.number().int().positive().optional(), status: canonStatusSchema,
+});
+export const storyThreadSeedSchema = z.object({
+  id: z.string().min(1), title: z.string().trim().min(1), kind: z.enum(['main', 'subplot', 'mystery', 'open']), question: z.string(), plannedResolution: z.string(), status: canonStatusSchema,
+});
 export const storyArcSeedSchema = z.object({
   id: z.string().min(1), title: z.string().trim().min(1), characterIds: z.array(z.string().min(1)), goal: z.string(), stakes: z.string(), plannedOutcome: z.string(),
 });
@@ -59,7 +65,7 @@ export const storyVolumeSeedSchema = z.object({
   id: z.string().min(1), order: z.number().int().positive(), title: z.string().trim().min(1), goal: z.string(), climax: z.string(), endState: z.string(), plannedChapterCount: z.number().int().positive(), arcIds: z.array(z.string().min(1)),
 });
 export const storyBibleSchema = z.object({
-  id: z.string().min(1), revision: z.number().int().positive(), worldPackId: z.string().min(1), worldPackRevision: z.number().int().positive(), status: canonStatusSchema, coreConflict: z.string().trim().min(1), endingDirection: z.string(), characters: z.array(storyCharacterSeedSchema), relationships: z.array(storyRelationshipSeedSchema), secrets: z.array(storySecretSeedSchema).optional(), arcBeats: z.array(storyArcBeatSeedSchema).optional(), arcs: z.array(storyArcSeedSchema), volumes: z.array(storyVolumeSeedSchema), unresolvedQuestions: z.array(unresolvedQuestionSchema), createdAt: z.string().datetime(), lockedAt: z.string().datetime().optional(),
+  id: z.string().min(1), revision: z.number().int().positive(), worldPackId: z.string().min(1), worldPackRevision: z.number().int().positive(), status: canonStatusSchema, coreConflict: z.string().trim().min(1), endingDirection: z.string(), characters: z.array(storyCharacterSeedSchema), relationships: z.array(storyRelationshipSeedSchema), secrets: z.array(storySecretSeedSchema).optional(), arcBeats: z.array(storyArcBeatSeedSchema).optional(), promises: z.array(storyPromiseSeedSchema).optional(), openThreads: z.array(storyThreadSeedSchema).optional(), arcs: z.array(storyArcSeedSchema), volumes: z.array(storyVolumeSeedSchema), unresolvedQuestions: z.array(unresolvedQuestionSchema), createdAt: z.string().datetime(), lockedAt: z.string().datetime().optional(),
 });
 
 export type WorldPackContract = z.infer<typeof worldPackSchema>;

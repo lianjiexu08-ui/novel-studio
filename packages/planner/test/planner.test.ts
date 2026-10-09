@@ -35,7 +35,7 @@ test('planner rejects a story bible that cannot support the 100-chapter mileston
     coreConflict: '界门战争', endingDirection: '付出代价封印界门',
     characters: [{ id: 'hero', name: '主角', role: 'protagonist', goal: '守护故乡', identity: '弟子' }],
     relationships: [{ id: 'rel', fromCharacterId: 'hero', toCharacterId: 'rival', kind: 'trust', value: '戒备', locked: false }],
-    secrets: [], arcBeats: [], arcs: [{ id: 'arc', title: '守护', characterIds: ['hero'], goal: '成长', stakes: '故乡', plannedOutcome: '封印' }],
+    secrets: [], arcBeats: [], promises: [{ id: 'promise', title: '三年之约', promise: '主角必须赴约', payoffCondition: '第 30 章兑现', status: 'proposed' }], openThreads: [{ id: 'thread', title: '界门来历', kind: 'mystery', question: '谁建造界门', plannedResolution: '终卷揭示', status: 'proposed' }], arcs: [{ id: 'arc', title: '守护', characterIds: ['hero'], goal: '成长', stakes: '故乡', plannedOutcome: '封印' }],
     volumes: [1, 2, 3].map((order) => ({ id: 'v' + order, order, title: '第' + order + '卷', goal: '推进', climax: '决战', endState: '继续', plannedChapterCount: order === 1 ? 34 : 33, arcIds: ['arc'] })),
     unresolvedQuestions: [], createdAt: new Date().toISOString(),
   };
