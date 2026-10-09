@@ -77,3 +77,18 @@ test('chapter generation requires matching locked world and story bible revision
   assert.equal(chapterGenerationGate(world, staleBible, 'vol-1').ready, false);
   assert.ok(chapterGenerationGate(world, staleBible, 'vol-1').errors.some((error) => error.includes('current world pack revision')));
 });
+
+test('chapter generation revalidates locked design data instead of trusting status flags', () => {
+  const world = createEmptyWorldPack('空壳', '伪造的锁定包');
+  world.status = 'locked';
+  const bible: StoryBible = {
+    id: 'fake-bible', revision: 1, worldPackId: world.id, worldPackRevision: world.revision, status: 'locked',
+    coreConflict: '冲突', endingDirection: '结局', characters: [{ id: 'hero', name: '主角', role: 'protagonist', goal: '活下去', identity: '凡人' }],
+    relationships: [{ id: 'rel', fromCharacterId: 'hero', toCharacterId: 'hero', kind: 'belief', value: '自己', locked: false }], arcs: [{ id: 'arc', title: '求生', characterIds: ['hero'], goal: '活下去', stakes: '性命', plannedOutcome: '活下去' }],
+    volumes: [{ id: 'v1', order: 1, title: '开端', goal: '求生', climax: '逃生', endState: '启程', plannedChapterCount: 10, arcIds: ['arc'] }], unresolvedQuestions: [], createdAt: new Date().toISOString(),
+  };
+  const result = chapterGenerationGate(world, bible);
+  assert.equal(result.ready, false);
+  assert.ok(result.errors.some((error) => error.includes('world pack requires')));
+  assert.ok(result.errors.some((error) => error.includes('cannot connect a character to itself')));
+});

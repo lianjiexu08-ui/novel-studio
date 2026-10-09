@@ -337,6 +337,10 @@ export function chapterGenerationGate(worldPack: WorldPack, bible: StoryBible, c
   const warnings: string[] = [];
   if (worldPack.status !== 'locked') errors.push('world pack is not locked');
   if (bible.status !== 'locked') errors.push('story bible is not locked');
+  const worldResult = validateWorldPack(worldPack);
+  if (!worldResult.ready) errors.push(...worldResult.errors.map((error) => `world pack: ${error}`));
+  const bibleResult = validateStoryBible(bible, worldPack);
+  if (!bibleResult.ready) errors.push(...bibleResult.errors.map((error) => `story bible: ${error}`));
   if (bible.worldPackId !== worldPack.id || bible.worldPackRevision !== worldPack.revision) errors.push('story bible does not use the current world pack revision');
   if (currentVolumeId && !bible.volumes.some((volume) => volume.id === currentVolumeId)) errors.push(`unknown current volume ${currentVolumeId}`);
   if (!currentVolumeId && bible.volumes.length) warnings.push('current volume has not been selected');
