@@ -8,6 +8,7 @@ const packageDirs = [
   'novel-service-core',
   'packages/contracts',
   'packages/model-gateway',
+  'packages/planner',
   'packages/application',
   'packages/persistence',
   'packages/worker',

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { BudgetExceededError, ModelGateway, UsageLedger, redactSecrets } from '../src/index.ts';
+import { BudgetExceededError, ModelGateway, ModelTimeoutError, OpenAICompatibleAdapter, UsageLedger, redactSecrets } from '../src/index.ts';
 import type { ModelAdapter, ModelRequest, ModelResponse } from '../src/index.ts';
 
 const request: ModelRequest = { role: 'writing', model: 'fake', system: 'system', user: 'write', estimatedCostUsd: 0.1 };
@@ -27,4 +27,13 @@ test('secret-like values are redacted from log payloads', () => {
   assert.equal(safe.apiKey, '[REDACTED]');
   assert.equal(safe.authorization, '[REDACTED]');
   assert.equal(safe.nested, '[REDACTED]');
+});
+
+test('openai-compatible requests abort after the configured timeout', async () => {
+  const adapter = new OpenAICompatibleAdapter(async (_url, init) => {
+    await new Promise((resolve) => setTimeout(resolve, 20));
+    if (init?.signal?.aborted) throw new Error('aborted by test fetcher');
+    throw new Error('fetcher should have been aborted');
+  }, 5);
+  await assert.rejects(() => adapter.complete(request, { endpoint: 'https://example.test/v1', apiKey: 'secret' }), ModelTimeoutError);
 });

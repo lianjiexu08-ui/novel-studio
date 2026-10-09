@@ -44,6 +44,7 @@ export interface UsageRecord extends ModelUsage {
 }
 
 export class BudgetExceededError extends Error {}
+export class ModelTimeoutError extends Error {}
 
 export class UsageLedger {
   private spentUsd = 0;
@@ -98,17 +99,30 @@ export class ModelGateway {
 export class OpenAICompatibleAdapter implements ModelAdapter {
   readonly provider = 'openai-compatible';
   private readonly fetcher: typeof fetch;
+  private readonly timeoutMs: number;
 
-  constructor(fetcher: typeof fetch = fetch) {
+  constructor(fetcher: typeof fetch = fetch, timeoutMs = 60_000) {
     this.fetcher = fetcher;
+    this.timeoutMs = timeoutMs;
   }
 
   async complete(request: ModelRequest, credential: ModelCredential): Promise<ModelResponse> {
-    const response = await this.fetcher(`${credential.endpoint.replace(/\/$/, '')}/chat/completions`, {
-      method: 'POST',
-      headers: { 'content-type': 'application/json', authorization: `Bearer ${credential.apiKey}` },
-      body: JSON.stringify({ model: request.model, messages: [{ role: 'system', content: request.system }, { role: 'user', content: request.user }], temperature: request.temperature, max_tokens: request.maxOutputTokens, response_format: request.responseFormat === 'json' ? { type: 'json_object' } : undefined }),
-    });
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), this.timeoutMs);
+    let response: Response;
+    try {
+      response = await this.fetcher(`${credential.endpoint.replace(/\/$/, '')}/chat/completions`, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json', authorization: `Bearer ${credential.apiKey}` },
+        body: JSON.stringify({ model: request.model, messages: [{ role: 'system', content: request.system }, { role: 'user', content: request.user }], temperature: request.temperature, max_tokens: request.maxOutputTokens, response_format: request.responseFormat === 'json' ? { type: 'json_object' } : undefined }),
+        signal: controller.signal,
+      });
+    } catch (error) {
+      if (controller.signal.aborted) throw new ModelTimeoutError(`model request timed out after ${this.timeoutMs}ms`);
+      throw error;
+    } finally {
+      clearTimeout(timeout);
+    }
     const body = await readJson(response);
     if (!response.ok) throw new Error(`openai-compatible request failed (${response.status}): ${safeErrorMessage(body)}`);
     const text = body?.choices?.[0]?.message?.content;
