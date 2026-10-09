@@ -555,6 +555,19 @@ export function rebuildCharacterStates(work: Work): void {
   }
 }
 
+/** Returns the latest active character fact visible at the requested story chapter. */
+export function characterStateAt(work: Work, characterId: string, field: string, chapterNumber: number): CharacterState | undefined {
+  const event = [...work.events.values()]
+    .filter((item) => item.active && item.eventType === 'character_state' && item.subjectId === characterId && item.predicate === field && item.chapterNumber <= chapterNumber)
+    .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id))
+    .at(-1);
+  if (!event) return undefined;
+  return {
+    characterId, field, value: event.value, sourceEventId: event.id,
+    sourceChapterVersionId: event.chapterVersionId, storyTime: event.storyTime,
+  };
+}
+
 function nextChapterAfterAdopted(work: Work): number {
   let next = 1;
   while (work.currentVersion(next)) next += 1;

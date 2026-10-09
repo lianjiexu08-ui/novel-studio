@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { AdoptionBlocked, LockedConstraintError, NovelService, passChecker, unavailableChecker } from '../src/core.ts';
+import { AdoptionBlocked, characterStateAt, LockedConstraintError, NovelService, passChecker, unavailableChecker } from '../src/core.ts';
 import type { ModelProvider } from '../src/core.ts';
 import { lockStoryBible, lockWorldPack } from '../src/world.ts';
 import type { StoryBible } from '../src/world.ts';
@@ -99,6 +99,16 @@ test('a new run resumes after the highest contiguous adopted chapter', () => {
   const checkpoint = service.runUntil(work.id, 5, [passChecker], 'second-run');
   assert.equal(checkpoint.nextChapter, 6);
   assert.deepEqual(work.adoptedVersions().map((version) => version.chapterNumber), [1, 2, 3, 4, 5]);
+});
+
+test('character facts can be queried as of a story chapter', () => {
+  const service = new NovelService(provider);
+  const work = service.createWork('状态回放');
+  service.runUntil(work.id, 3, [passChecker], 'state-at');
+  assert.equal(characterStateAt(work, 'hero', 'power', 1)?.value, 1);
+  assert.equal(characterStateAt(work, 'hero', 'power', 2)?.value, 3);
+  assert.equal(characterStateAt(work, 'hero', 'power', 3)?.value, 5);
+  assert.equal(characterStateAt(work, 'hero', 'power', 0), undefined);
 });
 
 test('chapter candidates bind to the locked world pack and story bible revisions', () => {
