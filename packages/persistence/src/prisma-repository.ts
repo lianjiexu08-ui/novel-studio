@@ -2,7 +2,7 @@ import { randomUUID } from 'node:crypto';
 import { PrismaClient } from '@prisma/client';
 import { parseCovenant, rebuildCharacterStates, StaleCandidateError, Work } from '../../../novel-service-core/src/core.ts';
 import type {
-  ChapterCandidate, ChapterVersion, Character, Checkpoint, EventDraft, PlotNode, Relationship, StoryEvent, WorldRule,
+  ChapterCandidate, ChapterVersion, Character, Checkpoint, EventDraft, ManuscriptRevision, PlotNode, Relationship, StoryEvent, WorldRule,
 } from '../../../novel-service-core/src/core.ts';
 import type { StoryBible, WorldPack } from '../../../novel-service-core/src/world.ts';
 import type { OutboxEvent, WorkRepository, WorkTransaction } from '../../application/src/index.ts';
@@ -138,7 +138,7 @@ export class PrismaWorkRepository implements WorkRepository {
 
   private async loadAggregate(project: { id: string; title: string; stateRevision: number; constraintRevision: number; covenant: string; worldPack: string | object; storyBible: string | object }, tx: PrismaTx | PrismaClient = this.prisma): Promise<Work> {
     const workId = project.id;
-    const [chapters, candidates, events, relationships, characters, worldRules, plotNodes, impacts, runCheckpoints] = await Promise.all([
+    const [chapters, candidates, events, relationships, characters, worldRules, plotNodes, impacts, runCheckpoints, manuscripts] = await Promise.all([
       tx.chapter.findMany({ where: { projectId: workId }, include: { versions: true } }),
       tx.chapterCandidate.findMany({ where: { projectId: workId }, include: { checks: true } }),
       tx.storyEvent.findMany({ where: { projectId: workId } }),
@@ -148,6 +148,7 @@ export class PrismaWorkRepository implements WorkRepository {
       tx.plotNode.findMany({ where: { projectId: workId }, include: { realization: true } }),
       tx.impactRecord.findMany({ where: { projectId: workId }, orderBy: { createdAt: 'asc' } }),
       tx.runCheckpoint.findMany({ where: { projectId: workId } }),
+      tx.manuscriptRevision.findMany({ where: { projectId: workId }, orderBy: { revision: 'asc' } }),
     ]);
 
     const work = new Work(project.title, workId);
@@ -250,6 +251,15 @@ export class PrismaWorkRepository implements WorkRepository {
         phase: row.phase as Checkpoint['phase'],
         candidateIds: JSON.parse(row.candidateIds) as Record<number, string>,
       });
+    }
+    for (const row of manuscripts) {
+      const manuscript: ManuscriptRevision = {
+        id: row.id, workId, revision: row.revision, status: row.status as ManuscriptRevision['status'],
+        chapterVersionIds: JSON.parse(row.chapterVersionIds) as string[], chapterCount: row.chapterCount,
+        contentHash: row.contentHash, stateRevision: row.stateRevision, constraintRevision: row.constraintRevision,
+        worldPackRevision: row.worldPackRevision, storyBibleRevision: row.storyBibleRevision, createdAt: row.createdAt.toISOString(),
+      };
+      work.manuscripts.set(manuscript.id, manuscript);
     }
     rebuildCharacterStates(work);
     return work;
@@ -423,6 +433,26 @@ export class PrismaWorkRepository implements WorkRepository {
         update: {
           targetChapter: checkpoint.targetChapter, nextChapter: checkpoint.nextChapter,
           phase: checkpoint.phase, candidateIds: JSON.stringify(checkpoint.candidateIds),
+        },
+      });
+    }
+
+    await tx.manuscriptRevision.deleteMany({ where: { projectId: work.id, id: { notIn: [...work.manuscripts.keys()] } } });
+    for (const manuscript of work.manuscripts.values()) {
+      await tx.manuscriptRevision.upsert({
+        where: { id: manuscript.id },
+        create: {
+          id: manuscript.id, projectId: work.id, revision: manuscript.revision, status: manuscript.status,
+          chapterVersionIds: JSON.stringify(manuscript.chapterVersionIds), chapterCount: manuscript.chapterCount,
+          contentHash: manuscript.contentHash, stateRevision: manuscript.stateRevision,
+          constraintRevision: manuscript.constraintRevision, worldPackRevision: manuscript.worldPackRevision,
+          storyBibleRevision: manuscript.storyBibleRevision, createdAt: new Date(manuscript.createdAt),
+        },
+        update: {
+          status: manuscript.status, chapterVersionIds: JSON.stringify(manuscript.chapterVersionIds),
+          chapterCount: manuscript.chapterCount, contentHash: manuscript.contentHash,
+          stateRevision: manuscript.stateRevision, constraintRevision: manuscript.constraintRevision,
+          worldPackRevision: manuscript.worldPackRevision, storyBibleRevision: manuscript.storyBibleRevision,
         },
       });
     }

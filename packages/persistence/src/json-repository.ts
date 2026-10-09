@@ -4,7 +4,7 @@ import { dirname } from 'node:path';
 import { parseCovenant, Work } from '../../../novel-service-core/src/core.ts';
 import type { CreativeCovenant } from '../../../novel-service-core/src/core.ts';
 import type {
-  ChapterCandidate, ChapterVersion, Character, CharacterState, ImpactRecord, PlotNode, Relationship, StoryEvent, WorldRule,
+  ChapterCandidate, ChapterVersion, Character, CharacterState, ImpactRecord, ManuscriptRevision, PlotNode, Relationship, StoryEvent, WorldRule,
 } from '../../../novel-service-core/src/core.ts';
 import type { StoryBible, WorldPack } from '../../../novel-service-core/src/world.ts';
 import type { OutboxEvent, WorkRepository, WorkTransaction } from '../../application/src/index.ts';
@@ -17,6 +17,7 @@ interface PersistedWork {
   covenant?: CreativeCovenant;
   worldPack?: WorldPack;
   storyBible?: StoryBible;
+  manuscripts?: ManuscriptRevision[];
   candidates: ChapterCandidate[];
   versions: ChapterVersion[];
   events: StoryEvent[];
@@ -143,6 +144,7 @@ function serializeWork(work: Work): PersistedWork {
     covenant: work.covenant,
     worldPack: work.worldPack,
     storyBible: work.storyBible,
+    manuscripts: [...work.manuscripts.values()],
     candidates: [...work.candidates.values()],
     versions: [...work.versions.values()],
     events: [...work.events.values()],
@@ -163,6 +165,7 @@ function deserializeWork(value: PersistedWork): Work {
   work.covenant = parseCovenant(value.covenant);
   work.worldPack = value.worldPack;
   work.storyBible = value.storyBible;
+  for (const manuscript of value.manuscripts ?? []) work.manuscripts.set(manuscript.id, manuscript);
   for (const candidate of value.candidates) {
     work.candidates.set(candidate.id, { ...candidate, generatedAgainstConstraintRevision: candidate.generatedAgainstConstraintRevision ?? 0 });
   }

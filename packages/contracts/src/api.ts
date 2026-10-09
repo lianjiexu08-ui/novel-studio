@@ -135,6 +135,14 @@ export const designDtoSchema = z.object({
 });
 export type DesignDto = z.infer<typeof designDtoSchema>;
 
+export const manuscriptRevisionDtoSchema = z.object({
+  id: z.string(), workId: z.string(), revision: z.number().int().positive(), status: z.enum(['final', 'superseded']),
+  chapterVersionIds: z.array(z.string()), chapterCount: z.number().int().positive(), contentHash: z.string().length(64),
+  stateRevision: z.number().int().min(0), constraintRevision: z.number().int().min(0),
+  worldPackRevision: z.number().int().positive(), storyBibleRevision: z.number().int().positive(), createdAt: z.string(),
+});
+export type ManuscriptRevisionDto = z.infer<typeof manuscriptRevisionDtoSchema>;
+
 export const generateChapterRequestSchema = z.object({
   runId: z.string().min(1).max(200).optional(),
 });

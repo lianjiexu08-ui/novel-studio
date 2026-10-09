@@ -10,6 +10,7 @@ import {
   type ApiError,
   type ApiErrorCode,
   type CandidateDto,
+  type ManuscriptRevisionDto,
   type WorkDto,
 } from 'novel-studio-contracts';
 import {
@@ -19,6 +20,7 @@ import {
   StaleCandidateError,
   passChecker,
   type ChapterCandidate,
+  type ManuscriptRevision,
   type ModelProvider,
   type Work,
 } from '../../../novel-service-core/src/core.ts';
@@ -88,6 +90,10 @@ function toCandidateDto(candidate: ChapterCandidate): CandidateDto {
   };
 }
 
+function toManuscriptDto(manuscript: ManuscriptRevision): ManuscriptRevisionDto {
+  return manuscript;
+}
+
 export function createApiServer(dependencies: ApiDependencies = {}): { app: FastifyInstance; repository: WorkRepository } {
   const repository = dependencies.repository ?? createDefaultRepository();
   const workflow = new ChapterWorkflow(repository, dependencies.provider ?? defaultProvider());
@@ -155,6 +161,18 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     const work = await repository.get(workId);
     if (!work) throw new NotFoundError(`unknown work ${workId}`);
     return { worldPack: work.worldPack, storyBible: work.storyBible, constraintRevision: work.constraintRevision };
+  });
+
+  app.get('/works/:workId/manuscripts', async (request) => {
+    const { workId } = workParamSchema.parse(request.params);
+    const work = await repository.get(workId);
+    if (!work) throw new NotFoundError(`unknown work ${workId}`);
+    return { manuscripts: [...work.manuscripts.values()].map(toManuscriptDto) };
+  });
+
+  app.post('/works/:workId/manuscripts/finalize', async (request) => {
+    const { workId } = workParamSchema.parse(request.params);
+    return { manuscript: toManuscriptDto(await workflow.finalizeManuscript(workId)) };
   });
 
   app.put('/works/:workId/world-pack', async (request) => {

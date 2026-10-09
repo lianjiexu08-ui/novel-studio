@@ -75,6 +75,7 @@ model Project {
   publicationIntents    PublicationIntent[]
   creativeBrief         CreativeBrief?
   runCheckpoints        RunCheckpoint[]
+  manuscripts            ManuscriptRevision[]
 }
 
 model RunCheckpoint {
@@ -87,6 +88,24 @@ model RunCheckpoint {
   updatedAt     DateTime @updatedAt
   project       Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
   @@index([projectId])
+}
+
+model ManuscriptRevision {
+  id                  String   @id @default(cuid())
+  projectId           String
+  revision            Int
+  status              String
+  chapterVersionIds   Json
+  chapterCount        Int
+  contentHash         String
+  stateRevision       Int
+  constraintRevision  Int
+  worldPackRevision   Int
+  storyBibleRevision  Int
+  createdAt           DateTime @default(now())
+  project             Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  @@unique([projectId, revision])
+  @@index([projectId, status])
 }
 
 model CreativeBrief {

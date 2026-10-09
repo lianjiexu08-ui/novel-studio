@@ -1,4 +1,4 @@
-import { randomUUID } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import { chapterGenerationGate } from './world.ts';
 import type { StoryBible, WorldPack } from './world.ts';
 
@@ -9,6 +9,7 @@ export type CheckStatus = 'passed' | 'failed' | 'inconclusive' | 'unavailable';
 export type CandidateStatus = 'candidate' | 'adopted' | 'rejected';
 export type VersionStatus = 'adopted' | 'superseded';
 export type RealizationStatus = 'unrealized' | 'partial' | 'realized' | 'diverged' | 'insufficient';
+export type ManuscriptStatus = 'final' | 'superseded';
 
 export class AdoptionBlocked extends Error {}
 export class LockedConstraintError extends AdoptionBlocked {}
@@ -115,6 +116,21 @@ export interface ChapterVersion {
   parentVersionId?: string;
   sourceCandidateId?: string;
   stale: boolean;
+  createdAt: string;
+}
+
+export interface ManuscriptRevision {
+  id: string;
+  workId: string;
+  revision: number;
+  status: ManuscriptStatus;
+  chapterVersionIds: string[];
+  chapterCount: number;
+  contentHash: string;
+  stateRevision: number;
+  constraintRevision: number;
+  worldPackRevision: number;
+  storyBibleRevision: number;
   createdAt: string;
 }
 
@@ -261,6 +277,7 @@ export class Work {
   storyBible?: StoryBible;
   readonly candidates = new Map<string, ChapterCandidate>();
   readonly versions = new Map<string, ChapterVersion>();
+  readonly manuscripts = new Map<string, ManuscriptRevision>();
   readonly events = new Map<string, StoryEvent>();
   readonly states = new Map<string, CharacterState>();
   readonly relationships = new Map<string, Relationship>();
@@ -318,6 +335,30 @@ export class NovelService {
     work.storyBible = storyBible;
     work.constraintRevision += 1;
     return work;
+  }
+
+  finalizeManuscript(workId: string): ManuscriptRevision {
+    const work = this.getWork(workId);
+    if (!work.worldPack || !work.storyBible) throw new AdoptionBlocked('world pack and story bible must be locked before finalizing');
+    const gate = chapterGenerationGate(work.worldPack, work.storyBible);
+    if (!gate.ready) throw new AdoptionBlocked(`manuscript gate blocked: ${gate.errors.join('; ')}`);
+    const expectedChapterCount = work.storyBible.volumes.reduce((sum, volume) => sum + volume.plannedChapterCount, 0);
+    const adopted = work.adoptedVersions();
+    if (adopted.length < expectedChapterCount) throw new AdoptionBlocked(`manuscript requires ${expectedChapterCount} adopted chapters; found ${adopted.length}`);
+    const missing = Array.from({ length: expectedChapterCount }, (_, index) => index + 1).filter((chapter) => !work.currentVersion(chapter));
+    if (missing.length) throw new AdoptionBlocked(`manuscript has missing chapters: ${missing.join(', ')}`);
+    const selected = adopted.filter((version) => version.chapterNumber <= expectedChapterCount);
+    if (selected.length !== expectedChapterCount) throw new AdoptionBlocked('manuscript contains stale or duplicate chapter versions');
+    for (const manuscript of work.manuscripts.values()) manuscript.status = 'superseded';
+    const contentHash = createHash('sha256').update(selected.map((version) => `${version.chapterNumber}\n${version.content}`).join('\n')).digest('hex');
+    const manuscript: ManuscriptRevision = {
+      id: id('manuscript'), workId, revision: Math.max(0, ...[...work.manuscripts.values()].map((item) => item.revision)) + 1,
+      status: 'final', chapterVersionIds: selected.map((version) => version.id), chapterCount: selected.length,
+      contentHash, stateRevision: work.stateRevision, constraintRevision: work.constraintRevision,
+      worldPackRevision: work.worldPack.revision, storyBibleRevision: work.storyBible.revision, createdAt: now(),
+    };
+    work.manuscripts.set(manuscript.id, manuscript);
+    return manuscript;
   }
 
   addRelationship(workId: string, input: Omit<Relationship, 'id'>): Relationship {

@@ -175,10 +175,24 @@ test('design API saves and locks the world pack before the story bible', async (
     assert.equal((await app.inject({ method: 'PUT', url: `${base}/story-bible`, payload: storyBible })).statusCode, 200);
     const lockedBible = (await app.inject({ method: 'POST', url: `${base}/story-bible/lock`, payload: {} })).json().storyBible;
     assert.equal(lockedBible.status, 'locked');
+    let stateRevision = 0;
+    for (let chapterNumber = 1; chapterNumber <= 10; chapterNumber += 1) {
+      const candidate = (await app.inject({ method: 'POST', url: `${base}/chapters/${chapterNumber}/generate`, payload: { runId: 'manuscript-run' } })).json().candidate;
+      await app.inject({ method: 'POST', url: `${base}/candidates/${candidate.id}/check` });
+      const adopted = await app.inject({ method: 'POST', url: `${base}/candidates/${candidate.id}/adopt`, payload: { expectedStateRevision: stateRevision } });
+      assert.equal(adopted.statusCode, 200);
+      stateRevision += 1;
+    }
+    const finalized = await app.inject({ method: 'POST', url: `${base}/manuscripts/finalize`, payload: {} });
+    assert.equal(finalized.statusCode, 200);
+    assert.equal(finalized.json().manuscript.chapterCount, 10);
+    assert.equal(finalized.json().manuscript.status, 'final');
+    assert.equal(finalized.json().manuscript.contentHash.length, 64);
     const design = (await app.inject({ method: 'GET', url: `${base}/design` })).json();
     assert.equal(design.worldPack.status, 'locked');
     assert.equal(design.storyBible.status, 'locked');
     assert.ok(design.constraintRevision >= 4);
+    assert.equal((await app.inject({ method: 'GET', url: `${base}/manuscripts` })).json().manuscripts.length, 1);
   } finally {
     await app.close();
   }

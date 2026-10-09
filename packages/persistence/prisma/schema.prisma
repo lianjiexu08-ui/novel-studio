@@ -38,6 +38,7 @@ model Project {
   outboxEvents  OutboxEvent[]
   impacts       ImpactRecord[]
   runCheckpoints RunCheckpoint[]
+  manuscripts   ManuscriptRevision[]
 }
 
 model Chapter {
@@ -63,6 +64,25 @@ model RunCheckpoint {
   updatedAt     DateTime @updatedAt
 
   @@index([projectId])
+}
+
+model ManuscriptRevision {
+  id                  String   @id
+  projectId           String
+  revision            Int
+  status              String
+  chapterVersionIds   String   // JSON: string[]
+  chapterCount        Int
+  contentHash         String
+  stateRevision       Int
+  constraintRevision  Int
+  worldPackRevision   Int
+  storyBibleRevision  Int
+  createdAt           DateTime @default(now())
+  project             Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@unique([projectId, revision])
+  @@index([projectId, status])
 }
 
 model ChapterVersion {
