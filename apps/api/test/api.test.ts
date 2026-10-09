@@ -166,7 +166,10 @@ test('design API saves and locks the world pack before the story bible', async (
       factions: [{ id: 'sect', name: '青云宗', kind: 'sect', locationIds: ['home'], goals: ['守护青州'], resources: [], status: 'reviewed' }],
       historicalEvents: [{ id: 'history', title: '立宗', storyTime: '百年前', causes: ['动荡'], consequences: ['建宗'], factionIds: ['sect'], status: 'reviewed' }], terminology: [{ id: 'term', canonical: '灵气', aliases: [], kind: 'other', status: 'reviewed' }], unresolvedQuestions: [], createdAt: new Date().toISOString(),
     };
-    assert.equal((await app.inject({ method: 'PUT', url: `${base}/world-pack`, payload: worldPack })).statusCode, 200);
+    const savedWorld = await app.inject({ method: 'PUT', url: `${base}/world-pack`, payload: { ...worldPack, status: 'locked' } });
+    assert.equal(savedWorld.statusCode, 200);
+    assert.equal(savedWorld.json().worldPack.status, 'proposed');
+    assert.equal((await app.inject({ method: 'POST', url: `${base}/world-pack/lock`, payload: {} })).statusCode, 409);
     assert.equal((await app.inject({ method: 'POST', url: `${base}/world-pack/review`, payload: {} })).json().worldPack.status, 'reviewed');
     const lockedWorld = (await app.inject({ method: 'POST', url: `${base}/world-pack/lock`, payload: {} })).json().worldPack;
     assert.equal(lockedWorld.status, 'locked');
@@ -177,7 +180,10 @@ test('design API saves and locks the world pack before the story bible', async (
       relationships: [{ id: 'rel', fromCharacterId: 'hero', toCharacterId: 'rival', kind: 'trust', value: '同门', locked: false }], arcs: [{ id: 'arc', title: '守城', characterIds: ['hero'], goal: '成长', stakes: '宗门存亡', plannedOutcome: '守住宗门' }], volumes: [{ id: 'v1', order: 1, title: '入门', goal: '成长', climax: '守城', endState: '入筑基', plannedChapterCount: 10, arcIds: ['arc'] }],
       unresolvedQuestions: [], createdAt: new Date().toISOString(),
     };
-    assert.equal((await app.inject({ method: 'PUT', url: `${base}/story-bible`, payload: storyBible })).statusCode, 200);
+    const savedBible = await app.inject({ method: 'PUT', url: `${base}/story-bible`, payload: { ...storyBible, status: 'locked' } });
+    assert.equal(savedBible.statusCode, 200);
+    assert.equal(savedBible.json().storyBible.status, 'proposed');
+    assert.equal((await app.inject({ method: 'POST', url: `${base}/story-bible/lock`, payload: {} })).statusCode, 409);
     assert.equal((await app.inject({ method: 'POST', url: `${base}/story-bible/review`, payload: {} })).json().storyBible.status, 'reviewed');
     const lockedBible = (await app.inject({ method: 'POST', url: `${base}/story-bible/lock`, payload: {} })).json().storyBible;
     assert.equal(lockedBible.status, 'locked');
