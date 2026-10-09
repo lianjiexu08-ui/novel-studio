@@ -3,7 +3,7 @@ import {
   App as AntApp, ConfigProvider, Layout, Menu, theme,
 } from 'antd';
 import {
-  ArrowLeftOutlined, CheckCircleOutlined, ControlOutlined, FileTextOutlined, FormOutlined,
+  ArrowLeftOutlined, CheckCircleOutlined, ControlOutlined, DashboardOutlined, FileTextOutlined, FormOutlined,
   HomeOutlined, NodeIndexOutlined, SendOutlined, SettingOutlined, ToolOutlined,
   UnorderedListOutlined,
 } from '@ant-design/icons';
@@ -17,6 +17,7 @@ import { WritePage } from './pages/WritePage';
 import { BookSettingsPage } from './pages/BookSettingsPage';
 import { PlaceholderPage } from './pages/PlaceholderPage';
 import { OutlinePage } from './pages/OutlinePage';
+import { OverviewPage } from './pages/OverviewPage';
 import { useWorkChrome, WorkChromeContext } from './work-chrome';
 
 const { Sider, Header, Content } = Layout;
@@ -29,6 +30,7 @@ const TOP_NAV = [
 ];
 
 const SECTION_LABEL: Record<string, string> = {
+  overview: '概览',
   covenant: '约定',
   chapters: '章节',
   write: '章节创作',
@@ -41,6 +43,7 @@ function workspaceNav(workId: string) {
   return [
     { key: '__back', icon: <ArrowLeftOutlined />, label: '返回书架' },
     { type: 'divider' as const },
+    { key: `/works/${workId}/overview`, icon: <DashboardOutlined />, label: '概览' },
     { key: `/works/${workId}/covenant`, icon: <FormOutlined />, label: '约定' },
     { key: `/works/${workId}/chapters`, icon: <UnorderedListOutlined />, label: '章节' },
     { key: `/works/${workId}/write`, icon: <FileTextOutlined />, label: '章节创作' },
@@ -111,7 +114,8 @@ function Shell() {
               <Route path="/publish" element={<PlaceholderPage title="发布" description="全作品存稿队列、排期、提交状态与核验 — 待实现" />} />
               <Route path="/system" element={<PlaceholderPage title="系统设置" description="模型 API 与密钥、模型角色分工、调用预算、平台连接、备份与恢复、紧急暂停 — 待实现" />} />
               <Route path="/works/:workId" element={<Workspace />}>
-                <Route index element={<Navigate to="covenant" replace />} />
+                <Route index element={<Navigate to="overview" replace />} />
+                <Route path="overview" element={<OverviewPage />} />
                 <Route path="covenant" element={<CovenantPage />} />
                 <Route path="chapters" element={<ChaptersPage />} />
                 <Route path="write" element={<WritePage />} />
