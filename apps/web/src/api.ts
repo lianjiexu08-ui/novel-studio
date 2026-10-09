@@ -83,6 +83,7 @@ export const api = {
     call<{ checkpoint: { runId: string; targetChapter: number; nextChapter: number; phase: string; candidateIds: Record<number, string> } }>(`/works/${workId}/runs`, { method: 'POST', body: { targetChapter, runId } }),
   checkpoints: (workId: string) => call<{ checkpoints: Array<{ runId: string; targetChapter: number; nextChapter: number; phase: string; candidateIds: Record<number, string> }> }>(`/works/${workId}/runs`),
   history: (workId: string, chapterNumber: number) => call<ChapterHistoryDto>(`/works/${workId}/state/${chapterNumber}`),
+  finalizeManuscript: (workId: string) => call<{ manuscript: import('novel-studio-contracts').ManuscriptRevisionDto }>(`/works/${workId}/manuscripts/finalize`, { method: 'POST', body: {} }),
   check: (workId: string, candidateId: string) =>
     call<{ candidate: CandidateDto }>(`/works/${workId}/candidates/${candidateId}/check`, { method: 'POST' }),
   adopt: (workId: string, candidateId: string, expectedStateRevision: number) =>

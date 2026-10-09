@@ -31,6 +31,7 @@ export function WritePage() {
   const [outbox, setOutbox] = useState<OutboxEventDto[]>([]);
   const [targetChapter, setTargetChapter] = useState(100);
   const [checkpoint, setCheckpoint] = useState<{ runId: string; targetChapter: number; nextChapter: number; phase: string } | null>(null);
+  const [manuscriptId, setManuscriptId] = useState<string | null>(null);
   const [busy, setBusy] = useState<string | null>(null);
 
   useEffect(() => {
@@ -122,6 +123,13 @@ export function WritePage() {
               await refresh();
             }, `已完成到第 ${targetChapter} 章`)}>按蓝图连续生成</Button>
           {checkpoint && <span className="toc-meta">检查点：第 {checkpoint.nextChapter} 章，状态 {checkpoint.phase}。每章单独提交，可从这里恢复。</span>}
+          <Button disabled={checkpoint?.phase !== 'complete'} loading={busy === 'finalize'}
+            onClick={() => run('finalize', async () => {
+              const result = await api.finalizeManuscript(work.id);
+              setManuscriptId(result.manuscript.id);
+              await refresh();
+            }, '已冻结最终书稿')}>冻结最终书稿</Button>
+          {manuscriptId && <span className="toc-meta">已冻结：{manuscriptId}</span>}
         </div>
 
         {candidate && (
