@@ -51,6 +51,9 @@ test('local API runs create -> generate -> check -> adopt -> outbox', async () =
 
     const outbox = await app.inject({ method: 'GET', url: `/works/${work.id}/outbox` });
     assert.equal(outbox.json().events.length, 3);
+    const history = await app.inject({ method: 'GET', url: `/works/${work.id}/state/1` });
+    assert.equal(history.statusCode, 200);
+    assert.equal(history.json().events.length, 1);
   } finally {
     await app.close();
   }

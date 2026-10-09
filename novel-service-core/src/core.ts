@@ -110,6 +110,24 @@ export interface CharacterKnowledge {
   storyTime?: number;
 }
 
+export interface StoryArcState {
+  arcId: string;
+  status: 'planned' | 'active' | 'resolved' | 'diverged';
+  value: unknown;
+  sourceEventId: string;
+  sourceChapterVersionId: string;
+  storyTime?: number;
+}
+
+export interface StorySecretState {
+  secretId: string;
+  revealed: boolean;
+  value: unknown;
+  sourceEventId: string;
+  sourceChapterVersionId: string;
+  storyTime?: number;
+}
+
 export interface ChapterCandidate {
   id: string;
   workId: string;
@@ -721,6 +739,29 @@ export function knowledgeAt(work: Work, characterId: string, proposition: string
   };
 }
 
+/** Reconstructs a planned character arc from adopted arc_progress events. */
+export function storyArcAt(work: Work, arcId: string, chapterNumber: number): StoryArcState | undefined {
+  const event = [...work.events.values()]
+    .filter((item) => item.active && item.eventType === 'arc_progress' && item.subjectId === arcId && item.chapterNumber <= chapterNumber)
+    .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id))
+    .at(-1);
+  if (!event) return undefined;
+  const value = event.value && typeof event.value === 'object' ? event.value as Record<string, unknown> : {};
+  const rawStatus = value.status;
+  const status: StoryArcState['status'] = rawStatus === 'active' || rawStatus === 'resolved' || rawStatus === 'diverged' ? rawStatus : 'planned';
+  return { arcId, status, value: event.value, sourceEventId: event.id, sourceChapterVersionId: event.chapterVersionId, storyTime: event.storyTime };
+}
+
+/** Reconstructs whether a secret was revealed by the requested chapter. */
+export function storySecretAt(work: Work, secretId: string, chapterNumber: number): StorySecretState | undefined {
+  const event = [...work.events.values()]
+    .filter((item) => item.active && item.eventType === 'secret_reveal' && item.subjectId === secretId && item.chapterNumber <= chapterNumber)
+    .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id))
+    .at(-1);
+  if (!event) return undefined;
+  return { secretId, revealed: true, value: event.value, sourceEventId: event.id, sourceChapterVersionId: event.chapterVersionId, storyTime: event.storyTime };
+}
+
 /** Reconstructs a relationship value at a chapter without mutating the author seed. */
 export function relationshipAt(work: Work, relationshipId: string, chapterNumber: number): Relationship | undefined {
   const base = work.relationships.get(relationshipId);
@@ -768,6 +809,8 @@ export const canonConsistencyChecker: CandidateChecker = {
       )) errors.push(`locked relationship ${event.subjectId}`);
       if (event.eventType === 'resource_change' && resourceIds.size && !resourceIds.has(event.subjectId)) errors.push(`unknown resource ${event.subjectId}`);
       if (event.eventType === 'artifact_change' && artifactIds.size && !artifactIds.has(event.subjectId)) errors.push(`unknown artifact ${event.subjectId}`);
+      if (event.eventType === 'arc_progress' && work.storyBible && !work.storyBible.arcs.some((arc) => arc.id === event.subjectId)) errors.push(`unknown story arc ${event.subjectId}`);
+      if (event.eventType === 'secret_reveal' && work.storyBible && !(work.storyBible.secrets ?? []).some((secret) => secret.id === event.subjectId)) errors.push(`unknown story secret ${event.subjectId}`);
       if (event.storyTime !== undefined && event.storyTime < 0) errors.push(`negative story time in ${event.subjectId}`);
     }
     return {

@@ -16,9 +16,13 @@ import {
 } from 'novel-studio-contracts';
 import {
   AdoptionBlocked,
+  characterStateAt,
   LockedConstraintError,
   SettingConflictError,
   StaleCandidateError,
+  relationshipAt,
+  storyArcAt,
+  storySecretAt,
   canonConsistencyChecker,
   passChecker,
   type ChapterCandidate,
@@ -87,6 +91,7 @@ const chapterNumberParamSchema = z.object({ workId: z.string().min(1), chapterNu
 const candidateParamSchema = z.object({ workId: z.string().min(1), candidateId: z.string().min(1) });
 const workParamSchema = z.object({ workId: z.string().min(1) });
 const runRequestSchema = z.object({ targetChapter: z.number().int().min(1).max(450), runId: z.string().min(1).max(200).optional() });
+const chapterStateParamSchema = z.object({ workId: z.string().min(1), chapterNumber: z.coerce.number().int().min(1) });
 
 function toWorkDto(work: Work): WorkDto {
   return { id: work.id, title: work.title, stateRevision: work.stateRevision, constraintRevision: work.constraintRevision, covenant: work.covenant };
@@ -260,6 +265,29 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
       createdAt: version.createdAt,
     }));
     return { chapters };
+  });
+
+  app.get('/works/:workId/state/:chapterNumber', async (request) => {
+    const { workId, chapterNumber } = chapterStateParamSchema.parse(request.params);
+    const work = await repository.get(workId);
+    if (!work) throw new NotFoundError(`unknown work ${workId}`);
+    const events = [...work.events.values()]
+      .filter((event) => event.active && event.chapterNumber <= chapterNumber)
+      .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id));
+    const characterIds = new Set([
+      ...work.characters.keys(),
+      ...(work.storyBible?.characters.map((character) => character.id) ?? []),
+    ]);
+    const fields = new Set(events.filter((event) => event.eventType === 'character_state').map((event) => event.predicate));
+    const characterStates = [...characterIds].flatMap((characterId) => [...fields].map((field) => characterStateAt(work, characterId, field, chapterNumber)).filter((state): state is NonNullable<typeof state> => Boolean(state)));
+    return {
+      chapterNumber,
+      events,
+      characterStates,
+      relationships: [...work.relationships.values()].map((relationship) => relationshipAt(work, relationship.id, chapterNumber)),
+      arcStates: (work.storyBible?.arcs ?? []).map((arc) => storyArcAt(work, arc.id, chapterNumber)).filter((state): state is NonNullable<typeof state> => Boolean(state)),
+      secretStates: (work.storyBible?.secrets ?? []).map((secret) => storySecretAt(work, secret.id, chapterNumber)).filter((state): state is NonNullable<typeof state> => Boolean(state)),
+    };
   });
 
   app.post('/works/:workId/chapters/:chapterNumber/generate', async (request, reply) => {

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { AdoptionBlocked, canonConsistencyChecker, characterStateAt, knowledgeAt, LockedConstraintError, NovelService, passChecker, relationshipAt, unavailableChecker } from '../src/core.ts';
+import { AdoptionBlocked, canonConsistencyChecker, characterStateAt, knowledgeAt, LockedConstraintError, NovelService, passChecker, relationshipAt, storyArcAt, storySecretAt, unavailableChecker } from '../src/core.ts';
 import type { ModelProvider } from '../src/core.ts';
 import { lockStoryBible, lockWorldPack } from '../src/world.ts';
 import type { StoryBible } from '../src/world.ts';
@@ -186,6 +186,23 @@ test('relationship changes are reconstructed at the requested chapter', () => {
   assert.equal(relationshipAt(work, relationshipId, 1)?.value, '互相戒备');
   assert.equal(relationshipAt(work, relationshipId, 2)?.value, '并肩作战');
   assert.equal(work.relationships.get(relationshipId)?.value, '陌生');
+});
+
+test('arc progress and secret reveals are reconstructed at a chapter', () => {
+  const service = new NovelService({
+    generateChapter: ({ chapterNumber }) => {
+      const events = chapterNumber === 1
+        ? [{ eventType: 'arc_progress', subjectId: 'arc', predicate: 'status', value: { status: 'active' }, evidence: '选择出发' }]
+        : [{ eventType: 'secret_reveal', subjectId: 'secret', predicate: 'revealed', value: '界门真相', evidence: '卷末揭示' }];
+      return { content: `第${chapterNumber}章`, proposedEvents: events, observedEvents: events };
+    },
+  });
+  const work = service.createWork('弧光回放');
+  service.runUntil(work.id, 2, [passChecker], 'arc-run');
+  assert.equal(storyArcAt(work, 'arc', 1)?.status, 'active');
+  assert.equal(storyArcAt(work, 'arc', 2)?.status, 'active');
+  assert.equal(storySecretAt(work, 'secret', 1), undefined);
+  assert.equal(storySecretAt(work, 'secret', 2)?.revealed, true);
 });
 
 test('chapter candidates bind to the locked world pack and story bible revisions', () => {
