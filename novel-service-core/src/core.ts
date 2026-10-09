@@ -432,9 +432,19 @@ export class NovelService {
 
   editAdoptedChapter(workId: string, chapterNumber: number, content: string, checkers: CandidateChecker[], reason = 'early chapter edited'): ChapterVersion {
     const work = this.getWork(workId);
-    if (!work.currentVersion(chapterNumber)) throw new Error(`chapter ${chapterNumber} is not adopted`);
+    const previous = work.currentVersion(chapterNumber);
+    if (!previous) throw new Error(`chapter ${chapterNumber} is not adopted`);
+    // A content-only edit must preserve the old fact ledger until a dedicated
+    // extractor supplies a replacement. Otherwise the edit silently erases
+    // power, relationship, item and plot changes from the story state.
+    const inheritedEvents: EventDraft[] = [...work.events.values()]
+      .filter((event) => event.active && event.chapterVersionId === previous.id)
+      .map((event) => ({
+        eventType: event.eventType, subjectId: event.subjectId, predicate: event.predicate,
+        value: event.value, storyTime: event.storyTime, evidence: event.evidence,
+      }));
     const candidate: ChapterCandidate = {
-      id: id('candidate'), workId, chapterNumber, content, proposedEvents: [], runId: id('edit'),
+      id: id('candidate'), workId, chapterNumber, content, proposedEvents: inheritedEvents, runId: id('edit'),
       generatedAgainstRevision: work.stateRevision, generatedAgainstConstraintRevision: work.constraintRevision,
       generatedAgainstWorldPackRevision: work.worldPack?.revision, generatedAgainstStoryBibleRevision: work.storyBible?.revision,
       status: 'candidate', checks: [], createdAt: now(),

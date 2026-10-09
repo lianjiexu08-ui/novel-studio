@@ -60,6 +60,17 @@ test('early edit invalidates later context and rebuilds active state', () => {
   assert.equal(service.contextFor(work, 4).adoptedVersionIds.length, 2);
 });
 
+test('content-only early edits preserve the edited chapter fact ledger', () => {
+  const service = new NovelService(provider);
+  const work = service.createWork('编辑事实');
+  service.runUntil(work.id, 2, [passChecker], 'edit-facts');
+  assert.equal(work.states.get('hero|power')?.value, 3);
+  service.editAdoptedChapter(work.id, 1, '第一章重写但事件未重新抽取', [passChecker]);
+  assert.equal([...work.events.values()].filter((event) => event.active).length, 1);
+  assert.equal(work.states.get('hero|power')?.value, 1);
+  assert.equal(work.currentVersion(2), undefined);
+});
+
 test('run checkpoint is idempotent for a completed run', () => {
   const service = new NovelService(provider);
   const work = service.createWork('恢复');
