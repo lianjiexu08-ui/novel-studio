@@ -13,6 +13,7 @@ import {
 function reviewedWorld() {
   const world = createEmptyWorldPack('九霄界', '有九个界域的玄幻世界');
   world.status = 'reviewed';
+  world.axioms.push({ id: 'axiom', title: '因果有价', content: '力量必须支付代价', scope: 'all', precedence: 1, status: 'reviewed' });
   world.powerSystems.push({ id: 'qi', name: '灵气体系', source: '天地灵气', unit: '灵力', realmIds: ['qi-1', 'qi-2'], status: 'reviewed' });
   world.realms.push(
     { id: 'qi-1', systemId: 'qi', name: '炼气', rank: 1, prerequisites: [], capabilities: ['感知灵气'], cost: '修炼时间', counters: [], status: 'reviewed' },
@@ -21,6 +22,10 @@ function reviewedWorld() {
   world.locations.push({ id: 'east', name: '东陆', kind: 'continent', entryConditions: [], status: 'reviewed' });
   world.factions.push({ id: 'sect', name: '青云宗', kind: 'sect', locationIds: ['east'], goals: ['守护东陆'], resources: ['灵石'], status: 'reviewed' });
   world.techniques.push({ id: 'sword', name: '青云剑诀', kind: 'technique', allowedRealmIds: ['qi-1', 'qi-2'], effect: '御剑', cost: '灵力', limitations: [], counters: [], status: 'reviewed' });
+  world.artifacts.push({ id: 'sword-artifact', name: '青云剑', tier: '一阶', effect: '增幅御剑', cost: '灵石', limitations: [], status: 'reviewed' });
+  world.resources.push({ id: 'spirit-stone', name: '灵石', unit: '枚', source: '矿脉', scarcity: '常见', status: 'reviewed' });
+  world.historicalEvents.push({ id: 'founding', title: '青云宗立宗', storyTime: '三百年前', causes: ['界域动荡'], consequences: ['建立宗门'], factionIds: ['sect'], status: 'reviewed' });
+  world.terminology.push({ id: 'term-qi', canonical: '灵气', aliases: ['天地灵气'], kind: 'other', status: 'reviewed' });
   return world;
 }
 

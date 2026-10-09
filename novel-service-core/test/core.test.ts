@@ -93,17 +93,17 @@ test('a new run resumes after the highest contiguous adopted chapter', () => {
 test('chapter candidates bind to the locked world pack and story bible revisions', () => {
   const world = {
     id: 'world_core', revision: 1, title: '九霄', summary: '三界', status: 'reviewed' as const,
-    axioms: [], powerSystems: [{ id: 'system', name: '灵力', source: '天地', unit: '灵气', realmIds: ['realm'], status: 'reviewed' as const }],
+    axioms: [{ id: 'axiom', title: '因果有价', content: '力量必须支付代价', scope: 'all', precedence: 1, status: 'reviewed' as const }], powerSystems: [{ id: 'system', name: '灵力', source: '天地', unit: '灵气', realmIds: ['realm'], status: 'reviewed' as const }],
     realms: [{ id: 'realm', systemId: 'system', name: '炼气', rank: 1, prerequisites: [], capabilities: ['引气'], cost: '时间', counters: [], status: 'reviewed' as const }],
-    techniques: [], artifacts: [], resources: [], locations: [{ id: 'home', name: '青州', kind: 'continent' as const, entryConditions: [], status: 'reviewed' as const }],
+    techniques: [{ id: 'technique', name: '引气诀', kind: 'cultivation' as const, allowedRealmIds: ['realm'], effect: '引气', cost: '时间', limitations: [], counters: [], status: 'reviewed' as const }], artifacts: [{ id: 'artifact', name: '青云剑', tier: '一阶', effect: '增幅', cost: '灵石', limitations: [], status: 'reviewed' as const }], resources: [{ id: 'resource', name: '灵石', unit: '枚', source: '矿脉', scarcity: '常见', status: 'reviewed' as const }], locations: [{ id: 'home', name: '青州', kind: 'continent' as const, entryConditions: [], status: 'reviewed' as const }],
     factions: [{ id: 'sect', name: '青云宗', kind: 'sect' as const, locationIds: ['home'], goals: ['守护青州'], resources: [], status: 'reviewed' as const }],
-    historicalEvents: [], terminology: [], unresolvedQuestions: [], createdAt: new Date().toISOString(),
+    historicalEvents: [{ id: 'history', title: '立宗', storyTime: '百年前', causes: ['动荡'], consequences: ['建宗'], factionIds: ['sect'], status: 'reviewed' as const }], terminology: [{ id: 'term', canonical: '灵气', aliases: [], kind: 'other' as const, status: 'reviewed' as const }], unresolvedQuestions: [], createdAt: new Date().toISOString(),
   };
   const lockedWorld = lockWorldPack(world);
   const bible: StoryBible = {
     id: 'bible_core', revision: 1, worldPackId: lockedWorld.id, worldPackRevision: lockedWorld.revision, status: 'reviewed',
-    coreConflict: '宗门存亡', endingDirection: '守住家园', characters: [{ id: 'hero', name: '林渊', role: 'protagonist', goal: '守护青州', identity: '弟子', locationId: 'home', factionId: 'sect', startingRealmId: 'realm' }],
-    relationships: [], arcs: [], volumes: [{ id: 'v1', order: 1, title: '入门', goal: '成长', climax: '守城', endState: '入筑基', plannedChapterCount: 10, arcIds: [] }], unresolvedQuestions: [], createdAt: new Date().toISOString(),
+    coreConflict: '宗门存亡', endingDirection: '守住家园', characters: [{ id: 'hero', name: '林渊', role: 'protagonist', goal: '守护青州', identity: '弟子', locationId: 'home', factionId: 'sect', startingRealmId: 'realm' }, { id: 'hero2', name: '苏晚', role: 'major', goal: '查明真相', identity: '弟子', locationId: 'home', factionId: 'sect', startingRealmId: 'realm' }],
+    relationships: [{ id: 'rel', fromCharacterId: 'hero', toCharacterId: 'hero2', kind: 'trust', value: '同门', locked: false }], arcs: [{ id: 'arc', title: '守城', characterIds: ['hero'], goal: '成长', stakes: '宗门存亡', plannedOutcome: '守住宗门' }], volumes: [{ id: 'v1', order: 1, title: '入门', goal: '成长', climax: '守城', endState: '入筑基', plannedChapterCount: 10, arcIds: ['arc'] }], unresolvedQuestions: [], createdAt: new Date().toISOString(),
   };
   const lockedBible = lockStoryBible(bible, lockedWorld);
   const service = new NovelService(provider);

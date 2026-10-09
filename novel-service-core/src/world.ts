@@ -262,10 +262,14 @@ export function validateWorldPack(pack: WorldPack): GateResult {
   }
   detectLocationCycle(pack.locations, errors);
   if (!pack.title.trim()) errors.push('world pack title is required');
+  const requiredCollections: Array<[string, unknown[]]> = [
+    ['axioms', pack.axioms], ['power systems', pack.powerSystems], ['realms', pack.realms], ['techniques', pack.techniques],
+    ['artifacts', pack.artifacts], ['resources', pack.resources], ['locations', pack.locations], ['factions', pack.factions],
+    ['historical events', pack.historicalEvents], ['terminology', pack.terminology],
+  ];
+  for (const [label, items] of requiredCollections) if (items.length === 0) errors.push(`world pack requires at least one ${label} definition`);
   if (!pack.summary.trim()) warnings.push('world pack summary is empty');
-  if (pack.powerSystems.some((system) => system.realmIds.length === 0)) warnings.push('a power system has no realm ladder');
-  if (pack.locations.length === 0) warnings.push('world pack has no locations');
-  if (pack.factions.length === 0) warnings.push('world pack has no factions');
+  if (pack.powerSystems.some((system) => system.realmIds.length === 0)) errors.push('a power system has no realm ladder');
   if (hasBlockingQuestions(pack.unresolvedQuestions)) warnings.push('blocking unresolved questions remain');
   return { ready: errors.length === 0, errors, warnings };
 }
@@ -308,9 +312,13 @@ export function validateStoryBible(bible: StoryBible, worldPack: WorldPack): Gat
     for (const arcId of volume.arcIds) if (!arcIds.has(arcId)) errors.push(`volume ${volume.id} references unknown arc ${arcId}`);
   }
   if (!bible.coreConflict.trim()) errors.push('story bible core conflict is required');
-  if (!bible.endingDirection.trim()) warnings.push('ending direction is empty');
+  if (!bible.endingDirection.trim()) errors.push('story bible ending direction is required');
   if (!bible.characters.some((character) => character.role === 'protagonist')) errors.push('story bible needs a protagonist');
   if (!bible.volumes.length) errors.push('story bible needs at least one volume');
+  if (!bible.relationships.length) errors.push('story bible needs initial character relationships');
+  if (!bible.arcs.length) errors.push('story bible needs at least one story arc');
+  const sortedOrders = [...volumeOrders].sort((a, b) => a - b);
+  if (sortedOrders.some((order, index) => order !== index + 1)) errors.push('volume orders must be contiguous starting at 1');
   if (hasBlockingQuestions(bible.unresolvedQuestions)) warnings.push('blocking unresolved story questions remain');
   return { ready: errors.length === 0, errors, warnings };
 }
