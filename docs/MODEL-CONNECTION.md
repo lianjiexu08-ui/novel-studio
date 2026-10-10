@@ -30,3 +30,13 @@ npm run dev:api
 模型输出必须是结构化 JSON。世界包和 Story Bible 会先经过合同校验、引用校验和锁定门禁；正文模型的事件声明和观察结果也必须匹配，否则不能采用。
 
 真实模型调用有 60 秒超时保护。一次调用超时只会让候选生成失败，不会写入章节事实；重新生成时使用新的 runId。
+
+连接配置完成并启动 API 后，可以用验收脚本跑通首个真实模型里程碑：
+
+```sh
+npm run dev:api
+# 另开终端
+node scripts/run-model-milestone.mjs
+```
+
+脚本会创建一个验收作品，等待 100 章完成，冻结 ManuscriptRevision，并把导出 JSON 写入被 Git 忽略的 `data/` 目录。若中途暂停，检查日志里的章节号和错误原因后，使用同一个 `runId` 从 API 重试。
