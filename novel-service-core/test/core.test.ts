@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { AdoptionBlocked, canonConsistencyChecker, chapterLengthChecker, characterStateAt, knowledgeAt, LockedConstraintError, NovelService, passChecker, relationshipAt, storyArcAt, storyPromiseAt, storySecretAt, storyThreadAt, unavailableChecker } from '../src/core.ts';
+import { AdoptionBlocked, artifactStateAt, canonConsistencyChecker, chapterLengthChecker, characterStateAt, knowledgeAt, LockedConstraintError, NovelService, passChecker, relationshipAt, resourceStateAt, storyArcAt, storyPromiseAt, storySecretAt, storyThreadAt, unavailableChecker } from '../src/core.ts';
 import type { ModelProvider } from '../src/core.ts';
 import { lockStoryBible, lockWorldPack } from '../src/world.ts';
 import type { StoryBible } from '../src/world.ts';
@@ -224,6 +224,24 @@ test('story bible relationships are included in chapter snapshots', () => {
   };
   assert.equal(relationshipAt(work, 'seed-rel', 1)?.value, '误信');
   assert.equal(relationshipAt(work, 'seed-rel', 1)?.layer, 'belief');
+});
+
+test('resource and artifact changes are replayed at a chapter', () => {
+  const service = new NovelService({
+    generateChapter: ({ chapterNumber }) => {
+      const events = [
+        { eventType: 'resource_change', subjectId: 'resource', predicate: 'quantity', value: chapterNumber, evidence: '消耗记录' },
+        { eventType: 'artifact_change', subjectId: 'artifact', predicate: 'holder', value: chapterNumber === 1 ? 'hero' : 'rival', evidence: '归属变化' },
+      ];
+      return { content: `第${chapterNumber}章`, proposedEvents: events, observedEvents: events };
+    },
+  });
+  const work = service.createWork('资源回放');
+  service.runUntil(work.id, 2, [passChecker], 'resource-run');
+  assert.equal(resourceStateAt(work, 'resource', 'quantity', 1)?.value, 1);
+  assert.equal(resourceStateAt(work, 'resource', 'quantity', 2)?.value, 2);
+  assert.equal(artifactStateAt(work, 'artifact', 'holder', 1)?.value, 'hero');
+  assert.equal(artifactStateAt(work, 'artifact', 'holder', 2)?.value, 'rival');
 });
 
 test('arc progress and secret reveals are reconstructed at a chapter', () => {

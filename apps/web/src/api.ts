@@ -28,6 +28,8 @@ export interface ChapterHistoryDto {
   events: Array<{ id: string; chapterNumber: number; eventType: string; subjectId: string; predicate: string; value: unknown; evidence: string; storyTime?: number }>;
   characterStates: Array<{ characterId: string; field: string; value: unknown; sourceEventId: string; sourceChapterVersionId: string; storyTime?: number }>;
   relationships: Array<RelationshipDto | undefined>;
+  resourceStates: Array<{ subjectId: string; field: string; value: unknown; sourceEventId: string; sourceChapterVersionId: string; storyTime?: number }>;
+  artifactStates: Array<{ subjectId: string; field: string; value: unknown; sourceEventId: string; sourceChapterVersionId: string; storyTime?: number }>;
   arcStates: Array<{ arcId: string; status: string; value: unknown; sourceEventId: string; sourceChapterVersionId: string; storyTime?: number }>;
   secretStates: Array<{ secretId: string; revealed: boolean; value: unknown; sourceEventId: string; sourceChapterVersionId: string; storyTime?: number }>;
   promiseStates: Array<{ promiseId: string; status: string; value: unknown; sourceEventId: string; sourceChapterVersionId: string; storyTime?: number }>;

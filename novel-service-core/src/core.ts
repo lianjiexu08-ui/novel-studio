@@ -146,6 +146,15 @@ export interface StoryThreadState {
   storyTime?: number;
 }
 
+export interface StoryValueState {
+  subjectId: string;
+  field: string;
+  value: unknown;
+  sourceEventId: string;
+  sourceChapterVersionId: string;
+  storyTime?: number;
+}
+
 export interface ChapterCandidate {
   id: string;
   workId: string;
@@ -807,6 +816,23 @@ export function storyThreadAt(work: Work, threadId: string, chapterNumber: numbe
   const raw = event.value && typeof event.value === 'object' ? event.value as Record<string, unknown> : {};
   const status: StoryThreadState['status'] = raw.status === 'deferred' ? 'deferred' : raw.status === 'open' ? 'open' : 'resolved';
   return { threadId, status, value: event.value, sourceEventId: event.id, sourceChapterVersionId: event.chapterVersionId, storyTime: event.storyTime };
+}
+
+function valueStateAt(work: Work, eventType: string, subjectId: string, field: string, chapterNumber: number): StoryValueState | undefined {
+  const event = [...work.events.values()]
+    .filter((item) => item.active && item.eventType === eventType && item.subjectId === subjectId && item.predicate === field && item.chapterNumber <= chapterNumber)
+    .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id)).at(-1);
+  if (!event) return undefined;
+  return { subjectId, field, value: event.value, sourceEventId: event.id, sourceChapterVersionId: event.chapterVersionId, storyTime: event.storyTime };
+}
+
+/** Reconstructs resource and artifact changes without mutating world canon. */
+export function resourceStateAt(work: Work, resourceId: string, field: string, chapterNumber: number): StoryValueState | undefined {
+  return valueStateAt(work, 'resource_change', resourceId, field, chapterNumber);
+}
+
+export function artifactStateAt(work: Work, artifactId: string, field: string, chapterNumber: number): StoryValueState | undefined {
+  return valueStateAt(work, 'artifact_change', artifactId, field, chapterNumber);
 }
 
 /** Reconstructs a relationship value at a chapter without mutating the author seed. */
