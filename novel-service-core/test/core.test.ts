@@ -54,6 +54,20 @@ test('canon consistency checker blocks facts for unknown design entities', () =>
   assert.match(checks[0].message, /unknown character/);
 });
 
+test('canon consistency checker validates continuity event types and closure statuses', () => {
+  const service = new NovelService({
+    generateChapter: () => ({ content: '错误事件', proposedEvents: [
+      { eventType: 'made_up', subjectId: 'hero', predicate: 'x', value: true },
+      { eventType: 'promise_payoff', subjectId: 'promise', predicate: 'status', value: { status: 'maybe' } },
+    ], observedEvents: [] }),
+  });
+  const work = service.createWork('事件协议');
+  const candidate = service.generateCandidate(work.id, 1);
+  const check = service.runChecks(work.id, candidate.id, [canonConsistencyChecker])[0];
+  assert.equal(check.status, 'failed');
+  assert.match(check.message, /unsupported event type|invalid promise status/);
+});
+
 test('chapter length checker protects configured model output', () => {
   const service = new NovelService(provider);
   const work = service.createWork('篇幅校验');

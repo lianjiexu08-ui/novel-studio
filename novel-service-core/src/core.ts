@@ -836,6 +836,7 @@ export const passChecker: CandidateChecker = {
 export const canonConsistencyChecker: CandidateChecker = {
   name: 'canon_consistency',
   check: ({ work, candidate }) => {
+    const allowedEventTypes = new Set(['character_state', 'relationship_change', 'knowledge_belief', 'resource_change', 'artifact_change', 'plot_progress', 'arc_progress', 'secret_reveal', 'promise_payoff', 'thread_resolution']);
     const characterIds = new Set([
       ...(work.storyBible?.characters.map((character) => character.id) ?? []),
       ...work.characters.keys(),
@@ -848,6 +849,7 @@ export const canonConsistencyChecker: CandidateChecker = {
     const artifactIds = new Set(work.worldPack?.artifacts.map((artifact) => artifact.id) ?? []);
     const errors: string[] = [];
     for (const event of candidate.proposedEvents) {
+      if (!allowedEventTypes.has(event.eventType)) errors.push(`unsupported event type ${event.eventType}`);
       if (['character_state', 'knowledge_belief'].includes(event.eventType) && characterIds.size && !characterIds.has(event.subjectId)) errors.push(`unknown character ${event.subjectId}`);
       if (event.eventType === 'relationship_change' && relationshipIds.size && !relationshipIds.has(event.subjectId)) errors.push(`unknown relationship ${event.subjectId}`);
       if (event.eventType === 'relationship_change' && (
@@ -860,6 +862,10 @@ export const canonConsistencyChecker: CandidateChecker = {
       if (event.eventType === 'secret_reveal' && work.storyBible && !(work.storyBible.secrets ?? []).some((secret) => secret.id === event.subjectId)) errors.push(`unknown story secret ${event.subjectId}`);
       if (event.eventType === 'promise_payoff' && work.storyBible && !(work.storyBible.promises ?? []).some((promise) => promise.id === event.subjectId)) errors.push(`unknown story promise ${event.subjectId}`);
       if (event.eventType === 'thread_resolution' && work.storyBible && !(work.storyBible.openThreads ?? []).some((thread) => thread.id === event.subjectId)) errors.push(`unknown story thread ${event.subjectId}`);
+      const value = event.value && typeof event.value === 'object' ? event.value as Record<string, unknown> : undefined;
+      if (event.eventType === 'arc_progress' && value && !['active', 'resolved', 'diverged'].includes(String(value.status))) errors.push(`invalid arc status for ${event.subjectId}`);
+      if (event.eventType === 'promise_payoff' && value && !['paid', 'broken', 'open'].includes(String(value.status))) errors.push(`invalid promise status for ${event.subjectId}`);
+      if (event.eventType === 'thread_resolution' && value && !['resolved', 'deferred', 'open'].includes(String(value.status))) errors.push(`invalid thread status for ${event.subjectId}`);
       if (event.storyTime !== undefined && event.storyTime < 0) errors.push(`negative story time in ${event.subjectId}`);
     }
     return {
