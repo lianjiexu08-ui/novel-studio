@@ -56,10 +56,11 @@ async function waitForRun(targetChapter, started) {
 async function finalizeAndExport(label) {
   const finalized = await api(`/works/${work.id}/manuscripts/finalize`, { method: 'POST', body: {} });
   const exported = await api(`/works/${work.id}/manuscripts/${finalized.manuscript.id}/export`);
+  if (!exported.closureCoverage?.ready) throw new Error(`${label} manuscript has unresolved closure coverage`);
   await mkdir('data', { recursive: true });
   const output = `data/model-milestone-${label}-${work.id}.json`;
   await writeFile(output, `${JSON.stringify(exported, null, 2)}\n`);
-  console.log(`frozen manuscript ${finalized.manuscript.id} with ${finalized.manuscript.chapterCount} chapters`);
+  console.log(`frozen manuscript ${finalized.manuscript.id} with ${finalized.manuscript.chapterCount} chapters, ${finalized.manuscript.wordCount}/${finalized.manuscript.targetWordCount} words (${Math.round(finalized.manuscript.lengthCoverage * 100)}%)`);
   console.log(`exported ${output}`);
 }
 
