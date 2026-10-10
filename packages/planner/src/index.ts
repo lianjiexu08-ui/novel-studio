@@ -255,7 +255,7 @@ export class OpenAICompatibleChapterProvider implements ModelProvider {
   }
 }
 
-function chapterPlan(bible: StoryBible, chapterNumber: number): { volume?: StoryBible['volumes'][number]; nearbyArcBeats: StoryBible['arcBeats']; duePromises: StoryBible['promises']; openThreads: StoryBible['openThreads'] } {
+function chapterPlan(bible: StoryBible, chapterNumber: number): { volume?: StoryBible['volumes'][number]; openingPlan?: NonNullable<StoryBible['chapterPlans']>[number]; nearbyArcBeats: StoryBible['arcBeats']; duePromises: StoryBible['promises']; openThreads: StoryBible['openThreads'] } {
   let start = 1;
   let volume = bible.volumes.find((candidate) => {
     const end = start + candidate.plannedChapterCount - 1;
@@ -267,6 +267,7 @@ function chapterPlan(bible: StoryBible, chapterNumber: number): { volume?: Story
   const windowEnd = chapterNumber + 3;
   return {
     volume,
+    openingPlan: bible.chapterPlans?.find((plan) => plan.chapterNumber === chapterNumber),
     nearbyArcBeats: (bible.arcBeats ?? []).filter((beat) => beat.plannedChapter === undefined || (beat.plannedChapter >= windowStart && beat.plannedChapter <= windowEnd)),
     duePromises: (bible.promises ?? []).filter((promise) => promise.plannedChapter === undefined || (promise.plannedChapter >= windowStart && promise.plannedChapter <= windowEnd)),
     openThreads: (bible.openThreads ?? []).filter((thread) => thread.status !== 'deprecated'),
@@ -361,6 +362,11 @@ function assertStoryBibleScale(bible: StoryBible, targetChapters: number): void 
     throw new PlanningParseError(`story bible must plan 3 or more volumes and exactly ${targetChapters} chapters (got ${bible.volumes.length} volumes, ${chapterCount} chapters)`);
   }
   if (!bible.secrets?.length || !bible.arcBeats?.length || !bible.promises?.length || !bible.openThreads?.length) throw new PlanningParseError('story bible must include non-empty secrets, arcBeats, promises and openThreads for long-form continuity');
+  const openingPlans = [...(bible.chapterPlans ?? [])].sort((a, b) => a.chapterNumber - b.chapterNumber);
+  const requiredPlanCount = Math.min(50, targetChapters);
+  if (openingPlans.length < requiredPlanCount || openingPlans.slice(0, requiredPlanCount).some((plan, index) => plan.chapterNumber !== index + 1)) {
+    throw new PlanningParseError(`story bible must include a concrete opening plan for chapters 1 through ${requiredPlanCount}`);
+  }
   const minimumBeats = Math.max(6, bible.volumes.length * 3);
   if ((bible.arcBeats?.length ?? 0) < minimumBeats) throw new PlanningParseError(`story bible needs at least ${minimumBeats} planned arc beats for a multi-volume outline`);
   for (const volume of bible.volumes) {
@@ -383,6 +389,7 @@ function assertStoryBibleContinuity(previous: StoryBible, next: StoryBible): voi
     ['promises', previous.promises, next.promises],
     ['openThreads', previous.openThreads, next.openThreads],
     ['volumes', previous.volumes, next.volumes],
+    ['chapterPlans', previous.chapterPlans, next.chapterPlans],
   ];
   const missing = collections.flatMap(([label, oldItems, newItems]) => {
     const ids = new Set((newItems ?? []).map((item) => item.id));
@@ -392,7 +399,7 @@ function assertStoryBibleContinuity(previous: StoryBible, next: StoryBible): voi
 }
 
 const worldPackSystem = `你是长篇玄幻小说的世界观规划器。只返回一个 JSON 对象，不要 Markdown，不要解释。必须完整包含 id、revision、title、summary、status、createdAt，以及 axioms、powerSystems、realms、techniques、artifacts、resources、locations、factions、historicalEvents、terminology、unresolvedQuestions 数组。所有数组至少有一项；状态和数组元素 status 使用 proposed；ID 稳定且引用有效。枚举字段必须使用合同中的英文 token：techniques.kind 只能是 technique/cultivation/bloodline/secret，locations.kind 只能是 plane/continent/country/region/city/sect/secret_realm/ruin/other，factions.kind 只能是 empire/sect/clan/merchant/religion/species/other，terminology.kind 只能是 person/place/faction/realm/technique/artifact/resource/other。生成可支撑 100 万字、约 450 章、至少 3 卷的世界底座，至少安排 3 块大陆、3 个以上连续境界、3 个以上不同层级的功法、法宝、资源、势力和历史事件；每项都要有代价、限制或反制关系，具体可检查。createdAt 使用 ISO 8601 时间。`;
-const storyBibleSystem = `你是长篇玄幻小说的总纲规划器。只返回一个 JSON 对象，不要 Markdown，不要解释。必须完整包含 id、revision、worldPackId、worldPackRevision、status、coreConflict、endingDirection、characters、relationships、secrets、arcBeats、promises、openThreads、arcs、volumes、unresolvedQuestions、createdAt。枚举字段必须使用合同中的英文 token：characters.role 只能是 protagonist/major/supporting/stage，relationships.kind 只能是 kinship/social/trust/emotion/allegiance/private_intent/belief，arcBeats.kind 只能是 trigger/belief_shift/choice/cost/consequence/resolution，openThreads.kind 只能是 main/subplot/mystery/open。至少生成主角、主要配角、对手、关系、秘密、人物弧光、可兑现承诺、待收束开放线和 3 个以上分卷；arcBeats 是全书关键节点提纲，至少生成 3×分卷数 个有 plannedChapter 的节点，并让每卷至少有一个节点，节点要覆盖触发、升级、选择、代价、后果和收束。输入中的 chapterTarget 是当前验收目标，所有分卷 plannedChapterCount 之和必须恰好等于该数；卷序连续，所有引用必须指向输入世界包或本对象中的有效 ID。每个 promise 写明 payoffCondition，每个 openThread 写明 plannedResolution。若输入提供 previousStoryBible，这是从较短验收扩展长篇，必须保留其中已有 characters、relationships、arcs、secrets、promises、openThreads、arcBeats 的稳定 ID、核心设定和前段章节承接，只能在其上扩展后续卷；不得为了重写而更换旧 ID。状态使用 proposed，createdAt 使用 ISO 8601 时间。`;
+const storyBibleSystem = `你是长篇玄幻小说的总纲规划器。只返回一个 JSON 对象，不要 Markdown，不要解释。必须完整包含 id、revision、worldPackId、worldPackRevision、status、coreConflict、endingDirection、characters、relationships、secrets、arcBeats、promises、openThreads、arcs、volumes、chapterPlans、unresolvedQuestions、createdAt。枚举字段必须使用合同中的英文 token：characters.role 只能是 protagonist/major/supporting/stage，relationships.kind 只能是 kinship/social/trust/emotion/allegiance/private_intent/belief，arcBeats.kind 只能是 trigger/belief_shift/choice/cost/consequence/resolution，openThreads.kind 只能是 main/subplot/mystery/open。至少生成主角、主要配角、对手、关系、秘密、人物弧光、可兑现承诺、待收束开放线和 3 个以上分卷；arcBeats 是全书关键节点提纲，至少生成 3×分卷数 个有 plannedChapter 的节点，并让每卷至少有一个节点，节点要覆盖触发、升级、选择、代价、后果和收束。必须先完成前 50 章的逐章计划，再让写作模型生成正文；chapterPlans 的每项必须包含 id、chapterNumber、title、purpose、conflict、turningPoint、endHook、characterIds、locationIds、arcBeatIds、requiredEvents，并且 chapterNumber 必须完整覆盖 1 到 50，每章都要有具体冲突、转折和章末钩子。输入中的 chapterTarget 是当前验收目标，所有分卷 plannedChapterCount 之和必须恰好等于该数；卷序连续，所有引用必须指向输入世界包或本对象中的有效 ID。每个 promise 写明 payoffCondition，每个 openThread 写明 plannedResolution。若输入提供 previousStoryBible，这是从较短验收扩展长篇，必须保留其中已有 characters、relationships、arcs、secrets、promises、openThreads、arcBeats、chapterPlans 的稳定 ID、核心设定和前 50 章承接，只能在其上扩展后续卷；不得为了重写而更换旧 ID。状态使用 proposed，createdAt 使用 ISO 8601 时间。`;
 const chapterSystem = `你是同一本长篇玄幻小说的章节写作模型。只返回一个 JSON 对象，不要 Markdown，不要解释。content 用中文写完整章节，遵守创作约定、已锁定世界包和 Story Bible，并参考 currentPlan 指出的当前分卷、临近人物弧光和待兑现承诺；不得跨卷抢跑，也不能漏掉正文明确兑现的计划。参考最近章节保持人物、力量、地点和时间连续。proposedEvents 必须记录本章正文真正改变的事实，observedEvents 必须是独立复核正文后得到的同一组事实，二者完全一致。eventType 只能使用 character_state、relationship_change、knowledge_belief、resource_change、artifact_change、plot_progress、volume_progress、arc_progress、secret_reveal、promise_payoff、thread_resolution。volume_progress 和 arc_progress 的 value.status 只能是 active、resolved、diverged；secret_reveal 表示秘密在本章确实揭示；promise_payoff 的 value.status 只能是 paid、broken、open；thread_resolution 的 value.status 只能是 resolved、deferred、open。每个事件都要有 evidence，subjectId 使用世界包或 Story Bible 中已有的稳定 ID；没有变化就返回空数组。只有正文明确发生的变化才能入账，角色猜测写成 knowledge_belief，计划尚未兑现的内容不要冒充已兑现。不要擅自改写锁定关系、境界规则或分卷目标。`;
 const chapterDraftSystem = `你是同一本长篇玄幻小说的章节写作模型。只返回一个 JSON 对象，不要 Markdown，不要解释。content 用中文写完整章节，遵守创作约定、已锁定世界包和 Story Bible，并参考 currentPlan 指出的当前分卷、临近人物弧光和待兑现承诺；不得跨卷抢跑，也不能漏掉正文明确兑现的计划。参考最近章节保持人物、力量、地点和时间连续。proposedEvents 必须记录本章正文真正改变的事实；不要返回 observedEvents，正文会交给独立审计器再次抽取。eventType 只能使用 character_state、relationship_change、knowledge_belief、resource_change、artifact_change、plot_progress、volume_progress、arc_progress、secret_reveal、promise_payoff、thread_resolution。volume_progress 和 arc_progress 的 value.status 只能是 active、resolved、diverged；每个事件都要有 evidence，subjectId 使用世界包或 Story Bible 中已有的稳定 ID；没有变化就返回空数组。只有正文明确发生的变化才能入账，角色猜测写成 knowledge_belief，计划尚未兑现的内容不要冒充已兑现。不要擅自改写锁定关系、境界规则或分卷目标。`;
 const briefRule = `输入的 chapterBrief 是作者批准计划给出的本章任务卡：必须完成 mustDo，结尾落在 endState，遵守 preserve；mustNotHappen 中的事情本章绝不能发生或提前揭示；dependsOn 中未满足的前置不能靠临时新增能力或道具补上。若本章正文确实推进了任务卡对应章纲，追加一个 eventType 为 plot_progress、subjectId 为 chapterBrief.outlineId、predicate 为 status、value 为 {"status":"realized"} 的事件（只部分完成用 partial，明显偏离用 diverged），evidence 写正文依据。`;

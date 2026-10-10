@@ -64,8 +64,11 @@ export const storyArcSeedSchema = z.object({
 export const storyVolumeSeedSchema = z.object({
   id: z.string().min(1), order: z.number().int().positive(), title: z.string().trim().min(1), goal: z.string(), climax: z.string(), endState: z.string(), plannedChapterCount: z.number().int().positive(), arcIds: z.array(z.string().min(1)),
 });
+export const storyChapterPlanSchema = z.object({
+  id: z.string().min(1), chapterNumber: z.number().int().positive(), title: z.string().trim().min(1), purpose: z.string().trim().min(1), conflict: z.string().trim().min(1), turningPoint: z.string().trim().min(1), endHook: z.string().trim().min(1), characterIds: z.array(z.string().min(1)), locationIds: z.array(z.string().min(1)), arcBeatIds: z.array(z.string().min(1)), requiredEvents: z.array(z.string()),
+});
 export const storyBibleSchema = z.object({
-  id: z.string().min(1), revision: z.number().int().positive(), worldPackId: z.string().min(1), worldPackRevision: z.number().int().positive(), status: canonStatusSchema, coreConflict: z.string().trim().min(1), endingDirection: z.string(), characters: z.array(storyCharacterSeedSchema), relationships: z.array(storyRelationshipSeedSchema), secrets: z.array(storySecretSeedSchema).optional(), arcBeats: z.array(storyArcBeatSeedSchema).optional(), promises: z.array(storyPromiseSeedSchema).optional(), openThreads: z.array(storyThreadSeedSchema).optional(), arcs: z.array(storyArcSeedSchema), volumes: z.array(storyVolumeSeedSchema), unresolvedQuestions: z.array(unresolvedQuestionSchema), createdAt: z.string().datetime(), lockedAt: z.string().datetime().optional(),
+  id: z.string().min(1), revision: z.number().int().positive(), worldPackId: z.string().min(1), worldPackRevision: z.number().int().positive(), status: canonStatusSchema, coreConflict: z.string().trim().min(1), endingDirection: z.string(), characters: z.array(storyCharacterSeedSchema), relationships: z.array(storyRelationshipSeedSchema), secrets: z.array(storySecretSeedSchema).optional(), arcBeats: z.array(storyArcBeatSeedSchema).optional(), promises: z.array(storyPromiseSeedSchema).optional(), openThreads: z.array(storyThreadSeedSchema).optional(), arcs: z.array(storyArcSeedSchema), volumes: z.array(storyVolumeSeedSchema), chapterPlans: z.array(storyChapterPlanSchema).optional(), unresolvedQuestions: z.array(unresolvedQuestionSchema), createdAt: z.string().datetime(), lockedAt: z.string().datetime().optional(),
 });
 
 export type WorldPackContract = z.infer<typeof worldPackSchema>;

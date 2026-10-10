@@ -212,6 +212,23 @@ export interface StoryVolumeSeed {
   arcIds: string[];
 }
 
+/** A concrete opening outline. Long books are expanded only after these first
+ * chapters have a reviewable plan, so the writer never has to invent the
+ * opening sequence from a volume summary alone. */
+export interface StoryChapterPlan {
+  id: string;
+  chapterNumber: number;
+  title: string;
+  purpose: string;
+  conflict: string;
+  turningPoint: string;
+  endHook: string;
+  characterIds: string[];
+  locationIds: string[];
+  arcBeatIds: string[];
+  requiredEvents: string[];
+}
+
 export interface StoryBible {
   id: string;
   revision: number;
@@ -228,6 +245,7 @@ export interface StoryBible {
   openThreads?: StoryThreadSeed[];
   arcs: StoryArcSeed[];
   volumes: StoryVolumeSeed[];
+  chapterPlans?: StoryChapterPlan[];
   unresolvedQuestions: UnresolvedQuestion[];
   createdAt: string;
   lockedAt?: string;
@@ -377,6 +395,7 @@ export function validateStoryBible(bible: StoryBible, worldPack: WorldPack): Gat
   collectIds(bible.promises ?? [], 'promises', errors);
   collectIds(bible.openThreads ?? [], 'open threads', errors);
   collectIds(bible.volumes, 'volumes', errors);
+  collectIds(bible.chapterPlans ?? [], 'chapter plans', errors);
   for (const character of bible.characters) {
     if (character.locationId && !locationIds.has(character.locationId)) errors.push(`character ${character.id} references unknown location ${character.locationId}`);
     if (character.factionId && !factionIds.has(character.factionId)) errors.push(`character ${character.id} references unknown faction ${character.factionId}`);
@@ -403,6 +422,14 @@ export function validateStoryBible(bible: StoryBible, worldPack: WorldPack): Gat
     if (volume.plannedChapterCount < 1) errors.push(`volume ${volume.id} must plan at least one chapter`);
     for (const arcId of volume.arcIds) if (!arcIds.has(arcId)) errors.push(`volume ${volume.id} references unknown arc ${arcId}`);
   }
+  const arcBeatIds = new Set((bible.arcBeats ?? []).map((beat) => beat.id));
+  for (const plan of bible.chapterPlans ?? []) {
+    if (!Number.isInteger(plan.chapterNumber) || plan.chapterNumber < 1) errors.push(`chapter plan ${plan.id} has an invalid chapter number`);
+    if (!plan.title.trim() || !plan.purpose.trim() || !plan.conflict.trim() || !plan.turningPoint.trim() || !plan.endHook.trim()) errors.push(`chapter plan ${plan.id} must include title, purpose, conflict, turning point and end hook`);
+    for (const characterId of plan.characterIds) if (!characterIds.has(characterId)) errors.push(`chapter plan ${plan.id} references unknown character ${characterId}`);
+    for (const locationId of plan.locationIds) if (!locationIds.has(locationId)) errors.push(`chapter plan ${plan.id} references unknown location ${locationId}`);
+    for (const arcBeatId of plan.arcBeatIds) if (!arcBeatIds.has(arcBeatId)) errors.push(`chapter plan ${plan.id} references unknown arc beat ${arcBeatId}`);
+  }
   if (!bible.coreConflict.trim()) errors.push('story bible core conflict is required');
   if (!bible.endingDirection.trim()) errors.push('story bible ending direction is required');
   if (!bible.characters.some((character) => character.role === 'protagonist')) errors.push('story bible needs a protagonist');
@@ -425,6 +452,12 @@ export function validateLongFormStoryBible(bible: StoryBible, worldPack: WorldPa
   const chapterCount = bible.volumes.reduce((sum, volume) => sum + volume.plannedChapterCount, 0);
   if (expectedChapterCount !== undefined && chapterCount !== expectedChapterCount) errors.push(`story bible plans ${chapterCount} chapters; expected ${expectedChapterCount}`);
   if (chapterCount >= 100 && bible.volumes.length < 3) errors.push('long-form story bible requires at least 3 volumes');
+  const openingPlans = [...(bible.chapterPlans ?? [])].sort((a, b) => a.chapterNumber - b.chapterNumber);
+  if (chapterCount >= 50) {
+    if (openingPlans.length < 50) errors.push(`long-form story bible requires a 50-chapter opening plan; found ${openingPlans.length}`);
+    const expected = Array.from({ length: 50 }, (_, index) => index + 1);
+    if (openingPlans.slice(0, 50).map((plan) => plan.chapterNumber).some((chapter, index) => chapter !== expected[index])) errors.push('opening chapter plans must cover chapters 1 through 50 without gaps');
+  }
   if (!bible.secrets?.length) errors.push('long-form story bible requires at least one secret with a reveal condition');
   if (!bible.arcBeats?.length) errors.push('long-form story bible requires at least one arc beat');
   if (!bible.promises?.length) errors.push('long-form story bible requires at least one promise with a payoff condition');

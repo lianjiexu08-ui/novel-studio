@@ -57,6 +57,7 @@ function lockedDesign(): { world: WorldPack; bible: StoryBible } {
       { id: 'vol-2', order: 2, title: '诸域争锋', goal: '查清战争遗产', climax: '三宗会盟破裂', endState: '主角结丹', plannedChapterCount: 35, arcIds: ['arc'] },
       { id: 'vol-3', order: 3, title: '界门终局', goal: '阻止战争重启', climax: '界门决战', endState: '封印界门', plannedChapterCount: 35, arcIds: ['arc'] },
     ],
+    chapterPlans: Array.from({ length: 50 }, (_, index) => ({ id: `chapter-plan-${index + 1}`, chapterNumber: index + 1, title: `开篇第${index + 1}章`, purpose: '推进主线', conflict: '界门威胁升级', turningPoint: '获得新线索', endHook: '新的悬念', characterIds: ['hero'], locationIds: ['sect-city'], arcBeatIds: [], requiredEvents: [] })),
     unresolvedQuestions: [], createdAt: new Date().toISOString(),
   };
   return { world, bible: lockStoryBible(bibleDraft, world) };

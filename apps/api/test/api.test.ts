@@ -71,7 +71,7 @@ function milestoneDesign() {
     promises: [{ id: 'promise', title: '三年之约', promise: '主角必须赴约', payoffCondition: '终卷决战前兑现', plannedChapter: 25, status: 'locked' as const }],
     openThreads: [{ id: 'thread', title: '界门来历', kind: 'mystery' as const, question: '谁建造界门', plannedResolution: '终卷揭示建造者', status: 'locked' as const }],
     arcs: [{ id: 'arc', title: '守护故乡', characterIds: ['hero'], goal: '查清战争', stakes: '三陆存亡', plannedOutcome: '封印界门' }],
-    volumes: [1, 2, 3].map((order) => ({ id: `v${order}`, order, title: `第${order}卷`, goal: '推进主线', climax: '卷末决战', endState: '继续前进', plannedChapterCount: order === 1 ? 34 : 33, arcIds: ['arc'] })), unresolvedQuestions: [], createdAt: new Date().toISOString(),
+    volumes: [1, 2, 3].map((order) => ({ id: `v${order}`, order, title: `第${order}卷`, goal: '推进主线', climax: '卷末决战', endState: '继续前进', plannedChapterCount: order === 1 ? 34 : 33, arcIds: ['arc'] })), chapterPlans: Array.from({ length: 50 }, (_, index) => ({ id: `chapter-plan-${index + 1}`, chapterNumber: index + 1, title: `开篇第${index + 1}章`, purpose: '推进主线', conflict: '界门威胁升级', turningPoint: '获得新线索', endHook: '新的悬念', characterIds: ['hero'], locationIds: ['city'], arcBeatIds: [], requiredEvents: [] })), unresolvedQuestions: [], createdAt: new Date().toISOString(),
   };
   return { world, bible };
 }
