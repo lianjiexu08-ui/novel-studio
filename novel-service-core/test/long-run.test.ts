@@ -39,6 +39,10 @@ function lockedDesign(): { world: WorldPack; bible: StoryBible } {
       { id: 'rival', name: '沈烬', role: 'major', goal: '打开界门', identity: '战争遗族', locationId: 'east', factionId: 'sect', startingRealmId: 'qi2' },
     ],
     relationships: [{ id: 'relationship', fromCharacterId: 'hero', toCharacterId: 'rival', kind: 'trust', value: '互相戒备', locked: false }],
+    secrets: [{ id: 'secret', ownerCharacterId: 'rival', title: '战争遗印', truth: '沈烬携带战争遗印', revealCondition: '界门开启时揭示', status: 'reviewed' }],
+    arcBeats: [{ id: 'beat', arcId: 'arc', characterId: 'hero', kind: 'trigger', plannedChapter: 3, expectedChange: '决定调查界门' }],
+    promises: [{ id: 'promise', title: '三年之约', promise: '主角必须赴约', payoffCondition: '第三卷决战前兑现', plannedChapter: 25, status: 'reviewed' }],
+    openThreads: [{ id: 'thread', title: '界门来历', kind: 'mystery', question: '谁建造界门', plannedResolution: '终卷揭示建造者', status: 'reviewed' }],
     arcs: [{ id: 'arc', title: '守护故乡', characterIds: ['hero', 'rival'], goal: '理解战争真相', stakes: '三大陆存亡', plannedOutcome: '共同封印界门' }],
     volumes: [
       { id: 'vol-1', order: 1, title: '东陆风云', goal: '发现界门异动', climax: '青云城守城战', endState: '主角筑基', plannedChapterCount: 30, arcIds: ['arc'] },

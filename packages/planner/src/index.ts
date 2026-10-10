@@ -126,7 +126,7 @@ function assertStoryBibleScale(bible: StoryBible, targetChapters: number): void 
   if (bible.volumes.length < 3 || chapterCount !== targetChapters) {
     throw new PlanningParseError(`story bible must plan 3 or more volumes and exactly ${targetChapters} chapters (got ${bible.volumes.length} volumes, ${chapterCount} chapters)`);
   }
-  if (!bible.secrets || !bible.arcBeats || !bible.promises || !bible.openThreads) throw new PlanningParseError('story bible must include secrets, arcBeats, promises and openThreads for long-form continuity');
+  if (!bible.secrets?.length || !bible.arcBeats?.length || !bible.promises?.length || !bible.openThreads?.length) throw new PlanningParseError('story bible must include non-empty secrets, arcBeats, promises and openThreads for long-form continuity');
 }
 
 const worldPackSystem = `你是长篇玄幻小说的世界观规划器。只返回一个 JSON 对象，不要 Markdown，不要解释。必须完整包含 id、revision、title、summary、status、createdAt，以及 axioms、powerSystems、realms、techniques、artifacts、resources、locations、factions、historicalEvents、terminology、unresolvedQuestions 数组。所有数组至少有一项；状态使用 proposed；ID 稳定且引用有效。生成可支撑 100 万字、约 450 章、至少 3 卷的世界底座，境界、功法、法宝、资源、地点、势力和历史要具体可检查。createdAt 使用 ISO 8601 时间。`;

@@ -344,6 +344,10 @@ export function validateStoryBible(bible: StoryBible, worldPack: WorldPack): Gat
   const arcIds = collectIds(bible.arcs, 'story arcs', errors);
   const volumeOrders = new Set<number>();
   collectIds(bible.relationships, 'relationships', errors);
+  collectIds(bible.secrets ?? [], 'secrets', errors);
+  collectIds(bible.arcBeats ?? [], 'arc beats', errors);
+  collectIds(bible.promises ?? [], 'promises', errors);
+  collectIds(bible.openThreads ?? [], 'open threads', errors);
   collectIds(bible.volumes, 'volumes', errors);
   for (const character of bible.characters) {
     if (character.locationId && !locationIds.has(character.locationId)) errors.push(`character ${character.id} references unknown location ${character.locationId}`);
@@ -383,6 +387,26 @@ export function validateStoryBible(bible: StoryBible, worldPack: WorldPack): Gat
   return { ready: errors.length === 0, errors, warnings };
 }
 
+/** Extra guarantees for the multi-volume production path. Short hand-authored
+ * bibles may remain valid, but a long-form manuscript must have explicit
+ * objects that can later receive chapter evidence and closure status. */
+export function validateLongFormStoryBible(bible: StoryBible, worldPack: WorldPack, expectedChapterCount?: number): GateResult {
+  const base = validateStoryBible(bible, worldPack);
+  const errors = [...base.errors];
+  const warnings = [...base.warnings];
+  const chapterCount = bible.volumes.reduce((sum, volume) => sum + volume.plannedChapterCount, 0);
+  if (expectedChapterCount !== undefined && chapterCount !== expectedChapterCount) errors.push(`story bible plans ${chapterCount} chapters; expected ${expectedChapterCount}`);
+  if (chapterCount >= 100 && bible.volumes.length < 3) errors.push('long-form story bible requires at least 3 volumes');
+  if (!bible.secrets?.length) errors.push('long-form story bible requires at least one secret with a reveal condition');
+  if (!bible.arcBeats?.length) errors.push('long-form story bible requires at least one arc beat');
+  if (!bible.promises?.length) errors.push('long-form story bible requires at least one promise with a payoff condition');
+  if (!bible.openThreads?.length) errors.push('long-form story bible requires at least one open thread with a planned resolution');
+  for (const secret of bible.secrets ?? []) if (!secret.revealCondition.trim()) errors.push(`secret ${secret.id} has no reveal condition`);
+  for (const promise of bible.promises ?? []) if (!promise.payoffCondition.trim()) errors.push(`promise ${promise.id} has no payoff condition`);
+  for (const thread of bible.openThreads ?? []) if (!thread.plannedResolution.trim()) errors.push(`open thread ${thread.id} has no planned resolution`);
+  return { ready: errors.length === 0, errors, warnings };
+}
+
 export function lockStoryBible(bible: StoryBible, worldPack: WorldPack): StoryBible {
   if (worldPack.status !== 'locked') throw new CanonGateError('world pack must be locked before locking the story bible');
   if (bible.status !== 'reviewed') throw new CanonGateError('story bible must be reviewed before locking');
@@ -411,6 +435,11 @@ export function chapterGenerationGate(worldPack: WorldPack, bible: StoryBible, c
   if (!worldResult.ready) errors.push(...worldResult.errors.map((error) => `world pack: ${error}`));
   const bibleResult = validateStoryBible(bible, worldPack);
   if (!bibleResult.ready) errors.push(...bibleResult.errors.map((error) => `story bible: ${error}`));
+  const plannedChapterCount = bible.volumes.reduce((sum, volume) => sum + volume.plannedChapterCount, 0);
+  if (plannedChapterCount >= 100) {
+    const longFormResult = validateLongFormStoryBible(bible, worldPack, plannedChapterCount);
+    if (!longFormResult.ready) errors.push(...longFormResult.errors.map((error) => `long-form story bible: ${error}`));
+  }
   if (bible.worldPackId !== worldPack.id || bible.worldPackRevision !== worldPack.revision) errors.push('story bible does not use the current world pack revision');
   if (currentVolumeId && !bible.volumes.some((volume) => volume.id === currentVolumeId)) errors.push(`unknown current volume ${currentVolumeId}`);
   if (!currentVolumeId && bible.volumes.length) warnings.push('current volume has not been selected');

@@ -32,7 +32,11 @@ function milestoneDesign() {
     id: 'milestone-bible', revision: 1, worldPackId: world.id, worldPackRevision: world.revision, status: 'locked' as const,
     coreConflict: '界门战争', endingDirection: '封印界门并承担代价',
     characters: [{ id: 'hero', name: '林渊', role: 'protagonist' as const, goal: '守护故乡', identity: '弟子', locationId: 'city', factionId: 'f1', startingRealmId: 'r1' }, { id: 'rival', name: '沈烬', role: 'major' as const, goal: '开启界门', identity: '遗族', locationId: 'east', factionId: 'f2', startingRealmId: 'r2' }],
-    relationships: [{ id: 'rel', fromCharacterId: 'hero', toCharacterId: 'rival', kind: 'trust' as const, value: '戒备', locked: false }], secrets: [], arcBeats: [], promises: [], openThreads: [],
+    relationships: [{ id: 'rel', fromCharacterId: 'hero', toCharacterId: 'rival', kind: 'trust' as const, value: '戒备', locked: false }],
+    secrets: [{ id: 'secret', ownerCharacterId: 'rival', title: '遗印', truth: '沈烬携带战争遗印', revealCondition: '界门开启时揭示', status: 'locked' as const }],
+    arcBeats: [{ id: 'beat', arcId: 'arc', characterId: 'hero', kind: 'trigger' as const, plannedChapter: 3, expectedChange: '决定调查界门' }],
+    promises: [{ id: 'promise', title: '三年之约', promise: '主角必须赴约', payoffCondition: '终卷决战前兑现', plannedChapter: 25, status: 'locked' as const }],
+    openThreads: [{ id: 'thread', title: '界门来历', kind: 'mystery' as const, question: '谁建造界门', plannedResolution: '终卷揭示建造者', status: 'locked' as const }],
     arcs: [{ id: 'arc', title: '守护故乡', characterIds: ['hero'], goal: '查清战争', stakes: '三陆存亡', plannedOutcome: '封印界门' }],
     volumes: [1, 2, 3].map((order) => ({ id: `v${order}`, order, title: `第${order}卷`, goal: '推进主线', climax: '卷末决战', endState: '继续前进', plannedChapterCount: order === 1 ? 34 : 33, arcIds: ['arc'] })), unresolvedQuestions: [], createdAt: new Date().toISOString(),
   };
