@@ -39,7 +39,7 @@ export class JsonDesignPlanner implements DesignPlanner {
     const next = await completeValidated(this.client, {
       system: storyBibleSystem + storyBibleShape,
       user: JSON.stringify({ task: 'generate_story_bible', title: input.title, covenant: input.covenant, chapterTarget, worldPack: input.worldPack, previousStoryBible: input.previousStoryBible }, null, 2),
-      maxOutputTokens: 12_000,
+      maxOutputTokens: 24_000,
     }, (value) => {
       const parsed = parseStoryBible(value) as StoryBible;
       assertStoryBibleScale(parsed, chapterTarget);
@@ -340,6 +340,7 @@ const storyBibleShape = shapeIntro + [
   'openThreads[]: {id, title, kind, question, plannedResolution, status}',
   'arcs[]: {id, title, characterIds: [character id], goal, stakes, plannedOutcome}',
   'volumes[]: {id, order: 正整数, title, goal, climax, endState, plannedChapterCount: 正整数, arcIds: [arc id]}',
+  'chapterPlans[]: {id, chapterNumber: 正整数, title, purpose, conflict, turningPoint, endHook, characterIds: [character id], locationIds: [location id], arcBeatIds: [arc beat id], requiredEvents: [字符串]}；前 50 章必须完整覆盖，文本保持简洁具体',
   'unresolvedQuestions[]: {id, question, blocking: 布尔, status: "open"|"resolved"|"deferred"}',
 ].join('\n');
 
