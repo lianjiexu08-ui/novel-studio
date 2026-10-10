@@ -27,6 +27,7 @@ export interface ChapterHistoryDto {
   chapterNumber: number;
   events: Array<{ id: string; chapterNumber: number; eventType: string; subjectId: string; predicate: string; value: unknown; evidence: string; storyTime?: number }>;
   characterStates: Array<{ characterId: string; field: string; value: unknown; sourceEventId: string; sourceChapterVersionId: string; storyTime?: number }>;
+  knowledgeStates: Array<{ characterId: string; subjectId: string; proposition: string; belief: unknown; sourceEventId: string; sourceChapterVersionId: string; storyTime?: number }>;
   relationships: Array<RelationshipDto | undefined>;
   resourceStates: Array<{ subjectId: string; field: string; value: unknown; sourceEventId: string; sourceChapterVersionId: string; storyTime?: number }>;
   artifactStates: Array<{ subjectId: string; field: string; value: unknown; sourceEventId: string; sourceChapterVersionId: string; storyTime?: number }>;

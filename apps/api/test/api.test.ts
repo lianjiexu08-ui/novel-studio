@@ -105,6 +105,23 @@ test('local API rejects adoption when the state revision is stale', async () => 
   }
 });
 
+test('state API exposes chapter-scoped character knowledge', async () => {
+  const event = { eventType: 'knowledge_belief', subjectId: 'hero', predicate: 'rival_identity', value: { subjectId: 'rival', belief: '对手来自北陆' }, evidence: '正文揭示身份' };
+  const { app } = createApiServer({ repository: new InMemoryWorkRepository(), provider: { generateChapter: () => ({ content: '认知变化', proposedEvents: [event], observedEvents: [event] }) } });
+  try {
+    const work = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('认知复查') })).json();
+    const candidate = (await app.inject({ method: 'POST', url: `/works/${work.id}/chapters/1/generate`, payload: {} })).json().candidate;
+    await app.inject({ method: 'POST', url: `/works/${work.id}/candidates/${candidate.id}/check` });
+    await app.inject({ method: 'POST', url: `/works/${work.id}/candidates/${candidate.id}/adopt`, payload: { expectedStateRevision: 0 } });
+    const state = await app.inject({ method: 'GET', url: `/works/${work.id}/state/1` });
+    assert.equal(state.statusCode, 200);
+    assert.equal(state.json().knowledgeStates[0].subjectId, 'rival');
+    assert.equal(state.json().knowledgeStates[0].belief, '对手来自北陆');
+  } finally {
+    await app.close();
+  }
+});
+
 test('local API maps invalid payloads to VALIDATION_FAILED and unknown works to NOT_FOUND', async () => {
   const { app } = createApiServer({ repository: new InMemoryWorkRepository() });
   try {

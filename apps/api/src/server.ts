@@ -27,6 +27,7 @@ import {
   storyPromiseAt,
   storySecretAt,
   storyThreadAt,
+  knowledgeAt,
   canonConsistencyChecker,
   chapterLengthChecker,
   contextManifestFor,
@@ -322,6 +323,11 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     ]);
     const fields = new Set(events.filter((event) => event.eventType === 'character_state').map((event) => event.predicate));
     const characterStates = [...characterIds].flatMap((characterId) => [...fields].map((field) => characterStateAt(work, characterId, field, chapterNumber)).filter((state): state is NonNullable<typeof state> => Boolean(state)));
+    const knowledgeKeys = [...new Set(events.filter((event) => event.eventType === 'knowledge_belief').map((event) => `${event.subjectId}|${event.predicate}`))];
+    const knowledgeStates = knowledgeKeys.map((key) => {
+      const [characterId, proposition] = key.split('|');
+      return knowledgeAt(work, characterId, proposition, chapterNumber);
+    }).filter((state): state is NonNullable<typeof state> => Boolean(state));
     const version = work.currentVersion(chapterNumber);
     const candidate = version?.sourceCandidateId
       ? work.candidates.get(version.sourceCandidateId)
@@ -331,6 +337,7 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
       chapterNumber,
       events,
       characterStates,
+      knowledgeStates,
       relationships: [...work.relationships.values()].map((relationship) => relationshipAt(work, relationship.id, chapterNumber)),
       resourceStates: (work.worldPack?.resources ?? []).flatMap((resource) => [...new Set([...work.events.values()].filter((event) => event.active && event.eventType === 'resource_change' && event.subjectId === resource.id && event.chapterNumber <= chapterNumber).map((event) => event.predicate))].map((field) => resourceStateAt(work, resource.id, field, chapterNumber)).filter((state): state is NonNullable<typeof state> => Boolean(state))),
       artifactStates: (work.worldPack?.artifacts ?? []).flatMap((artifact) => [...new Set([...work.events.values()].filter((event) => event.active && event.eventType === 'artifact_change' && event.subjectId === artifact.id && event.chapterNumber <= chapterNumber).map((event) => event.predicate))].map((field) => artifactStateAt(work, artifact.id, field, chapterNumber)).filter((state): state is NonNullable<typeof state> => Boolean(state))),
