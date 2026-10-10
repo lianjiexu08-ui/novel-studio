@@ -49,4 +49,10 @@ node scripts/run-model-milestone.mjs
 
 脚本会创建一个验收作品，等待 100 章完成，冻结 ManuscriptRevision，并把导出 JSON 写入被 Git 忽略的 `data/` 目录。若中途暂停，检查日志里的章节号和错误原因后，使用同一个 `runId` 从 API 重试。
 
+需要按验收顺序自动继续到完整长篇时，设置 `NOVEL_MILESTONE_EXPAND=true`。脚本会先导出 100 章版本，再生成 450 章蓝图、从第 101 章继续，最后导出 450 章版本：
+
+```sh
+NOVEL_MILESTONE_EXPAND=true npm run model:milestone
+```
+
 100 章验收通过后，作品的“世界构建与全书蓝图”页可以执行“扩展并启动450章”。系统会重新生成并锁定严格 450 章的 Story Bible，保留已经采用的前100章，从第101章继续；100章版本仍作为历史 ManuscriptRevision 保留。

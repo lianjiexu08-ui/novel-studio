@@ -5,6 +5,7 @@ const token = process.env.API_TOKEN ?? '';
 const title = process.env.NOVEL_MILESTONE_TITLE ?? `玄幻长篇验收-${new Date().toISOString().slice(0, 10)}`;
 const pollMs = Number(process.env.NOVEL_MILESTONE_POLL_MS ?? 5000);
 const maxPolls = Number(process.env.NOVEL_MILESTONE_MAX_POLLS ?? 720);
+const expandToFullBook = process.env.NOVEL_MILESTONE_EXPAND === 'true';
 
 const covenant = {
   entryMode: 'expand',
@@ -33,27 +34,43 @@ async function api(path, options = {}) {
 
 const work = await api('/works', { method: 'POST', body: { title, covenant } });
 console.log(`created work ${work.id}: ${work.title}`);
-const started = await api(`/works/${work.id}/milestones/100/start`, { method: 'POST', body: {} });
-console.log(`started ${started.runId}; world=${started.milestone.worldPack?.id ?? 'missing'} bible=${started.milestone.storyBible?.id ?? 'missing'}`);
-
-let checkpoint;
-for (let attempt = 1; attempt <= maxPolls; attempt += 1) {
-  const state = await api(`/works/${work.id}/runs`);
-  checkpoint = state.checkpoints.find((item) => item.runId === started.runId);
-  if (!checkpoint) throw new Error(`checkpoint ${started.runId} was not found`);
-  if (attempt === 1 || attempt % 6 === 0 || checkpoint.phase === 'paused' || checkpoint.phase === 'complete') {
-    console.log(`poll ${attempt}: phase=${checkpoint.phase} nextChapter=${checkpoint.nextChapter}/${checkpoint.targetChapter}${checkpoint.error ? ` error=${checkpoint.error}` : ''}`);
+async function waitForRun(targetChapter, started) {
+  let checkpoint;
+  for (let attempt = 1; attempt <= maxPolls; attempt += 1) {
+    const state = await api(`/works/${work.id}/runs`);
+    checkpoint = state.checkpoints.find((item) => item.runId === started.runId);
+    if (!checkpoint) {
+      await new Promise((resolve) => setTimeout(resolve, pollMs));
+      continue;
+    }
+    if (attempt === 1 || attempt % 6 === 0 || checkpoint.phase === 'paused' || checkpoint.phase === 'complete') {
+      console.log(`poll ${attempt}: phase=${checkpoint.phase} nextChapter=${checkpoint.nextChapter}/${checkpoint.targetChapter}${checkpoint.error ? ` error=${checkpoint.error}` : ''}`);
+    }
+    if (checkpoint.phase === 'paused') throw new Error(`milestone paused at chapter ${checkpoint.nextChapter}: ${checkpoint.error ?? 'unknown error'}`);
+    if (checkpoint.phase === 'complete' && checkpoint.nextChapter === targetChapter + 1) return checkpoint;
+    await new Promise((resolve) => setTimeout(resolve, pollMs));
   }
-  if (checkpoint.phase === 'paused') throw new Error(`milestone paused at chapter ${checkpoint.nextChapter}: ${checkpoint.error ?? 'unknown error'}`);
-  if (checkpoint.phase === 'complete' && checkpoint.nextChapter === 101) break;
-  await new Promise((resolve) => setTimeout(resolve, pollMs));
-  if (attempt === maxPolls) throw new Error(`milestone did not finish after ${maxPolls} polls`);
+  throw new Error(`milestone did not finish after ${maxPolls} polls`);
 }
 
-const finalized = await api(`/works/${work.id}/manuscripts/finalize`, { method: 'POST', body: {} });
-const exported = await api(`/works/${work.id}/manuscripts/${finalized.manuscript.id}/export`);
-await mkdir('data', { recursive: true });
-const output = `data/model-milestone-${work.id}.json`;
-await writeFile(output, `${JSON.stringify(exported, null, 2)}\n`);
-console.log(`frozen manuscript ${finalized.manuscript.id} with ${finalized.manuscript.chapterCount} chapters`);
-console.log(`exported ${output}`);
+async function finalizeAndExport(label) {
+  const finalized = await api(`/works/${work.id}/manuscripts/finalize`, { method: 'POST', body: {} });
+  const exported = await api(`/works/${work.id}/manuscripts/${finalized.manuscript.id}/export`);
+  await mkdir('data', { recursive: true });
+  const output = `data/model-milestone-${label}-${work.id}.json`;
+  await writeFile(output, `${JSON.stringify(exported, null, 2)}\n`);
+  console.log(`frozen manuscript ${finalized.manuscript.id} with ${finalized.manuscript.chapterCount} chapters`);
+  console.log(`exported ${output}`);
+}
+
+const started = await api(`/works/${work.id}/milestones/100/start`, { method: 'POST', body: {} });
+console.log(`started 100-chapter run ${started.runId}; world=${started.milestone.worldPack?.id ?? 'missing'} bible=${started.milestone.storyBible?.id ?? 'missing'}`);
+await waitForRun(100, started);
+await finalizeAndExport('100');
+
+if (expandToFullBook) {
+  const expanded = await api(`/works/${work.id}/milestones/450/start`, { method: 'POST', body: {} });
+  console.log(`started 450-chapter expansion ${expanded.runId}; bible=${expanded.milestone.storyBible?.id ?? 'missing'}`);
+  await waitForRun(450, expanded);
+  await finalizeAndExport('450');
+}
