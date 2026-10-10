@@ -811,7 +811,13 @@ export function storyThreadAt(work: Work, threadId: string, chapterNumber: numbe
 
 /** Reconstructs a relationship value at a chapter without mutating the author seed. */
 export function relationshipAt(work: Work, relationshipId: string, chapterNumber: number): Relationship | undefined {
-  const base = work.relationships.get(relationshipId);
+  const setting = work.relationships.get(relationshipId);
+  const seed = work.storyBible?.relationships.find((relationship) => relationship.id === relationshipId);
+  const base: Relationship | undefined = setting ?? (seed ? {
+    id: seed.id, fromCharacterId: seed.fromCharacterId, toCharacterId: seed.toCharacterId,
+    kind: seed.kind, value: seed.value, locked: seed.locked,
+    layer: seed.kind === 'belief' ? 'belief' : 'objective', sinceChapter: seed.sinceChapter,
+  } : undefined);
   if (!base) return undefined;
   const change = [...work.events.values()]
     .filter((item) => item.active && item.eventType === 'relationship_change' && item.subjectId === relationshipId && item.chapterNumber <= chapterNumber)

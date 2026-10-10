@@ -213,6 +213,19 @@ test('relationship changes are reconstructed at the requested chapter', () => {
   assert.equal(work.relationships.get(relationshipId)?.value, '陌生');
 });
 
+test('story bible relationships are included in chapter snapshots', () => {
+  const service = new NovelService(provider);
+  const work = service.createWork('蓝图关系');
+  work.storyBible = {
+    id: 'bible', revision: 1, worldPackId: 'world', worldPackRevision: 1, status: 'locked',
+    coreConflict: '冲突', endingDirection: '收束', characters: [],
+    relationships: [{ id: 'seed-rel', fromCharacterId: 'hero', toCharacterId: 'rival', kind: 'belief', value: '误信', locked: true }],
+    arcs: [], volumes: [], unresolvedQuestions: [], createdAt: new Date().toISOString(),
+  };
+  assert.equal(relationshipAt(work, 'seed-rel', 1)?.value, '误信');
+  assert.equal(relationshipAt(work, 'seed-rel', 1)?.layer, 'belief');
+});
+
 test('arc progress and secret reveals are reconstructed at a chapter', () => {
   const service = new NovelService({
     generateChapter: ({ chapterNumber }) => {
