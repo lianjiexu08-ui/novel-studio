@@ -12,6 +12,9 @@ const provider = {
     if (chapterNumber === 95) events.push({ eventType: 'thread_resolution', subjectId: 'thread', predicate: 'status', value: { status: 'resolved' }, evidence: '界门来历得到解释' });
     if (chapterNumber === 98) events.push({ eventType: 'promise_payoff', subjectId: 'promise', predicate: 'status', value: { status: 'paid' }, evidence: '三年之约兑现' });
     if (chapterNumber === 100) events.push({ eventType: 'arc_progress', subjectId: 'arc', predicate: 'status', value: { status: 'resolved' }, evidence: '共同封印界门' });
+    if (chapterNumber === 30) events.push({ eventType: 'volume_progress', subjectId: 'vol-1', predicate: 'status', value: { status: 'resolved' }, evidence: '东陆危机完成' });
+    if (chapterNumber === 65) events.push({ eventType: 'volume_progress', subjectId: 'vol-2', predicate: 'status', value: { status: 'resolved' }, evidence: '诸域争锋完成' });
+    if (chapterNumber === 100) events.push({ eventType: 'volume_progress', subjectId: 'vol-3', predicate: 'status', value: { status: 'resolved' }, evidence: '界门终局完成' });
     return { content: `第${chapterNumber}章：主角继续推进主线。`, proposedEvents: events, observedEvents: events };
   },
 };
@@ -85,6 +88,7 @@ test('closure coverage blocks a long-form design with unresolved seeds', () => {
   work.storyBible = design.bible;
   const coverage = closureCoverageFor(work, 100);
   assert.equal(coverage.ready, false);
+  assert.equal(coverage.expected.volumes, 3);
   assert.equal(coverage.expected.secrets, 1);
   assert.match(coverage.errors.join('; '), /secret .*no reveal|promise .*remains open|thread .*no resolved|arc .*no resolved/);
 });

@@ -51,8 +51,13 @@ function milestoneChapterEvents(chapterNumber: number) {
       { eventType: 'promise_payoff', subjectId: 'promise', predicate: 'status', value: { status: 'paid' }, evidence: '三年之约兑现' },
       { eventType: 'thread_resolution', subjectId: 'thread', predicate: 'status', value: { status: 'resolved' }, evidence: '界门来历揭晓' },
       { eventType: 'arc_progress', subjectId: 'arc', predicate: 'status', value: { status: 'resolved' }, evidence: '主线决战完成' },
+      { eventType: 'volume_progress', subjectId: 'v3', predicate: 'status', value: { status: 'resolved' }, evidence: '终卷完成' },
     );
   }
+  if (chapterNumber === 34) events.push({ eventType: 'volume_progress', subjectId: 'v1', predicate: 'status', value: { status: 'resolved' }, evidence: '第一卷完成' });
+  if (chapterNumber === 67) events.push({ eventType: 'volume_progress', subjectId: 'v2', predicate: 'status', value: { status: 'resolved' }, evidence: '第二卷完成' });
+  if (chapterNumber === 150) events.push({ eventType: 'volume_progress', subjectId: 'v1', predicate: 'status', value: { status: 'resolved' }, evidence: '扩展第一卷完成' });
+  if (chapterNumber === 300) events.push({ eventType: 'volume_progress', subjectId: 'v2', predicate: 'status', value: { status: 'resolved' }, evidence: '扩展第二卷完成' });
   return events;
 }
 
@@ -221,7 +226,10 @@ test('design API saves and locks the world pack before the story bible', async (
     provider: {
       generateChapter: ({ chapterNumber }) => {
         const events: Array<{ eventType: string; subjectId: string; predicate: string; value: unknown }> = [{ eventType: 'character_state', subjectId: 'hero', predicate: 'power', value: chapterNumber }];
-        if (chapterNumber === 10) events.push({ eventType: 'arc_progress', subjectId: 'arc', predicate: 'status', value: { status: 'resolved' } });
+        if (chapterNumber === 10) events.push(
+          { eventType: 'arc_progress', subjectId: 'arc', predicate: 'status', value: { status: 'resolved' } },
+          { eventType: 'volume_progress', subjectId: 'v1', predicate: 'status', value: { status: 'resolved' } },
+        );
         return { content: `第${chapterNumber}章`, proposedEvents: events, observedEvents: events };
       },
     },

@@ -35,6 +35,7 @@ export interface ChapterHistoryDto {
   secretStates: Array<{ secretId: string; revealed: boolean; value: unknown; sourceEventId: string; sourceChapterVersionId: string; storyTime?: number }>;
   promiseStates: Array<{ promiseId: string; status: string; value: unknown; sourceEventId: string; sourceChapterVersionId: string; storyTime?: number }>;
   threadStates: Array<{ threadId: string; status: string; value: unknown; sourceEventId: string; sourceChapterVersionId: string; storyTime?: number }>;
+  volumeStates: Array<{ volumeId: string; status: string; value: unknown; sourceEventId: string; sourceChapterVersionId: string; storyTime?: number }>;
   quality: {
     contextManifest: { chapterNumber: number; stateRevision: number; constraintRevision: number; worldPackRevision?: number; storyBibleRevision?: number; adoptedVersionIds: string[]; includedEventIds: string[]; requiredMaterialStatus: string; omittedOptionalMaterial: string[]; estimatedTokens: number; contextBudget: number; canonHash: string; stateHash: string; createdAt: string };
     version?: { id: string; revision: number; status: string; stale: boolean; sourceCandidateId?: string };
@@ -42,7 +43,7 @@ export interface ChapterHistoryDto {
     checkCoverage: { total: number; passed: number; failed: number; inconclusive: number; unavailable: number };
     plotNodes: Array<{ id: string; title: string; expectedResult: string; targetChapter?: number; realization: { status: string; chapterVersionId?: string; evidence?: string; updatedAt: string } }>;
     impacts: Array<{ id: string; changedChapterNumber: number; affectedChapterNumbers: number[]; reason: string; createdAt: string }>;
-    closureCoverage: { ready: boolean; errors: string[]; resolved: { arcs: number; secrets: number; promises: number; threads: number }; expected: { arcs: number; secrets: number; promises: number; threads: number } };
+    closureCoverage: { ready: boolean; errors: string[]; resolved: { volumes: number; arcs: number; secrets: number; promises: number; threads: number }; expected: { volumes: number; arcs: number; secrets: number; promises: number; threads: number } };
   };
 }
 

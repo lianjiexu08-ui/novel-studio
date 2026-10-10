@@ -27,6 +27,7 @@ import {
   storyPromiseAt,
   storySecretAt,
   storyThreadAt,
+  storyVolumeAt,
   knowledgeAt,
   canonConsistencyChecker,
   chapterLengthChecker,
@@ -354,6 +355,9 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     const threadStates = (work.storyBible?.openThreads ?? []).map((thread) => storyThreadAt(work, thread.id, chapterNumber) ?? {
       threadId: thread.id, status: 'open' as const, value: { plannedResolution: thread.plannedResolution }, sourceEventId: '', sourceChapterVersionId: '',
     });
+    const volumeStates = (work.storyBible?.volumes ?? []).map((volume) => storyVolumeAt(work, volume.id, chapterNumber) ?? {
+      volumeId: volume.id, status: 'planned' as const, value: { endState: volume.endState }, sourceEventId: '', sourceChapterVersionId: '',
+    });
     const version = work.currentVersion(chapterNumber);
     const candidate = version?.sourceCandidateId
       ? work.candidates.get(version.sourceCandidateId)
@@ -371,6 +375,7 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
       secretStates,
       promiseStates,
       threadStates,
+      volumeStates,
       quality: {
         contextManifest: contextManifestFor(work, chapterNumber),
         version: version ? { id: version.id, revision: version.revision, status: version.status, stale: version.stale, sourceCandidateId: version.sourceCandidateId } : undefined,

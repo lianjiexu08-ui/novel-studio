@@ -146,6 +146,15 @@ export interface StoryThreadState {
   storyTime?: number;
 }
 
+export interface StoryVolumeState {
+  volumeId: string;
+  status: 'planned' | 'active' | 'resolved' | 'diverged';
+  value: unknown;
+  sourceEventId: string;
+  sourceChapterVersionId: string;
+  storyTime?: number;
+}
+
 export interface StoryValueState {
   subjectId: string;
   field: string;
@@ -277,8 +286,8 @@ export interface ImpactRecord {
 export interface ClosureCoverage {
   ready: boolean;
   errors: string[];
-  resolved: { arcs: number; secrets: number; promises: number; threads: number };
-  expected: { arcs: number; secrets: number; promises: number; threads: number };
+  resolved: { volumes: number; arcs: number; secrets: number; promises: number; threads: number };
+  expected: { volumes: number; arcs: number; secrets: number; promises: number; threads: number };
 }
 
 export type DesignRevisionKind = 'world_pack' | 'story_bible';
@@ -737,6 +746,7 @@ export class NovelService {
 export function closureCoverageFor(work: Work, chapterNumber: number): ClosureCoverage {
   const bible = work.storyBible;
   const expected = {
+    volumes: bible?.volumes.length ?? 0,
     arcs: bible?.arcs.length ?? 0,
     secrets: bible?.secrets?.length ?? 0,
     promises: bible?.promises?.length ?? 0,
@@ -749,6 +759,12 @@ export function closureCoverageFor(work: Work, chapterNumber: number): ClosureCo
     .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id))
     .at(-1)?.value;
   const statusOf = (value: unknown) => value && typeof value === 'object' && 'status' in value ? String((value as { status?: unknown }).status) : '';
+  let volumes = 0;
+  for (const volume of bible?.volumes ?? []) {
+    const status = statusOf(finalValue('volume_progress', volume.id));
+    if (status === 'resolved' || status === 'diverged') volumes += 1;
+    else errors.push(`volume ${volume.id} has no resolved or diverged evidence`);
+  }
   let arcs = 0;
   for (const arc of bible?.arcs ?? []) {
     const status = statusOf(finalValue('arc_progress', arc.id));
@@ -771,7 +787,7 @@ export function closureCoverageFor(work: Work, chapterNumber: number): ClosureCo
     if (statusOf(finalValue('thread_resolution', thread.id)) === 'resolved') threads += 1;
     else errors.push(`thread ${thread.id} has no resolved evidence`);
   }
-  return { ready: errors.length === 0, errors, resolved: { arcs, secrets, promises, threads }, expected };
+  return { ready: errors.length === 0, errors, resolved: { volumes, arcs, secrets, promises, threads }, expected };
 }
 
 /** Builds the exact context manifest used for a chapter. This is exported so
@@ -902,6 +918,18 @@ export function storyThreadAt(work: Work, threadId: string, chapterNumber: numbe
   return { threadId, status, value: event.value, sourceEventId: event.id, sourceChapterVersionId: event.chapterVersionId, storyTime: event.storyTime };
 }
 
+/** Reconstructs whether a volume's planned end state has been evidenced. */
+export function storyVolumeAt(work: Work, volumeId: string, chapterNumber: number): StoryVolumeState | undefined {
+  const event = [...work.events.values()]
+    .filter((item) => item.active && item.eventType === 'volume_progress' && item.subjectId === volumeId && item.chapterNumber <= chapterNumber)
+    .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id)).at(-1);
+  if (!event) return undefined;
+  const raw = event.value && typeof event.value === 'object' ? event.value as Record<string, unknown> : {};
+  const rawStatus = raw.status;
+  const status: StoryVolumeState['status'] = rawStatus === 'active' || rawStatus === 'resolved' || rawStatus === 'diverged' ? rawStatus : 'planned';
+  return { volumeId, status, value: event.value, sourceEventId: event.id, sourceChapterVersionId: event.chapterVersionId, storyTime: event.storyTime };
+}
+
 function valueStateAt(work: Work, eventType: string, subjectId: string, field: string, chapterNumber: number): StoryValueState | undefined {
   const event = [...work.events.values()]
     .filter((item) => item.active && item.eventType === eventType && item.subjectId === subjectId && item.predicate === field && item.chapterNumber <= chapterNumber)
@@ -969,7 +997,7 @@ export const observedEventsChecker: CandidateChecker = {
 export const canonConsistencyChecker: CandidateChecker = {
   name: 'canon_consistency',
   check: ({ work, candidate }) => {
-    const allowedEventTypes = new Set(['character_state', 'relationship_change', 'knowledge_belief', 'resource_change', 'artifact_change', 'plot_progress', 'arc_progress', 'secret_reveal', 'promise_payoff', 'thread_resolution']);
+    const allowedEventTypes = new Set(['character_state', 'relationship_change', 'knowledge_belief', 'resource_change', 'artifact_change', 'plot_progress', 'volume_progress', 'arc_progress', 'secret_reveal', 'promise_payoff', 'thread_resolution']);
     const characterIds = new Set([
       ...(work.storyBible?.characters.map((character) => character.id) ?? []),
       ...work.characters.keys(),
@@ -995,6 +1023,7 @@ export const canonConsistencyChecker: CandidateChecker = {
       if (event.eventType === 'resource_change' && resourceIds.size && !resourceIds.has(event.subjectId)) errors.push(`unknown resource ${event.subjectId}`);
       if (event.eventType === 'artifact_change' && artifactIds.size && !artifactIds.has(event.subjectId)) errors.push(`unknown artifact ${event.subjectId}`);
       if (event.eventType === 'plot_progress' && plotNodeIds.size && !plotNodeIds.has(event.subjectId) && !event.plotNodeId) errors.push(`unknown plot node ${event.subjectId}`);
+      if (event.eventType === 'volume_progress' && work.storyBible && !work.storyBible.volumes.some((volume) => volume.id === event.subjectId)) errors.push(`unknown story volume ${event.subjectId}`);
       if (event.eventType === 'arc_progress' && work.storyBible && !work.storyBible.arcs.some((arc) => arc.id === event.subjectId)) errors.push(`unknown story arc ${event.subjectId}`);
       if (event.eventType === 'secret_reveal' && work.storyBible && !(work.storyBible.secrets ?? []).some((secret) => secret.id === event.subjectId)) errors.push(`unknown story secret ${event.subjectId}`);
       if (event.eventType === 'promise_payoff' && work.storyBible && !(work.storyBible.promises ?? []).some((promise) => promise.id === event.subjectId)) errors.push(`unknown story promise ${event.subjectId}`);
@@ -1012,6 +1041,7 @@ export const canonConsistencyChecker: CandidateChecker = {
       if (event.eventType === 'character_state' && ['location', 'locationId'].includes(event.predicate) && locationIds.size && referencedValueId && !locationIds.has(referencedValueId)) errors.push(`unknown location ${referencedValueId}`);
       if (event.eventType === 'character_state' && ['realm', 'realmId', 'powerRealm'].includes(event.predicate) && realmIds.size && referencedValueId && !realmIds.has(referencedValueId)) errors.push(`unknown realm ${referencedValueId}`);
       if (event.eventType === 'arc_progress' && value && !['active', 'resolved', 'diverged'].includes(String(value.status))) errors.push(`invalid arc status for ${event.subjectId}`);
+      if (event.eventType === 'volume_progress' && value && !['active', 'resolved', 'diverged'].includes(String(value.status))) errors.push(`invalid volume status for ${event.subjectId}`);
       if (event.eventType === 'promise_payoff' && value && !['paid', 'broken', 'open'].includes(String(value.status))) errors.push(`invalid promise status for ${event.subjectId}`);
       if (event.eventType === 'thread_resolution' && value && !['resolved', 'deferred', 'open'].includes(String(value.status))) errors.push(`invalid thread status for ${event.subjectId}`);
       if (event.storyTime !== undefined && (!Number.isInteger(event.storyTime) || event.storyTime < 0)) errors.push(`invalid story time in ${event.subjectId}`);
