@@ -316,6 +316,33 @@ export function validateWorldPack(pack: WorldPack): GateResult {
   return { ready: errors.length === 0, errors, warnings };
 }
 
+/** Scale and progression checks used once a Story Bible enters the long-form
+ * production path. The normal world validator remains useful for small drafts. */
+export function validateLongFormWorldPack(pack: WorldPack): GateResult {
+  const base = validateWorldPack(pack);
+  const errors = [...base.errors];
+  const warnings = [...base.warnings];
+  const minimums: Array<[string, number, number]> = [
+    ['power systems', pack.powerSystems.length, 1], ['realms', pack.realms.length, 3],
+    ['techniques', pack.techniques.length, 3], ['artifacts', pack.artifacts.length, 3],
+    ['resources', pack.resources.length, 3], ['locations', pack.locations.length, 3],
+    ['factions', pack.factions.length, 3], ['historical events', pack.historicalEvents.length, 3],
+  ];
+  for (const [label, actual, expected] of minimums) if (actual < expected) errors.push(`long-form world pack requires ${expected} ${label}; found ${actual}`);
+  if (pack.locations.filter((location) => location.kind === 'continent').length < 3) errors.push('long-form world pack requires at least 3 continent locations');
+  for (const system of pack.powerSystems) {
+    const realms = pack.realms.filter((realm) => realm.systemId === system.id).sort((a, b) => a.rank - b.rank);
+    const ranks = new Set<number>();
+    for (const realm of realms) {
+      if (ranks.has(realm.rank)) errors.push(`power system ${system.id} has duplicate realm rank ${realm.rank}`);
+      ranks.add(realm.rank);
+      if (realm.rank < 1) errors.push(`realm ${realm.id} must have a positive rank`);
+    }
+    if (realms.length >= 3 && realms.some((realm, index) => index > 0 && realm.rank <= realms[index - 1].rank)) errors.push(`power system ${system.id} realm ranks are not strictly increasing`);
+  }
+  return { ready: errors.length === 0, errors, warnings };
+}
+
 export function lockWorldPack(pack: WorldPack): WorldPack {
   if (pack.status !== 'reviewed') throw new CanonGateError('world pack must be reviewed before locking');
   const result = validateWorldPack(pack);
@@ -412,6 +439,13 @@ export function lockStoryBible(bible: StoryBible, worldPack: WorldPack): StoryBi
   if (bible.status !== 'reviewed') throw new CanonGateError('story bible must be reviewed before locking');
   const result = validateStoryBible(bible, worldPack);
   if (!result.ready) throw new CanonGateError(`story bible is invalid: ${result.errors.join('; ')}`);
+  const plannedChapterCount = bible.volumes.reduce((sum, volume) => sum + volume.plannedChapterCount, 0);
+  if (plannedChapterCount >= 100) {
+    const longFormWorld = validateLongFormWorldPack(worldPack);
+    if (!longFormWorld.ready) throw new CanonGateError(`long-form world pack is invalid: ${longFormWorld.errors.join('; ')}`);
+    const longFormBible = validateLongFormStoryBible(bible, worldPack, plannedChapterCount);
+    if (!longFormBible.ready) throw new CanonGateError(`long-form story bible is invalid: ${longFormBible.errors.join('; ')}`);
+  }
   if (hasBlockingQuestions(bible.unresolvedQuestions)) throw new CanonGateError('blocking story questions must be resolved before locking');
   return { ...bible, status: 'locked', revision: bible.revision + 1, worldPackRevision: worldPack.revision, lockedAt: now() };
 }
@@ -437,6 +471,8 @@ export function chapterGenerationGate(worldPack: WorldPack, bible: StoryBible, c
   if (!bibleResult.ready) errors.push(...bibleResult.errors.map((error) => `story bible: ${error}`));
   const plannedChapterCount = bible.volumes.reduce((sum, volume) => sum + volume.plannedChapterCount, 0);
   if (plannedChapterCount >= 100) {
+    const longFormWorld = validateLongFormWorldPack(worldPack);
+    if (!longFormWorld.ready) errors.push(...longFormWorld.errors.map((error) => `long-form world pack: ${error}`));
     const longFormResult = validateLongFormStoryBible(bible, worldPack, plannedChapterCount);
     if (!longFormResult.ready) errors.push(...longFormResult.errors.map((error) => `long-form story bible: ${error}`));
   }
