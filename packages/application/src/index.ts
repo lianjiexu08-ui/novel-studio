@@ -147,10 +147,10 @@ export class ChapterWorkflow {
     if (!this.designProvider) throw new Error('design provider is not configured');
     return this.repository.transaction(workId, async ({ work }) => {
       const worldPack = await this.designProvider!.generateWorldPack({ title: work.title, covenant: work.covenant });
-      work.worldPack = worldPack;
-      work.recordDesignRevision('world_pack', worldPack);
+      work.worldPack = { ...worldPack, status: 'proposed', lockedAt: undefined };
+      work.recordDesignRevision('world_pack', work.worldPack);
       work.constraintRevision += 1;
-      return worldPack;
+      return work.worldPack;
     });
   }
 
@@ -188,10 +188,10 @@ export class ChapterWorkflow {
     return this.repository.transaction(workId, async ({ work }) => {
       if (!work.worldPack) throw new Error('world pack has not been generated');
       const storyBible = await this.designProvider!.generateStoryBible({ title: work.title, covenant: work.covenant, worldPack: work.worldPack, chapterTarget, previousStoryBible });
-      work.storyBible = storyBible;
-      work.recordDesignRevision('story_bible', storyBible);
+      work.storyBible = { ...storyBible, status: 'proposed', lockedAt: undefined };
+      work.recordDesignRevision('story_bible', work.storyBible);
       work.constraintRevision += 1;
-      return storyBible;
+      return work.storyBible;
     });
   }
 

@@ -300,7 +300,7 @@ test('design generation route stores a proposed world pack from the planner', as
   const { app } = createApiServer({
     repository: new InMemoryWorkRepository(),
     designProvider: {
-      generateWorldPack: async () => ({ ...createEmptyWorldPack('模型生成世界'), status: 'proposed' }),
+      generateWorldPack: async () => ({ ...createEmptyWorldPack('模型生成世界'), status: 'locked' as const, lockedAt: new Date().toISOString() }),
       generateStoryBible: async () => { throw new Error('not used'); },
     },
   });
