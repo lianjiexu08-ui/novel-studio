@@ -118,7 +118,7 @@ test('chapter length checker protects configured model output', () => {
   const candidate = service.generateCandidate(work.id, 1);
   const short = chapterLengthChecker.check({ work, candidate: { ...candidate, content: '太短' } });
   assert.equal(short.status, 'failed');
-  const long = chapterLengthChecker.check({ work, candidate: { ...candidate, content: '中'.repeat(400) } });
+  const long = chapterLengthChecker.check({ work, candidate: { ...candidate, content: '中'.repeat(800) } });
   assert.equal(long.status, 'passed');
 });
 

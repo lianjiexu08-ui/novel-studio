@@ -1058,7 +1058,10 @@ export const chapterLengthChecker: CandidateChecker = {
   name: 'chapter_length',
   check: ({ work, candidate }) => {
     const expected = work.covenant.chapterWords;
-    const minimum = Math.max(200, Math.floor(expected * 0.35));
+    // A long-form manuscript cannot reach its promised scale if chapters are
+    // routinely emitted as short summaries. Keep a 25% tolerance for model
+    // variance while requiring at least three quarters of the covenant target.
+    const minimum = Math.max(200, Math.floor(expected * 0.75));
     const passed = candidate.content.trim().length >= minimum;
     return {
       checker: 'chapter_length', status: passed ? 'passed' : 'failed',
