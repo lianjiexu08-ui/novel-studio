@@ -87,7 +87,8 @@ function defaultDesignProvider(): DesignProvider | undefined {
   const apiKey = process.env.NOVEL_MODEL_API_KEY;
   const model = process.env.NOVEL_PLANNING_MODEL;
   if (!endpoint || !apiKey || !model) return undefined;
-  return new JsonDesignPlanner(new OpenAICompatiblePlanningClient(endpoint, apiKey, model, Number(process.env.NOVEL_MODEL_BUDGET_USD ?? Number.POSITIVE_INFINITY)));
+  const targetChapters = Number(process.env.NOVEL_PLANNING_CHAPTER_TARGET ?? 100);
+  return new JsonDesignPlanner(new OpenAICompatiblePlanningClient(endpoint, apiKey, model, Number(process.env.NOVEL_MODEL_BUDGET_USD ?? Number.POSITIVE_INFINITY)), targetChapters);
 }
 
 function generationCheckers() {

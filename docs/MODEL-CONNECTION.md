@@ -6,6 +6,8 @@
 export NOVEL_MODEL_ENDPOINT=https://api.autofish.club
 export NOVEL_MODEL_API_KEY=<your-api-key>
 export NOVEL_PLANNING_MODEL=gpt-5.6-sol
+# 首轮里程碑生成 100 章；扩展完整长篇时改为 450
+export NOVEL_PLANNING_CHAPTER_TARGET=100
 # 可选；不设置时正文使用规划模型
 export NOVEL_WRITING_MODEL=gpt-5.6-sol
 # 可选；单位 USD
