@@ -77,7 +77,7 @@ export function defaultProvider(): ModelProvider {
   const model = process.env.NOVEL_WRITING_MODEL ?? process.env.NOVEL_PLANNING_MODEL;
   const timeoutMs = Number(process.env.NOVEL_MODEL_TIMEOUT_MS ?? 60_000);
   if (endpoint && apiKey && model) {
-    return new OpenAICompatibleChapterProvider(endpoint, apiKey, model, Number(process.env.NOVEL_MODEL_BUDGET_USD ?? Number.POSITIVE_INFINITY), timeoutMs);
+    return new OpenAICompatibleChapterProvider(endpoint, apiKey, model, Number(process.env.NOVEL_MODEL_BUDGET_USD ?? Number.POSITIVE_INFINITY), timeoutMs, process.env.NOVEL_INDEPENDENT_EXTRACTION !== 'false');
   }
   return {
     generateChapter: ({ chapterNumber, context }) => {

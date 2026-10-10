@@ -924,6 +924,9 @@ export const canonConsistencyChecker: CandidateChecker = {
     ]);
     const resourceIds = new Set(work.worldPack?.resources.map((resource) => resource.id) ?? []);
     const artifactIds = new Set(work.worldPack?.artifacts.map((artifact) => artifact.id) ?? []);
+    const locationIds = new Set(work.worldPack?.locations.map((location) => location.id) ?? []);
+    const realmIds = new Set(work.worldPack?.realms.map((realm) => realm.id) ?? []);
+    const plotNodeIds = new Set(work.plotNodes.keys());
     const errors: string[] = [];
     for (const event of candidate.proposedEvents) {
       if (!allowedEventTypes.has(event.eventType)) errors.push(`unsupported event type ${event.eventType}`);
@@ -935,15 +938,27 @@ export const canonConsistencyChecker: CandidateChecker = {
       )) errors.push(`locked relationship ${event.subjectId}`);
       if (event.eventType === 'resource_change' && resourceIds.size && !resourceIds.has(event.subjectId)) errors.push(`unknown resource ${event.subjectId}`);
       if (event.eventType === 'artifact_change' && artifactIds.size && !artifactIds.has(event.subjectId)) errors.push(`unknown artifact ${event.subjectId}`);
+      if (event.eventType === 'plot_progress' && plotNodeIds.size && !plotNodeIds.has(event.subjectId) && !event.plotNodeId) errors.push(`unknown plot node ${event.subjectId}`);
       if (event.eventType === 'arc_progress' && work.storyBible && !work.storyBible.arcs.some((arc) => arc.id === event.subjectId)) errors.push(`unknown story arc ${event.subjectId}`);
       if (event.eventType === 'secret_reveal' && work.storyBible && !(work.storyBible.secrets ?? []).some((secret) => secret.id === event.subjectId)) errors.push(`unknown story secret ${event.subjectId}`);
       if (event.eventType === 'promise_payoff' && work.storyBible && !(work.storyBible.promises ?? []).some((promise) => promise.id === event.subjectId)) errors.push(`unknown story promise ${event.subjectId}`);
       if (event.eventType === 'thread_resolution' && work.storyBible && !(work.storyBible.openThreads ?? []).some((thread) => thread.id === event.subjectId)) errors.push(`unknown story thread ${event.subjectId}`);
       const value = event.value && typeof event.value === 'object' ? event.value as Record<string, unknown> : undefined;
+      const referencedValueId = typeof event.value === 'string'
+        ? event.value
+        : value && typeof value.id === 'string'
+          ? value.id
+          : value && typeof value.locationId === 'string'
+            ? value.locationId
+            : value && typeof value.realmId === 'string'
+              ? value.realmId
+              : undefined;
+      if (event.eventType === 'character_state' && ['location', 'locationId'].includes(event.predicate) && locationIds.size && referencedValueId && !locationIds.has(referencedValueId)) errors.push(`unknown location ${referencedValueId}`);
+      if (event.eventType === 'character_state' && ['realm', 'realmId', 'powerRealm'].includes(event.predicate) && realmIds.size && referencedValueId && !realmIds.has(referencedValueId)) errors.push(`unknown realm ${referencedValueId}`);
       if (event.eventType === 'arc_progress' && value && !['active', 'resolved', 'diverged'].includes(String(value.status))) errors.push(`invalid arc status for ${event.subjectId}`);
       if (event.eventType === 'promise_payoff' && value && !['paid', 'broken', 'open'].includes(String(value.status))) errors.push(`invalid promise status for ${event.subjectId}`);
       if (event.eventType === 'thread_resolution' && value && !['resolved', 'deferred', 'open'].includes(String(value.status))) errors.push(`invalid thread status for ${event.subjectId}`);
-      if (event.storyTime !== undefined && event.storyTime < 0) errors.push(`negative story time in ${event.subjectId}`);
+      if (event.storyTime !== undefined && (!Number.isInteger(event.storyTime) || event.storyTime < 0)) errors.push(`invalid story time in ${event.subjectId}`);
     }
     return {
       checker: 'canon_consistency', status: errors.length ? 'failed' : 'passed',

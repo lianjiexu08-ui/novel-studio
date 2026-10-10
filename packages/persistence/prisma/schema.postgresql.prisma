@@ -62,6 +62,7 @@ model Project {
   constraintRevision    Int                     @default(0)
   worldPack             Json                    @default("{}")
   storyBible            Json                    @default("{}")
+  designHistory         Json                    @default("[]")
   createdAt             DateTime                @default(now())
   updatedAt             DateTime                @updatedAt
   chapters              Chapter[]

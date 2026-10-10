@@ -1,9 +1,37 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { JsonDesignPlanner, PlanningParseError } from '../src/index.ts';
+import { createServer } from 'node:http';
+import { JsonDesignPlanner, OpenAICompatibleChapterProvider, PlanningParseError } from '../src/index.ts';
+import { NovelService } from '../../../novel-service-core/src/core.ts';
 import { createEmptyWorldPack } from '../../../novel-service-core/src/world.ts';
 
 const covenant = { entryMode: 'expand' as const, genre: 'xuanhuan' as const, substyle: '宗门成长', audience: '长篇玄幻读者', hook: '以代价换力量', mustKeep: '', lockedNotes: '', avoid: '', targetLength: '百万字', chapterWords: 2200, updateCadence: '日更' };
+
+test('network chapter provider performs an independent extraction pass', async () => {
+  let calls = 0;
+  const event = { eventType: 'character_state', subjectId: 'hero', predicate: 'power', value: 'realm-1', evidence: '正文明确写出境界变化' };
+  const server = createServer(async (_request, response) => {
+    calls += 1;
+    const body = calls === 1
+      ? { content: '这一章正文', proposedEvents: [event] }
+      : { observedEvents: [event] };
+    response.writeHead(200, { 'content-type': 'application/json' });
+    response.end(JSON.stringify({ choices: [{ message: { content: JSON.stringify(body) } }], usage: { prompt_tokens: 1, completion_tokens: 1, cost_usd: 0 } }));
+  });
+  await new Promise<void>((resolve) => server.listen(0, '127.0.0.1', resolve));
+  const address = server.address();
+  assert.ok(address && typeof address === 'object');
+  try {
+    const provider = new OpenAICompatibleChapterProvider(`http://127.0.0.1:${address.port}`, 'test-key', 'test-model', 10, 5_000, true);
+    const service = new NovelService(provider);
+    const work = service.createWork('独立抽取', covenant);
+    const candidate = await service.generateCandidateAsync(work.id, 1, 'extract-run');
+    assert.equal(calls, 2);
+    assert.deepEqual(candidate.observedEvents, [event]);
+  } finally {
+    await new Promise<void>((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
+  }
+});
 
 test('planner validates structured world pack responses', async () => {
   const response = {

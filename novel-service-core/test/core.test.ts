@@ -82,6 +82,24 @@ test('canon consistency checker validates continuity event types and closure sta
   assert.match(check.message, /unsupported event type|invalid promise status/);
 });
 
+test('canon consistency checker validates location, realm, plot and time references', () => {
+  const service = new NovelService({
+    generateChapter: () => ({ content: '越界状态', proposedEvents: [
+      { eventType: 'character_state', subjectId: 'hero', predicate: 'locationId', value: 'missing-location', storyTime: -1 },
+      { eventType: 'character_state', subjectId: 'hero', predicate: 'realmId', value: 'missing-realm' },
+      { eventType: 'plot_progress', subjectId: 'missing-plot', predicate: 'status', value: 'active' },
+    ], observedEvents: [] }),
+  });
+  const work = service.createWork('引用校验');
+  work.characters.set('hero', { id: 'hero', name: '主角', aliases: [], role: 'protagonist', identity: '', goal: '', principles: '', voice: '', notes: '', locked: false, createdAt: new Date().toISOString() });
+  const candidate = service.generateCandidate(work.id, 1);
+  work.worldPack = { ...createEmptyWorldPack('世界'), locations: [{ id: 'home', name: '故乡', kind: 'city', entryConditions: [], status: 'locked' }], realms: [{ id: 'realm-1', systemId: 'system', name: '炼气', rank: 1, prerequisites: [], capabilities: [], cost: '时间', counters: [], status: 'locked' }] };
+  work.plotNodes.set('plot-1', { id: 'plot-1', title: '主线', expectedResult: '推进', prerequisites: [], realization: { status: 'unrealized', updatedAt: new Date().toISOString() } });
+  const check = service.runChecks(work.id, candidate.id, [canonConsistencyChecker])[0];
+  assert.equal(check.status, 'failed');
+  assert.match(check.message, /unknown location|unknown realm|unknown plot node|invalid story time/);
+});
+
 test('observed event checker blocks missing or divergent extraction', () => {
   const service = new NovelService({
     generateChapter: () => ({ content: '正文', proposedEvents: [{ eventType: 'character_state', subjectId: 'hero', predicate: 'power', value: 1 }], observedEvents: [] }),

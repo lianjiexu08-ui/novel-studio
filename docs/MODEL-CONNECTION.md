@@ -14,6 +14,8 @@ export NOVEL_WRITING_MODEL=gpt-5.6-sol
 export NOVEL_MODEL_BUDGET_USD=20
 # 可选；默认 60000 毫秒，长规划响应可提高到 120000 或 180000
 export NOVEL_MODEL_TIMEOUT_MS=120000
+# 默认对每章正文再做一次独立事件抽取；预算紧张时才关闭
+export NOVEL_INDEPENDENT_EXTRACTION=true
 mkdir -p data
 DATABASE_URL="file:$(pwd)/data/novel-studio.db" npm run push -w novel-studio-persistence
 npm run dev:api
@@ -33,7 +35,7 @@ npm run dev:api
 
 章节页的“按蓝图连续生成”会以后台 run 执行，接口立即返回；进度从检查点轮询，失败会标为 `paused` 并保留错误原因。服务重启后使用同一个 runId 重试即可继续。
 
-模型输出必须是结构化 JSON。世界包和 Story Bible 会先经过合同校验、引用校验和锁定门禁；正文模型的事件声明和观察结果也必须匹配，否则不能采用。
+模型输出必须是结构化 JSON。世界包和 Story Bible 会先经过合同校验、引用校验和锁定门禁；正文生成后会再调用一次抽取角色独立读取正文，事件声明、独立观察结果和世界引用必须全部匹配，否则不能采用。
 
 真实模型调用有 60 秒超时保护。一次调用超时只会让候选生成失败，不会写入章节事实；重新生成时使用新的 runId。
 
