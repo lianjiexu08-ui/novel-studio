@@ -43,6 +43,19 @@ function milestoneDesign() {
   return { world, bible };
 }
 
+function milestoneChapterEvents(chapterNumber: number) {
+  const events: Array<{ eventType: string; subjectId: string; predicate: string; value: unknown; evidence?: string }> = [{ eventType: 'character_state', subjectId: 'hero', predicate: 'power', value: chapterNumber }];
+  if (chapterNumber === 100) {
+    events.push(
+      { eventType: 'secret_reveal', subjectId: 'secret', predicate: 'revealed', value: true, evidence: '遗印真相揭示' },
+      { eventType: 'promise_payoff', subjectId: 'promise', predicate: 'status', value: { status: 'paid' }, evidence: '三年之约兑现' },
+      { eventType: 'thread_resolution', subjectId: 'thread', predicate: 'status', value: { status: 'resolved' }, evidence: '界门来历揭晓' },
+      { eventType: 'arc_progress', subjectId: 'arc', predicate: 'status', value: { status: 'resolved' }, evidence: '主线决战完成' },
+    );
+  }
+  return events;
+}
+
 test('local API runs create -> generate -> check -> adopt -> outbox', async () => {
   const { app } = createApiServer({ repository: new InMemoryWorkRepository() });
   try {
@@ -337,7 +350,7 @@ test('100-chapter milestone endpoint starts from locked design and reaches a fin
   const design = milestoneDesign();
   const { app } = createApiServer({
     repository: new InMemoryWorkRepository(),
-    provider: { generateChapter: ({ chapterNumber }) => ({ content: `第${chapterNumber}章`, proposedEvents: [{ eventType: 'character_state', subjectId: 'hero', predicate: 'power', value: chapterNumber }], observedEvents: [{ eventType: 'character_state', subjectId: 'hero', predicate: 'power', value: chapterNumber }] }) },
+    provider: { generateChapter: ({ chapterNumber }) => { const events = milestoneChapterEvents(chapterNumber); return { content: `第${chapterNumber}章`, proposedEvents: events, observedEvents: events }; } },
     designProvider: { generateWorldPack: async () => design.world, generateStoryBible: async () => design.bible },
   });
   try {
@@ -357,6 +370,9 @@ test('100-chapter milestone endpoint starts from locked design and reaches a fin
     }
     const status = await app.inject({ method: 'GET', url: `/works/${work.id}/runs` });
     assert.equal(status.json().checkpoints[0].nextChapter, 101);
+    const finalized = await app.inject({ method: 'POST', url: `/works/${work.id}/manuscripts/finalize`, payload: {} });
+    assert.equal(finalized.statusCode, 200);
+    assert.equal(finalized.json().manuscript.chapterCount, 100);
   } finally {
     await app.close();
   }
@@ -372,7 +388,7 @@ test('450-chapter expansion resumes after the first hundred chapters', async () 
   };
   const { app } = createApiServer({
     repository: new InMemoryWorkRepository(),
-    provider: { generateChapter: ({ chapterNumber }) => ({ content: `第${chapterNumber}章`, proposedEvents: [{ eventType: 'character_state', subjectId: 'hero', predicate: 'power', value: chapterNumber }], observedEvents: [{ eventType: 'character_state', subjectId: 'hero', predicate: 'power', value: chapterNumber }] }) },
+    provider: { generateChapter: ({ chapterNumber }) => { const events = milestoneChapterEvents(chapterNumber); return { content: `第${chapterNumber}章`, proposedEvents: events, observedEvents: events }; } },
     designProvider: {
       generateWorldPack: async () => design.world,
       generateStoryBible: async ({ chapterTarget, previousStoryBible }) => {
@@ -390,6 +406,9 @@ test('450-chapter expansion resumes after the first hundred chapters', async () 
       if (status.json().checkpoints.some((checkpoint: { runId: string; nextChapter: number }) => checkpoint.runId === first.json().runId && checkpoint.nextChapter === 101)) break;
       await new Promise((resolve) => setTimeout(resolve, 10));
     }
+    const firstManuscript = await app.inject({ method: 'POST', url: `/works/${work.id}/manuscripts/finalize`, payload: {} });
+    assert.equal(firstManuscript.statusCode, 200);
+    assert.equal(firstManuscript.json().manuscript.chapterCount, 100);
     const started = await app.inject({ method: 'POST', url: `/works/${work.id}/milestones/450/start`, payload: {} });
     assert.equal(started.statusCode, 202);
     assert.equal(started.json().milestone.targetChapter, 450);
@@ -402,6 +421,9 @@ test('450-chapter expansion resumes after the first hundred chapters', async () 
     const status = await app.inject({ method: 'GET', url: `/works/${work.id}/runs` });
     assert.equal(status.json().checkpoints.find((checkpoint: { runId: string }) => checkpoint.runId === started.json().runId).nextChapter, 451);
     assert.equal((await app.inject({ method: 'GET', url: `/works/${work.id}/design` })).json().storyBible.volumes.reduce((sum, volume) => sum + volume.plannedChapterCount, 0), 450);
+    const finalManuscript = await app.inject({ method: 'POST', url: `/works/${work.id}/manuscripts/finalize`, payload: {} });
+    assert.equal(finalManuscript.statusCode, 200);
+    assert.equal(finalManuscript.json().manuscript.chapterCount, 450);
   } finally {
     await app.close();
   }
