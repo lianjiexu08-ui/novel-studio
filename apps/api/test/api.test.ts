@@ -331,6 +331,11 @@ test('100-chapter milestone endpoint starts from locked design and reaches a fin
     const started = await app.inject({ method: 'POST', url: `/works/${work.id}/milestones/100/start`, payload: {} });
     assert.equal(started.statusCode, 202);
     assert.equal(started.json().milestone.targetChapter, 100);
+    const planned = await app.inject({ method: 'GET', url: `/works/${work.id}/state/1` });
+    assert.equal(planned.json().arcStates[0].status, 'planned');
+    assert.equal(planned.json().secretStates[0].revealed, false);
+    assert.equal(planned.json().promiseStates[0].status, 'open');
+    assert.equal(planned.json().threadStates[0].status, 'open');
     for (let attempt = 0; attempt < 20; attempt += 1) {
       const status = await app.inject({ method: 'GET', url: `/works/${work.id}/runs` });
       if (status.json().checkpoints[0]?.nextChapter === 101) break;

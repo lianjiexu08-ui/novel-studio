@@ -332,6 +332,18 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
       ...work.relationships.keys(),
       ...(work.storyBible?.relationships.map((relationship) => relationship.id) ?? []),
     ]);
+    const arcStates = (work.storyBible?.arcs ?? []).map((arc) => storyArcAt(work, arc.id, chapterNumber) ?? {
+      arcId: arc.id, status: 'planned' as const, value: { plannedOutcome: arc.plannedOutcome }, sourceEventId: '', sourceChapterVersionId: '',
+    });
+    const secretStates = (work.storyBible?.secrets ?? []).map((secret) => storySecretAt(work, secret.id, chapterNumber) ?? {
+      secretId: secret.id, revealed: false, value: { revealCondition: secret.revealCondition }, sourceEventId: '', sourceChapterVersionId: '',
+    });
+    const promiseStates = (work.storyBible?.promises ?? []).map((promise) => storyPromiseAt(work, promise.id, chapterNumber) ?? {
+      promiseId: promise.id, status: 'open' as const, value: { payoffCondition: promise.payoffCondition }, sourceEventId: '', sourceChapterVersionId: '',
+    });
+    const threadStates = (work.storyBible?.openThreads ?? []).map((thread) => storyThreadAt(work, thread.id, chapterNumber) ?? {
+      threadId: thread.id, status: 'open' as const, value: { plannedResolution: thread.plannedResolution }, sourceEventId: '', sourceChapterVersionId: '',
+    });
     const version = work.currentVersion(chapterNumber);
     const candidate = version?.sourceCandidateId
       ? work.candidates.get(version.sourceCandidateId)
@@ -345,10 +357,10 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
       relationships: [...relationshipIds].map((relationshipId) => relationshipAt(work, relationshipId, chapterNumber)),
       resourceStates: (work.worldPack?.resources ?? []).flatMap((resource) => [...new Set([...work.events.values()].filter((event) => event.active && event.eventType === 'resource_change' && event.subjectId === resource.id && event.chapterNumber <= chapterNumber).map((event) => event.predicate))].map((field) => resourceStateAt(work, resource.id, field, chapterNumber)).filter((state): state is NonNullable<typeof state> => Boolean(state))),
       artifactStates: (work.worldPack?.artifacts ?? []).flatMap((artifact) => [...new Set([...work.events.values()].filter((event) => event.active && event.eventType === 'artifact_change' && event.subjectId === artifact.id && event.chapterNumber <= chapterNumber).map((event) => event.predicate))].map((field) => artifactStateAt(work, artifact.id, field, chapterNumber)).filter((state): state is NonNullable<typeof state> => Boolean(state))),
-      arcStates: (work.storyBible?.arcs ?? []).map((arc) => storyArcAt(work, arc.id, chapterNumber)).filter((state): state is NonNullable<typeof state> => Boolean(state)),
-      secretStates: (work.storyBible?.secrets ?? []).map((secret) => storySecretAt(work, secret.id, chapterNumber)).filter((state): state is NonNullable<typeof state> => Boolean(state)),
-      promiseStates: (work.storyBible?.promises ?? []).map((promise) => storyPromiseAt(work, promise.id, chapterNumber)).filter((state): state is NonNullable<typeof state> => Boolean(state)),
-      threadStates: (work.storyBible?.openThreads ?? []).map((thread) => storyThreadAt(work, thread.id, chapterNumber)).filter((state): state is NonNullable<typeof state> => Boolean(state)),
+      arcStates,
+      secretStates,
+      promiseStates,
+      threadStates,
       quality: {
         contextManifest: contextManifestFor(work, chapterNumber),
         version: version ? { id: version.id, revision: version.revision, status: version.status, stale: version.stale, sourceCandidateId: version.sourceCandidateId } : undefined,
