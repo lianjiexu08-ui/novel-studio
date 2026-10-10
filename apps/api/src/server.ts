@@ -30,6 +30,7 @@ import {
   canonConsistencyChecker,
   chapterLengthChecker,
   contextManifestFor,
+  observedEventsChecker,
   passChecker,
   type ChapterCandidate,
   type ManuscriptRevision,
@@ -97,7 +98,7 @@ function defaultDesignProvider(): DesignProvider | undefined {
 }
 
 function generationCheckers() {
-  const checkers = [passChecker, canonConsistencyChecker];
+  const checkers = [passChecker, canonConsistencyChecker, observedEventsChecker];
   if (process.env.NOVEL_MODEL_ENDPOINT && process.env.NOVEL_MODEL_API_KEY && (process.env.NOVEL_WRITING_MODEL || process.env.NOVEL_PLANNING_MODEL)) checkers.push(chapterLengthChecker);
   return checkers;
 }

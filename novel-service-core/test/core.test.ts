@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { AdoptionBlocked, artifactStateAt, canonConsistencyChecker, chapterLengthChecker, characterStateAt, knowledgeAt, LockedConstraintError, NovelService, passChecker, relationshipAt, resourceStateAt, storyArcAt, storyPromiseAt, storySecretAt, storyThreadAt, unavailableChecker } from '../src/core.ts';
+import { AdoptionBlocked, artifactStateAt, canonConsistencyChecker, chapterLengthChecker, characterStateAt, knowledgeAt, LockedConstraintError, NovelService, observedEventsChecker, passChecker, relationshipAt, resourceStateAt, storyArcAt, storyPromiseAt, storySecretAt, storyThreadAt, unavailableChecker } from '../src/core.ts';
 import type { ModelProvider } from '../src/core.ts';
 import { lockStoryBible, lockWorldPack } from '../src/world.ts';
 import type { StoryBible } from '../src/world.ts';
@@ -66,6 +66,17 @@ test('canon consistency checker validates continuity event types and closure sta
   const check = service.runChecks(work.id, candidate.id, [canonConsistencyChecker])[0];
   assert.equal(check.status, 'failed');
   assert.match(check.message, /unsupported event type|invalid promise status/);
+});
+
+test('observed event checker blocks missing or divergent extraction', () => {
+  const service = new NovelService({
+    generateChapter: () => ({ content: '正文', proposedEvents: [{ eventType: 'character_state', subjectId: 'hero', predicate: 'power', value: 1 }], observedEvents: [] }),
+  });
+  const work = service.createWork('抽取复核');
+  const candidate = service.generateCandidate(work.id, 1);
+  const check = service.runChecks(work.id, candidate.id, [observedEventsChecker])[0];
+  assert.equal(check.status, 'failed');
+  assert.match(check.message, /differ/);
 });
 
 test('chapter length checker protects configured model output', () => {

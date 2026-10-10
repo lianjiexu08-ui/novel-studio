@@ -658,9 +658,8 @@ export class NovelService {
 
   private verifyChanges(candidate: ChapterCandidate): void {
     if (!candidate.observedEvents) return;
-    const key = (event: EventDraft) => JSON.stringify([event.eventType, event.subjectId, event.predicate, event.value]);
-    const proposed = new Set(candidate.proposedEvents.map(key));
-    const observed = new Set(candidate.observedEvents.map(key));
+    const proposed = new Set(candidate.proposedEvents.map(eventKey));
+    const observed = new Set(candidate.observedEvents.map(eventKey));
     if (proposed.size !== observed.size || [...proposed].some((item) => !observed.has(item))) throw new AdoptionBlocked('declared and observed changes do not match');
   }
 
@@ -859,9 +858,26 @@ function nextChapterAfterAdopted(work: Work): number {
   return next;
 }
 
+function eventKey(event: EventDraft): string {
+  return JSON.stringify([event.eventType, event.subjectId, event.predicate, event.value]);
+}
+
 export const passChecker: CandidateChecker = {
   name: 'deterministic_rules',
   check: ({ candidate }) => ({ checker: 'deterministic_rules', status: candidate.content.trim() ? 'passed' : 'failed', message: candidate.content.trim() ? 'ok' : 'empty chapter', candidateId: candidate.id, checkedAt: now() }),
+};
+
+/** Requires the writer's independent observed-event extraction to agree with
+ * the declared changes before the candidate can be adopted. */
+export const observedEventsChecker: CandidateChecker = {
+  name: 'observed_events',
+  check: ({ candidate }) => {
+    if (!candidate.observedEvents) return { checker: 'observed_events', status: 'unavailable', message: 'observed event extraction was not returned', candidateId: candidate.id, checkedAt: now() };
+    const proposed = new Set(candidate.proposedEvents.map(eventKey));
+    const observed = new Set(candidate.observedEvents.map(eventKey));
+    const passed = proposed.size === observed.size && [...proposed].every((item) => observed.has(item));
+    return { checker: 'observed_events', status: passed ? 'passed' : 'failed', message: passed ? 'declared and observed changes match' : 'declared and observed changes differ', candidateId: candidate.id, checkedAt: now() };
+  },
 };
 
 /** Checks model-declared facts against the locked design before adoption. */

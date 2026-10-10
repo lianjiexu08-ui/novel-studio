@@ -84,7 +84,7 @@ test('local API runs create -> generate -> check -> adopt -> outbox', async () =
     assert.equal(history.statusCode, 200);
     assert.equal(history.json().events.length, 1);
     assert.equal(history.json().quality.contextManifest.chapterNumber, 1);
-    assert.equal(history.json().quality.checkCoverage.passed, 2);
+    assert.equal(history.json().quality.checkCoverage.passed, 3);
     assert.equal(history.json().quality.candidate.status, 'adopted');
   } finally {
     await app.close();
