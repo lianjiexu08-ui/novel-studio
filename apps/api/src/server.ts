@@ -31,6 +31,7 @@ import {
   canonConsistencyChecker,
   chapterLengthChecker,
   contextManifestFor,
+  closureCoverageFor,
   observedEventsChecker,
   passChecker,
   type ChapterCandidate,
@@ -374,6 +375,7 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
         },
         plotNodes: [...work.plotNodes.values()].map((node) => ({ id: node.id, title: node.title, expectedResult: node.expectedResult, targetChapter: node.targetChapter, realization: node.realization })),
         impacts: work.impacts.filter((impact) => impact.changedChapterNumber <= chapterNumber),
+        closureCoverage: closureCoverageFor(work, chapterNumber),
       },
     };
   });

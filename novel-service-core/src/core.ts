@@ -271,6 +271,13 @@ export interface ImpactRecord {
   createdAt: string;
 }
 
+export interface ClosureCoverage {
+  ready: boolean;
+  errors: string[];
+  resolved: { arcs: number; secrets: number; promises: number; threads: number };
+  expected: { arcs: number; secrets: number; promises: number; threads: number };
+}
+
 export type DesignRevisionKind = 'world_pack' | 'story_bible';
 
 /** Immutable author/model design snapshot used by manuscript and audit history. */
@@ -446,6 +453,8 @@ export class NovelService {
     if (missing.length) throw new AdoptionBlocked(`manuscript has missing chapters: ${missing.join(', ')}`);
     const selected = adopted.filter((version) => version.chapterNumber <= expectedChapterCount);
     if (selected.length !== expectedChapterCount) throw new AdoptionBlocked('manuscript contains stale or duplicate chapter versions');
+    const closure = closureCoverageFor(work, expectedChapterCount);
+    if (!closure.ready) throw new AdoptionBlocked(`manuscript closure gate blocked: ${closure.errors.join('; ')}`);
     for (const manuscript of work.manuscripts.values()) manuscript.status = 'superseded';
     const contentHash = createHash('sha256').update(selected.map((version) => `${version.chapterNumber}\n${version.content}`).join('\n')).digest('hex');
     const manuscript: ManuscriptRevision = {
@@ -716,6 +725,47 @@ export class NovelService {
     if (!candidate) throw new Error(`unknown candidate ${candidateId}`);
     return candidate;
   }
+}
+
+/** Requires every seeded arc/secret/promise/thread to leave a final adopted event. */
+export function closureCoverageFor(work: Work, chapterNumber: number): ClosureCoverage {
+  const bible = work.storyBible;
+  const expected = {
+    arcs: bible?.arcs.length ?? 0,
+    secrets: bible?.secrets?.length ?? 0,
+    promises: bible?.promises?.length ?? 0,
+    threads: bible?.openThreads?.length ?? 0,
+  };
+  const errors: string[] = [];
+  const active = [...work.events.values()].filter((event) => event.active && event.chapterNumber <= chapterNumber);
+  const finalValue = (eventType: string, subjectId: string) => active
+    .filter((event) => event.eventType === eventType && event.subjectId === subjectId)
+    .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id))
+    .at(-1)?.value;
+  const statusOf = (value: unknown) => value && typeof value === 'object' && 'status' in value ? String((value as { status?: unknown }).status) : '';
+  let arcs = 0;
+  for (const arc of bible?.arcs ?? []) {
+    const status = statusOf(finalValue('arc_progress', arc.id));
+    if (status === 'resolved' || status === 'diverged') arcs += 1;
+    else errors.push(`arc ${arc.id} has no resolved or diverged evidence`);
+  }
+  let secrets = 0;
+  for (const secret of bible?.secrets ?? []) {
+    if (active.some((event) => event.eventType === 'secret_reveal' && event.subjectId === secret.id)) secrets += 1;
+    else errors.push(`secret ${secret.id} has no reveal evidence`);
+  }
+  let promises = 0;
+  for (const promise of bible?.promises ?? []) {
+    const status = statusOf(finalValue('promise_payoff', promise.id));
+    if (status === 'paid' || status === 'broken') promises += 1;
+    else errors.push(`promise ${promise.id} remains open`);
+  }
+  let threads = 0;
+  for (const thread of bible?.openThreads ?? []) {
+    if (statusOf(finalValue('thread_resolution', thread.id)) === 'resolved') threads += 1;
+    else errors.push(`thread ${thread.id} has no resolved evidence`);
+  }
+  return { ready: errors.length === 0, errors, resolved: { arcs, secrets, promises, threads }, expected };
 }
 
 /** Builds the exact context manifest used for a chapter. This is exported so

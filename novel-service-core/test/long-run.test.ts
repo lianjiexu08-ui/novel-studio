@@ -1,13 +1,18 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { NovelService, passChecker } from '../src/core.ts';
+import { closureCoverageFor, NovelService, passChecker } from '../src/core.ts';
 import { lockStoryBible, lockWorldPack } from '../src/world.ts';
 import type { StoryBible, WorldPack } from '../src/world.ts';
 
 const provider = {
   generateChapter: ({ chapterNumber }: { chapterNumber: number }) => {
     const event = { eventType: 'character_state', subjectId: 'hero', predicate: 'power', value: chapterNumber, storyTime: chapterNumber, evidence: 'paragraph 1' };
-    return { content: `第${chapterNumber}章：主角继续推进主线。`, proposedEvents: [event], observedEvents: [event] };
+    const events = [event];
+    if (chapterNumber === 90) events.push({ eventType: 'secret_reveal', subjectId: 'secret', predicate: 'revealed', value: true, evidence: '战争遗印真相揭示' });
+    if (chapterNumber === 95) events.push({ eventType: 'thread_resolution', subjectId: 'thread', predicate: 'status', value: { status: 'resolved' }, evidence: '界门来历得到解释' });
+    if (chapterNumber === 98) events.push({ eventType: 'promise_payoff', subjectId: 'promise', predicate: 'status', value: { status: 'paid' }, evidence: '三年之约兑现' });
+    if (chapterNumber === 100) events.push({ eventType: 'arc_progress', subjectId: 'arc', predicate: 'status', value: { status: 'resolved' }, evidence: '共同封印界门' });
+    return { content: `第${chapterNumber}章：主角继续推进主线。`, proposedEvents: events, observedEvents: events };
   },
 };
 
@@ -68,4 +73,15 @@ test('the first long-form milestone runs three volumes and freezes a 100-chapter
   assert.equal(manuscript.chapterCount, 100);
   assert.equal(manuscript.chapterVersionIds.length, 100);
   assert.equal(manuscript.contentHash.length, 64);
+});
+
+test('closure coverage blocks a long-form design with unresolved seeds', () => {
+  const design = lockedDesign();
+  const service = new NovelService(provider);
+  const work = service.createWork('未收束验收');
+  work.storyBible = design.bible;
+  const coverage = closureCoverageFor(work, 100);
+  assert.equal(coverage.ready, false);
+  assert.equal(coverage.expected.secrets, 1);
+  assert.match(coverage.errors.join('; '), /secret .*no reveal|promise .*remains open|thread .*no resolved|arc .*no resolved/);
 });

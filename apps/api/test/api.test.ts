@@ -203,7 +203,16 @@ test('local API enforces bearer auth when a token is configured', async () => {
 });
 
 test('design API saves and locks the world pack before the story bible', async () => {
-  const { app } = createApiServer({ repository: new InMemoryWorkRepository() });
+  const { app } = createApiServer({
+    repository: new InMemoryWorkRepository(),
+    provider: {
+      generateChapter: ({ chapterNumber }) => {
+        const events: Array<{ eventType: string; subjectId: string; predicate: string; value: unknown }> = [{ eventType: 'character_state', subjectId: 'hero', predicate: 'power', value: chapterNumber }];
+        if (chapterNumber === 10) events.push({ eventType: 'arc_progress', subjectId: 'arc', predicate: 'status', value: { status: 'resolved' } });
+        return { content: `第${chapterNumber}章`, proposedEvents: events, observedEvents: events };
+      },
+    },
+  });
   try {
     const work = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('世界包门禁') })).json();
     const base = `/works/${work.id}`;

@@ -42,6 +42,7 @@ export interface ChapterHistoryDto {
     checkCoverage: { total: number; passed: number; failed: number; inconclusive: number; unavailable: number };
     plotNodes: Array<{ id: string; title: string; expectedResult: string; targetChapter?: number; realization: { status: string; chapterVersionId?: string; evidence?: string; updatedAt: string } }>;
     impacts: Array<{ id: string; changedChapterNumber: number; affectedChapterNumbers: number[]; reason: string; createdAt: string }>;
+    closureCoverage: { ready: boolean; errors: string[]; resolved: { arcs: number; secrets: number; promises: number; threads: number }; expected: { arcs: number; secrets: number; promises: number; threads: number } };
   };
 }
 
