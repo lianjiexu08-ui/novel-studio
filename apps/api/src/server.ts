@@ -27,6 +27,7 @@ import {
   storyThreadAt,
   canonConsistencyChecker,
   chapterLengthChecker,
+  contextManifestFor,
   passChecker,
   type ChapterCandidate,
   type ManuscriptRevision,
@@ -301,6 +302,11 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     ]);
     const fields = new Set(events.filter((event) => event.eventType === 'character_state').map((event) => event.predicate));
     const characterStates = [...characterIds].flatMap((characterId) => [...fields].map((field) => characterStateAt(work, characterId, field, chapterNumber)).filter((state): state is NonNullable<typeof state> => Boolean(state)));
+    const version = work.currentVersion(chapterNumber);
+    const candidate = version?.sourceCandidateId
+      ? work.candidates.get(version.sourceCandidateId)
+      : [...work.candidates.values()].filter((item) => item.chapterNumber === chapterNumber).sort((a, b) => b.createdAt.localeCompare(a.createdAt))[0];
+    const checks = candidate?.checks ?? [];
     return {
       chapterNumber,
       events,
@@ -310,6 +316,20 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
       secretStates: (work.storyBible?.secrets ?? []).map((secret) => storySecretAt(work, secret.id, chapterNumber)).filter((state): state is NonNullable<typeof state> => Boolean(state)),
       promiseStates: (work.storyBible?.promises ?? []).map((promise) => storyPromiseAt(work, promise.id, chapterNumber)).filter((state): state is NonNullable<typeof state> => Boolean(state)),
       threadStates: (work.storyBible?.openThreads ?? []).map((thread) => storyThreadAt(work, thread.id, chapterNumber)).filter((state): state is NonNullable<typeof state> => Boolean(state)),
+      quality: {
+        contextManifest: contextManifestFor(work, chapterNumber),
+        version: version ? { id: version.id, revision: version.revision, status: version.status, stale: version.stale, sourceCandidateId: version.sourceCandidateId } : undefined,
+        candidate: candidate ? { id: candidate.id, status: candidate.status, proposedEvents: candidate.proposedEvents, observedEvents: candidate.observedEvents, checks } : undefined,
+        checkCoverage: {
+          total: checks.length,
+          passed: checks.filter((check) => check.status === 'passed').length,
+          failed: checks.filter((check) => check.status === 'failed').length,
+          inconclusive: checks.filter((check) => check.status === 'inconclusive').length,
+          unavailable: checks.filter((check) => check.status === 'unavailable').length,
+        },
+        plotNodes: [...work.plotNodes.values()].map((node) => ({ id: node.id, title: node.title, expectedResult: node.expectedResult, targetChapter: node.targetChapter, realization: node.realization })),
+        impacts: work.impacts.filter((impact) => impact.changedChapterNumber <= chapterNumber),
+      },
     };
   });
 
