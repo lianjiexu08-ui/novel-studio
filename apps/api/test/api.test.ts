@@ -337,16 +337,23 @@ test('450-chapter expansion resumes after the first hundred chapters', async () 
   });
   try {
     const work = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('扩展百万字') })).json();
+    const first = await app.inject({ method: 'POST', url: `/works/${work.id}/milestones/100/start`, payload: {} });
+    assert.equal(first.statusCode, 202);
+    for (let attempt = 0; attempt < 60; attempt += 1) {
+      const status = await app.inject({ method: 'GET', url: `/works/${work.id}/runs` });
+      if (status.json().checkpoints.some((checkpoint: { runId: string; nextChapter: number }) => checkpoint.runId === first.json().runId && checkpoint.nextChapter === 101)) break;
+      await new Promise((resolve) => setTimeout(resolve, 10));
+    }
     const started = await app.inject({ method: 'POST', url: `/works/${work.id}/milestones/450/start`, payload: {} });
     assert.equal(started.statusCode, 202);
     assert.equal(started.json().milestone.targetChapter, 450);
     for (let attempt = 0; attempt < 60; attempt += 1) {
       const status = await app.inject({ method: 'GET', url: `/works/${work.id}/runs` });
-      if (status.json().checkpoints[0]?.nextChapter === 451) break;
+      if (status.json().checkpoints.some((checkpoint: { runId: string; nextChapter: number }) => checkpoint.runId === started.json().runId && checkpoint.nextChapter === 451)) break;
       await new Promise((resolve) => setTimeout(resolve, 10));
     }
     const status = await app.inject({ method: 'GET', url: `/works/${work.id}/runs` });
-    assert.equal(status.json().checkpoints[0].nextChapter, 451);
+    assert.equal(status.json().checkpoints.find((checkpoint: { runId: string }) => checkpoint.runId === started.json().runId).nextChapter, 451);
     assert.equal((await app.inject({ method: 'GET', url: `/works/${work.id}/design` })).json().storyBible.volumes.reduce((sum, volume) => sum + volume.plannedChapterCount, 0), 450);
   } finally {
     await app.close();
