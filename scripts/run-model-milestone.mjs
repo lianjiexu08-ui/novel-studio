@@ -3,6 +3,9 @@ import { mkdir, writeFile } from 'node:fs/promises';
 const baseUrl = (process.env.NOVEL_API_URL ?? 'http://127.0.0.1:8787').replace(/\/$/, '');
 const token = process.env.API_TOKEN ?? '';
 const title = process.env.NOVEL_MILESTONE_TITLE ?? `玄幻长篇验收-${new Date().toISOString().slice(0, 10)}`;
+const existingWorkId = process.env.NOVEL_MILESTONE_WORK_ID;
+const configuredRunId = process.env.NOVEL_MILESTONE_RUN_ID;
+const configuredExpansionRunId = process.env.NOVEL_MILESTONE_EXPANSION_RUN_ID;
 const pollMs = Number(process.env.NOVEL_MILESTONE_POLL_MS ?? 5000);
 const maxPolls = Number(process.env.NOVEL_MILESTONE_MAX_POLLS ?? 720);
 const expandToFullBook = process.env.NOVEL_MILESTONE_EXPAND === 'true';
@@ -32,8 +35,10 @@ async function api(path, options = {}) {
   return payload;
 }
 
-const work = await api('/works', { method: 'POST', body: { title, covenant } });
-console.log(`created work ${work.id}: ${work.title}`);
+const work = existingWorkId
+  ? await api(`/works/${existingWorkId}`)
+  : await api('/works', { method: 'POST', body: { title, covenant } });
+console.log(`${existingWorkId ? 'resuming' : 'created'} work ${work.id}: ${work.title}`);
 async function waitForRun(targetChapter, started) {
   let checkpoint;
   for (let attempt = 1; attempt <= maxPolls; attempt += 1) {
@@ -64,13 +69,13 @@ async function finalizeAndExport(label) {
   console.log(`exported ${output}`);
 }
 
-const started = await api(`/works/${work.id}/milestones/100/start`, { method: 'POST', body: {} });
+const started = await api(`/works/${work.id}/milestones/100/start`, { method: 'POST', body: configuredRunId ? { runId: configuredRunId } : {} });
 console.log(`started 100-chapter run ${started.runId}; world=${started.milestone.worldPack?.id ?? 'missing'} bible=${started.milestone.storyBible?.id ?? 'missing'}`);
 await waitForRun(100, started);
 await finalizeAndExport('100');
 
 if (expandToFullBook) {
-  const expanded = await api(`/works/${work.id}/milestones/450/start`, { method: 'POST', body: {} });
+  const expanded = await api(`/works/${work.id}/milestones/450/start`, { method: 'POST', body: configuredExpansionRunId ? { runId: configuredExpansionRunId } : {} });
   console.log(`started 450-chapter expansion ${expanded.runId}; bible=${expanded.milestone.storyBible?.id ?? 'missing'}`);
   await waitForRun(450, expanded);
   await finalizeAndExport('450');

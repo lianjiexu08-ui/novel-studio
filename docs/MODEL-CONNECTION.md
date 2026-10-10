@@ -47,7 +47,13 @@ npm run dev:api
 node scripts/run-model-milestone.mjs
 ```
 
-脚本会创建一个验收作品，等待 100 章完成，冻结 ManuscriptRevision，并把导出 JSON 写入被 Git 忽略的 `data/` 目录。输出会同时显示实际字数、目标字数和收束覆盖率；若中途暂停，检查日志里的章节号和错误原因后，使用同一个 `runId` 从 API 重试。
+脚本会创建一个验收作品，等待 100 章完成，冻结 ManuscriptRevision，并把导出 JSON 写入被 Git 忽略的 `data/` 目录。输出会同时显示实际字数、目标字数和收束覆盖率；若中途暂停，检查日志里的章节号和错误原因后，可以复用同一个作品和 runId 继续。脚本支持 `NOVEL_MILESTONE_WORK_ID`、`NOVEL_MILESTONE_RUN_ID`，扩展阶段另设 `NOVEL_MILESTONE_EXPANSION_RUN_ID`：
+
+```sh
+NOVEL_MILESTONE_WORK_ID=<已有作品 ID> \
+NOVEL_MILESTONE_RUN_ID=<原 100 章 runId> \
+npm run model:milestone
+```
 
 需要按验收顺序自动继续到完整长篇时，设置 `NOVEL_MILESTONE_EXPAND=true`。脚本会先导出 100 章版本，再生成 450 章蓝图、从第 101 章继续，最后导出 450 章版本：
 
