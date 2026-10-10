@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Alert, App as AntApp, Button, Card, Collapse, Col, Empty, List, Row, Space, Spin, Statistic, Table, Tag, Typography } from 'antd';
+import { Alert, App as AntApp, Button, Card, Collapse, Col, Empty, List, Modal, Row, Space, Spin, Statistic, Table, Tag, Typography } from 'antd';
 import { LockOutlined, PlayCircleOutlined, RocketOutlined, SafetyCertificateOutlined } from '@ant-design/icons';
 import { api, ApiRequestError, type DesignHistoryDto } from '../api';
 import type { DesignDto } from 'novel-studio-contracts';
@@ -42,6 +42,7 @@ export function DesignPage() {
   const { work, refresh } = useOutletContext<WorkspaceContext>();
   const [design, setDesign] = useState<DesignDto | null>(null);
   const [designHistory, setDesignHistory] = useState<DesignHistoryDto['revisions']>([]);
+  const [selectedRevision, setSelectedRevision] = useState<DesignHistoryDto['revisions'][number] | null>(null);
   const [busy, setBusy] = useState<string | null>(null);
 
   async function load() {
@@ -87,9 +88,12 @@ export function DesignPage() {
       <Col xs={24} md={12}><Card title="Story Bible" extra={bible ? <StatusTag status={bible.status} /> : bibleAction}>{!bible ? <Space direction="vertical"><Empty description="还没有生成 Story Bible" />{bibleAction}</Space> : <Space direction="vertical" style={{ width: '100%' }}><Space>{bibleAction}</Space><Text strong>核心冲突：{bible.coreConflict}</Text><Paragraph type="secondary">结局方向：{bible.endingDirection || '未填写'}</Paragraph><Row gutter={[12, 12]}><Col span={8}><Statistic title="人物" value={bible.characters.length} /></Col><Col span={8}><Statistic title="关系" value={bible.relationships.length} /></Col><Col span={8}><Statistic title="弧光" value={bible.arcs.length} /></Col><Col span={8}><Statistic title="秘密" value={bible.secrets?.length ?? 0} /></Col><Col span={8}><Statistic title="承诺/开放线" value={(bible.promises?.length ?? 0) + (bible.openThreads?.length ?? 0)} /></Col><Col span={8}><Statistic title="计划章节" value={bible.volumes.reduce((sum, volume) => sum + volume.plannedChapterCount, 0)} /></Col></Row><StoryDetails bible={bible} /></Space>}</Card></Col>
     </Row>
     <Card title="设计版本历史" size="small" extra={<Text type="secondary">每次生成、审核、锁定都会留下不可变快照</Text>}>
-      {designHistory.length === 0 ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="还没有设计快照" /> : <List size="small" dataSource={[...designHistory].reverse()} renderItem={(item) => <List.Item>
+      {designHistory.length === 0 ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="还没有设计快照" /> : <List size="small" dataSource={[...designHistory].reverse()} renderItem={(item) => <List.Item actions={[<Button key="view" size="small" onClick={() => setSelectedRevision(item)}>查看快照</Button>]}>
         <List.Item.Meta title={<Space><Text strong>{item.kind === 'world_pack' ? 'World Pack' : 'Story Bible'} v{item.revision}</Text><StatusTag status={item.status} /></Space>} description={`${new Date(item.createdAt).toLocaleString()} · ${item.contentHash.slice(0, 12)}`} />
       </List.Item>} />}
     </Card>
+    <Modal open={Boolean(selectedRevision)} title={selectedRevision ? `${selectedRevision.kind === 'world_pack' ? 'World Pack' : 'Story Bible'} v${selectedRevision.revision} 快照` : undefined} footer={null} width={900} onCancel={() => setSelectedRevision(null)}>
+      {selectedRevision && <pre style={{ maxHeight: '70vh', overflow: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>{JSON.stringify(selectedRevision.snapshot, null, 2)}</pre>}
+    </Modal>
   </Space>;
 }
