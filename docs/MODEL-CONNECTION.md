@@ -14,7 +14,8 @@ export NOVEL_WRITING_MODEL=gpt-5.6-sol
 export NOVEL_MODEL_BUDGET_USD=20
 # 可选；默认 60000 毫秒，长规划响应可提高到 120000 或 180000
 export NOVEL_MODEL_TIMEOUT_MS=120000
-npm run push -w novel-studio-persistence
+mkdir -p data
+DATABASE_URL="file:$(pwd)/data/novel-studio.db" npm run push -w novel-studio-persistence
 npm run dev:api
 ```
 
