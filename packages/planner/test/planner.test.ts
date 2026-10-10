@@ -74,4 +74,11 @@ test('planner rejects a story bible that cannot support the 100-chapter mileston
 
   const tooShort = new JsonDesignPlanner({ complete: async () => JSON.stringify({ ...response, volumes: [response.volumes[0]] }) });
   await assert.rejects(() => tooShort.generateStoryBible({ title: '试作', covenant, worldPack: createEmptyWorldPack('九霄') }), PlanningParseError);
+
+  const expanding = new JsonDesignPlanner({ complete: async () => JSON.stringify(response) });
+  const expanded = await expanding.generateStoryBible({ title: '试作', covenant, worldPack: { ...createEmptyWorldPack('九霄'), id: 'world-1', revision: 2 }, previousStoryBible: response as never });
+  assert.equal(expanded.revision, 2);
+  const dropped = new JsonDesignPlanner({ complete: async () => JSON.stringify({ ...response, characters: [response.characters[0]] }) });
+  const previousWithExtra = { ...response, characters: [...response.characters, { id: 'rival', name: '对手', role: 'major', goal: '', identity: '' }] };
+  await assert.rejects(() => dropped.generateStoryBible({ title: '试作', covenant, worldPack: { ...createEmptyWorldPack('九霄'), id: 'world-1' }, previousStoryBible: previousWithExtra as never }), /dropped stable IDs/);
 });

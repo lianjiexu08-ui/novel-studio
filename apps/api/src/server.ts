@@ -442,7 +442,7 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
       await workflow.lockWorldPack(workId);
     }
     work = await repository.get(workId);
-    if (!work?.storyBible || plannedChapterCount(work) !== 450) await workflow.generateStoryBible(workId, 450);
+    if (!work?.storyBible || plannedChapterCount(work) !== 450) await workflow.generateStoryBible(workId, 450, work?.storyBible);
     work = await repository.get(workId);
     if (!work?.storyBible) throw new Error('story bible generation did not produce a story bible');
     if (plannedChapterCount(work) !== 450) throw new Error(`story bible must plan exactly 450 chapters (got ${plannedChapterCount(work)})`);

@@ -359,6 +359,7 @@ test('100-chapter milestone endpoint starts from locked design and reaches a fin
 
 test('450-chapter expansion resumes after the first hundred chapters', async () => {
   const design = milestoneDesign();
+  let previousBibleForExpansion: unknown;
   const fullBible = {
     ...design.bible,
     id: 'full-bible',
@@ -369,7 +370,10 @@ test('450-chapter expansion resumes after the first hundred chapters', async () 
     provider: { generateChapter: ({ chapterNumber }) => ({ content: `第${chapterNumber}章`, proposedEvents: [{ eventType: 'character_state', subjectId: 'hero', predicate: 'power', value: chapterNumber }], observedEvents: [{ eventType: 'character_state', subjectId: 'hero', predicate: 'power', value: chapterNumber }] }) },
     designProvider: {
       generateWorldPack: async () => design.world,
-      generateStoryBible: async ({ chapterTarget }) => chapterTarget === 450 ? fullBible : design.bible,
+      generateStoryBible: async ({ chapterTarget, previousStoryBible }) => {
+        if (chapterTarget === 450) previousBibleForExpansion = previousStoryBible;
+        return chapterTarget === 450 ? fullBible : design.bible;
+      },
     },
   });
   try {
@@ -384,6 +388,7 @@ test('450-chapter expansion resumes after the first hundred chapters', async () 
     const started = await app.inject({ method: 'POST', url: `/works/${work.id}/milestones/450/start`, payload: {} });
     assert.equal(started.statusCode, 202);
     assert.equal(started.json().milestone.targetChapter, 450);
+    assert.equal((previousBibleForExpansion as typeof design.bible).id, design.bible.id);
     for (let attempt = 0; attempt < 60; attempt += 1) {
       const status = await app.inject({ method: 'GET', url: `/works/${work.id}/runs` });
       if (status.json().checkpoints.some((checkpoint: { runId: string; nextChapter: number }) => checkpoint.runId === started.json().runId && checkpoint.nextChapter === 451)) break;
