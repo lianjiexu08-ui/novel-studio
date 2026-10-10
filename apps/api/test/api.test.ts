@@ -34,7 +34,7 @@ function milestoneDesign() {
     characters: [{ id: 'hero', name: '林渊', role: 'protagonist' as const, goal: '守护故乡', identity: '弟子', locationId: 'city', factionId: 'f1', startingRealmId: 'r1' }, { id: 'rival', name: '沈烬', role: 'major' as const, goal: '开启界门', identity: '遗族', locationId: 'east', factionId: 'f2', startingRealmId: 'r2' }],
     relationships: [{ id: 'rel', fromCharacterId: 'hero', toCharacterId: 'rival', kind: 'trust' as const, value: '戒备', locked: false }],
     secrets: [{ id: 'secret', ownerCharacterId: 'rival', title: '遗印', truth: '沈烬携带战争遗印', revealCondition: '界门开启时揭示', status: 'locked' as const }],
-    arcBeats: [{ id: 'beat', arcId: 'arc', characterId: 'hero', kind: 'trigger' as const, plannedChapter: 3, expectedChange: '决定调查界门' }],
+    arcBeats: [3, 15, 28, 40, 52, 65, 75, 88, 98].map((plannedChapter, index) => ({ id: `beat-${index + 1}`, arcId: 'arc', characterId: 'hero', kind: 'trigger' as const, plannedChapter, expectedChange: `推进界门主线 ${index + 1}` })),
     promises: [{ id: 'promise', title: '三年之约', promise: '主角必须赴约', payoffCondition: '终卷决战前兑现', plannedChapter: 25, status: 'locked' as const }],
     openThreads: [{ id: 'thread', title: '界门来历', kind: 'mystery' as const, question: '谁建造界门', plannedResolution: '终卷揭示建造者', status: 'locked' as const }],
     arcs: [{ id: 'arc', title: '守护故乡', characterIds: ['hero'], goal: '查清战争', stakes: '三陆存亡', plannedOutcome: '封印界门' }],
@@ -397,6 +397,7 @@ test('450-chapter expansion resumes after the first hundred chapters', async () 
     ...design.bible,
     id: 'full-bible',
     volumes: [1, 2, 3].map((order) => ({ ...design.bible.volumes[order - 1], plannedChapterCount: 150 })),
+    arcBeats: [...(design.bible.arcBeats ?? []), ...[125, 175, 225, 275, 325, 375, 425].map((plannedChapter, index) => ({ id: `expansion-beat-${index + 1}`, arcId: 'arc', characterId: 'hero', kind: 'choice' as const, plannedChapter, expectedChange: `扩展主线推进 ${index + 1}` }))],
   };
   const { app } = createApiServer({
     repository: new InMemoryWorkRepository(),

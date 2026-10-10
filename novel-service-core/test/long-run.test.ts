@@ -48,7 +48,7 @@ function lockedDesign(): { world: WorldPack; bible: StoryBible } {
     ],
     relationships: [{ id: 'relationship', fromCharacterId: 'hero', toCharacterId: 'rival', kind: 'trust', value: '互相戒备', locked: false }],
     secrets: [{ id: 'secret', ownerCharacterId: 'rival', title: '战争遗印', truth: '沈烬携带战争遗印', revealCondition: '界门开启时揭示', status: 'reviewed' }],
-    arcBeats: [{ id: 'beat', arcId: 'arc', characterId: 'hero', kind: 'trigger', plannedChapter: 3, expectedChange: '决定调查界门' }],
+    arcBeats: [3, 15, 28, 40, 52, 65, 75, 88, 98].map((plannedChapter, index) => ({ id: `beat-${index + 1}`, arcId: 'arc', characterId: 'hero', kind: 'trigger' as const, plannedChapter, expectedChange: `推进界门主线 ${index + 1}` })),
     promises: [{ id: 'promise', title: '三年之约', promise: '主角必须赴约', payoffCondition: '第三卷决战前兑现', plannedChapter: 25, status: 'reviewed' }],
     openThreads: [{ id: 'thread', title: '界门来历', kind: 'mystery', question: '谁建造界门', plannedResolution: '终卷揭示建造者', status: 'reviewed' }],
     arcs: [{ id: 'arc', title: '守护故乡', characterIds: ['hero', 'rival'], goal: '理解战争真相', stakes: '三大陆存亡', plannedOutcome: '共同封印界门' }],

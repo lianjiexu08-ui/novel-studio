@@ -431,6 +431,13 @@ export function validateLongFormStoryBible(bible: StoryBible, worldPack: WorldPa
   for (const secret of bible.secrets ?? []) if (!secret.revealCondition.trim()) errors.push(`secret ${secret.id} has no reveal condition`);
   for (const promise of bible.promises ?? []) if (!promise.payoffCondition.trim()) errors.push(`promise ${promise.id} has no payoff condition`);
   for (const thread of bible.openThreads ?? []) if (!thread.plannedResolution.trim()) errors.push(`open thread ${thread.id} has no planned resolution`);
+  const minimumBeats = Math.max(6, bible.volumes.length * 3);
+  if ((bible.arcBeats?.length ?? 0) < minimumBeats) errors.push(`long-form story bible requires at least ${minimumBeats} planned arc beats; found ${bible.arcBeats?.length ?? 0}`);
+  for (const volume of bible.volumes) {
+    const start = 1 + bible.volumes.slice(0, volume.order - 1).reduce((sum, item) => sum + item.plannedChapterCount, 0);
+    const end = start + volume.plannedChapterCount - 1;
+    if (!(bible.arcBeats ?? []).some((beat) => beat.plannedChapter !== undefined && beat.plannedChapter >= start && beat.plannedChapter <= end)) errors.push(`volume ${volume.id} has no planned arc beat`);
+  }
   return { ready: errors.length === 0, errors, warnings };
 }
 
