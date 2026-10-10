@@ -263,6 +263,11 @@ test('design API saves and locks the world pack before the story bible', async (
     assert.equal(finalized.json().manuscript.contentHash.length, 64);
     const exported = await app.inject({ method: 'GET', url: `${base}/manuscripts/${finalized.json().manuscript.id}/export` });
     assert.equal(exported.statusCode, 200);
+    assert.equal(exported.json().work.id, work.id);
+    assert.equal(exported.json().worldPack.id, lockedWorld.id);
+    assert.equal(exported.json().storyBible.id, lockedBible.id);
+    assert.ok(exported.json().designHistory.length >= 4);
+    assert.equal(exported.json().closureCoverage.ready, true);
     assert.equal(exported.json().chapters.length, 10);
     assert.equal(exported.json().chapters[0].chapterNumber, 1);
     const design = (await app.inject({ method: 'GET', url: `${base}/design` })).json();

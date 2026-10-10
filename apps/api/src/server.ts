@@ -248,9 +248,18 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     if (!manuscript) throw new NotFoundError(`unknown manuscript ${params.manuscriptId}`);
     const chapters = manuscript.chapterVersionIds.map((versionId) => work.versions.get(versionId)).filter((version): version is NonNullable<typeof version> => Boolean(version));
     if (chapters.length !== manuscript.chapterVersionIds.length) throw new Error('manuscript references missing chapter versions');
+    const chapterIds = new Set(manuscript.chapterVersionIds);
     return {
+      work: { id: work.id, title: work.title, covenant: work.covenant },
+      worldPack: work.worldPack,
+      storyBible: work.storyBible,
+      designHistory: [...work.designHistory.values()].sort((a, b) => a.createdAt.localeCompare(b.createdAt)),
       manuscript: toManuscriptDto(manuscript),
       chapters: chapters.map((chapter) => ({ id: chapter.id, chapterNumber: chapter.chapterNumber, content: chapter.content, revision: chapter.revision })),
+      events: [...work.events.values()]
+        .filter((event) => event.active && chapterIds.has(event.chapterVersionId))
+        .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id)),
+      closureCoverage: closureCoverageFor(work, manuscript.chapterCount),
     };
   });
 
