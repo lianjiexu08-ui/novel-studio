@@ -73,35 +73,37 @@ export class JsonBookPlanner {
   constructor(client: PlanningClient) { this.client = client; }
 
   async generatePlanSkeleton(input: BookPlanningInput & { targetChapterCount: number; volumeCount: number; previousPlan?: unknown }): Promise<PlanSkeletonContract> {
-    const text = await this.client.complete({
+    return completeValidated(this.client, {
       system: planSkeletonSystem,
       user: JSON.stringify({
         task: 'generate_book_plan', title: input.title, covenant: input.covenant, targetChapterCount: input.targetChapterCount, volumeCount: input.volumeCount,
         authorRequest: input.authorRequest, worldPack: input.worldPack, storyBible: input.storyBible, previousPlan: input.previousPlan, adoptedFacts: input.adoptedFacts,
       }, null, 2),
       maxOutputTokens: 8_000,
+    }, (value) => {
+      const skeleton = parsePlanSkeleton(value);
+      if (skeleton.targetChapterCount !== input.targetChapterCount || skeleton.volumes.length !== input.volumeCount) {
+        throw new PlanningParseError(`plan must cover exactly ${input.targetChapterCount} chapters in ${input.volumeCount} volumes (got ${skeleton.targetChapterCount} / ${skeleton.volumes.length})`);
+      }
+      return skeleton;
     });
-    const skeleton = parsePlanSkeleton(readJson(text));
-    if (skeleton.targetChapterCount !== input.targetChapterCount || skeleton.volumes.length !== input.volumeCount) {
-      throw new PlanningParseError(`plan must cover exactly ${input.targetChapterCount} chapters in ${input.volumeCount} volumes (got ${skeleton.targetChapterCount} / ${skeleton.volumes.length})`);
-    }
-    return skeleton;
   }
 
   async generateChapterOutlines(input: BookPlanningInput & { skeleton: unknown; from: number; to: number; before: unknown[]; after: unknown[] }): Promise<ChapterOutlineContract[]> {
-    const text = await this.client.complete({
-      system: chapterOutlineSystem,
+    return completeValidated(this.client, {
+      system: chapterOutlineSystem + '\nscenes 字段必须是字符串数组，每个元素是一句场景描述，不得返回对象。',
       user: JSON.stringify({
         task: 'generate_chapter_outlines', from: input.from, to: input.to, title: input.title, covenant: input.covenant, authorRequest: input.authorRequest,
         plan: input.skeleton, previousOutlines: input.before, followingOutlines: input.after, storyBible: input.storyBible, adoptedFacts: input.adoptedFacts,
       }, null, 2),
       maxOutputTokens: Math.min(12_000, 900 * (input.to - input.from + 1) + 1_000),
+    }, (value) => {
+      const outlines = parseChapterOutlines(value).map((outline) => ({ ...outline, source: 'model' as const }));
+      const numbers = new Set(outlines.map((outline) => outline.chapterNumber));
+      const missing = Array.from({ length: input.to - input.from + 1 }, (_, index) => input.from + index).filter((chapter) => !numbers.has(chapter));
+      if (missing.length) throw new PlanningParseError(`outline batch ${input.from}-${input.to} is missing chapters ${missing.join(', ')}`);
+      return outlines.filter((outline) => outline.chapterNumber >= input.from && outline.chapterNumber <= input.to);
     });
-    const outlines = parseChapterOutlines(readJson(text)).map((outline) => ({ ...outline, source: 'model' as const }));
-    const numbers = new Set(outlines.map((outline) => outline.chapterNumber));
-    const missing = Array.from({ length: input.to - input.from + 1 }, (_, index) => input.from + index).filter((chapter) => !numbers.has(chapter));
-    if (missing.length) throw new PlanningParseError(`outline batch ${input.from}-${input.to} is missing chapters ${missing.join(', ')}`);
-    return outlines.filter((outline) => outline.chapterNumber >= input.from && outline.chapterNumber <= input.to);
   }
 }
 
