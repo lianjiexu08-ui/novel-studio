@@ -273,6 +273,9 @@ test('design API saves and locks the world pack before the story bible', async (
     assert.equal(finalized.statusCode, 200);
     assert.equal(finalized.json().manuscript.chapterCount, 10);
     assert.equal(finalized.json().manuscript.status, 'final');
+    assert.ok(finalized.json().manuscript.wordCount > 0);
+    assert.equal(finalized.json().manuscript.targetWordCount, 2200 * 10);
+    assert.ok(finalized.json().manuscript.lengthCoverage > 0);
     assert.equal(finalized.json().manuscript.contentHash.length, 64);
     const exported = await app.inject({ method: 'GET', url: `${base}/manuscripts/${finalized.json().manuscript.id}/export` });
     assert.equal(exported.statusCode, 200);
@@ -373,6 +376,7 @@ test('100-chapter milestone endpoint starts from locked design and reaches a fin
     const finalized = await app.inject({ method: 'POST', url: `/works/${work.id}/manuscripts/finalize`, payload: {} });
     assert.equal(finalized.statusCode, 200);
     assert.equal(finalized.json().manuscript.chapterCount, 100);
+    assert.ok(finalized.json().manuscript.targetWordCount > finalized.json().manuscript.wordCount);
   } finally {
     await app.close();
   }
@@ -424,6 +428,7 @@ test('450-chapter expansion resumes after the first hundred chapters', async () 
     const finalManuscript = await app.inject({ method: 'POST', url: `/works/${work.id}/manuscripts/finalize`, payload: {} });
     assert.equal(finalManuscript.statusCode, 200);
     assert.equal(finalManuscript.json().manuscript.chapterCount, 450);
+    assert.ok(finalManuscript.json().manuscript.targetWordCount > finalManuscript.json().manuscript.wordCount);
   } finally {
     await app.close();
   }

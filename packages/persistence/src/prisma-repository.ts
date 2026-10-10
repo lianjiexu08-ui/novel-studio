@@ -263,6 +263,7 @@ export class PrismaWorkRepository implements WorkRepository {
       const manuscript: ManuscriptRevision = {
         id: row.id, workId, revision: row.revision, status: row.status as ManuscriptRevision['status'],
         chapterVersionIds: JSON.parse(row.chapterVersionIds) as string[], chapterCount: row.chapterCount,
+        wordCount: row.wordCount ?? 0, targetWordCount: row.targetWordCount ?? 0, lengthCoverage: row.lengthCoverage ?? 0,
         contentHash: row.contentHash, stateRevision: row.stateRevision, constraintRevision: row.constraintRevision,
         worldPackRevision: row.worldPackRevision, storyBibleRevision: row.storyBibleRevision, createdAt: row.createdAt.toISOString(),
       };
@@ -451,6 +452,7 @@ export class PrismaWorkRepository implements WorkRepository {
         create: {
           id: manuscript.id, projectId: work.id, revision: manuscript.revision, status: manuscript.status,
           chapterVersionIds: JSON.stringify(manuscript.chapterVersionIds), chapterCount: manuscript.chapterCount,
+          wordCount: manuscript.wordCount, targetWordCount: manuscript.targetWordCount, lengthCoverage: manuscript.lengthCoverage,
           contentHash: manuscript.contentHash, stateRevision: manuscript.stateRevision,
           constraintRevision: manuscript.constraintRevision, worldPackRevision: manuscript.worldPackRevision,
           storyBibleRevision: manuscript.storyBibleRevision, createdAt: new Date(manuscript.createdAt),
@@ -458,6 +460,7 @@ export class PrismaWorkRepository implements WorkRepository {
         update: {
           status: manuscript.status, chapterVersionIds: JSON.stringify(manuscript.chapterVersionIds),
           chapterCount: manuscript.chapterCount, contentHash: manuscript.contentHash,
+          wordCount: manuscript.wordCount, targetWordCount: manuscript.targetWordCount, lengthCoverage: manuscript.lengthCoverage,
           stateRevision: manuscript.stateRevision, constraintRevision: manuscript.constraintRevision,
           worldPackRevision: manuscript.worldPackRevision, storyBibleRevision: manuscript.storyBibleRevision,
         },

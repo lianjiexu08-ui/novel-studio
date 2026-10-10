@@ -76,6 +76,9 @@ model ManuscriptRevision {
   status              String
   chapterVersionIds   String   // JSON: string[]
   chapterCount        Int
+  wordCount           Int      @default(0)
+  targetWordCount     Int      @default(0)
+  lengthCoverage      Float    @default(0)
   contentHash         String
   stateRevision       Int
   constraintRevision  Int

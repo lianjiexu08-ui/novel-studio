@@ -172,7 +172,12 @@ function deserializeWork(value: PersistedWork): Work {
     if (work.worldPack) work.recordDesignRevision('world_pack', work.worldPack);
     if (work.storyBible) work.recordDesignRevision('story_bible', work.storyBible);
   }
-  for (const manuscript of value.manuscripts ?? []) work.manuscripts.set(manuscript.id, manuscript);
+  for (const manuscript of value.manuscripts ?? []) work.manuscripts.set(manuscript.id, {
+    ...manuscript,
+    wordCount: manuscript.wordCount ?? 0,
+    targetWordCount: manuscript.targetWordCount ?? 0,
+    lengthCoverage: manuscript.lengthCoverage ?? 0,
+  });
   for (const candidate of value.candidates) {
     work.candidates.set(candidate.id, { ...candidate, generatedAgainstConstraintRevision: candidate.generatedAgainstConstraintRevision ?? 0 });
   }

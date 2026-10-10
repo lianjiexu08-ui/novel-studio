@@ -193,6 +193,9 @@ export interface ManuscriptRevision {
   status: ManuscriptStatus;
   chapterVersionIds: string[];
   chapterCount: number;
+  wordCount: number;
+  targetWordCount: number;
+  lengthCoverage: number;
   contentHash: string;
   stateRevision: number;
   constraintRevision: number;
@@ -455,11 +458,14 @@ export class NovelService {
     if (selected.length !== expectedChapterCount) throw new AdoptionBlocked('manuscript contains stale or duplicate chapter versions');
     const closure = closureCoverageFor(work, expectedChapterCount);
     if (!closure.ready) throw new AdoptionBlocked(`manuscript closure gate blocked: ${closure.errors.join('; ')}`);
+    const wordCount = selected.reduce((sum, version) => sum + version.content.trim().length, 0);
+    const targetWordCount = work.covenant.chapterWords * expectedChapterCount;
     for (const manuscript of work.manuscripts.values()) manuscript.status = 'superseded';
     const contentHash = createHash('sha256').update(selected.map((version) => `${version.chapterNumber}\n${version.content}`).join('\n')).digest('hex');
     const manuscript: ManuscriptRevision = {
       id: id('manuscript'), workId, revision: Math.max(0, ...[...work.manuscripts.values()].map((item) => item.revision)) + 1,
       status: 'final', chapterVersionIds: selected.map((version) => version.id), chapterCount: selected.length,
+      wordCount, targetWordCount, lengthCoverage: targetWordCount > 0 ? wordCount / targetWordCount : 0,
       contentHash, stateRevision: work.stateRevision, constraintRevision: work.constraintRevision,
       worldPackRevision: work.worldPack.revision, storyBibleRevision: work.storyBible.revision, createdAt: now(),
     };

@@ -72,6 +72,9 @@ test('the first long-form milestone runs three volumes and freezes a 100-chapter
   const manuscript = service.finalizeManuscript(work.id);
   assert.equal(manuscript.chapterCount, 100);
   assert.equal(manuscript.chapterVersionIds.length, 100);
+  assert.ok(manuscript.wordCount > 0);
+  assert.equal(manuscript.targetWordCount, work.covenant.chapterWords * 100);
+  assert.equal(manuscript.lengthCoverage, manuscript.wordCount / manuscript.targetWordCount);
   assert.equal(manuscript.contentHash.length, 64);
 });
 
