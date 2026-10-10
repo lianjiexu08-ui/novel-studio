@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { App as AntApp, Button, Card, Empty, Modal, Select, Space, Spin, Tag, Typography } from 'antd';
-import { FileAddOutlined, ReadOutlined } from '@ant-design/icons';
+import { DownloadOutlined, FileAddOutlined, ReadOutlined } from '@ant-design/icons';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { api } from '../api';
 import { covenantReady } from '../covenant';
@@ -40,6 +40,20 @@ export function ChaptersPage() {
     } catch (error) { message.error(String(error)); }
   }
 
+  async function downloadManuscript(manuscript: ManuscriptRevisionDto) {
+    try {
+      const exported = await api.exportManuscript(work.id, manuscript.id);
+      const blob = new Blob([JSON.stringify(exported, null, 2)], { type: 'application/json;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const anchor = document.createElement('a');
+      anchor.href = url;
+      anchor.download = `${work.title}-manuscript-rev-${manuscript.revision}.json`;
+      anchor.click();
+      URL.revokeObjectURL(url);
+      message.success('书稿导出已下载');
+    } catch (error) { message.error(String(error)); }
+  }
+
   if (chapters === null) return <div className="state-block"><Spin size="large" /></div>;
   const ready = covenantReady(work.covenant);
   const next = ready ? '/works/' + work.id + '/write' : '/works/' + work.id + '/covenant';
@@ -48,7 +62,7 @@ export function ChaptersPage() {
   return <section className="page">
     <header className="page-head"><div><p className="page-kicker">目录</p><h1 className="page-title">章节</h1><p className="page-desc">{ready ? '已采用的正文按章节排列。冻结后的书稿快照可以随时复查。' : '这本小说还没有创作约定，先补上再写章节。'}</p></div><Button type="primary" icon={<FileAddOutlined />} onClick={() => navigate(next)}>{ready ? '创建章节' : '先写约定'}</Button></header>
 
-    {manuscripts.length > 0 && <Card title="最终书稿快照" style={{ marginBottom: 20 }}><Space direction="vertical" style={{ width: '100%' }}>{manuscripts.map((manuscript) => <Card.Grid key={manuscript.id} style={{ width: '100%', padding: 16 }}><Space wrap><Tag color={manuscript.status === 'final' ? 'success' : 'default'}>{manuscript.status === 'final' ? '当前最终版' : '历史版本'}</Tag><Text strong>修订 {manuscript.revision}</Text><Text type="secondary">{manuscript.chapterCount} 章 · {formatAdoptedAt(manuscript.createdAt)}</Text><Button size="small" icon={<ReadOutlined />} onClick={() => void openManuscript(manuscript)}>查看冻结书稿</Button></Space><div style={{ marginTop: 8 }}><Text type="secondary">内容哈希：{manuscript.contentHash}</Text></div></Card.Grid>)}</Space></Card>}
+    {manuscripts.length > 0 && <Card title="最终书稿快照" style={{ marginBottom: 20 }}><Space direction="vertical" style={{ width: '100%' }}>{manuscripts.map((manuscript) => <Card.Grid key={manuscript.id} style={{ width: '100%', padding: 16 }}><Space wrap><Tag color={manuscript.status === 'final' ? 'success' : 'default'}>{manuscript.status === 'final' ? '当前最终版' : '历史版本'}</Tag><Text strong>修订 {manuscript.revision}</Text><Text type="secondary">{manuscript.chapterCount} 章 · {formatAdoptedAt(manuscript.createdAt)}</Text><Button size="small" icon={<ReadOutlined />} onClick={() => void openManuscript(manuscript)}>查看冻结书稿</Button><Button size="small" icon={<DownloadOutlined />} onClick={() => void downloadManuscript(manuscript)}>下载完整 JSON</Button></Space><div style={{ marginTop: 8 }}><Text type="secondary">内容哈希：{manuscript.contentHash}</Text></div></Card.Grid>)}</Space></Card>}
 
     {chapters.length === 0 ? <div className="panel empty-panel"><Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="还没有章节"><Button type="primary" icon={<FileAddOutlined />} onClick={() => navigate(next)}>{ready ? '创建章节，进入章节创作' : '先写约定'}</Button></Empty></div> : <div className="panel"><div className="toc">{chapters.map((chapter) => <button key={chapter.id} type="button" className="toc-row" onClick={() => navigate('/works/' + work.id + '/write')}><span className="toc-num">第 {chapter.chapterNumber} 章</span><span className="tag tag-gold">rev {chapter.revision}</span><span className="toc-meta">已采用 · {formatAdoptedAt(chapter.createdAt)}</span><span className="toc-go">继续创作</span></button>)}</div></div>}
 
