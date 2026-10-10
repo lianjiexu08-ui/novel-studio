@@ -105,6 +105,10 @@ const runRequestSchema = z.object({ targetChapter: z.number().int().min(1).max(4
 const milestoneRequestSchema = z.object({ runId: z.string().min(1).max(200).optional() });
 const chapterStateParamSchema = z.object({ workId: z.string().min(1), chapterNumber: z.coerce.number().int().min(1) });
 
+function plannedChapterCount(work: Work): number {
+  return work.storyBible?.volumes.reduce((sum, volume) => sum + volume.plannedChapterCount, 0) ?? 0;
+}
+
 function toWorkDto(work: Work): WorkDto {
   return { id: work.id, title: work.title, stateRevision: work.stateRevision, constraintRevision: work.constraintRevision, covenant: work.covenant };
 }
@@ -246,7 +250,7 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
   app.post('/works/:workId/design/generate', async (request) => {
     const { workId } = workParamSchema.parse(request.params);
     const body = generateDesignRequestSchema.parse(request.body ?? {});
-    const generated = body.stage === 'world_pack' ? await workflow.generateWorldPack(workId) : await workflow.generateStoryBible(workId);
+    const generated = body.stage === 'world_pack' ? await workflow.generateWorldPack(workId) : await workflow.generateStoryBible(workId, body.chapterTarget);
     return body.stage === 'world_pack' ? { worldPack: generated } : { storyBible: generated };
   });
 
@@ -366,7 +370,7 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
       await workflow.lockWorldPack(workId);
     }
     work = await repository.get(workId);
-    if (!work?.storyBible) await workflow.generateStoryBible(workId);
+    if (!work?.storyBible || plannedChapterCount(work) !== 100) await workflow.generateStoryBible(workId, 100);
     work = await repository.get(workId);
     if (!work?.storyBible) throw new Error('story bible generation did not produce a story bible');
     if (work.storyBible.status !== 'locked') {
@@ -378,6 +382,36 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     const ready = await repository.get(workId);
     return reply.code(202).send({
       milestone: { targetChapter: 100, worldPack: ready?.worldPack, storyBible: ready?.storyBible },
+      runId, status: 'running', checkpoint: ready?.checkpoints.get(runId),
+    });
+  });
+
+  app.post('/works/:workId/milestones/450/start', async (request, reply) => {
+    const { workId } = workParamSchema.parse(request.params);
+    const body = milestoneRequestSchema.parse(request.body ?? {});
+    let work = await repository.get(workId);
+    if (!work) throw new NotFoundError(`unknown work ${workId}`);
+    if (!work.worldPack) await workflow.generateWorldPack(workId);
+    work = await repository.get(workId);
+    if (!work?.worldPack) throw new Error('world pack generation did not produce a world pack');
+    if (work.worldPack.status !== 'locked') {
+      if (work.worldPack.status !== 'reviewed') await workflow.reviewWorldPack(workId);
+      await workflow.lockWorldPack(workId);
+    }
+    work = await repository.get(workId);
+    if (!work?.storyBible || plannedChapterCount(work) !== 450) await workflow.generateStoryBible(workId, 450);
+    work = await repository.get(workId);
+    if (!work?.storyBible) throw new Error('story bible generation did not produce a story bible');
+    if (plannedChapterCount(work) !== 450) throw new Error(`story bible must plan exactly 450 chapters (got ${plannedChapterCount(work)})`);
+    if (work.storyBible.status !== 'locked') {
+      if (work.storyBible.status !== 'reviewed') await workflow.reviewStoryBible(workId);
+      await workflow.lockStoryBible(workId);
+    }
+    const runId = body.runId ?? `milestone-450:${workId}`;
+    await launchBackgroundRun(workId, 450, runId);
+    const ready = await repository.get(workId);
+    return reply.code(202).send({
+      milestone: { targetChapter: 450, worldPack: ready?.worldPack, storyBible: ready?.storyBible },
       runId, status: 'running', checkpoint: ready?.checkpoints.get(runId),
     });
   });

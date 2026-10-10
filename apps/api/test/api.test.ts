@@ -315,3 +315,36 @@ test('100-chapter milestone endpoint starts from locked design and reaches a fin
     await app.close();
   }
 });
+
+test('450-chapter expansion resumes after the first hundred chapters', async () => {
+  const design = milestoneDesign();
+  const fullBible = {
+    ...design.bible,
+    id: 'full-bible',
+    volumes: [1, 2, 3].map((order) => ({ ...design.bible.volumes[order - 1], plannedChapterCount: 150 })),
+  };
+  const { app } = createApiServer({
+    repository: new InMemoryWorkRepository(),
+    provider: { generateChapter: ({ chapterNumber }) => ({ content: `第${chapterNumber}章`, proposedEvents: [{ eventType: 'character_state', subjectId: 'hero', predicate: 'power', value: chapterNumber }], observedEvents: [{ eventType: 'character_state', subjectId: 'hero', predicate: 'power', value: chapterNumber }] }) },
+    designProvider: {
+      generateWorldPack: async () => design.world,
+      generateStoryBible: async ({ chapterTarget }) => chapterTarget === 450 ? fullBible : design.bible,
+    },
+  });
+  try {
+    const work = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('扩展百万字') })).json();
+    const started = await app.inject({ method: 'POST', url: `/works/${work.id}/milestones/450/start`, payload: {} });
+    assert.equal(started.statusCode, 202);
+    assert.equal(started.json().milestone.targetChapter, 450);
+    for (let attempt = 0; attempt < 60; attempt += 1) {
+      const status = await app.inject({ method: 'GET', url: `/works/${work.id}/runs` });
+      if (status.json().checkpoints[0]?.nextChapter === 451) break;
+      await new Promise((resolve) => setTimeout(resolve, 10));
+    }
+    const status = await app.inject({ method: 'GET', url: `/works/${work.id}/runs` });
+    assert.equal(status.json().checkpoints[0].nextChapter, 451);
+    assert.equal((await app.inject({ method: 'GET', url: `/works/${work.id}/design` })).json().storyBible.volumes.reduce((sum, volume) => sum + volume.plannedChapterCount, 0), 450);
+  } finally {
+    await app.close();
+  }
+});

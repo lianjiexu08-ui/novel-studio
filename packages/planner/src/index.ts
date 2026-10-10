@@ -31,14 +31,15 @@ export class JsonDesignPlanner implements DesignPlanner {
     return parsed as WorldPack;
   }
 
-  async generateStoryBible(input: { title: string; covenant: CreativeCovenant; worldPack: WorldPack }): Promise<StoryBible> {
+  async generateStoryBible(input: { title: string; covenant: CreativeCovenant; worldPack: WorldPack; chapterTarget?: number }): Promise<StoryBible> {
+    const chapterTarget = input.chapterTarget ?? this.targetChapters;
     const text = await this.client.complete({
       system: storyBibleSystem,
-      user: JSON.stringify({ task: 'generate_story_bible', title: input.title, covenant: input.covenant, chapterTarget: this.targetChapters, worldPack: input.worldPack }, null, 2),
+      user: JSON.stringify({ task: 'generate_story_bible', title: input.title, covenant: input.covenant, chapterTarget, worldPack: input.worldPack }, null, 2),
       maxOutputTokens: 12_000,
     });
     const parsed = parseStoryBible(readJson(text));
-    assertStoryBibleScale(parsed, this.targetChapters);
+    assertStoryBibleScale(parsed, chapterTarget);
     return parsed as StoryBible;
   }
 }

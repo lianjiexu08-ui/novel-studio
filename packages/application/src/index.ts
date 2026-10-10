@@ -6,7 +6,7 @@ import type { StoryBible, WorldPack } from '../../../novel-service-core/src/worl
 
 export interface DesignProvider {
   generateWorldPack(input: { title: string; covenant: CreativeCovenant }): Promise<WorldPack>;
-  generateStoryBible(input: { title: string; covenant: CreativeCovenant; worldPack: WorldPack }): Promise<StoryBible>;
+  generateStoryBible(input: { title: string; covenant: CreativeCovenant; worldPack: WorldPack; chapterTarget?: number }): Promise<StoryBible>;
 }
 
 export type OutboxKind = 'projection' | 'search_index' | 'export' | 'publication_check';
@@ -178,11 +178,11 @@ export class ChapterWorkflow {
     });
   }
 
-  async generateStoryBible(workId: string): Promise<StoryBible> {
+  async generateStoryBible(workId: string, chapterTarget?: number): Promise<StoryBible> {
     if (!this.designProvider) throw new Error('design provider is not configured');
     return this.repository.transaction(workId, async ({ work }) => {
       if (!work.worldPack) throw new Error('world pack has not been generated');
-      const storyBible = await this.designProvider!.generateStoryBible({ title: work.title, covenant: work.covenant, worldPack: work.worldPack });
+      const storyBible = await this.designProvider!.generateStoryBible({ title: work.title, covenant: work.covenant, worldPack: work.worldPack, chapterTarget });
       work.storyBible = storyBible;
       work.constraintRevision += 1;
       return storyBible;

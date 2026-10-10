@@ -78,9 +78,10 @@ export const api = {
   listWorks: () => call<{ works: WorkDto[] }>('/works'),
   getWork: (workId: string) => call<WorkDto>(`/works/${workId}`),
   design: (workId: string) => call<DesignDto>(`/works/${workId}/design`),
-  generateDesign: (workId: string, stage: 'world_pack' | 'story_bible') =>
-    call<{ worldPack?: DesignDto['worldPack']; storyBible?: DesignDto['storyBible'] }>(`/works/${workId}/design/generate`, { method: 'POST', body: { stage } }),
+  generateDesign: (workId: string, stage: 'world_pack' | 'story_bible', chapterTarget?: number) =>
+    call<{ worldPack?: DesignDto['worldPack']; storyBible?: DesignDto['storyBible'] }>(`/works/${workId}/design/generate`, { method: 'POST', body: { stage, ...(chapterTarget ? { chapterTarget } : {}) } }),
   startMilestone100: (workId: string) => call<{ runId: string; status: string; milestone: { targetChapter: number; worldPack?: DesignDto['worldPack']; storyBible?: DesignDto['storyBible'] } }>(`/works/${workId}/milestones/100/start`, { method: 'POST', body: {} }),
+  startMilestone450: (workId: string) => call<{ runId: string; status: string; milestone: { targetChapter: number; worldPack?: DesignDto['worldPack']; storyBible?: DesignDto['storyBible'] } }>(`/works/${workId}/milestones/450/start`, { method: 'POST', body: {} }),
   reviewWorldPack: (workId: string) => call<{ worldPack: NonNullable<DesignDto['worldPack']> }>(`/works/${workId}/world-pack/review`, { method: 'POST', body: {} }),
   lockWorldPack: (workId: string) => call<{ worldPack: NonNullable<DesignDto['worldPack']> }>(`/works/${workId}/world-pack/lock`, { method: 'POST', body: {} }),
   reviewStoryBible: (workId: string) => call<{ storyBible: NonNullable<DesignDto['storyBible']> }>(`/works/${workId}/story-bible/review`, { method: 'POST', body: {} }),
