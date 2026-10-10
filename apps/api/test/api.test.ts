@@ -236,6 +236,9 @@ test('design API saves and locks the world pack before the story bible', async (
     assert.equal((await app.inject({ method: 'POST', url: `${base}/story-bible/review`, payload: {} })).json().storyBible.status, 'reviewed');
     const lockedBible = (await app.inject({ method: 'POST', url: `${base}/story-bible/lock`, payload: {} })).json().storyBible;
     assert.equal(lockedBible.status, 'locked');
+    const initialState = await app.inject({ method: 'GET', url: `${base}/state/1` });
+    assert.equal(initialState.json().relationships[0].id, 'rel');
+    assert.equal(initialState.json().relationships[0].value, '同门');
     let stateRevision = 0;
     for (let chapterNumber = 1; chapterNumber <= 10; chapterNumber += 1) {
       const candidate = (await app.inject({ method: 'POST', url: `${base}/chapters/${chapterNumber}/generate`, payload: { runId: 'manuscript-run' } })).json().candidate;
