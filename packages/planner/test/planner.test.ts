@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
-import { JsonDesignPlanner, OpenAICompatibleChapterProvider, PlanningParseError } from '../src/index.ts';
+import { JsonBookPlanner, JsonDesignPlanner, OpenAICompatibleChapterProvider, PlanningParseError } from '../src/index.ts';
+import { minimalPlan } from '../../application/test/fixtures.ts';
 import { NovelService } from '../../../novel-service-core/src/core.ts';
 import { createEmptyWorldPack } from '../../../novel-service-core/src/world.ts';
 
@@ -50,6 +51,19 @@ test('planner validates structured world pack responses', async () => {
   const planner = new JsonDesignPlanner({ complete: async () => JSON.stringify(response) });
   const world = await planner.generateWorldPack({ title: '试作', covenant });
   assert.equal(world.powerSystems[0].realmIds[0], 'r');
+
+  const broken = { ...response, axioms: [{ id: 'a', name: '因果', description: '有代价' }] };
+  const requests: string[] = [];
+  const repairing = new JsonDesignPlanner({ complete: async ({ user }) => { requests.push(user); return JSON.stringify(requests.length === 1 ? broken : response); } });
+  const repaired = await repairing.generateWorldPack({ title: '试作', covenant });
+  assert.equal(repaired.axioms[0].title, '因果');
+  assert.equal(requests.length, 2, 'a malformed world pack gets exactly one repair round');
+  const repairRequest = JSON.parse(requests[1]);
+  assert.equal(repairRequest.task, 'repair_previous_output');
+  assert.match(repairRequest.problems, /axioms\.0\.title/);
+
+  const stubborn = new JsonDesignPlanner({ complete: async () => JSON.stringify(broken) });
+  await assert.rejects(() => stubborn.generateWorldPack({ title: '试作', covenant }), (error) => error instanceof PlanningParseError && /axioms\.0\.title/.test(error.message));
 });
 
 test('planner rejects non-JSON model output', async () => {
@@ -81,4 +95,22 @@ test('planner rejects a story bible that cannot support the 100-chapter mileston
   const dropped = new JsonDesignPlanner({ complete: async () => JSON.stringify({ ...response, characters: [response.characters[0]] }) });
   const previousWithExtra = { ...response, characters: [...response.characters, { id: 'rival', name: '对手', role: 'major', goal: '', identity: '' }] };
   await assert.rejects(() => dropped.generateStoryBible({ title: '试作', covenant, worldPack: { ...createEmptyWorldPack('九霄'), id: 'world-1' }, previousStoryBible: previousWithExtra as never }), /dropped stable IDs/);
+});
+
+test('book planner checks the skeleton scale and that every outline in the group is present', async () => {
+  const { chapters, ...skeleton } = minimalPlan(30, { volumeSize: 10, outlined: 30 });
+  const base = { title: '试作', covenant, adoptedFacts: { reachedChapter: 0 } };
+  const planner = new JsonBookPlanner({ complete: async () => JSON.stringify(skeleton) });
+  assert.equal((await planner.generatePlanSkeleton({ ...base, targetChapterCount: 30, volumeCount: 3 })).volumes.length, 3);
+  await assert.rejects(() => planner.generatePlanSkeleton({ ...base, targetChapterCount: 450, volumeCount: 3 }), PlanningParseError);
+
+  const prompts: string[] = [];
+  const outliner = new JsonBookPlanner({ complete: async ({ user }) => { prompts.push(user); return JSON.stringify({ chapters: chapters.slice(10, 20) }); } });
+  const outlines = await outliner.generateChapterOutlines({ ...base, skeleton, from: 11, to: 20, before: chapters.slice(0, 10), after: [] });
+  assert.deepEqual(outlines.map((outline) => outline.chapterNumber), [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]);
+  assert.ok(outlines.every((outline) => outline.source === 'model'));
+  assert.equal(JSON.parse(prompts[0]).previousOutlines.length, 10);
+
+  const gappy = new JsonBookPlanner({ complete: async () => JSON.stringify(chapters.slice(10, 19)) });
+  await assert.rejects(() => gappy.generateChapterOutlines({ ...base, skeleton, from: 11, to: 20, before: [], after: [] }), /missing chapters 20/);
 });

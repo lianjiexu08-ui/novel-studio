@@ -2,21 +2,34 @@ import Fastify, { type FastifyInstance } from 'fastify';
 import { z, ZodError } from 'zod';
 import {
   adoptCandidateRequestSchema,
+  createRulingRequestSchema,
   createWorkRequestSchema,
   generateChapterRequestSchema,
   generateDesignRequestSchema,
   updateWorkRequestSchema,
+  activateModelChannelRequestSchema,
+  probeModelChannelRequestSchema,
+  updateModelSettingsRequestSchema,
+  confirmBriefRequestSchema,
+  generateOutlinesRequestSchema,
+  generatePlanRequestSchema,
+  savePlanRequestSchema,
   saveStoryBibleRequestSchema,
   saveWorldPackRequestSchema,
   type ApiError,
   type ApiErrorCode,
   type CandidateDto,
+  type ChapterReadinessDto,
   type ManuscriptRevisionDto,
   type WorkDto,
 } from 'novel-studio-contracts';
 import {
   AdoptionBlocked,
   characterStateAt,
+  DemoCandidateError,
+  QualityGateError,
+  ReadinessError,
+  RulingNotAllowedError,
   LockedConstraintError,
   SettingConflictError,
   StaleCandidateError,
@@ -36,20 +49,36 @@ import {
   observedEventsChecker,
   passChecker,
   type ChapterCandidate,
+  type Checkpoint,
+  type CheckPolicy,
   type ManuscriptRevision,
   type ModelProvider,
   type Work,
 } from '../../../novel-service-core/src/core.ts';
 import { CanonGateError } from '../../../novel-service-core/src/world.ts';
+import { effectiveBrief, PlanConflictError, PlanGateError } from '../../../novel-service-core/src/planning.ts';
 import {
   ChapterWorkflow,
+  IdempotencyConflictError,
   InMemoryWorkRepository,
+  LeaseLostError,
+  PlanProviderMissingError,
+  RunCancelledError,
+  RunInProgressError,
   type DesignProvider,
+  type PlanProvider,
   type WorkRepository,
 } from '../../../packages/application/src/index.ts';
+import { BudgetExceededError, ModelTimeoutError, redactSecrets, UsageLedger } from '../../../packages/model-gateway/src/index.ts';
 import { PrismaWorkRepository } from '../../../packages/persistence/src/prisma-repository.ts';
-import { JsonDesignPlanner, OpenAICompatibleChapterProvider, OpenAICompatiblePlanningClient } from '../../../packages/planner/src/index.ts';
+import { JsonBookPlanner, JsonDesignPlanner, OpenAICompatibleChapterProvider, OpenAICompatiblePlanningClient, PlanningParseError } from '../../../packages/planner/src/index.ts';
+import { collectHotTopics } from './hot-topics.ts';
 import { registerSettingsRoutes } from './settings-routes.ts';
+import {
+  activeChannel, backupConnections, connectionOf, listModelIds, loadModelStore, newModelChannelId, providersFromConnection, removeChannel, saveModelStore, testModelConnection, toModelSettingsView, upsertChannel,
+  type ModelChannel, type ModelConnection, type ModelStore,
+} from './model-settings.ts';
+import { randomUUID } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { mkdirSync } from 'node:fs';
@@ -58,11 +87,15 @@ import { mkdirSync } from 'node:fs';
  * Local-first default: SQLite via Prisma, one file at data/novel-studio.db.
  * Set NOVEL_REPOSITORY=memory to force the in-memory repository (used by tests).
  */
-function createDefaultRepository(): WorkRepository {
-  if (process.env.NOVEL_REPOSITORY === 'memory') return new InMemoryWorkRepository();
+function dataDirectory(): string {
   const dataDir = join(dirname(fileURLToPath(import.meta.url)), '..', '..', '..', 'data');
   mkdirSync(dataDir, { recursive: true });
-  process.env.DATABASE_URL ??= `file:${join(dataDir, 'novel-studio.db')}`;
+  return dataDir;
+}
+
+function createDefaultRepository(): WorkRepository {
+  if (process.env.NOVEL_REPOSITORY === 'memory') return new InMemoryWorkRepository();
+  process.env.DATABASE_URL ??= `file:${join(dataDirectory(), 'novel-studio.db')}`;
   return new PrismaWorkRepository();
 }
 
@@ -70,19 +103,50 @@ export interface ApiDependencies {
   repository?: WorkRepository;
   provider?: ModelProvider;
   designProvider?: DesignProvider;
+  /** Book plan and chapter outline generation; defaults to the env-configured planning model. */
+  planProvider?: PlanProvider;
   /** When set, all non-/health routes require `Authorization: Bearer <token>`. */
   authToken?: string;
+  /**
+   * P0 is chapter-by-chapter only; multi-chapter runs and milestones stay off
+   * unless explicitly enabled (NOVEL_ENABLE_BATCH_RUNS=true) for acceptance scripts.
+   */
+  allowBatchRuns?: boolean;
+  /** Shared model usage ledger; defaults to one built from NOVEL_MODEL_* limits. */
+  ledger?: UsageLedger;
+  /**
+   * When set, model endpoint, key and model names come from a local file
+   * (seeded by the environment) and can be changed through /settings/model.
+   * Tests leave this off so they keep the injected provider.
+   */
+  manageModelSettings?: boolean;
+  modelSettingsPath?: string;
+  /** Defaults to true. Tests turn this off so a saved key does not leak into process.env. */
+  writeProcessEnvironment?: boolean;
+  /** Hot-topic lookup. Tests inject a fixture instead of calling public boards. */
+  topicSearch?: (query: string) => Promise<import('novel-studio-contracts').HotTopicsResponse>;
 }
 
-export function defaultProvider(): ModelProvider {
+const optionalNumber = (raw: string | undefined) => (raw === undefined || raw === '' ? undefined : Number(raw));
+
+/** One ledger for every model role in this process: planning, writing, extraction and failed calls. */
+export function createUsageLedger(): UsageLedger {
+  return new UsageLedger(Number(process.env.NOVEL_MODEL_BUDGET_USD ?? Number.POSITIVE_INFINITY), undefined, {
+    maxCalls: optionalNumber(process.env.NOVEL_MODEL_MAX_CALLS),
+    maxOutputTokens: optionalNumber(process.env.NOVEL_MODEL_MAX_OUTPUT_TOKENS),
+  });
+}
+
+export function defaultProvider(ledger: UsageLedger = createUsageLedger()): ModelProvider {
   const endpoint = process.env.NOVEL_MODEL_ENDPOINT;
   const apiKey = process.env.NOVEL_MODEL_API_KEY;
   const model = process.env.NOVEL_WRITING_MODEL ?? process.env.NOVEL_PLANNING_MODEL;
-  const timeoutMs = Number(process.env.NOVEL_MODEL_TIMEOUT_MS ?? 60_000);
+  const timeoutMs = Number(process.env.NOVEL_MODEL_TIMEOUT_MS ?? 180_000);
   if (endpoint && apiKey && model) {
-    return new OpenAICompatibleChapterProvider(endpoint, apiKey, model, Number(process.env.NOVEL_MODEL_BUDGET_USD ?? Number.POSITIVE_INFINITY), timeoutMs, process.env.NOVEL_INDEPENDENT_EXTRACTION !== 'false');
+    return new OpenAICompatibleChapterProvider(endpoint, apiKey, model, ledger, timeoutMs, process.env.NOVEL_INDEPENDENT_EXTRACTION !== 'false');
   }
   return {
+    demo: true,
     generateChapter: ({ chapterNumber, context }) => {
       const event = { eventType: 'character_state', subjectId: 'hero', predicate: 'power', value: chapterNumber + context.includedEventIds.length, storyTime: chapterNumber, evidence: 'paragraph 1' };
       return { content: `第${chapterNumber}章：主角踏入新的修行阶段。`, proposedEvents: [event], observedEvents: [event] };
@@ -90,25 +154,59 @@ export function defaultProvider(): ModelProvider {
   };
 }
 
-function defaultDesignProvider(): DesignProvider | undefined {
+function defaultDesignProvider(ledger: UsageLedger): DesignProvider | undefined {
   const endpoint = process.env.NOVEL_MODEL_ENDPOINT;
   const apiKey = process.env.NOVEL_MODEL_API_KEY;
   const model = process.env.NOVEL_PLANNING_MODEL;
   if (!endpoint || !apiKey || !model) return undefined;
   const targetChapters = Number(process.env.NOVEL_PLANNING_CHAPTER_TARGET ?? 100);
-  const timeoutMs = Number(process.env.NOVEL_MODEL_TIMEOUT_MS ?? 60_000);
-  return new JsonDesignPlanner(new OpenAICompatiblePlanningClient(endpoint, apiKey, model, Number(process.env.NOVEL_MODEL_BUDGET_USD ?? Number.POSITIVE_INFINITY), timeoutMs), targetChapters);
+  const timeoutMs = Number(process.env.NOVEL_MODEL_TIMEOUT_MS ?? 180_000);
+  return new JsonDesignPlanner(new OpenAICompatiblePlanningClient(endpoint, apiKey, model, ledger, timeoutMs), targetChapters);
+}
+
+function defaultPlanProvider(ledger: UsageLedger): PlanProvider | undefined {
+  const endpoint = process.env.NOVEL_MODEL_ENDPOINT;
+  const apiKey = process.env.NOVEL_MODEL_API_KEY;
+  const model = process.env.NOVEL_PLANNING_MODEL;
+  if (!endpoint || !apiKey || !model) return undefined;
+  const timeoutMs = Number(process.env.NOVEL_MODEL_TIMEOUT_MS ?? 180_000);
+  return new JsonBookPlanner(new OpenAICompatiblePlanningClient(endpoint, apiKey, model, ledger, timeoutMs));
+}
+
+const chapterCheckers = [passChecker, canonConsistencyChecker, observedEventsChecker, chapterLengthChecker];
+
+/**
+ * Every registered chapter checker is required; a missing or non-passing one
+ * blocks adoption. Only the length check may be ruled a false positive: the
+ * others guard hard constraints and the independent extraction.
+ */
+export const chapterCheckPolicy: CheckPolicy = {
+  version: 'chapter-policy-v2',
+  required: chapterCheckers.map((checker) => checker.name),
+  overridable: ['chapter_length'],
+};
+
+/** Fencing tokens stay on the server. */
+function toCheckpointDto(checkpoint: Checkpoint) {
+  const { leaseToken, ...rest } = checkpoint;
+  return { ...rest, active: Boolean(leaseToken && checkpoint.leaseExpiresAt && Date.parse(checkpoint.leaseExpiresAt) > Date.now()) };
+}
+
+function checkpointOf(work: Work | undefined, runId: string) {
+  const checkpoint = work?.checkpoints.get(runId);
+  return checkpoint ? toCheckpointDto(checkpoint) : undefined;
 }
 
 function generationCheckers() {
-  const checkers = [passChecker, canonConsistencyChecker, observedEventsChecker];
-  if (process.env.NOVEL_MODEL_ENDPOINT && process.env.NOVEL_MODEL_API_KEY && (process.env.NOVEL_WRITING_MODEL || process.env.NOVEL_PLANNING_MODEL)) checkers.push(chapterLengthChecker);
-  return checkers;
+  return chapterCheckers;
 }
+
+class BatchRunsDisabledError extends Error {}
 
 const chapterNumberParamSchema = z.object({ workId: z.string().min(1), chapterNumber: z.coerce.number().int().min(1) });
 const candidateParamSchema = z.object({ workId: z.string().min(1), candidateId: z.string().min(1) });
 const workParamSchema = z.object({ workId: z.string().min(1) });
+const runControlParamSchema = z.object({ workId: z.string().min(1), runId: z.string().min(1), action: z.enum(['pause', 'cancel']) });
 const runRequestSchema = z.object({ targetChapter: z.number().int().min(1).max(450), runId: z.string().min(1).max(200).optional(), background: z.boolean().optional() });
 const milestoneRequestSchema = z.object({ runId: z.string().min(1).max(200).optional() });
 const chapterStateParamSchema = z.object({ workId: z.string().min(1), chapterNumber: z.coerce.number().int().min(1) });
@@ -121,7 +219,16 @@ function toWorkDto(work: Work): WorkDto {
   return { id: work.id, title: work.title, stateRevision: work.stateRevision, constraintRevision: work.constraintRevision, covenant: work.covenant };
 }
 
-function toCandidateDto(candidate: ChapterCandidate): CandidateDto {
+function candidateIsStale(candidate: ChapterCandidate, work: Work): boolean {
+  if (candidate.status !== 'candidate') return false;
+  return candidate.generatedAgainstRevision !== work.stateRevision
+    || candidate.generatedAgainstConstraintRevision !== work.constraintRevision
+    || candidate.generatedAgainstWorldPackRevision !== work.worldPack?.revision
+    || candidate.generatedAgainstStoryBibleRevision !== work.storyBible?.revision
+    || Boolean(work.activePlanId && candidate.planRevisionId !== work.activePlanId);
+}
+
+function toCandidateDto(candidate: ChapterCandidate, work: Work): CandidateDto {
   return {
     id: candidate.id,
     workId: candidate.workId,
@@ -133,7 +240,17 @@ function toCandidateDto(candidate: ChapterCandidate): CandidateDto {
     observedEvents: candidate.observedEvents,
     generatedAgainstRevision: candidate.generatedAgainstRevision,
     generatedAgainstConstraintRevision: candidate.generatedAgainstConstraintRevision,
+    generatedAgainstWorldPackRevision: candidate.generatedAgainstWorldPackRevision,
+    generatedAgainstStoryBibleRevision: candidate.generatedAgainstStoryBibleRevision,
+    contentHash: candidate.contentHash,
+    origin: candidate.origin,
+    planRevisionId: candidate.planRevisionId,
+    brief: candidate.brief,
+    stale: candidateIsStale(candidate, work),
     checks: candidate.checks,
+    checkHistory: candidate.checkRuns,
+    rulings: candidate.rulings,
+    usage: candidate.usage,
     adoptedVersionId: candidate.adoptedVersionId,
     createdAt: candidate.createdAt,
   };
@@ -145,11 +262,42 @@ function toManuscriptDto(manuscript: ManuscriptRevision): ManuscriptRevisionDto 
 
 export function createApiServer(dependencies: ApiDependencies = {}): { app: FastifyInstance; repository: WorkRepository } {
   const repository = dependencies.repository ?? createDefaultRepository();
-  const workflow = new ChapterWorkflow(repository, dependencies.provider ?? defaultProvider(), dependencies.designProvider ?? defaultDesignProvider());
+  const topicSearch = dependencies.topicSearch ?? collectHotTopics;
+  const ledger = dependencies.ledger ?? createUsageLedger();
+  const settingsPath = dependencies.modelSettingsPath ?? join(dataDirectory(), 'model-settings.json');
+  let store: ModelStore | undefined = dependencies.manageModelSettings ? loadModelStore(settingsPath) : undefined;
+  const initial = store ? providersFromConnection(connectionOf(activeChannel(store), store.source), ledger, backupConnections(store)) : undefined;
+  const workflow = new ChapterWorkflow(
+    repository,
+    dependencies.provider ?? initial?.provider ?? defaultProvider(ledger),
+    dependencies.designProvider ?? (store ? initial?.designProvider : defaultDesignProvider(ledger)),
+    {
+      checkPolicy: chapterCheckPolicy,
+      planProvider: dependencies.planProvider ?? (store ? initial?.planProvider : defaultPlanProvider(ledger)),
+    },
+  );
+  const allowBatchRuns = dependencies.allowBatchRuns ?? process.env.NOVEL_ENABLE_BATCH_RUNS === 'true';
+  const requireBatchRuns = () => {
+    if (!allowBatchRuns) throw new BatchRunsDisabledError('multi-chapter runs are disabled; generate, review and adopt one chapter at a time');
+  };
   const activeRuns = new Map<string, Promise<void>>();
   async function launchBackgroundRun(workId: string, targetChapter: number, runId: string): Promise<void> {
     const key = `${workId}:${runId}`;
     if (activeRuns.has(key)) return;
+    // Surface lease conflicts to the caller instead of losing them in the background task.
+    const work = await repository.get(workId);
+    if (!work) throw new NotFoundError(`unknown work ${workId}`);
+    const holder = [...work.checkpoints.values()].find((checkpoint) => toCheckpointDto(checkpoint).active);
+    if (holder) throw new RunInProgressError(`run ${holder.runId} is already writing this work`);
+    const existing = work.checkpoints.get(runId);
+    if (existing && existing.targetChapter !== targetChapter) throw new IdempotencyConflictError(`run ${runId} targets chapter ${existing.targetChapter}; start a new run for a different target`);
+    if (existing?.phase === 'cancelled') throw new RunCancelledError(`run ${runId} was cancelled; start a new run`);
+    let nextChapter = 1;
+    while (work.currentVersion(nextChapter)) nextChapter += 1;
+    if (nextChapter <= targetChapter) {
+      const blockers = await workflow.readiness(workId, nextChapter);
+      if (blockers.length) throw new ReadinessError(blockers);
+    }
     const task = workflow.runUntil(workId, targetChapter, generationCheckers(), runId)
       .then(() => undefined)
       .catch(() => undefined)
@@ -171,7 +319,7 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
   // CORS: local dev default, tighten via env when deploying.
   app.addHook('onSend', async (request, reply) => {
     reply.header('access-control-allow-origin', process.env.API_CORS_ORIGIN ?? 'http://localhost:5173');
-    reply.header('access-control-allow-methods', 'GET,POST,PATCH,DELETE,OPTIONS');
+    reply.header('access-control-allow-methods', 'GET,POST,PUT,PATCH,DELETE,OPTIONS');
     reply.header('access-control-allow-headers', 'content-type,authorization');
   });
   app.options('*', async (_request, reply) => reply.code(204).send());
@@ -192,6 +340,87 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
 
   app.get('/health', async () => ({ ok: true }));
 
+  if (store) {
+    const persist = (next: ModelStore, savedId?: string) => {
+      store = next;
+      saveModelStore(settingsPath, next, dependencies.writeProcessEnvironment !== false);
+      const built = providersFromConnection(connectionOf(activeChannel(next), 'saved'), ledger, backupConnections(next));
+      if (!dependencies.provider) workflow.applyModelProviders(built.provider, built.designProvider, built.planProvider);
+      return toModelSettingsView(next, built, savedId);
+    };
+    const channelFrom = (body: unknown): { channel: ModelChannel; activate: boolean } => {
+      const parsed = updateModelSettingsRequestSchema.parse(body ?? {});
+      const existing = parsed.id ? store!.channels.find((channel) => channel.id === parsed.id) : undefined;
+      if (parsed.id && !existing) throw new NotFoundError(`unknown channel ${parsed.id}`);
+      if (!existing && store!.channels.length >= 20) throw new Error('at most 20 model channels');
+      const channel: ModelChannel = {
+        id: existing?.id ?? newModelChannelId(),
+        name: parsed.name,
+        endpoint: parsed.endpoint,
+        apiKey: parsed.clearApiKey ? '' : (parsed.apiKey?.trim() ? parsed.apiKey : existing?.apiKey ?? ''),
+        planningModel: parsed.planningModel,
+        writingModel: parsed.writingModel,
+        timeoutMs: parsed.timeoutMs,
+        independentExtraction: parsed.independentExtraction,
+        fallback: parsed.fallback,
+      };
+      const activate = parsed.activate === true || channel.id === store!.activeId || !store!.activeId;
+      return { channel, activate };
+    };
+    const probeConnection = (body: unknown): ModelConnection => {
+      const parsed = probeModelChannelRequestSchema.parse(body ?? {});
+      const existing = parsed.id ? store!.channels.find((channel) => channel.id === parsed.id) : undefined;
+      if (parsed.id && !existing) throw new NotFoundError(`unknown channel ${parsed.id}`);
+      return {
+        endpoint: parsed.endpoint || existing?.endpoint || '',
+        apiKey: parsed.apiKey?.trim() ? parsed.apiKey : existing?.apiKey ?? '',
+        planningModel: parsed.planningModel,
+        writingModel: parsed.writingModel,
+        timeoutMs: parsed.timeoutMs,
+        independentExtraction: existing?.independentExtraction ?? true,
+        source: 'saved',
+      };
+    };
+
+    app.get('/settings/model', async () => {
+      const current = store!;
+      return toModelSettingsView(current, providersFromConnection(connectionOf(activeChannel(current), current.source), ledger, backupConnections(current)));
+    });
+
+    app.put('/settings/model', async (request) => {
+      const { channel, activate } = channelFrom(request.body);
+      return persist(upsertChannel(store!, channel, activate), channel.id);
+    });
+
+    app.post('/settings/model/activate', async (request) => {
+      const { id } = activateModelChannelRequestSchema.parse(request.body ?? {});
+      const channel = store!.channels.find((item) => item.id === id);
+      if (!channel) throw new NotFoundError(`unknown channel ${id}`);
+      return persist(upsertChannel(store!, channel, true), channel.id);
+    });
+
+    app.delete('/settings/model/channels/:channelId', async (request) => {
+      const { channelId } = z.object({ channelId: z.string().min(1) }).parse(request.params);
+      if (!store!.channels.some((channel) => channel.id === channelId)) throw new NotFoundError(`unknown channel ${channelId}`);
+      return persist(removeChannel(store!, channelId));
+    });
+
+    app.post('/settings/model/test', async (request) => testModelConnection(probeConnection(request.body)));
+
+    app.post('/settings/model/models', async (request) => {
+      try {
+        return { models: await listModelIds(probeConnection(request.body)) };
+      } catch (error) {
+        return { models: [] as string[], message: error instanceof Error ? error.message : String(error) };
+      }
+    });
+  }
+
+  app.get('/topics/hot', async (request) => {
+    const query = z.object({ q: z.string().trim().max(80).optional() }).parse(request.query ?? {});
+    return topicSearch(query.q ?? '');
+  });
+
   app.post('/works', async (request, reply) => {
     const body = createWorkRequestSchema.parse(request.body ?? {});
     const work = await workflow.createWork(body.title, body.covenant);
@@ -201,7 +430,72 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
   app.patch('/works/:workId', async (request) => {
     const { workId } = workParamSchema.parse(request.params);
     const body = updateWorkRequestSchema.parse(request.body ?? {});
-    return toWorkDto(await workflow.updateWork(workId, body));
+    const { work, impact } = await workflow.updateWorkWithImpact(workId, body);
+    return { ...toWorkDto(work), impact };
+  });
+
+  app.get('/works/:workId/covenant/history', async (request) => {
+    const { workId } = workParamSchema.parse(request.params);
+    const work = await repository.get(workId);
+    if (!work) throw new NotFoundError(`unknown work ${workId}`);
+    return { revisions: work.covenantHistory };
+  });
+
+  app.get('/works/:workId/plans', async (request) => {
+    const { workId } = workParamSchema.parse(request.params);
+    return { ...(await workflow.planOverview(workId)), planningConfigured: workflow.planningConfigured };
+  });
+
+  app.get('/works/:workId/plans/history', async (request) => {
+    const { workId } = workParamSchema.parse(request.params);
+    const work = await repository.get(workId);
+    if (!work) throw new NotFoundError(`unknown work ${workId}`);
+    return { plans: [...work.plans.values()].sort((a, b) => a.revision - b.revision), activePlanId: work.activePlanId };
+  });
+
+  app.post('/works/:workId/plans/generate', async (request, reply) => {
+    const { workId } = workParamSchema.parse(request.params);
+    const body = generatePlanRequestSchema.parse(request.body ?? {});
+    return reply.code(201).send({ plan: await workflow.generatePlan(workId, body) });
+  });
+
+  app.post('/works/:workId/plans/outlines', async (request, reply) => {
+    const { workId } = workParamSchema.parse(request.params);
+    const body = generateOutlinesRequestSchema.parse(request.body ?? {});
+    return reply.code(201).send({ plan: await workflow.generateOutlines(workId, body) });
+  });
+
+  app.put('/works/:workId/plans', async (request, reply) => {
+    const { workId } = workParamSchema.parse(request.params);
+    const body = savePlanRequestSchema.parse(request.body ?? {});
+    return reply.code(201).send({ plan: await workflow.savePlan(workId, body) });
+  });
+
+  app.post('/works/:workId/plans/:planId/review', async (request) => {
+    const { workId, planId } = workParamSchema.extend({ planId: z.string().min(1) }).parse(request.params);
+    const review = await workflow.reviewPlan(workId, planId);
+    const work = await repository.get(workId);
+    return { review, plan: work?.plans.get(planId) };
+  });
+
+  app.post('/works/:workId/plans/:planId/approve', async (request) => {
+    const { workId, planId } = workParamSchema.extend({ planId: z.string().min(1) }).parse(request.params);
+    return { plan: await workflow.approvePlan(workId, planId) };
+  });
+
+  app.get('/works/:workId/next-chapter', async (request) => workflow.prepareNextChapter(workParamSchema.parse(request.params).workId));
+
+  app.get('/works/:workId/chapters/:chapterNumber/brief', async (request) => {
+    const { workId, chapterNumber } = chapterNumberParamSchema.parse(request.params);
+    const work = await repository.get(workId);
+    if (!work) throw new NotFoundError(`unknown work ${workId}`);
+    return { chapterNumber, brief: effectiveBrief(work, chapterNumber) };
+  });
+
+  app.post('/works/:workId/chapters/:chapterNumber/brief/confirm', async (request, reply) => {
+    const { workId, chapterNumber } = chapterNumberParamSchema.parse(request.params);
+    const body = confirmBriefRequestSchema.parse(request.body ?? {});
+    return reply.code(201).send({ brief: await workflow.confirmBrief(workId, chapterNumber, body) });
   });
 
   app.get('/works', async () => {
@@ -397,24 +691,37 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
   app.post('/works/:workId/chapters/:chapterNumber/generate', async (request, reply) => {
     const { workId, chapterNumber } = chapterNumberParamSchema.parse(request.params);
     const body = generateChapterRequestSchema.parse(request.body ?? {});
-    const candidate = await workflow.generate(workId, chapterNumber, body.runId ?? `api:${workId}:${chapterNumber}`);
-    return reply.code(201).send({ candidate: toCandidateDto(candidate) });
+    // Without a client idempotency key every click is a new attempt; a key makes retries return the same candidate.
+    const candidate = await workflow.generate(workId, chapterNumber, body.runId ?? `api:${randomUUID()}`, body.mode);
+    const work = await repository.get(workId);
+    return reply.code(201).send({ candidate: toCandidateDto(candidate, work!) });
+  });
+
+  app.get('/works/:workId/chapters/:chapterNumber/readiness', async (request): Promise<ChapterReadinessDto> => {
+    const { workId, chapterNumber } = chapterNumberParamSchema.parse(request.params);
+    const blockers = await workflow.readiness(workId, chapterNumber);
+    return {
+      chapterNumber, ready: blockers.length === 0, modelConfigured: workflow.modelConfigured, blockers,
+      requiredChecks: workflow.checkPolicy?.required ?? [], checkPolicyVersion: workflow.checkPolicy?.version,
+    };
   });
 
   app.post('/works/:workId/runs', async (request, reply) => {
+    requireBatchRuns();
     const { workId } = workParamSchema.parse(request.params);
     const body = runRequestSchema.parse(request.body ?? {});
     const runId = body.runId ?? `api-run:${workId}`;
     if (body.background) {
       await launchBackgroundRun(workId, body.targetChapter, runId);
       const current = await repository.get(workId);
-      return reply.code(202).send({ runId, status: 'running', checkpoint: current?.checkpoints.get(runId) });
+      return reply.code(202).send({ runId, status: 'running', checkpoint: checkpointOf(current, runId) });
     }
     const checkpoint = await workflow.runUntil(workId, body.targetChapter, generationCheckers(), runId);
-    return { checkpoint };
+    return { checkpoint: toCheckpointDto(checkpoint) };
   });
 
   app.post('/works/:workId/milestones/100/start', async (request, reply) => {
+    requireBatchRuns();
     const { workId } = workParamSchema.parse(request.params);
     const body = milestoneRequestSchema.parse(request.body ?? {});
     let work = await repository.get(workId);
@@ -439,11 +746,12 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     const ready = await repository.get(workId);
     return reply.code(202).send({
       milestone: { targetChapter: 100, worldPack: ready?.worldPack, storyBible: ready?.storyBible },
-      runId, status: 'running', checkpoint: ready?.checkpoints.get(runId),
+      runId, status: 'running', checkpoint: checkpointOf(ready, runId),
     });
   });
 
   app.post('/works/:workId/milestones/450/start', async (request, reply) => {
+    requireBatchRuns();
     const { workId } = workParamSchema.parse(request.params);
     const body = milestoneRequestSchema.parse(request.body ?? {});
     let work = await repository.get(workId);
@@ -469,7 +777,7 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     const ready = await repository.get(workId);
     return reply.code(202).send({
       milestone: { targetChapter: 450, worldPack: ready?.worldPack, storyBible: ready?.storyBible },
-      runId, status: 'running', checkpoint: ready?.checkpoints.get(runId),
+      runId, status: 'running', checkpoint: checkpointOf(ready, runId),
     });
   });
 
@@ -477,14 +785,31 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     const { workId } = workParamSchema.parse(request.params);
     const work = await repository.get(workId);
     if (!work) throw new NotFoundError(`unknown work ${workId}`);
-    return { checkpoints: [...work.checkpoints.values()], activeRunIds: [...activeRuns.keys()].filter((key) => key.startsWith(`${workId}:`)).map((key) => key.slice(workId.length + 1)) };
+    return { checkpoints: [...work.checkpoints.values()].map(toCheckpointDto), activeRunIds: [...activeRuns.keys()].filter((key) => key.startsWith(`${workId}:`)).map((key) => key.slice(workId.length + 1)) };
+  });
+
+  app.post('/works/:workId/runs/:runId/:action', async (request) => {
+    const { workId, runId, action } = runControlParamSchema.parse(request.params);
+    return { checkpoint: toCheckpointDto(await workflow.controlRun(workId, runId, action)) };
+  });
+
+  app.get('/usage', async () => ledger.summary());
+
+  app.post('/works/:workId/candidates/:candidateId/rulings', async (request, reply) => {
+    const { workId, candidateId } = candidateParamSchema.parse(request.params);
+    const body = createRulingRequestSchema.parse(request.body ?? {});
+    const ruling = await workflow.recordRuling(workId, candidateId, body);
+    const work = await repository.get(workId);
+    const candidate = work?.candidates.get(candidateId);
+    return reply.code(201).send({ ruling, candidate: candidate && work ? toCandidateDto(candidate, work) : undefined });
   });
 
   app.post('/works/:workId/candidates/:candidateId/check', async (request) => {
     const { workId, candidateId } = candidateParamSchema.parse(request.params);
     await workflow.check(workId, candidateId, generationCheckers());
-    const candidate = (await repository.get(workId))?.candidates.get(candidateId);
-    return { ok: true, candidate: candidate ? toCandidateDto(candidate) : undefined };
+    const work = await repository.get(workId);
+    const candidate = work?.candidates.get(candidateId);
+    return { ok: true, candidate: candidate && work ? toCandidateDto(candidate, work) : undefined };
   });
 
   app.post('/works/:workId/candidates/:candidateId/adopt', async (request) => {
@@ -514,19 +839,40 @@ function mapError(error: unknown): { status: number; body: ApiError } {
     const issues = error instanceof ZodError ? error.issues.map((issue) => ({ path: issue.path.join('.'), message: issue.message })) : [{ path: '$', message: error.message }];
     return { status: 400, body: apiError('VALIDATION_FAILED', 'request failed contract validation', issues) };
   }
+  if (error instanceof ReadinessError) return { status: 409, body: apiError(error.code, error.message, { blockers: error.blockers }) };
+  if (error instanceof DemoCandidateError) return { status: 409, body: apiError('DEMO_CANDIDATE_NOT_ADOPTABLE', error.message) };
+  if (error instanceof QualityGateError) return { status: 409, body: apiError('REQUIRED_CHECK_FAILED', error.message) };
+  if (error instanceof BatchRunsDisabledError) return { status: 409, body: apiError('BATCH_RUNS_DISABLED', error.message) };
+  if (error instanceof RulingNotAllowedError) return { status: 409, body: apiError('RULING_NOT_ALLOWED', error.message) };
+  if (error instanceof RunInProgressError || error instanceof LeaseLostError) return { status: 409, body: apiError('RUN_IN_PROGRESS', error.message) };
+  if (error instanceof RunCancelledError) return { status: 409, body: apiError('RUN_CANCELLED', error.message) };
+  if (error instanceof IdempotencyConflictError) return { status: 409, body: apiError('IDEMPOTENCY_CONFLICT', error.message) };
+  if (error instanceof BudgetExceededError) return { status: 429, body: apiError('BUDGET_EXCEEDED', error.message) };
   if (error instanceof LockedConstraintError) return { status: 409, body: apiError('LOCKED_CONSTRAINT', error.message) };
   if (error instanceof StaleCandidateError) return { status: 409, body: apiError('STALE_CANDIDATE', error.message) };
   if (error instanceof AdoptionBlocked) return { status: 409, body: apiError('ADOPTION_BLOCKED', error.message) };
   if (error instanceof SettingConflictError) return { status: 409, body: apiError('CONFLICT', error.message) };
   if (error instanceof CanonGateError) return { status: 409, body: apiError('CONFLICT', error.message) };
-  if (error instanceof NotFoundError || /unknown (work|candidate|character|relationship|rule|plot node)\b/.test(String(error))) {
+  if (error instanceof PlanConflictError) return { status: 409, body: apiError('PLAN_CONFLICT', error.message) };
+  if (error instanceof PlanGateError) return { status: 409, body: apiError('PLAN_GATE', error.message) };
+  if (error instanceof PlanProviderMissingError) return { status: 409, body: apiError('PLANNER_NOT_CONFIGURED', error.message) };
+  if (error instanceof NotFoundError || /unknown (work|candidate|character|relationship|rule|plot node|run|plan|channel)\b/.test(String(error))) {
     return { status: 404, body: apiError('NOT_FOUND', error instanceof Error ? error.message : 'not found') };
+  }
+  if (error instanceof ModelTimeoutError) {
+    const ms = Number(/(\d+)ms/.exec(error.message)?.[1]);
+    const seconds = Number.isFinite(ms) ? Math.round(ms / 1000) : undefined;
+    return { status: 504, body: apiError('MODEL_TIMEOUT', `模型连续${seconds ? ` ${seconds} 秒` : '一段时间'}没有任何输出，已断开。可能是接口拥堵或模型卡住，稍后再试；仍不行就到系统设置换渠道或把超时调大。`) };
+  }
+  if (error instanceof PlanningParseError) return { status: 502, body: apiError('MODEL_FAILED', `模型返回的内容不合格：${String(redactSecrets(error.message))}`) };
+  if (error instanceof Error && /^(openai-compatible|gemini) (request failed|response has no)/.test(error.message)) {
+    return { status: 502, body: apiError('MODEL_FAILED', `模型接口报错：${String(redactSecrets(error.message))}`) };
   }
   return { status: 500, body: apiError('INTERNAL', 'internal error') };
 }
 
 if (process.argv[1] && process.argv[1].endsWith('server.ts')) {
-  const { app } = createApiServer();
+  const { app } = createApiServer({ manageModelSettings: true });
   const port = Number(process.env.PORT ?? 8787);
   app.listen({ port, host: '127.0.0.1' }).then(() => console.log(`novel-studio API listening on http://127.0.0.1:${port}`));
 }

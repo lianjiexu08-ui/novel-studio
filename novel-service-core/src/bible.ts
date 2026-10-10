@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto';
 import { LockedConstraintError, SettingConflictError } from './core.ts';
-import type { Character, PlotNode, Relationship, Work, WorldRule } from './core.ts';
+import type { Character, LockPolicy, PlotNode, Relationship, Work, WorldRule } from './core.ts';
 
 /**
  * Author-owned story settings: characters, relationships, world rules and plot nodes.
@@ -14,7 +14,7 @@ const now = () => new Date().toISOString();
 export type CharacterInput = Omit<Character, 'id' | 'locked' | 'createdAt'>;
 export type CharacterPatch = Partial<CharacterInput> & { locked?: boolean };
 export type RelationshipInput = Required<Pick<Relationship, 'fromCharacterId' | 'toCharacterId' | 'kind' | 'value' | 'layer' | 'note'>> & Pick<Relationship, 'sinceChapter'>;
-export type RelationshipPatch = Partial<RelationshipInput> & { locked?: boolean };
+export type RelationshipPatch = Partial<RelationshipInput> & { locked?: boolean; lockPolicy?: LockPolicy };
 export type WorldRuleInput = Omit<WorldRule, 'id' | 'locked' | 'createdAt'>;
 export type WorldRulePatch = Partial<WorldRuleInput> & { locked?: boolean };
 export type PlotNodeInput = Required<Pick<PlotNode, 'title' | 'expectedResult' | 'prerequisites' | 'level'>> & Pick<PlotNode, 'targetChapter'>;
@@ -25,7 +25,7 @@ function defined<T extends object>(patch: T): Partial<T> {
 }
 
 function guardLocked(item: { locked: boolean }, patch: object, label: string): void {
-  if (item.locked && Object.keys(patch).some((key) => key !== 'locked')) {
+  if (item.locked && Object.keys(patch).some((key) => key !== 'locked' && key !== 'lockPolicy')) {
     throw new LockedConstraintError(`${label}已锁定，先解锁再修改`);
   }
 }
@@ -50,9 +50,18 @@ function assertUniqueNames(work: Work, candidate: Pick<Character, 'name' | 'alia
   }
 }
 
+function assertCanonicalLink(work: Work, canonicalId: string | undefined, selfId?: string): void {
+  if (!canonicalId) return;
+  const seed = work.storyBible?.characters.find((item) => item.id === canonicalId);
+  if (!seed) throw new SettingConflictError(`Story Bible 里没有人物 ${canonicalId}`);
+  const other = [...work.characters.values()].find((item) => item.id !== selfId && item.canonicalId === canonicalId);
+  if (other) throw new SettingConflictError(`Story Bible 人物「${seed.name}」已经和设定页的「${other.name}」关联`);
+}
+
 export function addCharacter(work: Work, input: CharacterInput): Character {
-  const character: Character = { ...input, id: id('character'), locked: false, createdAt: now() };
+  const character: Character = { ...input, canonicalId: input.canonicalId || undefined, id: id('character'), locked: false, createdAt: now() };
   assertUniqueNames(work, character);
+  assertCanonicalLink(work, character.canonicalId);
   work.characters.set(character.id, character);
   return character;
 }
@@ -62,9 +71,63 @@ export function updateCharacter(work: Work, characterId: string, patch: Characte
   const changes = defined(patch);
   guardLocked(character, changes, `人物「${character.name}」`);
   const next = { ...character, ...changes };
+  if (next.canonicalId === '') next.canonicalId = undefined;
   assertUniqueNames(work, next, character.id);
+  assertCanonicalLink(work, next.canonicalId, character.id);
   Object.assign(character, next);
   return character;
+}
+
+export interface UnifiedCharacter {
+  entityId: string;
+  name: string;
+  aliases: string[];
+  sources: Array<'manual' | 'story_bible'>;
+  manualId?: string;
+  bibleId?: string;
+}
+
+export interface EntityConflict {
+  kind: 'same_name_unlinked' | 'link_target_missing' | 'name_differs';
+  name: string;
+  manualId?: string;
+  bibleId?: string;
+  message: string;
+}
+
+/**
+ * One person list across the settings page and the Story Bible. A manual entry
+ * linked through `canonicalId` is the same entity; an unlinked entry sharing a
+ * name with a Bible character is reported, never merged silently.
+ */
+export function unifiedCharacters(work: Work): { entities: UnifiedCharacter[]; conflicts: EntityConflict[] } {
+  const seeds = work.storyBible?.characters ?? [];
+  const entities: UnifiedCharacter[] = [];
+  const conflicts: EntityConflict[] = [];
+  const linkedSeeds = new Set<string>();
+  for (const character of work.characters.values()) {
+    const names = namesOf(character);
+    if (character.canonicalId) {
+      const seed = seeds.find((item) => item.id === character.canonicalId);
+      if (!seed) {
+        conflicts.push({ kind: 'link_target_missing', name: character.name, manualId: character.id, bibleId: character.canonicalId, message: `「${character.name}」关联的 Story Bible 人物 ${character.canonicalId} 已不存在` });
+        entities.push({ entityId: character.id, name: character.name, aliases: character.aliases, sources: ['manual'], manualId: character.id });
+        continue;
+      }
+      linkedSeeds.add(seed.id);
+      if (!names.includes(seed.name)) conflicts.push({ kind: 'name_differs', name: character.name, manualId: character.id, bibleId: seed.id, message: `同一人物在设定页叫「${character.name}」，在 Story Bible 叫「${seed.name}」；ID 相同不代表设定没变，请确认` });
+      entities.push({ entityId: seed.id, name: character.name, aliases: [...new Set([...character.aliases, ...(seed.name === character.name ? [] : [seed.name])])], sources: ['manual', 'story_bible'], manualId: character.id, bibleId: seed.id });
+      continue;
+    }
+    for (const seed of seeds.filter((item) => names.includes(item.name))) {
+      conflicts.push({ kind: 'same_name_unlinked', name: seed.name, manualId: character.id, bibleId: seed.id, message: `设定页和 Story Bible 都有「${seed.name}」，但没有关联，会被当成两个人` });
+    }
+    entities.push({ entityId: character.id, name: character.name, aliases: character.aliases, sources: ['manual'], manualId: character.id });
+  }
+  for (const seed of seeds) {
+    if (!linkedSeeds.has(seed.id)) entities.push({ entityId: seed.id, name: seed.name, aliases: [], sources: ['story_bible'], bibleId: seed.id });
+  }
+  return { entities, conflicts };
 }
 
 export function removeCharacter(work: Work, characterId: string): void {
@@ -95,6 +158,8 @@ export function addSettingRelationship(work: Work, input: RelationshipInput): Re
 export function updateSettingRelationship(work: Work, relationshipId: string, patch: RelationshipPatch): Relationship {
   const relationship = mustGet(work.relationships, relationshipId, 'relationship');
   const changes = defined(patch);
+  if (changes.lockPolicy) changes.locked = changes.lockPolicy !== 'evolvable';
+  else if (changes.locked !== undefined) changes.lockPolicy = changes.locked ? 'event_change_forbidden' : 'evolvable';
   guardLocked(relationship, changes, '这条关系');
   const next = { ...relationship, ...changes };
   assertRelationship(work, { ...next, layer: next.layer ?? 'objective', note: next.note ?? '' }, relationship.id);

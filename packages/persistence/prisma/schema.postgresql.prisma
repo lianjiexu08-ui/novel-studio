@@ -63,8 +63,12 @@ model Project {
   worldPack             Json                    @default("{}")
   storyBible            Json                    @default("{}")
   designHistory         Json                    @default("[]")
+  covenantHistory       Json                    @default("[]")
+  activePlanId          String?
   createdAt             DateTime                @default(now())
   updatedAt             DateTime                @updatedAt
+  plans                 PlanRevision[]
+  briefs                ChapterBrief[]
   chapters              Chapter[]
   characters            Character[]
   relationships         Relationship[]
@@ -87,9 +91,46 @@ model RunCheckpoint {
   phase         String
   error         String?
   candidateIds  String
+  leaseToken    String?
+  leaseExpiresAt DateTime?
+  control       String?
+  attempts      String   @default("{}")
+  usage         String?
   updatedAt     DateTime @updatedAt
   project       Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
   @@index([projectId])
+}
+
+model PlanRevision {
+  id                 String    @id @default(cuid())
+  projectId          String
+  revision           Int
+  parentId           String?
+  status             String
+  source             String
+  note               String    @default("")
+  plan               Json
+  contentHash        String
+  worldPackRevision  Int?
+  storyBibleRevision Int?
+  reviews            Json      @default("[]")
+  createdAt          DateTime  @default(now())
+  approvedAt         DateTime?
+  project            Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  @@unique([projectId, revision])
+}
+
+model ChapterBrief {
+  id               String   @id @default(cuid())
+  projectId        String
+  chapterNumber    Int
+  planRevisionId   String
+  status           String
+  basisFingerprint String
+  snapshot         Json
+  createdAt        DateTime @default(now())
+  project          Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  @@index([projectId, chapterNumber])
 }
 
 model ManuscriptRevision {
@@ -188,14 +229,22 @@ model ChapterCandidate {
   observedEvents        Json?
   generatedAgainstRev   Int
   generatedAgainstConstraintRev Int           @default(0)
+  generatedAgainstWorldPackRev  Int?
+  generatedAgainstStoryBibleRev Int?
+  contentHash           String?
+  planRevisionId        String?
+  brief                 Json?
+  origin                String                @default("model")
+  usage                 Json?
   status                CandidateStatus       @default(CANDIDATE)
-  adoptedVersionId      String?
+  adoptedVersionId      String?               @unique
   createdAt             DateTime              @default(now())
   project               Project               @relation(fields: [projectId], references: [id], onDelete: Cascade)
   chapter               Chapter               @relation(fields: [chapterId], references: [id], onDelete: Cascade)
   sourceVersions        ChapterVersion[]      @relation("CandidateSource")
   adoptedVersion        ChapterVersion?       @relation("CandidateAdopted", fields: [adoptedVersionId], references: [id])
   checks                CheckExecution[]
+  rulings               CheckRuling[]
   @@index([projectId, chapterId, status])
   @@index([runId, chapterId])
 }
@@ -206,6 +255,7 @@ model Character {
   canonicalName         String
   profile               Json
   locked                Boolean         @default(false)
+  canonicalId           String?
   project               Project         @relation(fields: [projectId], references: [id], onDelete: Cascade)
   aliases               CharacterAlias[]
   fromRelationships     Relationship[]  @relation("FromCharacter")
@@ -229,6 +279,7 @@ model Relationship {
   kind                  String
   value                 String
   locked                Boolean   @default(false)
+  lockPolicy            String?
   sourceEventId         String?
   project               Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
   fromCharacter         Character @relation("FromCharacter", fields: [fromCharacterId], references: [id])
@@ -297,11 +348,28 @@ model CheckExecution {
   evidence              Json?
   constraintRevision    Int
   stateRevision         Int
+  sequence              Int              @default(0)
+  policyVersion         String?
+  contentHash           String?
+  inputs                Json?
   createdAt             DateTime         @default(now())
   candidate             ChapterCandidate? @relation(fields: [candidateId], references: [id], onDelete: Cascade)
   chapterVersion        ChapterVersion?  @relation(fields: [chapterVersionId], references: [id], onDelete: Cascade)
   @@index([candidateId, checker])
   @@index([chapterVersionId, status])
+}
+
+model CheckRuling {
+  id          String           @id @default(cuid())
+  candidateId String
+  checkId     String
+  checker     String
+  decision    String
+  reason      String
+  evidence    String
+  createdAt   DateTime         @default(now())
+  candidate   ChapterCandidate @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  @@index([candidateId])
 }
 
 model Run {

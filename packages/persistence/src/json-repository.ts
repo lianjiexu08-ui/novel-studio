@@ -1,11 +1,12 @@
 import { randomUUID } from 'node:crypto';
 import { mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
 import { dirname } from 'node:path';
-import { parseCovenant, Work } from '../../../novel-service-core/src/core.ts';
+import { contentHashOf, parseCovenant, Work } from '../../../novel-service-core/src/core.ts';
 import type { CreativeCovenant } from '../../../novel-service-core/src/core.ts';
 import type {
-  ChapterCandidate, ChapterVersion, Character, CharacterState, DesignRevision, ImpactRecord, ManuscriptRevision, PlotNode, Relationship, StoryEvent, WorldRule,
+  ChapterCandidate, ChapterVersion, Character, CharacterState, CovenantRevision, DesignRevision, ImpactRecord, ManuscriptRevision, PlotNode, Relationship, StoryEvent, WorldRule,
 } from '../../../novel-service-core/src/core.ts';
+import type { ChapterBrief, PlanRevision } from '../../../novel-service-core/src/planning.ts';
 import type { StoryBible, WorldPack } from '../../../novel-service-core/src/world.ts';
 import type { OutboxEvent, WorkRepository, WorkTransaction } from '../../application/src/index.ts';
 
@@ -29,6 +30,10 @@ interface PersistedWork {
   plotNodes: PlotNode[];
   checkpoints: Array<[string, unknown]>;
   impacts: ImpactRecord[];
+  covenantHistory?: CovenantRevision[];
+  plans?: PlanRevision[];
+  activePlanId?: string;
+  briefs?: ChapterBrief[];
 }
 
 interface PersistedState {
@@ -157,6 +162,10 @@ function serializeWork(work: Work): PersistedWork {
     plotNodes: [...work.plotNodes.values()],
     checkpoints: [...work.checkpoints.entries()],
     impacts: work.impacts,
+    covenantHistory: work.covenantHistory,
+    plans: [...work.plans.values()],
+    activePlanId: work.activePlanId,
+    briefs: [...work.briefs.values()],
   };
 }
 
@@ -179,7 +188,14 @@ function deserializeWork(value: PersistedWork): Work {
     lengthCoverage: manuscript.lengthCoverage ?? 0,
   });
   for (const candidate of value.candidates) {
-    work.candidates.set(candidate.id, { ...candidate, generatedAgainstConstraintRevision: candidate.generatedAgainstConstraintRevision ?? 0 });
+    work.candidates.set(candidate.id, {
+      ...candidate,
+      generatedAgainstConstraintRevision: candidate.generatedAgainstConstraintRevision ?? 0,
+      contentHash: candidate.contentHash ?? contentHashOf(candidate.content),
+      origin: candidate.origin ?? 'model',
+      checkRuns: candidate.checkRuns ?? [...candidate.checks],
+      rulings: candidate.rulings ?? [],
+    });
   }
   for (const version of value.versions) work.versions.set(version.id, version);
   for (const event of value.events) work.events.set(event.id, event);
@@ -190,6 +206,10 @@ function deserializeWork(value: PersistedWork): Work {
   for (const node of value.plotNodes) work.plotNodes.set(node.id, node);
   for (const checkpoint of value.checkpoints) work.checkpoints.set(checkpoint[0], checkpoint[1] as any);
   work.impacts.push(...value.impacts);
+  work.covenantHistory.push(...(value.covenantHistory ?? []));
+  for (const plan of value.plans ?? []) work.plans.set(plan.id, plan);
+  work.activePlanId = value.activePlanId;
+  for (const brief of value.briefs ?? []) work.briefs.set(brief.id, brief);
   return work;
 }
 

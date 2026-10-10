@@ -1,6 +1,7 @@
 // API contracts (Zod, shared by apps/web and apps/api)
 export * from './api.ts';
 export * from './world.ts';
+export * from './planning.ts';
 
 export type CheckStatus = 'passed' | 'failed' | 'inconclusive' | 'unavailable';
 export type PublicationState = 'scheduled' | 'submitting' | 'verifying' | 'published' | 'unknown' | 'failed' | 'blocked';

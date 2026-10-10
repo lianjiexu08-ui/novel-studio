@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Alert, App as AntApp, Button, Card, Collapse, Col, Empty, List, Modal, Row, Space, Spin, Statistic, Table, Tag, Typography } from 'antd';
-import { LockOutlined, PlayCircleOutlined, RocketOutlined, SafetyCertificateOutlined } from '@ant-design/icons';
+import { LockOutlined, PlayCircleOutlined, SafetyCertificateOutlined } from '@ant-design/icons';
 import { api, ApiRequestError, type DesignHistoryDto } from '../api';
 import type { DesignDto } from 'novel-studio-contracts';
 import type { StoryBibleContract as StoryBible, WorldPackContract as WorldPack } from 'novel-studio-contracts';
@@ -60,9 +60,21 @@ export function DesignPage() {
 
   async function run(key: string, action: () => Promise<unknown>, success: string) {
     setBusy(key);
-    try { await action(); await refresh(); await load(); message.success(success); }
-    catch (error) { message.error(error instanceof ApiRequestError ? `[${error.code}] ${error.message}` : String(error)); }
-    finally { setBusy(null); }
+    const generating = key.endsWith('-generate');
+    const progressKey = `design-${key}`;
+    if (generating) message.loading({ key: progressKey, content: '已交给规划模型生成，通常要一到几分钟，请不要关闭页面…', duration: 0 });
+    try {
+      await action();
+      await refresh();
+      await load();
+      message.success({ key: progressKey, content: success });
+    } catch (error) {
+      const text = error instanceof ApiRequestError ? error.message : String(error);
+      const settingsHint = error instanceof ApiRequestError && (error.code === 'MODEL_TIMEOUT' || error.code === 'MODEL_FAILED' || error.code === 'MODEL_NOT_CONFIGURED' || error.code === 'PLANNER_NOT_CONFIGURED');
+      message.error({ key: progressKey, content: settingsHint ? <span>{text} <a href="#/system">去系统设置</a></span> : text, duration: settingsHint ? 12 : 6 });
+    } finally {
+      setBusy(null);
+    }
   }
 
   if (!design) return <div style={{ display: 'flex', justifyContent: 'center', padding: 80 }}><Spin size="large" /></div>;
@@ -80,9 +92,9 @@ export function DesignPage() {
           : <Button icon={<SafetyCertificateOutlined />} loading={busy === 'bible-review'} onClick={() => void run('bible-review', () => api.reviewStoryBible(work.id), 'Story Bible 结构检查通过，已进入审核态')}>审核 Story Bible</Button>;
 
   return <Space direction="vertical" size={20} style={{ width: '100%' }}>
-    <div><Space align="start" style={{ width: '100%', justifyContent: 'space-between' }}><div><Title level={4} style={{ margin: 0 }}>世界构建与全书蓝图</Title><Text type="secondary">作者提供创意和偏好，模型先产出世界包，再产出人物关系、人物弧光、伏笔和分卷大纲；每一步都要审核并锁定。</Text></div><Space wrap><Button type="primary" icon={<RocketOutlined />} loading={busy === 'milestone'} onClick={() => void run('milestone', () => api.startMilestone100(work.id), '已启动首个 100 章里程碑后台任务')}>一键启动 100 章里程碑</Button>{world?.status === 'locked' && bible?.status === 'locked' && bible.volumes.reduce((sum, volume) => sum + volume.plannedChapterCount, 0) < 450 && <Button icon={<RocketOutlined />} loading={busy === 'milestone-450'} onClick={() => void run('milestone-450', () => api.startMilestone450(work.id), '已生成450章蓝图并启动扩展任务')}>扩展并启动450章</Button>}</Space></Space></div>
+    <div><Space align="start" style={{ width: '100%', justifyContent: 'space-between' }}><div><Title level={4} style={{ margin: 0 }}>世界构建与全书蓝图</Title><Text type="secondary">作者提供创意和偏好，模型先产出世界包，再产出人物关系、人物弧光、伏笔和分卷大纲；每一步都要审核并锁定。</Text></div></Space></div>
     {!ready && <Alert type="warning" showIcon message="正文生产尚未开放" description="World Pack 和 Story Bible 都锁定后，章节候选才会通过生成门禁。" />}
-    {ready && <Alert type="success" showIcon message="可以开始章节生产" description="章节候选会绑定当前世界包与 Story Bible 版本。任何设定修改都会让旧候选失效。" />}
+    {ready && <Alert type="success" showIcon message="可以开始写开篇" description="到章节创作里一章一章地生成、检查、采用；前一章采用后才能写下一章。章节候选会绑定当前世界包与 Story Bible 版本，任何设定修改都会让旧候选失效。" />}
     <Row gutter={16}>
       <Col xs={24} md={12}><Card title="World Pack" extra={world ? <StatusTag status={world.status} /> : worldAction}>{!world ? <Empty description="还没有生成世界包" /> : <Space direction="vertical" style={{ width: '100%' }}><Space>{worldAction}</Space><Text strong>{world.title}</Text><Paragraph type="secondary">{world.summary || '暂无摘要'}</Paragraph><Row gutter={[12, 12]}><Col span={8}><Statistic title="境界" value={world.realms.length} /></Col><Col span={8}><Statistic title="功法" value={world.techniques.length} /></Col><Col span={8}><Statistic title="法宝" value={world.artifacts.length} /></Col><Col span={8}><Statistic title="大陆/地点" value={world.locations.length} /></Col><Col span={8}><Statistic title="势力" value={world.factions.length} /></Col><Col span={8}><Statistic title="历史事件" value={world.historicalEvents.length} /></Col></Row><WorldDetails world={world} /></Space>}</Card></Col>
       <Col xs={24} md={12}><Card title="Story Bible" extra={bible ? <StatusTag status={bible.status} /> : bibleAction}>{!bible ? <Space direction="vertical"><Empty description="还没有生成 Story Bible" />{bibleAction}</Space> : <Space direction="vertical" style={{ width: '100%' }}><Space>{bibleAction}</Space><Text strong>核心冲突：{bible.coreConflict}</Text><Paragraph type="secondary">结局方向：{bible.endingDirection || '未填写'}</Paragraph><Row gutter={[12, 12]}><Col span={8}><Statistic title="人物" value={bible.characters.length} /></Col><Col span={8}><Statistic title="关系" value={bible.relationships.length} /></Col><Col span={8}><Statistic title="弧光" value={bible.arcs.length} /></Col><Col span={8}><Statistic title="秘密" value={bible.secrets?.length ?? 0} /></Col><Col span={8}><Statistic title="承诺/开放线" value={(bible.promises?.length ?? 0) + (bible.openThreads?.length ?? 0)} /></Col><Col span={8}><Statistic title="计划章节" value={bible.volumes.reduce((sum, volume) => sum + volume.plannedChapterCount, 0)} /></Col></Row><StoryDetails bible={bible} /></Space>}</Card></Col>

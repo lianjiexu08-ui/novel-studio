@@ -15,10 +15,11 @@ import {
   type RelationshipDto,
   type WorldRuleDto,
 } from 'novel-studio-contracts';
-import type { Character, PlotNode, Relationship, Work, WorldRule } from '../../../novel-service-core/src/core.ts';
+import { lockPolicyOf, type Character, type PlotNode, type Relationship, type Work, type WorldRule } from '../../../novel-service-core/src/core.ts';
 import {
   addCharacter, addPlotNode, addSettingRelationship, addWorldRule,
   removeCharacter, removePlotNode, removeSettingRelationship, removeWorldRule,
+  unifiedCharacters,
   updateCharacter, updatePlotNode, updateSettingRelationship, updateWorldRule,
 } from '../../../novel-service-core/src/bible.ts';
 import type { ChapterWorkflow, WorkRepository } from '../../../packages/application/src/index.ts';
@@ -41,6 +42,7 @@ function toRelationshipDto(relationship: Relationship): RelationshipDto {
     note: relationship.note ?? '',
     sinceChapter: relationship.sinceChapter,
     locked: relationship.locked,
+    lockPolicy: lockPolicyOf(relationship),
   };
 }
 
@@ -87,6 +89,13 @@ export function registerSettingsRoutes(
     const work = await repository.get(workId);
     if (!work) throw notFound(`unknown work ${workId}`);
     return toBibleDto(work);
+  });
+
+  app.get('/works/:workId/entities', async (request) => {
+    const { workId } = workParam.parse(request.params);
+    const work = await repository.get(workId);
+    if (!work) throw notFound(`unknown work ${workId}`);
+    return unifiedCharacters(work);
   });
 
   app.post('/works/:workId/characters', async (request, reply) => {

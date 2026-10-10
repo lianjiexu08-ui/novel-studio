@@ -1,5 +1,8 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 
+// Milestone endpoints are off by default (P0 is chapter-by-chapter). Start the
+// API with NOVEL_ENABLE_BATCH_RUNS=true before running this acceptance script.
+
 const baseUrl = (process.env.NOVEL_API_URL ?? 'http://127.0.0.1:8787').replace(/\/$/, '');
 const token = process.env.API_TOKEN ?? '';
 const title = process.env.NOVEL_MILESTONE_TITLE ?? `玄幻长篇验收-${new Date().toISOString().slice(0, 10)}`;

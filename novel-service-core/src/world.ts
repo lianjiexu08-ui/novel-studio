@@ -151,6 +151,7 @@ export interface StoryRelationshipSeed {
   kind: 'kinship' | 'social' | 'trust' | 'emotion' | 'allegiance' | 'private_intent' | 'belief';
   value: string;
   locked: boolean;
+  lockPolicy?: 'document_revision_locked' | 'baseline_locked' | 'event_change_forbidden' | 'evolvable';
   sinceChapter?: number;
   untilChapter?: number;
 }

@@ -1,8 +1,41 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createApiServer } from '../src/server.ts';
-import { InMemoryWorkRepository } from '../../../packages/application/src/index.ts';
+import { ChapterWorkflow, InMemoryWorkRepository } from '../../../packages/application/src/index.ts';
 import { createEmptyWorldPack } from '../../../novel-service-core/src/world.ts';
+import type { ModelProvider } from '../../../novel-service-core/src/core.ts';
+import { UsageLedger } from '../../../packages/model-gateway/src/index.ts';
+import { approveMinimalPlan, chapterBody, lockMinimalDesign, minimalPlan } from '../../../packages/application/test/fixtures.ts';
+import type { BookPlan } from '../../../novel-service-core/src/planning.ts';
+
+const writer: ModelProvider = {
+  generateChapter: ({ chapterNumber }) => {
+    const event = { eventType: 'character_state', subjectId: 'hero', predicate: 'power', value: chapterNumber, storyTime: chapterNumber, evidence: 'paragraph 1' };
+    return { content: chapterBody(chapterNumber), proposedEvents: [event], observedEvents: [event] };
+  },
+};
+
+/** Locks the minimal design and approves a 10-chapter plan, as the author would. */
+async function lockDesign(repository: InMemoryWorkRepository, workId: string): Promise<void> {
+  const workflow = new ChapterWorkflow(repository, writer);
+  await lockMinimalDesign(workflow, workId);
+  await approveMinimalPlan(workflow, workId);
+}
+
+type Inject = ReturnType<typeof createApiServer>['app']['inject'];
+
+/** Saves, reviews and approves a plan over HTTP; review and approval stay separate calls. */
+async function approvePlanViaApi(inject: Inject, workId: string, plan: BookPlan) {
+  const overview = (await inject({ method: 'GET', url: `/works/${workId}/plans` })).json();
+  const saved = await inject({ method: 'PUT', url: `/works/${workId}/plans`, payload: { plan, baseRevisionId: overview.latest?.id } });
+  assert.equal(saved.statusCode, 201, saved.body);
+  const planId = saved.json().plan.id;
+  const review = await inject({ method: 'POST', url: `/works/${workId}/plans/${planId}/review`, payload: {} });
+  assert.equal(review.json().review.passed, true, review.body);
+  const approved = await inject({ method: 'POST', url: `/works/${workId}/plans/${planId}/approve`, payload: {} });
+  assert.equal(approved.statusCode, 200, approved.body);
+  return approved.json().plan;
+}
 
 function createPayload(title: string) {
   return {
@@ -62,7 +95,8 @@ function milestoneChapterEvents(chapterNumber: number) {
 }
 
 test('local API runs create -> generate -> check -> adopt -> outbox', async () => {
-  const { app } = createApiServer({ repository: new InMemoryWorkRepository() });
+  const repository = new InMemoryWorkRepository();
+  const { app } = createApiServer({ repository, provider: writer });
   try {
     assert.deepEqual((await app.inject({ method: 'GET', url: '/health' })).json(), { ok: true });
 
@@ -81,16 +115,36 @@ test('local API runs create -> generate -> check -> adopt -> outbox', async () =
     assert.equal(patched.json().stateRevision, 0);
     assert.equal(patched.json().covenant.avoid, '不要后宫');
 
+    const notReady = await app.inject({ method: 'GET', url: `/works/${work.id}/chapters/1/readiness` });
+    assert.equal(notReady.json().ready, false);
+    assert.deepEqual(notReady.json().blockers.map((blocker: { code: string }) => blocker.code), ['CANON_NOT_READY', 'PLAN_NOT_APPROVED']);
+    const refused = await app.inject({ method: 'POST', url: `/works/${work.id}/chapters/1/generate`, payload: {} });
+    assert.equal(refused.statusCode, 409);
+    assert.equal(refused.json().error.code, 'CANON_NOT_READY');
+
+    await lockDesign(repository, work.id);
+    const readiness = await app.inject({ method: 'GET', url: `/works/${work.id}/chapters/1/readiness` });
+    assert.equal(readiness.json().ready, true);
+    assert.deepEqual(readiness.json().requiredChecks, ['deterministic_rules', 'canon_consistency', 'observed_events', 'chapter_length']);
+
     const generated = await app.inject({ method: 'POST', url: `/works/${work.id}/chapters/1/generate`, payload: { runId: 'api-run-1' } });
     assert.equal(generated.statusCode, 201);
     const candidate = generated.json().candidate;
     assert.equal(candidate.status, 'candidate');
+    assert.equal(candidate.origin, 'model');
+    assert.equal(candidate.stale, false);
+    assert.equal(candidate.contentHash.length, 64);
     assert.match(candidate.content, /第1章/);
     assert.ok(candidate.proposedEvents.length > 0);
 
+    const unchecked = await app.inject({ method: 'POST', url: `/works/${work.id}/candidates/${candidate.id}/adopt`, payload: { expectedStateRevision: 0 } });
+    assert.equal(unchecked.statusCode, 409);
+    assert.equal(unchecked.json().error.code, 'REQUIRED_CHECK_FAILED');
+
     const checked = await app.inject({ method: 'POST', url: `/works/${work.id}/candidates/${candidate.id}/check` });
     assert.equal(checked.statusCode, 200);
-    assert.equal(checked.json().candidate.checks[0].status, 'passed');
+    assert.ok(checked.json().candidate.checks.every((check: { status: string; policyVersion: string }) => check.status === 'passed' && check.policyVersion === 'chapter-policy-v2'));
+    assert.equal(checked.json().candidate.checks.length, 4);
 
     const adopted = await app.inject({ method: 'POST', url: `/works/${work.id}/candidates/${candidate.id}/adopt`, payload: { expectedStateRevision: 0 } });
     assert.equal(adopted.statusCode, 200);
@@ -102,17 +156,79 @@ test('local API runs create -> generate -> check -> adopt -> outbox', async () =
     assert.equal(history.statusCode, 200);
     assert.equal(history.json().events.length, 1);
     assert.equal(history.json().quality.contextManifest.chapterNumber, 1);
-    assert.equal(history.json().quality.checkCoverage.passed, 3);
+    assert.equal(history.json().quality.checkCoverage.passed, 4);
     assert.equal(history.json().quality.candidate.status, 'adopted');
   } finally {
     await app.close();
   }
 });
 
+test('without a configured model the API refuses formal chapters and isolates demo candidates', async () => {
+  const repository = new InMemoryWorkRepository();
+  const { app } = createApiServer({ repository });
+  try {
+    const work = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('演示') })).json();
+    await lockDesign(repository, work.id);
+    const readiness = (await app.inject({ method: 'GET', url: `/works/${work.id}/chapters/1/readiness` })).json();
+    assert.equal(readiness.modelConfigured, false);
+    assert.deepEqual(readiness.blockers.map((blocker: { code: string }) => blocker.code), ['MODEL_NOT_CONFIGURED']);
+    const formal = await app.inject({ method: 'POST', url: `/works/${work.id}/chapters/1/generate`, payload: {} });
+    assert.equal(formal.statusCode, 409);
+    assert.equal(formal.json().error.code, 'MODEL_NOT_CONFIGURED');
+    assert.ok(formal.json().error.details.blockers[0].nextAction);
+
+    const demo = await app.inject({ method: 'POST', url: `/works/${work.id}/chapters/1/generate`, payload: { mode: 'demo' } });
+    assert.equal(demo.statusCode, 201);
+    assert.equal(demo.json().candidate.origin, 'demo');
+    const candidateId = demo.json().candidate.id;
+    await app.inject({ method: 'POST', url: `/works/${work.id}/candidates/${candidateId}/check` });
+    const adopt = await app.inject({ method: 'POST', url: `/works/${work.id}/candidates/${candidateId}/adopt`, payload: { expectedStateRevision: 0 } });
+    assert.equal(adopt.statusCode, 409);
+    assert.equal(adopt.json().error.code, 'DEMO_CANDIDATE_NOT_ADOPTABLE');
+    assert.equal((await app.inject({ method: 'GET', url: `/works/${work.id}` })).json().stateRevision, 0);
+    assert.equal((await app.inject({ method: 'GET', url: `/works/${work.id}/outbox` })).json().events.length, 0);
+  } finally {
+    await app.close();
+  }
+});
+
+test('a later chapter cannot be generated before earlier chapters are adopted', async () => {
+  const repository = new InMemoryWorkRepository();
+  const { app } = createApiServer({ repository, provider: writer });
+  try {
+    const work = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('跳章') })).json();
+    await lockDesign(repository, work.id);
+    const skipped = await app.inject({ method: 'POST', url: `/works/${work.id}/chapters/3/generate`, payload: {} });
+    assert.equal(skipped.statusCode, 409);
+    assert.equal(skipped.json().error.code, 'CHAPTER_PREREQUISITE_MISSING');
+    assert.match(skipped.json().error.details.blockers[0].message, /1, 2/);
+  } finally {
+    await app.close();
+  }
+});
+
+test('multi-chapter runs and milestones are disabled unless explicitly enabled', async () => {
+  const repository = new InMemoryWorkRepository();
+  const { app } = createApiServer({ repository, provider: writer, allowBatchRuns: false });
+  try {
+    const work = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('不许批量') })).json();
+    for (const url of [`/works/${work.id}/runs`, `/works/${work.id}/milestones/100/start`, `/works/${work.id}/milestones/450/start`]) {
+      const response = await app.inject({ method: 'POST', url, payload: { targetChapter: 3 } });
+      assert.equal(response.statusCode, 409, url);
+      assert.equal(response.json().error.code, 'BATCH_RUNS_DISABLED', url);
+    }
+    assert.equal((await repository.get(work.id))?.worldPack, undefined, 'a disabled milestone must not touch the design');
+  } finally {
+    await app.close();
+  }
+});
+
 test('local API rejects adoption when the state revision is stale', async () => {
-  const { app } = createApiServer({ repository: new InMemoryWorkRepository() });
+  const repository = new InMemoryWorkRepository();
+  const { app } = createApiServer({ repository, provider: writer });
   try {
     const work = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('版本检查') })).json();
+    await lockDesign(repository, work.id);
     const candidate = (await app.inject({ method: 'POST', url: `/works/${work.id}/chapters/1/generate`, payload: {} })).json().candidate;
     await app.inject({ method: 'POST', url: `/works/${work.id}/candidates/${candidate.id}/check` });
     const result = await app.inject({ method: 'POST', url: `/works/${work.id}/candidates/${candidate.id}/adopt`, payload: { expectedStateRevision: 99 } });
@@ -125,9 +241,11 @@ test('local API rejects adoption when the state revision is stale', async () => 
 
 test('state API exposes chapter-scoped character knowledge', async () => {
   const event = { eventType: 'knowledge_belief', subjectId: 'hero', predicate: 'rival_identity', value: { subjectId: 'rival', belief: '对手来自北陆' }, evidence: '正文揭示身份' };
-  const { app } = createApiServer({ repository: new InMemoryWorkRepository(), provider: { generateChapter: () => ({ content: '认知变化', proposedEvents: [event], observedEvents: [event] }) } });
+  const repository = new InMemoryWorkRepository();
+  const { app } = createApiServer({ repository, provider: { generateChapter: () => ({ content: `认知变化 ${chapterBody(1)}`, proposedEvents: [event], observedEvents: [event] }) } });
   try {
     const work = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('认知复查') })).json();
+    await lockDesign(repository, work.id);
     const candidate = (await app.inject({ method: 'POST', url: `/works/${work.id}/chapters/1/generate`, payload: {} })).json().candidate;
     await app.inject({ method: 'POST', url: `/works/${work.id}/candidates/${candidate.id}/check` });
     await app.inject({ method: 'POST', url: `/works/${work.id}/candidates/${candidate.id}/adopt`, payload: { expectedStateRevision: 0 } });
@@ -230,7 +348,7 @@ test('design API saves and locks the world pack before the story bible', async (
           { eventType: 'arc_progress', subjectId: 'arc', predicate: 'status', value: { status: 'resolved' } },
           { eventType: 'volume_progress', subjectId: 'v1', predicate: 'status', value: { status: 'resolved' } },
         );
-        return { content: `第${chapterNumber}章`, proposedEvents: events, observedEvents: events };
+        return { content: chapterBody(chapterNumber), proposedEvents: events, observedEvents: events };
       },
     },
   });
@@ -269,9 +387,14 @@ test('design API saves and locks the world pack before the story bible', async (
     const initialState = await app.inject({ method: 'GET', url: `${base}/state/1` });
     assert.equal(initialState.json().relationships[0].id, 'rel');
     assert.equal(initialState.json().relationships[0].value, '同门');
+    const blockedByPlan = await app.inject({ method: 'POST', url: `${base}/chapters/1/generate`, payload: {} });
+    assert.equal(blockedByPlan.json().error.code, 'PLAN_NOT_APPROVED');
+    await approvePlanViaApi(app.inject.bind(app), work.id, minimalPlan(10));
     let stateRevision = 0;
     for (let chapterNumber = 1; chapterNumber <= 10; chapterNumber += 1) {
-      const candidate = (await app.inject({ method: 'POST', url: `${base}/chapters/${chapterNumber}/generate`, payload: { runId: 'manuscript-run' } })).json().candidate;
+      const generated = await app.inject({ method: 'POST', url: `${base}/chapters/${chapterNumber}/generate`, payload: { runId: `manuscript-run:${chapterNumber}` } });
+      assert.equal(generated.statusCode, 201, generated.body);
+      const candidate = generated.json().candidate;
       await app.inject({ method: 'POST', url: `${base}/candidates/${candidate.id}/check` });
       const adopted = await app.inject({ method: 'POST', url: `${base}/candidates/${candidate.id}/adopt`, payload: { expectedStateRevision: stateRevision } });
       assert.equal(adopted.statusCode, 200);
@@ -327,9 +450,11 @@ test('design generation route stores a proposed world pack from the planner', as
 });
 
 test('run API commits a resumable checkpoint one chapter at a time', async () => {
-  const { app } = createApiServer({ repository: new InMemoryWorkRepository() });
+  const repository = new InMemoryWorkRepository();
+  const { app } = createApiServer({ repository, provider: writer, allowBatchRuns: true });
   try {
     const work = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('连续生成') })).json();
+    await lockDesign(repository, work.id);
     const run = await app.inject({ method: 'POST', url: `/works/${work.id}/runs`, payload: { targetChapter: 3, runId: 'api-continuous' } });
     assert.equal(run.statusCode, 200);
     assert.equal(run.json().checkpoint.nextChapter, 4);
@@ -342,9 +467,11 @@ test('run API commits a resumable checkpoint one chapter at a time', async () =>
 });
 
 test('run API can launch a background run and expose its checkpoint', async () => {
-  const { app } = createApiServer({ repository: new InMemoryWorkRepository() });
+  const repository = new InMemoryWorkRepository();
+  const { app } = createApiServer({ repository, provider: writer, allowBatchRuns: true });
   try {
     const work = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('后台连续生成') })).json();
+    await lockDesign(repository, work.id);
     const started = await app.inject({ method: 'POST', url: `/works/${work.id}/runs`, payload: { targetChapter: 2, runId: 'background-run', background: true } });
     assert.equal(started.statusCode, 202);
     assert.equal(started.json().runId, 'background-run');
@@ -361,13 +488,17 @@ test('100-chapter milestone endpoint starts from locked design and reaches a fin
   const design = milestoneDesign();
   const { app } = createApiServer({
     repository: new InMemoryWorkRepository(),
-    provider: { generateChapter: ({ chapterNumber }) => { const events = milestoneChapterEvents(chapterNumber); return { content: `第${chapterNumber}章`, proposedEvents: events, observedEvents: events }; } },
+    allowBatchRuns: true,
+    provider: { generateChapter: ({ chapterNumber }) => { const events = milestoneChapterEvents(chapterNumber); return { content: chapterBody(chapterNumber), proposedEvents: events, observedEvents: events }; } },
     designProvider: { generateWorldPack: async () => design.world, generateStoryBible: async () => design.bible },
   });
   try {
     const work = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('一键百章') })).json();
+    const unplanned = await app.inject({ method: 'POST', url: `/works/${work.id}/milestones/100/start`, payload: {} });
+    assert.equal(unplanned.json().error.code, 'PLAN_NOT_APPROVED', 'the design is prepared but no run starts without an author-approved plan');
+    await approvePlanViaApi(app.inject.bind(app), work.id, minimalPlan(100, { volumeSize: 34, outlined: 100 }));
     const started = await app.inject({ method: 'POST', url: `/works/${work.id}/milestones/100/start`, payload: {} });
-    assert.equal(started.statusCode, 202);
+    assert.equal(started.statusCode, 202, started.body);
     assert.equal(started.json().milestone.targetChapter, 100);
     const planned = await app.inject({ method: 'GET', url: `/works/${work.id}/state/1` });
     assert.equal(planned.json().arcStates[0].status, 'planned');
@@ -401,7 +532,8 @@ test('450-chapter expansion resumes after the first hundred chapters', async () 
   };
   const { app } = createApiServer({
     repository: new InMemoryWorkRepository(),
-    provider: { generateChapter: ({ chapterNumber }) => { const events = milestoneChapterEvents(chapterNumber); return { content: `第${chapterNumber}章`, proposedEvents: events, observedEvents: events }; } },
+    allowBatchRuns: true,
+    provider: { generateChapter: ({ chapterNumber }) => { const events = milestoneChapterEvents(chapterNumber); return { content: chapterBody(chapterNumber), proposedEvents: events, observedEvents: events }; } },
     designProvider: {
       generateWorldPack: async () => design.world,
       generateStoryBible: async ({ chapterTarget, previousStoryBible }) => {
@@ -412,8 +544,10 @@ test('450-chapter expansion resumes after the first hundred chapters', async () 
   });
   try {
     const work = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('扩展百万字') })).json();
+    await app.inject({ method: 'POST', url: `/works/${work.id}/milestones/100/start`, payload: {} });
+    await approvePlanViaApi(app.inject.bind(app), work.id, minimalPlan(100, { volumeSize: 34, outlined: 100 }));
     const first = await app.inject({ method: 'POST', url: `/works/${work.id}/milestones/100/start`, payload: {} });
-    assert.equal(first.statusCode, 202);
+    assert.equal(first.statusCode, 202, first.body);
     for (let attempt = 0; attempt < 60; attempt += 1) {
       const status = await app.inject({ method: 'GET', url: `/works/${work.id}/runs` });
       if (status.json().checkpoints.some((checkpoint: { runId: string; nextChapter: number }) => checkpoint.runId === first.json().runId && checkpoint.nextChapter === 101)) break;
@@ -422,8 +556,11 @@ test('450-chapter expansion resumes after the first hundred chapters', async () 
     const firstManuscript = await app.inject({ method: 'POST', url: `/works/${work.id}/manuscripts/finalize`, payload: {} });
     assert.equal(firstManuscript.statusCode, 200);
     assert.equal(firstManuscript.json().manuscript.chapterCount, 100);
+    const outdated = await app.inject({ method: 'POST', url: `/works/${work.id}/milestones/450/start`, payload: {} });
+    assert.equal(outdated.json().error.code, 'PLAN_OUTDATED', 'expanding the story bible requires re-approving the plan');
+    await approvePlanViaApi(app.inject.bind(app), work.id, minimalPlan(450, { volumeSize: 150, outlined: 450 }));
     const started = await app.inject({ method: 'POST', url: `/works/${work.id}/milestones/450/start`, payload: {} });
-    assert.equal(started.statusCode, 202);
+    assert.equal(started.statusCode, 202, started.body);
     assert.equal(started.json().milestone.targetChapter, 450);
     assert.equal((previousBibleForExpansion as typeof design.bible).id, design.bible.id);
     for (let attempt = 0; attempt < 60; attempt += 1) {
@@ -440,5 +577,184 @@ test('450-chapter expansion resumes after the first hundred chapters', async () 
     assert.ok(finalManuscript.json().manuscript.targetWordCount > finalManuscript.json().manuscript.wordCount);
   } finally {
     await app.close();
+  }
+});
+
+test('API rulings clear only overridable checks and run controls report stable errors', async () => {
+  const shortWriter: ModelProvider = {
+    generateChapter: ({ chapterNumber }) => {
+      const event = { eventType: 'character_state', subjectId: 'hero', predicate: 'power', value: chapterNumber, storyTime: chapterNumber, evidence: 'paragraph 1' };
+      return { content: `短章 ${chapterNumber}`, proposedEvents: [event], observedEvents: [event] };
+    },
+  };
+  const repository = new InMemoryWorkRepository();
+  const { app } = createApiServer({ repository, provider: shortWriter, ledger: new UsageLedger(5), allowBatchRuns: true });
+  try {
+    const work = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('裁决接口') })).json();
+    await lockDesign(repository, work.id);
+    const generated = await app.inject({ method: 'POST', url: `/works/${work.id}/chapters/1/generate`, payload: {} });
+    assert.equal(generated.statusCode, 201, generated.body);
+    const candidateId = generated.json().candidate.id;
+    const checked = (await app.inject({ method: 'POST', url: `/works/${work.id}/candidates/${candidateId}/check`, payload: {} })).json().candidate;
+    const length = checked.checks.find((check: { checker: string }) => check.checker === 'chapter_length');
+    assert.equal(length.status, 'failed');
+    assert.equal(length.contentHash, checked.contentHash);
+    const refused = await app.inject({ method: 'POST', url: `/works/${work.id}/candidates/${candidateId}/adopt`, payload: { expectedStateRevision: 0 } });
+    assert.equal(refused.json().error.code, 'REQUIRED_CHECK_FAILED');
+
+    const other = checked.checks.find((check: { checker: string }) => check.checker !== 'chapter_length');
+    const notAllowed = await app.inject({ method: 'POST', url: `/works/${work.id}/candidates/${candidateId}/rulings`, payload: { checkId: other.id, reason: '误报', evidence: '第一段' } });
+    assert.equal(notAllowed.statusCode, 409);
+    assert.equal(notAllowed.json().error.code, 'RULING_NOT_ALLOWED');
+    const ruled = await app.inject({ method: 'POST', url: `/works/${work.id}/candidates/${candidateId}/rulings`, payload: { checkId: length.id, reason: '楔子本就短', evidence: '本章是楔子' } });
+    assert.equal(ruled.statusCode, 201, ruled.body);
+    assert.equal(ruled.json().candidate.rulings.length, 1);
+    const adopted = await app.inject({ method: 'POST', url: `/works/${work.id}/candidates/${candidateId}/adopt`, payload: { expectedStateRevision: 0 } });
+    assert.equal(adopted.statusCode, 200, adopted.body);
+
+    const unknownRun = await app.inject({ method: 'POST', url: `/works/${work.id}/runs/nope/pause`, payload: {} });
+    assert.equal(unknownRun.json().error.code, 'NOT_FOUND');
+    const refusedRun = await app.inject({ method: 'POST', url: `/works/${work.id}/runs`, payload: { targetChapter: 2, runId: 'short-run' } });
+    assert.equal(refusedRun.json().error.code, 'REQUIRED_CHECK_FAILED');
+    const cancelled = await app.inject({ method: 'POST', url: `/works/${work.id}/runs/short-run/cancel`, payload: {} });
+    assert.equal(cancelled.json().checkpoint.phase, 'cancelled');
+    assert.equal(cancelled.json().checkpoint.leaseToken, undefined, 'fencing tokens never leave the server');
+    assert.equal((await app.inject({ method: 'POST', url: `/works/${work.id}/runs`, payload: { targetChapter: 2, runId: 'short-run' } })).json().error.code, 'RUN_CANCELLED');
+    assert.equal((await app.inject({ method: 'POST', url: `/works/${work.id}/runs`, payload: { targetChapter: 3, runId: 'short-run' } })).json().error.code, 'IDEMPOTENCY_CONFLICT');
+
+    const usage = (await app.inject({ method: 'GET', url: '/usage' })).json();
+    assert.equal(usage.calls, 0, 'the injected test provider does not bill the ledger');
+    assert.equal(usage.costKnown, true);
+  } finally {
+    await app.close();
+  }
+});
+
+test('plan API: overview, next-chapter brief, brief confirmation, entities and covenant impact', async () => {
+  const repository = new InMemoryWorkRepository();
+  const { app } = createApiServer({ repository, provider: writer });
+  try {
+    const work = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('计划接口') })).json();
+    const base = `/works/${work.id}`;
+    const empty = (await app.inject({ method: 'GET', url: `${base}/plans` })).json();
+    assert.equal(empty.active, undefined);
+    assert.equal(typeof empty.planningConfigured, 'boolean');
+    if (!empty.planningConfigured) {
+      const refused = await app.inject({ method: 'POST', url: `${base}/plans/generate`, payload: { targetChapterCount: 30, volumeCount: 3 } });
+      assert.equal(refused.json().error.code, 'PLANNER_NOT_CONFIGURED');
+    }
+
+    await lockDesign(repository, work.id);
+    const overview = (await app.inject({ method: 'GET', url: `${base}/plans` })).json();
+    assert.equal(overview.active.status, 'approved');
+    assert.equal(overview.realization.nodes.length, 10);
+    const stale = await app.inject({ method: 'PUT', url: `${base}/plans`, payload: { plan: minimalPlan(10) } });
+    assert.equal(stale.json().error.code, 'PLAN_CONFLICT');
+    const unknown = await app.inject({ method: 'POST', url: `${base}/plans/plan_missing/approve`, payload: {} });
+    assert.equal(unknown.json().error.code, 'NOT_FOUND');
+
+    const next = (await app.inject({ method: 'GET', url: `${base}/next-chapter` })).json();
+    assert.equal(next.chapterNumber, 1);
+    assert.deepEqual(next.blockers, []);
+    assert.equal(next.brief.brief.outlineId, 'chapter-1');
+    const confirmed = await app.inject({ method: 'POST', url: `${base}/chapters/1/brief/confirm`, payload: { location: '演武场' } });
+    assert.equal(confirmed.statusCode, 201, confirmed.body);
+    assert.equal((await app.inject({ method: 'GET', url: `${base}/chapters/1/brief` })).json().brief.brief.location, '演武场');
+    const candidate = (await app.inject({ method: 'POST', url: `${base}/chapters/1/generate`, payload: {} })).json().candidate;
+    assert.equal(candidate.planRevisionId, overview.active.id);
+    assert.equal(candidate.brief.location, '演武场');
+
+    const entities = (await app.inject({ method: 'GET', url: `${base}/entities` })).json();
+    assert.ok(entities.entities.some((entity: { name: string }) => entity.name === '林渊'));
+    const patched = await app.inject({ method: 'PATCH', url: base, payload: { ...createPayload('计划接口'), covenant: { ...createPayload('x').covenant, readingExperience: '爽快' }, authorText: '要爽' } });
+    assert.equal(patched.statusCode, 200, patched.body);
+    assert.deepEqual(patched.json().impact.staleCandidateIds, [candidate.id]);
+    const history = (await app.inject({ method: 'GET', url: `${base}/covenant/history` })).json();
+    assert.equal(history.revisions.at(-1).authorText, '要爽');
+    const afterCovenant = (await app.inject({ method: 'GET', url: `${base}/chapters/1/readiness` })).json();
+    assert.equal(afterCovenant.ready, true, 'a covenant edit flags the plan for re-check but does not revoke approval');
+  } finally {
+    await app.close();
+  }
+});
+
+test('model settings are stored on this machine, take effect immediately, and the key is never returned', async () => {
+  const { mkdtempSync, readFileSync, rmSync } = await import('node:fs');
+  const { tmpdir } = await import('node:os');
+  const { join } = await import('node:path');
+  const { createServer } = await import('node:http');
+  const directory = mkdtempSync(join(tmpdir(), 'novel-settings-'));
+  const file = join(directory, 'model-settings.json');
+  const secret = 'sk-test-secret-value';
+  let authorization = '';
+  const upstream = createServer((request, response) => {
+    authorization = String(request.headers.authorization ?? '');
+    response.writeHead(200, { 'content-type': 'application/json' });
+    if (request.url?.includes('/models')) response.end(JSON.stringify({ data: [{ id: 'writer-b' }, { id: 'planner-a' }] }));
+    else response.end(JSON.stringify({ choices: [{ message: { content: 'OK' } }] }));
+  });
+  await new Promise<void>((resolve) => upstream.listen(0, '127.0.0.1', resolve));
+  const address = upstream.address();
+  if (!address || typeof address !== 'object') throw new Error('upstream did not bind');
+  const endpoint = `http://127.0.0.1:${address.port}`;
+  const { app } = createApiServer({
+    repository: new InMemoryWorkRepository(),
+    manageModelSettings: true,
+    modelSettingsPath: file,
+    writeProcessEnvironment: false,
+  });
+  const payload = { name: '本地', endpoint, apiKey: secret, planningModel: 'planner-a', writingModel: 'writer-b', timeoutMs: 20_000, independentExtraction: true };
+  try {
+    assert.equal((await app.inject({ method: 'GET', url: '/settings/model' })).json().configured, false);
+    const saved = await app.inject({ method: 'PUT', url: '/settings/model', payload });
+    assert.equal(saved.statusCode, 200, saved.body);
+    assert.equal(saved.json().configured, true);
+    assert.equal(saved.json().planningConfigured, true);
+    assert.equal(saved.json().channels[0].apiKeyHint, 'alue');
+    assert.equal(saved.body.includes(secret), false);
+    assert.equal((await app.inject({ method: 'GET', url: '/settings/model' })).body.includes(secret), false);
+    const channelId = saved.json().savedId as string;
+
+    const kept = await app.inject({ method: 'PUT', url: '/settings/model', payload: { ...payload, id: channelId, apiKey: undefined, writingModel: '' } });
+    assert.equal(JSON.parse(readFileSync(file, 'utf8')).channels[0].apiKey, secret, 'an empty key field keeps the stored key');
+    assert.equal(kept.json().channels[0].writingModel, '');
+
+    const otherKey = 'sk-other-channel-key1';
+    const second = await app.inject({ method: 'PUT', url: '/settings/model', payload: { name: '备用', endpoint: 'http://example.invalid', apiKey: otherKey, planningModel: 'other-model', writingModel: '', timeoutMs: 20_000, independentExtraction: true } });
+    const stored = JSON.parse(readFileSync(file, 'utf8')) as { activeId: string; channels: Array<{ id: string; name: string; apiKey: string }> };
+    assert.equal(stored.channels.length, 2);
+    assert.equal(stored.activeId, channelId, 'saving another channel does not replace the one in use');
+    assert.equal(stored.channels.find((channel) => channel.name === '本地')?.apiKey, secret);
+    assert.equal(stored.channels.find((channel) => channel.name === '备用')?.apiKey, otherKey);
+    assert.equal(stored.channels.find((channel) => channel.name === '备用')?.fallback, true, 'a new channel is a backup by default');
+    assert.equal(second.json().channels.find((channel: { name: string }) => channel.name === '备用')?.fallback, true);
+    assert.equal(second.body.includes(secret), false);
+    assert.equal(second.body.includes(otherKey), false);
+
+    const switched = await app.inject({ method: 'POST', url: '/settings/model/activate', payload: { id: stored.channels.find((channel) => channel.name === '备用')?.id } });
+    assert.equal(switched.json().activeId, stored.channels.find((channel) => channel.name === '备用')?.id);
+    assert.equal(switched.json().configured, true);
+    const back = await app.inject({ method: 'POST', url: '/settings/model/activate', payload: { id: channelId } });
+    assert.equal(back.json().activeId, channelId);
+    assert.equal(JSON.parse(readFileSync(file, 'utf8')).channels.length, 2, 'switching keeps both channels');
+
+    const probed = await app.inject({ method: 'POST', url: '/settings/model/test', payload: { endpoint, apiKey: secret, timeoutMs: 20_000 } });
+    assert.equal(probed.json().ok, true, probed.body);
+    assert.match(probed.json().message, /2 个模型/);
+    const tested = await app.inject({ method: 'POST', url: '/settings/model/test', payload: { ...payload, id: channelId } });
+    assert.equal(tested.json().ok, true, tested.body);
+    assert.equal(tested.body.includes(secret), false);
+    assert.equal(authorization, `Bearer ${secret}`);
+    const listed = await app.inject({ method: 'POST', url: '/settings/model/models', payload });
+    assert.deepEqual(listed.json().models, ['planner-a', 'writer-b']);
+
+    const work = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('接入后') })).json();
+    const readiness = (await app.inject({ method: 'GET', url: `/works/${work.id}/chapters/1/readiness` })).json();
+    assert.equal(readiness.modelConfigured, true);
+    assert.equal(readiness.blockers.some((blocker: { code: string }) => blocker.code === 'MODEL_NOT_CONFIGURED'), false);
+  } finally {
+    await app.close();
+    await new Promise<void>((resolve, reject) => upstream.close((error) => error ? reject(error) : resolve()));
+    rmSync(directory, { recursive: true, force: true });
   }
 });

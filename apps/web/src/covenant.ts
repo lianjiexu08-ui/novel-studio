@@ -4,6 +4,9 @@ export const COVENANT_DEFAULTS = {
   substyle: '',
   audience: '',
   hook: '',
+  protagonistGoal: '',
+  obstacle: '',
+  readingExperience: '',
   mustKeep: '',
   lockedNotes: '',
   avoid: '',
@@ -17,12 +20,19 @@ export interface CovenantFormValues {
   substyle: string;
   audience: string;
   hook: string;
+  protagonistGoal: string;
+  obstacle: string;
+  readingExperience: string;
   mustKeep: string;
   lockedNotes: string;
   avoid: string;
   targetLength: string;
+  targetChapterCount?: number | null;
+  volumeCount?: number | null;
   chapterWords: number;
   updateCadence: string;
+  /** The author's own words for this revision; kept verbatim next to the structured covenant. */
+  authorText?: string;
 }
 
 export function covenantReady(covenant?: Pick<CreativeCovenant, 'audience' | 'hook'>): boolean {
@@ -36,10 +46,15 @@ export function toCovenant(values: CovenantFormValues): CreativeCovenant {
     substyle: values.substyle.trim(),
     audience: values.audience.trim(),
     hook: values.hook.trim(),
+    protagonistGoal: (values.protagonistGoal ?? '').trim(),
+    obstacle: (values.obstacle ?? '').trim(),
+    readingExperience: (values.readingExperience ?? '').trim(),
     mustKeep: values.mustKeep.trim(),
     lockedNotes: values.lockedNotes.trim(),
     avoid: values.avoid.trim(),
     targetLength: values.targetLength.trim() || COVENANT_DEFAULTS.targetLength,
+    targetChapterCount: values.targetChapterCount ?? undefined,
+    volumeCount: values.volumeCount ?? undefined,
     chapterWords: values.chapterWords,
     updateCadence: values.updateCadence.trim() || COVENANT_DEFAULTS.updateCadence,
   };

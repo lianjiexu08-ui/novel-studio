@@ -1,6 +1,8 @@
 import { createHash, randomUUID } from 'node:crypto';
 import { chapterGenerationGate } from './world.ts';
 import type { StoryBible, WorldPack } from './world.ts';
+import { activePlan, effectiveBrief, planBlockers } from './planning.ts';
+import type { ChapterBrief, PlanRevision } from './planning.ts';
 
 const id = (prefix: string) => `${prefix}_${randomUUID().replaceAll('-', '')}`;
 const now = () => new Date().toISOString();
@@ -14,6 +16,44 @@ export type ManuscriptStatus = 'final' | 'superseded';
 export class AdoptionBlocked extends Error {}
 export class LockedConstraintError extends AdoptionBlocked {}
 export class StaleCandidateError extends AdoptionBlocked {}
+/** A demo/trial candidate can be read and checked but never enters the formal story. */
+export class DemoCandidateError extends AdoptionBlocked {}
+/** A required check is missing, or a check on the current candidate did not pass. */
+export class QualityGateError extends AdoptionBlocked {}
+
+export type ReadinessCode =
+  | 'MODEL_NOT_CONFIGURED'
+  | 'COVENANT_INCOMPLETE'
+  | 'CANON_NOT_READY'
+  | 'CHAPTER_PREREQUISITE_MISSING'
+  | 'CONTEXT_INCOMPLETE'
+  | 'PLAN_NOT_APPROVED'
+  | 'PLAN_OUTDATED'
+  | 'PLAN_OUTLINE_MISSING'
+  | 'PLAN_PREREQUISITE_UNMET'
+  | 'BRIEF_NEEDS_CONFIRMATION';
+
+export interface ReadinessBlocker {
+  code: ReadinessCode;
+  message: string;
+  nextAction: string;
+}
+
+/** The formal generation gate failed; `blockers` lists every unmet condition, not only the first. */
+export class ReadinessError extends AdoptionBlocked {
+  readonly blockers: ReadinessBlocker[];
+  constructor(blockers: ReadinessBlocker[]) {
+    super(blockers.map((blocker) => blocker.message).join('; '));
+    this.blockers = blockers;
+  }
+  get code(): ReadinessCode { return this.blockers[0].code; }
+}
+
+export type CandidateOrigin = 'model' | 'demo';
+
+export function contentHashOf(content: string): string {
+  return createHash('sha256').update(content).digest('hex');
+}
 /** An author edit to settings conflicts with existing settings (duplicate name, dangling reference). */
 export class SettingConflictError extends Error {}
 
@@ -32,9 +72,42 @@ export interface GeneratedChapter {
   proposedEvents: EventDraft[];
   /** Independent extraction result. A mismatch blocks adoption. */
   observedEvents?: EventDraft[];
+  usage?: RunUsage;
+}
+
+/** Model usage attributed to a candidate or run. `costKnown` is false when a provider reported tokens without a price. */
+export interface RunUsage {
+  calls: number;
+  failedCalls: number;
+  inputTokens: number;
+  outputTokens: number;
+  costUsd: number;
+  costKnown: boolean;
+}
+
+export function emptyUsage(): RunUsage {
+  return { calls: 0, failedCalls: 0, inputTokens: 0, outputTokens: 0, costUsd: 0, costKnown: true };
+}
+
+export function addUsage(total: RunUsage | undefined, more: RunUsage | undefined): RunUsage {
+  const base = total ?? emptyUsage();
+  if (!more) return base;
+  return {
+    calls: base.calls + more.calls, failedCalls: base.failedCalls + more.failedCalls,
+    inputTokens: base.inputTokens + more.inputTokens, outputTokens: base.outputTokens + more.outputTokens,
+    costUsd: base.costUsd + more.costUsd, costKnown: base.costKnown && more.costKnown,
+  };
+}
+
+/** Errors thrown by model providers may carry the usage spent before failing. */
+export function usageOfError(error: unknown): RunUsage | undefined {
+  const usage = (error as { usage?: RunUsage } | null)?.usage;
+  return usage && typeof usage.calls === 'number' ? usage : undefined;
 }
 
 export interface ModelProvider {
+  /** Placeholder writers declare themselves; their output is isolated from formal adoption. */
+  demo?: boolean;
   generateChapter(input: { work: Work; chapterNumber: number; context: ContextManifest }): GeneratedChapter;
   /** Optional network-backed path. The synchronous path remains for local tests and fallback mode. */
   generateChapterAsync?(input: { work: Work; chapterNumber: number; context: ContextManifest }): Promise<GeneratedChapter>;
@@ -46,7 +119,44 @@ export interface CheckResult {
   message: string;
   candidateId: string;
   checkedAt: string;
+  policyVersion?: string;
+  /** Set when the run is recorded: identifies this execution and what it looked at. */
+  id?: string;
+  contentHash?: string;
+  inputs?: CheckInputs;
 }
+
+export interface CheckInputs {
+  stateRevision: number;
+  constraintRevision: number;
+  worldPackRevision?: number;
+  storyBibleRevision?: number;
+}
+
+/**
+ * An author's recorded judgement that one specific check execution was a false
+ * positive. It never rewrites the check result; the gate reads both.
+ */
+export interface CheckRuling {
+  id: string;
+  candidateId: string;
+  checkId: string;
+  checker: string;
+  decision: 'false_positive';
+  reason: string;
+  evidence: string;
+  createdAt: string;
+}
+
+/** Server-owned list of checks that must all pass on the current candidate before adoption. */
+export interface CheckPolicy {
+  version: string;
+  required: string[];
+  /** Checks whose failed/inconclusive result an author may rule a false positive. Hard constraints stay out of this list. */
+  overridable?: string[];
+}
+
+export class RulingNotAllowedError extends AdoptionBlocked {}
 
 export interface CandidateChecker {
   name: string;
@@ -60,6 +170,9 @@ export interface ContextManifest {
   constraintRevision: number;
   worldPackRevision?: number;
   storyBibleRevision?: number;
+  /** Approved plan revision and the chapter brief the writer received. */
+  planRevisionId?: string;
+  brief?: ChapterBrief;
   adoptedVersionIds: string[];
   includedEventIds: string[];
   requiredMaterialStatus: 'complete' | 'needs_split' | 'blocked';
@@ -176,8 +289,20 @@ export interface ChapterCandidate {
   generatedAgainstConstraintRevision: number;
   generatedAgainstWorldPackRevision?: number;
   generatedAgainstStoryBibleRevision?: number;
+  /** Plan revision active when this was generated; a different approved plan makes it stale. */
+  planRevisionId?: string;
+  /** Snapshot of the brief used for generation, kept for audit. */
+  brief?: ChapterBrief;
+  contentHash: string;
+  origin: CandidateOrigin;
   status: CandidateStatus;
+  /** Latest result per checker. */
   checks: CheckResult[];
+  /** Append-only record of every check execution. */
+  checkRuns: CheckResult[];
+  /** Append-only author rulings on specific check executions. */
+  rulings: CheckRuling[];
+  usage?: RunUsage;
   adoptedVersionId?: string;
   createdAt: string;
 }
@@ -215,13 +340,23 @@ export interface ManuscriptRevision {
 
 export type RelationshipLayer = 'objective' | 'belief';
 
+/**
+ * document_revision_locked: part of an approved document revision, never rewritten in place.
+ * baseline_locked: the author's initial definition cannot be edited, but story events may evolve it.
+ * event_change_forbidden: no story event may change it (e.g. blood ties).
+ * evolvable: freely editable and may change through events.
+ */
+export type LockPolicy = 'document_revision_locked' | 'baseline_locked' | 'event_change_forbidden' | 'evolvable';
+
 export interface Relationship {
   id: string;
   fromCharacterId: string;
   toCharacterId: string;
   kind: string;
   value: string;
+  /** Legacy flag kept in sync with `lockPolicy`: true for every policy except evolvable. */
   locked: boolean;
+  lockPolicy?: LockPolicy;
   sourceEventId?: string;
   /** objective: true in the story world. belief: how `from` sees `to`, which may be mistaken. */
   layer?: RelationshipLayer;
@@ -242,7 +377,18 @@ export interface Character {
   voice: string;
   notes: string;
   locked: boolean;
+  /** Story Bible character this hand-written entry is the same person as. */
+  canonicalId?: string;
   createdAt: string;
+}
+
+/** A legacy `locked=true` keeps its old meaning (no event may change it); it is never loosened automatically. */
+export function lockPolicyOf(relationship: Pick<Relationship, 'locked' | 'lockPolicy'>): LockPolicy {
+  return relationship.lockPolicy ?? (relationship.locked ? 'event_change_forbidden' : 'evolvable');
+}
+
+export function forbidsEventChange(policy: LockPolicy): boolean {
+  return policy === 'event_change_forbidden' || policy === 'document_revision_locked';
 }
 
 export type WorldRuleCategory = 'power' | 'cost' | 'resource' | 'institution' | 'geography' | 'other';
@@ -317,6 +463,26 @@ export interface CreativeCovenant {
   targetLength: string;
   chapterWords: number;
   updateCadence: string;
+  protagonistGoal: string;
+  obstacle: string;
+  readingExperience: string;
+  /** Planned book length; the book plan must match it when both are set. */
+  targetChapterCount?: number;
+  volumeCount?: number;
+}
+
+/**
+ * One immutable covenant revision. `authorText` is the author's own words as
+ * typed; `acceptedSuggestions` are the AI suggestions the author explicitly
+ * accepted. Unaccepted suggestions never reach the covenant.
+ */
+export interface CovenantRevision {
+  id: string;
+  revision: number;
+  covenant: CreativeCovenant;
+  authorText: string;
+  acceptedSuggestions: string[];
+  createdAt: string;
 }
 
 export function defaultCovenant(): CreativeCovenant {
@@ -332,6 +498,9 @@ export function defaultCovenant(): CreativeCovenant {
     targetLength: '长篇，篇幅未定',
     chapterWords: 2200,
     updateCadence: '日更',
+    protagonistGoal: '',
+    obstacle: '',
+    readingExperience: '',
   };
 }
 
@@ -357,16 +526,34 @@ export function parseCovenant(input: unknown): CreativeCovenant {
     targetLength: text(value.targetLength).trim() ? text(value.targetLength) : base.targetLength,
     chapterWords: Number.isInteger(chapterWords) && chapterWords >= 500 && chapterWords <= 20000 ? chapterWords : base.chapterWords,
     updateCadence: text(value.updateCadence).trim() ? text(value.updateCadence) : base.updateCadence,
+    protagonistGoal: text(value.protagonistGoal),
+    obstacle: text(value.obstacle),
+    readingExperience: text(value.readingExperience),
+    targetChapterCount: positiveInt(value.targetChapterCount, 2000),
+    volumeCount: positiveInt(value.volumeCount, 50),
   };
+}
+
+function positiveInt(value: unknown, max: number): number | undefined {
+  const number = Number(value);
+  return Number.isInteger(number) && number >= 1 && number <= max ? number : undefined;
 }
 
 export interface Checkpoint {
   runId: string;
   targetChapter: number;
   nextChapter: number;
-  phase: 'idle' | 'generated' | 'checked' | 'adopted' | 'complete' | 'paused';
+  phase: 'idle' | 'generated' | 'checked' | 'adopted' | 'complete' | 'paused' | 'cancelled';
   candidateIds: Record<number, string>;
   error?: string;
+  /** Fencing token of the process currently allowed to commit for this run. */
+  leaseToken?: string;
+  leaseExpiresAt?: string;
+  /** Author request honoured at the next step boundary. */
+  control?: 'pause' | 'cancel';
+  /** Generation attempt per chapter; a failed attempt never re-serves its candidate. */
+  attempts?: Record<number, number>;
+  usage?: RunUsage;
 }
 
 export class Work {
@@ -388,6 +575,13 @@ export class Work {
   readonly plotNodes = new Map<string, PlotNode>();
   readonly checkpoints = new Map<string, Checkpoint>();
   readonly impacts: ImpactRecord[] = [];
+  /** Immutable book plan revisions; only `activePlanId` drives generation. */
+  readonly plans = new Map<string, PlanRevision>();
+  activePlanId?: string;
+  /** Author-confirmed chapter briefs. Derived briefs are recomputed, not stored. */
+  readonly briefs = new Map<string, ChapterBrief>();
+  /** Append-only covenant revisions with the author's original words. */
+  readonly covenantHistory: CovenantRevision[] = [];
   stateRevision = 0;
   /** Advances when author-owned constraints change; story facts keep stateRevision. */
   constraintRevision = 0;
@@ -409,6 +603,16 @@ export class Work {
       .sort((a, b) => a.chapterNumber - b.chapterNumber || a.revision - b.revision);
   }
 
+  recordCovenant(covenant: CreativeCovenant, authorText = '', acceptedSuggestions: string[] = []): CovenantRevision {
+    const revision: CovenantRevision = {
+      id: id('covenant'), revision: (this.covenantHistory.at(-1)?.revision ?? 0) + 1,
+      covenant: JSON.parse(JSON.stringify(covenant)) as CreativeCovenant, authorText, acceptedSuggestions: [...acceptedSuggestions], createdAt: now(),
+    };
+    this.covenant = covenant;
+    this.covenantHistory.push(revision);
+    return revision;
+  }
+
   recordDesignRevision(kind: DesignRevisionKind, snapshot: WorldPack | StoryBible): DesignRevision {
     const contentHash = createHash('sha256').update(JSON.stringify(snapshot)).digest('hex');
     const existing = [...this.designHistory.values()].find((item) => item.kind === kind && item.revision === snapshot.revision && item.contentHash === contentHash);
@@ -425,14 +629,16 @@ export class Work {
 export class NovelService {
   readonly works = new Map<string, Work>();
   private readonly provider: ModelProvider;
+  readonly checkPolicy?: CheckPolicy;
 
-  constructor(provider: ModelProvider) {
+  constructor(provider: ModelProvider, options: { checkPolicy?: CheckPolicy } = {}) {
     this.provider = provider;
+    this.checkPolicy = options.checkPolicy;
   }
 
   createWork(title: string, covenant?: CreativeCovenant): Work {
     const work = new Work(title);
-    if (covenant) work.covenant = covenant;
+    if (covenant) work.recordCovenant(covenant);
     this.works.set(work.id, work);
     return work;
   }
@@ -507,79 +713,118 @@ export class NovelService {
     return contextManifestFor(work, chapterNumber, policy);
   }
 
-  generateCandidate(workId: string, chapterNumber: number, runId = id('run')): ChapterCandidate {
+  findRunCandidate(workId: string, chapterNumber: number, runId: string): ChapterCandidate | undefined {
     const work = this.getWork(workId);
-    const existing = [...work.candidates.values()].find((candidate) => candidate.runId === runId && candidate.chapterNumber === chapterNumber);
-    if (existing) return existing;
-    const context = this.contextFor(work, chapterNumber);
-    if (work.worldPack || work.storyBible) {
-      if (!work.worldPack || !work.storyBible) throw new AdoptionBlocked('world pack and story bible must be configured together');
-      const gate = chapterGenerationGate(work.worldPack, work.storyBible);
-      if (!gate.ready) throw new AdoptionBlocked(`chapter generation gate blocked: ${gate.errors.join('; ')}`);
-    }
-    if (context.requiredMaterialStatus !== 'complete') throw new AdoptionBlocked('required context is incomplete');
-    const generated = this.provider.generateChapter({ work, chapterNumber, context });
-    const candidate: ChapterCandidate = {
-      id: id('candidate'),
-      workId,
-      chapterNumber,
-      content: generated.content,
-      proposedEvents: generated.proposedEvents,
-      observedEvents: generated.observedEvents,
-      runId,
-      generatedAgainstRevision: context.stateRevision,
-      generatedAgainstConstraintRevision: context.constraintRevision,
-      generatedAgainstWorldPackRevision: context.worldPackRevision,
-      generatedAgainstStoryBibleRevision: context.storyBibleRevision,
-      status: 'candidate',
-      checks: [],
-      createdAt: now(),
-    };
-    work.candidates.set(candidate.id, candidate);
-    return candidate;
+    return [...work.candidates.values()].find((candidate) => candidate.runId === runId && candidate.chapterNumber === chapterNumber);
   }
 
-  async generateCandidateAsync(workId: string, chapterNumber: number, runId = id('run')): Promise<ChapterCandidate> {
+  /** Validates the design/context gate and returns the snapshot a model call should use. */
+  prepareGeneration(workId: string, chapterNumber: number): ContextManifest {
     const work = this.getWork(workId);
-    const existing = [...work.candidates.values()].find((candidate) => candidate.runId === runId && candidate.chapterNumber === chapterNumber);
-    if (existing) return existing;
     const context = this.contextFor(work, chapterNumber);
     if (work.worldPack || work.storyBible) {
-      if (!work.worldPack || !work.storyBible) throw new AdoptionBlocked('world pack and story bible must be configured together');
+      if (!work.worldPack || !work.storyBible) throw new ReadinessError([{ code: 'CANON_NOT_READY', message: 'world pack and story bible must be configured together', nextAction: '补齐并锁定世界包与故事圣经' }]);
       const gate = chapterGenerationGate(work.worldPack, work.storyBible);
-      if (!gate.ready) throw new AdoptionBlocked(`chapter generation gate blocked: ${gate.errors.join('; ')}`);
+      if (!gate.ready) throw new ReadinessError([{ code: 'CANON_NOT_READY', message: `chapter generation gate blocked: ${gate.errors.join('; ')}`, nextAction: '处理设计门禁问题后重新锁定' }]);
     }
-    if (context.requiredMaterialStatus !== 'complete') throw new AdoptionBlocked('required context is incomplete');
-    const generated = this.provider.generateChapterAsync
-      ? await this.provider.generateChapterAsync({ work, chapterNumber, context })
-      : this.provider.generateChapter({ work, chapterNumber, context });
+    if (context.requiredMaterialStatus !== 'complete') throw new ReadinessError([{ code: 'CONTEXT_INCOMPLETE', message: 'required context is incomplete', nextAction: '补齐必需上下文后重试' }]);
+    return context;
+  }
+
+  /**
+   * Records model output generated against `context`. The candidate keeps the
+   * snapshot revisions, so if the work moved on while the model was running the
+   * result is kept for reading but adoption rejects it as stale.
+   */
+  recordCandidate(workId: string, chapterNumber: number, runId: string, context: ContextManifest, generated: GeneratedChapter, origin: CandidateOrigin): ChapterCandidate {
+    const work = this.getWork(workId);
+    const existing = this.findRunCandidate(workId, chapterNumber, runId);
+    if (existing) return existing;
     const candidate: ChapterCandidate = {
       id: id('candidate'), workId, chapterNumber,
       content: generated.content, proposedEvents: generated.proposedEvents, observedEvents: generated.observedEvents,
       runId, generatedAgainstRevision: context.stateRevision, generatedAgainstConstraintRevision: context.constraintRevision,
       generatedAgainstWorldPackRevision: context.worldPackRevision, generatedAgainstStoryBibleRevision: context.storyBibleRevision,
-      status: 'candidate', checks: [], createdAt: now(),
+      planRevisionId: context.planRevisionId, brief: context.brief,
+      contentHash: contentHashOf(generated.content), origin, usage: generated.usage,
+      status: 'candidate', checks: [], checkRuns: [], rulings: [], createdAt: now(),
     };
     work.candidates.set(candidate.id, candidate);
     return candidate;
+  }
+
+  generateCandidate(workId: string, chapterNumber: number, runId = id('run')): ChapterCandidate {
+    const work = this.getWork(workId);
+    const existing = this.findRunCandidate(workId, chapterNumber, runId);
+    if (existing) return existing;
+    const context = this.prepareGeneration(workId, chapterNumber);
+    const generated = this.provider.generateChapter({ work, chapterNumber, context });
+    return this.recordCandidate(workId, chapterNumber, runId, context, generated, this.provider.demo ? 'demo' : 'model');
+  }
+
+  async generateCandidateAsync(workId: string, chapterNumber: number, runId = id('run')): Promise<ChapterCandidate> {
+    const work = this.getWork(workId);
+    const existing = this.findRunCandidate(workId, chapterNumber, runId);
+    if (existing) return existing;
+    const context = this.prepareGeneration(workId, chapterNumber);
+    const generated = this.provider.generateChapterAsync
+      ? await this.provider.generateChapterAsync({ work, chapterNumber, context })
+      : this.provider.generateChapter({ work, chapterNumber, context });
+    return this.recordCandidate(workId, chapterNumber, runId, context, generated, this.provider.demo ? 'demo' : 'model');
   }
 
   runChecks(workId: string, candidateId: string, checkers: CandidateChecker[]): CheckResult[] {
     const work = this.getWork(workId);
     const candidate = this.getCandidate(work, candidateId);
     const byName = new Map(candidate.checks.map((result) => [result.checker, result]));
-    for (const checker of checkers) byName.set(checker.name, checker.check({ work, candidate }));
+    const inputs: CheckInputs = {
+      stateRevision: work.stateRevision, constraintRevision: work.constraintRevision,
+      worldPackRevision: work.worldPack?.revision, storyBibleRevision: work.storyBible?.revision,
+    };
+    for (const checker of checkers) {
+      const result: CheckResult = {
+        ...checker.check({ work, candidate }),
+        id: id('check'), contentHash: candidate.contentHash, inputs, policyVersion: this.checkPolicy?.version,
+      };
+      byName.set(checker.name, result);
+      candidate.checkRuns.push(result);
+    }
     candidate.checks = [...byName.values()];
     return candidate.checks;
+  }
+
+  /**
+   * Records an author's false-positive ruling on the current result of one
+   * check. Only policy-listed checks with a failed/inconclusive result qualify;
+   * an unavailable check (for example a missing extraction) cannot be ruled away.
+   */
+  recordRuling(workId: string, candidateId: string, input: { checkId: string; reason: string; evidence: string }): CheckRuling {
+    const work = this.getWork(workId);
+    const candidate = this.getCandidate(work, candidateId);
+    if (candidate.status !== 'candidate') throw new RulingNotAllowedError('only an open candidate can receive rulings');
+    const check = candidate.checks.find((result) => result.id === input.checkId);
+    if (!check) throw new RulingNotAllowedError('ruling must reference the current result of a check on this candidate');
+    if (!(this.checkPolicy?.overridable ?? []).includes(check.checker)) throw new RulingNotAllowedError(`${check.checker} is a hard constraint and cannot be ruled a false positive`);
+    if (check.status !== 'failed' && check.status !== 'inconclusive') throw new RulingNotAllowedError(`a ${check.status} check cannot be ruled a false positive`);
+    if (!input.reason.trim() || !input.evidence.trim()) throw new RulingNotAllowedError('a ruling needs both a reason and evidence');
+    const ruling: CheckRuling = {
+      id: id('ruling'), candidateId, checkId: check.id!, checker: check.checker, decision: 'false_positive',
+      reason: input.reason.trim(), evidence: input.evidence.trim(), createdAt: now(),
+    };
+    candidate.rulings.push(ruling);
+    return ruling;
   }
 
   adoptCandidate(workId: string, candidateId: string): ChapterVersion {
     const work = this.getWork(workId);
     const candidate = this.getCandidate(work, candidateId);
     if (candidate.status === 'adopted' && candidate.adoptedVersionId) return work.versions.get(candidate.adoptedVersionId)!;
+    if (candidate.origin === 'demo') throw new DemoCandidateError('demo candidates cannot be adopted into the formal story');
+    if (candidate.contentHash !== contentHashOf(candidate.content)) throw new AdoptionBlocked('candidate content does not match its recorded hash');
     this.qualityGate(candidate);
     if (candidate.generatedAgainstRevision !== work.stateRevision || candidate.generatedAgainstConstraintRevision !== work.constraintRevision) throw new StaleCandidateError('candidate context is stale; regenerate or re-check');
     if (candidate.generatedAgainstWorldPackRevision !== work.worldPack?.revision || candidate.generatedAgainstStoryBibleRevision !== work.storyBible?.revision) throw new StaleCandidateError('candidate design inputs are stale; regenerate or re-check');
+    if (work.activePlanId && candidate.planRevisionId !== work.activePlanId) throw new StaleCandidateError('candidate was written against a different book plan; regenerate under the approved plan');
     this.verifyChanges(candidate);
     this.verifyLockedRelationships(work, candidate);
 
@@ -620,7 +865,9 @@ export class NovelService {
       id: id('candidate'), workId, chapterNumber, content, proposedEvents: inheritedEvents, runId: id('edit'),
       generatedAgainstRevision: work.stateRevision, generatedAgainstConstraintRevision: work.constraintRevision,
       generatedAgainstWorldPackRevision: work.worldPack?.revision, generatedAgainstStoryBibleRevision: work.storyBible?.revision,
-      status: 'candidate', checks: [], createdAt: now(),
+      planRevisionId: work.activePlanId,
+      contentHash: contentHashOf(content), origin: 'model',
+      status: 'candidate', checks: [], checkRuns: [], rulings: [], createdAt: now(),
     };
     work.candidates.set(candidate.id, candidate);
     this.runChecks(workId, candidate.id, checkers);
@@ -635,44 +882,26 @@ export class NovelService {
     return version;
   }
 
-  runUntil(workId: string, targetChapter: number, checkers: CandidateChecker[], runId = id('run')): Checkpoint {
+  /** Resuming an existing run keeps its original target; a run never widens itself. */
+  openCheckpoint(workId: string, targetChapter: number, runId: string): Checkpoint {
     const work = this.getWork(workId);
     let checkpoint = work.checkpoints.get(runId);
     if (!checkpoint) {
       checkpoint = { runId, targetChapter, nextChapter: nextChapterAfterAdopted(work), phase: 'idle', candidateIds: {} };
       work.checkpoints.set(runId, checkpoint);
-    } else checkpoint.targetChapter = Math.max(checkpoint.targetChapter, targetChapter);
+    }
     checkpoint.error = undefined;
+    return checkpoint;
+  }
+
+  runUntil(workId: string, targetChapter: number, checkers: CandidateChecker[], runId = id('run')): Checkpoint {
+    const work = this.getWork(workId);
+    const checkpoint = this.openCheckpoint(workId, targetChapter, runId);
     while (checkpoint.nextChapter <= checkpoint.targetChapter) {
       const chapter = checkpoint.nextChapter;
       const candidate = checkpoint.candidateIds[chapter]
         ? this.getCandidate(work, checkpoint.candidateIds[chapter])
         : this.generateCandidate(workId, chapter, runId);
-      checkpoint.candidateIds[chapter] = candidate.id;
-      checkpoint.phase = 'generated';
-      this.runChecks(workId, candidate.id, checkers);
-      checkpoint.phase = 'checked';
-      this.adoptCandidate(workId, candidate.id);
-      checkpoint.nextChapter = chapter + 1;
-      checkpoint.phase = 'adopted';
-    }
-    checkpoint.phase = 'complete';
-    return checkpoint;
-  }
-
-  async runUntilAsync(workId: string, targetChapter: number, checkers: CandidateChecker[], runId = id('run')): Promise<Checkpoint> {
-    const work = this.getWork(workId);
-    let checkpoint = work.checkpoints.get(runId);
-    if (!checkpoint) {
-      checkpoint = { runId, targetChapter, nextChapter: nextChapterAfterAdopted(work), phase: 'idle', candidateIds: {} };
-      work.checkpoints.set(runId, checkpoint);
-    } else checkpoint.targetChapter = Math.max(checkpoint.targetChapter, targetChapter);
-    checkpoint.error = undefined;
-    while (checkpoint.nextChapter <= checkpoint.targetChapter) {
-      const chapter = checkpoint.nextChapter;
-      const candidate = checkpoint.candidateIds[chapter]
-        ? this.getCandidate(work, checkpoint.candidateIds[chapter])
-        : await this.generateCandidateAsync(workId, chapter, runId);
       checkpoint.candidateIds[chapter] = candidate.id;
       checkpoint.phase = 'generated';
       this.runChecks(workId, candidate.id, checkers);
@@ -718,15 +947,24 @@ export class NovelService {
 
   private verifyLockedRelationships(work: Work, candidate: ChapterCandidate): void {
     for (const event of candidate.proposedEvents.filter((item) => item.eventType === 'relationship_change')) {
-      const locked = [...work.relationships.values()].find((relationship) => relationship.id === event.subjectId && relationship.locked);
-      if (locked) throw new LockedConstraintError(`relationship ${locked.id} is locked`);
+      const setting = work.relationships.get(event.subjectId);
+      const seed = work.storyBible?.relationships.find((relationship) => relationship.id === event.subjectId);
+      const policy = setting ? lockPolicyOf(setting) : seed ? lockPolicyOf(seed) : 'evolvable';
+      if (forbidsEventChange(policy)) throw new LockedConstraintError(`relationship ${event.subjectId} may not be changed by story events (${policy})`);
     }
   }
 
   private qualityGate(candidate: ChapterCandidate): void {
-    if (!candidate.checks.length) throw new AdoptionBlocked('no quality checks have completed');
-    const blocked = candidate.checks.filter((result) => result.status !== 'passed');
-    if (blocked.length) throw new AdoptionBlocked(`quality gate blocked: ${blocked.map((item) => `${item.checker}:${item.status}`).join(', ')}`);
+    if (!candidate.checks.length) throw new QualityGateError('no quality checks have completed');
+    const current = candidate.checks.filter((result) => !result.contentHash || result.contentHash === candidate.contentHash);
+    const missing = (this.checkPolicy?.required ?? []).filter((name) => !current.some((result) => result.checker === name));
+    if (missing.length) throw new QualityGateError(`quality gate blocked: required checks missing: ${missing.join(', ')}`);
+    const overridable = new Set(this.checkPolicy?.overridable ?? []);
+    const ruledAway = (result: CheckResult) => overridable.has(result.checker)
+      && (result.status === 'failed' || result.status === 'inconclusive')
+      && candidate.rulings.some((ruling) => ruling.checkId === result.id);
+    const blocked = current.filter((result) => result.status !== 'passed' && !ruledAway(result));
+    if (blocked.length) throw new QualityGateError(`quality gate blocked: ${blocked.map((item) => `${item.checker}:${item.status}`).join(', ')}`);
   }
 
   private getWork(workId: string): Work {
@@ -824,6 +1062,8 @@ export function contextManifestFor(work: Work, chapterNumber: number, policy: Co
     constraintRevision: work.constraintRevision,
     worldPackRevision: work.worldPack?.revision,
     storyBibleRevision: work.storyBible?.revision,
+    planRevisionId: activePlan(work)?.id,
+    brief: effectiveBrief(work, chapterNumber)?.brief,
     adoptedVersionIds: versions.map((version) => version.id),
     includedEventIds: events.map((event) => event.id),
     requiredMaterialStatus: estimatedTokens > contextBudget ? 'needs_split' : 'complete',
@@ -965,6 +1205,27 @@ export function relationshipAt(work: Work, relationshipId: string, chapterNumber
   return { ...base, value: typeof change.value === 'string' ? change.value : JSON.stringify(change.value), sourceEventId: change.id, sinceChapter: base.sinceChapter ?? change.chapterNumber };
 }
 
+/**
+ * Formal-generation readiness for one chapter. Returns every blocker so the
+ * author sees the full list; an empty array means the chapter may be generated.
+ */
+export function generationReadiness(work: Work, chapterNumber: number, options: { modelConfigured: boolean }): ReadinessBlocker[] {
+  const blockers: ReadinessBlocker[] = [];
+  if (!options.modelConfigured) blockers.push({ code: 'MODEL_NOT_CONFIGURED', message: 'no production writing model is configured', nextAction: '在系统设置里配置写作模型' });
+  if (!isCovenantReady(work.covenant)) blockers.push({ code: 'COVENANT_INCOMPLETE', message: 'creative covenant is incomplete', nextAction: '补全创作约定' });
+  if (!work.worldPack || !work.storyBible) {
+    blockers.push({ code: 'CANON_NOT_READY', message: 'world pack and story bible must both be locked', nextAction: '完成并锁定世界包与故事圣经' });
+  } else {
+    const gate = chapterGenerationGate(work.worldPack, work.storyBible);
+    if (!gate.ready) blockers.push({ code: 'CANON_NOT_READY', message: `chapter generation gate blocked: ${gate.errors.join('; ')}`, nextAction: '处理设计门禁问题后重新锁定' });
+  }
+  blockers.push(...planBlockers(work, chapterNumber));
+  const missing = Array.from({ length: chapterNumber - 1 }, (_, index) => index + 1).filter((chapter) => !work.currentVersion(chapter));
+  if (missing.length) blockers.push({ code: 'CHAPTER_PREREQUISITE_MISSING', message: `previous chapters are not adopted: ${missing.join(', ')}`, nextAction: `先采用第 ${missing[0]} 章` });
+  else if (contextManifestFor(work, chapterNumber).requiredMaterialStatus !== 'complete') blockers.push({ code: 'CONTEXT_INCOMPLETE', message: 'required context is incomplete', nextAction: '补齐必需上下文后重试' });
+  return blockers;
+}
+
 function nextChapterAfterAdopted(work: Work): number {
   let next = 1;
   while (work.currentVersion(next)) next += 1;
@@ -1011,18 +1272,23 @@ export const canonConsistencyChecker: CandidateChecker = {
     const locationIds = new Set(work.worldPack?.locations.map((location) => location.id) ?? []);
     const realmIds = new Set(work.worldPack?.realms.map((realm) => realm.id) ?? []);
     const plotNodeIds = new Set(work.plotNodes.keys());
+    const plan = activePlan(work)?.plan;
+    const planNodeIds = new Set([...(plan?.chapters.map((item) => item.id) ?? []), ...(plan?.milestones.map((item) => item.id) ?? [])]);
+    const seedOf = (relationshipId: string) => work.storyBible?.relationships.find((relationship) => relationship.id === relationshipId);
     const errors: string[] = [];
     for (const event of candidate.proposedEvents) {
       if (!allowedEventTypes.has(event.eventType)) errors.push(`unsupported event type ${event.eventType}`);
       if (['character_state', 'knowledge_belief'].includes(event.eventType) && characterIds.size && !characterIds.has(event.subjectId)) errors.push(`unknown character ${event.subjectId}`);
       if (event.eventType === 'relationship_change' && relationshipIds.size && !relationshipIds.has(event.subjectId)) errors.push(`unknown relationship ${event.subjectId}`);
-      if (event.eventType === 'relationship_change' && (
-        work.relationships.get(event.subjectId)?.locked
-        || work.storyBible?.relationships.some((relationship) => relationship.id === event.subjectId && relationship.locked)
-      )) errors.push(`locked relationship ${event.subjectId}`);
+      if (event.eventType === 'relationship_change') {
+        const setting = work.relationships.get(event.subjectId);
+        const seed = seedOf(event.subjectId);
+        const owner = setting ?? seed;
+        if (owner && forbidsEventChange(lockPolicyOf(owner))) errors.push(`locked relationship ${event.subjectId}`);
+      }
       if (event.eventType === 'resource_change' && resourceIds.size && !resourceIds.has(event.subjectId)) errors.push(`unknown resource ${event.subjectId}`);
       if (event.eventType === 'artifact_change' && artifactIds.size && !artifactIds.has(event.subjectId)) errors.push(`unknown artifact ${event.subjectId}`);
-      if (event.eventType === 'plot_progress' && plotNodeIds.size && !plotNodeIds.has(event.subjectId) && !event.plotNodeId) errors.push(`unknown plot node ${event.subjectId}`);
+      if (event.eventType === 'plot_progress' && (plotNodeIds.size || planNodeIds.size) && !plotNodeIds.has(event.subjectId) && !planNodeIds.has(event.subjectId) && !event.plotNodeId) errors.push(`unknown plot node ${event.subjectId}`);
       if (event.eventType === 'volume_progress' && work.storyBible && !work.storyBible.volumes.some((volume) => volume.id === event.subjectId)) errors.push(`unknown story volume ${event.subjectId}`);
       if (event.eventType === 'arc_progress' && work.storyBible && !work.storyBible.arcs.some((arc) => arc.id === event.subjectId)) errors.push(`unknown story arc ${event.subjectId}`);
       if (event.eventType === 'secret_reveal' && work.storyBible && !(work.storyBible.secrets ?? []).some((secret) => secret.id === event.subjectId)) errors.push(`unknown story secret ${event.subjectId}`);

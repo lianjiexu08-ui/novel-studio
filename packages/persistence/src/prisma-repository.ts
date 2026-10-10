@@ -1,10 +1,11 @@
 import { randomUUID } from 'node:crypto';
 import { PrismaClient } from '@prisma/client';
-import { parseCovenant, rebuildCharacterStates, StaleCandidateError, Work } from '../../../novel-service-core/src/core.ts';
+import { contentHashOf, parseCovenant, rebuildCharacterStates, StaleCandidateError, Work } from '../../../novel-service-core/src/core.ts';
 import type {
-  ChapterCandidate, ChapterVersion, Character, Checkpoint, DesignRevision, EventDraft, ManuscriptRevision, PlotNode, Relationship, StoryEvent, WorldRule,
+  ChapterCandidate, ChapterVersion, Character, CheckInputs, CheckResult, CovenantRevision, RunUsage, Checkpoint, DesignRevision, EventDraft, ManuscriptRevision, PlotNode, Relationship, StoryEvent, WorldRule,
 } from '../../../novel-service-core/src/core.ts';
 import type { StoryBible, WorldPack } from '../../../novel-service-core/src/world.ts';
+import type { BookPlan, ChapterBrief, PlanReview, PlanRevision } from '../../../novel-service-core/src/planning.ts';
 import type { OutboxEvent, WorkRepository, WorkTransaction } from '../../application/src/index.ts';
 
 function readCovenant(raw: string | null | undefined) {
@@ -71,8 +72,8 @@ export class PrismaWorkRepository implements WorkRepository {
   async save(work: Work): Promise<void> {
     await this.prisma.project.upsert({
       where: { id: work.id },
-      create: { id: work.id, title: work.title, stateRevision: work.stateRevision, constraintRevision: work.constraintRevision, covenant: JSON.stringify(work.covenant), worldPack: JSON.stringify(work.worldPack ?? {}), storyBible: JSON.stringify(work.storyBible ?? {}), designHistory: JSON.stringify([...work.designHistory.values()]) },
-      update: { title: work.title, stateRevision: work.stateRevision, constraintRevision: work.constraintRevision, covenant: JSON.stringify(work.covenant), worldPack: JSON.stringify(work.worldPack ?? {}), storyBible: JSON.stringify(work.storyBible ?? {}), designHistory: JSON.stringify([...work.designHistory.values()]) },
+      create: { id: work.id, ...projectFields(work) },
+      update: projectFields(work),
     });
     await this.persist(this.prisma, work, null);
   }
@@ -86,47 +87,50 @@ export class PrismaWorkRepository implements WorkRepository {
     const previous = this.locks.get(workId) ?? Promise.resolve();
     let release!: () => void;
     const current = new Promise<void>((resolve) => { release = resolve; });
-    this.locks.set(workId, previous.then(() => current));
+    const queued = previous.then(() => current);
+    this.locks.set(workId, queued);
     await previous;
     try {
       return await this.prisma.$transaction(async (tx) => {
         const work = await this.loadForUpdate(tx, workId);
         const loadedRevision = work.stateRevision;
         const loadedConstraintRevision = work.constraintRevision;
-        const pending: Omit<OutboxEvent, 'id' | 'createdAt' | 'attempts'>[] = [];
+        // Returned objects are patched after the upsert so callers always see the stored row's id.
+        const pending: OutboxEvent[] = [];
         const transaction: WorkTransaction = {
           work,
           enqueue: (input) => {
             const existing = pending.find((event) => event.dedupeKey === input.dedupeKey);
-            if (existing) return existing as OutboxEvent;
-            pending.push(input);
-            return { ...input, id: id('outbox'), createdAt: now(), attempts: 0 } as OutboxEvent;
+            if (existing) return existing;
+            const event: OutboxEvent = { ...input, id: id('outbox'), createdAt: now(), attempts: 0 };
+            pending.push(event);
+            return event;
           },
         };
         const result = await callback(transaction);
         // Optimistic concurrency: the stateRevision we loaded must still be current.
         const updated = await tx.project.updateMany({
           where: { id: workId, stateRevision: loadedRevision, constraintRevision: loadedConstraintRevision },
-          data: { stateRevision: work.stateRevision, constraintRevision: work.constraintRevision, title: work.title, covenant: JSON.stringify(work.covenant), worldPack: JSON.stringify(work.worldPack ?? {}), storyBible: JSON.stringify(work.storyBible ?? {}), designHistory: JSON.stringify([...work.designHistory.values()]) },
+          data: projectFields(work),
         });
         if (updated.count === 0) throw new StaleCandidateError('concurrent modification detected; reload and retry');
         await this.persist(tx, work, loadedRevision);
         for (const event of pending) {
-          await tx.outboxEvent.upsert({
+          const stored = await tx.outboxEvent.upsert({
             where: { dedupeKey: event.dedupeKey },
             create: {
-              id: id('outbox'), projectId: event.workId, dedupeKey: event.dedupeKey, kind: event.kind,
+              id: event.id, projectId: event.workId, dedupeKey: event.dedupeKey, kind: event.kind,
               aggregateId: event.aggregateId, payload: JSON.stringify(event.payload),
             },
             update: {},
           });
+          Object.assign(event, mapOutbox(stored));
         }
         return result;
       });
     } finally {
       release();
-      const queued = this.locks.get(workId);
-      if (queued) this.locks.delete(workId);
+      if (this.locks.get(workId) === queued) this.locks.delete(workId);
     }
   }
 
@@ -136,11 +140,14 @@ export class PrismaWorkRepository implements WorkRepository {
     return this.loadAggregate(project, tx);
   }
 
-  private async loadAggregate(project: { id: string; title: string; stateRevision: number; constraintRevision: number; covenant: string; worldPack: string | object; storyBible: string | object; designHistory: string | object }, tx: PrismaTx | PrismaClient = this.prisma): Promise<Work> {
+  private async loadAggregate(project: {
+    id: string; title: string; stateRevision: number; constraintRevision: number; covenant: string; worldPack: string | object; storyBible: string | object;
+    designHistory: string | object; covenantHistory: string | object; activePlanId: string | null;
+  }, tx: PrismaTx | PrismaClient = this.prisma): Promise<Work> {
     const workId = project.id;
-    const [chapters, candidates, events, relationships, characters, worldRules, plotNodes, impacts, runCheckpoints, manuscripts] = await Promise.all([
+    const [chapters, candidates, events, relationships, characters, worldRules, plotNodes, impacts, runCheckpoints, manuscripts, plans, briefs] = await Promise.all([
       tx.chapter.findMany({ where: { projectId: workId }, include: { versions: true } }),
-      tx.chapterCandidate.findMany({ where: { projectId: workId }, include: { checks: true } }),
+      tx.chapterCandidate.findMany({ where: { projectId: workId }, include: { checks: true, rulings: { orderBy: { createdAt: 'asc' } } } }),
       tx.storyEvent.findMany({ where: { projectId: workId } }),
       tx.relationship.findMany({ where: { projectId: workId } }),
       tx.character.findMany({ where: { projectId: workId }, orderBy: { createdAt: 'asc' } }),
@@ -149,12 +156,29 @@ export class PrismaWorkRepository implements WorkRepository {
       tx.impactRecord.findMany({ where: { projectId: workId }, orderBy: { createdAt: 'asc' } }),
       tx.runCheckpoint.findMany({ where: { projectId: workId } }),
       tx.manuscriptRevision.findMany({ where: { projectId: workId }, orderBy: { revision: 'asc' } }),
+      tx.planRevision.findMany({ where: { projectId: workId }, orderBy: { revision: 'asc' } }),
+      tx.chapterBrief.findMany({ where: { projectId: workId }, orderBy: { createdAt: 'asc' } }),
     ]);
 
     const work = new Work(project.title, workId);
     work.stateRevision = project.stateRevision;
     work.constraintRevision = project.constraintRevision ?? 0;
     work.covenant = readCovenant(project.covenant);
+    work.covenantHistory.push(...(readJsonArray<CovenantRevision>(project.covenantHistory)).map((revision) => ({ ...revision, covenant: parseCovenant(revision.covenant) })));
+    work.activePlanId = project.activePlanId ?? undefined;
+    for (const row of plans) {
+      const revision: PlanRevision = {
+        id: row.id, workId, revision: row.revision, parentId: row.parentId ?? undefined, status: row.status as PlanRevision['status'],
+        source: row.source as PlanRevision['source'], note: row.note, plan: JSON.parse(row.plan) as BookPlan, contentHash: row.contentHash,
+        worldPackRevision: row.worldPackRevision ?? undefined, storyBibleRevision: row.storyBibleRevision ?? undefined,
+        reviews: readJsonArray<PlanReview>(row.reviews), createdAt: row.createdAt.toISOString(), approvedAt: row.approvedAt?.toISOString(),
+      };
+      work.plans.set(revision.id, revision);
+    }
+    for (const row of briefs) {
+      const brief = JSON.parse(row.snapshot) as ChapterBrief;
+      work.briefs.set(brief.id, brief);
+    }
     work.worldPack = readJson<WorldPack>(project.worldPack);
     work.storyBible = readJson<StoryBible>(project.storyBible);
     const designHistory = readJson<DesignRevision[]>(project.designHistory) ?? [];
@@ -178,6 +202,15 @@ export class PrismaWorkRepository implements WorkRepository {
       }
     }
     for (const row of candidates) {
+      const checkRuns: CheckResult[] = [...row.checks]
+        .sort((a, b) => a.sequence - b.sequence || a.createdAt.getTime() - b.createdAt.getTime())
+        .map((check) => ({
+          id: check.id, checker: check.checker, status: check.status as never, message: check.message ?? '',
+          candidateId: row.id, checkedAt: check.createdAt.toISOString(), policyVersion: check.policyVersion ?? undefined,
+          contentHash: check.contentHash ?? undefined, inputs: readJson<CheckInputs>(check.inputs),
+        }));
+      const latest = new Map<string, CheckResult>();
+      for (const check of checkRuns) latest.set(check.checker, check);
       const mapped: ChapterCandidate = {
         id: row.id, workId, chapterNumber: chapterNumberById.get(row.chapterId) ?? 0,
         content: row.content,
@@ -185,11 +218,20 @@ export class PrismaWorkRepository implements WorkRepository {
         observedEvents: row.observedEvents ? (JSON.parse(row.observedEvents) as EventDraft[]) : undefined,
         runId: row.runId ?? '', generatedAgainstRevision: row.generatedAgainstRev,
         generatedAgainstConstraintRevision: row.generatedAgainstConstraintRev ?? 0,
+        generatedAgainstWorldPackRevision: row.generatedAgainstWorldPackRev ?? undefined,
+        generatedAgainstStoryBibleRevision: row.generatedAgainstStoryBibleRev ?? undefined,
+        contentHash: row.contentHash ?? contentHashOf(row.content),
+        planRevisionId: row.planRevisionId ?? undefined,
+        brief: readJson<ChapterBrief>(row.brief),
+        origin: row.origin === 'demo' ? 'demo' : 'model',
         status: row.status as ChapterCandidate['status'],
-        checks: row.checks.map((check) => ({
-          checker: check.checker, status: check.status as never, message: check.message ?? '',
-          candidateId: row.id, checkedAt: check.createdAt.toISOString(),
+        checks: [...latest.values()],
+        checkRuns,
+        rulings: row.rulings.map((ruling) => ({
+          id: ruling.id, candidateId: row.id, checkId: ruling.checkId, checker: ruling.checker, decision: 'false_positive',
+          reason: ruling.reason, evidence: ruling.evidence, createdAt: ruling.createdAt.toISOString(),
         })),
+        usage: readJson<RunUsage>(row.usage),
         adoptedVersionId: row.adoptedVersionId ?? undefined,
         createdAt: row.createdAt.toISOString(),
       };
@@ -207,7 +249,7 @@ export class PrismaWorkRepository implements WorkRepository {
     for (const row of relationships) {
       const mapped: Relationship = {
         id: row.id, fromCharacterId: row.fromCharacterId, toCharacterId: row.toCharacterId,
-        kind: row.kind, value: row.value, locked: row.locked, sourceEventId: row.sourceEventId ?? undefined,
+        kind: row.kind, value: row.value, locked: row.locked, lockPolicy: (row.lockPolicy ?? undefined) as Relationship['lockPolicy'], sourceEventId: row.sourceEventId ?? undefined,
         layer: row.layer as Relationship['layer'], note: row.note, sinceChapter: row.sinceChapter ?? undefined,
       };
       work.relationships.set(mapped.id, mapped);
@@ -217,7 +259,7 @@ export class PrismaWorkRepository implements WorkRepository {
         id: row.id, name: row.name, aliases: JSON.parse(row.aliases) as string[],
         role: row.role as Character['role'], identity: row.identity, goal: row.goal,
         principles: row.principles, voice: row.voice, notes: row.notes, locked: row.locked,
-        createdAt: row.createdAt.toISOString(),
+        canonicalId: row.canonicalId ?? undefined, createdAt: row.createdAt.toISOString(),
       };
       work.characters.set(mapped.id, mapped);
     }
@@ -257,6 +299,11 @@ export class PrismaWorkRepository implements WorkRepository {
         phase: row.phase as Checkpoint['phase'],
         error: row.error ?? undefined,
         candidateIds: JSON.parse(row.candidateIds) as Record<number, string>,
+        leaseToken: row.leaseToken ?? undefined,
+        leaseExpiresAt: row.leaseExpiresAt?.toISOString(),
+        control: (row.control ?? undefined) as Checkpoint['control'],
+        attempts: readJson<Record<number, number>>(row.attempts),
+        usage: readJson<RunUsage>(row.usage),
       });
     }
     for (const row of manuscripts) {
@@ -323,20 +370,36 @@ export class PrismaWorkRepository implements WorkRepository {
           observedEvents: candidate.observedEvents ? JSON.stringify(candidate.observedEvents) : null,
           generatedAgainstRev: candidate.generatedAgainstRevision, status: candidate.status,
           generatedAgainstConstraintRev: candidate.generatedAgainstConstraintRevision,
+          generatedAgainstWorldPackRev: candidate.generatedAgainstWorldPackRevision ?? null,
+          generatedAgainstStoryBibleRev: candidate.generatedAgainstStoryBibleRevision ?? null,
+          contentHash: candidate.contentHash, origin: candidate.origin,
+          planRevisionId: candidate.planRevisionId ?? null, brief: candidate.brief ? JSON.stringify(candidate.brief) : null,
+          usage: candidate.usage ? JSON.stringify(candidate.usage) : null,
           adoptedVersionId: candidate.adoptedVersionId ?? null,
           createdAt: new Date(candidate.createdAt),
         },
-        update: { status: candidate.status, adoptedVersionId: candidate.adoptedVersionId ?? null, generatedAgainstConstraintRev: candidate.generatedAgainstConstraintRevision },
+        update: { status: candidate.status, adoptedVersionId: candidate.adoptedVersionId ?? null },
       });
-      for (const check of candidate.checks) {
-        await tx.checkExecution.upsert({
-          where: { id: `${candidate.id}:${check.checker}` },
-          create: {
-            id: `${candidate.id}:${check.checker}`, candidateId: candidate.id, checker: check.checker,
-            status: check.status, message: check.message, stateRevision: candidate.generatedAgainstRevision,
-            createdAt: new Date(check.checkedAt),
+      const existingRuns = await tx.checkExecution.count({ where: { candidateId: candidate.id } });
+      for (const [sequence, check] of candidate.checkRuns.entries()) {
+        if (sequence < existingRuns) continue;
+        await tx.checkExecution.create({
+          data: {
+            id: check.id ?? id('check'), candidateId: candidate.id, checker: check.checker, sequence,
+            status: check.status, message: check.message, stateRevision: check.inputs?.stateRevision ?? candidate.generatedAgainstRevision,
+            policyVersion: check.policyVersion ?? null, contentHash: check.contentHash ?? null,
+            inputs: check.inputs ? JSON.stringify(check.inputs) : null, createdAt: new Date(check.checkedAt),
           },
-          update: { status: check.status, message: check.message },
+        });
+      }
+      for (const ruling of candidate.rulings) {
+        await tx.checkRuling.upsert({
+          where: { id: ruling.id },
+          create: {
+            id: ruling.id, candidateId: candidate.id, checkId: ruling.checkId, checker: ruling.checker,
+            decision: ruling.decision, reason: ruling.reason, evidence: ruling.evidence, createdAt: new Date(ruling.createdAt),
+          },
+          update: {},
         });
       }
     }
@@ -360,7 +423,7 @@ export class PrismaWorkRepository implements WorkRepository {
         fromCharacterId: relationship.fromCharacterId, toCharacterId: relationship.toCharacterId,
         layer: relationship.layer ?? 'objective', kind: relationship.kind, value: relationship.value,
         note: relationship.note ?? '', sinceChapter: relationship.sinceChapter ?? null,
-        locked: relationship.locked, sourceEventId: relationship.sourceEventId ?? null,
+        locked: relationship.locked, lockPolicy: relationship.lockPolicy ?? null, sourceEventId: relationship.sourceEventId ?? null,
       };
       await tx.relationship.upsert({
         where: { id: relationship.id },
@@ -374,7 +437,7 @@ export class PrismaWorkRepository implements WorkRepository {
       const fields = {
         name: character.name, aliases: JSON.stringify(character.aliases), role: character.role,
         identity: character.identity, goal: character.goal, principles: character.principles,
-        voice: character.voice, notes: character.notes, locked: character.locked,
+        voice: character.voice, notes: character.notes, locked: character.locked, canonicalId: character.canonicalId ?? null,
       };
       await tx.character.upsert({
         where: { id: character.id },
@@ -434,14 +497,31 @@ export class PrismaWorkRepository implements WorkRepository {
     for (const checkpoint of work.checkpoints.values()) {
       await tx.runCheckpoint.upsert({
         where: { id: checkpoint.runId },
+        create: { id: checkpoint.runId, projectId: work.id, ...checkpointFields(checkpoint) },
+        update: checkpointFields(checkpoint),
+      });
+    }
+
+    for (const plan of work.plans.values()) {
+      const mutable = { status: plan.status, reviews: JSON.stringify(plan.reviews), approvedAt: plan.approvedAt ? new Date(plan.approvedAt) : null };
+      await tx.planRevision.upsert({
+        where: { id: plan.id },
         create: {
-          id: checkpoint.runId, projectId: work.id, targetChapter: checkpoint.targetChapter,
-          nextChapter: checkpoint.nextChapter, phase: checkpoint.phase, error: checkpoint.error, candidateIds: JSON.stringify(checkpoint.candidateIds),
+          id: plan.id, projectId: work.id, revision: plan.revision, parentId: plan.parentId ?? null, source: plan.source, note: plan.note,
+          plan: JSON.stringify(plan.plan), contentHash: plan.contentHash, worldPackRevision: plan.worldPackRevision ?? null,
+          storyBibleRevision: plan.storyBibleRevision ?? null, createdAt: new Date(plan.createdAt), ...mutable,
         },
-        update: {
-          targetChapter: checkpoint.targetChapter, nextChapter: checkpoint.nextChapter,
-          phase: checkpoint.phase, error: checkpoint.error, candidateIds: JSON.stringify(checkpoint.candidateIds),
+        update: mutable,
+      });
+    }
+    for (const brief of work.briefs.values()) {
+      await tx.chapterBrief.upsert({
+        where: { id: brief.id },
+        create: {
+          id: brief.id, projectId: work.id, chapterNumber: brief.chapterNumber, planRevisionId: brief.planRevisionId, status: brief.status,
+          basisFingerprint: brief.basisFingerprint, snapshot: JSON.stringify(brief), createdAt: new Date(brief.createdAt),
         },
+        update: {},
       });
     }
 
@@ -467,6 +547,37 @@ export class PrismaWorkRepository implements WorkRepository {
       });
     }
   }
+}
+
+function projectFields(work: Work) {
+  return {
+    title: work.title, stateRevision: work.stateRevision, constraintRevision: work.constraintRevision, covenant: JSON.stringify(work.covenant),
+    worldPack: JSON.stringify(work.worldPack ?? {}), storyBible: JSON.stringify(work.storyBible ?? {}),
+    designHistory: JSON.stringify([...work.designHistory.values()]), covenantHistory: JSON.stringify(work.covenantHistory),
+    activePlanId: work.activePlanId ?? null,
+  };
+}
+
+function readJsonArray<T>(raw: string | object | null | undefined): T[] {
+  if (!raw) return [];
+  try {
+    const value = typeof raw === 'string' ? JSON.parse(raw) : raw;
+    return Array.isArray(value) ? value as T[] : [];
+  } catch {
+    return [];
+  }
+}
+
+function checkpointFields(checkpoint: Checkpoint) {
+  return {
+    targetChapter: checkpoint.targetChapter, nextChapter: checkpoint.nextChapter,
+    phase: checkpoint.phase, error: checkpoint.error ?? null, candidateIds: JSON.stringify(checkpoint.candidateIds),
+    leaseToken: checkpoint.leaseToken ?? null,
+    leaseExpiresAt: checkpoint.leaseExpiresAt ? new Date(checkpoint.leaseExpiresAt) : null,
+    control: checkpoint.control ?? null,
+    attempts: JSON.stringify(checkpoint.attempts ?? {}),
+    usage: checkpoint.usage ? JSON.stringify(checkpoint.usage) : null,
+  };
 }
 
 function mapOutbox(row: {

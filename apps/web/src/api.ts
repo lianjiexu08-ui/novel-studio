@@ -3,6 +3,7 @@ import type {
   ApiError,
   BibleDto,
   CandidateDto,
+  ChapterReadinessDto,
   ChapterVersionDto,
   CharacterDto,
   CharacterInput,
@@ -21,6 +22,19 @@ import type {
   WorldRuleDto,
   WorldRuleInput,
   WorldRulePatch,
+  HotTopicsResponse,
+  ModelSettingsDto,
+  ProbeModelChannelRequest,
+  UpdateModelSettingsRequest,
+  BookPlanContract,
+  ChapterBriefDto,
+  ConfirmBriefRequest,
+  CovenantImpactDto,
+  GenerateOutlinesRequest,
+  GeneratePlanRequest,
+  PlanOverviewDto,
+  PlanReviewDto,
+  PlanRevisionDto,
 } from 'novel-studio-contracts';
 
 export interface ChapterHistoryDto {
@@ -91,16 +105,15 @@ async function call<T>(path: string, options: { method?: string; body?: unknown 
 }
 
 export const api = {
+  hotTopics: (query = '') => call<HotTopicsResponse>(`/topics/hot?q=${encodeURIComponent(query)}`),
   createWork: (body: CreateWorkRequest) => call<WorkDto>('/works', { method: 'POST', body }),
-  updateWork: (workId: string, body: UpdateWorkRequest) => call<WorkDto>(`/works/${workId}`, { method: 'PATCH', body }),
+  updateWork: (workId: string, body: UpdateWorkRequest) => call<WorkDto & { impact: CovenantImpactDto }>(`/works/${workId}`, { method: 'PATCH', body }),
   listWorks: () => call<{ works: WorkDto[] }>('/works'),
   getWork: (workId: string) => call<WorkDto>(`/works/${workId}`),
   design: (workId: string) => call<DesignDto>(`/works/${workId}/design`),
   designHistory: (workId: string) => call<DesignHistoryDto>(`/works/${workId}/design/history`),
   generateDesign: (workId: string, stage: 'world_pack' | 'story_bible', chapterTarget?: number) =>
     call<{ worldPack?: DesignDto['worldPack']; storyBible?: DesignDto['storyBible'] }>(`/works/${workId}/design/generate`, { method: 'POST', body: { stage, ...(chapterTarget ? { chapterTarget } : {}) } }),
-  startMilestone100: (workId: string) => call<{ runId: string; status: string; milestone: { targetChapter: number; worldPack?: DesignDto['worldPack']; storyBible?: DesignDto['storyBible'] } }>(`/works/${workId}/milestones/100/start`, { method: 'POST', body: {} }),
-  startMilestone450: (workId: string) => call<{ runId: string; status: string; milestone: { targetChapter: number; worldPack?: DesignDto['worldPack']; storyBible?: DesignDto['storyBible'] } }>(`/works/${workId}/milestones/450/start`, { method: 'POST', body: {} }),
   reviewWorldPack: (workId: string) => call<{ worldPack: NonNullable<DesignDto['worldPack']> }>(`/works/${workId}/world-pack/review`, { method: 'POST', body: {} }),
   lockWorldPack: (workId: string) => call<{ worldPack: NonNullable<DesignDto['worldPack']> }>(`/works/${workId}/world-pack/lock`, { method: 'POST', body: {} }),
   reviewStoryBible: (workId: string) => call<{ storyBible: NonNullable<DesignDto['storyBible']> }>(`/works/${workId}/story-bible/review`, { method: 'POST', body: {} }),
@@ -108,11 +121,14 @@ export const api = {
   manuscripts: (workId: string) => call<{ manuscripts: import('novel-studio-contracts').ManuscriptRevisionDto[] }>(`/works/${workId}/manuscripts`),
   exportManuscript: (workId: string, manuscriptId: string) => call<{ manuscript: import('novel-studio-contracts').ManuscriptRevisionDto; chapters: Array<Pick<ChapterVersionDto, 'id' | 'chapterNumber' | 'content' | 'revision'>> }>(`/works/${workId}/manuscripts/${manuscriptId}/export`),
   listChapters: (workId: string) => call<{ chapters: ChapterVersionDto[] }>(`/works/${workId}/chapters`),
-  generate: (workId: string, chapterNumber: number) =>
-    call<{ candidate: CandidateDto }>(`/works/${workId}/chapters/${chapterNumber}/generate`, { method: 'POST', body: {} }),
-  runUntil: (workId: string, targetChapter: number, runId?: string, background = false) =>
-    call<{ checkpoint?: { runId: string; targetChapter: number; nextChapter: number; phase: string; candidateIds: Record<number, string>; error?: string }; runId?: string; status?: string }>(`/works/${workId}/runs`, { method: 'POST', body: { targetChapter, runId, background } }),
-  checkpoints: (workId: string) => call<{ checkpoints: Array<{ runId: string; targetChapter: number; nextChapter: number; phase: string; candidateIds: Record<number, string>; error?: string }>; activeRunIds: string[] }>(`/works/${workId}/runs`),
+  readiness: (workId: string, chapterNumber: number) => call<ChapterReadinessDto>(`/works/${workId}/chapters/${chapterNumber}/readiness`),
+  generate: (workId: string, chapterNumber: number, mode: 'formal' | 'demo' = 'formal') =>
+    call<{ candidate: CandidateDto }>(`/works/${workId}/chapters/${chapterNumber}/generate`, { method: 'POST', body: { mode } }),
+  checkpoints: (workId: string) => call<{ checkpoints: RunCheckpoint[]; activeRunIds: string[] }>(`/works/${workId}/runs`),
+  controlRun: (workId: string, runId: string, action: 'pause' | 'cancel') =>
+    call<{ checkpoint: RunCheckpoint }>(`/works/${workId}/runs/${encodeURIComponent(runId)}/${action}`, { method: 'POST', body: {} }),
+  resumeRun: (workId: string, runId: string, targetChapter: number) =>
+    call<{ runId: string; status: string; checkpoint?: RunCheckpoint }>(`/works/${workId}/runs`, { method: 'POST', body: { runId, targetChapter, background: true } }),
   history: (workId: string, chapterNumber: number) => call<ChapterHistoryDto>(`/works/${workId}/state/${chapterNumber}`),
   finalizeManuscript: (workId: string) => call<{ manuscript: import('novel-studio-contracts').ManuscriptRevisionDto }>(`/works/${workId}/manuscripts/finalize`, { method: 'POST', body: {} }),
   check: (workId: string, candidateId: string) =>
@@ -142,4 +158,49 @@ export const api = {
   updatePlotNode: (workId: string, id: string, body: PlotNodePatch) =>
     call<PlotNodeDto>(`/works/${workId}/plot-nodes/${id}`, { method: 'PATCH', body }),
   removePlotNode: (workId: string, id: string) => call<{ ok: true }>(`/works/${workId}/plot-nodes/${id}`, { method: 'DELETE' }),
+
+  plans: (workId: string) => call<PlanOverviewDto>(`/works/${workId}/plans`),
+  planHistory: (workId: string) => call<{ plans: PlanRevisionDto[]; activePlanId?: string }>(`/works/${workId}/plans/history`),
+  generatePlan: (workId: string, body: GeneratePlanRequest) => call<{ plan: PlanRevisionDto }>(`/works/${workId}/plans/generate`, { method: 'POST', body }),
+  generateOutlines: (workId: string, body: GenerateOutlinesRequest) => call<{ plan: PlanRevisionDto }>(`/works/${workId}/plans/outlines`, { method: 'POST', body }),
+  savePlan: (workId: string, body: { plan: BookPlanContract; baseRevisionId?: string; note?: string }) => call<{ plan: PlanRevisionDto }>(`/works/${workId}/plans`, { method: 'PUT', body }),
+  reviewPlan: (workId: string, planId: string) => call<{ review: PlanReviewDto; plan: PlanRevisionDto }>(`/works/${workId}/plans/${planId}/review`, { method: 'POST', body: {} }),
+  approvePlan: (workId: string, planId: string) => call<{ plan: PlanRevisionDto }>(`/works/${workId}/plans/${planId}/approve`, { method: 'POST', body: {} }),
+  nextChapter: (workId: string) => call<NextChapterDto>(`/works/${workId}/next-chapter`),
+  confirmBrief: (workId: string, chapterNumber: number, body: ConfirmBriefRequest) =>
+    call<{ brief: ChapterBriefDto }>(`/works/${workId}/chapters/${chapterNumber}/brief/confirm`, { method: 'POST', body }),
+
+  modelSettings: () => call<ModelSettingsDto>('/settings/model'),
+  saveModelSettings: (body: UpdateModelSettingsRequest) => call<ModelSettingsDto>('/settings/model', { method: 'PUT', body }),
+  activateModelChannel: (id: string) => call<ModelSettingsDto>('/settings/model/activate', { method: 'POST', body: { id } }),
+  removeModelChannel: (id: string) => call<ModelSettingsDto>(`/settings/model/channels/${id}`, { method: 'DELETE' }),
+  testModelSettings: (body: ProbeModelChannelRequest) => call<{ ok: boolean; message: string }>('/settings/model/test', { method: 'POST', body }),
+  listModels: (body: ProbeModelChannelRequest) => call<{ models: string[]; message?: string }>('/settings/model/models', { method: 'POST', body }),
 };
+
+export interface RunCheckpoint {
+  runId: string;
+  targetChapter: number;
+  nextChapter: number;
+  phase: 'idle' | 'generated' | 'checked' | 'adopted' | 'complete' | 'paused' | 'cancelled' | string;
+  candidateIds: Record<string, string>;
+  error?: string;
+  active?: boolean;
+  control?: 'pause' | 'cancel';
+  attempts?: Record<string, number>;
+}
+
+export interface EffectiveBriefDto {
+  brief: ChapterBriefDto;
+  needsConfirmation: boolean;
+  derived: ChapterBriefDto;
+}
+
+export interface NextChapterDto {
+  chapterNumber: number;
+  blockers: ChapterReadinessDto['blockers'];
+  brief?: EffectiveBriefDto;
+  volume?: BookPlanContract['volumes'][number];
+  nextClimax?: { milestone: BookPlanContract['milestones'][number]; missing: string[] };
+  planRevisionId?: string;
+}

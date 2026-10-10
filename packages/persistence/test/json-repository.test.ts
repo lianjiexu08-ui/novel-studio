@@ -7,6 +7,7 @@ import { ChapterWorkflow } from '../../application/src/index.ts';
 import { JsonWorkRepository } from '../src/json-repository.ts';
 import { passChecker } from '../../../novel-service-core/src/core.ts';
 import type { ModelProvider } from '../../../novel-service-core/src/core.ts';
+import { createReadyWork } from '../../application/test/fixtures.ts';
 
 const provider: ModelProvider = {
   generateChapter: ({ chapterNumber }) => {
@@ -21,7 +22,7 @@ test('JSON repository survives restart with adopted version and outbox', async (
   try {
     const firstRepository = new JsonWorkRepository(file);
     const firstWorkflow = new ChapterWorkflow(firstRepository, provider);
-    const work = await firstWorkflow.createWork('可恢复作品');
+    const work = await createReadyWork(firstWorkflow, '可恢复作品');
     const candidate = await firstWorkflow.generate(work.id, 1, 'run-1');
     await firstWorkflow.check(work.id, candidate.id, [passChecker]);
     await firstWorkflow.adopt(work.id, candidate.id, 0);
@@ -29,7 +30,8 @@ test('JSON repository survives restart with adopted version and outbox', async (
     const secondRepository = new JsonWorkRepository(file);
     const restored = await secondRepository.get(work.id);
     assert.equal(restored?.currentVersion(1)?.content, '第1章');
-    assert.equal(restored?.covenant.hook, '');
+    assert.equal(restored?.candidates.get(candidate.id)?.contentHash, candidate.contentHash);
+    assert.equal(restored?.covenant.hook, '主角用寿命换一次胜利');
     assert.equal(restored?.covenant.targetLength, '长篇，篇幅未定');
     assert.equal(((await secondRepository.outbox())).length, 3);
     assert.equal(JSON.parse(readFileSync(file, 'utf8')).version, 1);
