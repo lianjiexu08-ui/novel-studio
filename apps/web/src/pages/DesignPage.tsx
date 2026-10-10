@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Alert, App as AntApp, Button, Card, Collapse, Col, Empty, List, Row, Space, Spin, Statistic, Table, Tag, Typography } from 'antd';
 import { LockOutlined, PlayCircleOutlined, RocketOutlined, SafetyCertificateOutlined } from '@ant-design/icons';
-import { api, ApiRequestError } from '../api';
+import { api, ApiRequestError, type DesignHistoryDto } from '../api';
 import type { DesignDto } from 'novel-studio-contracts';
 import type { StoryBibleContract as StoryBible, WorldPackContract as WorldPack } from 'novel-studio-contracts';
 import { useOutletContext } from 'react-router-dom';
@@ -41,11 +41,19 @@ export function DesignPage() {
   const { message } = AntApp.useApp();
   const { work, refresh } = useOutletContext<WorkspaceContext>();
   const [design, setDesign] = useState<DesignDto | null>(null);
+  const [designHistory, setDesignHistory] = useState<DesignHistoryDto['revisions']>([]);
   const [busy, setBusy] = useState<string | null>(null);
 
   async function load() {
     setDesign(null);
-    try { setDesign(await api.design(work.id)); } catch { setDesign({ constraintRevision: work.constraintRevision }); }
+    try {
+      const [current, history] = await Promise.all([api.design(work.id), api.designHistory(work.id)]);
+      setDesign(current);
+      setDesignHistory(history.revisions);
+    } catch {
+      setDesign({ constraintRevision: work.constraintRevision });
+      setDesignHistory([]);
+    }
   }
   useEffect(() => { void load(); }, [work.id, work.constraintRevision]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -78,5 +86,10 @@ export function DesignPage() {
       <Col xs={24} md={12}><Card title="World Pack" extra={world ? <StatusTag status={world.status} /> : worldAction}>{!world ? <Empty description="还没有生成世界包" /> : <Space direction="vertical" style={{ width: '100%' }}><Space>{worldAction}</Space><Text strong>{world.title}</Text><Paragraph type="secondary">{world.summary || '暂无摘要'}</Paragraph><Row gutter={[12, 12]}><Col span={8}><Statistic title="境界" value={world.realms.length} /></Col><Col span={8}><Statistic title="功法" value={world.techniques.length} /></Col><Col span={8}><Statistic title="法宝" value={world.artifacts.length} /></Col><Col span={8}><Statistic title="大陆/地点" value={world.locations.length} /></Col><Col span={8}><Statistic title="势力" value={world.factions.length} /></Col><Col span={8}><Statistic title="历史事件" value={world.historicalEvents.length} /></Col></Row><WorldDetails world={world} /></Space>}</Card></Col>
       <Col xs={24} md={12}><Card title="Story Bible" extra={bible ? <StatusTag status={bible.status} /> : bibleAction}>{!bible ? <Space direction="vertical"><Empty description="还没有生成 Story Bible" />{bibleAction}</Space> : <Space direction="vertical" style={{ width: '100%' }}><Space>{bibleAction}</Space><Text strong>核心冲突：{bible.coreConflict}</Text><Paragraph type="secondary">结局方向：{bible.endingDirection || '未填写'}</Paragraph><Row gutter={[12, 12]}><Col span={8}><Statistic title="人物" value={bible.characters.length} /></Col><Col span={8}><Statistic title="关系" value={bible.relationships.length} /></Col><Col span={8}><Statistic title="弧光" value={bible.arcs.length} /></Col><Col span={8}><Statistic title="秘密" value={bible.secrets?.length ?? 0} /></Col><Col span={8}><Statistic title="承诺/开放线" value={(bible.promises?.length ?? 0) + (bible.openThreads?.length ?? 0)} /></Col><Col span={8}><Statistic title="计划章节" value={bible.volumes.reduce((sum, volume) => sum + volume.plannedChapterCount, 0)} /></Col></Row><StoryDetails bible={bible} /></Space>}</Card></Col>
     </Row>
+    <Card title="设计版本历史" size="small" extra={<Text type="secondary">每次生成、审核、锁定都会留下不可变快照</Text>}>
+      {designHistory.length === 0 ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="还没有设计快照" /> : <List size="small" dataSource={[...designHistory].reverse()} renderItem={(item) => <List.Item>
+        <List.Item.Meta title={<Space><Text strong>{item.kind === 'world_pack' ? 'World Pack' : 'Story Bible'} v{item.revision}</Text><StatusTag status={item.status} /></Space>} description={`${new Date(item.createdAt).toLocaleString()} · ${item.contentHash.slice(0, 12)}`} />
+      </List.Item>} />}
+    </Card>
   </Space>;
 }

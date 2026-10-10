@@ -271,6 +271,20 @@ export interface ImpactRecord {
   createdAt: string;
 }
 
+export type DesignRevisionKind = 'world_pack' | 'story_bible';
+
+/** Immutable author/model design snapshot used by manuscript and audit history. */
+export interface DesignRevision {
+  id: string;
+  workId: string;
+  kind: DesignRevisionKind;
+  revision: number;
+  status: string;
+  contentHash: string;
+  snapshot: WorldPack | StoryBible;
+  createdAt: string;
+}
+
 /** Author promise and hard boundaries. This is not story fact and must not be adopted as events. */
 export interface CreativeCovenant {
   entryMode: 'expand';
@@ -346,6 +360,7 @@ export class Work {
   readonly candidates = new Map<string, ChapterCandidate>();
   readonly versions = new Map<string, ChapterVersion>();
   readonly manuscripts = new Map<string, ManuscriptRevision>();
+  readonly designHistory = new Map<string, DesignRevision>();
   readonly events = new Map<string, StoryEvent>();
   readonly states = new Map<string, CharacterState>();
   readonly relationships = new Map<string, Relationship>();
@@ -374,6 +389,18 @@ export class Work {
       .filter((version) => version.status === 'adopted' && !version.stale)
       .sort((a, b) => a.chapterNumber - b.chapterNumber || a.revision - b.revision);
   }
+
+  recordDesignRevision(kind: DesignRevisionKind, snapshot: WorldPack | StoryBible): DesignRevision {
+    const contentHash = createHash('sha256').update(JSON.stringify(snapshot)).digest('hex');
+    const existing = [...this.designHistory.values()].find((item) => item.kind === kind && item.revision === snapshot.revision && item.contentHash === contentHash);
+    if (existing) return existing;
+    const revision: DesignRevision = {
+      id: id(`design_${kind}`), workId: this.id, kind, revision: snapshot.revision,
+      status: snapshot.status, contentHash, snapshot: JSON.parse(JSON.stringify(snapshot)) as WorldPack | StoryBible, createdAt: now(),
+    };
+    this.designHistory.set(revision.id, revision);
+    return revision;
+  }
 }
 
 export class NovelService {
@@ -394,6 +421,7 @@ export class NovelService {
   setWorldPack(workId: string, worldPack: WorldPack): Work {
     const work = this.getWork(workId);
     work.worldPack = worldPack;
+    work.recordDesignRevision('world_pack', worldPack);
     work.constraintRevision += 1;
     return work;
   }
@@ -401,6 +429,7 @@ export class NovelService {
   setStoryBible(workId: string, storyBible: StoryBible): Work {
     const work = this.getWork(workId);
     work.storyBible = storyBible;
+    work.recordDesignRevision('story_bible', storyBible);
     work.constraintRevision += 1;
     return work;
   }

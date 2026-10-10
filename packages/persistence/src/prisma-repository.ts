@@ -2,7 +2,7 @@ import { randomUUID } from 'node:crypto';
 import { PrismaClient } from '@prisma/client';
 import { parseCovenant, rebuildCharacterStates, StaleCandidateError, Work } from '../../../novel-service-core/src/core.ts';
 import type {
-  ChapterCandidate, ChapterVersion, Character, Checkpoint, EventDraft, ManuscriptRevision, PlotNode, Relationship, StoryEvent, WorldRule,
+  ChapterCandidate, ChapterVersion, Character, Checkpoint, DesignRevision, EventDraft, ManuscriptRevision, PlotNode, Relationship, StoryEvent, WorldRule,
 } from '../../../novel-service-core/src/core.ts';
 import type { StoryBible, WorldPack } from '../../../novel-service-core/src/world.ts';
 import type { OutboxEvent, WorkRepository, WorkTransaction } from '../../application/src/index.ts';
@@ -71,8 +71,8 @@ export class PrismaWorkRepository implements WorkRepository {
   async save(work: Work): Promise<void> {
     await this.prisma.project.upsert({
       where: { id: work.id },
-      create: { id: work.id, title: work.title, stateRevision: work.stateRevision, constraintRevision: work.constraintRevision, covenant: JSON.stringify(work.covenant), worldPack: JSON.stringify(work.worldPack ?? {}), storyBible: JSON.stringify(work.storyBible ?? {}) },
-      update: { title: work.title, stateRevision: work.stateRevision, constraintRevision: work.constraintRevision, covenant: JSON.stringify(work.covenant), worldPack: JSON.stringify(work.worldPack ?? {}), storyBible: JSON.stringify(work.storyBible ?? {}) },
+      create: { id: work.id, title: work.title, stateRevision: work.stateRevision, constraintRevision: work.constraintRevision, covenant: JSON.stringify(work.covenant), worldPack: JSON.stringify(work.worldPack ?? {}), storyBible: JSON.stringify(work.storyBible ?? {}), designHistory: JSON.stringify([...work.designHistory.values()]) },
+      update: { title: work.title, stateRevision: work.stateRevision, constraintRevision: work.constraintRevision, covenant: JSON.stringify(work.covenant), worldPack: JSON.stringify(work.worldPack ?? {}), storyBible: JSON.stringify(work.storyBible ?? {}), designHistory: JSON.stringify([...work.designHistory.values()]) },
     });
     await this.persist(this.prisma, work, null);
   }
@@ -107,7 +107,7 @@ export class PrismaWorkRepository implements WorkRepository {
         // Optimistic concurrency: the stateRevision we loaded must still be current.
         const updated = await tx.project.updateMany({
           where: { id: workId, stateRevision: loadedRevision, constraintRevision: loadedConstraintRevision },
-          data: { stateRevision: work.stateRevision, constraintRevision: work.constraintRevision, title: work.title, covenant: JSON.stringify(work.covenant), worldPack: JSON.stringify(work.worldPack ?? {}), storyBible: JSON.stringify(work.storyBible ?? {}) },
+          data: { stateRevision: work.stateRevision, constraintRevision: work.constraintRevision, title: work.title, covenant: JSON.stringify(work.covenant), worldPack: JSON.stringify(work.worldPack ?? {}), storyBible: JSON.stringify(work.storyBible ?? {}), designHistory: JSON.stringify([...work.designHistory.values()]) },
         });
         if (updated.count === 0) throw new StaleCandidateError('concurrent modification detected; reload and retry');
         await this.persist(tx, work, loadedRevision);
@@ -136,7 +136,7 @@ export class PrismaWorkRepository implements WorkRepository {
     return this.loadAggregate(project, tx);
   }
 
-  private async loadAggregate(project: { id: string; title: string; stateRevision: number; constraintRevision: number; covenant: string; worldPack: string | object; storyBible: string | object }, tx: PrismaTx | PrismaClient = this.prisma): Promise<Work> {
+  private async loadAggregate(project: { id: string; title: string; stateRevision: number; constraintRevision: number; covenant: string; worldPack: string | object; storyBible: string | object; designHistory: string | object }, tx: PrismaTx | PrismaClient = this.prisma): Promise<Work> {
     const workId = project.id;
     const [chapters, candidates, events, relationships, characters, worldRules, plotNodes, impacts, runCheckpoints, manuscripts] = await Promise.all([
       tx.chapter.findMany({ where: { projectId: workId }, include: { versions: true } }),
@@ -157,6 +157,12 @@ export class PrismaWorkRepository implements WorkRepository {
     work.covenant = readCovenant(project.covenant);
     work.worldPack = readJson<WorldPack>(project.worldPack);
     work.storyBible = readJson<StoryBible>(project.storyBible);
+    const designHistory = readJson<DesignRevision[]>(project.designHistory) ?? [];
+    for (const revision of designHistory) work.designHistory.set(revision.id, revision);
+    if (!work.designHistory.size) {
+      if (work.worldPack) work.recordDesignRevision('world_pack', work.worldPack);
+      if (work.storyBible) work.recordDesignRevision('story_bible', work.storyBible);
+    }
 
     const chapterNumberById = new Map(chapters.map((chapter) => [chapter.id, chapter.number]));
     for (const chapter of chapters) {

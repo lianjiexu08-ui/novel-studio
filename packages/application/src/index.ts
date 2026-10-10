@@ -137,6 +137,7 @@ export class ChapterWorkflow {
       // A submitted JSON document never carries review authority. Even if a
       // caller sends reviewed/locked, it must pass the server review endpoint.
       work.worldPack = { ...worldPack, status: worldPack.status === 'draft' ? 'draft' : 'proposed', lockedAt: undefined };
+      work.recordDesignRevision('world_pack', work.worldPack);
       work.constraintRevision += 1;
       return work.worldPack;
     });
@@ -147,6 +148,7 @@ export class ChapterWorkflow {
     return this.repository.transaction(workId, async ({ work }) => {
       const worldPack = await this.designProvider!.generateWorldPack({ title: work.title, covenant: work.covenant });
       work.worldPack = worldPack;
+      work.recordDesignRevision('world_pack', worldPack);
       work.constraintRevision += 1;
       return worldPack;
     });
@@ -156,6 +158,7 @@ export class ChapterWorkflow {
     return this.repository.transaction(workId, ({ work }) => {
       if (!work.worldPack) throw new Error('world pack has not been generated');
       work.worldPack = lockWorldPack(work.worldPack);
+      work.recordDesignRevision('world_pack', work.worldPack);
       work.constraintRevision += 1;
       return work.worldPack;
     });
@@ -165,6 +168,7 @@ export class ChapterWorkflow {
     return this.repository.transaction(workId, ({ work }) => {
       if (!work.worldPack) throw new Error('world pack has not been generated');
       work.worldPack = reviewWorldPack(work.worldPack);
+      work.recordDesignRevision('world_pack', work.worldPack);
       work.constraintRevision += 1;
       return work.worldPack;
     });
@@ -173,6 +177,7 @@ export class ChapterWorkflow {
   async saveStoryBible(workId: string, storyBible: StoryBible): Promise<StoryBible> {
     return this.repository.transaction(workId, ({ work }) => {
       work.storyBible = { ...storyBible, status: storyBible.status === 'draft' ? 'draft' : 'proposed', lockedAt: undefined };
+      work.recordDesignRevision('story_bible', work.storyBible);
       work.constraintRevision += 1;
       return work.storyBible;
     });
@@ -184,6 +189,7 @@ export class ChapterWorkflow {
       if (!work.worldPack) throw new Error('world pack has not been generated');
       const storyBible = await this.designProvider!.generateStoryBible({ title: work.title, covenant: work.covenant, worldPack: work.worldPack, chapterTarget });
       work.storyBible = storyBible;
+      work.recordDesignRevision('story_bible', storyBible);
       work.constraintRevision += 1;
       return storyBible;
     });
@@ -194,6 +200,7 @@ export class ChapterWorkflow {
       if (!work.worldPack) throw new Error('world pack has not been generated');
       if (!work.storyBible) throw new Error('story bible has not been generated');
       work.storyBible = lockStoryBible(work.storyBible, work.worldPack);
+      work.recordDesignRevision('story_bible', work.storyBible);
       work.constraintRevision += 1;
       return work.storyBible;
     });
@@ -204,6 +211,7 @@ export class ChapterWorkflow {
       if (!work.worldPack) throw new Error('world pack has not been generated');
       if (!work.storyBible) throw new Error('story bible has not been generated');
       work.storyBible = reviewStoryBible(work.storyBible, work.worldPack);
+      work.recordDesignRevision('story_bible', work.storyBible);
       work.constraintRevision += 1;
       return work.storyBible;
     });

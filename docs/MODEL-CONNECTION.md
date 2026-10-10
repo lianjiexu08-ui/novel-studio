@@ -14,6 +14,7 @@ export NOVEL_WRITING_MODEL=gpt-5.6-sol
 export NOVEL_MODEL_BUDGET_USD=20
 # 可选；默认 60000 毫秒，长规划响应可提高到 120000 或 180000
 export NOVEL_MODEL_TIMEOUT_MS=120000
+npm run push -w novel-studio-persistence
 npm run dev:api
 ```
 
@@ -26,6 +27,8 @@ npm run dev:api
 5. 查看人物关系、秘密、人物弧光、伏笔节点和分卷大纲；
 6. 审核并锁定 Story Bible；
 7. 进入章节候选的生成、检查、采用流程。
+
+世界包和 Story Bible 的每次生成、审核、锁定都会保存设计快照，可通过 `GET /works/:workId/design/history` 查询；成稿同时记录采用时的世界包和 Story Bible revision。
 
 章节页的“按蓝图连续生成”会以后台 run 执行，接口立即返回；进度从检查点轮询，失败会标为 `paused` 并保留错误原因。服务重启后使用同一个 runId 重试即可继续。
 

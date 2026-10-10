@@ -219,6 +219,17 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     return { worldPack: work.worldPack, storyBible: work.storyBible, constraintRevision: work.constraintRevision };
   });
 
+  app.get('/works/:workId/design/history', async (request) => {
+    const { workId } = workParamSchema.parse(request.params);
+    const work = await repository.get(workId);
+    if (!work) throw new NotFoundError(`unknown work ${workId}`);
+    return {
+      revisions: [...work.designHistory.values()]
+        .sort((a, b) => a.createdAt.localeCompare(b.createdAt))
+        .map((revision) => ({ ...revision, snapshot: revision.snapshot })),
+    };
+  });
+
   app.get('/works/:workId/manuscripts', async (request) => {
     const { workId } = workParamSchema.parse(request.params);
     const work = await repository.get(workId);

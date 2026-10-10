@@ -25,6 +25,8 @@ model Project {
   worldPack     String   @default("{}")
   /// Structured StoryBible JSON; an empty object means it has not been generated yet.
   storyBible     String   @default("{}")
+  /// Immutable WorldPack/StoryBible snapshots, JSON array ordered by creation time.
+  designHistory  String   @default("[]")
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 

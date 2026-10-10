@@ -240,6 +240,9 @@ test('design API saves and locks the world pack before the story bible', async (
     assert.equal(design.worldPack.status, 'locked');
     assert.equal(design.storyBible.status, 'locked');
     assert.ok(design.constraintRevision >= 4);
+    const designHistory = (await app.inject({ method: 'GET', url: `${base}/design/history` })).json();
+    assert.ok(designHistory.revisions.some((revision: { kind: string; status: string }) => revision.kind === 'world_pack' && revision.status === 'locked'));
+    assert.ok(designHistory.revisions.some((revision: { kind: string; status: string }) => revision.kind === 'story_bible' && revision.status === 'locked'));
     assert.equal((await app.inject({ method: 'GET', url: `${base}/manuscripts` })).json().manuscripts.length, 1);
   } finally {
     await app.close();

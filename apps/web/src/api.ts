@@ -44,6 +44,19 @@ export interface ChapterHistoryDto {
   };
 }
 
+export interface DesignHistoryDto {
+  revisions: Array<{
+    id: string;
+    workId: string;
+    kind: 'world_pack' | 'story_bible';
+    revision: number;
+    status: string;
+    contentHash: string;
+    snapshot: unknown;
+    createdAt: string;
+  }>;
+}
+
 const BASE_URL = import.meta.env.VITE_API_URL ?? 'http://127.0.0.1:8787';
 const TOKEN = import.meta.env.VITE_API_TOKEN ?? '';
 
@@ -80,6 +93,7 @@ export const api = {
   listWorks: () => call<{ works: WorkDto[] }>('/works'),
   getWork: (workId: string) => call<WorkDto>(`/works/${workId}`),
   design: (workId: string) => call<DesignDto>(`/works/${workId}/design`),
+  designHistory: (workId: string) => call<DesignHistoryDto>(`/works/${workId}/design/history`),
   generateDesign: (workId: string, stage: 'world_pack' | 'story_bible', chapterTarget?: number) =>
     call<{ worldPack?: DesignDto['worldPack']; storyBible?: DesignDto['storyBible'] }>(`/works/${workId}/design/generate`, { method: 'POST', body: { stage, ...(chapterTarget ? { chapterTarget } : {}) } }),
   startMilestone100: (workId: string) => call<{ runId: string; status: string; milestone: { targetChapter: number; worldPack?: DesignDto['worldPack']; storyBible?: DesignDto['storyBible'] } }>(`/works/${workId}/milestones/100/start`, { method: 'POST', body: {} }),

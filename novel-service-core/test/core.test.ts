@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { AdoptionBlocked, artifactStateAt, canonConsistencyChecker, chapterLengthChecker, characterStateAt, knowledgeAt, LockedConstraintError, NovelService, observedEventsChecker, passChecker, relationshipAt, resourceStateAt, storyArcAt, storyPromiseAt, storySecretAt, storyThreadAt, unavailableChecker } from '../src/core.ts';
 import type { ModelProvider } from '../src/core.ts';
-import { lockStoryBible, lockWorldPack } from '../src/world.ts';
+import { createEmptyWorldPack, lockStoryBible, lockWorldPack } from '../src/world.ts';
 import type { StoryBible } from '../src/world.ts';
 
 const provider: ModelProvider = {
@@ -12,6 +12,20 @@ const provider: ModelProvider = {
     return { content: `第${chapterNumber}章：主角突破。`, proposedEvents: [event], observedEvents: [event] };
   },
 };
+
+test('design revisions keep immutable snapshots across updates', () => {
+  const service = new NovelService(provider);
+  const work = service.createWork('设计历史');
+  const first = createEmptyWorldPack('初版世界');
+  service.setWorldPack(work.id, first);
+  first.title = '外部修改不应污染快照';
+  const second = { ...first, revision: 2, title: '第二版世界', axioms: [...first.axioms] };
+  service.setWorldPack(work.id, second);
+  const revisions = [...work.designHistory.values()].filter((item) => item.kind === 'world_pack');
+  assert.equal(revisions.length, 2);
+  assert.equal((revisions[0].snapshot as typeof first).title, '初版世界');
+  assert.equal(revisions[1].revision, 2);
+});
 
 test('candidate events stay isolated until adoption', () => {
   const service = new NovelService(provider);
