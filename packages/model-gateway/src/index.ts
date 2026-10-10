@@ -166,10 +166,12 @@ export class OpenAICompatibleAdapter implements ModelAdapter {
   readonly provider = 'openai-compatible';
   private readonly fetcher: typeof fetch;
   private readonly timeoutMs: number;
+  private readonly streaming: boolean;
 
-  constructor(fetcher: typeof fetch = fetch, timeoutMs = 60_000) {
+  constructor(fetcher: typeof fetch = fetch, timeoutMs = 60_000, streaming = true) {
     this.fetcher = fetcher;
     this.timeoutMs = timeoutMs;
+    this.streaming = streaming;
   }
 
   /**
@@ -191,7 +193,7 @@ export class OpenAICompatibleAdapter implements ModelAdapter {
         response = await this.fetcher(`${credential.endpoint.replace(/\/$/, '')}/chat/completions`, {
           method: 'POST',
           headers: { 'content-type': 'application/json', authorization: `Bearer ${credential.apiKey}` },
-          body: JSON.stringify({ model: request.model, messages: [{ role: 'system', content: request.system }, { role: 'user', content: request.user }], temperature: request.temperature, max_tokens: request.maxOutputTokens, response_format: request.responseFormat === 'json' ? { type: 'json_object' } : undefined, stream: true }),
+          body: JSON.stringify({ model: request.model, messages: [{ role: 'system', content: request.system }, { role: 'user', content: request.user }], temperature: request.temperature, max_tokens: request.maxOutputTokens, response_format: request.responseFormat === 'json' ? { type: 'json_object' } : undefined, stream: this.streaming }),
           signal: controller.signal,
         });
       } catch (error) {

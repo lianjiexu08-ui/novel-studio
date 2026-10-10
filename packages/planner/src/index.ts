@@ -117,7 +117,11 @@ export class OpenAICompatiblePlanningClient implements PlanningClient {
     this.endpoint = /\/v1$/i.test(normalizedEndpoint) ? normalizedEndpoint : `${normalizedEndpoint}/v1`;
     this.apiKey = apiKey;
     this.model = model;
-    this.gateway = new ModelGateway(new Map([['openai-compatible', new OpenAICompatibleAdapter(fetch, timeoutMs)]]), budget instanceof UsageLedger ? budget : new UsageLedger(budget));
+    // Some OpenAI-compatible distributors keep streaming responses open for a
+    // long time even after the complete JSON is available. Production planning
+    // uses one bounded JSON response; the adapter still supports streaming for
+    // callers and tests that need it.
+    this.gateway = new ModelGateway(new Map([['openai-compatible', new OpenAICompatibleAdapter(fetch, timeoutMs, false)]]), budget instanceof UsageLedger ? budget : new UsageLedger(budget));
   }
 
   async complete(input: { system: string; user: string; maxOutputTokens: number; role?: ModelRole }): Promise<string> {
