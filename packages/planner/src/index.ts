@@ -50,12 +50,12 @@ export class OpenAICompatiblePlanningClient implements PlanningClient {
   private readonly apiKey: string;
   private readonly model: string;
 
-  constructor(endpoint: string, apiKey: string, model: string, budgetUsd = Number.POSITIVE_INFINITY) {
+  constructor(endpoint: string, apiKey: string, model: string, budgetUsd = Number.POSITIVE_INFINITY, timeoutMs = 60_000) {
     const normalizedEndpoint = endpoint.replace(/\/$/, '');
     this.endpoint = /\/v1$/i.test(normalizedEndpoint) ? normalizedEndpoint : `${normalizedEndpoint}/v1`;
     this.apiKey = apiKey;
     this.model = model;
-    this.gateway = new ModelGateway(new Map([['openai-compatible', new OpenAICompatibleAdapter(fetch, 60_000)]]), new UsageLedger(budgetUsd));
+    this.gateway = new ModelGateway(new Map([['openai-compatible', new OpenAICompatibleAdapter(fetch, timeoutMs)]]), new UsageLedger(budgetUsd));
   }
 
   async complete(input: { system: string; user: string; maxOutputTokens: number; role?: ModelRole }): Promise<string> {
@@ -71,8 +71,8 @@ export class OpenAICompatiblePlanningClient implements PlanningClient {
 export class OpenAICompatibleChapterProvider implements ModelProvider {
   private readonly client: PlanningClient;
 
-  constructor(endpoint: string, apiKey: string, model: string, budgetUsd = Number.POSITIVE_INFINITY) {
-    this.client = new OpenAICompatiblePlanningClient(endpoint, apiKey, model, budgetUsd);
+  constructor(endpoint: string, apiKey: string, model: string, budgetUsd = Number.POSITIVE_INFINITY, timeoutMs = 60_000) {
+    this.client = new OpenAICompatiblePlanningClient(endpoint, apiKey, model, budgetUsd, timeoutMs);
   }
 
   generateChapter(): GeneratedChapter {

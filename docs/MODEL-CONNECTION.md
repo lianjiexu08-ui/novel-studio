@@ -12,6 +12,8 @@ export NOVEL_PLANNING_CHAPTER_TARGET=100
 export NOVEL_WRITING_MODEL=gpt-5.6-sol
 # 可选；单位 USD
 export NOVEL_MODEL_BUDGET_USD=20
+# 可选；默认 60000 毫秒，长规划响应可提高到 120000 或 180000
+export NOVEL_MODEL_TIMEOUT_MS=120000
 npm run dev:api
 ```
 
