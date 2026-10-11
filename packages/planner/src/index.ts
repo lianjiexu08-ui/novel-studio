@@ -384,7 +384,13 @@ async function completeJsonWithRepair(client: PlanningClient, request: Completio
       // JSON request. Keep it as an unannotated draft and let the independent
       // extractor decide which facts actually occurred. Never apply this to
       // the extractor itself, where an empty audit would hide a model error.
-      if (label === '章节草稿' && first.trim().length >= 20) return { content: first.trim(), proposedEvents: [] };
+      const prose = first.trim();
+      // A truncated JSON wrapper is not a valid prose draft. Accept only
+      // genuinely unstructured text here; otherwise surface the model-format
+      // error so the candidate cannot be adopted with corrupted content.
+      if (label === '章节草稿' && prose.length >= 20 && !/^[{\[]/.test(prose)) {
+        return { content: prose, proposedEvents: [] };
+      }
       if (label === '事实审计' && first.trim().length > 0) return { observedEvents: [] };
       throw repairError;
     }

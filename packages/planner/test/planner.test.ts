@@ -34,6 +34,38 @@ test('network chapter provider performs an independent extraction pass', async (
   }
 });
 
+test('network chapter provider rejects truncated JSON instead of saving it as prose', async () => {
+  let calls = 0;
+  const server = createServer(async (_request, response) => {
+    calls += 1;
+    // Both the draft and repair responses look like a JSON object but are
+    // truncated. They must never be accepted as chapter text.
+    response.writeHead(200, { 'content-type': 'application/json' });
+    response.end(JSON.stringify({ choices: [{ message: { content: '{"content":"截断正文' } }], usage: { prompt_tokens: 1, completion_tokens: 1, cost_usd: 0 } }));
+  });
+  await new Promise<void>((resolve) => server.listen(0, '127.0.0.1', resolve));
+  const address = server.address();
+  assert.ok(address && typeof address === 'object');
+  try {
+    const provider = new OpenAICompatibleChapterProvider(`http://127.0.0.1:${address.port}`, 'test-key', 'test-model', 10, 5_000, false);
+    const service = new NovelService(provider);
+    const work = service.createWork('截断章节', covenant);
+    await assert.rejects(() => provider.generateChapterAsync({
+      work,
+      chapterNumber: 1,
+      context: {
+        workId: work.id, chapterNumber: 1, stateRevision: 0, constraintRevision: 0,
+        adoptedVersionIds: [], includedEventIds: [], requiredMaterialStatus: 'complete',
+        omittedOptionalMaterial: [], estimatedTokens: 0, contextBudget: 10_000,
+        canonHash: 'canon', stateHash: 'state', createdAt: new Date().toISOString(),
+      },
+    }), /planner JSON is invalid|did not contain a JSON object/);
+    assert.equal(calls, 2, 'one repair attempt is made before rejecting malformed output');
+  } finally {
+    await new Promise<void>((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
+  }
+});
+
 test('planner validates structured world pack responses', async () => {
   const response = {
     id: 'world-1', revision: 1, title: '九霄', summary: '三大陆', status: 'proposed',
