@@ -384,7 +384,7 @@ async function completeJsonWithRepair(client: PlanningClient, request: Completio
       // JSON request. Keep it as an unannotated draft and let the independent
       // extractor decide which facts actually occurred. Never apply this to
       // the extractor itself, where an empty audit would hide a model error.
-      if (label === '章节草稿' && first.trim().length >= 200) return { content: first.trim(), proposedEvents: [] };
+      if (label === '章节草稿' && first.trim().length >= 20) return { content: first.trim(), proposedEvents: [] };
       throw repairError;
     }
   }
