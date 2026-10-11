@@ -67,7 +67,10 @@ export class JsonDesignPlanner implements DesignPlanner {
     const next = await completeValidated(this.client, {
       system: storyBibleSystem + storyBibleShape,
       user: JSON.stringify({ task: 'generate_story_bible', title: input.title, covenant: input.covenant, chapterTarget, worldPack: input.worldPack, previousStoryBible: input.previousStoryBible }, null, 2),
-      maxOutputTokens: 12_000,
+      // A 450-chapter expansion carries a much larger arc/beat and volume
+      // schedule than the first 100 chapters. Reserve enough room for the
+      // complete JSON envelope instead of letting the model truncate midway.
+      maxOutputTokens: chapterTarget >= 450 ? 32_000 : 12_000,
     }, (value) => {
       const parsed = parseStoryBible(value) as StoryBible;
       assertStoryBibleScale(parsed, chapterTarget);
