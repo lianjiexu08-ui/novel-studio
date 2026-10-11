@@ -318,6 +318,7 @@ export function validateWorldPack(pack: WorldPack): GateResult {
   collectIds(pack.resources, 'resources', errors);
   collectIds(pack.historicalEvents, 'historical events', errors);
   collectIds(pack.terminology, 'terminology', errors);
+  const resourceIds = new Set(pack.resources.map((resource) => resource.id));
 
   for (const system of pack.powerSystems) {
     for (const realmId of system.realmIds) if (!realmIds.has(realmId)) errors.push(`power system ${system.id} references unknown realm ${realmId}`);
@@ -330,6 +331,10 @@ export function validateWorldPack(pack: WorldPack): GateResult {
   }
   for (const faction of pack.factions) {
     for (const locationId of faction.locationIds) if (!locationIds.has(locationId)) errors.push(`faction ${faction.id} references unknown location ${locationId}`);
+    // Older hand-authored packs used display names here.  Enforce dangling
+    // references for canonical ID-shaped values while keeping those legacy
+    // packs migratable; generated packs use IDs such as res_01.
+    for (const resourceId of faction.resources) if (!resourceIds.has(resourceId) && /^[A-Za-z][A-Za-z0-9_-]*$/.test(resourceId)) errors.push(`faction ${faction.id} references unknown resource ${resourceId}`);
   }
   for (const event of pack.historicalEvents) {
     for (const factionId of event.factionIds) if (!factionIds.has(factionId)) errors.push(`historical event ${event.id} references unknown faction ${factionId}`);

@@ -46,6 +46,7 @@ import {
   chapterLengthChecker,
   contextManifestFor,
   closureCoverageFor,
+  qualityAuditFor,
   observedEventsChecker,
   passChecker,
   type ChapterCandidate,
@@ -527,6 +528,13 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     };
   });
 
+  app.get('/works/:workId/quality-audit', async (request) => {
+    const { workId } = workParamSchema.parse(request.params);
+    const work = await repository.get(workId);
+    if (!work) throw new NotFoundError(`unknown work ${workId}`);
+    return { audit: qualityAuditFor(work) };
+  });
+
   app.get('/works/:workId/manuscripts', async (request) => {
     const { workId } = workParamSchema.parse(request.params);
     const work = await repository.get(workId);
@@ -554,7 +562,7 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
       events: [...work.events.values()]
         .filter((event) => event.active && chapterIds.has(event.chapterVersionId))
         .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id)),
-      closureCoverage: closureCoverageFor(work, manuscript.chapterCount),
+      closureCoverage: closureCoverageFor(work, manuscript.chapterCount, { storyBibleRevision: manuscript.storyBibleRevision }),
     };
   });
 

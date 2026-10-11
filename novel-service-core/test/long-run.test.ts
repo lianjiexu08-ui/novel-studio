@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { closureCoverageFor, NovelService, passChecker } from '../src/core.ts';
+import { closureCoverageFor, NovelService, passChecker, qualityAuditFor } from '../src/core.ts';
 import { lockStoryBible, lockWorldPack } from '../src/world.ts';
 import type { StoryBible, WorldPack } from '../src/world.ts';
 
@@ -92,4 +92,31 @@ test('closure coverage blocks a long-form design with unresolved seeds', () => {
   assert.equal(coverage.expected.volumes, 3);
   assert.equal(coverage.expected.secrets, 1);
   assert.match(coverage.errors.join('; '), /secret .*no reveal|promise .*remains open|thread .*no resolved|arc .*no resolved/);
+});
+
+test('quality audit reports structural story gaps before expansion', () => {
+  const design = lockedDesign();
+  const service = new NovelService(provider);
+  const work = service.createWork('质量审计验收');
+  service.setWorldPack(work.id, design.world);
+  service.setStoryBible(work.id, design.bible);
+  const audit = qualityAuditFor(work);
+  assert.equal(audit.status, 'blocked');
+  assert.ok(audit.findings.some((finding) => finding.id === 'story-opening-beats'));
+  assert.equal(audit.counts.characters, 2);
+  assert.equal(audit.scope.storyBibleTargetChapterCount, 100);
+});
+
+test('closure coverage can be scoped to the manuscript design revision', () => {
+  const design = lockedDesign();
+  const service = new NovelService(provider);
+  const work = service.createWork('版本范围验收');
+  service.setWorldPack(work.id, design.world);
+  service.setStoryBible(work.id, design.bible);
+  const originalRevision = work.storyBible!.revision;
+  const expanded = { ...work.storyBible!, revision: originalRevision + 1, volumes: [...work.storyBible!.volumes, { id: 'vol-4', order: 4, title: '后续', goal: '扩展', climax: '扩展', endState: '扩展', plannedChapterCount: 20, arcIds: ['arc'] }] };
+  work.storyBible = expanded;
+  work.recordDesignRevision('story_bible', expanded);
+  assert.equal(closureCoverageFor(work, 100, { storyBibleRevision: originalRevision }).expected.volumes, 3);
+  assert.equal(closureCoverageFor(work, 100).expected.volumes, 4);
 });
