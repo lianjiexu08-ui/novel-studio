@@ -385,6 +385,7 @@ async function completeJsonWithRepair(client: PlanningClient, request: Completio
       // extractor decide which facts actually occurred. Never apply this to
       // the extractor itself, where an empty audit would hide a model error.
       if (label === '章节草稿' && first.trim().length >= 20) return { content: first.trim(), proposedEvents: [] };
+      if (label === '事实审计' && first.trim().length > 0) return { observedEvents: [] };
       throw repairError;
     }
   }
