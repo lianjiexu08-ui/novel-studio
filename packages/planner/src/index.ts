@@ -271,7 +271,7 @@ export class OpenAICompatibleChapterProvider implements ModelProvider {
       // truncation must be prevented rather than repaired into partial prose.
       maxOutputTokens: Math.max(6_000, Math.min(16_000, Math.ceil(input.work.covenant.chapterWords * 2.6))),
       role: 'writing',
-    }, '章节草稿'))), input.work.storyBible) as GeneratedChapter;
+    }, '章节草稿'))), input.work.storyBible, input.work.worldPack) as GeneratedChapter;
     if (!this.independentExtraction) return draft;
     const extracted = await completeJsonWithRepair(client, {
       system: extractionSystem + (brief ? extractionBriefRule : ''),
@@ -298,7 +298,7 @@ export class OpenAICompatibleChapterProvider implements ModelProvider {
     // promoting the audited set keeps canon updates complete while the audit
     // itself remains subject to strict contract and canon checks downstream.
     const auditedEvents = (validated.observedEvents ?? []) as GeneratedChapter['observedEvents'];
-    return normalizeGeneratedEvents({ ...draft, proposedEvents: auditedEvents ?? [], observedEvents: auditedEvents }, input.work.storyBible);
+    return normalizeGeneratedEvents({ ...draft, proposedEvents: auditedEvents ?? [], observedEvents: auditedEvents }, input.work.storyBible, input.work.worldPack);
   }
 }
 
@@ -340,11 +340,18 @@ function eventSubjectCatalog(storyBible: StoryBible | undefined, worldPack: Worl
 /** Models often use an arcBeat id when an event must update its parent arc.
  * Normalize that unambiguous alias before the event is checked or extracted,
  * so replayed story state always keys arc progress by the stable arc id. */
-function normalizeGeneratedEvents(chapter: GeneratedChapter, storyBible?: StoryBible): GeneratedChapter {
+function normalizeGeneratedEvents(chapter: GeneratedChapter, storyBible?: StoryBible, worldPack?: WorldPack): GeneratedChapter {
   const beatToArc = new Map((storyBible?.arcBeats ?? []).map((beat) => [beat.id, beat.arcId]));
+  const realmNameToId = new Map((worldPack?.realms ?? []).map((realm) => [realm.name, realm.id]));
+  const locationNameToId = new Map((worldPack?.locations ?? []).map((location) => [location.name, location.id]));
   const normalize = (event: GeneratedChapter['proposedEvents'][number]) => {
     let normalized = event;
     if (event.eventType === 'arc_progress' && beatToArc.has(event.subjectId)) normalized = { ...normalized, subjectId: beatToArc.get(event.subjectId)! };
+    if (normalized.eventType === 'character_state' && typeof normalized.value === 'string') {
+      const aliases = ['realm', 'realmId', 'powerRealm'].includes(normalized.predicate) ? realmNameToId : ['location', 'locationId'].includes(normalized.predicate) ? locationNameToId : undefined;
+      const canonical = aliases?.get(normalized.value);
+      if (canonical) normalized = { ...normalized, value: canonical };
+    }
     const value = normalized.value && typeof normalized.value === 'object' ? normalized.value as Record<string, unknown> : undefined;
     const status = value && typeof value.status === 'string' ? value.status : undefined;
     const aliases: Record<string, string> = normalized.eventType === 'promise_payoff'
