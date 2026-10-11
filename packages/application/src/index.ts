@@ -44,6 +44,29 @@ export interface PlanProvider {
 
 export class PlanProviderMissingError extends Error {}
 
+function chapterPlansFromActivePlan(work: Work, bible: StoryBible): NonNullable<StoryBible['chapterPlans']> | undefined {
+  const revision = activePlan(work);
+  if (!revision) return undefined;
+  const chapters = revision.plan.chapters
+    .filter((chapter) => chapter.chapterNumber >= 1 && chapter.chapterNumber <= 50)
+    .sort((a, b) => a.chapterNumber - b.chapterNumber);
+  if (chapters.length < 50 || chapters.some((chapter, index) => chapter.chapterNumber !== index + 1)) return undefined;
+  const knownCharacters = new Set(bible.characters.map((character) => character.id));
+  return chapters.map((chapter) => ({
+    id: `chapter-plan-${chapter.chapterNumber}`,
+    chapterNumber: chapter.chapterNumber,
+    title: chapter.title || `第${chapter.chapterNumber}章`,
+    purpose: chapter.summary || chapter.characterGoals || '推进主线',
+    conflict: chapter.conflict || '主要冲突升级',
+    turningPoint: chapter.choice || '做出关键选择',
+    endHook: chapter.endState || '局势留下新的悬念',
+    characterIds: chapter.characterIds.filter((id) => knownCharacters.has(id)),
+    locationIds: [],
+    arcBeatIds: [],
+    requiredEvents: chapter.threads.slice(0, 2),
+  }));
+}
+
 export interface CovenantImpact {
   covenantChanged: boolean;
   /** Open candidates written under the old covenant; they can no longer be adopted. */
@@ -487,7 +510,15 @@ export class ChapterWorkflow {
     return this.repository.transaction(workId, ({ work }) => {
       if (!work.worldPack) throw new Error('world pack has not been generated');
       if (!work.storyBible) throw new Error('story bible has not been generated');
-      work.storyBible = lockStoryBible(work.storyBible, work.worldPack);
+      // Chapter plans are intentionally produced in staged batches.  Once the
+      // author approves that plan, project its first fifty outlines into the
+      // Story Bible so the long-form lock has one canonical opening plan.
+      const derivedPlans = chapterPlansFromActivePlan(work, work.storyBible);
+      const currentPlans = work.storyBible.chapterPlans ?? [];
+      const enriched = currentPlans.length >= 50 || !derivedPlans
+        ? work.storyBible
+        : { ...work.storyBible, chapterPlans: derivedPlans };
+      work.storyBible = lockStoryBible(enriched, work.worldPack);
       work.recordDesignRevision('story_bible', work.storyBible);
       work.constraintRevision += 1;
       return work.storyBible;
