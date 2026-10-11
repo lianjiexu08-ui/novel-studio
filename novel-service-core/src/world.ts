@@ -25,6 +25,15 @@ export interface PowerSystemDefinition {
   status: CanonStatus;
 }
 
+export interface WorldTierLadder {
+  id: string;
+  kind: 'realm' | 'technique' | 'artifact' | 'resource';
+  name: string;
+  levels: string[];
+  rule: string;
+  status: CanonStatus;
+}
+
 export interface PowerRealmDefinition {
   id: string;
   systemId: string;
@@ -41,6 +50,7 @@ export interface TechniqueDefinition {
   id: string;
   name: string;
   kind: 'technique' | 'cultivation' | 'bloodline' | 'secret';
+  tier?: string;
   allowedRealmIds: string[];
   effect: string;
   cost: string;
@@ -65,6 +75,7 @@ export interface ResourceDefinition {
   unit: string;
   source: string;
   scarcity: string;
+  tier?: string;
   status: CanonStatus;
 }
 
@@ -120,6 +131,7 @@ export interface WorldPack {
   status: CanonStatus;
   axioms: WorldAxiom[];
   powerSystems: PowerSystemDefinition[];
+  tierLadders?: WorldTierLadder[];
   realms: PowerRealmDefinition[];
   techniques: TechniqueDefinition[];
   artifacts: ArtifactDefinition[];
@@ -300,6 +312,7 @@ export function validateWorldPack(pack: WorldPack): GateResult {
   const locationIds = collectIds(pack.locations, 'locations', errors);
   const factionIds = collectIds(pack.factions, 'factions', errors);
   collectIds(pack.axioms, 'axioms', errors);
+  const tierLadderIds = collectIds(pack.tierLadders ?? [], 'tier ladders', errors);
   collectIds(pack.techniques, 'techniques', errors);
   collectIds(pack.artifacts, 'artifacts', errors);
   collectIds(pack.resources, 'resources', errors);
@@ -321,6 +334,10 @@ export function validateWorldPack(pack: WorldPack): GateResult {
   for (const event of pack.historicalEvents) {
     for (const factionId of event.factionIds) if (!factionIds.has(factionId)) errors.push(`historical event ${event.id} references unknown faction ${factionId}`);
   }
+  for (const ladder of pack.tierLadders ?? []) {
+    if (ladder.levels.length < 2) errors.push(`tier ladder ${ladder.id} must define at least two levels`);
+    if (!['realm', 'technique', 'artifact', 'resource'].includes(ladder.kind)) errors.push(`tier ladder ${ladder.id} has an invalid kind`);
+  }
   detectLocationCycle(pack.locations, errors);
   if (!pack.title.trim()) errors.push('world pack title is required');
   const requiredCollections: Array<[string, unknown[]]> = [
@@ -329,6 +346,7 @@ export function validateWorldPack(pack: WorldPack): GateResult {
     ['historical events', pack.historicalEvents], ['terminology', pack.terminology],
   ];
   for (const [label, items] of requiredCollections) if (items.length === 0) errors.push(`world pack requires at least one ${label} definition`);
+  if (pack.tierLadders && tierLadderIds.size < 4) warnings.push('world pack should define realm, technique, artifact and resource tier ladders');
   if (!pack.summary.trim()) warnings.push('world pack summary is empty');
   if (pack.powerSystems.some((system) => system.realmIds.length === 0)) errors.push('a power system has no realm ladder');
   if (hasBlockingQuestions(pack.unresolvedQuestions)) warnings.push('blocking unresolved questions remain');
@@ -359,6 +377,15 @@ export function validateLongFormWorldPack(pack: WorldPack): GateResult {
     }
     if (realms.length >= 3 && realms.some((realm, index) => index > 0 && realm.rank <= realms[index - 1].rank)) errors.push(`power system ${system.id} realm ranks are not strictly increasing`);
   }
+  // Older hand-authored packs predate explicit tier ladders.  Keep them
+  // migratable; every newly generated pack carries the ladders and then gets
+  // the stricter checks below.
+  if (pack.tierLadders) {
+    const ladders = new Set(pack.tierLadders.map((ladder) => ladder.kind));
+    for (const kind of ['realm', 'technique', 'artifact', 'resource'] as const) if (!ladders.has(kind)) errors.push(`long-form world pack requires a ${kind} tier ladder`);
+    if ((pack.techniques ?? []).some((technique) => !technique.tier)) errors.push('long-form world pack requires every technique to declare a tier');
+    if ((pack.resources ?? []).some((resource) => !resource.tier)) errors.push('long-form world pack requires every resource to declare a tier');
+  } else warnings.push('legacy world pack has no explicit tier ladders; regenerate the world pack to enable tier checks');
   return { ready: errors.length === 0, errors, warnings };
 }
 

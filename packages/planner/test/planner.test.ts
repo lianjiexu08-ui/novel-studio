@@ -48,6 +48,16 @@ test('planner validates structured world pack responses', async () => {
     historicalEvents: ['h', 'h2', 'h3'].map((id) => ({ id, title: '立宗' + id, storyTime: '百年前', causes: ['动荡'], consequences: ['建宗'], factionIds: ['f'], status: 'proposed' as const })),
     terminology: [{ id: 'term', canonical: '灵气', aliases: [], kind: 'other' as const, status: 'proposed' as const }], unresolvedQuestions: [], createdAt: new Date().toISOString(),
   };
+  Object.assign(response, {
+    tierLadders: ['realm', 'technique', 'artifact', 'resource'].map((kind) => ({ id: `${kind}-tiers`, kind, name: `${kind}等级`, levels: ['一阶', '二阶', '三阶', '四阶', '五阶', '六阶'], rule: '跨级需要对应资源与代价', status: 'proposed' })),
+    realms: Array.from({ length: 8 }, (_, index) => ({ id: index === 0 ? 'r' : `r${index + 1}`, systemId: 'p', name: `境界${index + 1}`, rank: index + 1, prerequisites: [], capabilities: ['引气'], cost: '时间', counters: [], status: 'proposed' })),
+    techniques: Array.from({ length: 15 }, (_, index) => ({ id: index < 3 ? ['t', 't2', 't3'][index] : `t${index + 1}`, name: `引气诀${index + 1}`, kind: 'cultivation', tier: `${(index % 6) + 1}阶`, allowedRealmIds: ['r'], effect: '引气', cost: '灵力', limitations: [], counters: [], status: 'proposed' })),
+    artifacts: Array.from({ length: 12 }, (_, index) => ({ id: index < 3 ? ['i', 'i2', 'i3'][index] : `i${index + 1}`, name: `灵剑${index + 1}`, tier: `${(index % 6) + 1}阶`, effect: '增幅', cost: '灵石', limitations: [], status: 'proposed' })),
+    resources: Array.from({ length: 10 }, (_, index) => ({ id: index < 3 ? ['res', 'res2', 'res3'][index] : `res${index + 1}`, name: `灵石${index + 1}`, unit: '枚', source: '矿脉', scarcity: '常见', tier: `${(index % 6) + 1}阶`, status: 'proposed' })),
+    locations: Array.from({ length: 9 }, (_, index) => ({ id: index < 3 ? ['l', 'l2', 'l3'][index] : `l${index + 1}`, name: `大陆${index + 1}`, kind: 'continent', entryConditions: [], status: 'proposed' })),
+    factions: Array.from({ length: 6 }, (_, index) => ({ id: index < 3 ? ['f', 'f2', 'f3'][index] : `f${index + 1}`, name: `宗门${index + 1}`, kind: 'sect', locationIds: ['l'], goals: [`守护${index}`], resources: ['res'], status: 'proposed' })),
+    historicalEvents: Array.from({ length: 10 }, (_, index) => ({ id: index < 3 ? ['h', 'h2', 'h3'][index] : `h${index + 1}`, title: `立宗${index + 1}`, storyTime: '百年前', causes: ['动荡'], consequences: ['建宗'], factionIds: ['f'], status: 'proposed' })),
+  });
   const planner = new JsonDesignPlanner({ complete: async () => JSON.stringify(response) });
   const world = await planner.generateWorldPack({ title: '试作', covenant });
   assert.equal(world.powerSystems[0].realmIds[0], 'r');
@@ -69,6 +79,30 @@ test('planner validates structured world pack responses', async () => {
 test('planner rejects non-JSON model output', async () => {
   const planner = new JsonDesignPlanner({ complete: async () => 'not json' });
   await assert.rejects(() => planner.generateWorldPack({ title: '试作', covenant }), PlanningParseError);
+});
+
+test('world pack is assembled from dependent stages instead of one giant response', async () => {
+  const base = {
+    id: 'staged-world', revision: 1, title: '分阶段九霄', summary: '规则先行', status: 'proposed', createdAt: new Date().toISOString(),
+    axioms: [{ id: 'axiom', title: '因果有价', content: '力量有代价', scope: 'all', precedence: 1, status: 'proposed' }],
+    powerSystems: [{ id: 'power', name: '灵力', source: '天地', unit: '灵力', realmIds: ['realm-1', 'realm-2', 'realm-3', 'realm-4', 'realm-5', 'realm-6', 'realm-7', 'realm-8'], status: 'proposed' }],
+    tierLadders: ['realm', 'technique', 'artifact', 'resource'].map((kind) => ({ id: `${kind}-ladder`, kind, name: kind, levels: ['一阶', '二阶', '三阶', '四阶', '五阶', '六阶'], rule: '逐阶支付代价', status: 'proposed' })),
+    realms: Array.from({ length: 8 }, (_, i) => ({ id: `realm-${i + 1}`, systemId: 'power', name: `境界${i + 1}`, rank: i + 1, prerequisites: [], capabilities: ['能力'], cost: '代价', counters: [], status: 'proposed' })),
+    terminology: [{ id: 'term-qi', canonical: '灵力', aliases: [], kind: 'other', status: 'proposed' }], unresolvedQuestions: [],
+  };
+  const stages = [
+    base,
+    { locations: Array.from({ length: 9 }, (_, i) => ({ id: `loc-${i}`, name: `大陆${i}`, kind: 'continent', entryConditions: [], status: 'proposed' })), factions: Array.from({ length: 6 }, (_, i) => ({ id: `fac-${i}`, name: `势力${i}`, kind: 'sect', locationIds: ['loc-0'], goals: ['博弈'], resources: ['resource-0'], status: 'proposed' })), terminology: [], unresolvedQuestions: [] },
+    { techniques: Array.from({ length: 15 }, (_, i) => ({ id: `tech-${i}`, name: `功法${i}`, kind: 'technique', tier: '一阶', allowedRealmIds: ['realm-1'], effect: '效果', cost: '代价', limitations: [], counters: [], status: 'proposed' })), artifacts: Array.from({ length: 12 }, (_, i) => ({ id: `artifact-${i}`, name: `法宝${i}`, tier: '一阶', effect: '效果', cost: '代价', limitations: [], status: 'proposed' })), resources: Array.from({ length: 10 }, (_, i) => ({ id: `resource-${i}`, name: `资源${i}`, unit: '枚', source: '矿脉', scarcity: '稀缺', tier: '一阶', status: 'proposed' })), terminology: [], unresolvedQuestions: [] },
+    { historicalEvents: Array.from({ length: 10 }, (_, i) => ({ id: `history-${i}`, title: `历史${i}`, storyTime: '远古', causes: ['冲突'], consequences: ['余波'], factionIds: ['fac-0'], status: 'proposed' })), terminology: [], unresolvedQuestions: [] },
+  ];
+  let calls = 0;
+  const planner = new JsonDesignPlanner({ complete: async () => JSON.stringify(stages[calls++]) });
+  const world = await planner.generateWorldPack({ title: '分阶段', covenant });
+  assert.equal(calls, 4);
+  assert.equal(world.factions.length, 6);
+  assert.equal(world.techniques.length, 15);
+  assert.equal(world.tierLadders?.length, 4);
 });
 
 test('planner rejects a story bible that cannot support the 100-chapter milestone', async () => {

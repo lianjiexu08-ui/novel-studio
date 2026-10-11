@@ -13,7 +13,7 @@ import type {
 } from '../../../novel-service-core/src/planning.ts';
 
 export interface DesignProvider {
-  generateWorldPack(input: { title: string; covenant: CreativeCovenant }): Promise<WorldPack>;
+  generateWorldPack(input: { title: string; covenant: CreativeCovenant; chapterTarget?: number }): Promise<WorldPack>;
   generateStoryBible(input: { title: string; covenant: CreativeCovenant; worldPack: WorldPack; chapterTarget?: number; previousStoryBible?: StoryBible }): Promise<StoryBible>;
 }
 
@@ -449,12 +449,12 @@ export class ChapterWorkflow {
     });
   }
 
-  async generateWorldPack(workId: string): Promise<WorldPack> {
+  async generateWorldPack(workId: string, chapterTarget?: number): Promise<WorldPack> {
     if (!this.designProvider) throw new Error('design provider is not configured');
     const snapshot = await this.repository.get(workId);
     if (!snapshot) throw new Error(`unknown work ${workId}`);
     const constraintRevision = snapshot.constraintRevision;
-    const worldPack = await this.designProvider.generateWorldPack({ title: snapshot.title, covenant: snapshot.covenant });
+    const worldPack = await this.designProvider.generateWorldPack({ title: snapshot.title, covenant: snapshot.covenant, chapterTarget });
     return this.commitDesign(workId, 'world_pack', constraintRevision, worldPack, (work, document) => {
       work.worldPack = withServerRevision(work, 'world_pack', { ...document, status: 'proposed', lockedAt: undefined });
       return work.worldPack;

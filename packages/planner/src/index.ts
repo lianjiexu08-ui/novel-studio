@@ -3,6 +3,7 @@ import { parseChapterOutlines, parseGenerateChapterResponse, parsePlanSkeleton, 
 import type { ChapterOutlineContract, PlanSkeletonContract } from 'novel-studio-contracts';
 import { addUsage, emptyUsage } from '../../../novel-service-core/src/core.ts';
 import type { ContextManifest, CreativeCovenant, GeneratedChapter, ModelProvider, RunUsage, Work } from '../../../novel-service-core/src/core.ts';
+import { validateWorldPack } from '../../../novel-service-core/src/world.ts';
 import type { StoryBible, WorldPack } from '../../../novel-service-core/src/world.ts';
 
 export interface PlanningClient {
@@ -12,7 +13,7 @@ export interface PlanningClient {
 export class PlanningParseError extends Error {}
 
 export interface DesignPlanner {
-  generateWorldPack(input: { title: string; covenant: CreativeCovenant }): Promise<WorldPack>;
+  generateWorldPack(input: { title: string; covenant: CreativeCovenant; chapterTarget?: number }): Promise<WorldPack>;
   generateStoryBible(input: { title: string; covenant: CreativeCovenant; worldPack: WorldPack; chapterTarget?: number; previousStoryBible?: StoryBible }): Promise<StoryBible>;
 }
 
@@ -22,16 +23,43 @@ export class JsonDesignPlanner implements DesignPlanner {
 
   constructor(client: PlanningClient, targetChapters = 100) { this.client = client; this.targetChapters = targetChapters; }
 
-  async generateWorldPack(input: { title: string; covenant: CreativeCovenant }): Promise<WorldPack> {
-    return completeValidated(this.client, {
-      system: worldPackSystem + worldPackShape,
-      user: JSON.stringify({ task: 'generate_world_pack', title: input.title, covenant: input.covenant }, null, 2),
-      maxOutputTokens: 12_000,
-    }, (value) => {
-      const parsed = parseWorldPack(value);
-      assertWorldPackScale(parsed);
-      return parsed as WorldPack;
-    });
+  async generateWorldPack(input: { title: string; covenant: CreativeCovenant; chapterTarget?: number }): Promise<WorldPack> {
+    const targetChapters = input.chapterTarget ?? input.covenant.targetChapterCount ?? this.targetChapters;
+    // Keep each response small enough to reason about.  The first call is
+    // deliberately allowed to return a complete legacy pack so saved prompts
+    // and offline fixtures remain compatible; production prompts ask for the
+    // skeleton only and then continue through four dependent stages.
+    const skeleton = await completeValidated(this.client, {
+      system: worldSkeletonSystem + worldSkeletonShape,
+      user: JSON.stringify({ task: 'generate_world_skeleton', title: input.title, covenant: input.covenant, targetChapters }, null, 2),
+      maxOutputTokens: 7_000,
+    }, parseWorldStage('skeleton'));
+    const complete = tryParseWorldPack(skeleton);
+    if (complete) {
+      assertWorldPackScale(complete, targetChapters);
+      return complete;
+    }
+    const geography = await completeValidated(this.client, {
+      system: worldGeographySystem + worldGeographyShape,
+      user: JSON.stringify({ task: 'generate_world_geography_and_factions', title: input.title, covenant: input.covenant, targetChapters, skeleton }, null, 2),
+      maxOutputTokens: 7_000,
+    }, parseWorldStage('geography'));
+    const power = await completeValidated(this.client, {
+      system: worldPowerSystem + worldPowerShape,
+      user: JSON.stringify({ task: 'generate_world_power_and_assets', title: input.title, covenant: input.covenant, targetChapters, skeleton, geography }, null, 2),
+      maxOutputTokens: 7_000,
+    }, parseWorldStage('power'));
+    const history = await completeValidated(this.client, {
+      system: worldHistorySystem + worldHistoryShape,
+      user: JSON.stringify({ task: 'generate_world_history', title: input.title, covenant: input.covenant, targetChapters, skeleton, geography, power }, null, 2),
+      maxOutputTokens: 6_000,
+    }, parseWorldStage('history'));
+    const merged = mergeWorldStages(input.title, skeleton, geography, power, history);
+    const result = parseWorldPack(merged) as WorldPack;
+    const structural = validateWorldPack(result);
+    if (!structural.ready) throw new PlanningParseError(`merged world pack is invalid: ${structural.errors.join('; ')}`);
+    assertWorldPackScale(result, targetChapters);
+    return result;
   }
 
   async generateStoryBible(input: { title: string; covenant: CreativeCovenant; worldPack: WorldPack; chapterTarget?: number; previousStoryBible?: StoryBible }): Promise<StoryBible> {
@@ -230,7 +258,7 @@ export class OpenAICompatibleChapterProvider implements ModelProvider {
       .map((version) => ({ chapterNumber: version.chapterNumber, content: version.content }));
     const plan = input.work.storyBible ? chapterPlan(input.work.storyBible, input.chapterNumber) : undefined;
     const { brief, ...context } = input.context;
-    const response = await client.complete({
+    const draft = parseGenerateChapterResponse(await completeJsonWithRepair(client, {
       system: (this.independentExtraction ? chapterDraftSystem : chapterSystem) + (brief ? briefRule : ''),
       user: JSON.stringify({
         task: 'generate_chapter', chapterNumber: input.chapterNumber, title: input.work.title,
@@ -239,10 +267,9 @@ export class OpenAICompatibleChapterProvider implements ModelProvider {
       }, null, 2),
       maxOutputTokens: Math.max(4_000, Math.min(12_000, Math.ceil(input.work.covenant.chapterWords * 1.8))),
       role: 'writing',
-    });
-    const draft = parseGenerateChapterResponse(readJson(response)) as GeneratedChapter;
+    }, '章节草稿')) as GeneratedChapter;
     if (!this.independentExtraction) return draft;
-    const extraction = await client.complete({
+    const extracted = await completeJsonWithRepair(client, {
       system: extractionSystem + (brief ? extractionBriefRule : ''),
       user: JSON.stringify({
         task: 'extract_events', chapterNumber: input.chapterNumber, content: draft.content,
@@ -251,8 +278,7 @@ export class OpenAICompatibleChapterProvider implements ModelProvider {
       }, null, 2),
       maxOutputTokens: Math.max(1_500, Math.min(4_000, Math.ceil(input.work.covenant.chapterWords * 0.6))),
       role: 'extraction',
-    });
-    const extracted = readJson(extraction);
+    }, '事实审计');
     const observed = extracted && typeof extracted === 'object' && !Array.isArray(extracted)
       ? (extracted as { observedEvents?: unknown }).observedEvents
       : undefined;
@@ -315,6 +341,27 @@ async function completeValidated<T>(client: PlanningClient, request: CompletionI
   }
 }
 
+/** Chapter generation uses the same JSON contract as planning, but a writing
+ * model is more likely to wrap a long answer in prose or a code fence.  Give
+ * it one explicit repair attempt before the candidate is rejected, while
+ * keeping the original output in the repair prompt for evidence and recovery.
+ */
+async function completeJsonWithRepair(client: PlanningClient, request: CompletionInput, label: string): Promise<unknown> {
+  const first = await client.complete(request);
+  try {
+    return readJson(first);
+  } catch (error) {
+    const problems = error instanceof Error ? error.message : String(error);
+    const repaired = await client.complete({
+      system: request.system,
+      user: JSON.stringify({ task: 'repair_previous_output', label, instruction: '只返回完整 JSON 对象；保留原文中已经生成的正文或事件，修复外层文本、截断和 JSON 语法问题。', problems, originalRequest: JSON.parse(request.user), previousOutput: first }, null, 2),
+      maxOutputTokens: request.maxOutputTokens,
+      role: request.role,
+    });
+    return readJson(repaired);
+  }
+}
+
 const shapeIntro = '\n\n字段结构如下。每个对象必须包含列出的全部字段，字段名一字不差，不得改名或省略；"[]" 表示数组，"?" 表示可省略，字符串字段可以写具体内容但不能缺失。\n';
 const worldPackShape = shapeIntro + [
   '顶层: {id, revision: 1, title, summary, status: "proposed", createdAt, axioms[], powerSystems[], realms[], techniques[], artifacts[], resources[], locations[], factions[], historicalEvents[], terminology[], unresolvedQuestions[]}',
@@ -352,14 +399,23 @@ function describeOutputProblems(error: unknown): string | undefined {
   return shown.join('; ') + (issues.length > shown.length ? `; 另有 ${issues.length - shown.length} 处` : '');
 }
 
-function assertWorldPackScale(pack: WorldPack): void {
+function assertWorldPackScale(pack: WorldPack, targetChapters = 100): void {
+  // Three items per collection is only a smoke-test minimum.  A 100-chapter
+  // book needs enough recurring characters, conflicts and escalating assets
+  // that the writer does not recycle the same three names for every volume.
+  const largeBook = targetChapters >= 300;
   const minimums: Array<[string, number, number]> = [
-    ['realms', pack.realms.length, 3], ['techniques', pack.techniques.length, 3], ['artifacts', pack.artifacts.length, 3],
-    ['resources', pack.resources.length, 3], ['locations', pack.locations.length, 3], ['factions', pack.factions.length, 3],
-    ['historicalEvents', pack.historicalEvents.length, 3],
+    ['realms', pack.realms.length, largeBook ? 12 : 8], ['techniques', pack.techniques.length, largeBook ? 30 : 15], ['artifacts', pack.artifacts.length, largeBook ? 24 : 12],
+    ['resources', pack.resources.length, largeBook ? 18 : 10], ['locations', pack.locations.length, largeBook ? 18 : 9], ['factions', pack.factions.length, largeBook ? 12 : 6],
+    ['historicalEvents', pack.historicalEvents.length, largeBook ? 18 : 10],
   ];
   const missing = minimums.filter(([, actual, expected]) => actual < expected).map(([name, , expected]) => `${name}>=${expected}`);
-  if (pack.locations.filter((location) => location.kind === 'continent').length < 3) missing.push('continent locations>=3');
+  if (pack.locations.filter((location) => location.kind === 'continent').length < (largeBook ? 5 : 3)) missing.push(`continent locations>=${largeBook ? 5 : 3}`);
+  const ladders = new Set((pack.tierLadders ?? []).map((ladder) => ladder.kind));
+  for (const kind of ['realm', 'technique', 'artifact', 'resource'] as const) if (!ladders.has(kind)) missing.push(`tier ladder:${kind}`);
+  if (pack.techniques.some((technique) => !technique.tier)) missing.push('every technique must declare tier');
+  if (pack.artifacts.some((artifact) => !artifact.tier)) missing.push('every artifact must declare tier');
+  if (pack.resources.some((resource) => !resource.tier)) missing.push('every resource must declare tier');
   const blockingQuestions = pack.unresolvedQuestions.filter((question) => question.blocking && question.status === 'open');
   if (blockingQuestions.length) missing.push(`blocking unresolved questions must be resolved (${blockingQuestions.map((question) => question.id).join(', ')})`);
   if (missing.length) throw new PlanningParseError(`world pack is too small for the long-form milestone: ${missing.join(', ')}`);
@@ -413,7 +469,85 @@ function assertStoryBibleContinuity(previous: StoryBible, next: StoryBible): voi
   if (missing.length) throw new PlanningParseError(`expanded story bible dropped stable IDs: ${missing.join(', ')}`);
 }
 
-const worldPackSystem = `你是长篇玄幻小说的世界观规划器。只返回一个 JSON 对象，不要 Markdown，不要解释。必须完整包含 id、revision、title、summary、status、createdAt，以及 axioms、powerSystems、realms、techniques、artifacts、resources、locations、factions、historicalEvents、terminology、unresolvedQuestions 数组。所有数组至少有一项；状态和数组元素 status 使用 proposed；ID 稳定且引用有效。枚举字段必须使用合同中的英文 token：techniques.kind 只能是 technique/cultivation/bloodline/secret，locations.kind 只能是 plane/continent/country/region/city/sect/secret_realm/ruin/other，factions.kind 只能是 empire/sect/clan/merchant/religion/species/other，terminology.kind 只能是 person/place/faction/realm/technique/artifact/resource/other。生成可支撑 100 万字、约 450 章、至少 3 卷的世界底座，至少安排 3 块大陆、3 个以上连续境界、3 个以上不同层级的功法、法宝、资源、势力和历史事件；每项都要有代价、限制或反制关系，具体可检查。长篇正式生产不能留下 blocking=true 且 status=open 的未决问题：对会影响开篇、力量体系或主线因果的关键问题直接给出当前世界中的确定答案并写入相关规则/历史；只有不影响开篇的探索项才可标记为 deferred 且 blocking=false。createdAt 使用 ISO 8601 时间。`;
+const worldSkeletonSystem = `你是长篇玄幻小说世界观的第一阶段骨架规划器。只返回一个 JSON 对象，不要 Markdown，不要解释。只生成世界 ID、标题、摘要、公理、力量系统名称和连续境界骨架，以及四条明确的等级阶梯（realm、technique、artifact、resource）、术语和未决问题；不要生成大陆、势力、历史、功法、法宝或资源实体。境界必须有清晰的 rank、前置、能力、代价和反制；力量系统至少一个、境界至少八个。每条等级阶梯写出至少六个有顺序的等级名称和跨级规则，后续阶段的每个功法、法宝、资源都必须引用对应等级。ID 在后续阶段保持稳定。关键问题必须直接定案，只有不影响开篇的探索项才可 deferred 且 blocking=false。所有状态使用 proposed，createdAt 使用 ISO 8601 时间。`;
+const worldSkeletonShape = shapeIntro + [
+  '顶层: {id, revision: 1, title, summary, status: "proposed", createdAt, axioms[], powerSystems[], tierLadders[], realms[], terminology[], unresolvedQuestions[]}',
+  'axioms[]: {id, title, content, scope, precedence: 整数, status}',
+  'powerSystems[]: {id, name, source, unit, realmIds: [realm id], status}',
+  'realms[]: {id, systemId: power system id, name, rank: 正整数, prerequisites: [字符串], capabilities: [字符串], cost, counters: [字符串], status}',
+  'tierLadders[]: {id, kind: "realm"|"technique"|"artifact"|"resource", name, levels: [等级名称], rule, status}',
+  'terminology[]: {id, canonical, aliases: [字符串], kind, status}',
+  'unresolvedQuestions[]: {id, question, blocking: 布尔, status: "open"|"resolved"|"deferred"}',
+].join('');
+const worldGeographySystem = `你是同一部玄幻长篇的世界观第二阶段规划器。只返回一个 JSON 对象，不要 Markdown，不要解释。基于输入骨架补齐可供数百万字使用的地理与势力：100章验收至少九个地点（含三块大陆、国家、区域、城市/宗门据点）和六个互相制衡的势力；450章扩展至少十八个地点和十二个势力。所有 parentId、locationIds、resources 引用只能指向输入已有 ID或本阶段同时返回的资源占位术语；势力要写清目标、控制的资源和与其他势力的制衡关系，地点要写进入条件。不得修改骨架中的 ID、境界、公理或规则。`;
+const worldGeographyShape = shapeIntro + [
+  '顶层: {locations[], factions[], terminology[], unresolvedQuestions[]}',
+  'locations[]: {id, name, kind, parentId?: location id, entryConditions: [字符串], status}',
+  'factions[]: {id, name, kind, locationIds: [location id], goals: [字符串], resources: [resource id 或待定术语], status}',
+  'terminology[]: {id, canonical, aliases: [字符串], kind, status}',
+  'unresolvedQuestions[]: {id, question, blocking: 布尔, status: "open"|"resolved"|"deferred"}',
+].join('');
+const worldPowerSystem = `你是同一部玄幻长篇的世界观第三阶段规划器。只返回一个 JSON 对象，不要 Markdown，不要解释。基于输入骨架和地理势力补齐力量资产：100章验收至少十五种功法、十二件法宝、十种资源；450章扩展至少三十种功法、二十四件法宝、十八种资源。功法、法宝、资源必须跨多个等级，逐项写清 tier；每种力量都要能对应一个或多个境界。每项都必须写效果、代价、限制和反制；allowedRealmIds 只能使用骨架中的境界 ID；不要修改已有 ID或规则。`;
+const worldPowerShape = shapeIntro + [
+  '顶层: {techniques[], artifacts[], resources[], terminology[], unresolvedQuestions[]}',
+  'techniques[]: {id, name, kind, tier: 等级名称, allowedRealmIds: [realm id], effect, cost, limitations: [字符串], counters: [字符串], status}',
+  'artifacts[]: {id, name, tier, effect, cost, limitations: [字符串], status}',
+  'resources[]: {id, name, unit, source, scarcity, tier: 等级名称, status}',
+  'terminology[]: {id, canonical, aliases: [字符串], kind, status}',
+  'unresolvedQuestions[]: {id, question, blocking: 布尔, status: "open"|"resolved"|"deferred"}',
+].join('');
+const worldHistorySystem = `你是同一部玄幻长篇的世界观第四阶段规划器。只返回一个 JSON 对象，不要 Markdown，不要解释。基于全部输入补齐至少十个有因果链的历史事件（450章扩展至少十八个），覆盖大陆、势力和力量体系的形成、断裂与现状；每个事件必须写 causes、consequences、factionIds，并标明它影响的等级体系或资源流转。不得新增或修改已有实体 ID；可以补充少量术语和不阻断开篇的探索问题。`;
+const worldHistoryShape = shapeIntro + [
+  '顶层: {historicalEvents[], terminology[], unresolvedQuestions[]}',
+  'historicalEvents[]: {id, title, storyTime, causes: [字符串], consequences: [字符串], factionIds: [faction id], status}',
+  'terminology[]: {id, canonical, aliases: [字符串], kind, status}',
+  'unresolvedQuestions[]: {id, question, blocking: 布尔, status: "open"|"resolved"|"deferred"}',
+].join('');
+
+type WorldStage = Record<string, unknown>;
+
+function parseWorldStage(stage: 'skeleton' | 'geography' | 'power' | 'history'): (value: unknown) => WorldStage {
+  const required: Record<typeof stage, string[]> = {
+    skeleton: ['id', 'title', 'summary', 'axioms', 'powerSystems', 'tierLadders', 'realms', 'terminology', 'unresolvedQuestions'],
+    geography: ['locations', 'factions'],
+    power: ['techniques', 'artifacts', 'resources'],
+    history: ['historicalEvents'],
+  };
+  return (value: unknown) => {
+    if (!value || typeof value !== 'object' || Array.isArray(value)) throw new PlanningParseError(`${stage} world response must be an object`);
+    const record = value as WorldStage;
+    // A complete response is checked here so a malformed legacy answer enters
+    // the single repair path instead of being mistaken for a partial stage.
+    if (stage === 'skeleton' && ['axioms', 'powerSystems', 'realms', 'techniques', 'artifacts', 'resources', 'locations', 'factions', 'historicalEvents', 'terminology'].every((key) => Array.isArray(record[key]))) {
+      try { return parseWorldPack(record) as unknown as WorldStage; } catch (error) { throw new PlanningParseError(`complete world pack is invalid: ${describeOutputProblems(error) ?? String(error)}`); }
+    }
+    const missing = required[stage].filter((key) => key !== 'id' && key !== 'title' && key !== 'summary' && !Array.isArray(record[key]));
+    if (stage === 'skeleton' && required[stage].filter((key) => ['id', 'title', 'summary'].includes(key)).some((key) => typeof record[key] !== 'string')) missing.push('metadata');
+    if (missing.length) throw new PlanningParseError(`${stage} world response is missing arrays: ${missing.join(', ')}`);
+    return record;
+  };
+}
+
+function tryParseWorldPack(value: WorldStage): WorldPack | undefined {
+  try { return parseWorldPack(value) as WorldPack; } catch { return undefined; }
+}
+
+function mergeWorldStages(title: string, ...stages: WorldStage[]): WorldStage {
+  const [skeleton, geography, power, history] = stages;
+  const arrays = (key: string) => stages.flatMap((stage) => Array.isArray(stage[key]) ? stage[key] : []);
+  const unique = (key: string) => [...new Map(arrays(key).filter((item): item is Record<string, unknown> => Boolean(item && typeof item === 'object' && !Array.isArray(item)) && typeof (item as Record<string, unknown>).id === 'string').map((item) => [item.id as string, item])).values()];
+  return {
+    id: typeof skeleton.id === 'string' ? skeleton.id : `world-${Date.now()}`,
+    revision: 1,
+    title: typeof skeleton.title === 'string' ? skeleton.title : title,
+    summary: typeof skeleton.summary === 'string' ? skeleton.summary : '',
+    status: 'proposed',
+    createdAt: typeof skeleton.createdAt === 'string' ? skeleton.createdAt : new Date().toISOString(),
+    tierLadders: unique('tierLadders'), axioms: unique('axioms'), powerSystems: unique('powerSystems'), realms: unique('realms'), techniques: unique('techniques'),
+    artifacts: unique('artifacts'), resources: unique('resources'), locations: unique('locations'), factions: unique('factions'),
+    historicalEvents: unique('historicalEvents'), terminology: unique('terminology'), unresolvedQuestions: unique('unresolvedQuestions'),
+  };
+}
 const storyBibleSystem = `你是长篇玄幻小说的人物关系与分卷总纲规划器。只返回一个 JSON 对象，不要 Markdown，不要解释，不要添加合同外字段。必须完整包含 id、revision、worldPackId、worldPackRevision、status、coreConflict、endingDirection、characters、relationships、secrets、arcBeats、promises、openThreads、arcs、volumes、unresolvedQuestions、createdAt；chapterPlans 首轮可省略，前 50 章会由独立的分阶段章纲规划器生成并在锁定前合并。枚举字段必须使用合同中的英文 token：characters.role 只能是 protagonist/major/supporting/stage，relationships.kind 只能是 kinship/social/trust/emotion/allegiance/private_intent/belief，arcBeats.kind 只能是 trigger/belief_shift/choice/cost/consequence/resolution，openThreads.kind 只能是 main/subplot/mystery/open。至少生成主角、主要配角、对手、关系、秘密、人物弧光、可兑现承诺、待收束开放线和 3 个以上分卷；arcBeats 是全书关键节点提纲，至少生成 3×分卷数 个有 plannedChapter 的节点，并让每卷至少有一个节点，节点要覆盖触发、升级、选择、代价、后果和收束。前 50 章由独立的分阶段章纲规划器生成；本次只需把人物、关系、秘密、弧光、承诺、开放线和分卷总纲写完整，文本保持简洁具体。输入中的 chapterTarget 是当前验收目标，所有分卷 plannedChapterCount 之和必须恰好等于该数；卷序连续，所有引用必须指向输入世界包或本对象中的有效 ID。每个 promise 写明 payoffCondition，每个 openThread 写明 plannedResolution。若输入提供 previousStoryBible，这是从较短验收扩展长篇，必须保留其中已有 characters、relationships、arcs、secrets、promises、openThreads、arcBeats、chapterPlans 的稳定 ID、核心设定和前 50 章承接，只能在其上扩展后续卷；不得为了重写而更换旧 ID。状态使用 proposed，createdAt 使用 ISO 8601 时间。`;
 const chapterSystem = `你是同一本长篇玄幻小说的章节写作模型。只返回一个 JSON 对象，不要 Markdown，不要解释。content 用中文写完整章节，遵守创作约定、已锁定世界包和 Story Bible，并参考 currentPlan 指出的当前分卷、临近人物弧光和待兑现承诺；不得跨卷抢跑，也不能漏掉正文明确兑现的计划。参考最近章节保持人物、力量、地点和时间连续。proposedEvents 必须记录本章正文真正改变的事实，observedEvents 必须是独立复核正文后得到的同一组事实，二者完全一致。eventType 只能使用 character_state、relationship_change、knowledge_belief、resource_change、artifact_change、plot_progress、volume_progress、arc_progress、secret_reveal、promise_payoff、thread_resolution。volume_progress 和 arc_progress 的 value.status 只能是 active、resolved、diverged；secret_reveal 表示秘密在本章确实揭示；promise_payoff 的 value.status 只能是 paid、broken、open；thread_resolution 的 value.status 只能是 resolved、deferred、open。每个事件都要有 evidence，subjectId 使用世界包或 Story Bible 中已有的稳定 ID；没有变化就返回空数组。只有正文明确发生的变化才能入账，角色猜测写成 knowledge_belief，计划尚未兑现的内容不要冒充已兑现。不要擅自改写锁定关系、境界规则或分卷目标。`;
 const chapterDraftSystem = `你是同一本长篇玄幻小说的章节写作模型。只返回一个 JSON 对象，不要 Markdown，不要解释。content 用中文写完整章节，遵守创作约定、已锁定世界包和 Story Bible，并参考 currentPlan 指出的当前分卷、临近人物弧光和待兑现承诺；不得跨卷抢跑，也不能漏掉正文明确兑现的计划。参考最近章节保持人物、力量、地点和时间连续。proposedEvents 必须记录本章正文真正改变的事实；不要返回 observedEvents，正文会交给独立审计器再次抽取。eventType 只能使用 character_state、relationship_change、knowledge_belief、resource_change、artifact_change、plot_progress、volume_progress、arc_progress、secret_reveal、promise_payoff、thread_resolution。volume_progress 和 arc_progress 的 value.status 只能是 active、resolved、diverged；每个事件都要有 evidence，subjectId 使用世界包或 Story Bible 中已有的稳定 ID；没有变化就返回空数组。只有正文明确发生的变化才能入账，角色猜测写成 knowledge_belief，计划尚未兑现的内容不要冒充已兑现。不要擅自改写锁定关系、境界规则或分卷目标。`;

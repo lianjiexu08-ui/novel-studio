@@ -572,7 +572,7 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
   app.post('/works/:workId/design/generate', async (request) => {
     const { workId } = workParamSchema.parse(request.params);
     const body = generateDesignRequestSchema.parse(request.body ?? {});
-    const generated = body.stage === 'world_pack' ? await workflow.generateWorldPack(workId) : await workflow.generateStoryBible(workId, body.chapterTarget);
+    const generated = body.stage === 'world_pack' ? await workflow.generateWorldPack(workId, body.chapterTarget) : await workflow.generateStoryBible(workId, body.chapterTarget);
     return body.stage === 'world_pack' ? { worldPack: generated } : { storyBible: generated };
   });
 

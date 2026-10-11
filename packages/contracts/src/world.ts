@@ -7,17 +7,20 @@ export const worldAxiomSchema = z.object({
 export const powerSystemDefinitionSchema = z.object({
   id: z.string().min(1), name: z.string().trim().min(1), source: z.string(), unit: z.string().trim().min(1), realmIds: z.array(z.string().min(1)), status: canonStatusSchema,
 });
+export const worldTierLadderSchema = z.object({
+  id: z.string().min(1), kind: z.enum(['realm', 'technique', 'artifact', 'resource']), name: z.string().trim().min(1), levels: z.array(z.string().trim().min(1)).min(2), rule: z.string().trim().min(1), status: canonStatusSchema,
+});
 export const powerRealmDefinitionSchema = z.object({
   id: z.string().min(1), systemId: z.string().min(1), name: z.string().trim().min(1), rank: z.number().int().positive(), prerequisites: z.array(z.string().min(1)), capabilities: z.array(z.string()), cost: z.string(), counters: z.array(z.string()), status: canonStatusSchema,
 });
 export const techniqueDefinitionSchema = z.object({
-  id: z.string().min(1), name: z.string().trim().min(1), kind: z.enum(['technique', 'cultivation', 'bloodline', 'secret']), allowedRealmIds: z.array(z.string().min(1)), effect: z.string(), cost: z.string(), limitations: z.array(z.string()), counters: z.array(z.string()), status: canonStatusSchema,
+  id: z.string().min(1), name: z.string().trim().min(1), kind: z.enum(['technique', 'cultivation', 'bloodline', 'secret']), tier: z.string().trim().min(1).optional(), allowedRealmIds: z.array(z.string().min(1)), effect: z.string(), cost: z.string(), limitations: z.array(z.string()), counters: z.array(z.string()), status: canonStatusSchema,
 });
 export const artifactDefinitionSchema = z.object({
   id: z.string().min(1), name: z.string().trim().min(1), tier: z.string().trim().min(1), effect: z.string(), cost: z.string(), limitations: z.array(z.string()), status: canonStatusSchema,
 });
 export const resourceDefinitionSchema = z.object({
-  id: z.string().min(1), name: z.string().trim().min(1), unit: z.string().trim().min(1), source: z.string(), scarcity: z.string(), status: canonStatusSchema,
+  id: z.string().min(1), name: z.string().trim().min(1), unit: z.string().trim().min(1), source: z.string(), scarcity: z.string(), tier: z.string().trim().min(1).optional(), status: canonStatusSchema,
 });
 export const worldLocationSchema = z.object({
   id: z.string().min(1), name: z.string().trim().min(1), kind: z.enum(['plane', 'continent', 'country', 'region', 'city', 'sect', 'secret_realm', 'ruin', 'other']), parentId: z.string().min(1).optional(), entryConditions: z.array(z.string()), status: canonStatusSchema,
@@ -37,7 +40,7 @@ export const unresolvedQuestionSchema = z.object({
 
 export const worldPackSchema = z.object({
   id: z.string().min(1), revision: z.number().int().positive(), title: z.string().trim().min(1), summary: z.string(), status: canonStatusSchema,
-  axioms: z.array(worldAxiomSchema), powerSystems: z.array(powerSystemDefinitionSchema), realms: z.array(powerRealmDefinitionSchema), techniques: z.array(techniqueDefinitionSchema), artifacts: z.array(artifactDefinitionSchema), resources: z.array(resourceDefinitionSchema), locations: z.array(worldLocationSchema), factions: z.array(worldFactionSchema), historicalEvents: z.array(historicalEventDefinitionSchema), terminology: z.array(terminologyDefinitionSchema), unresolvedQuestions: z.array(unresolvedQuestionSchema), createdAt: z.string().datetime(), lockedAt: z.string().datetime().optional(),
+  axioms: z.array(worldAxiomSchema), powerSystems: z.array(powerSystemDefinitionSchema), tierLadders: z.array(worldTierLadderSchema).optional(), realms: z.array(powerRealmDefinitionSchema), techniques: z.array(techniqueDefinitionSchema), artifacts: z.array(artifactDefinitionSchema), resources: z.array(resourceDefinitionSchema), locations: z.array(worldLocationSchema), factions: z.array(worldFactionSchema), historicalEvents: z.array(historicalEventDefinitionSchema), terminology: z.array(terminologyDefinitionSchema), unresolvedQuestions: z.array(unresolvedQuestionSchema), createdAt: z.string().datetime(), lockedAt: z.string().datetime().optional(),
 });
 
 export const storyCharacterSeedSchema = z.object({
