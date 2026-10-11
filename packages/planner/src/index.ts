@@ -515,7 +515,7 @@ function parseWorldStage(stage: 'skeleton' | 'geography' | 'power' | 'history'):
   };
   return (value: unknown) => {
     if (!value || typeof value !== 'object' || Array.isArray(value)) throw new PlanningParseError(`${stage} world response must be an object`);
-    const record = value as WorldStage;
+    const record = normalizeWorldEnums(value) as WorldStage;
     // A complete response is checked here so a malformed legacy answer enters
     // the single repair path instead of being mistaken for a partial stage.
     if (stage === 'skeleton' && ['axioms', 'powerSystems', 'realms', 'techniques', 'artifacts', 'resources', 'locations', 'factions', 'historicalEvents', 'terminology'].every((key) => Array.isArray(record[key]))) {
@@ -529,12 +529,12 @@ function parseWorldStage(stage: 'skeleton' | 'geography' | 'power' | 'history'):
 }
 
 function tryParseWorldPack(value: WorldStage): WorldPack | undefined {
-  try { return parseWorldPack(value) as WorldPack; } catch { return undefined; }
+  try { return parseWorldPack(normalizeWorldEnums(value)) as WorldPack; } catch { return undefined; }
 }
 
 function mergeWorldStages(title: string, ...stages: WorldStage[]): WorldStage {
-  const [skeleton, geography, power, history] = stages;
-  const arrays = (key: string) => stages.flatMap((stage) => Array.isArray(stage[key]) ? stage[key] : []);
+  const [skeleton, geography, power, history] = stages.map((stage) => normalizeWorldEnums(stage) as WorldStage);
+  const arrays = (key: string) => [skeleton, geography, power, history].flatMap((stage) => Array.isArray(stage[key]) ? stage[key] : []);
   const unique = (key: string) => [...new Map(arrays(key).filter((item): item is Record<string, unknown> => Boolean(item && typeof item === 'object' && !Array.isArray(item)) && typeof (item as Record<string, unknown>).id === 'string').map((item) => [item.id as string, item])).values()];
   return {
     id: typeof skeleton.id === 'string' ? skeleton.id : `world-${Date.now()}`,
@@ -547,6 +547,29 @@ function mergeWorldStages(title: string, ...stages: WorldStage[]): WorldStage {
     artifacts: unique('artifacts'), resources: unique('resources'), locations: unique('locations'), factions: unique('factions'),
     historicalEvents: unique('historicalEvents'), terminology: unique('terminology'), unresolvedQuestions: unique('unresolvedQuestions'),
   };
+}
+
+/** Models often translate enum labels while keeping the surrounding object
+ * correct.  Normalize only the documented aliases; an unknown label remains
+ * unknown and is rejected by the contract parser instead of being guessed. */
+function normalizeWorldEnums(value: unknown): unknown {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return value;
+  const source = value as Record<string, unknown>;
+  const copy: Record<string, unknown> = { ...source };
+  const enumMap = (token: unknown, allowed: string[], aliases: Record<string, string>, fallback?: (text: string) => string) => {
+    if (typeof token !== 'string') return token;
+    if (allowed.includes(token)) return token;
+    return aliases[token] ?? fallback?.(token) ?? token;
+  };
+  const mapItems = (key: string, mapper: (item: Record<string, unknown>) => Record<string, unknown>) => {
+    if (Array.isArray(copy[key])) copy[key] = copy[key].map((item) => item && typeof item === 'object' && !Array.isArray(item) ? mapper({ ...(item as Record<string, unknown>) }) : item);
+  };
+  mapItems('techniques', (item) => ({ ...item, kind: enumMap(item.kind, ['technique', 'cultivation', 'bloodline', 'secret'], {}, (text) => /血脉/.test(text) ? 'bloodline' : /秘|禁/.test(text) ? 'secret' : /功|修炼|呼吸/.test(text) ? 'cultivation' : 'technique') }));
+  mapItems('locations', (item) => ({ ...item, kind: enumMap(item.kind, ['plane', 'continent', 'country', 'region', 'city', 'sect', 'secret_realm', 'ruin', 'other'], { '大陆': 'continent', '国家': 'country', '区域': 'region', '城市': 'city', '宗门据点': 'sect', '秘境': 'secret_realm', '遗迹': 'ruin' }) }));
+  mapItems('factions', (item) => ({ ...item, kind: enumMap(item.kind, ['empire', 'sect', 'clan', 'merchant', 'religion', 'species', 'other'], {}, (text) => /帝国|皇权/.test(text) ? 'empire' : /商|商业/.test(text) ? 'merchant' : /妖|族/.test(text) ? 'species' : /教|宗|门|道/.test(text) ? 'sect' : 'other') }));
+  mapItems('terminology', (item) => ({ ...item, kind: enumMap(item.kind, ['person', 'place', 'faction', 'realm', 'technique', 'artifact', 'resource', 'other'], {}, (text) => /人|角色/.test(text) ? 'person' : /地|大陆|城|域/.test(text) ? 'place' : /势力|宗门/.test(text) ? 'faction' : /境界|等级/.test(text) ? 'realm' : /法|诀/.test(text) ? 'technique' : /宝|器/.test(text) ? 'artifact' : /资源|材|石|丹/.test(text) ? 'resource' : 'other') }));
+  mapItems('tierLadders', (item) => ({ ...item, kind: enumMap(item.kind, ['realm', 'technique', 'artifact', 'resource'], { '境界': 'realm', '功法': 'technique', '法宝': 'artifact', '资源': 'resource' }) }));
+  return copy;
 }
 const storyBibleSystem = `你是长篇玄幻小说的人物关系与分卷总纲规划器。只返回一个 JSON 对象，不要 Markdown，不要解释，不要添加合同外字段。必须完整包含 id、revision、worldPackId、worldPackRevision、status、coreConflict、endingDirection、characters、relationships、secrets、arcBeats、promises、openThreads、arcs、volumes、unresolvedQuestions、createdAt；chapterPlans 首轮可省略，前 50 章会由独立的分阶段章纲规划器生成并在锁定前合并。枚举字段必须使用合同中的英文 token：characters.role 只能是 protagonist/major/supporting/stage，relationships.kind 只能是 kinship/social/trust/emotion/allegiance/private_intent/belief，arcBeats.kind 只能是 trigger/belief_shift/choice/cost/consequence/resolution，openThreads.kind 只能是 main/subplot/mystery/open。至少生成主角、主要配角、对手、关系、秘密、人物弧光、可兑现承诺、待收束开放线和 3 个以上分卷；arcBeats 是全书关键节点提纲，至少生成 3×分卷数 个有 plannedChapter 的节点，并让每卷至少有一个节点，节点要覆盖触发、升级、选择、代价、后果和收束。前 50 章由独立的分阶段章纲规划器生成；本次只需把人物、关系、秘密、弧光、承诺、开放线和分卷总纲写完整，文本保持简洁具体。输入中的 chapterTarget 是当前验收目标，所有分卷 plannedChapterCount 之和必须恰好等于该数；卷序连续，所有引用必须指向输入世界包或本对象中的有效 ID。每个 promise 写明 payoffCondition，每个 openThread 写明 plannedResolution。若输入提供 previousStoryBible，这是从较短验收扩展长篇，必须保留其中已有 characters、relationships、arcs、secrets、promises、openThreads、arcBeats、chapterPlans 的稳定 ID、核心设定和前 50 章承接，只能在其上扩展后续卷；不得为了重写而更换旧 ID。状态使用 proposed，createdAt 使用 ISO 8601 时间。`;
 const chapterSystem = `你是同一本长篇玄幻小说的章节写作模型。只返回一个 JSON 对象，不要 Markdown，不要解释。content 用中文写完整章节，遵守创作约定、已锁定世界包和 Story Bible，并参考 currentPlan 指出的当前分卷、临近人物弧光和待兑现承诺；不得跨卷抢跑，也不能漏掉正文明确兑现的计划。参考最近章节保持人物、力量、地点和时间连续。proposedEvents 必须记录本章正文真正改变的事实，observedEvents 必须是独立复核正文后得到的同一组事实，二者完全一致。eventType 只能使用 character_state、relationship_change、knowledge_belief、resource_change、artifact_change、plot_progress、volume_progress、arc_progress、secret_reveal、promise_payoff、thread_resolution。volume_progress 和 arc_progress 的 value.status 只能是 active、resolved、diverged；secret_reveal 表示秘密在本章确实揭示；promise_payoff 的 value.status 只能是 paid、broken、open；thread_resolution 的 value.status 只能是 resolved、deferred、open。每个事件都要有 evidence，subjectId 使用世界包或 Story Bible 中已有的稳定 ID；没有变化就返回空数组。只有正文明确发生的变化才能入账，角色猜测写成 knowledge_belief，计划尚未兑现的内容不要冒充已兑现。不要擅自改写锁定关系、境界规则或分卷目标。`;
