@@ -383,7 +383,7 @@ function normalizeGeneratedEvents(chapter: GeneratedChapter, storyBible?: StoryB
     const value = normalized.value && typeof normalized.value === 'object' ? normalized.value as Record<string, unknown> : undefined;
     const status = value && typeof value.status === 'string' ? value.status : undefined;
     const aliases: Record<string, string> = normalized.eventType === 'promise_payoff'
-      ? { fulfilled: 'paid', completed: 'paid', resolved: 'paid', success: 'paid', failed: 'broken' }
+      ? { fulfilled: 'paid', completed: 'paid', resolved: 'paid', realized: 'paid', success: 'paid', failed: 'broken' }
       : normalized.eventType === 'thread_resolution'
         ? { fulfilled: 'resolved', completed: 'resolved', postponed: 'deferred', partial: 'deferred' }
         : {};
