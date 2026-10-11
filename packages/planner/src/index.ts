@@ -109,7 +109,9 @@ export class JsonBookPlanner {
 
   async generatePlanSkeleton(input: BookPlanningInput & { targetChapterCount: number; volumeCount: number; previousPlan?: unknown }): Promise<PlanSkeletonContract> {
     return completeValidated(this.client, {
-      system: planSkeletonSystem,
+      system: planSkeletonSystem + (input.targetChapterCount >= 450
+        ? '\n这是450章扩展的紧凑骨架：每个卷的 goal/opposition/climax/endState/carryOver 各不超过40字，setup最多2条且每条不超过30字；milestones最多12项，每项 setup 最多2条且每条不超过25字；dependencies最多20项，openQuestions返回空数组；不要生成任何chapter outlines。'
+        : ''),
       user: JSON.stringify({
         task: 'generate_book_plan', title: input.title, covenant: input.covenant, targetChapterCount: input.targetChapterCount, volumeCount: input.volumeCount,
         authorRequest: input.authorRequest, worldPack: input.worldPack, storyBible: input.storyBible, previousPlan: input.previousPlan, adoptedFacts: input.adoptedFacts,
