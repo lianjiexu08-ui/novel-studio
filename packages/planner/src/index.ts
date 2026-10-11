@@ -318,11 +318,20 @@ function eventSubjectCatalog(storyBible: StoryBible | undefined, worldPack: Worl
  * Normalize that unambiguous alias before the event is checked or extracted,
  * so replayed story state always keys arc progress by the stable arc id. */
 function normalizeGeneratedEvents(chapter: GeneratedChapter, storyBible?: StoryBible): GeneratedChapter {
-  if (!storyBible?.arcBeats?.length) return chapter;
-  const beatToArc = new Map(storyBible.arcBeats.map((beat) => [beat.id, beat.arcId]));
-  const normalize = (event: GeneratedChapter['proposedEvents'][number]) => event.eventType === 'arc_progress' && beatToArc.has(event.subjectId)
-    ? { ...event, subjectId: beatToArc.get(event.subjectId)! }
-    : event;
+  const beatToArc = new Map((storyBible?.arcBeats ?? []).map((beat) => [beat.id, beat.arcId]));
+  const normalize = (event: GeneratedChapter['proposedEvents'][number]) => {
+    let normalized = event;
+    if (event.eventType === 'arc_progress' && beatToArc.has(event.subjectId)) normalized = { ...normalized, subjectId: beatToArc.get(event.subjectId)! };
+    const value = normalized.value && typeof normalized.value === 'object' ? normalized.value as Record<string, unknown> : undefined;
+    const status = value && typeof value.status === 'string' ? value.status : undefined;
+    const aliases: Record<string, string> = normalized.eventType === 'promise_payoff'
+      ? { fulfilled: 'paid', completed: 'paid', success: 'paid', failed: 'broken' }
+      : normalized.eventType === 'thread_resolution'
+        ? { fulfilled: 'resolved', completed: 'resolved', postponed: 'deferred' }
+        : {};
+    if (value && status && aliases[status]) normalized = { ...normalized, value: { ...value, status: aliases[status] } };
+    return normalized;
+  };
   return {
     ...chapter,
     proposedEvents: chapter.proposedEvents.map(normalize),
