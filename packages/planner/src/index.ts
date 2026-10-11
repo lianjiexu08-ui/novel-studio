@@ -373,7 +373,7 @@ async function completeJsonWithRepair(client: PlanningClient, request: Completio
     const problems = error instanceof Error ? error.message : String(error);
     const repaired = await client.complete({
       system: request.system,
-      user: JSON.stringify({ task: 'repair_previous_output', label, instruction: '只返回完整 JSON 对象；保留原文中已经生成的正文或事件，修复外层文本、截断和 JSON 语法问题。', problems, originalRequest: JSON.parse(request.user), previousOutput: first }, null, 2),
+      user: JSON.stringify({ task: 'repair_previous_output', label, instruction: '只返回完整 JSON 对象；重新生成合规的 content 或 observedEvents 字段，不要 Markdown、前言或解释；正文内容保持本章任务卡，不要输出合同外字段。', problems, originalRequest: JSON.parse(request.user) }, null, 2),
       maxOutputTokens: request.maxOutputTokens,
       role: request.role,
     });
