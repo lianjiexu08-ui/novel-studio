@@ -266,7 +266,10 @@ export class OpenAICompatibleChapterProvider implements ModelProvider {
         chapterBrief: brief, context, currentPlan: plan, recentChapters,
         eventSubjectCatalog: eventSubjectCatalog(input.work.storyBible, input.work.worldPack, input.chapterNumber),
       }, null, 2),
-      maxOutputTokens: Math.max(4_000, Math.min(12_000, Math.ceil(input.work.covenant.chapterWords * 1.8))),
+      // Leave room for the JSON envelope and event evidence. A 2,200-character
+      // Chinese chapter routinely needs more than 4k tokens once serialized;
+      // truncation must be prevented rather than repaired into partial prose.
+      maxOutputTokens: Math.max(6_000, Math.min(16_000, Math.ceil(input.work.covenant.chapterWords * 2.6))),
       role: 'writing',
     }, '章节草稿')) as GeneratedChapter, input.work.storyBible);
     if (!this.independentExtraction) return draft;
