@@ -134,7 +134,7 @@ test('planner validates structured world pack responses', async () => {
     terminology: [{ id: 'term', canonical: '灵气', aliases: [], kind: 'other' as const, status: 'proposed' as const }], unresolvedQuestions: [], createdAt: new Date().toISOString(),
   };
   Object.assign(response, {
-    tierLadders: ['realm', 'technique', 'artifact', 'resource'].map((kind) => ({ id: `${kind}-tiers`, kind, name: `${kind}等级`, levels: ['一阶', '二阶', '三阶', '四阶', '五阶', '六阶'], rule: '跨级需要对应资源与代价', status: 'proposed' })),
+    tierLadders: ['realm', 'technique', 'artifact', 'resource'].map((kind) => ({ id: `${kind}-tiers`, kind, name: `${kind}等级`, levels: ['1阶', '2阶', '3阶', '4阶', '5阶', '6阶'], rule: '跨级需要对应资源与代价', status: 'proposed' })),
     realms: Array.from({ length: 8 }, (_, index) => ({ id: index === 0 ? 'r' : `r${index + 1}`, systemId: 'p', name: `境界${index + 1}`, rank: index + 1, prerequisites: [], capabilities: ['引气'], cost: '时间', counters: [], status: 'proposed' })),
     techniques: Array.from({ length: 15 }, (_, index) => ({ id: index < 3 ? ['t', 't2', 't3'][index] : `t${index + 1}`, name: `引气诀${index + 1}`, kind: 'cultivation', tier: `${(index % 6) + 1}阶`, allowedRealmIds: ['r'], effect: '引气', cost: '灵力', limitations: [], counters: [], status: 'proposed' })),
     artifacts: Array.from({ length: 12 }, (_, index) => ({ id: index < 3 ? ['i', 'i2', 'i3'][index] : `i${index + 1}`, name: `灵剑${index + 1}`, tier: `${(index % 6) + 1}阶`, effect: '增幅', cost: '灵石', limitations: [], status: 'proposed' })),

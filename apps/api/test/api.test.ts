@@ -561,12 +561,23 @@ test('450-chapter expansion resumes after the first hundred chapters', async () 
     assert.equal(firstManuscript.statusCode, 200);
     assert.equal(firstManuscript.json().manuscript.chapterCount, 100);
     const outdated = await app.inject({ method: 'POST', url: `/works/${work.id}/milestones/450/start`, payload: {} });
-    assert.equal(outdated.json().error.code, 'PLAN_OUTDATED', 'expanding the story bible requires re-approving the plan');
+    assert.equal(outdated.statusCode, 409);
+    assert.equal(previousBibleForExpansion, undefined, 'start must not call the design model');
+    const unchanged = (await app.inject({ method: 'GET', url: `/works/${work.id}/design` })).json();
+    assert.equal(unchanged.storyBible.volumes.reduce((sum: number, volume: { plannedChapterCount: number }) => sum + volume.plannedChapterCount, 0), 100);
+    await app.inject({ method: 'PUT', url: `/works/${work.id}/story-bible`, payload: fullBible });
+    await app.inject({ method: 'POST', url: `/works/${work.id}/story-bible/review`, payload: {} });
+    await app.inject({ method: 'POST', url: `/works/${work.id}/story-bible/lock`, payload: {} });
+    const frozen = await app.inject({ method: 'GET', url: `/works/${work.id}/manuscripts/${firstManuscript.json().manuscript.id}/export` });
+    assert.equal(frozen.statusCode, 200);
+    assert.equal(frozen.json().storyBible.revision, firstManuscript.json().manuscript.storyBibleRevision);
+    assert.equal(frozen.json().storyBible.volumes.reduce((sum: number, volume: { plannedChapterCount: number }) => sum + volume.plannedChapterCount, 0), 100);
+    assert.equal(frozen.json().closureCoverage.ready, true);
     await approvePlanViaApi(app.inject.bind(app), work.id, minimalPlan(450, { volumeSize: 150, outlined: 450 }));
     const started = await app.inject({ method: 'POST', url: `/works/${work.id}/milestones/450/start`, payload: {} });
     assert.equal(started.statusCode, 202, started.body);
     assert.equal(started.json().milestone.targetChapter, 450);
-    assert.equal((previousBibleForExpansion as typeof design.bible).id, design.bible.id);
+    assert.equal(previousBibleForExpansion, undefined);
     for (let attempt = 0; attempt < 60; attempt += 1) {
       const status = await app.inject({ method: 'GET', url: `/works/${work.id}/runs` });
       if (status.json().checkpoints.some((checkpoint: { runId: string; nextChapter: number }) => checkpoint.runId === started.json().runId && checkpoint.nextChapter === 451)) break;

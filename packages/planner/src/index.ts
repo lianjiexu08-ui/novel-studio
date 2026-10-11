@@ -3,7 +3,7 @@ import { parseChapterOutlines, parseGenerateChapterResponse, parsePlanSkeleton, 
 import type { ChapterOutlineContract, PlanSkeletonContract } from 'novel-studio-contracts';
 import { addUsage, emptyUsage } from '../../../novel-service-core/src/core.ts';
 import type { ContextManifest, CreativeCovenant, GeneratedChapter, ModelProvider, RunUsage, Work } from '../../../novel-service-core/src/core.ts';
-import { validateWorldPack } from '../../../novel-service-core/src/world.ts';
+import { normalizeFactionResources, validateWorldPack } from '../../../novel-service-core/src/world.ts';
 import type { StoryBible, WorldPack } from '../../../novel-service-core/src/world.ts';
 
 export interface PlanningClient {
@@ -34,8 +34,11 @@ export class JsonDesignPlanner implements DesignPlanner {
       user: JSON.stringify({ task: 'generate_world_skeleton', title: input.title, covenant: input.covenant, targetChapters }, null, 2),
       maxOutputTokens: 10_000,
     }, 'skeleton');
-    const complete = tryParseWorldPack(skeleton);
+    const parsedComplete = tryParseWorldPack(skeleton);
+    const complete = parsedComplete ? normalizeFactionResources(parsedComplete) : undefined;
     if (complete) {
+      const structural = validateWorldPack(complete);
+      if (!structural.ready) throw new PlanningParseError(`world pack is invalid: ${structural.errors.join('; ')}`);
       assertWorldPackScale(complete, targetChapters);
       return complete;
     }
@@ -52,10 +55,10 @@ export class JsonDesignPlanner implements DesignPlanner {
     const history = await completeWorldStage(this.client, {
       system: worldHistorySystem + worldHistoryShape,
       user: JSON.stringify({ task: 'generate_world_history', title: input.title, covenant: input.covenant, targetChapters, skeleton, geography, power }, null, 2),
-      maxOutputTokens: input.targetChapterCount >= 450 ? 20_000 : 8_000,
+      maxOutputTokens: targetChapters >= 450 ? 20_000 : 8_000,
     }, 'history');
     const merged = mergeWorldStages(input.title, skeleton, geography, power, history);
-    const result = parseWorldPack(merged) as WorldPack;
+    const result = normalizeFactionResources(parseWorldPack(merged) as WorldPack);
     const structural = validateWorldPack(result);
     if (!structural.ready) throw new PlanningParseError(`merged world pack is invalid: ${structural.errors.join('; ')}`);
     assertWorldPackScale(result, targetChapters);

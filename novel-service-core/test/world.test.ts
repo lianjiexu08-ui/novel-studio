@@ -111,3 +111,26 @@ test('chapter generation revalidates locked design data instead of trusting stat
   assert.ok(result.errors.some((error) => error.includes('world pack requires')));
   assert.ok(result.errors.some((error) => error.includes('cannot connect a character to itself')));
 });
+
+test('staged resource aliases resolve by name rather than a shared numeric suffix', async () => {
+  const { normalizeFactionResources } = await import('../src/world.ts');
+  const world = reviewedWorld();
+  world.resources[0].id = 'res_09';
+  world.resources.push({ ...world.resources[0], id: 'res_01', name: '玄铁' });
+  world.terminology.push({ id: 'term_res_01', canonical: '灵石', aliases: [], kind: 'resource', status: 'proposed' });
+  world.factions[0].resources = ['term_res_01', 'term_missing'];
+  const normalized = normalizeFactionResources(world);
+  assert.deepEqual(normalized.factions[0].resources, ['res_09', 'term_missing']);
+  assert.deepEqual(world.factions[0].resources, ['term_res_01', 'term_missing']);
+  assert.match(validateWorldPack(normalized).errors.join(';'), /term_missing/);
+  world.resources.push({ ...world.resources[0], id: 'duplicate-name' });
+  assert.equal(normalizeFactionResources(world).factions[0].resources[0], 'term_res_01');
+});
+
+test('assets must use a declared tier when their ladder is present', () => {
+  const world = reviewedWorld();
+  world.tierLadders = [{ id: 'artifact-tiers', kind: 'artifact', name: '法宝品阶', levels: ['凡器', '灵器'], rule: '高阶需要更多灵力', status: 'proposed' }];
+  assert.match(validateWorldPack(world).errors.join(';'), /tier 一阶 is not/);
+  world.artifacts[0].tier = '灵器';
+  assert.equal(validateWorldPack(world).ready, true);
+});

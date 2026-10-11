@@ -2,6 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { closureCoverageFor, NovelService, passChecker, qualityAuditFor } from '../src/core.ts';
 import { lockStoryBible, lockWorldPack } from '../src/world.ts';
+import { minimalPlan } from '../../packages/application/test/fixtures.ts';
+import { createPlanRevision } from '../src/planning.ts';
 import type { StoryBible, WorldPack } from '../src/world.ts';
 
 const provider = {
@@ -119,4 +121,57 @@ test('closure coverage can be scoped to the manuscript design revision', () => {
   work.recordDesignRevision('story_bible', expanded);
   assert.equal(closureCoverageFor(work, 100, { storyBibleRevision: originalRevision }).expected.volumes, 3);
   assert.equal(closureCoverageFor(work, 100).expected.volumes, 4);
+});
+
+test('written chapters do not substitute for explicit closure evidence', () => {
+  const design = lockedDesign();
+  const service = new NovelService(provider);
+  const work = service.createWork('不能用已写完代替已收束');
+  service.setWorldPack(work.id, design.world);
+  service.setStoryBible(work.id, design.bible);
+  service.runUntil(work.id, 100, [passChecker], 'closure-evidence');
+  const plan = createPlanRevision(work, minimalPlan(100, { outlined: 100 }), { source: 'author' });
+  plan.status = 'approved';
+  work.activePlanId = plan.id;
+  for (const version of work.adoptedVersions()) work.events.set(`plot-${version.id}`, {
+    id: `plot-${version.id}`, workId: work.id, chapterVersionId: version.id, chapterNumber: version.chapterNumber,
+    eventType: 'plot_progress', subjectId: `chapter-${version.chapterNumber}`, predicate: 'status', value: { status: 'realized' }, evidence: '章纲已完成', active: true,
+  });
+  for (const event of work.events.values()) if (event.eventType === 'volume_progress' || event.eventType === 'arc_progress') event.value = { status: 'active' };
+  assert.equal(work.adoptedVersions().length, 100);
+  assert.equal(closureCoverageFor(work, 100).ready, false);
+  assert.throws(() => service.finalizeManuscript(work.id), /closure gate blocked/);
+  assert.equal(closureCoverageFor(work, 100, { storyBibleRevision: 999 }).ready, false);
+});
+
+test('manuscript closure is isolated from later design and event activity changes', () => {
+  const design = lockedDesign();
+  const service = new NovelService(provider);
+  const work = service.createWork('成稿证据范围');
+  service.setWorldPack(work.id, design.world);
+  service.setStoryBible(work.id, design.bible);
+  service.runUntil(work.id, 100, [passChecker], 'frozen-evidence');
+  const manuscript = service.finalizeManuscript(work.id);
+  for (const event of work.events.values()) event.active = false;
+  work.storyBible = { ...design.bible, revision: 99, secrets: [{ ...design.bible.secrets![0], id: 'future-secret' }] };
+  assert.equal(closureCoverageFor(work, 100).ready, false);
+  assert.equal(closureCoverageFor(work, 100, manuscript).ready, true);
+});
+
+test('audit checks actual volume ranges and keeps deferred questions visible', () => {
+  const design = lockedDesign();
+  const service = new NovelService(provider);
+  const work = service.createWork('卷数相同也不能忽略范围');
+  service.setWorldPack(work.id, design.world);
+  service.setStoryBible(work.id, design.bible);
+  work.worldPack!.unresolvedQuestions.push({ id: 'later', question: '资源从哪里来？', blocking: false, status: 'deferred' });
+  const plan = minimalPlan(100, { volumeSize: 34, outlined: 100 });
+  plan.volumes.forEach((volume, index) => { volume.id = design.bible.volumes[index].id; });
+  const revision = createPlanRevision(work, plan, { source: 'author' });
+  revision.status = 'approved'; work.activePlanId = revision.id;
+  const audit = qualityAuditFor(work);
+  assert.equal(plan.volumeCount, design.bible.volumes.length);
+  assert.ok(audit.findings.some((finding) => finding.id === 'plan-volume-range-vol-1'));
+  assert.ok(audit.findings.some((finding) => finding.id === 'world-open-questions'));
+  assert.equal(audit.narrativeQuality, 'not_assessed');
 });

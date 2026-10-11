@@ -1,7 +1,7 @@
 import { createHash, randomUUID } from 'node:crypto';
 import { chapterGenerationGate, validateStoryBible, validateWorldPack } from './world.ts';
 import type { StoryBible, WorldPack } from './world.ts';
-import { activePlan, effectiveBrief, planBlockers, planRealization } from './planning.ts';
+import { activePlan, effectiveBrief, planBlockers } from './planning.ts';
 import type { ChapterBrief, PlanRevision } from './planning.ts';
 
 const id = (prefix: string) => `${prefix}_${randomUUID().replaceAll('-', '')}`;
@@ -449,6 +449,8 @@ export interface QualityAuditFinding {
 
 export interface QualityAudit {
   status: 'ready' | 'needs_review' | 'blocked';
+  reviewScope: 'structural_only';
+  narrativeQuality: 'not_assessed';
   scope: {
     currentWorldPackRevision?: number;
     currentStoryBibleRevision?: number;
@@ -1006,21 +1008,18 @@ export class NovelService {
   }
 }
 
-function storyBibleSnapshotFor(work: Work, revision?: number): StoryBible | undefined {
-  if (revision === undefined) return work.storyBible;
+export function designSnapshotFor(work: Work, kind: DesignRevisionKind, revision: number): WorldPack | StoryBible | undefined {
   const entry = [...work.designHistory.values()]
-    .filter((item) => item.kind === 'story_bible' && item.revision === revision)
+    .filter((item) => item.kind === kind && item.revision === revision)
     .sort((a, b) => b.createdAt.localeCompare(a.createdAt))[0];
-  return entry?.snapshot as StoryBible | undefined;
+  const current = kind === 'world_pack' ? work.worldPack : work.storyBible;
+  return entry?.snapshot ?? (current?.revision === revision ? current : undefined);
 }
 
 /** Requires every seeded arc/secret/promise/thread to leave a final adopted event. */
-export function closureCoverageFor(work: Work, chapterNumber: number, options: { storyBibleRevision?: number } = {}): ClosureCoverage {
-  // A plan and a manuscript are bound to the Story Bible revision they were
-  // reviewed against.  A later proposed/locked expansion must not make an
-  // already-finalized shorter manuscript appear unfinished.
-  const plan = activePlan(work);
-  const bible = storyBibleSnapshotFor(work, options.storyBibleRevision ?? plan?.storyBibleRevision) ?? work.storyBible;
+export function closureCoverageFor(work: Work, chapterNumber: number, options: { storyBibleRevision?: number; chapterVersionIds?: string[] } = {}): ClosureCoverage {
+  const bible = options.storyBibleRevision === undefined ? work.storyBible
+    : designSnapshotFor(work, 'story_bible', options.storyBibleRevision) as StoryBible | undefined;
   const expected = {
     volumes: bible?.volumes.length ?? 0,
     arcs: bible?.arcs.length ?? 0,
@@ -1029,38 +1028,24 @@ export function closureCoverageFor(work: Work, chapterNumber: number, options: {
     threads: bible?.openThreads?.length ?? 0,
   };
   const errors: string[] = [];
-  const active = [...work.events.values()].filter((event) => event.active && event.chapterNumber <= chapterNumber);
+  if (!bible) errors.push('story bible snapshot is missing; closure cannot be verified');
+  const versionIds = options.chapterVersionIds ? new Set(options.chapterVersionIds) : undefined;
+  const active = [...work.events.values()].filter((event) => (versionIds ? versionIds.has(event.chapterVersionId) : event.active) && event.chapterNumber <= chapterNumber);
   const finalValue = (eventType: string, subjectId: string) => active
     .filter((event) => event.eventType === eventType && event.subjectId === subjectId)
     .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id))
     .at(-1)?.value;
   const statusOf = (value: unknown) => value && typeof value === 'object' && 'status' in value ? String((value as { status?: unknown }).status) : '';
-  const approvedPlan = plan;
-  const realizedNodes = approvedPlan ? planRealization(work, approvedPlan).nodes.filter((node) => node.kind === 'chapter' && node.status === 'realized') : [];
-  const realizedChapters = new Set(realizedNodes.map((node) => node.startChapter));
-  const rangeComplete = (start: number, end: number) => start <= chapterNumber && end <= chapterNumber
-    && end >= start && Array.from({ length: end - start + 1 }, (_, index) => start + index).every((chapter) => realizedChapters.has(chapter));
-  const volumeInferredComplete = (volume: NonNullable<StoryBible['volumes']>[number]) => {
-    const outlines = approvedPlan?.plan.chapters.filter((outline) => outline.volumeId === volume.id) ?? [];
-    const volumeStart = (bible?.volumes ?? []).filter((item) => item.order < volume.order).reduce((sum, item) => sum + item.plannedChapterCount, 0) + 1;
-    return outlines.length > 0
-      ? outlines.every((outline) => realizedChapters.has(outline.chapterNumber))
-      : rangeComplete(volumeStart, volumeStart + volume.plannedChapterCount - 1);
-  };
-  const arcInferredComplete = (arcId: string) => {
-    const beats = (bible?.arcBeats ?? []).filter((beat) => beat.arcId === arcId);
-    return beats.length > 0 && beats.every((beat) => beat.plannedChapter !== undefined && realizedChapters.has(beat.plannedChapter));
-  };
   let volumes = 0;
   for (const volume of bible?.volumes ?? []) {
     const status = statusOf(finalValue('volume_progress', volume.id));
-    if (status === 'resolved' || status === 'diverged' || (['', 'active', 'open', 'partial'].includes(status) && volumeInferredComplete(volume))) volumes += 1;
+    if (status === 'resolved' || status === 'diverged') volumes += 1;
     else errors.push(`volume ${volume.id} has no resolved or diverged evidence`);
   }
   let arcs = 0;
   for (const arc of bible?.arcs ?? []) {
     const status = statusOf(finalValue('arc_progress', arc.id));
-    if (status === 'resolved' || status === 'diverged' || (['', 'active', 'open', 'partial'].includes(status) && arcInferredComplete(arc.id))) arcs += 1;
+    if (status === 'resolved' || status === 'diverged') arcs += 1;
     else errors.push(`arc ${arc.id} has no resolved or diverged evidence`);
   }
   let secrets = 0;
@@ -1106,6 +1091,8 @@ export function qualityAuditFor(work: Work): QualityAudit {
   if (!bible) add({ id: 'bible-missing', area: 'story', severity: 'error', message: '尚未生成故事圣经。', recommendation: '先生成并审阅人物、关系、故事线和分卷结构。' });
 
   if (world) {
+    if (world.status !== 'locked') add({ id: 'world-not-approved', area: 'world', severity: 'warning', message: '世界包修订尚未锁定，结构检查不代表创作审核通过。' });
+    for (const question of world.unresolvedQuestions.filter((item) => item.blocking && item.status === 'open')) add({ id: `world-question-${question.id}`, area: 'world', severity: 'error', message: question.question });
     const result = validateWorldPack(world);
     for (const [index, message] of result.errors.entries()) add({ id: `world-validator-${index}`, area: 'world', severity: 'error', message, recommendation: '修正引用或重新生成对应世界设定。' });
     for (const [index, message] of result.warnings.entries()) add({ id: `world-warning-${index}`, area: 'world', severity: 'warning', message });
@@ -1116,26 +1103,30 @@ export function qualityAuditFor(work: Work): QualityAudit {
         ['resources', 18, world.resources.length], ['locations', 18, world.locations.length], ['factions', 12, world.factions.length], ['historicalEvents', 18, world.historicalEvents.length],
       ];
       for (const [label, minimum, actual] of minimums) if (actual < minimum) add({
-        id: `world-scale-${label}`, area: 'world', severity: 'error',
-        message: `450 章规模的世界包 ${label} 只有 ${actual} 项，建议至少 ${minimum} 项。`,
+        id: `world-scale-${label}`, area: 'world', severity: 'warning',
+        message: `${longTarget} 章规模的世界包 ${label} 只有 ${actual} 项，建议至少 ${minimum} 项。`,
         recommendation: '扩展世界设定并逐项绑定等级、代价、来源和出场范围，再进入长篇计划。',
       });
-      if (continentCount < 5) add({ id: 'world-scale-continents', area: 'world', severity: 'error', message: `450 章规模只有 ${continentCount} 块大陆，建议至少 5 块。`, recommendation: '补齐大陆之间的资源、交通、势力和历史差异。' });
+      if (continentCount < 5) add({ id: 'world-scale-continents', area: 'world', severity: 'info', message: `当前覆盖 ${continentCount} 块大陆；大陆数量不能证明长篇质量。`, recommendation: '按故事需要检查各大陆的资源、交通、势力和历史差异，保留作者指定的地理规模。' });
     }
     const ladderKinds = new Set((world.tierLadders ?? []).map((ladder) => ladder.kind));
     for (const kind of ['realm', 'technique', 'artifact', 'resource'] as const) if (!ladderKinds.has(kind)) add({ id: `power-ladder-${kind}`, area: 'power', severity: 'error', message: `缺少${kind}等级阶梯。`, recommendation: '为每类对象定义统一等级名称和晋升/使用规则。' });
-    const realmRanks = [...world.realms].sort((a, b) => a.rank - b.rank).map((realm) => realm.rank);
-    if (realmRanks.some((rank, index) => index > 0 && rank <= realmRanks[index - 1])) add({ id: 'power-realm-rank', area: 'power', severity: 'error', message: '境界 rank 存在重复或未严格递进。', recommendation: '修正境界顺序，明确跨境界的能力、代价和克制关系。' });
-    const openWorldQuestions = world.unresolvedQuestions.filter((question) => question.status === 'open');
+    for (const system of world.powerSystems) {
+      const ranks = world.realms.filter((realm) => realm.systemId === system.id).map((realm) => realm.rank);
+      if (new Set(ranks).size !== ranks.length) add({ id: `power-realm-rank-${system.id}`, area: 'power', severity: 'error', message: `力量体系 ${system.name} 内存在重复境界 rank。` });
+    }
+    const openWorldQuestions = world.unresolvedQuestions.filter((question) => question.status !== 'resolved');
     if (openWorldQuestions.length) add({ id: 'world-open-questions', area: 'timeline', severity: 'warning', message: `世界包仍有 ${openWorldQuestions.length} 个未决问题。`, evidence: openWorldQuestions.slice(0, 3).map((question) => question.question).join('；'), recommendation: '为每个问题标记本卷解决点或明确延后到哪一卷。' });
   }
 
   if (world && bible) {
+    if (bible.status !== 'locked') add({ id: 'story-not-approved', area: 'story', severity: 'warning', message: '故事圣经修订尚未锁定，人物与情节仍待审核。' });
+    if (bible.worldPackId !== world.id || bible.worldPackRevision !== world.revision) add({ id: 'story-world-revision-drift', area: 'story', severity: 'error', message: '故事圣经引用的世界包版本与当前世界包不一致。' });
+    for (const question of bible.unresolvedQuestions.filter((item) => item.blocking && item.status === 'open')) add({ id: `story-question-${question.id}`, area: 'story', severity: 'error', message: question.question });
     const result = validateStoryBible(bible, world);
     for (const [index, message] of result.errors.entries()) add({ id: `bible-validator-${index}`, area: 'story', severity: 'error', message, recommendation: '修正故事圣经中的人物、地点、势力、弧线和章纲引用。' });
     for (const [index, message] of result.warnings.entries()) add({ id: `bible-warning-${index}`, area: 'story', severity: 'warning', message });
     const characterIds = new Set(bible.characters.map((character) => character.id));
-    const arcIds = new Set(bible.arcs.map((arc) => arc.id));
     const arcsInVolumes = new Set(bible.volumes.flatMap((volume) => volume.arcIds));
     for (const arc of bible.arcs) if (!arcsInVolumes.has(arc.id)) add({ id: `story-unplaced-arc-${arc.id}`, area: 'story', severity: 'error', message: `故事弧线 ${arc.id} 没有放入任何一卷。`, recommendation: '把弧线绑定到明确的卷和高潮节点。' });
     for (const arc of bible.arcs) if (!(bible.arcBeats ?? []).some((beat) => beat.arcId === arc.id)) add({ id: `story-empty-arc-${arc.id}`, area: 'story', severity: 'error', message: `故事弧线 ${arc.id} 没有节拍。`, recommendation: '至少定义触发、代价、转折和结果节拍。' });
@@ -1157,28 +1148,43 @@ export function qualityAuditFor(work: Work): QualityAudit {
     if (plans.length >= 50) {
       const opening = plans.slice(0, 50);
       const emptyLocationPlans = opening.filter((chapter) => chapter.locationIds.length === 0).length;
-      const emptyBeatPlans = opening.filter((chapter) => chapter.arcBeatIds.length === 0).length;
+      const scheduledBeats = (bible.arcBeats ?? []).filter((beat) => beat.plannedChapter !== undefined && beat.plannedChapter <= 50);
+      const unlinkedBeats = scheduledBeats.filter((beat) => !opening.some((chapter) => chapter.chapterNumber === beat.plannedChapter && chapter.arcBeatIds.includes(beat.id)));
       if (emptyLocationPlans > 0) add({ id: 'story-opening-locations', area: 'timeline', severity: 'warning', message: `前 50 章有 ${emptyLocationPlans} 章没有绑定地点。`, recommendation: '把每章的地点写入章纲，避免写作时临场跳场。' });
-      if (emptyBeatPlans > 0) add({ id: 'story-opening-beats', area: 'story', severity: 'warning', message: `前 50 章有 ${emptyBeatPlans} 章没有绑定弧线节拍。`, recommendation: '把章纲与人物弧线节拍绑定，确保每章推进可审计。' });
+      if (unlinkedBeats.length) add({ id: 'story-opening-beats', area: 'story', severity: 'warning', message: `前 50 章有 ${unlinkedBeats.length} 个已计划节拍未绑定到对应章纲。`, evidence: unlinkedBeats.map((beat) => beat.id).join('、'), recommendation: '仅在对应剧情发生的章节绑定节拍，普通过渡章无需强行绑定。' });
       const chapterCharacters = new Set(opening.flatMap((chapter) => chapter.characterIds));
       const missingOpeningCharacters = bible.characters.filter((character) => character.role === 'major' && !chapterCharacters.has(character.id));
       if (missingOpeningCharacters.length) add({ id: 'story-opening-major-characters', area: 'characters', severity: 'warning', message: `前 50 章没有安排 ${missingOpeningCharacters.length} 名主要人物出场。`, evidence: missingOpeningCharacters.map((character) => character.name).join('、'), recommendation: '明确主要人物首次出场章和首个有效行动。' });
     }
     const outOfRangeBeats = (bible.arcBeats ?? []).filter((beat) => beat.plannedChapter !== undefined && (beat.plannedChapter < 1 || beat.plannedChapter > bibleTarget));
     if (outOfRangeBeats.length) add({ id: 'story-beat-range', area: 'timeline', severity: 'error', message: `${outOfRangeBeats.length} 个弧线节拍超出故事总章数范围。` });
-    const openStoryQuestions = bible.unresolvedQuestions.filter((question) => question.status === 'open');
+    const openStoryQuestions = bible.unresolvedQuestions.filter((question) => question.status !== 'resolved');
     if (openStoryQuestions.length) add({ id: 'story-open-questions', area: 'story', severity: 'warning', message: `故事圣经仍有 ${openStoryQuestions.length} 个未决问题。`, recommendation: '将问题绑定到卷末揭示或明确保留到终局。' });
     if (plan) {
+      let start = 1;
+      for (const volume of [...bible.volumes].sort((a, b) => a.order - b.order)) {
+        const end = start + volume.plannedChapterCount - 1;
+        const planned = plan.plan.volumes.find((item) => item.id === volume.id);
+        if (!planned || planned.startChapter !== start || planned.endChapter !== end) add({ id: `plan-volume-range-${volume.id}`, area: 'plan', severity: 'error', message: `卷 ${volume.id} 的章节范围与故事圣经 ${start}–${end} 不一致。` });
+        start = end + 1;
+      }
+      if (plan.worldPackRevision !== world.revision) add({ id: 'plan-world-revision-drift', area: 'plan', severity: 'error', message: '批准计划引用的世界包版本已过期。' });
       if (plan.plan.targetChapterCount !== bibleTarget) add({ id: 'plan-target-drift', area: 'plan', severity: 'error', message: `批准计划是 ${plan.plan.targetChapterCount} 章，当前故事圣经是 ${bibleTarget} 章。`, recommendation: '先完成计划与故事圣经的版本对齐，再生成后续章纲。' });
       if (plan.plan.volumeCount !== bible.volumes.length) add({ id: 'plan-volume-drift', area: 'plan', severity: 'error', message: `批准计划是 ${plan.plan.volumeCount} 卷，当前故事圣经是 ${bible.volumes.length} 卷。`, recommendation: '不要在分卷结构不一致时继续写作。' });
       if (plan.storyBibleRevision !== undefined && plan.storyBibleRevision !== bible.revision) add({ id: 'plan-bible-revision-drift', area: 'plan', severity: 'error', message: `批准计划基于故事圣经 revision ${plan.storyBibleRevision}，当前是 revision ${bible.revision}。`, recommendation: '将当前扩写标记为提案，重新审阅并批准与之匹配的计划。' });
     }
   }
 
-  if (manuscript && bible && manuscript.storyBibleRevision !== bible.revision) add({ id: 'manuscript-design-drift', area: 'manuscript', severity: 'warning', message: `现有成稿绑定故事圣经 revision ${manuscript.storyBibleRevision}，当前设计是 revision ${bible.revision}；成稿应继续按自身绑定版本验收。`, recommendation: '先完成新设计的审计和新计划，再把它作为后续卷扩展。' });
+  if (manuscript && bible && manuscript.storyBibleRevision !== bible.revision) add({ id: 'manuscript-design-drift', area: 'manuscript', severity: 'info', message: `现有成稿绑定故事圣经 revision ${manuscript.storyBibleRevision}，当前设计是 revision ${bible.revision}；成稿继续按自身绑定版本验收。`, recommendation: '后续扩写从当前批准设计开始，不回写已完成成稿。' });
+  if (manuscript) {
+    const closure = closureCoverageFor(work, manuscript.chapterCount, manuscript);
+    if (!closure.ready) add({ id: 'manuscript-closure-evidence', area: 'manuscript', severity: 'error', message: '成稿缺少明确收束证据；章节已写完不等于故事线已完成。', evidence: closure.errors.join('; '), recommendation: '按成稿绑定版本核对正文和事实记录，不自动伪造收束事件。' });
+  }
   const status = findings.some((finding) => finding.severity === 'error') ? 'blocked' : findings.some((finding) => finding.severity === 'warning') ? 'needs_review' : 'ready';
   return {
     status,
+    reviewScope: 'structural_only',
+    narrativeQuality: 'not_assessed',
     scope: {
       currentWorldPackRevision: world?.revision,
       currentStoryBibleRevision: bible?.revision,

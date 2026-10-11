@@ -46,6 +46,7 @@ import {
   chapterLengthChecker,
   contextManifestFor,
   closureCoverageFor,
+  designSnapshotFor,
   qualityAuditFor,
   observedEventsChecker,
   passChecker,
@@ -552,17 +553,20 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     const chapters = manuscript.chapterVersionIds.map((versionId) => work.versions.get(versionId)).filter((version): version is NonNullable<typeof version> => Boolean(version));
     if (chapters.length !== manuscript.chapterVersionIds.length) throw new Error('manuscript references missing chapter versions');
     const chapterIds = new Set(manuscript.chapterVersionIds);
+    const worldPack = designSnapshotFor(work, 'world_pack', manuscript.worldPackRevision);
+    const storyBible = designSnapshotFor(work, 'story_bible', manuscript.storyBibleRevision);
+    if (!worldPack || !storyBible) throw new CanonGateError('manuscript design snapshot is missing; export cannot substitute the current design');
     return {
       work: { id: work.id, title: work.title, covenant: work.covenant },
-      worldPack: work.worldPack,
-      storyBible: work.storyBible,
+      worldPack,
+      storyBible,
       designHistory: [...work.designHistory.values()].sort((a, b) => a.createdAt.localeCompare(b.createdAt)),
       manuscript: toManuscriptDto(manuscript),
       chapters: chapters.map((chapter) => ({ id: chapter.id, chapterNumber: chapter.chapterNumber, content: chapter.content, revision: chapter.revision })),
       events: [...work.events.values()]
-        .filter((event) => event.active && chapterIds.has(event.chapterVersionId))
+        .filter((event) => chapterIds.has(event.chapterVersionId))
         .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id)),
-      closureCoverage: closureCoverageFor(work, manuscript.chapterCount, { storyBibleRevision: manuscript.storyBibleRevision }),
+      closureCoverage: closureCoverageFor(work, manuscript.chapterCount, { storyBibleRevision: manuscript.storyBibleRevision, chapterVersionIds: manuscript.chapterVersionIds }),
     };
   });
 
@@ -762,23 +766,12 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     requireBatchRuns();
     const { workId } = workParamSchema.parse(request.params);
     const body = milestoneRequestSchema.parse(request.body ?? {});
-    let work = await repository.get(workId);
+    const work = await repository.get(workId);
     if (!work) throw new NotFoundError(`unknown work ${workId}`);
-    if (!work.worldPack) await workflow.generateWorldPack(workId);
-    work = await repository.get(workId);
-    if (!work?.worldPack) throw new Error('world pack generation did not produce a world pack');
-    if (work.worldPack.status !== 'locked') {
-      if (work.worldPack.status !== 'reviewed') await workflow.reviewWorldPack(workId);
-      await workflow.lockWorldPack(workId);
-    }
-    work = await repository.get(workId);
-    if (!work?.storyBible || plannedChapterCount(work) !== 450) await workflow.generateStoryBible(workId, 450, work?.storyBible);
-    work = await repository.get(workId);
-    if (!work?.storyBible) throw new Error('story bible generation did not produce a story bible');
-    if (plannedChapterCount(work) !== 450) throw new Error(`story bible must plan exactly 450 chapters (got ${plannedChapterCount(work)})`);
-    if (work.storyBible.status !== 'locked') {
-      if (work.storyBible.status !== 'reviewed') await workflow.reviewStoryBible(workId);
-      await workflow.lockStoryBible(workId);
+    // Starting a run must never generate, review, or lock an expansion.
+    // Authors prepare and review design revisions through the design routes.
+    if (work.worldPack?.status !== 'locked' || work.storyBible?.status !== 'locked' || plannedChapterCount(work) !== 450) {
+      throw new CanonGateError('450-chapter expansion requires a separately reviewed and locked design; the current design was not changed');
     }
     const runId = body.runId ?? `milestone-450:${workId}`;
     await launchBackgroundRun(workId, 450, runId);

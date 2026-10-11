@@ -304,6 +304,25 @@ function detectLocationCycle(locations: WorldLocation[], errors: string[]): void
   for (const location of locations) visit(location.id);
 }
 
+/** Resolve only exact IDs, unique names, or glossary names. Never infer by numeric suffix. */
+export function resolveWorldResource(pack: WorldPack, reference: string): ResourceDefinition | undefined {
+  const exact = pack.resources.filter((resource) => resource.id === reference);
+  if (exact.length === 1) return exact[0];
+  if (exact.length > 1) return undefined;
+  const terms = pack.terminology.filter((term) => term.kind === 'resource'
+    && (term.id === reference || term.canonical === reference || term.aliases.includes(reference)));
+  const names = new Set([reference, ...terms.flatMap((term) => [term.canonical, ...term.aliases])]);
+  const matches = pack.resources.filter((resource) => names.has(resource.name));
+  return matches.length === 1 ? matches[0] : undefined;
+}
+
+/** Resolves staged glossary placeholders without hiding unresolved references. */
+export function normalizeFactionResources(pack: WorldPack): WorldPack {
+  return { ...pack, factions: pack.factions.map((faction) => ({ ...faction,
+    resources: faction.resources.map((reference) => resolveWorldResource(pack, reference)?.id ?? reference),
+  })) };
+}
+
 export function validateWorldPack(pack: WorldPack): GateResult {
   const errors: string[] = [];
   const warnings: string[] = [];
@@ -318,7 +337,6 @@ export function validateWorldPack(pack: WorldPack): GateResult {
   collectIds(pack.resources, 'resources', errors);
   collectIds(pack.historicalEvents, 'historical events', errors);
   collectIds(pack.terminology, 'terminology', errors);
-  const resourceIds = new Set(pack.resources.map((resource) => resource.id));
 
   for (const system of pack.powerSystems) {
     for (const realmId of system.realmIds) if (!realmIds.has(realmId)) errors.push(`power system ${system.id} references unknown realm ${realmId}`);
@@ -331,10 +349,9 @@ export function validateWorldPack(pack: WorldPack): GateResult {
   }
   for (const faction of pack.factions) {
     for (const locationId of faction.locationIds) if (!locationIds.has(locationId)) errors.push(`faction ${faction.id} references unknown location ${locationId}`);
-    // Older hand-authored packs used display names here.  Enforce dangling
-    // references for canonical ID-shaped values while keeping those legacy
-    // packs migratable; generated packs use IDs such as res_01.
-    for (const resourceId of faction.resources) if (!resourceIds.has(resourceId) && /^[A-Za-z][A-Za-z0-9_-]*$/.test(resourceId)) errors.push(`faction ${faction.id} references unknown resource ${resourceId}`);
+    for (const reference of faction.resources) {
+      if (!resolveWorldResource(pack, reference)) errors.push(`faction ${faction.id} references unknown or ambiguous resource ${reference}`);
+    }
   }
   for (const event of pack.historicalEvents) {
     for (const factionId of event.factionIds) if (!factionIds.has(factionId)) errors.push(`historical event ${event.id} references unknown faction ${factionId}`);
@@ -342,6 +359,12 @@ export function validateWorldPack(pack: WorldPack): GateResult {
   for (const ladder of pack.tierLadders ?? []) {
     if (ladder.levels.length < 2) errors.push(`tier ladder ${ladder.id} must define at least two levels`);
     if (!['realm', 'technique', 'artifact', 'resource'].includes(ladder.kind)) errors.push(`tier ladder ${ladder.id} has an invalid kind`);
+  }
+  for (const [kind, items] of [['technique', pack.techniques], ['artifact', pack.artifacts], ['resource', pack.resources]] as const) {
+    const ladders = (pack.tierLadders ?? []).filter((ladder) => ladder.kind === kind);
+    if (!ladders.length) continue;
+    const levels = new Set(ladders.flatMap((ladder) => ladder.levels));
+    for (const item of items) if (!item.tier || !levels.has(item.tier)) errors.push(`${kind} ${item.id} tier ${item.tier ?? '(missing)'} is not in its tier ladder`);
   }
   detectLocationCycle(pack.locations, errors);
   if (!pack.title.trim()) errors.push('world pack title is required');
