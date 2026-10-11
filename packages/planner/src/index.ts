@@ -348,11 +348,42 @@ function readJson(text: string): unknown {
   try {
     return JSON.parse(normalized);
   } catch {
+    // Some compatible endpoints return literal newlines or tabs inside a
+    // JSON string containing the chapter. Escape only control characters
+    // encountered while inside a quoted string; formatting whitespace outside
+    // strings must remain untouched.
+    try {
+      return JSON.parse(escapeJsonStringControls(normalized));
+    } catch {
+      // Continue with the bounded object extraction below for prose wrappers.
+    }
     const start = normalized.indexOf('{');
     const end = normalized.lastIndexOf('}');
     if (start < 0 || end <= start) throw new PlanningParseError('planner response did not contain a JSON object');
-    try { return JSON.parse(normalized.slice(start, end + 1)); } catch (error) { throw new PlanningParseError(`planner JSON is invalid: ${String(error)}`); }
+    try { return JSON.parse(escapeJsonStringControls(normalized.slice(start, end + 1))); } catch (error) { throw new PlanningParseError(`planner JSON is invalid: ${String(error)}`); }
   }
+}
+
+function escapeJsonStringControls(input: string): string {
+  let result = '';
+  let inString = false;
+  let escaped = false;
+  for (const character of input) {
+    const code = character.charCodeAt(0);
+    if (inString && code < 0x20) {
+      if (character === '\n') result += '\\n';
+      else if (character === '\r') result += '\\r';
+      else if (character === '\t') result += '\\t';
+      else result += `\\u${code.toString(16).padStart(4, '0')}`;
+      escaped = false;
+      continue;
+    }
+    result += character;
+    if (character === '"' && !escaped) inString = !inString;
+    escaped = character === '\\' && !escaped;
+    if (character !== '\\') escaped = false;
+  }
+  return result;
 }
 
 async function completeValidated<T>(client: PlanningClient, request: CompletionInput, accept: (value: unknown) => T): Promise<T> {

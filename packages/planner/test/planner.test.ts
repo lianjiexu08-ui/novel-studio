@@ -66,6 +66,35 @@ test('network chapter provider rejects truncated JSON instead of saving it as pr
   }
 });
 
+test('network chapter provider escapes raw controls inside chapter JSON', async () => {
+  const server = createServer(async (_request, response) => {
+    response.writeHead(200, { 'content-type': 'application/json' });
+    // Deliberately place a literal newline inside the JSON content string.
+    response.end(JSON.stringify({ choices: [{ message: { content: '{"content":"第一行\n第二行","proposedEvents":[]}' } }] }));
+  });
+  await new Promise<void>((resolve) => server.listen(0, '127.0.0.1', resolve));
+  const address = server.address();
+  assert.ok(address && typeof address === 'object');
+  try {
+    const provider = new OpenAICompatibleChapterProvider(`http://127.0.0.1:${address.port}`, 'test-key', 'test-model', 10, 5_000, false);
+    const service = new NovelService(provider);
+    const work = service.createWork('控制字符章节', covenant);
+    const result = await provider.generateChapterAsync({
+      work,
+      chapterNumber: 1,
+      context: {
+        workId: work.id, chapterNumber: 1, stateRevision: 0, constraintRevision: 0,
+        adoptedVersionIds: [], includedEventIds: [], requiredMaterialStatus: 'complete',
+        omittedOptionalMaterial: [], estimatedTokens: 0, contextBudget: 10_000,
+        canonHash: 'canon', stateHash: 'state', createdAt: new Date().toISOString(),
+      },
+    });
+    assert.equal(result.content, '第一行\n第二行');
+  } finally {
+    await new Promise<void>((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
+  }
+});
+
 test('planner validates structured world pack responses', async () => {
   const response = {
     id: 'world-1', revision: 1, title: '九霄', summary: '三大陆', status: 'proposed',
