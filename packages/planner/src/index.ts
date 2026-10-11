@@ -258,7 +258,7 @@ export class OpenAICompatibleChapterProvider implements ModelProvider {
       .map((version) => ({ chapterNumber: version.chapterNumber, content: version.content }));
     const plan = input.work.storyBible ? chapterPlan(input.work.storyBible, input.chapterNumber) : undefined;
     const { brief, ...context } = input.context;
-    const draft = parseGenerateChapterResponse(await completeJsonWithRepair(client, {
+    const draft = normalizeGeneratedEvents(parseGenerateChapterResponse(await completeJsonWithRepair(client, {
       system: (this.independentExtraction ? chapterDraftSystem : chapterSystem) + (brief ? briefRule : ''),
       user: JSON.stringify({
         task: 'generate_chapter', chapterNumber: input.chapterNumber, title: input.work.title,
@@ -267,7 +267,7 @@ export class OpenAICompatibleChapterProvider implements ModelProvider {
       }, null, 2),
       maxOutputTokens: Math.max(4_000, Math.min(12_000, Math.ceil(input.work.covenant.chapterWords * 1.8))),
       role: 'writing',
-    }, '章节草稿')) as GeneratedChapter;
+    }, '章节草稿')) as GeneratedChapter, input.work.storyBible);
     if (!this.independentExtraction) return draft;
     const extracted = await completeJsonWithRepair(client, {
       system: extractionSystem + (brief ? extractionBriefRule : ''),
@@ -286,8 +286,24 @@ export class OpenAICompatibleChapterProvider implements ModelProvider {
       ? (extracted as { observedEvents?: unknown }).observedEvents
       : undefined;
     const validated = parseGenerateChapterResponse({ content: draft.content, proposedEvents: draft.proposedEvents, observedEvents: observed });
-    return { ...draft, observedEvents: validated.observedEvents as GeneratedChapter['observedEvents'] };
+    return normalizeGeneratedEvents({ ...draft, observedEvents: validated.observedEvents as GeneratedChapter['observedEvents'] }, input.work.storyBible);
   }
+}
+
+/** Models often use an arcBeat id when an event must update its parent arc.
+ * Normalize that unambiguous alias before the event is checked or extracted,
+ * so replayed story state always keys arc progress by the stable arc id. */
+function normalizeGeneratedEvents(chapter: GeneratedChapter, storyBible?: StoryBible): GeneratedChapter {
+  if (!storyBible?.arcBeats?.length) return chapter;
+  const beatToArc = new Map(storyBible.arcBeats.map((beat) => [beat.id, beat.arcId]));
+  const normalize = (event: GeneratedChapter['proposedEvents'][number]) => event.eventType === 'arc_progress' && beatToArc.has(event.subjectId)
+    ? { ...event, subjectId: beatToArc.get(event.subjectId)! }
+    : event;
+  return {
+    ...chapter,
+    proposedEvents: chapter.proposedEvents.map(normalize),
+    observedEvents: chapter.observedEvents?.map(normalize),
+  };
 }
 
 function chapterPlan(bible: StoryBible, chapterNumber: number): { volume?: StoryBible['volumes'][number]; openingPlan?: NonNullable<StoryBible['chapterPlans']>[number]; nearbyArcBeats: StoryBible['arcBeats']; duePromises: StoryBible['promises']; openThreads: StoryBible['openThreads'] } {
