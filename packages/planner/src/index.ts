@@ -32,7 +32,7 @@ export class JsonDesignPlanner implements DesignPlanner {
     const skeleton = await completeValidated(this.client, {
       system: worldSkeletonSystem + worldSkeletonShape,
       user: JSON.stringify({ task: 'generate_world_skeleton', title: input.title, covenant: input.covenant, targetChapters }, null, 2),
-      maxOutputTokens: 7_000,
+      maxOutputTokens: 10_000,
     }, parseWorldStage('skeleton'));
     const complete = tryParseWorldPack(skeleton);
     if (complete) {
@@ -42,17 +42,17 @@ export class JsonDesignPlanner implements DesignPlanner {
     const geography = await completeValidated(this.client, {
       system: worldGeographySystem + worldGeographyShape,
       user: JSON.stringify({ task: 'generate_world_geography_and_factions', title: input.title, covenant: input.covenant, targetChapters, skeleton }, null, 2),
-      maxOutputTokens: 7_000,
+      maxOutputTokens: 10_000,
     }, parseWorldStage('geography'));
     const power = await completeValidated(this.client, {
       system: worldPowerSystem + worldPowerShape,
       user: JSON.stringify({ task: 'generate_world_power_and_assets', title: input.title, covenant: input.covenant, targetChapters, skeleton, geography }, null, 2),
-      maxOutputTokens: 7_000,
+      maxOutputTokens: 10_000,
     }, parseWorldStage('power'));
     const history = await completeValidated(this.client, {
       system: worldHistorySystem + worldHistoryShape,
       user: JSON.stringify({ task: 'generate_world_history', title: input.title, covenant: input.covenant, targetChapters, skeleton, geography, power }, null, 2),
-      maxOutputTokens: 6_000,
+      maxOutputTokens: 8_000,
     }, parseWorldStage('history'));
     const merged = mergeWorldStages(input.title, skeleton, geography, power, history);
     const result = parseWorldPack(merged) as WorldPack;
@@ -469,7 +469,7 @@ function assertStoryBibleContinuity(previous: StoryBible, next: StoryBible): voi
   if (missing.length) throw new PlanningParseError(`expanded story bible dropped stable IDs: ${missing.join(', ')}`);
 }
 
-const worldSkeletonSystem = `你是长篇玄幻小说世界观的第一阶段骨架规划器。只返回一个 JSON 对象，不要 Markdown，不要解释。只生成世界 ID、标题、摘要、公理、力量系统名称和连续境界骨架，以及四条明确的等级阶梯（realm、technique、artifact、resource）、术语和未决问题；不要生成大陆、势力、历史、功法、法宝或资源实体。境界必须有清晰的 rank、前置、能力、代价和反制；力量系统至少一个、境界至少八个。每条等级阶梯写出至少六个有顺序的等级名称和跨级规则，后续阶段的每个功法、法宝、资源都必须引用对应等级。ID 在后续阶段保持稳定。关键问题必须直接定案，只有不影响开篇的探索项才可 deferred 且 blocking=false。所有状态使用 proposed，createdAt 使用 ISO 8601 时间。`;
+const worldSkeletonSystem = `你是长篇玄幻小说世界观的第一阶段骨架规划器。只返回一个 JSON 对象，不要 Markdown，不要解释。只生成世界 ID、标题、摘要、公理、力量系统名称和连续境界骨架，以及四条明确的等级阶梯（realm、technique、artifact、resource）、术语和未决问题；不要生成大陆、势力、历史、功法、法宝或资源实体。境界至少八个，且每个对象的每个文本字段控制在 20 个汉字以内。每条等级阶梯写出至少六个简短、有顺序的等级名称和一句跨级规则，后续阶段的每个功法、法宝、资源都必须引用对应等级。ID 在后续阶段保持稳定。关键问题必须直接定案，只有不影响开篇的探索项才可 deferred 且 blocking=false。所有状态使用 proposed，createdAt 使用 ISO 8601 时间。`;
 const worldSkeletonShape = shapeIntro + [
   '顶层: {id, revision: 1, title, summary, status: "proposed", createdAt, axioms[], powerSystems[], tierLadders[], realms[], terminology[], unresolvedQuestions[]}',
   'axioms[]: {id, title, content, scope, precedence: 整数, status}',
