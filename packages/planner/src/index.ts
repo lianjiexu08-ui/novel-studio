@@ -293,7 +293,12 @@ export class OpenAICompatibleChapterProvider implements ModelProvider {
       ? (extracted as { observedEvents?: unknown }).observedEvents
       : undefined;
     const validated = parseGenerateChapterResponse(normalizeChapterEnvelope({ content: draft.content, proposedEvents: draft.proposedEvents, observedEvents: observed }));
-    return normalizeGeneratedEvents({ ...draft, observedEvents: validated.observedEvents as GeneratedChapter['observedEvents'] }, input.work.storyBible);
+    // The independent audit reads the final prose and is the authoritative
+    // event set. A writing model may omit a real change from proposedEvents;
+    // promoting the audited set keeps canon updates complete while the audit
+    // itself remains subject to strict contract and canon checks downstream.
+    const auditedEvents = (validated.observedEvents ?? []) as GeneratedChapter['observedEvents'];
+    return normalizeGeneratedEvents({ ...draft, proposedEvents: auditedEvents ?? [], observedEvents: auditedEvents }, input.work.storyBible);
   }
 }
 

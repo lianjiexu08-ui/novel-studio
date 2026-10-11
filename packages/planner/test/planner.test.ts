@@ -34,6 +34,30 @@ test('network chapter provider performs an independent extraction pass', async (
   }
 });
 
+test('network chapter provider promotes audited facts omitted by the writer', async () => {
+  let calls = 0;
+  const event = { eventType: 'plot_progress', subjectId: 'chapter-1', predicate: 'status', value: { status: 'realized' }, evidence: '正文完成章纲目标' };
+  const server = createServer(async (_request, response) => {
+    calls += 1;
+    const body = calls === 1 ? { content: '这一章正文', proposedEvents: [] } : { observedEvents: [event] };
+    response.writeHead(200, { 'content-type': 'application/json' });
+    response.end(JSON.stringify({ choices: [{ message: { content: JSON.stringify(body) } }], usage: { prompt_tokens: 1, completion_tokens: 1, cost_usd: 0 } }));
+  });
+  await new Promise<void>((resolve) => server.listen(0, '127.0.0.1', resolve));
+  const address = server.address();
+  assert.ok(address && typeof address === 'object');
+  try {
+    const provider = new OpenAICompatibleChapterProvider(`http://127.0.0.1:${address.port}`, 'test-key', 'test-model', 10, 5_000, true);
+    const service = new NovelService(provider);
+    const work = service.createWork('审计补全', covenant);
+    const candidate = await service.generateCandidateAsync(work.id, 1, 'audit-run');
+    assert.deepEqual(candidate.proposedEvents, [event]);
+    assert.deepEqual(candidate.observedEvents, [event]);
+  } finally {
+    await new Promise<void>((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
+  }
+});
+
 test('network chapter provider rejects truncated JSON instead of saving it as prose', async () => {
   let calls = 0;
   const server = createServer(async (_request, response) => {
