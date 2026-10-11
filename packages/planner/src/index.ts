@@ -274,7 +274,9 @@ export class OpenAICompatibleChapterProvider implements ModelProvider {
       user: JSON.stringify({
         task: 'extract_events', chapterNumber: input.chapterNumber, content: draft.content,
         writerProposedEvents: draft.proposedEvents,
-        worldPack: input.work.worldPack, storyBible: input.work.storyBible,
+        // The server-side canon checker validates IDs and references later.
+        // Keep this second model call focused on matching the draft's declared
+        // changes so a long world pack cannot crowd out the audit response.
         chapterBrief: brief ? { outlineId: brief.outlineId, mustDo: brief.mustDo, endState: brief.endState } : undefined,
       }, null, 2),
       maxOutputTokens: Math.max(1_500, Math.min(4_000, Math.ceil(input.work.covenant.chapterWords * 0.6))),
