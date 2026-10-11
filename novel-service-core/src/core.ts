@@ -1016,13 +1016,13 @@ export function closureCoverageFor(work: Work, chapterNumber: number): ClosureCo
   let volumes = 0;
   for (const volume of bible?.volumes ?? []) {
     const status = statusOf(finalValue('volume_progress', volume.id));
-    if (status === 'resolved' || status === 'diverged' || (!status && volumeInferredComplete(volume))) volumes += 1;
+    if (status === 'resolved' || status === 'diverged' || (['', 'active', 'open', 'partial'].includes(status) && volumeInferredComplete(volume))) volumes += 1;
     else errors.push(`volume ${volume.id} has no resolved or diverged evidence`);
   }
   let arcs = 0;
   for (const arc of bible?.arcs ?? []) {
     const status = statusOf(finalValue('arc_progress', arc.id));
-    if (status === 'resolved' || status === 'diverged' || (!status && arcInferredComplete(arc.id))) arcs += 1;
+    if (status === 'resolved' || status === 'diverged' || (['', 'active', 'open', 'partial'].includes(status) && arcInferredComplete(arc.id))) arcs += 1;
     else errors.push(`arc ${arc.id} has no resolved or diverged evidence`);
   }
   let secrets = 0;
