@@ -264,6 +264,7 @@ export class OpenAICompatibleChapterProvider implements ModelProvider {
         task: 'generate_chapter', chapterNumber: input.chapterNumber, title: input.work.title,
         covenant: input.work.covenant, worldPack: input.work.worldPack, storyBible: input.work.storyBible,
         chapterBrief: brief, context, currentPlan: plan, recentChapters,
+        eventSubjectCatalog: eventSubjectCatalog(input.work.storyBible, input.work.worldPack, input.chapterNumber),
       }, null, 2),
       maxOutputTokens: Math.max(4_000, Math.min(12_000, Math.ceil(input.work.covenant.chapterWords * 1.8))),
       role: 'writing',
@@ -288,6 +289,23 @@ export class OpenAICompatibleChapterProvider implements ModelProvider {
     const validated = parseGenerateChapterResponse({ content: draft.content, proposedEvents: draft.proposedEvents, observedEvents: observed });
     return normalizeGeneratedEvents({ ...draft, observedEvents: validated.observedEvents as GeneratedChapter['observedEvents'] }, input.work.storyBible);
   }
+}
+
+function eventSubjectCatalog(storyBible: StoryBible | undefined, worldPack: WorldPack | undefined, chapterNumber: number) {
+  return {
+    character_state: storyBible?.characters.map((item) => item.id) ?? [],
+    relationship_change: storyBible?.relationships.map((item) => item.id) ?? [],
+    resource_change: worldPack?.resources.map((item) => item.id) ?? [],
+    artifact_change: worldPack?.artifacts.map((item) => item.id) ?? [],
+    plot_progress: [`chapter-${chapterNumber}`, ...(storyBible?.chapterPlans?.filter((item) => item.chapterNumber === chapterNumber).map((item) => item.id) ?? [])],
+    volume_progress: storyBible?.volumes.map((item) => item.id) ?? [],
+    arc_progress: storyBible?.arcs.map((item) => item.id) ?? [],
+    secret_reveal: storyBible?.secrets.map((item) => item.id) ?? [],
+    promise_payoff: storyBible?.promises.map((item) => item.id) ?? [],
+    thread_resolution: storyBible?.openThreads.map((item) => item.id) ?? [],
+    knowledge_belief: storyBible?.characters.map((item) => item.id) ?? [],
+    arcBeatIdsAreNotArcIds: storyBible?.arcBeats.map((item) => item.id) ?? [],
+  };
 }
 
 /** Models often use an arcBeat id when an event must update its parent arc.
