@@ -29,31 +29,31 @@ export class JsonDesignPlanner implements DesignPlanner {
     // deliberately allowed to return a complete legacy pack so saved prompts
     // and offline fixtures remain compatible; production prompts ask for the
     // skeleton only and then continue through four dependent stages.
-    const skeleton = await completeValidated(this.client, {
+    const skeleton = await completeWorldStage(this.client, {
       system: worldSkeletonSystem + worldSkeletonShape,
       user: JSON.stringify({ task: 'generate_world_skeleton', title: input.title, covenant: input.covenant, targetChapters }, null, 2),
       maxOutputTokens: 10_000,
-    }, parseWorldStage('skeleton'));
+    }, 'skeleton');
     const complete = tryParseWorldPack(skeleton);
     if (complete) {
       assertWorldPackScale(complete, targetChapters);
       return complete;
     }
-    const geography = await completeValidated(this.client, {
+    const geography = await completeWorldStage(this.client, {
       system: worldGeographySystem + worldGeographyShape,
       user: JSON.stringify({ task: 'generate_world_geography_and_factions', title: input.title, covenant: input.covenant, targetChapters, skeleton }, null, 2),
       maxOutputTokens: 10_000,
-    }, parseWorldStage('geography'));
-    const power = await completeValidated(this.client, {
+    }, 'geography');
+    const power = await completeWorldStage(this.client, {
       system: worldPowerSystem + worldPowerShape,
       user: JSON.stringify({ task: 'generate_world_power_and_assets', title: input.title, covenant: input.covenant, targetChapters, skeleton, geography }, null, 2),
       maxOutputTokens: 10_000,
-    }, parseWorldStage('power'));
-    const history = await completeValidated(this.client, {
+    }, 'power');
+    const history = await completeWorldStage(this.client, {
       system: worldHistorySystem + worldHistoryShape,
       user: JSON.stringify({ task: 'generate_world_history', title: input.title, covenant: input.covenant, targetChapters, skeleton, geography, power }, null, 2),
       maxOutputTokens: 8_000,
-    }, parseWorldStage('history'));
+    }, 'history');
     const merged = mergeWorldStages(input.title, skeleton, geography, power, history);
     const result = parseWorldPack(merged) as WorldPack;
     const structural = validateWorldPack(result);
@@ -338,6 +338,25 @@ async function completeValidated<T>(client: PlanningClient, request: CompletionI
       if (!remaining) throw again;
       throw new PlanningParseError(`模型输出修正一次后仍不符合格式：${remaining}`);
     }
+  }
+}
+
+async function completeWorldStage(client: PlanningClient, request: CompletionInput, stage: 'skeleton' | 'geography' | 'power' | 'history'): Promise<WorldStage> {
+  const first = await client.complete(request);
+  try {
+    return parseWorldStage(stage)(readJson(first));
+  } catch (error) {
+    const problems = describeOutputProblems(error) ?? (error instanceof Error ? error.message : String(error));
+    // Do not echo a potentially huge/truncated full-world answer back to the
+    // model.  That was causing it to repeat the one-shot response instead of
+    // obeying the requested stage boundary.
+    const repaired = await client.complete({
+      system: request.system + `\n这是 ${stage} 阶段的修复请求。丢弃上一次完整世界包，只返回本阶段列出的字段；不要输出其他顶层字段。`,
+      user: JSON.stringify({ task: 'repair_previous_output', stage, instruction: '只返回本阶段的紧凑 JSON；不要复述完整世界包，不要 Markdown。', problems, originalRequest: JSON.parse(request.user) }, null, 2),
+      maxOutputTokens: request.maxOutputTokens,
+      role: request.role,
+    });
+    return parseWorldStage(stage)(readJson(repaired));
   }
 }
 
