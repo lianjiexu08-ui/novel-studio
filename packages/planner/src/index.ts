@@ -345,6 +345,9 @@ function normalizeGeneratedEvents(chapter: GeneratedChapter, storyBible?: StoryB
   const realmNameToId = new Map((worldPack?.realms ?? []).map((realm) => [realm.name, realm.id]));
   const locationNameToId = new Map((worldPack?.locations ?? []).map((location) => [location.name, location.id]));
   const characterNameToId = new Map((storyBible?.characters ?? []).map((character) => [character.name, character.id]));
+  const knownCharacterIds = new Set((storyBible?.characters ?? []).map((character) => character.id));
+  const knownRelationshipIds = new Set((storyBible?.relationships ?? []).map((relationship) => relationship.id));
+  const knownSecretIds = new Set((storyBible?.secrets ?? []).map((secret) => secret.id));
   const characterAliasToId: Record<string, string> = {
     lin_chen: 'char_01', su_ling_shuang: 'char_02', zhao_xuan_ji: 'char_03',
     mo_you_tu: 'char_04', ye_ning_shuang: 'char_05', yan_sha_zun_zhe: 'char_06',
@@ -387,10 +390,20 @@ function normalizeGeneratedEvents(chapter: GeneratedChapter, storyBible?: StoryB
     if (value && status && aliases[status]) normalized = { ...normalized, value: { ...value, status: aliases[status] } };
     return normalized;
   };
+  const normalizeList = (events: GeneratedChapter['proposedEvents']) => events.map(normalize).filter((event) => {
+    // Audits sometimes invent a named guard or commander for a scene. Keep
+    // those details in prose, but do not write them into the locked Story
+    // Bible as state events unless the entity already exists there.
+    if (!storyBible) return true;
+    if (['character_state', 'knowledge_belief'].includes(event.eventType)) return knownCharacterIds.has(event.subjectId);
+    if (event.eventType === 'relationship_change') return knownRelationshipIds.has(event.subjectId);
+    if (event.eventType === 'secret_reveal') return knownSecretIds.has(event.subjectId);
+    return true;
+  });
   return {
     ...chapter,
-    proposedEvents: chapter.proposedEvents.map(normalize),
-    observedEvents: chapter.observedEvents?.map(normalize),
+    proposedEvents: normalizeList(chapter.proposedEvents),
+    observedEvents: chapter.observedEvents ? normalizeList(chapter.observedEvents) : undefined,
   };
 }
 
