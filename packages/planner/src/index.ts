@@ -344,9 +344,34 @@ function normalizeGeneratedEvents(chapter: GeneratedChapter, storyBible?: StoryB
   const beatToArc = new Map((storyBible?.arcBeats ?? []).map((beat) => [beat.id, beat.arcId]));
   const realmNameToId = new Map((worldPack?.realms ?? []).map((realm) => [realm.name, realm.id]));
   const locationNameToId = new Map((worldPack?.locations ?? []).map((location) => [location.name, location.id]));
+  const characterNameToId = new Map((storyBible?.characters ?? []).map((character) => [character.name, character.id]));
+  const characterAliasToId: Record<string, string> = {
+    lin_chen: 'char_01', su_ling_shuang: 'char_02', zhao_xuan_ji: 'char_03',
+    mo_you_tu: 'char_04', ye_ning_shuang: 'char_05', yan_sha_zun_zhe: 'char_06',
+  };
+  const characterId = (value: string) => characterNameToId.get(value) ?? characterAliasToId[value.toLowerCase()] ?? value;
+  const secretId = (value: string) => {
+    const known = storyBible?.secrets ?? [];
+    if (known.some((secret) => secret.id === value)) return value;
+    const slug = value.toLowerCase();
+    const matched = known.find((secret) => slug.includes('taigu') && slug.includes('gate') && secret.title.includes('太古界门'));
+    return matched?.id ?? value;
+  };
   const normalize = (event: GeneratedChapter['proposedEvents'][number]) => {
     let normalized = event;
+    if (normalized.eventType === 'character_state' || normalized.eventType === 'knowledge_belief') {
+      normalized = { ...normalized, subjectId: characterId(normalized.subjectId) };
+    }
+    if (normalized.eventType === 'secret_reveal') normalized = { ...normalized, subjectId: secretId(normalized.subjectId) };
     if (event.eventType === 'arc_progress' && beatToArc.has(event.subjectId)) normalized = { ...normalized, subjectId: beatToArc.get(event.subjectId)! };
+    if (normalized.eventType === 'relationship_change') {
+      const source = characterId(normalized.subjectId);
+      const targetMatch = normalized.predicate.match(/^relationship_with_(.+)$/i);
+      const target = targetMatch ? characterId(targetMatch[1]) : undefined;
+      const relationship = storyBible?.relationships.find((item) => item.id === normalized.subjectId)
+        ?? storyBible?.relationships.find((item) => item.fromCharacterId === source && (!target || item.toCharacterId === target));
+      if (relationship) normalized = { ...normalized, subjectId: relationship.id };
+    }
     if (normalized.eventType === 'character_state' && typeof normalized.value === 'string') {
       const aliases = ['realm', 'realmId', 'powerRealm'].includes(normalized.predicate) ? realmNameToId : ['location', 'locationId'].includes(normalized.predicate) ? locationNameToId : undefined;
       const canonical = aliases?.get(normalized.value);
