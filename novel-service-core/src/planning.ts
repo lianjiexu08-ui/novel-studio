@@ -585,11 +585,22 @@ function nodeRealization(work: Work, plan: BookPlan, nodeId: string): NodeRealiz
   const milestone = plan.milestones.find((item) => item.id === nodeId);
   if (!milestone) return undefined;
   const { status, evidence } = progressEvidence(work, milestone.id);
+  // Chapter writers are instructed to realize chapter/outline nodes, while a
+  // milestone ID is a planning node rather than a story-event subject. Once
+  // every outlined chapter in the milestone range is adopted and explicitly
+  // marked realized, infer milestone completion with chapter-level evidence.
+  // This keeps prerequisite checks aligned with the event vocabulary and still
+  // leaves a partially written range unrealized.
+  const milestoneChapters = plan.chapters.filter((item) => item.chapterNumber >= milestone.startChapter && item.chapterNumber <= milestone.endChapter);
+  const chapterEvidence = milestoneChapters.flatMap((outline) => progressEvidence(work, outline.id).evidence);
+  const rangeRealized = milestoneChapters.length > 0
+    && milestoneChapters.every((outline) => Boolean(work.currentVersion(outline.chapterNumber)) && progressEvidence(work, outline.id).status === 'realized');
+  const inferredStatus = status ?? (rangeRealized ? 'realized' : undefined);
   const due = milestone.startChapter <= reached;
-  const finalStatus: RealizationStatus = status ?? 'unrealized';
+  const finalStatus: RealizationStatus = inferredStatus ?? 'unrealized';
   return {
     nodeId, kind: 'milestone', title: milestone.title, startChapter: milestone.startChapter, endChapter: milestone.endChapter,
-    status: finalStatus, due, overdue: milestone.endChapter <= reached && finalStatus !== 'realized', evidence,
+    status: finalStatus, due, overdue: milestone.endChapter <= reached && finalStatus !== 'realized', evidence: [...evidence, ...chapterEvidence],
   };
 }
 
