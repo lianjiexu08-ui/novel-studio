@@ -488,9 +488,9 @@ function assertStoryBibleContinuity(previous: StoryBible, next: StoryBible): voi
   if (missing.length) throw new PlanningParseError(`expanded story bible dropped stable IDs: ${missing.join(', ')}`);
 }
 
-const worldSkeletonSystem = `你是长篇玄幻小说世界观的第一阶段骨架规划器。只返回一个 JSON 对象，不要 Markdown，不要解释。只生成世界 ID、标题、摘要、公理、力量系统名称和连续境界骨架，以及四条明确的等级阶梯（realm、technique、artifact、resource）、术语和未决问题；不要生成大陆、势力、历史、功法、法宝或资源实体。境界至少八个，且每个对象的每个文本字段控制在 20 个汉字以内。每条等级阶梯写出至少六个简短、有顺序的等级名称和一句跨级规则，后续阶段的每个功法、法宝、资源都必须引用对应等级。ID 在后续阶段保持稳定。关键问题必须直接定案，只有不影响开篇的探索项才可 deferred 且 blocking=false。所有状态使用 proposed，createdAt 使用 ISO 8601 时间。`;
+const worldSkeletonSystem = `你是长篇玄幻小说世界观的第一阶段骨架规划器。只返回一个 JSON 对象，不要 Markdown，不要解释。严格只允许顶层 keys：id、revision、title、summary、status、createdAt、axioms、powerSystems、tierLadders、realms、terminology、unresolvedQuestions。严禁输出 techniques、artifacts、resources、locations、factions、historicalEvents，也不要把它们嵌在其它字段里；它们会在后续阶段单独生成。只生成公理、力量系统名称、连续境界骨架和四条等级阶梯（realm、technique、artifact、resource）。境界至少八个，且每个对象的每个文本字段控制在 20 个汉字以内。每条等级阶梯写出至少六个简短、有顺序的等级名称和一句跨级规则，后续阶段的每个功法、法宝、资源都必须引用对应等级。ID 在后续阶段保持稳定。关键问题必须直接定案，只有不影响开篇的探索项才可 deferred 且 blocking=false。所有状态使用 proposed，createdAt 使用 ISO 8601 时间。`;
 const worldSkeletonShape = shapeIntro + [
-  '顶层: {id, revision: 1, title, summary, status: "proposed", createdAt, axioms[], powerSystems[], tierLadders[], realms[], terminology[], unresolvedQuestions[]}',
+  '顶层只能是: {id, revision: 1, title, summary, status: "proposed", createdAt, axioms[], powerSystems[], tierLadders[], realms[], terminology[], unresolvedQuestions[]}',
   'axioms[]: {id, title, content, scope, precedence: 整数, status}',
   'powerSystems[]: {id, name, source, unit, realmIds: [realm id], status}',
   'realms[]: {id, systemId: power system id, name, rank: 正整数, prerequisites: [字符串], capabilities: [字符串], cost, counters: [字符串], status}',
