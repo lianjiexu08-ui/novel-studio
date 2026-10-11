@@ -371,13 +371,22 @@ async function completeJsonWithRepair(client: PlanningClient, request: Completio
     return readJson(first);
   } catch (error) {
     const problems = error instanceof Error ? error.message : String(error);
-    const repaired = await client.complete({
-      system: request.system,
-      user: JSON.stringify({ task: 'repair_previous_output', label, instruction: '只返回完整 JSON 对象；重新生成合规的 content 或 observedEvents 字段，不要 Markdown、前言或解释；正文内容保持本章任务卡，不要输出合同外字段。', problems, originalRequest: JSON.parse(request.user) }, null, 2),
-      maxOutputTokens: request.maxOutputTokens,
-      role: request.role,
-    });
-    return readJson(repaired);
+    try {
+      const repaired = await client.complete({
+        system: request.system,
+        user: JSON.stringify({ task: 'repair_previous_output', label, instruction: '只返回完整 JSON 对象；重新生成合规的 content 或 observedEvents 字段，不要 Markdown、前言或解释；正文内容保持本章任务卡，不要输出合同外字段。', problems, originalRequest: JSON.parse(request.user) }, null, 2),
+        maxOutputTokens: request.maxOutputTokens,
+        role: request.role,
+      });
+      return readJson(repaired);
+    } catch (repairError) {
+      // Some writing endpoints return the chapter prose directly despite the
+      // JSON request. Keep it as an unannotated draft and let the independent
+      // extractor decide which facts actually occurred. Never apply this to
+      // the extractor itself, where an empty audit would hide a model error.
+      if (label === '章节草稿' && first.trim().length >= 200) return { content: first.trim(), proposedEvents: [] };
+      throw repairError;
+    }
   }
 }
 
