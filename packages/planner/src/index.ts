@@ -283,7 +283,10 @@ export class OpenAICompatibleChapterProvider implements ModelProvider {
         // changes so a long world pack cannot crowd out the audit response.
         chapterBrief: brief ? { outlineId: brief.outlineId, mustDo: brief.mustDo, endState: brief.endState } : undefined,
       }, null, 2),
-      maxOutputTokens: Math.max(1_500, Math.min(4_000, Math.ceil(input.work.covenant.chapterWords * 0.6))),
+      // The audit must repeat every declared event with evidence. Keep enough
+      // room for several structured events even when the chapter itself is
+      // longer than the covenant target.
+      maxOutputTokens: Math.max(3_000, Math.min(6_000, Math.ceil(input.work.covenant.chapterWords * 1.2))),
       role: 'extraction',
     }, '事实审计');
     const observed = extracted && typeof extracted === 'object' && !Array.isArray(extracted)
