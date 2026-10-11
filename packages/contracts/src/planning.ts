@@ -49,8 +49,13 @@ export const plotMilestoneSchema = z.object({
   outcome: text(),
 });
 
+export const factEventTypeSchema = z.enum([
+  'character_state', 'relationship_change', 'knowledge_belief', 'resource_change', 'artifact_change',
+  'plot_progress', 'volume_progress', 'arc_progress', 'secret_reveal', 'promise_payoff', 'thread_resolution',
+]);
+
 export const factRequirementSchema = z.object({
-  eventType: z.string().trim().min(1).max(100),
+  eventType: factEventTypeSchema,
   subjectId: z.string().trim().min(1).max(100),
   predicate: z.string().trim().max(100).optional(),
   equals: z.unknown().optional(),
