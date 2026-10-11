@@ -345,7 +345,7 @@ function normalizeGeneratedEvents(chapter: GeneratedChapter, storyBible?: StoryB
     const aliases: Record<string, string> = normalized.eventType === 'promise_payoff'
       ? { fulfilled: 'paid', completed: 'paid', success: 'paid', failed: 'broken' }
       : normalized.eventType === 'thread_resolution'
-        ? { fulfilled: 'resolved', completed: 'resolved', postponed: 'deferred' }
+        ? { fulfilled: 'resolved', completed: 'resolved', postponed: 'deferred', partial: 'deferred' }
         : {};
     if (value && status && aliases[status]) normalized = { ...normalized, value: { ...value, status: aliases[status] } };
     return normalized;
