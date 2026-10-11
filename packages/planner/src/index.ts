@@ -258,7 +258,7 @@ export class OpenAICompatibleChapterProvider implements ModelProvider {
       .map((version) => ({ chapterNumber: version.chapterNumber, content: version.content }));
     const plan = input.work.storyBible ? chapterPlan(input.work.storyBible, input.chapterNumber) : undefined;
     const { brief, ...context } = input.context;
-    const draft = normalizeGeneratedEvents(parseGenerateChapterResponse(await completeJsonWithRepair(client, {
+    const draft = normalizeGeneratedEvents(parseGenerateChapterResponse(normalizeChapterEnvelope(await completeJsonWithRepair(client, {
       system: (this.independentExtraction ? chapterDraftSystem : chapterSystem) + (brief ? briefRule : ''),
       user: JSON.stringify({
         task: 'generate_chapter', chapterNumber: input.chapterNumber, title: input.work.title,
@@ -271,7 +271,7 @@ export class OpenAICompatibleChapterProvider implements ModelProvider {
       // truncation must be prevented rather than repaired into partial prose.
       maxOutputTokens: Math.max(6_000, Math.min(16_000, Math.ceil(input.work.covenant.chapterWords * 2.6))),
       role: 'writing',
-    }, '章节草稿')) as GeneratedChapter, input.work.storyBible);
+    }, '章节草稿'))), input.work.storyBible) as GeneratedChapter;
     if (!this.independentExtraction) return draft;
     const extracted = await completeJsonWithRepair(client, {
       system: extractionSystem + (brief ? extractionBriefRule : ''),
@@ -292,9 +292,27 @@ export class OpenAICompatibleChapterProvider implements ModelProvider {
     const observed = extracted && typeof extracted === 'object' && !Array.isArray(extracted)
       ? (extracted as { observedEvents?: unknown }).observedEvents
       : undefined;
-    const validated = parseGenerateChapterResponse({ content: draft.content, proposedEvents: draft.proposedEvents, observedEvents: observed });
+    const validated = parseGenerateChapterResponse(normalizeChapterEnvelope({ content: draft.content, proposedEvents: draft.proposedEvents, observedEvents: observed }));
     return normalizeGeneratedEvents({ ...draft, observedEvents: validated.observedEvents as GeneratedChapter['observedEvents'] }, input.work.storyBible);
   }
+}
+
+/** Compatible endpoints occasionally serialize an empty event list as null,
+ * or a single event as an object. Normalize only these envelope fields before
+ * strict contract validation; malformed event objects still fail validation.
+ */
+function normalizeChapterEnvelope(value: unknown): unknown {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return value;
+  const record = value as Record<string, unknown>;
+  const normalizeEvents = (events: unknown): unknown[] => {
+    if (events === undefined || events === null) return [];
+    return Array.isArray(events) ? events : [events];
+  };
+  return {
+    ...record,
+    proposedEvents: normalizeEvents(record.proposedEvents),
+    ...(record.observedEvents !== undefined ? { observedEvents: normalizeEvents(record.observedEvents) } : {}),
+  };
 }
 
 function eventSubjectCatalog(storyBible: StoryBible | undefined, worldPack: WorldPack | undefined, chapterNumber: number) {
