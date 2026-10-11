@@ -371,7 +371,10 @@ export function reviewPlanRevision(work: Work, planId: string): PlanReview {
  */
 export function approvePlanRevision(work: Work, planId: string): PlanRevision {
   const plan = mustGetPlan(work, planId);
-  if (plan.status === 'approved') return plan;
+  if (plan.status === 'approved') {
+    if (designOutdated(work, plan)) throw new PlanGateError('the approved plan is outdated; save a new revision against the current design');
+    return plan;
+  }
   if (plan.status === 'superseded') throw new PlanGateError('a superseded plan cannot be approved; save it as a new revision');
   const review = plan.reviews.at(-1);
   if (!review || review.contentHash !== plan.contentHash) throw new PlanGateError('run the plan review before approving');
