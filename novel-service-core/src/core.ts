@@ -1,7 +1,7 @@
 import { createHash, randomUUID } from 'node:crypto';
 import { chapterGenerationGate } from './world.ts';
 import type { StoryBible, WorldPack } from './world.ts';
-import { activePlan, effectiveBrief, planBlockers } from './planning.ts';
+import { activePlan, effectiveBrief, planBlockers, planRealization } from './planning.ts';
 import type { ChapterBrief, PlanRevision } from './planning.ts';
 
 const id = (prefix: string) => `${prefix}_${randomUUID().replaceAll('-', '')}`;
@@ -997,16 +997,32 @@ export function closureCoverageFor(work: Work, chapterNumber: number): ClosureCo
     .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id))
     .at(-1)?.value;
   const statusOf = (value: unknown) => value && typeof value === 'object' && 'status' in value ? String((value as { status?: unknown }).status) : '';
+  const approvedPlan = activePlan(work);
+  const realizedNodes = approvedPlan ? planRealization(work, approvedPlan).nodes.filter((node) => node.kind === 'chapter' && node.status === 'realized') : [];
+  const realizedChapters = new Set(realizedNodes.map((node) => node.startChapter));
+  const rangeComplete = (start: number, end: number) => start <= chapterNumber && end <= chapterNumber
+    && end >= start && Array.from({ length: end - start + 1 }, (_, index) => start + index).every((chapter) => realizedChapters.has(chapter));
+  const volumeInferredComplete = (volume: NonNullable<StoryBible['volumes']>[number]) => {
+    const outlines = approvedPlan?.plan.chapters.filter((outline) => outline.volumeId === volume.id) ?? [];
+    const volumeStart = (bible?.volumes ?? []).filter((item) => item.order < volume.order).reduce((sum, item) => sum + item.plannedChapterCount, 0) + 1;
+    return outlines.length > 0
+      ? outlines.every((outline) => realizedChapters.has(outline.chapterNumber))
+      : rangeComplete(volumeStart, volumeStart + volume.plannedChapterCount - 1);
+  };
+  const arcInferredComplete = (arcId: string) => {
+    const beats = (bible?.arcBeats ?? []).filter((beat) => beat.arcId === arcId);
+    return beats.length > 0 && beats.every((beat) => beat.plannedChapter !== undefined && realizedChapters.has(beat.plannedChapter));
+  };
   let volumes = 0;
   for (const volume of bible?.volumes ?? []) {
     const status = statusOf(finalValue('volume_progress', volume.id));
-    if (status === 'resolved' || status === 'diverged') volumes += 1;
+    if (status === 'resolved' || status === 'diverged' || (!status && volumeInferredComplete(volume))) volumes += 1;
     else errors.push(`volume ${volume.id} has no resolved or diverged evidence`);
   }
   let arcs = 0;
   for (const arc of bible?.arcs ?? []) {
     const status = statusOf(finalValue('arc_progress', arc.id));
-    if (status === 'resolved' || status === 'diverged') arcs += 1;
+    if (status === 'resolved' || status === 'diverged' || (!status && arcInferredComplete(arc.id))) arcs += 1;
     else errors.push(`arc ${arc.id} has no resolved or diverged evidence`);
   }
   let secrets = 0;
