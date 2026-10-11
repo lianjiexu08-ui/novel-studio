@@ -74,7 +74,11 @@ export class JsonDesignPlanner implements DesignPlanner {
     }, (value) => {
       const parsed = parseStoryBible(value) as StoryBible;
       assertStoryBibleScale(parsed, chapterTarget);
-      if (input.previousStoryBible) assertStoryBibleContinuity(input.previousStoryBible, parsed);
+      if (input.previousStoryBible) {
+        const continuous = mergeExpandedStoryBible(input.previousStoryBible, parsed);
+        assertStoryBibleContinuity(input.previousStoryBible, continuous);
+        return continuous;
+      }
       return parsed;
     });
     if (input.previousStoryBible) {
@@ -656,6 +660,23 @@ function assertStoryBibleContinuity(previous: StoryBible, next: StoryBible): voi
     return (oldItems ?? []).filter((item) => !ids.has(item.id)).map((item) => `${label}:${item.id}`);
   });
   if (missing.length) throw new PlanningParseError(`expanded story bible dropped stable IDs: ${missing.join(', ')}`);
+}
+
+/** Preserve the reviewed opening plan during a long-book expansion. Models
+ * often regenerate the same first 50 chapter objects with fresh IDs; those
+ * objects are already part of the locked design and must remain immutable.
+ */
+function mergeExpandedStoryBible(previous: StoryBible, next: StoryBible): StoryBible {
+  const oldPlans = previous.chapterPlans ?? [];
+  const newPlans = next.chapterPlans ?? [];
+  const oldNumbers = new Set(oldPlans.map((plan) => plan.chapterNumber));
+  return {
+    ...next,
+    chapterPlans: [
+      ...oldPlans,
+      ...newPlans.filter((plan) => !oldNumbers.has(plan.chapterNumber)),
+    ],
+  };
 }
 
 const worldSkeletonSystem = `你是长篇玄幻小说世界观的第一阶段骨架规划器。只返回一个 JSON 对象，不要 Markdown，不要解释。严格只允许顶层 keys：id、revision、title、summary、status、createdAt、axioms、powerSystems、tierLadders、realms、terminology、unresolvedQuestions。严禁输出 techniques、artifacts、resources、locations、factions、historicalEvents，也不要把它们嵌在其它字段里；它们会在后续阶段单独生成。只生成公理、力量系统名称、连续境界骨架和四条等级阶梯（realm、technique、artifact、resource）。境界至少八个，且每个对象的每个文本字段控制在 20 个汉字以内。每条等级阶梯写出至少六个简短、有顺序的等级名称和一句跨级规则，后续阶段的每个功法、法宝、资源都必须引用对应等级。ID 在后续阶段保持稳定。关键问题必须直接定案，只有不影响开篇的探索项才可 deferred 且 blocking=false。所有状态使用 proposed，createdAt 使用 ISO 8601 时间。`;
