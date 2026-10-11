@@ -52,7 +52,7 @@ export class JsonDesignPlanner implements DesignPlanner {
     const history = await completeWorldStage(this.client, {
       system: worldHistorySystem + worldHistoryShape,
       user: JSON.stringify({ task: 'generate_world_history', title: input.title, covenant: input.covenant, targetChapters, skeleton, geography, power }, null, 2),
-      maxOutputTokens: 8_000,
+      maxOutputTokens: input.targetChapterCount >= 450 ? 20_000 : 8_000,
     }, 'history');
     const merged = mergeWorldStages(input.title, skeleton, geography, power, history);
     const result = parseWorldPack(merged) as WorldPack;
