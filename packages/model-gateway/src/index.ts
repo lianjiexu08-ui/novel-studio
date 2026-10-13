@@ -58,7 +58,7 @@ export interface UsageSummary {
   inputTokens: number;
   outputTokens: number;
   costUsd: number;
-  /** False once any call reported tokens without a price; `costUsd` is then a lower bound. */
+  /** False after an unpriced response or failed call without billing data; `costUsd` is then a lower bound. */
   costKnown: boolean;
   byRole: Partial<Record<ModelRole, { calls: number; failedCalls: number; outputTokens: number; costUsd: number }>>;
   limits: { budgetUsd: number; maxCalls?: number; maxOutputTokens?: number };
@@ -128,7 +128,8 @@ export class UsageLedger {
       calls: this.calls, failedCalls: this.failures.length,
       inputTokens: this.records.reduce((sum, record) => sum + record.inputTokens, 0),
       outputTokens: this.outputTokens, costUsd: this.spentUsd,
-      costKnown: this.records.every((record) => record.costUsd > 0 || record.inputTokens + record.outputTokens === 0),
+      // A lost response can still have been billed by the provider.
+      costKnown: this.failures.length === 0 && this.records.every((record) => record.costUsd > 0 || record.inputTokens + record.outputTokens === 0),
       byRole, limits: { budgetUsd: this.budgetUsd, ...this.limits },
     };
   }

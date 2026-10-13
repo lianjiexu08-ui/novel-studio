@@ -56,6 +56,23 @@ test('a billed response over budget is still recorded before reporting the overa
   assert.equal(ledger.spent, 0.5);
 });
 
+test('a lost response leaves costs unknown even when a later retry has a price', async () => {
+  let calls = 0;
+  const adapter: ModelAdapter = { provider: 'fake', complete: async () => {
+    if (++calls === 1) throw new Error('connection lost after request was sent');
+    return { text: 'ok', usage: { inputTokens: 2, outputTokens: 3, costUsd: 0.1 }, provider: 'fake', model: 'fake' };
+  } };
+  const gateway = new ModelGateway(new Map([['fake', adapter]]), new UsageLedger(1));
+  assert.equal(gateway.summary().costKnown, true);
+  await assert.rejects(() => gateway.complete(request, 'fake', { endpoint: '', apiKey: 'secret' }), /connection lost/);
+  assert.equal(gateway.summary().costUsd, 0);
+  assert.equal(gateway.summary().costKnown, false, 'no billing response does not prove the failed call was free');
+  await gateway.complete(request, 'fake', { endpoint: '', apiKey: 'secret' });
+  assert.equal(gateway.summary().costUsd, 0.1);
+  assert.equal(gateway.summary().costKnown, false, 'a priced retry cannot resolve the failed call cost');
+  assert.equal(gateway.summary().failedCalls, 1);
+});
+
 test('secret-like values are redacted from log payloads', () => {
   const safe = redactSecrets({ apiKey: 'sk-1234567890abcdef', authorization: 'Bearer abc', nested: 'AIza123456789012345678901234' }) as Record<string, unknown>;
   assert.equal(safe.apiKey, '[REDACTED]');
