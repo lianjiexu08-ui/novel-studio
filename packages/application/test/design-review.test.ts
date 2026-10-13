@@ -8,6 +8,19 @@ import { createReadyWork, fixtureDesignReview, minimalWorldPack } from './fixtur
 const reviewer: DesignProvider = { generateWorldPack: async () => { throw new Error('unused'); }, generateStoryBible: async () => { throw new Error('unused'); }, reviewDesignContent: async (input) => fixtureDesignReview(input) };
 const writer = { generateChapter: () => ({ content: '测试正文', proposedEvents: [] }) };
 
+test('power review includes late chapter costs instead of reviewing only the power definitions', async () => {
+  const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), writer, reviewer);
+  const work = await createReadyWork(workflow);
+  const plan = work.plans.get(work.activePlanId!)!.plan;
+  plan.chapters = Array.from({ length: 100 }, (_, index) => ({ ...plan.chapters[0], id: `chapter-${index + 1}`, chapterNumber: index + 1 }));
+  plan.chapters[96].cost = '仅余三年却再次消耗十年寿元';
+  const input = designReviewInput(work, 'power');
+  assert.equal(input.sources.filter((source) => source.id.startsWith('plan/chapters/')).length, 100);
+  assert.match(input.sources.find((source) => source.id === 'plan/chapters/97')!.text, /仅余三年却再次消耗十年寿元/);
+  plan.chapters[96].summary = '材料'.repeat(130000);
+  assert.throws(() => designReviewInput(work, 'power'), /超出单次评审容量/);
+});
+
 test('long-form generation requires all current design reviews and adoption cannot bypass the new gate', async () => {
   const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), writer, reviewer);
   const work = await createReadyWork(workflow);

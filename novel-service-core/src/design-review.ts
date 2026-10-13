@@ -73,7 +73,7 @@ export function designReviewHash(work: Work, planId?: string): string | undefine
   const plan = selectedId ? work.plans.get(selectedId) : undefined;
   if (!work.worldPack || !work.storyBible || !plan || plan.status === 'superseded' || (planId === undefined && plan.status !== 'approved')) return undefined;
   return createHash('sha256').update(JSON.stringify({
-    rubricVersion: 1, title: work.title, covenant: work.covenant,
+    rubricVersion: 2, title: work.title, covenant: work.covenant,
     world: work.worldPack, bible: work.storyBible, planId: plan.id, plan: plan.plan,
     characters: [...work.characters.values()].sort((a, b) => a.id.localeCompare(b.id)),
     relationships: [...work.relationships.values()].sort((a, b) => a.id.localeCompare(b.id)),
@@ -102,12 +102,12 @@ export function designReviewInput(work: Work, area: DesignReviewArea, planId?: s
   for (const key of groups) group(`world/${key}`, world[key]);
   add('story/overview', { coreConflict: bible.coreConflict, endingDirection: bible.endingDirection, unresolvedQuestions: bible.unresolvedQuestions });
   for (const key of ['characters', 'relationships', 'arcs', 'arcBeats', 'secrets', 'promises', 'openThreads', 'volumes'] as const) group(`story/${key}`, bible[key]);
-  if (area === 'characters' || area === 'story') group('story/chapterPlans', bible.chapterPlans);
+  if (area !== 'world') group('story/chapterPlans', bible.chapterPlans);
   add('plan/overview', { targetChapterCount: plan.plan.targetChapterCount, volumeCount: plan.plan.volumeCount, openQuestions: plan.plan.openQuestions, dependencies: plan.plan.dependencies });
   group('plan/volumes', plan.plan.volumes);
   group('plan/milestones', plan.plan.milestones);
   // All currently outlined chapters are reviewed. Never truncate a large design silently.
-  if (area === 'characters' || area === 'story') for (const chapter of plan.plan.chapters) add(`plan/chapters/${chapter.chapterNumber}`, chapter);
+  if (area !== 'world') for (const chapter of plan.plan.chapters) add(`plan/chapters/${chapter.chapterNumber}`, chapter);
   group('settings/characters', [...work.characters.values()]);
   group('settings/relationships', [...work.relationships.values()]);
   group('settings/worldRules', [...work.worldRules.values()]);
