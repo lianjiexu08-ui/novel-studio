@@ -51,6 +51,29 @@ test('power review includes late chapter costs instead of reviewing only the pow
   for (const stage of run.stages.filter(stage => stage.kind !== 'synthesis')) assert.ok(JSON.stringify(designReviewStageInput(run, stage).sources).length <= 240_000);
 });
 
+test('rolling outline coverage distinguishes a contiguous opening from isolated later chapters', async () => {
+  const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), writer, reviewer);
+  const work = await createReadyWork(workflow);
+  const plan = work.plans.get(work.activePlanId!)!.plan;
+  plan.targetChapterCount = 100;
+  const template = plan.chapters[0];
+  plan.chapters = [50, 2, 1].map(chapterNumber => ({ ...template, id: `chapter-${chapterNumber}`, chapterNumber }));
+  const before = designReviewHash(work);
+  for (const area of designReviewAreas) {
+    const input = designReviewInput(work, area);
+    const overview = JSON.parse(input.sources.find(s => s.id === 'plan/overview')!.text);
+    assert.equal(overview.targetChapterCount, 100);
+    assert.equal(overview.detailedThroughChapter, 2, 'chapter50 must not imply that chapters3–49 already have outlines');
+    assert.deepEqual(overview.outlinedChapterNumbers, [1, 2, 50]);
+    if (area !== 'world') assert.ok(input.sources.some(s => s.id === 'plan/chapters/50'), 'isolated later outlines still need review');
+  }
+  plan.chapters.push({ ...template, id: 'chapter-3', chapterNumber: 3 });
+  assert.notEqual(designReviewHash(work), before, 'expanding the detailed horizon invalidates earlier acceptance');
+  assert.equal(JSON.parse(designReviewInput(work, 'story').sources.find(s => s.id === 'plan/overview')!.text).detailedThroughChapter, 3);
+  plan.chapters = [plan.chapters.find(c => c.chapterNumber === 50)!];
+  assert.equal(JSON.parse(designReviewInput(work, 'story').sources.find(s => s.id === 'plan/overview')!.text).detailedThroughChapter, 0);
+});
+
 test('long-form generation requires all current design reviews and adoption cannot bypass the new gate', async () => {
   const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), writer, reviewer);
   const work = await createReadyWork(workflow);

@@ -81,7 +81,7 @@ export function designReviewHash(work: Work, planId?: string): string | undefine
   const plan = selectedId ? work.plans.get(selectedId) : undefined;
   if (!work.worldPack || !work.storyBible || !plan || plan.status === 'superseded' || (planId === undefined && plan.status !== 'approved')) return undefined;
   return createHash('sha256').update(JSON.stringify({
-    rubricVersion: 5, title: work.title, covenant: work.covenant,
+    rubricVersion: 6, title: work.title, covenant: work.covenant,
     world: work.worldPack, bible: work.storyBible, planId: plan.id, plan: plan.plan,
     characters: [...work.characters.values()].sort((a, b) => a.id.localeCompare(b.id)),
     relationships: [...work.relationships.values()].sort((a, b) => a.id.localeCompare(b.id)),
@@ -111,8 +111,13 @@ export function designReviewInput(work: Work, area: DesignReviewArea, planId?: s
   add('story/overview', { coreConflict: bible.coreConflict, endingDirection: bible.endingDirection, unresolvedQuestions: bible.unresolvedQuestions });
   for (const key of ['characters', 'relationships', 'arcs', 'arcBeats', 'secrets', 'promises', 'openThreads', 'volumes'] as const) group(`story/${key}`, bible[key]);
   if (area !== 'world') group('story/chapterPlans', bible.chapterPlans);
+  const outlinedChapterNumbers = [...new Set(plan.plan.chapters.map(chapter => chapter.chapterNumber))].sort((a, b) => a - b);
+  const outlined = new Set(outlinedChapterNumbers);
+  let detailedThroughChapter = 0;
+  while (outlined.has(detailedThroughChapter + 1)) detailedThroughChapter++;
   add('plan/overview', {
     targetChapterCount: plan.plan.targetChapterCount, volumeCount: plan.plan.volumeCount,
+    detailedThroughChapter, outlinedChapterNumbers,
     mainConflict: plan.plan.mainConflict, theme: plan.plan.theme, protagonistArc: plan.plan.protagonistArc,
     endingDirection: plan.plan.endingDirection, keyTurns: plan.plan.keyTurns,
     openQuestions: plan.plan.openQuestions, dependencies: plan.plan.dependencies,
