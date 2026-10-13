@@ -173,13 +173,15 @@ export class JsonBookPlanner {
       if (outlines.length !== numbers.size || outlines.some((outline) => outline.chapterNumber < input.from || outline.chapterNumber > input.to)) {
         throw new PlanningParseError(`outline batch must contain exactly one outline for each chapter ${input.from}-${input.to}; duplicate or out-of-range chapters cannot be discarded`);
       }
-      const fields = ['title', 'summary', 'characterGoals', 'conflict', 'choice', 'cost', 'endState', 'location', 'storyTime'] as const;
+      const fields = ['id', 'volumeId', 'title', 'summary', 'characterGoals', 'conflict', 'choice', 'cost', 'endState', 'location', 'storyTime'] as const;
       const incomplete = outlines.flatMap((outline) => {
         const missing = fields.filter((field) => !outline[field]?.trim());
         const scenesMissing = !outline.scenes.length || outline.scenes.some((scene) => !scene.trim());
         return missing.length || scenesMissing ? [`chapter ${outline.chapterNumber}: ${[...missing, ...(scenesMissing ? ['scenes'] : [])].join(', ')}`] : [];
       });
       if (incomplete.length) throw new PlanningParseError(`generated outlines are incomplete: ${incomplete.join('; ')}`);
+      const ids = new Set(outlines.map((outline) => outline.id));
+      if (ids.size !== outlines.length) throw new PlanningParseError('generated outlines have duplicate IDs; each chapter must have a distinct reference ID');
       return outlines;
     });
   }

@@ -343,3 +343,24 @@ test('outline generation refuses duplicated or extra chapters instead of silentl
     assert.equal(calls, 2);
   }
 });
+
+test('outline generation repairs omitted reference IDs and rejects duplicate IDs across distinct chapters', async () => {
+  const { chapters, ...skeleton } = minimalPlan(2, { volumeSize: 2, outlined: 2 });
+  const complete = chapters.map((chapter) => ({ ...chapter, location: '矿口', storyTime: '第1日', scenes: ['主角选择救人。'] }));
+  const input = { title: '试作', covenant, adoptedFacts: {}, skeleton, from: 1, to: 2, before: [], after: [] };
+  const requests: Array<{ user: string }> = [];
+  const planner = new JsonBookPlanner({ complete: async (request) => {
+    requests.push(request);
+    return JSON.stringify({ chapters: requests.length === 1 ? complete.map(({ id, volumeId, ...chapter }) => chapter) : complete });
+  } });
+  assert.deepEqual((await planner.generateChapterOutlines(input)).map((chapter) => chapter.id), complete.map((chapter) => chapter.id));
+  assert.equal(requests.length, 2);
+  assert.match(JSON.parse(requests[1].user).problems, /id, volumeId/);
+  let calls = 0;
+  const duplicate = new JsonBookPlanner({ complete: async () => {
+    calls += 1;
+    return JSON.stringify({ chapters: complete.map((chapter) => ({ ...chapter, id: 'same-id' })) });
+  } });
+  await assert.rejects(() => duplicate.generateChapterOutlines(input), /修正一次后.*duplicate IDs/);
+  assert.equal(calls, 2, 'a second malformed response must not be accepted');
+});
