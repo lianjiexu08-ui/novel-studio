@@ -10,7 +10,30 @@ import {
   type StoryBible,
   validateStoryBible,
   validateWorldPack,
+  plannedKnowledgeAt,
 } from '../src/world.ts';
+
+test('secret knowledge plans use per-character disjoint intervals and never fill a gap with future truth', () => {
+  const world = reviewedWorld();
+  const bible = reviewedBible(world.id, world.revision);
+  const base = { characterId: 'hero', certainty: 'suspects' as const, belief: '怀疑遗印来源', trigger: '发现残片', consequence: '追查持有人', forbiddenInferences: ['不能断言持有人是敌人'] };
+  bible.secrets![0].knowledgeStages = [
+    { ...base, sinceChapter: 2, untilChapter: 3 },
+    { ...base, sinceChapter: 5, certainty: 'confirmed', belief: '证词确认遗印归属' },
+    { ...base, characterId: 'rival', sinceChapter: 1, certainty: 'confirmed' },
+  ];
+  assert.equal(validateStoryBible(bible, world).ready, true);
+  assert.equal(plannedKnowledgeAt(bible, 3).find((stage) => stage.characterId === 'hero')?.certainty, 'suspects');
+  assert.equal(plannedKnowledgeAt(bible, 4).find((stage) => stage.characterId === 'hero'), undefined);
+  assert.equal(plannedKnowledgeAt(bible, 5).find((stage) => stage.characterId === 'hero')?.certainty, 'confirmed');
+  bible.secrets![0].knowledgeStages[1].sinceChapter = 3;
+  assert.match(validateStoryBible(bible, world).errors.join(';'), /knowledge stages overlap/);
+  bible.secrets![0].knowledgeStages[1].sinceChapter = 5;
+  bible.secrets![0].knowledgeStages[1].characterId = 'missing';
+  assert.match(validateStoryBible(bible, world).errors.join(';'), /knowledge references unknown character/);
+  bible.secrets![0].knowledgeStages[1].untilChapter = 4;
+  assert.match(validateStoryBible(bible, world).errors.join(';'), /knowledge has an invalid chapter interval/);
+});
 
 function reviewedWorld() {
   const world = createEmptyWorldPack('九霄界', '有九个界域的玄幻世界');

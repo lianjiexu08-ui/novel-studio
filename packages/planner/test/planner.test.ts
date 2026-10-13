@@ -2,11 +2,41 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
 import { JsonBookPlanner, JsonDesignPlanner, OpenAICompatibleChapterProvider, PlanningParseError } from '../src/index.ts';
-import { minimalPlan } from '../../application/test/fixtures.ts';
-import { NovelService } from '../../../novel-service-core/src/core.ts';
+import { minimalPlan, minimalStoryBible, minimalWorldPack } from '../../application/test/fixtures.ts';
+import { contextManifestFor, emptyUsage, knowledgeAt, NovelService } from '../../../novel-service-core/src/core.ts';
 import { createEmptyWorldPack } from '../../../novel-service-core/src/world.ts';
 
 const covenant = { entryMode: 'expand' as const, genre: 'xuanhuan' as const, substyle: '宗门成长', audience: '长篇玄幻读者', hook: '以代价换力量', mustKeep: '', lockedNotes: '', avoid: '', targetLength: '百万字', chapterWords: 2200, updateCadence: '日更' };
+
+test('writer receives current knowledge plans and prior adopted beliefs without inventing learned facts', async () => {
+  let sent: Record<string, any> = {};
+  const client = { completeWithUsage: async (call: { user: string; system: string }) => {
+    sent = JSON.parse(call.user);
+    assert.match(call.system, /secret_reveal 不表示所有角色自动知情/);
+    return { text: JSON.stringify({ content: '测试正文', proposedEvents: [] }), usage: emptyUsage() };
+  } };
+  const provider = new OpenAICompatibleChapterProvider('', '', '', 10, 5000, false, client);
+  const work = new NovelService(provider).createWork('认知边界', covenant);
+  work.worldPack = minimalWorldPack();
+  work.storyBible = minimalStoryBible(work.worldPack);
+  const stage = { characterId: 'hero', sinceChapter: 1, untilChapter: 9, certainty: 'suspects' as const, belief: '只见到残印', trigger: '调查废墟', consequence: '继续求证', forbiddenInferences: ['不能认定幕后人'] };
+  work.storyBible.secrets = [{ id: 'secret', ownerCharacterId: 'rival', title: '幕后人', truth: '幕后人是师父', revealCondition: '当面对质', status: 'locked', knowledgeStages: [stage, { ...stage, sinceChapter: 10, untilChapter: undefined, certainty: 'confirmed', belief: '确认幕后人' }] }];
+  const event = { id: 'earlier', workId: work.id, chapterVersionId: 'version-1', chapterNumber: 1, eventType: 'knowledge_belief', subjectId: 'hero', predicate: 'secret', value: { subjectId: 'secret', belief: '曾误信师父无辜' }, evidence: '正文证词', active: true };
+  work.events.set(event.id, event);
+  work.events.set('future', { ...event, id: 'future', chapterNumber: 10, value: { belief: '确认师父有罪' } });
+  work.events.set('inactive', { ...event, id: 'inactive', chapterNumber: 2, active: false });
+  const context = contextManifestFor(work, 9);
+  // Even a caller with extraneous IDs cannot inject future or invalidated facts.
+  context.includedEventIds.push('future', 'inactive', 'missing');
+  await provider.generateChapterAsync({ work, chapterNumber: 9, context });
+  assert.equal(sent.currentPlan.knowledgeBoundaries.length, 1);
+  assert.equal(sent.currentPlan.knowledgeBoundaries[0].certainty, 'suspects');
+  assert.deepEqual(sent.adoptedKnowledge, [event]);
+  assert.equal(knowledgeAt(work, 'hero', 'secret', 9)?.belief, '曾误信师父无辜');
+  assert.equal(knowledgeAt(work, 'rival', 'secret', 9), undefined, 'owning a secret does not create an adopted belief');
+  event.active = false;
+  assert.equal(knowledgeAt(work, 'hero', 'secret', 9), undefined, 'a plan cannot stand in for invalidated history');
+});
 
 test('network chapter provider performs an independent extraction pass', async () => {
   let calls = 0;

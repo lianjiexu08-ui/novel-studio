@@ -170,6 +170,18 @@ export interface StoryRelationshipSeed {
   stages?: Array<{ sinceChapter: number; untilChapter?: number; value: string; cause: string; cost: string }>;
 }
 
+/** Authoring constraints for a character, never evidence that they learned something. */
+export interface StoryKnowledgeStage {
+  characterId: string;
+  sinceChapter: number;
+  untilChapter?: number;
+  certainty: 'unaware' | 'suspects' | 'believes' | 'confirmed';
+  belief: string;
+  trigger: string;
+  consequence: string;
+  forbiddenInferences: string[];
+}
+
 export interface StorySecretSeed {
   id: string;
   ownerCharacterId: string;
@@ -177,6 +189,14 @@ export interface StorySecretSeed {
   truth: string;
   revealCondition: string;
   status: CanonStatus;
+  knowledgeStages?: StoryKnowledgeStage[];
+}
+
+/** Inclusive chapter view of the plan; deliberately separate from knowledgeAt's adopted facts. */
+export function plannedKnowledgeAt(bible: StoryBible, chapterNumber: number) {
+  return (bible.secrets ?? []).filter((secret) => secret.status !== 'deprecated').flatMap((secret) =>
+    (secret.knowledgeStages ?? []).filter((stage) => stage.sinceChapter <= chapterNumber && (stage.untilChapter === undefined || stage.untilChapter >= chapterNumber))
+      .map((stage) => ({ ...stage, secretId: secret.id, secretTitle: secret.title })));
 }
 
 export interface StoryArcBeatSeed {
@@ -472,6 +492,14 @@ export function validateStoryBible(bible: StoryBible, worldPack: WorldPack): Gat
   }
   for (const secret of bible.secrets ?? []) {
     if (!characterIds.has(secret.ownerCharacterId)) errors.push(`secret ${secret.id} references unknown owner ${secret.ownerCharacterId}`);
+    const lastEnd = new Map<string, number>();
+    for (const stage of [...(secret.knowledgeStages ?? [])].sort((a, b) => a.sinceChapter - b.sinceChapter)) {
+      if (!characterIds.has(stage.characterId)) errors.push(`secret ${secret.id} knowledge references unknown character ${stage.characterId}`);
+      if (!Number.isInteger(stage.sinceChapter) || stage.sinceChapter < 1 || (stage.untilChapter !== undefined && (!Number.isInteger(stage.untilChapter) || stage.untilChapter < stage.sinceChapter))) errors.push(`secret ${secret.id} knowledge has an invalid chapter interval`);
+      if (stage.sinceChapter <= (lastEnd.get(stage.characterId) ?? 0)) errors.push(`secret ${secret.id} knowledge stages overlap for ${stage.characterId}`);
+      lastEnd.set(stage.characterId, stage.untilChapter ?? Infinity);
+      if (!['unaware', 'suspects', 'believes', 'confirmed'].includes(stage.certainty) || !stage.belief.trim() || !stage.trigger.trim() || !stage.consequence.trim() || !Array.isArray(stage.forbiddenInferences) || stage.forbiddenInferences.some((item) => !item.trim())) errors.push(`secret ${secret.id} knowledge requires certainty, belief, trigger, consequence and inference boundaries`);
+    }
   }
   for (const arc of bible.arcs) {
     for (const characterId of arc.characterIds) if (!characterIds.has(characterId)) errors.push(`arc ${arc.id} references unknown character ${characterId}`);

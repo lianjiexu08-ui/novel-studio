@@ -51,6 +51,7 @@ export const storyRelationshipSeedSchema = z.object({
   id: z.string().min(1), fromCharacterId: z.string().min(1), toCharacterId: z.string().min(1), kind: z.enum(['kinship', 'social', 'trust', 'emotion', 'allegiance', 'private_intent', 'belief']), value: z.string(), locked: z.boolean(), lockPolicy: z.enum(['document_revision_locked', 'baseline_locked', 'event_change_forbidden', 'evolvable']).optional(), sinceChapter: z.number().int().positive().optional(), untilChapter: z.number().int().positive().optional(),
 });
 export const storySecretSeedSchema = z.object({
+  knowledgeStages: z.array(z.object({ characterId: z.string().min(1), sinceChapter: z.number().int().positive(), untilChapter: z.number().int().positive().optional(), certainty: z.enum(['unaware', 'suspects', 'believes', 'confirmed']), belief: z.string().trim().min(1), trigger: z.string().trim().min(1), consequence: z.string().trim().min(1), forbiddenInferences: z.array(z.string().trim().min(1)) })).optional(),
   id: z.string().min(1), ownerCharacterId: z.string().min(1), title: z.string().trim().min(1), truth: z.string(), revealCondition: z.string(), status: canonStatusSchema,
 });
 export const storyArcBeatSeedSchema = z.object({
