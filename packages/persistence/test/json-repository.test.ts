@@ -65,3 +65,33 @@ test('failed transaction restores work and outbox snapshot', async () => {
     rmSync(directory, { recursive: true, force: true });
   }
 });
+
+test('JSON restart resumes a review with exact sources and failed diagnostics intact', async () => {
+  const directory = mkdtempSync(join(tmpdir(), 'novel-review-'));
+  const file = join(directory, 'state.json');
+  const reviewer = { generateWorldPack: async () => { throw Error('unused'); }, generateStoryBible: async () => { throw Error('unused'); }, reviewDesignContent: async (input: Parameters<typeof fixtureDesignReview>[0]) => fixtureDesignReview(input) };
+  try {
+    const repository = new JsonWorkRepository(file);
+    const workflow = new ChapterWorkflow(repository, provider, reviewer);
+    const work = await createReadyWork(workflow);
+    work.plans.get(work.activePlanId!)!.plan.chapters[0].summary = '巨大材料'.repeat(70000);
+    await repository.save(work);
+    const run = await workflow.startDesignReview(work.id, 'story');
+    await workflow.stepDesignReview(work.id, run.id);
+    const broken = new ChapterWorkflow(repository, provider, { ...reviewer, reviewDesignContent: async () => { throw Object.assign(Error('错误片段'), { modelResponses: ['无效模型原答'] }); } });
+    await assert.rejects(() => broken.stepDesignReview(work.id, run.id), /错误片段/);
+    const resumedRepository = new JsonWorkRepository(file);
+    const resumed = new ChapterWorkflow(resumedRepository, provider, reviewer);
+    const before = (await resumedRepository.get(work.id))!.designReviewRuns.get(run.id)!;
+    assert.deepEqual(before.input, run.input);
+    assert.equal(before.stages[0].attempts, 1);
+    assert.deepEqual(before.stages[1].failures![0].modelResponses, ['无效模型原答']);
+    let progress = await resumed.stepDesignReview(work.id, run.id);
+    while (progress.status !== 'completed') progress = await resumed.stepDesignReview(work.id, run.id);
+    const final = (await new JsonWorkRepository(file).get(work.id))!;
+    assert.equal(final.designContentReviews.size, 1);
+    assert.equal(final.designReviewRuns.get(run.id)!.stages[0].attempts, 1);
+    assert.equal(final.designReviewRuns.get(run.id)!.stages[1].failures!.length, 1);
+    assert.equal(final.versions.size, 0);
+  } finally { rmSync(directory, { recursive: true, force: true }); }
+});

@@ -65,6 +65,8 @@ model Project {
   designHistory         Json                    @default("[]")
   /// Evidence-based model reviews, append-only; bound to an exact design fingerprint.
   designContentReviews Json @default("[]")
+  /// Resumable raw-text coverage, cross checks and synthesis checkpoints.
+  designReviewRuns Json @default("[]")
   covenantHistory       Json                    @default("[]")
   activePlanId          String?
   createdAt             DateTime                @default(now())

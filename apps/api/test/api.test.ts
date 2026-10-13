@@ -864,3 +864,51 @@ test('model settings are stored on this machine, take effect immediately, and th
     rmSync(directory, { recursive: true, force: true });
   }
 });
+
+
+test('staged design review API preserves progress and cannot release partial reviews', async () => {
+  const repository = new InMemoryWorkRepository();
+  const design = milestoneDesign();
+  let calls = 0;
+  const { app } = createApiServer({ repository, provider: writer, designProvider: {
+    generateWorldPack: async () => design.world,
+    generateStoryBible: async () => design.bible,
+    reviewDesignContent: async input => { calls++; return fixtureDesignReview(input); },
+  } });
+  try {
+    const work = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('分批评审') })).json();
+    await lockDesign(repository, work.id);
+    const current = (await repository.get(work.id))!;
+    const activeId = current.activePlanId!;
+    current.plans.get(activeId)!.plan.chapters[0].summary = '长篇材料'.repeat(70000);
+    const base = `/works/${work.id}/design`;
+    const start = await app.inject({ method: 'POST', url: `${base}/review-runs`, payload: { area: 'story' } });
+    assert.equal(start.statusCode, 200, start.body);
+    const { runId } = start.json();
+    assert.equal((await app.inject({ method: 'POST', url: `${base}/review-runs`, payload: { area: 'story' } })).json().runId, runId);
+    assert.equal(calls, 0);
+    const step = () => app.inject({ method: 'POST', url: `${base}/review-runs/${runId}/step` });
+    let response = await step();
+    assert.equal(response.statusCode, 200, response.body);
+    assert.equal(response.json().completed, 1);
+    assert.ok(response.json().total > 1);
+    const overview = designReviewOverviewSchema.parse((await app.inject({ method: 'GET', url: `${base}/content-reviews` })).json());
+    assert.equal(overview.ready, false);
+    assert.equal(overview.areas.find(a => a.area === 'story')!.status, 'interrupted');
+    assert.equal(overview.reports.length, 0);
+    const detail = await app.inject({ method: 'GET', url: `${base}/review-runs/${runId}/stages/batch-1` });
+    assert.equal(detail.statusCode, 200, detail.body);
+    assert.ok(detail.json().stage.result);
+    assert.ok(detail.json().input.sources.length);
+    while (response.json().status !== 'completed') {
+      response = await step(); assert.equal(response.statusCode, 200, response.body);
+    }
+    const count = calls;
+    assert.equal((await step()).json().status, 'completed');
+    assert.equal(calls, count);
+    assert.equal(current.activePlanId, activeId);
+    assert.equal(current.versions.size, 0);
+    assert.equal(current.checkpoints.size, 0);
+    assert.equal(current.designContentReviews.size, 1);
+  } finally { await app.close(); }
+});

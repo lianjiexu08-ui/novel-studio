@@ -1,3 +1,4 @@
+import { designReviewStageInput } from '../../../novel-service-core/src/design-review-run.ts';
 import { designReviewAreaSchema } from 'novel-studio-contracts';
 import { designReviewOverview, DesignReviewError } from '../../../novel-service-core/src/design-review.ts';
 import Fastify, { type FastifyInstance } from 'fastify';
@@ -546,6 +547,26 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     const { workId } = workParamSchema.parse(request.params);
     const { area, planId } = z.object({ area: designReviewAreaSchema, planId: z.string().min(1).optional() }).strict().parse(request.body);
     return { report: await workflow.reviewDesignContent(workId, area, planId) };
+  });
+
+  app.post('/works/:workId/design/review-runs', async (request) => {
+    const { workId } = workParamSchema.parse(request.params);
+    const { area, planId } = z.object({ area: designReviewAreaSchema, planId: z.string().min(1).optional() }).strict().parse(request.body);
+    const run = await workflow.startDesignReview(workId, area, planId);
+    return { runId: run.id };
+  });
+  app.post('/works/:workId/design/review-runs/:runId/step', async (request) => {
+    const { workId, runId } = z.object({ workId: z.string(), runId: z.string() }).parse(request.params);
+    const run = await workflow.stepDesignReview(workId, runId);
+    return { runId: run.id, status: run.status, completed: run.stages.filter(s => s.result).length, total: run.stages.length, reportId: run.reportId };
+  });
+  app.get('/works/:workId/design/review-runs/:runId/stages/:stageId', async (request) => {
+    const { workId, runId, stageId } = z.object({ workId: z.string(), runId: z.string(), stageId: z.string() }).parse(request.params);
+    const work = await repository.get(workId);
+    const run = work?.designReviewRuns.get(runId);
+    const stage = run?.stages.find(stage => stage.id === stageId);
+    if (!run || !stage) throw new NotFoundError('unknown review stage');
+    return { stage, input: designReviewStageInput(run, stage) };
   });
 
   app.get('/works/:workId/quality-audit', async (request) => {

@@ -1,3 +1,4 @@
+import type { DesignReviewRun } from './design-review-run.ts';
 import { designReviewOverview, requiresDesignContentReview, type DesignContentReview } from './design-review.ts';
 import { createHash, randomUUID } from 'node:crypto';
 import { chapterGenerationGate, validateStoryBible, validateWorldPack } from './world.ts';
@@ -597,6 +598,7 @@ export class Work {
   readonly versions = new Map<string, ChapterVersion>();
   readonly manuscripts = new Map<string, ManuscriptRevision>();
   readonly designHistory = new Map<string, DesignRevision>();
+  readonly designReviewRuns = new Map<string, DesignReviewRun>();
   readonly designContentReviews = new Map<string, DesignContentReview>();
   readonly events = new Map<string, StoryEvent>();
   readonly states = new Map<string, CharacterState>();

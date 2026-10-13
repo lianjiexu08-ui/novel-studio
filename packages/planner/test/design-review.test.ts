@@ -34,7 +34,7 @@ test('content reviewer selects exact request-bound fragments using the reviewing
     return JSON.stringify(response);
   } });
   const result = await planner.reviewDesignContent(request);
-  assert.deepEqual(result, prepareDesignReviewEvidence(request).resolve(response));
+  assert.deepEqual(result, { ...prepareDesignReviewEvidence(request).resolve(response), modelResponses: [JSON.stringify(response)] });
   validateDesignReview(request, result);
 });
 
@@ -74,7 +74,7 @@ test('one repair receives every invalid anchor and can explicitly select current
     assert.deepEqual(repair.originalRequest.sources, prepareDesignReviewEvidence(request).sources);
     return JSON.stringify(expected);
   } });
-  assert.deepEqual(await planner.reviewDesignContent(request), prepareDesignReviewEvidence(request).resolve(expected));
+  assert.deepEqual(await planner.reviewDesignContent(request), { ...prepareDesignReviewEvidence(request).resolve(expected), modelResponses: [JSON.stringify(invalid), JSON.stringify(expected)] });
   assert.equal(calls, 2);
   assert.equal(invalid.checks[0].evidence[0].fragmentId, 'invented_a');
 });

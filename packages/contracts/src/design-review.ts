@@ -17,17 +17,27 @@ export const anchoredDesignReviewResultSchema = designReviewResultSchema.extend(
   })).min(1).max(10),
 });
 export const designContentReviewSchema = designReviewResultSchema.extend({
+  runId: z.string().optional(),
   id: z.string(), area: designReviewAreaSchema, inputHash: z.string().length(64),
   scope: z.object({ worldPackRevision: z.number().int(), storyBibleRevision: z.number().int(), planRevisionId: z.string(), planRevision: z.number().int() }),
   status: z.enum(['passed', 'needs_revision', 'inconclusive']),
   sources: z.array(z.object({ id: z.string(), text: z.string() })), createdAt: z.string().datetime(),
 });
 const reviewPlanSchema = z.object({ id: z.string(), revision: z.number().int(), status: z.enum(['proposed', 'reviewed', 'approved', 'superseded']) });
+export const designReviewRunOverviewSchema = z.object({
+  id: z.string(), area: designReviewAreaSchema, inputHash: z.string(), scope: designContentReviewSchema.shape.scope,
+  status: z.enum(['ready', 'running', 'failed', 'completed', 'outdated']),
+  createdAt: z.string(), updatedAt: z.string(), reportId: z.string().optional(), leaseExpiresAt: z.string().optional(),
+  totalSources: z.number(), totalCharacters: z.number(),
+  stages: z.array(z.object({ id: z.string(), kind: z.enum(['batch', 'cross', 'synthesis']), label: z.string(), completed: z.boolean(), verdict: z.enum(['passed', 'needs_revision', 'inconclusive']).optional(), attempts: z.number(), error: z.string().optional() })),
+});
+export type DesignReviewRunOverviewDto = z.infer<typeof designReviewRunOverviewSchema>;
 export const designReviewOverviewSchema = z.object({
   selectedPlan: reviewPlanSchema.optional(), plans: z.array(reviewPlanSchema).optional(),
   ready: z.boolean(), inputHash: z.string().optional(),
-  areas: z.array(z.object({ area: designReviewAreaSchema, status: z.enum(['missing', 'outdated', 'passed', 'needs_revision', 'inconclusive']), reportId: z.string().optional() })),
+  areas: z.array(z.object({ area: designReviewAreaSchema, status: z.enum(['missing', 'outdated', 'passed', 'needs_revision', 'inconclusive', 'reviewing', 'interrupted']), reportId: z.string().optional() })),
   reports: z.array(designContentReviewSchema),
+  runs: z.array(designReviewRunOverviewSchema).default([]),
 });
 export type DesignReviewAreaDto = z.infer<typeof designReviewAreaSchema>;
 export type DesignContentReviewDto = z.infer<typeof designContentReviewSchema>;

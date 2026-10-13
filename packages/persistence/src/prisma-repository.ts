@@ -1,3 +1,4 @@
+import type { DesignReviewRun } from '../../../novel-service-core/src/design-review-run.ts';
 import type { DesignContentReview } from '../../../novel-service-core/src/design-review.ts';
 import { randomUUID } from 'node:crypto';
 import { PrismaClient } from '@prisma/client';
@@ -143,7 +144,7 @@ export class PrismaWorkRepository implements WorkRepository {
 
   private async loadAggregate(project: {
     id: string; title: string; stateRevision: number; constraintRevision: number; covenant: string; worldPack: string | object; storyBible: string | object;
-    designContentReviews: string | object; designHistory: string | object; covenantHistory: string | object; activePlanId: string | null;
+    designReviewRuns: string | object; designContentReviews: string | object; designHistory: string | object; covenantHistory: string | object; activePlanId: string | null;
   }, tx: PrismaTx | PrismaClient = this.prisma): Promise<Work> {
     const workId = project.id;
     const [chapters, candidates, events, relationships, characters, worldRules, plotNodes, impacts, runCheckpoints, manuscripts, plans, briefs] = await Promise.all([
@@ -182,6 +183,7 @@ export class PrismaWorkRepository implements WorkRepository {
     }
     work.worldPack = readJson<WorldPack>(project.worldPack);
     work.storyBible = readJson<StoryBible>(project.storyBible);
+    for (const run of readJsonArray<DesignReviewRun>(project.designReviewRuns)) work.designReviewRuns.set(run.id, run);
     for (const report of readJsonArray<DesignContentReview>(project.designContentReviews)) work.designContentReviews.set(report.id, report);
     const designHistory = readJson<DesignRevision[]>(project.designHistory) ?? [];
     for (const revision of designHistory) work.designHistory.set(revision.id, revision);
@@ -556,6 +558,7 @@ function projectFields(work: Work) {
     title: work.title, stateRevision: work.stateRevision, constraintRevision: work.constraintRevision, covenant: JSON.stringify(work.covenant),
     worldPack: JSON.stringify(work.worldPack ?? {}), storyBible: JSON.stringify(work.storyBible ?? {}),
     designContentReviews: JSON.stringify([...work.designContentReviews.values()]),
+    designReviewRuns: JSON.stringify([...work.designReviewRuns.values()]),
     designHistory: JSON.stringify([...work.designHistory.values()]), covenantHistory: JSON.stringify(work.covenantHistory),
     activePlanId: work.activePlanId ?? null,
   };

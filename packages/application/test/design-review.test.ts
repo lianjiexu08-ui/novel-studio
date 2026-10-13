@@ -1,3 +1,4 @@
+import { createDesignReviewRun, designReviewStageInput } from '../../../novel-service-core/src/design-review-run.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { ChapterWorkflow, InMemoryWorkRepository, type DesignProvider } from '../src/index.ts';
@@ -43,7 +44,11 @@ test('power review includes late chapter costs instead of reviewing only the pow
   const storyInput = designReviewInput(work, 'story');
   assert.match(storyInput.sources.find((source) => source.id === 'world/resources/resource')!.text, /不增加寿命/);
   plan.chapters[96].summary = '材料'.repeat(130000);
-  assert.throws(() => designReviewInput(work, 'power'), /超出单次评审容量/);
+  const oversized = designReviewInput(work, 'power');
+  assert.ok(oversized.sources.find(source => source.id === 'plan/chapters/97')!.text.includes(plan.chapters[96].summary));
+  const run = createDesignReviewRun(oversized);
+  assert.ok(run.stages.some(stage => stage.kind === 'cross'));
+  for (const stage of run.stages.filter(stage => stage.kind !== 'synthesis')) assert.ok(JSON.stringify(designReviewStageInput(run, stage).sources).length <= 240_000);
 });
 
 test('long-form generation requires all current design reviews and adoption cannot bypass the new gate', async () => {
@@ -146,7 +151,9 @@ test('review does not silently truncate an oversized outline or grant authority 
   assert.notEqual(designReviewHash(work), before);
   assert.equal(designReviewOverview(work).ready, false);
   changed.plan.chapters[0].summary = '材料'.repeat(130000);
-  assert.throws(() => designReviewInput(work, 'story'), /超出单次评审容量/);
+  const run = createDesignReviewRun(designReviewInput(work, 'story'));
+  assert.ok(run.stages.length > 1);
+  assert.equal(designReviewOverview(work).ready, false);
   assert.equal(work.designContentReviews.size, 4);
 });
 

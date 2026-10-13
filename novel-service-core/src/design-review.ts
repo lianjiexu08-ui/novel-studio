@@ -34,6 +34,7 @@ export interface DesignReviewInput {
   scope: { worldPackRevision: number; storyBibleRevision: number; planRevisionId: string; planRevision: number };
   sources: DesignReviewSource[];
   rubric: Record<string, string>;
+  stage?: { kind: 'batch' | 'cross' | 'synthesis'; label: string; totalBatches: number; sourceMap: Array<{ id: string; sourceId: string; start: number; end: number }> };
 }
 export interface DesignReviewCheck {
   criterion: string;
@@ -42,7 +43,7 @@ export interface DesignReviewCheck {
   evidence: Array<{ sourceId: string; quote: string }>;
   revisionAdvice: string;
 }
-export interface DesignReviewResult { summary: string; checks: DesignReviewCheck[] }
+export interface DesignReviewResult { summary: string; checks: DesignReviewCheck[]; modelResponses?: string[] }
 export interface DesignContentReview extends DesignReviewResult {
   id: string;
   area: DesignReviewArea;
@@ -52,6 +53,7 @@ export interface DesignContentReview extends DesignReviewResult {
   /** Exact materials sent to the reviewer; never presented as adopted story facts. */
   sources: DesignReviewSource[];
   createdAt: string;
+  runId?: string;
 }
 export class DesignReviewError extends Error {}
 
@@ -79,7 +81,7 @@ export function designReviewHash(work: Work, planId?: string): string | undefine
   const plan = selectedId ? work.plans.get(selectedId) : undefined;
   if (!work.worldPack || !work.storyBible || !plan || plan.status === 'superseded' || (planId === undefined && plan.status !== 'approved')) return undefined;
   return createHash('sha256').update(JSON.stringify({
-    rubricVersion: 4, title: work.title, covenant: work.covenant,
+    rubricVersion: 5, title: work.title, covenant: work.covenant,
     world: work.worldPack, bible: work.storyBible, planId: plan.id, plan: plan.plan,
     characters: [...work.characters.values()].sort((a, b) => a.id.localeCompare(b.id)),
     relationships: [...work.relationships.values()].sort((a, b) => a.id.localeCompare(b.id)),
@@ -123,7 +125,6 @@ export function designReviewInput(work: Work, area: DesignReviewArea, planId?: s
   group('settings/relationships', [...work.relationships.values()]);
   group('settings/worldRules', [...work.worldRules.values()]);
   group('settings/plotNodes', [...work.plotNodes.values()]);
-  if (JSON.stringify(sources).length > 240_000) throw new DesignReviewError('本项材料超出单次评审容量，尚未评审；请分阶段整理设计，不能用截断材料的评审放行');
   return { area, inputHash, scope: { worldPackRevision: world.revision, storyBibleRevision: bible.revision, planRevisionId: plan.id, planRevision: plan.revision }, sources, rubric: designReviewRubrics[area] };
 }
 
@@ -164,9 +165,11 @@ export function designReviewOverview(work: Work, planId?: string) {
   const areas = designReviewAreas.map((area) => {
     const current = reports.filter((report) => report.area === area && report.inputHash === hash).at(-1);
     const latest = reports.filter((report) => report.area === area).at(-1);
+    const run = [...work.designReviewRuns.values()].filter(run => run.input.area === area && run.input.inputHash === hash).at(-1);
+    if (run && run.status !== 'completed') return { area, status: run.status === 'running' ? 'reviewing' as const : 'interrupted' as const, reportId: current?.id };
     return { area, status: current?.status ?? (latest ? 'outdated' as const : 'missing' as const), reportId: (current ?? latest)?.id };
   });
-  return { ready: areas.every((area) => area.status === 'passed'), inputHash: hash, areas, reports };
+  return { ready: areas.every((area) => area.status === 'passed'), inputHash: hash, areas, reports, runs: [...work.designReviewRuns.values()].map(run => ({ id: run.id, area: run.input.area, inputHash: run.input.inputHash, scope: run.input.scope, status: run.input.inputHash === hash ? run.status : 'outdated' as const, createdAt: run.createdAt, updatedAt: run.updatedAt, reportId: run.reportId, leaseExpiresAt: run.leaseExpiresAt, totalSources: run.input.sources.length, totalCharacters: run.input.sources.reduce((n, s) => n + s.text.length, 0), stages: run.stages.map(({ id, kind, label, result, attempts, error }) => ({ id, kind, label, completed: Boolean(result), verdict: result ? result.checks.some(c => c.verdict === 'revise') ? 'needs_revision' as const : result.checks.some(c => c.verdict === 'insufficient') ? 'inconclusive' as const : 'passed' as const : undefined, attempts, error })) })) };
 }
 
 export function requiresDesignContentReview(work: Work): boolean {

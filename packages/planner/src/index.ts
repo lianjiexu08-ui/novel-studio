@@ -26,9 +26,14 @@ export class JsonDesignPlanner implements DesignPlanner {
   constructor(client: PlanningClient, targetChapters = 100) { this.client = client; this.targetChapters = targetChapters; }
 
   async reviewDesignContent(input: DesignReviewInput): Promise<DesignReviewResult> {
+    if (JSON.stringify(input.sources).length > 240_000) throw new DesignReviewError('本批材料超出单次评审容量，请使用分阶段评审');
     const evidence = prepareDesignReviewEvidence(input);
-    return completeValidated(this.client, {
+    const modelResponses: string[] = [];
+    const recordingClient: PlanningClient = { complete: async request => { const raw = await this.client.complete(request); modelResponses.push(raw); return raw; } };
+    try {
+    const result = await completeValidated(recordingClient, {
       system: `你是玄幻长篇的独立设计编辑。本次只评审一个领域，不续写、不修改设定、不替作者补出证据。
+若带 stage：batch 只评价所给原文批次，cross 检查两个原文批次之间的矛盾，不因其他批次未在本次出现就断言全书缺失。sourceMap 给出各原文片段的来源和字符范围，不代表故事事实。synthesis 的来源是已有评审报告而非故事原文：对照其证据、时间和依赖，寻找跨报告冲突、重复兑现及无法闭合的因果；不得取消任何前置返修或材料不足项，不得只数通过票。最终系统仍会保留全部未通过项。解释保持精炼，结果总长度不超过40000字符。
 逐项评估 rubric。检查内容的因果、约束、动机和可执行性，不以数量够多或字段完整判通过。
 以 plan/overview.targetChapterCount 为本轮范围。100章可以是百万字项目的阶段验收；不能仅因最终篇幅愿景不同就要求扩写到450章。容量不足应先指出当前阶段的冲突与递进缺口。
 以输入 scope 指定的计划及配套世界、故事圣经为本次待审提案，评估若按此写作是否成立。提案尚未批准、尚未采纳为事件本身不是内容缺陷，不得要求先批准或先写正文才能评审其可行性。
@@ -41,9 +46,11 @@ pass 也必须有支撑证据；明确矛盾或设计缺陷用 revise；材料�
 这是设计评审，不是正文通读，不能声称正文已符合设计或完成了整书文学验收。关系 stages 是计划阶段，已采纳事件才是实际变化。不得为解释连续性漏洞而把新编的分裂、复活或转移当成已发生事实；优先修正重复兑现。
 只返回 JSON: {"summary":"本项结论","checks":[{"criterion":"rubric中的键","verdict":"pass|revise|insufficient","explanation":"判断理由","evidence":[{"fragmentId":"所选原文片段的id"}],"revisionAdvice":"返修或补充要求，通过时可为空"}]}。
 每个 rubric 键恰好一项。`,
-      user: JSON.stringify({ task: 'review_design_content', evaluationStage: 'design_proposal', scope: input.scope, area: input.area, rubric: input.rubric, sources: evidence.sources }),
+      user: JSON.stringify({ task: 'review_design_content', evaluationStage: 'design_proposal', scope: input.scope, area: input.area, stage: input.stage, rubric: input.rubric, sources: evidence.sources }),
       role: 'reviewing', maxOutputTokens: 8000,
     }, evidence.resolve);
+    return { ...result, modelResponses };
+    } catch (error) { throw Object.assign(error instanceof Error ? error : new Error(String(error)), { modelResponses }); }
   }
 
   async generateWorldPack(input: { title: string; covenant: CreativeCovenant; chapterTarget?: number }): Promise<WorldPack> {

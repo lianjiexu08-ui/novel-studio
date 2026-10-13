@@ -317,3 +317,36 @@ test('prisma repository round-trips leases, control, attempts, usage, check inpu
   const adopted = await new ChapterWorkflow(third, shortWriter, undefined, { checkPolicy: policy }).adopt(work.id, manual.id, 0);
   assert.equal(adopted.version.chapterNumber, 1);
 });
+
+test('SQLite review checkpoints survive repository restart and resume without repeating a batch', async t => {
+  const databaseUrl = createDatabase();
+  process.env.DATABASE_URL = databaseUrl;
+  const { PrismaWorkRepository } = await import('../src/prisma-repository.ts');
+  const { ChapterWorkflow } = await import('../../application/src/index.ts');
+  const { createReadyWork, fixtureDesignReview } = await import('../../application/test/fixtures.ts');
+  const first = new PrismaWorkRepository();
+  const second = new PrismaWorkRepository();
+  t.after(async () => { await first.disconnect(); await second.disconnect(); rmSync(databaseUrl.slice(5), { force: true }); });
+  const provider = { generateChapter: () => ({ content: 'unused', proposedEvents: [] }) };
+  const reviewer = { generateWorldPack: async () => { throw Error('unused'); }, generateStoryBible: async () => { throw Error('unused'); }, reviewDesignContent: async (input: Parameters<typeof fixtureDesignReview>[0]) => fixtureDesignReview(input) };
+  const workflow = new ChapterWorkflow(first, provider, reviewer);
+  const created = await createReadyWork(workflow, '分批评审恢复');
+  const work = (await first.get(created.id))!;
+  const proposed = structuredClone(work.plans.get(work.activePlanId!)!.plan);
+  proposed.chapters[0].summary = '巨大材料'.repeat(70000);
+  await workflow.savePlan(work.id, { baseRevisionId: work.activePlanId, plan: proposed });
+  const run = await workflow.startDesignReview(work.id, 'story');
+  await workflow.stepDesignReview(work.id, run.id);
+  const restored = (await second.get(work.id))!.designReviewRuns.get(run.id)!;
+  assert.deepEqual(restored.input, run.input);
+  assert.equal(restored.stages[0].attempts, 1);
+  assert.ok(restored.stages[0].result);
+  assert.equal((await second.get(work.id))!.designContentReviews.size, 0);
+  const resumed = new ChapterWorkflow(second, provider, reviewer);
+  let progress = await resumed.stepDesignReview(work.id, run.id);
+  while (progress.status !== 'completed') progress = await resumed.stepDesignReview(work.id, run.id);
+  const final = (await first.get(work.id))!;
+  assert.equal(final.designReviewRuns.get(run.id)!.stages[0].attempts, 1);
+  assert.equal(final.designContentReviews.get(progress.reportId!)!.runId, run.id);
+  assert.equal(final.versions.size, 0);
+});

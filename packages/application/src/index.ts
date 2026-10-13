@@ -1,4 +1,5 @@
-import { designReviewOverview, requiresDesignContentReview, designReviewInput, recordDesignReview, DesignReviewError, type DesignReviewInput, type DesignReviewResult, type DesignReviewArea, type DesignContentReview } from '../../../novel-service-core/src/design-review.ts';
+import { createDesignReviewRun, designReviewStageInput, acceptDesignReviewStage, completeDesignReviewRun, type DesignReviewRun } from '../../../novel-service-core/src/design-review-run.ts';
+import { designReviewHash, designReviewOverview, requiresDesignContentReview, designReviewInput, recordDesignReview, DesignReviewError, type DesignReviewInput, type DesignReviewResult, type DesignReviewArea, type DesignContentReview } from '../../../novel-service-core/src/design-review.ts';
 import { randomUUID } from 'node:crypto';
 import { addUsage, AdoptionBlocked, generationReadiness, NovelService, ReadinessError, StaleCandidateError, usageOfError, Work } from '../../../novel-service-core/src/core.ts';
 import type {
@@ -540,18 +541,108 @@ export class ChapterWorkflow {
 
   private readonly contentReviewsInFlight = new Set<string>();
 
-  async reviewDesignContent(workId: string, area: DesignReviewArea, planId?: string): Promise<DesignContentReview> {
+  async startDesignReview(workId: string, area: DesignReviewArea, planId?: string): Promise<DesignReviewRun> {
+    if (!this.designProvider?.reviewDesignContent) throw new DesignReviewError('尚未配置内容评审模型，请在系统设置配置规划模型');
+    return this.repository.transaction(workId, ({ work }) => {
+      const input = designReviewInput(work, area, planId ?? latestPlan(work)?.id);
+      const existing = [...work.designReviewRuns.values()].findLast(run => run.input.area === area && run.input.inputHash === input.inputHash && run.status !== 'completed' && run.status !== 'outdated');
+      if (existing) return structuredClone(existing);
+      const run = createDesignReviewRun(input, new Date(this.now()).toISOString());
+      work.designReviewRuns.set(run.id, run);
+      work.constraintRevision += 1;
+      return structuredClone(run);
+    });
+  }
+
+  /** One bounded model step. Completed stages survive errors, refreshes and process restarts. */
+  async stepDesignReview(workId: string, runId: string): Promise<DesignReviewRun> {
     const reviewer = this.designProvider;
-    if (!reviewer?.reviewDesignContent) throw new DesignReviewError('尚未配置内容评审模型，请在系统设置配置规划模型');
+    if (!reviewer?.reviewDesignContent) throw new DesignReviewError('尚未配置内容评审模型');
+    const token = randomUUID();
+    const claimed = await this.repository.transaction(workId, ({ work }) => {
+      const run = work.designReviewRuns.get(runId);
+      if (!run) throw new DesignReviewError('评审任务不存在');
+      if (designReviewHash(work, run.input.scope.planRevisionId) !== run.input.inputHash) throw new DesignReviewError('评审期间设计或计划已变化，请针对当前版本重新评审');
+      if (run.status === 'completed') return { run: structuredClone(run), stageId: undefined };
+      if (run.leaseToken && Date.parse(run.leaseExpiresAt ?? '') > this.now()) throw new DesignReviewError('本项内容评审正在进行，请等待结果');
+      const stage = run.stages.find(s => !s.result);
+      if (!stage) throw new DesignReviewError('评审进度异常，缺少最终提交');
+      run.status = 'running'; run.leaseToken = token;
+      run.leaseExpiresAt = new Date(this.now() + this.leaseMs).toISOString();
+      run.updatedAt = new Date(this.now()).toISOString();
+      stage.attempts += 1;
+      work.constraintRevision += 1;
+      return { run: structuredClone(run), stageId: stage.id };
+    });
+    if (!claimed.stageId) return claimed.run;
+    const stage = claimed.run.stages.find(s => s.id === claimed.stageId)!;
+    let heartbeatError: unknown;
+    let rejectedResult: DesignReviewResult | undefined;
+    let renewal = Promise.resolve();
+    const timer = setInterval(() => {
+      renewal = renewal.then(async () => {
+        await this.repository.transaction(workId, ({ work }) => {
+          const run = work.designReviewRuns.get(runId);
+          if (!run || run.leaseToken !== token || Date.parse(run.leaseExpiresAt ?? '') <= this.now()) throw new DesignReviewError('本批评审执行权已失效，请刷新进度');
+          run.leaseExpiresAt = new Date(this.now() + this.leaseMs).toISOString();
+          work.constraintRevision += 1;
+        });
+      }).catch(error => { heartbeatError = error; });
+    }, Math.max(10, Math.floor(this.leaseMs / 3)));
+    timer.unref();
+    try {
+      const input = designReviewStageInput(claimed.run, stage);
+      const result = await reviewer.reviewDesignContent(structuredClone(input));
+      rejectedResult = result;
+      clearInterval(timer); await renewal;
+      if (heartbeatError) throw heartbeatError;
+      return await this.repository.transaction(workId, ({ work }) => {
+        const run = structuredClone(work.designReviewRuns.get(runId)!);
+        if (run.leaseToken !== token || Date.parse(run.leaseExpiresAt ?? '') <= this.now()) throw new DesignReviewError('本批评审执行权已失效，请刷新进度');
+        if (designReviewHash(work, run.input.scope.planRevisionId) !== run.input.inputHash) throw new DesignReviewError('评审期间设计或计划已变化，请针对当前版本重新评审');
+        const currentStage = run.stages.find(s => s.id === stage.id)!;
+        const { modelResponses, ...content } = result;
+        acceptDesignReviewStage(run, currentStage, content);
+        currentStage.modelResponses = modelResponses; currentStage.rejectedResult = undefined;
+        run.leaseToken = undefined; run.leaseExpiresAt = undefined;
+        run.updatedAt = new Date(this.now()).toISOString(); run.status = 'ready';
+        if (run.stages.every(s => s.result)) {
+          const completed = completeDesignReviewRun(run);
+          const report = recordDesignReview(work, completed.input, completed.result);
+          report.runId = run.id;
+          run.reportId = report.id; run.status = 'completed';
+        }
+        work.designReviewRuns.set(run.id, run);
+        work.constraintRevision += 1;
+        return structuredClone(run);
+      });
+    } catch (error) {
+      clearInterval(timer); await renewal;
+      await this.repository.transaction(workId, ({ work }) => {
+        const run = work.designReviewRuns.get(runId);
+        if (!run || run.leaseToken !== token) return;
+        run.status = designReviewHash(work, run.input.scope.planRevisionId) === run.input.inputHash ? 'failed' : 'outdated';
+        const failed = run.stages.find(s => s.id === stage.id)!;
+        failed.error = error instanceof Error ? error.message : String(error);
+        failed.rejectedResult = rejectedResult;
+        failed.modelResponses = rejectedResult?.modelResponses ?? (error as { modelResponses?: string[] })?.modelResponses;
+        (failed.failures ??= []).push({ at: new Date(this.now()).toISOString(), error: failed.error, modelResponses: failed.modelResponses, rejectedResult: failed.rejectedResult });
+        run.leaseToken = undefined; run.leaseExpiresAt = undefined;
+        run.updatedAt = new Date(this.now()).toISOString();
+        work.constraintRevision += 1;
+      });
+      throw error;
+    } finally { clearInterval(timer); }
+  }
+
+  async reviewDesignContent(workId: string, area: DesignReviewArea, planId?: string): Promise<DesignContentReview> {
     const key = `${workId}:${area}`;
     if (this.contentReviewsInFlight.has(key)) throw new DesignReviewError('本项内容评审正在进行，请等待结果');
     this.contentReviewsInFlight.add(key);
     try {
-      const work = await this.snapshot(workId);
-      const input = designReviewInput(work, area, planId ?? latestPlan(work)?.id);
-      // No database transaction is held while the model works. The commit rechecks the fingerprint.
-      const result = await reviewer.reviewDesignContent(structuredClone(input));
-      return await this.repository.transaction(workId, ({ work: current }) => recordDesignReview(current, input, result));
+      let run = await this.startDesignReview(workId, area, planId);
+      while (run.status !== 'completed') run = await this.stepDesignReview(workId, run.id);
+      return (await this.snapshot(workId)).designContentReviews.get(run.reportId!)!;
     } finally { this.contentReviewsInFlight.delete(key); }
   }
 

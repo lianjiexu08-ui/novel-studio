@@ -29,6 +29,8 @@ model Project {
   designHistory  String   @default("[]")
   /// Evidence-based model reviews, append-only; bound to an exact design fingerprint.
   designContentReviews String @default("[]")
+  /// Resumable raw-text coverage, cross checks and synthesis checkpoints.
+  designReviewRuns String @default("[]")
   /// Append-only CovenantRevision JSON array; keeps the author's original words.
   covenantHistory String  @default("[]")
   /// The approved PlanRevision driving briefs and generation.
