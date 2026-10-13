@@ -1,0 +1,342 @@
+{
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "scope": "design_proposals_not_full_manuscript_review",
+  "model": "gpt-5.6-luna",
+  "current": {
+    "world": 15,
+    "bible": 17,
+    "plan": 15,
+    "planId": "plan_4c634d92c9fb430f89928e1cb65407af",
+    "status": "proposed"
+  },
+  "approved": false,
+  "reports": [
+    {
+      "summary": "人物设计在目标、选择、代价和主线作用上已有较完整的结构，但关系阶段与认知揭示仍存在明确的连续性和证据问题，不能整体通过。",
+      "checks": [
+        {
+          "criterion": "agency",
+          "verdict": "pass",
+          "explanation": "林辰、苏凌霜、赵玄极、墨幽屠、夜凝霜、炎煞尊者均被赋予了相对独立的目标，并通过结盟、拒令、留宗、控制、护界、交易等选择改变主线走向；多数选择同时写明了个人代价及失败或行动后的局势影响。尤其苏凌霜、赵玄极、夜凝霜和炎煞尊者并非只作为主角行动的附属反应者。",
+          "evidence": [
+            {
+              "sourceId": "story/characters/char_01",
+              "quote": "\"goal\": \"逆转命寿燃尽的死局，查明十年前青玄界门灵震真相并斩绝抽取生灵命寿的黑手。\""
+            },
+            {
+              "sourceId": "story/relationships/rel_01",
+              "quote": "\"cause\": \"苏在大比后当众举证挡住拘押，把私下合作变成公开立场。\",\n      \"cost\": \"苏的宗门身份与调查空间受压，林辰的行动会牵连凌云峰。\""
+            },
+            {
+              "sourceId": "story/arcBeats/audit-zhao-control",
+              "quote": "\"expectedChange\": \"赵以庇护令建立控制，误以为林辰受制；保留表面宗门礼法换取暗中抽命，错误判断让古境部署遭破坏。\""
+            }
+          ],
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "relationships",
+          "verdict": "revise",
+          "explanation": "关系条目形式上具备初始状态、促成选择、代价和阶段变化，但部分阶段仍把未被正文证实的事件当作既成变化，尤其苏凌霜被捕及夜凝霜离岗后的责任后果没有可执行的证据链。关系计划不能替代已采纳事件，因此第78章前后的苏林关系转折、苏的被捕过程和夜凝霜从守北境转为支援主角，都应先补齐触发场景、决策者、阻力与即时后果。",
+          "evidence": [
+            {
+              "sourceId": "story/overview",
+              "quote": "\"id\": \"audit-relationship-stages\",\n      \"question\": \"六条关系均有阶段，另补配角选择与三项秘密的认知计划。尚须独立评审并核对已采纳事件：苏的被捕过程、夜的北境交接、早期与后期揭示措辞、赵十年前是否已知死渊风险仍缺证据；计划不能替代历史事实。\",\n      \"blocking\": true,\n      \"status\": \"open\""
+            },
+            {
+              "sourceId": "story/relationships/rel_04",
+              "quote": "\"value\": \"留宗调查与皇权渗透对抗，结果尚待章内补证。\",\n      \"cause\": \"苏选择留宗作内应而非跟随林辰南渡。\",\n      \"cost\": \"宗门身份既是行动资源也是被控制的弱点；29至78章的被捕过程不能当作已写明。\""
+            },
+            {
+              "sourceId": "story/arcBeats/audit-ye-south",
+              "quote": "\"expectedChange\": \"夜在神鉴推演后选择从守北境转为协助破九鼎，行动指向切断灾源；北境职责交接与离任代价尚需补全，不得只写愿随主角。\""
+            }
+          ],
+          "revisionAdvice": "优先返修第三卷第76—82章：明确苏凌霜被捕的具体决策、执行者、她主动抵抗或传讯的选择及其失败代价；补写夜凝霜离开北境前的交接对象、守界防线损失和替代方案。只有这些事件被采纳并落到章内，关系阶段才可作为实际变化而非计划标签。"
+        },
+        {
+          "criterion": "knowledge",
+          "verdict": "revise",
+          "explanation": "认知阶段表已尝试限制秘密、误解和揭示条件，但章纲仍重复兑现同一真相，且存在把后期公开验证写成首次揭示的问题。父亲护界真相在第18、27章已有分层揭示，第92章只能承担公开核验或法理清算；死渊风险在第59章已由夜凝霜说明，第75章应是亲眼验证而非重新告知。此外，赵玄极的认知条目用第92章留影作为其自第1章已知的回溯依据，缺少角色当时为何知情、知道到什么程度的场景限制。",
+          "evidence": [
+            {
+              "sourceId": "story/overview",
+              "quote": "\"id\": \"audit-knowledge-reveal-order\",\n      \"question\": \"第18章已知父亲护界、第27章补暗算细节却称真相大白天下，第92章又作首次揭示；第59章明确死渊，第75章再次惊问。应保留已出现的认知，把后期改为验证、公开作证或规模升级，不能通过凭空假记忆抹去早章。第92章也出现三柄碎片，应纳入73章合匙后的状态返修。\",\n      \"blocking\": true,\n      \"status\": \"open\""
+            },
+            {
+              "sourceId": "story/secrets/sec_01",
+              "quote": "\"sinceChapter\": 1,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"知道自己参与父辈案，致力于控制或销毁证据。\",\n      \"trigger\": \"第92章留影显示其当年行为，为此知情边界提供回溯依据。\""
+            },
+            {
+              "sourceId": "story/secrets/sec_03",
+              "quote": "\"revealCondition\": \"第55章初见死渊来物，第59章夜凝霜明确告知门外是死渊；第75章观界台成为林辰亲眼验证与双方评估危机规模的节点，不能再写成首次听说；其他人物须有告知或见证场景才知情。\""
+            }
+          ],
+          "revisionAdvice": "返修第18、27、59、75、88、92章的认知措辞：区分个人发现、同伴获悉、公开传播和证据核验；删除或改写“首次揭示”“真相大白天下”等重复节点。另为赵玄极补出第1章起掌握父辈案的具体来源与认知边界，否则不得用第92章留影倒推其早期确认状态。"
+        }
+      ],
+      "id": "design_review_b7bb290d-4d45-47d2-a4e2-f649475cb3ff",
+      "area": "characters",
+      "inputHash": "a9edc4b5d2d4ca9bfde3e2de5e8d9ff49b77b5720cfb8092ab9042937efa02a5",
+      "scope": {
+        "worldPackRevision": 15,
+        "storyBibleRevision": 16,
+        "planRevisionId": "plan_61c711339e334b9ea55cbb5341c3b1b3",
+        "planRevision": 14
+      },
+      "sources": [
+        {
+          "id": "story/overview",
+          "text": "{\n  \"coreConflict\": \"主角以自身寿命换取暴烈战力求存求真，与大乾皇朝及魔道巨擘妄图血祭诸域生灵命寿强破界门的霸权行径爆发死生冲突。\",\n  \"endingDirection\": \"主角逆转命寿通灵之厄，彻底粉碎大乾九鼎窃寿大阵并斩灭域外寂灭侵蚀，以破虚极境与补天圣法重铸三大陆界门守恒平衡。\",\n  \"unresolvedQuestions\": [\n    {\n      \"id\": \"uq_03\",\n      \"question\": \"三大陆界门开启时是否会触发天地灵气守恒律的反向大吞噬？\",\n      \"blocking\": false,\n      \"status\": \"resolved\"\n    },\n    {\n      \"id\": \"uq_04\",\n      \"question\": \"大乾天朝皇室命修是否秘密掌握借国运转移燃寿反噬之法？\",\n      \"blocking\": false,\n      \"status\": \"resolved\"\n    },\n    {\n      \"id\": \"uq_06\",\n      \"question\": \"主角以命寿换力突破至归一境时，延寿灵泉能否中和其肉身永久衰老的暗伤？\",\n      \"blocking\": false,\n      \"status\": \"resolved\"\n    },\n    {\n      \"id\": \"uq_08\",\n      \"question\": \"太古界门破虚匙共有几柄，补天阁内部是否封存有另外的钥匙残片？\",\n      \"blocking\": false,\n      \"status\": \"resolved\"\n    },\n    {\n      \"id\": \"uq_09\",\n      \"question\": \"十年前青玄极天界门的无故灵震是否由主角家族或某位通天境强者的秘密燃寿破门引发？\",\n      \"blocking\": false,\n      \"status\": \"resolved\"\n    },\n    {\n      \"id\": \"audit-scene-31\",\n      \"question\": \"第31章已绑定无尽虚海商路 loc_21；跨大陆海域不挂在青玄大陆之下。航程天数仍随时间线统一核查。\",\n      \"blocking\": false,\n      \"status\": \"resolved\"\n    },\n    {\n      \"id\": \"audit-volume-timeline\",\n      \"question\": \"批准章纲以32/66/100为卷界，正文第30、53、66章出现不同收卷描述；第99–100章第五十日又写数十载/十载经历。须统一时间线与分卷。\",\n      \"blocking\": true,\n      \"status\": \"open\"\n    },\n    {\n      \"id\": \"audit-artifact-continuity\",\n      \"question\": \"第73章三枚破虚匙已合拢，98章又以三枚散落残片重组；缺少中间状态转换与新代价说明。\",\n      \"blocking\": true,\n      \"status\": \"open\"\n    },\n    {\n      \"id\": \"audit-ending-cost\",\n      \"question\": \"第99章写“再无折寿枯竭之患”，以天道奖励取消逆命代价，与命寿通灵律消耗不可逆冲突；结尾必须说明能量来源、使用上限与持续代价，并逐章复核第98–100章。\",\n      \"blocking\": true,\n      \"status\": \"open\"\n    },\n    {\n      \"id\": \"audit-relationship-stages\",\n      \"question\": \"六条关系均有阶段，另补配角选择与三项秘密的认知计划。尚须独立评审并核对已采纳事件：苏的被捕过程、夜的北境交接、早期与后期揭示措辞、赵十年前是否已知死渊风险仍缺证据；计划不能替代历史事实。\",\n      \"blocking\": true,\n      \"status\": \"open\"\n    },\n    {\n      \"id\": \"audit-knowledge-reveal-order\",\n      \"question\": \"第18章已知父亲护界、第27章补暗算细节却称真相大白天下，第92章又作首次揭示；第59章明确死渊，第75章再次惊问。应保留已出现的认知，把后期改为验证、公开作证或规模升级，不能通过凭空假记忆抹去早章。第92章也出现三柄碎片，应纳入73章合匙后的状态返修。\",\n      \"blocking\": true,\n      \"status\": \"open\"\n    }\n  ]\n}"
+        },
+        {
+          "id": "story/characters/char_01",
+          "text": "{\n  \"id\": \"char_01\",\n  \"name\": \"林辰\",\n  \"role\": \"protagonist\",\n  \"goal\": \"逆转命寿燃尽的死局，查明十年前青玄界门灵震真相并斩绝抽取生灵命寿的黑手。\",\n  \"identity\": \"太清仙宗末席记名弟子，乾坤逆命真解唯一继承者。\",\n  \"locationId\": \"loc_07\",\n  \"factionId\": \"fac_01\",\n  \"startingRealmId\": \"realm_01\"\n}"
+        },
+        {
+          "id": "story/relationships/rel_01",
+          "text": "{\n  \"stages\": [\n    {\n      \"sinceChapter\": 3,\n      \"untilChapter\": 7,\n      \"value\": \"调查中的有限庇护与试探，尚非生死盟约。\",\n      \"cause\": \"苏追查灵矿异动与魔道暗桩，选择保护被怀疑的同门并继续观察。\",\n      \"cost\": \"苏承担偏袒嫌疑；林辰不能推定她已知晓或接受全部逆命秘密。\"\n    },\n    {\n      \"sinceChapter\": 8,\n      \"untilChapter\": 11,\n      \"value\": \"交换情报后的互惠合作，信任以共同查案为条件。\",\n      \"cause\": \"苏告知擂台暗桩风险，林辰选择承担取证与应战风险。\",\n      \"cost\": \"双方共享信息但保留认知边界；暴露暗桩将招致戒律堂报复。\"\n    },\n    {\n      \"sinceChapter\": 12,\n      \"untilChapter\": 28,\n      \"value\": \"公开互相护持、共同承担宗门清算的同盟。\",\n      \"cause\": \"苏在大比后当众举证挡住拘押，把私下合作变成公开立场。\",\n      \"cost\": \"苏的宗门身份与调查空间受压，林辰的行动会牵连凌云峰。\"\n    },\n    {\n      \"sinceChapter\": 29,\n      \"untilChapter\": 77,\n      \"value\": \"异地协作的同盟：苏留宗门内应，林辰持信物远行。\",\n      \"cause\": \"古境危机后分工应对追捕，苏交出商盟信物帮助林辰南渡。\",\n      \"cost\": \"分离带来情报延迟和救援限制；信物代付的政治与债务责任须在返修中核实。\"\n    },\n    {\n      \"sinceChapter\": 78,\n      \"untilChapter\": 81,\n      \"value\": \"内应被囚引发救援危机。\",\n      \"cause\": \"天机镜传出受刑消息，林辰改变行程回救。\",\n      \"cost\": \"苏承受酷刑；林辰放弃疗伤窗口，不等于苏没有自己的抵抗选择。\"\n    },\n    {\n      \"sinceChapter\": 82,\n      \"value\": \"重聚后的并肩作战与公共责任。\",\n      \"cause\": \"二人夺取子阵后共同组织联军，苏独立统领剑修、护碑作证。\",\n      \"cost\": \"苏飞剑和道基受损，林辰付出真元；联军战损不能被一句同盟胜利抹平。\"\n    }\n  ],\n  \"id\": \"rel_01\",\n  \"fromCharacterId\": \"char_01\",\n  \"toCharacterId\": \"char_02\",\n  \"kind\": \"trust\",\n  \"value\": \"苏凌霜调查灵矿异动时给予林辰有限庇护，双方尚在试探。\",\n  \"locked\": false,\n  \"sinceChapter\": 3\n}"
+        },
+        {
+          "id": "story/relationships/rel_04",
+          "text": "{\n  \"stages\": [\n    {\n      \"sinceChapter\": 15,\n      \"untilChapter\": 28,\n      \"value\": \"礼节性妥协中抵抗皇权越界。\",\n      \"cause\": \"苏以凌云真传身份挡住审视，保持宗门试炼资格。\",\n      \"cost\": \"不公开决裂换取调查空间，也承担庇护嫌疑。\"\n    },\n    {\n      \"sinceChapter\": 29,\n      \"untilChapter\": 77,\n      \"value\": \"留宗调查与皇权渗透对抗，结果尚待章内补证。\",\n      \"cause\": \"苏选择留宗作内应而非跟随林辰南渡。\",\n      \"cost\": \"宗门身份既是行动资源也是被控制的弱点；29至78章的被捕过程不能当作已写明。\"\n    },\n    {\n      \"sinceChapter\": 78,\n      \"untilChapter\": 81,\n      \"value\": \"内应遭镇压，救援前拒绝放弃道心。\",\n      \"cause\": \"天机镜传来受囚消息，第81章剥魂仪式显现。\",\n      \"cost\": \"苏承受重刑与道种抽离风险；赵通过代理人镇压，具体逮捕决策仍待补证。\"\n    },\n    {\n      \"sinceChapter\": 82,\n      \"value\": \"公开反皇权，组织宗门反击并阻止毁证。\",\n      \"cause\": \"苏参与夺取子阵、统领剑修，并于第92章阻止赵毁碑。\",\n      \"cost\": \"本命飞剑受损、联军战损，无法再以表面妥协自保。\"\n    }\n  ],\n  \"id\": \"rel_04\",\n  \"fromCharacterId\": \"char_02\",\n  \"toCharacterId\": \"char_03\",\n  \"kind\": \"private_intent\",\n  \"value\": \"宗门与皇权博弈中的明面妥协与暗中提防。\",\n  \"locked\": false,\n  \"sinceChapter\": 15\n}"
+        },
+        {
+          "id": "story/arcBeats/audit-zhao-control",
+          "text": "{\n  \"id\": \"audit-zhao-control\",\n  \"arcId\": \"arc_01\",\n  \"characterId\": \"char_03\",\n  \"kind\": \"choice\",\n  \"plannedChapter\": 15,\n  \"expectedChange\": \"赵以庇护令建立控制，误以为林辰受制；保留表面宗门礼法换取暗中抽命，错误判断让古境部署遭破坏。\"\n}"
+        },
+        {
+          "id": "story/arcBeats/audit-ye-south",
+          "text": "{\n  \"id\": \"audit-ye-south\",\n  \"arcId\": \"arc_03\",\n  \"characterId\": \"char_05\",\n  \"kind\": \"choice\",\n  \"plannedChapter\": 76,\n  \"expectedChange\": \"夜在神鉴推演后选择从守北境转为协助破九鼎，行动指向切断灾源；北境职责交接与离任代价尚需补全，不得只写愿随主角。\"\n}"
+        },
+        {
+          "id": "story/secrets/sec_01",
+          "text": "{\n  \"knowledgeStages\": [\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 1,\n      \"untilChapter\": 17,\n      \"certainty\": \"suspects\",\n      \"belief\": \"知道残玉与生父有关，追查家仇；尚不掌握护界牺牲的完整经过。\",\n      \"trigger\": \"身世记忆与早期案卷线索。\",\n      \"consequence\": \"追索血晶去向与古境遗迹。\",\n      \"forbiddenInferences\": [\n        \"不能叙述尚未看见的投毒场面\",\n        \"不能因此知道九鼎全套阵图\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 18,\n      \"untilChapter\": 26,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"遗碑残像已证实父亲阻止赵窃命破门，残玉承载镇界传承。\",\n      \"trigger\": \"第18章亲触遗碑、承受神识冲击。\",\n      \"consequence\": \"选择取残印而非抽手自保。\",\n      \"forbiddenInferences\": [\n        \"不能说到第92章才首次知道父亲护界\",\n        \"尚无全套投毒背刺及嫁祸公开证据\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 27,\n      \"untilChapter\": 91,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"古玉记忆补足父亲遭暗算，59/63章证据扩大到跨陆守界。\",\n      \"trigger\": \"第27章古玉与残印共鸣；后续巡界证言与祖陵题名互证。\",\n      \"consequence\": \"复仇目标结合守界使命，寻找能让他人核验的证据。\",\n      \"forbiddenInferences\": [\n        \"个人幻象不等于全大陆已获知\",\n        \"不得强称苏看见全部记忆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 92,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"界碑公开还原投毒、背刺和嫁祸。\",\n      \"trigger\": \"以血脉激活公共留影，在场见证者得以核验。\",\n      \"consequence\": \"从私人复仇推进到公开清算及接续守界职责。\",\n      \"forbiddenInferences\": [\n        \"未在现场且未收到消息者不能立即自动知情\"\n      ]\n    },\n    {\n      \"characterId\": \"char_02\",\n      \"sinceChapter\": 3,\n      \"untilChapter\": 26,\n      \"certainty\": \"unaware\",\n      \"belief\": \"掌握当代魔门渗透线索，但没有父辈遇害全貌。\",\n      \"trigger\": \"追查暗桩、护持同门。\",\n      \"consequence\": \"先依实物证据阻止宗门清算。\",\n      \"forbiddenInferences\": [\n        \"不得以作者真相直接指控投毒细节\"\n      ]\n    },\n    {\n      \"characterId\": \"char_02\",\n      \"sinceChapter\": 27,\n      \"untilChapter\": 91,\n      \"certainty\": \"suspects\",\n      \"belief\": \"见到残余记忆和皇道气息，怀疑父辈案涉及皇权，未见全貌。\",\n      \"trigger\": \"第27章在场观察并听取林辰后续陈述。\",\n      \"consequence\": \"留宗调查、承担作证风险。\",\n      \"forbiddenInferences\": [\n        \"林辰知道的每个画面并未自动传给苏\",\n        \"未经另行传讯不能掌握苍冥全程见闻\"\n      ]\n    },\n    {\n      \"characterId\": \"char_02\",\n      \"sinceChapter\": 92,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"现场公开留影确认赵投毒背刺及嫁祸。\",\n      \"trigger\": \"她亲自挡住赵的毁碑攻击并见证留影。\",\n      \"consequence\": \"保护证据、组织宗门摆脱皇权控制。\",\n      \"forbiddenInferences\": [\n        \"不能把此章验证提前安放在初识时\"\n      ]\n    },\n    {\n      \"characterId\": \"char_03\",\n      \"sinceChapter\": 1,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"知道自己参与父辈案，致力于控制或销毁证据。\",\n      \"trigger\": \"第92章留影显示其当年行为，为此知情边界提供回溯依据。\",\n      \"consequence\": \"通过追查残玉持有者及毁碑保护统治。\",\n      \"forbiddenInferences\": [\n        \"不能无场景得知林辰何时看到哪段记忆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_05\",\n      \"sinceChapter\": 59,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"知道林苍玄曾与雪魄先祖推演界门并参与苍冥加固。\",\n      \"trigger\": \"第59章巡界传承证言、第63章祖陵题名。\",\n      \"consequence\": \"核验继承者资格并协作守界。\",\n      \"forbiddenInferences\": [\n        \"巡界传承不等于亲眼见过青玄投毒全程\"\n      ]\n    }\n  ],\n  \"id\": \"sec_01\",\n  \"ownerCharacterId\": \"char_01\",\n  \"title\": \"乾坤逆命真解渊源\",\n  \"truth\": \"残卷系十年前青玄极天界门灵震中其生父以百年阳寿护界陨落后所留遗蜕古玉。\",\n  \"revealCondition\": \"第18章遗碑向林辰揭示父亲护界及残玉镇界传承；第27章古玉记忆补足遭赵暗算的私人真相，苏仅窥得部分。第59/63章补证父亲跨陆守界，第92章界碑公开展示投毒、背刺与嫁祸，使私人认知成为公共罪证；不能反复首次揭密。\",\n  \"status\": \"proposed\"\n}"
+        },
+        {
+          "id": "story/secrets/sec_03",
+          "text": "{\n  \"knowledgeStages\": [\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 1,\n      \"untilChapter\": 54,\n      \"certainty\": \"unaware\",\n      \"belief\": \"追查界门与钥匙，尚未得知门外真实景象。\",\n      \"trigger\": \"早期线索仅指向界门争夺。\",\n      \"consequence\": \"调查父辈遗迹。\",\n      \"forbiddenInferences\": [\n        \"护界传承不等于已亲见门外死海\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 55,\n      \"untilChapter\": 58,\n      \"certainty\": \"suspects\",\n      \"belief\": \"见过裂隙魔物，听闻死渊异动，但未核实门外整体状况。\",\n      \"trigger\": \"第55章与巡界投影共同应战。\",\n      \"consequence\": \"前往北境会面。\",\n      \"forbiddenInferences\": [\n        \"不能仅凭一种魔物认定门外全部地理\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 59,\n      \"untilChapter\": 74,\n      \"certainty\": \"believes\",\n      \"belief\": \"相信夜凝霜告知的死渊及开门吞噬风险。\",\n      \"trigger\": \"第59章面对面接受巡界证言。\",\n      \"consequence\": \"寻第三残印并进入观界台验证。\",\n      \"forbiddenInferences\": [\n        \"第75章的震动应来自亲见规模，不是再次首次听说\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 75,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"亲眼看见死海，验证开门不是飞升。\",\n      \"trigger\": \"第75章以完整钥匙拨开幕墙。\",\n      \"consequence\": \"由求生寻门转为制止强行开门。\",\n      \"forbiddenInferences\": [\n        \"不能推定所有同盟与凡民已知此景象\"\n      ]\n    },\n    {\n      \"characterId\": \"char_05\",\n      \"sinceChapter\": 55,\n      \"untilChapter\": 74,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"传承和守界经验已告知死渊性质，实时裂隙规模仍需观测。\",\n      \"trigger\": \"长期守界；第55章识别魔物，第59章明确证言。\",\n      \"consequence\": \"核验持印者并主导进入界渊。\",\n      \"forbiddenInferences\": [\n        \"第75章不能让她忘掉自己已告知的事实\"\n      ]\n    },\n    {\n      \"characterId\": \"char_05\",\n      \"sinceChapter\": 75,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"观界台验证当前死海规模与屏障危机。\",\n      \"trigger\": \"参与幕墙观测与推演。\",\n      \"consequence\": \"推动阻断九鼎供能及维持封印。\",\n      \"forbiddenInferences\": [\n        \"不能把一处观测当成无条件控制所有界门\"\n      ]\n    },\n    {\n      \"characterId\": \"char_03\",\n      \"sinceChapter\": 76,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"已知死渊风险仍谋以万民为代价独自超脱；何时得知尚无确证。\",\n      \"trigger\": \"第76章推演显示其知情动机。\",\n      \"consequence\": \"加速祭礼并在败局中选择破坏封印。\",\n      \"forbiddenInferences\": [\n        \"不凭此反推十年前必然掌握相同知识；第92章所述求取道果须另核对\"\n      ]\n    }\n  ],\n  \"id\": \"sec_03\",\n  \"ownerCharacterId\": \"char_05\",\n  \"title\": \"太古界门落锁真相\",\n  \"truth\": \"界门外侧早已沦为域外寂灭死渊，强行破门非长生飞升而是招致三大陆灵气全面归零。\",\n  \"revealCondition\": \"第55章初见死渊来物，第59章夜凝霜明确告知门外是死渊；第75章观界台成为林辰亲眼验证与双方评估危机规模的节点，不能再写成首次听说；其他人物须有告知或见证场景才知情。\",\n  \"status\": \"proposed\"\n}"
+        }
+      ],
+      "status": "needs_revision",
+      "createdAt": "2026-10-13T09:24:04.226Z"
+    },
+    {
+      "summary": "人物设计三项均需返修：目前已有较完整的目标、关系阶段和认知计划，但关键配角的行动后果、关系事件的实际证据，以及秘密揭示与已采纳事件之间仍存在未核实、重复兑现和连续性冲突，不能按计划条目完整直接通过。",
+      "checks": [
+        {
+          "criterion": "agency",
+          "verdict": "revise",
+          "explanation": "主角、苏凌霜、赵玄极、墨幽屠、夜凝霜、炎煞尊者均被赋予目标，且多数有选择、代价和对主线的影响；但部分配角行动的失败后果和长期影响仍未落实，尤其苏凌霜接任掌教、夜凝霜重开航道等终局变化缺少前置治理与承接，赵玄极对关键风险的认知和决策因果也仍待核实。100章容量内已有足够人物节点，问题不是数量不足，而是关键选择尚未被实际事件证实。",
+          "evidence": [
+            {
+              "sourceId": "plan/overview",
+              "quote": "三卷基线已统一，人物关系阶段和认知计划已补充；须核对新提案与正文认知、寿元、钥匙状态和终局因果。配角被捕及离岗后果、通行凭证仍缺证据，尚不能批准写作。"
+            },
+            {
+              "sourceId": "story/arcBeats/audit-su-100",
+              "quote": "苏凌霜接任掌教，废除剥削与宗阀特权；是否有充分改革铺垫仍须审核。"
+            },
+            {
+              "sourceId": "story/arcBeats/audit-ye-100",
+              "quote": "夜凝霜重开航道并调停边境纷争；一天内完成治理的时间安排仍须审核。"
+            },
+            {
+              "sourceId": "story/overview",
+              "quote": "认知与章纲已分开18章护界、27章遇害细节、59章证言、75章观测、88章公开、92章原始碑痕核验。对应正文措辞与已采纳认知事件尚未返修；88章宝鉴如何取得完整罪证仍须追溯素材来源。"
+            }
+          ],
+          "revisionAdvice": "补齐苏凌霜被捕的具体链条、她脱困后如何取得掌教合法性及改革资源；补齐夜凝霜离开北境后的交接、阵眼防务与重开航道的现实成本；明确赵玄极何时、通过什么渠道知道死渊风险，并让其后续选择受该认知限制。不要再增加人物节点，优先把已有选择改成可验证的行动—失败—后果链。"
+        },
+        {
+          "criterion": "relationships",
+          "verdict": "revise",
+          "explanation": "六条关系都提供了初始状态、阶段边界、促成变化的选择、代价和生效章节，避免了单纯用终局关系概括初识；但阶段计划不能替代已发生事实，苏凌霜被捕、夜凝霜北境职责交接和南渡信物的效力仍缺少事件证据，关系中的信任变化因此存在跳跃风险。",
+          "evidence": [
+            {
+              "sourceId": "story/relationships/rel_01",
+              "quote": "苏追查灵矿异动与魔道暗桩，选择保护被怀疑的同门并继续观察。"
+            },
+            {
+              "sourceId": "story/relationships/rel_05",
+              "quote": "夜在海峡危机中显化投影，双方交换危险与持印信息。"
+            },
+            {
+              "sourceId": "story/relationships/rel_04",
+              "quote": "宗门身份既是行动资源也是被控制的弱点；29至78章的被捕过程不能当作已写明。"
+            },
+            {
+              "sourceId": "world/overview",
+              "quote": "已按正文撤销200／500灵石与代付债务假设，记录三枚中品灵石打点和火晶换舱。火晶数量、资源品阶换算、玄令绝对庇护与政治查验冲突、北境上岸凭证及回师供给仍需核对；第55章信物玉佩已存在，但不能自动推断为官方入境许可。"
+            }
+          ],
+          "revisionAdvice": "为rel_04补出第29—78章的被捕触发、苏凌霜的自主抵抗、失败代价和获救后的关系变化；为rel_05补出夜凝霜离任或交接北境职责的对象、代价和生效时点；将苏交给林辰的信物明确为可执行的通行凭证或改为仅能提供线索的信物，并统一第29—32章的使用方式。"
+        },
+        {
+          "criterion": "knowledge",
+          "verdict": "revise",
+          "explanation": "秘密条目已经区分unaware、suspects、believes、confirmed，并设置触发条件、后果和禁止推断，人物认知基础较好；但现有计划仍有揭示顺序、证据来源和物件状态的冲突。第88章已公开罪证后，第92章应只承担原始证据核验，却仍需防止再次写成首次揭示；第73章已合成完整钥匙后，后续章节和部分认知描述仍出现残片化表述；赵玄极何时确认死渊风险也没有可执行证据。",
+          "evidence": [
+            {
+              "sourceId": "story/secrets/sec_01",
+              "quote": "第88章宝鉴已将罪行传播到天幕；第92章是在原始界碑前核验证据并接续阵枢权限，不再是第一次私人发现或第一次公开。"
+            },
+            {
+              "sourceId": "story/overview",
+              "quote": "88章宝鉴如何取得完整罪证仍须追溯素材来源。92章三柄碎片也需纠正为73章已合成的完整匙，98章用途转换另行处理。"
+            },
+            {
+              "sourceId": "story/secrets/sec_03",
+              "quote": "已知死渊风险仍谋以万民为代价独自超脱；何时得知尚无确证。"
+            },
+            {
+              "sourceId": "plan/chapters/92",
+              "quote": "第88章已向公众传播父辈罪证，本章转为原始界碑的独立核验。赵试图毁碑，苏率剑修护住证据；林辰以真血唤醒父辈血契，与此前留影互证并接管封印阵枢。"
+            }
+          ],
+          "revisionAdvice": "锁定赵玄极得知死渊风险的具体章节、信息来源和误判内容；追溯第88章完整罪证的取得与传播路径；把第92章所有残片表述统一为第73章已完成的完整钥匙，并明确第98章是完整钥匙的功能转换而非重新合成；逐章检查人物只能使用当时已获得的秘密，删除重复首次发现和重复公开。"
+        }
+      ],
+      "id": "design_review_f976ce93-7b83-40c3-992b-dc0c55ae6370",
+      "area": "characters",
+      "inputHash": "13976d2223cc8bc56b2d81817c927a772c9bc0a2e0b3fdb1e8373bab97d8fd48",
+      "scope": {
+        "worldPackRevision": 15,
+        "storyBibleRevision": 17,
+        "planRevisionId": "plan_4c634d92c9fb430f89928e1cb65407af",
+        "planRevision": 15
+      },
+      "sources": [
+        {
+          "id": "world/overview",
+          "text": "{\n  \"title\": \"真实模型链路验收\",\n  \"summary\": \"三大陆修士逐道求存，叩探界门隐秘。\",\n  \"unresolvedQuestions\": [\n    {\n      \"id\": \"uq_01\",\n      \"question\": \"界门背后是否连通域外天魔族群？\",\n      \"blocking\": false,\n      \"status\": \"deferred\"\n    },\n    {\n      \"id\": \"uq_02\",\n      \"question\": \"寿元燃尽后是否存在真灵转生之法？\",\n      \"blocking\": false,\n      \"status\": \"resolved\"\n    },\n    {\n      \"id\": \"uq_03\",\n      \"question\": \"三大陆界门开启时是否会触发天地灵气守恒律的反向大吞噬？\",\n      \"blocking\": false,\n      \"status\": \"open\"\n    },\n    {\n      \"id\": \"uq_04\",\n      \"question\": \"大乾天朝皇室命修是否秘密掌握借国运转移燃寿反噬之法？\",\n      \"blocking\": false,\n      \"status\": \"open\"\n    },\n    {\n      \"id\": \"uq_05\",\n      \"question\": \"补天阁阁主本尊是否早已突破破虚境迈入主宰境？\",\n      \"blocking\": false,\n      \"status\": \"deferred\"\n    },\n    {\n      \"id\": \"uq_06\",\n      \"question\": \"主角以命寿换力突破至归一境时，延寿灵泉能否中和其肉身永久衰老的暗伤？\",\n      \"blocking\": false,\n      \"status\": \"open\"\n    },\n    {\n      \"id\": \"uq_07\",\n      \"question\": \"虚空神晶若被大量采集，是否会导致苍冥大陆虚空裂隙提前扩大并崩塌？\",\n      \"blocking\": false,\n      \"status\": \"open\"\n    },\n    {\n      \"id\": \"uq_08\",\n      \"question\": \"太古界门破虚匙共有几柄，补天阁内部是否封存有另外的钥匙残片？\",\n      \"blocking\": false,\n      \"status\": \"open\"\n    },\n    {\n      \"id\": \"uq_09\",\n      \"question\": \"十年前青玄极天界门的无故灵震是否由主角家族或某位通天境强者的秘密燃寿破门引发？\",\n      \"blocking\": false,\n      \"status\": \"open\"\n    },\n    {\n      \"id\": \"uq_10\",\n      \"question\": \"影杀阁乾都刺杀案幕后真凶是否为大乾内部企图夺嫡并推翻宗门妥协路线的皇子？\",\n      \"blocking\": false,\n      \"status\": \"open\"\n    },\n    {\n      \"id\": \"audit-power-opening\",\n      \"question\": \"第1章淬体境、寿元不足十年燃寿五年，与乾坤逆命真解允许神海境以上、十年至三十年消耗及最低十年寿元矛盾；第24章同日连续燃寿也违反三十日冷却。须确定残篇规则或重修正文，并重新评审。\",\n      \"blocking\": true,\n      \"status\": \"open\"\n    },\n    {\n      \"id\": \"audit-resource-definitions\",\n      \"question\": \"已补充绝命死息 res_15、诸天通宝 res_16 的资源提案并修正势力引用；新增品阶、材质、发行与保存规则尚需对照正文核验，不能视为已确立事实。\",\n      \"blocking\": true,\n      \"status\": \"open\"\n    },\n    {\n      \"id\": \"audit-travel-rules\",\n      \"question\": \"已按正文撤销200／500灵石与代付债务假设，记录三枚中品灵石打点和火晶换舱。火晶数量、资源品阶换算、玄令绝对庇护与政治查验冲突、北境上岸凭证及回师供给仍需核对；第55章信物玉佩已存在，但不能自动推断为官方入境许可。\",\n      \"blocking\": true,\n      \"status\": \"open\"\n    },\n    {\n      \"id\": \"audit-tier-exceptions\",\n      \"question\": \"已去除等级绝对压制，但早期施术及终局跨两境制敌仍须逐章返修；tech_10的最低十年寿元、三十日冷却和神海门槛未放宽。\",\n      \"blocking\": true,\n      \"status\": \"open\"\n    }\n  ]\n}"
+        },
+        {
+          "id": "story/overview",
+          "text": "{\n  \"coreConflict\": \"主角以自身寿命换取暴烈战力求存求真，与大乾皇朝及魔道巨擘妄图血祭诸域生灵命寿强破界门的霸权行径爆发死生冲突。\",\n  \"endingDirection\": \"主角逆转命寿通灵之厄，彻底粉碎大乾九鼎窃寿大阵并斩灭域外寂灭侵蚀，以破虚极境与补天圣法重铸三大陆界门守恒平衡。\",\n  \"unresolvedQuestions\": [\n    {\n      \"id\": \"uq_03\",\n      \"question\": \"三大陆界门开启时是否会触发天地灵气守恒律的反向大吞噬？\",\n      \"blocking\": false,\n      \"status\": \"resolved\"\n    },\n    {\n      \"id\": \"uq_04\",\n      \"question\": \"大乾天朝皇室命修是否秘密掌握借国运转移燃寿反噬之法？\",\n      \"blocking\": false,\n      \"status\": \"resolved\"\n    },\n    {\n      \"id\": \"uq_06\",\n      \"question\": \"主角以命寿换力突破至归一境时，延寿灵泉能否中和其肉身永久衰老的暗伤？\",\n      \"blocking\": false,\n      \"status\": \"resolved\"\n    },\n    {\n      \"id\": \"uq_08\",\n      \"question\": \"太古界门破虚匙共有几柄，补天阁内部是否封存有另外的钥匙残片？\",\n      \"blocking\": false,\n      \"status\": \"resolved\"\n    },\n    {\n      \"id\": \"uq_09\",\n      \"question\": \"十年前青玄极天界门的无故灵震是否由主角家族或某位通天境强者的秘密燃寿破门引发？\",\n      \"blocking\": false,\n      \"status\": \"resolved\"\n    },\n    {\n      \"id\": \"audit-scene-31\",\n      \"question\": \"第31章已绑定无尽虚海商路 loc_21；跨大陆海域不挂在青玄大陆之下。航程天数仍随时间线统一核查。\",\n      \"blocking\": false,\n      \"status\": \"resolved\"\n    },\n    {\n      \"id\": \"audit-volume-timeline\",\n      \"question\": \"批准章纲以32/66/100为卷界，正文第30、53、66章出现不同收卷描述；第99–100章第五十日又写数十载/十载经历。须统一时间线与分卷。\",\n      \"blocking\": true,\n      \"status\": \"open\"\n    },\n    {\n      \"id\": \"audit-artifact-continuity\",\n      \"question\": \"第73章三枚破虚匙已合拢，98章又以三枚散落残片重组；缺少中间状态转换与新代价说明。\",\n      \"blocking\": true,\n      \"status\": \"open\"\n    },\n    {\n      \"id\": \"audit-ending-cost\",\n      \"question\": \"第99章写“再无折寿枯竭之患”，以天道奖励取消逆命代价，与命寿通灵律消耗不可逆冲突；结尾必须说明能量来源、使用上限与持续代价，并逐章复核第98–100章。\",\n      \"blocking\": true,\n      \"status\": \"open\"\n    },\n    {\n      \"id\": \"audit-relationship-stages\",\n      \"question\": \"六条关系均有阶段，另补配角选择与三项秘密的认知计划。尚须独立评审并核对已采纳事件：苏的被捕过程、夜的北境交接、早期与后期揭示措辞、赵十年前是否已知死渊风险仍缺证据；计划不能替代历史事实。\",\n      \"blocking\": true,\n      \"status\": \"open\"\n    },\n    {\n      \"id\": \"audit-knowledge-reveal-order\",\n      \"question\": \"认知与章纲已分开18章护界、27章遇害细节、59章证言、75章观测、88章公开、92章原始碑痕核验。对应正文措辞与已采纳认知事件尚未返修；88章宝鉴如何取得完整罪证仍须追溯素材来源。92章三柄碎片也需纠正为73章已合成的完整匙，98章用途转换另行处理。\",\n      \"blocking\": true,\n      \"status\": \"open\"\n    }\n  ]\n}"
+        },
+        {
+          "id": "story/relationships/rel_01",
+          "text": "{\n  \"stages\": [\n    {\n      \"sinceChapter\": 3,\n      \"untilChapter\": 7,\n      \"value\": \"调查中的有限庇护与试探，尚非生死盟约。\",\n      \"cause\": \"苏追查灵矿异动与魔道暗桩，选择保护被怀疑的同门并继续观察。\",\n      \"cost\": \"苏承担偏袒嫌疑；林辰不能推定她已知晓或接受全部逆命秘密。\"\n    },\n    {\n      \"sinceChapter\": 8,\n      \"untilChapter\": 11,\n      \"value\": \"交换情报后的互惠合作，信任以共同查案为条件。\",\n      \"cause\": \"苏告知擂台暗桩风险，林辰选择承担取证与应战风险。\",\n      \"cost\": \"双方共享信息但保留认知边界；暴露暗桩将招致戒律堂报复。\"\n    },\n    {\n      \"sinceChapter\": 12,\n      \"untilChapter\": 28,\n      \"value\": \"公开互相护持、共同承担宗门清算的同盟。\",\n      \"cause\": \"苏在大比后当众举证挡住拘押，把私下合作变成公开立场。\",\n      \"cost\": \"苏的宗门身份与调查空间受压，林辰的行动会牵连凌云峰。\"\n    },\n    {\n      \"sinceChapter\": 29,\n      \"untilChapter\": 77,\n      \"value\": \"异地协作的同盟：苏留宗门内应，林辰持信物远行。\",\n      \"cause\": \"古境危机后分工应对追捕，苏交出商盟信物帮助林辰南渡。\",\n      \"cost\": \"分离带来情报延迟和救援限制；信物代付的政治与债务责任须在返修中核实。\"\n    },\n    {\n      \"sinceChapter\": 78,\n      \"untilChapter\": 81,\n      \"value\": \"内应被囚引发救援危机。\",\n      \"cause\": \"天机镜传出受刑消息，林辰改变行程回救。\",\n      \"cost\": \"苏承受酷刑；林辰放弃疗伤窗口，不等于苏没有自己的抵抗选择。\"\n    },\n    {\n      \"sinceChapter\": 82,\n      \"value\": \"重聚后的并肩作战与公共责任。\",\n      \"cause\": \"二人夺取子阵后共同组织联军，苏独立统领剑修、护碑作证。\",\n      \"cost\": \"苏飞剑和道基受损，林辰付出真元；联军战损不能被一句同盟胜利抹平。\"\n    }\n  ],\n  \"id\": \"rel_01\",\n  \"fromCharacterId\": \"char_01\",\n  \"toCharacterId\": \"char_02\",\n  \"kind\": \"trust\",\n  \"value\": \"苏凌霜调查灵矿异动时给予林辰有限庇护，双方尚在试探。\",\n  \"locked\": false,\n  \"sinceChapter\": 3\n}"
+        },
+        {
+          "id": "story/relationships/rel_04",
+          "text": "{\n  \"stages\": [\n    {\n      \"sinceChapter\": 15,\n      \"untilChapter\": 28,\n      \"value\": \"礼节性妥协中抵抗皇权越界。\",\n      \"cause\": \"苏以凌云真传身份挡住审视，保持宗门试炼资格。\",\n      \"cost\": \"不公开决裂换取调查空间，也承担庇护嫌疑。\"\n    },\n    {\n      \"sinceChapter\": 29,\n      \"untilChapter\": 77,\n      \"value\": \"留宗调查与皇权渗透对抗，结果尚待章内补证。\",\n      \"cause\": \"苏选择留宗作内应而非跟随林辰南渡。\",\n      \"cost\": \"宗门身份既是行动资源也是被控制的弱点；29至78章的被捕过程不能当作已写明。\"\n    },\n    {\n      \"sinceChapter\": 78,\n      \"untilChapter\": 81,\n      \"value\": \"内应遭镇压，救援前拒绝放弃道心。\",\n      \"cause\": \"天机镜传来受囚消息，第81章剥魂仪式显现。\",\n      \"cost\": \"苏承受重刑与道种抽离风险；赵通过代理人镇压，具体逮捕决策仍待补证。\"\n    },\n    {\n      \"sinceChapter\": 82,\n      \"value\": \"公开反皇权，组织宗门反击并阻止毁证。\",\n      \"cause\": \"苏参与夺取子阵、统领剑修，并于第92章阻止赵毁碑。\",\n      \"cost\": \"本命飞剑受损、联军战损，无法再以表面妥协自保。\"\n    }\n  ],\n  \"id\": \"rel_04\",\n  \"fromCharacterId\": \"char_02\",\n  \"toCharacterId\": \"char_03\",\n  \"kind\": \"private_intent\",\n  \"value\": \"宗门与皇权博弈中的明面妥协与暗中提防。\",\n  \"locked\": false,\n  \"sinceChapter\": 15\n}"
+        },
+        {
+          "id": "story/relationships/rel_05",
+          "text": "{\n  \"stages\": [\n    {\n      \"sinceChapter\": 55,\n      \"untilChapter\": 58,\n      \"value\": \"共同阻止界渊灾变的投影协作与条件信任。\",\n      \"cause\": \"夜在海峡危机中显化投影，双方交换危险与持印信息。\",\n      \"cost\": \"投影不能代替真身长期护航；林辰仍须接受巡界身份与目的核验。\"\n    },\n    {\n      \"sinceChapter\": 59,\n      \"untilChapter\": 66,\n      \"value\": \"真身会面后的任务同盟，不无条件共享全部秘密。\",\n      \"cause\": \"寒霄会面后确定持印者任务，在北境关隘战中相互支援。\",\n      \"cost\": \"夜为护送持印者承担巡界责任；林辰受封禁与路线限制。\"\n    },\n    {\n      \"sinceChapter\": 67,\n      \"value\": \"界渊生死协作后的守望同盟，信任由共同选择与损失累积。\",\n      \"cause\": \"面对空间异兽及界律反噬的互救使合作不再只基于利益。\",\n      \"cost\": \"神念、道基与守界职责受到牵连；同盟不等于认可对方任意开启界门。\"\n    }\n  ],\n  \"id\": \"rel_05\",\n  \"fromCharacterId\": \"char_01\",\n  \"toCharacterId\": \"char_05\",\n  \"kind\": \"emotion\",\n  \"value\": \"海峡危机中的首次隔空协作，尚不能视为破界挚友。\",\n  \"locked\": false,\n  \"sinceChapter\": 55\n}"
+        },
+        {
+          "id": "story/arcBeats/audit-su-100",
+          "text": "{\n  \"id\": \"audit-su-100\",\n  \"arcId\": \"arc_04\",\n  \"characterId\": \"char_02\",\n  \"kind\": \"resolution\",\n  \"plannedChapter\": 100,\n  \"expectedChange\": \"苏凌霜接任掌教，废除剥削与宗阀特权；是否有充分改革铺垫仍须审核。\"\n}"
+        },
+        {
+          "id": "story/arcBeats/audit-ye-100",
+          "text": "{\n  \"id\": \"audit-ye-100\",\n  \"arcId\": \"arc_04\",\n  \"characterId\": \"char_05\",\n  \"kind\": \"resolution\",\n  \"plannedChapter\": 100,\n  \"expectedChange\": \"夜凝霜重开航道并调停边境纷争；一天内完成治理的时间安排仍须审核。\"\n}"
+        },
+        {
+          "id": "story/secrets/sec_01",
+          "text": "{\n  \"knowledgeStages\": [\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 1,\n      \"untilChapter\": 17,\n      \"certainty\": \"suspects\",\n      \"belief\": \"知道残玉与生父有关，追查家仇；尚不掌握护界牺牲的完整经过。\",\n      \"trigger\": \"身世记忆与早期案卷线索。\",\n      \"consequence\": \"追索血晶去向与古境遗迹。\",\n      \"forbiddenInferences\": [\n        \"不能叙述尚未看见的投毒场面\",\n        \"不能因此知道九鼎全套阵图\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 18,\n      \"untilChapter\": 26,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"遗碑残像已证实父亲阻止赵窃命破门，残玉承载镇界传承。\",\n      \"trigger\": \"第18章亲触遗碑、承受神识冲击。\",\n      \"consequence\": \"选择取残印而非抽手自保。\",\n      \"forbiddenInferences\": [\n        \"不能说到第92章才首次知道父亲护界\",\n        \"尚无全套投毒背刺及嫁祸公开证据\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 27,\n      \"untilChapter\": 58,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"古玉记忆已补足父亲遭暗算的私人真相。\",\n      \"trigger\": \"第27章古玉与残印共鸣；苏只看见部分余痕。\",\n      \"consequence\": \"复仇目标结合守界使命，寻找能让他人核验的证据。\",\n      \"forbiddenInferences\": [\n        \"个人幻象不等于全大陆已获知\",\n        \"不得强称苏看见全部记忆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 59,\n      \"untilChapter\": 62,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"知道父亲曾与雪魄先祖推演界门，加深对跨陆守界行动的认识。\",\n      \"trigger\": \"第59章听取夜凝霜的巡界传承证言。\",\n      \"consequence\": \"复仇目标结合守界使命，寻找能让他人核验的证据。\",\n      \"forbiddenInferences\": [\n        \"个人幻象不等于全大陆已获知\",\n        \"不得强称苏看见全部记忆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 63,\n      \"untilChapter\": 87,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"祖陵题名进一步证实父亲曾协助加固苍冥天锁。\",\n      \"trigger\": \"第63章亲见界柱题名，与遗玉共鸣及巡界证言互证。\",\n      \"consequence\": \"复仇目标结合守界使命，寻找能让他人核验的证据。\",\n      \"forbiddenInferences\": [\n        \"个人幻象不等于全大陆已获知\",\n        \"不得强称苏看见全部记忆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 92,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"在原始界碑核验第88章已经传播的罪证，并理解血契与阵枢权限。\",\n      \"trigger\": \"亲触原始碑痕取得独立印证，承受父辈因果记忆。\",\n      \"consequence\": \"从传播罪证转为接续封印职责；不重置观众或自身认知。\",\n      \"forbiddenInferences\": [\n        \"未在现场且未收到消息者不能立即自动知情\"\n      ]\n    },\n    {\n      \"characterId\": \"char_02\",\n      \"sinceChapter\": 3,\n      \"untilChapter\": 26,\n      \"certainty\": \"unaware\",\n      \"belief\": \"掌握当代魔门渗透线索，但没有父辈遇害全貌。\",\n      \"trigger\": \"追查暗桩、护持同门。\",\n      \"consequence\": \"先依实物证据阻止宗门清算。\",\n      \"forbiddenInferences\": [\n        \"不得以作者真相直接指控投毒细节\"\n      ]\n    },\n    {\n      \"characterId\": \"char_02\",\n      \"sinceChapter\": 27,\n      \"untilChapter\": 91,\n      \"certainty\": \"suspects\",\n      \"belief\": \"见到残余记忆和皇道气息，怀疑父辈案涉及皇权，未见全貌。\",\n      \"trigger\": \"第27章在场观察并听取林辰后续陈述。\",\n      \"consequence\": \"留宗调查、承担作证风险。\",\n      \"forbiddenInferences\": [\n        \"林辰知道的每个画面并未自动传给苏\",\n        \"未经另行传讯不能掌握苍冥全程见闻\"\n      ]\n    },\n    {\n      \"characterId\": \"char_02\",\n      \"sinceChapter\": 92,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"现场公开留影确认赵投毒背刺及嫁祸。\",\n      \"trigger\": \"她亲自挡住赵的毁碑攻击并见证留影。\",\n      \"consequence\": \"保护证据、组织宗门摆脱皇权控制。\",\n      \"forbiddenInferences\": [\n        \"不能把此章验证提前安放在初识时\"\n      ]\n    },\n    {\n      \"characterId\": \"char_03\",\n      \"sinceChapter\": 1,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"知道自己亲自实施的父辈案行为；所知不等于林辰见过的记忆范围或每个守界细节。\",\n      \"trigger\": \"十年前亲自实施投毒、谋害与嫁祸形成自身记忆；第92章留影是读者核验其行为的证据，不是赵此时才获知自己行为。\",\n      \"consequence\": \"通过追查残玉持有者及毁碑保护统治。\",\n      \"forbiddenInferences\": [\n        \"不能无场景得知林辰何时看到哪段记忆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_05\",\n      \"sinceChapter\": 59,\n      \"untilChapter\": 62,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"知道林苍玄曾与雪魄先祖推演界门。\",\n      \"trigger\": \"第59章巡界传承证言。\",\n      \"consequence\": \"核验继承者资格并协作守界。\",\n      \"forbiddenInferences\": [\n        \"巡界传承不等于亲眼见过青玄投毒全程\"\n      ]\n    },\n    {\n      \"characterId\": \"char_05\",\n      \"sinceChapter\": 63,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"共同核对祖陵题名，确认林苍玄加固苍冥天锁的行动。\",\n      \"trigger\": \"第63章祖陵界柱题名与林辰遗玉共鸣。\",\n      \"consequence\": \"核验继承者资格并协作守界。\",\n      \"forbiddenInferences\": [\n        \"巡界传承不等于亲眼见过青玄投毒全程\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 88,\n      \"untilChapter\": 91,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"已主动将九鼎及父辈案证据投射天幕，知道公共传播已发生。\",\n      \"trigger\": \"第88章祭起补天定世鉴公开留影。\",\n      \"consequence\": \"承受本源消耗与皇权反击；下一步保护并核验原始界碑。\",\n      \"forbiddenInferences\": [\n        \"不能保证每个角色都亲眼看见并相信投影\",\n        \"不得将第92章再次称为首次公开\"\n      ]\n    }\n  ],\n  \"id\": \"sec_01\",\n  \"ownerCharacterId\": \"char_01\",\n  \"title\": \"乾坤逆命真解渊源\",\n  \"truth\": \"残卷系十年前青玄极天界门灵震中其生父以百年阳寿护界陨落后所留遗蜕古玉。\",\n  \"revealCondition\": \"第18章遗碑向林辰揭示父亲护界，第27章古玉补足遇害私密细节，苏仅窥部分；第59/63章补证跨陆守界。第88章宝鉴已将罪行传播到天幕；第92章是在原始界碑前核验证据并接续阵枢权限，不再是第一次私人发现或第一次公开。\",\n  \"status\": \"proposed\"\n}"
+        },
+        {
+          "id": "story/secrets/sec_03",
+          "text": "{\n  \"knowledgeStages\": [\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 1,\n      \"untilChapter\": 54,\n      \"certainty\": \"unaware\",\n      \"belief\": \"追查界门与钥匙，尚未得知门外真实景象。\",\n      \"trigger\": \"早期线索仅指向界门争夺。\",\n      \"consequence\": \"调查父辈遗迹。\",\n      \"forbiddenInferences\": [\n        \"护界传承不等于已亲见门外死海\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 55,\n      \"untilChapter\": 58,\n      \"certainty\": \"suspects\",\n      \"belief\": \"见过裂隙魔物，听闻死渊异动，但未核实门外整体状况。\",\n      \"trigger\": \"第55章与巡界投影共同应战。\",\n      \"consequence\": \"前往北境会面。\",\n      \"forbiddenInferences\": [\n        \"不能仅凭一种魔物认定门外全部地理\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 59,\n      \"untilChapter\": 74,\n      \"certainty\": \"believes\",\n      \"belief\": \"相信夜凝霜告知的死渊及开门吞噬风险。\",\n      \"trigger\": \"第59章面对面接受巡界证言。\",\n      \"consequence\": \"寻第三残印并进入观界台验证。\",\n      \"forbiddenInferences\": [\n        \"第75章的震动应来自亲见规模，不是再次首次听说\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 75,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"亲眼看见死海，验证开门不是飞升。\",\n      \"trigger\": \"第75章以完整钥匙拨开幕墙。\",\n      \"consequence\": \"由求生寻门转为制止强行开门。\",\n      \"forbiddenInferences\": [\n        \"不能推定所有同盟与凡民已知此景象\"\n      ]\n    },\n    {\n      \"characterId\": \"char_05\",\n      \"sinceChapter\": 55,\n      \"untilChapter\": 74,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"传承和守界经验已告知死渊性质，实时裂隙规模仍需观测。\",\n      \"trigger\": \"长期守界；第55章识别魔物，第59章明确证言。\",\n      \"consequence\": \"核验持印者并主导进入界渊。\",\n      \"forbiddenInferences\": [\n        \"第75章不能让她忘掉自己已告知的事实\"\n      ]\n    },\n    {\n      \"characterId\": \"char_05\",\n      \"sinceChapter\": 75,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"观界台验证当前死海规模与屏障危机。\",\n      \"trigger\": \"参与幕墙观测与推演。\",\n      \"consequence\": \"推动阻断九鼎供能及维持封印。\",\n      \"forbiddenInferences\": [\n        \"不能把一处观测当成无条件控制所有界门\"\n      ]\n    },\n    {\n      \"characterId\": \"char_03\",\n      \"sinceChapter\": 76,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"已知死渊风险仍谋以万民为代价独自超脱；何时得知尚无确证。\",\n      \"trigger\": \"第76章推演显示其知情动机。\",\n      \"consequence\": \"加速祭礼并在败局中选择破坏封印。\",\n      \"forbiddenInferences\": [\n        \"不凭此反推十年前必然掌握相同知识；第92章所述求取道果须另核对\"\n      ]\n    }\n  ],\n  \"id\": \"sec_03\",\n  \"ownerCharacterId\": \"char_05\",\n  \"title\": \"太古界门落锁真相\",\n  \"truth\": \"界门外侧早已沦为域外寂灭死渊，强行破门非长生飞升而是招致三大陆灵气全面归零。\",\n  \"revealCondition\": \"第55章初见死渊来物，第59章夜凝霜明确告知门外是死渊；第75章观界台成为林辰亲眼验证与双方评估危机规模的节点，不能再写成首次听说；其他人物须有告知或见证场景才知情。\",\n  \"status\": \"proposed\"\n}"
+        },
+        {
+          "id": "plan/overview",
+          "text": "{\n  \"targetChapterCount\": 100,\n  \"volumeCount\": 3,\n  \"openQuestions\": [\n    {\n      \"id\": \"oq_01\",\n      \"question\": \"界门外侧寂灭死渊中是否潜藏着具有主宰意志的域外古魔实体？\",\n      \"blocking\": false,\n      \"status\": \"deferred\"\n    },\n    {\n      \"id\": \"oq_02\",\n      \"question\": \"苏凌霜在第三卷天武城决战时是否需要引动太清仙宗禁忌底蕴以身殉阵破局？\",\n      \"blocking\": false,\n      \"status\": \"open\"\n    },\n    {\n      \"id\": \"oq_03\",\n      \"question\": \"大乾老皇主是否在赵玄极身后秘密操控九鼎皇天大阵以求夺舍还魂？\",\n      \"blocking\": false,\n      \"status\": \"open\"\n    },\n    {\n      \"id\": \"baseline-content-review\",\n      \"question\": \"三卷基线已统一，人物关系阶段和认知计划已补充；须核对新提案与正文认知、寿元、钥匙状态和终局因果。配角被捕及离岗后果、通行凭证仍缺证据，尚不能批准写作。\",\n      \"blocking\": true,\n      \"status\": \"open\"\n    }\n  ],\n  \"dependencies\": [\n    {\n      \"id\": \"dep_01\",\n      \"targetId\": \"ms_vol1_turn\",\n      \"fact\": {\n        \"eventType\": \"plot_progress\",\n        \"subjectId\": \"chapter-1\",\n        \"predicate\": \"status\",\n        \"equals\": {\n          \"status\": \"realized\"\n        }\n      },\n      \"requiredness\": \"must\",\n      \"description\": \"林辰必须在濒死死斗中初次成功催动乾坤逆命真解以寿换力，方能在外门大比中逆斩暗桩并震慑宗门高层。\"\n    },\n    {\n      \"id\": \"dep_02\",\n      \"targetId\": \"ms_vol1_climax\",\n      \"sourceId\": \"ms_vol1_turn\",\n      \"requiredness\": \"must\",\n      \"description\": \"林辰必须先与苏凌霜结成盟约并夺得古境准入符牌，方能进入灵虚古境核心祭坛阻截墨幽屠。\"\n    },\n    {\n      \"id\": \"dep_03\",\n      \"targetId\": \"ms_vol2_turn\",\n      \"sourceId\": \"ms_vol1_climax\",\n      \"requiredness\": \"must\",\n      \"description\": \"林辰必须在斩杀墨幽屠后因白发早衰和皇朝追杀登舟南渡，才能在赤霄大陆太微天宝城遭遇商盟暗算并揭破暗盟。\"\n    },\n    {\n      \"id\": \"dep_04\",\n      \"targetId\": \"ms_vol2_climax\",\n      \"sourceId\": \"ms_vol2_turn\",\n      \"requiredness\": \"must\",\n      \"description\": \"林辰必须先掌握跨陆密约与地脉毒火走势，才能准确杀入赤霄天坑斩杀炎煞尊者并抢夺神火髓与界门残印。\"\n    },\n    {\n      \"id\": \"dep_05\",\n      \"targetId\": \"ms_vol3_turn\",\n      \"sourceId\": \"ms_vol2_boundary\",\n      \"requiredness\": \"must\",\n      \"description\": \"必须先完成北境断链和界渊入口条件，才能在第三卷深入界渊取得第三残片、合成完整钥匙。\"\n    },\n    {\n      \"id\": \"dep_06\",\n      \"targetId\": \"ms_vol3_climax\",\n      \"sourceId\": \"ms_vol3_turn\",\n      \"requiredness\": \"must\",\n      \"description\": \"林辰必须先在苍冥界渊彻底参透空间秩序并集齐三印，方有实力杀回天武城正面硬撼赵玄极的九鼎皇天大阵。\"\n    },\n    {\n      \"id\": \"dep_07\",\n      \"targetId\": \"ms_book_payoff\",\n      \"sourceId\": \"ms_vol3_climax\",\n      \"requiredness\": \"must\",\n      \"description\": \"必须先彻底诛杀赵玄极并斩断六道转轮偷命策阵眼，天地万民命寿方能归位，补天定界大功德反哺方可兑现。\"\n    },\n    {\n      \"id\": \"dep_north_passage\",\n      \"targetId\": \"ms_vol2_boundary\",\n      \"sourceId\": \"ms_vol2_climax\",\n      \"requiredness\": \"must\",\n      \"description\": \"赤霄夺印、北航与结盟先于北境断链；不能从天坑直接跳到界渊合匙。\"\n    }\n  ]\n}"
+        },
+        {
+          "id": "plan/chapters/92",
+          "text": "{\n  \"id\": \"chapter-92\",\n  \"chapterNumber\": 92,\n  \"volumeId\": \"vol_03\",\n  \"title\": \"界碑血印\",\n  \"summary\": \"第88章已向公众传播父辈罪证，本章转为原始界碑的独立核验。赵试图毁碑，苏率剑修护住证据；林辰以真血唤醒父辈血契，与此前留影互证并接管封印阵枢。第73章合成的完整破虚匙与碑纹共鸣，绝不再次出现三枚散落碎片。\",\n  \"characterGoals\": \"林辰要核验原始血契并接续守界职责；苏要保住不可替代的碑痕；赵要阻止原始证据与封印权限落入对手之手。\",\n  \"conflict\": \"原始证据及封印控制权的争夺，而非再次第一次发现幕后人。\",\n  \"choice\": \"林辰选择以自身本命真血激发界碑古纹，哪怕承受血脉逆流之苦也要彻底唤醒生父守护律令。\",\n  \"cost\": \"神魂承接十年前界震的苍凉记忆狂澜，识海激荡咳出逆血，寿元命轮再现轻微震荡。\",\n  \"threads\": [\n    \"th_01\",\n    \"th_02\"\n  ],\n  \"endState\": \"公开罪证获得原始碑痕印证，林辰付出神识与血契负担取得阵枢权限。此时仍须解决赵与封门危机。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_03\"\n  ],\n  \"location\": \"青玄极天界门太古界碑祭坛\",\n  \"storyTime\": \"第四十九日申时\",\n  \"scenes\": [\n    \"万丈界门脚下的青黑界碑绽放冲天血光，一道顶天立地的中年剑修虚影与白发青年在光芒中缓缓重叠\",\n    \"当年赵玄极下毒暗算、强撬阵锁的留影画面在天穹巨幅显化，城中残存皇族供奉纷纷面如死灰、弃戈跪伏\",\n    \"赵玄极面孔扭曲如恶鬼，双手紧握帝剑暴怒嘶吼，周身暗金龙气彻底蜕化为癫狂暴戾的漆黑魔焰\"\n  ],\n  \"source\": \"author\"\n}"
+        }
+      ],
+      "status": "needs_revision",
+      "createdAt": "2026-10-13T09:30:06.674Z"
+    }
+  ],
+  "sourceSnapshot": "Only cited sources; complete inputs persist with local reports.",
+  "currentAreas": [
+    {
+      "area": "world",
+      "status": "outdated",
+      "reportId": "design_review_0e3c5b91-548a-4d80-80f4-4ac37c9f16fb"
+    },
+    {
+      "area": "power",
+      "status": "outdated",
+      "reportId": "design_review_e50c33c3-acc1-4723-b08b-d34ddbe88347"
+    },
+    {
+      "area": "characters",
+      "status": "needs_revision",
+      "reportId": "design_review_f976ce93-7b83-40c3-992b-dc0c55ae6370"
+    },
+    {
+      "area": "story",
+      "status": "outdated",
+      "reportId": "design_review_2ca0146d-d42f-4c31-b5e4-e71c72e76158"
+    }
+  ],
+  "preservation": {
+    "chapterVersions": {
+      "count": 101,
+      "unchanged": true,
+      "sha256": "0ca9e8d608fdeb1695f80d523a0653da7232e85e6fe6c00d3aeb91d91d9b37b8"
+    },
+    "manuscriptRevisions": {
+      "count": 1,
+      "unchanged": true,
+      "sha256": "b922febd2b1e21821ae21fb4103e7e243be3fd8b9c1279a6aa0c99c6199dbe06"
+    },
+    "storyEvents": {
+      "count": 383,
+      "unchanged": true,
+      "sha256": "a5ce0060909ada9fd8bc0dadb9bf250956fd877964aec359ddc8ddd6c070d7b6"
+    },
+    "frozenManuscript": [
+      [
+        1,
+        100,
+        "d03ff80bcfe59eafed6716937480ff2527a59512ab30b879dfc3414afcd280f0"
+      ]
+    ],
+    "readiness": {
+      "chapterNumber": 101,
+      "ready": false,
+      "modelConfigured": true,
+      "blockers": [
+        {
+          "code": "CANON_NOT_READY",
+          "message": "chapter generation gate blocked: world pack is not locked; story bible is not locked; blocking world pack questions must be resolved before writing; blocking story questions must be resolved before writing",
+          "nextAction": "处理设计门禁问题后重新锁定"
+        },
+        {
+          "code": "PLAN_OUTDATED",
+          "message": "the approved plan was drafted against an older world pack or story bible",
+          "nextAction": "基于当前设计另存计划，审核后重新批准"
+        },
+        {
+          "code": "DESIGN_REVIEW_REQUIRED",
+          "message": "当前设计尚未通过全部分项内容评审；结构锁定不能代替内容质量审核",
+          "nextAction": "到世界构建完成世界、力量、人物与故事四项内容评审并处理返修问题"
+        }
+      ],
+      "requiredChecks": [
+        "deterministic_rules",
+        "canon_consistency",
+        "observed_events",
+        "chapter_length"
+      ],
+      "checkPolicyVersion": "chapter-policy-v2"
+    }
+  },
+  "validation": {
+    "testsPassed": 163,
+    "webBuildPassed": true,
+    "restartRecoveredKnowledgeStages": 31,
+    "restartRecoveredRelationshipStages": 27,
+    "uiChapter27Checked": true
+  }
+}
