@@ -27,6 +27,8 @@ test('content reviewer selects exact request-bound fragments using the reviewing
     assert.match(call.system, /100章可以是百万字项目的阶段验收/);
     const body = JSON.parse(call.user);
     assert.equal(body.area, 'power');
+    assert.equal(body.evaluationStage, 'design_proposal');
+    assert.deepEqual(body.scope, request.scope);
     assert.deepEqual(body.sources, prepareDesignReviewEvidence(request).sources);
     assert.deepEqual(body.rubric, request.rubric);
     return JSON.stringify(response);
