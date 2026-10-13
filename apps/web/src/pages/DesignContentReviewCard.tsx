@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Alert, App, Button, Card, Collapse, Empty, Modal, Select, Space, Tag, Typography } from 'antd';
 import type { DesignContentReviewDto, DesignReviewAreaDto, DesignReviewOverviewDto } from 'novel-studio-contracts';
-import { api } from '../api';
+import { api, type DesignReviewStageDetail } from '../api';
 
 const labels = { world: '世界、势力与历史', power: '力量、功法与法宝', characters: '人物、关系与认知', story: '主线、分卷与章纲' };
 const statuses = { missing: '尚未评审', outdated: '设计已变，需重评', passed: '本项设计通过', needs_revision: '需要返修', inconclusive: '材料不足', reviewing: '评审进行中', interrupted: '评审未完成' };
@@ -18,7 +18,7 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
   const request = useRef(0);
   const stopReview = useRef(false);
   const [stopRequested, setStopRequested] = useState(false);
-  const [stageDetail, setStageDetail] = useState<string | null>(null);
+  const [stageDetail, setStageDetail] = useState<DesignReviewStageDetail | null>(null);
   const activeWork = useRef(workId);
   activeWork.current = workId;
   async function load() {
@@ -49,16 +49,16 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
     } finally { if (activeWork.current === workId) setBusy(null); }
   }
   async function showStage(runId: string, stageId: string) {
-    try { setStageDetail(JSON.stringify(await api.designReviewStage(workId, runId, stageId), null, 2)); }
+    try { const detail = await api.designReviewStage(workId, runId, stageId); if (activeWork.current === workId) setStageDetail(detail); }
     catch (cause) { message.error(cause instanceof Error ? cause.message : String(cause)); }
   }
-  function details(report: DesignContentReviewDto) {
+  function details(report: Pick<DesignContentReviewDto, 'summary' | 'checks' | 'sources' | 'scope'> & { createdAt?: string }) {
     return <Space direction="vertical" style={{ width: '100%' }}>
-      <Typography.Text type="secondary">世界 v{report.scope.worldPackRevision} · 圣经 v{report.scope.storyBibleRevision} · 计划 v{report.scope.planRevision} · {new Date(report.createdAt).toLocaleString()}</Typography.Text>
+      <Typography.Text type="secondary">世界 v{report.scope.worldPackRevision} · 圣经 v{report.scope.storyBibleRevision} · 计划 v{report.scope.planRevision} {report.createdAt ? ` · ${new Date(report.createdAt).toLocaleString()}` : ''}</Typography.Text>
       <Typography.Paragraph>{report.summary}</Typography.Paragraph>
       {report.checks.map((check) => <Card size="small" key={check.criterion} title={<Space><Tag color={check.verdict === 'pass' ? 'success' : 'warning'}>{verdicts[check.verdict]}</Tag>{criteria[check.criterion] ?? check.criterion}</Space>}>
         <Typography.Paragraph>{check.explanation}</Typography.Paragraph>
-        {check.evidence.map((item, index) => <div key={`${item.sourceId}-${index}`}><Button type="link" size="small" onClick={() => setSource(report.sources.find((entry) => entry.id === item.sourceId) ?? null)}>查看所审原文：{item.sourceId}</Button><blockquote style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{item.quote}</blockquote></div>)}
+        {check.evidence.map((item, index) => <div key={`${item.sourceId}-${index}`}><Button type="link" size="small" onClick={() => setSource(report.sources.find((entry) => entry.id === item.sourceId) ?? null)}>查看所审材料：{item.sourceId}</Button><blockquote style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{item.quote}</blockquote></div>)}
         {check.revisionAdvice && <Typography.Paragraph><strong>模型返修建议（待核对）：</strong>{check.revisionAdvice}</Typography.Paragraph>}
       </Card>)}
     </Space>;
@@ -84,7 +84,20 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
         <Collapse items={[{ key: 'history', label: `历史评审记录（${data.reports.length}）`, children: <Collapse items={[...data.reports].reverse().map((report) => ({ key: report.id, label: `${labels[report.area]} · ${statuses[report.status]} · ${new Date(report.createdAt).toLocaleString()}${report.inputHash !== data.inputHash ? '（已过期）' : ''}`, children: details(report) }))} /> }]} />
       </> : !error && <Typography.Text>正在加载评审记录…</Typography.Text>}
     </Space>
-    <Modal open={stageDetail !== null} title="批次原文、结果与诊断记录" footer={null} onCancel={() => setStageDetail(null)} width={900}><pre style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{stageDetail}</pre></Modal>
+    <Modal open={stageDetail !== null} title={stageDetail?.stage.label ?? '批次详情'} footer={null} onCancel={() => setStageDetail(null)} width={900}>
+      {stageDetail && <Space direction="vertical" style={{ width: '100%' }}>
+        <Alert type="info" showIcon message={stageDetail.stage.kind === 'synthesis' ? '本步综合前置评审报告，引用材料是报告，不是故事原文。' : '本批结论只覆盖下列材料，不代表整项设计通过。'} />
+        {stageDetail.stage.error && <Alert type="error" message="本批尚未完成" description={stageDetail.stage.error} />}
+        {stageDetail.stage.result && details({ ...stageDetail.stage.result, sources: stageDetail.input.sources, scope: stageDetail.input.scope })}
+        <Collapse style={{ width: '100%' }} items={[
+          { key: 'materials', label: `查看全部所审材料（${stageDetail.input.sources.length} 项）`, children: <Space direction="vertical">{stageDetail.input.sources.map(item => {
+            const original = stageDetail.input.stage?.sourceMap.find(unit => unit.id === item.id);
+            return <Button key={item.id} type="link" onClick={() => setSource(item)}>{original ? `${original.sourceId} · 字符 ${original.start}–${original.end}` : item.id}</Button>;
+          })}</Space> },
+          { key: 'diagnostics', label: `模型原答与失败记录（执行 ${stageDetail.stage.attempts} 次）`, children: <pre style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{JSON.stringify({ modelResponses: stageDetail.stage.modelResponses, failures: stageDetail.stage.failures, rejectedResult: stageDetail.stage.rejectedResult }, null, 2)}</pre> },
+        ]} />
+      </Space>}
+    </Modal>
     <Modal open={source !== null} title={source?.id} footer={null} onCancel={() => setSource(null)} width={800}><pre style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{source?.text}</pre></Modal>
   </Card>;
 }
