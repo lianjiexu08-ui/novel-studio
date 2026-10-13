@@ -11,9 +11,9 @@ async function input() {
   return designReviewInput(await createReadyWork(workflow), 'power');
 }
 function anchored(request: Awaited<ReturnType<typeof input>>) {
-  const sources = prepareDesignReviewEvidence(request).sources;
+  const { sources, requestId } = prepareDesignReviewEvidence(request);
   const result = fixtureDesignReview(request);
-  return { ...result, checks: result.checks.map((check) => ({ ...check,
+  return { ...result, requestId, checks: result.checks.map((check) => ({ ...check,
     evidence: check.evidence.map((item) => ({ fragmentId: sources.find((s) => s.id === item.sourceId)!.fragments[0].id })),
   })) };
 }
@@ -28,6 +28,7 @@ test('content reviewer selects exact request-bound fragments using the reviewing
     const body = JSON.parse(call.user);
     assert.equal(body.area, 'power');
     assert.equal(body.evaluationStage, 'design_proposal');
+    assert.equal(body.requestId, prepareDesignReviewEvidence(request).requestId);
     assert.deepEqual(body.scope, request.scope);
     assert.deepEqual(body.sources, prepareDesignReviewEvidence(request).sources);
     assert.deepEqual(body.rubric, request.rubric);
@@ -92,6 +93,44 @@ test('anchors bind content, source identity and version, including when callers 
     change(next);
     assert.throws(() => prepareDesignReviewEvidence(next).resolve(response), /不属于本次材料/);
   }
+});
+
+test('short fragment IDs are unique within a request and cannot authorize a response from other materials', async () => {
+  const request = await input();
+  request.sources.push({ id: 'many/fragments', text: '复杂设定原文\n'.repeat(3000) });
+  const prepared = prepareDesignReviewEvidence(request);
+  const ids = prepared.sources.flatMap(source => source.fragments.map(fragment => fragment.id));
+  assert.equal(new Set(ids).size, ids.length);
+  assert.deepEqual(ids, ids.map((_, i) => `e${i + 1}`));
+  const response = anchored(request);
+  const changed = structuredClone(request);
+  changed.sources[0].text = '同一位置已经换成完全不同的规则。';
+  const next = prepareDesignReviewEvidence(changed);
+  assert.equal(next.sources[0].fragments[0].id, prepared.sources[0].fragments[0].id);
+  assert.notEqual(next.requestId, prepared.requestId);
+  assert.throws(() => next.resolve(response), /请求编号不属于本次材料/);
+  const missingRequest = { ...response, requestId: undefined };
+  assert.throws(() => prepared.resolve(missingRequest));
+  assert.equal(Object.hasOwn(prepared.resolve(response), 'requestId'), false, 'stored reports use exact source quotations, not transport IDs');
+});
+
+test('wrong request binding requires a fresh model selection, with the original output preserved', async () => {
+  const request = await input();
+  const expected = anchored(request);
+  const invalid = { ...structuredClone(expected), requestId: 'review_from_another_request' };
+  let calls = 0;
+  const planner = new JsonDesignPlanner({ complete: async call => {
+    if (++calls === 1) return JSON.stringify(invalid);
+    const repair = JSON.parse(call.user);
+    assert.match(repair.problems, /请求编号不属于本次材料/);
+    assert.equal(repair.originalRequest.requestId, expected.requestId);
+    assert.match(repair.instruction, /不能只改 requestId/);
+    return JSON.stringify(expected);
+  } });
+  const result = await planner.reviewDesignContent(request);
+  assert.equal(calls, 2);
+  assert.deepEqual(result.modelResponses, [JSON.stringify(invalid), JSON.stringify(expected)]);
+  assert.deepEqual(result.checks, prepareDesignReviewEvidence(request).resolve(expected).checks);
 });
 
 test('fragments preserve all text including escapes, long lines, Unicode and trailing delimiters', async () => {

@@ -27,22 +27,26 @@ export function prepareDesignReviewEvidence(input: DesignReviewInput) {
   // Bind both the sent material and the resolver to one immutable request snapshot.
   const snapshot = structuredClone(input);
   const requestHash = createHash('sha256').update(JSON.stringify(snapshot)).digest('hex');
+  const requestId = `review_${requestHash.slice(0, 24)}`;
   const lookup = new Map<string, { sourceId: string; quote: string }>();
   const sourceIds = new Set<string>();
   const sources = snapshot.sources.map((source) => {
     if (sourceIds.has(source.id)) throw new DesignReviewError(`评审来源 ID 重复：${source.id}`);
     sourceIds.add(source.id);
-    const fingerprint = createHash('sha256').update(JSON.stringify([requestHash, source.id])).digest('hex').slice(0, 24);
-    return { id: source.id, fragments: fragments(source.text).map((text, index) => {
-      const id = `ev_${fingerprint}_${index + 1}`;
+    return { id: source.id, fragments: fragments(source.text).map((text) => {
+      // Copy one request fingerprint, then select short local IDs. Repeating a
+      // long hash in every citation caused otherwise complete reviews to fail.
+      const id = `e${lookup.size + 1}`;
       lookup.set(id, { sourceId: source.id, quote: text });
       return { id, text };
     }) };
   });
   return {
+    requestId,
     sources,
     resolve(value: unknown) {
       const parsed = anchoredDesignReviewResultSchema.parse(value);
+      if (parsed.requestId !== requestId) throw new DesignReviewEvidenceError(`评审请求编号不属于本次材料：必须重新核对本次 requestId 与全部原文片段，不能沿用旧请求编号 ${parsed.requestId}`);
       const problems: string[] = [];
       for (const check of parsed.checks) for (const [index, evidence] of check.evidence.entries()) {
         if (!lookup.has(evidence.fragmentId)) problems.push(`${check.criterion} 证据 ${index + 1}：${evidence.fragmentId}`);

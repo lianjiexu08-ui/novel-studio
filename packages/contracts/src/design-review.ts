@@ -12,6 +12,7 @@ export const designReviewResultSchema = z.object({
 });
 /** Model transport only. Stored reports continue to contain exact source quotations. */
 export const anchoredDesignReviewResultSchema = designReviewResultSchema.extend({
+  requestId: z.string().min(1),
   checks: z.array(designReviewResultSchema.shape.checks.element.extend({
     evidence: z.array(z.object({ fragmentId: z.string().min(1) }).strict()).max(20),
   })).min(1).max(10),
