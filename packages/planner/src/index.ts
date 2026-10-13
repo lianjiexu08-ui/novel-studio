@@ -130,6 +130,11 @@ interface BookPlanningInput {
   authorRequest?: string;
 }
 
+const narrativePlanningGuidance = `
+设计约束须落实为故事中的选择和后果，不要把质量检查清单直接写成每章的情节。依据作者题材和偏好，为相邻章节安排不同的叙事任务：一次取舍之后应推进其后果、对手反应或关系变化，不能反复劝服主角作同一个决定。角色可有低潮与相处场景，不必每章加战斗或制造新灾难。
+必要的核账、交接、查证和等待应保留因果与信息来源，但可以压缩为过渡；除非其本身产生新的利益冲突和局面变化，不要连续用取得下一份材料、等待下一次问询作为章节终点。配角须有自己的行动、利益和拒绝权，不只是提供线索或提醒规则。
+境界差距、功法代价、地形和当地环境应改变角色可采取的行动及结果，而不只是换名背景。不得为增强戏剧性新增未定义能力、豁免伤势或凭空安排资源。summary/scenes 重点写具体动作、感知和局面转变；将必要的预算与限制集中在 cost/endState 等对应字段，避免每场反复解释同一规则。`;
+
 /**
  * Model-backed book planner: a skeleton (volumes, climaxes, dependencies), then
  * chapter outlines one group at a time. Output is only ever a proposal; the
@@ -142,7 +147,7 @@ export class JsonBookPlanner {
 
   async generatePlanSkeleton(input: BookPlanningInput & { targetChapterCount: number; volumeCount: number; previousPlan?: unknown }): Promise<PlanSkeletonContract> {
     return completeValidated(this.client, {
-      system: planSkeletonSystem + (input.targetChapterCount >= 450
+      system: planSkeletonSystem + narrativePlanningGuidance + (input.targetChapterCount >= 450
         ? '\n这是450章扩展的紧凑骨架：每个卷的 goal/opposition/climax/endState/carryOver 各不超过40字，setup最多2条且每条不超过30字；milestones保持紧凑但每卷至少保留一个高潮，每项 setup 最多2条且每条不超过25字；dependencies保留关键因果；openQuestions如实保留尚未解决的阻塞，不得为压缩篇幅返回假空数组；不要生成任何chapter outlines。'
         : ''),
       user: JSON.stringify({
@@ -167,7 +172,7 @@ export class JsonBookPlanner {
       chapterPlans: input.storyBible.chapterPlans?.filter((chapter) => chapter.chapterNumber >= input.from && chapter.chapterNumber <= input.to),
     } : undefined;
     return completeValidated(this.client, {
-      system: chapterOutlineSystem + '\nscenes 字段必须是字符串数组，每个元素是一句场景描述，不得返回对象。',
+      system: chapterOutlineSystem + narrativePlanningGuidance + '\nscenes 字段必须是字符串数组，每个元素是一句场景描述，不得返回对象。',
       user: JSON.stringify({
         task: 'generate_chapter_outlines', from: input.from, to: input.to, title: input.title, covenant: input.covenant, authorRequest: input.authorRequest,
         plan: input.skeleton, previousOutlines: input.before, followingOutlines: input.after, worldPack: input.worldPack, storyBible, adoptedFacts: input.adoptedFacts,
