@@ -8,6 +8,8 @@ export const designReviewResultSchema = z.object({
     explanation: z.string().trim().min(1).max(6000),
     evidence: z.array(z.object({ sourceId: z.string().min(1), quote: z.string().min(4).max(3000) })).max(20),
     revisionAdvice: z.string().max(6000),
+    awaitingSources: z.array(z.string().min(1)).min(1).max(12).optional(),
+    resolves: z.array(z.string().min(1)).min(1).max(64).optional(),
   })).min(1).max(10),
 });
 /** Model transport only. Stored reports continue to contain exact source quotations. */
@@ -18,6 +20,7 @@ export const anchoredDesignReviewResultSchema = designReviewResultSchema.extend(
   })).min(1).max(10),
 });
 export const designContentReviewSchema = designReviewResultSchema.extend({
+  resolvedDeferrals: z.array(z.object({ checkId: z.string(), resolvedByStageId: z.string() })).optional(),
   runId: z.string().optional(),
   id: z.string(), area: designReviewAreaSchema, inputHash: z.string().length(64),
   scope: z.object({ worldPackRevision: z.number().int(), storyBibleRevision: z.number().int(), planRevisionId: z.string(), planRevision: z.number().int() }),

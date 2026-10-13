@@ -52,12 +52,15 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
     try { const detail = await api.designReviewStage(workId, runId, stageId); if (activeWork.current === workId) setStageDetail(detail); }
     catch (cause) { message.error(cause instanceof Error ? cause.message : String(cause)); }
   }
-  function details(report: Pick<DesignContentReviewDto, 'summary' | 'checks' | 'sources' | 'scope'> & { createdAt?: string }) {
+  function details(report: Pick<DesignContentReviewDto, 'summary' | 'checks' | 'sources' | 'scope' | 'resolvedDeferrals'> & { createdAt?: string }) {
     return <Space direction="vertical" style={{ width: '100%' }}>
       <Typography.Text type="secondary">世界 v{report.scope.worldPackRevision} · 圣经 v{report.scope.storyBibleRevision} · 计划 v{report.scope.planRevision} {report.createdAt ? ` · ${new Date(report.createdAt).toLocaleString()}` : ''}</Typography.Text>
       <Typography.Paragraph>{report.summary}</Typography.Paragraph>
-      {report.checks.map((check) => <Card size="small" key={check.criterion} title={<Space><Tag color={check.verdict === 'pass' ? 'success' : 'warning'}>{verdicts[check.verdict]}</Tag>{criteria[check.criterion] ?? check.criterion}</Space>}>
+      {report.resolvedDeferrals?.length ? <Typography.Paragraph>已完成的补读复核：{report.resolvedDeferrals.map(item => `${item.checkId} → ${item.resolvedByStageId}`).join('；')}。原问题与引用仍保留在批次记录中。</Typography.Paragraph> : null}
+      {report.checks.map((check) => <Card size="small" key={check.criterion} title={<Space><Tag color={check.verdict === 'pass' ? 'success' : 'warning'}>{check.awaitingSources ? '等待跨批补读' : verdicts[check.verdict]}</Tag>{criteria[check.criterion] ?? check.criterion}</Space>}>
         <Typography.Paragraph>{check.explanation}</Typography.Paragraph>
+        {check.awaitingSources && <Typography.Paragraph>待核来源：{check.awaitingSources.join('、')}。其他批次须读取原文并明确复核，目录存在不等于通过。</Typography.Paragraph>}
+        {check.resolves && <Typography.Paragraph>本批依据原文解决的补读项：{check.resolves.join('、')}</Typography.Paragraph>}
         {check.evidence.map((item, index) => <div key={`${item.sourceId}-${index}`}><Button type="link" size="small" onClick={() => setSource(report.sources.find((entry) => entry.id === item.sourceId) ?? null)}>查看所审材料：{item.sourceId}</Button><blockquote style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{item.quote}</blockquote></div>)}
         {check.revisionAdvice && <Typography.Paragraph><strong>模型返修建议（待核对）：</strong>{check.revisionAdvice}</Typography.Paragraph>}
       </Card>)}
@@ -86,7 +89,7 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
     </Space>
     <Modal open={stageDetail !== null} title={stageDetail?.stage.label ?? '批次详情'} footer={null} onCancel={() => setStageDetail(null)} width={900}>
       {stageDetail && <Space direction="vertical" style={{ width: '100%' }}>
-        <Alert type="info" showIcon message={stageDetail.stage.kind === 'synthesis' ? '本步综合前置评审报告，引用材料是报告，不是故事原文。' : '本批结论只覆盖下列材料，不代表整项设计通过。'} />
+        <Alert type="info" showIcon message={stageDetail.stage.kind === 'synthesis' ? '本步综合前置评审报告；新版流程另附计划原文。请按来源区分报告转述与原始设计。' : '本批结论只覆盖下列材料，不代表整项设计通过。'} />
         {stageDetail.stage.error && <Alert type="error" message="本批尚未完成" description={stageDetail.stage.error} />}
         {stageDetail.stage.result && details({ ...stageDetail.stage.result, sources: stageDetail.input.sources, scope: stageDetail.input.scope })}
         <Collapse style={{ width: '100%' }} items={[

@@ -60,7 +60,7 @@ test('chapter-only power batches also receive complete tier and technique rules'
   ];
   input.sources = [...rules, ...input.sources];
   const run = createDesignReviewRun(input);
-  assert.equal(run.scheduleVersion, 2);
+  assert.equal(run.scheduleVersion, 3);
   for (const stage of run.stages) {
     const staged = designReviewStageInput(run, stage);
     assert.ok(JSON.stringify(staged.sources).length <= 240_000);
@@ -139,4 +139,189 @@ test('lease takeover fences a delayed worker, and changed versions cannot resume
   work.worldPack!.summary += '世界变更';
   await assert.rejects(() => fast.stepDesignReview(work.id, fresh.id), /设计或计划已变化/);
   assert.equal(work.designContentReviews.size, 1);
+});
+
+test('local scope inventories omitted sources without authorizing citations to unread material', () => {
+  const input = largeInput();
+  input.sources.push({ id: 'plan/chapters/48', text: '第48章休息一小时恢复一成，余额三成半。' });
+  const run = createDesignReviewRun(input);
+  const stage = run.stages[0], staged = designReviewStageInput(run, stage);
+  assert.equal(staged.stage!.coverage!.mode, 'local_sources');
+  assert.equal(staged.stage!.coverage!.sourceLengths['early'], input.sources[0].text.length);
+  assert.equal(staged.stage!.coverage!.sourceLengths['plan/chapters/48'], input.sources[2].text.length);
+  assert.equal(Object.hasOwn(staged.stage!.coverage!.sourceLengths, 'plan/chapters/51'), false);
+  const partial = staged.stage!.sourceMap.filter(u => u.sourceId === 'early');
+  assert.ok(partial.length > 0 && partial.at(-1)!.end < input.sources[0].text.length);
+  assert.ok(!staged.stage!.sourceMap.some(u => u.sourceId === 'plan/chapters/48'));
+  const inventedPass = stagePass(staged);
+  inventedPass.checks[0].evidence = [{ sourceId: 'plan/chapters/48', quote: input.sources[2].text }];
+  assert.throws(() => acceptDesignReviewStage(run, stage, inventedPass), /引用不在原文/);
+});
+
+test('synthesis receives the exact rolling horizon but cannot erase a previous insufficient verdict', () => {
+  const input = largeInput();
+  const overview = { id: 'plan/overview', text: JSON.stringify({ targetChapterCount: 100, detailedThroughChapter: 50, outlinedChapterNumbers: [1, 2, 50], openQuestions: ['261–270日休养来源未定'] }) };
+  input.sources.unshift(overview);
+  const run = createDesignReviewRun(input);
+  for (const [index, stage] of run.stages.entries()) {
+    const staged = designReviewStageInput(run, stage), result = stagePass(staged);
+    if (index === 0) result.checks[0] = { ...result.checks[0], verdict: 'insufficient', explanation: '休养缺资金来源', revisionAdvice: '补充真实来源' };
+    if (stage.kind === 'synthesis') {
+      assert.equal(staged.stage!.coverage!.mode, 'reports_with_context');
+      const context = staged.stage!.sourceMap.filter(u => u.sourceId === overview.id);
+      assert.equal(context.map(u => staged.sources.find(s => s.id === u.id)!.text).join(''), overview.text);
+      assert.equal(staged.sources.filter(s => s.id.startsWith('review-result/')).length, 2);
+      assert.ok(JSON.stringify(staged.sources).length <= 240_000);
+      result.checks[0].evidence = [{ sourceId: context[0].id, quote: overview.text }];
+    }
+    acceptDesignReviewStage(run, stage, result);
+  }
+  assert.equal(completeDesignReviewRun(run).result.checks[0].verdict, 'insufficient');
+  run.stages.find(s => s.kind === 'synthesis')!.unitIds = [];
+  assert.throws(() => completeDesignReviewRun(run), /覆盖或跨批检查未完成/);
+});
+
+test('legacy v2 schedules keep their exact inputs after serialization, while small v3 inputs are whole', () => {
+  const input = largeInput();
+  input.sources.unshift({ id: 'plan/overview', text: '目标100章，细纲只到50章。' });
+  const legacy = createDesignReviewRun(input, '2026-10-14T00:00:00Z', 2);
+  for (const stage of legacy.stages) {
+    const staged = designReviewStageInput(legacy, stage);
+    assert.equal(staged.stage!.coverage, undefined);
+    if (stage.kind === 'synthesis') {
+      assert.deepEqual(staged.stage!.sourceMap, []);
+      assert.ok(staged.sources.every(s => s.id.startsWith('review-result/')));
+    }
+    acceptDesignReviewStage(legacy, stage, stagePass(staged));
+  }
+  const restored = JSON.parse(JSON.stringify(legacy));
+  assert.deepEqual(completeDesignReviewRun(restored), completeDesignReviewRun(legacy));
+  const small = createDesignReviewRun({ ...input, sources: [{ id: 'only', text: '完整原文可在一次读取。' }] });
+  assert.equal(designReviewStageInput(small, small.stages[0]).stage!.coverage!.mode, 'whole_input');
+});
+
+function deferralRun() {
+  const input = largeInput();
+  input.sources.push({ id: 'plan/chapters/48', text: '第48章实际休息一小时恢复一成，余额三成半。' });
+  return createDesignReviewRun(input);
+}
+function deferFirst(run: ReturnType<typeof createDesignReviewRun>) {
+  const stage = run.stages[0], staged = designReviewStageInput(run, stage), result = stagePass(staged);
+  result.checks[0] = { ...result.checks[0], verdict: 'insufficient', explanation: '需要第48章核对恢复', revisionAdvice: '补读实际恢复原文', awaitingSources: ['plan/chapters/48'] };
+  acceptDesignReviewStage(run, stage, result);
+}
+function resolvePending(input: DesignReviewInput) {
+  const result = stagePass(input);
+  const pending = input.stage!.coverage!.pendingChecks!;
+  result.checks[0].resolves = pending.map(p => p.id);
+  const ids = new Set(pending.flatMap(p => [p.questionSourceId, p.priorUnitIds[0], ...p.requiredSourceIds.map(id => input.stage!.sourceMap.find(u => u.sourceId === id)!.id)]));
+  result.checks[0].evidence = [...ids].map(id => ({ sourceId: id, quote: input.sources.find(s => s.id === id)!.text.slice(0, 40) }));
+  return result;
+}
+
+test('cross-batch deferrals require explicit raw-source resolution, and retain an auditable original', () => {
+  for (const resolve of [false, true]) {
+    const run = deferralRun(); deferFirst(run);
+    const original = structuredClone(run.stages[0].result);
+    let resolvedBy = '';
+    for (const stage of run.stages.slice(1)) {
+      const input = designReviewStageInput(run, stage);
+      let result = stagePass(input);
+      if (resolve && input.stage?.coverage?.pendingChecks?.length) {
+        result = resolvePending(input); resolvedBy ||= stage.id;
+      }
+      acceptDesignReviewStage(run, stage, result);
+    }
+    const complete = completeDesignReviewRun(JSON.parse(JSON.stringify(run)));
+    assert.equal(complete.result.checks[0].verdict, resolve ? 'pass' : 'insufficient');
+    assert.deepEqual(run.stages[0].result, original);
+    assert.equal(Object.hasOwn(complete.result.checks[0], 'awaitingSources'), false);
+    assert.deepEqual(complete.result.resolvedDeferrals, resolve ? [{ checkId: 'batch-1/timeline', resolvedByStageId: resolvedBy }] : undefined);
+    if (resolve) {
+      const rootInput = designReviewStageInput(run, run.stages.at(-1)!);
+      assert.deepEqual(rootInput.stage!.coverage!.resolvedDeferrals, complete.result.resolvedDeferrals);
+      run.stages.find(s => s.id === resolvedBy)!.result!.checks[0].evidence = [];
+      assert.throws(() => completeDesignReviewRun(run), /原文证据/);
+    }
+  }
+});
+
+test('deferrals cannot hide contradictions, cite unknown or already-read sources, or be resolved by synthesis', () => {
+  const run = deferralRun();
+  const first = run.stages[0], input = designReviewStageInput(run, first);
+  const base = { ...stagePass(input).checks[0], verdict: 'insufficient' as const, revisionAdvice: '等待核对', awaitingSources: ['missing-source'] };
+  assert.throws(() => acceptDesignReviewStage(run, first, { summary: '等待', checks: [base] }), /不在完整目录/);
+  assert.throws(() => acceptDesignReviewStage(run, first, { summary: '等待', checks: [{ ...base, verdict: 'revise', awaitingSources: ['plan/chapters/48'] }] }), /等待补读只能/);
+  deferFirst(run);
+  let testedResolution = false;
+  for (const stage of run.stages.slice(1)) {
+    const staged = designReviewStageInput(run, stage);
+    const pending = staged.stage!.coverage?.pendingChecks;
+    if (pending?.length) {
+      const valid = resolvePending(staged);
+      const unproven = structuredClone(valid);
+      unproven.checks[0].evidence = unproven.checks[0].evidence.filter(e => e.sourceId !== pending[0].questionSourceId);
+      assert.throws(() => acceptDesignReviewStage(run, stage, unproven), /必须引用原问题/);
+      const known = { ...base, awaitingSources: ['plan/chapters/48'] };
+      assert.throws(() => acceptDesignReviewStage(run, stage, { summary: '重复等待', checks: [known] }), /已完整提供/);
+      acceptDesignReviewStage(run, stage, valid); testedResolution = true;
+    } else {
+      const result = stagePass(staged);
+      if (stage.kind === 'synthesis') {
+        result.checks[0].resolves = ['batch-1/timeline'];
+        assert.throws(() => acceptDesignReviewStage(run, stage, result), /仅原文复核/);
+        delete result.checks[0].resolves;
+      } else if (stage.id === 'batch-2') {
+        result.checks[0] = { ...result.checks[0], verdict: 'revise', explanation: '另有实际时间矛盾', revisionAdvice: '修订冲突日期' };
+      }
+      acceptDesignReviewStage(run, stage, result);
+    }
+  }
+  assert.ok(testedResolution);
+  assert.equal(completeDesignReviewRun(run).result.checks[0].verdict, 'revise');
+});
+
+test('separately reading pieces of a requested source never settles a joint check', () => {
+  const run = createDesignReviewRun(largeInput());
+  const first = run.stages[0], staged = designReviewStageInput(run, first);
+  const result = stagePass(staged);
+  result.checks[0] = { ...result.checks[0], verdict: 'insufficient', explanation: '必须联合核对整个后期来源', revisionAdvice: '补读整个后期来源', awaitingSources: ['late'] };
+  acceptDesignReviewStage(run, first, result);
+  let eligibility = 0;
+  for (const stage of run.stages.slice(1)) {
+    const input = designReviewStageInput(run, stage);
+    eligibility += input.stage?.coverage?.pendingChecks?.length ?? 0;
+    const response = stagePass(input);
+    if (stage.kind === 'cross' && !input.stage?.coverage?.pendingChecks?.length) {
+      response.checks[0].resolves = ['batch-1/timeline'];
+      assert.throws(() => acceptDesignReviewStage(run, stage, response), /没有符合本批覆盖/);
+      delete response.checks[0].resolves;
+    }
+    acceptDesignReviewStage(run, stage, response);
+  }
+  assert.equal(eligibility, 0);
+  assert.equal(completeDesignReviewRun(run).result.checks[0].verdict, 'insufficient');
+});
+
+test('v3 budgets full quotation envelopes so evidenced deferrals can fit without overflowing synthesis', () => {
+  const input = largeInput();
+  input.sources.forEach(source => { source.text = '文字原文'.repeat(35000); });
+  const run = createDesignReviewRun(input);
+  for (const stage of run.stages) {
+    const staged = designReviewStageInput(run, stage), result = stagePass(staged);
+    if (stage.kind === 'batch') {
+      const source = staged.sources.find(s => s.text.length >= 2500)!;
+      result.checks[0].evidence = Array.from({ length: 20 }, () => ({ sourceId: source.id, quote: source.text.slice(0, 2500) }));
+      assert.ok(JSON.stringify(result).length > 40_000);
+    }
+    acceptDesignReviewStage(run, stage, result);
+    assert.ok(JSON.stringify(staged.sources).length <= 240_000);
+  }
+  assert.equal(completeDesignReviewRun(run).result.checks[0].verdict, 'pass');
+  const first = run.stages[0], staged = designReviewStageInput(run, first), excessive = stagePass(staged);
+  excessive.checks[0].explanation = '超量解释'.repeat(25000);
+  assert.throws(() => acceptDesignReviewStage(run, first, excessive), /结论过长/);
+  const legacy = createDesignReviewRun(input, run.createdAt, 2), oldInput = designReviewStageInput(legacy, legacy.stages[0]), large = stagePass(oldInput);
+  large.checks[0].evidence = Array.from({ length: 20 }, () => ({ sourceId: oldInput.sources[0].id, quote: oldInput.sources[0].text.slice(0, 2500) }));
+  assert.throws(() => acceptDesignReviewStage(legacy, legacy.stages[0], large), /结论过长/);
 });

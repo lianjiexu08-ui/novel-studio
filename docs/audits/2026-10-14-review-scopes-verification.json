@@ -1,0 +1,62 @@
+{
+  "tests": 198,
+  "failures": 0,
+  "webTypecheckAndBuild": "passed",
+  "exactRecordedResponses": {
+    "status": "exact_recorded_responses_validated_no_new_model_calls",
+    "originalAttemptStatus": "completed_with_failure",
+    "checks": [
+      {
+        "stage": "batch-2",
+        "acceptedByCurrentValidator": true,
+        "resolutions": [],
+        "reportSourceCharacters": 34018
+      },
+      {
+        "stage": "cross-2-4",
+        "acceptedByCurrentValidator": true,
+        "resolutions": [
+          "batch-2/opening"
+        ],
+        "reportSourceCharacters": 59726
+      }
+    ],
+    "currentDesignChanged": false,
+    "formalAcceptance": false,
+    "method": "Same extraction of modelResponses as ChapterWorkflow; exact stored inputs and quoted outputs preserved. V3 report budget measured as synthesis source envelope."
+  },
+  "currentDesign": {
+    "versions": [
+      21,
+      46,
+      46
+    ],
+    "activePlanRevision": 10,
+    "noDesignOrPlanChanges": true,
+    "ready": false,
+    "liveOfficialReviews": 0
+  },
+  "history": {
+    "ChapterVersion": {
+      "rows": 101,
+      "unchanged": true
+    },
+    "StoryEvent": {
+      "rows": 383,
+      "unchanged": true
+    },
+    "ManuscriptRevision": {
+      "rows": 1,
+      "unchanged": true
+    }
+  },
+  "usage": {
+    "calls": 7,
+    "inputTokens": 653488,
+    "outputTokens": 14063,
+    "model": "gpt-5.6-luna",
+    "fallback": false,
+    "costKnown": false
+  },
+  "formalAcceptance": false
+}

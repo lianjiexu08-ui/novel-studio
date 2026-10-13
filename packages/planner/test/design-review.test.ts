@@ -88,6 +88,7 @@ test('anchors bind content, source identity and version, including when callers 
     (next: typeof request) => { next.inputHash = 'different'; },
     (next: typeof request) => { next.sources[0].text += '新设定'; },
     (next: typeof request) => { next.sources[0].id = 'different/source'; },
+    (next: typeof request) => { next.stage = { kind: 'batch', label: '局部', totalBatches: 2, sourceMap: [], coverage: { mode: 'local_sources', sourceLengths: { elsewhere: 20 } } }; },
   ]) {
     const next = structuredClone(request);
     change(next);
