@@ -912,3 +912,53 @@ test('staged design review API preserves progress and cannot release partial rev
     assert.equal(current.designContentReviews.size, 1);
   } finally { await app.close(); }
 });
+
+test('browser review client sends objects to the real API and preserves the selected proposal', async (t) => {
+  // Compile the actual browser module as Vite does; forwarding its fetch to
+  // Fastify catches client serialization errors that direct inject tests miss.
+  const { readFile } = await import('node:fs/promises');
+  const { transformWithEsbuild } = await import('vite');
+  const source = await readFile(new URL('../../web/src/api.ts', import.meta.url), 'utf8');
+  const { code } = await transformWithEsbuild(source, 'api.ts', { target: 'es2022', define: { 'import.meta.env': '{}' } });
+  const { api } = await import(`data:text/javascript;base64,${Buffer.from(code).toString('base64')}`);
+  const repository = new InMemoryWorkRepository();
+  const design = milestoneDesign();
+  let calls = 0;
+  const { app } = createApiServer({ repository, provider: writer, designProvider: {
+    generateWorldPack: async () => design.world,
+    generateStoryBible: async () => design.bible,
+    reviewDesignContent: async input => { calls++; return fixtureDesignReview(input); },
+  } });
+  const sent: unknown[] = [];
+  t.mock.method(globalThis, 'fetch', async (url: string, options: RequestInit) => {
+    if (options.body !== undefined) sent.push(JSON.parse(String(options.body)));
+    const response = await app.inject({ method: options.method as 'POST' | 'GET', url: new URL(url).pathname + new URL(url).search, headers: options.headers as Record<string, string>, payload: options.body as string | undefined });
+    return new Response(response.body, { status: response.statusCode, headers: { 'content-type': 'application/json' } });
+  });
+  try {
+    const work = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('浏览器评审') })).json();
+    await lockDesign(repository, work.id);
+    const current = (await repository.get(work.id))!;
+    const activeId = current.activePlanId!;
+    const proposal = (await app.inject({ method: 'PUT', url: `/works/${work.id}/plans`, payload: { baseRevisionId: activeId, plan: current.plans.get(activeId)!.plan } })).json().plan;
+    assert.equal(proposal.status, 'proposed');
+    const { runId } = await api.startDesignReview(work.id, 'world', proposal.id);
+    assert.deepEqual(sent.at(-1), { area: 'world', planId: proposal.id });
+    assert.equal(calls, 0);
+    const progress = await api.stepDesignReview(work.id, runId);
+    assert.deepEqual(sent.at(-1), {});
+    assert.equal(progress.status, 'completed');
+    const firstReport = current.designContentReviews.get(progress.reportId)!;
+    assert.equal(firstReport.scope.planRevisionId, proposal.id);
+    const { report } = await api.reviewDesignContent(work.id, 'power', proposal.id);
+    assert.deepEqual(sent.at(-1), { area: 'power', planId: proposal.id });
+    assert.equal(report.scope.planRevisionId, proposal.id);
+    const implicit = await api.startDesignReview(work.id, 'characters');
+    assert.deepEqual(sent.at(-1), { area: 'characters' });
+    assert.equal(current.designReviewRuns.get(implicit.runId)!.input.scope.planRevisionId, proposal.id);
+    assert.equal(calls, 2);
+    assert.equal(current.activePlanId, activeId);
+    assert.equal(current.plans.get(proposal.id)!.status, 'proposed');
+    assert.equal(current.versions.size, 0);
+  } finally { await app.close(); }
+});
