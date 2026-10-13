@@ -229,6 +229,26 @@ export function PlanPage() {
                       }}>补写下一章章纲</Button>
                     </div>
                     <Table rowKey="chapterNumber" size="small" dataSource={plan!.chapters} pagination={{ pageSize: 20, showSizeChanger: false }}
+                      expandable={{
+                        columnTitle: '场景', columnWidth: 80,
+                        expandIcon: ({ expanded, onExpand, record }) => (
+                          <Button size="small" type="link" aria-expanded={expanded}
+                            aria-label={`${expanded ? '收起' : '展开'}第${record.chapterNumber}章场景`}
+                            onClick={(event) => onExpand(record, event)}>{expanded ? '收起' : '查看'}</Button>
+                        ),
+                        expandedRowRender: (row: Outline) => (
+                          <section aria-label={`第${row.chapterNumber}章场景详情`}>
+                            <div className="setting-list">
+                              <div className="check-row"><span className="toc-meta" style={{ flex: '0 0 72px' }}>故事时间</span><span>{row.storyTime || '尚未填写'}</span></div>
+                              <div className="check-row"><span className="toc-meta" style={{ flex: '0 0 72px' }}>地点</span><span>{row.location || '尚未填写'}</span></div>
+                              <div className="check-row"><span className="toc-meta" style={{ flex: '0 0 72px' }}>人物目标</span><span style={{ whiteSpace: 'pre-wrap' }}>{row.characterGoals || '尚未填写'}</span></div>
+                            </div>
+                            {row.scenes.length
+                              ? <ol>{row.scenes.map((scene, index) => <li key={index} style={{ marginBottom: 8, whiteSpace: 'pre-wrap' }}>{scene}</li>)}</ol>
+                              : <p className="panel-note">尚未安排具体场景。</p>}
+                          </section>
+                        ),
+                      }}
                       columns={[
                         { title: '章', dataIndex: 'chapterNumber', width: 70, render: (value: number) => `第 ${value} 章` },
                         { title: '章纲', key: 'summary', render: (_: unknown, row: Outline) => (
