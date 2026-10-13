@@ -1,0 +1,94 @@
+{
+  "validation": {
+    "status": "schema_and_protected_fields_verified",
+    "candidateSha256": "6f3208043ae3d05f2f557a3ad4fa2c766897d1f641ab50305a6957b805ae433e",
+    "worldBaseRevision": 20,
+    "structureReady": true,
+    "unknownFieldsStripped": false,
+    "unchangedSourceIdsAndAllowedRealms": true,
+    "unchangedEarlyTechniquesAndArtifactsExceptEquivalentTrueLightUnit": true,
+    "unchangedExistingBlockers": true,
+    "changes": 82,
+    "formalAcceptance": false
+  },
+  "save": {
+    "status": "saved_pending_review",
+    "baseVersions": [
+      20,
+      45,
+      45
+    ],
+    "steps": [
+      {
+        "kind": "world",
+        "revision": 21
+      },
+      {
+        "kind": "bible",
+        "revision": 46
+      },
+      {
+        "kind": "plan",
+        "id": "plan_2094c25af75b4b4dbd666dfe78887e3f",
+        "revision": 46,
+        "status": "proposed"
+      }
+    ],
+    "startedAt": "2026-10-13T22:26:47.349Z",
+    "versions": [
+      21,
+      46,
+      46
+    ],
+    "activePlanRevision": 10,
+    "latestPlanId": "plan_2094c25af75b4b4dbd666dfe78887e3f",
+    "ready": false,
+    "finishedAt": "2026-10-13T22:27:00.452Z"
+  },
+  "history": {
+    "ChapterVersion": {
+      "rows": 101,
+      "unchanged": true,
+      "sha256": "b68c64e19280316b1bef401a68314466e4bec73f81bf96084986915f70c98648"
+    },
+    "StoryEvent": {
+      "rows": 383,
+      "unchanged": true,
+      "sha256": "964efd68a494ce1623e9632bfb597c77603c97f69e744a031bf485febfe26a62"
+    },
+    "ManuscriptRevision": {
+      "rows": 1,
+      "unchanged": true,
+      "sha256": "9137e9436ee47d2132798f05a2e11bdcc0f403f397e0a0c0b3880d1ef0d559d9"
+    },
+    "plans": {
+      "existingUnchanged": 45,
+      "total": 46
+    },
+    "versions": [
+      21,
+      46,
+      46
+    ]
+  },
+  "reviewCoverage": {
+    "changedSinceFirstReview": [
+      "world/historicalEvents/event_03",
+      "world/historicalEvents/event_07"
+    ],
+    "targetedHistoryReviewExactlyMatchesFinal": true,
+    "firstReviewTemplateRevision": 19,
+    "finalCandidateBaseRevision": 20,
+    "metadataRevisionChangeNotInReviewedSources": true,
+    "fullFormalAcceptance": false
+  },
+  "engineering": {
+    "tests": 191,
+    "failures": 0,
+    "webTypecheckAndProductionBuild": "passed",
+    "uiWorldRevision": 21,
+    "uiBibleRevision": 46,
+    "uiSelectedProposalRevision": 46,
+    "productionStillBlocked": true
+  }
+}
