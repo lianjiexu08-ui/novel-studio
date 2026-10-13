@@ -247,6 +247,21 @@ test('planner rejects a story bible that cannot support the 100-chapter mileston
   await assert.rejects(() => dropped.generateStoryBible({ title: '试作', covenant, worldPack: { ...createEmptyWorldPack('九霄'), id: 'world-1' }, previousStoryBible: previousWithExtra as never }), /dropped stable IDs/);
 });
 
+test('chapter outlines receive world costs and restrictions even when old blueprints omit them', async () => {
+  const worldPack = minimalWorldPack();
+  worldPack.techniques.push({ id: 'expensive', name: '逆命', kind: 'secret', allowedRealmIds: ['realm-2'], effect: '爆发', cost: '消耗十年寿元', limitations: ['每三十日仅一次'], counters: ['拖延'], status: 'proposed' });
+  const { chapters, ...skeleton } = minimalPlan(10, { volumeSize: 10, outlined: 10 });
+  const planner = new JsonBookPlanner({ complete: async (call) => {
+    const body = JSON.parse(call.user);
+    assert.deepEqual(body.worldPack, worldPack);
+    assert.equal(body.worldPack.techniques.at(-1).cost, '消耗十年寿元');
+    assert.deepEqual(body.worldPack.techniques.at(-1).limitations, ['每三十日仅一次']);
+    assert.match(call.system, /余额不足时必须改变行动/);
+    return JSON.stringify({ chapters: chapters.slice(0, 5) });
+  } });
+  await planner.generateChapterOutlines({ title: '试作', covenant, worldPack, skeleton, adoptedFacts: { reachedChapter: 0 }, from: 1, to: 5, before: [], after: [] });
+});
+
 test('book planner checks the skeleton scale and that every outline in the group is present', async () => {
   const { chapters, ...skeleton } = minimalPlan(30, { volumeSize: 10, outlined: 30 });
   const base = { title: '试作', covenant, adoptedFacts: { reachedChapter: 0 } };
