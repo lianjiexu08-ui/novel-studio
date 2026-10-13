@@ -277,6 +277,7 @@ test('chapter outlines receive world costs and restrictions even when old bluepr
   const storyBible = minimalStoryBible(worldPack);
   storyBible.chapterPlans = Array.from({ length: 10 }, (_, index) => ({ id: `bible-${index + 1}`, chapterNumber: index + 1, title: '旧章纲', purpose: '旧进展', conflict: '旧冲突', turningPoint: '旧选择', endHook: '旧结果', characterIds: [] }));
   const { chapters, ...skeleton } = minimalPlan(10, { volumeSize: 10, outlined: 10 });
+  chapters.forEach((chapter) => { chapter.scenes = ['主角在矿口发现封条被替换，选择留下查看。']; chapter.location = '矿口'; chapter.storyTime = '第一日'; });
   const planner = new JsonBookPlanner({ complete: async (call) => {
     const body = JSON.parse(call.user);
     assert.deepEqual(body.worldPack, worldPack);
@@ -294,6 +295,7 @@ test('chapter outlines receive world costs and restrictions even when old bluepr
 
 test('book planner checks the skeleton scale and that every outline in the group is present', async () => {
   const { chapters, ...skeleton } = minimalPlan(30, { volumeSize: 10, outlined: 30 });
+  chapters.forEach((chapter) => { chapter.scenes = ['主角在矿口发现封条被替换，选择留下查看。']; chapter.location = '矿口'; chapter.storyTime = '第一日'; });
   const base = { title: '试作', covenant, adoptedFacts: { reachedChapter: 0 } };
   const planner = new JsonBookPlanner({ complete: async () => JSON.stringify(skeleton) });
   assert.equal((await planner.generatePlanSkeleton({ ...base, targetChapterCount: 30, volumeCount: 3 })).volumes.length, 3);
@@ -308,4 +310,36 @@ test('book planner checks the skeleton scale and that every outline in the group
 
   const gappy = new JsonBookPlanner({ complete: async () => JSON.stringify(chapters.slice(10, 19)) });
   await assert.rejects(() => gappy.generateChapterOutlines({ ...base, skeleton, from: 11, to: 20, before: [], after: [] }), /missing chapters 20/);
+});
+
+test('outline generation repairs fields hidden by draft defaults and refuses an incomplete repair', async () => {
+  const { chapters, ...skeleton } = minimalPlan(1, { volumeSize: 1, outlined: 1 });
+  const complete = { ...chapters[0], location: '矿口', storyTime: '第1日', scenes: ['发现工牌被烧，主角先救人而未追凶。'] };
+  const { scenes, choice, ...partial } = complete;
+  const input = { title: '试作', covenant, adoptedFacts: {}, skeleton, from: 1, to: 1, before: [], after: [] };
+  const requests: Array<{ user: string }> = [];
+  const planner = new JsonBookPlanner({ complete: async (request) => {
+    requests.push(request);
+    return JSON.stringify({ chapters: [requests.length === 1 ? partial : complete] });
+  } });
+  assert.deepEqual((await planner.generateChapterOutlines(input))[0].scenes, complete.scenes);
+  assert.equal(requests.length, 2);
+  const repair = JSON.parse(requests[1].user);
+  assert.match(repair.problems, /choice/);
+  assert.match(repair.problems, /scenes/);
+  let calls = 0;
+  const empty = new JsonBookPlanner({ complete: async () => { calls += 1; return JSON.stringify({ chapters: [{ ...complete, scenes: [' '] }] }); } });
+  await assert.rejects(() => empty.generateChapterOutlines(input), /修正一次后.*scenes/);
+  assert.equal(calls, 2);
+});
+
+test('outline generation refuses duplicated or extra chapters instead of silently dropping them', async () => {
+  const { chapters, ...skeleton } = minimalPlan(1, { volumeSize: 1, outlined: 1 });
+  const chapter = { ...chapters[0], location: '矿口', storyTime: '第1日', scenes: ['主角选择救人。'] };
+  for (const extra of [chapter, { ...chapter, chapterNumber: 2 }]) {
+    let calls = 0;
+    const planner = new JsonBookPlanner({ complete: async () => { calls += 1; return JSON.stringify({ chapters: [chapter, extra] }); } });
+    await assert.rejects(() => planner.generateChapterOutlines({ title: '试作', covenant, adoptedFacts: {}, skeleton, from: 1, to: 1, before: [], after: [] }), /duplicate or out-of-range/);
+    assert.equal(calls, 2);
+  }
 });
