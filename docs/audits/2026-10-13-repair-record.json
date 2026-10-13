@@ -1,0 +1,180 @@
+{
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "scope": "design_proposal_only",
+  "before": {
+    "worldPackRevision": 12,
+    "storyBibleRevision": 13,
+    "latestPlanRevision": 11
+  },
+  "after": {
+    "worldPackRevision": 13,
+    "storyBibleRevision": 14,
+    "latestPlanRevision": 12,
+    "worldStatus": "proposed",
+    "storyStatus": "proposed",
+    "planStatus": "proposed"
+  },
+  "approvedPlanChanged": false,
+  "chaptersUnchanged": true,
+  "manuscriptContentHash": "d03ff80bcfe59eafed6716937480ff2527a59512ab30b879dfc3414afcd280f0",
+  "changes": [
+    "撤回余烬规则，恢复 tech_10 原约束",
+    "资源实体与品阶仅作为提案，保留补审阻塞",
+    "补充并绑定第31章航路，移除错误大陆归属",
+    "三卷规划纠正第30章提前收卷和第四卷残留指代",
+    "新增第99章取消燃寿代价的内容阻塞"
+  ],
+  "audit": {
+    "status": "blocked",
+    "reviewScope": "structural_only",
+    "narrativeQuality": "not_assessed",
+    "scope": {
+      "currentWorldPackRevision": 13,
+      "currentStoryBibleRevision": 14,
+      "activePlanRevision": 10,
+      "activePlanStoryBibleRevision": 12,
+      "activePlanTargetChapterCount": 100,
+      "storyBibleTargetChapterCount": 100,
+      "manuscriptStoryBibleRevision": 6
+    },
+    "counts": {
+      "worldRealms": 8,
+      "worldTechniques": 17,
+      "worldArtifacts": 14,
+      "worldResources": 16,
+      "worldLocations": 21,
+      "worldFactions": 12,
+      "worldHistoricalEvents": 12,
+      "characters": 6,
+      "relationships": 6,
+      "arcs": 4,
+      "arcBeats": 18,
+      "volumes": 3,
+      "openingChapterPlans": 50
+    },
+    "findings": [
+      {
+        "id": "world-not-approved",
+        "area": "world",
+        "severity": "warning",
+        "message": "世界包修订尚未锁定，结构检查不代表创作审核通过。"
+      },
+      {
+        "id": "world-question-audit-power-opening",
+        "area": "world",
+        "severity": "error",
+        "message": "第1章淬体境、寿元不足十年燃寿五年，与乾坤逆命真解允许神海境以上、十年至三十年消耗及最低十年寿元矛盾；第24章同日连续燃寿也违反三十日冷却。须确定残篇规则或重修正文，并重新评审。"
+      },
+      {
+        "id": "world-question-audit-resource-definitions",
+        "area": "world",
+        "severity": "error",
+        "message": "已补充绝命死息 res_15、诸天通宝 res_16 的资源提案并修正势力引用；新增品阶、材质、发行与保存规则尚需对照正文核验，不能视为已确立事实。"
+      },
+      {
+        "id": "world-warning-0",
+        "area": "world",
+        "severity": "warning",
+        "message": "blocking unresolved questions remain"
+      },
+      {
+        "id": "world-open-questions",
+        "area": "timeline",
+        "severity": "warning",
+        "message": "世界包仍有 11 个未决问题。",
+        "evidence": "界门背后是否连通域外天魔族群？；三大陆界门开启时是否会触发天地灵气守恒律的反向大吞噬？；大乾天朝皇室命修是否秘密掌握借国运转移燃寿反噬之法？",
+        "recommendation": "为每个问题标记本卷解决点或明确延后到哪一卷。"
+      },
+      {
+        "id": "story-not-approved",
+        "area": "story",
+        "severity": "warning",
+        "message": "故事圣经修订尚未锁定，人物与情节仍待审核。"
+      },
+      {
+        "id": "story-question-audit-volume-timeline",
+        "area": "story",
+        "severity": "error",
+        "message": "批准章纲以32/66/100为卷界，正文第30、53、66章出现不同收卷描述；第99–100章第五十日又写数十载/十载经历。须统一时间线与分卷。"
+      },
+      {
+        "id": "story-question-audit-artifact-continuity",
+        "area": "story",
+        "severity": "error",
+        "message": "第73章三枚破虚匙已合拢，98章又以三枚散落残片重组；缺少中间状态转换与新代价说明。"
+      },
+      {
+        "id": "story-question-audit-ending-cost",
+        "area": "story",
+        "severity": "error",
+        "message": "第99章写“再无折寿枯竭之患”，以天道奖励取消逆命代价，与命寿通灵律消耗不可逆冲突；结尾必须说明能量来源、使用上限与持续代价，并逐章复核第98–100章。"
+      },
+      {
+        "id": "bible-warning-0",
+        "area": "story",
+        "severity": "warning",
+        "message": "blocking unresolved story questions remain"
+      },
+      {
+        "id": "story-open-questions",
+        "area": "story",
+        "severity": "warning",
+        "message": "故事圣经仍有 3 个未决问题。",
+        "recommendation": "将问题绑定到卷末揭示或明确保留到终局。"
+      },
+      {
+        "id": "plan-volume-range-vol_01",
+        "area": "plan",
+        "severity": "error",
+        "message": "卷 vol_01 的章节范围与故事圣经 1–32 不一致。"
+      },
+      {
+        "id": "plan-volume-range-vol_02",
+        "area": "plan",
+        "severity": "error",
+        "message": "卷 vol_02 的章节范围与故事圣经 33–66 不一致。"
+      },
+      {
+        "id": "plan-volume-range-vol_03",
+        "area": "plan",
+        "severity": "error",
+        "message": "卷 vol_03 的章节范围与故事圣经 67–100 不一致。"
+      },
+      {
+        "id": "plan-world-revision-drift",
+        "area": "plan",
+        "severity": "error",
+        "message": "批准计划引用的世界包版本已过期。"
+      },
+      {
+        "id": "plan-volume-drift",
+        "area": "plan",
+        "severity": "error",
+        "message": "批准计划是 4 卷，当前故事圣经是 3 卷。",
+        "recommendation": "不要在分卷结构不一致时继续写作。"
+      },
+      {
+        "id": "plan-bible-revision-drift",
+        "area": "plan",
+        "severity": "error",
+        "message": "批准计划基于故事圣经 revision 12，当前是 revision 14。",
+        "recommendation": "将当前扩写标记为提案，重新审阅并批准与之匹配的计划。"
+      },
+      {
+        "id": "manuscript-design-drift",
+        "area": "manuscript",
+        "severity": "info",
+        "message": "现有成稿绑定故事圣经 revision 6，当前设计是 revision 14；成稿继续按自身绑定版本验收。",
+        "recommendation": "后续扩写从当前批准设计开始，不回写已完成成稿。"
+      },
+      {
+        "id": "manuscript-closure-evidence",
+        "area": "manuscript",
+        "severity": "error",
+        "message": "成稿缺少明确收束证据；章节已写完不等于故事线已完成。",
+        "evidence": "volume vol_03 has no resolved or diverged evidence",
+        "recommendation": "按成稿绑定版本核对正文和事实记录，不自动伪造收束事件。"
+      }
+    ]
+  }
+}
