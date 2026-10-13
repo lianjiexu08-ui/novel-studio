@@ -8,6 +8,29 @@ import { createReadyWork, fixtureDesignReview, minimalWorldPack } from './fixtur
 const reviewer: DesignProvider = { generateWorldPack: async () => { throw new Error('unused'); }, generateStoryBible: async () => { throw new Error('unused'); }, reviewDesignContent: async (input) => fixtureDesignReview(input) };
 const writer = { generateChapter: () => ({ content: '测试正文', proposedEvents: [] }) };
 
+test('design review sees contradictory book-level promises even when chapter outlines omit them', async () => {
+  const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), writer, reviewer);
+  const work = await createReadyWork(workflow);
+  const plan = work.plans.get(work.activePlanId!)!.plan;
+  Object.assign(plan, {
+    mainConflict: '使用只有神海能施展的逆命真解', theme: '代价不可逆',
+    protagonistArc: '开篇淬体直接施展逆命真解', endingDirection: '免费返还已燃尽的寿元',
+    keyTurns: ['第一卷跳过玄府进入神海'],
+  });
+  for (const area of designReviewAreas) {
+    const input = designReviewInput(work, area);
+    const source = input.sources.find((item) => item.id === 'plan/overview')!;
+    const overview = JSON.parse(source.text);
+    for (const field of ['mainConflict', 'theme', 'protagonistArc', 'endingDirection', 'keyTurns'] as const) {
+      assert.deepEqual(overview[field], plan[field], `${area} must receive the original ${field}`);
+    }
+    const report = fixtureDesignReview(input);
+    report.checks[0] = { ...report.checks[0], verdict: 'revise', explanation: '终局取消了不可逆代价',
+      evidence: [{ sourceId: source.id, quote: '免费返还已燃尽的寿元' }], revisionAdvice: '撤销免费返寿的结局承诺' };
+    assert.equal(recordDesignReview(work, input, report).status, 'needs_revision');
+  }
+});
+
 test('power review includes late chapter costs instead of reviewing only the power definitions', async () => {
   const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), writer, reviewer);
   const work = await createReadyWork(workflow);
