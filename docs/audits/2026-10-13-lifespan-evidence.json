@@ -1,0 +1,558 @@
+{
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "scope": "selected_adopted_manuscript_evidence_not_complete_ledger",
+  "worldRevision": 16,
+  "bibleRevision": 18,
+  "proposedPlanRevision": 16,
+  "proposedPlanId": "plan_29425095985d46308b803e86c3e3b7ce",
+  "adoptedHistoryChanged": false,
+  "balanceComputed": false,
+  "reason": "原文已经矛盾，且未量化收入、消耗和晋阶；不能给出可信最终余额。已花寿元、剩余储备、传闻效力、治伤、回忆和新增提案必须分开。",
+  "entries": [
+    {
+      "chapterNumber": 1,
+      "kind": "reserve_and_spend",
+      "explicitAmountYears": 5,
+      "finding": "起始余寿不足十年，淬体境却发动仅神海以上可用的功法，消耗五年也低于十年下限；晋阶凝元另有三年成本，不能默认已含在五年内。",
+      "evidence": [
+        {
+          "sourceId": "chapter/1/version/version_afc0707758524849871503db0e4d8978",
+          "quote": "却依旧停留在淬体境初期挣扎",
+          "startOffset": 237
+        },
+        {
+          "sourceId": "chapter/1/version/version_afc0707758524849871503db0e4d8978",
+          "quote": "寿元大限算来已不足十年",
+          "startOffset": 278
+        },
+        {
+          "sourceId": "chapter/1/version/version_afc0707758524849871503db0e4d8978",
+          "quote": "主动引燃了整整五年的本命阳寿",
+          "startOffset": 1341
+        },
+        {
+          "sourceId": "chapter/1/version/version_afc0707758524849871503db0e4d8978",
+          "quote": "五年阳寿，换我破关凝元",
+          "startOffset": 2399
+        }
+      ],
+      "repairRequirement": "保留原门槛；重做初战求生手段，并明确起始储备、晋阶准备和成本，不能给残卷添加无门槛例外。"
+    },
+    {
+      "chapterNumber": 3,
+      "kind": "claimed_reserve",
+      "explicitAmountYears": null,
+      "finding": "正文确认不足五年余寿，不能在无已核收入的情况下支付第11章五年。",
+      "evidence": [
+        {
+          "sourceId": "chapter/3/version/version_e38099699e6743df963bc8a3b4d2fe25",
+          "quote": "残躯余命不足五年",
+          "startOffset": 263
+        }
+      ],
+      "repairRequirement": "将余额继承到后续任务卡；未知流失也不能默认恢复。"
+    },
+    {
+      "chapterNumber": 6,
+      "kind": "hearsay_income",
+      "explicitAmountYears": 3,
+      "finding": "一滴延寿三年只是人群传闻，不是主角已获得收入，也不是已锁定剂量规则。",
+      "evidence": [
+        {
+          "sourceId": "chapter/6/version/version_88d9fb1764824c83b9f0438c1f637c27",
+          "quote": "传闻古境之内灵眼每隔甲子方聚结一次灵泉，一滴便能延寿三载",
+          "startOffset": 420
+        }
+      ],
+      "repairRequirement": "验证灵泉产量、剂量、效力、吸收上限和后果后，才能作为新寿元来源记账。"
+    },
+    {
+      "chapterNumber": 11,
+      "kind": "spend",
+      "explicitAmountYears": 5,
+      "finding": "低境界再次消耗五年；与第3章不足五年余额冲突，也违反三十日冷却。",
+      "evidence": [
+        {
+          "sourceId": "chapter/11/version/version_8495cfbb0a1b49be8f64748c3ee98cb2",
+          "quote": "没有任何迟疑，没有丝毫侥幸，林辰主动斩断自身整整五年本命阳寿",
+          "startOffset": 846
+        }
+      ],
+      "repairRequirement": "重写大比获胜条件与付出；不能把余额负数解释成决心更强。"
+    },
+    {
+      "chapterNumber": 23,
+      "kind": "spend",
+      "explicitAmountYears": 10,
+      "finding": "余命仅剩数载却支出十年，余额自相矛盾。",
+      "evidence": [
+        {
+          "sourceId": "chapter/23/version/version_21f4c18f0d304bcd8c69538ef8cf75e1",
+          "quote": "在余命仅剩数载的绝境深渊之下，林辰没有保留半分退路，毅然决然地引爆了体内整整十年本命阳寿",
+          "startOffset": 1627
+        }
+      ],
+      "repairRequirement": "改造夺泉战术和同伴作用；不能以未来灵泉收入支付现在的施术。"
+    },
+    {
+      "chapterNumber": 24,
+      "kind": "spend",
+      "explicitAmountYears": 10,
+      "finding": "半柱香内第二次发动，违反三十日冷却；叙述又将数载余额写成原本充裕。",
+      "evidence": [
+        {
+          "sourceId": "chapter/24/version/version_daae955c137047fb8e63c95cd84145d1",
+          "quote": "再度引爆了体内整整十年本命阳寿",
+          "startOffset": 1801
+        },
+        {
+          "sourceId": "chapter/24/version/version_daae955c137047fb8e63c95cd84145d1",
+          "quote": "整整二十年本命阳寿在短短半柱香之内",
+          "startOffset": 1880
+        },
+        {
+          "sourceId": "chapter/24/version/version_daae955c137047fb8e63c95cd84145d1",
+          "quote": "原本充裕的本命寿元在连续二十年的疯狂焚烧下几乎彻底见底",
+          "startOffset": 2114
+        }
+      ],
+      "repairRequirement": "与23章连同设计，取消接连升级式燃寿反杀，补清敌方限制、破阵方式和撤退代价。"
+    },
+    {
+      "chapterNumber": 28,
+      "kind": "claimed_balance_reset",
+      "explicitAmountYears": 30,
+      "finding": "三十年是正文声称的恢复后余额，不是新增三十年收入；同章又晋升神海，其三十年晋阶成本没有对账。",
+      "evidence": [
+        {
+          "sourceId": "chapter/28/version/version_eadc771453a84dd4966b50c147e3a3ca",
+          "quote": "最终稳稳攀升并定格在整整三十载寿元大限",
+          "startOffset": 1648
+        },
+        {
+          "sourceId": "chapter/28/version/version_eadc771453a84dd4966b50c147e3a3ca",
+          "quote": "狂暴的燃寿反噬终于被强行逆转抚平",
+          "startOffset": 1668
+        },
+        {
+          "sourceId": "chapter/28/version/version_eadc771453a84dd4966b50c147e3a3ca",
+          "quote": "神海境初期，终成",
+          "startOffset": 1943
+        }
+      ],
+      "repairRequirement": "先明确可获得的新生命资源及真实交易代价，区分治伤与补寿；不能一边报余额30、一边漏记晋阶30。"
+    },
+    {
+      "chapterNumber": 38,
+      "kind": "spend",
+      "explicitAmountYears": 3,
+      "finding": "神海境燃寿三年仍低于十年下限；需连同第23–24章时间核对冷却。",
+      "evidence": [
+        {
+          "sourceId": "chapter/38/version/version_9028d2f8f22c4a26aec6e6d776af8cf2",
+          "quote": "三载阳寿，瞬间成薪",
+          "startOffset": 952
+        },
+        {
+          "sourceId": "chapter/38/version/version_9028d2f8f22c4a26aec6e6d776af8cf2",
+          "quote": "寿元大限瞬间由三十年骤降至二十七年",
+          "startOffset": 1210
+        }
+      ],
+      "repairRequirement": "替换非法爆发或重新安排合法施术日期、金额与后续余额，不降低最低消耗。"
+    },
+    {
+      "chapterNumber": 50,
+      "kind": "unquantified_stabilization",
+      "explicitAmountYears": null,
+      "finding": "稳固命轮没有给出可计量新增寿元；不能把伤势恢复直接记作收入。",
+      "evidence": [
+        {
+          "sourceId": "chapter/50/version/version_a3be91fe051e4986b2d96145fe923be7",
+          "quote": "寿元枯竭溃散之势被奇迹般死死稳固",
+          "startOffset": 555
+        }
+      ],
+      "repairRequirement": "保留治伤与命轮稳定的区分，不向后续寿元账补填未经证实的余额。"
+    },
+    {
+      "chapterNumber": 61,
+      "kind": "spend",
+      "explicitAmountYears": 0.5,
+      "finding": "明确折损半年，应进入余额；不可在后续章节无故丢失。",
+      "evidence": [
+        {
+          "sourceId": "chapter/61/version/version_1ee34b4346d04476afe587f6590dcbd2",
+          "quote": "生生削去了整整半年命数",
+          "startOffset": 1730
+        }
+      ],
+      "repairRequirement": "保留或随整段战术重写同步修改，不能重复计入回忆。"
+    },
+    {
+      "chapterNumber": 71,
+      "kind": "spend",
+      "explicitAmountYears": 3,
+      "finding": "又以三年发动逆命真解，与最低十年不符，且须核对上次发动日期。",
+      "evidence": [
+        {
+          "sourceId": "chapter/71/version/version_25da29c755774e4d8ed2b6e81803478b",
+          "quote": "三年本命阳寿，轰然引燃",
+          "startOffset": 2918
+        },
+        {
+          "sourceId": "chapter/71/version/version_25da29c755774e4d8ed2b6e81803478b",
+          "quote": "借三年阳寿换来的逆天伟力",
+          "startOffset": 3016
+        }
+      ],
+      "repairRequirement": "重做突破石胎场景的可执行选择，扣除所有前置晋阶与战损后再判断能否发动。"
+    },
+    {
+      "chapterNumber": 73,
+      "kind": "spend_and_advancement",
+      "explicitAmountYears": 10,
+      "finding": "合匙另耗十年，并突破破虚、使用碎空瞬灭刃；破虚晋阶100年和每次施术30年不可被10年代替。",
+      "evidence": [
+        {
+          "sourceId": "chapter/73/version/version_1a302e83ab134135b0269303294860e8",
+          "quote": "整整十载本命阳寿在圣器融合的毁灭熔炉中瞬间化作飞灰",
+          "startOffset": 1935
+        },
+        {
+          "sourceId": "chapter/73/version/version_1a302e83ab134135b0269303294860e8",
+          "quote": "破虚本源神通——碎空瞬灭刃",
+          "startOffset": 2442
+        }
+      ],
+      "repairRequirement": "合匙不等于激活、升级或支付高阶技能成本；重做境界进度及逃生方式。"
+    },
+    {
+      "chapterNumber": 78,
+      "kind": "claimed_reserve",
+      "explicitAmountYears": null,
+      "finding": "旧正文说不足两年；不能直接沿用终局提案约三年的数字。新计划v16已替换本章情节，但没有证明合法新余额。",
+      "evidence": [
+        {
+          "sourceId": "chapter/78/version/version_bf6065f3dd524df2b43430eb5f2a9591",
+          "quote": "他如今的寿元早已不足两载",
+          "startOffset": 2197
+        }
+      ],
+      "repairRequirement": "最终余寿须从修订后的全程账计算，暂不把2年或3年作为已验证状态。"
+    },
+    {
+      "chapterNumber": 84,
+      "kind": "repeated_technique",
+      "explicitAmountYears": null,
+      "finding": "同一段声称连续拆十七处、每次使用碎空瞬灭刃。若按字面17次应用原规则，仅此行动需510年；可能与邻章回述重叠，不能再把它加到总消耗。",
+      "evidence": [
+        {
+          "sourceId": "chapter/84/version/version_0d5b352324f64ea08c80f614588d0d2c",
+          "quote": "连破十七处由皇道龙煞加持的死煞烽燧，每一次以碎空瞬灭刃强行斩灭阵枢",
+          "startOffset": 929
+        }
+      ],
+      "repairRequirement": "替换为分队、内应、解除供给和受阻撤离等行动；逐场给出权限、时间及战损，不保留无法支付的连发。"
+    },
+    {
+      "chapterNumber": 96,
+      "kind": "claimed_reserve_and_spend",
+      "explicitAmountYears": 3,
+      "finding": "旧正文从不足两年变成三年并燃尽，既无收入链，也违反十年门槛。新提案取消燃尽，但约三年余额仍未证明。",
+      "evidence": [
+        {
+          "sourceId": "chapter/96/version/version_39d44b19521b4b45a54c26018b953a70",
+          "quote": "在此刻仅仅剩下最后三年残烛",
+          "startOffset": 1178
+        },
+        {
+          "sourceId": "chapter/96/version/version_39d44b19521b4b45a54c26018b953a70",
+          "quote": "林辰决然引燃了自身仅剩的最后三年本命阳寿",
+          "startOffset": 1526
+        },
+        {
+          "sourceId": "chapter/96/version/version_39d44b19521b4b45a54c26018b953a70",
+          "quote": "寿元归零！肉身生机全面枯竭",
+          "startOffset": 1633
+        }
+      ],
+      "repairRequirement": "保持终局提案不燃寿、不复活；待前期账闭合后统一余额和所有角色认知。"
+    },
+    {
+      "chapterNumber": 99,
+      "kind": "free_recovery_and_cost_removal",
+      "explicitAmountYears": null,
+      "finding": "旧正文以功德重塑命轮并取消未来寿元成本，违背不可逆设定；终局提案已取消，但正文尚未修订。",
+      "evidence": [
+        {
+          "sourceId": "chapter/99/version/version_ac9f73d9e2c84f0b8549da2b34a300a5",
+          "quote": "原本以寿换力、燃寿必死的万古绝命诅咒",
+          "startOffset": 2442
+        },
+        {
+          "sourceId": "chapter/99/version/version_ac9f73d9e2c84f0b8549da2b34a300a5",
+          "quote": "此后再施逆命战法，皆借天地守恒大化之机，命元如江河奔涌，再无折寿枯竭之患",
+          "startOffset": 2498
+        }
+      ],
+      "repairRequirement": "后续按已评审的替换提案逐章修订，不能把新提案当作旧书稿已经满足。"
+    }
+  ],
+  "chapterSources": {
+    "chapter/1/version/version_afc0707758524849871503db0e4d8978": {
+      "chapterNumber": 1,
+      "chapterVersionId": "version_afc0707758524849871503db0e4d8978",
+      "revision": 2,
+      "contentHash": "5ad2953bdd0e4ee0b45696a37437a6f36b737e4116029b138c124114a06b355d"
+    },
+    "chapter/3/version/version_e38099699e6743df963bc8a3b4d2fe25": {
+      "chapterNumber": 3,
+      "chapterVersionId": "version_e38099699e6743df963bc8a3b4d2fe25",
+      "revision": 1,
+      "contentHash": "a4cb359978e4b4452613b8bfe9488119173c21ed84f397090e8687398851ea2a"
+    },
+    "chapter/6/version/version_88d9fb1764824c83b9f0438c1f637c27": {
+      "chapterNumber": 6,
+      "chapterVersionId": "version_88d9fb1764824c83b9f0438c1f637c27",
+      "revision": 1,
+      "contentHash": "ff41bcd9327289aa8c3687477ca0c2155ffa72759881f5a4119453e696079329"
+    },
+    "chapter/11/version/version_8495cfbb0a1b49be8f64748c3ee98cb2": {
+      "chapterNumber": 11,
+      "chapterVersionId": "version_8495cfbb0a1b49be8f64748c3ee98cb2",
+      "revision": 1,
+      "contentHash": "cb9c2d0c7dc3429689e4c13e2008bf00dcea03d8134bcf973bd674c14b7d6ea9"
+    },
+    "chapter/23/version/version_21f4c18f0d304bcd8c69538ef8cf75e1": {
+      "chapterNumber": 23,
+      "chapterVersionId": "version_21f4c18f0d304bcd8c69538ef8cf75e1",
+      "revision": 1,
+      "contentHash": "5e525c4b47ff3e9f874ef01d1e1b3e3940cedde4b82fc9966947a7a2a1ba0386"
+    },
+    "chapter/24/version/version_daae955c137047fb8e63c95cd84145d1": {
+      "chapterNumber": 24,
+      "chapterVersionId": "version_daae955c137047fb8e63c95cd84145d1",
+      "revision": 1,
+      "contentHash": "c1755bdf8a060e1b7846850ec00b6049cee4f46e27a8813878d93f15ac6650dd"
+    },
+    "chapter/28/version/version_eadc771453a84dd4966b50c147e3a3ca": {
+      "chapterNumber": 28,
+      "chapterVersionId": "version_eadc771453a84dd4966b50c147e3a3ca",
+      "revision": 1,
+      "contentHash": "ad39f1bcb73bea1051535ebd963854116f9009fbf3496fd3a3ce6a1a43e30c8e"
+    },
+    "chapter/38/version/version_9028d2f8f22c4a26aec6e6d776af8cf2": {
+      "chapterNumber": 38,
+      "chapterVersionId": "version_9028d2f8f22c4a26aec6e6d776af8cf2",
+      "revision": 1,
+      "contentHash": "3ac500fba3cb6c9847940004a65580d050b4403f3fa77e11da2bb9b4306dd4ab"
+    },
+    "chapter/50/version/version_a3be91fe051e4986b2d96145fe923be7": {
+      "chapterNumber": 50,
+      "chapterVersionId": "version_a3be91fe051e4986b2d96145fe923be7",
+      "revision": 1,
+      "contentHash": "41185212d1eb7d62351a2bbd4e1a387c23b7feb39d16ba0aeef46757d70343c1"
+    },
+    "chapter/61/version/version_1ee34b4346d04476afe587f6590dcbd2": {
+      "chapterNumber": 61,
+      "chapterVersionId": "version_1ee34b4346d04476afe587f6590dcbd2",
+      "revision": 1,
+      "contentHash": "eee068c0263c79cf82e91516067b069a01b1907f59d546465a157e365ab80a89"
+    },
+    "chapter/71/version/version_25da29c755774e4d8ed2b6e81803478b": {
+      "chapterNumber": 71,
+      "chapterVersionId": "version_25da29c755774e4d8ed2b6e81803478b",
+      "revision": 1,
+      "contentHash": "e2850190afedc84961c5e005708a8a0b2bae147403be3f3d3a69a44fbd398310"
+    },
+    "chapter/73/version/version_1a302e83ab134135b0269303294860e8": {
+      "chapterNumber": 73,
+      "chapterVersionId": "version_1a302e83ab134135b0269303294860e8",
+      "revision": 1,
+      "contentHash": "39527385d9397d6d59f8af13969ac3daec5797eaf09222abff841a8a97c776f4"
+    },
+    "chapter/78/version/version_bf6065f3dd524df2b43430eb5f2a9591": {
+      "chapterNumber": 78,
+      "chapterVersionId": "version_bf6065f3dd524df2b43430eb5f2a9591",
+      "revision": 1,
+      "contentHash": "ed600f24dc85207352f2e57f335b00f6d879fd67be7df69288c200758530be3a"
+    },
+    "chapter/84/version/version_0d5b352324f64ea08c80f614588d0d2c": {
+      "chapterNumber": 84,
+      "chapterVersionId": "version_0d5b352324f64ea08c80f614588d0d2c",
+      "revision": 1,
+      "contentHash": "76a2ca77cf7333a8e7a58e7e41c0454b70d9a8aae157034c88e470787e8293cc"
+    },
+    "chapter/96/version/version_39d44b19521b4b45a54c26018b953a70": {
+      "chapterNumber": 96,
+      "chapterVersionId": "version_39d44b19521b4b45a54c26018b953a70",
+      "revision": 1,
+      "contentHash": "be0652cf004a0ba421804e566d6fa1f8fb54781f3044c03682eb6bbb2c1be288"
+    },
+    "chapter/99/version/version_ac9f73d9e2c84f0b8549da2b34a300a5": {
+      "chapterNumber": 99,
+      "chapterVersionId": "version_ac9f73d9e2c84f0b8549da2b34a300a5",
+      "revision": 1,
+      "contentHash": "530394767a36d2bacc5c84e54636c242d8bdf6a686c734dd5f03c9df9cf82627"
+    }
+  },
+  "ruleSources": {
+    "world/techniques/tech_10": {
+      "id": "tech_10",
+      "name": "乾坤逆命真解",
+      "kind": "secret",
+      "tier": "天阶",
+      "allowedRealmIds": [
+        "realm_04",
+        "realm_05",
+        "realm_06"
+      ],
+      "effect": "强行引燃十年至三十年阳寿，瞬间将自身攻伐与恢复威能暴涨三倍。",
+      "cost": "永久耗损自身寿元，不可逆转，施术后衰老呈现白发。",
+      "limitations": [
+        "不可在寿元不足十年时强行催动",
+        "每三十日内仅能施展一次否则命格碎裂"
+      ],
+      "counters": [
+        "因果封绝印阻截命气流转",
+        "拖延战术消耗其爆发时间"
+      ],
+      "status": "proposed"
+    },
+    "world/techniques/tech_13": {
+      "id": "tech_13",
+      "name": "碎空瞬灭刃",
+      "kind": "technique",
+      "tier": "王阶",
+      "allowedRealmIds": [
+        "realm_06",
+        "realm_07"
+      ],
+      "effect": "手捏虚空波纹划出三道虚空裂隙，无视物理护甲直斩敌方肉身与元神。",
+      "cost": "消耗破虚本源并承受空间乱流刮骨之痛，折损三十年寿元。",
+      "limitations": [
+        "在虚空稳固度极高的古遗迹或界门处施展难度成倍提升",
+        "遭遇空间封锁符箓时极易反噬自伤"
+      ],
+      "counters": [
+        "定空珠定住千里虚空",
+        "虚空神晶护心镜抵消裂隙撕扯"
+      ],
+      "status": "proposed"
+    },
+    "world/realms/realm_02": {
+      "id": "realm_02",
+      "systemId": "ps_01",
+      "name": "凝元境",
+      "rank": 2,
+      "prerequisites": [
+        "经脉贯通"
+      ],
+      "capabilities": [
+        "真元外放",
+        "隔空御物"
+      ],
+      "cost": "损耗寿元三年",
+      "counters": [
+        "气脉闭塞"
+      ],
+      "status": "proposed"
+    },
+    "world/realms/realm_03": {
+      "id": "realm_03",
+      "systemId": "ps_01",
+      "name": "玄府境",
+      "rank": 3,
+      "prerequisites": [
+        "辟建丹府"
+      ],
+      "capabilities": [
+        "元罡护体",
+        "凌空虚渡"
+      ],
+      "cost": "损耗寿元十年",
+      "counters": [
+        "罡气破裂"
+      ],
+      "status": "proposed"
+    },
+    "world/realms/realm_04": {
+      "id": "realm_04",
+      "systemId": "ps_01",
+      "name": "神海境",
+      "rank": 4,
+      "prerequisites": [
+        "识海化湖"
+      ],
+      "capabilities": [
+        "神念照彻",
+        "意念诛魂"
+      ],
+      "cost": "损耗寿元三十年",
+      "counters": [
+        "神识剧毒"
+      ],
+      "status": "proposed"
+    },
+    "world/realms/realm_05": {
+      "id": "realm_05",
+      "systemId": "ps_01",
+      "name": "归一境",
+      "rank": 5,
+      "prerequisites": [
+        "精气神合一"
+      ],
+      "capabilities": [
+        "领域笼罩",
+        "万法不侵"
+      ],
+      "cost": "损耗寿元六十年",
+      "counters": [
+        "领域破灭"
+      ],
+      "status": "proposed"
+    },
+    "world/realms/realm_06": {
+      "id": "realm_06",
+      "systemId": "ps_01",
+      "name": "破虚境",
+      "rank": 6,
+      "prerequisites": [
+        "领悟空间壁垒"
+      ],
+      "capabilities": [
+        "撕裂虚空",
+        "万里挪移"
+      ],
+      "cost": "损耗寿元百年",
+      "counters": [
+        "空间乱流"
+      ],
+      "status": "proposed"
+    },
+    "world/resources/res_09": {
+      "id": "res_09",
+      "name": "延寿灵泉",
+      "unit": "滴",
+      "source": "灵虚古境太古洞天中心灵眼自然凝结",
+      "scarcity": "极罕见",
+      "tier": "五品",
+      "status": "proposed"
+    }
+  },
+  "notCountedAsNewUses": [
+    29,
+    30,
+    31,
+    35,
+    39,
+    40,
+    41,
+    43,
+    44,
+    47,
+    59
+  ],
+  "notCountedExplanation": "这些所查片段是既往消耗回述、余额复述或未执行的设想；不因出现燃寿关键词便重复记账。此列表不是对相应章节所有行为的完整判定。"
+}
