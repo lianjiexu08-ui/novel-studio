@@ -544,6 +544,36 @@ test('milestone start never generates, reviews or locks a missing or proposed de
   } finally { await app.close(); }
 });
 
+test('content review API defaults to the latest proposal and preserves the approved plan', async () => {
+  const repository = new InMemoryWorkRepository();
+  const design = milestoneDesign();
+  const { app } = createApiServer({ repository, provider: writer, designProvider: {
+    generateWorldPack: async () => design.world,
+    generateStoryBible: async () => design.bible,
+    reviewDesignContent: async (input) => fixtureDesignReview(input),
+  } });
+  try {
+    const work = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('提案先审') })).json();
+    await lockDesign(repository, work.id);
+    const activeId = (await repository.get(work.id))!.activePlanId!;
+    const saved = await app.inject({ method: 'PUT', url: `/works/${work.id}/plans`, payload: { baseRevisionId: activeId, plan: { ...minimalPlan(), theme: '修订后的主题' } } });
+    assert.equal(saved.statusCode, 201, saved.body);
+    const proposalId = saved.json().plan.id;
+    const overview = designReviewOverviewSchema.parse((await app.inject({ method: 'GET', url: `/works/${work.id}/design/content-reviews` })).json());
+    assert.equal(overview.selectedPlan?.id, proposalId);
+    const response = await app.inject({ method: 'POST', url: `/works/${work.id}/design/content-reviews`, payload: { area: 'world' } });
+    assert.equal(response.statusCode, 200, response.body);
+    assert.equal(response.json().report.scope.planRevisionId, proposalId);
+    const current = (await repository.get(work.id))!;
+    assert.equal(current.activePlanId, activeId);
+    assert.equal(current.plans.get(proposalId)!.status, 'proposed');
+    const selected = designReviewOverviewSchema.parse((await app.inject({ method: 'GET', url: `/works/${work.id}/design/content-reviews?planId=${activeId}` })).json());
+    assert.equal(selected.selectedPlan?.id, activeId);
+    assert.equal(selected.ready, false);
+    assert.equal((await app.inject({ method: 'GET', url: `/works/${work.id}/design/content-reviews?planId=unknown` })).statusCode, 404);
+  } finally { await app.close(); }
+});
+
 test('100-chapter milestone endpoint starts from locked design and reaches a final checkpoint', async () => {
   const design = milestoneDesign();
   const { app } = createApiServer({

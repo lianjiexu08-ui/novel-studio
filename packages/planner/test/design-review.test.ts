@@ -32,9 +32,36 @@ test('fabricated citations receive one repair attempt then fail closed', async (
   result.checks[0].evidence[0].quote = '源材料里没有的引文';
   const planner = new JsonDesignPlanner({ complete: async (call) => {
     calls += 1;
-    if (calls === 2) assert.match(JSON.parse(call.user).problems, /引用不在原文/);
+    if (calls === 2) {
+      const repair = JSON.parse(call.user);
+      assert.match(repair.problems, /引用不在原文/);
+      assert.equal(repair.citationProblem.rejectedQuote, '源材料里没有的引文');
+      assert.equal(repair.citationProblem.criterion, result.checks[0].criterion);
+      assert.equal(repair.citationProblem.evidenceIndex, 0);
+      assert.equal(repair.citationProblem.sourceText, request.sources.find((source) => source.id === result.checks[0].evidence[0].sourceId)!.text);
+    }
     return JSON.stringify(result);
   } });
   await assert.rejects(() => planner.reviewDesignContent(request), PlanningParseError);
+  assert.equal(calls, 2);
+});
+
+test('citation repair can replace a paraphrase with a verified continuous source quote', async () => {
+  const request = await input();
+  const expected = fixtureDesignReview(request);
+  const invalid = structuredClone(expected);
+  invalid.checks[0].evidence[0].quote = '把原文概括成另一句话';
+  let calls = 0;
+  const planner = new JsonDesignPlanner({ complete: async (call) => {
+    calls += 1;
+    if (calls === 1) return JSON.stringify(invalid);
+    const repair = JSON.parse(call.user);
+    assert.equal(call.role, 'reviewing');
+    assert.match(repair.instruction, /重新核对全部引文/);
+    assert.ok(repair.citationProblem.sourceText.includes(expected.checks[0].evidence[0].quote));
+    assert.deepEqual(repair.originalRequest.sources, request.sources);
+    return JSON.stringify(expected);
+  } });
+  assert.deepEqual(await planner.reviewDesignContent(request), expected);
   assert.equal(calls, 2);
 });

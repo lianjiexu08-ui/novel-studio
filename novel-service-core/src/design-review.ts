@@ -55,6 +55,17 @@ export interface DesignContentReview extends DesignReviewResult {
 }
 export class DesignReviewError extends Error {}
 
+export class DesignReviewCitationError extends DesignReviewError {
+  readonly citationProblem: {
+    criterion: string; evidenceIndex: number; sourceId: string; rejectedQuote: string; sourceText?: string;
+  };
+
+  constructor(citationProblem: DesignReviewCitationError['citationProblem']) {
+    super(`评审引用不在原文中：${citationProblem.sourceId}（${citationProblem.criterion}，证据 ${citationProblem.evidenceIndex + 1}）`);
+    this.citationProblem = citationProblem;
+  }
+}
+
 /** Status is excluded only for the plan, whose content and id are immutable.
  * Locking a world/bible advances its revision and intentionally requires re-review. */
 export function designReviewHash(work: Work, planId?: string): string | undefined {
@@ -113,9 +124,11 @@ export function validateDesignReview(input: DesignReviewInput, result: DesignRev
     if (!criteria.includes(check.criterion) || !['pass', 'revise', 'insufficient'].includes(check.verdict) || !check.explanation?.trim() || !Array.isArray(check.evidence)) throw new DesignReviewError('内容评审结果不完整');
     if (check.verdict !== 'insufficient' && check.evidence.length === 0) throw new DesignReviewError('通过或返修结论必须提供原文证据');
     if (check.verdict !== 'pass' && !check.revisionAdvice?.trim()) throw new DesignReviewError('未通过项目必须给出补充或返修要求');
-    for (const evidence of check.evidence) {
+    for (const [evidenceIndex, evidence] of check.evidence.entries()) {
       const source = input.sources.find((item) => item.id === evidence.sourceId);
-      if (!source || !evidence.quote?.trim() || evidence.quote.trim().length < 4 || !source.text.includes(evidence.quote)) throw new DesignReviewError(`评审引用不在原文中：${evidence.sourceId}`);
+      if (!source || !evidence.quote?.trim() || evidence.quote.trim().length < 4 || !source.text.includes(evidence.quote)) throw new DesignReviewCitationError({
+        criterion: check.criterion, evidenceIndex, sourceId: evidence.sourceId, rejectedQuote: evidence.quote, sourceText: source?.text,
+      });
     }
   }
 }
