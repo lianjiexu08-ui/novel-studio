@@ -25,7 +25,7 @@ export interface DesignReviewStage {
 export interface DesignReviewRun {
   id: string;
   /** Absent on persisted legacy schedules, which must resume without reshuffling. */
-  scheduleVersion?: 2 | 3;
+  scheduleVersion?: 2 | 3 | 4;
   input: DesignReviewInput;
   units: DesignReviewUnit[];
   stages: DesignReviewStage[];
@@ -39,14 +39,14 @@ export interface DesignReviewRun {
 
 /** All raw text is retained. Cross checks co-read every pair of partitions;
  * synthesis then combines every finding without allowing a blocker to disappear. */
-export function createDesignReviewRun(input: DesignReviewInput, now = new Date().toISOString(), scheduleVersion: 1 | 2 | 3 = 3): DesignReviewRun {
+export function createDesignReviewRun(input: DesignReviewInput, now = new Date().toISOString(), scheduleVersion: 1 | 2 | 3 | 4 = 4): DesignReviewRun {
   if (new Set(input.sources.map(s => s.id)).size !== input.sources.length) throw new DesignReviewError('评审来源 ID 重复');
   const units: DesignReviewUnit[] = [];
   const stages: DesignReviewStage[] = [];
   const small = JSON.stringify(input.sources).length <= designReviewCapacity;
   // Two v3 raw batches plus shared context use at most 220k characters,
   // leaving room for the exact questions a cross check must resolve.
-  const ordinaryBatchCapacity = scheduleVersion === 3 ? 90_000 : batchCapacity;
+  const ordinaryBatchCapacity = scheduleVersion >= 3 ? 90_000 : batchCapacity;
   for (const source of input.sources) {
     let start = 0;
     do {
@@ -74,9 +74,23 @@ export function createDesignReviewRun(input: DesignReviewInput, now = new Date()
   const sharedIds = new Set(shared.map(u => u.id));
   let pending: DesignReviewUnit[] = [];
   const flush = () => { if (pending.length) stages.push({ id: `batch-${stages.length + 1}`, kind: 'batch', label: `原文批次 ${stages.length + 1}`, unitIds: [...shared, ...pending].map(u => u.id), children: [], attempts: 0 }); pending = []; };
-  for (const unit of units.filter(u => !sharedIds.has(u.id))) {
-    if (!small && JSON.stringify([...pending, unit].map(unitSource)).length > ordinaryBatchCapacity) flush();
-    pending.push(unit);
+  const ordinary = units.filter(u => !sharedIds.has(u.id));
+  // A bible summary deliberately omits fields such as the detailed cost ledger.
+  // Co-read both versions of a chapter so that omission is not mistaken for a
+  // missing plan. Neither source wins: disagreements still need review.
+  const groups = scheduleVersion >= 4 ? chapterUnitGroups(input.sources, ordinary) : ordinary.map(unit => [unit]);
+  for (const group of groups) {
+    if (!small && JSON.stringify(group.map(unitSource)).length > ordinaryBatchCapacity) {
+      // Very large chapters still use the bounded slicing and cross checks.
+      // Never truncate them or enlarge the request to keep a pair together.
+      for (const unit of group) {
+        if (JSON.stringify([...pending, unit].map(unitSource)).length > ordinaryBatchCapacity) flush();
+        pending.push(unit);
+      }
+    } else {
+      if (!small && JSON.stringify([...pending, ...group].map(unitSource)).length > ordinaryBatchCapacity) flush();
+      pending.push(...group);
+    }
   }
   flush();
   const batches = [...stages];
@@ -86,7 +100,7 @@ export function createDesignReviewRun(input: DesignReviewInput, now = new Date()
   }
   // Keep the real planning horizon visible during synthesis. A prior report
   // saying "all 100 chapters need detailed scenes" is not the source plan.
-  const overviewUnits = scheduleVersion === 3 ? units.filter(u => u.sourceId === 'plan/overview') : [];
+  const overviewUnits = scheduleVersion >= 3 ? units.filter(u => u.sourceId === 'plan/overview') : [];
   const synthesisContext = JSON.stringify(overviewUnits.map(unitSource)).length <= sharedContextCapacity ? overviewUnits : [];
   let level = stages.map(s => s.id);
   let sequence = 0;
@@ -99,7 +113,34 @@ export function createDesignReviewRun(input: DesignReviewInput, now = new Date()
     }
     level = next;
   }
-  return { id: `design_run_${randomUUID()}`, ...(scheduleVersion >= 2 ? { scheduleVersion: scheduleVersion as 2 | 3 } : {}), input: structuredClone(input), units, stages, status: 'ready', createdAt: now, updatedAt: now };
+  return { id: `design_run_${randomUUID()}`, ...(scheduleVersion >= 2 ? { scheduleVersion: scheduleVersion as 2 | 3 | 4 } : {}), input: structuredClone(input), units, stages, status: 'ready', createdAt: now, updatedAt: now };
+}
+
+function chapterUnitGroups(sources: DesignReviewSource[], units: DesignReviewUnit[]): DesignReviewUnit[][] {
+  const chapters = new Map<number, { kinds: Set<string>; sourceIds: string[] }>();
+  for (const source of sources) {
+    const kind = source.id.startsWith('story/chapterPlans/') ? 'bible' : source.id.startsWith('plan/chapters/') ? 'plan' : undefined;
+    if (!kind) continue;
+    let chapterNumber: unknown;
+    try { chapterNumber = JSON.parse(source.text)?.chapterNumber; } catch { continue; }
+    if (typeof chapterNumber !== 'number' || !Number.isSafeInteger(chapterNumber) || chapterNumber < 1) continue;
+    const chapter = chapters.get(chapterNumber) ?? { kinds: new Set<string>(), sourceIds: [] };
+    chapter.kinds.add(kind); chapter.sourceIds.push(source.id); chapters.set(chapterNumber, chapter);
+  }
+  const paired = new Map<string, number>();
+  for (const [number, chapter] of chapters) if (chapter.kinds.size === 2) for (const id of chapter.sourceIds) paired.set(id, number);
+  const grouped = new Map<number, DesignReviewUnit[]>();
+  for (const unit of units) {
+    const number = paired.get(unit.sourceId);
+    if (number !== undefined) { const group = grouped.get(number) ?? []; group.push(unit); grouped.set(number, group); }
+  }
+  const emitted = new Set<number>();
+  return units.flatMap(unit => {
+    const number = paired.get(unit.sourceId);
+    if (number === undefined) return [[unit]];
+    if (emitted.has(number)) return [];
+    emitted.add(number); return [grouped.get(number)!];
+  });
 }
 
 export function designReviewUnitSources(run: DesignReviewRun): DesignReviewSource[] {
@@ -131,7 +172,7 @@ export function designReviewStageInput(run: DesignReviewRun, stage: DesignReview
     return resultSource(child);
   }), ...rawSources] : rawSources;
   if (JSON.stringify(sources).length > designReviewCapacity) throw new DesignReviewError('本批材料超出单次评审容量；未截断原文');
-  const coverage: NonNullable<DesignReviewInput['stage']>['coverage'] = run.scheduleVersion === 3 ? {
+  const coverage: NonNullable<DesignReviewInput['stage']>['coverage'] = (run.scheduleVersion ?? 1) >= 3 ? {
     mode: stage.kind === 'synthesis' ? 'reports_with_context' : run.units.every(u => stage.unitIds.includes(u.id)) ? 'whole_input' : 'local_sources',
     sourceLengths: Object.fromEntries(run.input.sources.map(s => [s.id, s.text.length])),
   } : undefined;
@@ -159,7 +200,7 @@ export function designReviewStageInput(run: DesignReviewRun, stage: DesignReview
 export function acceptDesignReviewStage(run: DesignReviewRun, stage: DesignReviewStage, result: DesignReviewResult): void {
   const input = designReviewStageInput(run, stage);
   validateDesignReview(input, result);
-  const tooLarge = run.scheduleVersion === 3
+  const tooLarge = (run.scheduleVersion ?? 1) >= 3
     ? JSON.stringify([resultSource({ ...stage, result })]).length > scopedResultSourceCapacity
     : JSON.stringify(result).length > resultCapacity;
   if (tooLarge) throw new DesignReviewError('本批评审结论过长，请重新评审并精炼解释；原文与失败记录保留');
@@ -170,13 +211,13 @@ export function acceptDesignReviewStage(run: DesignReviewRun, stage: DesignRevie
  * only explicitly deferred unread-source questions can be settled by a raw
  * stage covering both the original material and every requested source. */
 export function completeDesignReviewRun(run: DesignReviewRun): { input: DesignReviewInput; result: DesignReviewResult } {
-  if (run.scheduleVersion !== undefined && run.scheduleVersion !== 2 && run.scheduleVersion !== 3) throw new DesignReviewError('未知评审调度版本');
+  if (run.scheduleVersion !== undefined && run.scheduleVersion !== 2 && run.scheduleVersion !== 3 && run.scheduleVersion !== 4) throw new DesignReviewError('未知评审调度版本');
   const expected = createDesignReviewRun(run.input, run.createdAt, run.scheduleVersion ?? 1);
   const plan = (r: DesignReviewRun) => r.stages.map(({ id, kind, unitIds, children }) => ({ id, kind, unitIds, children }));
   if (JSON.stringify(run.units) !== JSON.stringify(expected.units) || JSON.stringify(plan(run)) !== JSON.stringify(plan(expected)) || !run.stages.length || run.stages.some(s => !s.result)) throw new DesignReviewError('原文覆盖或跨批检查未完成，不得形成整体结论');
   for (const stage of run.stages) validateDesignReview(designReviewStageInput(run, stage), stage.result!);
   const rank = { pass: 0, insufficient: 1, revise: 2 };
-  const resolutions = run.scheduleVersion === 3 ? resolvedDeferrals(run) : [];
+  const resolutions = (run.scheduleVersion ?? 1) >= 3 ? resolvedDeferrals(run) : [];
   const resolved = new Set(resolutions.map(r => r.checkId));
   const root = run.stages.at(-1)!.result!;
   const checks = Object.keys(run.input.rubric).map(criterion => {
@@ -191,7 +232,7 @@ export function completeDesignReviewRun(run: DesignReviewRun): { input: DesignRe
     const { awaitingSources, resolves, ...finalCheck } = structuredClone(selected);
     return finalCheck;
   });
-  const input = { ...run.input, sources: [...designReviewUnitSources(run), ...run.stages.filter(s => s.result).map(resultSource), ...(run.scheduleVersion === 3 ? deferrals(run).map(p => p.question) : [])] };
+  const input = { ...run.input, sources: [...designReviewUnitSources(run), ...run.stages.filter(s => s.result).map(resultSource), ...((run.scheduleVersion ?? 1) >= 3 ? deferrals(run).map(p => p.question) : [])] };
   const blocked = checks.some(c => c.verdict !== 'pass');
   const result = { summary: blocked ? '全部批次已完成，但仍有返修或材料不足项；详见逐项结论。' : root.summary, checks, ...(resolutions.length ? { resolvedDeferrals: resolutions } : {}) };
   validateDesignReview(input, result);

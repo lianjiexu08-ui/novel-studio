@@ -60,7 +60,7 @@ test('chapter-only power batches also receive complete tier and technique rules'
   ];
   input.sources = [...rules, ...input.sources];
   const run = createDesignReviewRun(input);
-  assert.equal(run.scheduleVersion, 3);
+  assert.equal(run.scheduleVersion, 4);
   for (const stage of run.stages) {
     const staged = designReviewStageInput(run, stage);
     assert.ok(JSON.stringify(staged.sources).length <= 240_000);
@@ -92,6 +92,64 @@ test('oversized shared candidates remain complete ordinary sources and legacy sc
   const restored = JSON.parse(JSON.stringify(legacy));
   for (const stage of restored.stages.slice(1)) acceptDesignReviewStage(restored, stage, stagePass(designReviewStageInput(restored, stage)));
   assert.equal(completeDesignReviewRun(restored).result.checks[0].verdict, 'pass');
+});
+
+const chapterPairInput = (): DesignReviewInput => ({ ...largeInput(), sources: [
+  { id: 'story/chapterPlans/bible-chapter-50', text: JSON.stringify({ chapterNumber: 50, purpose: '一剑支出二成，结束时余一成半。' }) },
+  ...largeInput().sources,
+  { id: 'plan/chapters/50', text: JSON.stringify({ chapterNumber: 50, cost: '沿用第48章复测余额三成半，一剑二成后余一成半，停止施术。' }) },
+] });
+
+test('chapter summaries and detailed ledgers are co-read without discarding either source', () => {
+  const input = chapterPairInput(), run = createDesignReviewRun(input);
+  const pairedIds = run.units.filter(u => /chapterPlans|plan\/chapters/.test(u.sourceId)).map(u => u.id);
+  const batches = run.stages.filter(s => s.kind === 'batch');
+  assert.ok(batches.length > 1);
+  const pairedBatch = batches.find(s => pairedIds.every(id => s.unitIds.includes(id)));
+  assert.ok(pairedBatch, 'both the short summary and the full cost must reach the same reviewer');
+  const staged = designReviewStageInput(run, pairedBatch);
+  assert.ok(staged.sources.some(s => s.text.includes('复测余额三成半')));
+  for (const source of input.sources) {
+    const units = run.units.filter(u => u.sourceId === source.id);
+    assert.equal(units.map(u => source.text.slice(u.start, u.end)).join(''), source.text);
+    for (const unit of units) assert.equal(batches.filter(s => s.unitIds.includes(unit.id)).length, 1);
+  }
+  for (const stage of run.stages) {
+    const stageInput = designReviewStageInput(run, stage), result = stagePass(stageInput);
+    assert.ok(JSON.stringify(stageInput.sources).length <= 240_000);
+    if (stage.id === pairedBatch.id) result.checks[0] = { ...result.checks[0], verdict: 'revise', explanation: '两份章纲的动作存在真实冲突，不能用其中一份覆盖另一份。', revisionAdvice: '统一动作安排。' };
+    acceptDesignReviewStage(run, stage, result);
+  }
+  assert.equal(completeDesignReviewRun(run).result.checks[0].verdict, 'revise', 'grouping never clears a substantive finding');
+});
+
+test('saved v3 chapter partitions keep their original schedule and can finish after v4 is introduced', () => {
+  const run = createDesignReviewRun(chapterPairInput(), '2026-10-14T00:00:00Z', 3);
+  const pair = run.units.filter(u => /chapterPlans|plan\/chapters/.test(u.sourceId));
+  assert.ok(!run.stages.filter(s => s.kind === 'batch').some(s => pair.every(u => s.unitIds.includes(u.id))));
+  acceptDesignReviewStage(run, run.stages[0], stagePass(designReviewStageInput(run, run.stages[0])));
+  const saved = JSON.stringify(run), restored = JSON.parse(saved);
+  for (const stage of restored.stages.slice(1)) acceptDesignReviewStage(restored, stage, stagePass(designReviewStageInput(restored, stage)));
+  assert.equal(completeDesignReviewRun(restored).result.checks[0].verdict, 'pass');
+  assert.deepEqual(restored.stages.map(({ id, unitIds }) => ({ id, unitIds })), run.stages.map(({ id, unitIds }) => ({ id, unitIds })));
+  assert.equal(JSON.stringify(run), saved);
+});
+
+test('oversized chapter pairs split within capacity while unmatched and malformed sources are retained', () => {
+  const input = chapterPairInput();
+  input.sources[0].text = JSON.stringify({ chapterNumber: 50, purpose: '完整摘要。'.repeat(20000) });
+  input.sources.at(-1)!.text = JSON.stringify({ chapterNumber: 50, cost: '全部消耗。'.repeat(20000) });
+  input.sources.push(
+    { id: 'plan/chapters/malformed', text: '{ incomplete chapter text' },
+    { id: 'story/chapterPlans/number-50-name', text: JSON.stringify({ chapterNumber: 51, purpose: '真实章号51，不与名称中的50误配。' }) },
+  );
+  const run = createDesignReviewRun(input), batches = run.stages.filter(s => s.kind === 'batch');
+  for (const source of input.sources) {
+    const units = run.units.filter(u => u.sourceId === source.id);
+    assert.equal(units.map(u => source.text.slice(u.start, u.end)).join(''), source.text);
+    for (const unit of units) assert.equal(batches.filter(s => s.unitIds.includes(unit.id)).length, 1);
+  }
+  for (const stage of run.stages.filter(s => s.kind !== 'synthesis')) assert.ok(JSON.stringify(designReviewStageInput(run, stage).sources).length <= 240_000);
 });
 
 test('failed stages resume in a new workflow without repeating completed batches or granting approval', async () => {
