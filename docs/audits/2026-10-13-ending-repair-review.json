@@ -1,0 +1,91 @@
+{
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "scope": "design_proposals_not_full_manuscript_review",
+  "model": "gpt-5.6-luna",
+  "current": {
+    "world": 16,
+    "bible": 18,
+    "plan": 16,
+    "planId": "plan_29425095985d46308b803e86c3e3b7ce",
+    "status": "proposed",
+    "activePlanId": "plan_3240e0b8bc124f38a4f39ae8d74c2abc",
+    "activePlanRevision": 10
+  },
+  "approved": false,
+  "reports": [
+    {
+      "area": "power",
+      "httpStatus": 502,
+      "status": "failed_validation",
+      "acceptedReview": false,
+      "response": {
+        "error": {
+          "code": "MODEL_FAILED",
+          "message": "模型返回的内容不合格：模型输出修正一次后仍不符合格式：评审引用不在原文中：plan/chapter-plan-1（tiers，证据 2）"
+        }
+      }
+    },
+    {
+      "area": "story",
+      "httpStatus": 502,
+      "status": "failed_validation",
+      "acceptedReview": false,
+      "response": {
+        "error": {
+          "code": "MODEL_FAILED",
+          "message": "模型返回的内容不合格：模型输出修正一次后仍不符合格式：评审引用不在原文中：world/overview（timeline，证据 1）"
+        }
+      }
+    }
+  ],
+  "verification": {
+    "ChapterVersion": {
+      "count": 101,
+      "unchanged": true
+    },
+    "StoryEvent": {
+      "count": 383,
+      "unchanged": true
+    },
+    "ManuscriptRevision": {
+      "count": 1,
+      "unchanged": true
+    },
+    "tests": 164,
+    "allOriginalCostsUnchanged": true,
+    "frozenManuscript": {
+      "chapterCount": 100,
+      "contentHash": "d03ff80bcfe59eafed6716937480ff2527a59512ab30b879dfc3414afcd280f0"
+    }
+  },
+  "chapter101Readiness": {
+    "chapterNumber": 101,
+    "ready": false,
+    "modelConfigured": true,
+    "blockers": [
+      {
+        "code": "CANON_NOT_READY",
+        "message": "chapter generation gate blocked: world pack is not locked; story bible is not locked; blocking world pack questions must be resolved before writing; blocking story questions must be resolved before writing",
+        "nextAction": "处理设计门禁问题后重新锁定"
+      },
+      {
+        "code": "PLAN_OUTDATED",
+        "message": "the approved plan was drafted against an older world pack or story bible",
+        "nextAction": "基于当前设计另存计划，审核后重新批准"
+      },
+      {
+        "code": "DESIGN_REVIEW_REQUIRED",
+        "message": "当前设计尚未通过全部分项内容评审；结构锁定不能代替内容质量审核",
+        "nextAction": "到世界构建完成世界、力量、人物与故事四项内容评审并处理返修问题"
+      }
+    ],
+    "requiredChecks": [
+      "deterministic_rules",
+      "canon_consistency",
+      "observed_events",
+      "chapter_length"
+    ],
+    "checkPolicyVersion": "chapter-policy-v2"
+  },
+  "interpretation": "两次请求各自含一次自动格式修正，最终引文仍不合格；没有保存为有效评审，不能据此给出内容通过或返修的模型结论。已知设计矛盾继续保留为阻塞项。"
+}
