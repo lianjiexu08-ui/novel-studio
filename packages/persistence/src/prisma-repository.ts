@@ -77,7 +77,7 @@ export class PrismaWorkRepository implements WorkRepository {
       create: { id: work.id, ...projectFields(work) },
       update: projectFields(work),
     });
-    await this.persist(this.prisma, work, null);
+    await this.persist(this.prisma, work);
   }
 
   async outbox(): Promise<OutboxEvent[]> {
@@ -96,6 +96,8 @@ export class PrismaWorkRepository implements WorkRepository {
       return await this.prisma.$transaction(async (tx) => {
         const work = await this.loadForUpdate(tx, workId);
         const loadedRevision = work.stateRevision;
+        const loadedProject = projectFields(work);
+        const loadedRows = snapshotRows(work);
         const loadedConstraintRevision = work.constraintRevision;
         // Returned objects are patched after the upsert so callers always see the stored row's id.
         const pending: OutboxEvent[] = [];
@@ -113,10 +115,12 @@ export class PrismaWorkRepository implements WorkRepository {
         // Optimistic concurrency: the stateRevision we loaded must still be current.
         const updated = await tx.project.updateMany({
           where: { id: workId, stateRevision: loadedRevision, constraintRevision: loadedConstraintRevision },
-          data: projectFields(work),
+          data: { stateRevision: work.stateRevision, ...Object.fromEntries(
+            Object.entries(projectFields(work)).filter(([key, value]) => value !== loadedProject[key as keyof typeof loadedProject]),
+          ) },
         });
         if (updated.count === 0) throw new StaleCandidateError('concurrent modification detected; reload and retry');
-        await this.persist(tx, work, loadedRevision);
+        await this.persist(tx, work, loadedRows);
         for (const event of pending) {
           const stored = await tx.outboxEvent.upsert({
             where: { dedupeKey: event.dedupeKey },
@@ -325,10 +329,10 @@ export class PrismaWorkRepository implements WorkRepository {
   }
 
   /**
-   * Upserts the whole aggregate. Story history (versions, candidates, events) is append-only.
+   * Upserts new or changed rows against a serialized pre-callback snapshot. Story history (versions, candidates, events) is append-only.
    * Author settings (characters, rules, relationships, plot nodes) mirror the aggregate, so removed ones are deleted.
    */
-  private async persist(tx: PrismaTx, work: Work, _loadedRevision: number | null): Promise<void> {
+  private async persist(tx: PrismaTx, work: Work, before?: RowSnapshot): Promise<void> {
     const chapterIds = new Map<number, string>();
     const chapterNumberOf = (chapterNumber: number) => {
       const existing = chapterIds.get(chapterNumber);
@@ -338,7 +342,7 @@ export class PrismaWorkRepository implements WorkRepository {
       return chapterId;
     };
 
-    for (const version of work.versions.values()) {
+    for (const version of changedRows(work.versions, before?.versions)) {
       const chapterId = chapterNumberOf(version.chapterNumber);
       await tx.chapter.upsert({
         where: { projectId_number: { projectId: work.id, number: version.chapterNumber } },
@@ -358,7 +362,7 @@ export class PrismaWorkRepository implements WorkRepository {
       });
     }
 
-    for (const candidate of work.candidates.values()) {
+    for (const candidate of changedRows(work.candidates, before?.candidates)) {
       const chapterId = chapterNumberOf(candidate.chapterNumber);
       await tx.chapter.upsert({
         where: { projectId_number: { projectId: work.id, number: candidate.chapterNumber } },
@@ -408,7 +412,7 @@ export class PrismaWorkRepository implements WorkRepository {
       }
     }
 
-    for (const event of work.events.values()) {
+    for (const event of changedRows(work.events, before?.events)) {
       await tx.storyEvent.upsert({
         where: { id: event.id },
         create: {
@@ -421,8 +425,8 @@ export class PrismaWorkRepository implements WorkRepository {
       });
     }
 
-    await tx.relationship.deleteMany({ where: { projectId: work.id, id: { notIn: [...work.relationships.keys()] } } });
-    for (const relationship of work.relationships.values()) {
+    if (!before || [...before.relationships.keys()].some((key) => !work.relationships.has(key))) await tx.relationship.deleteMany({ where: { projectId: work.id, id: { notIn: [...work.relationships.keys()] } } });
+    for (const relationship of changedRows(work.relationships, before?.relationships)) {
       const fields = {
         fromCharacterId: relationship.fromCharacterId, toCharacterId: relationship.toCharacterId,
         layer: relationship.layer ?? 'objective', kind: relationship.kind, value: relationship.value,
@@ -436,8 +440,8 @@ export class PrismaWorkRepository implements WorkRepository {
       });
     }
 
-    await tx.character.deleteMany({ where: { projectId: work.id, id: { notIn: [...work.characters.keys()] } } });
-    for (const character of work.characters.values()) {
+    if (!before || [...before.characters.keys()].some((key) => !work.characters.has(key))) await tx.character.deleteMany({ where: { projectId: work.id, id: { notIn: [...work.characters.keys()] } } });
+    for (const character of changedRows(work.characters, before?.characters)) {
       const fields = {
         name: character.name, aliases: JSON.stringify(character.aliases), role: character.role,
         identity: character.identity, goal: character.goal, principles: character.principles,
@@ -450,8 +454,8 @@ export class PrismaWorkRepository implements WorkRepository {
       });
     }
 
-    await tx.worldRule.deleteMany({ where: { projectId: work.id, id: { notIn: [...work.worldRules.keys()] } } });
-    for (const rule of work.worldRules.values()) {
+    if (!before || [...before.worldRules.keys()].some((key) => !work.worldRules.has(key))) await tx.worldRule.deleteMany({ where: { projectId: work.id, id: { notIn: [...work.worldRules.keys()] } } });
+    for (const rule of changedRows(work.worldRules, before?.worldRules)) {
       const fields = { category: rule.category, title: rule.title, content: rule.content, locked: rule.locked };
       await tx.worldRule.upsert({
         where: { id: rule.id },
@@ -460,8 +464,8 @@ export class PrismaWorkRepository implements WorkRepository {
       });
     }
 
-    await tx.plotNode.deleteMany({ where: { projectId: work.id, id: { notIn: [...work.plotNodes.keys()] } } });
-    for (const node of work.plotNodes.values()) {
+    if (!before || [...before.plotNodes.keys()].some((key) => !work.plotNodes.has(key))) await tx.plotNode.deleteMany({ where: { projectId: work.id, id: { notIn: [...work.plotNodes.keys()] } } });
+    for (const node of changedRows(work.plotNodes, before?.plotNodes)) {
       const fields = {
         level: node.level ?? 'chapter', title: node.title, expectedResult: node.expectedResult,
         targetChapter: node.targetChapter ?? null, prerequisites: JSON.stringify(node.prerequisites),
@@ -485,7 +489,7 @@ export class PrismaWorkRepository implements WorkRepository {
       });
     }
 
-    for (const impact of work.impacts) {
+    for (const impact of changedRows(new Map(work.impacts.map((row) => [row.id, row])), before?.impacts)) {
       await tx.impactRecord.upsert({
         where: { id: impact.id },
         create: {
@@ -497,8 +501,8 @@ export class PrismaWorkRepository implements WorkRepository {
       });
     }
 
-    await tx.runCheckpoint.deleteMany({ where: { projectId: work.id, id: { notIn: [...work.checkpoints.keys()] } } });
-    for (const checkpoint of work.checkpoints.values()) {
+    if (!before || [...before.checkpoints.keys()].some((key) => !work.checkpoints.has(key))) await tx.runCheckpoint.deleteMany({ where: { projectId: work.id, id: { notIn: [...work.checkpoints.keys()] } } });
+    for (const checkpoint of changedRows(work.checkpoints, before?.checkpoints)) {
       await tx.runCheckpoint.upsert({
         where: { id: checkpoint.runId },
         create: { id: checkpoint.runId, projectId: work.id, ...checkpointFields(checkpoint) },
@@ -506,7 +510,7 @@ export class PrismaWorkRepository implements WorkRepository {
       });
     }
 
-    for (const plan of work.plans.values()) {
+    for (const plan of changedRows(work.plans, before?.plans)) {
       const mutable = { status: plan.status, reviews: JSON.stringify(plan.reviews), approvedAt: plan.approvedAt ? new Date(plan.approvedAt) : null };
       await tx.planRevision.upsert({
         where: { id: plan.id },
@@ -518,7 +522,7 @@ export class PrismaWorkRepository implements WorkRepository {
         update: mutable,
       });
     }
-    for (const brief of work.briefs.values()) {
+    for (const brief of changedRows(work.briefs, before?.briefs)) {
       await tx.chapterBrief.upsert({
         where: { id: brief.id },
         create: {
@@ -529,8 +533,8 @@ export class PrismaWorkRepository implements WorkRepository {
       });
     }
 
-    await tx.manuscriptRevision.deleteMany({ where: { projectId: work.id, id: { notIn: [...work.manuscripts.keys()] } } });
-    for (const manuscript of work.manuscripts.values()) {
+    if (!before || [...before.manuscripts.keys()].some((key) => !work.manuscripts.has(key))) await tx.manuscriptRevision.deleteMany({ where: { projectId: work.id, id: { notIn: [...work.manuscripts.keys()] } } });
+    for (const manuscript of changedRows(work.manuscripts, before?.manuscripts)) {
       await tx.manuscriptRevision.upsert({
         where: { id: manuscript.id },
         create: {
@@ -550,6 +554,24 @@ export class PrismaWorkRepository implements WorkRepository {
         },
       });
     }
+  }
+}
+
+// Serialize before invoking the callback: shallow references miss nested in-place edits.
+const rowCollections = ['versions', 'candidates', 'events', 'relationships', 'characters', 'worldRules',
+  'plotNodes', 'checkpoints', 'plans', 'briefs', 'manuscripts'] as const;
+type RowSnapshot = Record<typeof rowCollections[number] | 'impacts', Map<string, string>>;
+function snapshotRows(work: Work): RowSnapshot {
+  const snapshot = {} as RowSnapshot;
+  for (const key of rowCollections) {
+    snapshot[key] = new Map([...work[key].entries()].map(([id, value]) => [id, JSON.stringify(value)]));
+  }
+  snapshot.impacts = new Map(work.impacts.map((value) => [value.id, JSON.stringify(value)]));
+  return snapshot;
+}
+function* changedRows<T>(rows: Map<string, T>, before?: Map<string, string>): Iterable<T> {
+  for (const [id, value] of rows) {
+    if (!before || before.get(id) !== JSON.stringify(value)) yield value;
   }
 }
 

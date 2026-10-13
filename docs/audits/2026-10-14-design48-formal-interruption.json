@@ -1,0 +1,328 @@
+{
+  "status": "completed_with_failures",
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "runtimeCommit": "852a3a2",
+  "scope": {
+    "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+    "planId": "plan_6bd58ae635ed4af1870dfcd59b8abd4b",
+    "world": 22,
+    "bible": 48,
+    "plan": 48
+  },
+  "areas": [
+    {
+      "area": "world",
+      "runId": "design_run_a35ed9ae-8d43-44cc-a89a-2508d92ed07f"
+    },
+    {
+      "area": "story",
+      "runId": "design_run_6d0a700c-a829-4aad-8ec7-fc0b2a4af587"
+    },
+    {
+      "area": "power",
+      "runId": "design_run_1e4fc79a-0251-4406-8725-144fc60ab983"
+    }
+  ],
+  "startedAt": "2026-10-13T23:25:42.377Z",
+  "finishedAt": "2026-10-13T23:39:11.522Z",
+  "errors": [
+    {
+      "area": "story",
+      "message": "\nInvalid `prisma.planRevision.upsert()` invocation:\n\n\nTransaction API error: Transaction already closed: A query cannot be executed on an expired transaction. The timeout for this transaction was 5000 ms, however 5035 ms passed since the start of the transaction. Consider increasing the interactive transaction timeout or doing less work in the transaction."
+    },
+    {
+      "area": "power",
+      "message": "\nInvalid `prisma.planRevision.upsert()` invocation:\n\n\nTransaction API error: Transaction already closed: A query cannot be executed on an expired transaction. The timeout for this transaction was 5000 ms, however 5020 ms passed since the start of the transaction. Consider increasing the interactive transaction timeout or doing less work in the transaction."
+    },
+    {
+      "area": "characters",
+      "message": "\nInvalid `prisma.planRevision.upsert()` invocation:\n\n\nTransaction API error: Transaction already closed: A query cannot be executed on an expired transaction. The timeout for this transaction was 5000 ms, however 5019 ms passed since the start of the transaction. Consider increasing the interactive transaction timeout or doing less work in the transaction."
+    }
+  ],
+  "usage": {
+    "calls": 26,
+    "failedCalls": 0,
+    "inputTokens": 2987375,
+    "outputTokens": 49925,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 26,
+        "failedCalls": 0,
+        "outputTokens": 49925,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 120
+    }
+  },
+  "records": [
+    {
+      "inputTokens": 116607,
+      "outputTokens": 1665,
+      "costUsd": 0,
+      "provider": "openai-compatible",
+      "model": "gpt-5.6-luna",
+      "role": "reviewing",
+      "recordedAt": "2026-10-13T23:26:51.325Z"
+    },
+    {
+      "inputTokens": 83492,
+      "outputTokens": 1820,
+      "costUsd": 0,
+      "provider": "openai-compatible",
+      "model": "gpt-5.6-luna",
+      "role": "reviewing",
+      "recordedAt": "2026-10-13T23:26:52.817Z"
+    },
+    {
+      "inputTokens": 82809,
+      "outputTokens": 1856,
+      "costUsd": 0,
+      "provider": "openai-compatible",
+      "model": "gpt-5.6-luna",
+      "role": "reviewing",
+      "recordedAt": "2026-10-13T23:28:12.806Z"
+    },
+    {
+      "inputTokens": 84269,
+      "outputTokens": 1398,
+      "costUsd": 0,
+      "provider": "openai-compatible",
+      "model": "gpt-5.6-luna",
+      "role": "reviewing",
+      "recordedAt": "2026-10-13T23:28:39.886Z"
+    },
+    {
+      "inputTokens": 84491,
+      "outputTokens": 3250,
+      "costUsd": 0,
+      "provider": "openai-compatible",
+      "model": "gpt-5.6-luna",
+      "role": "reviewing",
+      "recordedAt": "2026-10-13T23:28:55.018Z"
+    },
+    {
+      "inputTokens": 86082,
+      "outputTokens": 2121,
+      "costUsd": 0,
+      "provider": "openai-compatible",
+      "model": "gpt-5.6-luna",
+      "role": "reviewing",
+      "recordedAt": "2026-10-13T23:29:53.757Z"
+    },
+    {
+      "inputTokens": 96831,
+      "outputTokens": 1971,
+      "costUsd": 0,
+      "provider": "openai-compatible",
+      "model": "gpt-5.6-luna",
+      "role": "reviewing",
+      "recordedAt": "2026-10-13T23:30:15.140Z"
+    },
+    {
+      "inputTokens": 99007,
+      "outputTokens": 1593,
+      "costUsd": 0,
+      "provider": "openai-compatible",
+      "model": "gpt-5.6-luna",
+      "role": "reviewing",
+      "recordedAt": "2026-10-13T23:31:02.331Z"
+    },
+    {
+      "inputTokens": 70433,
+      "outputTokens": 1488,
+      "costUsd": 0,
+      "provider": "openai-compatible",
+      "model": "gpt-5.6-luna",
+      "role": "reviewing",
+      "recordedAt": "2026-10-13T23:31:23.205Z"
+    },
+    {
+      "inputTokens": 137927,
+      "outputTokens": 2789,
+      "costUsd": 0,
+      "provider": "openai-compatible",
+      "model": "gpt-5.6-luna",
+      "role": "reviewing",
+      "recordedAt": "2026-10-13T23:32:01.181Z"
+    },
+    {
+      "inputTokens": 66908,
+      "outputTokens": 2070,
+      "costUsd": 0,
+      "provider": "openai-compatible",
+      "model": "gpt-5.6-luna",
+      "role": "reviewing",
+      "recordedAt": "2026-10-13T23:32:24.560Z"
+    },
+    {
+      "inputTokens": 68354,
+      "outputTokens": 1365,
+      "costUsd": 0,
+      "provider": "openai-compatible",
+      "model": "gpt-5.6-luna",
+      "role": "reviewing",
+      "recordedAt": "2026-10-13T23:32:45.379Z"
+    },
+    {
+      "inputTokens": 150264,
+      "outputTokens": 2560,
+      "costUsd": 0,
+      "provider": "openai-compatible",
+      "model": "gpt-5.6-luna",
+      "role": "reviewing",
+      "recordedAt": "2026-10-13T23:33:33.178Z"
+    },
+    {
+      "inputTokens": 137552,
+      "outputTokens": 2010,
+      "costUsd": 0,
+      "provider": "openai-compatible",
+      "model": "gpt-5.6-luna",
+      "role": "reviewing",
+      "recordedAt": "2026-10-13T23:34:03.284Z"
+    },
+    {
+      "inputTokens": 151927,
+      "outputTokens": 1597,
+      "costUsd": 0,
+      "provider": "openai-compatible",
+      "model": "gpt-5.6-luna",
+      "role": "reviewing",
+      "recordedAt": "2026-10-13T23:34:08.027Z"
+    },
+    {
+      "inputTokens": 138715,
+      "outputTokens": 1033,
+      "costUsd": 0,
+      "provider": "openai-compatible",
+      "model": "gpt-5.6-luna",
+      "role": "reviewing",
+      "recordedAt": "2026-10-13T23:34:13.244Z"
+    },
+    {
+      "inputTokens": 150473,
+      "outputTokens": 1938,
+      "costUsd": 0,
+      "provider": "openai-compatible",
+      "model": "gpt-5.6-luna",
+      "role": "reviewing",
+      "recordedAt": "2026-10-13T23:34:52.306Z"
+    },
+    {
+      "inputTokens": 123864,
+      "outputTokens": 2694,
+      "costUsd": 0,
+      "provider": "openai-compatible",
+      "model": "gpt-5.6-luna",
+      "role": "reviewing",
+      "recordedAt": "2026-10-13T23:35:44.687Z"
+    },
+    {
+      "inputTokens": 119355,
+      "outputTokens": 1926,
+      "costUsd": 0,
+      "provider": "openai-compatible",
+      "model": "gpt-5.6-luna",
+      "role": "reviewing",
+      "recordedAt": "2026-10-13T23:36:07.232Z"
+    },
+    {
+      "inputTokens": 120400,
+      "outputTokens": 1351,
+      "costUsd": 0,
+      "provider": "openai-compatible",
+      "model": "gpt-5.6-luna",
+      "role": "reviewing",
+      "recordedAt": "2026-10-13T23:36:40.263Z"
+    },
+    {
+      "inputTokens": 151267,
+      "outputTokens": 2486,
+      "costUsd": 0,
+      "provider": "openai-compatible",
+      "model": "gpt-5.6-luna",
+      "role": "reviewing",
+      "recordedAt": "2026-10-13T23:37:14.877Z"
+    },
+    {
+      "inputTokens": 153743,
+      "outputTokens": 1530,
+      "costUsd": 0,
+      "provider": "openai-compatible",
+      "model": "gpt-5.6-luna",
+      "role": "reviewing",
+      "recordedAt": "2026-10-13T23:37:41.313Z"
+    },
+    {
+      "inputTokens": 126152,
+      "outputTokens": 2015,
+      "costUsd": 0,
+      "provider": "openai-compatible",
+      "model": "gpt-5.6-luna",
+      "role": "reviewing",
+      "recordedAt": "2026-10-13T23:37:47.219Z"
+    },
+    {
+      "inputTokens": 127598,
+      "outputTokens": 1277,
+      "costUsd": 0,
+      "provider": "openai-compatible",
+      "model": "gpt-5.6-luna",
+      "role": "reviewing",
+      "recordedAt": "2026-10-13T23:38:09.394Z"
+    },
+    {
+      "inputTokens": 137207,
+      "outputTokens": 2266,
+      "costUsd": 0,
+      "provider": "openai-compatible",
+      "model": "gpt-5.6-luna",
+      "role": "reviewing",
+      "recordedAt": "2026-10-13T23:38:46.386Z"
+    },
+    {
+      "inputTokens": 121648,
+      "outputTokens": 1856,
+      "costUsd": 0,
+      "provider": "openai-compatible",
+      "model": "gpt-5.6-luna",
+      "role": "reviewing",
+      "recordedAt": "2026-10-13T23:38:50.089Z"
+    }
+  ],
+  "savedProgress": [
+    {
+      "id": "design_run_a35ed9ae-8d43-44cc-a89a-2508d92ed07f",
+      "scheduleVersion": 3,
+      "status": "completed",
+      "reportId": "design_review_6c72ef97-dc18-499d-8414-30c4ec409742",
+      "area": "world",
+      "completed": 1,
+      "total": 1
+    },
+    {
+      "id": "design_run_6d0a700c-a829-4aad-8ec7-fc0b2a4af587",
+      "scheduleVersion": 3,
+      "status": "ready",
+      "reportId": null,
+      "area": "story",
+      "completed": 10,
+      "total": 19
+    },
+    {
+      "id": "design_run_1e4fc79a-0251-4406-8725-144fc60ab983",
+      "scheduleVersion": 3,
+      "status": "ready",
+      "reportId": null,
+      "area": "power",
+      "completed": 9,
+      "total": 19
+    }
+  ]
+}

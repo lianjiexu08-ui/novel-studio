@@ -350,3 +350,47 @@ test('SQLite review checkpoints survive repository restart and resume without re
   assert.equal(final.designContentReviews.get(progress.reportId!)!.runId, run.id);
   assert.equal(final.versions.size, 0);
 });
+
+test('review-only saves skip historical rows while nested edits and rollback remain atomic', async t => {
+  const databaseUrl = createDatabase();
+  const { PrismaClient } = await import('@prisma/client');
+  const { PrismaWorkRepository } = await import('../src/prisma-repository.ts');
+  const { ChapterWorkflow } = await import('../../application/src/index.ts');
+  const { createReadyWork } = await import('../../application/test/fixtures.ts');
+  const prisma = new PrismaClient({ datasources: { db: { url: databaseUrl } }, log: [{ emit: 'event', level: 'query' }] });
+  const writes: string[] = [];
+  prisma.$on('query', event => { if (/^(INSERT|UPDATE|DELETE)/.test(event.query)) writes.push(event.query); });
+  const repository = new PrismaWorkRepository(prisma);
+  t.after(async () => { await repository.disconnect(); rmSync(databaseUrl.slice(5), { force: true }); });
+  const workflow = new ChapterWorkflow(repository, { generateChapter: () => ({ content: 'unused', proposedEvents: [] }) });
+  const created = await createReadyWork(workflow, '增量持久化');
+  const initial = (await repository.get(created.id))!;
+  const planId = initial.activePlanId!;
+  const input = designReviewInput(initial, 'power');
+  writes.length = 0;
+  await repository.transaction(created.id, ({ work }) => recordDesignReview(work, input, fixtureDesignReview(input)));
+  assert.equal(writes.length, 1, 'review progress only updates the project row');
+  assert.match(writes[0], /UPDATE .*Project/);
+  assert.doesNotMatch(writes[0], /"designHistory"\s*=|"storyBible"\s*=|"worldPack"\s*=/, 'unchanged large JSON fields are not rewritten');
+  const reviewed = (await repository.get(created.id))!;
+  assert.equal(reviewed.designContentReviews.size, initial.designContentReviews.size + 1);
+  assert.deepEqual(reviewed.plans, initial.plans);
+
+  writes.length = 0;
+  await repository.transaction(created.id, ({ work }) => { work.plans.get(planId)!.reviews[0].passed = false; });
+  assert.equal((await repository.get(created.id))!.plans.get(planId)!.reviews[0].passed, false);
+  assert.ok(writes.some(query => /PlanRevision/.test(query)));
+  assert.ok(writes.every(query => /Project|PlanRevision/.test(query)), 'unrelated tables stay untouched');
+
+  await prisma.$executeRawUnsafe(`CREATE TRIGGER reject_test_outbox BEFORE INSERT ON OutboxEvent
+    WHEN NEW.dedupeKey = 'rollback' BEGIN SELECT RAISE(ABORT, 'rollback'); END`);
+  await assert.rejects(repository.transaction(created.id, ({ work, enqueue }) => {
+    work.title = 'rolled back';
+    work.plans.get(planId)!.reviews[0].passed = true;
+    enqueue({ workId: work.id, dedupeKey: 'rollback', kind: 'export', aggregateId: work.id, payload: {} });
+  }));
+  const after = (await repository.get(created.id))!;
+  assert.equal(after.title, created.title);
+  assert.equal(after.plans.get(planId)!.reviews[0].passed, false);
+  assert.equal((await repository.outbox()).length, 0);
+});
