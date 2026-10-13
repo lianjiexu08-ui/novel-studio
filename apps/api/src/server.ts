@@ -1,3 +1,5 @@
+import { designReviewAreaSchema } from 'novel-studio-contracts';
+import { designReviewOverview, DesignReviewError } from '../../../novel-service-core/src/design-review.ts';
 import Fastify, { type FastifyInstance } from 'fastify';
 import { z, ZodError } from 'zod';
 import {
@@ -529,6 +531,19 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     };
   });
 
+  app.get('/works/:workId/design/content-reviews', async (request) => {
+    const { workId } = workParamSchema.parse(request.params);
+    const work = await repository.get(workId);
+    if (!work) throw new NotFoundError(`unknown work ${workId}`);
+    return designReviewOverview(work);
+  });
+
+  app.post('/works/:workId/design/content-reviews', async (request) => {
+    const { workId } = workParamSchema.parse(request.params);
+    const { area } = z.object({ area: designReviewAreaSchema }).strict().parse(request.body);
+    return { report: await workflow.reviewDesignContent(workId, area) };
+  });
+
   app.get('/works/:workId/quality-audit', async (request) => {
     const { workId } = workParamSchema.parse(request.params);
     const work = await repository.get(workId);
@@ -841,6 +856,7 @@ function mapError(error: unknown): { status: number; body: ApiError } {
   if (error instanceof StaleCandidateError) return { status: 409, body: apiError('STALE_CANDIDATE', error.message) };
   if (error instanceof AdoptionBlocked) return { status: 409, body: apiError('ADOPTION_BLOCKED', error.message) };
   if (error instanceof SettingConflictError) return { status: 409, body: apiError('CONFLICT', error.message) };
+  if (error instanceof DesignReviewError) return { status: 409, body: apiError('DESIGN_REVIEW_REQUIRED', error.message) };
   if (error instanceof CanonGateError) return { status: 409, body: apiError('CONFLICT', error.message) };
   if (error instanceof PlanConflictError) return { status: 409, body: apiError('PLAN_CONFLICT', error.message) };
   if (error instanceof PlanGateError) return { status: 409, body: apiError('PLAN_GATE', error.message) };

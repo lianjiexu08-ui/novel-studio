@@ -1,3 +1,4 @@
+import { DesignContentReviewCard } from './DesignContentReviewCard';
 import { useEffect, useState } from 'react';
 import { Alert, App as AntApp, Button, Card, Col, Empty, InputNumber, Row, Space, Spin, Table, Tag, Typography } from 'antd';
 import { ReloadOutlined } from '@ant-design/icons';
@@ -15,7 +16,7 @@ function valueOf(value: unknown) {
 
 export function QualityPage() {
   const { message } = AntApp.useApp();
-  const { work } = useOutletContext<WorkspaceContext>();
+  const { work, refresh } = useOutletContext<WorkspaceContext>();
   const [chapter, setChapter] = useState(1);
   const [history, setHistory] = useState<ChapterHistoryDto | null>(null);
   const [manuscripts, setManuscripts] = useState<ManuscriptRevisionDto[]>([]);
@@ -36,6 +37,7 @@ export function QualityPage() {
   return <section className="page">
     <header className="page-head"><div><p className="page-kicker">复查</p><Title level={4} style={{ margin: 0 }}>章节质量与状态</Title><p className="page-desc">选择一个章节，查看已采用正文中的事实与角色状态；人物关系同时参考生效范围内的设定，未落实的故事线标为计划。</p></div><Space><InputNumber min={1} max={450} value={chapter} onChange={(value) => setChapter(value ?? 1)} /><Button type="primary" icon={<ReloadOutlined />} loading={loading} onClick={() => void load()}>加载第 {chapter} 章</Button></Space></header>
     <DesignAuditCard workId={work.id} revision={work.constraintRevision} />
+    <DesignContentReviewCard workId={work.id} revision={work.constraintRevision} onReviewed={refresh} />
     {!history ? <div className="state-block"><Spin size="large" /></div> : <Space direction="vertical" size={16} style={{ width: '100%' }}>
       <Alert type="info" showIcon message={'截至第 ' + history.chapterNumber + ' 章'} description={'事件 ' + history.events.length + ' 条，角色状态 ' + history.characterStates.length + ' 条，角色认知 ' + history.knowledgeStates.length + ' 条，关系 ' + history.relationships.filter(Boolean).length + ' 条，分卷进度 ' + history.volumeStates.length + ' 条，弧光进度 ' + history.arcStates.length + ' 条，秘密记录 ' + history.secretStates.length + ' 条，承诺/开放线收束 ' + (history.promiseStates.length + history.threadStates.length) + ' 条。'} />
       <Alert type={history.quality.closureCoverage.ready ? 'success' : 'warning'} showIcon message="全书收束覆盖" description={`分卷 ${history.quality.closureCoverage.resolved.volumes}/${history.quality.closureCoverage.expected.volumes}，弧光 ${history.quality.closureCoverage.resolved.arcs}/${history.quality.closureCoverage.expected.arcs}，秘密 ${history.quality.closureCoverage.resolved.secrets}/${history.quality.closureCoverage.expected.secrets}，承诺 ${history.quality.closureCoverage.resolved.promises}/${history.quality.closureCoverage.expected.promises}，开放线 ${history.quality.closureCoverage.resolved.threads}/${history.quality.closureCoverage.expected.threads}${history.quality.closureCoverage.errors.length ? `；待处理：${history.quality.closureCoverage.errors.slice(0, 3).join('；')}` : ''}`} />

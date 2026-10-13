@@ -27,6 +27,8 @@ model Project {
   storyBible     String   @default("{}")
   /// Immutable WorldPack/StoryBible snapshots, JSON array ordered by creation time.
   designHistory  String   @default("[]")
+  /// Evidence-based model reviews, append-only; bound to an exact design fingerprint.
+  designContentReviews String @default("[]")
   /// Append-only CovenantRevision JSON array; keeps the author's original words.
   covenantHistory String  @default("[]")
   /// The approved PlanRevision driving briefs and generation.

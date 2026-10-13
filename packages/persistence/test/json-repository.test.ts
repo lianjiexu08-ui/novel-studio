@@ -1,3 +1,4 @@
+import { designReviewInput, designReviewOverview, recordDesignReview } from '../../../novel-service-core/src/design-review.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
@@ -7,7 +8,7 @@ import { ChapterWorkflow } from '../../application/src/index.ts';
 import { JsonWorkRepository } from '../src/json-repository.ts';
 import { passChecker } from '../../../novel-service-core/src/core.ts';
 import type { ModelProvider } from '../../../novel-service-core/src/core.ts';
-import { createReadyWork } from '../../application/test/fixtures.ts';
+import { fixtureDesignReview, createReadyWork } from '../../application/test/fixtures.ts';
 
 const provider: ModelProvider = {
   generateChapter: ({ chapterNumber }) => {
@@ -23,12 +24,16 @@ test('JSON repository survives restart with adopted version and outbox', async (
     const firstRepository = new JsonWorkRepository(file);
     const firstWorkflow = new ChapterWorkflow(firstRepository, provider);
     const work = await createReadyWork(firstWorkflow, '可恢复作品');
+    const reviewInput = designReviewInput(work, 'world');
+    const report = await firstRepository.transaction(work.id, ({ work }) => recordDesignReview(work, reviewInput, fixtureDesignReview(reviewInput)));
     const candidate = await firstWorkflow.generate(work.id, 1, 'run-1');
     await firstWorkflow.check(work.id, candidate.id, [passChecker]);
     await firstWorkflow.adopt(work.id, candidate.id, 0);
 
     const secondRepository = new JsonWorkRepository(file);
     const restored = await secondRepository.get(work.id);
+    assert.deepEqual(restored?.designContentReviews.get(report.id), report);
+    assert.equal(designReviewOverview(restored!).areas[0].status, 'passed');
     assert.equal(restored?.currentVersion(1)?.content, '第1章');
     assert.equal(restored?.candidates.get(candidate.id)?.contentHash, candidate.contentHash);
     assert.equal(restored?.covenant.hook, '主角用寿命换一次胜利');

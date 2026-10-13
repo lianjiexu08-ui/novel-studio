@@ -5,9 +5,9 @@ import { ChapterWorkflow, InMemoryWorkRepository } from '../../../packages/appli
 import { createEmptyWorldPack } from '../../../novel-service-core/src/world.ts';
 import type { ModelProvider } from '../../../novel-service-core/src/core.ts';
 import { UsageLedger } from '../../../packages/model-gateway/src/index.ts';
-import { approveMinimalPlan, chapterBody, lockMinimalDesign, minimalPlan } from '../../../packages/application/test/fixtures.ts';
+import { approveMinimalPlan, fixtureDesignReview, chapterBody, lockMinimalDesign, minimalPlan } from '../../../packages/application/test/fixtures.ts';
 import type { BookPlan } from '../../../novel-service-core/src/planning.ts';
-import { qualityAuditDtoSchema } from 'novel-studio-contracts';
+import { designReviewOverviewSchema, qualityAuditDtoSchema } from 'novel-studio-contracts';
 
 const writer: ModelProvider = {
   generateChapter: ({ chapterNumber }) => {
@@ -35,6 +35,19 @@ async function approvePlanViaApi(inject: Inject, workId: string, plan: BookPlan)
   assert.equal(review.json().review.passed, true, review.body);
   const approved = await inject({ method: 'POST', url: `/works/${workId}/plans/${planId}/approve`, payload: {} });
   assert.equal(approved.statusCode, 200, approved.body);
+  if (plan.targetChapterCount >= 100) {
+    const unreviewed = await inject({ method: 'GET', url: `/works/${workId}/design/content-reviews` });
+    assert.equal(designReviewOverviewSchema.parse(unreviewed.json()).ready, false);
+    const blocked = await inject({ method: 'POST', url: `/works/${workId}/milestones/${plan.targetChapterCount}/start`, payload: {} });
+    assert.equal(blocked.statusCode, 409, blocked.body);
+    assert.equal(blocked.json().error.code, 'DESIGN_REVIEW_REQUIRED');
+    for (const area of ['world', 'power', 'characters', 'story']) {
+      const response = await inject({ method: 'POST', url: `/works/${workId}/design/content-reviews`, payload: { area } });
+      assert.equal(response.statusCode, 200, response.body);
+      assert.equal(response.json().report.status, 'passed');
+    }
+    assert.equal(designReviewOverviewSchema.parse((await inject({ method: 'GET', url: `/works/${workId}/design/content-reviews` })).json()).ready, true);
+  }
   return approved.json().plan;
 }
 
@@ -537,7 +550,7 @@ test('100-chapter milestone endpoint starts from locked design and reaches a fin
     repository: new InMemoryWorkRepository(),
     allowBatchRuns: true,
     provider: { generateChapter: ({ chapterNumber }) => { const events = milestoneChapterEvents(chapterNumber); return { content: chapterBody(chapterNumber), proposedEvents: events, observedEvents: events }; } },
-    designProvider: { generateWorldPack: async () => design.world, generateStoryBible: async () => design.bible },
+    designProvider: { reviewDesignContent: async (input) => fixtureDesignReview(input), generateWorldPack: async () => design.world, generateStoryBible: async () => design.bible },
   });
   try {
     const work = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('一键百章') })).json();
@@ -586,6 +599,7 @@ test('450-chapter expansion resumes after the first hundred chapters', async () 
     allowBatchRuns: true,
     provider: { generateChapter: ({ chapterNumber }) => { const events = milestoneChapterEvents(chapterNumber); return { content: chapterBody(chapterNumber), proposedEvents: events, observedEvents: events }; } },
     designProvider: {
+      reviewDesignContent: async (input) => fixtureDesignReview(input),
       generateWorldPack: async () => design.world,
       generateStoryBible: async ({ chapterTarget, previousStoryBible }) => {
         if (chapterTarget === 450) previousBibleForExpansion = previousStoryBible;

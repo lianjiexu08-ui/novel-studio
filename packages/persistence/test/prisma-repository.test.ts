@@ -1,3 +1,5 @@
+import { designReviewInput, designReviewOverview, recordDesignReview } from '../../../novel-service-core/src/design-review.ts';
+import { fixtureDesignReview } from '../../application/test/fixtures.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
@@ -56,12 +58,16 @@ test('prisma repository persists a full adoption roundtrip', async (t) => {
   });
   await lockMinimalDesign(workflow, work.id);
   const approved = await approveMinimalPlan(workflow, work.id);
+  const input = designReviewInput((await repository.get(work.id))!, 'power');
+  const report = await repository.transaction(work.id, ({ work }) => recordDesignReview(work, input, fixtureDesignReview(input)));
   const confirmed = await workflow.confirmBrief(work.id, 1, { location: '外门演武场' });
   const candidate = await workflow.generate(work.id, 1, 'run-persist');
 
   const planRepository = new PrismaWorkRepository();
   repositories.push(planRepository);
   const withPlan = await planRepository.get(work.id);
+  assert.deepEqual(withPlan?.designContentReviews.get(report.id), report);
+  assert.equal(designReviewOverview(withPlan!).areas.find((area) => area.area === 'power')?.status, 'passed');
   assert.equal(withPlan?.activePlanId, approved.id);
   assert.equal(withPlan?.plans.get(approved.id)?.status, 'approved');
   assert.equal(withPlan?.plans.get(approved.id)?.contentHash, approved.contentHash);

@@ -26,6 +26,7 @@ const BLOCKER_ROUTE: Record<string, string> = {
   COVENANT_INCOMPLETE: 'covenant',
   CANON_NOT_READY: 'design',
   PLAN_NOT_APPROVED: 'plan',
+  DESIGN_REVIEW_REQUIRED: 'design',
   PLAN_OUTDATED: 'plan',
   PLAN_OUTLINE_MISSING: 'plan',
   PLAN_PREREQUISITE_UNMET: 'plan',

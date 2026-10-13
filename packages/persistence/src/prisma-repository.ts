@@ -1,3 +1,4 @@
+import type { DesignContentReview } from '../../../novel-service-core/src/design-review.ts';
 import { randomUUID } from 'node:crypto';
 import { PrismaClient } from '@prisma/client';
 import { contentHashOf, parseCovenant, rebuildCharacterStates, StaleCandidateError, Work } from '../../../novel-service-core/src/core.ts';
@@ -142,7 +143,7 @@ export class PrismaWorkRepository implements WorkRepository {
 
   private async loadAggregate(project: {
     id: string; title: string; stateRevision: number; constraintRevision: number; covenant: string; worldPack: string | object; storyBible: string | object;
-    designHistory: string | object; covenantHistory: string | object; activePlanId: string | null;
+    designContentReviews: string | object; designHistory: string | object; covenantHistory: string | object; activePlanId: string | null;
   }, tx: PrismaTx | PrismaClient = this.prisma): Promise<Work> {
     const workId = project.id;
     const [chapters, candidates, events, relationships, characters, worldRules, plotNodes, impacts, runCheckpoints, manuscripts, plans, briefs] = await Promise.all([
@@ -181,6 +182,7 @@ export class PrismaWorkRepository implements WorkRepository {
     }
     work.worldPack = readJson<WorldPack>(project.worldPack);
     work.storyBible = readJson<StoryBible>(project.storyBible);
+    for (const report of readJsonArray<DesignContentReview>(project.designContentReviews)) work.designContentReviews.set(report.id, report);
     const designHistory = readJson<DesignRevision[]>(project.designHistory) ?? [];
     for (const revision of designHistory) work.designHistory.set(revision.id, revision);
     if (!work.designHistory.size) {
@@ -553,6 +555,7 @@ function projectFields(work: Work) {
   return {
     title: work.title, stateRevision: work.stateRevision, constraintRevision: work.constraintRevision, covenant: JSON.stringify(work.covenant),
     worldPack: JSON.stringify(work.worldPack ?? {}), storyBible: JSON.stringify(work.storyBible ?? {}),
+    designContentReviews: JSON.stringify([...work.designContentReviews.values()]),
     designHistory: JSON.stringify([...work.designHistory.values()]), covenantHistory: JSON.stringify(work.covenantHistory),
     activePlanId: work.activePlanId ?? null,
   };

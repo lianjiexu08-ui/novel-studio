@@ -1,3 +1,4 @@
+import type { DesignContentReview } from '../../../novel-service-core/src/design-review.ts';
 import { randomUUID } from 'node:crypto';
 import { mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
 import { dirname } from 'node:path';
@@ -19,6 +20,7 @@ interface PersistedWork {
   worldPack?: WorldPack;
   storyBible?: StoryBible;
   designHistory?: DesignRevision[];
+  designContentReviews?: DesignContentReview[];
   manuscripts?: ManuscriptRevision[];
   candidates: ChapterCandidate[];
   versions: ChapterVersion[];
@@ -151,6 +153,7 @@ function serializeWork(work: Work): PersistedWork {
     worldPack: work.worldPack,
     storyBible: work.storyBible,
     designHistory: [...work.designHistory.values()],
+    designContentReviews: [...work.designContentReviews.values()],
     manuscripts: [...work.manuscripts.values()],
     candidates: [...work.candidates.values()],
     versions: [...work.versions.values()],
@@ -176,6 +179,7 @@ function deserializeWork(value: PersistedWork): Work {
   work.covenant = parseCovenant(value.covenant);
   work.worldPack = value.worldPack;
   work.storyBible = value.storyBible;
+  for (const report of value.designContentReviews ?? []) work.designContentReviews.set(report.id, report);
   for (const revision of value.designHistory ?? []) work.designHistory.set(revision.id, revision);
   if (!work.designHistory.size) {
     if (work.worldPack) work.recordDesignRevision('world_pack', work.worldPack);

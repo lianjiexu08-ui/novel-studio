@@ -1,3 +1,4 @@
+import { designReviewOverview, requiresDesignContentReview, type DesignContentReview } from './design-review.ts';
 import { createHash, randomUUID } from 'node:crypto';
 import { chapterGenerationGate, validateStoryBible, validateWorldPack } from './world.ts';
 import type { StoryBible, WorldPack } from './world.ts';
@@ -25,6 +26,7 @@ export type ReadinessCode =
   | 'MODEL_NOT_CONFIGURED'
   | 'COVENANT_INCOMPLETE'
   | 'CANON_NOT_READY'
+  | 'DESIGN_REVIEW_REQUIRED'
   | 'CHAPTER_PREREQUISITE_MISSING'
   | 'CONTEXT_INCOMPLETE'
   | 'PLAN_NOT_APPROVED'
@@ -595,6 +597,7 @@ export class Work {
   readonly versions = new Map<string, ChapterVersion>();
   readonly manuscripts = new Map<string, ManuscriptRevision>();
   readonly designHistory = new Map<string, DesignRevision>();
+  readonly designContentReviews = new Map<string, DesignContentReview>();
   readonly events = new Map<string, StoryEvent>();
   readonly states = new Map<string, CharacterState>();
   readonly relationships = new Map<string, Relationship>();
@@ -1409,6 +1412,7 @@ export function generationReadiness(work: Work, chapterNumber: number, options: 
     if (!gate.ready) blockers.push({ code: 'CANON_NOT_READY', message: `chapter generation gate blocked: ${gate.errors.join('; ')}`, nextAction: '处理设计门禁问题后重新锁定' });
   }
   blockers.push(...planBlockers(work, chapterNumber));
+  if (requiresDesignContentReview(work) && !designReviewOverview(work).ready) blockers.push({ code: 'DESIGN_REVIEW_REQUIRED', message: '当前设计尚未通过全部分项内容评审；结构锁定不能代替内容质量审核', nextAction: '到世界构建完成世界、力量、人物与故事四项内容评审并处理返修问题' });
   const missing = Array.from({ length: chapterNumber - 1 }, (_, index) => index + 1).filter((chapter) => !work.currentVersion(chapter));
   if (missing.length) blockers.push({ code: 'CHAPTER_PREREQUISITE_MISSING', message: `previous chapters are not adopted: ${missing.join(', ')}`, nextAction: `先采用第 ${missing[0]} 章` });
   else if (contextManifestFor(work, chapterNumber).requiredMaterialStatus !== 'complete') blockers.push({ code: 'CONTEXT_INCOMPLETE', message: 'required context is incomplete', nextAction: '补齐必需上下文后重试' });

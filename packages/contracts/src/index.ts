@@ -1,3 +1,4 @@
+export * from './design-review.ts';
 // API contracts (Zod, shared by apps/web and apps/api)
 export * from './api.ts';
 export * from './world.ts';

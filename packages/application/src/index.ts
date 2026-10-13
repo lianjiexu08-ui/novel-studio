@@ -1,3 +1,4 @@
+import { designReviewOverview, requiresDesignContentReview, designReviewInput, recordDesignReview, DesignReviewError, type DesignReviewInput, type DesignReviewResult, type DesignReviewArea, type DesignContentReview } from '../../../novel-service-core/src/design-review.ts';
 import { randomUUID } from 'node:crypto';
 import { addUsage, AdoptionBlocked, generationReadiness, NovelService, ReadinessError, StaleCandidateError, usageOfError, Work } from '../../../novel-service-core/src/core.ts';
 import type {
@@ -13,6 +14,7 @@ import type {
 } from '../../../novel-service-core/src/planning.ts';
 
 export interface DesignProvider {
+  reviewDesignContent?(input: DesignReviewInput): Promise<DesignReviewResult>;
   generateWorldPack(input: { title: string; covenant: CreativeCovenant; chapterTarget?: number }): Promise<WorldPack>;
   generateStoryBible(input: { title: string; covenant: CreativeCovenant; worldPack: WorldPack; chapterTarget?: number; previousStoryBible?: StoryBible }): Promise<StoryBible>;
 }
@@ -536,6 +538,23 @@ export class ChapterWorkflow {
     });
   }
 
+  private readonly contentReviewsInFlight = new Set<string>();
+
+  async reviewDesignContent(workId: string, area: DesignReviewArea): Promise<DesignContentReview> {
+    const reviewer = this.designProvider;
+    if (!reviewer?.reviewDesignContent) throw new DesignReviewError('尚未配置内容评审模型，请在系统设置配置规划模型');
+    const key = `${workId}:${area}`;
+    if (this.contentReviewsInFlight.has(key)) throw new DesignReviewError('本项内容评审正在进行，请等待结果');
+    this.contentReviewsInFlight.add(key);
+    try {
+      const work = await this.snapshot(workId);
+      const input = designReviewInput(work, area);
+      // No database transaction is held while the model works. The commit rechecks the fingerprint.
+      const result = await reviewer.reviewDesignContent(structuredClone(input));
+      return await this.repository.transaction(workId, ({ work: current }) => recordDesignReview(current, input, result));
+    } finally { this.contentReviewsInFlight.delete(key); }
+  }
+
   async finalizeManuscript(workId: string): Promise<ManuscriptRevision> {
     return this.repository.transaction(workId, ({ work }) => {
       this.service.works.set(work.id, work);
@@ -736,6 +755,7 @@ export class ChapterWorkflow {
   /** The only path that turns a candidate into a chapter version; repeats return the same version and outbox rows. */
   private adoptInTransaction({ work, enqueue }: WorkTransaction, candidateId: string): AdoptionResult {
     this.service.works.set(work.id, work);
+    if (work.candidates.get(candidateId)?.status !== 'adopted' && requiresDesignContentReview(work) && !designReviewOverview(work).ready) throw new ReadinessError([{ code: 'DESIGN_REVIEW_REQUIRED', message: '当前设计的内容评审未通过，不能采纳正文候选', nextAction: '完成分项内容评审后重新生成或复查候选' }]);
     const version = this.service.adoptCandidate(work.id, candidateId);
     const workId = work.id;
     const created = [

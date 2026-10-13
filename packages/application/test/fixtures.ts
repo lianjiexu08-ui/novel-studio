@@ -1,3 +1,4 @@
+import type { DesignReviewInput, DesignReviewResult } from '../../../novel-service-core/src/design-review.ts';
 import { defaultCovenant } from '../../../novel-service-core/src/core.ts';
 import type { CreativeCovenant, Work } from '../../../novel-service-core/src/core.ts';
 import type { StoryBible, WorldPack } from '../../../novel-service-core/src/world.ts';
@@ -97,4 +98,10 @@ export async function createReadyWork(workflow: ChapterWorkflow, title: string, 
   await lockMinimalDesign(workflow, work.id);
   await approveMinimalPlan(workflow, work.id, plan);
   return work;
+}
+
+/** Deterministic test double, never a production content-quality judgement. */
+export function fixtureDesignReview(input: DesignReviewInput): DesignReviewResult {
+  const source = input.sources.find((item) => item.id.startsWith('world/axioms/'))!;
+  return { summary: '测试夹具的评审结果', checks: Object.keys(input.rubric).map((criterion) => ({ criterion, verdict: 'pass', explanation: '测试模型对该标准的固定结论', evidence: [{ sourceId: source.id, quote: source.text }], revisionAdvice: '' })) };
 }

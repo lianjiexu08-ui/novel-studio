@@ -63,6 +63,8 @@ model Project {
   worldPack             Json                    @default("{}")
   storyBible            Json                    @default("{}")
   designHistory         Json                    @default("[]")
+  /// Evidence-based model reviews, append-only; bound to an exact design fingerprint.
+  designContentReviews Json @default("[]")
   covenantHistory       Json                    @default("[]")
   activePlanId          String?
   createdAt             DateTime                @default(now())
