@@ -50,6 +50,50 @@ test('a contradiction spanning distant partitions cannot be erased by synthesis'
   assert.equal(completeDesignReviewRun(run).result.checks[0].verdict, 'revise');
 });
 
+test('chapter-only power batches also receive complete tier and technique rules', () => {
+  const input = largeInput();
+  input.area = 'power';
+  const rules = [
+    { id: 'plan/overview', text: '本轮只验收100章，不是450章。' },
+    { id: 'world/tierLadders/power', text: '功法高品阶不能跳过允许境界。' },
+    { id: 'world/techniques/sword', text: '乾元御风剑诀允许凝元、玄府；一次消耗二成真元。' },
+  ];
+  input.sources = [...rules, ...input.sources];
+  const run = createDesignReviewRun(input);
+  assert.equal(run.scheduleVersion, 2);
+  for (const stage of run.stages) {
+    const staged = designReviewStageInput(run, stage);
+    assert.ok(JSON.stringify(staged.sources).length <= 240_000);
+    assert.equal(new Set(staged.sources.map(s => s.id)).size, staged.sources.length);
+    if (stage.kind !== 'synthesis') for (const rule of rules) {
+      const ids = run.units.filter(u => u.sourceId === rule.id).map(u => u.id);
+      assert.equal(staged.sources.filter(s => ids.includes(s.id)).map(s => s.text).join(''), rule.text);
+    }
+    acceptDesignReviewStage(run, stage, stagePass(staged));
+  }
+  assert.equal(completeDesignReviewRun(run).result.checks[0].verdict, 'pass');
+  const requiredId = run.units.find(u => u.sourceId === rules[2].id)!.id;
+  run.stages.find(s => s.kind === 'batch')!.unitIds = run.stages[0].unitIds.filter(id => id !== requiredId);
+  assert.throws(() => completeDesignReviewRun(run), /覆盖或跨批检查未完成/);
+});
+
+test('oversized shared candidates remain complete ordinary sources and legacy schedules still resume', () => {
+  const input = largeInput(); input.area = 'power';
+  const oversized = { id: 'world/techniques/large', text: '完整规则不可截断。'.repeat(8000) };
+  input.sources.unshift(oversized);
+  const run = createDesignReviewRun(input);
+  const units = run.units.filter(u => u.sourceId === oversized.id);
+  const batches = run.stages.filter(s => s.kind === 'batch');
+  assert.equal(units.map(u => oversized.text.slice(u.start, u.end)).join(''), oversized.text);
+  for (const unit of units) assert.equal(batches.filter(s => s.unitIds.includes(unit.id)).length, 1);
+  const legacy = createDesignReviewRun(input, '2026-10-14T00:00:00Z', 1);
+  assert.equal(legacy.scheduleVersion, undefined);
+  acceptDesignReviewStage(legacy, legacy.stages[0], stagePass(designReviewStageInput(legacy, legacy.stages[0])));
+  const restored = JSON.parse(JSON.stringify(legacy));
+  for (const stage of restored.stages.slice(1)) acceptDesignReviewStage(restored, stage, stagePass(designReviewStageInput(restored, stage)));
+  assert.equal(completeDesignReviewRun(restored).result.checks[0].verdict, 'pass');
+});
+
 test('failed stages resume in a new workflow without repeating completed batches or granting approval', async () => {
   const repository = new InMemoryWorkRepository();
   let calls = 0;

@@ -4,6 +4,7 @@ import { DesignReviewError, validateDesignReview, type DesignReviewInput, type D
 export const designReviewCapacity = 240_000;
 const batchCapacity = 100_000;
 const resultCapacity = 40_000;
+const sharedContextCapacity = 40_000;
 export interface DesignReviewUnit { id: string; sourceId: string; start: number; end: number }
 export interface DesignReviewStage {
   id: string;
@@ -20,6 +21,8 @@ export interface DesignReviewStage {
 }
 export interface DesignReviewRun {
   id: string;
+  /** Absent on persisted legacy schedules, which must resume without reshuffling. */
+  scheduleVersion?: 2;
   input: DesignReviewInput;
   units: DesignReviewUnit[];
   stages: DesignReviewStage[];
@@ -33,7 +36,7 @@ export interface DesignReviewRun {
 
 /** All raw text is retained. Cross checks co-read every pair of partitions;
  * synthesis then combines every finding without allowing a blocker to disappear. */
-export function createDesignReviewRun(input: DesignReviewInput, now = new Date().toISOString()): DesignReviewRun {
+export function createDesignReviewRun(input: DesignReviewInput, now = new Date().toISOString(), scheduleVersion: 1 | 2 = 2): DesignReviewRun {
   if (new Set(input.sources.map(s => s.id)).size !== input.sources.length) throw new DesignReviewError('评审来源 ID 重复');
   const units: DesignReviewUnit[] = [];
   const stages: DesignReviewStage[] = [];
@@ -48,9 +51,24 @@ export function createDesignReviewRun(input: DesignReviewInput, now = new Date()
     } while (start < source.text.length);
   }
   const unitSource = (u: DesignReviewUnit) => ({ id: u.id, text: input.sources.find(s => s.id === u.sourceId)!.text.slice(u.start, u.end) });
+  // A late chapter-only batch still needs the actual rules it is judging. Repeat
+  // bounded, complete sources; unselected sources remain in the ordinary batches.
+  const shared: DesignReviewUnit[] = [];
+  if (!small && scheduleVersion === 2) {
+    const priorities = input.area === 'power'
+      ? ['author', 'plan/overview', 'world/axioms/', 'world/powerSystems/', 'world/tierLadders/', 'world/realms/', 'world/techniques/', 'world/artifacts/', 'world/resources/']
+      : input.area === 'characters'
+        ? ['author', 'plan/overview', 'world/axioms/', 'story/characters/', 'world/realms/', 'story/overview', 'world/factions/']
+        : ['author', 'plan/overview', 'world/axioms/', 'world/realms/', 'world/locations/', 'story/characters/', 'world/techniques/', 'world/artifacts/'];
+    for (const prefix of priorities) for (const source of input.sources.filter(s => prefix.endsWith('/') ? s.id.startsWith(prefix) : s.id === prefix)) {
+      const sourceUnits = units.filter(u => u.sourceId === source.id);
+      if (JSON.stringify([...shared, ...sourceUnits].map(unitSource)).length <= sharedContextCapacity) shared.push(...sourceUnits);
+    }
+  }
+  const sharedIds = new Set(shared.map(u => u.id));
   let pending: DesignReviewUnit[] = [];
-  const flush = () => { if (pending.length) stages.push({ id: `batch-${stages.length + 1}`, kind: 'batch', label: `原文批次 ${stages.length + 1}`, unitIds: pending.map(u => u.id), children: [], attempts: 0 }); pending = []; };
-  for (const unit of units) {
+  const flush = () => { if (pending.length) stages.push({ id: `batch-${stages.length + 1}`, kind: 'batch', label: `原文批次 ${stages.length + 1}`, unitIds: [...shared, ...pending].map(u => u.id), children: [], attempts: 0 }); pending = []; };
+  for (const unit of units.filter(u => !sharedIds.has(u.id))) {
     if (!small && JSON.stringify([...pending, unit].map(unitSource)).length > batchCapacity) flush();
     pending.push(unit);
   }
@@ -58,7 +76,7 @@ export function createDesignReviewRun(input: DesignReviewInput, now = new Date()
   const batches = [...stages];
   if (batches.length > 64) throw new DesignReviewError('评审需要超过64个原文批次，请先拆分作品验收阶段；原文未截断，尚未调用模型');
   for (let a = 0; a < batches.length; a++) for (let b = a + 1; b < batches.length; b++) {
-    stages.push({ id: `cross-${a + 1}-${b + 1}`, kind: 'cross', label: `跨批检查 ${a + 1} / ${b + 1}`, unitIds: [...batches[a].unitIds, ...batches[b].unitIds], children: [], attempts: 0 });
+    stages.push({ id: `cross-${a + 1}-${b + 1}`, kind: 'cross', label: `跨批检查 ${a + 1} / ${b + 1}`, unitIds: [...new Set([...batches[a].unitIds, ...batches[b].unitIds])], children: [], attempts: 0 });
   }
   let level = stages.map(s => s.id);
   let sequence = 0;
@@ -71,7 +89,7 @@ export function createDesignReviewRun(input: DesignReviewInput, now = new Date()
     }
     level = next;
   }
-  return { id: `design_run_${randomUUID()}`, input: structuredClone(input), units, stages, status: 'ready', createdAt: now, updatedAt: now };
+  return { id: `design_run_${randomUUID()}`, ...(scheduleVersion === 2 ? { scheduleVersion } : {}), input: structuredClone(input), units, stages, status: 'ready', createdAt: now, updatedAt: now };
 }
 
 export function designReviewUnitSources(run: DesignReviewRun): DesignReviewSource[] {
@@ -101,7 +119,8 @@ export function acceptDesignReviewStage(run: DesignReviewRun, stage: DesignRevie
 /** Rebuild the expected schedule, verify every byte-range, and retain the worst
  * verdict for each criterion even if a later model tries to erase an earlier issue. */
 export function completeDesignReviewRun(run: DesignReviewRun): { input: DesignReviewInput; result: DesignReviewResult } {
-  const expected = createDesignReviewRun(run.input, run.createdAt);
+  if (run.scheduleVersion !== undefined && run.scheduleVersion !== 2) throw new DesignReviewError('未知评审调度版本');
+  const expected = createDesignReviewRun(run.input, run.createdAt, run.scheduleVersion ?? 1);
   const plan = (r: DesignReviewRun) => r.stages.map(({ id, kind, unitIds, children }) => ({ id, kind, unitIds, children }));
   if (JSON.stringify(run.units) !== JSON.stringify(expected.units) || JSON.stringify(plan(run)) !== JSON.stringify(plan(expected)) || !run.stages.length || run.stages.some(s => !s.result)) throw new DesignReviewError('原文覆盖或跨批检查未完成，不得形成整体结论');
   for (const stage of run.stages) validateDesignReview(designReviewStageInput(run, stage), stage.result!);
