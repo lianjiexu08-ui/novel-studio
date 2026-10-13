@@ -1,8 +1,18 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { parseStoryBible, parseWorldPack } from '../src/index.ts';
+import { parseStoryBible, parseWorldPack, resourceDefinitionSchema } from '../src/index.ts';
 
 const createdAt = '2026-10-10T00:00:00.000Z';
+
+test('resource usage survives parsing and cannot contain empty rules', () => {
+  const resource = { id: 'spring', name: '延寿灵泉', unit: '滴', source: '古境', scarcity: '稀有', status: 'proposed' };
+  assert.equal(resourceDefinitionSchema.parse(resource).usage, undefined, 'legacy drafts stay readable');
+  const usage = { effect: '增加有限寿储，不返还过去消耗', requirements: ['先辨识原液纯度'], cost: '用掉一滴原液', limitations: ['仅首次有效，不可重复叠加'] };
+  assert.deepEqual(resourceDefinitionSchema.parse({ ...resource, usage }).usage, usage);
+  for (const broken of [{ ...usage, effect: ' ' }, { ...usage, requirements: [] }, { ...usage, cost: '' }, { ...usage, limitations: [' '] }]) {
+    assert.throws(() => resourceDefinitionSchema.parse({ ...resource, usage: broken }));
+  }
+});
 
 test('world pack contract accepts structured power, geography and faction data', () => {
   const world = parseWorldPack({

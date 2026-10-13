@@ -168,7 +168,7 @@ test('planner validates structured world pack responses', async () => {
     realms: Array.from({ length: 8 }, (_, index) => ({ id: index === 0 ? 'r' : `r${index + 1}`, systemId: 'p', name: `境界${index + 1}`, rank: index + 1, prerequisites: [], capabilities: ['引气'], cost: '时间', counters: [], status: 'proposed' })),
     techniques: Array.from({ length: 15 }, (_, index) => ({ id: index < 3 ? ['t', 't2', 't3'][index] : `t${index + 1}`, name: `引气诀${index + 1}`, kind: 'cultivation', tier: `${(index % 6) + 1}阶`, allowedRealmIds: ['r'], effect: '引气', cost: '灵力', limitations: [], counters: [], status: 'proposed' })),
     artifacts: Array.from({ length: 12 }, (_, index) => ({ id: index < 3 ? ['i', 'i2', 'i3'][index] : `i${index + 1}`, name: `灵剑${index + 1}`, tier: `${(index % 6) + 1}阶`, effect: '增幅', cost: '灵石', limitations: [], status: 'proposed' })),
-    resources: Array.from({ length: 10 }, (_, index) => ({ id: index < 3 ? ['res', 'res2', 'res3'][index] : `res${index + 1}`, name: `灵石${index + 1}`, unit: '枚', source: '矿脉', scarcity: '常见', tier: `${(index % 6) + 1}阶`, status: 'proposed' })),
+    resources: Array.from({ length: 10 }, (_, index) => ({ id: index < 3 ? ['res', 'res2', 'res3'][index] : `res${index + 1}`, name: `灵石${index + 1}`, unit: '枚', source: '矿脉', scarcity: '常见', usage: { effect: '为低阶阵盘补充灵力，不增加寿命', requirements: ['先验明纯度并装入兼容阵盘'], cost: '每次供能消耗一枚，耗尽化灰', limitations: ['不能直接吞服，也不替代突破所需修行'] }, tier: `${(index % 6) + 1}阶`, status: 'proposed' })),
     locations: Array.from({ length: 9 }, (_, index) => ({ id: index < 3 ? ['l', 'l2', 'l3'][index] : `l${index + 1}`, name: `大陆${index + 1}`, kind: 'continent', entryConditions: [], status: 'proposed' })),
     factions: Array.from({ length: 6 }, (_, index) => ({ id: index < 3 ? ['f', 'f2', 'f3'][index] : `f${index + 1}`, name: `宗门${index + 1}`, kind: 'sect', locationIds: ['l'], goals: [`守护${index}`], resources: ['res'], status: 'proposed' })),
     historicalEvents: Array.from({ length: 10 }, (_, index) => ({ id: index < 3 ? ['h', 'h2', 'h3'][index] : `h${index + 1}`, title: `立宗${index + 1}`, storyTime: '百年前', causes: ['动荡'], consequences: ['建宗'], factionIds: ['f'], status: 'proposed' })),
@@ -208,7 +208,7 @@ test('world pack is assembled from dependent stages instead of one giant respons
   const stages = [
     base,
     { locations: Array.from({ length: 9 }, (_, i) => ({ id: `loc-${i}`, name: `大陆${i}`, kind: 'continent', entryConditions: [], status: 'proposed' })), factions: Array.from({ length: 6 }, (_, i) => ({ id: `fac-${i}`, name: `势力${i}`, kind: 'sect', locationIds: ['loc-0'], goals: ['博弈'], resources: ['resource-0'], status: 'proposed' })), terminology: [], unresolvedQuestions: [] },
-    { techniques: Array.from({ length: 15 }, (_, i) => ({ id: `tech-${i}`, name: `功法${i}`, kind: 'technique', tier: '一阶', allowedRealmIds: ['realm-1'], effect: '效果', cost: '代价', limitations: [], counters: [], status: 'proposed' })), artifacts: Array.from({ length: 12 }, (_, i) => ({ id: `artifact-${i}`, name: `法宝${i}`, tier: '一阶', effect: '效果', cost: '代价', limitations: [], status: 'proposed' })), resources: Array.from({ length: 10 }, (_, i) => ({ id: `resource-${i}`, name: `资源${i}`, unit: '枚', source: '矿脉', scarcity: '稀缺', tier: '一阶', status: 'proposed' })), terminology: [], unresolvedQuestions: [] },
+    { techniques: Array.from({ length: 15 }, (_, i) => ({ id: `tech-${i}`, name: `功法${i}`, kind: 'technique', tier: '一阶', allowedRealmIds: ['realm-1'], effect: '效果', cost: '代价', limitations: [], counters: [], status: 'proposed' })), artifacts: Array.from({ length: 12 }, (_, i) => ({ id: `artifact-${i}`, name: `法宝${i}`, tier: '一阶', effect: '效果', cost: '代价', limitations: [], status: 'proposed' })), resources: Array.from({ length: 10 }, (_, i) => ({ id: `resource-${i}`, name: `资源${i}`, unit: '枚', source: '矿脉', scarcity: '稀缺', usage: { effect: '为低阶阵盘补充灵力，不增加寿命', requirements: ['先验明纯度并装入兼容阵盘'], cost: '每次供能消耗一枚，耗尽化灰', limitations: ['不能直接吞服，也不替代突破所需修行'] }, tier: '一阶', status: 'proposed' })), terminology: [], unresolvedQuestions: [] },
     { historicalEvents: Array.from({ length: 10 }, (_, i) => ({ id: `history-${i}`, title: `历史${i}`, storyTime: '远古', causes: ['冲突'], consequences: ['余波'], factionIds: ['fac-0'], status: 'proposed' })), terminology: [], unresolvedQuestions: [] },
   ];
   let calls = 0;
@@ -218,6 +218,30 @@ test('world pack is assembled from dependent stages instead of one giant respons
   assert.equal(world.factions.length, 6);
   assert.equal(world.techniques.length, 15);
   assert.equal(world.tierLadders?.length, 4);
+  assert.equal(world.resources[0].usage?.effect, '为低阶阵盘补充灵力，不增加寿命');
+
+  const thinPower = structuredClone(stages[2]);
+  for (const resource of thinPower.resources!) delete (resource as { usage?: unknown }).usage;
+  const requests: string[] = [];
+  const repairedStages = [stages[0], stages[1], thinPower, stages[2], stages[3]];
+  const repairing = new JsonDesignPlanner({ complete: async ({ user, system }) => {
+    requests.push(user);
+    if (requests.length === 3) assert.match(system, /usage/);
+    if (requests.length === 4) {
+      const repair = JSON.parse(user);
+      assert.equal(repair.stage, 'power');
+      assert.match(repair.problems, /resource-0/);
+      assert.match(repair.problems, /usage/);
+    }
+    return JSON.stringify(repairedStages[requests.length - 1]);
+  } });
+  const fixed = await repairing.generateWorldPack({ title: '分阶段', covenant });
+  assert.equal(requests.length, 5, 'power usage is repaired before the history request');
+  assert.deepEqual(fixed.resources[0].usage, world.resources[0].usage);
+  let failedCalls = 0;
+  const failing = new JsonDesignPlanner({ complete: async () => JSON.stringify([stages[0], stages[1], thinPower, thinPower][failedCalls++]) });
+  await assert.rejects(() => failing.generateWorldPack({ title: '分阶段', covenant }), /usage/);
+  assert.equal(failedCalls, 4, 'incomplete resources cannot advance into history or a saved world');
 });
 
 test('planner rejects a story bible that cannot support the 100-chapter milestone', async () => {

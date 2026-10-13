@@ -1,11 +1,11 @@
 import { DesignReviewCitationError, DesignReviewError, type DesignReviewInput, type DesignReviewResult } from '../../../novel-service-core/src/design-review.ts';
 import { DesignReviewEvidenceError, prepareDesignReviewEvidence } from './design-review-evidence.ts';
 import { isRetryableModelError, ModelGateway, OpenAICompatibleAdapter, UsageLedger, type ModelRole } from '../../model-gateway/src/index.ts';
-import { parseChapterOutlines, parseGenerateChapterResponse, parsePlanSkeleton, parseStoryBible, parseWorldPack } from 'novel-studio-contracts';
+import { parseChapterOutlines, parseGenerateChapterResponse, parsePlanSkeleton, parseStoryBible, parseWorldPack, resourceDefinitionSchema } from 'novel-studio-contracts';
 import type { ChapterOutlineContract, PlanSkeletonContract } from 'novel-studio-contracts';
 import { addUsage, emptyUsage } from '../../../novel-service-core/src/core.ts';
 import type { ContextManifest, CreativeCovenant, GeneratedChapter, ModelProvider, RunUsage, Work } from '../../../novel-service-core/src/core.ts';
-import { normalizeFactionResources, plannedKnowledgeAt, validateWorldPack } from '../../../novel-service-core/src/world.ts';
+import { hasResourceUsage, normalizeFactionResources, plannedKnowledgeAt, validateWorldPack } from '../../../novel-service-core/src/world.ts';
 import type { StoryBible, WorldPack } from '../../../novel-service-core/src/world.ts';
 
 export interface PlanningClient {
@@ -604,7 +604,7 @@ const worldPackShape = shapeIntro + [
   'realms[]: {id, systemId: powerSystem id, name, rank: 正整数, prerequisites: [字符串], capabilities: [字符串], cost, counters: [字符串], status}',
   'techniques[]: {id, name, kind, allowedRealmIds: [realm id], effect, cost, limitations: [字符串], counters: [字符串], status}',
   'artifacts[]: {id, name, tier, effect, cost, limitations: [字符串], status}',
-  'resources[]: {id, name, unit, source, scarcity, status}',
+  'resources[]: {id, name, unit, source, scarcity, tier, usage: {effect, requirements: [使用条件], cost, limitations: [使用上限与风险]}, status}',
   'locations[]: {id, name, kind, parentId?: location id, entryConditions: [字符串], status}',
   'factions[]: {id, name, kind, locationIds: [location id], goals: [字符串], resources: [字符串], status}',
   'historicalEvents[]: {id, title, storyTime, causes: [字符串], consequences: [字符串], factionIds: [faction id], status}',
@@ -650,6 +650,7 @@ function assertWorldPackScale(pack: WorldPack, targetChapters = 100): void {
   if (pack.techniques.some((technique) => !technique.tier)) missing.push('every technique must declare tier');
   if (pack.artifacts.some((artifact) => !artifact.tier)) missing.push('every artifact must declare tier');
   if (pack.resources.some((resource) => !resource.tier)) missing.push('every resource must declare tier');
+  if (pack.resources.some((resource) => resource.status !== 'deprecated' && !hasResourceUsage(resource))) missing.push('every resource must declare usage effect, requirements, cost and limitations');
   const blockingQuestions = pack.unresolvedQuestions.filter((question) => question.blocking && question.status === 'open');
   if (blockingQuestions.length) missing.push(`blocking unresolved questions must be resolved (${blockingQuestions.map((question) => question.id).join(', ')})`);
   if (missing.length) throw new PlanningParseError(`world pack is too small for the long-form milestone: ${missing.join(', ')}`);
@@ -738,12 +739,12 @@ const worldGeographyShape = shapeIntro + [
   'terminology[]: {id, canonical, aliases: [字符串], kind, status}',
   'unresolvedQuestions[]: {id, question, blocking: 布尔, status: "open"|"resolved"|"deferred"}',
 ].join('');
-const worldPowerSystem = `你是同一部玄幻长篇的世界观第三阶段规划器。只返回一个 JSON 对象，不要 Markdown，不要解释。基于输入骨架和地理势力补齐力量资产：100章验收至少十五种功法、十二件法宝、十种资源；450章扩展至少三十种功法、二十四件法宝、十八种资源。功法、法宝、资源必须跨多个等级，逐项写清 tier；每种力量都要能对应一个或多个境界。每项都必须写效果、代价、限制和反制；allowedRealmIds 只能使用骨架中的境界 ID；不要修改已有 ID或规则。`;
+const worldPowerSystem = `你是同一部玄幻长篇的世界观第三阶段规划器。只返回一个 JSON 对象，不要 Markdown，不要解释。基于输入骨架和地理势力补齐力量资产：100章验收至少十五种功法、十二件法宝、十种资源；450章扩展至少三十种功法、二十四件法宝、十八种资源。功法、法宝、资源必须跨多个等级，逐项写清 tier；每种力量都要能对应一个或多个境界。每项都必须写效果、代价、限制和反制；资源必须有 usage：具体效用、使用条件、单次消耗及限制。延寿资源须区分增加余额与设为某余额，写明剂量、疗程、重复服用上限及来源；疗伤、恢复真元不等于增加寿命，不能只凭名称许诺效果。普通矿物也要说明加工用途与不能直接服用等边界。allowedRealmIds 只能使用骨架中的境界 ID；不要修改已有 ID或规则。`;
 const worldPowerShape = shapeIntro + [
   '顶层: {techniques[], artifacts[], resources[], terminology[], unresolvedQuestions[]}',
   'techniques[]: {id, name, kind, tier: 等级名称, allowedRealmIds: [realm id], effect, cost, limitations: [字符串], counters: [字符串], status}',
   'artifacts[]: {id, name, tier, effect, cost, limitations: [字符串], status}',
-  'resources[]: {id, name, unit, source, scarcity, tier: 等级名称, status}',
+  'resources[]: {id, name, unit, source, scarcity, tier: 等级名称, usage: {effect, requirements: [使用条件], cost, limitations: [使用上限与风险]}, status}',
   'terminology[]: {id, canonical, aliases: [字符串], kind, status}',
   'unresolvedQuestions[]: {id, question, blocking: 布尔, status: "open"|"resolved"|"deferred"}',
 ].join('');
@@ -775,6 +776,11 @@ function parseWorldStage(stage: 'skeleton' | 'geography' | 'power' | 'history'):
     const missing = required[stage].filter((key) => key !== 'id' && key !== 'title' && key !== 'summary' && !Array.isArray(record[key]));
     if (stage === 'skeleton' && required[stage].filter((key) => ['id', 'title', 'summary'].includes(key)).some((key) => typeof record[key] !== 'string')) missing.push('metadata');
     if (missing.length) throw new PlanningParseError(`${stage} world response is missing arrays: ${missing.join(', ')}`);
+    if (stage === 'power') {
+      const resources = (record.resources as unknown[]).map((resource) => resourceDefinitionSchema.parse(resource));
+      const incomplete = resources.filter((resource) => resource.status !== 'deprecated' && !hasResourceUsage(resource));
+      if (incomplete.length) throw new PlanningParseError(`power resources require usage effect, requirements, cost and limitations: ${incomplete.map((resource) => resource.id).join(', ')}`);
+    }
     return record;
   };
 }

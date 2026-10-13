@@ -194,3 +194,16 @@ test('assets must use a declared tier when their ladder is present', () => {
   world.artifacts[0].tier = '灵器';
   assert.equal(validateWorldPack(world).ready, true);
 });
+
+test('long-form readiness blocks resources whose names imply undefined powers', async () => {
+  const { validateLongFormWorldPack } = await import('../src/world.ts');
+  const world = reviewedWorld();
+  assert.equal(validateWorldPack(world).ready, true, 'a legacy draft remains editable');
+  assert.match(validateLongFormWorldPack(world).errors.join(';'), /requires explicit effect, requirements, cost and limitations/);
+  world.resources[0].usage = { effect: '供灵不延寿', requirements: ['放入兼容阵盘'], cost: '耗尽一枚', limitations: ['不可吞服'] };
+  assert.ok(!validateLongFormWorldPack(world).errors.some((message) => message.includes('requires explicit effect')));
+  world.resources[0].usage.limitations = [];
+  assert.match(validateLongFormWorldPack(world).errors.join(';'), /requires explicit effect/);
+  world.resources[0].status = 'deprecated';
+  assert.ok(!validateLongFormWorldPack(world).errors.some((message) => message.includes('requires explicit effect')));
+});

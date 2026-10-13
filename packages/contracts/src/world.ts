@@ -21,6 +21,11 @@ export const artifactDefinitionSchema = z.object({
 });
 export const resourceDefinitionSchema = z.object({
   id: z.string().min(1), name: z.string().trim().min(1), unit: z.string().trim().min(1), source: z.string(), scarcity: z.string(), tier: z.string().trim().min(1).optional(), status: canonStatusSchema,
+  // Legacy drafts remain readable; long-form readiness requires explicit usage rules.
+  usage: z.object({
+    effect: z.string().trim().min(1), requirements: z.array(z.string().trim().min(1)).min(1),
+    cost: z.string().trim().min(1), limitations: z.array(z.string().trim().min(1)).min(1),
+  }).optional(),
 });
 export const worldLocationSchema = z.object({
   id: z.string().min(1), name: z.string().trim().min(1), kind: z.enum(['plane', 'continent', 'country', 'region', 'city', 'sect', 'secret_realm', 'ruin', 'other']), parentId: z.string().min(1).optional(), entryConditions: z.array(z.string()), status: canonStatusSchema,

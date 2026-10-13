@@ -17,6 +17,8 @@ test('power review includes late chapter costs instead of reviewing only the pow
   const input = designReviewInput(work, 'power');
   assert.equal(input.sources.filter((source) => source.id.startsWith('plan/chapters/')).length, 100);
   assert.match(input.sources.find((source) => source.id === 'plan/chapters/97')!.text, /仅余三年却再次消耗十年寿元/);
+  const storyInput = designReviewInput(work, 'story');
+  assert.match(storyInput.sources.find((source) => source.id === 'world/resources/resource')!.text, /不增加寿命/);
   plan.chapters[96].summary = '材料'.repeat(130000);
   assert.throws(() => designReviewInput(work, 'power'), /超出单次评审容量/);
 });

@@ -33,7 +33,7 @@ function lockedDesign(): { world: WorldPack; bible: StoryBible } {
     ],
     techniques: [1, 2, 3].map((n) => ({ id: `tech-${n}`, name: `青云剑诀${n}`, kind: 'technique' as const, allowedRealmIds: ['qi1', 'qi2'], effect: '御剑', cost: '灵力', limitations: ['需要剑器'], counters: [], status: 'reviewed' as const })),
     artifacts: [1, 2, 3].map((n) => ({ id: `artifact-${n}`, name: `青云剑${n}`, tier: `${n}阶`, effect: '增幅御剑', cost: '灵石', limitations: ['不可离主'], status: 'reviewed' as const })),
-    resources: [1, 2, 3].map((n) => ({ id: `resource-${n}`, name: `灵石${n}`, unit: '枚', source: '矿脉', scarcity: '常见', status: 'reviewed' as const })),
+    resources: [1, 2, 3].map((n) => ({ id: `resource-${n}`, name: `灵石${n}`, unit: '枚', source: '矿脉', scarcity: '常见', usage: { effect: '为低阶阵盘补充灵力，不增加寿命', requirements: ['先验明纯度并装入兼容阵盘'], cost: '每次供能消耗一枚，耗尽化灰', limitations: ['不能直接吞服，也不替代突破所需修行'] }, status: 'reviewed' as const })),
     locations: [{ id: 'east', name: '东陆', kind: 'continent', entryConditions: [], status: 'reviewed' }, { id: 'north', name: '北陆', kind: 'continent', entryConditions: [], status: 'reviewed' }, { id: 'west', name: '西陆', kind: 'continent', entryConditions: [], status: 'reviewed' }, { id: 'sect-city', name: '青云城', kind: 'city', parentId: 'east', entryConditions: [], status: 'reviewed' }],
     factions: [1, 2, 3].map((n) => ({ id: `faction-${n}`, name: `青云势力${n}`, kind: 'sect' as const, locationIds: ['east', 'sect-city'], goals: ['守护东陆'], resources: ['resource-1'], status: 'reviewed' as const })),
     historicalEvents: [1, 2, 3].map((n) => ({ id: `history-${n}`, title: `界门战争${n}`, storyTime: `${300 - n * 10}年前`, causes: ['势力争夺'], consequences: ['界门封印'], factionIds: ['faction-1'], status: 'reviewed' as const })),

@@ -22,7 +22,7 @@ export function minimalWorldPack(): WorldPack {
     realms: [{ id: 'realm', systemId: 'system', name: '炼气', rank: 1, prerequisites: [], capabilities: ['引气'], cost: '时间', counters: [], status: 'reviewed' }],
     techniques: [{ id: 'technique', name: '引气诀', kind: 'cultivation', allowedRealmIds: ['realm'], effect: '引气', cost: '时间', limitations: [], counters: [], status: 'reviewed' }],
     artifacts: [{ id: 'artifact', name: '青云剑', tier: '一阶', effect: '增幅', cost: '灵石', limitations: [], status: 'reviewed' }],
-    resources: [{ id: 'resource', name: '灵石', unit: '枚', source: '矿脉', scarcity: '常见', status: 'reviewed' }],
+    resources: [{ id: 'resource', name: '灵石', unit: '枚', source: '矿脉', scarcity: '常见', usage: { effect: '为低阶阵盘补充灵力，不增加寿命', requirements: ['先验明纯度并装入兼容阵盘'], cost: '每次供能消耗一枚，耗尽化灰', limitations: ['不能直接吞服，也不替代突破所需修行'] }, status: 'reviewed' }],
     locations: [{ id: 'home', name: '青州', kind: 'continent', entryConditions: [], status: 'reviewed' }],
     factions: [{ id: 'sect', name: '青云宗', kind: 'sect', locationIds: ['home'], goals: ['守护青州'], resources: [], status: 'reviewed' }],
     historicalEvents: [{ id: 'history', title: '立宗', storyTime: '百年前', causes: ['动荡'], consequences: ['建宗'], factionIds: ['sect'], status: 'reviewed' }],

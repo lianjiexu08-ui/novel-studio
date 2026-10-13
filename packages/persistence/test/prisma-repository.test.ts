@@ -67,6 +67,8 @@ test('prisma repository persists a full adoption roundtrip', async (t) => {
   repositories.push(planRepository);
   const withPlan = await planRepository.get(work.id);
   assert.deepEqual(withPlan?.designContentReviews.get(report.id), report);
+  assert.deepEqual(withPlan?.worldPack?.resources[0].usage, (await repository.get(work.id))!.worldPack!.resources[0].usage);
+  assert.match(withPlan!.worldPack!.resources[0].usage!.effect, /不增加寿命/);
   assert.equal(designReviewOverview(withPlan!).areas.find((area) => area.area === 'power')?.status, 'passed');
   assert.equal(withPlan?.activePlanId, approved.id);
   assert.equal(withPlan?.plans.get(approved.id)?.status, 'approved');

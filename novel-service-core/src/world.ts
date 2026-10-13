@@ -76,7 +76,16 @@ export interface ResourceDefinition {
   source: string;
   scarcity: string;
   tier?: string;
+  usage?: { effect: string; requirements: string[]; cost: string; limitations: string[] };
   status: CanonStatus;
+}
+
+export function hasResourceUsage(resource: ResourceDefinition): boolean {
+  const usage = resource.usage;
+  return Boolean(usage && typeof usage.effect === 'string' && usage.effect.trim()
+    && typeof usage.cost === 'string' && usage.cost.trim()
+    && Array.isArray(usage.requirements) && usage.requirements.length && usage.requirements.every((text) => typeof text === 'string' && text.trim())
+    && Array.isArray(usage.limitations) && usage.limitations.length && usage.limitations.every((text) => typeof text === 'string' && text.trim()));
 }
 
 export interface WorldLocation {
@@ -400,6 +409,7 @@ export function validateWorldPack(pack: WorldPack): GateResult {
   if (!pack.summary.trim()) warnings.push('world pack summary is empty');
   if (pack.powerSystems.some((system) => system.realmIds.length === 0)) errors.push('a power system has no realm ladder');
   if (hasBlockingQuestions(pack.unresolvedQuestions)) warnings.push('blocking unresolved questions remain');
+  for (const resource of pack.resources) if (resource.status !== 'deprecated' && !hasResourceUsage(resource)) warnings.push(`resource ${resource.id} is missing usage rules: effect, requirements, cost and limitations`);
   return { ready: errors.length === 0, errors, warnings };
 }
 
@@ -409,6 +419,7 @@ export function validateLongFormWorldPack(pack: WorldPack): GateResult {
   const base = validateWorldPack(pack);
   const errors = [...base.errors];
   const warnings = [...base.warnings];
+  for (const resource of pack.resources) if (resource.status !== 'deprecated' && !hasResourceUsage(resource)) errors.push(`long-form resource ${resource.id} requires explicit effect, requirements, cost and limitations; its name or tier cannot establish usable effects`);
   const minimums: Array<[string, number, number]> = [
     ['power systems', pack.powerSystems.length, 1], ['realms', pack.realms.length, 3],
     ['techniques', pack.techniques.length, 3], ['artifacts', pack.artifacts.length, 3],

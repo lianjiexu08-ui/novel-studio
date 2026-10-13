@@ -11,7 +11,7 @@ export const designReviewRubrics: Record<DesignReviewArea, Record<string, string
   },
   power: {
     tiers: '境界、功法、法宝、资源的分级和使用门槛是否一致，角色起点与规划的晋阶是否合理',
-    costs: '力量的来源、消耗、恢复、冷却和不可逆代价是否守恒，结局有没有取消核心代价',
+    costs: '力量的来源、消耗、恢复、冷却和不可逆代价是否守恒，资源的使用门槛、剂量、效用及重复使用上限是否明确；疗伤不能自动当成延寿，结局有没有取消核心代价',
     counters: '能力上限、反制和越阶胜利条件是否明确，是否与绝对压制规则矛盾',
   },
   characters: {
@@ -79,7 +79,7 @@ export function designReviewHash(work: Work, planId?: string): string | undefine
   const plan = selectedId ? work.plans.get(selectedId) : undefined;
   if (!work.worldPack || !work.storyBible || !plan || plan.status === 'superseded' || (planId === undefined && plan.status !== 'approved')) return undefined;
   return createHash('sha256').update(JSON.stringify({
-    rubricVersion: 2, title: work.title, covenant: work.covenant,
+    rubricVersion: 3, title: work.title, covenant: work.covenant,
     world: work.worldPack, bible: work.storyBible, planId: plan.id, plan: plan.plan,
     characters: [...work.characters.values()].sort((a, b) => a.id.localeCompare(b.id)),
     relationships: [...work.relationships.values()].sort((a, b) => a.id.localeCompare(b.id)),
@@ -104,7 +104,7 @@ export function designReviewInput(work: Work, area: DesignReviewArea, planId?: s
     ? ['locations', 'factions', 'historicalEvents', 'resources'] as const
     : area === 'power'
       ? ['powerSystems', 'tierLadders', 'realms', 'techniques', 'artifacts', 'resources'] as const
-      : area === 'characters' ? ['factions', 'realms'] as const : ['locations', 'realms', 'techniques', 'artifacts'] as const;
+      : area === 'characters' ? ['factions', 'realms'] as const : ['locations', 'realms', 'techniques', 'artifacts', 'resources'] as const;
   for (const key of groups) group(`world/${key}`, world[key]);
   add('story/overview', { coreConflict: bible.coreConflict, endingDirection: bible.endingDirection, unresolvedQuestions: bible.unresolvedQuestions });
   for (const key of ['characters', 'relationships', 'arcs', 'arcBeats', 'secrets', 'promises', 'openThreads', 'volumes'] as const) group(`story/${key}`, bible[key]);
