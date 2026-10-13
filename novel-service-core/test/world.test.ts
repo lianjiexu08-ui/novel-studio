@@ -112,6 +112,22 @@ test('chapter generation revalidates locked design data instead of trusting stat
   assert.ok(result.errors.some((error) => error.includes('cannot connect a character to itself')));
 });
 
+test('deferring a blocking question cannot bypass review, lock or generation', () => {
+  const world = lockWorldPack(reviewedWorld());
+  const bible = lockStoryBible(reviewedBible(world.id, world.revision), world);
+  for (const document of [world, bible]) {
+    document.unresolvedQuestions.push({ id: 'power-conflict', question: '重复燃寿违背冷却规则', blocking: true, status: 'deferred' });
+  }
+  assert.throws(() => reviewWorldPack({ ...world, status: 'proposed' }), /blocking world pack questions/);
+  assert.throws(() => lockWorldPack({ ...world, status: 'reviewed' }), /blocking world pack questions/);
+  assert.throws(() => reviewStoryBible({ ...bible, status: 'proposed' }, world), /blocking story questions/);
+  assert.throws(() => lockStoryBible({ ...bible, status: 'reviewed' }, world), /blocking story questions/);
+  const gate = chapterGenerationGate(world, bible);
+  assert.equal(gate.ready, false);
+  assert.ok(gate.errors.some((error) => error.includes('blocking world pack questions')));
+  assert.ok(gate.errors.some((error) => error.includes('blocking story questions')));
+});
+
 test('staged resource aliases resolve by name rather than a shared numeric suffix', async () => {
   const { normalizeFactionResources } = await import('../src/world.ts');
   const world = reviewedWorld();

@@ -40,7 +40,7 @@ export function minimalStoryBible(worldPack: WorldPack): StoryBible {
     ],
     relationships: [{ id: 'rel', fromCharacterId: 'hero', toCharacterId: 'rival', kind: 'trust', value: '同门', locked: false }],
     arcs: [{ id: 'arc', title: '守城', characterIds: ['hero'], goal: '成长', stakes: '宗门存亡', plannedOutcome: '守住宗门' }],
-    volumes: [{ id: 'v1', order: 1, title: '入门', goal: '成长', climax: '守城', endState: '入筑基', plannedChapterCount: 10, arcIds: ['arc'] }],
+    volumes: [{ id: 'vol-1', order: 1, title: '入门', goal: '成长', climax: '守城', endState: '入筑基', plannedChapterCount: 10, arcIds: ['arc'] }],
     unresolvedQuestions: [], createdAt: new Date().toISOString(),
   } as StoryBible;
 }

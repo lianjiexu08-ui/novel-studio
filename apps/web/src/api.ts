@@ -35,6 +35,7 @@ import type {
   PlanOverviewDto,
   PlanReviewDto,
   PlanRevisionDto,
+  QualityAuditDto,
 } from 'novel-studio-contracts';
 
 export interface ChapterHistoryDto {
@@ -105,6 +106,7 @@ async function call<T>(path: string, options: { method?: string; body?: unknown 
 }
 
 export const api = {
+  qualityAudit: (workId: string) => call<{ audit: QualityAuditDto }>(`/works/${workId}/quality-audit`),
   hotTopics: (query = '') => call<HotTopicsResponse>(`/topics/hot?q=${encodeURIComponent(query)}`),
   createWork: (body: CreateWorkRequest) => call<WorkDto>('/works', { method: 'POST', body }),
   updateWork: (workId: string, body: UpdateWorkRequest) => call<WorkDto & { impact: CovenantImpactDto }>(`/works/${workId}`, { method: 'PATCH', body }),

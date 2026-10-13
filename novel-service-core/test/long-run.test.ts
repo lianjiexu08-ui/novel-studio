@@ -174,4 +174,6 @@ test('audit checks actual volume ranges and keeps deferred questions visible', (
   assert.ok(audit.findings.some((finding) => finding.id === 'plan-volume-range-vol-1'));
   assert.ok(audit.findings.some((finding) => finding.id === 'world-open-questions'));
   assert.equal(audit.narrativeQuality, 'not_assessed');
+  work.worldPack!.unresolvedQuestions[0].blocking = true;
+  assert.ok(qualityAuditFor(work).findings.some((finding) => finding.id === 'world-question-later' && finding.severity === 'error'));
 });

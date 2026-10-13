@@ -199,6 +199,10 @@ test('plans are generated in outline groups that see earlier groups; regeneratin
   const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), scriptedProvider(), undefined, { planProvider });
   const work = await workflow.createWork('分组章纲', readyCovenant());
   await lockMinimalDesign(workflow, work.id);
+  const volume = work.storyBible!.volumes[0];
+  await workflow.saveStoryBible(work.id, { ...work.storyBible!, volumes: [1, 2, 3].map((order) => ({ ...volume, id: `vol-${order}`, order, plannedChapterCount: 10 })) });
+  await workflow.reviewStoryBible(work.id);
+  await workflow.lockStoryBible(work.id);
 
   const generated = await workflow.generatePlan(work.id, { targetChapterCount: 30, volumeCount: 3 });
   assert.equal(generated.status, 'proposed', 'generation never approves');
@@ -296,4 +300,33 @@ test('a story bible rewrite never reuses a revision number and makes the approve
   const plan: BookPlan = minimalPlan();
   await approveMinimalPlan(workflow, work.id, plan);
   assert.deepEqual(await workflow.readiness(work.id, 1), []);
+});
+
+test('review and generation reject mismatched volume boundaries even at matching design revisions', async () => {
+  const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), scriptedProvider());
+  const work = await createReadyWork(workflow, '统一分卷');
+  const plan = minimalPlan(10, { volumeSize: 5 });
+  // Keep total and volume count equal: only the boundary is wrong.
+  const volume = work.storyBible!.volumes[0];
+  await workflow.saveStoryBible(work.id, { ...work.storyBible!, volumes: [
+    { ...volume, plannedChapterCount: 4 },
+    { ...volume, id: 'vol-2', order: 2, plannedChapterCount: 6 },
+  ] });
+  const saved = await workflow.savePlan(work.id, { plan, baseRevisionId: work.activePlanId });
+  const review = await workflow.reviewPlan(work.id, saved.id);
+  assert.equal(review.passed, false);
+  assert.ok(review.issues.some((issue) => issue.code === 'DESIGN_MISMATCH' && issue.volumeId === 'vol-1'));
+  await assert.rejects(() => workflow.approvePlan(work.id, saved.id), PlanGateError);
+  saved.status = 'approved'; work.activePlanId = saved.id; // Legacy data predating this gate.
+  assert.ok((await workflow.readiness(work.id, 1)).some((blocker) => blocker.code === 'PLAN_OUTDATED'));
+});
+
+test('plan approval rechecks blocking design questions added after review', async () => {
+  const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), scriptedProvider());
+  const work = await createReadyWork(workflow, '不以延后代替解决');
+  const saved = await workflow.savePlan(work.id, { plan: minimalPlan(), baseRevisionId: work.activePlanId });
+  assert.equal((await workflow.reviewPlan(work.id, saved.id)).passed, true);
+  work.worldPack!.unresolvedQuestions.push({ id: 'power', question: '冷却矛盾', blocking: true, status: 'deferred' });
+  await assert.rejects(() => workflow.approvePlan(work.id, saved.id), /冷却矛盾/);
+  assert.equal((await workflow.reviewPlan(work.id, saved.id)).passed, false);
 });

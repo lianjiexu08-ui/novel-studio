@@ -7,6 +7,7 @@ import type { ModelProvider } from '../../../novel-service-core/src/core.ts';
 import { UsageLedger } from '../../../packages/model-gateway/src/index.ts';
 import { approveMinimalPlan, chapterBody, lockMinimalDesign, minimalPlan } from '../../../packages/application/test/fixtures.ts';
 import type { BookPlan } from '../../../novel-service-core/src/planning.ts';
+import { qualityAuditDtoSchema } from 'novel-studio-contracts';
 
 const writer: ModelProvider = {
   generateChapter: ({ chapterNumber }) => {
@@ -71,9 +72,21 @@ function milestoneDesign() {
     promises: [{ id: 'promise', title: '三年之约', promise: '主角必须赴约', payoffCondition: '终卷决战前兑现', plannedChapter: 25, status: 'locked' as const }],
     openThreads: [{ id: 'thread', title: '界门来历', kind: 'mystery' as const, question: '谁建造界门', plannedResolution: '终卷揭示建造者', status: 'locked' as const }],
     arcs: [{ id: 'arc', title: '守护故乡', characterIds: ['hero'], goal: '查清战争', stakes: '三陆存亡', plannedOutcome: '封印界门' }],
-    volumes: [1, 2, 3].map((order) => ({ id: `v${order}`, order, title: `第${order}卷`, goal: '推进主线', climax: '卷末决战', endState: '继续前进', plannedChapterCount: order === 1 ? 34 : 33, arcIds: ['arc'] })), chapterPlans: Array.from({ length: 50 }, (_, index) => ({ id: `chapter-plan-${index + 1}`, chapterNumber: index + 1, title: `开篇第${index + 1}章`, purpose: '推进主线', conflict: '界门威胁升级', turningPoint: '获得新线索', endHook: '新的悬念', characterIds: ['hero'], locationIds: ['city'], arcBeatIds: [], requiredEvents: [] })), unresolvedQuestions: [], createdAt: new Date().toISOString(),
+    volumes: [1, 2, 3].map((order) => ({ id: `vol-${order}`, order, title: `第${order}卷`, goal: '推进主线', climax: '卷末决战', endState: '继续前进', plannedChapterCount: order === 3 ? 32 : 34, arcIds: ['arc'] })), chapterPlans: Array.from({ length: 50 }, (_, index) => ({ id: `chapter-plan-${index + 1}`, chapterNumber: index + 1, title: `开篇第${index + 1}章`, purpose: '推进主线', conflict: '界门威胁升级', turningPoint: '获得新线索', endHook: '新的悬念', characterIds: ['hero'], locationIds: ['city'], arcBeatIds: [], requiredEvents: [] })), unresolvedQuestions: [], createdAt: new Date().toISOString(),
   };
   return { world, bible };
+}
+
+async function prepareMilestoneDesign(inject: Inject, workId: string) {
+  for (const stage of ['world_pack', 'story_bible']) {
+    const generated = await inject({ method: 'POST', url: `/works/${workId}/design/generate`, payload: { stage, chapterTarget: 100 } });
+    assert.equal(generated.statusCode, 200, generated.body);
+    const route = stage === 'world_pack' ? 'world-pack' : 'story-bible';
+    for (const action of ['review', 'lock']) {
+      const response = await inject({ method: 'POST', url: `/works/${workId}/${route}/${action}`, payload: {} });
+      assert.equal(response.statusCode, 200, response.body);
+    }
+  }
 }
 
 function milestoneChapterEvents(chapterNumber: number) {
@@ -84,13 +97,13 @@ function milestoneChapterEvents(chapterNumber: number) {
       { eventType: 'promise_payoff', subjectId: 'promise', predicate: 'status', value: { status: 'paid' }, evidence: '三年之约兑现' },
       { eventType: 'thread_resolution', subjectId: 'thread', predicate: 'status', value: { status: 'resolved' }, evidence: '界门来历揭晓' },
       { eventType: 'arc_progress', subjectId: 'arc', predicate: 'status', value: { status: 'resolved' }, evidence: '主线决战完成' },
-      { eventType: 'volume_progress', subjectId: 'v3', predicate: 'status', value: { status: 'resolved' }, evidence: '终卷完成' },
+      { eventType: 'volume_progress', subjectId: 'vol-3', predicate: 'status', value: { status: 'resolved' }, evidence: '终卷完成' },
     );
   }
-  if (chapterNumber === 34) events.push({ eventType: 'volume_progress', subjectId: 'v1', predicate: 'status', value: { status: 'resolved' }, evidence: '第一卷完成' });
-  if (chapterNumber === 67) events.push({ eventType: 'volume_progress', subjectId: 'v2', predicate: 'status', value: { status: 'resolved' }, evidence: '第二卷完成' });
-  if (chapterNumber === 150) events.push({ eventType: 'volume_progress', subjectId: 'v1', predicate: 'status', value: { status: 'resolved' }, evidence: '扩展第一卷完成' });
-  if (chapterNumber === 300) events.push({ eventType: 'volume_progress', subjectId: 'v2', predicate: 'status', value: { status: 'resolved' }, evidence: '扩展第二卷完成' });
+  if (chapterNumber === 34) events.push({ eventType: 'volume_progress', subjectId: 'vol-1', predicate: 'status', value: { status: 'resolved' }, evidence: '第一卷完成' });
+  if (chapterNumber === 68) events.push({ eventType: 'volume_progress', subjectId: 'vol-2', predicate: 'status', value: { status: 'resolved' }, evidence: '第二卷完成' });
+  if (chapterNumber === 150) events.push({ eventType: 'volume_progress', subjectId: 'vol-1', predicate: 'status', value: { status: 'resolved' }, evidence: '扩展第一卷完成' });
+  if (chapterNumber === 300) events.push({ eventType: 'volume_progress', subjectId: 'vol-2', predicate: 'status', value: { status: 'resolved' }, evidence: '扩展第二卷完成' });
   return events;
 }
 
@@ -346,7 +359,7 @@ test('design API saves and locks the world pack before the story bible', async (
         const events: Array<{ eventType: string; subjectId: string; predicate: string; value: unknown }> = [{ eventType: 'character_state', subjectId: 'hero', predicate: 'power', value: chapterNumber }];
         if (chapterNumber === 10) events.push(
           { eventType: 'arc_progress', subjectId: 'arc', predicate: 'status', value: { status: 'resolved' } },
-          { eventType: 'volume_progress', subjectId: 'v1', predicate: 'status', value: { status: 'resolved' } },
+          { eventType: 'volume_progress', subjectId: 'vol-1', predicate: 'status', value: { status: 'resolved' } },
         );
         return { content: chapterBody(chapterNumber), proposedEvents: events, observedEvents: events };
       },
@@ -374,7 +387,7 @@ test('design API saves and locks the world pack before the story bible', async (
       id: 'bible_api', revision: 1, worldPackId: lockedWorld.id, worldPackRevision: lockedWorld.revision, status: 'reviewed',
       coreConflict: '宗门存亡', endingDirection: '守住家园',
       characters: [{ id: 'hero', name: '林渊', role: 'protagonist', goal: '守护青州', identity: '弟子', locationId: 'home', factionId: 'sect', startingRealmId: 'realm' }, { id: 'rival', name: '苏晚', role: 'major', goal: '查明真相', identity: '弟子', locationId: 'home', factionId: 'sect', startingRealmId: 'realm' }],
-      relationships: [{ id: 'rel', fromCharacterId: 'hero', toCharacterId: 'rival', kind: 'trust', value: '同门', locked: false }], arcs: [{ id: 'arc', title: '守城', characterIds: ['hero'], goal: '成长', stakes: '宗门存亡', plannedOutcome: '守住宗门' }], volumes: [{ id: 'v1', order: 1, title: '入门', goal: '成长', climax: '守城', endState: '入筑基', plannedChapterCount: 10, arcIds: ['arc'] }],
+      relationships: [{ id: 'rel', fromCharacterId: 'hero', toCharacterId: 'rival', kind: 'trust', value: '同门', locked: false }], arcs: [{ id: 'arc', title: '守城', characterIds: ['hero'], goal: '成长', stakes: '宗门存亡', plannedOutcome: '守住宗门' }], volumes: [{ id: 'vol-1', order: 1, title: '入门', goal: '成长', climax: '守城', endState: '入筑基', plannedChapterCount: 10, arcIds: ['arc'] }],
       unresolvedQuestions: [], createdAt: new Date().toISOString(),
     };
     const savedBible = await app.inject({ method: 'PUT', url: `${base}/story-bible`, payload: { ...storyBible, status: 'locked' } });
@@ -426,6 +439,7 @@ test('design API saves and locks the world pack before the story bible', async (
     assert.ok(designHistory.revisions.some((revision: { kind: string; status: string }) => revision.kind === 'story_bible' && revision.status === 'locked'));
     const audit = await app.inject({ method: 'GET', url: `${base}/quality-audit` });
     assert.equal(audit.statusCode, 200);
+    qualityAuditDtoSchema.parse(audit.json().audit);
     assert.equal(audit.json().audit.counts.characters, 2);
     assert.ok(['ready', 'needs_review', 'blocked'].includes(audit.json().audit.status));
     assert.equal((await app.inject({ method: 'GET', url: `${base}/manuscripts` })).json().manuscripts.length, 1);
@@ -488,6 +502,35 @@ test('run API can launch a background run and expose its checkpoint', async () =
   }
 });
 
+test('milestone start never generates, reviews or locks a missing or proposed design', async () => {
+  const repository = new InMemoryWorkRepository();
+  let calls = 0;
+  const design = milestoneDesign();
+  const { app } = createApiServer({ repository, allowBatchRuns: true, provider: writer, designProvider: {
+    generateWorldPack: async () => { calls += 1; return design.world; },
+    generateStoryBible: async () => { calls += 1; return design.bible; },
+  } });
+  try {
+    const created = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('启动不得改设计') })).json();
+    const work = (await repository.get(created.id))!;
+    for (const status of ['missing', 'proposed', 'reviewed'] as const) {
+      if (status !== 'missing') {
+        work.worldPack = { ...design.world, status };
+        work.storyBible = { ...design.bible, status };
+      }
+      const before = JSON.stringify([work.worldPack, work.storyBible, work.constraintRevision]);
+      for (const target of [100, 450]) {
+        const response = await app.inject({ method: 'POST', url: `/works/${work.id}/milestones/${target}/start`, payload: {} });
+        assert.equal(response.statusCode, 409);
+        assert.equal(JSON.stringify([work.worldPack, work.storyBible, work.constraintRevision]), before);
+      }
+    }
+    assert.equal(calls, 0);
+    assert.equal(work.checkpoints.size, 0);
+    assert.equal(work.candidates.size, 0);
+  } finally { await app.close(); }
+});
+
 test('100-chapter milestone endpoint starts from locked design and reaches a final checkpoint', async () => {
   const design = milestoneDesign();
   const { app } = createApiServer({
@@ -499,7 +542,11 @@ test('100-chapter milestone endpoint starts from locked design and reaches a fin
   try {
     const work = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('一键百章') })).json();
     const unplanned = await app.inject({ method: 'POST', url: `/works/${work.id}/milestones/100/start`, payload: {} });
-    assert.equal(unplanned.json().error.code, 'PLAN_NOT_APPROVED', 'the design is prepared but no run starts without an author-approved plan');
+    assert.equal(unplanned.statusCode, 409);
+    assert.equal((await app.inject({ method: 'GET', url: `/works/${work.id}/design` })).json().worldPack, undefined);
+    await prepareMilestoneDesign(app.inject.bind(app), work.id);
+    const withoutPlan = await app.inject({ method: 'POST', url: `/works/${work.id}/milestones/100/start`, payload: {} });
+    assert.equal(withoutPlan.json().error.code, 'PLAN_NOT_APPROVED');
     await approvePlanViaApi(app.inject.bind(app), work.id, minimalPlan(100, { volumeSize: 34, outlined: 100 }));
     const started = await app.inject({ method: 'POST', url: `/works/${work.id}/milestones/100/start`, payload: {} });
     assert.equal(started.statusCode, 202, started.body);
@@ -548,7 +595,7 @@ test('450-chapter expansion resumes after the first hundred chapters', async () 
   });
   try {
     const work = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('扩展百万字') })).json();
-    await app.inject({ method: 'POST', url: `/works/${work.id}/milestones/100/start`, payload: {} });
+    await prepareMilestoneDesign(app.inject.bind(app), work.id);
     await approvePlanViaApi(app.inject.bind(app), work.id, minimalPlan(100, { volumeSize: 34, outlined: 100 }));
     const first = await app.inject({ method: 'POST', url: `/works/${work.id}/milestones/100/start`, payload: {} });
     assert.equal(first.statusCode, 202, first.body);

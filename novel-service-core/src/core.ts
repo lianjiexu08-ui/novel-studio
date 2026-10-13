@@ -1092,7 +1092,7 @@ export function qualityAuditFor(work: Work): QualityAudit {
 
   if (world) {
     if (world.status !== 'locked') add({ id: 'world-not-approved', area: 'world', severity: 'warning', message: '世界包修订尚未锁定，结构检查不代表创作审核通过。' });
-    for (const question of world.unresolvedQuestions.filter((item) => item.blocking && item.status === 'open')) add({ id: `world-question-${question.id}`, area: 'world', severity: 'error', message: question.question });
+    for (const question of world.unresolvedQuestions.filter((item) => item.blocking && item.status !== 'resolved')) add({ id: `world-question-${question.id}`, area: 'world', severity: 'error', message: question.question });
     const result = validateWorldPack(world);
     for (const [index, message] of result.errors.entries()) add({ id: `world-validator-${index}`, area: 'world', severity: 'error', message, recommendation: '修正引用或重新生成对应世界设定。' });
     for (const [index, message] of result.warnings.entries()) add({ id: `world-warning-${index}`, area: 'world', severity: 'warning', message });
@@ -1122,7 +1122,7 @@ export function qualityAuditFor(work: Work): QualityAudit {
   if (world && bible) {
     if (bible.status !== 'locked') add({ id: 'story-not-approved', area: 'story', severity: 'warning', message: '故事圣经修订尚未锁定，人物与情节仍待审核。' });
     if (bible.worldPackId !== world.id || bible.worldPackRevision !== world.revision) add({ id: 'story-world-revision-drift', area: 'story', severity: 'error', message: '故事圣经引用的世界包版本与当前世界包不一致。' });
-    for (const question of bible.unresolvedQuestions.filter((item) => item.blocking && item.status === 'open')) add({ id: `story-question-${question.id}`, area: 'story', severity: 'error', message: question.question });
+    for (const question of bible.unresolvedQuestions.filter((item) => item.blocking && item.status !== 'resolved')) add({ id: `story-question-${question.id}`, area: 'story', severity: 'error', message: question.question });
     const result = validateStoryBible(bible, world);
     for (const [index, message] of result.errors.entries()) add({ id: `bible-validator-${index}`, area: 'story', severity: 'error', message, recommendation: '修正故事圣经中的人物、地点、势力、弧线和章纲引用。' });
     for (const [index, message] of result.warnings.entries()) add({ id: `bible-warning-${index}`, area: 'story', severity: 'warning', message });
@@ -1378,7 +1378,7 @@ export function relationshipAt(work: Work, relationshipId: string, chapterNumber
   const seed = work.storyBible?.relationships.find((relationship) => relationship.id === relationshipId);
   const base: Relationship | undefined = setting ?? (seed ? {
     id: seed.id, fromCharacterId: seed.fromCharacterId, toCharacterId: seed.toCharacterId,
-    kind: seed.kind, value: seed.value, locked: seed.locked,
+    kind: seed.kind, value: seed.value, locked: seed.locked, lockPolicy: seed.lockPolicy,
     layer: seed.kind === 'belief' ? 'belief' : 'objective', sinceChapter: seed.sinceChapter,
   } : undefined);
   if (!base) return undefined;
@@ -1386,8 +1386,12 @@ export function relationshipAt(work: Work, relationshipId: string, chapterNumber
     .filter((item) => item.active && item.eventType === 'relationship_change' && item.subjectId === relationshipId && item.chapterNumber <= chapterNumber)
     .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id))
     .at(-1);
-  if (!change) return { ...base };
-  return { ...base, value: typeof change.value === 'string' ? change.value : JSON.stringify(change.value), sourceEventId: change.id, sinceChapter: base.sinceChapter ?? change.chapterNumber };
+  if (!change) {
+    if (base.sinceChapter !== undefined && base.sinceChapter > chapterNumber) return undefined;
+    if (!setting && seed?.untilChapter !== undefined && seed.untilChapter < chapterNumber) return undefined;
+    return { ...base };
+  }
+  return { ...base, value: typeof change.value === 'string' ? change.value : JSON.stringify(change.value), sourceEventId: change.id, sinceChapter: change.chapterNumber };
 }
 
 /**

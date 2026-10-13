@@ -101,7 +101,7 @@ export type PlanIssueCode =
   | 'TARGET_INVALID' | 'VOLUME_COUNT_MISMATCH' | 'VOLUME_ORDER' | 'VOLUME_RANGE' | 'VOLUME_GAP' | 'VOLUME_OVERLAP' | 'VOLUME_TOTAL_MISMATCH'
   | 'OUTLINE_MISSING' | 'OUTLINE_INCOMPLETE' | 'OUTLINE_DUPLICATE' | 'OUTLINE_VOLUME_MISMATCH' | 'OUTLINE_OUT_OF_RANGE'
   | 'MILESTONE_RANGE' | 'DEPENDENCY_DANGLING' | 'DEPENDENCY_INVALID' | 'DEPENDENCY_CYCLE' | 'DEPENDENCY_ORDER'
-  | 'REFERENCE_UNKNOWN' | 'BLOCKING_QUESTION' | 'DESIGN_OUTDATED' | 'DUPLICATE_ID' | 'COVENANT_MISMATCH'
+  | 'REFERENCE_UNKNOWN' | 'BLOCKING_QUESTION' | 'DESIGN_OUTDATED' | 'DESIGN_MISMATCH' | 'DUPLICATE_ID' | 'COVENANT_MISMATCH'
   | 'VOLUME_WITHOUT_CLIMAX' | 'MILESTONE_WITHOUT_SETUP' | 'REPEATED_CONFLICT';
 
 export interface PlanIssue {
@@ -265,7 +265,7 @@ export function reviewBookPlan(plan: BookPlan, refs: { characterIds: Set<string>
   if (cycle) error({ code: 'DEPENDENCY_CYCLE', message: `关键依赖成环：${cycle.join(' → ')}`, nodeId: cycle[0] });
 
   for (const question of plan.openQuestions) {
-    if (question.blocking && question.status === 'open') error({ code: 'BLOCKING_QUESTION', message: `未决问题会阻断开篇：${question.question}`, nodeId: question.id });
+    if (question.blocking && question.status !== 'resolved') error({ code: 'BLOCKING_QUESTION', message: `未决问题会阻断开篇：${question.question}`, nodeId: question.id });
   }
   const sorted = [...plan.chapters].sort((a, b) => a.chapterNumber - b.chapterNumber);
   for (let index = 1; index < sorted.length; index += 1) {
@@ -347,11 +347,34 @@ function designOutdated(work: Work, plan: PlanRevision): boolean {
   return plan.worldPackRevision !== work.worldPack?.revision || plan.storyBibleRevision !== work.storyBible?.revision;
 }
 
+/** Matching revision numbers cannot hide different volume boundaries. */
+export function planDesignIssues(work: Work, plan: BookPlan): PlanIssue[] {
+  const issues: PlanIssue[] = [];
+  for (const document of [work.worldPack, work.storyBible]) {
+    for (const question of document?.unresolvedQuestions ?? []) {
+      if (question.blocking && question.status !== 'resolved') issues.push({ code: 'BLOCKING_QUESTION', severity: 'error', message: `设计仍有阻塞问题：${question.question}`, nodeId: question.id });
+    }
+  }
+  const bible = work.storyBible;
+  if (!bible) return issues;
+  const total = bible.volumes.reduce((sum, volume) => sum + volume.plannedChapterCount, 0);
+  if (total !== plan.targetChapterCount || bible.volumes.length !== plan.volumeCount) issues.push({ code: 'DESIGN_MISMATCH', severity: 'error', message: `计划为 ${plan.volumeCount} 卷 ${plan.targetChapterCount} 章，故事圣经为 ${bible.volumes.length} 卷 ${total} 章；先统一创作基线` });
+  let start = 1;
+  for (const volume of [...bible.volumes].sort((a, b) => a.order - b.order)) {
+    const end = start + volume.plannedChapterCount - 1;
+    const planned = plan.volumes.find((item) => item.id === volume.id);
+    if (!planned || planned.order !== volume.order || planned.startChapter !== start || planned.endChapter !== end) issues.push({ code: 'DESIGN_MISMATCH', severity: 'error', message: `卷 ${volume.id} 必须与故事圣经第 ${volume.order} 卷 ${start}–${end} 章一致`, volumeId: volume.id });
+    start = end + 1;
+  }
+  return issues;
+}
+
 /** Runs the structural review on one immutable revision and appends the record. */
 export function reviewPlanRevision(work: Work, planId: string): PlanReview {
   const plan = mustGetPlan(work, planId);
   if (plan.contentHash !== planContentHash(plan.plan)) throw new PlanGateError('plan content does not match its recorded hash');
   const issues = reviewBookPlan(plan.plan, { characterIds: knownCharacterIds(work) });
+  issues.push(...planDesignIssues(work, plan.plan));
   if (designOutdated(work, plan)) issues.unshift({ code: 'DESIGN_OUTDATED', severity: 'error', message: '世界包或 Story Bible 在起草这版计划后已改变；请基于当前设计另存一版' });
   const { targetChapterCount, volumeCount } = work.covenant;
   if (targetChapterCount && targetChapterCount !== plan.plan.targetChapterCount) issues.push({ code: 'COVENANT_MISMATCH', severity: 'warning', message: `立项卡写的是 ${targetChapterCount} 章，计划是 ${plan.plan.targetChapterCount} 章` });
@@ -371,6 +394,8 @@ export function reviewPlanRevision(work: Work, planId: string): PlanReview {
  */
 export function approvePlanRevision(work: Work, planId: string): PlanRevision {
   const plan = mustGetPlan(work, planId);
+  const designIssues = planDesignIssues(work, plan.plan);
+  if (designIssues.length) throw new PlanGateError(`plan design gate blocked: ${designIssues.map((issue) => issue.message).join('; ')}`);
   if (plan.status === 'approved') {
     if (designOutdated(work, plan)) throw new PlanGateError('the approved plan is outdated; save a new revision against the current design');
     return plan;
@@ -618,6 +643,8 @@ export function planBlockers(work: Work, chapterNumber: number): ReadinessBlocke
   const revision = activePlan(work);
   if (!revision) return [{ code: 'PLAN_NOT_APPROVED', message: 'no approved book plan', nextAction: '生成或编写全书计划，审核后批准' }];
   if (designOutdated(work, revision)) return [{ code: 'PLAN_OUTDATED', message: 'the approved plan was drafted against an older world pack or story bible', nextAction: '基于当前设计另存计划，审核后重新批准' }];
+  const designIssues = planDesignIssues(work, revision.plan);
+  if (designIssues.length) return [{ code: 'PLAN_OUTDATED', message: designIssues.map((issue) => issue.message).join('; '), nextAction: '统一分卷范围并解决设计阻塞后重新审核计划' }];
   if (chapterNumber > revision.plan.targetChapterCount) return [{ code: 'PLAN_OUTLINE_MISSING', message: `chapter ${chapterNumber} is beyond the planned ${revision.plan.targetChapterCount} chapters`, nextAction: '先修改全书目标章数或追加卷' }];
   const current = effectiveBrief(work, chapterNumber);
   if (!current) return [{ code: 'PLAN_OUTLINE_MISSING', message: `chapter ${chapterNumber} has no outline in the approved plan`, nextAction: `扩展计划，补出第 ${chapterNumber} 章章纲后重新批准` }];

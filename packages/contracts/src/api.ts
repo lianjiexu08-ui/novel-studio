@@ -164,6 +164,29 @@ export const designDtoSchema = z.object({
 });
 export type DesignDto = z.infer<typeof designDtoSchema>;
 
+export const qualityAuditDtoSchema = z.object({
+  status: z.enum(['ready', 'needs_review', 'blocked']),
+  reviewScope: z.literal('structural_only'),
+  narrativeQuality: z.literal('not_assessed'),
+  scope: z.object({
+    currentWorldPackRevision: z.number().int().optional(),
+    currentStoryBibleRevision: z.number().int().optional(),
+    activePlanRevision: z.number().int().optional(),
+    activePlanStoryBibleRevision: z.number().int().optional(),
+    activePlanTargetChapterCount: z.number().int().optional(),
+    storyBibleTargetChapterCount: z.number().int().optional(),
+    manuscriptStoryBibleRevision: z.number().int().optional(),
+  }),
+  counts: z.record(z.string(), z.number().int().nonnegative()),
+  findings: z.array(z.object({
+    id: z.string(),
+    area: z.enum(['world', 'power', 'timeline', 'characters', 'relationships', 'story', 'plan', 'manuscript']),
+    severity: z.enum(['error', 'warning', 'info']),
+    message: z.string(), evidence: z.string().optional(), recommendation: z.string().optional(),
+  })),
+});
+export type QualityAuditDto = z.infer<typeof qualityAuditDtoSchema>;
+
 export const manuscriptRevisionDtoSchema = z.object({
   id: z.string(), workId: z.string(), revision: z.number().int().positive(), status: z.enum(['final', 'superseded']),
   chapterVersionIds: z.array(z.string()), chapterCount: z.number().int().positive(), wordCount: z.number().int().nonnegative(), targetWordCount: z.number().int().nonnegative(), lengthCoverage: z.number().nonnegative(), contentHash: z.string().length(64),

@@ -279,7 +279,7 @@ function collectIds(items: Array<{ id: string }>, label: string, errors: string[
 }
 
 function hasBlockingQuestions(questions: UnresolvedQuestion[]): boolean {
-  return questions.some((question) => question.blocking && question.status === 'open');
+  return questions.some((question) => question.blocking && question.status !== 'resolved');
 }
 
 function detectLocationCycle(locations: WorldLocation[], errors: string[]): void {
@@ -561,6 +561,8 @@ export function chapterGenerationGate(worldPack: WorldPack, bible: StoryBible, c
   const warnings: string[] = [];
   if (worldPack.status !== 'locked') errors.push('world pack is not locked');
   if (bible.status !== 'locked') errors.push('story bible is not locked');
+  if (hasBlockingQuestions(worldPack.unresolvedQuestions)) errors.push('blocking world pack questions must be resolved before writing');
+  if (hasBlockingQuestions(bible.unresolvedQuestions)) errors.push('blocking story questions must be resolved before writing');
   const worldResult = validateWorldPack(worldPack);
   if (!worldResult.ready) errors.push(...worldResult.errors.map((error) => `world pack: ${error}`));
   const bibleResult = validateStoryBible(bible, worldPack);

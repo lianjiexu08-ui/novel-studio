@@ -736,22 +736,10 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     requireBatchRuns();
     const { workId } = workParamSchema.parse(request.params);
     const body = milestoneRequestSchema.parse(request.body ?? {});
-    let work = await repository.get(workId);
+    const work = await repository.get(workId);
     if (!work) throw new NotFoundError(`unknown work ${workId}`);
-    if (!work.worldPack) await workflow.generateWorldPack(workId);
-    work = await repository.get(workId);
-    if (!work?.worldPack) throw new Error('world pack generation did not produce a world pack');
-    if (work.worldPack.status !== 'locked') {
-      if (work.worldPack.status !== 'reviewed') await workflow.reviewWorldPack(workId);
-      await workflow.lockWorldPack(workId);
-    }
-    work = await repository.get(workId);
-    if (!work?.storyBible || plannedChapterCount(work) !== 100) await workflow.generateStoryBible(workId, 100);
-    work = await repository.get(workId);
-    if (!work?.storyBible) throw new Error('story bible generation did not produce a story bible');
-    if (work.storyBible.status !== 'locked') {
-      if (work.storyBible.status !== 'reviewed') await workflow.reviewStoryBible(workId);
-      await workflow.lockStoryBible(workId);
+    if (work.worldPack?.status !== 'locked' || work.storyBible?.status !== 'locked' || plannedChapterCount(work) !== 100) {
+      throw new CanonGateError('100-chapter run requires a separately reviewed and locked design; the current design was not changed');
     }
     const runId = body.runId ?? `milestone-100:${workId}`;
     await launchBackgroundRun(workId, 100, runId);

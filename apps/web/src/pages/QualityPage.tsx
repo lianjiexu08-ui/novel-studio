@@ -5,6 +5,7 @@ import { useOutletContext } from 'react-router-dom';
 import { api, ApiRequestError, type ChapterHistoryDto } from '../api';
 import type { ManuscriptRevisionDto } from 'novel-studio-contracts';
 import type { WorkspaceContext } from './Workspace';
+import { DesignAuditCard } from './DesignAuditCard';
 
 const { Text, Title } = Typography;
 
@@ -33,20 +34,21 @@ export function QualityPage() {
   }, [work.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return <section className="page">
-    <header className="page-head"><div><p className="page-kicker">复查</p><Title level={4} style={{ margin: 0 }}>章节质量与状态</Title><p className="page-desc">选择一个章节，查看截至该章已经成立的事实、角色状态、关系、人物弧光和秘密揭示。所有结果来自已采用版本。</p></div><Space><InputNumber min={1} max={450} value={chapter} onChange={(value) => setChapter(value ?? 1)} /><Button type="primary" icon={<ReloadOutlined />} loading={loading} onClick={() => void load()}>加载第 {chapter} 章</Button></Space></header>
+    <header className="page-head"><div><p className="page-kicker">复查</p><Title level={4} style={{ margin: 0 }}>章节质量与状态</Title><p className="page-desc">选择一个章节，查看已采用正文中的事实与角色状态；人物关系同时参考生效范围内的设定，未落实的故事线标为计划。</p></div><Space><InputNumber min={1} max={450} value={chapter} onChange={(value) => setChapter(value ?? 1)} /><Button type="primary" icon={<ReloadOutlined />} loading={loading} onClick={() => void load()}>加载第 {chapter} 章</Button></Space></header>
+    <DesignAuditCard workId={work.id} revision={work.constraintRevision} />
     {!history ? <div className="state-block"><Spin size="large" /></div> : <Space direction="vertical" size={16} style={{ width: '100%' }}>
-      <Alert type="info" showIcon message={'截至第 ' + history.chapterNumber + ' 章'} description={'事件 ' + history.events.length + ' 条，角色状态 ' + history.characterStates.length + ' 条，角色认知 ' + history.knowledgeStates.length + ' 条，关系 ' + history.relationships.filter(Boolean).length + ' 条，分卷进度 ' + history.volumeStates.length + ' 条，弧光进度 ' + history.arcStates.length + ' 条，秘密揭示 ' + history.secretStates.length + ' 条，承诺/开放线收束 ' + (history.promiseStates.length + history.threadStates.length) + ' 条。'} />
-      <Alert type={history.quality.closureCoverage.ready ? 'success' : 'warning'} showIcon message="全书收束覆盖" description={`弧光 ${history.quality.closureCoverage.resolved.arcs}/${history.quality.closureCoverage.expected.arcs}，秘密 ${history.quality.closureCoverage.resolved.secrets}/${history.quality.closureCoverage.expected.secrets}，承诺 ${history.quality.closureCoverage.resolved.promises}/${history.quality.closureCoverage.expected.promises}，开放线 ${history.quality.closureCoverage.resolved.threads}/${history.quality.closureCoverage.expected.threads}${history.quality.closureCoverage.errors.length ? `；待处理：${history.quality.closureCoverage.errors.slice(0, 3).join('；')}` : ''}`} />
-      <Card title="冻结书稿质量" size="small">
+      <Alert type="info" showIcon message={'截至第 ' + history.chapterNumber + ' 章'} description={'事件 ' + history.events.length + ' 条，角色状态 ' + history.characterStates.length + ' 条，角色认知 ' + history.knowledgeStates.length + ' 条，关系 ' + history.relationships.filter(Boolean).length + ' 条，分卷进度 ' + history.volumeStates.length + ' 条，弧光进度 ' + history.arcStates.length + ' 条，秘密记录 ' + history.secretStates.length + ' 条，承诺/开放线收束 ' + (history.promiseStates.length + history.threadStates.length) + ' 条。'} />
+      <Alert type={history.quality.closureCoverage.ready ? 'success' : 'warning'} showIcon message="全书收束覆盖" description={`分卷 ${history.quality.closureCoverage.resolved.volumes}/${history.quality.closureCoverage.expected.volumes}，弧光 ${history.quality.closureCoverage.resolved.arcs}/${history.quality.closureCoverage.expected.arcs}，秘密 ${history.quality.closureCoverage.resolved.secrets}/${history.quality.closureCoverage.expected.secrets}，承诺 ${history.quality.closureCoverage.resolved.promises}/${history.quality.closureCoverage.expected.promises}，开放线 ${history.quality.closureCoverage.resolved.threads}/${history.quality.closureCoverage.expected.threads}${history.quality.closureCoverage.errors.length ? `；待处理：${history.quality.closureCoverage.errors.slice(0, 3).join('；')}` : ''}`} />
+      <Card title="冻结书稿版本" size="small">
         {manuscripts.length === 0 ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="还没有冻结书稿" /> : <Table size="small" pagination={false} rowKey="id" dataSource={manuscripts} columns={[
-          { title: '版本', dataIndex: 'revision', render: (value: number, row: ManuscriptRevisionDto) => <Space><Tag color={row.status === 'final' ? 'success' : 'default'}>{row.status === 'final' ? '当前最终版' : '历史版本'}</Tag><span>rev {value}</span></Space> },
+          { title: '版本', dataIndex: 'revision', render: (value: number, row: ManuscriptRevisionDto) => <Space><Tag color={row.status === 'final' ? 'success' : 'default'}>{row.status === 'final' ? '当前冻结版' : '历史版本'}</Tag><span>rev {value}</span></Space> },
           { title: '章节', dataIndex: 'chapterCount', render: (value: number) => `${value} 章` },
           { title: '字数覆盖', key: 'coverage', render: (_: unknown, row: ManuscriptRevisionDto) => `${row.wordCount.toLocaleString()} / ${row.targetWordCount.toLocaleString()}（${Math.round(row.lengthCoverage * 100)}%）` },
           { title: '设计版本', key: 'design', render: (_: unknown, row: ManuscriptRevisionDto) => `World ${row.worldPackRevision} / Bible ${row.storyBibleRevision}` },
         ]} />}
       </Card>
       <Row gutter={16}>
-        <Col xs={24} md={12}><Card title="本章依据"><Table size="small" pagination={false} dataSource={[
+        <Col xs={24} md={12}><Card title="按当前设计重建的上下文" extra={<Text type="secondary">复查参考，非当时生成快照</Text>}><Table size="small" pagination={false} dataSource={[
           { key: 'status', name: '资料状态', value: history.quality.contextManifest.requiredMaterialStatus },
           { key: 'revisions', name: '设计版本', value: `World ${history.quality.contextManifest.worldPackRevision ?? '-'} / Bible ${history.quality.contextManifest.storyBibleRevision ?? '-'}` },
           { key: 'selection', name: '上下文选入', value: `${history.quality.contextManifest.adoptedVersionIds.length} 个章节版本，${history.quality.contextManifest.includedEventIds.length} 条事件` },
