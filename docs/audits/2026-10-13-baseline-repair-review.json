@@ -1,0 +1,381 @@
+{
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "scope": "design_proposals_only_not_full_manuscript_review",
+  "model": "gpt-5.6-luna",
+  "sourceSnapshot": "Only cited sources are included here. Complete reviewed sources persist in local review records.",
+  "proposals": {
+    "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+    "world": {
+      "revision": 14,
+      "status": "proposed"
+    },
+    "bible": {
+      "revision": 15,
+      "status": "proposed"
+    },
+    "plan": {
+      "id": "plan_23dc10dddfec4f0a8cf10ea04513ab69",
+      "revision": 13,
+      "status": "proposed"
+    },
+    "previousApprovedPlanId": "plan_3240e0b8bc124f38a4f39ae8d74c2abc"
+  },
+  "activePlanRevisionUnchanged": 10,
+  "proposalsApproved": false,
+  "modelAdviceAdopted": false,
+  "worldReviewFailedAttempts": [
+    {
+      "error": {
+        "code": "MODEL_FAILED",
+        "message": "模型返回的内容不合格：模型输出修正一次后仍不符合格式：评审引用不在原文中：world/historicalEvents/event_02"
+      }
+    },
+    {
+      "error": {
+        "code": "MODEL_FAILED",
+        "message": "模型返回的内容不合格：模型输出修正一次后仍不符合格式：评审引用不在原文中：world/historicalEvents/event_02"
+      }
+    }
+  ],
+  "reports": [
+    {
+      "summary": "人物设计当前不足以通过：林辰的行动链较完整，但主要配角多停留在目标或终局功能，关系阶段与角色认知边界也未覆盖全体；应先补齐配角的独立选择、失败代价、关系生效节点和秘密传播限制。",
+      "checks": [
+        {
+          "criterion": "agency",
+          "verdict": "revise",
+          "explanation": "林辰拥有较连续的目标、选择、代价与主线影响，但苏凌霜、赵玄极、夜凝霜等人的行动主要被挂接在林辰推进的事件中；角色条目本身通常只有目标、身份和阵营，没有独立失败代价及其对主线造成后果的完整链条。赵玄极与墨幽屠虽有明确目标，却缺少其关键选择如何改变局势、失败后如何调整或付出代价的设计。现有arcBeat也明显偏向林辰，不能仅凭配角参与战斗判定其具备充分主体性。",
+          "evidence": [
+            {
+              "sourceId": "story/characters/char_03",
+              "quote": "  \"goal\": \"吞纳三大陆亿万黎民寿元以铸就主宰道果，强开极天界门飞升。\",\n  \"identity\": \"大乾天朝九皇子兼天武铁骑大都督，皇道通天卷主修者。\""
+            },
+            {
+              "sourceId": "story/characters/char_04",
+              "quote": "  \"goal\": \"炼就万鬼幽罗幡王器，以百万人牲换取幽冥界门裂隙洞开。\",\n  \"identity\": \"幽罗殿枉死黑窟少主，九幽死息引渡人。\""
+            },
+            {
+              "sourceId": "story/arcBeats/beat_02",
+              "quote": "  \"characterId\": \"char_01\",\n  \"kind\": \"belief_shift\",\n  \"plannedChapter\": 12,\n  \"expectedChange\": \"林辰当众拒绝向戒律堂交出功法玉简，宣布斩断对宗门依赖独行求道。\""
+            },
+            {
+              "sourceId": "plan/overview",
+              "quote": "  \"question\": \"三卷1–32、33–66、67–100基线已同步；卷二覆盖北航和入渊前置。关系阶段、航路与等级解释已补充，但寿元、法宝、终局代价、配角认知和正文返修未通过，不能批准写作。\""
+            }
+          ],
+          "revisionAdvice": "为赵玄极、墨幽屠、苏凌霜、夜凝霜及其他承担主线功能的配角逐一补出：独立目标与利益冲突、不可替代的关键选择、选择失败的具体代价、由其行动造成的主线后果，以及至少一次改变策略或阵营关系的中段转折。重点返修第二、三卷，避免配角只在林辰胜负结果中出现。"
+        },
+        {
+          "criterion": "relationships",
+          "verdict": "revise",
+          "explanation": "苏凌霜—林辰和夜凝霜—林辰已有按章节分段的初始状态、促成选择、代价和生效区间，能够避免直接用终局关系概括初识；但其他关系仍是终局式标签或概括性描述，缺少变化触发事件、付出和生效时点。尤其赵玄极—林辰、墨幽屠—林辰等关系写成“死敌”或“血海深仇”，没有完整呈现从初始认知到敌对升级的过程。材料自身也明确承认另四条关系尚待补全。",
+          "evidence": [
+            {
+              "sourceId": "story/relationships/rel_01",
+              "quote": "      \"sinceChapter\": 3,\n      \"untilChapter\": 7,\n      \"value\": \"调查中的有限庇护与试探，尚非生死盟约。\",\n      \"cause\": \"苏追查灵矿异动与魔道暗桩，选择保护被怀疑的同门并继续观察。\""
+            },
+            {
+              "sourceId": "story/relationships/rel_05",
+              "quote": "      \"sinceChapter\": 55,\n      \"untilChapter\": 58,\n      \"value\": \"共同阻止界渊灾变的投影协作与条件信任。\",\n      \"cause\": \"夜在海峡危机中显化投影，双方交换危险与持印信息。\""
+            },
+            {
+              "sourceId": "story/relationships/rel_02",
+              "quote": "  \"kind\": \"belief\",\n  \"value\": \"大道死敌，痛恨赵玄极以万民寿元为薪柴的冷血帝道。\",\n  \"locked\": false,\n  \"sinceChapter\": 12"
+            },
+            {
+              "sourceId": "plan/overview",
+              "quote": "  \"question\": \"三卷1–32、33–66、67–100基线已同步；卷二覆盖北航和入渊前置。关系阶段、航路与等级解释已补充，但寿元、法宝、终局代价、配角认知和正文返修未通过，不能批准写作。\""
+            }
+          ],
+          "revisionAdvice": "补写rel_02、rel_03、rel_04、rel_06的阶段链，至少标明初始关系、触发变化的具体选择、双方各自付出、关系何时生效及关系变化如何影响后续卷目标。重点处理林辰与赵玄极、墨幽屠的初识和升级，不要从第12章或第5章直接概括为终局死敌。"
+        },
+        {
+          "criterion": "knowledge",
+          "verdict": "revise",
+          "explanation": "秘密条目提供了真相和揭示条件，但没有完整限定各角色在每个阶段知道什么、误解什么、谁掌握哪些线索，也没有把揭示条件与实际章节、人物选择和认知变化稳定绑定。尤其sec_01规定的揭示条件是触碰青玄极天界门界碑古纹，而第18章和第27章已经通过古碑、残玉与残存记忆推进生父护界真相，现有材料没有说明这些是误导性残影、局部线索还是提前揭示，因此人物认知弧线与秘密因果不一致。材料还明确指出配角认知边界尚未补全。",
+          "evidence": [
+            {
+              "sourceId": "story/secrets/sec_01",
+              "quote": "  \"truth\": \"残卷系十年前青玄极天界门灵震中其生父以百年阳寿护界陨落后所留遗蜕古玉。\",\n  \"revealCondition\": \"主角在青玄极天界门前触碰界碑古纹唤醒父辈血脉印记时。\",\n  \"status\": \"proposed\""
+            },
+            {
+              "sourceId": "story/chapterPlans/chapter-plan-18",
+              "quote": "  \"endHook\": \"林辰全歼大乾猎杀小队，获悉破虚匙碎片正是化解灵门禁绝的关键，残玉异动为古境核心指路。\""
+            },
+            {
+              "sourceId": "story/chapterPlans/chapter-plan-27",
+              "quote": "  \"endHook\": \"第一柄破虚匙碎片顺利认主归位，生父当年护界真相浮出水面。\""
+            },
+            {
+              "sourceId": "plan/overview",
+              "quote": "  \"question\": \"三卷1–32、33–66、67–100基线已同步；卷二覆盖北航和入渊前置。关系阶段、航路与等级解释已补充，但寿元、法宝、终局代价、配角认知和正文返修未通过，不能批准写作。\""
+            }
+          ],
+          "revisionAdvice": "为每项秘密补充角色认知表：真相持有者、各卷各阶段的已知线索、错误解释、不能知道的内容、触发揭示的行动和揭示后的选择后果。将sec_01与第18、27、92章的实际揭示节点统一，明确哪些是误导性残影、哪些才是可确认真相；同时为苏凌霜、夜凝霜、赵玄极等配角补出其掌握范围和认知更新，避免秘密只服务林辰的终局揭示。"
+        }
+      ],
+      "id": "design_review_1b8c9749-ce01-43de-9212-29f5fd28faf8",
+      "area": "characters",
+      "inputHash": "9c666bf830756c60bbd8bca19bb7eb2dbf4c4af6a1465f3d6cfd1a7d66783b61",
+      "scope": {
+        "worldPackRevision": 14,
+        "storyBibleRevision": 15,
+        "planRevisionId": "plan_23dc10dddfec4f0a8cf10ea04513ab69",
+        "planRevision": 13
+      },
+      "sources": [
+        {
+          "id": "story/characters/char_03",
+          "text": "{\n  \"id\": \"char_03\",\n  \"name\": \"赵玄极\",\n  \"role\": \"major\",\n  \"goal\": \"吞纳三大陆亿万黎民寿元以铸就主宰道果，强开极天界门飞升。\",\n  \"identity\": \"大乾天朝九皇子兼天武铁骑大都督，皇道通天卷主修者。\",\n  \"locationId\": \"loc_08\",\n  \"factionId\": \"fac_02\",\n  \"startingRealmId\": \"realm_03\"\n}"
+        },
+        {
+          "id": "story/characters/char_04",
+          "text": "{\n  \"id\": \"char_04\",\n  \"name\": \"墨幽屠\",\n  \"role\": \"supporting\",\n  \"goal\": \"炼就万鬼幽罗幡王器，以百万人牲换取幽冥界门裂隙洞开。\",\n  \"identity\": \"幽罗殿枉死黑窟少主，九幽死息引渡人。\",\n  \"locationId\": \"loc_10\",\n  \"factionId\": \"fac_03\",\n  \"startingRealmId\": \"realm_03\"\n}"
+        },
+        {
+          "id": "story/relationships/rel_01",
+          "text": "{\n  \"stages\": [\n    {\n      \"sinceChapter\": 3,\n      \"untilChapter\": 7,\n      \"value\": \"调查中的有限庇护与试探，尚非生死盟约。\",\n      \"cause\": \"苏追查灵矿异动与魔道暗桩，选择保护被怀疑的同门并继续观察。\",\n      \"cost\": \"苏承担偏袒嫌疑；林辰不能推定她已知晓或接受全部逆命秘密。\"\n    },\n    {\n      \"sinceChapter\": 8,\n      \"untilChapter\": 11,\n      \"value\": \"交换情报后的互惠合作，信任以共同查案为条件。\",\n      \"cause\": \"苏告知擂台暗桩风险，林辰选择承担取证与应战风险。\",\n      \"cost\": \"双方共享信息但保留认知边界；暴露暗桩将招致戒律堂报复。\"\n    },\n    {\n      \"sinceChapter\": 12,\n      \"untilChapter\": 28,\n      \"value\": \"公开互相护持、共同承担宗门清算的同盟。\",\n      \"cause\": \"苏在大比后当众举证挡住拘押，把私下合作变成公开立场。\",\n      \"cost\": \"苏的宗门身份与调查空间受压，林辰的行动会牵连凌云峰。\"\n    },\n    {\n      \"sinceChapter\": 29,\n      \"value\": \"异地协作的同盟：苏留宗门内应，林辰持信物远行。\",\n      \"cause\": \"古境危机后分工应对追捕，苏交出商盟信物帮助林辰南渡。\",\n      \"cost\": \"分离带来情报延迟和救援限制；信物代付的政治与债务责任须在返修中核实。\"\n    }\n  ],\n  \"id\": \"rel_01\",\n  \"fromCharacterId\": \"char_01\",\n  \"toCharacterId\": \"char_02\",\n  \"kind\": \"trust\",\n  \"value\": \"苏凌霜调查灵矿异动时给予林辰有限庇护，双方尚在试探。\",\n  \"locked\": false,\n  \"sinceChapter\": 3\n}"
+        },
+        {
+          "id": "story/relationships/rel_02",
+          "text": "{\n  \"id\": \"rel_02\",\n  \"fromCharacterId\": \"char_01\",\n  \"toCharacterId\": \"char_03\",\n  \"kind\": \"belief\",\n  \"value\": \"大道死敌，痛恨赵玄极以万民寿元为薪柴的冷血帝道。\",\n  \"locked\": false,\n  \"sinceChapter\": 12\n}"
+        },
+        {
+          "id": "story/relationships/rel_05",
+          "text": "{\n  \"stages\": [\n    {\n      \"sinceChapter\": 55,\n      \"untilChapter\": 58,\n      \"value\": \"共同阻止界渊灾变的投影协作与条件信任。\",\n      \"cause\": \"夜在海峡危机中显化投影，双方交换危险与持印信息。\",\n      \"cost\": \"投影不能代替真身长期护航；林辰仍须接受巡界身份与目的核验。\"\n    },\n    {\n      \"sinceChapter\": 59,\n      \"untilChapter\": 66,\n      \"value\": \"真身会面后的任务同盟，不无条件共享全部秘密。\",\n      \"cause\": \"寒霄会面后确定持印者任务，在北境关隘战中相互支援。\",\n      \"cost\": \"夜为护送持印者承担巡界责任；林辰受封禁与路线限制。\"\n    },\n    {\n      \"sinceChapter\": 67,\n      \"value\": \"界渊生死协作后的守望同盟，信任由共同选择与损失累积。\",\n      \"cause\": \"面对空间异兽及界律反噬的互救使合作不再只基于利益。\",\n      \"cost\": \"神念、道基与守界职责受到牵连；同盟不等于认可对方任意开启界门。\"\n    }\n  ],\n  \"id\": \"rel_05\",\n  \"fromCharacterId\": \"char_01\",\n  \"toCharacterId\": \"char_05\",\n  \"kind\": \"emotion\",\n  \"value\": \"海峡危机中的首次隔空协作，尚不能视为破界挚友。\",\n  \"locked\": false,\n  \"sinceChapter\": 55\n}"
+        },
+        {
+          "id": "story/arcBeats/beat_02",
+          "text": "{\n  \"id\": \"beat_02\",\n  \"arcId\": \"arc_01\",\n  \"characterId\": \"char_01\",\n  \"kind\": \"belief_shift\",\n  \"plannedChapter\": 12,\n  \"expectedChange\": \"林辰当众拒绝向戒律堂交出功法玉简，宣布斩断对宗门依赖独行求道。\"\n}"
+        },
+        {
+          "id": "story/secrets/sec_01",
+          "text": "{\n  \"id\": \"sec_01\",\n  \"ownerCharacterId\": \"char_01\",\n  \"title\": \"乾坤逆命真解渊源\",\n  \"truth\": \"残卷系十年前青玄极天界门灵震中其生父以百年阳寿护界陨落后所留遗蜕古玉。\",\n  \"revealCondition\": \"主角在青玄极天界门前触碰界碑古纹唤醒父辈血脉印记时。\",\n  \"status\": \"proposed\"\n}"
+        },
+        {
+          "id": "story/chapterPlans/chapter-plan-18",
+          "text": "{\n  \"id\": \"chapter-plan-18\",\n  \"chapterNumber\": 18,\n  \"title\": \"遗碑破虚\",\n  \"purpose\": \"林辰沿古道前行，在一座倾塌的太古界门守卫殿宇遭遇大乾皇室猎杀小队。大乾修士正动用秘法强拆石殿内的古碑。林辰悍然出手荡平大乾追兵，触碰古碑时体内生父残玉剧烈嗡鸣，碑文中浮现太古破虚匙的玄奥图腾，残玉与破虚匙第一残印产生神秘共振，显化出十年前灵震的一抹生父虚影。\",\n  \"conflict\": \"大乾皇室精锐的王府战阵与林辰雷霆剑势的碰撞，以及碑文反震之力。\",\n  \"turningPoint\": \"宁肯耗费心神抗拒虚空震荡，也要强行将破虚碑文残印烙入识海深处。\",\n  \"endHook\": \"林辰全歼大乾猎杀小队，获悉破虚匙碎片正是化解灵门禁绝的关键，残玉异动为古境核心指路。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_03\"\n  ],\n  \"locationIds\": [\n    \"loc_05\"\n  ],\n  \"arcBeatIds\": [],\n  \"requiredEvents\": [\n    \"th_01\",\n    \"th_02\"\n  ]\n}"
+        },
+        {
+          "id": "story/chapterPlans/chapter-plan-27",
+          "text": "{\n  \"id\": \"chapter-plan-27\",\n  \"chapterNumber\": 27,\n  \"title\": \"破虚匙印\",\n  \"purpose\": \"天坑归于寂静，林辰在苏凌霜搀扶下走向延寿灵泉中央。悬浮在泉眼之上的太古残片受到林辰怀中生父古玉的引动，绽放出绚烂的空间光芒，第一柄破虚匙碎片正式融入古玉之中，显化出太古界门残印与十年前灵震的一缕残存记忆。林辰获悉生父当年竟是在极天界门前为阻赵玄极窃命而战死，复仇之念愈发坚定。\",\n  \"conflict\": \"太古破虚残印的浩瀚空间法则威压与林辰濒危肉身的剧烈排斥。\",\n  \"turningPoint\": \"林辰选择不顾识海震荡，以自身神魂强行容纳破虚匙残片的空间意志。\",\n  \"endHook\": \"第一柄破虚匙碎片顺利认主归位，生父当年护界真相浮出水面。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\"\n  ],\n  \"locationIds\": [\n    \"loc_05\"\n  ],\n  \"arcBeatIds\": [],\n  \"requiredEvents\": [\n    \"th_01\",\n    \"th_02\"\n  ]\n}"
+        },
+        {
+          "id": "plan/overview",
+          "text": "{\n  \"targetChapterCount\": 100,\n  \"volumeCount\": 3,\n  \"openQuestions\": [\n    {\n      \"id\": \"oq_01\",\n      \"question\": \"界门外侧寂灭死渊中是否潜藏着具有主宰意志的域外古魔实体？\",\n      \"blocking\": false,\n      \"status\": \"deferred\"\n    },\n    {\n      \"id\": \"oq_02\",\n      \"question\": \"苏凌霜在第三卷天武城决战时是否需要引动太清仙宗禁忌底蕴以身殉阵破局？\",\n      \"blocking\": false,\n      \"status\": \"open\"\n    },\n    {\n      \"id\": \"oq_03\",\n      \"question\": \"大乾老皇主是否在赵玄极身后秘密操控九鼎皇天大阵以求夺舍还魂？\",\n      \"blocking\": false,\n      \"status\": \"open\"\n    },\n    {\n      \"id\": \"baseline-content-review\",\n      \"question\": \"三卷1–32、33–66、67–100基线已同步；卷二覆盖北航和入渊前置。关系阶段、航路与等级解释已补充，但寿元、法宝、终局代价、配角认知和正文返修未通过，不能批准写作。\",\n      \"blocking\": true,\n      \"status\": \"open\"\n    }\n  ],\n  \"dependencies\": [\n    {\n      \"id\": \"dep_01\",\n      \"targetId\": \"ms_vol1_turn\",\n      \"fact\": {\n        \"eventType\": \"plot_progress\",\n        \"subjectId\": \"chapter-1\",\n        \"predicate\": \"status\",\n        \"equals\": {\n          \"status\": \"realized\"\n        }\n      },\n      \"requiredness\": \"must\",\n      \"description\": \"林辰必须在濒死死斗中初次成功催动乾坤逆命真解以寿换力，方能在外门大比中逆斩暗桩并震慑宗门高层。\"\n    },\n    {\n      \"id\": \"dep_02\",\n      \"targetId\": \"ms_vol1_climax\",\n      \"sourceId\": \"ms_vol1_turn\",\n      \"requiredness\": \"must\",\n      \"description\": \"林辰必须先与苏凌霜结成盟约并夺得古境准入符牌，方能进入灵虚古境核心祭坛阻截墨幽屠。\"\n    },\n    {\n      \"id\": \"dep_03\",\n      \"targetId\": \"ms_vol2_turn\",\n      \"sourceId\": \"ms_vol1_climax\",\n      \"requiredness\": \"must\",\n      \"description\": \"林辰必须在斩杀墨幽屠后因白发早衰和皇朝追杀登舟南渡，才能在赤霄大陆太微天宝城遭遇商盟暗算并揭破暗盟。\"\n    },\n    {\n      \"id\": \"dep_04\",\n      \"targetId\": \"ms_vol2_climax\",\n      \"sourceId\": \"ms_vol2_turn\",\n      \"requiredness\": \"must\",\n      \"description\": \"林辰必须先掌握跨陆密约与地脉毒火走势，才能准确杀入赤霄天坑斩杀炎煞尊者并抢夺神火髓与界门残印。\"\n    },\n    {\n      \"id\": \"dep_05\",\n      \"targetId\": \"ms_vol3_turn\",\n      \"sourceId\": \"ms_vol2_boundary\",\n      \"requiredness\": \"must\",\n      \"description\": \"必须先完成北境断链和界渊入口条件，才能在第三卷深入界渊取得第三残片、合成完整钥匙。\"\n    },\n    {\n      \"id\": \"dep_06\",\n      \"targetId\": \"ms_vol3_climax\",\n      \"sourceId\": \"ms_vol3_turn\",\n      \"requiredness\": \"must\",\n      \"description\": \"林辰必须先在苍冥界渊彻底参透空间秩序并集齐三印，方有实力杀回天武城正面硬撼赵玄极的九鼎皇天大阵。\"\n    },\n    {\n      \"id\": \"dep_07\",\n      \"targetId\": \"ms_book_payoff\",\n      \"sourceId\": \"ms_vol3_climax\",\n      \"requiredness\": \"must\",\n      \"description\": \"必须先彻底诛杀赵玄极并斩断六道转轮偷命策阵眼，天地万民命寿方能归位，补天定界大功德反哺方可兑现。\"\n    },\n    {\n      \"id\": \"dep_north_passage\",\n      \"targetId\": \"ms_vol2_boundary\",\n      \"sourceId\": \"ms_vol2_climax\",\n      \"requiredness\": \"must\",\n      \"description\": \"赤霄夺印、北航与结盟先于北境断链；不能从天坑直接跳到界渊合匙。\"\n    }\n  ]\n}"
+        }
+      ],
+      "status": "needs_revision",
+      "createdAt": "2026-10-13T08:55:38.372Z"
+    },
+    {
+      "summary": "世界设计具备三大陆、资源梯度、势力利益和跨海/界门区分的骨架，但关键通行规则仍是待核提案，历史势力的现实行动链不足，且100章阶段后段集中兑现界渊、合匙、九鼎与界门终局，连续性和代价审计未通过。本项不宜批准为已完成世界设计。",
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "revise",
+          "explanation": "三大陆并非单纯换地图：各域有寒冷、火域、虚空裂隙等环境约束，也分别绑定玄冰、神火髓、虚空神晶等资源，势力目标存在资源与通行权冲突，跨海航线和太古界门也有明确区分。但通行制度、票价、担保、征用供给仍明确标为待核提案，苍冥上岸与会面凭证尚未闭合；因此目前只能证明世界地图的设计意图，不能证明它已能稳定支撑分卷中的资源交换、政治后果和跨域行动。",
+          "evidence": [
+            {
+              "sourceId": "world/axioms/ax_03",
+              "quote": "青玄、赤霄、苍冥是同一天地内被虚海分隔的大陆。太古界门穿越天地界壁，其完整门户非通天之力不可开启；普通跨海飞舟、沿岸定位阵与大陆内部传送不经过太古界门，也不具有穿越界壁的能力。“破界飞舟”之名仅指破开海上风暴与局部空间乱流。"
+            },
+            {
+              "sourceId": "world/locations/loc_21",
+              "quote": "票价、担保例外与征用供给是待核对创作提案；航程与地点有章节锚点。章纲须记录实际付款或担保人，资源消耗与日期须逐章复核。"
+            },
+            {
+              "sourceId": "world/locations/loc_02",
+              "quote": "第56章上岸及第59章会面的凭证链仍须返修明确；本条是新规则提案，不是旧正文已发生的担保事实。"
+            },
+            {
+              "sourceId": "plan/volumes/vol_02",
+              "quote": "第33–53章切断赤霄火髓走私与大乾暗盟，第54–66章完成北航、引渡核验、与夜凝霜结盟及进入界渊的条件；地域转换须产生资源、通行权与政治后果。"
+            }
+          ],
+          "revisionAdvice": "先固定卷二第53–66章的实际航段账：明确谁支付每段费用、谁提供担保、港口凭证如何取得、封锁或延误造成什么资源与政治损失，并使这些结果改变大乾、神炎、商盟或巡界使的后续决策。补齐第56章上岸至第59章会面的凭证链后，再复核赤霄—苍冥转换是否产生不可被战斗替代的通行和资源后果。"
+        },
+        {
+          "criterion": "history",
+          "verdict": "revise",
+          "explanation": "历史条目已经提供了较完整的原因—代价—后果链，例如界门封禁源于本源掠夺和灵气暴跌，大乾皇权则由九鼎定运之役形成；势力目标也包含皇权、宗门、商盟、妖族与巡界使之间的独立利益。问题在于这些历史后果尚未充分转化为当前100章中的独立行动，且所有历史与势力材料均为proposed，部分当代阴谋仍停留在未决问题或待核状态，不能把设定中的势力目标当成已经发生的政治反应。",
+          "evidence": [
+            {
+              "sourceId": "world/historicalEvents/event_01",
+              "quote": "三大陆天地灵气总量暴跌，触犯灵气守恒律反噬，域外虚空乱流涌入"
+            },
+            {
+              "sourceId": "world/historicalEvents/event_02",
+              "quote": "确立以帝国律法约束宗阀的中央皇权体制，压制了正道宗门在青玄腹地的直接征税权"
+            },
+            {
+              "sourceId": "world/factions/fac_08",
+              "quote": "在太清、大乾与神炎之间谈判通商和查验权；封港、扣押与秘密走私会使商盟内部出现利益分歧，商业中立并非绝对。"
+            },
+            {
+              "sourceId": "world/factions/fac_02",
+              "quote": "大乾天朝"
+            }
+          ],
+          "revisionAdvice": "不要继续增加历史事件数量；应把已有的九鼎定运、赤霄商贸争端、苍冥血战和界门灵震分别绑定到卷一至卷三的现实决策：明确每个主要势力在得失变化后采取的具体行动、付出的代价及其与主角行动的因果关系。并将仍标为proposed或open的关键历史真相区分为已确立背景、待揭示秘密和尚未发生的计划，避免用未兑现的阴谋解释当前连续性。"
+        },
+        {
+          "criterion": "capacity",
+          "verdict": "revise",
+          "explanation": "以100章作为百万字项目的阶段范围本身没有问题，且三卷边界已明确；但当前阶段的后段承载过多不可替代的世界变化：第67章进入界渊后很快合匙、确认窃命机制，再回师青玄完成九鼎、赵玄极、界门和秩序重构。更严重的是破虚匙在第73章合拢后又出现散落重组的连续性审计，以及终局取消燃寿代价的规则冲突。这不是单纯容量不足，而是世界规则、历史后果与终局兑现集中挤压在有限章节内，导致扩展空间尚未转化为可执行递进。",
+          "evidence": [
+            {
+              "sourceId": "plan/overview",
+              "quote": "\"targetChapterCount\": 100,"
+            },
+            {
+              "sourceId": "plan/volumes/vol_03",
+              "quote": "第67章进入界渊，第73章三残片合匙，第75–76章确认界门与窃命机制，随后回师青玄处理九鼎和封门危机；这是百章阶段故事的收束，不宣称完成百万字全书。"
+            },
+            {
+              "sourceId": "story/overview",
+              "quote": "第73章三枚破虚匙已合拢，98章又以三枚散落残片重组；缺少中间状态转换与新代价说明。"
+            },
+            {
+              "sourceId": "story/overview",
+              "quote": "第99章写“再无折寿枯竭之患”，以天道奖励取消逆命代价，与命寿通灵律消耗不可逆冲突；结尾必须说明能量来源、使用上限与持续代价，并逐章复核第98–100章。"
+            }
+          ],
+          "revisionAdvice": "保留100章阶段基线，不要求扩写到更大篇幅；先重排卷三的因果节点。必须补出第73章合匙到第98章散片重组的实际状态转换、触发条件和新代价，并在第98–100章固定逆命力量的来源、上限和持续损耗，使终局不能直接抹除前文规则。若这些变化无法在现有章节内获得充分铺垫，应减少终局同时兑现的世界级结果，而不是继续添加地点、资源或势力条目。"
+        }
+      ],
+      "id": "design_review_0e3c5b91-548a-4d80-80f4-4ac37c9f16fb",
+      "area": "world",
+      "inputHash": "9c666bf830756c60bbd8bca19bb7eb2dbf4c4af6a1465f3d6cfd1a7d66783b61",
+      "scope": {
+        "worldPackRevision": 14,
+        "storyBibleRevision": 15,
+        "planRevisionId": "plan_23dc10dddfec4f0a8cf10ea04513ab69",
+        "planRevision": 13
+      },
+      "sources": [
+        {
+          "id": "world/axioms/ax_03",
+          "text": "{\n  \"id\": \"ax_03\",\n  \"title\": \"界门封禁律\",\n  \"content\": \"青玄、赤霄、苍冥是同一天地内被虚海分隔的大陆。太古界门穿越天地界壁，其完整门户非通天之力不可开启；普通跨海飞舟、沿岸定位阵与大陆内部传送不经过太古界门，也不具有穿越界壁的能力。“破界飞舟”之名仅指破开海上风暴与局部空间乱流。\",\n  \"scope\": \"界门\",\n  \"precedence\": 3,\n  \"status\": \"proposed\"\n}"
+        },
+        {
+          "id": "world/locations/loc_02",
+          "text": "{\n  \"id\": \"loc_02\",\n  \"name\": \"苍冥大陆\",\n  \"kind\": \"continent\",\n  \"entryConditions\": [\n    \"大陆环境寒冷；凝元境以下需保温舟舱或护身寒符。修为不是政治通行权。\",\n    \"沿岸官港验引渡令；无令者可由巡界使验明身份后具名担保，担保者承担监护和越界责任。例外仅到指定会合地，不自动授予进入界渊的权利。\",\n    \"第56章上岸及第59章会面的凭证链仍须返修明确；本条是新规则提案，不是旧正文已发生的担保事实。\"\n  ],\n  \"status\": \"proposed\"\n}"
+        },
+        {
+          "id": "world/locations/loc_21",
+          "text": "{\n  \"id\": \"loc_21\",\n  \"name\": \"无尽虚海商路\",\n  \"kind\": \"region\",\n  \"entryConditions\": [\n    \"同一天地内的虚海航网，不穿越太古界门；普通修士依赖护罩与定位阵飞舟，持钥匙不能免费或瞬移过海。\",\n    \"青玄云梦天港至赤霄天宝外港通常两昼夜；第30章第17日黄昏登舟，第32章第19日暮色入港。普通客位拟定200枚下品青灵石，货运另计；贵宾信物允许商盟代付记债，不免盘查或债务。\",\n    \"赤霄极焱天港经绝灵海峡至苍冥葬骨玄冰原外港通常五昼夜；第53章第27日黎明至第56章第32日黄昏。普通客位拟定500枚下品青灵石，含寒符护航；封锁须等候或改道，延误不能按正常航程计。\",\n    \"苍冥通天渡口至青玄沧溟古港回师特航约六日；第78章第39日傍晚至第79章第45日清晨。此为巡界使组织的征用航次，燃料与运输由巡界使库存和具名商盟供给承担，不是免费常规航线。\",\n    \"万象商盟管船舶、泊位、货单与运费；大乾、神炎及苍冥沿岸守军各管本方港口，巡界使处理空间污染和紧急引渡。商业信物不能豁免扣船、搜舱或追缴。\",\n    \"票价、担保例外与征用供给是待核对创作提案；航程与地点有章节锚点。章纲须记录实际付款或担保人，资源消耗与日期须逐章复核。\"\n  ],\n  \"status\": \"proposed\"\n}"
+        },
+        {
+          "id": "world/factions/fac_02",
+          "text": "{\n  \"id\": \"fac_02\",\n  \"name\": \"大乾天朝\",\n  \"kind\": \"empire\",\n  \"locationIds\": [\n    \"loc_08\",\n    \"loc_04\"\n  ],\n  \"goals\": [\n    \"以九鼎龙脉统合疆土并压制太清仙宗等宗阀宗权\",\n    \"开拓幽冥死渊外围以夺取玄铁地脉\",\n    \"制衡赤霄神炎古国的跨陆商道扩张\"\n  ],\n  \"resources\": [\n    \"res_13\",\n    \"res_07\"\n  ],\n  \"status\": \"proposed\"\n}"
+        },
+        {
+          "id": "world/factions/fac_08",
+          "text": "{\n  \"id\": \"fac_08\",\n  \"name\": \"万象商盟\",\n  \"kind\": \"merchant\",\n  \"locationIds\": [\n    \"loc_19\"\n  ],\n  \"goals\": [\n    \"控制三大陆实体飞舟航线、沿岸定位阵与大陆内部接驳，靠票价、押运、仓储和赊账获利；现有商路不能穿越太古界门。\",\n    \"在太清、大乾与神炎之间谈判通商和查验权；封港、扣押与秘密走私会使商盟内部出现利益分歧，商业中立并非绝对。\",\n    \"搜集通界古玉与虚空神晶研究尚未开放的界门贸易，此野心不代表已经能够开门通航。\"\n  ],\n  \"resources\": [\n    \"res_16\",\n    \"res_14\"\n  ],\n  \"status\": \"proposed\"\n}"
+        },
+        {
+          "id": "world/historicalEvents/event_01",
+          "text": "{\n  \"id\": \"event_01\",\n  \"title\": \"太古界门落锁之变\",\n  \"storyTime\": \"太古纪末（距今约一万年）\",\n  \"causes\": [\n    \"三大陆天地灵气总量暴跌，触犯灵气守恒律反噬，域外虚空乱流涌入\",\n    \"太古通天境诸祖强行掠夺各域小界本源引发界面崩解危机\"\n  ],\n  \"consequences\": [\n    \"补天阁先祖以圣器补天定世鉴合力布下界门封禁律，永封三大陆极天界门\",\n    \"三大陆修士无法自由穿梭诸域，通天境破界飞升之路断绝，诞生界门阶层断裂\",\n    \"虚空神晶（六品资源）沿界门闭合缝隙结晶沉积，成为极为罕有的界空圣物\"\n  ],\n  \"factionIds\": [\n    \"fac_09\"\n  ],\n  \"status\": \"proposed\"\n}"
+        },
+        {
+          "id": "world/historicalEvents/event_02",
+          "text": "{\n  \"id\": \"event_02\",\n  \"title\": \"大乾九鼎定运之役\",\n  \"storyTime\": \"开皇纪初（距今约三千年前）\",\n  \"causes\": [\n    \"青玄大陆诸侯宗阀混战，各方肆虐抽取地脉灵气导致山川枯竭\",\n    \"大乾开国始祖参透皇道九龙通天卷王阶绝学，欲集天地龙脉于一家\"\n  ],\n  \"consequences\": [\n    \"大乾天朝击败各方诸侯建立皇统，于乾都天武城熔炼九鼎聚拢乾天龙气脉（六品资源）\",\n    \"确立以帝国律法约束宗阀的中央皇权体制，压制了正道宗门在青玄腹地的直接征税权\",\n    \"太清仙宗等古老宗阀被迫退守凌云峰与各方洞天，埋下帝宗权柄抗衡根源\"\n  ],\n  \"factionIds\": [\n    \"fac_02\",\n    \"fac_01\"\n  ],\n  \"status\": \"proposed\"\n}"
+        },
+        {
+          "id": "story/overview",
+          "text": "{\n  \"coreConflict\": \"主角以自身寿命换取暴烈战力求存求真，与大乾皇朝及魔道巨擘妄图血祭诸域生灵命寿强破界门的霸权行径爆发死生冲突。\",\n  \"endingDirection\": \"主角逆转命寿通灵之厄，彻底粉碎大乾九鼎窃寿大阵并斩灭域外寂灭侵蚀，以破虚极境与补天圣法重铸三大陆界门守恒平衡。\",\n  \"unresolvedQuestions\": [\n    {\n      \"id\": \"uq_03\",\n      \"question\": \"三大陆界门开启时是否会触发天地灵气守恒律的反向大吞噬？\",\n      \"blocking\": false,\n      \"status\": \"resolved\"\n    },\n    {\n      \"id\": \"uq_04\",\n      \"question\": \"大乾天朝皇室命修是否秘密掌握借国运转移燃寿反噬之法？\",\n      \"blocking\": false,\n      \"status\": \"resolved\"\n    },\n    {\n      \"id\": \"uq_06\",\n      \"question\": \"主角以命寿换力突破至归一境时，延寿灵泉能否中和其肉身永久衰老的暗伤？\",\n      \"blocking\": false,\n      \"status\": \"resolved\"\n    },\n    {\n      \"id\": \"uq_08\",\n      \"question\": \"太古界门破虚匙共有几柄，补天阁内部是否封存有另外的钥匙残片？\",\n      \"blocking\": false,\n      \"status\": \"resolved\"\n    },\n    {\n      \"id\": \"uq_09\",\n      \"question\": \"十年前青玄极天界门的无故灵震是否由主角家族或某位通天境强者的秘密燃寿破门引发？\",\n      \"blocking\": false,\n      \"status\": \"resolved\"\n    },\n    {\n      \"id\": \"audit-scene-31\",\n      \"question\": \"第31章已绑定无尽虚海商路 loc_21；跨大陆海域不挂在青玄大陆之下。航程天数仍随时间线统一核查。\",\n      \"blocking\": false,\n      \"status\": \"resolved\"\n    },\n    {\n      \"id\": \"audit-volume-timeline\",\n      \"question\": \"批准章纲以32/66/100为卷界，正文第30、53、66章出现不同收卷描述；第99–100章第五十日又写数十载/十载经历。须统一时间线与分卷。\",\n      \"blocking\": true,\n      \"status\": \"open\"\n    },\n    {\n      \"id\": \"audit-artifact-continuity\",\n      \"question\": \"第73章三枚破虚匙已合拢，98章又以三枚散落残片重组；缺少中间状态转换与新代价说明。\",\n      \"blocking\": true,\n      \"status\": \"open\"\n    },\n    {\n      \"id\": \"audit-ending-cost\",\n      \"question\": \"第99章写“再无折寿枯竭之患”，以天道奖励取消逆命代价，与命寿通灵律消耗不可逆冲突；结尾必须说明能量来源、使用上限与持续代价，并逐章复核第98–100章。\",\n      \"blocking\": true,\n      \"status\": \"open\"\n    },\n    {\n      \"id\": \"audit-relationship-stages\",\n      \"question\": \"rel_01与rel_05已拆分阶段，但仍须对照逐章事件验证；另四条关系、配角独立行动和秘密认知边界尚待补全。\",\n      \"blocking\": true,\n      \"status\": \"open\"\n    }\n  ]\n}"
+        },
+        {
+          "id": "plan/overview",
+          "text": "{\n  \"targetChapterCount\": 100,\n  \"volumeCount\": 3,\n  \"openQuestions\": [\n    {\n      \"id\": \"oq_01\",\n      \"question\": \"界门外侧寂灭死渊中是否潜藏着具有主宰意志的域外古魔实体？\",\n      \"blocking\": false,\n      \"status\": \"deferred\"\n    },\n    {\n      \"id\": \"oq_02\",\n      \"question\": \"苏凌霜在第三卷天武城决战时是否需要引动太清仙宗禁忌底蕴以身殉阵破局？\",\n      \"blocking\": false,\n      \"status\": \"open\"\n    },\n    {\n      \"id\": \"oq_03\",\n      \"question\": \"大乾老皇主是否在赵玄极身后秘密操控九鼎皇天大阵以求夺舍还魂？\",\n      \"blocking\": false,\n      \"status\": \"open\"\n    },\n    {\n      \"id\": \"baseline-content-review\",\n      \"question\": \"三卷1–32、33–66、67–100基线已同步；卷二覆盖北航和入渊前置。关系阶段、航路与等级解释已补充，但寿元、法宝、终局代价、配角认知和正文返修未通过，不能批准写作。\",\n      \"blocking\": true,\n      \"status\": \"open\"\n    }\n  ],\n  \"dependencies\": [\n    {\n      \"id\": \"dep_01\",\n      \"targetId\": \"ms_vol1_turn\",\n      \"fact\": {\n        \"eventType\": \"plot_progress\",\n        \"subjectId\": \"chapter-1\",\n        \"predicate\": \"status\",\n        \"equals\": {\n          \"status\": \"realized\"\n        }\n      },\n      \"requiredness\": \"must\",\n      \"description\": \"林辰必须在濒死死斗中初次成功催动乾坤逆命真解以寿换力，方能在外门大比中逆斩暗桩并震慑宗门高层。\"\n    },\n    {\n      \"id\": \"dep_02\",\n      \"targetId\": \"ms_vol1_climax\",\n      \"sourceId\": \"ms_vol1_turn\",\n      \"requiredness\": \"must\",\n      \"description\": \"林辰必须先与苏凌霜结成盟约并夺得古境准入符牌，方能进入灵虚古境核心祭坛阻截墨幽屠。\"\n    },\n    {\n      \"id\": \"dep_03\",\n      \"targetId\": \"ms_vol2_turn\",\n      \"sourceId\": \"ms_vol1_climax\",\n      \"requiredness\": \"must\",\n      \"description\": \"林辰必须在斩杀墨幽屠后因白发早衰和皇朝追杀登舟南渡，才能在赤霄大陆太微天宝城遭遇商盟暗算并揭破暗盟。\"\n    },\n    {\n      \"id\": \"dep_04\",\n      \"targetId\": \"ms_vol2_climax\",\n      \"sourceId\": \"ms_vol2_turn\",\n      \"requiredness\": \"must\",\n      \"description\": \"林辰必须先掌握跨陆密约与地脉毒火走势，才能准确杀入赤霄天坑斩杀炎煞尊者并抢夺神火髓与界门残印。\"\n    },\n    {\n      \"id\": \"dep_05\",\n      \"targetId\": \"ms_vol3_turn\",\n      \"sourceId\": \"ms_vol2_boundary\",\n      \"requiredness\": \"must\",\n      \"description\": \"必须先完成北境断链和界渊入口条件，才能在第三卷深入界渊取得第三残片、合成完整钥匙。\"\n    },\n    {\n      \"id\": \"dep_06\",\n      \"targetId\": \"ms_vol3_climax\",\n      \"sourceId\": \"ms_vol3_turn\",\n      \"requiredness\": \"must\",\n      \"description\": \"林辰必须先在苍冥界渊彻底参透空间秩序并集齐三印，方有实力杀回天武城正面硬撼赵玄极的九鼎皇天大阵。\"\n    },\n    {\n      \"id\": \"dep_07\",\n      \"targetId\": \"ms_book_payoff\",\n      \"sourceId\": \"ms_vol3_climax\",\n      \"requiredness\": \"must\",\n      \"description\": \"必须先彻底诛杀赵玄极并斩断六道转轮偷命策阵眼，天地万民命寿方能归位，补天定界大功德反哺方可兑现。\"\n    },\n    {\n      \"id\": \"dep_north_passage\",\n      \"targetId\": \"ms_vol2_boundary\",\n      \"sourceId\": \"ms_vol2_climax\",\n      \"requiredness\": \"must\",\n      \"description\": \"赤霄夺印、北航与结盟先于北境断链；不能从天坑直接跳到界渊合匙。\"\n    }\n  ]\n}"
+        },
+        {
+          "id": "plan/volumes/vol_02",
+          "text": "{\n  \"id\": \"vol_02\",\n  \"order\": 2,\n  \"title\": \"赤霄北航卷：断盟入渊\",\n  \"startChapter\": 33,\n  \"endChapter\": 66,\n  \"goal\": \"第33–53章切断赤霄火髓走私与大乾暗盟，第54–66章完成北航、引渡核验、与夜凝霜结盟及进入界渊的条件；地域转换须产生资源、通行权与政治后果。\",\n  \"opposition\": \"焚天魔谷隐世长老炎煞尊者、大乾天朝皇城供奉暗杀堂、万象商盟走私黑市派系。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_03\",\n    \"char_05\",\n    \"char_06\"\n  ],\n  \"climax\": \"第48–53章天坑战解决火髓与暗盟问题；第64–66章北境断链战通过守界规则和盟友协作打通界渊入口，后者承担卷末转折。\",\n  \"endState\": \"林辰与夜凝霜越过落魂冰隘，斩断覆天冰渊九链，第66章抵达界渊入口；仅获得探索第三残片的路径，尚未合匙或解决九鼎主线。\",\n  \"carryOver\": \"已进入苍冥并获得界渊入口条件；下一卷追寻第三残片和窃命真相。北航费用、担保责任与死渊污染后果仍须兑现。\"\n}"
+        },
+        {
+          "id": "plan/volumes/vol_03",
+          "text": "{\n  \"id\": \"vol_03\",\n  \"order\": 3,\n  \"title\": \"诸天定界卷：天门逆命\",\n  \"startChapter\": 67,\n  \"endChapter\": 100,\n  \"goal\": \"第67章进入界渊，第73章三残片合匙，第75–76章确认界门与窃命机制，随后回师青玄处理九鼎和封门危机；这是百章阶段故事的收束，不宣称完成百万字全书。\",\n  \"opposition\": \"大乾九皇子赵玄极、皇道九龙通天卷威能、九鼎皇天窃命阵法相、域外寂灭乱流。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_03\",\n    \"char_05\"\n  ],\n  \"climax\": \"第93-98章，青玄极天界门终局圣战，林辰以乾坤逆命真解勾连天地灵气守恒律，彻底斩碎赵玄极主宰帝魂，合道补天神印抚平界壁裂痕。\",\n  \"endState\": \"赵玄极陨落，大乾窃寿皇统崩解，三大陆万民寿元归位，极天界门恢复守恒平衡，林辰白发化青登临逆命道主，超然护持万灵太平。\",\n  \"carryOver\": \"三大陆灵气守恒秩序重构，跨界航道重开，补天阁与巡界使尊林辰为镇界主尊，全书圆满终局。\"\n}"
+        }
+      ],
+      "status": "needs_revision",
+      "createdAt": "2026-10-13T09:02:14.863Z"
+    }
+  ],
+  "currentAreas": [
+    {
+      "area": "world",
+      "status": "needs_revision",
+      "reportId": "design_review_0e3c5b91-548a-4d80-80f4-4ac37c9f16fb"
+    },
+    {
+      "area": "power",
+      "status": "outdated",
+      "reportId": "design_review_e50c33c3-acc1-4723-b08b-d34ddbe88347"
+    },
+    {
+      "area": "characters",
+      "status": "needs_revision",
+      "reportId": "design_review_1b8c9749-ce01-43de-9212-29f5fd28faf8"
+    },
+    {
+      "area": "story",
+      "status": "outdated",
+      "reportId": "design_review_2ca0146d-d42f-4c31-b5e4-e71c72e76158"
+    }
+  ],
+  "ready": false,
+  "preservation": {
+    "chapterVersions": {
+      "rows": 101,
+      "unchanged": true,
+      "rowsSha256": "0ca9e8d608fdeb1695f80d523a0653da7232e85e6fe6c00d3aeb91d91d9b37b8"
+    },
+    "manuscriptRevisions": {
+      "rows": 1,
+      "unchanged": true,
+      "rowsSha256": "b922febd2b1e21821ae21fb4103e7e243be3fd8b9c1279a6aa0c99c6199dbe06"
+    },
+    "frozenManuscripts": [
+      [
+        1,
+        100,
+        "d03ff80bcfe59eafed6716937480ff2527a59512ab30b879dfc3414afcd280f0"
+      ]
+    ]
+  },
+  "readiness": {
+    "chapterNumber": 101,
+    "ready": false,
+    "modelConfigured": true,
+    "blockers": [
+      {
+        "code": "CANON_NOT_READY",
+        "message": "chapter generation gate blocked: world pack is not locked; story bible is not locked; blocking world pack questions must be resolved before writing; blocking story questions must be resolved before writing",
+        "nextAction": "处理设计门禁问题后重新锁定"
+      },
+      {
+        "code": "PLAN_OUTDATED",
+        "message": "the approved plan was drafted against an older world pack or story bible",
+        "nextAction": "基于当前设计另存计划，审核后重新批准"
+      },
+      {
+        "code": "DESIGN_REVIEW_REQUIRED",
+        "message": "当前设计尚未通过全部分项内容评审；结构锁定不能代替内容质量审核",
+        "nextAction": "到世界构建完成世界、力量、人物与故事四项内容评审并处理返修问题"
+      }
+    ],
+    "requiredChecks": [
+      "deterministic_rules",
+      "canon_consistency",
+      "observed_events",
+      "chapter_length"
+    ],
+    "checkPolicyVersion": "chapter-policy-v2"
+  },
+  "validation": {
+    "testsPassed": 161,
+    "webBuildPassed": true
+  }
+}

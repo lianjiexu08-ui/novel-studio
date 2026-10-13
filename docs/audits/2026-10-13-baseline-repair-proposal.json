@@ -1,0 +1,568 @@
+{
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "expectedRevisions": {
+    "world": 13,
+    "bible": 14,
+    "latestPlan": 12
+  },
+  "scope": "design_proposal_only",
+  "newRulesAreNotAdoptedFacts": true,
+  "evidenceChapters": [
+    3,
+    8,
+    12,
+    29,
+    30,
+    31,
+    32,
+    53,
+    55,
+    56,
+    59,
+    65,
+    66,
+    67,
+    73,
+    77,
+    78,
+    79
+  ],
+  "changes": [
+    {
+      "section": "world",
+      "collection": "axioms",
+      "id": "ax_03",
+      "before": {
+        "content": "三大陆界门非通天之力不可开启。"
+      },
+      "after": {
+        "content": "青玄、赤霄、苍冥是同一天地内被虚海分隔的大陆。太古界门穿越天地界壁，其完整门户非通天之力不可开启；普通跨海飞舟、沿岸定位阵与大陆内部传送不经过太古界门，也不具有穿越界壁的能力。“破界飞舟”之名仅指破开海上风暴与局部空间乱流。"
+      }
+    },
+    {
+      "section": "world",
+      "collection": "locations",
+      "id": "loc_01",
+      "before": {
+        "entryConditions": [
+          "凡俗生灵生于此界",
+          "外域修士需经界门或跨海古阵方可抵达"
+        ]
+      },
+      "after": {
+        "entryConditions": [
+          "本土生灵无需出入境凭证；外来修士通常经虚海航线入港，由沿岸政权验籍征税。",
+          "跨海古阵只作航向定位、接引入港和短程接驳，依附实体飞舟航程，不能省略跨海时间或打开太古界门。"
+        ]
+      }
+    },
+    {
+      "section": "world",
+      "collection": "locations",
+      "id": "loc_02",
+      "before": {
+        "entryConditions": [
+          "肉身需能承受极寒阴罡或具凝元境以上修为",
+          "持有苍冥引渡令"
+        ]
+      },
+      "after": {
+        "entryConditions": [
+          "大陆环境寒冷；凝元境以下需保温舟舱或护身寒符。修为不是政治通行权。",
+          "沿岸官港验引渡令；无令者可由巡界使验明身份后具名担保，担保者承担监护和越界责任。例外仅到指定会合地，不自动授予进入界渊的权利。",
+          "第56章上岸及第59章会面的凭证链仍须返修明确；本条是新规则提案，不是旧正文已发生的担保事实。"
+        ]
+      }
+    },
+    {
+      "section": "world",
+      "collection": "locations",
+      "id": "loc_21",
+      "before": {
+        "entryConditions": [
+          "已知航线由万象破界飞舟通行；风暴与海兽导致航行风险（第31章）。"
+        ]
+      },
+      "after": {
+        "entryConditions": [
+          "同一天地内的虚海航网，不穿越太古界门；普通修士依赖护罩与定位阵飞舟，持钥匙不能免费或瞬移过海。",
+          "青玄云梦天港至赤霄天宝外港通常两昼夜；第30章第17日黄昏登舟，第32章第19日暮色入港。普通客位拟定200枚下品青灵石，货运另计；贵宾信物允许商盟代付记债，不免盘查或债务。",
+          "赤霄极焱天港经绝灵海峡至苍冥葬骨玄冰原外港通常五昼夜；第53章第27日黎明至第56章第32日黄昏。普通客位拟定500枚下品青灵石，含寒符护航；封锁须等候或改道，延误不能按正常航程计。",
+          "苍冥通天渡口至青玄沧溟古港回师特航约六日；第78章第39日傍晚至第79章第45日清晨。此为巡界使组织的征用航次，燃料与运输由巡界使库存和具名商盟供给承担，不是免费常规航线。",
+          "万象商盟管船舶、泊位、货单与运费；大乾、神炎及苍冥沿岸守军各管本方港口，巡界使处理空间污染和紧急引渡。商业信物不能豁免扣船、搜舱或追缴。",
+          "票价、担保例外与征用供给是待核对创作提案；航程与地点有章节锚点。章纲须记录实际付款或担保人，资源消耗与日期须逐章复核。"
+        ]
+      }
+    },
+    {
+      "section": "world",
+      "collection": "factions",
+      "id": "fac_08",
+      "before": {
+        "kind": "other",
+        "goals": [
+          "垄断三大陆跨界飞舟与传送通商网络",
+          "在太清仙宗、大乾天朝与神炎古国三方博弈中保持超然中立谋取暴利",
+          "搜集通界古玉与虚空神晶以求掌控界门商路"
+        ]
+      },
+      "after": {
+        "kind": "merchant",
+        "goals": [
+          "控制三大陆实体飞舟航线、沿岸定位阵与大陆内部接驳，靠票价、押运、仓储和赊账获利；现有商路不能穿越太古界门。",
+          "在太清、大乾与神炎之间谈判通商和查验权；封港、扣押与秘密走私会使商盟内部出现利益分歧，商业中立并非绝对。",
+          "搜集通界古玉与虚空神晶研究尚未开放的界门贸易，此野心不代表已经能够开门通航。"
+        ]
+      }
+    },
+    {
+      "section": "world",
+      "collection": "historicalEvents",
+      "id": "event_05",
+      "before": {
+        "causes": [
+          "极冰大陆与界渊交界处产生万丈虚空裂痕，虚空风暴与极阴寒罡席卷苍冥",
+          "未知破虚境大能暗中破阵尝试撼动界门壁垒遭到法则反噬"
+        ]
+      },
+      "after": {
+        "causes": [
+          "苍冥大陆极冰天国与界渊交界处产生万丈虚空裂痕，虚空风暴与极阴寒罡席卷苍冥",
+          "未知破虚境大能暗中破阵尝试撼动界门壁垒遭到法则反噬"
+        ]
+      }
+    },
+    {
+      "section": "world",
+      "collection": "locations",
+      "id": "loc_22",
+      "added": {
+        "id": "loc_22",
+        "name": "云梦天港",
+        "kind": "other",
+        "parentId": "loc_01",
+        "entryConditions": [
+          "按无尽虚海商路 loc_21 对应航段验籍，支付或记录代付责任；战时封锁另行处理。"
+        ],
+        "status": "proposed"
+      }
+    },
+    {
+      "section": "world",
+      "collection": "locations",
+      "id": "loc_23",
+      "added": {
+        "id": "loc_23",
+        "name": "天宝外港",
+        "kind": "other",
+        "parentId": "loc_03",
+        "entryConditions": [
+          "按无尽虚海商路 loc_21 对应航段验籍，支付或记录代付责任；战时封锁另行处理。"
+        ],
+        "status": "proposed"
+      }
+    },
+    {
+      "section": "world",
+      "collection": "locations",
+      "id": "loc_24",
+      "added": {
+        "id": "loc_24",
+        "name": "极焱天港",
+        "kind": "other",
+        "parentId": "loc_03",
+        "entryConditions": [
+          "按无尽虚海商路 loc_21 对应航段验籍，支付或记录代付责任；战时封锁另行处理。"
+        ],
+        "status": "proposed"
+      }
+    },
+    {
+      "section": "world",
+      "collection": "locations",
+      "id": "loc_25",
+      "added": {
+        "id": "loc_25",
+        "name": "葬骨玄冰原外港",
+        "kind": "other",
+        "parentId": "loc_02",
+        "entryConditions": [
+          "按无尽虚海商路 loc_21 对应航段验籍，支付或记录代付责任；战时封锁另行处理。"
+        ],
+        "status": "proposed"
+      }
+    },
+    {
+      "section": "world",
+      "collection": "locations",
+      "id": "loc_26",
+      "added": {
+        "id": "loc_26",
+        "name": "通天渡口",
+        "kind": "other",
+        "parentId": "loc_02",
+        "entryConditions": [
+          "按无尽虚海商路 loc_21 对应航段验籍，支付或记录代付责任；战时封锁另行处理。"
+        ],
+        "status": "proposed"
+      }
+    },
+    {
+      "section": "world",
+      "collection": "locations",
+      "id": "loc_27",
+      "added": {
+        "id": "loc_27",
+        "name": "沧溟古港",
+        "kind": "other",
+        "parentId": "loc_01",
+        "entryConditions": [
+          "按无尽虚海商路 loc_21 对应航段验籍，支付或记录代付责任；战时封锁另行处理。"
+        ],
+        "status": "proposed"
+      }
+    },
+    {
+      "section": "world",
+      "collection": "tierLadders",
+      "id": "ladder_realm",
+      "before": {
+        "rule": "跨大境界威压绝对克制低阶修士。"
+      },
+      "after": {
+        "rule": "境界表示修士本体常态能力与承载上限，不是无条件的胜负判定。低阶不得靠意志抵消高阶法则；借阵法、法宝或环境只能攻击明确暴露的薄弱环节，须列出外部能量、可作用的最高对象、限制和不可逆代价，且不改变本人境界。终局破虚对主宰的具体条件仍待返修，不能凭本规则自动视为合法。"
+      }
+    },
+    {
+      "section": "world",
+      "collection": "tierLadders",
+      "id": "ladder_technique",
+      "before": {
+        "rule": "高阶功法运转效能彻底压制低阶功法。"
+      },
+      "after": {
+        "rule": "品阶表示功法潜力、复杂度与能量利用上限；实际威力受境界、适配、熟练度与资源限制。高品阶不能跳过允许境界、单次消耗、冷却或反制；低品阶不会仅因对手品阶高就自动失效。"
+      }
+    },
+    {
+      "section": "world",
+      "collection": "tierLadders",
+      "id": "ladder_artifact",
+      "before": {
+        "rule": "高阶器具灵压可直接震碎下阶器具。"
+      },
+      "after": {
+        "rule": "品阶表示充分供能、正确操纵下的器具承载与作用上限。高阶法宝仍需支付代价和满足条件；实际攻击超出承载且反制无效时低阶器具才会损毁，不能隔空无消耗令一切低阶法宝破碎。"
+      }
+    },
+    {
+      "section": "world",
+      "collection": "unresolvedQuestions",
+      "id": "audit-travel-rules",
+      "added": {
+        "id": "audit-travel-rules",
+        "question": "跨海与界门已区分；价格、代付、引渡担保和征用供给是新提案，须核对第30–32、53–59、77–79章和资源账本，不能当作已发生的付款证据。",
+        "blocking": true,
+        "status": "open"
+      }
+    },
+    {
+      "section": "world",
+      "collection": "unresolvedQuestions",
+      "id": "audit-tier-exceptions",
+      "added": {
+        "id": "audit-tier-exceptions",
+        "question": "已去除等级绝对压制，但早期施术及终局跨两境制敌仍须逐章返修；tech_10的最低十年寿元、三十日冷却和神海门槛未放宽。",
+        "blocking": true,
+        "status": "open"
+      }
+    },
+    {
+      "section": "bible",
+      "collection": "relationships",
+      "id": "rel_01",
+      "before": {
+        "value": "同门相携，在宗门倾轧中立下生死互托之盟。",
+        "stages": null
+      },
+      "after": {
+        "value": "苏凌霜调查灵矿异动时给予林辰有限庇护，双方尚在试探。",
+        "stages": [
+          {
+            "sinceChapter": 3,
+            "untilChapter": 7,
+            "value": "调查中的有限庇护与试探，尚非生死盟约。",
+            "cause": "苏追查灵矿异动与魔道暗桩，选择保护被怀疑的同门并继续观察。",
+            "cost": "苏承担偏袒嫌疑；林辰不能推定她已知晓或接受全部逆命秘密。"
+          },
+          {
+            "sinceChapter": 8,
+            "untilChapter": 11,
+            "value": "交换情报后的互惠合作，信任以共同查案为条件。",
+            "cause": "苏告知擂台暗桩风险，林辰选择承担取证与应战风险。",
+            "cost": "双方共享信息但保留认知边界；暴露暗桩将招致戒律堂报复。"
+          },
+          {
+            "sinceChapter": 12,
+            "untilChapter": 28,
+            "value": "公开互相护持、共同承担宗门清算的同盟。",
+            "cause": "苏在大比后当众举证挡住拘押，把私下合作变成公开立场。",
+            "cost": "苏的宗门身份与调查空间受压，林辰的行动会牵连凌云峰。"
+          },
+          {
+            "sinceChapter": 29,
+            "value": "异地协作的同盟：苏留宗门内应，林辰持信物远行。",
+            "cause": "古境危机后分工应对追捕，苏交出商盟信物帮助林辰南渡。",
+            "cost": "分离带来情报延迟和救援限制；信物代付的政治与债务责任须在返修中核实。"
+          }
+        ]
+      }
+    },
+    {
+      "section": "bible",
+      "collection": "relationships",
+      "id": "rel_05",
+      "before": {
+        "value": "初疑后敬，在横渡苍冥界渊中结为守望相助的破界挚友。",
+        "stages": null
+      },
+      "after": {
+        "value": "海峡危机中的首次隔空协作，尚不能视为破界挚友。",
+        "stages": [
+          {
+            "sinceChapter": 55,
+            "untilChapter": 58,
+            "value": "共同阻止界渊灾变的投影协作与条件信任。",
+            "cause": "夜在海峡危机中显化投影，双方交换危险与持印信息。",
+            "cost": "投影不能代替真身长期护航；林辰仍须接受巡界身份与目的核验。"
+          },
+          {
+            "sinceChapter": 59,
+            "untilChapter": 66,
+            "value": "真身会面后的任务同盟，不无条件共享全部秘密。",
+            "cause": "寒霄会面后确定持印者任务，在北境关隘战中相互支援。",
+            "cost": "夜为护送持印者承担巡界责任；林辰受封禁与路线限制。"
+          },
+          {
+            "sinceChapter": 67,
+            "value": "界渊生死协作后的守望同盟，信任由共同选择与损失累积。",
+            "cause": "面对空间异兽及界律反噬的互救使合作不再只基于利益。",
+            "cost": "神念、道基与守界职责受到牵连；同盟不等于认可对方任意开启界门。"
+          }
+        ]
+      }
+    },
+    {
+      "section": "bible",
+      "collection": "volumes",
+      "id": "vol_01",
+      "before": {
+        "endState": "墨幽屠形神俱灭，林辰炼化延寿灵泉突破至神海境初期，青丝化雪但道基无暇，持万象商盟信物登舟南渡赤霄大陆。"
+      },
+      "after": {
+        "endState": "墨幽屠伏诛，林辰付出早衰与道基损伤的代价，脱离青玄追捕，经虚海于第32章抵达赤霄天宝外港；苏凌霜留宗门承担内应风险。"
+      }
+    },
+    {
+      "section": "bible",
+      "collection": "volumes",
+      "id": "vol_02",
+      "before": {
+        "title": "赤霄熔火卷：商争焚魔",
+        "goal": "林辰深入赤霄大陆熔炼赤霄神火髓与地脉纯阳，瓦解焚天魔谷与大乾天朝的跨陆密约，斩灭炎煞尊者并夺得第二柄破虚印记凝聚归一领域。",
+        "climax": "第48-53章，赤霄天门天坑前死斗，林辰硬撼地肺火毒天劫与大乾王器九龙镇岳金印投影，一剑斩灭炎煞尊者魔躯，夺下神火髓与界门残印。",
+        "endState": "炎煞尊者伏诛，大乾南陆暗网被连根拔起，林辰晋升归一境大成，获苍冥巡界使夜凝霜传信，踏上横渡极北苍冥大陆的破界飞舟。"
+      },
+      "after": {
+        "title": "赤霄北航卷：断盟入渊",
+        "goal": "第33–53章切断赤霄火髓走私与大乾暗盟，第54–66章完成北航、引渡核验、与夜凝霜结盟及进入界渊的条件；地域转换须产生资源、通行权与政治后果。",
+        "climax": "第48–53章天坑战解决火髓与暗盟问题；第64–66章北境断链战通过守界规则和盟友协作打通界渊入口，后者承担卷末转折。",
+        "endState": "林辰与夜凝霜越过落魂冰隘，斩断覆天冰渊九链，第66章抵达界渊入口；仅获得探索第三残片的路径，尚未合匙或解决九鼎主线。"
+      }
+    },
+    {
+      "section": "bible",
+      "collection": "volumes",
+      "id": "vol_03",
+      "before": {
+        "goal": "林辰深入苍冥界渊虚谷携手巡界使夜凝霜合璧破虚印记，突破破虚境极巅，回师青玄天武城粉碎九鼎窃命大阵，于极天界门决战斩杀赵玄极并永固界门。"
+      },
+      "after": {
+        "goal": "第67章进入界渊，第73章三残片合匙，第75–76章确认界门与窃命机制，随后回师青玄处理九鼎和封门危机；这是百章阶段故事的收束，不宣称完成百万字全书。"
+      }
+    },
+    {
+      "section": "plan",
+      "collection": "volumes",
+      "id": "vol_01",
+      "before": {
+        "title": "青玄折寿卷：逆命求生",
+        "goal": "林辰打熬肉身打破淬体桎梏，悟透乾坤逆命真解以寿换力，在灵虚古境斩杀血仇墨幽屠并夺得延寿灵泉稳住命格，脱离青玄漩涡南渡。",
+        "climax": "第23-28章，灵虚古境核心祭坛争泉决战，林辰燃烧二十年阳寿化作滔天剑威，正面轰碎墨幽屠幽罗万鬼幡并将其当众诛灭。",
+        "endState": "墨幽屠形神俱灭，林辰炼化延寿灵泉突破至神海境初期，青丝化雪但道基无暇，持万象商盟信物登舟南渡赤霄大陆。"
+      },
+      "after": {
+        "title": "青玄折寿卷：逆命求生",
+        "goal": "林辰打熬肉身打破淬体桎梏，悟透乾坤逆命真解以寿换力，在灵虚古境斩杀血仇墨幽屠并夺得延寿灵泉稳住命格，脱离青玄漩涡南渡。",
+        "climax": "第23-28章，灵虚古境核心祭坛争泉决战，林辰燃烧二十年阳寿化作滔天剑威，正面轰碎墨幽屠幽罗万鬼幡并将其当众诛灭。",
+        "endState": "墨幽屠伏诛，林辰付出早衰与道基损伤的代价，脱离青玄追捕，经虚海于第32章抵达赤霄天宝外港；苏凌霜留宗门承担内应风险。"
+      }
+    },
+    {
+      "section": "plan",
+      "collection": "volumes",
+      "id": "vol_02",
+      "before": {
+        "title": "赤霄熔火卷：商争焚魔",
+        "goal": "林辰深入赤霄大陆熔炼赤霄神火髓与地脉纯阳，瓦解焚天魔谷与大乾天朝的跨陆密约，斩灭炎煞尊者并夺得第二柄破虚印记凝聚归一领域。",
+        "climax": "第48-53章，赤霄天门天坑前死斗，林辰硬撼地肺火毒天劫与大乾王器九龙镇岳金印投影，一剑斩灭炎煞尊者魔躯，夺下神火髓与界门残印。",
+        "endState": "炎煞尊者伏诛，大乾南陆暗网被连根拔起，林辰晋升归一境大成，获苍冥巡界使夜凝霜传信，踏上横渡极北苍冥大陆的破界飞舟。"
+      },
+      "after": {
+        "title": "赤霄北航卷：断盟入渊",
+        "goal": "第33–53章切断赤霄火髓走私与大乾暗盟，第54–66章完成北航、引渡核验、与夜凝霜结盟及进入界渊的条件；地域转换须产生资源、通行权与政治后果。",
+        "climax": "第48–53章天坑战解决火髓与暗盟问题；第64–66章北境断链战通过守界规则和盟友协作打通界渊入口，后者承担卷末转折。",
+        "endState": "林辰与夜凝霜越过落魂冰隘，斩断覆天冰渊九链，第66章抵达界渊入口；仅获得探索第三残片的路径，尚未合匙或解决九鼎主线。"
+      }
+    },
+    {
+      "section": "plan",
+      "collection": "volumes",
+      "id": "vol_03",
+      "before": {
+        "title": "诸天定界卷：天门逆命",
+        "goal": "林辰深入苍冥界渊虚谷携手巡界使夜凝霜合璧破虚印记，突破破虚境极巅，回师青玄天武城粉碎九鼎窃命大阵，于极天界门决战斩杀赵玄极并永固界门。",
+        "climax": "第93-98章，青玄极天界门终局圣战，林辰以乾坤逆命真解勾连天地灵气守恒律，彻底斩碎赵玄极主宰帝魂，合道补天神印抚平界壁裂痕。",
+        "endState": "赵玄极陨落，大乾窃寿皇统崩解，三大陆万民寿元归位，极天界门恢复守恒平衡，林辰白发化青登临逆命道主，超然护持万灵太平。"
+      },
+      "after": {
+        "title": "诸天定界卷：天门逆命",
+        "goal": "第67章进入界渊，第73章三残片合匙，第75–76章确认界门与窃命机制，随后回师青玄处理九鼎和封门危机；这是百章阶段故事的收束，不宣称完成百万字全书。",
+        "climax": "第93-98章，青玄极天界门终局圣战，林辰以乾坤逆命真解勾连天地灵气守恒律，彻底斩碎赵玄极主宰帝魂，合道补天神印抚平界壁裂痕。",
+        "endState": "赵玄极陨落，大乾窃寿皇统崩解，三大陆万民寿元归位，极天界门恢复守恒平衡，林辰白发化青登临逆命道主，超然护持万灵太平。"
+      }
+    },
+    {
+      "section": "plan",
+      "collection": "volumes",
+      "id": "vol_02",
+      "before": {
+        "carryOver": "苍冥界渊虚谷空间壁垒溃乱加剧，大乾皇都天武城九鼎皇天大阵全功率运转抽割生灵寿元，三柄破虚匙合璧迫在眉睫。"
+      },
+      "after": {
+        "carryOver": "已进入苍冥并获得界渊入口条件；下一卷追寻第三残片和窃命真相。北航费用、担保责任与死渊污染后果仍须兑现。"
+      }
+    },
+    {
+      "section": "plan",
+      "collection": "milestones",
+      "id": "ms_vol2_boundary",
+      "added": {
+        "id": "ms_vol2_boundary",
+        "title": "断链越隘，取得界渊入口",
+        "kind": "climax",
+        "startChapter": 64,
+        "endChapter": 66,
+        "setup": [
+          "赤霄天坑战后取得第二残印并北航",
+          "与夜凝霜会面、共同确定进入界渊的目的和限制",
+          "落魂冰隘及覆天冰渊九链拦住通路"
+        ],
+        "cost": "关隘战耗损真元与神念，双方必须协同承担空间反噬；不以再燃一次寿元代替战术。",
+        "outcome": "打开界渊探索入口，第二卷结束；第三残片仍未取得，完整破虚匙尚未合成。"
+      }
+    },
+    {
+      "section": "plan",
+      "collection": "dependencies",
+      "id": "dep_north_passage",
+      "added": {
+        "id": "dep_north_passage",
+        "targetId": "ms_vol2_boundary",
+        "sourceId": "ms_vol2_climax",
+        "requiredness": "must",
+        "description": "赤霄夺印、北航与结盟先于北境断链；不能从天坑直接跳到界渊合匙。"
+      }
+    },
+    {
+      "section": "plan",
+      "collection": "dependencies",
+      "id": "dep_05",
+      "before": {
+        "sourceId": "ms_vol2_climax",
+        "description": "林辰必须先修成归一境并手持两枚界门残印北渡，才能在界渊深处与苍冥巡界使夜凝霜达成合璧共鸣。"
+      },
+      "after": {
+        "sourceId": "ms_vol2_boundary",
+        "description": "必须先完成北境断链和界渊入口条件，才能在第三卷深入界渊取得第三残片、合成完整钥匙。"
+      }
+    },
+    {
+      "section": "bible",
+      "collection": "chapterPlans",
+      "id": "chapter-plan-30",
+      "before": {
+        "locationIds": [
+          "loc_01"
+        ]
+      },
+      "after": {
+        "locationIds": [
+          "loc_22"
+        ]
+      }
+    },
+    {
+      "section": "bible",
+      "collection": "chapterPlans",
+      "id": "chapter-plan-31",
+      "before": {
+        "locationIds": [
+          "loc_21"
+        ]
+      },
+      "after": {
+        "locationIds": [
+          "loc_21"
+        ]
+      }
+    },
+    {
+      "section": "bible",
+      "collection": "chapterPlans",
+      "id": "chapter-plan-32",
+      "before": {
+        "locationIds": [
+          "loc_19"
+        ]
+      },
+      "after": {
+        "locationIds": [
+          "loc_23"
+        ]
+      }
+    },
+    {
+      "section": "bible",
+      "collection": "unresolvedQuestions",
+      "id": "audit-relationship-stages",
+      "added": {
+        "id": "audit-relationship-stages",
+        "question": "rel_01与rel_05已拆分阶段，但仍须对照逐章事件验证；另四条关系、配角独立行动和秘密认知边界尚待补全。",
+        "blocking": true,
+        "status": "open"
+      }
+    },
+    {
+      "section": "plan",
+      "collection": "openQuestions",
+      "id": "baseline-content-review",
+      "before": {
+        "question": "当前仅统一三卷基线和部分引用；功法、寿元账本、法宝状态、结尾代价与正文时间线未通过内容审核。"
+      },
+      "after": {
+        "question": "三卷1–32、33–66、67–100基线已同步；卷二覆盖北航和入渊前置。关系阶段、航路与等级解释已补充，但寿元、法宝、终局代价、配角认知和正文返修未通过，不能批准写作。"
+      }
+    }
+  ]
+}
