@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { JsonDesignPlanner, PlanningParseError } from '../src/index.ts';
+import { prepareDesignReviewEvidence } from '../src/design-review-evidence.ts';
 import { DesignReviewCitationError, designReviewInput, validateDesignReview } from '../../../novel-service-core/src/design-review.ts';
 import { ChapterWorkflow, InMemoryWorkRepository } from '../../application/src/index.ts';
 import { createReadyWork, fixtureDesignReview } from '../../application/test/fixtures.ts';
@@ -9,36 +10,44 @@ async function input() {
   const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), { generateChapter: () => ({ content: '', proposedEvents: [] }) });
   return designReviewInput(await createReadyWork(workflow), 'power');
 }
+function anchored(request: Awaited<ReturnType<typeof input>>) {
+  const sources = prepareDesignReviewEvidence(request).sources;
+  const result = fixtureDesignReview(request);
+  return { ...result, checks: result.checks.map((check) => ({ ...check,
+    evidence: check.evidence.map((item) => ({ fragmentId: sources.find((s) => s.id === item.sourceId)!.fragments[0].id })),
+  })) };
+}
 
-test('content reviewer uses the reviewing role and one area with exact sources', async () => {
+test('content reviewer selects exact request-bound fragments using the reviewing role', async () => {
   const request = await input();
+  const response = anchored(request);
   const planner = new JsonDesignPlanner({ complete: async (call) => {
     assert.equal(call.role, 'reviewing');
     assert.equal(call.maxOutputTokens, 8000);
     assert.match(call.system, /100章可以是百万字项目的阶段验收/);
     const body = JSON.parse(call.user);
     assert.equal(body.area, 'power');
-    assert.deepEqual(body.sources, request.sources);
+    assert.deepEqual(body.sources, prepareDesignReviewEvidence(request).sources);
     assert.deepEqual(body.rubric, request.rubric);
-    return JSON.stringify(fixtureDesignReview(request));
+    return JSON.stringify(response);
   } });
-  assert.deepEqual(await planner.reviewDesignContent(request), fixtureDesignReview(request));
+  const result = await planner.reviewDesignContent(request);
+  assert.deepEqual(result, prepareDesignReviewEvidence(request).resolve(response));
+  validateDesignReview(request, result);
 });
 
-test('fabricated citations receive one repair attempt then fail closed', async () => {
+test('invented anchors receive one repair attempt then fail closed', async () => {
   const request = await input();
   let calls = 0;
-  const result = fixtureDesignReview(request);
-  result.checks[0].evidence[0].quote = '源材料里没有的引文';
+  const result = anchored(request);
+  result.checks[0].evidence[0].fragmentId = 'invented';
   const planner = new JsonDesignPlanner({ complete: async (call) => {
     calls += 1;
     if (calls === 2) {
       const repair = JSON.parse(call.user);
-      assert.match(repair.problems, /引用不在原文/);
-      assert.equal(repair.citationProblem.rejectedQuote, '源材料里没有的引文');
-      assert.equal(repair.citationProblem.criterion, result.checks[0].criterion);
-      assert.equal(repair.citationProblem.evidenceIndex, 0);
-      assert.equal(repair.citationProblem.sourceText, request.sources.find((source) => source.id === result.checks[0].evidence[0].sourceId)!.text);
+      assert.match(repair.problems, /不属于本次材料/);
+      assert.match(repair.problems, /invented/);
+      assert.match(repair.instruction, /只返回 fragmentId/);
     }
     return JSON.stringify(result);
   } });
@@ -46,52 +55,76 @@ test('fabricated citations receive one repair attempt then fail closed', async (
   assert.equal(calls, 2);
 });
 
-test('citation repair can replace a paraphrase with a verified continuous source quote', async () => {
+test('one repair receives every invalid anchor and can explicitly select current evidence', async () => {
   const request = await input();
-  const expected = fixtureDesignReview(request);
+  const expected = anchored(request);
   const invalid = structuredClone(expected);
-  invalid.checks[0].evidence[0].quote = '把原文概括成另一句话';
+  invalid.checks[0].evidence[0].fragmentId = 'invented_a';
+  invalid.checks[1].evidence[0].fragmentId = 'invented_b';
   let calls = 0;
   const planner = new JsonDesignPlanner({ complete: async (call) => {
     calls += 1;
     if (calls === 1) return JSON.stringify(invalid);
     const repair = JSON.parse(call.user);
     assert.equal(call.role, 'reviewing');
-    assert.match(repair.instruction, /重新核对全部引文/);
-    assert.ok(repair.citationProblem.sourceText.includes(expected.checks[0].evidence[0].quote));
-    assert.deepEqual(repair.originalRequest.sources, request.sources);
+    assert.match(repair.problems, /invented_a/);
+    assert.match(repair.problems, /invented_b/);
+    assert.deepEqual(repair.originalRequest.sources, prepareDesignReviewEvidence(request).sources);
     return JSON.stringify(expected);
   } });
-  assert.deepEqual(await planner.reviewDesignContent(request), expected);
+  assert.deepEqual(await planner.reviewDesignContent(request), prepareDesignReviewEvidence(request).resolve(expected));
   assert.equal(calls, 2);
+  assert.equal(invalid.checks[0].evidence[0].fragmentId, 'invented_a');
 });
 
-test('one repair receives every invalid citation across criteria and exact source matches', async () => {
+test('anchors bind content, source identity and version, including when callers reuse a hash', async () => {
   const request = await input();
-  const expected = fixtureDesignReview(request);
-  const invalid = structuredClone(expected);
-  invalid.checks[0].evidence[0].sourceId = 'invented/chapter-object-id';
-  invalid.checks[1].evidence[0].quote = '这是不存在于任何来源的概括而非引文';
-  let calls = 0;
-  const planner = new JsonDesignPlanner({ complete: async (call) => {
-    calls += 1;
-    if (calls === 1) return JSON.stringify(invalid);
-    const repair = JSON.parse(call.user);
-    assert.equal(repair.citationProblems.length, 2);
-    assert.equal(repair.citationProblems[0].criterion, expected.checks[0].criterion);
-    assert.equal(repair.citationProblems[0].sourceText, undefined);
-    assert.ok(repair.citationProblems[0].matchingSourceIds.includes(expected.checks[0].evidence[0].sourceId));
-    assert.equal(repair.citationProblems[1].criterion, expected.checks[1].criterion);
-    assert.deepEqual(repair.citationProblems[1].matchingSourceIds, []);
-    assert.deepEqual(repair.citationProblem, repair.citationProblems[0]);
-    return JSON.stringify(expected);
-  } });
-  assert.deepEqual(await planner.reviewDesignContent(request), expected);
-  assert.equal(calls, 2);
-  assert.equal(invalid.checks[0].evidence[0].sourceId, 'invented/chapter-object-id');
+  const response = anchored(request);
+  for (const change of [
+    (next: typeof request) => { next.scope.storyBibleRevision += 1; },
+    (next: typeof request) => { next.inputHash = 'different'; },
+    (next: typeof request) => { next.sources[0].text += '新设定'; },
+    (next: typeof request) => { next.sources[0].id = 'different/source'; },
+  ]) {
+    const next = structuredClone(request);
+    change(next);
+    assert.throws(() => prepareDesignReviewEvidence(next).resolve(response), /不属于本次材料/);
+  }
 });
 
-test('matching source suggestions never accept a wrong source or ambiguous quotation', async () => {
+test('fragments preserve all text including escapes, long lines, Unicode and trailing delimiters', async () => {
+  const request = await input();
+  const original = '第一行："原句\\n不是换行"\n' + '😀法则'.repeat(1100) + '\n}\n';
+  request.sources[0].text = original;
+  const prepared = prepareDesignReviewEvidence(request);
+  assert.equal(prepared.sources[0].fragments.map((p) => p.text).join(''), original);
+  assert.ok(prepared.sources[0].fragments.every((p) => p.text.length <= 3000 && p.text.isWellFormed()));
+  const response = anchored(request);
+  response.checks[0].evidence = prepared.sources[0].fragments.map((p) => ({ fragmentId: p.id }));
+  // Later mutation cannot change the material against which this request is resolved.
+  request.sources[0].text = '已经被修改的材料';
+  const result = prepared.resolve(response);
+  assert.equal(result.checks[0].evidence.map((p) => p.quote).join(''), original);
+});
+
+test('valid IDs cannot bypass missing criteria, evidence, advice or inject alternate quotes', async () => {
+  const request = await input();
+  const prepared = prepareDesignReviewEvidence(request);
+  const good = anchored(request);
+  const missingCriterion = structuredClone(good); missingCriterion.checks.pop();
+  assert.throws(() => prepared.resolve(missingCriterion), /全部标准/);
+  const missingEvidence = structuredClone(good); missingEvidence.checks[0].evidence = [];
+  assert.throws(() => prepared.resolve(missingEvidence), /原文证据/);
+  const missingAdvice = structuredClone(good); missingAdvice.checks[0].verdict = 'revise'; missingAdvice.checks[0].revisionAdvice = '';
+  assert.throws(() => prepared.resolve(missingAdvice), /返修要求/);
+  const injected = structuredClone(good);
+  Object.assign(injected.checks[0].evidence[0], { sourceId: 'other', quote: '伪造的引文' });
+  assert.throws(() => prepared.resolve(injected));
+  request.sources.push(request.sources[0]);
+  assert.throws(() => prepareDesignReviewEvidence(request), /来源 ID 重复/);
+});
+
+test('stored quotation validation still rejects wrong sources and ambiguous suggestions', async () => {
   const request = await input();
   request.sources.push({ id: 'shared/a', text: '共同的连续引文' }, { id: 'shared/b', text: '共同的连续引文' });
   const result = fixtureDesignReview(request);

@@ -10,6 +10,12 @@ export const designReviewResultSchema = z.object({
     revisionAdvice: z.string().max(6000),
   })).min(1).max(10),
 });
+/** Model transport only. Stored reports continue to contain exact source quotations. */
+export const anchoredDesignReviewResultSchema = designReviewResultSchema.extend({
+  checks: z.array(designReviewResultSchema.shape.checks.element.extend({
+    evidence: z.array(z.object({ fragmentId: z.string().min(1) }).strict()).max(20),
+  })).min(1).max(10),
+});
 export const designContentReviewSchema = designReviewResultSchema.extend({
   id: z.string(), area: designReviewAreaSchema, inputHash: z.string().length(64),
   scope: z.object({ worldPackRevision: z.number().int(), storyBibleRevision: z.number().int(), planRevisionId: z.string(), planRevision: z.number().int() }),
