@@ -1,0 +1,93 @@
+{
+  "status": "schema_and_protected_fields_verified",
+  "candidateSha256": "6f19b1689191e0f5893eeec4165343ee66bfe36a56283bbb05d6898761ae3e9a",
+  "baseVersions": [
+    21,
+    46,
+    46
+  ],
+  "worldStructureReady": true,
+  "storyReferencesReady": true,
+  "noUnknownFieldsStripped": true,
+  "chapterCount": 50,
+  "macroChapterCount": 100,
+  "volumeCount": 3,
+  "existingBlockersUnchanged": true,
+  "formalAcceptance": false,
+  "changes": 23,
+  "saveAttempt": {
+    "status": "failed",
+    "baseVersions": [
+      21,
+      46,
+      46
+    ],
+    "steps": [
+      {
+        "kind": "world",
+        "revision": 22
+      },
+      {
+        "kind": "bible",
+        "revision": 47
+      },
+      {
+        "kind": "plan",
+        "revision": 47,
+        "id": "plan_670916c91b384961925d0366418694de",
+        "status": "proposed"
+      }
+    ],
+    "startedAt": "2026-10-13T23:08:44.496Z",
+    "error": "Expected values to be strictly deep-equal:\n\n279 !== 277\n"
+  },
+  "verifiedSave": {
+    "status": "saved_pending_review",
+    "versions": [
+      22,
+      47,
+      47
+    ],
+    "activePlanRevision": 10,
+    "latestPlanId": "plan_670916c91b384961925d0366418694de",
+    "ready": false,
+    "liveReviewRuns": 0,
+    "constraintRevision": {
+      "before": 277,
+      "after": 279,
+      "explanation": "World and Bible saves each increment constraint revision as specified in ChapterWorkflow; initial unchanged assertion was incorrect. No duplicate saves were attempted."
+    },
+    "finishedAt": "2026-10-13T23:09:34.681Z"
+  },
+  "history": {
+    "ChapterVersion": {
+      "before": 101,
+      "after": 101,
+      "existingRowsUnchanged": true
+    },
+    "StoryEvent": {
+      "before": 383,
+      "after": 383,
+      "existingRowsUnchanged": true
+    },
+    "ManuscriptRevision": {
+      "before": 1,
+      "after": 1,
+      "existingRowsUnchanged": true
+    },
+    "PlanRevision": {
+      "before": 46,
+      "after": 47,
+      "existingRowsUnchanged": true
+    }
+  },
+  "ui": {
+    "port": 5180,
+    "observedWorldRevision": 22,
+    "observedBibleRevision": 47,
+    "selectedPlanRevision": 47,
+    "planStatus": "proposed",
+    "productionOpen": false,
+    "allFourAreasRequireReassessment": true
+  }
+}
