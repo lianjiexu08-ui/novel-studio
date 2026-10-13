@@ -1,0 +1,109 @@
+{
+  "ChapterVersion": {
+    "before": 101,
+    "after": 101,
+    "existingRowsUnchanged": true,
+    "baselineSha256": "b68c64e19280316b1bef401a68314466e4bec73f81bf96084986915f70c98648"
+  },
+  "StoryEvent": {
+    "before": 383,
+    "after": 383,
+    "existingRowsUnchanged": true,
+    "baselineSha256": "964efd68a494ce1623e9632bfb597c77603c97f69e744a031bf485febfe26a62"
+  },
+  "ManuscriptRevision": {
+    "before": 1,
+    "after": 1,
+    "existingRowsUnchanged": true,
+    "baselineSha256": "9137e9436ee47d2132798f05a2e11bdcc0f403f397e0a0c0b3880d1ef0d559d9"
+  },
+  "PlanRevision": {
+    "before": 44,
+    "after": 45,
+    "existingRowsUnchanged": true,
+    "baselineSha256": "9594fb6c90db13e051e341ca503916be4351415983b7ba5d48675dce15fd1771"
+  },
+  "versions": [
+    20,
+    45,
+    45
+  ],
+  "activePlanRevision": 10,
+  "latestPlanId": "plan_d3482ba4215046e7b1246c9d978d455f",
+  "saved": {
+    "status": "saved_pending_review",
+    "baseVersions": {
+      "world": 19,
+      "bible": 44,
+      "plan": 44
+    },
+    "steps": [
+      {
+        "kind": "world",
+        "revision": 20
+      },
+      {
+        "kind": "bible",
+        "revision": 45
+      },
+      {
+        "kind": "plan",
+        "id": "plan_d3482ba4215046e7b1246c9d978d455f",
+        "revision": 45,
+        "status": "proposed"
+      }
+    ],
+    "startedAt": "2026-10-13T21:54:55.625Z",
+    "versions": [
+      20,
+      45,
+      45
+    ],
+    "activePlanRevision": 10,
+    "ready": false,
+    "finishedAt": "2026-10-13T21:55:07.023Z"
+  },
+  "overview": {
+    "ready": false,
+    "inputHash": "74ee94c74eeb2a148f060a3d264226bf8d7f257bfdbd9a5fc1a9608c219691ef",
+    "selectedPlan": {
+      "id": "plan_d3482ba4215046e7b1246c9d978d455f",
+      "revision": 45,
+      "status": "proposed"
+    },
+    "areaStatuses": [
+      {
+        "area": "world",
+        "status": "outdated"
+      },
+      {
+        "area": "power",
+        "status": "outdated"
+      },
+      {
+        "area": "characters",
+        "status": "outdated"
+      },
+      {
+        "area": "story",
+        "status": "outdated"
+      }
+    ]
+  },
+  "codeCommit": "764df35",
+  "fullTests": {
+    "passed": 188,
+    "failed": 0
+  },
+  "fullCurrentVersionReviewPassed": false,
+  "ui": {
+    "origin": "http://127.0.0.1:5180",
+    "worldRevision": 20,
+    "bibleRevision": 45,
+    "selectedReviewPlanRevision": 45,
+    "fourAreasOutdated": true,
+    "productionBlocked": true,
+    "detailedOutlines": 50,
+    "planApprovalDisabled": true
+  }
+}
