@@ -111,3 +111,34 @@ test('review does not silently truncate an oversized outline or grant authority 
   assert.throws(() => designReviewInput(work, 'story'), /超出单次评审容量/);
   assert.equal(work.designContentReviews.size, 4);
 });
+
+test('a proposal can be reviewed before approval without approving it or authorizing the active plan', async () => {
+  const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), writer, reviewer);
+  const work = await createReadyWork(workflow);
+  const previousId = work.activePlanId!;
+  const previous = work.plans.get(previousId)!;
+  const proposal = await workflow.savePlan(work.id, { plan: { ...previous.plan, theme: '新的三卷提案' }, baseRevisionId: previousId });
+  for (const area of designReviewAreas) {
+    const report = await workflow.reviewDesignContent(work.id, area);
+    assert.equal(report.scope.planRevisionId, proposal.id, 'the default review target is the latest proposal');
+  }
+  assert.equal(proposal.status, 'proposed');
+  assert.equal(work.activePlanId, previousId);
+  assert.equal(designReviewOverview(work).ready, false, 'a proposal report cannot approve the active plan');
+  assert.equal(designReviewOverview(work, proposal.id).ready, true);
+  await workflow.reviewPlan(work.id, proposal.id);
+  await workflow.approvePlan(work.id, proposal.id);
+  assert.equal(designReviewOverview(work).ready, true, 'approval of the exact reviewed proposal can use its content reviews');
+  assert.throws(() => designReviewInput(work, 'world', previousId), /已被替代/);
+});
+
+test('a first plan proposal needs no approved predecessor to receive content review', async () => {
+  const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), writer, reviewer);
+  const work = await createReadyWork(workflow);
+  const proposal = work.plans.get(work.activePlanId!)!;
+  proposal.status = 'proposed'; work.activePlanId = undefined;
+  const report = await workflow.reviewDesignContent(work.id, 'world');
+  assert.equal(report.scope.planRevisionId, proposal.id);
+  assert.equal(work.activePlanId, undefined);
+  assert.equal(designReviewOverview(work).ready, false);
+});

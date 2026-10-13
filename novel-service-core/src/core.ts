@@ -1392,6 +1392,10 @@ export function relationshipAt(work: Work, relationshipId: string, chapterNumber
   if (!change) {
     if (base.sinceChapter !== undefined && base.sinceChapter > chapterNumber) return undefined;
     if (!setting && seed?.untilChapter !== undefined && seed.untilChapter < chapterNumber) return undefined;
+    if (!setting && seed?.stages?.length) {
+      const stage = seed.stages.find((item) => item.sinceChapter <= chapterNumber && (item.untilChapter === undefined || item.untilChapter >= chapterNumber));
+      return stage ? { ...base, value: stage.value, sinceChapter: stage.sinceChapter } : undefined;
+    }
     return { ...base };
   }
   return { ...base, value: typeof change.value === 'string' ? change.value : JSON.stringify(change.value), sourceEventId: change.id, sinceChapter: change.chapterNumber };

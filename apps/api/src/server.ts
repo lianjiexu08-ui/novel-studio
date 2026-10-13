@@ -535,13 +535,17 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     const { workId } = workParamSchema.parse(request.params);
     const work = await repository.get(workId);
     if (!work) throw new NotFoundError(`unknown work ${workId}`);
-    return designReviewOverview(work);
+    const { planId } = z.object({ planId: z.string().min(1).optional() }).parse(request.query);
+    const plans = [...work.plans.values()].filter((plan) => plan.status !== 'superseded').sort((a, b) => b.revision - a.revision);
+    const selected = planId ? plans.find((plan) => plan.id === planId) : plans[0];
+    if (planId && !selected) throw new NotFoundError(`unknown plan ${planId}`);
+    return { ...designReviewOverview(work, selected?.id), selectedPlan: selected ? { id: selected.id, revision: selected.revision, status: selected.status } : undefined, plans: plans.map((plan) => ({ id: plan.id, revision: plan.revision, status: plan.status })) };
   });
 
   app.post('/works/:workId/design/content-reviews', async (request) => {
     const { workId } = workParamSchema.parse(request.params);
-    const { area } = z.object({ area: designReviewAreaSchema }).strict().parse(request.body);
-    return { report: await workflow.reviewDesignContent(workId, area) };
+    const { area, planId } = z.object({ area: designReviewAreaSchema, planId: z.string().min(1).optional() }).strict().parse(request.body);
+    return { report: await workflow.reviewDesignContent(workId, area, planId) };
   });
 
   app.get('/works/:workId/quality-audit', async (request) => {

@@ -57,9 +57,10 @@ export class DesignReviewError extends Error {}
 
 /** Status is excluded only for the plan, whose content and id are immutable.
  * Locking a world/bible advances its revision and intentionally requires re-review. */
-export function designReviewHash(work: Work): string | undefined {
-  const plan = work.activePlanId ? work.plans.get(work.activePlanId) : undefined;
-  if (!work.worldPack || !work.storyBible || !plan || plan.status !== 'approved') return undefined;
+export function designReviewHash(work: Work, planId?: string): string | undefined {
+  const selectedId = planId ?? work.activePlanId;
+  const plan = selectedId ? work.plans.get(selectedId) : undefined;
+  if (!work.worldPack || !work.storyBible || !plan || plan.status === 'superseded' || (planId === undefined && plan.status !== 'approved')) return undefined;
   return createHash('sha256').update(JSON.stringify({
     rubricVersion: 1, title: work.title, covenant: work.covenant,
     world: work.worldPack, bible: work.storyBible, planId: plan.id, plan: plan.plan,
@@ -70,12 +71,12 @@ export function designReviewHash(work: Work): string | undefined {
   })).digest('hex');
 }
 
-export function designReviewInput(work: Work, area: DesignReviewArea): DesignReviewInput {
-  const inputHash = designReviewHash(work);
-  if (!inputHash) throw new DesignReviewError('先准备世界包、故事圣经并批准全书计划，再进行分项内容评审');
+export function designReviewInput(work: Work, area: DesignReviewArea, planId?: string): DesignReviewInput {
+  const inputHash = designReviewHash(work, planId);
+  if (!inputHash) throw new DesignReviewError('先准备世界包、故事圣经及待评审计划；已被替代的计划不能作为当前评审对象');
   const world = work.worldPack!;
   const bible = work.storyBible!;
-  const plan = work.plans.get(work.activePlanId!)!;
+  const plan = work.plans.get(planId ?? work.activePlanId!)!;
   const sources: DesignReviewSource[] = [];
   const add = (id: string, value: unknown) => { if (value !== undefined) sources.push({ id, text: JSON.stringify(value, null, 2) }); };
   const group = (prefix: string, items: Array<{ id: string }> = []) => items.forEach((item) => add(`${prefix}/${item.id}`, item));
@@ -120,7 +121,7 @@ export function validateDesignReview(input: DesignReviewInput, result: DesignRev
 }
 
 export function recordDesignReview(work: Work, input: DesignReviewInput, result: DesignReviewResult): DesignContentReview {
-  if (designReviewHash(work) !== input.inputHash) throw new DesignReviewError('评审期间设计或计划已变化，请针对当前版本重新评审');
+  if (designReviewHash(work, input.scope.planRevisionId) !== input.inputHash) throw new DesignReviewError('评审期间设计或计划已变化，请针对当前版本重新评审');
   validateDesignReview(input, result);
   const record: DesignContentReview = structuredClone({ ...result, id: `design_review_${randomUUID()}`, area: input.area, inputHash: input.inputHash, scope: input.scope, sources: input.sources,
     status: result.checks.some((check) => check.verdict === 'revise') ? 'needs_revision' : result.checks.some((check) => check.verdict === 'insufficient') ? 'inconclusive' : 'passed', createdAt: new Date().toISOString() });
@@ -130,8 +131,8 @@ export function recordDesignReview(work: Work, input: DesignReviewInput, result:
   return record;
 }
 
-export function designReviewOverview(work: Work) {
-  const hash = designReviewHash(work);
+export function designReviewOverview(work: Work, planId?: string) {
+  const hash = designReviewHash(work, planId);
   const reports = [...work.designContentReviews.values()];
   const areas = designReviewAreas.map((area) => {
     const current = reports.filter((report) => report.area === area && report.inputHash === hash).at(-1);

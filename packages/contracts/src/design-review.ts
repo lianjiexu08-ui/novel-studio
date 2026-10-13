@@ -16,7 +16,9 @@ export const designContentReviewSchema = designReviewResultSchema.extend({
   status: z.enum(['passed', 'needs_revision', 'inconclusive']),
   sources: z.array(z.object({ id: z.string(), text: z.string() })), createdAt: z.string().datetime(),
 });
+const reviewPlanSchema = z.object({ id: z.string(), revision: z.number().int(), status: z.enum(['proposed', 'reviewed', 'approved', 'superseded']) });
 export const designReviewOverviewSchema = z.object({
+  selectedPlan: reviewPlanSchema.optional(), plans: z.array(reviewPlanSchema).optional(),
   ready: z.boolean(), inputHash: z.string().optional(),
   areas: z.array(z.object({ area: designReviewAreaSchema, status: z.enum(['missing', 'outdated', 'passed', 'needs_revision', 'inconclusive']), reportId: z.string().optional() })),
   reports: z.array(designContentReviewSchema),

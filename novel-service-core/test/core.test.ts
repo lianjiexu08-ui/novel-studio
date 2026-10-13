@@ -281,6 +281,18 @@ test('story bible relationships are included in chapter snapshots', () => {
   assert.equal(relationshipAt(work, seed.id, 3)?.sinceChapter, 3);
   work.events.get('actual-alliance')!.active = false;
   assert.equal(relationshipAt(work, seed.id, 3), undefined, 'superseded evidence must not establish an alliance');
+  seed.sinceChapter = 3;
+  seed.stages = [
+    { sinceChapter: 3, untilChapter: 7, value: '调查中的有限庇护', cause: '共同查明暗桩', cost: '承担包庇嫌疑' },
+    { sinceChapter: 8, untilChapter: 70, value: '互惠盟约', cause: '交换情报', cost: '共同承担清算' },
+  ];
+  assert.equal(relationshipAt(work, seed.id, 3)?.value, '调查中的有限庇护');
+  assert.equal(relationshipAt(work, seed.id, 7)?.value, '调查中的有限庇护');
+  assert.equal(relationshipAt(work, seed.id, 8)?.value, '互惠盟约');
+  assert.equal(relationshipAt(work, seed.id, 8)?.sinceChapter, 8);
+  assert.equal(relationshipAt(work, seed.id, 71), undefined);
+  work.events.get('actual-alliance')!.active = true;
+  assert.equal(relationshipAt(work, seed.id, 8)?.value, '提前结盟', 'later planned stages must never overwrite adopted events');
   const manual = service.addRelationship(work.id, { fromCharacterId: 'hero', toCharacterId: 'rival', kind: 'trust', value: '同盟', locked: false, sinceChapter: 10 });
   assert.equal(relationshipAt(work, manual.id, 9), undefined);
   assert.equal(relationshipAt(work, manual.id, 10)?.value, '同盟');

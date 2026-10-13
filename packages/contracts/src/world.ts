@@ -47,6 +47,7 @@ export const storyCharacterSeedSchema = z.object({
   id: z.string().min(1), name: z.string().trim().min(1), role: z.enum(['protagonist', 'major', 'supporting', 'stage']), goal: z.string(), identity: z.string(), locationId: z.string().min(1).optional(), factionId: z.string().min(1).optional(), startingRealmId: z.string().min(1).optional(),
 });
 export const storyRelationshipSeedSchema = z.object({
+  stages: z.array(z.object({ sinceChapter: z.number().int().positive(), untilChapter: z.number().int().positive().optional(), value: z.string().trim().min(1), cause: z.string().trim().min(1), cost: z.string().trim().min(1) })).optional(),
   id: z.string().min(1), fromCharacterId: z.string().min(1), toCharacterId: z.string().min(1), kind: z.enum(['kinship', 'social', 'trust', 'emotion', 'allegiance', 'private_intent', 'belief']), value: z.string(), locked: z.boolean(), lockPolicy: z.enum(['document_revision_locked', 'baseline_locked', 'event_change_forbidden', 'evolvable']).optional(), sinceChapter: z.number().int().positive().optional(), untilChapter: z.number().int().positive().optional(),
 });
 export const storySecretSeedSchema = z.object({

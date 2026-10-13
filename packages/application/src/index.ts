@@ -540,7 +540,7 @@ export class ChapterWorkflow {
 
   private readonly contentReviewsInFlight = new Set<string>();
 
-  async reviewDesignContent(workId: string, area: DesignReviewArea): Promise<DesignContentReview> {
+  async reviewDesignContent(workId: string, area: DesignReviewArea, planId?: string): Promise<DesignContentReview> {
     const reviewer = this.designProvider;
     if (!reviewer?.reviewDesignContent) throw new DesignReviewError('尚未配置内容评审模型，请在系统设置配置规划模型');
     const key = `${workId}:${area}`;
@@ -548,7 +548,7 @@ export class ChapterWorkflow {
     this.contentReviewsInFlight.add(key);
     try {
       const work = await this.snapshot(workId);
-      const input = designReviewInput(work, area);
+      const input = designReviewInput(work, area, planId ?? latestPlan(work)?.id);
       // No database transaction is held while the model works. The commit rechecks the fingerprint.
       const result = await reviewer.reviewDesignContent(structuredClone(input));
       return await this.repository.transaction(workId, ({ work: current }) => recordDesignReview(current, input, result));

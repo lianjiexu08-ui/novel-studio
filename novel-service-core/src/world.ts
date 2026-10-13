@@ -166,6 +166,8 @@ export interface StoryRelationshipSeed {
   lockPolicy?: 'document_revision_locked' | 'baseline_locked' | 'event_change_forbidden' | 'evolvable';
   sinceChapter?: number;
   untilChapter?: number;
+  /** Planned progression, not adopted facts. Events remain authoritative. */
+  stages?: Array<{ sinceChapter: number; untilChapter?: number; value: string; cause: string; cost: string }>;
 }
 
 export interface StorySecretSeed {
@@ -460,6 +462,13 @@ export function validateStoryBible(bible: StoryBible, worldPack: WorldPack): Gat
     if (!characterIds.has(relationship.fromCharacterId) || !characterIds.has(relationship.toCharacterId)) errors.push(`relationship ${relationship.id} references unknown character`);
     if (relationship.fromCharacterId === relationship.toCharacterId) errors.push(`relationship ${relationship.id} cannot connect a character to itself`);
     if (relationship.sinceChapter !== undefined && relationship.untilChapter !== undefined && relationship.untilChapter < relationship.sinceChapter) errors.push(`relationship ${relationship.id} has an invalid chapter interval`);
+    const stages = [...(relationship.stages ?? [])].sort((a, b) => a.sinceChapter - b.sinceChapter);
+    for (const [index, stage] of stages.entries()) {
+      if (!Number.isInteger(stage.sinceChapter) || stage.sinceChapter < 1 || (stage.untilChapter !== undefined && (!Number.isInteger(stage.untilChapter) || stage.untilChapter < stage.sinceChapter))) errors.push(`relationship ${relationship.id} stage has an invalid chapter interval`);
+      if (stage.sinceChapter < (relationship.sinceChapter ?? 1) || (relationship.untilChapter !== undefined && (stage.untilChapter ?? Infinity) > relationship.untilChapter)) errors.push(`relationship ${relationship.id} stage exceeds its relationship interval`);
+      if (index > 0 && stage.sinceChapter <= (stages[index - 1].untilChapter ?? Infinity)) errors.push(`relationship ${relationship.id} stages overlap`);
+      if (!stage.value.trim() || !stage.cause.trim() || !stage.cost.trim()) errors.push(`relationship ${relationship.id} stage needs a value, cause and cost`);
+    }
   }
   for (const secret of bible.secrets ?? []) {
     if (!characterIds.has(secret.ownerCharacterId)) errors.push(`secret ${secret.id} references unknown owner ${secret.ownerCharacterId}`);

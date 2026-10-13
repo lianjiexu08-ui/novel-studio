@@ -128,6 +128,27 @@ test('deferring a blocking question cannot bypass review, lock or generation', (
   assert.ok(gate.errors.some((error) => error.includes('blocking story questions')));
 });
 
+test('relationship stages require disjoint bounded intervals and causal commitments', () => {
+  const world = lockWorldPack(reviewedWorld());
+  const bible = reviewedBible(world.id, world.revision);
+  const relationship = bible.relationships[0];
+  relationship.sinceChapter = 3;
+  relationship.untilChapter = 12;
+  relationship.stages = [
+    { sinceChapter: 3, untilChapter: 7, value: '试探', cause: '调查暗桩', cost: '承担嫌疑' },
+    { sinceChapter: 8, untilChapter: 12, value: '结盟', cause: '交换情报', cost: '共同承担清算' },
+  ];
+  assert.equal(validateStoryBible(bible, world).ready, true);
+  relationship.stages[0].untilChapter = 8;
+  assert.match(validateStoryBible(bible, world).errors.join(';'), /stages overlap/);
+  relationship.stages[0].untilChapter = 7;
+  relationship.stages[1].untilChapter = undefined;
+  assert.match(validateStoryBible(bible, world).errors.join(';'), /exceeds its relationship interval/);
+  relationship.stages[1].untilChapter = 12;
+  relationship.stages[1].cause = '';
+  assert.match(validateStoryBible(bible, world).errors.join(';'), /value, cause and cost/);
+});
+
 test('staged resource aliases resolve by name rather than a shared numeric suffix', async () => {
   const { normalizeFactionResources } = await import('../src/world.ts');
   const world = reviewedWorld();

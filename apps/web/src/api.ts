@@ -107,8 +107,8 @@ async function call<T>(path: string, options: { method?: string; body?: unknown 
 }
 
 export const api = {
-  designContentReviews: (workId: string) => call<DesignReviewOverviewDto>(`/works/${workId}/design/content-reviews`),
-  reviewDesignContent: (workId: string, area: DesignReviewAreaDto) => call<{ report: DesignContentReviewDto }>(`/works/${workId}/design/content-reviews`, { method: 'POST', body: JSON.stringify({ area }) }),
+  designContentReviews: (workId: string, planId?: string) => call<DesignReviewOverviewDto>(`/works/${workId}/design/content-reviews${planId ? `?planId=${encodeURIComponent(planId)}` : ''}`),
+  reviewDesignContent: (workId: string, area: DesignReviewAreaDto, planId?: string) => call<{ report: DesignContentReviewDto }>(`/works/${workId}/design/content-reviews`, { method: 'POST', body: JSON.stringify({ area, planId }) }),
   qualityAudit: (workId: string) => call<{ audit: QualityAuditDto }>(`/works/${workId}/quality-audit`),
   hotTopics: (query = '') => call<HotTopicsResponse>(`/topics/hot?q=${encodeURIComponent(query)}`),
   createWork: (body: CreateWorkRequest) => call<WorkDto>('/works', { method: 'POST', body }),

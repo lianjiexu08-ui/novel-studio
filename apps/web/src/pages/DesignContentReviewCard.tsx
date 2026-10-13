@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Alert, App, Button, Card, Collapse, Empty, Modal, Space, Tag, Typography } from 'antd';
+import { Alert, App, Button, Card, Collapse, Empty, Modal, Select, Space, Tag, Typography } from 'antd';
 import type { DesignContentReviewDto, DesignReviewAreaDto, DesignReviewOverviewDto } from 'novel-studio-contracts';
 import { api } from '../api';
 
@@ -12,6 +12,7 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
   const { message } = App.useApp();
   const [data, setData] = useState<DesignReviewOverviewDto | null>(null);
   const [error, setError] = useState('');
+  const [planId, setPlanId] = useState<string>();
   const [busy, setBusy] = useState<DesignReviewAreaDto | null>(null);
   const [source, setSource] = useState<{ id: string; text: string } | null>(null);
   const request = useRef(0);
@@ -20,15 +21,15 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
   async function load() {
     const current = ++request.current;
     setData(null); setError('');
-    try { const result = await api.designContentReviews(workId); if (current === request.current) setData(result); }
+    try { const result = await api.designContentReviews(workId, planId); if (current === request.current) setData(result); }
     catch (cause) { if (current === request.current) setError(cause instanceof Error ? cause.message : String(cause)); }
   }
-  useEffect(() => { void load(); return () => { request.current += 1; }; }, [workId, revision]); // eslint-disable-line react-hooks/exhaustive-deps
-  useEffect(() => { activeWork.current = workId; setBusy(null); setSource(null); return () => { activeWork.current = ''; }; }, [workId]);
+  useEffect(() => { void load(); return () => { request.current += 1; }; }, [workId, revision, planId]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { activeWork.current = workId; setBusy(null); setSource(null); setPlanId(undefined); return () => { activeWork.current = ''; }; }, [workId]);
   async function review(area: DesignReviewAreaDto) {
     setBusy(area);
     try {
-      const { report } = await api.reviewDesignContent(workId, area);
+      const { report } = await api.reviewDesignContent(workId, area, data?.selectedPlan?.id);
       if (activeWork.current !== workId) return;
       message.info(`${labels[area]}：${statuses[report.status]}`);
       await onReviewed();
@@ -49,12 +50,13 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
   }
   return <Card title="分项内容评审" extra={<Button onClick={() => void load()}>刷新记录</Button>}>
     <Space direction="vertical" size={12} style={{ width: '100%' }}>
-      <Alert type={data?.ready ? 'info' : 'warning'} showIcon message={data?.ready ? '当前设计四项评审通过，正文仍需逐章审核' : '长篇写作前，先完成四项内容评审'} description="使用规划模型逐项审查内容，保存原文证据和返修建议。建议在设计锁定、全书计划批准后评审；修改创作约定、设定或计划会使旧结论过期。模型建议尚未采纳，不会自动成为故事事实；设计通过也不代表已验收正文。" />
+      <Alert type={data?.ready ? 'info' : 'warning'} showIcon message={data?.ready ? '所选计划的设计评审通过，写作仍需锁定和批准'  : '长篇写作前，先完成四项内容评审'} description="使用规划模型逐项审查内容，保存原文证据和返修建议。可以先评审待批准提案，评审不会批准计划；修改创作约定、设定或计划会使旧结论过期。模型建议尚未采纳，不会自动成为故事事实；设计通过也不代表已验收正文。" />
+      {data?.plans?.length ? <Space wrap><Typography.Text>本次评审计划</Typography.Text><Select aria-label="本次评审计划" style={{ minWidth: 260 }} disabled={busy !== null} value={data.selectedPlan?.id} onChange={(value) => setPlanId(value)} options={data.plans.map((plan) => ({ value: plan.id, label: `计划 v${plan.revision} · ${{ proposed: '待批准提案', reviewed: '结构已审', approved: '当前批准版', superseded: '已替代' }[plan.status]}` }))} /><Typography.Text type="secondary">默认最新提案；写作仅使用批准版的评审。</Typography.Text></Space> : null}
       {busy && <Alert type="info" message={`正在评审${labels[busy]}，通常需要一到几分钟；不会修改设计或续写正文。`} />}
       {error ? <Alert type="error" message="评审记录加载失败" description={error} /> : data ? <>
         <Collapse items={data.areas.map((area) => {
           const report = data.reports.find((item) => item.id === area.reportId);
-          return { key: area.area, label: <Space wrap>{labels[area.area]}<Tag color={area.status === 'passed' ? 'success' : 'warning'}>{statuses[area.status]}</Tag></Space>, extra: <Button size="small" loading={busy === area.area} disabled={busy !== null || !data.inputHash} onClick={(event) => { event.stopPropagation(); void review(area.area); }}>评审本项</Button>, children: report ? details(report) : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="尚无评审。先准备设计并批准全书计划，再评审本项。" /> };
+          return { key: area.area, label: <Space wrap>{labels[area.area]}<Tag color={area.status === 'passed' ? 'success' : 'warning'}>{statuses[area.status]}</Tag></Space>, extra: <Button size="small" loading={busy === area.area} disabled={busy !== null || !data.inputHash} onClick={(event) => { event.stopPropagation(); void review(area.area); }}>评审本项</Button>, children: report ? details(report) : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="尚无评审。先准备设计及计划提案，再评审本项。" /> };
         })} />
         <Collapse items={[{ key: 'history', label: `历史评审记录（${data.reports.length}）`, children: <Collapse items={[...data.reports].reverse().map((report) => ({ key: report.id, label: `${labels[report.area]} · ${statuses[report.status]} · ${new Date(report.createdAt).toLocaleString()}${report.inputHash !== data.inputHash ? '（已过期）' : ''}`, children: details(report) }))} /> }]} />
       </> : !error && <Typography.Text>正在加载评审记录…</Typography.Text>}
