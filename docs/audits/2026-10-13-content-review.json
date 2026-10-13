@@ -1,0 +1,440 @@
+{
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "scope": "design_only_not_full_manuscript_review",
+  "model": "gpt-5.6-luna",
+  "chapterVersionsUnchanged": true,
+  "manuscriptsUnchanged": true,
+  "modelAdviceAdopted": false,
+  "reports": [
+    {
+      "summary": "力量体系已列出境界、功法、法宝与资源阶梯，但主角早期使用权限、跨阶终局胜负及燃寿代价的不可逆性均存在阻断性矛盾；三项均需返修。",
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "revise",
+          "explanation": "境界、功法、法宝、资源虽各有分级，但主角起点为淬体境，而其唯一继承的天阶秘术限定神海境至破虚境使用；规划又要求其在早期濒死战中首次催动该术。已有审计条目明确指出第1章燃寿规则、使用境界与最低寿元门槛互相冲突。主角从淬体境在第一卷晋入神海境的关键晋阶条件、残卷例外规则及延寿灵泉对既有寿损的具体作用也未被设定为可核验机制，故不能以已有阶梯名称视为晋阶规划合理。",
+          "evidence": [
+            {
+              "sourceId": "story/characters/char_01",
+              "quote": "\"identity\": \"太清仙宗末席记名弟子，乾坤逆命真解唯一继承者。\",\n  \"locationId\": \"loc_07\",\n  \"factionId\": \"fac_01\",\n  \"startingRealmId\": \"realm_01\""
+            },
+            {
+              "sourceId": "world/techniques/tech_10",
+              "quote": "\"allowedRealmIds\": [\n    \"realm_04\",\n    \"realm_05\",\n    \"realm_06\"\n  ],\n  \"effect\": \"强行引燃十年至三十年阳寿，瞬间将自身攻伐与恢复威能暴涨三倍。\""
+            },
+            {
+              "sourceId": "world/overview",
+              "quote": "\"question\": \"第1章淬体境、寿元不足十年燃寿五年，与乾坤逆命真解允许神海境以上、十年至三十年消耗及最低十年寿元矛盾；第24章同日连续燃寿也违反三十日冷却。须确定残篇规则或重修正文，并重新评审。\",\n      \"blocking\": true,\n      \"status\": \"open\""
+            },
+            {
+              "sourceId": "plan/milestones/ms_vol1_turn",
+              "quote": "\"cost\": \"主动燃烧五年阳寿，两鬓泛起灰白，与宗门保守势力彻底决裂。\",\n  \"outcome\": \"逆斩魔修暗桩立威，与苏凌霜结成道心同盟，取得进入灵虚古境试炼名额。\""
+            }
+          ],
+          "revisionAdvice": "修改“乾坤逆命真解”或第一卷的既定规则：明确残卷在淬体、凝元阶段能否使用；若能，逐项写明早期版本的燃寿区间、最低剩余寿元、冷却、增幅、反噬及何时解锁正式神海境规则；若不能，则调整第1章和第10—12章触发手段。并在第一卷卷纲中补足从淬体至神海各次晋阶所需前置、资源消耗与延寿灵泉只能恢复何种状态，避免其成为未定义的越级或抵债资源。"
+        },
+        {
+          "criterion": "costs",
+          "verdict": "revise",
+          "explanation": "燃寿被设为不可逆的全域法则，乾坤逆命真解也明确永久耗寿；终局前更规划燃尽最后三年阳寿。但结局以万民命寿反哺使主角“白发尽褪化青”并获“长生无缺”，实际取消主角核心燃寿代价，且未交代反哺能量为何可定向补回其寿元、使用上限和持续代价。材料本身已将此认定为与命寿通灵律冲突的阻断问题。",
+          "evidence": [
+            {
+              "sourceId": "world/axioms/ax_02",
+              "quote": "\"title\": \"命寿通灵律\",\n  \"content\": \"寿元可化破境伟力，消耗不可逆转。\",\n  \"scope\": \"全域\",\n  \"precedence\": 2"
+            },
+            {
+              "sourceId": "world/techniques/tech_10",
+              "quote": "\"cost\": \"永久耗损自身寿元，不可逆转，施术后衰老呈现白发。\",\n  \"limitations\": [\n    \"不可在寿元不足十年时强行催动\""
+            },
+            {
+              "sourceId": "plan/milestones/ms_vol3_climax",
+              "quote": "\"cost\": \"林辰燃烧最后仅剩的三年阳寿入局，肉身道胎濒临彻底寂灭解体。\",\n  \"outcome\": \"以乾坤逆命真解逆转偷命因果，彻底斩灭赵玄极主宰法相与帝魂，粉碎九鼎窃命锁链。\""
+            },
+            {
+              "sourceId": "plan/milestones/ms_book_payoff",
+              "quote": "\"outcome\": \"补天神印永固三大陆界门天堑，反哺万民命寿归位，林辰白发尽褪化青，登临长生无缺逆命道主。\""
+            },
+            {
+              "sourceId": "story/overview",
+              "quote": "\"question\": \"第99章写“再无折寿枯竭之患”，以天道奖励取消逆命代价，与命寿通灵律消耗不可逆冲突；结尾必须说明能量来源、使用上限与持续代价，并逐章复核第98–100章。\",\n      \"blocking\": true,\n      \"status\": \"open\""
+            }
+          ],
+          "revisionAdvice": "返修“命寿通灵律”、第99—100章回报规则及“破除燃寿必死诅咒”承诺三者之一，形成单一守恒口径：若主角寿元不可恢复，则删除其寿元与白发的完全复原，并保留道果融界等不可逆结局代价；若允许恢复，必须在公理层定义可恢复的寿元类别、能量来源、转换损耗、上限、代偿对象与永久后果，并说明为何不构成对既往燃寿的无条件撤销。"
+        },
+        {
+          "criterion": "counters",
+          "verdict": "revise",
+          "explanation": "各功法和法宝列有局部克制，但体系规定跨大境界为“绝对克制”，未说明这些反制在跨境对抗时是否仍可生效、能削弱到何种程度，或何种界门、圣器、阵法条件能形成例外。终局规划尤其让“破虚境极巅”的主角斩碎“主宰帝魂”；破虚为第六境、主宰为第八境，属于至少跨两大境界，却没有被写成绝对压制规则的例外机制，只以“勾连天地灵气守恒律”概述，无法判定胜利可执行。",
+          "evidence": [
+            {
+              "sourceId": "world/tierLadders/ladder_realm",
+              "quote": "\"levels\": [\n    \"淬体\",\n    \"凝元\",\n    \"玄府\",\n    \"神海\",\n    \"归一\",\n    \"破虚\",\n    \"通天\",\n    \"主宰\"\n  ],\n  \"rule\": \"跨大境界威压绝对克制低阶修士。\""
+            },
+            {
+              "sourceId": "story/volumes/vol_03",
+              "quote": "\"goal\": \"林辰深入苍冥界渊虚谷携手巡界使夜凝霜合璧破虚印记，突破破虚境极巅，回师青玄天武城粉碎九鼎窃命大阵，于极天界门决战斩杀赵玄极并永固界门。\",\n  \"climax\": \"第93-98章，青玄极天界门终局圣战，林辰以乾坤逆命真解勾连天地灵气守恒律，彻底斩碎赵玄极主宰帝魂，合道补天神印抚平界壁裂痕。\""
+            },
+            {
+              "sourceId": "world/techniques/tech_11",
+              "quote": "\"limitations\": [\n    \"对超越本境界的法则之力无压制效果\",\n    \"领域碰撞破损时本体遭遇重创\"\n  ],\n  \"counters\": [\n    \"破虚境虚空裂隙撕碎领域界线\",\n    \"多名同阶修士联手领域对撞\"\n  ]"
+            }
+          ],
+          "revisionAdvice": "在“境界阶梯”补充绝对威压与反制条目的优先级：明确低阶能否借阵法、圣器、界门环境或敌方未完全降临的法相进行有限对抗，以及成功后可造成的最高结果。随后重写第三、四卷终局的胜利条件：要么使赵玄极实际可战层级不高于林辰可合法应对的范围，要么明确其主宰帝魂为何受九鼎、界门裂缝或补天神印限制，并列出林辰以何种资源、牺牲和步骤绕过“绝对克制”，不能仅以“勾连守恒律”作为结论。"
+        }
+      ],
+      "id": "design_review_e50c33c3-acc1-4723-b08b-d34ddbe88347",
+      "area": "power",
+      "inputHash": "21ee75ad6a722f92aa296eb8f7c8324212b55f56b7d799e79efcb5942a5d7ea2",
+      "scope": {
+        "worldPackRevision": 13,
+        "storyBibleRevision": 14,
+        "planRevisionId": "plan_3240e0b8bc124f38a4f39ae8d74c2abc",
+        "planRevision": 10
+      },
+      "status": "needs_revision",
+      "createdAt": "2026-10-13T08:17:53.049Z"
+    },
+    {
+      "summary": "世界观具备三大陆资源—势力—界门危机的骨架，历史事件多数能导出现状冲突；但跨域通行的规则层级和实际商路尚未统一，且100章范围内的分卷基线存在3卷/4卷、卷界与终局归属冲突。应先统一计划基线，再核定各大陆在对应卷内承担的递进功能。",
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "revise",
+          "explanation": "地点、资源和势力目标已形成可用的地域利益网：青玄的皇权—宗门—魔道争夺延寿与死渊资源，赤霄围绕火髓与天坑对抗，苍冥存在妖族—极冰天国边境冲突及界渊防务；各地也设置了修为、令牌、环境风险等进入条件。但跨大陆通行规则未形成可执行的统一链路：界门封禁律规定只有通天之力才能开启，商盟却已“垄断三大陆跨界飞舟与传送通商网络”，无尽虚海商路又只说明有已知航线和风险，未交代该网络究竟经由跨海、传送还是界门边缘，谁能准入、成本为何、如何与各大陆的路引和封锁并存。由此无法判断换陆是否会产生资源、政治和行动条件的实质变化，而非按卷换地图。另有地名口径不一致：苍冥大陆相关历史中出现“极冰大陆”，需确认是否同一大陆。",
+          "evidence": [
+            {
+              "sourceId": "world/axioms/ax_03",
+              "quote": "\"content\": \"三大陆界门非通天之力不可开启。\""
+            },
+            {
+              "sourceId": "world/factions/fac_08",
+              "quote": "\"goals\": [\n    \"垄断三大陆跨界飞舟与传送通商网络\""
+            },
+            {
+              "sourceId": "world/locations/loc_21",
+              "quote": "\"entryConditions\": [\n    \"已知航线由万象破界飞舟通行；风暴与海兽导致航行风险（第31章）。\"\n  ]"
+            },
+            {
+              "sourceId": "world/historicalEvents/event_05",
+              "quote": "\"causes\": [\n    \"极冰大陆与界渊交界处产生万丈虚空裂痕，虚空风暴与极阴寒罡席卷苍冥\""
+            }
+          ],
+          "revisionAdvice": "在世界设定中明确跨陆网络的唯一或分层机制：无尽虚海航线、商盟传送、界门是否分别承担何种运输；写清每种方式的起终点、准入凭证、修为/载具要求、时间与成本、风险、各方封锁或征税权，以及其与“非通天之力不可开启”之间的关系。同步统一“苍冥大陆/极冰大陆”命名，并将青玄—赤霄—苍冥的跨域门槛分别绑定到100章内对应卷的资源目标和政治后果。"
+        },
+        {
+          "criterion": "history",
+          "verdict": "pass",
+          "explanation": "历史事件并非仅作年代背景，已建立“原因—代价/制度变化—当下势力动机”的连续因果。界门落锁解释了补天阁的封禁职责和各方破门欲望；九鼎定运解释大乾与太清的帝权—宗权冲突；灵虚争泉战争以高阶修士伤亡和洞天濒危为代价，导出配额机制与延寿资源争夺。势力也具有可脱离主角独立行动的目标，例如大乾开采死渊、制衡商道，神炎需要输入青玄灵药，万妖祖庭反制领土吞并。这些历史后果足以驱动多方并行行动。",
+          "evidence": [
+            {
+              "sourceId": "world/historicalEvents/event_01",
+              "quote": "\"consequences\": [\n    \"补天阁先祖以圣器补天定世鉴合力布下界门封禁律，永封三大陆极天界门\",\n    \"三大陆修士无法自由穿梭诸域，通天境破界飞升之路断绝，诞生界门阶层断裂\""
+            },
+            {
+              "sourceId": "world/historicalEvents/event_02",
+              "quote": "\"consequences\": [\n    \"大乾天朝击败各方诸侯建立皇统，于乾都天武城熔炼九鼎聚拢乾天龙气脉（六品资源）\",\n    \"确立以帝国律法约束宗阀的中央皇权体制，压制了正道宗门在青玄腹地的直接征税权\",\n    \"太清仙宗等古老宗阀被迫退守凌云峰与各方洞天，埋下帝宗权柄抗衡根源\""
+            },
+            {
+              "sourceId": "world/historicalEvents/event_06",
+              "quote": "\"causes\": [\n    \"灵虚古境太古灵眼喷涌延寿灵泉（五品资源），大乾天朝与太清仙宗爆发百年争泉大战\",\n    \"双方神海境与归一境大能陨落数十位，战争杀伐险些震碎古境洞天本源\"\n  ],\n  \"consequences\": [\n    \"灵虚圣地出面调停，三方订立《灵虚界约》，划定凝元境以上修士名额轮流准入机制\""
+            },
+            {
+              "sourceId": "world/factions/fac_06",
+              "quote": "\"goals\": [\n    \"掌控赤霄大陆地火灵脉独占火髓资源\",\n    \"重兵封锁焚天魔谷以防魔祸死灰复燃\",\n    \"借万象商盟通道输入青玄灵药以补国内火燥之弊\""
+            }
+          ],
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "capacity",
+          "verdict": "revise",
+          "explanation": "以100章为本轮范围，三大陆分别提供宗权—皇权—魔道、火髓—商盟—天坑、边境战争—空间裂隙三种冲突结构，且命寿、灵气守恒、界门封禁三条规则能交叉施压，理论上具备阶段性长篇容量。然而当前设计与批准计划的卷数、卷界和终局边界不一致，无法判断这些差异性能否按100章获得足够递进：世界侧为3卷且章节数为32、34、34，计划侧声明4卷，卷界为1—25、26—50、51—75、76—100；同时计划第三卷的目标已包含回师天武城、终局斩赵玄极，却把终局高潮安排在第93—98章。这不是最终百万字愿景的问题，而是当前100章阶段的生产边界和递进归属尚未统一。",
+          "evidence": [
+            {
+              "sourceId": "story/volumes/vol_01",
+              "quote": "\"plannedChapterCount\": 32,\n  \"arcIds\": [\n    \"arc_01\"\n  ]"
+            },
+            {
+              "sourceId": "story/volumes/vol_02",
+              "quote": "\"plannedChapterCount\": 34,\n  \"arcIds\": [\n    \"arc_02\",\n    \"arc_03\"\n  ]"
+            },
+            {
+              "sourceId": "story/volumes/vol_03",
+              "quote": "\"plannedChapterCount\": 34,\n  \"arcIds\": [\n    \"arc_03\",\n    \"arc_04\"\n  ]"
+            },
+            {
+              "sourceId": "plan/overview",
+              "quote": "\"targetChapterCount\": 100,\n  \"volumeCount\": 4,"
+            },
+            {
+              "sourceId": "plan/volumes/vol_03",
+              "quote": "\"startChapter\": 51,\n  \"endChapter\": 75,\n  \"goal\": \"林辰深入苍冥界渊虚谷携手巡界使夜凝霜合璧破虚印记，突破破虚境极巅，回师青玄天武城粉碎九鼎窃命大阵，于极天界门决战斩杀赵玄极并永固界门。\",\n  \"opposition\": \"大乾九皇子赵玄极、皇道九龙通天卷威能、九鼎皇天窃命阵法相、域外寂灭乱流。\",\n  \"characterIds\": ["
+            },
+            {
+              "sourceId": "plan/volumes/vol_04",
+              "quote": "\"startChapter\": 76,\n  \"endChapter\": 100,\n  \"goal\": \"林辰深入苍冥界渊虚谷携手巡界使夜凝霜合璧破虚印记，突破破虚境极巅，回师青玄天武城粉碎九鼎窃命大阵，于极天界门决战斩杀赵玄极并永固界门。\""
+            }
+          ],
+          "revisionAdvice": "先在plan/overview、plan/volumes与story/volumes之间统一100章验收基线：确定采用3卷还是4卷，逐卷起止章、各大陆探索的开始/结束位置，以及苍冥线、回师青玄线和终局线各自归属。随后删除或重写重复覆盖同一终局的卷目标，使每卷具有不同的世界规则压力、资源争夺结果和势力格局变化；不要求扩写至450章。"
+        }
+      ],
+      "id": "design_review_435a6a1a-4728-4b80-86bf-8577f5529a66",
+      "area": "world",
+      "inputHash": "21ee75ad6a722f92aa296eb8f7c8324212b55f56b7d799e79efcb5942a5d7ea2",
+      "scope": {
+        "worldPackRevision": 13,
+        "storyBibleRevision": 14,
+        "planRevisionId": "plan_3240e0b8bc124f38a4f39ae8d74c2abc",
+        "planRevision": 10
+      },
+      "status": "needs_revision",
+      "createdAt": "2026-10-13T08:24:45.035Z"
+    },
+    {
+      "summary": "人物设计具备主线驱动和若干关键选择，但主要配角的失败代价、关系生效过程与认知边界仍不完整，且存在关系条目概括终局、秘密揭示条件与章节信息不完全对齐的问题，需返修后再验收。",
+      "checks": [
+        {
+          "criterion": "agency",
+          "verdict": "revise",
+          "explanation": "林辰的目标、选择、代价和对主线的影响较清晰，例如燃寿换力推动破境、斩敌、南渡及最终回师；苏凌霜和夜凝霜也有独立目标与部分关键选择。但赵玄极、墨幽屠、炎煞尊者等主要对手更多只有终局目标和剧情功能，缺少连续的失败代价、被迫调整与由其选择造成的主线转向。苏凌霜、夜凝霜后期的治理与秩序重建也主要被压缩为终局结果，执行链条不足。",
+          "evidence": [
+            {
+              "sourceId": "story/characters/char_01",
+              "quote": "  \"goal\": \"逆转命寿燃尽的死局，查明十年前青玄界门灵震真相并斩绝抽取生灵命寿的黑手。\","
+            },
+            {
+              "sourceId": "story/arcBeats/beat_10",
+              "quote": "  \"kind\": \"choice\",\n  \"plannedChapter\": 78,\n  \"expectedChange\": \"林辰毅然舍弃数月闭关巩固命寿的稳妥良机，决意带伤提剑回援，践行“以命立道”誓言。\""
+            },
+            {
+              "sourceId": "story/characters/char_02",
+              "quote": "  \"goal\": \"查清宗门太上长老暗中勾结魔道之谜，护持凌云峰道统不灭。\""
+            },
+            {
+              "sourceId": "story/arcBeats/audit-su-100",
+              "quote": "  \"kind\": \"resolution\",\n  \"plannedChapter\": 100,\n  \"expectedChange\": \"苏凌霜接任掌教，废除剥削与宗阀特权；是否有充分改革铺垫仍须审核。\""
+            },
+            {
+              "sourceId": "story/characters/char_05",
+              "quote": "  \"goal\": \"平抑界渊虚空裂痕，阻止破虚匙碎屑落入野心家之手引发界域崩毁。\""
+            },
+            {
+              "sourceId": "story/arcBeats/audit-ye-100",
+              "quote": "  \"kind\": \"resolution\",\n  \"plannedChapter\": 100,\n  \"expectedChange\": \"夜凝霜重开航道并调停边境纷争；一天内完成治理的时间安排仍须审核。\""
+            }
+          ],
+          "revisionAdvice": "在第三、四卷分别补明赵玄极、苏凌霜、夜凝霜的连续行动链：每人至少明确一次独立选择、选择导致的具体失败代价、失败后策略变化，以及该变化如何改变林辰的路线或终局条件。重点返修第76—100章，避免只用第100章的接任、重开航道等结果替代过程。"
+        },
+        {
+          "criterion": "relationships",
+          "verdict": "revise",
+          "explanation": "部分关系已有初始状态、选择和章节生效点，但关系条目仍大量用终局性概括替代初识和变化过程，且存在条目与章节状态不一致。林辰与苏凌霜在第3章只是互相试探，第8章才通过利益互求结盟，第12章才确认共同承担生死；但关系条目直接写成“生死互托之盟”并标记自第3章生效。林辰与夜凝霜的关系也写作第55章结为挚友，而第55章实际是投影初次合作，第59章才是真身会面并正式定下互信同盟。付出和关系变化虽散见于章节，尚未在关系设计中明确区分初始状态、触发选择、付出与生效时点。",
+          "evidence": [
+            {
+              "sourceId": "story/relationships/rel_01",
+              "quote": "  \"kind\": \"trust\",\n  \"value\": \"同门相携，在宗门倾轧中立下生死互托之盟。\",\n  \"locked\": false,\n  \"sinceChapter\": 3"
+            },
+            {
+              "sourceId": "story/chapterPlans/chapter-plan-3",
+              "quote": "  \"endHook\": \"苏凌霜赐予林辰外门试剑牌以作庇护，二人达成微妙的观望默契。\""
+            },
+            {
+              "sourceId": "story/chapterPlans/chapter-plan-8",
+              "quote": "  \"turningPoint\": \"双方坦诚利益互求，立下互不背刺、共探古境的道心盟约。\""
+            },
+            {
+              "sourceId": "story/chapterPlans/chapter-plan-12",
+              "quote": "  \"endHook\": \"大比胜负落定，林辰晋级前列锁定古境资格，与苏凌霜结成坚不可摧的道心盟约。\""
+            },
+            {
+              "sourceId": "story/relationships/rel_05",
+              "quote": "  \"kind\": \"emotion\",\n  \"value\": \"初疑后敬，在横渡苍冥界渊中结为守望相助的破界挚友。\",\n  \"locked\": false,\n  \"sinceChapter\": 55"
+            },
+            {
+              "sourceId": "plan/chapters/59",
+              "quote": "  \"endState\": \"夜凝霜与林辰结成坚不可摧的破界盟约，夜凝霜赠予林辰极冰雪髓以温养早衰命轮。\""
+            }
+          ],
+          "revisionAdvice": "重写rel_01和rel_05的关系阶段记录：分别补出第3章的试探状态、第8章的互惠盟约、第12章的生死确认，以及第55章的投影协作、第59章的真身互信。每个阶段需注明促成变化的具体选择、谁承担了什么代价、关系从哪一章开始对后续行动产生约束。对rel_02、rel_03、rel_04、rel_06也应补充初遇和双向变化，不能只保留“死敌、血海深仇、密约”等终局标签。"
+        },
+        {
+          "criterion": "knowledge",
+          "verdict": "revise",
+          "explanation": "秘密条目提供了真相与揭示条件，但没有充分限制各角色在揭示前知道什么、误解什么、哪些证据不足以推出真相，人物弧光因此容易退化为按节点获得信息。部分章节还在正式揭示条件前提前给出接近终局的确定性判断：sec_01规定要到界门前触碰界碑古纹才揭示父亲遗蜕渊源，但第27章已通过残玉记忆得出父亲为阻赵玄极窃命而战死；第43章又直接“彻底确认”十年前灵震由大乾暗中使诈。与此同时，赵玄极关于九鼎窃寿阵的秘密没有明确其本人、宗门、苏凌霜等人的认知边界和误解链。",
+          "evidence": [
+            {
+              "sourceId": "story/secrets/sec_01",
+              "quote": "  \"truth\": \"残卷系十年前青玄极天界门灵震中其生父以百年阳寿护界陨落后所留遗蜕古玉。\",\n  \"revealCondition\": \"主角在青玄极天界门前触碰界碑古纹唤醒父辈血脉印记时。\""
+            },
+            {
+              "sourceId": "story/chapterPlans/chapter-plan-27",
+              "quote": "  \"endHook\": \"第一柄破虚匙碎片顺利认主归位，生父当年护界真相浮出水面。\""
+            },
+            {
+              "sourceId": "story/chapterPlans/chapter-plan-43",
+              "quote": "  \"endHook\": \"林辰彻底确认十年前灵震乃大乾暗中使诈，心境重塑，与父辈意志在时空中重叠。\""
+            },
+            {
+              "sourceId": "story/secrets/sec_02",
+              "quote": "  \"truth\": \"大乾皇权延续至今的九鼎龙脉实为六道转轮偷命策之变体，长年抽割三州流民命数充抵龙气。\",\n  \"revealCondition\": \"主角潜入乾都天武城九鼎皇天大阵核心阵枢盗取地脉玉枢时。\""
+            },
+            {
+              "sourceId": "story/chapterPlans/chapter-plan-13",
+              "quote": "  \"endHook\": \"林辰肉身伤势勉强平抑，确信太清仙宗地脉已被大乾皇朝暗中渗透布下窃寿阵基。\""
+            }
+          ],
+          "revisionAdvice": "为sec_01至sec_03分别建立“角色已知事实—错误解释—可见证据—不可推出的结论—正式揭示后行为变化”链条。重点返修第18、27、43、75、76、92章：区分残影、推测、局部证据与完整真相，明确第27章不能提前兑现sec_01的界碑揭示，或调整秘密的揭示条件与章节事件。另需为苏凌霜、夜凝霜、赵玄极分别标明其对九鼎、界门、生父旧案的认知上限及误解如何导致具体选择。"
+        }
+      ],
+      "id": "design_review_90075050-fbc8-4e0c-960d-d505698d74f6",
+      "area": "characters",
+      "inputHash": "21ee75ad6a722f92aa296eb8f7c8324212b55f56b7d799e79efcb5942a5d7ea2",
+      "scope": {
+        "worldPackRevision": 13,
+        "storyBibleRevision": 14,
+        "planRevisionId": "plan_3240e0b8bc124f38a4f39ae8d74c2abc",
+        "planRevision": 10
+      },
+      "status": "needs_revision",
+      "createdAt": "2026-10-13T08:22:08.426Z"
+    },
+    {
+      "summary": "故事设计当前不能通过验收。主线因果、时间线、伏笔兑现和前五十章推进均有明确的结构性冲突；尤其是分卷边界、破虚匙状态、燃寿规则及终局代价尚未统一。",
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "revise",
+          "explanation": "主线方向具备“燃寿求生—跨陆追查—集齐破虚匙—回师破阵”的基本链条，但执行层面存在分卷归属和关键道具状态断裂。第73章已写三枚破虚匙合璧，第98章又重新以三枚残印合璧，材料没有提供中间的分离事件、责任方、触发条件或新增代价，因此终局因果无法闭合。",
+          "evidence": [
+            {
+              "sourceId": "story/overview",
+              "quote": "第73章三枚破虚匙已合拢，98章又以三枚散落残片重组；缺少中间状态转换与新代价说明。"
+            },
+            {
+              "sourceId": "plan/overview",
+              "quote": "\"targetChapterCount\": 100,\n  \"volumeCount\": 4,"
+            },
+            {
+              "sourceId": "story/volumes/vol_03",
+              "quote": "\"plannedChapterCount\": 34,\n  \"arcIds\": [\n    \"arc_03\",\n    \"arc_04\"\n  ]"
+            }
+          ],
+          "revisionAdvice": "确定唯一的分卷方案并逐章统一卷归属、高潮和卷界；补写第73—98章之间破虚匙从完整状态到残片状态的具体事件、责任方、触发条件、恢复方式和新增代价，使第98章合璧成为前置因果的结果而非重复兑现。"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "revise",
+          "explanation": "时间线不可执行。材料同时存在三卷章纲与四卷计划、不同卷界，以及终局在第五十日完成却缺少长期重建所需时间的矛盾。晋阶、跨陆航行、军队行军、闭关疗伤和灾后重建没有一套唯一且可核验的经过时间。",
+          "evidence": [
+            {
+              "sourceId": "story/overview",
+              "quote": "批准章纲以32/66/100为卷界，正文第30、53、66章出现不同收卷描述；第99–100章第五十日又写数十载/十载经历。须统一时间线与分卷。"
+            },
+            {
+              "sourceId": "plan/volumes/vol_01",
+              "quote": "\"startChapter\": 1,\n  \"endChapter\": 25,"
+            },
+            {
+              "sourceId": "plan/volumes/vol_02",
+              "quote": "\"startChapter\": 26,\n  \"endChapter\": 50,"
+            },
+            {
+              "sourceId": "plan/volumes/vol_03",
+              "quote": "\"startChapter\": 51,\n  \"endChapter\": 75,"
+            },
+            {
+              "sourceId": "plan/volumes/vol_04",
+              "quote": "\"startChapter\": 76,\n  \"endChapter\": 100"
+            },
+            {
+              "sourceId": "plan/chapters/99",
+              "quote": "\"storyTime\": \"第五十日破晓黎明\","
+            },
+            {
+              "sourceId": "plan/chapters/100",
+              "quote": "\"storyTime\": \"第五十日正午\","
+            }
+          ],
+          "revisionAdvice": "建立唯一时间线并选择三卷或四卷中的一种，统一所有卷纲与章节归属；为跨大陆航程、闭关疗伤、晋阶、军队行军、界门决战及灾后重建分别标注经过时间。若保留第五十日终局，必须删除或改写涉及数十载、十载或长期治理的内容；若保留长期经历，则须重排第99—100章日期。"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "revise",
+          "explanation": "伏笔和承诺虽然设置了揭示章节与兑现章节，但终局兑现直接违反既有规则。命寿通灵律规定寿元消耗不可逆，结尾却让寿元归零后的主角获得无缺长生道轮并彻底解除燃寿宿命，现有材料没有足以覆盖该规则的能量来源、比例限制、使用上限或永久代价。破虚匙伏笔也因第73章与第98章之间的状态断裂而无法视为完整兑现。",
+          "evidence": [
+            {
+              "sourceId": "world/axioms/ax_02",
+              "quote": "\"content\": \"寿元可化破境伟力，消耗不可逆转。\""
+            },
+            {
+              "sourceId": "story/overview",
+              "quote": "第99章写“再无折寿枯竭之患”，以天道奖励取消逆命代价，与命寿通灵律消耗不可逆冲突；结尾必须说明能量来源、使用上限与持续代价，并逐章复核第98–100章。"
+            },
+            {
+              "sourceId": "story/promises/prom_03",
+              "quote": "\"promise\": \"主角以命寿换力的绝命宿命必将通过参透界门天道法则彻底圆融逆转。\""
+            },
+            {
+              "sourceId": "plan/chapters/99",
+              "quote": "\"endState\": \"万民寿元尽数归位，林辰破除燃寿必死宿命晋升无缺长生逆命道主，承诺兑现，生机全面复苏。\""
+            },
+            {
+              "sourceId": "story/overview",
+              "quote": "第73章三枚破虚匙已合拢，98章又以三枚散落残片重组；缺少中间状态转换与新代价说明。"
+            }
+          ],
+          "revisionAdvice": "重定prom_03与第99章的兑现机制：明确返还寿元的来源、返还对象、主角可获得的比例、使用上限和永久代价，并使其不直接抹除命寿通灵律；若保留“消耗不可逆”，结尾不得无条件恢复为无缺长生。同步补齐破虚匙第73—98章的状态变化和代价。"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "revise",
+          "explanation": "前五十章具备濒死燃寿、家仇刺杀、宗门决裂、斩杀墨幽屠、跨陆追查和赤霄决战的递进框架，但核心力量规则从开篇即发生冲突：第1章淬体境且寿元不足十年时燃寿五年，违反乾坤逆命真解的适用境界和最低寿元限制；第23、24章又在同一日连续燃寿，违反三十日冷却。前后高潮还重复“燃寿换力—越阶击杀—夺取残印”的模板。",
+          "evidence": [
+            {
+              "sourceId": "world/overview",
+              "quote": "第1章淬体境、寿元不足十年燃寿五年，与乾坤逆命真解允许神海境以上、十年至三十年消耗及最低十年寿元矛盾；第24章同日连续燃寿也违反三十日冷却。须确定残篇规则或重修正文，并重新评审。"
+            },
+            {
+              "sourceId": "world/techniques/tech_10",
+              "quote": "\"allowedRealmIds\": [\n    \"realm_04\",\n    \"realm_05\",\n    \"realm_06\"\n  ],\n  \"effect\": \"强行引燃十年至三十年阳寿，瞬间将自身攻伐与恢复威能暴涨三倍。\""
+            },
+            {
+              "sourceId": "world/techniques/tech_10",
+              "quote": "\"limitations\": [\n    \"不可在寿元不足十年时强行催动\",\n    \"每三十日内仅能施展一次否则命格碎裂\"\n  ]"
+            },
+            {
+              "sourceId": "plan/chapters/1",
+              "quote": "\"choice\": \"在寿元仅剩不足十年的绝境下，主动引燃五年本命阳寿催动逆命真解。\""
+            },
+            {
+              "sourceId": "plan/chapters/23",
+              "quote": "\"storyTime\": \"第十五日申时初\","
+            },
+            {
+              "sourceId": "plan/chapters/24",
+              "quote": "\"storyTime\": \"第十五日申时三刻\","
+            },
+            {
+              "sourceId": "story/volumes/vol_01",
+              "quote": "\"climax\": \"第23-28章，灵虚古境核心祭坛争泉决战，林辰燃烧二十年阳寿化作滔天剑威，正面轰碎墨幽屠幽罗万鬼幡并将其当众诛灭。\""
+            }
+          ],
+          "revisionAdvice": "先确定乾坤逆命真解残篇的适用境界、最低寿元、单次消耗、冷却时间及是否存在例外，再逐章重修第1、11、23、24、38、49—50章。重新划定第23—28章与第25章卷界的关系，并让墨幽屠战与炎煞尊者战在目标、战术、能力使用和代价上形成明确差异，避免重复燃寿越阶斩敌。"
+        }
+      ],
+      "id": "design_review_2ca0146d-d42f-4c31-b5e4-e71c72e76158",
+      "area": "story",
+      "inputHash": "21ee75ad6a722f92aa296eb8f7c8324212b55f56b7d799e79efcb5942a5d7ea2",
+      "scope": {
+        "worldPackRevision": 13,
+        "storyBibleRevision": 14,
+        "planRevisionId": "plan_3240e0b8bc124f38a4f39ae8d74c2abc",
+        "planRevision": 10
+      },
+      "status": "needs_revision",
+      "createdAt": "2026-10-13T08:25:32.359Z"
+    }
+  ],
+  "earlierWorldReviewId": "design_review_0cb500ae-705e-4a15-bc61-631a355e4c88",
+  "earlierWorldReviewNote": "初次世界评审误将百章阶段验收当作百万字终稿，建议扩到455章；修正范围提示后重审，最新世界报告已按100章评估。"
+}

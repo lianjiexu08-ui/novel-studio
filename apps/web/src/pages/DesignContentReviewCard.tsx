@@ -43,13 +43,13 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
       {report.checks.map((check) => <Card size="small" key={check.criterion} title={<Space><Tag color={check.verdict === 'pass' ? 'success' : 'warning'}>{verdicts[check.verdict]}</Tag>{criteria[check.criterion] ?? check.criterion}</Space>}>
         <Typography.Paragraph>{check.explanation}</Typography.Paragraph>
         {check.evidence.map((item, index) => <div key={`${item.sourceId}-${index}`}><Button type="link" size="small" onClick={() => setSource(report.sources.find((entry) => entry.id === item.sourceId) ?? null)}>查看所审原文：{item.sourceId}</Button><blockquote style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{item.quote}</blockquote></div>)}
-        {check.revisionAdvice && <Typography.Paragraph><strong>返修要求：</strong>{check.revisionAdvice}</Typography.Paragraph>}
+        {check.revisionAdvice && <Typography.Paragraph><strong>模型返修建议（待核对）：</strong>{check.revisionAdvice}</Typography.Paragraph>}
       </Card>)}
     </Space>;
   }
   return <Card title="分项内容评审" extra={<Button onClick={() => void load()}>刷新记录</Button>}>
     <Space direction="vertical" size={12} style={{ width: '100%' }}>
-      <Alert type={data?.ready ? 'info' : 'warning'} showIcon message={data?.ready ? '当前设计四项评审通过，正文仍需逐章审核' : '长篇写作前，先完成四项内容评审'} description="使用规划模型逐项审查内容，保存原文证据和返修建议。建议在设计锁定、全书计划批准后评审；修改创作约定、设定或计划会使旧结论过期。这不代表已通读或验收正文。" />
+      <Alert type={data?.ready ? 'info' : 'warning'} showIcon message={data?.ready ? '当前设计四项评审通过，正文仍需逐章审核' : '长篇写作前，先完成四项内容评审'} description="使用规划模型逐项审查内容，保存原文证据和返修建议。建议在设计锁定、全书计划批准后评审；修改创作约定、设定或计划会使旧结论过期。模型建议尚未采纳，不会自动成为故事事实；设计通过也不代表已验收正文。" />
       {busy && <Alert type="info" message={`正在评审${labels[busy]}，通常需要一到几分钟；不会修改设计或续写正文。`} />}
       {error ? <Alert type="error" message="评审记录加载失败" description={error} /> : data ? <>
         <Collapse items={data.areas.map((area) => {
