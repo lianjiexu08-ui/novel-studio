@@ -250,16 +250,22 @@ test('planner rejects a story bible that cannot support the 100-chapter mileston
 test('chapter outlines receive world costs and restrictions even when old blueprints omit them', async () => {
   const worldPack = minimalWorldPack();
   worldPack.techniques.push({ id: 'expensive', name: '逆命', kind: 'secret', allowedRealmIds: ['realm-2'], effect: '爆发', cost: '消耗十年寿元', limitations: ['每三十日仅一次'], counters: ['拖延'], status: 'proposed' });
+  const storyBible = minimalStoryBible(worldPack);
+  storyBible.chapterPlans = Array.from({ length: 10 }, (_, index) => ({ id: `bible-${index + 1}`, chapterNumber: index + 1, title: '旧章纲', purpose: '旧进展', conflict: '旧冲突', turningPoint: '旧选择', endHook: '旧结果', characterIds: [] }));
   const { chapters, ...skeleton } = minimalPlan(10, { volumeSize: 10, outlined: 10 });
   const planner = new JsonBookPlanner({ complete: async (call) => {
     const body = JSON.parse(call.user);
     assert.deepEqual(body.worldPack, worldPack);
     assert.equal(body.worldPack.techniques.at(-1).cost, '消耗十年寿元');
     assert.deepEqual(body.worldPack.techniques.at(-1).limitations, ['每三十日仅一次']);
+    assert.deepEqual(body.storyBible.chapterPlans.map((chapter: { chapterNumber: number }) => chapter.chapterNumber), [1, 2, 3, 4, 5]);
+    assert.deepEqual(body.storyBible.characters, storyBible.characters);
+    assert.deepEqual(body.storyBible.volumes, storyBible.volumes);
     assert.match(call.system, /余额不足时必须改变行动/);
     return JSON.stringify({ chapters: chapters.slice(0, 5) });
   } });
-  await planner.generateChapterOutlines({ title: '试作', covenant, worldPack, skeleton, adoptedFacts: { reachedChapter: 0 }, from: 1, to: 5, before: [], after: [] });
+  await planner.generateChapterOutlines({ title: '试作', covenant, worldPack, storyBible, skeleton, adoptedFacts: { reachedChapter: 0 }, from: 1, to: 5, before: [], after: [] });
+  assert.equal(storyBible.chapterPlans.length, 10, 'source Bible remains unchanged');
 });
 
 test('book planner checks the skeleton scale and that every outline in the group is present', async () => {

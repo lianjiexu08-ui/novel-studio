@@ -155,11 +155,17 @@ export class JsonBookPlanner {
   }
 
   async generateChapterOutlines(input: BookPlanningInput & { skeleton: unknown; from: number; to: number; before: unknown[]; after: unknown[] }): Promise<ChapterOutlineContract[]> {
+    // The current plan supplies neighboring outlines. Do not flood a small
+    // replacement batch with all fifty older Bible chapter plans as well.
+    const storyBible = input.storyBible ? {
+      ...input.storyBible,
+      chapterPlans: input.storyBible.chapterPlans?.filter((chapter) => chapter.chapterNumber >= input.from && chapter.chapterNumber <= input.to),
+    } : undefined;
     return completeValidated(this.client, {
       system: chapterOutlineSystem + '\nscenes 字段必须是字符串数组，每个元素是一句场景描述，不得返回对象。',
       user: JSON.stringify({
         task: 'generate_chapter_outlines', from: input.from, to: input.to, title: input.title, covenant: input.covenant, authorRequest: input.authorRequest,
-        plan: input.skeleton, previousOutlines: input.before, followingOutlines: input.after, worldPack: input.worldPack, storyBible: input.storyBible, adoptedFacts: input.adoptedFacts,
+        plan: input.skeleton, previousOutlines: input.before, followingOutlines: input.after, worldPack: input.worldPack, storyBible, adoptedFacts: input.adoptedFacts,
       }, null, 2),
       maxOutputTokens: Math.min(12_000, 900 * (input.to - input.from + 1) + 1_000),
     }, (value) => {
