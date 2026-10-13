@@ -120,6 +120,45 @@ test('a stream that goes silent longer than the timeout is reported as a timeout
   await assert.rejects(() => adapter.complete(request, { endpoint: 'https://example.test/v1', apiKey: 'secret' }), ModelTimeoutError);
 });
 
+test('DONE finishes a split stream without waiting for the connection or cancellation to close', async () => {
+  let cancelled = false;
+  const adapter = new OpenAICompatibleAdapter(async (_url, init) => {
+    const encoder = new TextEncoder();
+    const body = new ReadableStream<Uint8Array>({
+      start(controller) {
+        controller.enqueue(encoder.encode('data: {"id":"done-1","choices":[{"delta":{"content":"完整答案"}}]}\r\n\r\n'));
+        controller.enqueue(encoder.encode('data: {"choices":[],"usage":{"prompt_tokens":17,"completion_tokens":4}}\n\ndata: [DO'));
+        controller.enqueue(encoder.encode('NE]\r\n\ndata: {"choices":[{"delta":{"content":"ignored"}}]}\n\n'));
+        init?.signal?.addEventListener('abort', () => {
+          if (!cancelled) controller.error(new Error('connection never closed'));
+        });
+      },
+      cancel() { cancelled = true; return new Promise(() => {}); },
+    });
+    return new Response(body, { headers: { 'content-type': 'text/event-stream' } });
+  }, 100);
+  const ledger = new UsageLedger(1);
+  const gateway = new ModelGateway(new Map([['openai-compatible', adapter]]), ledger);
+  const response = await gateway.complete(request, 'openai-compatible', { endpoint: 'https://example.test/v1', apiKey: 'secret' });
+  assert.equal(response.text, '完整答案');
+  assert.equal(response.requestId, 'done-1');
+  assert.equal(response.usage.inputTokens, 17);
+  assert.equal(response.usage.outputTokens, 4);
+  assert.equal(cancelled, true);
+  assert.equal(ledger.summary().calls, 1);
+  assert.equal(ledger.summary().failedCalls, 0);
+});
+
+test('DONE without content still fails and cancels the reader', async () => {
+  let cancelled = false;
+  const adapter = new OpenAICompatibleAdapter(async () => new Response(new ReadableStream({
+    start(controller) { controller.enqueue(new TextEncoder().encode('data: [DONE]\n\n')); },
+    cancel() { cancelled = true; },
+  }), { headers: { 'content-type': 'text/event-stream' } }));
+  await assert.rejects(() => adapter.complete(request, { endpoint: 'https://example.test/v1', apiKey: 'secret' }), /no message content/);
+  assert.equal(cancelled, true);
+});
+
 test('an endpoint that ignores stream and returns JSON is still accepted', async () => {
   const adapter = new OpenAICompatibleAdapter(async () => new Response(JSON.stringify({ id: 'j1', choices: [{ message: { content: 'plain' } }], usage: { completion_tokens: 1 } }), { status: 200, headers: { 'content-type': 'application/json' } }), 1000);
   const response = await adapter.complete(request, { endpoint: 'https://example.test/v1', apiKey: 'secret' });

@@ -216,11 +216,13 @@ export class OpenAICompatibleAdapter implements ModelAdapter {
       let text = '';
       let usage: unknown;
       let requestId: string | undefined;
+      let completed = false;
       const consume = (line: string) => {
         const trimmed = line.trim();
         if (!trimmed.startsWith('data:')) return;
         const payload = trimmed.slice(5).trim();
-        if (!payload || payload === '[DONE]') return;
+        if (payload === '[DONE]') { completed = true; return; }
+        if (!payload) return;
         let chunk: any;
         try { chunk = JSON.parse(payload); } catch { return; }
         if (chunk?.error) throw new Error(`openai-compatible request failed (stream): ${safeErrorMessage(chunk)}`);
@@ -229,22 +231,32 @@ export class OpenAICompatibleAdapter implements ModelAdapter {
         if (chunk?.usage) usage = chunk.usage;
         if (typeof chunk?.id === 'string') requestId = chunk.id;
       };
-      for (;;) {
-        let read: ReadableStreamReadResult<Uint8Array>;
-        try {
-          read = await reader.read();
-        } catch (error) {
-          if (controller.signal.aborted) throw timedOut();
-          throw error;
+      try {
+        while (!completed) {
+          let read: ReadableStreamReadResult<Uint8Array>;
+          try {
+            read = await reader.read();
+          } catch (error) {
+            if (controller.signal.aborted) throw timedOut();
+            throw error;
+          }
+          if (read.done) break;
+          touch();
+          buffer += decoder.decode(read.value, { stream: true });
+          const lines = buffer.split('\n');
+          buffer = lines.pop() ?? '';
+          for (const line of lines) {
+            consume(line);
+            if (completed) break;
+          }
         }
-        if (read.done) break;
-        touch();
-        buffer += decoder.decode(read.value, { stream: true });
-        const lines = buffer.split('\n');
-        buffer = lines.pop() ?? '';
-        for (const line of lines) consume(line);
+        if (!completed) consume(buffer + decoder.decode());
+      } finally {
+        // [DONE] ends the response even when a proxy keeps the connection open.
+        // Cleanup must not hold a completed answer hostage to a remote close.
+        void reader.cancel().catch(() => {});
+        reader.releaseLock();
       }
-      consume(buffer + decoder.decode());
       if (!text) throw new Error('openai-compatible response has no message content');
       return { text, usage: normalizeUsage(usage), provider: this.provider, model: request.model, requestId };
     } finally {
