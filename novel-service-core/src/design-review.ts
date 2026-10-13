@@ -55,14 +55,20 @@ export interface DesignContentReview extends DesignReviewResult {
 }
 export class DesignReviewError extends Error {}
 
-export class DesignReviewCitationError extends DesignReviewError {
-  readonly citationProblem: {
-    criterion: string; evidenceIndex: number; sourceId: string; rejectedQuote: string; sourceText?: string;
-  };
+export interface DesignReviewCitationProblem {
+  criterion: string; evidenceIndex: number; sourceId: string; rejectedQuote: string; sourceText?: string;
+  /** Exact text matches only; these are suggestions, never automatic citation repairs. */
+  matchingSourceIds: string[];
+}
 
-  constructor(citationProblem: DesignReviewCitationError['citationProblem']) {
-    super(`评审引用不在原文中：${citationProblem.sourceId}（${citationProblem.criterion}，证据 ${citationProblem.evidenceIndex + 1}）`);
-    this.citationProblem = citationProblem;
+export class DesignReviewCitationError extends DesignReviewError {
+  readonly citationProblem: DesignReviewCitationProblem;
+  readonly citationProblems: DesignReviewCitationProblem[];
+
+  constructor(citationProblems: DesignReviewCitationProblem[]) {
+    super(`评审引用不在原文中：${citationProblems.map((problem) => `${problem.sourceId}（${problem.criterion}，证据 ${problem.evidenceIndex + 1}）`).join('；')}`);
+    this.citationProblem = citationProblems[0];
+    this.citationProblems = citationProblems;
   }
 }
 
@@ -119,6 +125,7 @@ export function designReviewInput(work: Work, area: DesignReviewArea, planId?: s
 /** A model cannot invent citations or omit a difficult criterion to pass. */
 export function validateDesignReview(input: DesignReviewInput, result: DesignReviewResult): void {
   const criteria = Object.keys(input.rubric);
+  const citationProblems: DesignReviewCitationProblem[] = [];
   if (!result.summary?.trim() || !Array.isArray(result.checks) || result.checks.length !== criteria.length || new Set(result.checks.map((check) => check.criterion)).size !== criteria.length) throw new DesignReviewError('内容评审必须逐项覆盖全部标准');
   for (const check of result.checks) {
     if (!criteria.includes(check.criterion) || !['pass', 'revise', 'insufficient'].includes(check.verdict) || !check.explanation?.trim() || !Array.isArray(check.evidence)) throw new DesignReviewError('内容评审结果不完整');
@@ -126,11 +133,13 @@ export function validateDesignReview(input: DesignReviewInput, result: DesignRev
     if (check.verdict !== 'pass' && !check.revisionAdvice?.trim()) throw new DesignReviewError('未通过项目必须给出补充或返修要求');
     for (const [evidenceIndex, evidence] of check.evidence.entries()) {
       const source = input.sources.find((item) => item.id === evidence.sourceId);
-      if (!source || !evidence.quote?.trim() || evidence.quote.trim().length < 4 || !source.text.includes(evidence.quote)) throw new DesignReviewCitationError({
+      if (!source || !evidence.quote?.trim() || evidence.quote.trim().length < 4 || !source.text.includes(evidence.quote)) citationProblems.push({
         criterion: check.criterion, evidenceIndex, sourceId: evidence.sourceId, rejectedQuote: evidence.quote, sourceText: source?.text,
+        matchingSourceIds: evidence.quote?.trim().length >= 4 ? input.sources.filter((item) => item.text.includes(evidence.quote)).map((item) => item.id) : [],
       });
     }
   }
+  if (citationProblems.length) throw new DesignReviewCitationError(citationProblems);
 }
 
 export function recordDesignReview(work: Work, input: DesignReviewInput, result: DesignReviewResult): DesignContentReview {

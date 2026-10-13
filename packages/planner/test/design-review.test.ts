@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { JsonDesignPlanner, PlanningParseError } from '../src/index.ts';
-import { designReviewInput } from '../../../novel-service-core/src/design-review.ts';
+import { DesignReviewCitationError, designReviewInput, validateDesignReview } from '../../../novel-service-core/src/design-review.ts';
 import { ChapterWorkflow, InMemoryWorkRepository } from '../../application/src/index.ts';
 import { createReadyWork, fixtureDesignReview } from '../../application/test/fixtures.ts';
 
@@ -64,4 +64,44 @@ test('citation repair can replace a paraphrase with a verified continuous source
   } });
   assert.deepEqual(await planner.reviewDesignContent(request), expected);
   assert.equal(calls, 2);
+});
+
+test('one repair receives every invalid citation across criteria and exact source matches', async () => {
+  const request = await input();
+  const expected = fixtureDesignReview(request);
+  const invalid = structuredClone(expected);
+  invalid.checks[0].evidence[0].sourceId = 'invented/chapter-object-id';
+  invalid.checks[1].evidence[0].quote = '这是不存在于任何来源的概括而非引文';
+  let calls = 0;
+  const planner = new JsonDesignPlanner({ complete: async (call) => {
+    calls += 1;
+    if (calls === 1) return JSON.stringify(invalid);
+    const repair = JSON.parse(call.user);
+    assert.equal(repair.citationProblems.length, 2);
+    assert.equal(repair.citationProblems[0].criterion, expected.checks[0].criterion);
+    assert.equal(repair.citationProblems[0].sourceText, undefined);
+    assert.ok(repair.citationProblems[0].matchingSourceIds.includes(expected.checks[0].evidence[0].sourceId));
+    assert.equal(repair.citationProblems[1].criterion, expected.checks[1].criterion);
+    assert.deepEqual(repair.citationProblems[1].matchingSourceIds, []);
+    assert.deepEqual(repair.citationProblem, repair.citationProblems[0]);
+    return JSON.stringify(expected);
+  } });
+  assert.deepEqual(await planner.reviewDesignContent(request), expected);
+  assert.equal(calls, 2);
+  assert.equal(invalid.checks[0].evidence[0].sourceId, 'invented/chapter-object-id');
+});
+
+test('matching source suggestions never accept a wrong source or ambiguous quotation', async () => {
+  const request = await input();
+  request.sources.push({ id: 'shared/a', text: '共同的连续引文' }, { id: 'shared/b', text: '共同的连续引文' });
+  const result = fixtureDesignReview(request);
+  result.checks[0].evidence = [{ sourceId: 'shared/missing', quote: '共同的连续引文' }, { sourceId: 'shared/a', quote: '共同' }];
+  assert.throws(() => validateDesignReview(request, result), (error: unknown) => {
+    assert.ok(error instanceof DesignReviewCitationError);
+    assert.equal(error.citationProblems.length, 2);
+    assert.deepEqual(error.citationProblems[0].matchingSourceIds, ['shared/a', 'shared/b']);
+    assert.deepEqual(error.citationProblems[1].matchingSourceIds, []);
+    return true;
+  });
+  assert.equal(result.checks[0].evidence[0].sourceId, 'shared/missing');
 });
