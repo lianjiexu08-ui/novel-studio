@@ -52,6 +52,18 @@ test('a contradiction spanning distant partitions cannot be erased by synthesis'
   assert.equal(completeDesignReviewRun(run).result.checks[0].verdict, 'revise');
 });
 
+test('repeated completion revalidates changed evidence and never reuses a previous report result', () => {
+  const run = createDesignReviewRun(largeInput());
+  for (const stage of run.stages) acceptDesignReviewStage(run, stage, stagePass(designReviewStageInput(run, stage)));
+  const first = completeDesignReviewRun(run);
+  assert.deepEqual(completeDesignReviewRun(run), first);
+  const original = run.stages[0].result!.checks[0].evidence[0].quote;
+  run.stages[0].result!.checks[0].evidence[0].quote = '凭空捏造且未在任何原文出现的证据';
+  assert.throws(() => completeDesignReviewRun(run), /引用不在原文/);
+  run.stages[0].result!.checks[0].evidence[0].quote = original;
+  assert.deepEqual(completeDesignReviewRun(run), first);
+});
+
 test('chapter-only power batches also receive complete tier and technique rules', () => {
   const input = largeInput();
   input.area = 'power';

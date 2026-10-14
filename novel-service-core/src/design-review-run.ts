@@ -151,14 +151,25 @@ function chapterUnitGroups(sources: DesignReviewSource[], units: DesignReviewUni
 export function designReviewUnitSources(run: DesignReviewRun): DesignReviewSource[] {
   return run.units.map(u => ({ id: u.id, text: run.input.sources.find(s => s.id === u.sourceId)!.text.slice(u.start, u.end) }));
 }
-function resultSource(run: DesignReviewRun, stage: DesignReviewStage, cache = new Map<string, DesignReviewSource>()): DesignReviewSource {
-  const cached = cache.get(stage.id);
+// A cache belongs to one synchronous, read-only evaluation of one run. Never
+// retain it on the mutable run or reuse it after accepting a stage.
+interface ReviewReadCache {
+  reports: Map<string, DesignReviewSource>;
+  followupUnits: Map<string, string[] | undefined>;
+  entityMentions?: Record<string, string[]>;
+}
+const reviewReadCache = (): ReviewReadCache => ({ reports: new Map(), followupUnits: new Map() });
+function entityMentions(run: DesignReviewRun, cache: ReviewReadCache) {
+  return cache.entityMentions ??= designReviewEntityMentions(run.input, (run.scheduleVersion ?? 1) >= 19);
+}
+function resultSource(run: DesignReviewRun, stage: DesignReviewStage, cache = reviewReadCache()): DesignReviewSource {
+  const cached = cache.reports.get(stage.id);
   if (cached) return cached;
-  const resolutions = Object.fromEntries(((run.scheduleVersion ?? 1) >= 12 ? resolvedDeferrals(run).filter(r => r.checkId.startsWith(`${stage.id}/`)) : []).map(r => {
+  const resolutions = Object.fromEntries(((run.scheduleVersion ?? 1) >= 12 ? resolvedDeferrals(run, run.stages.length, cache).filter(r => r.checkId.startsWith(`${stage.id}/`)) : []).map(r => {
     const resolver = run.stages.find(s => s.id === r.resolvedByStageId)!;
     // The note describes an already evidenced raw review, never a synthesis
     // vote or an unvalidated claim. Keep the original finding intact below it.
-    validateDesignReview(designReviewStageInput(run, resolver), resolver.result!);
+    validateDesignReview(readDesignReviewStageInput(run, resolver, cache), resolver.result!);
     const criterion = r.checkId.slice(stage.id.length + 1);
     const check = resolver.result!.checks.find(c => c.criterion === criterion)!;
     return [criterion, { ...r, explanation: check.explanation }];
@@ -175,7 +186,7 @@ function resultSource(run: DesignReviewRun, stage: DesignReviewStage, cache = ne
     return question ? { sourceId: question.id, text: question.text } : undefined;
   }, resolutions);
   const source = { id: `review-result/${stage.id}`, text };
-  cache.set(stage.id, source);
+  cache.reports.set(stage.id, source);
   return source;
 }
 function deferrals(run: DesignReviewRun, before = run.stages.length) {
@@ -184,16 +195,20 @@ function deferrals(run: DesignReviewRun, before = run.stages.length) {
     question: { id: `review-question/${stage.id}/${check.criterion}`, text: JSON.stringify({ criterion: check.criterion, explanation: check.explanation, revisionAdvice: check.revisionAdvice, awaitingSources: check.awaitingSources }, null, 2) },
   })));
 }
-function coversDeferral(run: DesignReviewRun, stage: DesignReviewStage, pending: ReturnType<typeof deferrals>[number]) {
+function coversDeferral(run: DesignReviewRun, stage: DesignReviewStage, pending: ReturnType<typeof deferrals>[number], cache = reviewReadCache()) {
   if (stage.followupFor) return (run.scheduleVersion ?? 1) >= 5 && stage.followupFor === pending.id
-    && followupUnits(run, pending)?.every(id => stage.unitIds.includes(id)) === true;
+    && followupUnits(run, pending, cache)?.every(id => stage.unitIds.includes(id)) === true;
   return stage.kind !== 'synthesis' && [...pending.stage.unitIds, ...run.units.filter(u => pending.check.awaitingSources!.includes(u.sourceId)).map(u => u.id)].every(id => stage.unitIds.includes(id));
 }
 
 /** Prefer the entire original batch. When it cannot fit, re-read complete
  * sources for its cited evidence plus every requested source and shared rules.
  * Never turn a partial quotation or an inventory entry into source coverage. */
-function followupUnits(run: DesignReviewRun, pending: ReturnType<typeof deferrals>[number]): string[] | undefined {
+function followupUnits(run: DesignReviewRun, pending: ReturnType<typeof deferrals>[number], cache = reviewReadCache()): string[] | undefined {
+  if (!cache.followupUnits.has(pending.id)) cache.followupUnits.set(pending.id, computeFollowupUnits(run, pending, cache));
+  return cache.followupUnits.get(pending.id);
+}
+function computeFollowupUnits(run: DesignReviewRun, pending: ReturnType<typeof deferrals>[number], cache: ReviewReadCache): string[] | undefined {
   const sources = designReviewUnitSources(run);
   const required = run.units.filter(u => pending.check.awaitingSources!.includes(u.sourceId)).map(u => u.id);
   const cited = new Set(pending.check.evidence.flatMap(e => {
@@ -215,7 +230,7 @@ function followupUnits(run: DesignReviewRun, pending: ReturnType<typeof deferral
     // A reviewer can ask only for a technique's rule while also questioning
     // its acquisition/training. Supply complete candidate plans/profiles too;
     // mentioning it is not proof of mastery and does not resolve the question.
-    const related = relatedFollowupSources(run, pending);
+    const related = relatedFollowupSources(run, pending, cache);
     const relatedUnits = run.units.filter(u => related.includes(u.sourceId)).map(u => u.id);
     if (relatedUnits.length) {
       const supplemented = [...new Set([...full, ...relatedUnits])];
@@ -230,8 +245,8 @@ function followupUnits(run: DesignReviewRun, pending: ReturnType<typeof deferral
   return cited.size && fits(focused) ? focused : undefined;
 }
 
-function relatedFollowupSources(run: DesignReviewRun, pending: ReturnType<typeof deferrals>[number]): string[] {
-  const mentions = designReviewEntityMentions(run.input, (run.scheduleVersion ?? 1) >= 19);
+function relatedFollowupSources(run: DesignReviewRun, pending: ReturnType<typeof deferrals>[number], cache: ReviewReadCache): string[] {
+  const mentions = entityMentions(run, cache);
   return [...new Set(pending.check.awaitingSources!.flatMap(id => mentions[id] ?? []))];
 }
 
@@ -242,11 +257,12 @@ function scheduleFollowups(run: DesignReviewRun): void {
   if ((run.scheduleVersion ?? 1) < 5) return;
   const raw = run.stages.filter(s => s.kind !== 'synthesis' && !s.followupFor);
   if (raw.some(s => !s.result) || run.stages.some(s => s.followupFor || s.kind === 'synthesis' && s.result)) return;
-  const resolved = new Set(resolvedDeferrals(run).map(r => r.checkId));
+  const cache = reviewReadCache();
+  const resolved = new Set(resolvedDeferrals(run, run.stages.length, cache).map(r => r.checkId));
   const followups: DesignReviewStage[] = [];
   for (const pending of deferrals(run)) {
     if (resolved.has(pending.id)) continue;
-    const unitIds = followupUnits(run, pending);
+    const unitIds = followupUnits(run, pending, cache);
     if (unitIds) followups.push({ id: `followup-${pending.id}`, kind: 'cross', label: `原文补读 ${pending.id}`, unitIds, children: [], followupFor: pending.id, attempts: 0 });
   }
   if (!followups.length) return;
@@ -266,9 +282,9 @@ function scheduleFollowups(run: DesignReviewRun): void {
   }
   run.stages.splice(raw.length, run.stages.length - raw.length, ...followups, ...synthesis);
 }
-function resolvedDeferrals(run: DesignReviewRun, before = run.stages.length) {
+function resolvedDeferrals(run: DesignReviewRun, before = run.stages.length, cache = reviewReadCache()) {
   return deferrals(run, before).flatMap(pending => {
-    const resolver = run.stages.slice(run.stages.indexOf(pending.stage) + 1, before).find(stage => coversDeferral(run, stage, pending) && stage.result?.checks.some(check => check.criterion === pending.check.criterion && check.verdict === 'pass' && check.resolves?.includes(pending.id)));
+    const resolver = run.stages.slice(run.stages.indexOf(pending.stage) + 1, before).find(stage => coversDeferral(run, stage, pending, cache) && stage.result?.checks.some(check => check.criterion === pending.check.criterion && check.verdict === 'pass' && check.resolves?.includes(pending.id)));
     return resolver ? [{ checkId: pending.id, resolvedByStageId: resolver.id }] : [];
   });
 }
@@ -293,6 +309,9 @@ function synthesisCoverage(run: DesignReviewRun, stage: DesignReviewStage) {
 }
 
 export function designReviewStageInput(run: DesignReviewRun, stage: DesignReviewStage): DesignReviewInput {
+  return readDesignReviewStageInput(run, stage, reviewReadCache());
+}
+function readDesignReviewStageInput(run: DesignReviewRun, stage: DesignReviewStage, cache: ReviewReadCache): DesignReviewInput {
   const stageIndex = run.stages.findIndex(s => s.id === stage.id);
   if (stageIndex < 0) throw new DesignReviewError('评审步骤不属于本任务');
   const followup = stage.followupFor ? deferrals(run, stageIndex).find(p => p.id === stage.followupFor) : undefined;
@@ -301,7 +320,7 @@ export function designReviewStageInput(run: DesignReviewRun, stage: DesignReview
   const sources = stage.kind === 'synthesis' ? [...stage.children.map(id => {
     const child = run.stages.find(s => s.id === id);
     if (!child?.result) throw new DesignReviewError('前置批次尚未完成');
-    return resultSource(run, child);
+    return resultSource(run, child, cache);
   }), ...rawSources] : rawSources;
   if (JSON.stringify(sources).length > designReviewCapacity) throw new DesignReviewError('本批材料超出单次评审容量；未截断原文');
   const coverage: NonNullable<DesignReviewInput['stage']>['coverage'] = (run.scheduleVersion ?? 1) >= 3 ? {
@@ -313,7 +332,7 @@ export function designReviewStageInput(run: DesignReviewRun, stage: DesignReview
   if (coverage && stage.kind !== 'synthesis') {
     const pendingChecks: NonNullable<typeof coverage.pendingChecks> = [];
     for (const pending of deferrals(run, stageIndex)) {
-      if (!coversDeferral(run, stage, pending)) continue;
+      if (!coversDeferral(run, stage, pending, cache)) continue;
       // Do not remove raw material to squeeze in a question. If it cannot fit,
       // this stage cannot authorize a resolution; the unresolved item blocks.
       if (JSON.stringify([...sources, pending.question]).length > designReviewCapacity) continue;
@@ -327,11 +346,11 @@ export function designReviewStageInput(run: DesignReviewRun, stage: DesignReview
     if (pendingChecks.length) coverage.pendingChecks = pendingChecks;
   }
   if (coverage && stage.kind === 'synthesis') {
-    coverage.resolvedDeferrals = resolvedDeferrals(run, stageIndex);
+    coverage.resolvedDeferrals = resolvedDeferrals(run, stageIndex, cache);
     if ((run.scheduleVersion ?? 1) >= 11) coverage.synthesis = synthesisCoverage(run, stage);
   }
   if (coverage && followup && (run.scheduleVersion ?? 1) >= 14) {
-    const related = relatedFollowupSources(run, followup);
+    const related = relatedFollowupSources(run, followup, cache);
     if (related.length) {
       const includedSourceIds = related.filter(id => run.units.filter(u => u.sourceId === id).every(u => stage.unitIds.includes(u.id)));
       const context = { includedSourceIds, omittedSourceIds: related.filter(id => !includedSourceIds.includes(id)) };
@@ -339,9 +358,9 @@ export function designReviewStageInput(run: DesignReviewRun, stage: DesignReview
     }
   }
   if (coverage && (run.scheduleVersion ?? 1) >= 13) {
-    const entityMentions = designReviewEntityMentions(run.input, (run.scheduleVersion ?? 1) >= 19);
-    if (Object.keys(entityMentions).length) {
-      if (JSON.stringify({ ...coverage, entityMentions }).length <= sharedContextCapacity) coverage.entityMentions = entityMentions;
+    const mentions = entityMentions(run, cache);
+    if (Object.keys(mentions).length) {
+      if (JSON.stringify({ ...coverage, entityMentions: mentions }).length <= sharedContextCapacity) coverage.entityMentions = mentions;
       else if (JSON.stringify({ ...coverage, entityMentionsOmitted: 'capacity' }).length <= sharedContextCapacity) coverage.entityMentionsOmitted = 'capacity';
     }
   }
@@ -394,9 +413,10 @@ export function completeDesignReviewRun(run: DesignReviewRun): { input: DesignRe
   }
   const plan = (r: DesignReviewRun) => r.stages.map(({ id, kind, unitIds, children, followupFor }) => ({ id, kind, unitIds, children, ...(followupFor ? { followupFor } : {}) }));
   if (JSON.stringify(run.units) !== JSON.stringify(expected.units) || JSON.stringify(plan(run)) !== JSON.stringify(plan(expected)) || !run.stages.length || run.stages.some(s => !s.result)) throw new DesignReviewError('原文覆盖或跨批检查未完成，不得形成整体结论');
-  for (const stage of run.stages) validateDesignReview(designReviewStageInput(run, stage), stage.result!);
+  const cache = reviewReadCache();
+  for (const stage of run.stages) validateDesignReview(readDesignReviewStageInput(run, stage, cache), stage.result!);
   const rank = { pass: 0, insufficient: 1, revise: 2 };
-  const resolutions = (run.scheduleVersion ?? 1) >= 3 ? resolvedDeferrals(run) : [];
+  const resolutions = (run.scheduleVersion ?? 1) >= 3 ? resolvedDeferrals(run, run.stages.length, cache) : [];
   const resolved = new Set(resolutions.map(r => r.checkId));
   const root = run.stages.at(-1)!.result!;
   const checks = Object.keys(run.input.rubric).map(criterion => {
@@ -412,7 +432,7 @@ export function completeDesignReviewRun(run: DesignReviewRun): { input: DesignRe
     const { awaitingSources, resolves, ...finalCheck } = structuredClone(selected);
     return finalCheck;
   });
-  const input = { ...run.input, sources: [...designReviewUnitSources(run), ...run.stages.filter(s => s.result).map(s => resultSource(run, s)), ...((run.scheduleVersion ?? 1) >= 3 ? deferrals(run).map(p => p.question) : [])] };
+  const input = { ...run.input, sources: [...designReviewUnitSources(run), ...run.stages.filter(s => s.result).map(s => resultSource(run, s, cache)), ...((run.scheduleVersion ?? 1) >= 3 ? deferrals(run).map(p => p.question) : [])] };
   const blocked = checks.some(c => c.verdict !== 'pass');
   const result = { summary: blocked ? '全部批次已完成，但仍有返修或材料不足项；详见逐项结论。' : root.summary, checks, ...(resolutions.length ? { resolvedDeferrals: resolutions } : {}) };
   validateDesignReview(input, result);

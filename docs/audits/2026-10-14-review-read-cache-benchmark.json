@@ -1,0 +1,107 @@
+{
+  "mode": "read_only_replay_of_saved_design58_world_review",
+  "productionChanged": false,
+  "modelCalls": 0,
+  "formalAcceptance": false,
+  "completeReportByteEquivalent": true,
+  "comparison": "SHA-256 of JSON.stringify({input,result}), including every source and result, matches across all runs.",
+  "runs": {
+    "baseline": {
+      "mode": "baseline",
+      "stageAcceptanceMs": 6092.876749999999,
+      "completionMs": 32108.937625,
+      "reportHash": "d316378a65de067cb4e69236d89d125b526534a91aac2388f02d80d0905c51e2",
+      "sourceCount": 485,
+      "reportCharacters": 1969651,
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "history",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "capacity",
+          "verdict": "pass"
+        }
+      ],
+      "modelCalls": 0,
+      "savedToWork": false
+    },
+    "baseline-plain": {
+      "mode": "baseline-plain",
+      "stageAcceptanceMs": 6084.602291,
+      "completionMs": 32140.781334,
+      "reportHash": "d316378a65de067cb4e69236d89d125b526534a91aac2388f02d80d0905c51e2",
+      "sourceCount": 485,
+      "reportCharacters": 1969651,
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "history",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "capacity",
+          "verdict": "pass"
+        }
+      ],
+      "modelCalls": 0,
+      "savedToWork": false
+    },
+    "cached": {
+      "mode": "cached",
+      "stageAcceptanceMs": 449.419083,
+      "completionMs": 627.417083,
+      "reportHash": "d316378a65de067cb4e69236d89d125b526534a91aac2388f02d80d0905c51e2",
+      "sourceCount": 485,
+      "reportCharacters": 1969651,
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "history",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "capacity",
+          "verdict": "pass"
+        }
+      ],
+      "modelCalls": 0,
+      "savedToWork": false
+    },
+    "cached-plain": {
+      "mode": "cached-plain",
+      "stageAcceptanceMs": 449.480209,
+      "completionMs": 625.348041,
+      "reportHash": "d316378a65de067cb4e69236d89d125b526534a91aac2388f02d80d0905c51e2",
+      "sourceCount": 485,
+      "reportCharacters": 1969651,
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "history",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "capacity",
+          "verdict": "pass"
+        }
+      ],
+      "modelCalls": 0,
+      "savedToWork": false
+    }
+  },
+  "scope": "One 53-stage saved world review, schedule15. Performance varies with workload; no guarantee for every long novel."
+}

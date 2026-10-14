@@ -120,6 +120,19 @@ test('v19 can locate existing character training without treating mentions as ma
   assert.equal(input.sources.find(s => s.id === 'settings/characters/lin')!.text.includes('尚未学会'), true);
 });
 
+test('navigation is recalculated after in-place source edits and returned navigation cannot poison a later read', () => {
+  const input = request();
+  input.sources.push(source('story/characters/gu', { identity: '开篇前训练乾元御风剑诀。' }));
+  const run = createDesignReviewRun(input), stage = run.stages[0];
+  const first = designReviewStageInput(run, stage);
+  assert.ok(first.stage!.coverage!.entityMentions!['world/techniques/tech_04'].includes('story/characters/gu'));
+  first.stage!.coverage!.entityMentions!['world/techniques/tech_04'].push('invented/source');
+  run.input.sources.find(s => s.id === 'story/characters/gu')!.text = JSON.stringify({ identity: '不再具名任何功法。' });
+  const next = designReviewStageInput(run, stage);
+  assert.equal(next.stage!.coverage!.entityMentions!['world/techniques/tech_04'].includes('story/characters/gu'), false);
+  assert.equal(next.stage!.coverage!.entityMentions!['world/techniques/tech_04'].includes('invented/source'), false);
+});
+
 for (const oversizedProfile of [false, true]) {
   test(`v19 adds complete character skill context only when it fits; oversized=${oversizedProfile}`, () => {
     const input = request();
