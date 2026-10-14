@@ -1,0 +1,82 @@
+{
+  "scope": "只验证已经实建两节点、初始各活体下界足够且种源实得一命度时的两轮命能账，不是现有角色已施术",
+  "seedLifeDebit": 10,
+  "seedEnergy": 1,
+  "seedWastedEquivalent": 9,
+  "controlBeforeRounds": {
+    "mana": 4.5,
+    "consciousness": 6.5,
+    "permanentSourceLoss": 0.01
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "openingEnergy": 1,
+      "nodeCount": 2,
+      "maintenanceDebit": 0.1,
+      "boostDebit": 0,
+      "remainingBeforeDecay": 0.9,
+      "decay": 0.09,
+      "victimLifeDebit": 2,
+      "newEnergy": 0.2,
+      "conversionWaste": 1.8,
+      "closingEnergy": 1.01
+    },
+    {
+      "round": 2,
+      "openingEnergy": 1.01,
+      "nodeCount": 2,
+      "maintenanceDebit": 0.1,
+      "boostDebit": 0.5,
+      "remainingBeforeDecay": 0.41,
+      "decay": 0.041,
+      "victimLifeDebit": 2,
+      "newEnergy": 0.2,
+      "conversionWaste": 1.8,
+      "closingEnergy": 0.569
+    }
+  ],
+  "controlAfterRounds": {
+    "mana": 4,
+    "consciousness": 6,
+    "permanentSourceLoss": 0.01
+  },
+  "note": "两轮合计抽受害者四元载；不能把转化前四加转化后0.4都列为可用能量。主阵种源十元载不返寿，神魂百分之一永久受损。末尾0.569仍在主枢，只能付后续已定义支出或排散。 法力4.5到4、神识6.5到6是第二轮强化各半成费用，不是经过一小时或重复控制费；不得删除实际发生的强化支出。",
+  "timeline": {
+    "timeUnit": "息（呼吸节拍）；本例由现场计时确认从启动到第二轮末不足一小时，不用固定息/秒比例推算。",
+    "activation": "t0：先确认伤后可用法力/神识各为十成；支付启动5/3，以及第一个开始小时预付控制费0.5/0.5。永久本源损伤后复测仍至少准许4.5/6.5可用，否则该例不成立。",
+    "round1": "t0至t0+10息：两节点抽取，未强化。",
+    "round2": "t0+10息至t0+20息：两节点抽取，同时一次十息强化。强化法力/神识各0.5在本轮开始预付。",
+    "end": "第二轮结束仍在第一个已付款小时内，未进入第二小时。这里只是中途账目，不表示已正常收阵。"
+  },
+  "controlLedger": [
+    {
+      "event": "启动",
+      "manaDebit": 5,
+      "consciousnessDebit": 3,
+      "manaAfter": 5,
+      "consciousnessAfter": 7
+    },
+    {
+      "event": "首个开始小时的控制费（预付）",
+      "manaDebit": 0.5,
+      "consciousnessDebit": 0.5,
+      "manaAfter": 4.5,
+      "consciousnessAfter": 6.5
+    },
+    {
+      "event": "第一轮：没有强化或新的小时边界",
+      "manaDebit": 0,
+      "consciousnessDebit": 0,
+      "manaAfter": 4.5,
+      "consciousnessAfter": 6.5
+    },
+    {
+      "event": "第二轮：一次强化的额外费（不是下一小时控制费）",
+      "manaDebit": 0.5,
+      "consciousnessDebit": 0.5,
+      "manaAfter": 4,
+      "consciousnessAfter": 6
+    }
+  ]
+}

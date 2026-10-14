@@ -1,0 +1,213 @@
+{
+  "observedAt": "2026-10-14T05:04:03.571Z",
+  "status": "reviewed_unsaved_candidate",
+  "formalAcceptance": false,
+  "savedToWork": false,
+  "baseVersions": {
+    "world": 26,
+    "bible": 55,
+    "plan": 55
+  },
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "candidateHash": "ea60e705a5b93e13a0bf669c78af1308940d715fb942971c43da67991c701e13",
+  "changes": [
+    "/worldPack/axioms/ax_12",
+    "/worldPack/techniques/tech_17/effect",
+    "/worldPack/techniques/tech_17/cost",
+    "/worldPack/techniques/tech_17/limitations",
+    "/worldPack/techniques/tech_17/counters",
+    "/storyBible/chapterPlans/chapter-plan-5/purpose",
+    "/storyBible/chapterPlans/chapter-plan-5/conflict",
+    "/plan/milestones/ms_v3_advancement/setup",
+    "/plan/milestones/ms_v3_convoy/setup",
+    "/plan/chapters/chapter-5/summary",
+    "/plan/chapters/chapter-5/conflict",
+    "/plan/chapters/chapter-5/scenes"
+  ],
+  "schemaPassed": true,
+  "planIssuesIdenticalToBase": true,
+  "existingBlockersUnchanged": true,
+  "normalization": {
+    "reviewedCandidateHash": "ce29b0a5159b69682bd5a4d1af3edcfe72f6b0ae3e0e0d0b9ff982eeeacbd5af",
+    "finalCandidateHash": "ea60e705a5b93e13a0bf669c78af1308940d715fb942971c43da67991c701e13",
+    "change": "Split one overlength milestone setup string into two adjacent strings without changing a single content character; flattened milestone setups and all other fields deep-equal."
+  },
+  "reviews": [
+    {
+      "name": "tech17-initial",
+      "status": "reviewed",
+      "inputHash": "fb3e1e9353fe31ca1bd4931c2214e55ae95b0daddca20bacf350cef74950ff8a",
+      "completeInputHash": "b50474ff16856cd5f88b8cca619fd9e37f040204d3c7b1600e0d53f5ad7f1055",
+      "usage": {
+        "calls": 1,
+        "failedCalls": 0,
+        "inputTokens": 74870,
+        "outputTokens": 2055,
+        "costUsd": 0,
+        "costKnown": false,
+        "byRole": {
+          "reviewing": {
+            "calls": 1,
+            "failedCalls": 0,
+            "outputTokens": 2055,
+            "costUsd": 0
+          }
+        },
+        "limits": {
+          "budgetUsd": null,
+          "maxCalls": 2
+        }
+      },
+      "checks": [
+        {
+          "criterion": "conversion",
+          "verdict": "pass",
+          "explanation": "启动本人十元载种源，按一成效率得到一命度，且明确种源不可返还、命能不是本人寿储。每节点每十息预付0.05命度，目标每十息最多抽一元载，实际所得取抽量十分之一；示例两节点各抽一元载，维护费0.1、强化费0.5、衰减均按规则计算。第一轮1−0.1=0.9，衰减0.09后加新收入0.2得1.01；第二轮1.01−0.1−0.5=0.41，衰减0.041后加0.2得0.569，未把抽取寿元重复计作能量。预计寿命不得作为来源，且新收入时序、四命度上限和不得预支均有明确限制。",
+          "revisionAdvice": "",
+          "evidenceCount": 5
+        },
+        {
+          "criterion": "effect",
+          "verdict": "pass",
+          "explanation": "强化仅将本人经实测的徒手峰值提高至多二成，不提供速度、反应、防御、法则、法宝或境界加成；必须实际接触、满足站位与力路，且伤后须按当前承载重新评估。每次十息最多两次，连续最多三段后至少六十息停用并复测，超段或越过承载会造成筋腱、经脉实损，反制也保留了距离、躲避、甲胄、护体和法宝防御等正常基准。因此不存在以术式名义免费获得其他战斗能力或把徒手强化写成越级破防。",
+          "revisionAdvice": "",
+          "evidenceCount": 5
+        },
+        {
+          "criterion": "costs",
+          "verdict": "revise",
+          "explanation": "启动法力五成、神识三成、永久本源百分之一、每小时各半成控制费、节点十息费和强化费，以及中断反灌、正常排散、冷却与永久伤损的规则总体相容；但两轮示例的控制账没有给出持续时长。示例将控制前法力4.5、神识6.5记为两轮后4、6，等于扣除各0.5，似乎使用了一小时控制费；而示例两轮本身只有两个十息节点周期，另含一次十息强化，未说明是否经过一小时，也未列出一小时边界或其他持续控制时间。若未实际经过一小时，这笔扣款不应发生；若经过一小时，必须说明期间阵处于何种持续控制状态及是否另有节点、抽取或停术安排。当前因此无法确认示例的法力、神识逐笔守恒。",
+          "revisionAdvice": "在proposal/energyExample中补列启动时点、两轮及轮间的实际时间线，明确是否经过一小时控制费计费区间；逐笔列出主阵法力、可用神识、节点费、强化费和控制费。若总时长不足一小时，应将4.5/6.5到4/6的扣款删除；若确实满一小时，应说明持续控术期间及相应的节点/抽取状态，避免把未发生的按小时费用提前计入。",
+          "evidenceCount": 4
+        },
+        {
+          "criterion": "continuity",
+          "verdict": "pass",
+          "explanation": "术式限定实际通天或主宰、掌握界律和命寿术式者主持，明确赵玄府不得发动、主持或代持；完整阵式必须在明确地点实建验收，同一里至多十六个互通节点，且不隔界、不跨海。条目同时明确百章局部运输、拘束或受伤现象不等于已建全阵，也不自动推出通天主阵者、种源或强化已发生。节点被毁、目标被救离或主阵受打断会停止抽取并触发实际反灌，阵停、排散、冷却和永久本源损伤均不会被恢复、重测或换境清零。这些限制与通天以上资格、界门封禁及法力/神识分账规则一致。",
+          "revisionAdvice": "",
+          "evidenceCount": 6
+        }
+      ]
+    },
+    {
+      "name": "tech17-explicit-ledger",
+      "status": "reviewed",
+      "inputHash": "fb3e1e9353fe31ca1bd4931c2214e55ae95b0daddca20bacf350cef74950ff8a",
+      "completeInputHash": "96ceb8e32fcc481cae4632944ef9a415002dddc2c9c22c815b05ace88d84678b",
+      "usage": {
+        "calls": 1,
+        "failedCalls": 0,
+        "inputTokens": 75431,
+        "outputTokens": 1338,
+        "costUsd": 0,
+        "costKnown": false,
+        "byRole": {
+          "reviewing": {
+            "calls": 1,
+            "failedCalls": 0,
+            "outputTokens": 1338,
+            "costUsd": 0
+          }
+        },
+        "limits": {
+          "budgetUsd": null,
+          "maxCalls": 2
+        }
+      },
+      "checks": [
+        {
+          "criterion": "conversion",
+          "verdict": "pass",
+          "explanation": "规则明确本人先燃十元载种源、至多按一成转为一命度，节点每十息预付0.05命度；受害者按已诊断未耗下界、每十息至多抽一元载且仅一成转化，禁止按预计寿数预支。轮末先对旧余额衰减一成、再加入本轮实得，新收入下一轮才可花，主枢上限四命度。两轮例中1→0.9→衰减0.09→加0.2=1.01，及1.01扣0.1与0.5后为0.41→衰减0.041→加0.2=0.569，逐笔守恒且未将受害者寿元或转化前总量当作主阵者寿储。",
+          "revisionAdvice": "",
+          "evidenceCount": 4
+        },
+        {
+          "criterion": "effect",
+          "verdict": "pass",
+          "explanation": "强化被限定为本人经正常实测的徒手峰值发力至多提高二成，且只支持十息内两次实际接触发力；明确不提供远程伤害、速度、反应、防御、境界、法则、法宝供能或伤愈。连续最多三段三十息后，至少六十息不得强化并须复测；伤情不允许加负荷即不得使用，超限则停阵并产生筋腱或经脉实损。甲胄卸力、保持距离、护体和法宝仍可反制，故没有以神阶术名抹除既有受伤与反制基准。",
+          "revisionAdvice": "",
+          "evidenceCount": 2
+        },
+        {
+          "criterion": "costs",
+          "verdict": "pass",
+          "explanation": "启动同时扣当境法力五成、可用神识三成、本人十元载及首次稳定大境界神魂本源一成的百分之一；本源损伤永久保留且换境不重置。每开始一小时另预付法力、神识各半成，强化另付各半成，示例将首小时控制费与第二轮强化费分开记账，未以普通恢复或时间流逝抵销。正常收阵要求停止新抽取、保留已付款时段并以十息排散；节点毁坏、目标被救离或主阵中断时，立即停抽并由实际残储造成阵材爆裂和主阵损伤，零残储也不撤销既付代价。三十日重开冷却及伤、道伤复测限制亦不能由短暂停术或睡眠绕过。",
+          "revisionAdvice": "",
+          "evidenceCount": 4
+        },
+        {
+          "criterion": "continuity",
+          "verdict": "pass",
+          "explanation": "术式资格限定为实际通天或主宰、掌握界律和命寿术式者，并明确百章赵仍为玄府，不得发动、主持或代持。完整阵网被设为剧情使用前须独立设计和验收的前置：同一里内最多十六个一目标节点，局部运输支线、界门、圣器或旧局部链均不等于全阵。计划也将赵定位为玄府、百章冲突定位为普通押运与同阶护卫，不把局部拘束或百章救援反推为全阵已启动；节点被毁或救人导致停抽与反灌后果在术式内保留。",
+          "revisionAdvice": "",
+          "evidenceCount": 5
+        }
+      ]
+    },
+    {
+      "name": "combat",
+      "status": "reviewed",
+      "inputHash": "ce29b0a5159b69682bd5a4d1af3edcfe72f6b0ae3e0e0d0b9ff982eeeacbd5af",
+      "completeInputHash": "6204d1a8c48e960dbd74a251e3efd0b22665ddb3d89fc055411a98ff9803f7cd",
+      "usage": {
+        "calls": 1,
+        "failedCalls": 0,
+        "inputTokens": 90523,
+        "outputTokens": 1425,
+        "costUsd": 0,
+        "costKnown": false,
+        "byRole": {
+          "reviewing": {
+            "calls": 1,
+            "failedCalls": 0,
+            "outputTokens": 1425,
+            "costUsd": 0
+          }
+        },
+        "limits": {
+          "budgetUsd": null,
+          "maxCalls": 2
+        }
+      },
+      "checks": [
+        {
+          "criterion": "pursuit",
+          "verdict": "pass",
+          "explanation": "第5章没有把凝元能力当作自动破石：井闸、侧翻矿车、井壁轨挡、碎矿窄坡依次构成短时实体阻路；暗桩须用短棍探路、待碎矿稳定后沿车侧跨越。梁九折返拉闸割绳、工友先行扶送伤者、林被扶过水渠的行动次序和空间位置明确。该安排承接第1章胸腹与左臂伤、第4章右手固定，并在第6章延续呛水胸痛、货签保留及药庐和逃路毁损；不以新造物证替代已毁木牌。",
+          "revisionAdvice": "",
+          "evidenceCount": 5
+        },
+        {
+          "criterion": "protection",
+          "verdict": "pass",
+          "explanation": "ax_12限定局部护罡须玄府、受指导、先经轻木棍和普通铁刃低负荷实测及复诊；每次先聚罡一成、命中再扣一成、仅护掌大单一部位两息，散后有三息空档，连续三次后必须休整复测。其效果仅分散一次普通擦击或斜击，明确不能保证抵住同阶正击、尖刺或连续攻势，且击穿后仍扣受击费并造成真实伤害。第416–424日安排把聚散训练与接触实测分开，并以肩伤复诊和未过关即不用作截车的条件落实资格与生效时点。",
+          "revisionAdvice": "",
+          "evidenceCount": 4
+        },
+        {
+          "criterion": "convoy",
+          "verdict": "pass",
+          "explanation": "训练、实测、玄府晋阶与截车之间有明确前置：第415日支付十元载突破，416–424日仅训练基础元罡和局部护罡，未把旧剑或顾的真光转授给林；435–436日才在同阶牵制中使用。林行动前八成元罡，三次均按聚罡一成和实际受击一成扣款，八→六→四→二成立；第三次虽仍支付受击费，但对手改刺肩侧、护罡被穿后立即停术撤离，二成封存复诊，不被写成三次付款必然免伤。空囚车用于遮挡并固定原地，梁九的自由雇工货车另用于送人；苏先后转移两车各四人，避免同车同时出现在两处。",
+          "revisionAdvice": "",
+          "evidenceCount": 4
+        },
+        {
+          "criterion": "continuity",
+          "verdict": "pass",
+          "explanation": "该提案没有用基础护罡替换顾既有的真光、同阶近身制伏或伤后交接：顾若施真光仍须三息、三成元罡和0.25元载，且截车后伤者、俘虏和看押责任另行处理。截车成果也保留敌方主动选择与后果：赵基于具名报告和旧清册签撤押令，押卫守囚车而非无故停攻，程逃回赵府，第二片仍封存赵府而不在车上。八名青玄被救者与赤霄五工、陆弟、北境七人明确分列，梁九不计入被救八人；两名玄府押卫的去向亦分别为退去与受伤接押。所给材料内未出现与既定伤亡、物证或人数口径相抵触的安排。",
+          "revisionAdvice": "",
+          "evidenceCount": 6
+        }
+      ]
+    }
+  ],
+  "caveats": [
+    "Initial tech17 review misidentified the actual 0.5 mana/consciousness boost cost as another hourly control cost. Correct 4.5→4 and 6.5→6 balances retained; second example explicitly itemizes time and both fees. Original response retained.",
+    "Second tech17 review costs explanation incorrectly says 神魂本源一成的百分之一. Candidate cost remains one percent of the entire first-stable-current-realm original soul-source baseline, not one percent of one tenth. Numeric example uses 0.01; no source changed to match the model wording.",
+    "All checks are focused proposed-design checks. Full-array construction, formal four-domain acceptance, chapter execution and adopted manuscript/history reconciliation remain outstanding."
+  ],
+  "activeDesignUnchanged": true,
+  "artifactsDirectory": "data/audit-backups/2026-10-14-design56-"
+}
