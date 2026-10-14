@@ -87,17 +87,67 @@ function reviewedPlan(work: Work) {
   return revision;
 }
 
+test('direct generation and adoption cannot bypass unfinished long-form design reviews', async () => {
+  let calls = 0;
+  const service = new NovelService({ generateChapter: input => { calls += 1; return provider.generateChapter(input); } });
+  const work = service.createWork('底层入口同样先审设计');
+  const design = lockedDesign();
+  service.setWorldPack(work.id, design.world); service.setStoryBible(work.id, design.bible);
+  const plan = reviewedPlan(work);
+  const pending = service.generateCandidate(work.id, 1, 'pending-before-review');
+  service.runChecks(work.id, pending.id, [passChecker]);
+  const baseline = calls;
+  const reports = [...work.designContentReviews];
+  const input = designReviewInput(work, 'story');
+  const assertBlocked = async () => {
+    assert.throws(() => service.generateCandidate(work.id, 1, 'new-sync'), /内容评审/);
+    await assert.rejects(() => service.generateCandidateAsync(work.id, 1, 'new-async'), /内容评审/);
+    assert.throws(() => service.runUntil(work.id, 1, [passChecker], 'new-run'), /内容评审/);
+    assert.throws(() => service.adoptCandidate(work.id, pending.id), /内容评审/);
+    assert.equal(calls, baseline, 'blocked design must not spend a writer call');
+    assert.equal(work.candidates.size, 1);
+    assert.equal(work.versions.size, 0); assert.equal(work.events.size, 0);
+  };
+  work.designContentReviews.clear(); await assertBlocked();
+  for (const [id, report] of reports) work.designContentReviews.set(id, report);
+  const run = createDesignReviewRun(input); work.designReviewRuns.set(run.id, run); await assertBlocked();
+  work.designReviewRuns.delete(run.id);
+  const originalTitle = work.title; work.title += '修改'; await assertBlocked(); work.title = originalTitle;
+  const result = fixtureDesignReview(input);
+  Object.assign(result.checks.find(c => c.criterion === 'growth')!, {
+    verdict: 'revise', explanation: '只有远期秘术而无近期可达目标', revisionAdvice: '补全近期行动和阶段回报',
+  });
+  recordDesignReview(work, input, result); await assertBlocked();
+  assert.equal(plan.status, 'approved', 'structural approval cannot override a negative content review');
+});
+
+test('a new design review blocks direct adoption and chapter replacement while preserving adopted history', () => {
+  const design = lockedDesign(), service = new NovelService(provider), work = service.createWork('复评不得绕过采纳');
+  service.setWorldPack(work.id, design.world); service.setStoryBible(work.id, design.bible); reviewedPlan(work);
+  const first = service.generateCandidate(work.id, 1, 'first');
+  service.runChecks(work.id, first.id, [passChecker]);
+  const version = service.adoptCandidate(work.id, first.id);
+  const pending = service.generateCandidate(work.id, 2, 'pending');
+  service.runChecks(work.id, pending.id, [passChecker]);
+  const before = JSON.stringify({ versions: [...work.versions], events: [...work.events], state: work.stateRevision });
+  const run = createDesignReviewRun(designReviewInput(work, 'world')); work.designReviewRuns.set(run.id, run);
+  assert.throws(() => service.adoptCandidate(work.id, pending.id), /内容评审/);
+  assert.throws(() => service.editAdoptedChapter(work.id, 1, '改写后的正文', [passChecker]), /内容评审/);
+  assert.equal(service.adoptCandidate(work.id, first.id), version, 'an idempotent retry only reads the already adopted version');
+  assert.equal(JSON.stringify({ versions: [...work.versions], events: [...work.events], state: work.stateRevision }), before);
+});
+
 test('the first long-form milestone runs three volumes and freezes a 100-chapter manuscript', () => {
   const design = lockedDesign();
   const service = new NovelService(provider);
   const work = service.createWork('三卷百章验收');
   service.setWorldPack(work.id, design.world);
   service.setStoryBible(work.id, design.bible);
+  reviewedPlan(work);
   const checkpoint = service.runUntil(work.id, 100, [passChecker], 'three-volume-run');
   assert.equal(checkpoint.phase, 'complete');
   assert.equal(checkpoint.nextChapter, 101);
   assert.equal(work.adoptedVersions().length, 100);
-  reviewedPlan(work);
   const manuscript = service.finalizeManuscript(work.id);
   assert.equal(manuscript.chapterCount, 100);
   assert.equal(manuscript.chapterVersionIds.length, 100);
@@ -152,10 +202,8 @@ test('written chapters do not substitute for explicit closure evidence', () => {
   const work = service.createWork('不能用已写完代替已收束');
   service.setWorldPack(work.id, design.world);
   service.setStoryBible(work.id, design.bible);
+  reviewedPlan(work);
   service.runUntil(work.id, 100, [passChecker], 'closure-evidence');
-  const plan = createPlanRevision(work, minimalPlan(100, { outlined: 100 }), { source: 'author' });
-  plan.status = 'approved';
-  work.activePlanId = plan.id;
   for (const version of work.adoptedVersions()) work.events.set(`plot-${version.id}`, {
     id: `plot-${version.id}`, workId: work.id, chapterVersionId: version.id, chapterNumber: version.chapterNumber,
     eventType: 'plot_progress', subjectId: `chapter-${version.chapterNumber}`, predicate: 'status', value: { status: 'realized' }, evidence: '章纲已完成', active: true,
@@ -173,8 +221,8 @@ test('manuscript closure is isolated from later design and event activity change
   const work = service.createWork('成稿证据范围');
   service.setWorldPack(work.id, design.world);
   service.setStoryBible(work.id, design.bible);
-  service.runUntil(work.id, 100, [passChecker], 'frozen-evidence');
   reviewedPlan(work);
+  service.runUntil(work.id, 100, [passChecker], 'frozen-evidence');
   const manuscript = service.finalizeManuscript(work.id);
   for (const event of work.events.values()) event.active = false;
   work.storyBible = { ...design.bible, revision: 99, secrets: [{ ...design.bible.secrets![0], id: 'future-secret' }] };
@@ -185,9 +233,11 @@ test('manuscript closure is isolated from later design and event activity change
 test('finalization rechecks current design reviews and preserves the existing manuscript on rejection', () => {
   const design = lockedDesign(), service = new NovelService(provider), work = service.createWork('最终稿不能绕过复评');
   service.setWorldPack(work.id, design.world); service.setStoryBible(work.id, design.bible);
-  service.runUntil(work.id, 100, [passChecker], 'final-review-gate');
-  assert.throws(() => service.finalizeManuscript(work.id), /approved plan/);
   const plan = reviewedPlan(work);
+  service.runUntil(work.id, 100, [passChecker], 'final-review-gate');
+  plan.status = 'proposed';
+  assert.throws(() => service.finalizeManuscript(work.id), /approved plan/);
+  plan.status = 'approved';
   const original = service.finalizeManuscript(work.id);
   const before = JSON.stringify([...work.manuscripts]);
   const reports = [...work.designContentReviews];

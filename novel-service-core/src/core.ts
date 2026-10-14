@@ -798,6 +798,7 @@ export class NovelService {
       const gate = chapterGenerationGate(work.worldPack, work.storyBible);
       if (!gate.ready) throw new ReadinessError([{ code: 'CANON_NOT_READY', message: `chapter generation gate blocked: ${gate.errors.join('; ')}`, nextAction: '处理设计门禁问题后重新锁定' }]);
     }
+    if (requiresDesignContentReview(work) && !designReviewOverview(work).ready) throw new ReadinessError([{ code: 'DESIGN_REVIEW_REQUIRED', message: '当前设计尚未通过全部分项内容评审，不能生成正文', nextAction: '完成世界、力量、人物与故事四项内容评审并处理返修问题' }]);
     if (context.requiredMaterialStatus !== 'complete') throw new ReadinessError([{ code: 'CONTEXT_INCOMPLETE', message: 'required context is incomplete', nextAction: '补齐必需上下文后重试' }]);
     return context;
   }
@@ -891,6 +892,7 @@ export class NovelService {
     const candidate = this.getCandidate(work, candidateId);
     if (candidate.status === 'adopted' && candidate.adoptedVersionId) return work.versions.get(candidate.adoptedVersionId)!;
     if (candidate.origin === 'demo') throw new DemoCandidateError('demo candidates cannot be adopted into the formal story');
+    if (requiresDesignContentReview(work) && !designReviewOverview(work).ready) throw new ReadinessError([{ code: 'DESIGN_REVIEW_REQUIRED', message: '当前设计的内容评审未通过，不能采纳正文候选', nextAction: '完成分项内容评审后重新生成或复查候选' }]);
     if (candidate.contentHash !== contentHashOf(candidate.content)) throw new AdoptionBlocked('candidate content does not match its recorded hash');
     this.qualityGate(candidate, work);
     if (candidate.generatedAgainstRevision !== work.stateRevision || candidate.generatedAgainstConstraintRevision !== work.constraintRevision) throw new StaleCandidateError('candidate context is stale; regenerate or re-check');
