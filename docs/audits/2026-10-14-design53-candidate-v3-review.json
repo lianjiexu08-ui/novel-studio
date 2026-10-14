@@ -1,0 +1,78 @@
+{
+  "candidateSha256": "3735916d6d4b758f76d22932cf719915eeccb6537073ed0fde5925ad79dcffba",
+  "saved": false,
+  "formalAcceptance": false,
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "status": "reviewed",
+  "usage": {
+    "calls": 1,
+    "failedCalls": 0,
+    "inputTokens": 133504,
+    "outputTokens": 2501,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 1,
+        "failedCalls": 0,
+        "outputTokens": 2501,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 2
+    }
+  },
+  "checks": [
+    {
+      "criterion": "tierAbilities",
+      "verdict": "pass",
+      "explanation": "境界条目明确区分承载方向与已掌握术式，并对神海、归一、破虚、通天、主宰的探查、领域、挪移、界门、言律和造界均保留了术式、来源、范围、前置、费用及反制要求。尚未展开的挪移、完整开门和造界没有被当前百章安排冒充为现成能力；第20—25章也只使用已定义的凝元御物、御风剑诀和太乙真光。",
+      "revisionAdvice": ""
+    },
+    {
+      "criterion": "sovereign",
+      "verdict": "pass",
+      "explanation": "主宰晋阶以首次稳定通天时实测本命神魂本源为固定基准，规定一成支付、支付后至少保留二成安全余量、失败或中断不退、重试须重新诊察并再付同额；永久损失与神识、法力、寿储和界源分账。言律明确沿用现有太清太虚鸿蒙典的三百元载、法力/神识、蓄势、持续和中断成本；造界也保留母界权限、界源扣减、界胚材料、工期、维持账和未完成即停止等工程前置。",
+      "revisionAdvice": ""
+    },
+    {
+      "criterion": "recovery",
+      "verdict": "revise",
+      "explanation": "清风引气诀与ax_05已区分淬体低负荷导引、凝元温和吐纳、静息恢复，并禁止同一时段重复记账；第20章两小时吐纳实际记回1.5成也未超过凝元上限。但第18章安排第177—179日每夜八小时连续静息，分别记回三成、三成、四成，违反ax_05规定的凝元连续静息两小时最多恢复一成；“环境温和”不能取消该上限。该超额恢复还会直接影响第180日实测余额及后续训练、御风剑诀和寿储预算。",
+      "revisionAdvice": "返修第18章及依赖该余额的后续账：将177—179日每个连续静息时段按凝元规则封顶一成，并重新计算第180日实测真元、181—188日行动、前50章各次施术前余量；不得用“八小时静息”直接记三至四成，也不得把清风引气诀与通用静息叠加。"
+    },
+    {
+      "criterion": "attention",
+      "verdict": "pass",
+      "explanation": "御风剑诀把心神负担限定为定向和导刃的可观察注意力疲劳，不另造精神点数；要求清醒、辨认并稳定锁定目标，不能同时御物或维持另一功法，受扰即停且二成真元不退。普通疲劳须症状消退、定向恢复，神识伤须医修确认。前50章已安排剑体散热、低流量试注、受伤后可用上限下调、剑诀与轻物御动分开支付，未把真元余额当作强行连发许可。",
+      "revisionAdvice": ""
+    },
+    {
+      "criterion": "ledger",
+      "verdict": "pass",
+      "explanation": "第19日以7元载为保守起点；第120日扣自然流逝101/365后再扣凝元3；第199、209日分别只将两剂已完成疗程各加5；第216日继续自然流逝而不重复入账，均与从第209日向后推算一致。第415日玄府扣10、第466日继续自然流逝的公式也沿用同一累计逻辑，泉液库存按第209日后归零处理，没有把历史灵泉收入再次当作新增。",
+      "revisionAdvice": ""
+    },
+    {
+      "criterion": "continuity",
+      "verdict": "revise",
+      "explanation": "新增能力边界总体与功法、法宝、境界和前50章行动相容：破虚挪移、主宰造界、完整开门未被提前使用，御风剑诀与赤霞斩铁剑的供能、散热和伤情限制也有对应安排。但第18章177—179日的凝元恢复超出ax_05上限，造成前50章真元余额被高估，因而会波及第180日复测、后续第20—25章的施术前余量以及相关伤后账。该项不是尚待正文兑现的问题，而是提案自身的规则—行动冲突。",
+      "revisionAdvice": "先按recovery项修正第177—179日恢复与第180日余额，再顺推核对第180—216日所有御风剑诀、轻物御动、静息/吐纳和伤后可用上限；保持既有术式、剑体散热和伤情限制，不得用新增未定义能力或精神点数弥补差额。"
+    }
+  ],
+  "manualRateCheck": {
+    "source": "ax_05 condensed-qi quiet rest, two hours per one tenth",
+    "continuousHours": 8,
+    "maximumRecoveredInTenths": 4.0,
+    "measuredOnDays177to179": [
+      3,
+      3,
+      4
+    ],
+    "allWithinCap": true,
+    "finding": "Model treated the rate as a fixed cap for arbitrarily long rest. Preserve the model response; do not decrease the correct chapter balances. Candidate v4 explicitly states the proportional hourly formulas."
+  }
+}
