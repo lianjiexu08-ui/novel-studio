@@ -88,6 +88,52 @@ test('network chapter provider promotes audited facts omitted by the writer', as
   }
 });
 
+test('independent extraction fails closed for malformed or incomplete audits and retains usage', async (t) => {
+  const invalid = ['不是审计 JSON', '{}', 'null', '[]', '{"observedEvents":null}', '{"observedEvents":{}}', '{"observedEvents":[{}]}',
+    JSON.stringify({ observedEvents: [{ eventType: 'plot_progress', subjectId: 'chapter-1', predicate: 'status', evidence: '正文' }] }),
+    JSON.stringify({ observedEvents: [{ eventType: 'plot_progress', subjectId: 'chapter-1', predicate: 'status', value: 'realized', evidence: ' ' }] })];
+  for (const output of invalid) await t.test(output, async () => {
+    const requests: Array<{ user: string; role?: string }> = [];
+    const client = { completeWithUsage: async (request: { user: string; role?: string }) => {
+      requests.push(request);
+      return { text: requests.length === 1 ? JSON.stringify({ content: '本章正文', proposedEvents: [] }) : output,
+        usage: { ...emptyUsage(), calls: 1, inputTokens: 7, outputTokens: 3 } };
+    } };
+    const provider = new OpenAICompatibleChapterProvider('', '', '', 10, 5000, true, client);
+    const service = new NovelService(provider);
+    const work = service.createWork('失败审计不能入账', covenant);
+    await assert.rejects(() => service.generateCandidateAsync(work.id, 1), (error: any) => {
+      assert.ok(error instanceof PlanningParseError);
+      assert.equal(error.usage.calls, 3);
+      assert.equal(error.usage.inputTokens, 21);
+      return true;
+    });
+    assert.equal(work.candidates.size, 0);
+    assert.equal(work.versions.size, 0);
+    assert.equal(requests.length, 3);
+    const repair = JSON.parse(requests[2].user);
+    assert.equal(requests[2].role, 'extraction');
+    assert.equal(repair.previousOutput, output);
+    assert.equal(repair.originalRequest.content, '本章正文');
+  });
+});
+
+test('independent extraction accepts explicit empty audits, including after a schema repair', async () => {
+  for (const needsRepair of [false, true]) {
+    let calls = 0;
+    const client = { completeWithUsage: async () => ({
+      text: ++calls === 1 ? JSON.stringify({ content: '没有发生状态变化的正文', proposedEvents: [] })
+        : needsRepair && calls === 2 ? '{}' : '{"observedEvents":[]}', usage: emptyUsage(),
+    }) };
+    const provider = new OpenAICompatibleChapterProvider('', '', '', 10, 5000, true, client);
+    const service = new NovelService(provider);
+    const work = service.createWork('空审计有明确含义', covenant);
+    const candidate = await service.generateCandidateAsync(work.id, 1);
+    assert.deepEqual(candidate.observedEvents, []);
+    assert.equal(calls, needsRepair ? 3 : 2);
+  }
+});
+
 test('network chapter provider rejects truncated JSON instead of saving it as prose', async () => {
   let calls = 0;
   const server = createServer(async (_request, response) => {

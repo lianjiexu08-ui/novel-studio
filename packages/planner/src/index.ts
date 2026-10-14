@@ -364,7 +364,7 @@ export class OpenAICompatibleChapterProvider implements ModelProvider {
       role: 'writing',
     }, '章节草稿'))), input.work.storyBible, input.work.worldPack) as GeneratedChapter;
     if (!this.independentExtraction) return draft;
-    const extracted = await completeJsonWithRepair(client, {
+    const auditedEvents = await completeValidated(client, {
       system: extractionSystem + (brief ? extractionBriefRule : ''),
       user: JSON.stringify({
         task: 'extract_events', chapterNumber: input.chapterNumber, content: draft.content,
@@ -379,18 +379,34 @@ export class OpenAICompatibleChapterProvider implements ModelProvider {
       // longer than the covenant target.
       maxOutputTokens: Math.max(3_000, Math.min(6_000, Math.ceil(input.work.covenant.chapterWords * 1.2))),
       role: 'extraction',
-    }, '事实审计');
-    const observed = extracted && typeof extracted === 'object' && !Array.isArray(extracted)
-      ? (extracted as { observedEvents?: unknown }).observedEvents
-      : undefined;
-    const validated = parseGenerateChapterResponse(normalizeChapterEnvelope({ content: draft.content, proposedEvents: draft.proposedEvents, observedEvents: observed }));
+    }, (value) => parseIndependentAudit(value, draft.content));
     // The independent audit reads the final prose and is the authoritative
     // event set. A writing model may omit a real change from proposedEvents;
     // promoting the audited set keeps canon updates complete while the audit
     // itself remains subject to strict contract and canon checks downstream.
-    const auditedEvents = (validated.observedEvents ?? []) as GeneratedChapter['observedEvents'];
-    return normalizeGeneratedEvents({ ...draft, proposedEvents: auditedEvents ?? [], observedEvents: auditedEvents }, input.work.storyBible, input.work.worldPack);
+    return normalizeGeneratedEvents({ ...draft, proposedEvents: auditedEvents, observedEvents: auditedEvents }, input.work.storyBible, input.work.worldPack);
   }
+}
+
+/** Absence, malformed output and an explicitly empty audit have different meanings. */
+function parseIndependentAudit(value: unknown, content: string): GeneratedChapter['proposedEvents'] {
+  if (!value || typeof value !== 'object' || Array.isArray(value)
+    || !Array.isArray((value as Record<string, unknown>).observedEvents)) {
+    throw new PlanningParseError('事实审计必须显式返回 observedEvents 数组；缺失、null 或对象不能表示审计通过');
+  }
+  const observedEvents = (value as { observedEvents: unknown[] }).observedEvents;
+  try {
+    parseGenerateChapterResponse({ content, proposedEvents: [], observedEvents });
+  } catch (error) {
+    throw new PlanningParseError(`事实审计事件不合规：${error instanceof Error ? error.message : String(error)}`);
+  }
+  for (const [index, event] of observedEvents.entries()) {
+    const record = event as Record<string, unknown>;
+    if (!Object.hasOwn(record, 'value') || typeof record.evidence !== 'string' || !record.evidence.trim()) {
+      throw new PlanningParseError(`observedEvents[${index}] 必须包含 value 和非空正文 evidence`);
+    }
+  }
+  return observedEvents as GeneratedChapter['proposedEvents'];
 }
 
 /** Compatible endpoints occasionally serialize an empty event list as null,
@@ -645,7 +661,6 @@ async function completeJsonWithRepair(client: PlanningClient, request: Completio
       if (label === '章节草稿' && prose.length >= 20 && !/^[{\[]/.test(prose)) {
         return { content: prose, proposedEvents: [] };
       }
-      if (label === '事实审计' && first.trim().length > 0) return { observedEvents: [] };
       throw repairError;
     }
   }
