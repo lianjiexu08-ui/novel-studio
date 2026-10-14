@@ -1,0 +1,137 @@
+{
+  "status": "reviewed",
+  "candidateVersion": 7,
+  "candidateHash": "17d392f8fd2a73091144feba9b9f114f53a102ce251b0a0b69473d88bdc66e99",
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "savedToWork": false,
+  "formalAcceptance": false,
+  "usage": {
+    "calls": 1,
+    "failedCalls": 0,
+    "inputTokens": 161296,
+    "outputTokens": 1614,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 1,
+        "failedCalls": 0,
+        "outputTokens": 1614,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 1
+    }
+  },
+  "cases": [
+    {
+      "name": "complete-opening-ability-and-voyage-continuity",
+      "status": "reviewed",
+      "sourceCount": 204,
+      "sourceChars": 224099,
+      "sourcesHash": "c8815865b286aca8c228d5bcf8b9b56c360c4b6f914c13b4c3cb1f43d58fcde8",
+      "rubric": {
+        "continuity": "核第18章新增的授业、训练、176实测与后续首次施术的承接，明确第20章九成到21章御物后八成半再到25章六成，以及39–44的旧掌腿伤、239复测五成、44剑诀二成的支出。核271–276路线与避火符12、连续佩戴144小时、北航10000、现金3988上限、回程封存3000及315累计780/220。全部50章细纲、全部100章宏观里程碑和相应世界条目在本次完整提供；不得因章节未读而漏判，也不得把两条独立人物路线或两航段误混。实际冲突须指明两端原文，宏观阶段不要求逐日正文流水。",
+        "allocation": "核26章由未获准的三剂申请减为两剂，原配额台批准告急者三滴、林六滴，污染三滴不补额、既用剂数仍零，与27/28实际两次十日服用后各加5的设定相容；不能因主角救回药物而赋予其私分全部泉液的权力。"
+      },
+      "summary": "两项所列的力量、伤情、航程与灵泉配额链在本提案内可闭合；均为待写章纲安排，不将其视为既成正文事实。",
+      "checks": [
+        {
+          "criterion": "continuity",
+          "verdict": "pass",
+          "explanation": "第18章明确凝元后的授业、剑诀训练、木架赔偿和第176日凝元式实测，且明确未获得玄府式；第20章剑诀后二成支出、试注半成、两小时实得一成半恢复至九成，第21章御物再付半成至八成半，第25章新剑诀二成与废料斗插销半成后为六成，未重复扣第21章动作。第30、32、42、44、48章继续以明确余额、伤后上限和复测推进至三成半；第44章剑诀二成单独扣除。顾在25章的护罡、真光、推劲和肩伤后余额，以及26章两次定腕至交押的支出亦已分账。北航、返航是不同实体航段：271日新购两符、逐日复核沿岸开放段，275日实付两席北航票10000、276日至281日五昼夜；专项款随后封存3000用于302日回航两席，315日统一核销10000+3000+780，余220，未把封存款当收入或重扣北航票。前50章细纲和51—100宏观均以提案形式给出连续里程碑，未要求未展开的51—100逐日场景。",
+          "revisionAdvice": "",
+          "evidence": [
+            {
+              "sourceId": "plan/chapters/18",
+              "quoteLength": 945,
+              "quoteHash": "accd04584e62a64d503963ef95e4474921e12cf385d6941259b7712fb4aac4bc"
+            },
+            {
+              "sourceId": "plan/chapters/20",
+              "quoteLength": 1149,
+              "quoteHash": "a62090abff33ebf751bfc9d0deb49769e8a82c1425ec1525473f783a58aba9ea"
+            },
+            {
+              "sourceId": "plan/chapters/21",
+              "quoteLength": 1195,
+              "quoteHash": "a4444d4362c7a5ccf89e2c62b37f497a6781b614731e35171613eb0c10c0dc35"
+            },
+            {
+              "sourceId": "plan/chapters/25",
+              "quoteLength": 770,
+              "quoteHash": "eca607c2be533872a0e54d9c4b22f7df9c2958bda2faa9bfcac2e87486bbb0ae"
+            },
+            {
+              "sourceId": "plan/chapters/26",
+              "quoteLength": 909,
+              "quoteHash": "1be3d5097672a93a1f38becf591d19ef166a3e94f27350152903fac6161509a7"
+            },
+            {
+              "sourceId": "plan/chapters/26",
+              "quoteLength": 1124,
+              "quoteHash": "ba6187669348cdc471f2dcc5a318e6f448fd08bd9d47319a9e4a5ef99bad2ff0"
+            },
+            {
+              "sourceId": "plan/milestones/ms_v2_voyage",
+              "quoteLength": 1118,
+              "quoteHash": "ee3e48df2693cc62115d06a45f5a4a3b01499dd30f0e0022d7d1e01991e65ec2"
+            },
+            {
+              "sourceId": "plan/milestones/ms_v2_voyage",
+              "quoteLength": 514,
+              "quoteHash": "13634647768b432f6e6a23da5137e375e6351bab9af3165482888a5289873c2b"
+            },
+            {
+              "sourceId": "plan/milestones/ms_v3_return",
+              "quoteLength": 954,
+              "quoteHash": "316e92c6a4dd79414987fb741775bcd5f0dc5d5a98dcccbdb5bff304bd33d1d8"
+            },
+            {
+              "sourceId": "plan/milestones/ms_v3_convoy",
+              "quoteLength": 685,
+              "quoteHash": "7c48ea7bc3863bf39580cd1cdd0ebe76a2ca125a7852638f5994b53a33d4b340"
+            }
+          ]
+        },
+        {
+          "criterion": "allocation",
+          "verdict": "pass",
+          "explanation": "第26章先核原封管、来源和原批可分额，再验得12滴中9滴洁净、3滴污染；林将尚未获准的三剂申请主动减为两剂，配额台依诊察和签认批准告急者3滴、林6滴。污染三滴隔离并从原批实物扣损，不补额；林只取得封存原液，既用有效剂数仍为零。第27—28章再按两次各十日疗程完成后才分别入账5，且明确林的原液由6滴至3滴至零、有效剂数由0至2；告急者3滴是独立药页，不构成林的第三剂。该安排没有把救回泉液或救援功劳转化为林对全部12滴、公共医疗或他人份额的处分权。",
+          "revisionAdvice": "",
+          "evidence": [
+            {
+              "sourceId": "plan/chapters/26",
+              "quoteLength": 909,
+              "quoteHash": "1be3d5097672a93a1f38becf591d19ef166a3e94f27350152903fac6161509a7"
+            },
+            {
+              "sourceId": "plan/chapters/26",
+              "quoteLength": 1124,
+              "quoteHash": "ba6187669348cdc471f2dcc5a318e6f448fd08bd9d47319a9e4a5ef99bad2ff0"
+            },
+            {
+              "sourceId": "plan/chapters/27",
+              "quoteLength": 1177,
+              "quoteHash": "bf11417d585e44115285b1d076c6f09445c955fbd603a732d9f29ca5ff0f6ba5"
+            },
+            {
+              "sourceId": "plan/chapters/28",
+              "quoteLength": 1173,
+              "quoteHash": "09796072bd5134dce8aa96da7536ae4cd3bdf9cd65e160efff86d7650882581c"
+            },
+            {
+              "sourceId": "world/resources/res_09",
+              "quoteLength": 1182,
+              "quoteHash": "f5fa454cfd4b9487e1663cc2d1f2adbfcaf23a949490aed25b7523bf96ad41de"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "note": "Full input diagnostic answers the narrow v7 continuity missing-source question; original insufficient result and all formal reports remain unchanged. Does not address the separate literary pacing/fantasy revisions."
+}

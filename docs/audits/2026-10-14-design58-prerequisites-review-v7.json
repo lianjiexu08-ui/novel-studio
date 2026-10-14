@@ -1,0 +1,600 @@
+{
+  "status": "reviewed",
+  "candidateVersion": 7,
+  "candidateHash": "17d392f8fd2a73091144feba9b9f114f53a102ce251b0a0b69473d88bdc66e99",
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "savedToWork": false,
+  "formalAcceptance": false,
+  "usage": {
+    "calls": 3,
+    "failedCalls": 0,
+    "inputTokens": 320018,
+    "outputTokens": 5704,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 3,
+        "failedCalls": 0,
+        "outputTokens": 5704,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 3
+    }
+  },
+  "cases": [
+    {
+      "name": "world-conservation-and-consequence",
+      "status": "reviewed",
+      "sourceCount": 163,
+      "sourceChars": 102796,
+      "sourcesHash": "b55a4d4a9ec0b535702f23193e52ff8b68ce98503daa5f8b279e5eff0d385f3f",
+      "rubric": {
+        "conservation": "针对ax_01的新定义，核查灵气来源、正常吐纳、强采阈值、污染或无效实物、采地损失与人体损伤的区分是否可执行；不得把物质守恒等同宇宙灵气总量永不变化。核对资源采额/周期/停采条件与新公理是否相容，不得把普通采收误当强夺或用空泛因果罚款替代已定义成本。",
+        "consequences": "对照event_01及其他历史、功法和资源，核查根基破坏—实体灾害—实际承受者的因果，跨海无传导不自动伤人是否意外取消其他术法本来具有的有路径反震；停采、修复、永久损伤与可恢复余额边界是否一致。指出新定义中的真实冲突，不要求尚未展开的高阶场景立即补齐逐章动作，但不得以未来可补为当前已发生收益兜底。",
+        "costs": "检查ax_01是否与既有寿储/法力/神识/本源账户重复扣款，是否放宽既有资源与能力代价、可采数量或疗程，是否让污染资源绕过原规则转成收益。已有明确规则应直接引用；新的通用公理不可覆盖更具体且更严格的限制。"
+      },
+      "summary": "ax_01将灵气的来源、合规采收、强采失效、采地损害与人体伤害拆分，并与资源周期、历史灾害及既有多账户成本保持可执行的一致性；未见以新公理取消既有具体代价的冲突。",
+      "checks": [
+        {
+          "criterion": "conservation",
+          "verdict": "pass",
+          "explanation": "ax_01明确灵气是在地脉、灵材、修士间转移、消耗与缓慢再生，禁止同一来源重复入账，而非宣称宇宙总量绝不变化；正常温和吐纳、限额采集和按功法施术不另加未定义扣寿。它又把未成熟强采、超额、毁泉/毁根/毁槽、警报后继续抽取限定为污染或无效实物，且不得预支未来配额。资源条目为年轮晶、伏龄根和命胶分别给出成熟窗口、对外限额、保育/应急份额、封采条件及毁坏后果，能够作为该公理所要求的具体采额与周期；三者均未把合规采收误作强夺。",
+          "revisionAdvice": "",
+          "evidence": [
+            {
+              "sourceId": "world/axioms/ax_01",
+              "quoteLength": 805,
+              "quoteHash": "285edff6cd518bae74771f3d0fe8e6aa1ce3b84e8094dc0a580f66d447e2f893"
+            },
+            {
+              "sourceId": "world/resources/res_17",
+              "quoteLength": 1162,
+              "quoteHash": "865b05be97b74952b6b4d7591bc252e75c1d6fe671450242dee6113ab771cec8"
+            },
+            {
+              "sourceId": "world/resources/res_18",
+              "quoteLength": 1199,
+              "quoteHash": "184cb5f195b544ca24a20ab49557f89765e80df75721770a817fdca454a98191"
+            },
+            {
+              "sourceId": "world/resources/res_19",
+              "quoteLength": 1147,
+              "quoteHash": "a42b3263f357817426d016c0b7bd76c5530ad3f312668d0625c91e32c7646149"
+            }
+          ]
+        },
+        {
+          "criterion": "consequences",
+          "verdict": "pass",
+          "explanation": "新定义将灾害归入可追踪的实体链条：采地承担枯竭、污染或裂隙扩大，采掘者承担已投入物资和工时；只有仍与失稳源接通时才会倒灌伤身，无接触或传导路径不得隔海自动伤人。其同时保留现场地火、塌方、裂隙对无辜者的实际波及，并规定停采后仍按原周期恢复、毁根毁槽或界壁破裂须工程修复和复验。太古界门事件也将强掠小界本源后的后果写为界壁支撑崩解、实体裂口与虚空乱流，与ax_01相容。皇道龙气术进一步具体化了“沿尚接通回路倒灌”、断线后不追伤无接触者，未被新公理意外取消原本有路径的反震。",
+          "revisionAdvice": "",
+          "evidence": [
+            {
+              "sourceId": "world/axioms/ax_01",
+              "quoteLength": 805,
+              "quoteHash": "285edff6cd518bae74771f3d0fe8e6aa1ce3b84e8094dc0a580f66d447e2f893"
+            },
+            {
+              "sourceId": "world/historicalEvents/event_01",
+              "quoteLength": 531,
+              "quoteHash": "d8aaa2d9ee138ad390c0ab40d418a225918b622c0f4131359e2cc7406b33b138"
+            },
+            {
+              "sourceId": "world/techniques/tech_14",
+              "quoteLength": 1178,
+              "quoteHash": "98642d47ac51ac9ae477f074fc73a10466f9d4cff1b4bba213d78b9db6034eaa"
+            }
+          ]
+        },
+        {
+          "criterion": "costs",
+          "verdict": "pass",
+          "explanation": "ax_01规定采掘投入、人体经脉伤和永久本源/寿储损失分账；受伤不自动固定扣寿，且同一实际代价不得重复扣。该边界与命寿不可逆、法力/神识/本源分账的既有通则一致。具体资源亦明确不能以资源或污染物代替寿元、神魂、生魂、法力、冷却或既定术式成本：神火髓只供应燃料，绝命死息只作媒介，命胶的新增寿储也只能支付未来寿耗，不能返还本源或既付成本。因此新公理没有把污染采物或资源品级转化为绕过原规则的收益。",
+          "revisionAdvice": "",
+          "evidence": [
+            {
+              "sourceId": "world/axioms/ax_01",
+              "quoteLength": 805,
+              "quoteHash": "285edff6cd518bae74771f3d0fe8e6aa1ce3b84e8094dc0a580f66d447e2f893"
+            },
+            {
+              "sourceId": "world/axioms/ax_02",
+              "quoteLength": 210,
+              "quoteHash": "750917db4ba721e617566d952a69e898361ae3ffaf2899ed58f13b3e2478671a"
+            },
+            {
+              "sourceId": "world/axioms/ax_07",
+              "quoteLength": 919,
+              "quoteHash": "9889a6adc74fc8d6b135e1511b67143ca71364dc70ac5d07f5f7e5aa85dc74ca"
+            },
+            {
+              "sourceId": "world/resources/res_12",
+              "quoteLength": 1123,
+              "quoteHash": "02724693e7c73a5e1449984bedf0594ba7698f91cbb874e53b78c2f5f5f0de2d"
+            },
+            {
+              "sourceId": "world/resources/res_15",
+              "quoteLength": 759,
+              "quoteHash": "50a8fdef1b6958539249b1b0fcec59307cf8c6a0fd42b813693aff0367a0d03c"
+            },
+            {
+              "sourceId": "world/resources/res_19",
+              "quoteLength": 844,
+              "quoteHash": "2627a70c7030ed73ec055bb9d58164b4b02fd89bf7b37fdd73c911517be529d2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "training-acquisition-and-coastal-route",
+      "status": "reviewed",
+      "sourceCount": 132,
+      "sourceChars": 134786,
+      "sourcesHash": "ddbf723ce2ba03498647686e040418176d799fd0af7b38b2697c56add4a8dcbc",
+      "rubric": {
+        "acquisition": "核第18章乾元御风剑诀的取得渠道、实际传授、凝元式训练与176实测在20/25/44使用前是否成立；候补授业不得被当成古境准入、免费领任意资源、自动掌握玄府式，也不得把顾的授业写成其当下需免费跨境施法。",
+        "prerequisites": "核顾峤char_10已明确的开篇前真光、局部护罡、贴身推劲训练实测与复诊，是否足以支撑25施术，区分已提供的作者初始设定与仅凭境界推断。逐项与原规则对照；任何遗漏须指出具体缺口，不因配角没在书内从零学习就强加训练场景。",
+        "route": "核271–274天宝至极焱的普通车路线，受护与非受护段、逐日岗哨实勘放行、普通符隔热范围、余量、封路停行或回站及延期后改签条件是否与loc_03及art_16一致。区分开放日常热气与硫烟/明火/地火，不能因日常符就通行危险区；不得为按时抵达跳过实际车程。",
+        "continuity": "核新增授业与原120–180训练、当境余额和伤情没有冲突；路线、两符12、144小时上限、3988余额上限、回程3000及后期累计780/220没有漏记、重复扣费或借未拨款使用。后段为宏观计划，不要求提前写成逐日正文；仍须指出现有文字自身的冲突。"
+      },
+      "summary": "乾元剑诀的授受、顾峤的开篇既有训练，以及271—274日沿岸车行方案均已给出可执行条件；但全项连续性仍依赖未提供的第21章与第39章余额/动作依据，无法完整核验。",
+      "checks": [
+        {
+          "criterion": "acquisition",
+          "verdict": "pass",
+          "explanation": "第18章明确林辰先完成凝元晋阶并获准练习，顾峤以候补护送训练职责当面借授“凝元导刃章”，说明定向、收势及赤霞剑仅承载凝元真元；授业不附带古境名额或玄府式。其后从短距练习、失控赔偿、停练，到第176日对可见目标导刃、停式和剑冷却后的复测，构成第20、25、44章凝元式使用前的取得、传授、训练与实测链。剑诀规则也明定玄府式另需元罡导刃训练，计划没有将顾的授业误写成林自动掌握玄府式，亦未要求顾免费跨境施法。",
+          "revisionAdvice": "",
+          "evidence": [
+            {
+              "sourceId": "world/techniques/tech_04",
+              "quoteLength": 900,
+              "quoteHash": "8d0de7da9235dcaf10622adab63bf32d23d859e52811fd8b91064033bfac0595"
+            },
+            {
+              "sourceId": "story/chapterPlans/chapter-plan-18",
+              "quoteLength": 1195,
+              "quoteHash": "dca9b41f5a4693227f154f210e810296d8e923a748faa3be791e0a74d3c1640e"
+            },
+            {
+              "sourceId": "plan/chapters/18",
+              "quoteLength": 945,
+              "quoteHash": "accd04584e62a64d503963ef95e4474921e12cf385d6941259b7712fb4aac4bc"
+            },
+            {
+              "sourceId": "plan/chapters/18",
+              "quoteLength": 1144,
+              "quoteHash": "1e1fa2dd8d0cb72a30652ddb58f93bc5741204c52fdbb2899e8a7160b0af3500"
+            },
+            {
+              "sourceId": "plan/chapters/20",
+              "quoteLength": 1149,
+              "quoteHash": "a62090abff33ebf751bfc9d0deb49769e8a82c1425ec1525473f783a58aba9ea"
+            },
+            {
+              "sourceId": "plan/chapters/25",
+              "quoteLength": 770,
+              "quoteHash": "eca607c2be533872a0e54d9c4b22f7df9c2958bda2faa9bfcac2e87486bbb0ae"
+            },
+            {
+              "sourceId": "plan/chapters/44",
+              "quoteLength": 1200,
+              "quoteHash": "d8fb3cca423347e2c5ccc171656c915343ef979d17bc522d1ebb84e2ba99c653"
+            }
+          ]
+        },
+        {
+          "criterion": "prerequisites",
+          "verdict": "pass",
+          "explanation": "顾峤人物设定明确将纯阳供能、三息凝印、主动收势受控训练及经脉复诊列为开篇前既有背景，并另明确完成局部护罡和贴身运罡的低负荷/受控实测。此与真光必须完成本境供能、凝印、三息起式、收势实测及复诊的规则相符，也与局部护罡、推劲/定腕均须指导、实测、复诊且受接触、站位、伤情和余额约束的规则相符。第25章按先局部护罡、再真光、再接触式推劲的次序列账，肩伤后停止重推、护罡及第二印，未以玄府境界名称替代训练或免除伤情限制。",
+          "revisionAdvice": "",
+          "evidence": [
+            {
+              "sourceId": "world/axioms/ax_12",
+              "quoteLength": 693,
+              "quoteHash": "d8f48fac5b4c209543ec20ba3fc6167b64f9373ae238ebf7c7da5b60abf40df4"
+            },
+            {
+              "sourceId": "world/axioms/ax_13",
+              "quoteLength": 1010,
+              "quoteHash": "873f3c2f0ec4c1649d7a967d267954ce32b5b6489822272a0ccbeade6c8bc0c8"
+            },
+            {
+              "sourceId": "world/techniques/tech_06",
+              "quoteLength": 931,
+              "quoteHash": "f601e9dffe74a2485c7777200f674b08d3d0fa1504a307615c938bdad7cc8f21"
+            },
+            {
+              "sourceId": "story/characters/char_10",
+              "quoteLength": 520,
+              "quoteHash": "4608f61a2c96d457f6e224513cf522712f8cdfd91fd2fe73611a7043d2f54a34"
+            },
+            {
+              "sourceId": "plan/chapters/25",
+              "quoteLength": 1003,
+              "quoteHash": "2cf6b18537710206e13800be92779e6074e498e36a5c796dbe9083770d14f7bf"
+            },
+            {
+              "sourceId": "plan/chapters/25",
+              "quoteLength": 997,
+              "quoteHash": "393bc7c51695c0aac4d3f57f0413fa974f8a5cb9e58818445ea4ed011e27881b"
+            }
+          ]
+        },
+        {
+          "criterion": "route",
+          "verdict": "pass",
+          "explanation": "271—274日方案将天宝外港至极焱天港限定为既有沿岸驿道，不进入内陆地火带；每日续行前均由岗哨实勘热裂、硫烟、异常地火并由车头核验放行牌。仅在确认无明火、硫烟、喷发且为日常热气的开放段行车，两张满额避火符仅覆盖本人日常隔暑；夜宿受护驿舍也不被写成符力补充。新见危险、符纹不足即在驿舍待令或沿安全段回站，并要求延期后改签、重排日期与实际费用，因而没有为赶275日船票跳过车程。两符自271日至276日暮最多连续144小时，仍保有至少576小时的核算符合720小时上限及封存停耗规则。",
+          "revisionAdvice": "",
+          "evidence": [
+            {
+              "sourceId": "world/locations/loc_03",
+              "quoteLength": 379,
+              "quoteHash": "e703bc74dd581d350ff139e821a71937acdadae2fcc546d59e4d87ac6f983cc5"
+            },
+            {
+              "sourceId": "world/artifacts/art_16",
+              "quoteLength": 600,
+              "quoteHash": "bdf542f1fd5bc7f01c190fb2c70a6a8636adaae6359bdcaf586af56847124cb8"
+            },
+            {
+              "sourceId": "plan/milestones/ms_v2_voyage",
+              "quoteLength": 1118,
+              "quoteHash": "ee3e48df2693cc62115d06a45f5a4a3b01499dd30f0e0022d7d1e01991e65ec2"
+            },
+            {
+              "sourceId": "plan/milestones/ms_v2_voyage",
+              "quoteLength": 514,
+              "quoteHash": "13634647768b432f6e6a23da5137e375e6351bab9af3165482888a5289873c2b"
+            }
+          ]
+        },
+        {
+          "criterion": "continuity",
+          "verdict": "insufficient",
+          "explanation": "已提供材料中，新增授业与第120—180日训练、凝元剑诀成本、剑冷却及177—180日恢复均有明确安排；271日起14000专项款也明确分为北航票10000、封存回程3000、累计杂费780及待返还220，避免将12枚符费重复扣除或把封存回程款当收入。可是第25章的林辰余额以“第21章动作后的8.5成”为起点，并称其中半成已扣；第44章又以“239日复测的五成”为起点。第21章、第39章及239日复测的原章纲均未提供，故无法核实这些承接余额、既付费用与伤情恢复是否确已发生，进而不能完成本项对20/25/44全过程及当境余额连续性的核验。现有文字本身未显示14000专项款、两符12、144小时、3988上限、回程3000与780/220之间的算术冲突。",
+          "revisionAdvice": "补提供第21章中从第20章九成到第25章八成半的具体御物/恢复账、以及第39章至第43—44章239日复测五成的伤情与真元账；核对其与剑诀二成、轻物御动半成、恢复条件及伤后上限的逐笔承接。",
+          "evidence": [
+            {
+              "sourceId": "plan/chapters/18",
+              "quoteLength": 945,
+              "quoteHash": "accd04584e62a64d503963ef95e4474921e12cf385d6941259b7712fb4aac4bc"
+            },
+            {
+              "sourceId": "plan/chapters/18",
+              "quoteLength": 1144,
+              "quoteHash": "1e1fa2dd8d0cb72a30652ddb58f93bc5741204c52fdbb2899e8a7160b0af3500"
+            },
+            {
+              "sourceId": "plan/chapters/25",
+              "quoteLength": 1003,
+              "quoteHash": "2cf6b18537710206e13800be92779e6074e498e36a5c796dbe9083770d14f7bf"
+            },
+            {
+              "sourceId": "plan/chapters/25",
+              "quoteLength": 256,
+              "quoteHash": "0dd0cb91dc9d35acfdf6e302891ea2ebc96abdfdec909aab2fe14ff332c98ed6"
+            },
+            {
+              "sourceId": "plan/milestones/ms_v2_voyage",
+              "quoteLength": 514,
+              "quoteHash": "13634647768b432f6e6a23da5137e375e6351bab9af3165482888a5289873c2b"
+            },
+            {
+              "sourceId": "plan/milestones/ms_v3_return",
+              "quoteLength": 954,
+              "quoteHash": "316e92c6a4dd79414987fb741775bcd5f0dc5d5a98dcccbdb5bff304bd33d1d8"
+            },
+            {
+              "sourceId": "plan/chapters/44",
+              "quoteLength": 1200,
+              "quoteHash": "d8fb3cca423347e2c5ccc171656c915343ef979d17bc522d1ebb84e2ba99c653"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "first50-literary-and-relationships",
+      "status": "reviewed",
+      "sourceCount": 160,
+      "sourceChars": 237847,
+      "sourcesHash": "0c4604b546725b278fe01fed6806a98e34c74e9ad6b2cda15d778c4fc75702b5",
+      "rubric": {
+        "causality": "只评前1至50章细纲的文学与关系质量，后续宏观设定只用于识别预告与阶段边界；不得把后段尚无逐章对话当缺陷，不评审本次未提供的完整世界或力量规则。所有50章细纲与相关人物、关系、秘密、前50章弧光节点均为完整原文，不能把“材料很长”作为跳读理由。编辑执行账是作者依据，不假定它会原封不动进正文；但要判断剥去账目后是否仍有戏剧事件。给出具体章节、原文证据、后果及有限修改建议。检查1至12、13至26、27至39、40至50各段由谁的选择引出下一步、失败如何改变局势、转折与阶段高潮是否改变目标/风险/关系；不能只因日期、票款齐全就判通过，也不能机械要求每章都打斗。",
+        "agency": "只评前1至50章细纲的文学与关系质量，后续宏观设定只用于识别预告与阶段边界；不得把后段尚无逐章对话当缺陷，不评审本次未提供的完整世界或力量规则。所有50章细纲与相关人物、关系、秘密、前50章弧光节点均为完整原文，不能把“材料很长”作为跳读理由。编辑执行账是作者依据，不假定它会原封不动进正文；但要判断剥去账目后是否仍有戏剧事件。给出具体章节、原文证据、后果及有限修改建议。检查主角与梁九、苏凌霜、顾峤、贺青梧等关键配角是否有自己的目标、能拒绝主角、作出不可轻易撤回的选择并改变后续，反派是否会有目的地行动而非只配合取证。指出最薄弱的角色或说明其承担作用的证据。",
+        "relationships": "只评前1至50章细纲的文学与关系质量，后续宏观设定只用于识别预告与阶段边界；不得把后段尚无逐章对话当缺陷，不评审本次未提供的完整世界或力量规则。所有50章细纲与相关人物、关系、秘密、前50章弧光节点均为完整原文，不能把“材料很长”作为跳读理由。编辑执行账是作者依据，不假定它会原封不动进正文；但要判断剥去账目后是否仍有戏剧事件。给出具体章节、原文证据、后果及有限修改建议。检查初识、互疑、合作与冲突的进程是否由双方行为及代价促成，是否在后续场景真正改变彼此决策；分清礼貌互助、交易、信任与情感进展，识别只写关系标签却不改变互动、关系过早完成、所有配角都服务主角。",
+        "pacing": "只评前1至50章细纲的文学与关系质量，后续宏观设定只用于识别预告与阶段边界；不得把后段尚无逐章对话当缺陷，不评审本次未提供的完整世界或力量规则。所有50章细纲与相关人物、关系、秘密、前50章弧光节点均为完整原文，不能把“材料很长”作为跳读理由。编辑执行账是作者依据，不假定它会原封不动进正文；但要判断剥去账目后是否仍有戏剧事件。给出具体章节、原文证据、后果及有限修改建议。检查前50章高潮、喘息、失利、探索和成长的分布；重点查是否反复使用救人—失物/受伤—票据登记—有限合作的同一结构，修炼/等待段是否有新冲突，规章和记账是否挤占叙事。相似结构本身不是错误，要判断人物困境、代价和后果是否有实质变化。",
+        "payoff": "只评前1至50章细纲的文学与关系质量，后续宏观设定只用于识别预告与阶段边界；不得把后段尚无逐章对话当缺陷，不评审本次未提供的完整世界或力量规则。所有50章细纲与相关人物、关系、秘密、前50章弧光节点均为完整原文，不能把“材料很长”作为跳读理由。编辑执行账是作者依据，不假定它会原封不动进正文；但要判断剥去账目后是否仍有戏剧事件。给出具体章节、原文证据、后果及有限修改建议。检查矿难、残玉/父亲线索、寿命缺口、救人承诺及秘密认知的铺垫与阶段兑现。前50章应有足够可感知的阶段回报，同时保留后续悬念，不能以仍有幕后组织就说没有收束，也不能用远期结局替代当前回报。",
+        "fantasy_identity": "只评前1至50章细纲的文学与关系质量，后续宏观设定只用于识别预告与阶段边界；不得把后段尚无逐章对话当缺陷，不评审本次未提供的完整世界或力量规则。所有50章细纲与相关人物、关系、秘密、前50章弧光节点均为完整原文，不能把“材料很长”作为跳读理由。编辑执行账是作者依据，不假定它会原封不动进正文；但要判断剥去账目后是否仍有戏剧事件。给出具体章节、原文证据、后果及有限修改建议。检查玄幻冒险、修炼成长、奇异世界发现和人物情感是否具有吸引力；确认故事不是仅靠程序性核账与合规推动。主角力量有限并不等于无爽点，可由智慧、探索、救援和有代价的胜利提供满足。评价现有材料实际提供了什么，明确最需修改的一处或给出通过依据，不要求无代价升级或新增海量条目。"
+      },
+      "summary": "前50章提案具备清楚的四段递进、可追溯的选择代价和多次阶段兑现；主要风险不在因果或角色失能，而在赤霄港33—50章将大量核账、手续与安置执行账压进连续叙事，可能削弱玄幻冒险的感知密度与中段推进速度。",
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass",
+          "explanation": "四段都由人物选择而非单纯日期或账目推动：1—12章林、梁、苏选择救人并保留不利证词，得到的是受限复核而非翻盘；13—26章林拒绝资助、付寿突破、秦拒绝硬闯，才形成顾可到场的救援链；27—39章疗程与分路把收货号带到港口，林救人放走携页者，失箱线才经当事人和原件闭合；40—50章贺拒绝押船、选择可撤船位，林救落水者不追原账，继而由吴卢和陆的现场选择完成脱控。每段失败均改变后续目标：从矿难留证转为古境解囚、从追箱转为救工、从三人获救转为找齐五人。",
+          "revisionAdvice": "",
+          "evidence": [
+            {
+              "sourceId": "plan/milestones/ms_vol1_turn",
+              "quoteLength": 386,
+              "quoteHash": "9cc2cb824caa71603539c2f2af19f95ebd28594886ae83e5ea95771d954b38c0"
+            },
+            {
+              "sourceId": "plan/milestones/ms_growth_v1_training",
+              "quoteLength": 753,
+              "quoteHash": "5771ff86d39c5a9d396af8e38113527dfe32e029abfd14a52a831d21c0e5951e"
+            },
+            {
+              "sourceId": "plan/milestones/ms_vol1_climax",
+              "quoteLength": 967,
+              "quoteHash": "26f1917614594814ee3d75e9cdd25d7650e3ba2e311ff772fc81a2cf46737f1c"
+            },
+            {
+              "sourceId": "plan/milestones/ms_v2_loss",
+              "quoteLength": 1146,
+              "quoteHash": "de690c17ad709bc73b364b36d30ea7edd3463c4309bc6d8be4c64bc3ce9e2c72"
+            },
+            {
+              "sourceId": "plan/milestones/ms_v2_barge",
+              "quoteLength": 1071,
+              "quoteHash": "b0eccf895b4ec5cf85f2c45a41ab947448d537c6a7b4fdeb90722b1b1d6e7318"
+            },
+            {
+              "sourceId": "plan/milestones/ms_v2_fire",
+              "quoteLength": 1200,
+              "quoteHash": "65f4b1f4ac2bc0b155c632da74620d22871b2893b0d7e8d11e0cd123e6138c88"
+            },
+            {
+              "sourceId": "plan/chapters/50",
+              "quoteLength": 1056,
+              "quoteHash": "52333c64d5e28278eb06d21eb2462628fca7444ba5283e656eb6cbb071336bf9"
+            }
+          ]
+        },
+        {
+          "criterion": "agency",
+          "verdict": "pass",
+          "explanation": "关键人物均有独立目标、拒绝权和会反过来约束主角的选择。梁九为家人签和解，林不能逼其撤回；苏拒绝为残玉担保并决定留宗；顾坚持准入、交岗和伤后限值；贺拒绝押船认赔、拒绝以撤证换赔款、也拒绝替获救工人决定回船。反派并非只等主角取证：墨因逃人和催交主动集中人手转运，程以拒收、扣工、撤外口工序、反诉等方式维持自身利益链，陆则一度主动命人拦船护账。最弱的是赵在前50章仍主要通过第15章使者施压，但该阶段并未假称他已获得港口消息；就本段而言，墨与程已经承担了现场对手的主动性。",
+          "revisionAdvice": "",
+          "evidence": [
+            {
+              "sourceId": "plan/chapters/8",
+              "quoteLength": 1200,
+              "quoteHash": "82f667547cd79f4b0d19167ac7fa7c75f29ccd43d3a8c133defb84b4a80be337"
+            },
+            {
+              "sourceId": "plan/chapters/14",
+              "quoteLength": 1188,
+              "quoteHash": "80407acf221bae0ae1f8c324b6d3ed12a8b6cb981c60e2b6c28cebcac2f857af"
+            },
+            {
+              "sourceId": "plan/chapters/15",
+              "quoteLength": 1054,
+              "quoteHash": "bece0c6c061066b33773dfd0ade41c46cc3f6c85e8eb1659949a89456f55f58f"
+            },
+            {
+              "sourceId": "plan/chapters/23",
+              "quoteLength": 1195,
+              "quoteHash": "45e59dc8f4478d04cc9ae38ea59d0fe7e27990aab473e0fca81b83497b551d03"
+            },
+            {
+              "sourceId": "plan/chapters/36",
+              "quoteLength": 1140,
+              "quoteHash": "f35be9a022ed495f3028112241149afbfcf39d23b64936d8f9833292222bf83e"
+            },
+            {
+              "sourceId": "plan/chapters/40",
+              "quoteLength": 1152,
+              "quoteHash": "d7859fda400807aaf05df1ca67378f8ed079e2fd9e0211cd4df2dcd3cb4e386c"
+            },
+            {
+              "sourceId": "plan/chapters/47",
+              "quoteLength": 1124,
+              "quoteHash": "50a7ac37302652459686f592f0dc1b85ae8b25f3c4c756bd4bdf121b1fc49fcd"
+            },
+            {
+              "sourceId": "plan/chapters/50",
+              "quoteLength": 1056,
+              "quoteHash": "52333c64d5e28278eb06d21eb2462628fca7444ba5283e656eb6cbb071336bf9"
+            }
+          ]
+        },
+        {
+          "criterion": "relationships",
+          "verdict": "pass",
+          "explanation": "关系推进不是标签替换。林苏从受限庇护、保留彼此不利证词，到因遗物担保争执而划清材料边界，再经古境共同承担路线错误、救援和分药，最终在第29章以苏留宗、林南行的分路兑现信任边界。林梁的合作则允许梁为家人生计和解，不被救命之恩抹除。港口段中，贺多次拒绝以船、生计或雇工服从林的追案目标；第50章五工脱控后又明确拒绝让船主替吴卢决定回船，避免将“获救”误写成忠诚或情感完成。",
+          "revisionAdvice": "",
+          "evidence": [
+            {
+              "sourceId": "story/relationships/rel_01",
+              "quoteLength": 1176,
+              "quoteHash": "db76ed82d2ea8b8107770e7d7fc81a51bfea5e4627731412309f28289cf78062"
+            },
+            {
+              "sourceId": "story/relationships/rel_01",
+              "quoteLength": 1148,
+              "quoteHash": "d61a039ac7e535bce31132e9328de5f5da2e498d72103786e0dd3cf7ca5be833"
+            },
+            {
+              "sourceId": "story/relationships/rel_07",
+              "quoteLength": 1162,
+              "quoteHash": "7e49f6e2afa40222a140ab4300813a508124c09f92a780be566a46b01d5e5526"
+            },
+            {
+              "sourceId": "story/relationships/rel_07",
+              "quoteLength": 470,
+              "quoteHash": "d2ea61139b96a12ae9b2a9ca688b54633c9267c5062091ec67126fc277c42907"
+            },
+            {
+              "sourceId": "story/relationships/rel_12",
+              "quoteLength": 1180,
+              "quoteHash": "599fa2859b28e0d6dd7f678e1425051ab5c6d81b4937a8f16db038b13e6e897e"
+            },
+            {
+              "sourceId": "story/relationships/rel_12",
+              "quoteLength": 1182,
+              "quoteHash": "35083f12d52297ccd79ba0b2a46d3457698a54fb092a530d257bdf7deac96ea9"
+            },
+            {
+              "sourceId": "story/relationships/rel_21",
+              "quoteLength": 1197,
+              "quoteHash": "4aa76322a8cb908179ee25a2fa4a8fc7961b73a2177025f1c7ece279d53d40ee"
+            },
+            {
+              "sourceId": "story/relationships/rel_21",
+              "quoteLength": 692,
+              "quoteHash": "b66acdb9e880094739efcf1e4429eeadd9e4d55a19d719a98437db268a3d9a8f"
+            },
+            {
+              "sourceId": "plan/chapters/50",
+              "quoteLength": 1056,
+              "quoteHash": "52333c64d5e28278eb06d21eb2462628fca7444ba5283e656eb6cbb071336bf9"
+            }
+          ]
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "revise",
+          "explanation": "前半段的节奏有明确变化：10—12章救人留证，16—18章失败、停练与晋阶，19—26章勘路、封哨、求援、同阶制敌，27—32章疗程与南渡，张弛可辨。33—50章虽也有仓火、追船和门前脱控三次动作高潮，但33—39连续围绕箱号、底册、便条、分架页、医铺页、工钱结算推进，45—49又连续安排夹联核验、安置、反诉、核证、逐棚问询、兄弟到案。它们各有合理因果，却容易在实际写作中形成“受伤/登记—补页核对—有限合作—再登记”的重复感，且执行账篇幅明显压过当下危机。",
+          "revisionAdvice": "重点返修33—39与45—49的场次组织，而非增加新事件：每一段连续核验只保留一个能迫使人物即时选择的现场戏，其余账目改作该场选择的后果或场间结果；尤其让第39章“拒绝把缺额挂给常”和第48—49章“查棚失败、沉川拒绝离港”各自成为不可替代的关系转折，避免重复用逐项核证承载戏剧高潮。",
+          "evidence": [
+            {
+              "sourceId": "plan/milestones/ms_v2_loss",
+              "quoteLength": 1146,
+              "quoteHash": "de690c17ad709bc73b364b36d30ea7edd3463c4309bc6d8be4c64bc3ce9e2c72"
+            },
+            {
+              "sourceId": "plan/milestones/ms_v2_loss",
+              "quoteLength": 1172,
+              "quoteHash": "0b81f0c4a016a4ca418dfac98e5b3898b0cce14d6515cdedae92c7fac304199a"
+            },
+            {
+              "sourceId": "plan/milestones/ms_v2_barge",
+              "quoteLength": 1071,
+              "quoteHash": "b0eccf895b4ec5cf85f2c45a41ab947448d537c6a7b4fdeb90722b1b1d6e7318"
+            },
+            {
+              "sourceId": "plan/milestones/ms_v2_fire",
+              "quoteLength": 1200,
+              "quoteHash": "65f4b1f4ac2bc0b155c632da74620d22871b2893b0d7e8d11e0cd123e6138c88"
+            },
+            {
+              "sourceId": "plan/chapters/39",
+              "quoteLength": 1191,
+              "quoteHash": "4cbbdfddde36496138f64baabf9c3b919ddbe6533398bfeec5dfbb4be175dca3"
+            },
+            {
+              "sourceId": "plan/chapters/45",
+              "quoteLength": 1182,
+              "quoteHash": "90e5170a3bcb03878a3a9b977546b7bdd73dfb8caf14d35853e8e973e67fc257"
+            },
+            {
+              "sourceId": "plan/chapters/48",
+              "quoteLength": 1190,
+              "quoteHash": "e91f074ffc421f053a2949231deb45d375dd94efccbe3ab475e3fcf365b1c87a"
+            },
+            {
+              "sourceId": "plan/chapters/49",
+              "quoteLength": 1118,
+              "quoteHash": "d09f94d293f5c02dba8aaedfe31e89277082560fc94b35c0b568bbf19dcdd40c"
+            }
+          ]
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass",
+          "explanation": "前50章没有用远期九鼎结局代替当前回报。矿难线在12章形成“救出两人、留置执行者、获得受监督复核”的局部胜果；父亲线在18章由限时调阅的署名图确认“参与守门”而保留投毒缺口；寿命线在26—29章先验药、再完成两剂十日疗程才生效；六号箱线在39章以12回收、6火毁、6售用收束，同时明确火因未明；救人承诺则由44章救出三人、50章吴卢自行出门构成五工全部脱控。秘密知情也坚持由实物、亲见和送达触发，未让主角从残片或读者视角跳过证据。",
+          "revisionAdvice": "",
+          "evidence": [
+            {
+              "sourceId": "plan/chapters/12",
+              "quoteLength": 1198,
+              "quoteHash": "72797d141d78bd45e1693a4d0027936dd8a10d9104a6987926c5fb0dd03dd84d"
+            },
+            {
+              "sourceId": "plan/chapters/18",
+              "quoteLength": 945,
+              "quoteHash": "accd04584e62a64d503963ef95e4474921e12cf385d6941259b7712fb4aac4bc"
+            },
+            {
+              "sourceId": "plan/chapters/26",
+              "quoteLength": 909,
+              "quoteHash": "1be3d5097672a93a1f38becf591d19ef166a3e94f27350152903fac6161509a7"
+            },
+            {
+              "sourceId": "plan/chapters/27",
+              "quoteLength": 1177,
+              "quoteHash": "bf11417d585e44115285b1d076c6f09445c955fbd603a732d9f29ca5ff0f6ba5"
+            },
+            {
+              "sourceId": "plan/chapters/28",
+              "quoteLength": 1173,
+              "quoteHash": "09796072bd5134dce8aa96da7536ae4cd3bdf9cd65e160efff86d7650882581c"
+            },
+            {
+              "sourceId": "plan/chapters/39",
+              "quoteLength": 1191,
+              "quoteHash": "4cbbdfddde36496138f64baabf9c3b919ddbe6533398bfeec5dfbb4be175dca3"
+            },
+            {
+              "sourceId": "plan/chapters/44",
+              "quoteLength": 1200,
+              "quoteHash": "d8fb3cca423347e2c5ccc171656c915343ef979d17bc522d1ebb84e2ba99c653"
+            },
+            {
+              "sourceId": "plan/chapters/50",
+              "quoteLength": 1056,
+              "quoteHash": "52333c64d5e28278eb06d21eb2462628fca7444ba5283e656eb6cbb071336bf9"
+            },
+            {
+              "sourceId": "story/promises/prom_01",
+              "quoteLength": 308,
+              "quoteHash": "87ee97f1e39099cf53bea46a9e13d3c0fe4164ab3adaaeaa444e95288db15077"
+            }
+          ]
+        },
+        {
+          "criterion": "fantasy_identity",
+          "verdict": "revise",
+          "explanation": "现有材料确实提供了有代价的玄幻成长与冒险满足：林以三年寿元凝元、古境中用有限御物和地形救人、顾以付寿真光制伏同阶、残片与父亲署名图持续导向更大的界门谜团。这些不是无代价升级。问题是33—50章的主要阅读体验逐渐落在港务底册、租符、工食、修船、反诉和安置账上；这些约束有价值，但若逐项呈现，会让“赤霄药火卷”更像现实港口程序剧，玄幻异境、修炼选择和奇异发现退到货号背景。",
+          "revisionAdvice": "优先修改33—50章的呈现重心：保留账目作为代价与限制，但在每个港口转折场至少让一个既有玄幻元素直接制造感官或决策压力，例如受护外港环境、残片刻痕与货链的异常对应、凝元能力在严格边界内解决无法由常规程序解决的现场难题。不得把这改成免费升级、越阶战斗或以新法宝跳过港口责任。",
+          "evidence": [
+            {
+              "sourceId": "plan/milestones/ms_vol1_climax",
+              "quoteLength": 967,
+              "quoteHash": "26f1917614594814ee3d75e9cdd25d7650e3ba2e311ff772fc81a2cf46737f1c"
+            },
+            {
+              "sourceId": "plan/chapters/25",
+              "quoteLength": 770,
+              "quoteHash": "eca607c2be533872a0e54d9c4b22f7df9c2958bda2faa9bfcac2e87486bbb0ae"
+            },
+            {
+              "sourceId": "plan/milestones/ms_v2_loss",
+              "quoteLength": 1146,
+              "quoteHash": "de690c17ad709bc73b364b36d30ea7edd3463c4309bc6d8be4c64bc3ce9e2c72"
+            },
+            {
+              "sourceId": "plan/milestones/ms_v2_fire",
+              "quoteLength": 1200,
+              "quoteHash": "65f4b1f4ac2bc0b155c632da74620d22871b2893b0d7e8d11e0cd123e6138c88"
+            },
+            {
+              "sourceId": "plan/overview",
+              "quoteLength": 1195,
+              "quoteHash": "f9e15ee425639d08a2a150d19e0a4dbcf06d38670209fffc50bfe327d20b7301"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "fullArchive": "data/audit-backups/2026-10-14-design58-prerequisites-review-v7-full.json"
+}

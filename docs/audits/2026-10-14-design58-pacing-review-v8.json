@@ -1,0 +1,343 @@
+{
+  "status": "reviewed",
+  "candidateVersion": 8,
+  "candidateHash": "486613fa36473e1313c31d0047516090411a8c67646ecde8637a6428e4b61672",
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "savedToWork": false,
+  "formalAcceptance": false,
+  "usage": {
+    "calls": 1,
+    "failedCalls": 0,
+    "inputTokens": 153212,
+    "outputTokens": 2359,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 1,
+        "failedCalls": 0,
+        "outputTokens": 2359,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 1
+    }
+  },
+  "cases": [
+    {
+      "name": "first50-literary-and-relationships",
+      "status": "reviewed",
+      "sourceCount": 160,
+      "sourceChars": 239005,
+      "sourcesHash": "3fff74bbfba5c67a9f16034c33f604beaecaca1e28b10462c1aa56d06351ee3e",
+      "rubric": {
+        "causality": "只评前1至50章细纲的文学与关系质量，后续宏观设定只用于识别预告与阶段边界；不得把后段尚无逐章对话当缺陷，不评审本次未提供的完整世界或力量规则。所有50章细纲与相关人物、关系、秘密、前50章弧光节点均为完整原文，不能把“材料很长”作为跳读理由。编辑执行账是作者依据，不假定它会原封不动进正文；但要判断剥去账目后是否仍有戏剧事件。给出具体章节、原文证据、后果及有限修改建议。检查1至12、13至26、27至39、40至50各段由谁的选择引出下一步、失败如何改变局势、转折与阶段高潮是否改变目标/风险/关系；不能只因日期、票款齐全就判通过，也不能机械要求每章都打斗。",
+        "agency": "只评前1至50章细纲的文学与关系质量，后续宏观设定只用于识别预告与阶段边界；不得把后段尚无逐章对话当缺陷，不评审本次未提供的完整世界或力量规则。所有50章细纲与相关人物、关系、秘密、前50章弧光节点均为完整原文，不能把“材料很长”作为跳读理由。编辑执行账是作者依据，不假定它会原封不动进正文；但要判断剥去账目后是否仍有戏剧事件。给出具体章节、原文证据、后果及有限修改建议。检查主角与梁九、苏凌霜、顾峤、贺青梧等关键配角是否有自己的目标、能拒绝主角、作出不可轻易撤回的选择并改变后续，反派是否会有目的地行动而非只配合取证。指出最薄弱的角色或说明其承担作用的证据。",
+        "relationships": "只评前1至50章细纲的文学与关系质量，后续宏观设定只用于识别预告与阶段边界；不得把后段尚无逐章对话当缺陷，不评审本次未提供的完整世界或力量规则。所有50章细纲与相关人物、关系、秘密、前50章弧光节点均为完整原文，不能把“材料很长”作为跳读理由。编辑执行账是作者依据，不假定它会原封不动进正文；但要判断剥去账目后是否仍有戏剧事件。给出具体章节、原文证据、后果及有限修改建议。检查初识、互疑、合作与冲突的进程是否由双方行为及代价促成，是否在后续场景真正改变彼此决策；分清礼貌互助、交易、信任与情感进展，识别只写关系标签却不改变互动、关系过早完成、所有配角都服务主角。",
+        "pacing": "只评前1至50章细纲的文学与关系质量，后续宏观设定只用于识别预告与阶段边界；不得把后段尚无逐章对话当缺陷，不评审本次未提供的完整世界或力量规则。所有50章细纲与相关人物、关系、秘密、前50章弧光节点均为完整原文，不能把“材料很长”作为跳读理由。编辑执行账是作者依据，不假定它会原封不动进正文；但要判断剥去账目后是否仍有戏剧事件。给出具体章节、原文证据、后果及有限修改建议。检查前50章高潮、喘息、失利、探索和成长的分布；重点查是否反复使用救人—失物/受伤—票据登记—有限合作的同一结构，修炼/等待段是否有新冲突，规章和记账是否挤占叙事。相似结构本身不是错误，要判断人物困境、代价和后果是否有实质变化。",
+        "payoff": "只评前1至50章细纲的文学与关系质量，后续宏观设定只用于识别预告与阶段边界；不得把后段尚无逐章对话当缺陷，不评审本次未提供的完整世界或力量规则。所有50章细纲与相关人物、关系、秘密、前50章弧光节点均为完整原文，不能把“材料很长”作为跳读理由。编辑执行账是作者依据，不假定它会原封不动进正文；但要判断剥去账目后是否仍有戏剧事件。给出具体章节、原文证据、后果及有限修改建议。检查矿难、残玉/父亲线索、寿命缺口、救人承诺及秘密认知的铺垫与阶段兑现。前50章应有足够可感知的阶段回报，同时保留后续悬念，不能以仍有幕后组织就说没有收束，也不能用远期结局替代当前回报。",
+        "fantasy_identity": "只评前1至50章细纲的文学与关系质量，后续宏观设定只用于识别预告与阶段边界；不得把后段尚无逐章对话当缺陷，不评审本次未提供的完整世界或力量规则。所有50章细纲与相关人物、关系、秘密、前50章弧光节点均为完整原文，不能把“材料很长”作为跳读理由。编辑执行账是作者依据，不假定它会原封不动进正文；但要判断剥去账目后是否仍有戏剧事件。给出具体章节、原文证据、后果及有限修改建议。检查玄幻冒险、修炼成长、奇异世界发现和人物情感是否具有吸引力；确认故事不是仅靠程序性核账与合规推动。主角力量有限并不等于无爽点，可由智慧、探索、救援和有代价的胜利提供满足。评价现有材料实际提供了什么，明确最需修改的一处或给出通过依据，不要求无代价升级或新增海量条目。"
+      },
+      "summary": "前50章提案的因果链、角色自主性、关系递进与阶段兑现整体成立；主要风险在33—50章港口段连续以核账、收据、复核、工食安排承载转场，且玄幻探索感被程序性执行账挤压。",
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass",
+          "explanation": "四段均有由选择推动的明确升级。1—12章从林救人、梁因生计撤供又在关键处救同伴，推进到有限复核而非破案；13—26章由林拒绝删图和资助、承担练错代价，取得准入后又因“先救秦禾”失去样箱窗口，最终只能靠顾实际抵达完成同阶制敌。27—39章先完成有限疗程和分路，再由失箱、拒签全责、救火选择引出六号箱核清；40—50章则由贺撤缆保人、实测潮路、报警追船和陆到案，递进至吴卢脱控。失败会改变行动条件，而非仅补一笔记录：秦送图受阻丢失近观察点，唐带五人出逃失败导致外口工序被撤，贺的船损和停牌限制后续追查。",
+          "revisionAdvice": "",
+          "evidence": [
+            {
+              "sourceId": "plan/chapters/12",
+              "quoteLength": 1198,
+              "quoteHash": "72797d141d78bd45e1693a4d0027936dd8a10d9104a6987926c5fb0dd03dd84d"
+            },
+            {
+              "sourceId": "plan/chapters/22",
+              "quoteLength": 1197,
+              "quoteHash": "6269c549993398c1ce8c91892a5fc8ba18622c19530537fe36b77f09c5328a9f"
+            },
+            {
+              "sourceId": "plan/chapters/24",
+              "quoteLength": 1197,
+              "quoteHash": "27e069a85b56a766505ef8509772b9d56205fd0fa1c1d6d3730e80bd5a65139a"
+            },
+            {
+              "sourceId": "plan/chapters/26",
+              "quoteLength": 909,
+              "quoteHash": "1be3d5097672a93a1f38becf591d19ef166a3e94f27350152903fac6161509a7"
+            },
+            {
+              "sourceId": "plan/chapters/37",
+              "quoteLength": 1183,
+              "quoteHash": "0af07d410253a43a53159828a04af32ff2d0d7c0d8848e2d62385ec3e2abaf67"
+            },
+            {
+              "sourceId": "plan/chapters/40",
+              "quoteLength": 1152,
+              "quoteHash": "d7859fda400807aaf05df1ca67378f8ed079e2fd9e0211cd4df2dcd3cb4e386c"
+            },
+            {
+              "sourceId": "plan/chapters/42",
+              "quoteLength": 1056,
+              "quoteHash": "5559fe564627d60f0ed88bbd0acefe7057b5c6739eb55bb68a761a2d15cc495e"
+            },
+            {
+              "sourceId": "plan/chapters/50",
+              "quoteLength": 1056,
+              "quoteHash": "52333c64d5e28278eb06d21eb2462628fca7444ba5283e656eb6cbb071336bf9"
+            }
+          ]
+        },
+        {
+          "criterion": "agency",
+          "verdict": "pass",
+          "explanation": "主角并非唯一决策中心。梁九可为家人生计签和解、仍限定证词范围；苏多次拒绝替遗物背书，并在29章选择留宗护证而不随林南行；顾以入口职责和实测门槛拒绝破例；贺拒绝押船认赔、拒绝撤证换补偿，也在潮沟实际退船；陆在50章停止协助旧同伙，却仍接受看护和责任。反派也有主动且造成后果的选择：墨为按期交货撤回封路岗、集中转运；程以反诉、拒见和扣工自保。最薄弱的是程在33—50章的直接场面行动偏少，主要通过拒收、反诉、拒见与异地寄报施压，但这些仍足以构成具体阻力，不只是配合主角取证。",
+          "revisionAdvice": "",
+          "evidence": [
+            {
+              "sourceId": "story/relationships/rel_07",
+              "quoteLength": 1162,
+              "quoteHash": "7e49f6e2afa40222a140ab4300813a508124c09f92a780be566a46b01d5e5526"
+            },
+            {
+              "sourceId": "story/relationships/rel_04",
+              "quoteLength": 1188,
+              "quoteHash": "d4f2a2860e781e21792f1f8e38dbde0daa8d3d37b4d251247d3031c28b8011bd"
+            },
+            {
+              "sourceId": "story/relationships/rel_09",
+              "quoteLength": 1165,
+              "quoteHash": "83157b055b73372efe90a2c526be5078f02327f795a283f46148fe16281c0805"
+            },
+            {
+              "sourceId": "story/relationships/rel_12",
+              "quoteLength": 1180,
+              "quoteHash": "599fa2859b28e0d6dd7f678e1425051ab5c6d81b4937a8f16db038b13e6e897e"
+            },
+            {
+              "sourceId": "plan/chapters/23",
+              "quoteLength": 1195,
+              "quoteHash": "45e59dc8f4478d04cc9ae38ea59d0fe7e27990aab473e0fca81b83497b551d03"
+            },
+            {
+              "sourceId": "plan/chapters/40",
+              "quoteLength": 1152,
+              "quoteHash": "d7859fda400807aaf05df1ca67378f8ed079e2fd9e0211cd4df2dcd3cb4e386c"
+            },
+            {
+              "sourceId": "plan/chapters/47",
+              "quoteLength": 1124,
+              "quoteHash": "50a7ac37302652459686f592f0dc1b85ae8b25f3c4c756bd4bdf121b1fc49fcd"
+            },
+            {
+              "sourceId": "plan/chapters/50",
+              "quoteLength": 1056,
+              "quoteHash": "52333c64d5e28278eb06d21eb2462628fca7444ba5283e656eb6cbb071336bf9"
+            }
+          ]
+        },
+        {
+          "criterion": "relationships",
+          "verdict": "pass",
+          "explanation": "关系变化由双方选择和代价构成，而非直接贴“信任”标签。林苏从程序性庇护、保留不利证词，到围绕救秦、战术分工和分药建立有限合作；29章苏留宗、林南渡又将关系转成需实体传信的分路责任。林与梁九保留“救命不等于替家仇押全家”的边界；林与贺也不是迅速完成的同盟，贺持续拒绝押船、无限垫资和替工人决定去处。陆氏兄弟与林陆关系同样没有被救人抹平：陆弟拒绝哥哥替答，陆在50章的协助只使其更难逃避押送责任。",
+          "revisionAdvice": "",
+          "evidence": [
+            {
+              "sourceId": "story/relationships/rel_01",
+              "quoteLength": 1176,
+              "quoteHash": "db76ed82d2ea8b8107770e7d7fc81a51bfea5e4627731412309f28289cf78062"
+            },
+            {
+              "sourceId": "story/relationships/rel_01",
+              "quoteLength": 1148,
+              "quoteHash": "d61a039ac7e535bce31132e9328de5f5da2e498d72103786e0dd3cf7ca5be833"
+            },
+            {
+              "sourceId": "story/relationships/rel_07",
+              "quoteLength": 1162,
+              "quoteHash": "7e49f6e2afa40222a140ab4300813a508124c09f92a780be566a46b01d5e5526"
+            },
+            {
+              "sourceId": "story/relationships/rel_12",
+              "quoteLength": 1180,
+              "quoteHash": "599fa2859b28e0d6dd7f678e1425051ab5c6d81b4937a8f16db038b13e6e897e"
+            },
+            {
+              "sourceId": "story/relationships/rel_12",
+              "quoteLength": 1182,
+              "quoteHash": "35083f12d52297ccd79ba0b2a46d3457698a54fb092a530d257bdf7deac96ea9"
+            },
+            {
+              "sourceId": "story/relationships/rel_13",
+              "quoteLength": 1200,
+              "quoteHash": "ce043963f05c91697bdf8fb108ab454706f3eceb1e0b1af367257c0380f51605"
+            },
+            {
+              "sourceId": "story/relationships/rel_18",
+              "quoteLength": 495,
+              "quoteHash": "7715cc361a6a9d0e5239a57dc912d0049ab744b78951e45a978b0ddd82bc3d40"
+            },
+            {
+              "sourceId": "plan/chapters/50",
+              "quoteLength": 1056,
+              "quoteHash": "52333c64d5e28278eb06d21eb2462628fca7444ba5283e656eb6cbb071336bf9"
+            }
+          ]
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "revise",
+          "explanation": "高潮和喘息的骨架已有层次：10—12救人工具战，23—26古境救援，37仓火，43—44追船救三人，50门前脱控，且每次救援对象、阻力和后果不同，不能简单判为重复。然而33—50章在37—50之间连续堆叠货签、租符、诊费、工食、停牌、问询、返单、收据和复核说明，45—49章尤其容易把44章的船损救援余波稀释成手续接力；吴卢的线索推进也经历“空仓—水台多棚—陆画入口”三轮查找，戏剧目标变化不足以完全抵消执行账密度。",
+          "revisionAdvice": "重点压缩45—49章的账目交接与重复性查门过程：保留船损、三人安置、停牌反诉、陆弟拒离港及陆的入口指认这几个会改变人物选择的节点；将不改变当章困境的付款、余量、同类复核改为场景中的可见障碍或合并交代。让每一章至少新增一个人物关系或救援目标的实质转向，而非仅新增一张可核单据。",
+          "evidence": [
+            {
+              "sourceId": "plan/milestones/ms_v2_loss",
+              "quoteLength": 1146,
+              "quoteHash": "de690c17ad709bc73b364b36d30ea7edd3463c4309bc6d8be4c64bc3ce9e2c72"
+            },
+            {
+              "sourceId": "plan/milestones/ms_v2_loss",
+              "quoteLength": 1172,
+              "quoteHash": "0b81f0c4a016a4ca418dfac98e5b3898b0cce14d6515cdedae92c7fac304199a"
+            },
+            {
+              "sourceId": "plan/milestones/ms_v2_barge",
+              "quoteLength": 1071,
+              "quoteHash": "b0eccf895b4ec5cf85f2c45a41ab947448d537c6a7b4fdeb90722b1b1d6e7318"
+            },
+            {
+              "sourceId": "plan/milestones/ms_v2_fire",
+              "quoteLength": 1200,
+              "quoteHash": "65f4b1f4ac2bc0b155c632da74620d22871b2893b0d7e8d11e0cd123e6138c88"
+            },
+            {
+              "sourceId": "plan/milestones/ms_v2_fire",
+              "quoteLength": 1050,
+              "quoteHash": "f74f3b7aecb4f6c02f924eb96fd14459c8569b361ed8f43e9142551da523144d"
+            },
+            {
+              "sourceId": "plan/chapters/45",
+              "quoteLength": 1151,
+              "quoteHash": "39b748eeef18f1db6b725702aed5419d5e9c6ba58e850f8e528145890e949791"
+            },
+            {
+              "sourceId": "plan/chapters/46",
+              "quoteLength": 1150,
+              "quoteHash": "a10255d0ac1a1be0ee9cbba5db5736f6224e4c416883a8f35300dafbfd72a32b"
+            },
+            {
+              "sourceId": "plan/chapters/47",
+              "quoteLength": 1124,
+              "quoteHash": "50a7ac37302652459686f592f0dc1b85ae8b25f3c4c756bd4bdf121b1fc49fcd"
+            },
+            {
+              "sourceId": "plan/chapters/48",
+              "quoteLength": 1197,
+              "quoteHash": "8aaaa01d84435764a111790ec200c40ff10add0db01a2865b536225f7a59cfc9"
+            }
+          ]
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass",
+          "explanation": "前50章提供了可感知的阶段回报，同时保留证据边界。矿难线在12章救出两名工友、留置执行人与登记板；古境线在26章停止本次掳人营地、分出可用泉液，27—29章才以完整疗程兑现有限寿储而非即时治伤。父亲线从18章署名图、27章刻痕与收货号推进到可追查的赤霄线索，没有冒充查清投毒。港口段完成六号箱24包去向核清，44章救出唐许冯，50章让吴卢实际脱控，五工救援形成明确小收束；仓火原因、原账、程去向和更大运输链仍被保留为后续悬念。",
+          "revisionAdvice": "",
+          "evidence": [
+            {
+              "sourceId": "plan/chapters/12",
+              "quoteLength": 1198,
+              "quoteHash": "72797d141d78bd45e1693a4d0027936dd8a10d9104a6987926c5fb0dd03dd84d"
+            },
+            {
+              "sourceId": "plan/chapters/26",
+              "quoteLength": 909,
+              "quoteHash": "1be3d5097672a93a1f38becf591d19ef166a3e94f27350152903fac6161509a7"
+            },
+            {
+              "sourceId": "plan/chapters/27",
+              "quoteLength": 1177,
+              "quoteHash": "bf11417d585e44115285b1d076c6f09445c955fbd603a732d9f29ca5ff0f6ba5"
+            },
+            {
+              "sourceId": "plan/chapters/28",
+              "quoteLength": 1173,
+              "quoteHash": "09796072bd5134dce8aa96da7536ae4cd3bdf9cd65e160efff86d7650882581c"
+            },
+            {
+              "sourceId": "plan/chapters/39",
+              "quoteLength": 1128,
+              "quoteHash": "dacec79854f4d2914c186884683f3a144228bd7ede89df1a8f2a206d0e9a22d6"
+            },
+            {
+              "sourceId": "plan/chapters/44",
+              "quoteLength": 1200,
+              "quoteHash": "d8fb3cca423347e2c5ccc171656c915343ef979d17bc522d1ebb84e2ba99c653"
+            },
+            {
+              "sourceId": "plan/chapters/50",
+              "quoteLength": 1056,
+              "quoteHash": "52333c64d5e28278eb06d21eb2462628fca7444ba5283e656eb6cbb071336bf9"
+            },
+            {
+              "sourceId": "story/promises/prom_01",
+              "quoteLength": 308,
+              "quoteHash": "87ee97f1e39099cf53bea46a9e13d3c0fe4164ab3adaaeaa444e95288db15077"
+            }
+          ]
+        },
+        {
+          "criterion": "fantasy_identity",
+          "verdict": "revise",
+          "explanation": "1—32章具备较强玄幻成长身份：短寿支付凝元、有限御物、古境准入、玄府同阶制敌和残片刻痕都直接塑造冒险满足感。33—50章也并非完全失去奇幻元素，火场与追船中对御物、剑诀和伤势边界的限制使低阶能力可用且有代价。但港口段的主要推进越来越依靠货单、租符、收据、医嘱、停牌与问询；符、真元和残片常被写成审计对象，奇异港口、跨陆货运和残片谜团对场景体验的作用偏弱。按当前提案写下去，读者较易将这一段感受为严谨的港务调查，而不是玄幻世界中的探索和成长。",
+          "revisionAdvice": "优先修改33—50章的场景呈现重心，而非增加升级：把赤霄外港的异常热潮、避火秩序、跨陆货号与残片刻痕如何改变人物的观察和选择，落实为少数关键场景中的奇异发现或危险；同时将必要账目压缩到真正卡住行动的代价。保留林的低阶限制与救人取胜，但让港口探索本身产生独有的玄幻感，而不只作为核账背景。",
+          "evidence": [
+            {
+              "sourceId": "plan/milestones/ms_vol1_climax",
+              "quoteLength": 967,
+              "quoteHash": "26f1917614594814ee3d75e9cdd25d7650e3ba2e311ff772fc81a2cf46737f1c"
+            },
+            {
+              "sourceId": "plan/milestones/ms_growth_v1_crossing",
+              "quoteLength": 637,
+              "quoteHash": "727797550eec0f5a0f970fc88035ca4f71765c81a66ac2793d91f1763df0cec5"
+            },
+            {
+              "sourceId": "plan/milestones/ms_v2_loss",
+              "quoteLength": 1146,
+              "quoteHash": "de690c17ad709bc73b364b36d30ea7edd3463c4309bc6d8be4c64bc3ce9e2c72"
+            },
+            {
+              "sourceId": "plan/chapters/23",
+              "quoteLength": 1195,
+              "quoteHash": "45e59dc8f4478d04cc9ae38ea59d0fe7e27990aab473e0fca81b83497b551d03"
+            },
+            {
+              "sourceId": "plan/chapters/32",
+              "quoteLength": 1195,
+              "quoteHash": "abebe9eb48adbdb6e14bc4be6c1c16c7ec205813767d336c92152f42aebc981a"
+            },
+            {
+              "sourceId": "plan/chapters/37",
+              "quoteLength": 1183,
+              "quoteHash": "0af07d410253a43a53159828a04af32ff2d0d7c0d8848e2d62385ec3e2abaf67"
+            },
+            {
+              "sourceId": "plan/chapters/42",
+              "quoteLength": 1056,
+              "quoteHash": "5559fe564627d60f0ed88bbd0acefe7057b5c6739eb55bb68a761a2d15cc495e"
+            },
+            {
+              "sourceId": "plan/chapters/44",
+              "quoteLength": 1200,
+              "quoteHash": "d8fb3cca423347e2c5ccc171656c915343ef979d17bc522d1ebb84e2ba99c653"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "fullArchive": "data/audit-backups/2026-10-14-design58-pacing-review-v8-full.json"
+}
