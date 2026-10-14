@@ -83,6 +83,28 @@ test('invented anchors receive one repair attempt then fail closed', async () =>
   assert.equal(calls, 2);
 });
 
+test('model transport retains a complete 21-chapter deferral without a format-repair call', async () => {
+  const request = await input();
+  const unread = Array.from({ length: 21 }, (_, i) => `plan/chapters/${30 + i}`);
+  request.stage = { kind: 'batch', label: '航路连续性', totalBatches: 3,
+    sourceMap: request.sources.map(s => ({ id: s.id, sourceId: s.id, start: 0, end: s.text.length })),
+    coverage: { mode: 'local_sources', sourceLengths: { ...Object.fromEntries(request.sources.map(s => [s.id, s.text.length])), ...Object.fromEntries(unread.map(id => [id, 100])) } } };
+  const response = anchored(request);
+  Object.assign(response.checks[1], { verdict: 'insufficient', explanation: '需同读30至50章的付款与连续余量。', revisionAdvice: '补读全部连续章纲。', awaitingSources: unread });
+  let calls = 0;
+  const planner = new JsonDesignPlanner({ complete: async call => {
+    calls++;
+    assert.match(call.system, /最多64项/);
+    assert.match(call.system, /必须列全该具体问题所必需的未读来源/);
+    return JSON.stringify(response);
+  } });
+  const result = await planner.reviewDesignContent(request);
+  assert.equal(calls, 1);
+  assert.deepEqual(result.checks[1].awaitingSources, unread);
+  assert.equal(result.checks[1].verdict, 'insufficient');
+  validateDesignReview(request, result);
+});
+
 test('invented future chapter deferrals are repaired from the real inventory without manufacturing outlines', async () => {
   const request = await input();
   const unread = 'plan/milestones/convoy';

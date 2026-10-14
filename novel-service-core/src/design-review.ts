@@ -1,4 +1,5 @@
 import { createHash, randomUUID } from 'node:crypto';
+import { maxDesignReviewAwaitingSources } from '../../packages/contracts/src/index.ts';
 import type { Work } from './core.ts';
 
 export const designReviewAreas = ['world', 'power', 'characters', 'story'] as const;
@@ -178,7 +179,7 @@ export function validateDesignReview(input: DesignReviewInput, result: DesignRev
     if (check.awaitingSources !== undefined) {
       if (input.stage?.followupFor) throw new DesignReviewError('专门补读不得递归建立等待；仍缺必要材料时保留普通材料不足');
       const coverage = input.stage?.coverage;
-      if (check.verdict !== 'insufficient' || input.stage?.kind === 'synthesis' || coverage?.mode !== 'local_sources' || !Array.isArray(check.awaitingSources) || !check.awaitingSources.length || check.awaitingSources.length > 12 || new Set(check.awaitingSources).size !== check.awaitingSources.length) throw new DesignReviewError('等待补读只能用于局部材料不足，并指定1至12个不同的未读来源');
+      if (check.verdict !== 'insufficient' || input.stage?.kind === 'synthesis' || coverage?.mode !== 'local_sources' || !Array.isArray(check.awaitingSources) || !check.awaitingSources.length || check.awaitingSources.length > maxDesignReviewAwaitingSources || new Set(check.awaitingSources).size !== check.awaitingSources.length) throw new DesignReviewError(`等待补读只能用于局部材料不足，并指定1至${maxDesignReviewAwaitingSources}个不同的未读来源`);
       for (const sourceId of check.awaitingSources) {
         if (!Object.hasOwn(coverage.sourceLengths, sourceId)) throw new DesignReviewAwaitingSourceError(sourceId, Object.keys(coverage.sourceLengths));
         const ranges = input.stage!.sourceMap.filter(u => u.sourceId === sourceId);

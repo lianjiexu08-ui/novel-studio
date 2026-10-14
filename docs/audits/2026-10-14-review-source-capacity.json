@@ -1,0 +1,49 @@
+{
+  "scope": "Review request capacity only; not design acceptance or historical report repair",
+  "formal56Evidence": {
+    "runId": "design_run_eae8ce3f-bac9-49d3-a1e6-e3a7dcbe20c7",
+    "stage": "cross-2-5",
+    "criterion": "timeline",
+    "explanation": "已给宏观日期总体可相容：首卷第216日抵赤霄，赤霄至北境约五日，返青玄另需六日海程；第83章晋阶、第95章救援及第466日回访也有明确日数和成本说明。第1–2章本身的第1日至第3日安排连贯，但第3–50章的实际日期、疗程、航程、消息抵达和人员交接未在本批提供，无法核验关系阶段中第227、238、244、254、260等日点是否与连续章纲及后续阶段一致。",
+    "requestedSources": [
+      "plan/chapters/3",
+      "plan/chapters/4",
+      "plan/chapters/5",
+      "plan/chapters/6",
+      "plan/chapters/7",
+      "plan/chapters/8",
+      "plan/chapters/9",
+      "plan/chapters/10",
+      "plan/chapters/11",
+      "plan/chapters/12",
+      "plan/chapters/13",
+      "plan/chapters/14"
+    ],
+    "count": 12
+  },
+  "reproduction": {
+    "requiredChapterRange": [
+      30,
+      50
+    ],
+    "requiredCount": 21,
+    "before": "Schema rejects 21 existing unread sources because maximum is 12",
+    "after": "All 21 sources survive model transport and receive complete raw-source followup; missing chapter50 citation is rejected"
+  },
+  "change": {
+    "sourceListLimit": 64,
+    "evidenceLimit": 64,
+    "inputCharacterLimit": 240000,
+    "rubricVersion": 14,
+    "scheduleVersion": 12,
+    "criteriaChanged": false,
+    "historicalReportsChanged": false,
+    "activeFormal57RuntimeChanged": false
+  },
+  "validation": {
+    "testsPassed": 234,
+    "webTypecheckAndBuildPassed": true,
+    "cleanInstallPassed": true
+  },
+  "installationRepair": "Restored missing novel-studio-planner workspace entries in package-lock.json; clean npm ci succeeded with separate dependencies."
+}

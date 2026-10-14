@@ -5,6 +5,7 @@ import { createReadyWork } from './fixtures.ts';
 import { designReviewInput, designReviewOverview, designReviewRubrics, type DesignReviewInput, type DesignReviewResult } from '../../../novel-service-core/src/design-review.ts';
 import { createDesignReviewRun, designReviewStageInput, acceptDesignReviewStage, completeDesignReviewRun } from '../../../novel-service-core/src/design-review-run.ts';
 import { renderDesignReviewReport } from '../../../novel-service-core/src/design-review-report.ts';
+import { designReviewResultSchema } from 'novel-studio-contracts';
 
 const writer = { generateChapter: () => ({ content: 'unused', proposedEvents: [] }) };
 export const stagePass = (input: DesignReviewInput): DesignReviewResult => ({ summary: '本批材料已核', checks: Object.keys(input.rubric).map(criterion => ({ criterion, verdict: 'pass', explanation: '依据本批原文', evidence: [{ sourceId: input.sources[0].id, quote: input.sources[0].text.slice(0, 40) }], revisionAdvice: '' })) });
@@ -277,6 +278,40 @@ function resolvePending(input: DesignReviewInput) {
   result.checks[0].evidence = [...ids].map(id => ({ sourceId: id, quote: input.sources.find(s => s.id === id)!.text.slice(0, 40) }));
   return result;
 }
+
+test('one continuity question can request all 21 chapters and cannot resolve with a missing citation', () => {
+  const requested = Array.from({ length: 21 }, (_, i) => ({ id: `plan/chapters/${30 + i}`, text: `第${30 + i}章核验出发、到达、交接与当日余量。` }));
+  const input = { ...largeInput(), sources: [{ id: 'route', text: '第30至50章必须按真实航路连续核验，不能跳过港内交接。' }, ...['a', 'b', 'c', 'd'].map(id => ({ id, text: '其他原始设定。'.repeat(10000) })), ...requested] };
+  const run = createDesignReviewRun(input);
+  const first = run.stages[0], firstInput = designReviewStageInput(run, first);
+  const pending = stagePass(firstInput);
+  pending.checks[0] = { ...pending.checks[0], verdict: 'insufficient', explanation: '需连续核对30至50章的行动时序。', revisionAdvice: '补读全部21章，不能只取前12章。', awaitingSources: requested.map(s => s.id), evidence: [{ sourceId: run.units.find(u => u.sourceId === 'route')!.id, quote: input.sources[0].text }] };
+  designReviewResultSchema.parse(pending);
+  acceptDesignReviewStage(run, first, pending);
+  let resolved = false;
+  for (let i = 1; i < run.stages.length; i++) {
+    const stage = run.stages[i], staged = designReviewStageInput(run, stage);
+    let result = stagePass(staged);
+    if (stage.followupFor) {
+      assert.equal(stage.followupFor, 'batch-1/timeline');
+      assert.deepEqual(staged.stage!.coverage!.pendingChecks![0].requiredSourceIds, requested.map(s => s.id));
+      for (const source of requested) assert.equal(staged.stage!.sourceMap.filter(u => u.sourceId === source.id).map(u => staged.sources.find(s => s.id === u.id)!.text).join(''), source.text);
+      result = resolvePending(staged);
+      const incomplete = structuredClone(result);
+      const lastId = staged.stage!.sourceMap.find(u => u.sourceId === 'plan/chapters/50')!.id;
+      incomplete.checks[0].evidence = incomplete.checks[0].evidence.filter(e => e.sourceId !== lastId);
+      assert.throws(() => acceptDesignReviewStage(run, stage, incomplete), /新增来源 plan\/chapters\/50/);
+      designReviewResultSchema.parse(result);
+      resolved = true;
+    }
+    acceptDesignReviewStage(run, stage, result);
+  }
+  assert.ok(resolved);
+  const complete = completeDesignReviewRun(run);
+  assert.equal(complete.result.checks[0].verdict, 'pass');
+  assert.deepEqual(run.stages[0].result, pending);
+  assert.deepEqual(complete.result.resolvedDeferrals, [{ checkId: 'batch-1/timeline', resolvedByStageId: 'followup-batch-1/timeline' }]);
+});
 
 test('cross-batch deferrals require explicit raw-source resolution, and retain an auditable original', () => {
   for (const resolve of [false, true]) {

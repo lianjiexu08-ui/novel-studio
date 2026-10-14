@@ -1,6 +1,9 @@
 import { z } from 'zod';
 
 export const maxDesignReviewEvidence = 64;
+// This bounds the request metadata, not raw-source coverage. The scheduler still
+// requires every requested source to fit and every required citation to exist.
+export const maxDesignReviewAwaitingSources = 64;
 export const designReviewAreaSchema = z.enum(['world', 'power', 'characters', 'story']);
 export const designReviewResultSchema = z.object({
   summary: z.string().trim().min(1).max(4000),
@@ -9,7 +12,7 @@ export const designReviewResultSchema = z.object({
     explanation: z.string().trim().min(1).max(6000),
     evidence: z.array(z.object({ sourceId: z.string().min(1), quote: z.string().min(4).max(3000) })).max(maxDesignReviewEvidence),
     revisionAdvice: z.string().max(6000),
-    awaitingSources: z.array(z.string().min(1)).min(1).max(12).optional(),
+    awaitingSources: z.array(z.string().min(1)).min(1).max(maxDesignReviewAwaitingSources).optional(),
     resolves: z.array(z.string().min(1)).min(1).max(64).optional(),
   })).min(1).max(10),
 });
