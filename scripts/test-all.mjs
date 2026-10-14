@@ -28,6 +28,8 @@ for (const relative of packageDirs) {
   run(relative, process.execPath, ['--experimental-strip-types', '--test', ...files], directory);
 }
 
+run('candidate-budget-audit', process.execPath, ['--test', 'scripts/check-lifespan-path.test.mjs'], root);
+
 const spike = join(root, 'novel-service-spike');
 if (existsSync(join(spike, 'test_queue.mjs'))) run('novel-service-spike/node', process.execPath, ['--test', 'test_queue.mjs'], spike);
 
