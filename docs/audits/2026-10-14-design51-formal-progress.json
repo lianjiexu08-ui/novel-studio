@@ -1,0 +1,897 @@
+{
+  "observedAt": "2026-10-14T01:14:37.703Z",
+  "status": "in_progress_not_acceptance",
+  "runtimeCommit": "8da8b0f",
+  "scope": {
+    "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+    "planId": "plan_bb01d7778cba4b209f71d5f285076e04",
+    "world": 22,
+    "bible": 51,
+    "plan": 51
+  },
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "historyUnchanged": true,
+  "counts": {
+    "plans": 51,
+    "versions": 101,
+    "events": 383,
+    "manuscripts": 1
+  },
+  "oldReportsUnchanged": true,
+  "runs": [
+    {
+      "id": "design_run_696451fe-155b-458e-8111-3bd3b49427fa",
+      "area": "world",
+      "scheduleVersion": 4,
+      "status": "completed",
+      "completed": 1,
+      "total": 1,
+      "stages": [
+        {
+          "id": "batch-1",
+          "checks": [
+            {
+              "criterion": "geography",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "history",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "capacity",
+              "verdict": "pass"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "design_run_bbd01775-12df-435c-b575-5a87935562a8",
+      "area": "characters",
+      "scheduleVersion": 4,
+      "status": "running",
+      "completed": 14,
+      "total": 19,
+      "stages": [
+        {
+          "id": "batch-1",
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "id": "batch-2",
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "insufficient",
+              "explanation": "本批已能局部验证林辰—梁九从救命合作、因配粮和和解书产生互信破裂、再转为保留合作的原因与代价；林辰—苏凌霜也从有限查案责任，经过残玉担保争议，形成仅对可核材料负责的合作边界。两者均有具体选择和阶段性生效节点。不过，夜凝霜、陆沉舟、贺青梧等后两卷关键关系仅见人物目标及第44、50—53、61—66章的宏观提示；本批未提供关系阶段原文，不能核验这些关系的初始状态、双方付出、知情前提和后续有限合作是否一致，也不能用“拟”写法直接视为已闭合的关系设计。",
+              "revisionAdvice": "补读并核对各主要关系阶段原文，尤其明确林辰—苏凌霜留宗分路后的联系条件、林辰—夜凝霜在外港合作的触发与结束边界、林辰—陆沉舟在供述与救援后的责任关系，以及贺青梧因船损和雇工安置而保留的利益条件；每段应写明变化由谁作出何种选择、承担何种代价、在哪一章或事件后生效。",
+              "awaitingSources": [
+                "story/relationships/rel_01",
+                "story/relationships/rel_02",
+                "story/relationships/rel_03",
+                "story/relationships/rel_04",
+                "story/relationships/rel_05",
+                "story/relationships/rel_06",
+                "story/relationships/rel_07",
+                "story/relationships/rel_08",
+                "story/relationships/rel_09",
+                "story/relationships/rel_10",
+                "story/relationships/rel_11",
+                "story/relationships/rel_12"
+              ]
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "id": "batch-3",
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "insufficient",
+              "explanation": "本批能局部核验关系变化的原因与代价：林、苏因押解责任和伤情在第29章分路，林开始承认苏同行不是其应付出的代价；林、贺在第46章明确约定仅作有限陆上合作、任何新危险须重新商量；林与常钧则因先前将其视作脱责出口而失去私下合作。这些安排具备选择和生效场景。但本批未提供关系阶段原文，且第50章的吴卢脱控、陆沉舟立场变化及后续51–53章安置、供述核验只在宏观转述中出现，无法核对各关系的初始状态、阶段边界、知情前提与是否存在同一时点冲突。",
+              "revisionAdvice": "补读关系阶段原文，并核对第49–50章与后续安置安排：逐段明确林苏分路后的联络边界、林贺有限合作的权限与代价、陆沉舟/陆沉川在救援后分别知悉和承诺的内容，以及吴卢脱控后是否自由离港或仍受安置、交检等条件约束。",
+              "awaitingSources": [
+                "story/relationships/rel_01",
+                "story/relationships/rel_03",
+                "story/relationships/rel_09",
+                "story/relationships/rel_10",
+                "story/relationships/rel_11",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "insufficient",
+              "explanation": "已提供章纲对局部认知限制处理较严：林苏秦只能从现场口令得知撤哨，不能得知墨幽屠的上层催令；林在火场未见倾灯动作、携页者身份或纸页内容；陆沉舟收到的传话也不含海上私挪与火因；林直到实际收信、到场核对或取得原件才更新判断。林的弧光亦有可见因果，从急于追线索、期待苏同行，到接受苏留宗、贺的船务自主和常钧只作正式配合。不过，秘密总表及主要角色关系中的既知/未知分期未提供，且第51–100章的报令、撤押令、北境面报与正式质询仅以宏观锚点出现，不能据此验证赵玄极、林苏及其他相关人物的全程知情是否一致。",
+              "revisionAdvice": "补读秘密与关系知情原文，并逐项对照51–100章的消息链：为每份报令、签收、截得命令、当面报告和质询标出发出者、实体载体、送达时点、接收者及其可推知范围；同时维持本批已设定的边界，不能把火因、携页者身份、原账内容、吴卢去向或未核供述提前写成角色已知事实。",
+              "awaitingSources": [
+                "story/secrets/sec_01",
+                "story/secrets/sec_02",
+                "story/secrets/sec_03",
+                "story/secrets/sec_04",
+                "story/relationships/rel_01",
+                "story/relationships/rel_03",
+                "story/relationships/rel_09",
+                "story/relationships/rel_10",
+                "story/relationships/rel_11",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "batch-4",
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "id": "cross-1-2",
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "pass",
+              "resolves": [
+                "batch-2/relationships"
+              ]
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "id": "cross-1-3",
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "id": "cross-1-4",
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "id": "cross-2-3",
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "insufficient",
+              "explanation": "已读章纲能够局部验证关系并非终局标签：林苏从有限查案凭证、证据边界争执到仅共享可核货签后分路；林贺也从共同查箱发展为以雇工生计和可撤路线为前提的有限合作，均写有选择、损失与发生章节。但本批没有提供任何story/relationships原文，无法核对这些行动是否与关系阶段的初始状态、生效时点、后续第51—100章安排相容，也无法确认是否存在重复兑现或同一时点状态冲突。",
+              "revisionAdvice": "补读并交叉核对相关关系阶段原文，尤其明确林辰—苏凌霜、林辰—贺青梧、林辰—陆沉舟及夜凝霜的初始状态、触发变化的具体选择与代价、各阶段生效章次；再与第49—100章计划核验。",
+              "awaitingSources": [
+                "story/relationships/rel_01",
+                "story/relationships/rel_03",
+                "story/relationships/rel_04",
+                "story/relationships/rel_07",
+                "story/relationships/rel_08",
+                "story/relationships/rel_09",
+                "story/relationships/rel_10",
+                "story/relationships/rel_11"
+              ]
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "id": "cross-2-4",
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "insufficient",
+              "explanation": "已读章纲能局部证明关系变化不是终局标签：林辰与梁九经历撤供、救人及保留证言边界；林辰与苏凌霜从有限查案责任发展为对遗物担保范围的明确协作；第49—50章陆氏兄弟、贺与获救工人的关系也由救援进入去留分歧和责任承担。这些安排均有选择、代价与章节时点。但本批未提供任何完整的 story/relationships 原文，无法核验所有主要关系的初始状态、后续阶段是否同一时点互相冲突，亦无法判断51章以后拟定关系阶段是否重复兑现或越过已设边界。",
+              "revisionAdvice": "补读完整关系阶段原文后，逐条核对林辰—苏凌霜、林辰—梁九、林辰—贺青梧、陆沉舟—陆沉川及林辰—夜凝霜的初始状态、触发选择、代价、生效章点与知情边界；尤其核验第51章以后安排没有把第50章的有限脱控、陆的有限承认或工人自主去留提前写成完全信任、完整供述或固定归属。",
+              "awaitingSources": [
+                "story/relationships/rel_01",
+                "story/relationships/rel_02",
+                "story/relationships/rel_03",
+                "story/relationships/rel_04",
+                "story/relationships/rel_05",
+                "story/relationships/rel_06",
+                "story/relationships/rel_07",
+                "story/relationships/rel_08",
+                "story/relationships/rel_09",
+                "story/relationships/rel_10",
+                "story/relationships/rel_11",
+                "story/relationships/rel_12"
+              ]
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "id": "cross-3-4",
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "insufficient",
+              "explanation": "局部章纲已能核到若干关系变化的原因、选择和生效节点：林苏因留守证人与南行分路，只共享可核副本；林贺从有限合作发展为以雇工自主与生计优先的协作；陆氏兄弟则在弟弟拒绝离港、陆到案和承认本次押送中发生冲突性变化。第50章亦明确吴卢脱控不等于必须回贺船，避免用“获救后归队”替代当事人选择。但本批未提供关系阶段原文，无法核对这些局部安排是否与各关系的初始状态、全程阶段、生效时点及其他关系线一致，也不能判断是否有重复兑现或同一时点互相否定。",
+              "revisionAdvice": "补读所列关系阶段原文后，逐条核对林苏、林贺、贺与五名雇工、陆氏兄弟及陆与旧同伙的初始状态、变化触发、付出、生效章次和后续边界；尤其核验第50章脱控与第51—53章拟定安置/自述不会被写成已完成事实。",
+              "awaitingSources": [
+                "story/relationships/rel_01",
+                "story/relationships/rel_03",
+                "story/relationships/rel_09",
+                "story/relationships/rel_10",
+                "story/relationships/rel_11",
+                "story/relationships/rel_12",
+                "story/relationships/rel_13",
+                "story/relationships/rel_14",
+                "story/relationships/rel_16",
+                "story/relationships/rel_17",
+                "story/relationships/rel_18",
+                "story/relationships/rel_21"
+              ]
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "insufficient",
+              "explanation": "本批局部知情控制可执行：秦、林、苏只能依现场口令和亲见确认墨身份；林苏不知道墨收到的实体催令；林在收到苏的实体来信前不知道返宗结果；陆弟的便条、分架页、兄弟关系、火因、携页者及另一批改签均按亲见与物证分层推进。第51—53章还把程报、赵阅令与林苏不知情的时间点拆开，避免远程全知。然而本批未提供秘密条目、人物弧光和弧光节拍原文，无法核对这些局部知情限制能否覆盖全部秘密、误解、揭示条件及角色弧线，亦无法确认后续宏观的揭示是否重复或越过既定认知门槛。",
+              "revisionAdvice": "补读秘密、人物弧光及弧光节拍原文后，按每项秘密列出持有人、信息来源、可见证据、揭示触发、未获知者和错误推断边界；重点复核首仓火因、携页者、220夜改签、第二片流转、赵的报令认知与父案证据递进。",
+              "awaitingSources": [
+                "story/secrets/sec_01",
+                "story/secrets/sec_02",
+                "story/secrets/sec_03",
+                "story/secrets/sec_04",
+                "story/arcs/arc_01",
+                "story/arcs/arc_02",
+                "story/arcs/arc_03",
+                "story/arcs/arc_04",
+                "story/arcBeats/beat_01",
+                "story/arcBeats/beat_02",
+                "story/arcBeats/beat_03",
+                "story/arcBeats/beat_box_correction"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "synthesis-1",
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "id": "synthesis-2",
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "insufficient",
+              "explanation": "第49—50章及里程碑确实补强了若干关系的变化链：陆沉川拒绝随兄离港，陆沉舟接受看护且仍隐瞒签条内容；吴卢自行要求离开，贺接受其不立即回船；后续安排也将安置、短工和陆的自述标为拟落实而非既成和解。这与前批所见林苏分路、林贺有限陆上合作并不冲突。可是前置批次已明确指出，尚未核对关系阶段原文中各关系的初始状态、阶段边界、知情前提及跨卷同刻一致性；本次补充的第49—50章和宏观里程碑不能替代这些关系阶段原文。综合阶段不得取消该普通材料不足项。",
+              "revisionAdvice": "在后续原文复核中，对照关系阶段资料核验林苏分路后的联络权限、林贺有限合作的边界与代价、陆氏兄弟的责任分歧，以及吴卢脱控后“安全安置”与“自由离港/返船”之间的状态界线；不得将第50章脱控直接写成后续所有关系问题已解决。"
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "insufficient",
+              "explanation": "局部知情设计已有可执行证据：陆沉川只见收钱签字而未知条款；林在49—50章仅掌握入口、现场押送与门前阻拦，仍不知道完整改签、原账、程砚位置及第二片状态；程的报信、赵的阅报和回令被拆分为脚夫见闻、寄送、转驿、阅报与签收，林苏未被赋予敌方消息。后续里程碑也限制父案、撤押令和守门档案所能证明的范围。然前置批次所列秘密总表及主要关系既知/未知分期并未在这些证据中得到完整对照，且51—100各消息节点多数仍是宏观锚点。由于该普通不足项尚未被已验证的补读机制解除，不能以局部消息链通过替代全程知情一致性核验。",
+              "revisionAdvice": "后续复核应以秘密总表和关系知情分期逐项比对消息链：每份报令、签收、截得命令、当面报告与质询须明确发出者、载体、送达时点、接收者及可推知范围；继续保持火因、携页者身份、原账内容、程砚位置、吴卢后续去向和陆完整供述均未核实前不得成为角色既知事实。"
+            }
+          ]
+        },
+        {
+          "id": "synthesis-3",
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "id": "synthesis-4",
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "pass"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "design_run_2065f31c-70e6-440d-a602-378ddf6820b0",
+      "area": "power",
+      "scheduleVersion": 4,
+      "status": "running",
+      "completed": 9,
+      "total": 19,
+      "stages": [
+        {
+          "id": "batch-1",
+          "checks": [
+            {
+              "criterion": "tiers",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "costs",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "counters",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "id": "batch-2",
+          "checks": [
+            {
+              "criterion": "tiers",
+              "verdict": "revise",
+              "explanation": "境界、功法、法宝和资源阶梯本身区分了境界承载、品阶潜力与外部资源，且卷一至卷三规划由淬体、凝元三重至玄府并明确支付3元载、10元载，方向成立。但第1章将逆命真解概括为“神海境、十年以上余寿”即可发动；功法条目同时要求起术燃耗10—30元载后仍保有至少10元载安全余量。因此最低燃耗时也须在起术前有至少20元载可支配寿储，不能写成仅十年以上余寿。虽林辰不足十元载仍必然不能发动，表述仍会给后续角色留下错误门槛。",
+              "revisionAdvice": "将第1章及所有引用该术门槛的提案统一为：神海境以上，起术前须足额选定10—30元载燃寿，并在扣除该额后仍留10元载安全余量；不得将“十年以上余寿”单独表述为可发动条件。"
+            },
+            {
+              "criterion": "costs",
+              "verdict": "insufficient",
+              "explanation": "已读材料对不可逆寿元、真元/元罡分账、恢复上限、功法冷却及多数单次施术费用规定明确；卷一也明确两剂灵泉须完成十日疗程与复诊后才入账，卷末预算为约13.460274元载。但本批实际只读取至第15章：林辰第19日诊断下界为7元载、第60日仍约6.8877元载，且尚未支付凝元3元载。第16章以后取得泉液、两次疗程、每次入账剂量及从该下界到卷末预算的完整来源与扣款过程未被实际提供，故无法核验该增长是否守恒，也无法据目录直接认定其成立。",
+              "revisionAdvice": "补读后续章纲后，应逐项核对灵泉实际取得量、归属、每剂疗程、复诊生效时点、寿储入账剂量、自然流逝和凝元3元载支出，并使其能从第19日/第60日诊断下界连续结算至第32章卷末预算。",
+              "awaitingSources": [
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/milestones/ms_growth_v1_recovery",
+                "plan/milestones/ms_growth_v1_training",
+                "plan/milestones/ms_growth_v1_expedition",
+                "plan/milestones/ms_vol1_climax",
+                "plan/milestones/ms_growth_v1_aftermath",
+                "plan/milestones/ms_growth_v1_crossing"
+              ]
+            },
+            {
+              "criterion": "counters",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "id": "batch-3",
+          "checks": [
+            {
+              "criterion": "tiers",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "costs",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "counters",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "id": "batch-4",
+          "checks": [
+            {
+              "criterion": "tiers",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "costs",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "counters",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "id": "cross-1-2",
+          "checks": [
+            {
+              "criterion": "tiers",
+              "verdict": "insufficient",
+              "explanation": "已读材料中，林辰起点为淬体，逆命真解明确要求神海且百章不发动；凝元三重被设为古境准入而非新大境界，百章终点仅为玄府。宏观还要求先经实测、疗养、凝元三重与联名符牌，后进入古境；玄府晋阶另付十元载，未见以残片、灵泉或高阶法宝越过境界门槛的安排。这一层级链本身可行。但第16—50章已存在细纲而未在本批实际读取，无法核对林辰由温和引气至凝元三重、两次灵泉疗程、古境战斗及后续港口行动是否逐章遵守上述门槛，也无法据目录替代内容核验。",
+              "revisionAdvice": "补读并逐章核对第16—50章：林辰每段修习、凝元三重准入、玄府突破前的丹府实测与寿储安全余量；同时核验苏、顾、墨、赵等人是否只使用其境界允许的功法和器物。",
+              "awaitingSources": [
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27"
+              ]
+            },
+            {
+              "criterion": "costs",
+              "verdict": "insufficient",
+              "explanation": "规则层已将寿储、真元/元罡和伤势分账；燃耗寿元不可返还，灵泉只能在三滴一剂、十日疗程完成并复诊后新增五年未来寿储，且不治伤、不返还既付成本。百章预算链亦给出第19日下界7、120日付3、199/209日各增5、415日付10并扣自然流逝，推至466日约2.775342元载；按这些数字计算可闭合，且结局未取消十元载晋阶代价或既有伤势。可是两剂灵泉的实际取得、验药、十日疗程、复诊、生效时点，以及415日前训练、伤情与晋阶安全余量均落在未读取的第16—50章细纲中。当前不能仅凭宏观预算认定这些前置会在已有细纲内落实。",
+              "revisionAdvice": "补读第16—50章并逐项核对：三元载凝元支付时点、六滴灵泉的来源与两剂十日疗程、每剂复诊后的五年入账、自然流逝、古境伤势和第83章十元载玄府成本；不得将预计灵泉收入、疗伤效果或未来余额前置消费。",
+              "awaitingSources": [
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27"
+              ]
+            },
+            {
+              "criterion": "counters",
+              "verdict": "insufficient",
+              "explanation": "世界规则明确高境界不是无条件胜负，但低阶不得靠意志抵消高阶法则；阵法、法宝和环境越阶必须列出对象、外部能量、限制与不可逆代价。已读开篇也遵守这一边界：淬体林辰面对凝元暗桩只能救人撤离，不能追击或越阶制胜。宏观安排把古境关键战设为顾峤与墨幽屠的玄府同阶对抗，林辰仅制造普通货台战术窗口；末卷又设林、顾分别牵制同阶玄府，赵仍为玄府，方向上不与绝对压制规则冲突。但关键古境战、港口救援、北境救人及玄府押运战的具体行动细纲尚未读到，无法验证每一场是否实际写明供能、范围、伤势、反制和撤退条件。",
+              "revisionAdvice": "补读第16—50章，重点核查古境同阶制伏墨、林苏牵制凝元看守、港口追船和救援的具体反制链；每次使用功法或器物须明确施术者境界、可用余量、作用范围、打断点、伤势后果与不能达成的效果。",
+              "awaitingSources": [
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cross-1-3",
+          "checks": [
+            {
+              "criterion": "tiers",
+              "verdict": "insufficient",
+              "explanation": "局部已读章纲中，林辰由淬体经复诊、支付3元载、逐段实测到凝元三重，再取得古境准入；凝元对玄府的差距也未被战斗安排抹平。第83章则只写“数月努力与诊察后，实际付十元载晋玄府”，而玄府的明确前置为“辟建丹府”。本批未读到该丹府形成所需的训练、资源、诊察与生效节点，故不能仅凭宏观终点判定该晋阶可执行，也不能将此视为既成冲突。",
+              "revisionAdvice": "补读并核对玄府训练、晋阶里程碑是否明确列出辟建丹府的实际条件、资源来源、诊察门槛与第415日支付十元载之间的先后关系。",
+              "awaitingSources": [
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement"
+              ]
+            },
+            {
+              "criterion": "costs",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "counters",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "id": "cross-1-4",
+          "checks": [
+            {
+              "criterion": "tiers",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "costs",
+              "verdict": "revise",
+              "explanation": "寿储、灵泉、真元和航款的大框架有分账：燃寿不可逆，灵泉只能在完整疗程和复诊后新增未来寿储；林在第44章的剑诀按二成真元结算，第48章又明确以一小时吐纳恢复一成、试注再扣半成，第50章维持三成半且不施术。可是第43章的凝元伙计以御物把轻钩挂上贺船拖环，并实际拖偏小船；既定总则只给“短时御动轻索、小钩或木楔”半成的保守用量，明确排除了重物、活人和持续远控。该行动至少包含持续控钩、拖索及改变船只航向，章纲既未给适用术法和单次消耗，也未给该伙计发动前后的保守余量，不能直接按半成轻钩支出处理。",
+              "revisionAdvice": "修改第43—44章的拖船机制：要么改为伙计仅以半成真元短时把钩挂上、后续拖偏主要由驳船航速和已系船桩的物理牵引造成；要么为该伙计新增符合凝元境的持续御物用法，并明确其启动费、维持费、可拖拽物上限、发动前后余量及被断索后的停止条件。不得把拖动船只的持续操作笼统计为“轻钩半成”。"
+            },
+            {
+              "criterion": "counters",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "id": "cross-2-3",
+          "checks": [
+            {
+              "criterion": "tiers",
+              "verdict": "insufficient",
+              "explanation": "已读章纲能核到林从淬体经三经实测、支付3元载进入凝元，并在古境保持凝元三重；总纲则安排其第83章支付10元载升玄府。但本批未读第43—50章，无法核验“辟建丹府”前置、十元载安全余量、训练/诊察过程及玄府后法宝替换是否由具体安排承接。仅因这些章节存在于目录不能视作已满足。",
+              "revisionAdvice": "补读并核验第43—50章中玄府晋阶的丹府前置、寿储下界与安全余量、实测时点，以及晋阶后不再以凝元法器强灌元罡的具体处理。",
+              "awaitingSources": [
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "costs",
+              "verdict": "revise",
+              "explanation": "命寿、真元和元罡分账，以及疗伤不等于延寿、灵泉须完整疗程复诊后才入账的主规则明确；前42章对剑诀、御物、真光和灵泉的消耗也给出了连续余额与恢复时段。不过“青木护身灵符符佩”只写佩戴者支付一成真元、可挡凝元初期全力一击，却没有写最低可用境界、无真元者能否启动，或替代供能是否允许。它因此无法判定淬体持有人面对凝元攻击时是不能发动、自动失效，还是存在未定义供能，使用门槛未闭合。",
+              "revisionAdvice": "为青木护身灵符符佩补明最低操控境界与启动条件；若仅凝元及以上可用，应明示淬体佩戴者不能以寿储、灵石或旁人临时灌注替代自身真元。若允许外部供能，则定义供能者、剂量、距离、次数与是否仍占用三次上限。"
+            },
+            {
+              "criterion": "counters",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "id": "cross-2-4",
+          "checks": [
+            {
+              "criterion": "tiers",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "costs",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "counters",
+              "verdict": "pass"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "unreachableDeferrals": [
+    {
+      "area": "characters",
+      "stage": "batch-3",
+      "criterion": "relationships",
+      "awaitingSources": [
+        "story/relationships/rel_01",
+        "story/relationships/rel_03",
+        "story/relationships/rel_09",
+        "story/relationships/rel_10",
+        "story/relationships/rel_11",
+        "plan/chapters/49",
+        "plan/chapters/50"
+      ],
+      "eligibleRemainingStages": []
+    },
+    {
+      "area": "characters",
+      "stage": "batch-3",
+      "criterion": "knowledge",
+      "awaitingSources": [
+        "story/secrets/sec_01",
+        "story/secrets/sec_02",
+        "story/secrets/sec_03",
+        "story/secrets/sec_04",
+        "story/relationships/rel_01",
+        "story/relationships/rel_03",
+        "story/relationships/rel_09",
+        "story/relationships/rel_10",
+        "story/relationships/rel_11",
+        "plan/chapters/49",
+        "plan/chapters/50"
+      ],
+      "eligibleRemainingStages": []
+    },
+    {
+      "area": "characters",
+      "stage": "cross-2-3",
+      "criterion": "relationships",
+      "awaitingSources": [
+        "story/relationships/rel_01",
+        "story/relationships/rel_03",
+        "story/relationships/rel_04",
+        "story/relationships/rel_07",
+        "story/relationships/rel_08",
+        "story/relationships/rel_09",
+        "story/relationships/rel_10",
+        "story/relationships/rel_11"
+      ],
+      "eligibleRemainingStages": []
+    },
+    {
+      "area": "characters",
+      "stage": "cross-2-4",
+      "criterion": "relationships",
+      "awaitingSources": [
+        "story/relationships/rel_01",
+        "story/relationships/rel_02",
+        "story/relationships/rel_03",
+        "story/relationships/rel_04",
+        "story/relationships/rel_05",
+        "story/relationships/rel_06",
+        "story/relationships/rel_07",
+        "story/relationships/rel_08",
+        "story/relationships/rel_09",
+        "story/relationships/rel_10",
+        "story/relationships/rel_11",
+        "story/relationships/rel_12"
+      ],
+      "eligibleRemainingStages": []
+    },
+    {
+      "area": "characters",
+      "stage": "cross-3-4",
+      "criterion": "relationships",
+      "awaitingSources": [
+        "story/relationships/rel_01",
+        "story/relationships/rel_03",
+        "story/relationships/rel_09",
+        "story/relationships/rel_10",
+        "story/relationships/rel_11",
+        "story/relationships/rel_12",
+        "story/relationships/rel_13",
+        "story/relationships/rel_14",
+        "story/relationships/rel_16",
+        "story/relationships/rel_17",
+        "story/relationships/rel_18",
+        "story/relationships/rel_21"
+      ],
+      "eligibleRemainingStages": []
+    },
+    {
+      "area": "characters",
+      "stage": "cross-3-4",
+      "criterion": "knowledge",
+      "awaitingSources": [
+        "story/secrets/sec_01",
+        "story/secrets/sec_02",
+        "story/secrets/sec_03",
+        "story/secrets/sec_04",
+        "story/arcs/arc_01",
+        "story/arcs/arc_02",
+        "story/arcs/arc_03",
+        "story/arcs/arc_04",
+        "story/arcBeats/beat_01",
+        "story/arcBeats/beat_02",
+        "story/arcBeats/beat_03",
+        "story/arcBeats/beat_box_correction"
+      ],
+      "eligibleRemainingStages": []
+    },
+    {
+      "area": "power",
+      "stage": "batch-2",
+      "criterion": "costs",
+      "awaitingSources": [
+        "plan/chapters/16",
+        "plan/chapters/17",
+        "plan/chapters/18",
+        "plan/chapters/19",
+        "plan/chapters/20",
+        "plan/chapters/21",
+        "plan/milestones/ms_growth_v1_recovery",
+        "plan/milestones/ms_growth_v1_training",
+        "plan/milestones/ms_growth_v1_expedition",
+        "plan/milestones/ms_vol1_climax",
+        "plan/milestones/ms_growth_v1_aftermath",
+        "plan/milestones/ms_growth_v1_crossing"
+      ],
+      "eligibleRemainingStages": []
+    },
+    {
+      "area": "power",
+      "stage": "cross-1-2",
+      "criterion": "tiers",
+      "awaitingSources": [
+        "plan/chapters/16",
+        "plan/chapters/17",
+        "plan/chapters/18",
+        "plan/chapters/19",
+        "plan/chapters/20",
+        "plan/chapters/21",
+        "plan/chapters/22",
+        "plan/chapters/23",
+        "plan/chapters/24",
+        "plan/chapters/25",
+        "plan/chapters/26",
+        "plan/chapters/27"
+      ],
+      "eligibleRemainingStages": []
+    },
+    {
+      "area": "power",
+      "stage": "cross-1-2",
+      "criterion": "costs",
+      "awaitingSources": [
+        "plan/chapters/16",
+        "plan/chapters/17",
+        "plan/chapters/18",
+        "plan/chapters/19",
+        "plan/chapters/20",
+        "plan/chapters/21",
+        "plan/chapters/22",
+        "plan/chapters/23",
+        "plan/chapters/24",
+        "plan/chapters/25",
+        "plan/chapters/26",
+        "plan/chapters/27"
+      ],
+      "eligibleRemainingStages": []
+    },
+    {
+      "area": "power",
+      "stage": "cross-1-2",
+      "criterion": "counters",
+      "awaitingSources": [
+        "plan/chapters/16",
+        "plan/chapters/17",
+        "plan/chapters/18",
+        "plan/chapters/19",
+        "plan/chapters/20",
+        "plan/chapters/21",
+        "plan/chapters/22",
+        "plan/chapters/23",
+        "plan/chapters/24",
+        "plan/chapters/25",
+        "plan/chapters/26",
+        "plan/chapters/27"
+      ],
+      "eligibleRemainingStages": []
+    },
+    {
+      "area": "power",
+      "stage": "cross-1-3",
+      "criterion": "tiers",
+      "awaitingSources": [
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement"
+      ],
+      "eligibleRemainingStages": []
+    },
+    {
+      "area": "power",
+      "stage": "cross-2-3",
+      "criterion": "tiers",
+      "awaitingSources": [
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50"
+      ],
+      "eligibleRemainingStages": []
+    }
+  ],
+  "usageAtLastCheckpoint": {
+    "calls": 25,
+    "failedCalls": 0,
+    "inputTokens": 2433521,
+    "outputTokens": 41110,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 25,
+        "failedCalls": 0,
+        "outputTokens": 41110,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 120
+    }
+  }
+}
