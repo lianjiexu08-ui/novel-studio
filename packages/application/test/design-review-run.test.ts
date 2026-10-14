@@ -4,7 +4,7 @@ import { ChapterWorkflow, InMemoryWorkRepository, type DesignProvider } from '..
 import { createReadyWork } from './fixtures.ts';
 import { designReviewInput, designReviewOverview, designReviewRubrics, type DesignReviewInput, type DesignReviewResult } from '../../../novel-service-core/src/design-review.ts';
 import { createDesignReviewRun, designReviewStageInput, acceptDesignReviewStage, completeDesignReviewRun } from '../../../novel-service-core/src/design-review-run.ts';
-import { renderDesignReviewReport } from '../../../novel-service-core/src/design-review-report.ts';
+import { designReviewReportEnvelopeSize, renderDesignReviewReport } from '../../../novel-service-core/src/design-review-report.ts';
 import { designReviewResultSchema } from 'novel-studio-contracts';
 
 const writer = { generateChapter: () => ({ content: 'unused', proposedEvents: [] }) };
@@ -62,7 +62,7 @@ test('chapter-only power batches also receive complete tier and technique rules'
   ];
   input.sources = [...rules, ...input.sources];
   const run = createDesignReviewRun(input);
-  assert.equal(run.scheduleVersion, 16);
+  assert.equal(run.scheduleVersion, 17);
   for (const stage of run.stages) {
     const staged = designReviewStageInput(run, stage);
     assert.ok(JSON.stringify(staged.sources).length <= 240_000);
@@ -968,4 +968,34 @@ test('v16 can cite 63 requested sources plus four original sources without chang
   assert.equal(results[0].checks[0].verdict, 'insufficient');
   assert.equal(results[1].checks[0].verdict, 'pass');
   assert.deepEqual(results[1].resolvedDeferrals, [{ checkId: 'batch-1/relationships', resolvedByStageId: 'followup-batch-1/relationships' }]);
+});
+
+test('v17 predicts exact saved report envelopes and retains v16 request reconstruction', () => {
+  const request = largeInput();
+  const current = createDesignReviewRun(request);
+  assert.equal(current.scheduleVersion, 17);
+  const legacy = createDesignReviewRun(request, current.createdAt, 16);
+  assert.deepEqual(current.units, legacy.units);
+  assert.deepEqual(current.stages, legacy.stages);
+  const sizes = new Map<string, number>();
+  for (const stage of current.stages) {
+    const input = designReviewStageInput(current, stage);
+    assert.deepEqual(input.stage!.reportBudget, { sourceId: `review-result/${stage.id}`, maxCharacters: 90000 });
+    for (const child of stage.children) {
+      const source = input.sources.find(s => s.id === `review-result/${child}`)!;
+      assert.equal(JSON.stringify([source]).length, sizes.get(child), 'same quote positions, uniqueness, escaping and envelope as the scheduler');
+    }
+    const result = stagePass(input);
+    sizes.set(stage.id, designReviewReportEnvelopeSize(input, result, `review-result/${stage.id}`));
+    acceptDesignReviewStage(current, stage, result);
+    const oldStage = legacy.stages.find(s => s.id === stage.id)!;
+    const oldInput = designReviewStageInput(legacy, oldStage);
+    assert.equal(oldInput.stage!.reportBudget, undefined);
+    const withoutBudget = structuredClone(input);
+    delete withoutBudget.stage!.reportBudget;
+    assert.deepEqual(oldInput, withoutBudget, 'legacy sources, rubric, evidence limits and offsets stay unchanged');
+    acceptDesignReviewStage(legacy, oldStage, result);
+  }
+  assert.equal(completeDesignReviewRun(JSON.parse(JSON.stringify(current))).result.checks[0].verdict, 'pass');
+  assert.equal(completeDesignReviewRun(JSON.parse(JSON.stringify(legacy))).result.checks[0].verdict, 'pass');
 });

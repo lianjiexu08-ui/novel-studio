@@ -2,8 +2,10 @@ import { createHash } from 'node:crypto';
 import { anchoredDesignReviewResultSchema, designReviewResultSchema } from 'novel-studio-contracts';
 import { DesignReviewError, validateDesignReview, type DesignReviewInput } from '../../../novel-service-core/src/design-review.ts';
 import { designReviewHorizon } from './design-review-horizon.ts';
+import { designReviewReportEnvelopeSize } from '../../../novel-service-core/src/design-review-report.ts';
 
 export class DesignReviewEvidenceError extends DesignReviewError {}
+export class DesignReviewReportBudgetError extends DesignReviewError {}
 
 /** Partition without rewriting, omitting or duplicating source text. Prefer line boundaries. */
 function fragments(text: string, size = 1200): string[] {
@@ -101,6 +103,11 @@ export function prepareDesignReviewEvidence(input: DesignReviewInput) {
       }
       // A valid anchor proves provenance only. Completeness and verdict requirements still apply.
       validateDesignReview(snapshot, result);
+      if (snapshot.stage?.reportBudget) {
+        const budget = snapshot.stage.reportBudget;
+        const size = designReviewReportEnvelopeSize(snapshot, result, budget.sourceId);
+        if (size > budget.maxCharacters) throw new DesignReviewReportBudgetError(`本批评审结论过长：片段编号展开为完整原文及来源位置后共 ${size} 字符，上限 ${budget.maxCharacters}。保留全部检查、具体问题、判定与必要证据；精炼解释并重新选择直接支持判断的片段，减少同义或重复引用。不得删检查、删必要来源、截断原文或把返修/不足改成通过来适应容量；若完整必要证据无法容纳，应保留材料不足并明确容量原因。`);
+      }
       return result;
     },
   };

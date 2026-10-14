@@ -42,6 +42,8 @@ export interface DesignReviewInput {
     followupFor?: string;
     /** v16 gives required new sources, original evidence and the question room together. */
     evidenceLimit?: 96;
+    /** v17 checks the expanded report envelope during the model repair loop. */
+    reportBudget?: { sourceId: string; maxCharacters: number };
     sourceMap: Array<{ id: string; sourceId: string; start: number; end: number }>;
     coverage?: {
       mode: 'whole_input' | 'local_sources' | 'reports_with_context';

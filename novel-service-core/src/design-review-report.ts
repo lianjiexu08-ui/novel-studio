@@ -1,4 +1,4 @@
-import type { DesignReviewResult } from './design-review.ts';
+import type { DesignReviewInput, DesignReviewResult } from './design-review.ts';
 
 export interface ReviewEvidenceSource {
   sourceId: string;
@@ -11,6 +11,19 @@ export interface ReviewResolutionNote {
   checkId: string;
   resolvedByStageId: string;
   explanation: string;
+}
+
+/** Size of a newly accepted report, before any later follow-up dispositions.
+ * Use exactly the same origins, offsets and source envelope as the scheduler. */
+export function designReviewReportEnvelopeSize(input: DesignReviewInput, result: DesignReviewResult, sourceId: string): number {
+  const text = renderDesignReviewReport(result, id => {
+    const source = input.sources.find(source => source.id === id);
+    if (!source) return undefined;
+    const unit = input.stage?.sourceMap.find(unit => unit.id === id);
+    return unit ? { sourceId: unit.sourceId, unitId: unit.id, start: unit.start, text: source.text }
+      : { sourceId: id, text: source.text };
+  });
+  return JSON.stringify([{ id: sourceId, text }]).length;
 }
 
 /** Keep independent excerpts visibly separate. JSON-encoding a report and then

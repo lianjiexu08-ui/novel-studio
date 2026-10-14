@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { JsonDesignPlanner, PlanningParseError } from '../src/index.ts';
-import { prepareDesignReviewEvidence } from '../src/design-review-evidence.ts';
+import { DesignReviewReportBudgetError, prepareDesignReviewEvidence } from '../src/design-review-evidence.ts';
 import { DesignReviewCitationError, designReviewInput, validateDesignReview } from '../../../novel-service-core/src/design-review.ts';
 import { ChapterWorkflow, InMemoryWorkRepository } from '../../application/src/index.ts';
 import { createReadyWork, fixtureDesignReview } from '../../application/test/fixtures.ts';
@@ -449,3 +449,48 @@ test('v16 uses bounded smaller citation anchors without dropping text or changin
   assert.deepEqual(prepareDesignReviewEvidence(JSON.parse(JSON.stringify(legacy))).sources, previous.sources);
   assert.notEqual(current.requestId, previous.requestId);
 });
+
+for (const repairFits of [true, false]) {
+  test(`expanded report capacity is checked inside model repair; repair fits=${repairFits}`, async () => {
+    const request = await input();
+    request.sources = [{ id: 'unit/rules', text: Array.from({ length: 1600 }, (_, i) => `第${i}条：两处消耗账冲突，不能把材料不足改为通过。\\需要保留反证。\n`).join('') }];
+    request.stage = { kind: 'synthesis', label: '综合', totalBatches: 4, evidenceLimit: 96,
+      sourceMap: [{ id: 'unit/rules', sourceId: 'world/rules', start: 700, end: 700 + request.sources[0].text.length }],
+      reportBudget: { sourceId: 'review-result/synthesis-3', maxCharacters: 90_000 },
+    };
+    const prepared = prepareDesignReviewEvidence(request);
+    const excessive = { requestId: prepared.requestId, summary: '保留冲突', checks: Object.keys(request.rubric).map(criterion => ({
+      criterion, verdict: 'revise', explanation: '同一行动的两处消耗账不一致。', revisionAdvice: '核对两处实际消耗，不能自动取消代价。',
+      evidence: prepared.sources[0].fragments.slice(0, 90).map(fragment => ({ fragmentId: fragment.id })),
+    })) };
+    assert.ok(JSON.stringify(excessive).length < 12000, 'small anchor JSON can still expand beyond the report limit');
+    assert.throws(() => prepared.resolve(excessive), DesignReviewReportBudgetError);
+    const repaired = { ...excessive, checks: excessive.checks.map(check => ({ ...check, evidence: check.evidence.slice(0, 2) })) };
+    const before = structuredClone(excessive);
+    let calls = 0;
+    const planner = new JsonDesignPlanner({ complete: async call => {
+      if (++calls === 1) return JSON.stringify(excessive);
+      const body = JSON.parse(call.user);
+      assert.match(body.instruction, /不得删必要来源、删检查、截断原文/);
+      assert.match(body.problems, /展开为完整原文/);
+      assert.deepEqual(body.originalRequest.sources, prepared.sources);
+      assert.equal(body.previousOutput, JSON.stringify(excessive));
+      return JSON.stringify(repairFits ? repaired : excessive);
+    } });
+    if (repairFits) {
+      const result = await planner.reviewDesignContent(request);
+      assert.equal(result.checks.length, Object.keys(request.rubric).length);
+      assert.ok(result.checks.every(check => check.verdict === 'revise'));
+      assert.deepEqual(result.modelResponses, [JSON.stringify(excessive), JSON.stringify(repaired)]);
+    } else {
+      await assert.rejects(planner.reviewDesignContent(request), (error: Error & { modelResponses?: string[] }) => {
+        assert.ok(error instanceof PlanningParseError);
+        assert.match(error.message, /修正一次后仍不符合格式.*结论过长/);
+        assert.deepEqual(error.modelResponses, [JSON.stringify(excessive), JSON.stringify(excessive)]);
+        return true;
+      });
+    }
+    assert.equal(calls, 2, 'one bounded repair, not unlimited retries');
+    assert.deepEqual(excessive, before, 'original output remains intact');
+  });
+}

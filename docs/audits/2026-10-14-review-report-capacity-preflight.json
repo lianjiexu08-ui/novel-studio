@@ -1,0 +1,67 @@
+{
+  "observedAt": "2026-10-14T13:49:09.944Z",
+  "purpose": "Replay the actual rejected formal58 answer without any new model call or work save.",
+  "sourceRunId": "design_run_bec4e8bb-fe9f-4b34-8af5-5e27d9520794",
+  "stage": "synthesis-16",
+  "scheduleVersion": 15,
+  "scope": {
+    "scope": "partial_reports",
+    "coveredStageIds": [
+      "cross-1-5",
+      "cross-2-3",
+      "cross-2-4",
+      "cross-2-5",
+      "cross-3-4",
+      "cross-3-5",
+      "cross-4-5",
+      "followup-batch-2/pacing"
+    ],
+    "totalStages": 19
+  },
+  "rawAnswerCharacters": 3200,
+  "expandedEnvelopeCharacters": 105497,
+  "limit": 90000,
+  "sourceCharacters": 138119,
+  "rawAnswerHash": "efbf352e41dcf777e30dae5e2b6a015b317db3c9bc3edbd731e851824b086add",
+  "originalRunUnchanged": true,
+  "modelCalls": 0,
+  "formalAcceptance": false,
+  "checks": [
+    {
+      "criterion": "causality",
+      "verdict": "pass",
+      "citations": 9,
+      "quoteCharacters": 9787
+    },
+    {
+      "criterion": "timeline",
+      "verdict": "pass",
+      "citations": 13,
+      "quoteCharacters": 14900
+    },
+    {
+      "criterion": "payoff",
+      "verdict": "pass",
+      "citations": 13,
+      "quoteCharacters": 15087
+    },
+    {
+      "criterion": "opening",
+      "verdict": "pass",
+      "citations": 12,
+      "quoteCharacters": 13642
+    },
+    {
+      "criterion": "pacing",
+      "verdict": "pass",
+      "citations": 13,
+      "quoteCharacters": 14725
+    },
+    {
+      "criterion": "genre",
+      "verdict": "pass",
+      "citations": 16,
+      "quoteCharacters": 16859
+    }
+  ]
+}
