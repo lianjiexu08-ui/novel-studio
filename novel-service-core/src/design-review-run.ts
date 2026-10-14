@@ -1,4 +1,5 @@
 import { randomUUID } from 'node:crypto';
+import { maxDesignReviewEvidence } from '../../packages/contracts/src/index.ts';
 import { DesignReviewError, validateDesignReview, type DesignReviewInput, type DesignReviewResult, type DesignReviewSource } from './design-review.ts';
 
 export const designReviewCapacity = 240_000;
@@ -15,6 +16,8 @@ export interface DesignReviewStage {
   label: string;
   unitIds: string[];
   children: string[];
+  /** A bounded raw-source recheck of one unresolved unread-source question. */
+  followupFor?: string;
   result?: DesignReviewResult;
   attempts: number;
   error?: string;
@@ -25,7 +28,7 @@ export interface DesignReviewStage {
 export interface DesignReviewRun {
   id: string;
   /** Absent on persisted legacy schedules, which must resume without reshuffling. */
-  scheduleVersion?: 2 | 3 | 4;
+  scheduleVersion?: 2 | 3 | 4 | 5;
   input: DesignReviewInput;
   units: DesignReviewUnit[];
   stages: DesignReviewStage[];
@@ -39,7 +42,7 @@ export interface DesignReviewRun {
 
 /** All raw text is retained. Cross checks co-read every pair of partitions;
  * synthesis then combines every finding without allowing a blocker to disappear. */
-export function createDesignReviewRun(input: DesignReviewInput, now = new Date().toISOString(), scheduleVersion: 1 | 2 | 3 | 4 = 4): DesignReviewRun {
+export function createDesignReviewRun(input: DesignReviewInput, now = new Date().toISOString(), scheduleVersion: 1 | 2 | 3 | 4 | 5 = 5): DesignReviewRun {
   if (new Set(input.sources.map(s => s.id)).size !== input.sources.length) throw new DesignReviewError('评审来源 ID 重复');
   const units: DesignReviewUnit[] = [];
   const stages: DesignReviewStage[] = [];
@@ -113,7 +116,7 @@ export function createDesignReviewRun(input: DesignReviewInput, now = new Date()
     }
     level = next;
   }
-  return { id: `design_run_${randomUUID()}`, ...(scheduleVersion >= 2 ? { scheduleVersion: scheduleVersion as 2 | 3 | 4 } : {}), input: structuredClone(input), units, stages, status: 'ready', createdAt: now, updatedAt: now };
+  return { id: `design_run_${randomUUID()}`, ...(scheduleVersion >= 2 ? { scheduleVersion: scheduleVersion as 2 | 3 | 4 | 5 } : {}), input: structuredClone(input), units, stages, status: 'ready', createdAt: now, updatedAt: now };
 }
 
 function chapterUnitGroups(sources: DesignReviewSource[], units: DesignReviewUnit[]): DesignReviewUnit[][] {
@@ -148,13 +151,72 @@ export function designReviewUnitSources(run: DesignReviewRun): DesignReviewSourc
 }
 const resultSource = (stage: DesignReviewStage): DesignReviewSource => ({ id: `review-result/${stage.id}`, text: JSON.stringify(stage.result, null, 2) });
 function deferrals(run: DesignReviewRun, before = run.stages.length) {
-  return run.stages.slice(0, before).flatMap(stage => stage.kind === 'synthesis' ? [] : (stage.result?.checks ?? []).filter(check => check.verdict === 'insufficient' && check.awaitingSources?.length).map(check => ({
+  return run.stages.slice(0, before).flatMap(stage => stage.kind === 'synthesis' || stage.followupFor ? [] : (stage.result?.checks ?? []).filter(check => check.verdict === 'insufficient' && check.awaitingSources?.length).map(check => ({
     id: `${stage.id}/${check.criterion}`, stage, check,
     question: { id: `review-question/${stage.id}/${check.criterion}`, text: JSON.stringify({ criterion: check.criterion, explanation: check.explanation, revisionAdvice: check.revisionAdvice, awaitingSources: check.awaitingSources }, null, 2) },
   })));
 }
 function coversDeferral(run: DesignReviewRun, stage: DesignReviewStage, pending: ReturnType<typeof deferrals>[number]) {
+  if (stage.followupFor) return run.scheduleVersion === 5 && stage.followupFor === pending.id
+    && followupUnits(run, pending)?.every(id => stage.unitIds.includes(id)) === true;
   return stage.kind !== 'synthesis' && [...pending.stage.unitIds, ...run.units.filter(u => pending.check.awaitingSources!.includes(u.sourceId)).map(u => u.id)].every(id => stage.unitIds.includes(id));
+}
+
+/** Prefer the entire original batch. When it cannot fit, re-read complete
+ * sources for its cited evidence plus every requested source and shared rules.
+ * Never turn a partial quotation or an inventory entry into source coverage. */
+function followupUnits(run: DesignReviewRun, pending: ReturnType<typeof deferrals>[number]): string[] | undefined {
+  const sources = designReviewUnitSources(run);
+  const required = run.units.filter(u => pending.check.awaitingSources!.includes(u.sourceId)).map(u => u.id);
+  const cited = new Set(pending.check.evidence.flatMap(e => {
+    const unit = run.units.find(u => u.id === e.sourceId && pending.stage.unitIds.includes(u.id));
+    return unit ? [unit.sourceId] : [];
+  }));
+  // One citation per original/requested source and one for the question must
+  // be expressible without violating the result contract.
+  if (new Set([...cited, ...pending.check.awaitingSources!]).size + 1 > maxDesignReviewEvidence) return undefined;
+  const fits = (ids: string[]) => JSON.stringify([...sources.filter(s => ids.includes(s.id)), pending.question]).length <= designReviewCapacity;
+  const citedUnits = run.units.filter(u => cited.has(u.sourceId)).map(u => u.id);
+  const full = [...new Set([...pending.stage.unitIds, ...citedUnits, ...required])];
+  if (fits(full)) return full;
+  if (!cited.size) return undefined;
+  const batches = run.stages.filter(s => s.kind === 'batch');
+  const common = run.units.filter(u => batches.every(b => b.unitIds.includes(u.id))).map(u => u.sourceId);
+  const sourceIds = new Set([...cited, ...common, 'plan/overview', ...pending.check.awaitingSources!]);
+  const focused = run.units.filter(u => sourceIds.has(u.sourceId)).map(u => u.id);
+  return fits(focused) ? focused : undefined;
+}
+
+/** Freeze additional checks after all original raw checks finish, before any
+ * synthesis. Their content is derived from immutable questions and citations;
+ * questions too large to co-read remain unresolved, never truncated. */
+function scheduleFollowups(run: DesignReviewRun): void {
+  if (run.scheduleVersion !== 5) return;
+  const raw = run.stages.filter(s => s.kind !== 'synthesis' && !s.followupFor);
+  if (raw.some(s => !s.result) || run.stages.some(s => s.followupFor || s.kind === 'synthesis' && s.result)) return;
+  const resolved = new Set(resolvedDeferrals(run).map(r => r.checkId));
+  const followups: DesignReviewStage[] = [];
+  for (const pending of deferrals(run)) {
+    if (resolved.has(pending.id)) continue;
+    const unitIds = followupUnits(run, pending);
+    if (unitIds) followups.push({ id: `followup-${pending.id}`, kind: 'cross', label: `原文补读 ${pending.id}`, unitIds, children: [], followupFor: pending.id, attempts: 0 });
+  }
+  if (!followups.length) return;
+  const context = run.stages.find(s => s.kind === 'synthesis')?.unitIds ?? [];
+  let level = [...raw, ...followups].map(s => s.id);
+  const synthesis: DesignReviewStage[] = [];
+  let sequence = 0;
+  while (level.length > 1) {
+    const next: string[] = [];
+    for (let i = 0; i < level.length; i += 2) {
+      if (i + 1 === level.length) { next.push(level[i]); continue; }
+      const id = `synthesis-${++sequence}`;
+      synthesis.push({ id, kind: 'synthesis', label: `综合检查 ${sequence}`, unitIds: [...context], children: level.slice(i, i + 2), attempts: 0 });
+      next.push(id);
+    }
+    level = next;
+  }
+  run.stages.splice(raw.length, run.stages.length - raw.length, ...followups, ...synthesis);
 }
 function resolvedDeferrals(run: DesignReviewRun, before = run.stages.length) {
   return deferrals(run, before).flatMap(pending => {
@@ -165,6 +227,8 @@ function resolvedDeferrals(run: DesignReviewRun, before = run.stages.length) {
 export function designReviewStageInput(run: DesignReviewRun, stage: DesignReviewStage): DesignReviewInput {
   const stageIndex = run.stages.findIndex(s => s.id === stage.id);
   if (stageIndex < 0) throw new DesignReviewError('评审步骤不属于本任务');
+  const followup = stage.followupFor ? deferrals(run, stageIndex).find(p => p.id === stage.followupFor) : undefined;
+  if (stage.followupFor && (run.scheduleVersion !== 5 || !followup)) throw new DesignReviewError('补读步骤没有原始等待问题');
   const rawSources = designReviewUnitSources(run).filter(s => stage.unitIds.includes(s.id));
   const sources = stage.kind === 'synthesis' ? [...stage.children.map(id => {
     const child = run.stages.find(s => s.id === id);
@@ -184,14 +248,19 @@ export function designReviewStageInput(run: DesignReviewRun, stage: DesignReview
       // this stage cannot authorize a resolution; the unresolved item blocks.
       if (JSON.stringify([...sources, pending.question]).length > designReviewCapacity) continue;
       sources.push(pending.question);
-      pendingChecks.push({ id: pending.id, criterion: pending.check.criterion, questionSourceId: pending.question.id, requiredSourceIds: pending.check.awaitingSources!, priorUnitIds: pending.stage.unitIds });
+      const priorSourceIds = followup ? [...new Set(pending.check.evidence.flatMap(e => {
+        const unit = run.units.find(u => u.id === e.sourceId && pending.stage.unitIds.includes(u.id));
+        return unit ? [unit.sourceId] : [];
+      }))] : undefined;
+      pendingChecks.push({ id: pending.id, criterion: pending.check.criterion, questionSourceId: pending.question.id, requiredSourceIds: pending.check.awaitingSources!, priorUnitIds: pending.stage.unitIds.filter(id => stage.unitIds.includes(id)), ...(priorSourceIds ? { priorSourceIds } : {}) });
     }
     if (pendingChecks.length) coverage.pendingChecks = pendingChecks;
   }
   if (coverage && stage.kind === 'synthesis') coverage.resolvedDeferrals = resolvedDeferrals(run, stageIndex);
   if (coverage && JSON.stringify(coverage).length > sharedContextCapacity) throw new DesignReviewError('评审范围目录与补读元数据超过容量，请拆分作品验收阶段；目录未截断');
-  return { ...structuredClone(run.input), sources, stage: {
+  return { ...structuredClone(run.input), ...(followup ? { rubric: { [followup.check.criterion]: run.input.rubric[followup.check.criterion] } } : {}), sources, stage: {
     kind: stage.kind, label: stage.label, totalBatches: run.stages.filter(s => s.kind === 'batch').length,
+    ...(followup ? { followupFor: followup.id } : {}),
     sourceMap: run.units.filter(u => stage.unitIds.includes(u.id)),
     ...(coverage ? { coverage } : {}),
   } };
@@ -205,15 +274,25 @@ export function acceptDesignReviewStage(run: DesignReviewRun, stage: DesignRevie
     : JSON.stringify(result).length > resultCapacity;
   if (tooLarge) throw new DesignReviewError('本批评审结论过长，请重新评审并精炼解释；原文与失败记录保留');
   stage.result = structuredClone(result); stage.error = undefined;
+  scheduleFollowups(run);
 }
 
 /** Rebuild the schedule and every byte-range. Preserve all adverse judgments;
  * only explicitly deferred unread-source questions can be settled by a raw
  * stage covering both the original material and every requested source. */
 export function completeDesignReviewRun(run: DesignReviewRun): { input: DesignReviewInput; result: DesignReviewResult } {
-  if (run.scheduleVersion !== undefined && run.scheduleVersion !== 2 && run.scheduleVersion !== 3 && run.scheduleVersion !== 4) throw new DesignReviewError('未知评审调度版本');
+  if (run.scheduleVersion !== undefined && ![2, 3, 4, 5].includes(run.scheduleVersion)) throw new DesignReviewError('未知评审调度版本');
   const expected = createDesignReviewRun(run.input, run.createdAt, run.scheduleVersion ?? 1);
-  const plan = (r: DesignReviewRun) => r.stages.map(({ id, kind, unitIds, children }) => ({ id, kind, unitIds, children }));
+  if (run.scheduleVersion === 5) {
+    // Validate the original raw results against canonical coverage before using
+    // their citations to derive the only allowed follow-up schedule.
+    for (const stage of expected.stages.filter(s => s.kind !== 'synthesis')) {
+      const result = run.stages.find(s => s.id === stage.id)?.result;
+      if (!result) throw new DesignReviewError('原文覆盖或跨批检查未完成，不得形成整体结论');
+      acceptDesignReviewStage(expected, stage, result);
+    }
+  }
+  const plan = (r: DesignReviewRun) => r.stages.map(({ id, kind, unitIds, children, followupFor }) => ({ id, kind, unitIds, children, ...(followupFor ? { followupFor } : {}) }));
   if (JSON.stringify(run.units) !== JSON.stringify(expected.units) || JSON.stringify(plan(run)) !== JSON.stringify(plan(expected)) || !run.stages.length || run.stages.some(s => !s.result)) throw new DesignReviewError('原文覆盖或跨批检查未完成，不得形成整体结论');
   for (const stage of run.stages) validateDesignReview(designReviewStageInput(run, stage), stage.result!);
   const rank = { pass: 0, insufficient: 1, revise: 2 };
@@ -223,7 +302,8 @@ export function completeDesignReviewRun(run: DesignReviewRun): { input: DesignRe
   const checks = Object.keys(run.input.rubric).map(criterion => {
     let selected = root.checks.find(c => c.criterion === criterion)!;
     for (const stage of run.stages) {
-      const check = stage.result!.checks.find(c => c.criterion === criterion)!;
+      const check = stage.result!.checks.find(c => c.criterion === criterion);
+      if (!check) continue; // Dedicated follow-ups evaluate only their original criterion.
       if (check.awaitingSources && resolved.has(`${stage.id}/${criterion}`)) continue;
       if (rank[check.verdict] > rank[selected.verdict]) selected = check;
     }

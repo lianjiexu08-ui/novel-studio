@@ -1,12 +1,13 @@
 import { z } from 'zod';
 
+export const maxDesignReviewEvidence = 64;
 export const designReviewAreaSchema = z.enum(['world', 'power', 'characters', 'story']);
 export const designReviewResultSchema = z.object({
   summary: z.string().trim().min(1).max(4000),
   checks: z.array(z.object({
     criterion: z.string().min(1), verdict: z.enum(['pass', 'revise', 'insufficient']),
     explanation: z.string().trim().min(1).max(6000),
-    evidence: z.array(z.object({ sourceId: z.string().min(1), quote: z.string().min(4).max(3000) })).max(20),
+    evidence: z.array(z.object({ sourceId: z.string().min(1), quote: z.string().min(4).max(3000) })).max(maxDesignReviewEvidence),
     revisionAdvice: z.string().max(6000),
     awaitingSources: z.array(z.string().min(1)).min(1).max(12).optional(),
     resolves: z.array(z.string().min(1)).min(1).max(64).optional(),
@@ -16,7 +17,7 @@ export const designReviewResultSchema = z.object({
 export const anchoredDesignReviewResultSchema = designReviewResultSchema.extend({
   requestId: z.string().min(1),
   checks: z.array(designReviewResultSchema.shape.checks.element.extend({
-    evidence: z.array(z.object({ fragmentId: z.string().min(1) }).strict()).max(20),
+    evidence: z.array(z.object({ fragmentId: z.string().min(1) }).strict()).max(maxDesignReviewEvidence),
   })).min(1).max(10),
 });
 export const designContentReviewSchema = designReviewResultSchema.extend({

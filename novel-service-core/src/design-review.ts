@@ -36,12 +36,13 @@ export interface DesignReviewInput {
   rubric: Record<string, string>;
   stage?: {
     kind: 'batch' | 'cross' | 'synthesis'; label: string; totalBatches: number;
+    followupFor?: string;
     sourceMap: Array<{ id: string; sourceId: string; start: number; end: number }>;
     coverage?: {
       mode: 'whole_input' | 'local_sources' | 'reports_with_context';
       /** Complete inventory of this area's input, not evidence of source contents. */
       sourceLengths: Record<string, number>;
-      pendingChecks?: Array<{ id: string; criterion: string; questionSourceId: string; requiredSourceIds: string[]; priorUnitIds: string[] }>;
+      pendingChecks?: Array<{ id: string; criterion: string; questionSourceId: string; requiredSourceIds: string[]; priorUnitIds: string[]; priorSourceIds?: string[] }>;
       resolvedDeferrals?: Array<{ checkId: string; resolvedByStageId: string }>;
     };
   };
@@ -157,6 +158,7 @@ export function validateDesignReview(input: DesignReviewInput, result: DesignRev
     if (check.verdict !== 'insufficient' && check.evidence.length === 0) throw new DesignReviewError('通过或返修结论必须提供原文证据');
     if (check.verdict !== 'pass' && !check.revisionAdvice?.trim()) throw new DesignReviewError('未通过项目必须给出补充或返修要求');
     if (check.awaitingSources !== undefined) {
+      if (input.stage?.followupFor) throw new DesignReviewError('专门补读不得递归建立等待；仍缺必要材料时保留普通材料不足');
       const coverage = input.stage?.coverage;
       if (check.verdict !== 'insufficient' || input.stage?.kind === 'synthesis' || coverage?.mode !== 'local_sources' || !Array.isArray(check.awaitingSources) || !check.awaitingSources.length || check.awaitingSources.length > 12 || new Set(check.awaitingSources).size !== check.awaitingSources.length) throw new DesignReviewError('等待补读只能用于局部材料不足，并指定1至12个不同的未读来源');
       for (const sourceId of check.awaitingSources) {
@@ -172,6 +174,7 @@ export function validateDesignReview(input: DesignReviewInput, result: DesignRev
         if (!pending) throw new DesignReviewError(`没有符合本批覆盖范围的待补读项：${checkId}`);
         const cited = new Set(check.evidence.map(e => e.sourceId));
         if (!cited.has(pending.questionSourceId) || !pending.priorUnitIds.some(id => cited.has(id)) || pending.requiredSourceIds.some(id => !input.stage!.sourceMap.some(u => u.sourceId === id && cited.has(u.id)))) throw new DesignReviewError(`解决待补读项必须引用原问题、原批材料及每个新增来源：${checkId}`);
+        if (pending.priorSourceIds?.some(id => !input.stage!.sourceMap.some(u => u.sourceId === id && cited.has(u.id)))) throw new DesignReviewError(`专门补读必须引用原问题所依据的每个原始来源：${checkId}`);
       }
     }
     for (const [evidenceIndex, evidence] of check.evidence.entries()) {
