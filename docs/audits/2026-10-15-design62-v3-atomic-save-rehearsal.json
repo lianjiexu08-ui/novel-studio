@@ -1,0 +1,125 @@
+{
+  "observedAt": "2026-10-14T22:06:29.009841+00:00",
+  "status": "isolated_rehearsal_not_acceptance",
+  "sourceDatabaseOpenedReadOnly": true,
+  "snapshotDatabase": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-backups/design62-v3-atomic-rehearsal.db",
+  "candidateFileSha256": "009753175d0c2180854c44a2a7df7a23771ef6141cfa60c7e8841be05bd72196",
+  "failure": {
+    "observedAt": "2026-10-14T22:05:53.833Z",
+    "status": "expected_database_insert_failure",
+    "databaseErrorCode": "P2003",
+    "driverLimitation": "Prisma maps SQLite trigger ABORT to P2003; success after removing only this trigger separately confirms cause.",
+    "querySteps": [
+      "update_project",
+      "insert_plan",
+      "rollback"
+    ],
+    "injection": "SQLite BEFORE INSERT PlanRevision revision 62; repository has already updated Project within the same transaction",
+    "originalDesignReadback": true,
+    "oldHistoryUnchanged": true,
+    "productionWrites": false,
+    "modelCalls": 0
+  },
+  "rollback": {
+    "all18TablesUnchangedAfterRollback": true,
+    "integrityCheck": "ok",
+    "onlyInjectedTriggerRemoved": true
+  },
+  "success": {
+    "observedAt": "2026-10-14T22:06:15.485Z",
+    "status": "isolated_sqlite_rehearsal_not_acceptance",
+    "candidateFileSha256": "009753175d0c2180854c44a2a7df7a23771ef6141cfa60c7e8841be05bd72196",
+    "changedRecords": 4,
+    "patchReplayMatchesCandidate": true,
+    "persistedReadbackVerified": true,
+    "oldHistoryUnchanged": true,
+    "productionWrites": false,
+    "modelCalls": 0,
+    "proseGenerated": false,
+    "planId": "plan_b3637312a8d14bc88955c1ea45adeb77",
+    "world": 32,
+    "bible": 62,
+    "plan": 62,
+    "retainedBlockers": 41,
+    "approvedPlanRevision": 10,
+    "oldRuns": 51,
+    "oldReports": 55,
+    "contentReview": {
+      "ready": false,
+      "inputHash": "37bf63439f175c078ebeeaa77133714433797597134d7d7ea8cbc11b4bdce327",
+      "areas": [
+        {
+          "area": "world",
+          "status": "outdated",
+          "reportId": "design_review_a43f036f-dd2d-4948-b4ad-ed63dd8f527d"
+        },
+        {
+          "area": "power",
+          "status": "outdated",
+          "reportId": "design_review_2e46b414-47d6-4f2c-aaaf-9e39cf2b9fb8"
+        },
+        {
+          "area": "characters",
+          "status": "outdated",
+          "reportId": "design_review_2ccab3c6-0b0a-4b8c-a6ec-ae13f50d3234"
+        },
+        {
+          "area": "story",
+          "status": "outdated",
+          "reportId": "design_review_506a4701-f858-4a60-9892-1b5457c4c12e"
+        }
+      ]
+    }
+  },
+  "beforeTableHashes": {
+    "Chapter": "0a47a7c74f75020b0a5b4f0c5c45de6db21c1d39b3fc16b8f80dd0b964d9c8a1",
+    "ChapterBrief": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "ChapterCandidate": "0a8d4664f623a5891025e522c416e435fc590a58cb146ad7b8fc78f3b85d7a6d",
+    "ChapterVersion": "4710715c576837fddf3fbec6d4d7242d826a7e74977da14f61ccfa9fca9a7639",
+    "Character": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "CheckExecution": "6ebdd2e7c94c4dd5fa18d7cb5058eb97044c42a1d0b0f8859ffe2e4229509865",
+    "CheckRuling": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "ImpactRecord": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "ManuscriptRevision": "d68f97f1e72f46f19470c53cfd402dff02d0933f5a1751788fd796a47640b4b6",
+    "OutboxEvent": "3cf5149a59834fd1281e54c3431a06f99b7b493200680132a26dcd8f975d0fbd",
+    "PlanRealization": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "PlanRevision": "1c4a36cbc20b0db1d0160395f103f8a2dcb504080b46ce872295fe345a88f8eb",
+    "PlotNode": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "Project": "8ee4542bedd4cd3352b462f4b71d7d9a7be1b52da78f755ef19b1542bd62b6d6",
+    "Relationship": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "RunCheckpoint": "5e1cafa5dfb4cbf78ae321df296bfb18e8c9053951ad271491d89a77dd70a2a9",
+    "StoryEvent": "be4dac1a2da1e026b8f48d9f92a04b277732e0a87c340d4008d06bef47d4db7f",
+    "WorldRule": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "changedTablesAfterSuccess": [
+    "PlanRevision",
+    "Project"
+  ],
+  "afterTableHashes": {
+    "Chapter": "0a47a7c74f75020b0a5b4f0c5c45de6db21c1d39b3fc16b8f80dd0b964d9c8a1",
+    "ChapterBrief": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "ChapterCandidate": "0a8d4664f623a5891025e522c416e435fc590a58cb146ad7b8fc78f3b85d7a6d",
+    "ChapterVersion": "4710715c576837fddf3fbec6d4d7242d826a7e74977da14f61ccfa9fca9a7639",
+    "Character": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "CheckExecution": "6ebdd2e7c94c4dd5fa18d7cb5058eb97044c42a1d0b0f8859ffe2e4229509865",
+    "CheckRuling": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "ImpactRecord": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "ManuscriptRevision": "d68f97f1e72f46f19470c53cfd402dff02d0933f5a1751788fd796a47640b4b6",
+    "OutboxEvent": "3cf5149a59834fd1281e54c3431a06f99b7b493200680132a26dcd8f975d0fbd",
+    "PlanRealization": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "PlanRevision": "8bd7854f8609dbe2ab0e278ba8945850e1413ea4e00a699e160e17faa92f0f1f",
+    "PlotNode": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "Project": "23700970181566ca3f650cc7bf18ba6dc682547ab063719878d07211cb6ccdd5",
+    "Relationship": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "RunCheckpoint": "5e1cafa5dfb4cbf78ae321df296bfb18e8c9053951ad271491d89a77dd70a2a9",
+    "StoryEvent": "be4dac1a2da1e026b8f48d9f92a04b277732e0a87c340d4008d06bef47d4db7f",
+    "WorldRule": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "integrityCheckAfterSuccess": "ok",
+  "productionWrites": false,
+  "limitations": [
+    "Snapshot contains running formal61; never restore to production.",
+    "Candidate V3 remains unapplied; local diagnosis and atomic save are not formal content acceptance.",
+    "No approval, blocker closure or prose generation."
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "observedAt": "2026-10-14T22:01:37.140382+00:00",
+  "status": "isolated_rehearsal_not_acceptance",
+  "sourceDatabaseOpenedReadOnly": true,
+  "snapshotDatabase": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-backups/design62-v2-atomic-rehearsal.db",
+  "candidateFileSha256": "70644fb1cef4afd6bc32c6adcd2c67e23434487aa0472c9fa0cb75d70f718414",
+  "failure": {
+    "observedAt": "2026-10-14T22:00:55.987Z",
+    "status": "expected_database_insert_failure",
+    "databaseErrorCode": "P2003",
+    "driverLimitation": "Prisma maps SQLite trigger ABORT to P2003; success after removing only this trigger separately confirms cause.",
+    "querySteps": [
+      "update_project",
+      "insert_plan",
+      "rollback"
+    ],
+    "injection": "SQLite BEFORE INSERT PlanRevision revision 62; repository has already updated Project within the same transaction",
+    "originalDesignReadback": true,
+    "oldHistoryUnchanged": true,
+    "productionWrites": false,
+    "modelCalls": 0
+  },
+  "rollback": {
+    "all18TablesUnchangedAfterRollback": true,
+    "integrityCheck": "ok",
+    "onlyInjectedTriggerRemoved": true
+  },
+  "success": {
+    "observedAt": "2026-10-14T22:01:10.402Z",
+    "status": "isolated_sqlite_rehearsal_not_acceptance",
+    "candidateFileSha256": "70644fb1cef4afd6bc32c6adcd2c67e23434487aa0472c9fa0cb75d70f718414",
+    "changedRecords": 3,
+    "patchReplayMatchesCandidate": true,
+    "persistedReadbackVerified": true,
+    "oldHistoryUnchanged": true,
+    "productionWrites": false,
+    "modelCalls": 0,
+    "proseGenerated": false,
+    "planId": "plan_0d2dd4dc5181462ebafb7fef7305ac1d",
+    "world": 32,
+    "bible": 62,
+    "plan": 62,
+    "retainedBlockers": 41,
+    "approvedPlanRevision": 10,
+    "oldRuns": 51,
+    "oldReports": 55,
+    "contentReview": {
+      "ready": false,
+      "inputHash": "6ebb461d88aa7318cd9da66db12cb9f95cd76db7edeba5cf69267fa670fb0e44",
+      "areas": [
+        {
+          "area": "world",
+          "status": "outdated",
+          "reportId": "design_review_a43f036f-dd2d-4948-b4ad-ed63dd8f527d"
+        },
+        {
+          "area": "power",
+          "status": "outdated",
+          "reportId": "design_review_2e46b414-47d6-4f2c-aaaf-9e39cf2b9fb8"
+        },
+        {
+          "area": "characters",
+          "status": "outdated",
+          "reportId": "design_review_2ccab3c6-0b0a-4b8c-a6ec-ae13f50d3234"
+        },
+        {
+          "area": "story",
+          "status": "outdated",
+          "reportId": "design_review_506a4701-f858-4a60-9892-1b5457c4c12e"
+        }
+      ]
+    }
+  },
+  "beforeTableHashes": {
+    "Chapter": "0a47a7c74f75020b0a5b4f0c5c45de6db21c1d39b3fc16b8f80dd0b964d9c8a1",
+    "ChapterBrief": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "ChapterCandidate": "0a8d4664f623a5891025e522c416e435fc590a58cb146ad7b8fc78f3b85d7a6d",
+    "ChapterVersion": "4710715c576837fddf3fbec6d4d7242d826a7e74977da14f61ccfa9fca9a7639",
+    "Character": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "CheckExecution": "6ebdd2e7c94c4dd5fa18d7cb5058eb97044c42a1d0b0f8859ffe2e4229509865",
+    "CheckRuling": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "ImpactRecord": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "ManuscriptRevision": "d68f97f1e72f46f19470c53cfd402dff02d0933f5a1751788fd796a47640b4b6",
+    "OutboxEvent": "3cf5149a59834fd1281e54c3431a06f99b7b493200680132a26dcd8f975d0fbd",
+    "PlanRealization": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "PlanRevision": "1c4a36cbc20b0db1d0160395f103f8a2dcb504080b46ce872295fe345a88f8eb",
+    "PlotNode": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "Project": "35101597ade3370782117ebe30e5da4dedd5eb4ae54f32e8621f7b7dd39a6833",
+    "Relationship": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "RunCheckpoint": "5e1cafa5dfb4cbf78ae321df296bfb18e8c9053951ad271491d89a77dd70a2a9",
+    "StoryEvent": "be4dac1a2da1e026b8f48d9f92a04b277732e0a87c340d4008d06bef47d4db7f",
+    "WorldRule": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "changedTablesAfterSuccess": [
+    "PlanRevision",
+    "Project"
+  ],
+  "afterTableHashes": {
+    "Chapter": "0a47a7c74f75020b0a5b4f0c5c45de6db21c1d39b3fc16b8f80dd0b964d9c8a1",
+    "ChapterBrief": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "ChapterCandidate": "0a8d4664f623a5891025e522c416e435fc590a58cb146ad7b8fc78f3b85d7a6d",
+    "ChapterVersion": "4710715c576837fddf3fbec6d4d7242d826a7e74977da14f61ccfa9fca9a7639",
+    "Character": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "CheckExecution": "6ebdd2e7c94c4dd5fa18d7cb5058eb97044c42a1d0b0f8859ffe2e4229509865",
+    "CheckRuling": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "ImpactRecord": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "ManuscriptRevision": "d68f97f1e72f46f19470c53cfd402dff02d0933f5a1751788fd796a47640b4b6",
+    "OutboxEvent": "3cf5149a59834fd1281e54c3431a06f99b7b493200680132a26dcd8f975d0fbd",
+    "PlanRealization": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "PlanRevision": "4b47479a8922b50061d446c9bbd89b1d6206ae9736960e431f1fb2b03bc5e2b6",
+    "PlotNode": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "Project": "a6aaa259e5355aed9f0aed204d9a971b284437324e6c1a0fc16bdfc00dbef3b7",
+    "Relationship": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "RunCheckpoint": "5e1cafa5dfb4cbf78ae321df296bfb18e8c9053951ad271491d89a77dd70a2a9",
+    "StoryEvent": "be4dac1a2da1e026b8f48d9f92a04b277732e0a87c340d4008d06bef47d4db7f",
+    "WorldRule": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "integrityCheckAfterSuccess": "ok",
+  "productionWrites": false,
+  "limitations": [
+    "Snapshot includes running formal61 reviews; isolated persistence test only, never restore it to production.",
+    "Candidate remains unapplied pending all formal61 findings and a fresh formal review.",
+    "No model calls, approval, blocker closure or prose generation."
+  ],
+  "harnessCorrection": "Initial replay stopped before any repository transaction: chapter-18 is a record id, not a numeric chapter number. Corrected lookup to exact record id, then replay and both transaction tests passed."
+}

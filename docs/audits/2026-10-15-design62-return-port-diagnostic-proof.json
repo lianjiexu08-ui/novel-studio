@@ -1,0 +1,47 @@
+{
+  "observedAt": "2026-10-14T22:05:58.860Z",
+  "status": "targeted_port_pass_not_formal_acceptance",
+  "model": "gpt-5.6-luna",
+  "timeoutMs": 600000,
+  "fallback": false,
+  "candidateFileSha256": "009753175d0c2180854c44a2a7df7a23771ef6141cfa60c7e8841be05bd72196",
+  "checks": [
+    {
+      "criterion": "admission",
+      "verdict": "pass"
+    },
+    {
+      "criterion": "budget",
+      "verdict": "pass"
+    },
+    {
+      "criterion": "continuity",
+      "verdict": "pass"
+    }
+  ],
+  "verifiedCitations": 12,
+  "resultSha256": "1f9726b8b23f2b21e1b6fddc420215be731abceaea4a75e00825a1095b641149",
+  "usage": {
+    "calls": 1,
+    "failedCalls": 0,
+    "inputTokens": 17242,
+    "outputTokens": 1032,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 1,
+        "failedCalls": 0,
+        "outputTokens": 1032,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 3
+    }
+  },
+  "productionWrites": false,
+  "formalAcceptance": false,
+  "limitation": "Local port admission, accounting and timeline only. All formal61 findings and a fresh full review remain required; old history and blockers unchanged."
+}
