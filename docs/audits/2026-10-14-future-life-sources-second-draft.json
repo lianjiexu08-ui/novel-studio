@@ -1,0 +1,628 @@
+{
+  "status": "rejected_not_adopted",
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "formalAcceptance": false,
+  "savedToWork": false,
+  "usage": {
+    "calls": 1,
+    "failedCalls": 0,
+    "inputTokens": 55273,
+    "outputTokens": 10604,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "planning": {
+        "calls": 1,
+        "failedCalls": 0,
+        "outputTokens": 10604,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 1
+    }
+  },
+  "proposal": {
+    "summary": "候选采用三类彼此独立、不可互换的自然寿源：一类来自灵虚古境的年轮结晶，负责近期形成神海窗口；一类来自极冰天国封冻水脉，提供中长期稳定但受寒灾优先级约束的寿储；一类来自苍冥界渊稳定裂隙析出的界潮命胶，单次额度较高，专供极少数高阶修士或界门工程相关功臣。三者均只增加未来可支配寿储，不恢复既付寿元、白发、道伤、本源损伤或冷却。以下全部为待审候选，不代表林辰或任何角色已有资源、许可、库存或既得配额。",
+    "resources": [
+      {
+        "id": "res_17",
+        "name": "灵脉年轮晶",
+        "unit": "枚",
+        "source": "灵虚古境loc_05的寿枝古藤在灵眼周边季节性灵潮转换时形成的年轮结晶；其生机来自古藤自然代谢与古境灵潮回流，不由灌灵、血祭或燃寿催成。",
+        "scarcity": "极罕见",
+        "tier": "五品",
+        "status": "proposed",
+        "usage": {
+          "effect": "经灵虚圣地验真、太清医修配药并完成十四日疗程后，一枚确认新增四元载未来可用寿储。药效只增加寿储，不逆转衰老，不修复旧伤或永久本源损伤。",
+          "requirements": [
+            "受用者至少凝元境三重；疗程前须连续三日诊察，排除急性失血、严重煞毒、命火紊乱和正在进行的燃寿反噬。",
+            "每枚分七日服用，之后静养七日并复诊；未完成疗程不得预支四元载。",
+            "每人终生最多成功使用十枚；两枚疗程之间至少间隔三十日，连续两枚后须额外停用九十日。",
+            "灵虚圣地只认可有编号、批次和采集时点的完整结晶；碎片、仿制品、污染品和盗取后重新拼装品不得入账。"
+          ],
+          "cost": "每枚消耗一枚完整结晶、七份温养辅药和十四日医护观察。服用中断、药毒反应或伤情恶化时，已服部分不返还，未服部分须封存复验或报废。",
+          "limitations": [
+            "自然形成周期为每十八个月一次灵潮转换；单次最多形成三枚合格晶，正常年份最多两次有效采集。",
+            "每周期至少保留一枚用于古境守卫和灵眼生态，其余由灵虚界约分配；丰产上界不是个人现有份额。",
+            "过采会使寿枝古藤下一周期停止结晶，并使灵眼周围灵潮紊乱；以煞气、国运或活人寿元催化所得只算污染晶。",
+            "不能替代灵泉剂额，不能提高res_09每剂五年或终生六剂上限。"
+          ]
+        }
+      },
+      {
+        "id": "res_18",
+        "name": "寒脉伏龄根",
+        "unit": "段",
+        "source": "极冰天国loc_13北境封冻旧湖下的寒脉母根，在每八年一次的短暂地脉回温期结出子段；其生机来自封存水木灵性和寒脉缓释，不是人为种植或抽取他人寿元。",
+        "scarcity": "天地罕有",
+        "tier": "六品",
+        "status": "proposed",
+        "usage": {
+          "effect": "由雪魄神宫医官炮制并完成三十日寒命调和疗程后，一段新增十元载未来可用寿储，主要用于弥补长期寒损和命火衰弱造成的未来储备缺口。",
+          "requirements": [
+            "受用者至少玄府境，且须由玄府境以上冰系医修主持；凝元修士只能作为特殊医疗个案，经额外审批，不形成常规资格。",
+            "疗程开始前七日及疗程期间不得发动燃寿秘术、血炼秘术或高强度火煞术；出现寒毒入髓、命火骤降或经脉冻结必须停药。",
+            "每段分五次服用，间隔七日，末次后再观察两日，共三十日；疗程不完整不得入账。",
+            "每人终生最多成功使用六段；任两段之间至少间隔一年，连续两段后必须停用三年并重新评估寒命承载。"
+          ],
+          "cost": "每段消耗完整寒脉子段、五份中和药材、低温药炉一次和三十日医护配额。运输解冻、药炉失控或疗程失败时，原材与辅药均不返还。",
+          "limitations": [
+            "每八年暖潮后最多验收两段合格子段，其中至少一段为极冰天国寒灾公共医疗储备；无论市场价格和皇庭需求如何，母根指标不合格时当期全部封采。",
+            "原段须置于雪魄寒匣内，离开指定寒匣后最多保存十二日；普通跨海航程若超过时限，必须在中途更换经登记的寒匣。",
+            "不能提供冰系功法、抗寒法宝、元罡或法力，也不能治疗神魂伤、道伤和已燃寿元。",
+            "黑市切片、冻融品和无母根编号材料只能作为普通寒性药材，不产生可确认寿储。"
+          ]
+        }
+      },
+      {
+        "id": "res_19",
+        "name": "界潮命胶",
+        "unit": "匣",
+        "source": "苍冥界渊虚谷loc_15内，经苍冥巡界使稳定监测的微型裂隙，在寒脉、缓慢灵潮与定界石槽共同作用下自然析出的胶质；不是虚空神晶，也不从裂隙或活体抽取寿元。",
+        "scarcity": "天地绝品",
+        "tier": "六品",
+        "status": "proposed",
+        "usage": {
+          "effect": "经巡界使定相、命医稀释并完成四十五日闭关疗程后，一匣新增三十元载未来可用寿储。其作用是将稳定裂隙周边自然沉降的有限生机转入受用者寿储，转化中逸散部分不可回收。",
+          "requirements": [
+            "受用者至少神海境，且须经通晓空间污染的命医和巡界使联合确认；有空间乱流伤、神识裂损、未稳定煞毒或近期强行施展空间术式者不得入疗程。",
+            "疗程在loc_15巡界营地或获批定相室进行，分为十五日试药、十五日定相、十五日静养；任何阶段中断不得预支三十元载。",
+            "每人终生最多成功使用八匣；两匣之间至少间隔五年，连续两匣后须完成一次空间污染复查和至少十年停用观察。",
+            "只有巡界使登记的石槽、封签、匣号和受用者病历同时匹配时，才可确认寿储收入。"
+          ],
+          "cost": "每匣消耗一匣合格命胶、一次巡界定相阵额度、四十五日封闭医护和一枚寒封签。封签破裂、定相失败、神识失稳或疗程中断时，整匣按耗损处理，已付法力、医护和护送成本不返还。",
+          "limitations": [
+            "每六年评估一次，每个合格石槽最多析出一匣；全虚谷每周期最多形成四匣，其中两匣必须保留为裂隙伤员和巡界工程应急额。",
+            "刮取过量会降低石槽定界能力并扩大微裂隙；人为扩裂、燃寿催生、牺牲他人或破坏定界石槽所得均为污染命胶。",
+            "不能修复空间本源、神魂本源、道伤或界门损伤，不能抵扣碎空瞬灭刃、补天御界神印或鸿蒙典的既定寿耗。",
+            "离开loc_15后仍须实体护送、港口验籍和封闭运输；商盟通宝只能作为对价，不能替代采集权、医护资格和巡界批准。"
+          ]
+        }
+      }
+    ],
+    "supplyChains": [
+      {
+        "resourceId": "res_17",
+        "locationIds": [
+          "loc_05",
+          "loc_07",
+          "loc_29"
+        ],
+        "controllerFactionIds": [
+          "fac_10",
+          "fac_01",
+          "fac_02"
+        ],
+        "formationAndConservation": "灵虚圣地负责监测灵眼和寿枝古藤，灵脉年轮晶只能在自然灵潮转换后采集。古境守卫必须保留生态份额，太清与大乾不得用灵石、国运或伤亡人口补造结晶。",
+        "cycleAndQuota": "每十八个月一次主要形成期，正常年份最多两次有效采集，每次最多三枚；每期至少一枚封存保育，其余由界约按医疗急迫度、守境贡献和合法对价分配。灾年可为零。",
+        "rightsAndAllocation": "灵虚圣地拥有验真、封存和停采否决权；太清、大乾只能提交候选人和对价方案。主角未来最多作为竞争申请者，不能由宗门身份直接取得。",
+        "competingInterests": "太清优先救治外山伤者和古境护送者；大乾希望维持高阶供奉；灵虚圣地优先保护灵眼；幽罗殿可能盗取或污染样品，但污染晶不产生寿储。",
+        "transportAndStorage": "以编号玉匣和温养封袋由具名押运者从loc_05送至指定药舍；普通商路只能承运已验真批次。匣体破裂、编号不符或离开温养条件超过规定时限，整枚冻结复验。",
+        "failureCost": "过采会导致下一周期停产；护送失职、私售和伪造记录会扣减界约份额并暂停责任方准入。疗程失败只损失实际材料和医疗时间，不产生预计寿储。"
+      },
+      {
+        "resourceId": "res_18",
+        "locationIds": [
+          "loc_13",
+          "loc_14",
+          "loc_21",
+          "loc_26"
+        ],
+        "controllerFactionIds": [
+          "fac_05",
+          "fac_12",
+          "fac_08"
+        ],
+        "formationAndConservation": "寒脉母根依靠八年一次暖潮结段，采走子段会减少下一周期可恢复储量。阵火催长、抽干旧湖或剥取母根会毁坏寒脉，不能提高产量。",
+        "cycleAndQuota": "每八年暖潮后最多两段合格子段，其中一段固定作为极冰天国公共医疗额，另一段才可外交交换、竞配或有偿转让。边境寒灾、妖域冲突或巡界警报发生时可全部封存。",
+        "rightsAndAllocation": "极冰皇庭负责采区和出口许可，雪魄神宫负责医官和炮制，苍冥巡界使拥有生态停采权。万象商盟只负责获准后的寒匣运输，不决定配额。",
+        "competingInterests": "极冰天国优先本土寒灾和军政高阶修士；万妖祖庭反对抽取影响妖域水脉；商盟争取冷链承运；巡界使担心争夺破坏边境稳定。主角须以合法救援、护送、情报或物资对价争取。",
+        "transportAndStorage": "必须使用登记寒匣，航程仍依loc_21实体航路计算；超过十二日须完成合法换匣。冻融、火煞污染或交接记录断裂会导致整段失效。",
+        "failureCost": "私采会触发皇庭和巡界使联合封锁；运输失温不会产生替代份额。疗程引发寒毒时，十元载不入账，医官还可能失去资格。"
+      },
+      {
+        "resourceId": "res_19",
+        "locationIds": [
+          "loc_15",
+          "loc_02",
+          "loc_21",
+          "loc_26"
+        ],
+        "controllerFactionIds": [
+          "fac_12",
+          "fac_05",
+          "fac_08",
+          "fac_09"
+        ],
+        "formationAndConservation": "界潮命胶由稳定石槽自然析出，形成速度取决于裂隙应力和灵潮沉降。采集本身会消耗石槽稳定余量，因此寿源产出与巡界安全直接挂钩。",
+        "cycleAndQuota": "每六年完成一次全谷安全评估；全虚谷理论最多四匣，但两匣为巡界应急和伤员医疗保留，常规对外最多两匣。界门灵震、空间污染或巡界人手不足时，对外配额为零。",
+        "rightsAndAllocation": "苍冥巡界使拥有唯一采集、封签和批准权；补天阁可在界门异常期要求全数封存；极冰天国只有协防和见证权；万象商盟只能承保和承运。",
+        "competingInterests": "巡界使须在伤员救治、界渊工程和外交交换间分配；极冰天国要求本土优先；补天阁要求界门危机时停供；高阶势力强行索取会提高裂隙风险并导致封采。",
+        "transportAndStorage": "先入定相匣，再由具名护送队通过实体航路运往获批疗室。匣体遭乱流、封签破损或交接缺页时冻结复验，不得直接视作可用库存。",
+        "failureCost": "违规采刮会扩大裂隙并触发全谷停采；盗匣只造成资源和人员损失，不产生替代寿储。疗程失败可能造成神识紊乱，三十元载不入账。"
+      }
+    ],
+    "conditionalBudgets": [
+      {
+        "scope": "林辰或同等起点的凝元修士：百章后至神海境的一次条件窗口",
+        "startingAssumptions": "第466日条件寿储为2.775342元载；res_09仍只按已确认剩余四剂、理论上限20元载计算，不视为现有库存。新增资源尚未取得，且不计入当前资产。",
+        "proposedIncome": "候选路径取得res_09四剂20元载、res_17两枚8元载、res_18一段10元载，共38元载。res_18需要玄府境资格，因此该段必须在主角先以灵泉与res_17完成神海前的资源准备，或改由具备资格的医修代为确认后再服用；若角色仍为凝元，res_18不构成可用收入。",
+        "timeAndExpenses": "以先完成灵泉和res_17，再晋入玄府后服用res_18为保守顺序。此处只计算自然日和既有晋阶支出，不把战斗、术法或治疗支出隐藏掉。",
+        "result": "若四剂灵泉、两枚年轮晶和一段寒脉根全部在付款前完成疗程并入账，则神海晋阶在数学上可行；若res_18因境界或医嘱不能使用，需额外取得至少一枚res_17或延后等待其他合法来源。",
+        "stillUnproven": [
+          "灵虚界约是否把两枚年轮晶配给同一申请者。",
+          "林辰的先天亏空是否允许连续灵泉和年轮晶疗程。",
+          "百章后具体航程、价格、医护和政治对价尚未安排，不能视为已取得。",
+          "任何一剂失败都必须从账面收入中扣除，不能以理论上限补记。"
+        ],
+        "steps": [
+          {
+            "day": 466,
+            "realmBefore": "凝元",
+            "incomeResourceId": null,
+            "doses": 0,
+            "income": 0,
+            "naturalElapsedDays": 0,
+            "advancementDebit": 0,
+            "spellDebit": 0,
+            "closingLife": 2.775342,
+            "acquisitionAndMedicalConditions": [
+              "仅记录现有条件下界",
+              "任何未取得资源均不得列入库存"
+            ],
+            "unfulfilledConditions": [
+              "灵泉剩余四剂尚未取得",
+              "res_17和res_18尚未取得",
+              "尚无晋阶许可"
+            ]
+          },
+          {
+            "day": 610,
+            "realmBefore": "凝元",
+            "incomeResourceId": "res_09",
+            "doses": 2,
+            "income": 10,
+            "naturalElapsedDays": 144,
+            "advancementDebit": 0,
+            "spellDebit": 0,
+            "closingLife": 12.380822,
+            "acquisitionAndMedicalConditions": [
+              "两剂灵泉各完成十日疗程并复诊",
+              "两次疗程间隔和病历核验通过"
+            ],
+            "unfulfilledConditions": [
+              "剩余两剂灵泉尚未取得",
+              "res_17尚未完成配额和疗程"
+            ]
+          },
+          {
+            "day": 790,
+            "realmBefore": "凝元",
+            "incomeResourceId": "res_17",
+            "doses": 2,
+            "income": 8,
+            "naturalElapsedDays": 180,
+            "advancementDebit": 0,
+            "spellDebit": 0,
+            "closingLife": 19.887671,
+            "acquisitionAndMedicalConditions": [
+              "灵虚圣地验真",
+              "两枚分别完成十四日疗程",
+              "每枚入账时间早于后续付款"
+            ],
+            "unfulfilledConditions": [
+              "剩余两剂灵泉尚未取得",
+              "仍缺少神海晋阶所需寿储和安全余量"
+            ]
+          },
+          {
+            "day": 920,
+            "realmBefore": "凝元",
+            "incomeResourceId": "res_09",
+            "doses": 2,
+            "income": 10,
+            "naturalElapsedDays": 130,
+            "advancementDebit": 0,
+            "spellDebit": 0,
+            "closingLife": 29.531507,
+            "acquisitionAndMedicalConditions": [
+              "最后两剂灵泉完整炼化",
+              "医修确认当前可支配下界至少覆盖30元载与1元载安全余量"
+            ],
+            "unfulfilledConditions": [
+              "尚未支付神海晋阶",
+              "res_18尚需玄府境适格后才能使用"
+            ]
+          },
+          {
+            "day": 921,
+            "realmBefore": "凝元",
+            "incomeResourceId": "res_18",
+            "doses": 1,
+            "income": 10,
+            "naturalElapsedDays": 1,
+            "advancementDebit": 0,
+            "spellDebit": 0,
+            "closingLife": 39.528767,
+            "acquisitionAndMedicalConditions": [
+              "先完成神海晋阶前置诊疗或由具备资格的医修确认受用者已达玄府",
+              "寒脉根三十日疗程完成后才可入账；本步骤为条件占位，不代表当日已获得"
+            ],
+            "unfulfilledConditions": [
+              "res_18的八年暖潮配额可能尚未到期",
+              "需要重新安排疗程完成日，不能将未完成药程提前入账"
+            ]
+          },
+          {
+            "day": 1055,
+            "realmBefore": "神海前",
+            "incomeResourceId": null,
+            "doses": 0,
+            "income": 0,
+            "naturalElapsedDays": 134,
+            "advancementDebit": 30,
+            "spellDebit": 0,
+            "closingLife": 8.160274,
+            "acquisitionAndMedicalConditions": [
+              "所有计入收入的资源均已完成疗程并复诊",
+              "神魂、经脉、命寿诊察确认可晋阶"
+            ],
+            "unfulfilledConditions": [
+              "实际角色是否获得全部配额仍未证明",
+              "晋阶过程的伤势和失败后果尚需另行设计"
+            ]
+          }
+        ]
+      },
+      {
+        "scope": "一名已完成神海晋阶的极少数候选修士：归一、破虚、通天的数学路径",
+        "startingAssumptions": "以先前路径支付神海30元载后保留约8元载为例；不把res_17、res_18、res_19的未来额度当库存。此路径为世界层面的极端个例，不规定林辰必须走完。",
+        "proposedIncome": "在数十年至数百年的持续合法服务、疗程和配额竞争中，候选个人上限为res_17十枚40元载、res_18六段60元载、res_19八匣240元载，另加res_09剩余理论额度不超过20元载。该总额仅表示单人终生上限，不表示各势力会将全额分配给同一人。",
+        "timeAndExpenses": "若严格按自然周期取得，至少要跨越多个灵潮、暖潮和界渊评估期；等待期间自然流逝、疗伤、施术和运输均须从寿储扣除。路径只能在高阶修士有早期寿源维持生存并持续获得配额时成立。",
+        "result": "在最乐观的条件账中，新增可确认寿储可覆盖归一60元载、破虚100元载和通天200元载，且每次付款前均有到账；但真实世界中配额、自然流逝、术法支出和高阶医损会大幅压缩余量。该路径证明高阶阶梯数学上可成立，不证明任何现有角色已拥有资源。",
+        "stillUnproven": [
+          "高阶修士能否在等待周期中不因自然流逝、术法寿耗或战争损伤耗尽储备。",
+          "res_19是否允许同一人终生完成八匣疗程，巡界使可能因界门危机提前封采。",
+          "归一以上晋阶还需要功法、境界承载、法力、神识和本源条件，寿储充足不等于可以突破。",
+          "通天200元载支出仍不覆盖太清太虚鸿蒙典300元载等高阶术式，频繁发动仍不可行。",
+          "主宰晋阶仍按realm_08原条目支付本命神魂本源一成，不能以任何新增寿源替代。"
+        ],
+        "steps": [
+          {
+            "day": 1055,
+            "realmBefore": "神海",
+            "incomeResourceId": null,
+            "doses": 0,
+            "income": 0,
+            "naturalElapsedDays": 0,
+            "advancementDebit": 0,
+            "spellDebit": 0,
+            "closingLife": 8.160274,
+            "acquisitionAndMedicalConditions": [
+              "神海晋阶已付款并保留安全余量",
+              "所有未发生的资源收入仍为零"
+            ],
+            "unfulfilledConditions": [
+              "归一所需60元载尚未筹齐",
+              "高阶功法和本源承载尚未核验"
+            ]
+          },
+          {
+            "day": 2100,
+            "realmBefore": "神海",
+            "incomeResourceId": "res_17",
+            "doses": 10,
+            "income": 40,
+            "naturalElapsedDays": 1045,
+            "advancementDebit": 0,
+            "spellDebit": 0,
+            "closingLife": 45.296575,
+            "acquisitionAndMedicalConditions": [
+              "十枚年轮晶分批取得并完成疗程",
+              "每次间隔、批次和医案均可核对"
+            ],
+            "unfulfilledConditions": [
+              "自然流逝已显著压缩账面余量",
+              "仍不足以支付归一并保留一元载安全余量"
+            ]
+          },
+          {
+            "day": 3900,
+            "realmBefore": "神海",
+            "incomeResourceId": "res_18",
+            "doses": 6,
+            "income": 60,
+            "naturalElapsedDays": 1800,
+            "advancementDebit": 0,
+            "spellDebit": 0,
+            "closingLife": 100.364521,
+            "acquisitionAndMedicalConditions": [
+              "跨越至少多个八年暖潮窗口",
+              "六段寒脉根均完成三十日疗程",
+              "每次受用前通过玄府以上冰系医修检查"
+            ],
+            "unfulfilledConditions": [
+              "仍须支付归一晋阶",
+              "高阶功法和法力恢复条件尚未满足"
+            ]
+          },
+          {
+            "day": 3901,
+            "realmBefore": "神海",
+            "incomeResourceId": null,
+            "doses": 0,
+            "income": 0,
+            "naturalElapsedDays": 1,
+            "advancementDebit": 60,
+            "spellDebit": 0,
+            "closingLife": 40.361781,
+            "acquisitionAndMedicalConditions": [
+              "医修确认寿储和安全余量",
+              "归一前置精气神合一已完成"
+            ],
+            "unfulfilledConditions": [
+              "破虚所需100元载尚未筹齐",
+              "领域功法和空间承载尚未核验"
+            ]
+          },
+          {
+            "day": 6200,
+            "realmBefore": "归一",
+            "incomeResourceId": "res_19",
+            "doses": 4,
+            "income": 120,
+            "naturalElapsedDays": 2299,
+            "advancementDebit": 0,
+            "spellDebit": 0,
+            "closingLife": 154.060411,
+            "acquisitionAndMedicalConditions": [
+              "跨越至少多个六年界渊评估期",
+              "四匣命胶均在巡界营地完成四十五日疗程",
+              "未在空间污染期间强行施术"
+            ],
+            "unfulfilledConditions": [
+              "破虚晋阶尚未支付",
+              "剩余命胶不能视作已取得库存"
+            ]
+          },
+          {
+            "day": 6201,
+            "realmBefore": "归一",
+            "incomeResourceId": null,
+            "doses": 0,
+            "income": 0,
+            "naturalElapsedDays": 1,
+            "advancementDebit": 100,
+            "spellDebit": 0,
+            "closingLife": 54.057671,
+            "acquisitionAndMedicalConditions": [
+              "空间本源和神识安全余量通过专门复查",
+              "破虚前置领悟空间壁垒已完成"
+            ],
+            "unfulfilledConditions": [
+              "通天所需200元载尚未筹齐",
+              "每次碎空瞬灭刃仍需另付30元载与空间本源百分之一"
+            ]
+          },
+          {
+            "day": 9800,
+            "realmBefore": "破虚",
+            "incomeResourceId": "res_19",
+            "doses": 4,
+            "income": 120,
+            "naturalElapsedDays": 3599,
+            "advancementDebit": 0,
+            "spellDebit": 0,
+            "closingLife": 164.194657,
+            "acquisitionAndMedicalConditions": [
+              "另外四匣命胶跨周期取得并完成疗程",
+              "巡界使未因界门危机封锁全部配额"
+            ],
+            "unfulfilledConditions": [
+              "通天还缺至少36元载及安全余量",
+              "通天功法、阵基和界律承载尚未核验"
+            ]
+          },
+          {
+            "day": 11000,
+            "realmBefore": "破虚",
+            "incomeResourceId": "res_09",
+            "doses": 4,
+            "income": 20,
+            "naturalElapsedDays": 1200,
+            "advancementDebit": 0,
+            "spellDebit": 0,
+            "closingLife": 180.906301,
+            "acquisitionAndMedicalConditions": [
+              "剩余灵泉额度若真实存在且完成疗程才可入账",
+              "res_09四剂仍受原有十日疗程、复诊和终生六剂上限约束"
+            ],
+            "unfulfilledConditions": [
+              "灵泉可能早已因配额、污染或政治原因无法取得",
+              "仍需支付通天晋阶后保留安全余量"
+            ]
+          },
+          {
+            "day": 11001,
+            "realmBefore": "破虚",
+            "incomeResourceId": null,
+            "doses": 0,
+            "income": 0,
+            "naturalElapsedDays": 1,
+            "advancementDebit": 200,
+            "spellDebit": 0,
+            "closingLife": -19.096438,
+            "acquisitionAndMedicalConditions": [
+              "本步展示原始高阶成本压力",
+              "通天前必须重新诊断自然流逝和所有既有支出"
+            ],
+            "unfulfilledConditions": [
+              "该最乐观资源总额仍不足以无视长期自然流逝",
+              "必须增加合法高阶寿源、缩短取得周期或放弃该路线",
+              "因此本步不构成可执行主角计划，只证明单靠三类资源和灵泉不能自动填平通天成本"
+            ]
+          }
+        ]
+      },
+      {
+        "scope": "高阶群体供给约束",
+        "startingAssumptions": "res_17、res_18、res_19的产量均按自然上限计，且保护额优先；任何角色不得把群体产量直接转为个人库存。",
+        "proposedIncome": "res_17每十八个月最多三枚，res_18每八年最多两段，res_19每六年全谷最多四匣。三类资源合计只能供给少数高阶个案，无法支持军团化燃寿或连续发动百元载、三百元载术式。",
+        "timeAndExpenses": "每次收入都伴随数日至数月疗程、运输和复诊；每次100元载或300元载术法仍按原条目实扣，并另加法力、神识、本源或道果损伤。资源形成周期远长于高阶战斗间隔。",
+        "result": "世界中可以存在依靠长期功绩、配额和政治交换维持寿储的极少数高阶修士，但任何势力都无法凭三类资源建立无限燃寿军队。幽罗殿的活体命寿禁术仍须遵守tech_17原规则，本候选不为其提供合法替代燃料。",
+        "stillUnproven": [
+          "各势力既有高阶修士的自然寿储与历史库存尚未核验。",
+          "界门灵震期间可能出现全域封存，导致全部新增配额为零。",
+          "高阶修士的具体寿储、自然流逝、术法频率和伤势尚未逐人建账。",
+          "高阶资源收入不能抵消主宰晋阶的本命神魂本源支出。"
+        ],
+        "steps": [
+          {
+            "day": 0,
+            "realmBefore": "神海及以上群体",
+            "incomeResourceId": null,
+            "doses": 0,
+            "income": 0,
+            "naturalElapsedDays": 0,
+            "advancementDebit": 0,
+            "spellDebit": 0,
+            "closingLife": 0,
+            "acquisitionAndMedicalConditions": [
+              "仅建立群体配额上限",
+              "不把自然形成上界视为现有库存"
+            ],
+            "unfulfilledConditions": [
+              "逐人资格、病历、对价和配额尚未确认"
+            ]
+          },
+          {
+            "day": 2190,
+            "realmBefore": "破虚或通天候选",
+            "incomeResourceId": "res_19",
+            "doses": 2,
+            "income": 60,
+            "naturalElapsedDays": 2190,
+            "advancementDebit": 0,
+            "spellDebit": 0,
+            "closingLife": 0,
+            "acquisitionAndMedicalConditions": [
+              "两匣来自不同六年评估周期",
+              "至少两匣应急额仍被保留",
+              "每匣完成四十五日疗程后才可入账"
+            ],
+            "unfulfilledConditions": [
+              "不能据此支付200元载通天晋阶",
+              "更不能据此发动300元载鸿蒙典",
+              "若界渊封采，收入直接归零"
+            ]
+          }
+        ]
+      }
+    ],
+    "openQuestions": [
+      {
+        "id": "uq_life_07",
+        "question": "灵虚圣地是否允许非古境常驻者连续取得res_17，还是必须以守境、救援或证据交换建立候选资格？",
+        "blocking": true,
+        "status": "open"
+      },
+      {
+        "id": "uq_life_08",
+        "question": "res_18的八年暖潮最近一次发生时间是否早于百章后，若否，神海窗口不得使用该资源；若是，也仍须确认公共医疗额是否优先封存。",
+        "blocking": true,
+        "status": "open"
+      },
+      {
+        "id": "uq_life_09",
+        "question": "苍冥巡界使是否在界门灵震期间允许res_19对外配置，还是全部转为裂隙应急额？",
+        "blocking": true,
+        "status": "open"
+      },
+      {
+        "id": "uq_life_10",
+        "question": "是否允许为高阶修士追加第四类寿源；在未追加前，三类新资源加剩余灵泉不足以稳定支持通天晋阶后的长期施术。",
+        "blocking": true,
+        "status": "open"
+      },
+      {
+        "id": "uq_life_11",
+        "question": "高阶修士是否存在未被三类药物覆盖的合法长期寿源，如界门工程报酬、界源转化或特殊自然寿储；若新增，必须单独设计来源、守恒、权限与医学边界。",
+        "blocking": true,
+        "status": "open"
+      },
+      {
+        "id": "uq_life_12",
+        "question": "林辰先天亏空的医学下界是否允许长期等待资源周期；若不允许，必须以实际诊断结果下修所有条件预算。",
+        "blocking": true,
+        "status": "open"
+      }
+    ],
+    "worldRuleProposals": [
+      {
+        "id": "ax_09",
+        "title": "自然寿源只在完成疗程后入账",
+        "content": "任何自然形成的延寿资源必须同时满足来源验真、配额登记、适格境界、伤情诊察、完整疗程和复诊确认，方可增加未来可用寿储。采收上限、市场价格、持有凭证、传闻库存和未完成疗程不得预支寿元。该收入不返还已燃寿元、已付晋阶成本、自然衰老、道伤、神魂本源或术法冷却。",
+        "scope": "全域命寿资源与医疗",
+        "precedence": 9,
+        "status": "proposed"
+      },
+      {
+        "id": "ax_10",
+        "title": "自然寿源配额不得跨账或跨周期预支",
+        "content": "自然寿源的形成周期、保护配额和个人终生上限分别记账。保育额、公共医疗额、应急额和未来周期产量不得转为当前个人库存；不同资源之间不得按品阶、货币、法力或灵石自动兑换。运输、保存、污染和疗程失败造成的损失不可由下一周期自动补发。",
+        "scope": "资源供给、势力权限与寿储核算",
+        "precedence": 10,
+        "status": "proposed"
+      }
+    ]
+  },
+  "audit": {
+    "linkedLifetimeDoseCounts": {
+      "res_09": 10,
+      "res_17": 12,
+      "res_18": 7,
+      "res_19": 8
+    },
+    "lifetimeLimits": {
+      "res_09": 6,
+      "res_17": 10,
+      "res_18": 6,
+      "res_19": 8
+    },
+    "declaredFinalLife": -19.096438,
+    "startingRealmActual": "玄府",
+    "startingRealmInProposal": "凝元",
+    "issues": [
+      "第466日既已支付玄府10元载，不能回写凝元或再次支付。",
+      "两段路径明确承接前段神海余额，却重用了此前已用剂额。",
+      "第920日29.531507不足31，条件却称已覆盖30加1。",
+      "第921日的30日根药疗程仅是占位仍先计入10元载。",
+      "十八个月周期同时写正常年份两次，成熟相位未定义。",
+      "多次用药的间隔和产出周期没有对应真实完成日，至少8年/6年窗口不支撑当前聚合到账日。",
+      "终点余额为负，不能宣布通天路径数学成立。"
+    ]
+  }
+}

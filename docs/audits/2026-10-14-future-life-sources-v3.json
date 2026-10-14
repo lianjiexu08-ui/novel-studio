@@ -1,0 +1,972 @@
+{
+  "status": "not_accepted_pending_supply_design",
+  "formalAcceptance": false,
+  "savedToWork": false,
+  "proposal": {
+    "summary": "人工校正的第三稿：三个有限自然寿源，逐次疗程、周期、终生限额和玄府至通天条件账；不是主角必经路线或已到手资源。原前百章账及所有术费不变。",
+    "resources": [
+      {
+        "id": "res_17",
+        "name": "灵脉年轮晶",
+        "unit": "枚",
+        "source": "灵虚古境loc_05的寿枝古藤在灵眼周边季节性灵潮转换时形成的年轮结晶；其生机来自古藤自然代谢与古境灵潮回流，不由灌灵、血祭或燃寿催成。",
+        "scarcity": "极罕见",
+        "tier": "五品",
+        "status": "proposed",
+        "usage": {
+          "effect": "一枚经完整十四日疗程及复诊，新增八元载未来可用寿储；只计未来生存和施术储备，不逆转年龄、既付燃寿、旧伤或本源损失。",
+          "requirements": [
+            "受用者至少凝元境三重；疗程前须连续三日诊察，排除急性失血、严重煞毒、命火紊乱和正在进行的燃寿反噬。",
+            "疗程从开始时点起持续十四整日，前七日服药、后七日静养，终点复诊合格才一次入账八元载。",
+            "每人终生最多成功使用十枚；两枚疗程之间至少间隔三十日，连续两枚后须额外停用九十日。",
+            "灵虚圣地只认可有编号、批次和采集时点的完整结晶；碎片、仿制品、污染品和盗取后重新拼装品不得入账。"
+          ],
+          "cost": "每枚消耗一枚完整结晶、七份温养辅药和十四日医护观察。服用中断、药毒反应或伤情恶化时，已服部分不返还，未服部分须封存复验或报废。",
+          "limitations": [
+            "形成周期为548个自然日（固定核算周期，不写每年两次）；以故事第1日为日序，未来首个成熟窗口第540日，其后540+548×n日。每个窗口最多三枚合格晶，不合格或灾年可为零。",
+            "每周期至少保留一枚用于古境守卫和灵眼生态，其余由灵虚界约分配；丰产上界不是个人现有份额。",
+            "过采会使寿枝古藤下一周期停止结晶，并使灵眼周围灵潮紊乱；以煞气、国运或活人寿元催化所得只算污染晶。",
+            "不能替代灵泉剂额，不能提高res_09每剂五年或终生六剂上限。",
+            "不同寿源之间允许顺序叠加，但任何两个疗程不得重叠；本品每次疗程结束至下一疗程开始至少三十日，每两次完成后至少九十日停用，终生十枚即八十元载封顶。其他品种疗程不能代替本品停用期。",
+            "原产地验真后在温养封袋内可存二十一整日，破袋后四十八小时内须开始疗程或报废；开始时取出当日份，其余封袋保存，最后服药必须在采后21日内。首例在loc_05就地用药，不假定跨海到货。",
+            "供应链·locationIds：['loc_05', 'loc_07', 'loc_29']",
+            "供应链·controllerFactionIds：['fac_10', 'fac_01', 'fac_02']",
+            "供应链·formationAndConservation：灵虚圣地负责监测灵眼和寿枝古藤，灵脉年轮晶只能在自然灵潮转换后采集。古境守卫必须保留生态份额，太清与大乾不得用灵石、国运或伤亡人口补造结晶。",
+            "供应链·cycleAndQuota：形成周期为548个自然日（固定核算周期，不写每年两次）；以故事第1日为日序，未来首个成熟窗口第540日，其后540+548×n日。每个窗口最多三枚合格晶，不合格或灾年可为零。 每期至少一枚保育，常规对外最多两枚，每人每期至多一枚。",
+            "供应链·rightsAndAllocation：灵虚圣地拥有验真、封存和停采否决权；太清、大乾只能提交候选人和对价方案。主角未来最多作为竞争申请者，不能由宗门身份直接取得。 申请人须在成熟窗前完成可核的守境、救援或护送服务并履约交付物资对价，主管者核贡献、伤情和其他申请者后具名决定；既有贡献、宗门地位、财富、未来贡献承诺均不保证批准。每轮独立竞争，不包下终生配额。",
+            "供应链·competingInterests：太清优先救治外山伤者和古境护送者；大乾希望维持高阶供奉；灵虚圣地优先保护灵眼；幽罗殿可能盗取或污染样品，但污染晶不产生寿储。",
+            "供应链·transportAndStorage：原产地验真后在温养封袋内可存二十一整日，破袋后四十八小时内须开始疗程或报废；开始时取出当日份，其余封袋保存，最后服药必须在采后21日内。首例在loc_05就地用药，不假定跨海到货。",
+            "供应链·failureCost：过采会导致下一周期停产；护送失职、私售和伪造记录会扣减界约份额并暂停责任方准入。疗程失败只损失实际材料和医疗时间，不产生预计寿储。"
+          ]
+        }
+      },
+      {
+        "id": "res_18",
+        "name": "寒脉伏龄根",
+        "unit": "段",
+        "source": "极冰天国loc_13北境封冻旧湖下的寒脉母根，在每八年一次的短暂地脉回温期结出子段；其生机来自封存水木灵性和寒脉缓释，不是人为种植或抽取他人寿元。",
+        "scarcity": "天地罕有",
+        "tier": "六品",
+        "status": "proposed",
+        "usage": {
+          "effect": "一段经完整三十日寒命调和疗程及复诊，新增六十元载未来可用寿储；属于外源新增储备，不修复寒损、命火病因或历史燃寿衰老。",
+          "requirements": [
+            "受用者至少玄府境且身体适格；无凝元特批例外。须由玄府以上冰系医修主持，不用医师境界替代患者境界。",
+            "疗程开始前七日及疗程期间不得发动燃寿秘术、血炼秘术或高强度火煞术；出现寒毒入髓、命火骤降或经脉冻结必须停药。",
+            "疗程开始后第0、7、14、21、28日各服五分之一，第30日复诊后才一次入账六十元载。",
+            "每人终生最多成功使用六段；任两段之间至少间隔一年，连续两段后必须停用三年并重新评估寒命承载。"
+          ],
+          "cost": "每段消耗完整寒脉子段、五份中和药材、低温药炉一次和三十日医护配额。运输解冻、药炉失控或疗程失败时，原材与辅药均不返还。",
+          "limitations": [
+            "每2920个自然日（八个365日核算年）成熟一次；未来首个成熟窗口第900日，其后900+2920×n日。每窗口最多两段，至少一段用于本土寒灾公共医疗，对外最多一段，灾年可全部封采。每人每窗口至多一段，终生六段即三百六十元载封顶。",
+            "必须在loc_14就地炮制和完成疗程；从loc_13采区到loc_14由已具名且获许可的本地医官护送，实际运输须在采后七日内完成，开始疗程最迟采后七日。登记寒匣保持至末次服用，采后总保存上限四十日；离匣累计超过十二小时或发生冻融即报废，换匣不重置时钟。本候选不授权跨海药材运输。",
+            "不能提供冰系功法、抗寒法宝、元罡或法力，也不能治疗神魂伤、道伤和已燃寿元。",
+            "黑市切片、冻融品和无母根编号材料只能作为普通寒性药材，不产生可确认寿储。",
+            "每次疗程结束到下次开始至少365日，每两次完成后至少1095日停用；更严格的采收窗口仍须满足。不同寿源可顺序叠加但疗程不得重叠。药不治疗寒毒，病因未稳定不得以延寿效果冒险续药。",
+            "供应链·locationIds：['loc_13', 'loc_14', 'loc_21', 'loc_26']",
+            "供应链·controllerFactionIds：['fac_05', 'fac_12', 'fac_08']",
+            "供应链·formationAndConservation：寒脉母根依靠八年一次暖潮结段，采走子段会减少下一周期可恢复储量。阵火催长、抽干旧湖或剥取母根会毁坏寒脉，不能提高产量。",
+            "供应链·cycleAndQuota：每2920个自然日（八个365日核算年）成熟一次；未来首个成熟窗口第900日，其后900+2920×n日。每窗口最多两段，至少一段用于本土寒灾公共医疗，对外最多一段，灾年可全部封采。每人每窗口至多一段，终生六段即三百六十元载封顶。",
+            "供应链·rightsAndAllocation：极冰天国fac_05负责采区、出口与对外唯一份额许可，其既有雪魄神宫loc_14的医官负责炮制和医疗资格；苍冥巡界使fac_12提供裂隙风险通报，不能绕过天国配额。万象商盟fac_08只能承运获批人员和辅药，不能决定寿源份额。 申请人须在成熟窗前完成可核的守境、救援或护送服务并履约交付物资对价，主管者核贡献、伤情和其他申请者后具名决定；既有贡献、宗门地位、财富、未来贡献承诺均不保证批准。每轮独立竞争，不包下终生配额。",
+            "供应链·competingInterests：极冰天国优先本土寒灾和军政高阶修士；万妖祖庭反对抽取影响妖域水脉；商盟争取冷链承运；巡界使担心争夺破坏边境稳定。主角须以合法救援、护送、情报或物资对价争取。",
+            "供应链·transportAndStorage：必须在loc_14就地炮制和完成疗程；从loc_13采区到loc_14由已具名且获许可的本地医官护送，实际运输须在采后七日内完成，开始疗程最迟采后七日。登记寒匣保持至末次服用，采后总保存上限四十日；离匣累计超过十二小时或发生冻融即报废，换匣不重置时钟。本候选不授权跨海药材运输。",
+            "供应链·failureCost：私采、毁根触发采区封锁；运输或疗程失败损失实物、医护和对价，六十元载不入账，不能靠下一批补记。"
+          ]
+        }
+      },
+      {
+        "id": "res_19",
+        "name": "界潮命胶",
+        "unit": "匣",
+        "source": "苍冥界渊虚谷loc_15内，经苍冥巡界使稳定监测的微型裂隙，在寒脉、缓慢灵潮与定界石槽共同作用下自然析出的胶质；不是虚空神晶，也不从裂隙或活体抽取寿元。",
+        "scarcity": "天地绝品",
+        "tier": "六品",
+        "status": "proposed",
+        "usage": {
+          "effect": "一匣经完整四十五日定相疗程及复诊，新增一百二十元载未来可用寿储；有限外源生机可用于未来扣款，不取消已付支出、衰老或损伤。",
+          "requirements": [
+            "受用者至少神海境，且须经通晓空间污染的命医和巡界使联合确认；有空间乱流伤、神识裂损、未稳定煞毒或近期强行施展空间术式者不得入疗程。",
+            "只在loc_15巡界营地获批定相室就地疗程；前十五整日试药、中十五日定相、后十五日静养，终点复诊合格才一次入账一百二十元载。",
+            "每人终生最多成功使用八匣；两匣之间至少间隔五年，连续两匣后须完成一次空间污染复查和至少十年停用观察。",
+            "只有巡界使登记的石槽、封签、匣号和受用者病历同时匹配时，才可确认寿储收入。"
+          ],
+          "cost": "每匣消耗一匣合格命胶、一次巡界定相阵额度、四十五日封闭医护和一枚寒封签。封签破裂、定相失败、神识失稳或疗程中断时，整匣按耗损处理，已付法力、医护和护送成本不返还。",
+          "limitations": [
+            "每2190个自然日（六个365日核算年）成熟一次；未来首个窗口第4200日，其后4200+2190×n日。全谷最多四匣，其中两匣为巡界伤员和工程应急，对外最多两匣，每人每窗口至多一匣；灾年或界门警报可对外零配额。终生八匣即九百六十元载封顶。",
+            "刮取过量会降低石槽定界能力并扩大微裂隙；人为扩裂、燃寿催生、牺牲他人或破坏定界石槽所得均为污染命胶。",
+            "可用新增寿储支付未来已定义的寿耗，付款时仍逐笔扣足。不能恢复空间本源、神魂本源、道伤、旧燃寿或界门损伤；不能把药物份额直接替代碎空瞬灭刃、神印、鸿蒙典的任何非寿储成本。",
+            "采出后三日内必须在loc_15开始疗程，定相匣留在同一营地直至疗程结束；不授权跨海护送或远程给药。封签破损即全匣报废，重新封装不重置寿命。",
+            "疗程结束至下一疗程开始至少1825日，每两次完成后至少3650日停用并复查，不能用别种药跳过。各类寿源疗程不得重叠；四种寿源含res_09可顺序叠加，各自终生限额独立，所有成功新增合计上限1430元载，不改变任何已有人物的已用剂数或诊断。",
+            "供应链·locationIds：['loc_15', 'loc_02', 'loc_21', 'loc_26']",
+            "供应链·controllerFactionIds：['fac_12', 'fac_05', 'fac_08', 'fac_09']",
+            "供应链·formationAndConservation：界潮命胶由稳定石槽自然析出，形成速度取决于裂隙应力和灵潮沉降。采集本身会消耗石槽稳定余量，因此寿源产出与巡界安全直接挂钩。",
+            "供应链·cycleAndQuota：每2190个自然日（六个365日核算年）成熟一次；未来首个窗口第4200日，其后4200+2190×n日。全谷最多四匣，其中两匣为巡界伤员和工程应急，对外最多两匣，每人每窗口至多一匣；灾年或界门警报可对外零配额。终生八匣即九百六十元载封顶。",
+            "供应链·rightsAndAllocation：苍冥巡界使拥有唯一采集、封签和批准权；补天阁可在界门异常期要求全数封存；极冰天国只有协防和见证权；万象商盟只能承保和承运。 申请人须在成熟窗前完成可核的守境、救援或护送服务并履约交付物资对价，主管者核贡献、伤情和其他申请者后具名决定；既有贡献、宗门地位、财富、未来贡献承诺均不保证批准。每轮独立竞争，不包下终生配额。",
+            "供应链·competingInterests：巡界使须在伤员救治、界渊工程和外交交换间分配；极冰天国要求本土优先；补天阁要求界门危机时停供；高阶势力强行索取会提高裂隙风险并导致封采。",
+            "供应链·transportAndStorage：采出后三日内必须在loc_15开始疗程，定相匣留在同一营地直至疗程结束；不授权跨海护送或远程给药。封签破损即全匣报废，重新封装不重置寿命。",
+            "供应链·failureCost：违规采刮扩大裂隙并触发全谷停采；盗匣或疗程失败损失实物、医护和对价，一百二十元载不入账，神识失稳另行诊疗。"
+          ]
+        }
+      }
+    ],
+    "supplyChains": [
+      {
+        "resourceId": "res_17",
+        "locationIds": [
+          "loc_05",
+          "loc_07",
+          "loc_29"
+        ],
+        "controllerFactionIds": [
+          "fac_10",
+          "fac_01",
+          "fac_02"
+        ],
+        "formationAndConservation": "灵虚圣地负责监测灵眼和寿枝古藤，灵脉年轮晶只能在自然灵潮转换后采集。古境守卫必须保留生态份额，太清与大乾不得用灵石、国运或伤亡人口补造结晶。",
+        "cycleAndQuota": "形成周期为548个自然日（固定核算周期，不写每年两次）；以故事第1日为日序，未来首个成熟窗口第540日，其后540+548×n日。每个窗口最多三枚合格晶，不合格或灾年可为零。 每期至少一枚保育，常规对外最多两枚，每人每期至多一枚。",
+        "rightsAndAllocation": "灵虚圣地拥有验真、封存和停采否决权；太清、大乾只能提交候选人和对价方案。主角未来最多作为竞争申请者，不能由宗门身份直接取得。 申请人须在成熟窗前完成可核的守境、救援或护送服务并履约交付物资对价，主管者核贡献、伤情和其他申请者后具名决定；既有贡献、宗门地位、财富、未来贡献承诺均不保证批准。每轮独立竞争，不包下终生配额。",
+        "competingInterests": "太清优先救治外山伤者和古境护送者；大乾希望维持高阶供奉；灵虚圣地优先保护灵眼；幽罗殿可能盗取或污染样品，但污染晶不产生寿储。",
+        "transportAndStorage": "原产地验真后在温养封袋内可存二十一整日，破袋后四十八小时内须开始疗程或报废；开始时取出当日份，其余封袋保存，最后服药必须在采后21日内。首例在loc_05就地用药，不假定跨海到货。",
+        "failureCost": "过采会导致下一周期停产；护送失职、私售和伪造记录会扣减界约份额并暂停责任方准入。疗程失败只损失实际材料和医疗时间，不产生预计寿储。"
+      },
+      {
+        "resourceId": "res_18",
+        "locationIds": [
+          "loc_13",
+          "loc_14",
+          "loc_21",
+          "loc_26"
+        ],
+        "controllerFactionIds": [
+          "fac_05",
+          "fac_12",
+          "fac_08"
+        ],
+        "formationAndConservation": "寒脉母根依靠八年一次暖潮结段，采走子段会减少下一周期可恢复储量。阵火催长、抽干旧湖或剥取母根会毁坏寒脉，不能提高产量。",
+        "cycleAndQuota": "每2920个自然日（八个365日核算年）成熟一次；未来首个成熟窗口第900日，其后900+2920×n日。每窗口最多两段，至少一段用于本土寒灾公共医疗，对外最多一段，灾年可全部封采。每人每窗口至多一段，终生六段即三百六十元载封顶。",
+        "rightsAndAllocation": "极冰天国fac_05负责采区、出口与对外唯一份额许可，其既有雪魄神宫loc_14的医官负责炮制和医疗资格；苍冥巡界使fac_12提供裂隙风险通报，不能绕过天国配额。万象商盟fac_08只能承运获批人员和辅药，不能决定寿源份额。 申请人须在成熟窗前完成可核的守境、救援或护送服务并履约交付物资对价，主管者核贡献、伤情和其他申请者后具名决定；既有贡献、宗门地位、财富、未来贡献承诺均不保证批准。每轮独立竞争，不包下终生配额。",
+        "competingInterests": "极冰天国优先本土寒灾和军政高阶修士；万妖祖庭反对抽取影响妖域水脉；商盟争取冷链承运；巡界使担心争夺破坏边境稳定。主角须以合法救援、护送、情报或物资对价争取。",
+        "transportAndStorage": "必须在loc_14就地炮制和完成疗程；从loc_13采区到loc_14由已具名且获许可的本地医官护送，实际运输须在采后七日内完成，开始疗程最迟采后七日。登记寒匣保持至末次服用，采后总保存上限四十日；离匣累计超过十二小时或发生冻融即报废，换匣不重置时钟。本候选不授权跨海药材运输。",
+        "failureCost": "私采、毁根触发采区封锁；运输或疗程失败损失实物、医护和对价，六十元载不入账，不能靠下一批补记。"
+      },
+      {
+        "resourceId": "res_19",
+        "locationIds": [
+          "loc_15",
+          "loc_02",
+          "loc_21",
+          "loc_26"
+        ],
+        "controllerFactionIds": [
+          "fac_12",
+          "fac_05",
+          "fac_08",
+          "fac_09"
+        ],
+        "formationAndConservation": "界潮命胶由稳定石槽自然析出，形成速度取决于裂隙应力和灵潮沉降。采集本身会消耗石槽稳定余量，因此寿源产出与巡界安全直接挂钩。",
+        "cycleAndQuota": "每2190个自然日（六个365日核算年）成熟一次；未来首个窗口第4200日，其后4200+2190×n日。全谷最多四匣，其中两匣为巡界伤员和工程应急，对外最多两匣，每人每窗口至多一匣；灾年或界门警报可对外零配额。终生八匣即九百六十元载封顶。",
+        "rightsAndAllocation": "苍冥巡界使拥有唯一采集、封签和批准权；补天阁可在界门异常期要求全数封存；极冰天国只有协防和见证权；万象商盟只能承保和承运。 申请人须在成熟窗前完成可核的守境、救援或护送服务并履约交付物资对价，主管者核贡献、伤情和其他申请者后具名决定；既有贡献、宗门地位、财富、未来贡献承诺均不保证批准。每轮独立竞争，不包下终生配额。",
+        "competingInterests": "巡界使须在伤员救治、界渊工程和外交交换间分配；极冰天国要求本土优先；补天阁要求界门危机时停供；高阶势力强行索取会提高裂隙风险并导致封采。",
+        "transportAndStorage": "采出后三日内必须在loc_15开始疗程，定相匣留在同一营地直至疗程结束；不授权跨海护送或远程给药。封签破损即全匣报废，重新封装不重置寿命。",
+        "failureCost": "违规采刮扩大裂隙并触发全谷停采；盗匣或疗程失败损失实物、医护和对价，一百二十元载不入账，神识失稳另行诊疗。"
+      }
+    ],
+    "conditionalBudgets": [
+      {
+        "scope": "玄府起点的单一稀缺世界个例；沿用第466日条件下界用于压力测试，不给林辰批准未来路线",
+        "startingDay": 466,
+        "startingRealm": 3,
+        "startingLife": 2.7753424657534254,
+        "initialDoses": {
+          "res_09": 2
+        },
+        "safetyReserve": 1,
+        "steps": [
+          {
+            "day": 554,
+            "realmBefore": 3,
+            "incomeResourceId": "res_17",
+            "doses": 1,
+            "income": 8,
+            "naturalElapsedDays": 88,
+            "advancementDebit": 0,
+            "realmAfter": 3,
+            "spellDebit": 0,
+            "closingLife": 10.534246575342467,
+            "survivalBeforeIncome": 2.5342465753424666,
+            "courseStartDay": 540,
+            "harvestDay": 540,
+            "conditions": [
+              "申请、对价、医护、实际到场、合格产出和完整疗程均须实际满足；不满足即中止本分支。"
+            ]
+          },
+          {
+            "day": 930,
+            "realmBefore": 3,
+            "incomeResourceId": "res_18",
+            "doses": 1,
+            "income": 60,
+            "naturalElapsedDays": 376,
+            "advancementDebit": 0,
+            "realmAfter": 3,
+            "spellDebit": 0,
+            "closingLife": 69.5041095890411,
+            "survivalBeforeIncome": 9.504109589041096,
+            "courseStartDay": 900,
+            "harvestDay": 900,
+            "conditions": [
+              "申请、对价、医护、实际到场、合格产出和完整疗程均须实际满足；不满足即中止本分支。"
+            ]
+          },
+          {
+            "day": 1000,
+            "realmBefore": 3,
+            "incomeResourceId": null,
+            "doses": 0,
+            "income": 0,
+            "naturalElapsedDays": 70,
+            "advancementDebit": 30,
+            "realmAfter": 4,
+            "spellDebit": 0,
+            "closingLife": 39.31232876712329,
+            "survivalBeforeIncome": 69.31232876712329,
+            "conditions": [
+              "这里仅证明寿储有足额来源；相应修习、境界前置、健康和实际突破必须另外通过，不能从付款能力推断必成。"
+            ]
+          },
+          {
+            "day": 3850,
+            "realmBefore": 4,
+            "incomeResourceId": "res_18",
+            "doses": 1,
+            "income": 60,
+            "naturalElapsedDays": 2850,
+            "advancementDebit": 0,
+            "realmAfter": 4,
+            "spellDebit": 0,
+            "closingLife": 91.5041095890411,
+            "survivalBeforeIncome": 31.5041095890411,
+            "courseStartDay": 3820,
+            "harvestDay": 3820,
+            "conditions": [
+              "申请、对价、医护、实际到场、合格产出和完整疗程均须实际满足；不满足即中止本分支。"
+            ]
+          },
+          {
+            "day": 4000,
+            "realmBefore": 4,
+            "incomeResourceId": null,
+            "doses": 0,
+            "income": 0,
+            "naturalElapsedDays": 150,
+            "advancementDebit": 60,
+            "realmAfter": 5,
+            "spellDebit": 0,
+            "closingLife": 31.0931506849315,
+            "survivalBeforeIncome": 91.0931506849315,
+            "conditions": [
+              "这里仅证明寿储有足额来源；相应修习、境界前置、健康和实际突破必须另外通过，不能从付款能力推断必成。"
+            ]
+          },
+          {
+            "day": 4245,
+            "realmBefore": 5,
+            "incomeResourceId": "res_19",
+            "doses": 1,
+            "income": 120,
+            "naturalElapsedDays": 245,
+            "advancementDebit": 0,
+            "realmAfter": 5,
+            "spellDebit": 0,
+            "closingLife": 150.42191780821918,
+            "survivalBeforeIncome": 30.421917808219174,
+            "courseStartDay": 4200,
+            "harvestDay": 4200,
+            "conditions": [
+              "申请、对价、医护、实际到场、合格产出和完整疗程均须实际满足；不满足即中止本分支。"
+            ]
+          },
+          {
+            "day": 4600,
+            "realmBefore": 5,
+            "incomeResourceId": null,
+            "doses": 0,
+            "income": 0,
+            "naturalElapsedDays": 355,
+            "advancementDebit": 100,
+            "realmAfter": 6,
+            "spellDebit": 0,
+            "closingLife": 49.44931506849315,
+            "survivalBeforeIncome": 149.44931506849315,
+            "conditions": [
+              "这里仅证明寿储有足额来源；相应修习、境界前置、健康和实际突破必须另外通过，不能从付款能力推断必成。"
+            ]
+          },
+          {
+            "day": 6435,
+            "realmBefore": 6,
+            "incomeResourceId": "res_19",
+            "doses": 1,
+            "income": 120,
+            "naturalElapsedDays": 1835,
+            "advancementDebit": 0,
+            "realmAfter": 6,
+            "spellDebit": 0,
+            "closingLife": 164.42191780821918,
+            "survivalBeforeIncome": 44.42191780821918,
+            "courseStartDay": 6390,
+            "harvestDay": 6390,
+            "conditions": [
+              "申请、对价、医护、实际到场、合格产出和完整疗程均须实际满足；不满足即中止本分支。"
+            ]
+          },
+          {
+            "day": 6770,
+            "realmBefore": 6,
+            "incomeResourceId": "res_18",
+            "doses": 1,
+            "income": 60,
+            "naturalElapsedDays": 335,
+            "advancementDebit": 0,
+            "realmAfter": 6,
+            "spellDebit": 0,
+            "closingLife": 223.5041095890411,
+            "survivalBeforeIncome": 163.5041095890411,
+            "courseStartDay": 6740,
+            "harvestDay": 6740,
+            "conditions": [
+              "申请、对价、医护、实际到场、合格产出和完整疗程均须实际满足；不满足即中止本分支。"
+            ]
+          },
+          {
+            "day": 7000,
+            "realmBefore": 6,
+            "incomeResourceId": null,
+            "doses": 0,
+            "income": 0,
+            "naturalElapsedDays": 230,
+            "advancementDebit": 200,
+            "realmAfter": 7,
+            "spellDebit": 0,
+            "closingLife": 22.873972602739713,
+            "survivalBeforeIncome": 222.8739726027397,
+            "conditions": [
+              "这里仅证明寿储有足额来源；相应修习、境界前置、健康和实际突破必须另外通过，不能从付款能力推断必成。"
+            ]
+          },
+          {
+            "day": 9690,
+            "realmBefore": 7,
+            "incomeResourceId": "res_18",
+            "doses": 1,
+            "income": 60,
+            "naturalElapsedDays": 2690,
+            "advancementDebit": 0,
+            "realmAfter": 7,
+            "spellDebit": 0,
+            "closingLife": 75.50410958904108,
+            "survivalBeforeIncome": 15.504109589041082,
+            "courseStartDay": 9660,
+            "harvestDay": 9660,
+            "conditions": [
+              "申请、对价、医护、实际到场、合格产出和完整疗程均须实际满足；不满足即中止本分支。"
+            ]
+          },
+          {
+            "day": 10815,
+            "realmBefore": 7,
+            "incomeResourceId": "res_19",
+            "doses": 1,
+            "income": 120,
+            "naturalElapsedDays": 1125,
+            "advancementDebit": 0,
+            "realmAfter": 7,
+            "spellDebit": 0,
+            "closingLife": 192.42191780821918,
+            "survivalBeforeIncome": 72.42191780821916,
+            "courseStartDay": 10770,
+            "harvestDay": 10770,
+            "conditions": [
+              "申请、对价、医护、实际到场、合格产出和完整疗程均须实际满足；不满足即中止本分支。"
+            ]
+          },
+          {
+            "day": 10900,
+            "realmBefore": 7,
+            "incomeResourceId": null,
+            "doses": 0,
+            "income": 0,
+            "naturalElapsedDays": 85,
+            "advancementDebit": 0,
+            "realmAfter": 7,
+            "spellDebit": 100,
+            "closingLife": 92.18904109589042,
+            "survivalBeforeIncome": 192.18904109589042,
+            "techniqueId": "tech_15",
+            "conditions": [
+              "假设术式已掌握且当前实测健康法力与可用神识均足付；实际未测不得施术。",
+              "神印另付法力3成、神识2成及通天道果1%，三年道伤保留；鸿蒙典另付法力5成、神识3成及通天法则本源1%，损伤永久累计。",
+              "后一次距神印4700日，大于1095日道伤期；仍须本源安全复测，不把药物当本源修复。"
+            ]
+          },
+          {
+            "day": 12610,
+            "realmBefore": 7,
+            "incomeResourceId": "res_18",
+            "doses": 1,
+            "income": 60,
+            "naturalElapsedDays": 1710,
+            "advancementDebit": 0,
+            "realmAfter": 7,
+            "spellDebit": 0,
+            "closingLife": 147.5041095890411,
+            "survivalBeforeIncome": 87.50410958904111,
+            "courseStartDay": 12580,
+            "harvestDay": 12580,
+            "conditions": [
+              "申请、对价、医护、实际到场、合格产出和完整疗程均须实际满足；不满足即中止本分支。"
+            ]
+          },
+          {
+            "day": 13005,
+            "realmBefore": 7,
+            "incomeResourceId": "res_19",
+            "doses": 1,
+            "income": 120,
+            "naturalElapsedDays": 395,
+            "advancementDebit": 0,
+            "realmAfter": 7,
+            "spellDebit": 0,
+            "closingLife": 266.4219178082192,
+            "survivalBeforeIncome": 146.42191780821918,
+            "courseStartDay": 12960,
+            "harvestDay": 12960,
+            "conditions": [
+              "申请、对价、医护、实际到场、合格产出和完整疗程均须实际满足；不满足即中止本分支。"
+            ]
+          },
+          {
+            "day": 15530,
+            "realmBefore": 7,
+            "incomeResourceId": "res_18",
+            "doses": 1,
+            "income": 60,
+            "naturalElapsedDays": 2525,
+            "advancementDebit": 0,
+            "realmAfter": 7,
+            "spellDebit": 0,
+            "closingLife": 319.5041095890411,
+            "survivalBeforeIncome": 259.5041095890411,
+            "courseStartDay": 15500,
+            "harvestDay": 15500,
+            "conditions": [
+              "申请、对价、医护、实际到场、合格产出和完整疗程均须实际满足；不满足即中止本分支。"
+            ]
+          },
+          {
+            "day": 15600,
+            "realmBefore": 7,
+            "incomeResourceId": null,
+            "doses": 0,
+            "income": 0,
+            "naturalElapsedDays": 70,
+            "advancementDebit": 0,
+            "realmAfter": 7,
+            "spellDebit": 300,
+            "closingLife": 19.31232876712329,
+            "survivalBeforeIncome": 319.3123287671233,
+            "techniqueId": "tech_16",
+            "conditions": [
+              "假设术式已掌握且当前实测健康法力与可用神识均足付；实际未测不得施术。",
+              "神印另付法力3成、神识2成及通天道果1%，三年道伤保留；鸿蒙典另付法力5成、神识3成及通天法则本源1%，损伤永久累计。",
+              "后一次距神印4700日，大于1095日道伤期；仍须本源安全复测，不把药物当本源修复。"
+            ]
+          }
+        ]
+      }
+    ],
+    "openQuestions": [
+      {
+        "id": "uq_life_access",
+        "question": "具体后续剧情中的申请、竞争对手、贡献与物资对价、跨陆实体行程、各段修习及伤情需逐段设计和复审；此条件算例不得当作林辰的已批准路线。",
+        "blocking": true,
+        "status": "open"
+      }
+    ],
+    "worldRuleProposals": [
+      {
+        "id": "ax_09",
+        "title": "自然寿源只在完成疗程后入账",
+        "content": "任何自然形成的延寿资源必须同时满足来源验真、配额登记、适格境界、伤情诊察、完整疗程和复诊确认，方可增加未来可用寿储。采收上限、市场价格、持有凭证、传闻库存和未完成疗程不得预支寿元。该收入不返还已燃寿元、已付晋阶成本、自然衰老、道伤、神魂本源或术法冷却。 下列新成熟日是候选世界自然周期的相位设定，不是前百章已知消息、现有库存或给主角的承诺。成熟窗表示生态合格时可形成的上限，现场测得产量不足或审批未通过时条件账分支中止。",
+        "scope": "全域命寿资源与医疗",
+        "precedence": 9,
+        "status": "proposed"
+      },
+      {
+        "id": "ax_10",
+        "title": "自然寿源配额不得跨账或跨周期预支",
+        "content": "自然寿源的形成周期、保护配额和个人终生上限分别记账。保育额、公共医疗额、应急额和未来周期产量不得转为当前个人库存；不同资源之间不得按品阶、货币、法力或灵石自动兑换。运输、保存、污染和疗程失败造成的损失不可由下一周期自动补发。 新寿储可以逐笔支付未来成本；“不返还过去”不等于禁止支付未来。禁止重复记入同一疗程。res_09规则及已用两剂保持不变。",
+        "scope": "资源供给、势力权限与寿储核算",
+        "precedence": 10,
+        "status": "proposed"
+      }
+    ],
+    "budgetPolicy": {
+      "res_17": {
+        "income": 8,
+        "lifetimeDoses": 10,
+        "minimumRealm": 2,
+        "courseDays": 14,
+        "firstMaturityDay": 540,
+        "cycleDays": 548,
+        "maxHarvest": 3,
+        "reservedHarvest": 1,
+        "maxPerPersonPerCycle": 1,
+        "minGapDays": 30,
+        "everyTwoGapDays": 90,
+        "maxStartDelayDays": 0
+      },
+      "res_18": {
+        "income": 60,
+        "lifetimeDoses": 6,
+        "minimumRealm": 3,
+        "courseDays": 30,
+        "firstMaturityDay": 900,
+        "cycleDays": 2920,
+        "maxHarvest": 2,
+        "reservedHarvest": 1,
+        "maxPerPersonPerCycle": 1,
+        "minGapDays": 365,
+        "everyTwoGapDays": 1095,
+        "maxStartDelayDays": 7
+      },
+      "res_19": {
+        "income": 120,
+        "lifetimeDoses": 8,
+        "minimumRealm": 4,
+        "courseDays": 45,
+        "firstMaturityDay": 4200,
+        "cycleDays": 2190,
+        "maxHarvest": 4,
+        "reservedHarvest": 2,
+        "maxPerPersonPerCycle": 1,
+        "minGapDays": 1825,
+        "everyTwoGapDays": 3650,
+        "maxStartDelayDays": 3
+      }
+    },
+    "populationConstraint": "三种未来净对外上限分别每548日两枚×8、每2920日一段×60、每2190日两匣×120；约等于10.66、7.5、40元载/365日的世界净新增上界，不是个人分红。算例跨41.46年取得1枚、6段、4匣，共848元载，需历次竞争成功；所有同类候选共用这些限额，不能复制算例给整支军团。应急与保育份额未计作该人的收入。未列出的战斗/病损支出不得默认为已覆盖，增加时须重算；算例只证明有限高阶成长和两次高耗术式在世界内可成立。"
+  },
+  "arithmeticAudit": [
+    {
+      "valid": true,
+      "issues": [],
+      "rows": [
+        {
+          "day": 554,
+          "beforeIncome": 2.5342465753424666,
+          "closingLife": 10.534246575342467
+        },
+        {
+          "day": 930,
+          "beforeIncome": 9.504109589041096,
+          "closingLife": 69.5041095890411
+        },
+        {
+          "day": 1000,
+          "beforeIncome": 69.31232876712329,
+          "closingLife": 39.31232876712329
+        },
+        {
+          "day": 3850,
+          "beforeIncome": 31.5041095890411,
+          "closingLife": 91.5041095890411
+        },
+        {
+          "day": 4000,
+          "beforeIncome": 91.0931506849315,
+          "closingLife": 31.0931506849315
+        },
+        {
+          "day": 4245,
+          "beforeIncome": 30.421917808219174,
+          "closingLife": 150.42191780821918
+        },
+        {
+          "day": 4600,
+          "beforeIncome": 149.44931506849315,
+          "closingLife": 49.44931506849315
+        },
+        {
+          "day": 6435,
+          "beforeIncome": 44.42191780821918,
+          "closingLife": 164.42191780821918
+        },
+        {
+          "day": 6770,
+          "beforeIncome": 163.5041095890411,
+          "closingLife": 223.5041095890411
+        },
+        {
+          "day": 7000,
+          "beforeIncome": 222.8739726027397,
+          "closingLife": 22.873972602739713
+        },
+        {
+          "day": 9690,
+          "beforeIncome": 15.504109589041082,
+          "closingLife": 75.50410958904108
+        },
+        {
+          "day": 10815,
+          "beforeIncome": 72.42191780821916,
+          "closingLife": 192.42191780821918
+        },
+        {
+          "day": 10900,
+          "beforeIncome": 192.18904109589042,
+          "closingLife": 92.18904109589042
+        },
+        {
+          "day": 12610,
+          "beforeIncome": 87.50410958904111,
+          "closingLife": 147.5041095890411
+        },
+        {
+          "day": 13005,
+          "beforeIncome": 146.42191780821918,
+          "closingLife": 266.4219178082192
+        },
+        {
+          "day": 15530,
+          "beforeIncome": 259.5041095890411,
+          "closingLife": 319.5041095890411
+        },
+        {
+          "day": 15600,
+          "beforeIncome": 319.3123287671233,
+          "closingLife": 19.31232876712329
+        }
+      ],
+      "doses": {
+        "res_09": 2,
+        "res_17": 1,
+        "res_18": 6,
+        "res_19": 4
+      },
+      "finalLife": 19.31232876712329,
+      "finalRealm": 7,
+      "limitation": "Arithmetic and declared resource policy only; not medical, political, narrative or formal acceptance."
+    }
+  ],
+  "focusedReview": {
+    "status": "reviewed",
+    "model": "gpt-5.6-luna",
+    "fallback": false,
+    "usage": {
+      "calls": 1,
+      "failedCalls": 0,
+      "inputTokens": 66563,
+      "outputTokens": 3397,
+      "costUsd": 0,
+      "costKnown": false,
+      "byRole": {
+        "reviewing": {
+          "calls": 1,
+          "failedCalls": 0,
+          "outputTokens": 3397,
+          "costUsd": 0
+        }
+      },
+      "limits": {
+        "budgetUsd": null,
+        "maxCalls": 2
+      }
+    },
+    "result": {
+      "summary": "新增寿源的周期、配额、疗程和大部分条件账已形成可核约束，但第466日起点及初始灵泉后的停药条件未闭合；两条高阶寿源的就地疗程与地点准入也尚未接通。",
+      "checks": [
+        {
+          "criterion": "ledger",
+          "verdict": "revise",
+          "explanation": "条件路径逐段自然流逝、收入、30/60/100/200晋阶支出及后续100/300术式支出在算式上可复算，且各次收入均在疗程终点才记入；res_17、res_18、res_19的境界门槛也没有要求先用该资源才能取得晋阶资格的循环。但第466日余额公式中的“第19日为7元载”没有来源、诊断时点或此前收支；两剂res_09后的“长停药”亦未定义或映射到日期，现有res_09仅规定单剂十日疗程和下一剂不得在该疗程内开始。因此2.775342只能作为条件算例数值，尚不是可独立验收的完整账本起点。",
+          "evidence": [
+            {
+              "sourceId": "plan/milestones/ms_v3_payoff",
+              "quote": "{\n  \"id\": \"ms_v3_payoff\",\n  \"title\": \"有边界的胜果与更长的路\",\n  \"kind\": \"payoff\",\n  \"startChapter\": 96,\n  \"endChapter\": 100,\n  \"setup\": [\n    \"96章第437日辰初邵闻在外门值守房向顾面接受伤统领祁嵩并核身份伤情；乔仍看墨，杜褚在夜班分别接墨/押卫。两岗四人各12小时值12小时休，暂停其他外出任务；顾完成交接才去白榆处就医，普通见证员只管登记、不代替玄府看押。苏协调8人床位，梁九帮两名旧工友找家属，其余6人分别登记联系人。\",\n    \"第466日回访距436日高潮三十日；白榆治疗普通肩伤，失去的寿储不恢复。林条件预算7-(466-19)/365-3+10-10=2.775342，若伤病改变诊断须下修，不可把数值当准确死期。\",\n    \"苏梁核住处、粮食与工钱申领，韩承担改账责任。林只公开父亲守门参与及当地掩案可证部分。98章439程按普通驿路到乾都面报逃前所见；99章442监督点另寄本案摘要、原令封存副本和见证签名，444到复核署，445赵读质询、446答询并停本批授权。双方不即时共享。林仅据436程当场索要工友身份的口信怀疑第二片在赵府，未亲见；第一片仍封存自持。\",\n    \"选择：林拒绝按敌方未证实的口信拿工友身份去换所谓寿药，接受短寿与尚未结案的父仇；苏接受自己阵营的责任也在卷宗中，梁九决定先带家人过日子。\",\n    \"认知：向公众说清哪些已核实、哪些仍待查；夜只在实际收到青玄船信后得知结果，不能与林同日共享终局全知。\",\n    \"白榆在两间值守房内诊疗，各当班玄府不离岗；日常无跨房/外送，不调用休班者补一时缺口。无已到岗且足休的具名替班就取消移送与提审。若拟写当班失能等突发事件，现四人双岗表不够，必须先另审人手覆盖再写，不能顺延下一班制造空岗。\"\n  ],\n  \"cost\": \"没有返寿、燃寿白发、道伤凭空痊愈或三大陆永久太平。此卷不清算全部九鼎，公开传播仍限实到地点。\",\n  \"outcome\": \"第437–466日。百章有救人、断运、部分父案澄清和玄府成长的可核结局。1–100是450章的阶段验收；接下来的有限寿源、高阶反派、钥匙余片与九鼎机制必须另建经审查的来源和行动链，不将450章全书结局撤销。\"\n}"
+            },
+            {
+              "sourceId": "proposal/conditionalPath",
+              "quote": "{\n  \"scope\": \"玄府起点的单一稀缺世界个例；沿用第466日条件下界用于压力测试，不给林辰批准未来路线\",\n  \"startingDay\": 466,\n  \"startingRealm\": 3,\n  \"startingLife\": 2.7753424657534254,\n  \"initialDoses\": {\n    \"res_09\": 2\n  },\n  \"safetyReserve\": 1,\n  \"steps\": [\n    {\n      \"day\": 554,\n      \"realmBefore\": 3,\n      \"incomeResourceId\": \"res_17\",\n      \"doses\": 1,\n      \"income\": 8,\n      \"naturalElapsedDays\": 88,\n      \"advancementDebit\": 0,\n      \"realmAfter\": 3,\n      \"spellDebit\": 0,\n      \"closingLife\": 10.534246575342467,\n      \"survivalBeforeIncome\": 2.5342465753424666,\n      \"courseStartDay\": 540,\n      \"harvestDay\": 540,\n      \"conditions\": [\n        \"申请、对价、医护、实际到场、合格产出和完整疗程均须实际满足；不满足即中止本分支。\"\n      ]\n    },\n    {\n      \"day\": 930,\n      \"realmBefore\": 3,\n      \"incomeResourceId\": \"res_18\",\n      \"doses\": 1,\n      \"income\": 60,\n      \"naturalElapsedDays\": 376,\n      \"advancementDebit\": 0,\n      \"realmAfter\": 3,\n      \"spellDebit\": 0,\n      \"closingLife\": 69.5041095890411,\n      \"survivalBeforeIncome\": 9.504109589041096,\n      \"courseStartDay\": 900,\n      \"harvestDay\": 900,\n      \"conditions\": [\n        \"申请、对价、医护、实际到场、合格产出和完整疗程均须实际满足；不满足即中止本分支。\"\n      ]\n    },\n    {\n      \"day\": 1000,\n      \"realmBefore\": 3,\n"
+            },
+            {
+              "sourceId": "proposal/conditionalPath",
+              "quote": "      \"incomeResourceId\": null,\n      \"doses\": 0,\n      \"income\": 0,\n      \"naturalElapsedDays\": 70,\n      \"advancementDebit\": 30,\n      \"realmAfter\": 4,\n      \"spellDebit\": 0,\n      \"closingLife\": 39.31232876712329,\n      \"survivalBeforeIncome\": 69.31232876712329,\n      \"conditions\": [\n        \"这里仅证明寿储有足额来源；相应修习、境界前置、健康和实际突破必须另外通过，不能从付款能力推断必成。\"\n      ]\n    },\n    {\n      \"day\": 3850,\n      \"realmBefore\": 4,\n      \"incomeResourceId\": \"res_18\",\n      \"doses\": 1,\n      \"income\": 60,\n      \"naturalElapsedDays\": 2850,\n      \"advancementDebit\": 0,\n      \"realmAfter\": 4,\n      \"spellDebit\": 0,\n      \"closingLife\": 91.5041095890411,\n      \"survivalBeforeIncome\": 31.5041095890411,\n      \"courseStartDay\": 3820,\n      \"harvestDay\": 3820,\n      \"conditions\": [\n        \"申请、对价、医护、实际到场、合格产出和完整疗程均须实际满足；不满足即中止本分支。\"\n      ]\n    },\n    {\n      \"day\": 4000,\n      \"realmBefore\": 4,\n      \"incomeResourceId\": null,\n      \"doses\": 0,\n      \"income\": 0,\n      \"naturalElapsedDays\": 150,\n      \"advancementDebit\": 60,\n      \"realmAfter\": 5,\n      \"spellDebit\": 0,\n      \"closingLife\": 31.0931506849315,\n      \"survivalBeforeIncome\": 91.0931506849315,\n      \"conditions\": [\n"
+            },
+            {
+              "sourceId": "proposal/conditionalPath",
+              "quote": "      \"closingLife\": 164.42191780821918,\n      \"survivalBeforeIncome\": 44.42191780821918,\n      \"courseStartDay\": 6390,\n      \"harvestDay\": 6390,\n      \"conditions\": [\n        \"申请、对价、医护、实际到场、合格产出和完整疗程均须实际满足；不满足即中止本分支。\"\n      ]\n    },\n    {\n      \"day\": 6770,\n      \"realmBefore\": 6,\n      \"incomeResourceId\": \"res_18\",\n      \"doses\": 1,\n      \"income\": 60,\n      \"naturalElapsedDays\": 335,\n      \"advancementDebit\": 0,\n      \"realmAfter\": 6,\n      \"spellDebit\": 0,\n      \"closingLife\": 223.5041095890411,\n      \"survivalBeforeIncome\": 163.5041095890411,\n      \"courseStartDay\": 6740,\n      \"harvestDay\": 6740,\n      \"conditions\": [\n        \"申请、对价、医护、实际到场、合格产出和完整疗程均须实际满足；不满足即中止本分支。\"\n      ]\n    },\n    {\n      \"day\": 7000,\n      \"realmBefore\": 6,\n      \"incomeResourceId\": null,\n      \"doses\": 0,\n      \"income\": 0,\n      \"naturalElapsedDays\": 230,\n      \"advancementDebit\": 200,\n      \"realmAfter\": 7,\n      \"spellDebit\": 0,\n      \"closingLife\": 22.873972602739713,\n      \"survivalBeforeIncome\": 222.8739726027397,\n      \"conditions\": [\n        \"这里仅证明寿储有足额来源；相应修习、境界前置、健康和实际突破必须另外通过，不能从付款能力推断必成。\"\n      ]\n    },\n    {\n      \"day\": 9690,\n      \"realmBefore\": 7,\n      \"incomeResourceId\": \"res_18\",\n"
+            },
+            {
+              "sourceId": "proposal/conditionalPath",
+              "quote": "      \"doses\": 1,\n      \"income\": 60,\n      \"naturalElapsedDays\": 2690,\n      \"advancementDebit\": 0,\n      \"realmAfter\": 7,\n      \"spellDebit\": 0,\n      \"closingLife\": 75.50410958904108,\n      \"survivalBeforeIncome\": 15.504109589041082,\n      \"courseStartDay\": 9660,\n      \"harvestDay\": 9660,\n      \"conditions\": [\n        \"申请、对价、医护、实际到场、合格产出和完整疗程均须实际满足；不满足即中止本分支。\"\n      ]\n    },\n    {\n      \"day\": 10815,\n      \"realmBefore\": 7,\n      \"incomeResourceId\": \"res_19\",\n      \"doses\": 1,\n      \"income\": 120,\n      \"naturalElapsedDays\": 1125,\n      \"advancementDebit\": 0,\n      \"realmAfter\": 7,\n      \"spellDebit\": 0,\n      \"closingLife\": 192.42191780821918,\n      \"survivalBeforeIncome\": 72.42191780821916,\n      \"courseStartDay\": 10770,\n      \"harvestDay\": 10770,\n      \"conditions\": [\n        \"申请、对价、医护、实际到场、合格产出和完整疗程均须实际满足；不满足即中止本分支。\"\n      ]\n    },\n    {\n      \"day\": 10900,\n      \"realmBefore\": 7,\n      \"incomeResourceId\": null,\n      \"doses\": 0,\n      \"income\": 0,\n      \"naturalElapsedDays\": 85,\n      \"advancementDebit\": 0,\n      \"realmAfter\": 7,\n      \"spellDebit\": 100,\n      \"closingLife\": 92.18904109589042,\n      \"survivalBeforeIncome\": 192.18904109589042,\n"
+            },
+            {
+              "sourceId": "proposal/conditionalPath",
+              "quote": "      \"day\": 15530,\n      \"realmBefore\": 7,\n      \"incomeResourceId\": \"res_18\",\n      \"doses\": 1,\n      \"income\": 60,\n      \"naturalElapsedDays\": 2525,\n      \"advancementDebit\": 0,\n      \"realmAfter\": 7,\n      \"spellDebit\": 0,\n      \"closingLife\": 319.5041095890411,\n      \"survivalBeforeIncome\": 259.5041095890411,\n      \"courseStartDay\": 15500,\n      \"harvestDay\": 15500,\n      \"conditions\": [\n        \"申请、对价、医护、实际到场、合格产出和完整疗程均须实际满足；不满足即中止本分支。\"\n      ]\n    },\n    {\n      \"day\": 15600,\n      \"realmBefore\": 7,\n      \"incomeResourceId\": null,\n      \"doses\": 0,\n      \"income\": 0,\n      \"naturalElapsedDays\": 70,\n      \"advancementDebit\": 0,\n      \"realmAfter\": 7,\n      \"spellDebit\": 300,\n      \"closingLife\": 19.31232876712329,\n      \"survivalBeforeIncome\": 319.3123287671233,\n      \"techniqueId\": \"tech_16\",\n      \"conditions\": [\n        \"假设术式已掌握且当前实测健康法力与可用神识均足付；实际未测不得施术。\",\n        \"神印另付法力3成、神识2成及通天道果1%，三年道伤保留；鸿蒙典另付法力5成、神识3成及通天法则本源1%，损伤永久累计。\",\n        \"后一次距神印4700日，大于1095日道伤期；仍须本源安全复测，不把药物当本源修复。\"\n      ]\n    }\n  ]\n}"
+            },
+            {
+              "sourceId": "world/resources/res_09",
+              "quote": "{\n  \"id\": \"res_09\",\n  \"name\": \"延寿灵泉\",\n  \"unit\": \"滴\",\n  \"source\": \"灵虚古境太古洞天中心灵眼自然凝结\",\n  \"scarcity\": \"极罕见\",\n  \"tier\": \"五品\",\n  \"status\": \"proposed\",\n  \"usage\": {\n    \"effect\": \"洁净原液三滴为一剂，完整炼化后增加五年未来可用寿储，不把余额设为五年或三十年；每人终生最多六个有效剂额，累计新增不超过三十年。新增储备不会恢复因燃寿造成的衰老。\",\n    \"requirements\": [\n      \"取自灵虚古境灵眼的原液须独立验毒验煞并记录瓶中滴数；传闻、兑换凭证和未取得的泉水都不能记作个人寿储。\",\n      \"每剂固定三滴，分三日每日一滴温和炼化；第三滴后再静养七日，整个十日期间不得开始下一剂。淬体以上也须先评估伤势，凡人须有医修指导。\",\n      \"一剂只有完整炼化且复诊确认有效后才可入账五年；未完成药程不能先花预计收入。\"\n    ],\n    \"cost\": \"每剂消耗三滴原液和十日疗程，占用一次有效剂额；分装与稀释不增加总滴数。药物批次、病人已用剂数、实际新增寿储分开登记，不能将净增五年与终生三十年上限重复相加。\",\n    \"limitations\": [\n      \"不能返还已燃耗、被窃取并消耗或用于晋阶及法宝的既付寿元；新收入不撤销历史支出、冷却与年龄变化。\",\n      \"不治疗道伤、毒伤、经脉伤或神魂伤，不自动晋阶、补满真元、满足功法境界。\",\n      \"污染或净化失败的份额报废，误服不给予可确认的寿储收入，且有伤害风险；是否浪费剂额由复诊确认，但每人累计新增绝不超过三十年。\",\n      \"第六剂后再服不再延寿，灵泉不是可以无限堆叠的寿元农场。\"\n    ]\n  }\n}"
+            },
+            {
+              "sourceId": "world/resources/res_17",
+              "quote": "{\n  \"id\": \"res_17\",\n  \"name\": \"灵脉年轮晶\",\n  \"unit\": \"枚\",\n  \"source\": \"灵虚古境loc_05的寿枝古藤在灵眼周边季节性灵潮转换时形成的年轮结晶；其生机来自古藤自然代谢与古境灵潮回流，不由灌灵、血祭或燃寿催成。\",\n  \"scarcity\": \"极罕见\",\n  \"tier\": \"五品\",\n  \"status\": \"proposed\",\n  \"usage\": {\n    \"effect\": \"一枚经完整十四日疗程及复诊，新增八元载未来可用寿储；只计未来生存和施术储备，不逆转年龄、既付燃寿、旧伤或本源损失。\",\n    \"requirements\": [\n      \"受用者至少凝元境三重；疗程前须连续三日诊察，排除急性失血、严重煞毒、命火紊乱和正在进行的燃寿反噬。\",\n      \"疗程从开始时点起持续十四整日，前七日服药、后七日静养，终点复诊合格才一次入账八元载。\",\n      \"每人终生最多成功使用十枚；两枚疗程之间至少间隔三十日，连续两枚后须额外停用九十日。\",\n      \"灵虚圣地只认可有编号、批次和采集时点的完整结晶；碎片、仿制品、污染品和盗取后重新拼装品不得入账。\"\n    ],\n    \"cost\": \"每枚消耗一枚完整结晶、七份温养辅药和十四日医护观察。服用中断、药毒反应或伤情恶化时，已服部分不返还，未服部分须封存复验或报废。\",\n    \"limitations\": [\n      \"形成周期为548个自然日（固定核算周期，不写每年两次）；以故事第1日为日序，未来首个成熟窗口第540日，其后540+548×n日。每个窗口最多三枚合格晶，不合格或灾年可为零。\",\n      \"每周期至少保留一枚用于古境守卫和灵眼生态，其余由灵虚界约分配；丰产上界不是个人现有份额。\",\n      \"过采会使寿枝古藤下一周期停止结晶，并使灵眼周围灵潮紊乱；以煞气、国运或活人寿元催化所得只算污染晶。\",\n      \"不能替代灵泉剂额，不能提高res_09每剂五年或终生六剂上限。\",\n      \"不同寿源之间允许顺序叠加，但任何两个疗程不得重叠；本品每次疗程结束至下一疗程开始至少三十日，每两次完成后至少九十日停用，终生十枚即八十元载封顶。其他品种疗程不能代替本品停用期。\",\n      \"原产地验真后在温养封袋内可存二十一整日，破袋后四十八小时内须开始疗程或报废；开始时取出当日份，其余封袋保存，最后服药必须在采后21日内。首例在loc_05就地用药，不假定跨海到货。\",\n      \"供应链·locationIds：['loc_05', 'loc_07', 'loc_29']\",\n"
+            },
+            {
+              "sourceId": "world/resources/res_18",
+              "quote": "{\n  \"id\": \"res_18\",\n  \"name\": \"寒脉伏龄根\",\n  \"unit\": \"段\",\n  \"source\": \"极冰天国loc_13北境封冻旧湖下的寒脉母根，在每八年一次的短暂地脉回温期结出子段；其生机来自封存水木灵性和寒脉缓释，不是人为种植或抽取他人寿元。\",\n  \"scarcity\": \"天地罕有\",\n  \"tier\": \"六品\",\n  \"status\": \"proposed\",\n  \"usage\": {\n    \"effect\": \"一段经完整三十日寒命调和疗程及复诊，新增六十元载未来可用寿储；属于外源新增储备，不修复寒损、命火病因或历史燃寿衰老。\",\n    \"requirements\": [\n      \"受用者至少玄府境且身体适格；无凝元特批例外。须由玄府以上冰系医修主持，不用医师境界替代患者境界。\",\n      \"疗程开始前七日及疗程期间不得发动燃寿秘术、血炼秘术或高强度火煞术；出现寒毒入髓、命火骤降或经脉冻结必须停药。\",\n      \"疗程开始后第0、7、14、21、28日各服五分之一，第30日复诊后才一次入账六十元载。\",\n      \"每人终生最多成功使用六段；任两段之间至少间隔一年，连续两段后必须停用三年并重新评估寒命承载。\"\n    ],\n    \"cost\": \"每段消耗完整寒脉子段、五份中和药材、低温药炉一次和三十日医护配额。运输解冻、药炉失控或疗程失败时，原材与辅药均不返还。\",\n    \"limitations\": [\n      \"每2920个自然日（八个365日核算年）成熟一次；未来首个成熟窗口第900日，其后900+2920×n日。每窗口最多两段，至少一段用于本土寒灾公共医疗，对外最多一段，灾年可全部封采。每人每窗口至多一段，终生六段即三百六十元载封顶。\",\n      \"必须在loc_14就地炮制和完成疗程；从loc_13采区到loc_14由已具名且获许可的本地医官护送，实际运输须在采后七日内完成，开始疗程最迟采后七日。登记寒匣保持至末次服用，采后总保存上限四十日；离匣累计超过十二小时或发生冻融即报废，换匣不重置时钟。本候选不授权跨海药材运输。\",\n      \"不能提供冰系功法、抗寒法宝、元罡或法力，也不能治疗神魂伤、道伤和已燃寿元。\",\n      \"黑市切片、冻融品和无母根编号材料只能作为普通寒性药材，不产生可确认寿储。\",\n      \"每次疗程结束到下次开始至少365日，每两次完成后至少1095日停用；更严格的采收窗口仍须满足。不同寿源可顺序叠加但疗程不得重叠。药不治疗寒毒，病因未稳定不得以延寿效果冒险续药。\",\n      \"供应链·locationIds：['loc_13', 'loc_14', 'loc_21', 'loc_26']\",\n"
+            },
+            {
+              "sourceId": "world/resources/res_19",
+              "quote": "{\n  \"id\": \"res_19\",\n  \"name\": \"界潮命胶\",\n  \"unit\": \"匣\",\n  \"source\": \"苍冥界渊虚谷loc_15内，经苍冥巡界使稳定监测的微型裂隙，在寒脉、缓慢灵潮与定界石槽共同作用下自然析出的胶质；不是虚空神晶，也不从裂隙或活体抽取寿元。\",\n  \"scarcity\": \"天地绝品\",\n  \"tier\": \"六品\",\n  \"status\": \"proposed\",\n  \"usage\": {\n    \"effect\": \"一匣经完整四十五日定相疗程及复诊，新增一百二十元载未来可用寿储；有限外源生机可用于未来扣款，不取消已付支出、衰老或损伤。\",\n    \"requirements\": [\n      \"受用者至少神海境，且须经通晓空间污染的命医和巡界使联合确认；有空间乱流伤、神识裂损、未稳定煞毒或近期强行施展空间术式者不得入疗程。\",\n      \"只在loc_15巡界营地获批定相室就地疗程；前十五整日试药、中十五日定相、后十五日静养，终点复诊合格才一次入账一百二十元载。\",\n      \"每人终生最多成功使用八匣；两匣之间至少间隔五年，连续两匣后须完成一次空间污染复查和至少十年停用观察。\",\n      \"只有巡界使登记的石槽、封签、匣号和受用者病历同时匹配时，才可确认寿储收入。\"\n    ],\n    \"cost\": \"每匣消耗一匣合格命胶、一次巡界定相阵额度、四十五日封闭医护和一枚寒封签。封签破裂、定相失败、神识失稳或疗程中断时，整匣按耗损处理，已付法力、医护和护送成本不返还。\",\n    \"limitations\": [\n      \"每2190个自然日（六个365日核算年）成熟一次；未来首个窗口第4200日，其后4200+2190×n日。全谷最多四匣，其中两匣为巡界伤员和工程应急，对外最多两匣，每人每窗口至多一匣；灾年或界门警报可对外零配额。终生八匣即九百六十元载封顶。\",\n      \"刮取过量会降低石槽定界能力并扩大微裂隙；人为扩裂、燃寿催生、牺牲他人或破坏定界石槽所得均为污染命胶。\",\n      \"可用新增寿储支付未来已定义的寿耗，付款时仍逐笔扣足。不能恢复空间本源、神魂本源、道伤、旧燃寿或界门损伤；不能把药物份额直接替代碎空瞬灭刃、神印、鸿蒙典的任何非寿储成本。\",\n      \"采出后三日内必须在loc_15开始疗程，定相匣留在同一营地直至疗程结束；不授权跨海护送或远程给药。封签破损即全匣报废，重新封装不重置寿命。\",\n      \"疗程结束至下一疗程开始至少1825日，每两次完成后至少3650日停用并复查，不能用别种药跳过。各类寿源疗程不得重叠；四种寿源含res_09可顺序叠加，各自终生限额独立，所有成功新增合计上限1430元载，不改变任何已有人物的已用剂数或诊断。\",\n"
+            }
+          ],
+          "revisionAdvice": "补入第19日7元载的诊断下界、形成来源及至第466日全部既有寿储收支；明确两剂res_09完成后必须停药的具体时长、起止日及其与后续疗程不重叠的核算。若该停药限制只适用于既有角色而非资源通则，也须在角色条件账中明示。"
+        },
+        {
+          "criterion": "supply",
+          "verdict": "revise",
+          "explanation": "三种资源均已写明自然形成、保护份额、世界对外净上限、成熟相位、唯一审批主体、保存/就地疗程、竞争分配与失败损失；人口算例亦明确不是全体人物配额。问题在于res_18要求在loc_14就地完成疗程，但loc_14只允许雪魄功法修习者或冰华宫弟子进入；res_19要求在loc_15营地就地疗程，而loc_15还要求神海境以上及虚空破障梭。资源审批、医护和商盟承运权限没有说明如何满足或豁免这些地点准入。条件路径把二者列为可竞争取得的个人路线，却未接通实际入境、进入神宫/界渊营地及所需器具或担保，供应链尚不能对外部获批者完整执行。",
+          "evidence": [
+            {
+              "sourceId": "proposal/population",
+              "quote": "\"三种未来净对外上限分别每548日两枚×8、每2920日一段×60、每2190日两匣×120；约等于10.66、7.5、40元载/365日的世界净新增上界，不是个人分红。算例跨41.46年取得1枚、6段、4匣，共848元载，需历次竞争成功；所有同类候选共用这些限额，不能复制算例给整支军团。应急与保育份额未计作该人的收入。未列出的战斗/病损支出不得默认为已覆盖，增加时须重算；算例只证明有限高阶成长和两次高耗术式在世界内可成立。\""
+            },
+            {
+              "sourceId": "proposal/supply/res_17",
+              "quote": "{\n  \"resourceId\": \"res_17\",\n  \"locationIds\": [\n    \"loc_05\",\n    \"loc_07\",\n    \"loc_29\"\n  ],\n  \"controllerFactionIds\": [\n    \"fac_10\",\n    \"fac_01\",\n    \"fac_02\"\n  ],\n  \"formationAndConservation\": \"灵虚圣地负责监测灵眼和寿枝古藤，灵脉年轮晶只能在自然灵潮转换后采集。古境守卫必须保留生态份额，太清与大乾不得用灵石、国运或伤亡人口补造结晶。\",\n  \"cycleAndQuota\": \"形成周期为548个自然日（固定核算周期，不写每年两次）；以故事第1日为日序，未来首个成熟窗口第540日，其后540+548×n日。每个窗口最多三枚合格晶，不合格或灾年可为零。 每期至少一枚保育，常规对外最多两枚，每人每期至多一枚。\",\n  \"rightsAndAllocation\": \"灵虚圣地拥有验真、封存和停采否决权；太清、大乾只能提交候选人和对价方案。主角未来最多作为竞争申请者，不能由宗门身份直接取得。 申请人须在成熟窗前完成可核的守境、救援或护送服务并履约交付物资对价，主管者核贡献、伤情和其他申请者后具名决定；既有贡献、宗门地位、财富、未来贡献承诺均不保证批准。每轮独立竞争，不包下终生配额。\",\n  \"competingInterests\": \"太清优先救治外山伤者和古境护送者；大乾希望维持高阶供奉；灵虚圣地优先保护灵眼；幽罗殿可能盗取或污染样品，但污染晶不产生寿储。\",\n  \"transportAndStorage\": \"原产地验真后在温养封袋内可存二十一整日，破袋后四十八小时内须开始疗程或报废；开始时取出当日份，其余封袋保存，最后服药必须在采后21日内。首例在loc_05就地用药，不假定跨海到货。\",\n  \"failureCost\": \"过采会导致下一周期停产；护送失职、私售和伪造记录会扣减界约份额并暂停责任方准入。疗程失败只损失实际材料和医疗时间，不产生预计寿储。\"\n}"
+            },
+            {
+              "sourceId": "proposal/supply/res_18",
+              "quote": "{\n  \"resourceId\": \"res_18\",\n  \"locationIds\": [\n    \"loc_13\",\n    \"loc_14\",\n    \"loc_21\",\n    \"loc_26\"\n  ],\n  \"controllerFactionIds\": [\n    \"fac_05\",\n    \"fac_12\",\n    \"fac_08\"\n  ],\n  \"formationAndConservation\": \"寒脉母根依靠八年一次暖潮结段，采走子段会减少下一周期可恢复储量。阵火催长、抽干旧湖或剥取母根会毁坏寒脉，不能提高产量。\",\n  \"cycleAndQuota\": \"每2920个自然日（八个365日核算年）成熟一次；未来首个成熟窗口第900日，其后900+2920×n日。每窗口最多两段，至少一段用于本土寒灾公共医疗，对外最多一段，灾年可全部封采。每人每窗口至多一段，终生六段即三百六十元载封顶。\",\n  \"rightsAndAllocation\": \"极冰天国fac_05负责采区、出口与对外唯一份额许可，其既有雪魄神宫loc_14的医官负责炮制和医疗资格；苍冥巡界使fac_12提供裂隙风险通报，不能绕过天国配额。万象商盟fac_08只能承运获批人员和辅药，不能决定寿源份额。 申请人须在成熟窗前完成可核的守境、救援或护送服务并履约交付物资对价，主管者核贡献、伤情和其他申请者后具名决定；既有贡献、宗门地位、财富、未来贡献承诺均不保证批准。每轮独立竞争，不包下终生配额。\",\n  \"competingInterests\": \"极冰天国优先本土寒灾和军政高阶修士；万妖祖庭反对抽取影响妖域水脉；商盟争取冷链承运；巡界使担心争夺破坏边境稳定。主角须以合法救援、护送、情报或物资对价争取。\",\n  \"transportAndStorage\": \"必须在loc_14就地炮制和完成疗程；从loc_13采区到loc_14由已具名且获许可的本地医官护送，实际运输须在采后七日内完成，开始疗程最迟采后七日。登记寒匣保持至末次服用，采后总保存上限四十日；离匣累计超过十二小时或发生冻融即报废，换匣不重置时钟。本候选不授权跨海药材运输。\",\n  \"failureCost\": \"私采、毁根触发采区封锁；运输或疗程失败损失实物、医护和对价，六十元载不入账，不能靠下一批补记。\"\n}"
+            },
+            {
+              "sourceId": "proposal/supply/res_19",
+              "quote": "{\n  \"resourceId\": \"res_19\",\n  \"locationIds\": [\n    \"loc_15\",\n    \"loc_02\",\n    \"loc_21\",\n    \"loc_26\"\n  ],\n  \"controllerFactionIds\": [\n    \"fac_12\",\n    \"fac_05\",\n    \"fac_08\",\n    \"fac_09\"\n  ],\n  \"formationAndConservation\": \"界潮命胶由稳定石槽自然析出，形成速度取决于裂隙应力和灵潮沉降。采集本身会消耗石槽稳定余量，因此寿源产出与巡界安全直接挂钩。\",\n  \"cycleAndQuota\": \"每2190个自然日（六个365日核算年）成熟一次；未来首个窗口第4200日，其后4200+2190×n日。全谷最多四匣，其中两匣为巡界伤员和工程应急，对外最多两匣，每人每窗口至多一匣；灾年或界门警报可对外零配额。终生八匣即九百六十元载封顶。\",\n  \"rightsAndAllocation\": \"苍冥巡界使拥有唯一采集、封签和批准权；补天阁可在界门异常期要求全数封存；极冰天国只有协防和见证权；万象商盟只能承保和承运。 申请人须在成熟窗前完成可核的守境、救援或护送服务并履约交付物资对价，主管者核贡献、伤情和其他申请者后具名决定；既有贡献、宗门地位、财富、未来贡献承诺均不保证批准。每轮独立竞争，不包下终生配额。\",\n  \"competingInterests\": \"巡界使须在伤员救治、界渊工程和外交交换间分配；极冰天国要求本土优先；补天阁要求界门危机时停供；高阶势力强行索取会提高裂隙风险并导致封采。\",\n  \"transportAndStorage\": \"采出后三日内必须在loc_15开始疗程，定相匣留在同一营地直至疗程结束；不授权跨海护送或远程给药。封签破损即全匣报废，重新封装不重置寿命。\",\n  \"failureCost\": \"违规采刮扩大裂隙并触发全谷停采；盗匣或疗程失败损失实物、医护和对价，一百二十元载不入账，神识失稳另行诊疗。\"\n}"
+            },
+            {
+              "sourceId": "world/resources/res_18",
+              "quote": "{\n  \"id\": \"res_18\",\n  \"name\": \"寒脉伏龄根\",\n  \"unit\": \"段\",\n  \"source\": \"极冰天国loc_13北境封冻旧湖下的寒脉母根，在每八年一次的短暂地脉回温期结出子段；其生机来自封存水木灵性和寒脉缓释，不是人为种植或抽取他人寿元。\",\n  \"scarcity\": \"天地罕有\",\n  \"tier\": \"六品\",\n  \"status\": \"proposed\",\n  \"usage\": {\n    \"effect\": \"一段经完整三十日寒命调和疗程及复诊，新增六十元载未来可用寿储；属于外源新增储备，不修复寒损、命火病因或历史燃寿衰老。\",\n    \"requirements\": [\n      \"受用者至少玄府境且身体适格；无凝元特批例外。须由玄府以上冰系医修主持，不用医师境界替代患者境界。\",\n      \"疗程开始前七日及疗程期间不得发动燃寿秘术、血炼秘术或高强度火煞术；出现寒毒入髓、命火骤降或经脉冻结必须停药。\",\n      \"疗程开始后第0、7、14、21、28日各服五分之一，第30日复诊后才一次入账六十元载。\",\n      \"每人终生最多成功使用六段；任两段之间至少间隔一年，连续两段后必须停用三年并重新评估寒命承载。\"\n    ],\n    \"cost\": \"每段消耗完整寒脉子段、五份中和药材、低温药炉一次和三十日医护配额。运输解冻、药炉失控或疗程失败时，原材与辅药均不返还。\",\n    \"limitations\": [\n      \"每2920个自然日（八个365日核算年）成熟一次；未来首个成熟窗口第900日，其后900+2920×n日。每窗口最多两段，至少一段用于本土寒灾公共医疗，对外最多一段，灾年可全部封采。每人每窗口至多一段，终生六段即三百六十元载封顶。\",\n      \"必须在loc_14就地炮制和完成疗程；从loc_13采区到loc_14由已具名且获许可的本地医官护送，实际运输须在采后七日内完成，开始疗程最迟采后七日。登记寒匣保持至末次服用，采后总保存上限四十日；离匣累计超过十二小时或发生冻融即报废，换匣不重置时钟。本候选不授权跨海药材运输。\",\n      \"不能提供冰系功法、抗寒法宝、元罡或法力，也不能治疗神魂伤、道伤和已燃寿元。\",\n      \"黑市切片、冻融品和无母根编号材料只能作为普通寒性药材，不产生可确认寿储。\",\n      \"每次疗程结束到下次开始至少365日，每两次完成后至少1095日停用；更严格的采收窗口仍须满足。不同寿源可顺序叠加但疗程不得重叠。药不治疗寒毒，病因未稳定不得以延寿效果冒险续药。\",\n      \"供应链·locationIds：['loc_13', 'loc_14', 'loc_21', 'loc_26']\",\n"
+            },
+            {
+              "sourceId": "world/resources/res_18",
+              "quote": "      \"供应链·controllerFactionIds：['fac_05', 'fac_12', 'fac_08']\",\n      \"供应链·formationAndConservation：寒脉母根依靠八年一次暖潮结段，采走子段会减少下一周期可恢复储量。阵火催长、抽干旧湖或剥取母根会毁坏寒脉，不能提高产量。\",\n      \"供应链·cycleAndQuota：每2920个自然日（八个365日核算年）成熟一次；未来首个成熟窗口第900日，其后900+2920×n日。每窗口最多两段，至少一段用于本土寒灾公共医疗，对外最多一段，灾年可全部封采。每人每窗口至多一段，终生六段即三百六十元载封顶。\",\n      \"供应链·rightsAndAllocation：极冰天国fac_05负责采区、出口与对外唯一份额许可，其既有雪魄神宫loc_14的医官负责炮制和医疗资格；苍冥巡界使fac_12提供裂隙风险通报，不能绕过天国配额。万象商盟fac_08只能承运获批人员和辅药，不能决定寿源份额。 申请人须在成熟窗前完成可核的守境、救援或护送服务并履约交付物资对价，主管者核贡献、伤情和其他申请者后具名决定；既有贡献、宗门地位、财富、未来贡献承诺均不保证批准。每轮独立竞争，不包下终生配额。\",\n      \"供应链·competingInterests：极冰天国优先本土寒灾和军政高阶修士；万妖祖庭反对抽取影响妖域水脉；商盟争取冷链承运；巡界使担心争夺破坏边境稳定。主角须以合法救援、护送、情报或物资对价争取。\",\n      \"供应链·transportAndStorage：必须在loc_14就地炮制和完成疗程；从loc_13采区到loc_14由已具名且获许可的本地医官护送，实际运输须在采后七日内完成，开始疗程最迟采后七日。登记寒匣保持至末次服用，采后总保存上限四十日；离匣累计超过十二小时或发生冻融即报废，换匣不重置时钟。本候选不授权跨海药材运输。\",\n      \"供应链·failureCost：私采、毁根触发采区封锁；运输或疗程失败损失实物、医护和对价，六十元载不入账，不能靠下一批补记。\"\n    ]\n  }\n}"
+            },
+            {
+              "sourceId": "world/resources/res_19",
+              "quote": "{\n  \"id\": \"res_19\",\n  \"name\": \"界潮命胶\",\n  \"unit\": \"匣\",\n  \"source\": \"苍冥界渊虚谷loc_15内，经苍冥巡界使稳定监测的微型裂隙，在寒脉、缓慢灵潮与定界石槽共同作用下自然析出的胶质；不是虚空神晶，也不从裂隙或活体抽取寿元。\",\n  \"scarcity\": \"天地绝品\",\n  \"tier\": \"六品\",\n  \"status\": \"proposed\",\n  \"usage\": {\n    \"effect\": \"一匣经完整四十五日定相疗程及复诊，新增一百二十元载未来可用寿储；有限外源生机可用于未来扣款，不取消已付支出、衰老或损伤。\",\n    \"requirements\": [\n      \"受用者至少神海境，且须经通晓空间污染的命医和巡界使联合确认；有空间乱流伤、神识裂损、未稳定煞毒或近期强行施展空间术式者不得入疗程。\",\n      \"只在loc_15巡界营地获批定相室就地疗程；前十五整日试药、中十五日定相、后十五日静养，终点复诊合格才一次入账一百二十元载。\",\n      \"每人终生最多成功使用八匣；两匣之间至少间隔五年，连续两匣后须完成一次空间污染复查和至少十年停用观察。\",\n      \"只有巡界使登记的石槽、封签、匣号和受用者病历同时匹配时，才可确认寿储收入。\"\n    ],\n    \"cost\": \"每匣消耗一匣合格命胶、一次巡界定相阵额度、四十五日封闭医护和一枚寒封签。封签破裂、定相失败、神识失稳或疗程中断时，整匣按耗损处理，已付法力、医护和护送成本不返还。\",\n    \"limitations\": [\n      \"每2190个自然日（六个365日核算年）成熟一次；未来首个窗口第4200日，其后4200+2190×n日。全谷最多四匣，其中两匣为巡界伤员和工程应急，对外最多两匣，每人每窗口至多一匣；灾年或界门警报可对外零配额。终生八匣即九百六十元载封顶。\",\n      \"刮取过量会降低石槽定界能力并扩大微裂隙；人为扩裂、燃寿催生、牺牲他人或破坏定界石槽所得均为污染命胶。\",\n      \"可用新增寿储支付未来已定义的寿耗，付款时仍逐笔扣足。不能恢复空间本源、神魂本源、道伤、旧燃寿或界门损伤；不能把药物份额直接替代碎空瞬灭刃、神印、鸿蒙典的任何非寿储成本。\",\n      \"采出后三日内必须在loc_15开始疗程，定相匣留在同一营地直至疗程结束；不授权跨海护送或远程给药。封签破损即全匣报废，重新封装不重置寿命。\",\n      \"疗程结束至下一疗程开始至少1825日，每两次完成后至少3650日停用并复查，不能用别种药跳过。各类寿源疗程不得重叠；四种寿源含res_09可顺序叠加，各自终生限额独立，所有成功新增合计上限1430元载，不改变任何已有人物的已用剂数或诊断。\",\n"
+            },
+            {
+              "sourceId": "world/resources/res_19",
+              "quote": "      \"供应链·locationIds：['loc_15', 'loc_02', 'loc_21', 'loc_26']\",\n      \"供应链·controllerFactionIds：['fac_12', 'fac_05', 'fac_08', 'fac_09']\",\n      \"供应链·formationAndConservation：界潮命胶由稳定石槽自然析出，形成速度取决于裂隙应力和灵潮沉降。采集本身会消耗石槽稳定余量，因此寿源产出与巡界安全直接挂钩。\",\n      \"供应链·cycleAndQuota：每2190个自然日（六个365日核算年）成熟一次；未来首个窗口第4200日，其后4200+2190×n日。全谷最多四匣，其中两匣为巡界伤员和工程应急，对外最多两匣，每人每窗口至多一匣；灾年或界门警报可对外零配额。终生八匣即九百六十元载封顶。\",\n      \"供应链·rightsAndAllocation：苍冥巡界使拥有唯一采集、封签和批准权；补天阁可在界门异常期要求全数封存；极冰天国只有协防和见证权；万象商盟只能承保和承运。 申请人须在成熟窗前完成可核的守境、救援或护送服务并履约交付物资对价，主管者核贡献、伤情和其他申请者后具名决定；既有贡献、宗门地位、财富、未来贡献承诺均不保证批准。每轮独立竞争，不包下终生配额。\",\n      \"供应链·competingInterests：巡界使须在伤员救治、界渊工程和外交交换间分配；极冰天国要求本土优先；补天阁要求界门危机时停供；高阶势力强行索取会提高裂隙风险并导致封采。\",\n      \"供应链·transportAndStorage：采出后三日内必须在loc_15开始疗程，定相匣留在同一营地直至疗程结束；不授权跨海护送或远程给药。封签破损即全匣报废，重新封装不重置寿命。\",\n      \"供应链·failureCost：违规采刮扩大裂隙并触发全谷停采；盗匣或疗程失败损失实物、医护和对价，一百二十元载不入账，神识失稳另行诊疗。\"\n    ]\n  }\n}"
+            },
+            {
+              "sourceId": "world/locations/loc_14",
+              "quote": "{\n  \"id\": \"loc_14\",\n  \"name\": \"雪魄神宫\",\n  \"kind\": \"sect\",\n  \"parentId\": \"loc_13\",\n  \"entryConditions\": [\n    \"雪魄纯阳/纯阴功法修习者\",\n    \"冰华宫弟子印记\"\n  ],\n  \"status\": \"proposed\"\n}"
+            },
+            {
+              "sourceId": "world/locations/loc_15",
+              "quote": "{\n  \"id\": \"loc_15\",\n  \"name\": \"苍冥界渊虚谷\",\n  \"kind\": \"region\",\n  \"parentId\": \"loc_02\",\n  \"entryConditions\": [\n    \"神海境以上神念稳固者\",\n    \"备有虚空破障梭\"\n  ],\n  \"status\": \"proposed\"\n}"
+            },
+            {
+              "sourceId": "proposal/conditionalPath",
+              "quote": "{\n  \"scope\": \"玄府起点的单一稀缺世界个例；沿用第466日条件下界用于压力测试，不给林辰批准未来路线\",\n  \"startingDay\": 466,\n  \"startingRealm\": 3,\n  \"startingLife\": 2.7753424657534254,\n  \"initialDoses\": {\n    \"res_09\": 2\n  },\n  \"safetyReserve\": 1,\n  \"steps\": [\n    {\n      \"day\": 554,\n      \"realmBefore\": 3,\n      \"incomeResourceId\": \"res_17\",\n      \"doses\": 1,\n      \"income\": 8,\n      \"naturalElapsedDays\": 88,\n      \"advancementDebit\": 0,\n      \"realmAfter\": 3,\n      \"spellDebit\": 0,\n      \"closingLife\": 10.534246575342467,\n      \"survivalBeforeIncome\": 2.5342465753424666,\n      \"courseStartDay\": 540,\n      \"harvestDay\": 540,\n      \"conditions\": [\n        \"申请、对价、医护、实际到场、合格产出和完整疗程均须实际满足；不满足即中止本分支。\"\n      ]\n    },\n    {\n      \"day\": 930,\n      \"realmBefore\": 3,\n      \"incomeResourceId\": \"res_18\",\n      \"doses\": 1,\n      \"income\": 60,\n      \"naturalElapsedDays\": 376,\n      \"advancementDebit\": 0,\n      \"realmAfter\": 3,\n      \"spellDebit\": 0,\n      \"closingLife\": 69.5041095890411,\n      \"survivalBeforeIncome\": 9.504109589041096,\n      \"courseStartDay\": 900,\n      \"harvestDay\": 900,\n      \"conditions\": [\n        \"申请、对价、医护、实际到场、合格产出和完整疗程均须实际满足；不满足即中止本分支。\"\n      ]\n    },\n    {\n      \"day\": 1000,\n      \"realmBefore\": 3,\n"
+            }
+          ],
+          "revisionAdvice": "为res_18、res_19明确获批受用者的地点准入路径：是将疗程限定为同时满足loc_14/loc_15既有门槛者，还是由对应控制方签发仅限疗程的医疗准入、具名护送/担保及器具安排。同步写明该路径不等于取得地点的其他权限，且不得以商盟承运权替代准入。"
+        },
+        {
+          "criterion": "compatibility",
+          "verdict": "pass",
+          "explanation": "提案将新增寿储限定为完成疗程和复诊后的未来可用余额，明确不返还历史燃寿、晋阶费、自然衰老、本源损伤或冷却；寿储、当境法力、可用神识和永久本源分账。条件路径也把晋阶付款仅列为寿储可支付性证明，并保留修习、境界前置、健康、术式、本源和场景条件，未把寿源当作自动掌握功法或修复道果的替代物。",
+          "evidence": [
+            {
+              "sourceId": "world/axioms/ax_02",
+              "quote": "{\n  \"id\": \"ax_02\",\n  \"title\": \"命寿通灵律\",\n  \"content\": \"寿元可以换取力量，已经燃耗的寿元不可逆转。生命储备不足、境界不符或冷却未满即不得发动对应功法；善行、愿力和胜利不能取消成本。已被窃取并消耗的寿元不能无来源返还，幸存者受伤与失寿应分开记录。\",\n  \"scope\": \"全域\",\n  \"precedence\": 2,\n  \"status\": \"proposed\"\n}"
+            },
+            {
+              "sourceId": "world/axioms/ax_04",
+              "quote": "{\n  \"id\": \"ax_04\",\n  \"title\": \"寿储核算与诊断边界\",\n  \"content\": \"命寿储备以元载核算，一元载按365日当量记账，自然流逝与施术支出分别扣减。医修须经连续诊察给出保守可支配下界而非预言死亡日；诊断校正不是寿元收入，未明部分不许花。晋入同一大境界的寿元成本只付一次，低于必要支出与安全余量不得突破；晋阶本身不另赠未定义寿元。已确认的新寿储仍按来源、剂量和疗程入账，伤病若恶化须重新评估，不得以上次下界保证安全。 本体系成本中的一年寿元、阳寿或命寿均指一元载；“三个月寿元”为四分之一元载即91.25日当量的旧称，并非按某三个月的历法天数扣款。行程与疗程仍按实际日数计算。\",\n  \"scope\": \"命寿预算\",\n  \"precedence\": 4,\n  \"status\": \"proposed\"\n}"
+            },
+            {
+              "sourceId": "world/axioms/ax_06",
+              "quote": "{\n  \"id\": \"ax_06\",\n  \"title\": \"境界承载与实际施术\",\n  \"content\": \"境界能力栏描述该层能够修习和承载的能力方向，不是一份自动掌握、免费发动的万能招式清单。晋阶费用、术法发动费与持续消耗分别记账；晋阶不等于预付后续法术。实际施术须有已掌握的功法、法宝或明确基础操作规则，逐项满足其对象、范围、供能、时机和中断后果；境界名称不能绕过这些条件。已由ax_05定义的凝元轻物御动等基础操作仍按原规则执行，普通步行、说话、握持不因此加收术法费。尚未展开的高阶术式可以保留为未来能力方向，但首次安排它解决剧情之前必须先完成具体规则与可取得资源的设计、复核；不得以读者未见的万能本能补齐现有行动缺口。\",\n  \"scope\": \"全部境界、功法、法宝及后续能力扩展\",\n  \"precedence\": 6,\n  \"status\": \"proposed\"\n}"
+            },
+            {
+              "sourceId": "world/axioms/ax_08",
+              "quote": "{\n  \"id\": \"ax_08\",\n  \"title\": \"凝元基础操作的学习、对象与支付\",\n  \"scope\": \"凝元轻物御动与近身附掌\",\n  \"precedence\": 8,\n  \"status\": \"proposed\",\n  \"content\": \"凝元真元外放只是承载资格。下列基础操作须先完成相应控制练习与实测，不能靠晋阶自动掌握；不授予更高境界、感知或伤势免疫。\\n轻物御动沿ax_05每次预付半成健康稳定真元上限执行：只控制三丈内直接可见、单件至多两斤的轻小自由物，每次至多三息，早停、落空或被打断不退。一次只作用一件，移第二件另付，时间不足或目标出界即停止。轻索头、小钩、木楔和小插销均须未受重物牵拉或锁死；阻力超过同物正常徒手轻拨即不属于此操作，不能借物轻而隔空拉整车、托活人、硬拔承重楔或穿透法纹锁。操作轻小机关可释放原有机械作用，但轨道、闸片、沙挡、重力及承重部件须真实存在且各自承力，不能把整个机构的载荷藏在半成御物费里。\\n近身附掌是将真元短时集中于自己一只手掌的入门练习：须有一息聚气，聚气开始预付一成健康稳定真元上限，只支持随后一息内一次实际接触的掌击，落空或受扰均损已付款；出掌后至少一息重新收束，不能凭接触持续灌入。对未有真元防护的肉身可造成震伤，对腐朽薄木封板可辅助击裂；伤害仍取决于接触、落点与目标承受，不能隔空震脏、穿完整石壁、自动破同阶护体或使所有人一掌毙命。躲开、挡开手臂、甲胄卸力或聚气时打断均可反制；腕掌伤、气路不稳或不足一成时停用。两种基础操作的消耗、恢复及伤后上限均按ax_05，不另开一份免费真元。\"\n}"
+            },
+            {
+              "sourceId": "world/axioms/ax_09",
+              "quote": "{\n  \"id\": \"ax_09\",\n  \"title\": \"自然寿源只在完成疗程后入账\",\n  \"content\": \"任何自然形成的延寿资源必须同时满足来源验真、配额登记、适格境界、伤情诊察、完整疗程和复诊确认，方可增加未来可用寿储。采收上限、市场价格、持有凭证、传闻库存和未完成疗程不得预支寿元。该收入不返还已燃寿元、已付晋阶成本、自然衰老、道伤、神魂本源或术法冷却。 下列新成熟日是候选世界自然周期的相位设定，不是前百章已知消息、现有库存或给主角的承诺。成熟窗表示生态合格时可形成的上限，现场测得产量不足或审批未通过时条件账分支中止。\",\n  \"scope\": \"全域命寿资源与医疗\",\n  \"precedence\": 9,\n  \"status\": \"proposed\"\n}"
+            },
+            {
+              "sourceId": "world/resources/res_18",
+              "quote": "{\n  \"id\": \"res_18\",\n  \"name\": \"寒脉伏龄根\",\n  \"unit\": \"段\",\n  \"source\": \"极冰天国loc_13北境封冻旧湖下的寒脉母根，在每八年一次的短暂地脉回温期结出子段；其生机来自封存水木灵性和寒脉缓释，不是人为种植或抽取他人寿元。\",\n  \"scarcity\": \"天地罕有\",\n  \"tier\": \"六品\",\n  \"status\": \"proposed\",\n  \"usage\": {\n    \"effect\": \"一段经完整三十日寒命调和疗程及复诊，新增六十元载未来可用寿储；属于外源新增储备，不修复寒损、命火病因或历史燃寿衰老。\",\n    \"requirements\": [\n      \"受用者至少玄府境且身体适格；无凝元特批例外。须由玄府以上冰系医修主持，不用医师境界替代患者境界。\",\n      \"疗程开始前七日及疗程期间不得发动燃寿秘术、血炼秘术或高强度火煞术；出现寒毒入髓、命火骤降或经脉冻结必须停药。\",\n      \"疗程开始后第0、7、14、21、28日各服五分之一，第30日复诊后才一次入账六十元载。\",\n      \"每人终生最多成功使用六段；任两段之间至少间隔一年，连续两段后必须停用三年并重新评估寒命承载。\"\n    ],\n    \"cost\": \"每段消耗完整寒脉子段、五份中和药材、低温药炉一次和三十日医护配额。运输解冻、药炉失控或疗程失败时，原材与辅药均不返还。\",\n    \"limitations\": [\n      \"每2920个自然日（八个365日核算年）成熟一次；未来首个成熟窗口第900日，其后900+2920×n日。每窗口最多两段，至少一段用于本土寒灾公共医疗，对外最多一段，灾年可全部封采。每人每窗口至多一段，终生六段即三百六十元载封顶。\",\n      \"必须在loc_14就地炮制和完成疗程；从loc_13采区到loc_14由已具名且获许可的本地医官护送，实际运输须在采后七日内完成，开始疗程最迟采后七日。登记寒匣保持至末次服用，采后总保存上限四十日；离匣累计超过十二小时或发生冻融即报废，换匣不重置时钟。本候选不授权跨海药材运输。\",\n      \"不能提供冰系功法、抗寒法宝、元罡或法力，也不能治疗神魂伤、道伤和已燃寿元。\",\n      \"黑市切片、冻融品和无母根编号材料只能作为普通寒性药材，不产生可确认寿储。\",\n      \"每次疗程结束到下次开始至少365日，每两次完成后至少1095日停用；更严格的采收窗口仍须满足。不同寿源可顺序叠加但疗程不得重叠。药不治疗寒毒，病因未稳定不得以延寿效果冒险续药。\",\n      \"供应链·locationIds：['loc_13', 'loc_14', 'loc_21', 'loc_26']\",\n"
+            },
+            {
+              "sourceId": "world/resources/res_19",
+              "quote": "{\n  \"id\": \"res_19\",\n  \"name\": \"界潮命胶\",\n  \"unit\": \"匣\",\n  \"source\": \"苍冥界渊虚谷loc_15内，经苍冥巡界使稳定监测的微型裂隙，在寒脉、缓慢灵潮与定界石槽共同作用下自然析出的胶质；不是虚空神晶，也不从裂隙或活体抽取寿元。\",\n  \"scarcity\": \"天地绝品\",\n  \"tier\": \"六品\",\n  \"status\": \"proposed\",\n  \"usage\": {\n    \"effect\": \"一匣经完整四十五日定相疗程及复诊，新增一百二十元载未来可用寿储；有限外源生机可用于未来扣款，不取消已付支出、衰老或损伤。\",\n    \"requirements\": [\n      \"受用者至少神海境，且须经通晓空间污染的命医和巡界使联合确认；有空间乱流伤、神识裂损、未稳定煞毒或近期强行施展空间术式者不得入疗程。\",\n      \"只在loc_15巡界营地获批定相室就地疗程；前十五整日试药、中十五日定相、后十五日静养，终点复诊合格才一次入账一百二十元载。\",\n      \"每人终生最多成功使用八匣；两匣之间至少间隔五年，连续两匣后须完成一次空间污染复查和至少十年停用观察。\",\n      \"只有巡界使登记的石槽、封签、匣号和受用者病历同时匹配时，才可确认寿储收入。\"\n    ],\n    \"cost\": \"每匣消耗一匣合格命胶、一次巡界定相阵额度、四十五日封闭医护和一枚寒封签。封签破裂、定相失败、神识失稳或疗程中断时，整匣按耗损处理，已付法力、医护和护送成本不返还。\",\n    \"limitations\": [\n      \"每2190个自然日（六个365日核算年）成熟一次；未来首个窗口第4200日，其后4200+2190×n日。全谷最多四匣，其中两匣为巡界伤员和工程应急，对外最多两匣，每人每窗口至多一匣；灾年或界门警报可对外零配额。终生八匣即九百六十元载封顶。\",\n      \"刮取过量会降低石槽定界能力并扩大微裂隙；人为扩裂、燃寿催生、牺牲他人或破坏定界石槽所得均为污染命胶。\",\n      \"可用新增寿储支付未来已定义的寿耗，付款时仍逐笔扣足。不能恢复空间本源、神魂本源、道伤、旧燃寿或界门损伤；不能把药物份额直接替代碎空瞬灭刃、神印、鸿蒙典的任何非寿储成本。\",\n      \"采出后三日内必须在loc_15开始疗程，定相匣留在同一营地直至疗程结束；不授权跨海护送或远程给药。封签破损即全匣报废，重新封装不重置寿命。\",\n      \"疗程结束至下一疗程开始至少1825日，每两次完成后至少3650日停用并复查，不能用别种药跳过。各类寿源疗程不得重叠；四种寿源含res_09可顺序叠加，各自终生限额独立，所有成功新增合计上限1430元载，不改变任何已有人物的已用剂数或诊断。\",\n"
+            },
+            {
+              "sourceId": "proposal/conditionalPath",
+              "quote": "      \"incomeResourceId\": null,\n      \"doses\": 0,\n      \"income\": 0,\n      \"naturalElapsedDays\": 70,\n      \"advancementDebit\": 30,\n      \"realmAfter\": 4,\n      \"spellDebit\": 0,\n      \"closingLife\": 39.31232876712329,\n      \"survivalBeforeIncome\": 69.31232876712329,\n      \"conditions\": [\n        \"这里仅证明寿储有足额来源；相应修习、境界前置、健康和实际突破必须另外通过，不能从付款能力推断必成。\"\n      ]\n    },\n    {\n      \"day\": 3850,\n      \"realmBefore\": 4,\n      \"incomeResourceId\": \"res_18\",\n      \"doses\": 1,\n      \"income\": 60,\n      \"naturalElapsedDays\": 2850,\n      \"advancementDebit\": 0,\n      \"realmAfter\": 4,\n      \"spellDebit\": 0,\n      \"closingLife\": 91.5041095890411,\n      \"survivalBeforeIncome\": 31.5041095890411,\n      \"courseStartDay\": 3820,\n      \"harvestDay\": 3820,\n      \"conditions\": [\n        \"申请、对价、医护、实际到场、合格产出和完整疗程均须实际满足；不满足即中止本分支。\"\n      ]\n    },\n    {\n      \"day\": 4000,\n      \"realmBefore\": 4,\n      \"incomeResourceId\": null,\n      \"doses\": 0,\n      \"income\": 0,\n      \"naturalElapsedDays\": 150,\n      \"advancementDebit\": 60,\n      \"realmAfter\": 5,\n      \"spellDebit\": 0,\n      \"closingLife\": 31.0931506849315,\n      \"survivalBeforeIncome\": 91.0931506849315,\n      \"conditions\": [\n"
+            },
+            {
+              "sourceId": "proposal/conditionalPath",
+              "quote": "      \"techniqueId\": \"tech_15\",\n      \"conditions\": [\n        \"假设术式已掌握且当前实测健康法力与可用神识均足付；实际未测不得施术。\",\n        \"神印另付法力3成、神识2成及通天道果1%，三年道伤保留；鸿蒙典另付法力5成、神识3成及通天法则本源1%，损伤永久累计。\",\n        \"后一次距神印4700日，大于1095日道伤期；仍须本源安全复测，不把药物当本源修复。\"\n      ]\n    },\n    {\n      \"day\": 12610,\n      \"realmBefore\": 7,\n      \"incomeResourceId\": \"res_18\",\n      \"doses\": 1,\n      \"income\": 60,\n      \"naturalElapsedDays\": 1710,\n      \"advancementDebit\": 0,\n      \"realmAfter\": 7,\n      \"spellDebit\": 0,\n      \"closingLife\": 147.5041095890411,\n      \"survivalBeforeIncome\": 87.50410958904111,\n      \"courseStartDay\": 12580,\n      \"harvestDay\": 12580,\n      \"conditions\": [\n        \"申请、对价、医护、实际到场、合格产出和完整疗程均须实际满足；不满足即中止本分支。\"\n      ]\n    },\n    {\n      \"day\": 13005,\n      \"realmBefore\": 7,\n      \"incomeResourceId\": \"res_19\",\n      \"doses\": 1,\n      \"income\": 120,\n      \"naturalElapsedDays\": 395,\n      \"advancementDebit\": 0,\n      \"realmAfter\": 7,\n      \"spellDebit\": 0,\n      \"closingLife\": 266.4219178082192,\n      \"survivalBeforeIncome\": 146.42191780821918,\n      \"courseStartDay\": 12960,\n      \"harvestDay\": 12960,\n      \"conditions\": [\n        \"申请、对价、医护、实际到场、合格产出和完整疗程均须实际满足；不满足即中止本分支。\"\n      ]\n    },\n    {\n"
+            }
+          ],
+          "revisionAdvice": ""
+        }
+      ],
+      "modelResponses": [
+        "{\"requestId\":\"review_24de29b4576d53f5ea932415\",\"summary\":\"新增寿源的周期、配额、疗程和大部分条件账已形成可核约束，但第466日起点及初始灵泉后的停药条件未闭合；两条高阶寿源的就地疗程与地点准入也尚未接通。\",\"checks\":[{\"criterion\":\"ledger\",\"verdict\":\"revise\",\"explanation\":\"条件路径逐段自然流逝、收入、30/60/100/200晋阶支出及后续100/300术式支出在算式上可复算，且各次收入均在疗程终点才记入；res_17、res_18、res_19的境界门槛也没有要求先用该资源才能取得晋阶资格的循环。但第466日余额公式中的“第19日为7元载”没有来源、诊断时点或此前收支；两剂res_09后的“长停药”亦未定义或映射到日期，现有res_09仅规定单剂十日疗程和下一剂不得在该疗程内开始。因此2.775342只能作为条件算例数值，尚不是可独立验收的完整账本起点。\",\"evidence\":[{\"fragmentId\":\"e174\"},{\"fragmentId\":\"e176\"},{\"fragmentId\":\"e177\"},{\"fragmentId\":\"e179\"},{\"fragmentId\":\"e180\"},{\"fragmentId\":\"e182\"},{\"fragmentId\":\"e66\"},{\"fragmentId\":\"e74\"},{\"fragmentId\":\"e76\"},{\"fragmentId\":\"e78\"}],\"revisionAdvice\":\"补入第19日7元载的诊断下界、形成来源及至第466日全部既有寿储收支；明确两剂res_09完成后必须停药的具体时长、起止日及其与后续疗程不重叠的核算。若该停药限制只适用于既有角色而非资源通则，也须在角色条件账中明示。\"},{\"criterion\":\"supply\",\"verdict\":\"revise\",\"explanation\":\"三种资源均已写明自然形成、保护份额、世界对外净上限、成熟相位、唯一审批主体、保存/就地疗程、竞争分配与失败损失；人口算例亦明确不是全体人物配额。问题在于res_18要求在loc_14就地完成疗程，但loc_14只允许雪魄功法修习者或冰华宫弟子进入；res_19要求在loc_15营地就地疗程，而loc_15还要求神海境以上及虚空破障梭。资源审批、医护和商盟承运权限没有说明如何满足或豁免这些地点准入。条件路径把二者列为可竞争取得的个人路线，却未接通实际入境、进入神宫/界渊营地及所需器具或担保，供应链尚不能对外部获批者完整执行。\",\"evidence\":[{\"fragmentId\":\"e183\"},{\"fragmentId\":\"e184\"},{\"fragmentId\":\"e185\"},{\"fragmentId\":\"e186\"},{\"fragmentId\":\"e76\"},{\"fragmentId\":\"e77\"},{\"fragmentId\":\"e78\"},{\"fragmentId\":\"e79\"},{\"fragmentId\":\"e93\"},{\"fragmentId\":\"e94\"},{\"fragmentId\":\"e176\"}],\"revisionAdvice\":\"为res_18、res_19明确获批受用者的地点准入路径：是将疗程限定为同时满足loc_14/loc_15既有门槛者，还是由对应控制方签发仅限疗程的医疗准入、具名护送/担保及器具安排。同步写明该路径不等于取得地点的其他权限，且不得以商盟承运权替代准入。\"},{\"criterion\":\"compatibility\",\"verdict\":\"pass\",\"explanation\":\"提案将新增寿储限定为完成疗程和复诊后的未来可用余额，明确不返还历史燃寿、晋阶费、自然衰老、本源损伤或冷却；寿储、当境法力、可用神识和永久本源分账。条件路径也把晋阶付款仅列为寿储可支付性证明，并保留修习、境界前置、健康、术式、本源和场景条件，未把寿源当作自动掌握功法或修复道果的替代物。\",\"evidence\":[{\"fragmentId\":\"e3\"},{\"fragmentId\":\"e5\"},{\"fragmentId\":\"e7\"},{\"fragmentId\":\"e9\"},{\"fragmentId\":\"e10\"},{\"fragmentId\":\"e76\"},{\"fragmentId\":\"e78\"},{\"fragmentId\":\"e177\"},{\"fragmentId\":\"e181\"}],\"revisionAdvice\":\"\"}]}"
+      ]
+    }
+  },
+  "ledgerRefillReview": {
+    "status": "reviewed",
+    "model": "gpt-5.6-luna",
+    "fallback": false,
+    "usage": {
+      "calls": 1,
+      "failedCalls": 0,
+      "inputTokens": 72074,
+      "outputTokens": 3082,
+      "costUsd": 0,
+      "costKnown": false,
+      "byRole": {
+        "reviewing": {
+          "calls": 1,
+          "failedCalls": 0,
+          "outputTokens": 3082,
+          "costUsd": 0
+        }
+      },
+      "limits": {
+        "budgetUsd": null,
+        "maxCalls": 2
+      }
+    },
+    "result": {
+      "summary": "通过。以第466日玄府境、2.775342元载为起点的条件账能够闭合；res_17、res_18、res_19均按各自成熟日、疗程时长、境界资格、个人配额与间隔核算，没有把res_09的限制套用于新资源。晋阶寿储支出及已列tech_15、tech_16术式费用也能逐笔支付。该结论仅证明条件见证成立，不代表申请、采收、疗程、修习、术式掌握或后续事件已经发生。",
+      "checks": [
+        {
+          "criterion": "ledger",
+          "verdict": "pass",
+          "explanation": "第466日余额与玄府起点由条件路径明确给出。res_17在第540日成熟、于第554日完成14日疗程，收入8元载；res_18分别在第900、3820、6740、9660、12580、15500日开疗，均符合2920日成熟周期、30日疗程、玄府及以上资格，并按两次后的停用要求留出足够间隔；res_19在第4200、6390、10770、12960日开疗，均对应2190日周期、45日疗程、神海及以上资格，后续间隔也超过1825日及两次后3650日要求。各笔收入均在疗程终点入账，未预支。余额算术连续正确：第1000日支付神海30元载后余39.312329，第4000日支付归一60后余31.093151，第4600日支付破虚100后余49.449315，第7000日支付通天200后余22.873973；第10900日支付tech_15的100元载后余92.189041，第15600日支付tech_16的300元载后余19.312329。第10900与第15600日的术式间隔也不违反已给冷却/道伤期限。res_09仅作为第466日已有两剂的起始账，不被用来推导res_17/18/19的新限制。",
+          "evidence": [
+            {
+              "sourceId": "world/axioms/ax_03",
+              "quote": "{\n  \"id\": \"ax_03\",\n  \"title\": \"界门封禁律\",\n  \"content\": \"青玄、赤霄、苍冥是同一天地内被虚海分隔的大陆。太古界门穿越天地界壁，其完整门户非通天之力不可开启；普通跨海飞舟、沿岸定位阵与大陆内部传送不经过太古界门，也不具有穿越界壁的能力。“破界飞舟”之名仅指破开海上风暴与局部空间乱流。\",\n  \"scope\": \"界门\",\n  \"precedence\": 3,\n  \"status\": \"proposed\"\n}"
+            },
+            {
+              "sourceId": "world/axioms/ax_08",
+              "quote": "{\n  \"id\": \"ax_08\",\n  \"title\": \"凝元基础操作的学习、对象与支付\",\n  \"scope\": \"凝元轻物御动与近身附掌\",\n  \"precedence\": 8,\n  \"status\": \"proposed\",\n  \"content\": \"凝元真元外放只是承载资格。下列基础操作须先完成相应控制练习与实测，不能靠晋阶自动掌握；不授予更高境界、感知或伤势免疫。\\n轻物御动沿ax_05每次预付半成健康稳定真元上限执行：只控制三丈内直接可见、单件至多两斤的轻小自由物，每次至多三息，早停、落空或被打断不退。一次只作用一件，移第二件另付，时间不足或目标出界即停止。轻索头、小钩、木楔和小插销均须未受重物牵拉或锁死；阻力超过同物正常徒手轻拨即不属于此操作，不能借物轻而隔空拉整车、托活人、硬拔承重楔或穿透法纹锁。操作轻小机关可释放原有机械作用，但轨道、闸片、沙挡、重力及承重部件须真实存在且各自承力，不能把整个机构的载荷藏在半成御物费里。\\n近身附掌是将真元短时集中于自己一只手掌的入门练习：须有一息聚气，聚气开始预付一成健康稳定真元上限，只支持随后一息内一次实际接触的掌击，落空或受扰均损已付款；出掌后至少一息重新收束，不能凭接触持续灌入。对未有真元防护的肉身可造成震伤，对腐朽薄木封板可辅助击裂；伤害仍取决于接触、落点与目标承受，不能隔空震脏、穿完整石壁、自动破同阶护体或使所有人一掌毙命。躲开、挡开手臂、甲胄卸力或聚气时打断均可反制；腕掌伤、气路不稳或不足一成时停用。两种基础操作的消耗、恢复及伤后上限均按ax_05，不另开一份免费真元。\"\n}"
+            },
+            {
+              "sourceId": "world/axioms/ax_09",
+              "quote": "{\n  \"id\": \"ax_09\",\n  \"title\": \"自然寿源只在完成疗程后入账\",\n  \"content\": \"任何自然形成的延寿资源必须同时满足来源验真、配额登记、适格境界、伤情诊察、完整疗程和复诊确认，方可增加未来可用寿储。采收上限、市场价格、持有凭证、传闻库存和未完成疗程不得预支寿元。该收入不返还已燃寿元、已付晋阶成本、自然衰老、道伤、神魂本源或术法冷却。 下列新成熟日是候选世界自然周期的相位设定，不是前百章已知消息、现有库存或给主角的承诺。成熟窗表示生态合格时可形成的上限，现场测得产量不足或审批未通过时条件账分支中止。\",\n  \"scope\": \"全域命寿资源与医疗\",\n  \"precedence\": 9,\n  \"status\": \"proposed\"\n}"
+            },
+            {
+              "sourceId": "world/realms/realm_02",
+              "quote": "{\n  \"id\": \"realm_02\",\n  \"systemId\": \"ps_01\",\n  \"name\": \"凝元境\",\n  \"rank\": 2,\n  \"prerequisites\": [\n    \"经脉贯通\",\n    \"境内一至三重依次对应真元成流、双经稳定与三条主经循环稳定；必须逐段修习和实测，第三重才满足灵虚古境既有准入门槛。它们是凝元境内的熟练阶段，不是跳过玄府的新大境界，也不额外赠送寿元。\"\n  ],\n  \"capabilities\": [\n    \"真元外放\",\n    \"隔空御物\"\n  ],\n  \"cost\": \"损耗寿元三年\",\n  \"counters\": [\n    \"气脉闭塞\"\n  ],\n  \"status\": \"proposed\"\n}"
+            },
+            {
+              "sourceId": "world/realms/realm_03",
+              "quote": "{\n  \"id\": \"realm_03\",\n  \"systemId\": \"ps_01\",\n  \"name\": \"玄府境\",\n  \"rank\": 3,\n  \"prerequisites\": [\n    \"辟建丹府\"\n  ],\n  \"capabilities\": [\n    \"元罡护体\",\n    \"凌空虚渡\"\n  ],\n  \"cost\": \"损耗寿元十年\",\n  \"counters\": [\n    \"罡气破裂\"\n  ],\n  \"status\": \"proposed\"\n}"
+            },
+            {
+              "sourceId": "world/realms/realm_06",
+              "quote": "{\n  \"id\": \"realm_06\",\n  \"systemId\": \"ps_01\",\n  \"name\": \"破虚境\",\n  \"rank\": 6,\n  \"prerequisites\": [\n    \"领悟空间壁垒\"\n  ],\n  \"capabilities\": [\n    \"撕裂虚空表示可以承载已定义的空间术式；现有碎空瞬灭刃（tech_13）只按其确认路径、至多三道短距裂隙、三十元载与空间本源成本使用。晋入破虚不会附赠免成本、无距离限制的另一种裂空攻击，也不能以此跨越完整天地界壁。\",\n    \"万里挪移表示长程空间移动的后续修习方向，不是每名破虚修士自动获得的常态赶路方式。具体挪移法尚未展开，首次使用前须另定可确认起终点、路径稳定条件、携带人数和重量、单次距离、发动与持续费用、间隔及中断落点处理；没有该术式及实际来源不得安排成功挪移。现有跨海商路仍按实体航程，不能拿这个名称缩短行程或隔太古界门传送。\"\n  ],\n  \"cost\": \"晋阶代价：损耗寿元百年；这是晋入本境的寿储支出，不预付其后具体术法的发动或维持费用。施术仍须按已定义功法、法宝或基础操作规则另行满足条件与实际支付。\",\n  \"counters\": [\n    \"空间乱流、同阶以上定空术或空间封锁会破坏定位与可用路径；条件未满足时不能发起已定义空间术式。\",\n    \"施术中的定位被打断、路径遭封锁或本体失去控制时，依具体空间术式中止并承担已支付的寿储、本源及乱流损伤，不获得自动成功到达的免责。\"\n  ],\n  \"status\": \"proposed\"\n}"
+            },
+            {
+              "sourceId": "world/realms/realm_07",
+              "quote": "{\n  \"id\": \"realm_07\",\n  \"systemId\": \"ps_01\",\n  \"name\": \"通天境\",\n  \"rank\": 7,\n  \"prerequisites\": [\n    \"沟通天道法则\"\n  ],\n  \"capabilities\": [\n    \"御使法则表示具备学习法则术式的承载资格，不是任意改写现实。现有太清太虚鸿蒙典（tech_16）通天式仍按十里定向范围、三息蓄势、十息上限、三百元载与本源/法力/神识费用执行；不能借御使法则免除费用、改写过去或越过未知目标的护持。其他法则运用须先有独立术式规则，不能以境界名称代用。\",\n    \"硬撼界门表示具备参与界门工程的必要承载资格，通天之力不是完整开门的充分条件。现有补天御界神印（tech_15）只能按其已有阵基、确认破口、布纹时间和费用加固或牵制，不因此具备开启完整太古界门的另一招。完整开门方案尚未展开，须先核门体、阵基、权限、供能、协作和失败代价，不能在当前百章凭一句通天强者出手就宣布界门已开。\"\n  ],\n  \"cost\": \"晋阶代价：损耗寿元两百年；这是晋入本境的寿储支出，不预付其后具体术法的发动或维持费用。施术仍须按已定义功法、法宝或基础操作规则另行满足条件与实际支付。\",\n  \"counters\": [\n    \"天道劫雷与同阶以上法则冲突会破坏施术者的连界和术式稳定，境界名称不提供免疫。\",\n    \"对应术式的定位、蓄势、阵基或供能受扰时按其原规则中断，已付寿储、法力和本源损伤不返还；同阶护持、阵基破坏和退出实际作用范围仍可反制。\"\n  ],\n  \"status\": \"proposed\"\n}"
+            },
+            {
+              "sourceId": "world/techniques/tech_13",
+              "quote": "{\n  \"id\": \"tech_13\",\n  \"name\": \"碎空瞬灭刃\",\n  \"kind\": \"technique\",\n  \"tier\": \"王阶\",\n  \"allowedRealmIds\": [\n    \"realm_06\",\n    \"realm_07\"\n  ],\n  \"effect\": \"以手势在可见且已确认稳定的空间中划出至多三道短距虚空裂隙，裂隙沿既定轨迹切割肉身、护体与外放元神联系；其能绕过普通物理护甲的部分阻挡，但不能无视空间防护、法则护持、完整领域、王器以上防御或目标本体承载。\",\n  \"cost\": \"第一道裂隙成形即永久支付三十元载寿储，并损耗施术者在首次稳定破虚实测时空间本源承载上限的百分之一；其后损伤不会使这一基准随余额缩小。三道均包含在这一式，少放不退费。空间乱流肉身伤另记；没有另经验证的本源修复来源，不得把静息当恢复该百分之一。\",\n  \"limitations\": [\n    \"须先以神识确认裂隙起点、终点与路径，单道裂隙不得超出施术者可稳定掌控的空间距离；不得隔界、隔太古界门或对未知位置盲斩。\",\n    \"三道裂隙须在三个呼吸内依次完成，第一道成形后即支付全部寿储与本源成本；中途被打断时未完成裂隙消散，已付成本不返还，并可能受乱流反噬。\",\n    \"在虚空稳固度极高的古遗迹、界门核心或已封锁空间内，裂隙难以成形且反噬显著增加；施术者无权以此术破除界门封禁律。\",\n    \"每次施展后须待空间感知与本源状态经复测稳定方可再用；本源裂损未获专门修复前，不得以连续施术叠加裂隙数量。\"\n  ],\n  \"counters\": [\n    \"定空阵、空间封锁与同阶以上空间法则使裂隙无法定位或偏移\",\n    \"完整领域、空间护持器具与主动位移避开已显露的裂隙轨迹\",\n    \"在结印和定位阶段以神识冲击或近身攻击打断施术者\"\n  ],\n  \"status\": \"proposed\"\n}"
+            },
+            {
+              "sourceId": "world/techniques/tech_16",
+              "quote": "{\n  \"id\": \"tech_16\",\n  \"name\": \"太清太虚鸿蒙典\",\n  \"kind\": \"technique\",\n  \"tier\": \"神阶\",\n  \"allowedRealmIds\": [\n    \"realm_07\",\n    \"realm_08\"\n  ],\n  \"effect\": \"鸿蒙紫气改易一处已锁定战场的灵气与法则流向。通天施术者可在可见十里内形成一束定向紫气冲击，主宰在已掌控的小界内最多对千里范围的一处连续战场施压；覆盖范围不是对其中万灵的自动命中或一律处决。“一言定生死”为传说称谓，实际仍受目标护持、同阶法则、界域边界及外部供能反制。\",\n  \"cost\": \"每式固定先燃三百元载未耗寿储，另付当境法力五成与神识三成。通天损耗自己首次稳定通天实测的法则本源上限百分之一；主宰另须以实际掌控小界为依托，损耗该界完整稳定时本源上限百分之一。对应本源基准不随余额递减；这类损伤永久保留，不能由普通静息、功德或胜利抵销。\",\n  \"limitations\": [\n    \"允许通天与主宰两种现有境界使用，通天只用自身法则本源发挥十里定向式，不能借“通天大圆满”获得主宰小界。主宰千里式须实际掌控小界，并承担该界本源损伤；不存在第九境界。\",\n    \"起式前须核定自身寿储、本源与作用区，连续三息蓄势后才成形，持续至多十息；断开控制、目标退出作用区或本源供给不稳即退场。完整起式预付费用，即使随后中断也不返还。\",\n    \"紫气只能作用于已锁定的连续战场，不能隔界抹杀未知人名、追溯过去、重建神格或复活死者。同阶领域和王器圣器仍按各自实际承载对抗，不因品阶就全部失效。\",\n    \"一式后三十日内不得再发动，且本源损伤未复测安全时仍禁止再用。没有场景中明确取得的寿储和本源承载，不得从功法条目反推角色已经备齐；这不否定世界历史上合格高阶者施术的可能。\"\n  ],\n  \"counters\": [\n    \"同阶或更高境界的法则护持、小界排斥与本源对耗\",\n    \"三息蓄势内打断锁定，或撤出其定向轨迹、以空间隔断分割战场\",\n    \"持续干扰施术者本体和供能；通天没有主宰小界的隔界支配权\"\n  ],\n  \"status\": \"proposed\"\n}"
+            },
+            {
+              "sourceId": "world/resources/res_09",
+              "quote": "{\n  \"id\": \"res_09\",\n  \"name\": \"延寿灵泉\",\n  \"unit\": \"滴\",\n  \"source\": \"灵虚古境太古洞天中心灵眼自然凝结\",\n  \"scarcity\": \"极罕见\",\n  \"tier\": \"五品\",\n  \"status\": \"proposed\",\n  \"usage\": {\n    \"effect\": \"洁净原液三滴为一剂，完整炼化后增加五年未来可用寿储，不把余额设为五年或三十年；每人终生最多六个有效剂额，累计新增不超过三十年。新增储备不会恢复因燃寿造成的衰老。\",\n    \"requirements\": [\n      \"取自灵虚古境灵眼的原液须独立验毒验煞并记录瓶中滴数；传闻、兑换凭证和未取得的泉水都不能记作个人寿储。\",\n      \"每剂固定三滴，分三日每日一滴温和炼化；第三滴后再静养七日，整个十日期间不得开始下一剂。淬体以上也须先评估伤势，凡人须有医修指导。\",\n      \"一剂只有完整炼化且复诊确认有效后才可入账五年；未完成药程不能先花预计收入。\"\n    ],\n    \"cost\": \"每剂消耗三滴原液和十日疗程，占用一次有效剂额；分装与稀释不增加总滴数。药物批次、病人已用剂数、实际新增寿储分开登记，不能将净增五年与终生三十年上限重复相加。\",\n    \"limitations\": [\n      \"不能返还已燃耗、被窃取并消耗或用于晋阶及法宝的既付寿元；新收入不撤销历史支出、冷却与年龄变化。\",\n      \"不治疗道伤、毒伤、经脉伤或神魂伤，不自动晋阶、补满真元、满足功法境界。\",\n      \"污染或净化失败的份额报废，误服不给予可确认的寿储收入，且有伤害风险；是否浪费剂额由复诊确认，但每人累计新增绝不超过三十年。\",\n      \"第六剂后再服不再延寿，灵泉不是可以无限堆叠的寿元农场。\"\n    ]\n  }\n}"
+            },
+            {
+              "sourceId": "world/resources/res_17",
+              "quote": "{\n  \"id\": \"res_17\",\n  \"name\": \"灵脉年轮晶\",\n  \"unit\": \"枚\",\n  \"source\": \"灵虚古境loc_05的寿枝古藤在灵眼周边季节性灵潮转换时形成的年轮结晶；其生机来自古藤自然代谢与古境灵潮回流，不由灌灵、血祭或燃寿催成。\",\n  \"scarcity\": \"极罕见\",\n  \"tier\": \"五品\",\n  \"status\": \"proposed\",\n  \"usage\": {\n    \"effect\": \"一枚经完整十四日疗程及复诊，新增八元载未来可用寿储；只计未来生存和施术储备，不逆转年龄、既付燃寿、旧伤或本源损失。\",\n    \"requirements\": [\n      \"受用者至少凝元境三重；疗程前须连续三日诊察，排除急性失血、严重煞毒、命火紊乱和正在进行的燃寿反噬。\",\n      \"疗程从开始时点起持续十四整日，前七日服药、后七日静养，终点复诊合格才一次入账八元载。\",\n      \"每人终生最多成功使用十枚；两枚疗程之间至少间隔三十日，连续两枚后须额外停用九十日。\",\n      \"灵虚圣地只认可有编号、批次和采集时点的完整结晶；碎片、仿制品、污染品和盗取后重新拼装品不得入账。\"\n    ],\n    \"cost\": \"每枚消耗一枚完整结晶、七份温养辅药和十四日医护观察。服用中断、药毒反应或伤情恶化时，已服部分不返还，未服部分须封存复验或报废。\",\n    \"limitations\": [\n      \"形成周期为548个自然日（固定核算周期，不写每年两次）；以故事第1日为日序，未来首个成熟窗口第540日，其后540+548×n日。每个窗口最多三枚合格晶，不合格或灾年可为零。\",\n      \"每周期至少保留一枚用于古境守卫和灵眼生态，其余由灵虚界约分配；丰产上界不是个人现有份额。\",\n      \"过采会使寿枝古藤下一周期停止结晶，并使灵眼周围灵潮紊乱；以煞气、国运或活人寿元催化所得只算污染晶。\",\n      \"不能替代灵泉剂额，不能提高res_09每剂五年或终生六剂上限。\",\n      \"不同寿源之间允许顺序叠加，但任何两个疗程不得重叠；本品每次疗程结束至下一疗程开始至少三十日，每两次完成后至少九十日停用，终生十枚即八十元载封顶。其他品种疗程不能代替本品停用期。\",\n      \"原产地验真后在温养封袋内可存二十一整日，破袋后四十八小时内须开始疗程或报废；开始时取出当日份，其余封袋保存，最后服药必须在采后21日内。首例在loc_05就地用药，不假定跨海到货。\",\n      \"供应链·locationIds：['loc_05', 'loc_07', 'loc_29']\",\n"
+            },
+            {
+              "sourceId": "world/resources/res_18",
+              "quote": "{\n  \"id\": \"res_18\",\n  \"name\": \"寒脉伏龄根\",\n  \"unit\": \"段\",\n  \"source\": \"极冰天国loc_13北境封冻旧湖下的寒脉母根，在每八年一次的短暂地脉回温期结出子段；其生机来自封存水木灵性和寒脉缓释，不是人为种植或抽取他人寿元。\",\n  \"scarcity\": \"天地罕有\",\n  \"tier\": \"六品\",\n  \"status\": \"proposed\",\n  \"usage\": {\n    \"effect\": \"一段经完整三十日寒命调和疗程及复诊，新增六十元载未来可用寿储；属于外源新增储备，不修复寒损、命火病因或历史燃寿衰老。\",\n    \"requirements\": [\n      \"受用者至少玄府境且身体适格；无凝元特批例外。须由玄府以上冰系医修主持，不用医师境界替代患者境界。\",\n      \"疗程开始前七日及疗程期间不得发动燃寿秘术、血炼秘术或高强度火煞术；出现寒毒入髓、命火骤降或经脉冻结必须停药。\",\n      \"疗程开始后第0、7、14、21、28日各服五分之一，第30日复诊后才一次入账六十元载。\",\n      \"每人终生最多成功使用六段；任两段之间至少间隔一年，连续两段后必须停用三年并重新评估寒命承载。\"\n    ],\n    \"cost\": \"每段消耗完整寒脉子段、五份中和药材、低温药炉一次和三十日医护配额。运输解冻、药炉失控或疗程失败时，原材与辅药均不返还。\",\n    \"limitations\": [\n      \"每2920个自然日（八个365日核算年）成熟一次；未来首个成熟窗口第900日，其后900+2920×n日。每窗口最多两段，至少一段用于本土寒灾公共医疗，对外最多一段，灾年可全部封采。每人每窗口至多一段，终生六段即三百六十元载封顶。\",\n      \"必须在loc_14就地炮制和完成疗程；从loc_13采区到loc_14由已具名且获许可的本地医官护送，实际运输须在采后七日内完成，开始疗程最迟采后七日。登记寒匣保持至末次服用，采后总保存上限四十日；离匣累计超过十二小时或发生冻融即报废，换匣不重置时钟。本候选不授权跨海药材运输。\",\n      \"不能提供冰系功法、抗寒法宝、元罡或法力，也不能治疗神魂伤、道伤和已燃寿元。\",\n      \"黑市切片、冻融品和无母根编号材料只能作为普通寒性药材，不产生可确认寿储。\",\n      \"每次疗程结束到下次开始至少365日，每两次完成后至少1095日停用；更严格的采收窗口仍须满足。不同寿源可顺序叠加但疗程不得重叠。药不治疗寒毒，病因未稳定不得以延寿效果冒险续药。\",\n      \"供应链·locationIds：['loc_13', 'loc_14', 'loc_21', 'loc_26']\",\n"
+            },
+            {
+              "sourceId": "world/resources/res_19",
+              "quote": "{\n  \"id\": \"res_19\",\n  \"name\": \"界潮命胶\",\n  \"unit\": \"匣\",\n  \"source\": \"苍冥界渊虚谷loc_15内，经苍冥巡界使稳定监测的微型裂隙，在寒脉、缓慢灵潮与定界石槽共同作用下自然析出的胶质；不是虚空神晶，也不从裂隙或活体抽取寿元。\",\n  \"scarcity\": \"天地绝品\",\n  \"tier\": \"六品\",\n  \"status\": \"proposed\",\n  \"usage\": {\n    \"effect\": \"一匣经完整四十五日定相疗程及复诊，新增一百二十元载未来可用寿储；有限外源生机可用于未来扣款，不取消已付支出、衰老或损伤。\",\n    \"requirements\": [\n      \"受用者至少神海境，且须经通晓空间污染的命医和巡界使联合确认；有空间乱流伤、神识裂损、未稳定煞毒或近期强行施展空间术式者不得入疗程。\",\n      \"只在loc_15巡界营地获批定相室就地疗程；前十五整日试药、中十五日定相、后十五日静养，终点复诊合格才一次入账一百二十元载。\",\n      \"每人终生最多成功使用八匣；两匣之间至少间隔五年，连续两匣后须完成一次空间污染复查和至少十年停用观察。\",\n      \"只有巡界使登记的石槽、封签、匣号和受用者病历同时匹配时，才可确认寿储收入。\"\n    ],\n    \"cost\": \"每匣消耗一匣合格命胶、一次巡界定相阵额度、四十五日封闭医护和一枚寒封签。封签破裂、定相失败、神识失稳或疗程中断时，整匣按耗损处理，已付法力、医护和护送成本不返还。\",\n    \"limitations\": [\n      \"每2190个自然日（六个365日核算年）成熟一次；未来首个窗口第4200日，其后4200+2190×n日。全谷最多四匣，其中两匣为巡界伤员和工程应急，对外最多两匣，每人每窗口至多一匣；灾年或界门警报可对外零配额。终生八匣即九百六十元载封顶。\",\n      \"刮取过量会降低石槽定界能力并扩大微裂隙；人为扩裂、燃寿催生、牺牲他人或破坏定界石槽所得均为污染命胶。\",\n      \"可用新增寿储支付未来已定义的寿耗，付款时仍逐笔扣足。不能恢复空间本源、神魂本源、道伤、旧燃寿或界门损伤；不能把药物份额直接替代碎空瞬灭刃、神印、鸿蒙典的任何非寿储成本。\",\n      \"采出后三日内必须在loc_15开始疗程，定相匣留在同一营地直至疗程结束；不授权跨海护送或远程给药。封签破损即全匣报废，重新封装不重置寿命。\",\n      \"疗程结束至下一疗程开始至少1825日，每两次完成后至少3650日停用并复查，不能用别种药跳过。各类寿源疗程不得重叠；四种寿源含res_09可顺序叠加，各自终生限额独立，所有成功新增合计上限1430元载，不改变任何已有人物的已用剂数或诊断。\",\n"
+            },
+            {
+              "sourceId": "plan/overview",
+              "quote": "{\n  \"protagonistArc\": \"从负伤矿工到能接受伙伴自主选择的凝元修士，再经数月修习、实测丹府与支付十元载成为玄府初期；力量增加时可用寿储反而减少。百章不发动逆命真解，不越阶斩高境，不把神兵持有当作启动权限。\",\n  \"endingDirection\": \"百章有救人、断运、部分父案澄清和玄府成长的可核结局。1–100是450章的阶段验收；接下来的有限寿源、高阶反派、钥匙余片与九鼎机制必须另建经审查的来源和行动链，不将450章全书结局撤销。 没有返寿、燃寿白发、道伤凭空痊愈或三大陆永久太平。此卷不清算全部九鼎，公开传播仍限实到地点。\",\n  \"volumes\": [\n    {\n      \"id\": \"vol_01\",\n      \"order\": 1,\n      \"title\": \"青玄争泉卷：短命求生\",\n      \"startChapter\": 1,\n      \"endChapter\": 32,\n      \"goal\": \"在伤势与短寿限制下真正修成凝元，进入有门槛的古境，联合同伴击破墨幽屠本次掳人夺泉行动，取得有限泉液并付出分离代价南渡；卷末凝元三重，不使用逆命真解。\",\n      \"opposition\": \"太清仙宗戒律堂保守派、幽罗殿少主墨幽屠及其死士、大乾天朝暗中渗透的眼线。\",\n      \"characterIds\": [\n        \"char_01\",\n        \"char_02\",\n        \"char_03\",\n        \"char_04\",\n        \"char_07\",\n        \"char_08\",\n        \"char_09\",\n        \"char_10\",\n        \"char_11\",\n        \"char_12\",\n        \"char_13\",\n        \"char_17\",\n        \"char_18\"\n      ],\n      \"climax\": \"第23–26章，林辰与苏分工释放被掳采集者、夺回样箱与有限泉液；顾峤按先前路线到场，以玄府同阶力量和一次付费太乙真光压制墨。主角破坏普通货台制造战术窗口，不越阶斩灭墨或王器。\",\n      \"endState\": \"第32章第216日暮抵达赤霄天宝外港。林辰凝元三重，两剂共6滴灵泉均已按十日疗程和复诊完成，保守预算约13.460274元载；这是有前提的规划下界，伤病须复评。墨负伤被羁押、泉液余量为零；苏留宗照看证人与押解，主角没有燃寿白发。\",\n      \"carryOver\": \"父亲检修图、残片刻痕与收货人线索指向赤霄；从凝元三重继续，不能沿用旧第二卷的神海战力、火髓治伤或免费通行。物资护送损失和押解安全均有后果。\"\n    },\n    {\n"
+            },
+            {
+              "sourceId": "plan/milestones/ms_v3_payoff",
+              "quote": "{\n  \"id\": \"ms_v3_payoff\",\n  \"title\": \"有边界的胜果与更长的路\",\n  \"kind\": \"payoff\",\n  \"startChapter\": 96,\n  \"endChapter\": 100,\n  \"setup\": [\n    \"96章第437日辰初邵闻在外门值守房向顾面接受伤统领祁嵩并核身份伤情；乔仍看墨，杜褚在夜班分别接墨/押卫。两岗四人各12小时值12小时休，暂停其他外出任务；顾完成交接才去白榆处就医，普通见证员只管登记、不代替玄府看押。苏协调8人床位，梁九帮两名旧工友找家属，其余6人分别登记联系人。\",\n    \"第466日回访距436日高潮三十日；白榆治疗普通肩伤，失去的寿储不恢复。林条件预算7-(466-19)/365-3+10-10=2.775342，若伤病改变诊断须下修，不可把数值当准确死期。\",\n    \"苏梁核住处、粮食与工钱申领，韩承担改账责任。林只公开父亲守门参与及当地掩案可证部分。98章439程按普通驿路到乾都面报逃前所见；99章442监督点另寄本案摘要、原令封存副本和见证签名，444到复核署，445赵读质询、446答询并停本批授权。双方不即时共享。林仅据436程当场索要工友身份的口信怀疑第二片在赵府，未亲见；第一片仍封存自持。\",\n    \"选择：林拒绝按敌方未证实的口信拿工友身份去换所谓寿药，接受短寿与尚未结案的父仇；苏接受自己阵营的责任也在卷宗中，梁九决定先带家人过日子。\",\n    \"认知：向公众说清哪些已核实、哪些仍待查；夜只在实际收到青玄船信后得知结果，不能与林同日共享终局全知。\",\n    \"白榆在两间值守房内诊疗，各当班玄府不离岗；日常无跨房/外送，不调用休班者补一时缺口。无已到岗且足休的具名替班就取消移送与提审。若拟写当班失能等突发事件，现四人双岗表不够，必须先另审人手覆盖再写，不能顺延下一班制造空岗。\"\n  ],\n  \"cost\": \"没有返寿、燃寿白发、道伤凭空痊愈或三大陆永久太平。此卷不清算全部九鼎，公开传播仍限实到地点。\",\n  \"outcome\": \"第437–466日。百章有救人、断运、部分父案澄清和玄府成长的可核结局。1–100是450章的阶段验收；接下来的有限寿源、高阶反派、钥匙余片与九鼎机制必须另建经审查的来源和行动链，不将450章全书结局撤销。\"\n}"
+            },
+            {
+              "sourceId": "proposal/budgetPolicy",
+              "quote": "{\n  \"res_17\": {\n    \"income\": 8,\n    \"lifetimeDoses\": 10,\n    \"minimumRealm\": 2,\n    \"courseDays\": 14,\n    \"firstMaturityDay\": 540,\n    \"cycleDays\": 548,\n    \"maxHarvest\": 3,\n    \"reservedHarvest\": 1,\n    \"maxPerPersonPerCycle\": 1,\n    \"minGapDays\": 30,\n    \"everyTwoGapDays\": 90,\n    \"maxStartDelayDays\": 0\n  },\n  \"res_18\": {\n    \"income\": 60,\n    \"lifetimeDoses\": 6,\n    \"minimumRealm\": 3,\n    \"courseDays\": 30,\n    \"firstMaturityDay\": 900,\n    \"cycleDays\": 2920,\n    \"maxHarvest\": 2,\n    \"reservedHarvest\": 1,\n    \"maxPerPersonPerCycle\": 1,\n    \"minGapDays\": 365,\n    \"everyTwoGapDays\": 1095,\n    \"maxStartDelayDays\": 7\n  },\n  \"res_19\": {\n    \"income\": 120,\n    \"lifetimeDoses\": 8,\n    \"minimumRealm\": 4,\n    \"courseDays\": 45,\n    \"firstMaturityDay\": 4200,\n    \"cycleDays\": 2190,\n    \"maxHarvest\": 4,\n    \"reservedHarvest\": 2,\n    \"maxPerPersonPerCycle\": 1,\n    \"minGapDays\": 1825,\n    \"everyTwoGapDays\": 3650,\n    \"maxStartDelayDays\": 3\n  }\n}"
+            },
+            {
+              "sourceId": "proposal/conditionalPath",
+              "quote": "{\n  \"scope\": \"玄府起点的单一稀缺世界个例；沿用第466日条件下界用于压力测试，不给林辰批准未来路线\",\n  \"startingDay\": 466,\n  \"startingRealm\": 3,\n  \"startingLife\": 2.7753424657534254,\n  \"initialDoses\": {\n    \"res_09\": 2\n  },\n  \"safetyReserve\": 1,\n  \"steps\": [\n    {\n      \"day\": 554,\n      \"realmBefore\": 3,\n      \"incomeResourceId\": \"res_17\",\n      \"doses\": 1,\n      \"income\": 8,\n      \"naturalElapsedDays\": 88,\n      \"advancementDebit\": 0,\n      \"realmAfter\": 3,\n      \"spellDebit\": 0,\n      \"closingLife\": 10.534246575342467,\n      \"survivalBeforeIncome\": 2.5342465753424666,\n      \"courseStartDay\": 540,\n      \"harvestDay\": 540,\n      \"conditions\": [\n        \"申请、对价、医护、实际到场、合格产出和完整疗程均须实际满足；不满足即中止本分支。\"\n      ]\n    },\n    {\n      \"day\": 930,\n      \"realmBefore\": 3,\n      \"incomeResourceId\": \"res_18\",\n      \"doses\": 1,\n      \"income\": 60,\n      \"naturalElapsedDays\": 376,\n      \"advancementDebit\": 0,\n      \"realmAfter\": 3,\n      \"spellDebit\": 0,\n      \"closingLife\": 69.5041095890411,\n      \"survivalBeforeIncome\": 9.504109589041096,\n      \"courseStartDay\": 900,\n      \"harvestDay\": 900,\n      \"conditions\": [\n        \"申请、对价、医护、实际到场、合格产出和完整疗程均须实际满足；不满足即中止本分支。\"\n      ]\n    },\n    {\n      \"day\": 1000,\n      \"realmBefore\": 3,\n"
+            },
+            {
+              "sourceId": "proposal/conditionalPath",
+              "quote": "      \"incomeResourceId\": null,\n      \"doses\": 0,\n      \"income\": 0,\n      \"naturalElapsedDays\": 70,\n      \"advancementDebit\": 30,\n      \"realmAfter\": 4,\n      \"spellDebit\": 0,\n      \"closingLife\": 39.31232876712329,\n      \"survivalBeforeIncome\": 69.31232876712329,\n      \"conditions\": [\n        \"这里仅证明寿储有足额来源；相应修习、境界前置、健康和实际突破必须另外通过，不能从付款能力推断必成。\"\n      ]\n    },\n    {\n      \"day\": 3850,\n      \"realmBefore\": 4,\n      \"incomeResourceId\": \"res_18\",\n      \"doses\": 1,\n      \"income\": 60,\n      \"naturalElapsedDays\": 2850,\n      \"advancementDebit\": 0,\n      \"realmAfter\": 4,\n      \"spellDebit\": 0,\n      \"closingLife\": 91.5041095890411,\n      \"survivalBeforeIncome\": 31.5041095890411,\n      \"courseStartDay\": 3820,\n      \"harvestDay\": 3820,\n      \"conditions\": [\n        \"申请、对价、医护、实际到场、合格产出和完整疗程均须实际满足；不满足即中止本分支。\"\n      ]\n    },\n    {\n      \"day\": 4000,\n      \"realmBefore\": 4,\n      \"incomeResourceId\": null,\n      \"doses\": 0,\n      \"income\": 0,\n      \"naturalElapsedDays\": 150,\n      \"advancementDebit\": 60,\n      \"realmAfter\": 5,\n      \"spellDebit\": 0,\n      \"closingLife\": 31.0931506849315,\n      \"survivalBeforeIncome\": 91.0931506849315,\n      \"conditions\": [\n"
+            },
+            {
+              "sourceId": "proposal/conditionalPath",
+              "quote": "        \"这里仅证明寿储有足额来源；相应修习、境界前置、健康和实际突破必须另外通过，不能从付款能力推断必成。\"\n      ]\n    },\n    {\n      \"day\": 4245,\n      \"realmBefore\": 5,\n      \"incomeResourceId\": \"res_19\",\n      \"doses\": 1,\n      \"income\": 120,\n      \"naturalElapsedDays\": 245,\n      \"advancementDebit\": 0,\n      \"realmAfter\": 5,\n      \"spellDebit\": 0,\n      \"closingLife\": 150.42191780821918,\n      \"survivalBeforeIncome\": 30.421917808219174,\n      \"courseStartDay\": 4200,\n      \"harvestDay\": 4200,\n      \"conditions\": [\n        \"申请、对价、医护、实际到场、合格产出和完整疗程均须实际满足；不满足即中止本分支。\"\n      ]\n    },\n    {\n      \"day\": 4600,\n      \"realmBefore\": 5,\n      \"incomeResourceId\": null,\n      \"doses\": 0,\n      \"income\": 0,\n      \"naturalElapsedDays\": 355,\n      \"advancementDebit\": 100,\n      \"realmAfter\": 6,\n      \"spellDebit\": 0,\n      \"closingLife\": 49.44931506849315,\n      \"survivalBeforeIncome\": 149.44931506849315,\n      \"conditions\": [\n        \"这里仅证明寿储有足额来源；相应修习、境界前置、健康和实际突破必须另外通过，不能从付款能力推断必成。\"\n      ]\n    },\n    {\n      \"day\": 6435,\n      \"realmBefore\": 6,\n      \"incomeResourceId\": \"res_19\",\n      \"doses\": 1,\n      \"income\": 120,\n      \"naturalElapsedDays\": 1835,\n      \"advancementDebit\": 0,\n      \"realmAfter\": 6,\n      \"spellDebit\": 0,\n"
+            },
+            {
+              "sourceId": "proposal/conditionalPath",
+              "quote": "      \"closingLife\": 164.42191780821918,\n      \"survivalBeforeIncome\": 44.42191780821918,\n      \"courseStartDay\": 6390,\n      \"harvestDay\": 6390,\n      \"conditions\": [\n        \"申请、对价、医护、实际到场、合格产出和完整疗程均须实际满足；不满足即中止本分支。\"\n      ]\n    },\n    {\n      \"day\": 6770,\n      \"realmBefore\": 6,\n      \"incomeResourceId\": \"res_18\",\n      \"doses\": 1,\n      \"income\": 60,\n      \"naturalElapsedDays\": 335,\n      \"advancementDebit\": 0,\n      \"realmAfter\": 6,\n      \"spellDebit\": 0,\n      \"closingLife\": 223.5041095890411,\n      \"survivalBeforeIncome\": 163.5041095890411,\n      \"courseStartDay\": 6740,\n      \"harvestDay\": 6740,\n      \"conditions\": [\n        \"申请、对价、医护、实际到场、合格产出和完整疗程均须实际满足；不满足即中止本分支。\"\n      ]\n    },\n    {\n      \"day\": 7000,\n      \"realmBefore\": 6,\n      \"incomeResourceId\": null,\n      \"doses\": 0,\n      \"income\": 0,\n      \"naturalElapsedDays\": 230,\n      \"advancementDebit\": 200,\n      \"realmAfter\": 7,\n      \"spellDebit\": 0,\n      \"closingLife\": 22.873972602739713,\n      \"survivalBeforeIncome\": 222.8739726027397,\n      \"conditions\": [\n        \"这里仅证明寿储有足额来源；相应修习、境界前置、健康和实际突破必须另外通过，不能从付款能力推断必成。\"\n      ]\n    },\n    {\n      \"day\": 9690,\n      \"realmBefore\": 7,\n      \"incomeResourceId\": \"res_18\",\n"
+            },
+            {
+              "sourceId": "proposal/conditionalPath",
+              "quote": "      \"doses\": 1,\n      \"income\": 60,\n      \"naturalElapsedDays\": 2690,\n      \"advancementDebit\": 0,\n      \"realmAfter\": 7,\n      \"spellDebit\": 0,\n      \"closingLife\": 75.50410958904108,\n      \"survivalBeforeIncome\": 15.504109589041082,\n      \"courseStartDay\": 9660,\n      \"harvestDay\": 9660,\n      \"conditions\": [\n        \"申请、对价、医护、实际到场、合格产出和完整疗程均须实际满足；不满足即中止本分支。\"\n      ]\n    },\n    {\n      \"day\": 10815,\n      \"realmBefore\": 7,\n      \"incomeResourceId\": \"res_19\",\n      \"doses\": 1,\n      \"income\": 120,\n      \"naturalElapsedDays\": 1125,\n      \"advancementDebit\": 0,\n      \"realmAfter\": 7,\n      \"spellDebit\": 0,\n      \"closingLife\": 192.42191780821918,\n      \"survivalBeforeIncome\": 72.42191780821916,\n      \"courseStartDay\": 10770,\n      \"harvestDay\": 10770,\n      \"conditions\": [\n        \"申请、对价、医护、实际到场、合格产出和完整疗程均须实际满足；不满足即中止本分支。\"\n      ]\n    },\n    {\n      \"day\": 10900,\n      \"realmBefore\": 7,\n      \"incomeResourceId\": null,\n      \"doses\": 0,\n      \"income\": 0,\n      \"naturalElapsedDays\": 85,\n      \"advancementDebit\": 0,\n      \"realmAfter\": 7,\n      \"spellDebit\": 100,\n      \"closingLife\": 92.18904109589042,\n      \"survivalBeforeIncome\": 192.18904109589042,\n"
+            },
+            {
+              "sourceId": "proposal/conditionalPath",
+              "quote": "      \"techniqueId\": \"tech_15\",\n      \"conditions\": [\n        \"假设术式已掌握且当前实测健康法力与可用神识均足付；实际未测不得施术。\",\n        \"神印另付法力3成、神识2成及通天道果1%，三年道伤保留；鸿蒙典另付法力5成、神识3成及通天法则本源1%，损伤永久累计。\",\n        \"后一次距神印4700日，大于1095日道伤期；仍须本源安全复测，不把药物当本源修复。\"\n      ]\n    },\n    {\n      \"day\": 12610,\n      \"realmBefore\": 7,\n      \"incomeResourceId\": \"res_18\",\n      \"doses\": 1,\n      \"income\": 60,\n      \"naturalElapsedDays\": 1710,\n      \"advancementDebit\": 0,\n      \"realmAfter\": 7,\n      \"spellDebit\": 0,\n      \"closingLife\": 147.5041095890411,\n      \"survivalBeforeIncome\": 87.50410958904111,\n      \"courseStartDay\": 12580,\n      \"harvestDay\": 12580,\n      \"conditions\": [\n        \"申请、对价、医护、实际到场、合格产出和完整疗程均须实际满足；不满足即中止本分支。\"\n      ]\n    },\n    {\n      \"day\": 13005,\n      \"realmBefore\": 7,\n      \"incomeResourceId\": \"res_19\",\n      \"doses\": 1,\n      \"income\": 120,\n      \"naturalElapsedDays\": 395,\n      \"advancementDebit\": 0,\n      \"realmAfter\": 7,\n      \"spellDebit\": 0,\n      \"closingLife\": 266.4219178082192,\n      \"survivalBeforeIncome\": 146.42191780821918,\n      \"courseStartDay\": 12960,\n      \"harvestDay\": 12960,\n      \"conditions\": [\n        \"申请、对价、医护、实际到场、合格产出和完整疗程均须实际满足；不满足即中止本分支。\"\n      ]\n    },\n    {\n"
+            },
+            {
+              "sourceId": "proposal/conditionalPath",
+              "quote": "      \"day\": 15530,\n      \"realmBefore\": 7,\n      \"incomeResourceId\": \"res_18\",\n      \"doses\": 1,\n      \"income\": 60,\n      \"naturalElapsedDays\": 2525,\n      \"advancementDebit\": 0,\n      \"realmAfter\": 7,\n      \"spellDebit\": 0,\n      \"closingLife\": 319.5041095890411,\n      \"survivalBeforeIncome\": 259.5041095890411,\n      \"courseStartDay\": 15500,\n      \"harvestDay\": 15500,\n      \"conditions\": [\n        \"申请、对价、医护、实际到场、合格产出和完整疗程均须实际满足；不满足即中止本分支。\"\n      ]\n    },\n    {\n      \"day\": 15600,\n      \"realmBefore\": 7,\n      \"incomeResourceId\": null,\n      \"doses\": 0,\n      \"income\": 0,\n      \"naturalElapsedDays\": 70,\n      \"advancementDebit\": 0,\n      \"realmAfter\": 7,\n      \"spellDebit\": 300,\n      \"closingLife\": 19.31232876712329,\n      \"survivalBeforeIncome\": 319.3123287671233,\n      \"techniqueId\": \"tech_16\",\n      \"conditions\": [\n        \"假设术式已掌握且当前实测健康法力与可用神识均足付；实际未测不得施术。\",\n        \"神印另付法力3成、神识2成及通天道果1%，三年道伤保留；鸿蒙典另付法力5成、神识3成及通天法则本源1%，损伤永久累计。\",\n        \"后一次距神印4700日，大于1095日道伤期；仍须本源安全复测，不把药物当本源修复。\"\n      ]\n    }\n  ]\n}"
+            }
+          ],
+          "revisionAdvice": ""
+        }
+      ],
+      "modelResponses": [
+        "{\"requestId\":\"review_d10266b451f3f22c0fda7bcf\",\"summary\":\"通过。以第466日玄府境、2.775342元载为起点的条件账能够闭合；res_17、res_18、res_19均按各自成熟日、疗程时长、境界资格、个人配额与间隔核算，没有把res_09的限制套用于新资源。晋阶寿储支出及已列tech_15、tech_16术式费用也能逐笔支付。该结论仅证明条件见证成立，不代表申请、采收、疗程、修习、术式掌握或后续事件已经发生。\",\"checks\":[{\"criterion\":\"ledger\",\"verdict\":\"pass\",\"explanation\":\"第466日余额与玄府起点由条件路径明确给出。res_17在第540日成熟、于第554日完成14日疗程，收入8元载；res_18分别在第900、3820、6740、9660、12580、15500日开疗，均符合2920日成熟周期、30日疗程、玄府及以上资格，并按两次后的停用要求留出足够间隔；res_19在第4200、6390、10770、12960日开疗，均对应2190日周期、45日疗程、神海及以上资格，后续间隔也超过1825日及两次后3650日要求。各笔收入均在疗程终点入账，未预支。余额算术连续正确：第1000日支付神海30元载后余39.312329，第4000日支付归一60后余31.093151，第4600日支付破虚100后余49.449315，第7000日支付通天200后余22.873973；第10900日支付tech_15的100元载后余92.189041，第15600日支付tech_16的300元载后余19.312329。第10900与第15600日的术式间隔也不违反已给冷却/道伤期限。res_09仅作为第466日已有两剂的起始账，不被用来推导res_17/18/19的新限制。\",\"evidence\":[{\"fragmentId\":\"e4\"},{\"fragmentId\":\"e9\"},{\"fragmentId\":\"e10\"},{\"fragmentId\":\"e18\"},{\"fragmentId\":\"e19\"},{\"fragmentId\":\"e22\"},{\"fragmentId\":\"e23\"},{\"fragmentId\":\"e37\"},{\"fragmentId\":\"e40\"},{\"fragmentId\":\"e66\"},{\"fragmentId\":\"e74\"},{\"fragmentId\":\"e76\"},{\"fragmentId\":\"e78\"},{\"fragmentId\":\"e171\"},{\"fragmentId\":\"e174\"},{\"fragmentId\":\"e175\"},{\"fragmentId\":\"e176\"},{\"fragmentId\":\"e177\"},{\"fragmentId\":\"e178\"},{\"fragmentId\":\"e179\"},{\"fragmentId\":\"e180\"},{\"fragmentId\":\"e181\"},{\"fragmentId\":\"e182\"}],\"revisionAdvice\":\"\"}]}"
+      ]
+    }
+  }
+}
