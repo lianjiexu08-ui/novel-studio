@@ -1,0 +1,71 @@
+{
+  "candidateSha256": "bbfa23223eba95fcdfcd0bbd980acb6143218542d204ae90f121775f57608821",
+  "saved": false,
+  "formalAcceptance": false,
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "status": "reviewed",
+  "usage": {
+    "calls": 1,
+    "failedCalls": 0,
+    "inputTokens": 131728,
+    "outputTokens": 1713,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 1,
+        "failedCalls": 0,
+        "outputTokens": 1713,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 2
+    }
+  },
+  "checks": [
+    {
+      "criterion": "sovereign",
+      "verdict": "pass",
+      "explanation": "主宰晋阶以“首次稳定通天境”的实测本命神魂上限为固定基准，明确首次支付一成、支付后至少保留二成、开始结心即不可退、失败重试须重新诊察并再付同额；永久本源损失与神识、法力、寿储、界源分账。言律保留tech_16的寿储、法力、神识、界源、范围、蓄势和持续限制；造界亦被限定为须有母界权限、界源扣减、界胚材料和工程账的另列方案，且百章阶段不安排实际造界。",
+      "revisionAdvice": ""
+    },
+    {
+      "criterion": "recovery",
+      "verdict": "revise",
+      "explanation": "ax_05规定凝元专注温和吐纳“一小时最多一成”，且两种恢复不得同段叠加；清风引气诀也把自身凝元恢复纳入该上限。第20章却安排林辰完成两小时不受扰吐纳后“复测只计回一成半”，直接超过两小时至多一成的现有恢复边界，构成新增规则与前50章既定行动账冲突。淬体导引不形成外放真元、凝元后才按环境灵气恢复的区分本身是清楚的。",
+      "revisionAdvice": "统一恢复上限：若保留ax_05与清风引气诀现行规则，第20章两小时吐纳最多恢复一成，并据此重算其后轻钩御物前的真元余量；若拟提高两小时恢复量，则必须同步明确修改ax_05及tech_02，说明新上限、适用条件和与静息恢复不得叠加的记账方式。"
+    },
+    {
+      "criterion": "attention",
+      "verdict": "pass",
+      "explanation": "御风剑诀未另造精神点数，而以清醒、目标辨认、稳定锁定、受惊扰即中止、真元已付不退、眩晕或注意力不能维持即停用、普通疲劳须症状消退后再判断等可观察条件限制连续施式。前50章的主要施剑均保留真元支出和器身散热：第20章施式后二成支出、散热与低流量试注分账；第25章明示一次施式后二成支出并停灌注；第44章在医修许可、坐稳条件下只切普通索，随后热剑停用。",
+      "revisionAdvice": ""
+    },
+    {
+      "criterion": "ledger",
+      "verdict": "pass",
+      "explanation": "第19日以7元载条件下界为起点，第120日凝元扣3，第199与209日两剂分别在完整疗程及复诊后各入账5，第415日玄府扣10；自然流逝按实际日数另扣。第415日公式7-(415-19)/365-3+10-10=2.915068，与从第209日13.479452继续扣206日自然流逝及玄府10元载的推算法一致，明确+10只是两笔既有历史收入而非第415日再次入账，泉液库存也持续为零。",
+      "revisionAdvice": ""
+    },
+    {
+      "criterion": "continuity",
+      "verdict": "revise",
+      "explanation": "新增境界、功法、法宝与前50章多数行动相容：林在第1章明确不能发动逆命真解，第18章凝元后才获得御物与剑诀资格，赤霞剑的单式供能和散热也被逐章列明；第25章由顾承担同阶玄府正战，未让凝元主角越阶制敌。但第20章将两小时温和吐纳记为恢复一成半，与ax_05及清风引气诀的两小时至多一成边界冲突，因此不能判定前50章恢复与真元余量整体连续。",
+      "revisionAdvice": "修正第20章恢复账并连带复核第21、25章以该余额为前提的轻钩、剑诀和停术安排；保留现有“余量不足即延期、剑体未冷不得再用、伤后上限须复测”的约束，不以补写新的精神或真元来源绕过冲突。"
+    }
+  ],
+  "independentArithmeticVerification": {
+    "realm": "凝元",
+    "quietRestHoursPerOneTenth": 2,
+    "focusedBreathingHoursPerOneTenth": 1,
+    "chapter20FocusedBreathingHours": 2,
+    "maximumRecoveryInTenths": 2,
+    "actualMeasuredRecoveryInTenths": 1.5,
+    "endBalanceInTenths": 9.0,
+    "withinCap": true,
+    "diagnosis": "The negative recovery/continuity findings misapply the two-hour quiet-rest rate to focused breathing. Existing ax_05 and tech_02 both explicitly say focused breathing recovers at most one tenth per hour. Preserve findings without changing the correct chapter20 account."
+  }
+}
