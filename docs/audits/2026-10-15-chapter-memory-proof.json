@@ -1,0 +1,95 @@
+{
+  "observedAt": "2026-10-14T17:12:27.065Z",
+  "status": "read_only_payload_verified_not_prose_acceptance",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "approvedPlanRevision": 10,
+  "worldRevision": 29,
+  "bibleRevision": 59,
+  "protectedDesignAndHistoryUnchanged": true,
+  "actualModelCalls": 0,
+  "productionWrites": false,
+  "cases": [
+    {
+      "chapterNumber": 1,
+      "selectedEvents": 0,
+      "transmittedEvents": 0,
+      "latestFactFields": 0,
+      "oldFactsOutsideRecentProse": 0,
+      "eventTypes": {},
+      "recentChapterNumbers": [],
+      "stateHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "factsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "requiredMaterialStatus": "complete"
+    },
+    {
+      "chapterNumber": 50,
+      "selectedEvents": 186,
+      "transmittedEvents": 186,
+      "latestFactFields": 141,
+      "oldFactsOutsideRecentProse": 157,
+      "eventTypes": {
+        "plot_progress": 49,
+        "arc_progress": 14,
+        "character_state": 64,
+        "volume_progress": 7,
+        "knowledge_belief": 29,
+        "relationship_change": 12,
+        "artifact_change": 5,
+        "promise_payoff": 1,
+        "secret_reveal": 1,
+        "resource_change": 4
+      },
+      "recentChapterNumbers": [
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49
+      ],
+      "stateHash": "50e61513f8dd41af4b6f2ad4e9e662dc773ba820b4699113487596042ed07a02",
+      "factsSha256": "17d686dca27620adcbc0e53811e722860a572073a8840f36b6b61a1eee6ac946",
+      "firstEventChapter": 1,
+      "lastEventChapter": 49,
+      "requiredMaterialStatus": "complete"
+    },
+    {
+      "chapterNumber": 101,
+      "selectedEvents": 261,
+      "transmittedEvents": 261,
+      "latestFactFields": 261,
+      "oldFactsOutsideRecentProse": 228,
+      "eventTypes": {
+        "plot_progress": 100,
+        "knowledge_belief": 33,
+        "character_state": 79,
+        "relationship_change": 15,
+        "artifact_change": 9,
+        "promise_payoff": 3,
+        "secret_reveal": 4,
+        "resource_change": 6,
+        "volume_progress": 4,
+        "arc_progress": 4,
+        "thread_resolution": 4
+      },
+      "recentChapterNumbers": [
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100
+      ],
+      "stateHash": "488e489b60e442d5590b7cb27625ba011b51d3aff49fe2c21f8481cb35d0b3bb",
+      "factsSha256": "54b792d1367fc0c19d0c3387bc0de438f5216245ba6fdde2b98ea1cab5dcc0aa",
+      "firstEventChapter": 1,
+      "lastEventChapter": 100,
+      "requiredMaterialStatus": "complete"
+    }
+  ],
+  "limitation": "Inspects existing adopted history only. Does not authorize the unapproved design59 or write chapter101; the provider used a local payload test double and no candidate was persisted."
+}

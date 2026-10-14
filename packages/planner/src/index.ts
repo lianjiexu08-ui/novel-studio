@@ -335,21 +335,26 @@ export class OpenAICompatibleChapterProvider implements ModelProvider {
   }
 
   private async writeChapter(client: PlanningClient, input: { work: Work; chapterNumber: number; context: ContextManifest }): Promise<GeneratedChapter> {
-    const recentChapters = input.context.adoptedVersionIds
+    const recentChapters = [...new Set(input.context.adoptedVersionIds)]
       .map((versionId) => input.work.versions.get(versionId))
-      .filter((version): version is NonNullable<typeof version> => Boolean(version))
+      .filter((version): version is NonNullable<typeof version> => Boolean(version && version.workId === input.work.id
+        && version.status === 'adopted' && !version.stale && version.chapterNumber < input.chapterNumber))
+      .sort((a, b) => a.chapterNumber - b.chapterNumber || a.revision - b.revision)
       .slice(-8)
       .map((version) => ({ chapterNumber: version.chapterNumber, content: version.content }));
     const plan = input.work.storyBible ? chapterPlan(input.work.storyBible, input.chapterNumber) : undefined;
-    const adoptedKnowledge = input.context.includedEventIds.map((eventId) => input.work.events.get(eventId))
-      .filter((event) => event?.active && event.eventType === 'knowledge_belief' && event.chapterNumber < input.chapterNumber);
+    const adoptedFacts = [...new Set(input.context.includedEventIds)].map((eventId) => input.work.events.get(eventId))
+      .filter((event): event is NonNullable<typeof event> => Boolean(event && event.workId === input.work.id
+        && event.active && event.chapterNumber < input.chapterNumber))
+      .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id));
+    const adoptedKnowledge = adoptedFacts.filter(event => event.eventType === 'knowledge_belief');
     const { brief, ...context } = input.context;
     const draft = normalizeGeneratedEvents(parseGenerateChapterResponse(normalizeChapterEnvelope(await completeJsonWithRepair(client, {
-      system: (this.independentExtraction ? chapterDraftSystem : chapterSystem) + knowledgeBoundaryRule + (brief ? briefRule : ''),
+      system: (this.independentExtraction ? chapterDraftSystem : chapterSystem) + adoptedFactsRule + knowledgeBoundaryRule + (brief ? briefRule : ''),
       user: JSON.stringify({
         task: 'generate_chapter', chapterNumber: input.chapterNumber, title: input.work.title,
         covenant: input.work.covenant, worldPack: input.work.worldPack, storyBible: input.work.storyBible,
-        chapterBrief: brief, context, currentPlan: plan, recentChapters, adoptedKnowledge,
+        chapterBrief: brief, context, currentPlan: plan, recentChapters, adoptedFacts, adoptedKnowledge,
         eventSubjectCatalog: eventSubjectCatalog(input.work.storyBible, input.work.worldPack, input.chapterNumber),
       }, null, 2),
       // Leave room for the JSON envelope and event evidence. A 2,200-character
@@ -886,5 +891,7 @@ const extractionBriefRule = `输入的 chapterBrief 只用于判断章纲是否�
 const planSkeletonSystem = `你是长篇玄幻小说的全书规划器。只返回一个 JSON 对象，不要 Markdown，不要解释。字段：targetChapterCount、volumeCount、mainConflict、theme、protagonistArc、endingDirection、keyTurns、volumes、milestones、dependencies、openQuestions。targetChapterCount 和 volumeCount 必须等于输入值。volumes 每项含 id、order、title、startChapter、endChapter、goal、opposition、characterIds、climax、endState、carryOver；卷序从 1 连续，章节范围从第 1 章起连续不重叠，最后一卷结束于 targetChapterCount；characterIds 只能使用 storyBible.characters 中的 id。milestones 是高潮、转折与兑现节点，每项含 id、title、kind（climax/turn/payoff）、startChapter、endChapter、setup（铺垫清单）、cost、outcome；高潮写章节范围，不要为凑数精确到某一章注水，每卷至少一个 climax。dependencies 每项含 id、targetId（milestone id 或 chapter-N）、sourceId（另一个更早的节点，可选）或 fact（{eventType, subjectId, predicate?}，表示正文必须先发生的事实）、requiredness（must/optional）、description；关键依赖不能成环。worldPack 是力量、地理与资源规则来源：先核算人物起点、晋阶累计成本、已定义资源的取得时点/剂量/疗程/上限与自然时间，再安排高潮。条件性未来收入不得提前支付，境界门槛不得被残篇、善行、持有神器或资助默默豁免。各卷 cost、endState 与里程碑 setup 应明确成长前提和付出，不能只写“燃寿逆袭”而没有可支付余额。总纲、人物弧光、keyTurns、dependencies 与 endingDirection 要共同遵守这些边界。openQuestions 记录尚未解决的事项；会使既定晋阶、关键胜利或结局无法成立的问题须标 blocking，不能只因尚未影响开篇而隐去。若输入有 adoptedFacts 或 previousPlan，已经写成的正文和已发生事实不可改变，只能在其上规划后续；authorRequest 是作者的要求，优先遵守。`;
 const chapterOutlineSystem = `你是长篇玄幻小说的章纲规划器。只返回一个 JSON 对象 {"chapters":[...]}，不要 Markdown，不要解释。为输入 from 到 to 的每一章各写一条章纲，不多不少。每条含非空且各章唯一的 id（使用 chapter-N，N 为 chapterNumber）、chapterNumber、volumeId（plan.volumes 中覆盖该章的卷 id）、title、summary（本章发生的事件，不是标题复述）、characterGoals、conflict、choice（关键选择）、cost（代价或后果）、threads（推进的线索）、endState（本章结束时的局面）、characterIds（只能用 storyBible.characters 的 id）、location、storyTime、scenes（场景序列）。与 previousOutlines 自然衔接，并为 followingOutlines 留出接口；按 plan.milestones 的范围安排铺垫与高潮，不得提前揭示后续节点，也不要原地踏步重复冲突。worldPack 是本轮规则来源，须逐次核对境界、功法和法宝门槛、消耗、冷却、晋阶前置与资源来源；持有不等于能够发动，治伤不等于返还已耗寿元，余额不足时必须改变行动。旧章纲或故事圣经与这些规则冲突时，不得照抄冲突或凭空补残篇特例；在代价和章末状态明确指出尚待解决的衔接，不能声称已经一致。已写成的正文（adoptedFacts）是既成事实，生成替换提案不会改写它；前置已发生事实与待重写的后续情节必须区分。authorRequest 是作者对本组的要求，优先遵守。`;
 const extractionSystem = `你是长篇玄幻小说的独立事实审计器。只返回一个 JSON 对象，不要 Markdown，不要解释，格式必须是 {"observedEvents":[]}。只阅读正文和已锁定的世界包、Story Bible，独立判断正文真正发生的状态变化；不要相信或补全任何未在正文明确出现的计划。输入可能包含 writerProposedEvents，它只是待核对的声明：逐条检查正文是否明确支持，支持的事件沿用同一 eventType、subjectId、predicate 和 value 原样返回，只把 evidence 改为正文证据；正文没有支持的声明不要返回，也不要新增同一变化的别名事件。eventType 只能使用 character_state、relationship_change、knowledge_belief、resource_change、artifact_change、plot_progress、volume_progress、arc_progress、secret_reveal、promise_payoff、thread_resolution。volume_progress 和 arc_progress 的 value.status 只能是 active、resolved、diverged；每个事件必须包含 eventType、subjectId、predicate、value 和 evidence；没有明确变化就返回空数组。evidence 必须是正文中的短语或准确概述，subjectId 必须使用输入设计中的稳定 ID。`;
+
+const adoptedFactsRule = `\nadoptedFacts 是本章之前已采用且仍有效的事实事件，含章节、正文版本和 evidence。context.includedEventIds 仅是这些材料的清单，不能代替事件内容。按事件类型、对象、字段和章节理解实际状态：既有境界、伤势、资源余量、法宝归属、关系变化、已兑现承诺及已收束线索不因离开最近章节窗口而重置。区分余额、增减和一次动作，不能把一次消耗当作余额，也不能把有限事件摘录当作完整累计账；缺少必要来源时不要推造收入或恢复。worldPack、storyBible 和 currentPlan 是规则或未来安排，不证明某物已到手、某治疗已完成或某人物已知情。与已采纳事实冲突的计划不能直接覆盖历史；旧章已完成的兑现不得重复领取，认知仍须按具体人物及来源限制。`;
 
 const knowledgeBoundaryRule = `\ncurrentPlan.knowledgeBoundaries 是本章认知计划，不是已发生事实；adoptedKnowledge 是此前章节已采纳的认知事件，按人物与命题使用最新有效状态。同一命题若与计划冲突，应保持已采纳认知并明确暴露计划偏差，不能覆盖历史。真相、秘密所有者、未来阶段或别人的见闻不等于本人物已知；猜测不能写成确认。本章认知改变必须先有获得线索、证词或验证的场景，才能生成 knowledge_belief；秘密相关事件 predicate 使用秘密 ID，value 含 subjectId（秘密 ID）、belief、certainty。secret_reveal 不表示所有角色自动知情。`;

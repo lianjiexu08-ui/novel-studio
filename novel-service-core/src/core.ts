@@ -188,6 +188,7 @@ export interface ContextManifest {
 }
 
 export interface ContextPolicy {
+  /** Target size for recent events; latest facts are mandatory even above it. */
   maxEvents?: number;
   maxVersions?: number;
   contextBudget?: number;
@@ -1274,13 +1275,18 @@ export function contextManifestFor(work: Work, chapterNumber: number, policy: Co
   const maxEvents = policy.maxEvents ?? 240;
   const maxVersions = policy.maxVersions ?? 40;
   const contextBudget = policy.contextBudget ?? 120_000;
-  const allVersions = work.adoptedVersions().filter((version) => version.chapterNumber < chapterNumber);
+  const allVersions = work.adoptedVersions().filter((version) => version.workId === work.id && version.chapterNumber < chapterNumber);
   const versions = allVersions.slice(-maxVersions);
-  const allEvents = [...work.events.values()].filter((event) => event.active && event.chapterNumber < chapterNumber);
+  const allEvents = [...work.events.values()]
+    .filter((event) => event.workId === work.id && event.active && event.chapterNumber < chapterNumber)
+    .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id));
   const latestByState = new Map<string, StoryEvent>();
   for (const event of allEvents) {
-    if (event.eventType !== 'character_state' && event.eventType !== 'knowledge_belief') continue;
-    latestByState.set(`${event.eventType}|${event.subjectId}|${event.predicate}`, event);
+    // Resource ownership, spent promises and relationship changes remain
+    // binding long after their prose leaves the recent-chapter window. Keep
+    // every latest field, not only character states and beliefs. Sort first:
+    // database row / Map insertion order does not establish story chronology.
+    latestByState.set(JSON.stringify([event.eventType, event.subjectId, event.predicate]), event);
   }
   const selected = new Map<string, StoryEvent>();
   for (const event of [...latestByState.values()].sort((a, b) => a.chapterNumber - b.chapterNumber)) selected.set(event.id, event);
