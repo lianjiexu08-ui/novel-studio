@@ -1,0 +1,136 @@
+{
+  "status": "terminal_incomplete_not_accepted",
+  "finalizedAt": "2026-10-14T03:08:02.245Z",
+  "scope": {
+    "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+    "planId": "plan_6426de7a18354e24ac93a272c542a2a5",
+    "world": 23,
+    "bible": 52,
+    "plan": 52
+  },
+  "scheduleVersion": 5,
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "historyUnchanged": true,
+  "oldRunsUnchanged": 17,
+  "oldReportsUnchanged": 24,
+  "counts": {
+    "plans": 52,
+    "versions": 101,
+    "events": 383,
+    "manuscripts": 1,
+    "runs": 21,
+    "reports": 27
+  },
+  "activePlanRevision": 10,
+  "runs": [
+    {
+      "id": "design_run_298724ef-bec2-4b7f-80a0-571d8aabcb2a",
+      "area": "world",
+      "status": "completed",
+      "completed": 1,
+      "total": 1,
+      "reportId": "design_review_e8df5331-492c-4d95-94cd-2590ae5d2a93",
+      "reportStatus": "passed",
+      "failedStages": []
+    },
+    {
+      "id": "design_run_b50cd4e7-bd68-4d67-bfc0-ca50ee35a31f",
+      "area": "characters",
+      "status": "completed",
+      "completed": 21,
+      "total": 21,
+      "reportId": "design_review_3b74ec1c-f16d-46a8-8bb4-4512f41de330",
+      "reportStatus": "needs_revision",
+      "failedStages": []
+    },
+    {
+      "id": "design_run_6a938d11-e0b5-4a09-944a-257bdf77c5c1",
+      "area": "power",
+      "status": "completed",
+      "completed": 25,
+      "total": 25,
+      "reportId": "design_review_d0ffac1e-f202-47c5-ac21-b9e99c28e342",
+      "reportStatus": "needs_revision",
+      "failedStages": []
+    },
+    {
+      "id": "design_run_9e2a273d-b9d8-4ab1-8397-06d9d82fa254",
+      "area": "story",
+      "status": "failed",
+      "completed": 22,
+      "total": 55,
+      "failedStages": [
+        {
+          "id": "followup-cross-2-3/timeline",
+          "error": "模型输出修正一次后仍不符合格式：专门补读必须引用原问题所依据的每个原始来源：cross-2-3/timeline；缺少来源：story/chapterPlans/chapter-plan-26。请按sourceMap对应本次来源选择支持判断的片段，不需穷举其全部片段。",
+          "attempts": 1
+        }
+      ]
+    }
+  ],
+  "initialErrors": [
+    {
+      "area": "characters",
+      "message": "Transaction API error: Transaction not found. Transaction ID is invalid, refers to an old closed transaction Prisma doesn't have information about anymore, or was obtained before disconnecting."
+    },
+    {
+      "area": "power",
+      "message": "Transaction API error: Transaction already closed: A commit cannot be executed on an expired transaction. The timeout for this transaction was 5000 ms, however 5997 ms passed since the start of the transaction. Consider increasing the interactive transaction timeout or doing less work in the transaction."
+    },
+    {
+      "area": "story",
+      "message": "模型输出修正一次后仍不符合格式：评审片段编号不属于本次材料：timeline 证据 8：e270"
+    }
+  ],
+  "recoveryErrors": [
+    {
+      "message": "模型输出修正一次后仍不符合格式：checks.0.evidence: Array must contain at most 64 element(s)"
+    },
+    {
+      "message": "模型输出修正一次后仍不符合格式：专门补读必须引用原问题所依据的每个原始来源：cross-2-3/timeline；缺少来源：story/chapterPlans/chapter-plan-26。请按sourceMap对应本次来源选择支持判断的片段，不需穷举其全部片段。"
+    }
+  ],
+  "initialUsage": {
+    "calls": 61,
+    "failedCalls": 0,
+    "inputTokens": 5196739,
+    "outputTokens": 97843,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 61,
+        "failedCalls": 0,
+        "outputTokens": 97843,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 180
+    }
+  },
+  "recoveryUsage": {
+    "calls": 20,
+    "failedCalls": 0,
+    "inputTokens": 2463089,
+    "outputTokens": 25932,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 20,
+        "failedCalls": 0,
+        "outputTokens": 25932,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 70
+    }
+  },
+  "totalCalls": 81,
+  "reason": "Story evaluation has uncompleted stages and no final report. Preserve the failed run; the revised proposal will receive a fresh full-area schedule-7 review. No old result is relabelled or copied as a new acceptance."
+}
