@@ -1,0 +1,62 @@
+{
+  "status": "reviewed",
+  "candidateVersion": 4,
+  "candidateHash": "c686187c53c738655ea710335f980e7d5cbc6e3ff21a3c62e68259f089f607b5",
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "savedToWork": false,
+  "formalAcceptance": false,
+  "usage": {
+    "calls": 1,
+    "failedCalls": 0,
+    "inputTokens": 86581,
+    "outputTokens": 1468,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 1,
+        "failedCalls": 0,
+        "outputTokens": 1468,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 8
+    }
+  },
+  "cases": [
+    {
+      "name": "guard-duty-transition",
+      "status": "reviewed",
+      "sourceCount": 96,
+      "attempts": 1,
+      "summary": "三项所审的值守、返宗与信息链均为可执行的提案安排：古境双岗、慢车在途双岗和返宗单墨岗被明确区分，伤者顾峤未被作为补班容量，苏凌霜的返宗见闻也未越过实体递信提前成为林辰知情。",
+      "checks": [
+        {
+          "criterion": "timeline",
+          "verdict": "pass",
+          "explanation": "188日午正顾向乔交押、酉初邵接墨岗；杜、褚同期覆盖入口，至189日07时再由足休的乔、杜接回，入口与墨岗均有当面接班。212日完成本批退出销班后，213—216日的慢车安排将乔/邵的12小时近身看押与杜/褚的12小时护路分为两岗；216日19时抵外门后，杜接押至13时、乔至19时、褚至01时、邵至07时，明确是返宗后单墨岗的6小时轮制，不倒填为古境或在途班次。",
+          "revisionAdvice": "",
+          "evidenceCount": 3
+        },
+        {
+          "criterion": "costs",
+          "verdict": "pass",
+          "explanation": "顾在25章肩伤后先于午正交押并接受止血固定，明确不充夜间后备；后续仅获准每日最多2小时入口轻值，且看押轮班不依赖其复岗。乔、杜、褚、邵的12小时班后均有连续休息窗口；返宗后改为每班6小时、相邻班至少18小时休息。计划还限定各班两成元罡只供有限制动动作，反抗、伤情或休息受破坏时须停营重核或请求既有调援，不能把备用额度写成整班施术。",
+          "revisionAdvice": "",
+          "evidenceCount": 5
+        },
+        {
+          "criterion": "causality",
+          "verdict": "pass",
+          "explanation": "本批临时接待桌只在最后一人退出、登记书吏当面签收退出联后撤除；原三方常设入口管理和防卫明确未随之撤销。慢车护路结束于实际抵外门交清，墨仍以受伤但有反抗风险的玄府俘虏由具名玄府看押，普通绳索并未被写成永久封禁。苏亲见销班、行路和外门接押，但这些信息未即时传给远在赤霄的林；关系安排将林收到苏226日寄信、确认近况放在233日的第41章，保留实体递信因果。",
+          "revisionAdvice": "",
+          "evidenceCount": 3
+        }
+      ]
+    }
+  ],
+  "interpretationLimit": "The timeline explanation compresses the arrival-to-new-shift transition. The actual source explicitly retains Shao on the old night shift from day216 19:00 through day217 07:00; Du takes over only then, after twelve hours rest. Use original source and arithmetic, not this shortened explanation, for execution."
+}

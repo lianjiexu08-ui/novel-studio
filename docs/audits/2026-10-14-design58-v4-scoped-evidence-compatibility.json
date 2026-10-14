@@ -1,0 +1,136 @@
+{
+  "candidateVersion": 4,
+  "candidateHash": "c686187c53c738655ea710335f980e7d5cbc6e3ff21a3c62e68259f089f607b5",
+  "savedToWork": false,
+  "formalAcceptance": false,
+  "cases": [
+    {
+      "candidateVersionReviewed": 2,
+      "name": "npc-light-object-training-and-load",
+      "originalCandidateHash": "83e22b4335d94d74762ae32a9cb4d6e396195ada3c8a8eefa09fa968b658a73c",
+      "sourceCount": 104,
+      "originalSourcesHash": "e668f8f447d823144a9ac2f9b8c1e7a4dbbf21bd7cf7a027c50cef3306cf5954",
+      "sourceContentUnchanged": true,
+      "changedSourceIds": [],
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "costs",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "agency",
+          "verdict": "pass"
+        }
+      ],
+      "note": "Only byte-for-byte source scope compatibility; not a new model review or formal acceptance."
+    },
+    {
+      "candidateVersionReviewed": 2,
+      "name": "guard-duty-transition",
+      "originalCandidateHash": "83e22b4335d94d74762ae32a9cb4d6e396195ada3c8a8eefa09fa968b658a73c",
+      "sourceCount": 96,
+      "originalSourcesHash": "1ac1a6068a97d04110d2285574bdc192ee3c7e82a0d4e9be2ac2d47601ea3b50",
+      "sourceContentUnchanged": false,
+      "changedSourceIds": [
+        "story/relationships/rel_01",
+        "story/relationships/rel_09",
+        "story/chapterPlans/chapter-plan-29",
+        "story/chapterPlans/bible-chapter-33",
+        "plan/chapters/29",
+        "plan/chapters/33"
+      ],
+      "checks": [
+        {
+          "criterion": "timeline",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "costs",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        }
+      ],
+      "note": "Only byte-for-byte source scope compatibility; not a new model review or formal acceptance."
+    },
+    {
+      "candidateVersionReviewed": 3,
+      "name": "macro-combat-and-allocation-alignment",
+      "originalCandidateHash": "847ca4aea6af9369c06ec20581a52ad29e420ef363e6f9e1cd9d8805cbc6fd9f",
+      "sourceCount": 136,
+      "originalSourcesHash": "52af242045318f6654600693dfbbd777f148ba9c64f39526a618b9e0ea3e5d7f",
+      "sourceContentUnchanged": true,
+      "changedSourceIds": [],
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "costs",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "agency",
+          "verdict": "pass"
+        }
+      ],
+      "note": "Only byte-for-byte source scope compatibility; not a new model review or formal acceptance."
+    },
+    {
+      "candidateVersionReviewed": 3,
+      "name": "guard-duty-transition",
+      "originalCandidateHash": "847ca4aea6af9369c06ec20581a52ad29e420ef363e6f9e1cd9d8805cbc6fd9f",
+      "sourceCount": 96,
+      "originalSourcesHash": "7326e1897b4ad5c2e859b3d766e7117a35b60f6783d647c804008cf0a92686a0",
+      "sourceContentUnchanged": false,
+      "changedSourceIds": [
+        "story/chapterPlans/chapter-plan-29",
+        "story/chapterPlans/bible-chapter-33",
+        "plan/chapters/29",
+        "plan/chapters/33"
+      ],
+      "checks": [
+        {
+          "criterion": "timeline",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "costs",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "causality",
+          "verdict": "revise"
+        }
+      ],
+      "note": "Only byte-for-byte source scope compatibility; not a new model review or formal acceptance."
+    },
+    {
+      "candidateVersionReviewed": 3,
+      "name": "existing-protagonist-training-prerequisites",
+      "originalCandidateHash": "847ca4aea6af9369c06ec20581a52ad29e420ef363e6f9e1cd9d8805cbc6fd9f",
+      "sourceCount": 97,
+      "originalSourcesHash": "601cedf92449a3b5e19e20267b8080be2acbe00d071d87b516dbfd03a3fb4235",
+      "sourceContentUnchanged": true,
+      "changedSourceIds": [],
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "costs",
+          "verdict": "pass"
+        }
+      ],
+      "note": "Only byte-for-byte source scope compatibility; not a new model review or formal acceptance."
+    }
+  ]
+}
