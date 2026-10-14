@@ -1,5 +1,5 @@
 {
-  "observedAt": "2026-10-14T20:18:15.411Z",
+  "observedAt": "2026-10-14T20:21:41.902Z",
   "status": "in_progress_not_acceptance",
   "checkpointStatus": "running",
   "scope": {
@@ -18,17 +18,17 @@
   "oldRunsUnchanged": 45,
   "oldReportsUnchanged": 51,
   "usageAtLastCheckpoint": {
-    "calls": 154,
+    "calls": 158,
     "failedCalls": 0,
-    "inputTokens": 15153100,
-    "outputTokens": 196149,
+    "inputTokens": 15312225,
+    "outputTokens": 200352,
     "costUsd": 0,
     "costKnown": false,
     "byRole": {
       "reviewing": {
-        "calls": 154,
+        "calls": 158,
         "failedCalls": 0,
-        "outputTokens": 196149,
+        "outputTokens": 200352,
         "costUsd": 0
       }
     },
@@ -52,16 +52,26 @@
       "area": "power",
       "runId": "design_run_41a4860f-0bac-4935-9e7a-d9c81ed6e8d7",
       "status": "running",
-      "completed": 67,
+      "completed": 70,
       "total": 85,
       "failures": 0
     },
     {
       "area": "characters",
       "runId": "design_run_d45b7c1a-692d-4df9-a8f8-6414ad1492b1",
-      "status": "ready",
-      "completed": 23,
+      "status": "completed",
+      "completed": 25,
       "total": 25,
+      "reportId": "design_review_2ccab3c6-0b0a-4b8c-a6ec-ae13f50d3234",
+      "reportStatus": "passed",
+      "failures": 0
+    },
+    {
+      "area": "story",
+      "runId": "design_run_99fac0d7-bc54-4018-a57c-5af5d57b971b",
+      "status": "running",
+      "completed": 0,
+      "total": 29,
       "failures": 0
     }
   ],
