@@ -1,5 +1,5 @@
 {
-  "observedAt": "2026-10-14T12:43:43.257Z",
+  "observedAt": "2026-10-14T12:53:49.916Z",
   "status": "in_progress_not_acceptance",
   "originalRunnerStatus": "running",
   "runtimeCommit": "21f69efcffa5aaef565960b208dfc6ac3c718e25",
@@ -24,17 +24,17 @@
     "manuscripts": 1
   },
   "usage": {
-    "calls": 18,
+    "calls": 31,
     "failedCalls": 2,
-    "inputTokens": 1767071,
-    "outputTokens": 39596,
+    "inputTokens": 3349766,
+    "outputTokens": 64942,
     "costUsd": 0,
     "costKnown": false,
     "byRole": {
       "reviewing": {
-        "calls": 18,
+        "calls": 31,
         "failedCalls": 2,
-        "outputTokens": 39596,
+        "outputTokens": 64942,
         "costUsd": 0
       }
     },
@@ -45,7 +45,7 @@
   },
   "usageScope": "original_runner_only",
   "recoveries": [],
-  "combinedCalls": 18,
+  "combinedCalls": 31,
   "errors": [
     {
       "area": "power",
@@ -1043,8 +1043,8 @@
     {
       "id": "design_run_1ecb47bb-36fd-4e06-9864-0f53d5f1e609",
       "area": "characters",
-      "status": "running",
-      "completed": 1,
+      "status": "ready",
+      "completed": 8,
       "total": 19,
       "stages": [
         {
@@ -1077,6 +1077,300 @@
               "evidenceCount": 9
             }
           ]
+        },
+        {
+          "id": "batch-2",
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass",
+              "explanation": "已读细纲中，林辰多次在生计、追查与救援间作不可兼得的选择：开篇救人导致受伤并失去追凶机会；面对梁九的生计压力不强迫其改供词；修缮劳务中拒绝以删逃生支岔换报酬。梁九、苏凌霜与韩叙也各自以配粮、复核权、改账责任作出会损及自身利益的选择，且后果进入后续行动，未见本批内部抵销代价或替人物越权决定的矛盾。",
+              "revisionAdvice": "",
+              "evidenceCount": 4
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "insufficient",
+              "explanation": "前20章已能核到两条具因果的关系变化：林、梁由救命合作转为因家属配粮和和解书失信、再维持有限搭档；林、苏由受限查案合作转为明确材料担保边界。两者都有选择、付出和生效节点。但本批未提供关系主档，且第21—50章细纲与后两卷关系里程碑未读，无法核验后续“有限合作”、分离、救援及去留选择是否与这些前置一致，亦无法逐项确认主要关系的完整阶段安排。",
+              "revisionAdvice": "补读关系主档、21—50章细纲及后两卷相关里程碑，逐项核对关系初态、触发选择、代价、知情边界与生效时间；尤其核实吴卢、陆氏兄弟、林苏分离及北境合作没有被终局标签提前覆盖。",
+              "awaitingSources": [
+                "story/relationships/rel_01",
+                "story/relationships/rel_02",
+                "story/relationships/rel_03",
+                "story/relationships/rel_04",
+                "story/relationships/rel_05",
+                "story/relationships/rel_06",
+                "story/relationships/rel_07",
+                "story/relationships/rel_08",
+                "story/relationships/rel_09",
+                "story/relationships/rel_10",
+                "story/relationships/rel_11",
+                "story/relationships/rel_12",
+                "story/relationships/rel_13",
+                "story/relationships/rel_14",
+                "story/relationships/rel_15",
+                "story/relationships/rel_16",
+                "story/relationships/rel_17",
+                "story/relationships/rel_18",
+                "story/relationships/rel_19",
+                "story/relationships/rel_20",
+                "story/relationships/rel_21",
+                "story/relationships/rel_22",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50",
+                "plan/milestones/ms_bridge_return",
+                "plan/milestones/ms_v2_loss",
+                "plan/milestones/ms_v2_barge",
+                "plan/milestones/ms_v2_fire",
+                "plan/milestones/ms_v2_voyage",
+                "plan/milestones/ms_v2_boundary",
+                "plan/milestones/ms_v3_return",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement",
+                "plan/milestones/ms_v3_convoy",
+                "plan/milestones/ms_v3_payoff"
+              ],
+              "evidenceCount": 4
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "insufficient",
+              "explanation": "已读秘密阶段表对可见部分设有明确传播与禁止推论：苏的证据随章次递增但始终不得推知九鼎全阵；赵须待实体报告抵达才获得港口信息；林对界门外风险仅在第65章听取夜的有限证言后相信；第六箱也按搬运、册页、实物和对质分段确认。这些安排本身未见已读范围内的越知冲突。但核心秘密sec_01完全未提供，sec_02仅提供后半切片，无法核验林辰等人在前段持有的关键秘密、知情起点及其与已读阶段表是否一致。",
+              "revisionAdvice": "补读sec_01及sec_02前半，核对林辰、苏凌霜、梁九等人的秘密来源、首次知情和禁止推论；再与第21—50章实际取证、消息送达和后两卷宏观揭示节点逐项对照。",
+              "awaitingSources": [
+                "story/secrets/sec_01",
+                "story/secrets/sec_02",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50",
+                "plan/milestones/ms_v2_loss",
+                "plan/milestones/ms_v2_barge",
+                "plan/milestones/ms_v2_fire",
+                "plan/milestones/ms_v2_voyage",
+                "plan/milestones/ms_v2_boundary",
+                "plan/milestones/ms_v3_return",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement",
+                "plan/milestones/ms_v3_convoy",
+                "plan/milestones/ms_v3_payoff"
+              ],
+              "evidenceCount": 5
+            }
+          ]
+        },
+        {
+          "id": "batch-3",
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass",
+              "explanation": "林辰、苏凌霜、秦禾、顾峤、贺青梧、唐顺与陆氏兄弟均有不能彼此替代的目标和选择，并承担可见后果。秦禾拒绝冲哨且只承诺有限带路；林在药额分配、与苏分路、救火与追证之间持续放弃捷径；贺为五名雇工撤回船工资源并失去订单；唐与陆沉川分别在受控处境中自行承担脱身或供述选择。反派墨、程、陆沉舟也以护货、控人或保账为自身利益行动，未被写成只为主角推进情节。",
+              "revisionAdvice": "",
+              "evidenceCount": 7
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "pass",
+              "explanation": "本批关系变化均由明确冲突、选择和代价触发，而非直接套用终局标签。林苏先在救秦与取样箱的优先级上争执，后在第29章因“谁承担留守、护证与交接”分路，只共享可核副本而保留家传笔记；林与贺从共同查货转为优先救五工，贺撤缆拒绝押船，林接受其潮路判断与人员优先；林对常、陆沉川也分别放弃以救命或拒签行为索取额外合作、口供。唐、吴、卢的脱控诉求仍被保留为各自选择，未因他人救援自动结案。",
+              "revisionAdvice": "",
+              "evidenceCount": 6
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "pass",
+              "explanation": "已读章纲对信息来源和人物知情作出持续限制：林苏在亲见与秦禾辨认后才核定墨的身份；林苏必须等待顾实际到场手势而非按预期时间行动；林对六号箱、火因、携页者和陆氏兄弟关系均只在亲见、册页、当面对质或实体递信后逐步获知。独立视角中的侧门领箱、唐顺失败脱身、苏返宗交接及陆沉舟收到问讯条，都明确不自动传给林；第43—44章也将林对陆的拦船行为限定为亲耳听令、亲见钩索后所得，未提前取得原账或其内容。",
+              "revisionAdvice": "",
+              "evidenceCount": 9
+            }
+          ]
+        },
+        {
+          "id": "batch-4",
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass",
+              "explanation": "本批人物并非只承担剧情功能：林辰在追案与安置之间选择先救人与尊重吴卢自主回答，代价是放弃追击、现金耗尽并受伤限制；贺青梧拒绝以改口供换替船，承担失单、停牌和船损；唐、许、吴、卢分别就等待、工作、回船与留岸作出不同选择；陆沉舟停止带弟逃离并承认押送，沉川交条、留港并提供路线。各选择均改变后续调查、救援或生计安排，且有明确的船款、工食、自由、口供和责任代价。宏观后段也继续规定林接受伙伴自主选择、苏保护证人、梁九保留家庭生计等独立行动，而非把配角简化为主角附属。",
+              "revisionAdvice": "",
+              "evidenceCount": 10
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "pass",
+              "explanation": "本批关系变化有明确初始状态、触发选择、付出与生效时点：林与贺在45章因救助和生计形成有限合作，46章明确不以住处或船票换承诺，47章共同承担拒绝程的即时损失；唐与许从共同等待转为各自选择工作和去留；吴先替卢答应、经冲突后撤回代答，关系规则在48章形成；陆与沉川从带弟逃离转为弟弟独立留港、陆接受看护并交出路线；50章吴卢亲自回答后实际脱控，贺接受他们不立即回船。内部视角信息未提前传给林贺等外线人物，50章才通过现场问答生效，避免用终局关系倒推前置认知。",
+              "revisionAdvice": "",
+              "evidenceCount": 10
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "pass",
+              "explanation": "秘密、误解和认知边界在本批有明确限制：林贺在48章只知道公共卸货口，吴卢门内谈话仅向读者开放；陆在49章只承认收钱签条并隐瞒条内内容；50章现场确认的仅是本次点交押送，完整改签和原账仍待核。林没有因残联、同号或程的说法直接确认军需真伪、第二片位置或首仓火因。宏观后续继续要求陆自述只是签认副本、证词须独立物证核验，苏仅在315日与林当面交换北境材料，赵、程、夜等信息按实际送达或会面时点获得，没有把未发生的事件当作既知事实。",
+              "revisionAdvice": "",
+              "evidenceCount": 10
+            }
+          ]
+        },
+        {
+          "id": "cross-1-2",
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass",
+              "explanation": "本批可检验的主要人物均有不从属于主角的目标、可执行的拒绝或选择及代价：林辰在救人、追查、生计与寿储间取舍；苏坚持程序与证据边界；梁九为家人生计保留和解；贺、陆及工人也在救援、责任、生计和自主去留之间作出不同选择。前20章细纲已把林、苏、梁的选择及即时损失落到具体行动，后段宏观安排亦未把救命恩情写成免责或服从债。",
+              "revisionAdvice": "",
+              "evidenceCount": 9
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "pass",
+              "explanation": "关系不是以终局标签替代过程：林苏从受限庇护，经保留不利证词、资源取舍、共同实测和分路传信逐段变化，每段均列出触发选择及代价；林与贺、陆及雇工的后段关系也明确以实际脱控、独立陈述、有限照护或签认作为生效条件，并保留责任追究和自主去留。已读前20章细纲与林苏、林梁的早期阶段一致，未见同一时点已知信息或关系状态互相否定。",
+              "revisionAdvice": "",
+              "evidenceCount": 12
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "pass",
+              "explanation": "此前问题所要求的sec_02全段及sec_03、sec_04现均已提供。秘密分期把林苏的证据升级限定为实物、当面交接、实际送达的文书或在场核验，明确禁止以读者视角、残片感应或未来锚点倒填；赵的港口、北境、撤押令与正式质询认知也逐次绑定实体报令。界门外风险与第六箱线索分别限定夜凝霜、林辰等人的证言范围，且与关系条目中“异地消息须送达”“供述仍待独立核验”的安排相容。故原先因未读秘密材料造成的局部不足已被解决；这只确认提案内部的认知设计可行。",
+              "revisionAdvice": "",
+              "resolves": [
+                "batch-1/knowledge"
+              ],
+              "evidenceCount": 12
+            }
+          ]
+        },
+        {
+          "id": "cross-1-3",
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass",
+              "explanation": "林辰在救秦禾与取样箱、救人与追证、避免转嫁责任等节点均有可替代选择且承担窗口、伤势、酬金或线索损失；苏、秦、贺、唐、陆等主要配角亦以自身职责或生计作出不服从主角需求的决定。墨的集结转运决定同时给出了人手与风险代价，未被写成只为主角让路。",
+              "revisionAdvice": "",
+              "evidenceCount": 6
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "pass",
+              "explanation": "已读关系阶段没有把终局互信倒填为既成事实：林苏由救援分工、分路与实体来信维持有限互信；林贺的合作连续经过救人、船损、拒绝认赔和优先寻找雇工的选择；林与陆沉舟则在救弟、拦船、受看护指路之间保留责任与不信任。第51章后的阶段均明确标作拟定，并把住食、工时、供述签认等列为生效条件，未与第50章前的状态直接冲突。",
+              "revisionAdvice": "",
+              "evidenceCount": 6
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "pass",
+              "explanation": "本批将读者独立视角、角色亲见与实体传信分开处理：秦送图、顾到场、苏来信、侧门私运和唐等人被扣均须经实际看见或送达才进入相关角色认知。林对货号、火灾、陆氏兄弟和赵方责任始终保留证据边界；赵的港口知情也被安排在程报实际送达之后，未出现跨地即时知情。",
+              "revisionAdvice": "",
+              "evidenceCount": 7
+            }
+          ]
+        },
+        {
+          "id": "cross-1-4",
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass",
+              "explanation": "主角林辰的求生、追查与成长目标持续受寿储、伤势、境界和资源约束，并在关键处作出有代价的选择：第12章接受梁九参与救援并承担工具报废、成绩作废与证词受审；第26章放弃全部泉液、让急救者优先；第44章救落水者而放弃追陆；第50章放下剑柄，让吴卢亲自回答而不替他们决定去向；第64章放弃追第二片救矿工；第79章延期突破；第95章救伤者而放过程。主要配角也有独立利益与失败后果：苏承担停俸、留宗护证和不利记录责任，贺承担船损、失单与垫款，陆、吴、卢、唐、梁九等均有不愿承担的代价和会改变主线的自主决定。赵、墨、夜等对主线的行动也受权限、实体消息和境界限制，而非读者视角或万能能力推动。",
+              "revisionAdvice": "通过当前局部检查。继续展开51–100章时，应逐章兑现宏观提案中各人的选择、实际资源和失败后果，不能把本批宏观锚点直接当作已发生事件。",
+              "evidenceCount": 16
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "pass",
+              "explanation": "关系设计大多按初始状态—触发选择—付出代价—生效时点推进，避免用终局关系替代过程。林苏从受限庇护、有限同盟到分路、重聚和有限搭档，变化由证词、资源分配、救援分工和各自留宗/追查选择触发；林与赵、墨的关系保留消息延迟和证据边界；林与贺、陆、吴卢等关系均明确救命不换服从、供述不换免罪、安置不等于重新雇佣。第50章尤其把关系变化落在现场可见行动：林不施术并让工人自答，陆停止协助扣人并承认本次押送，吴卢自行脱控且拒绝立即回船。51–100的宏观关系也延续同一原则，如苏不交证人换外派、林放弃追凶先救人、夜守撤离路而不追片，未把尚未发生的救援或重聚倒填为既成事实。",
+              "revisionAdvice": "通过当前局部检查。后续应保持各关系的实际送达、见证和选择时点，尤其落实51–53章生计分流与供述、61–66章夜与林的有限合作、72章后的苏林重聚，不得提前共享异地消息或把关系成本一次性抹平。",
+              "evidenceCount": 17
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "pass",
+              "explanation": "秘密、误解和揭示顺序有明确限制。林、苏在前50章只能从亲见、实物、签收和实体消息逐步获得线索；林在50章只知道现场扣押、陆承认本次押送，不知道程的位置、第二片或改签全貌；53章拟取得的是陆新写自述副本而非原条，仍需独立核验。赵的报令链按寄出、阅览、签令、送达和回执拆分，不能因程或读者知道某事就让林苏同步知情；第一报、北境面报、押报和撤令均有独立节点。父案则区分66章巡档副本、72章当面交接和85章原存根互证，只证明父亲参与守门与外山掩案，不提前证明投毒全貌。文本还明确禁止残片共鸣、神念全知和读者独立视角替代角色证据。",
+              "revisionAdvice": "通过当前局部检查。51–100仍需按已规划的送达、阅览和当面交接节点逐章实现；宏观锚点不能倒填为已采纳事实，也不能让角色获得未实际收到的报告、原令或异地证据。",
+              "evidenceCount": 24
+            }
+          ]
+        },
+        {
+          "id": "cross-2-3",
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass",
+              "explanation": "已读安排中，林辰的目标始终受伤势、权限、寿储和资源限制；其关键推进不是靠身份或能力跳关，而是反复在救人、取证、生计与追查之间作出会失去机会、收入、物证或行动自由的选择。梁九、苏、秦禾、贺青梧、唐顺、陆氏兄弟及墨幽屠也各有不从属于主角意愿的利益边界，并实际改变行动走向。",
+              "revisionAdvice": "",
+              "evidenceCount": 8
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "pass",
+              "explanation": "本批可检验的关系并未以终局标签替代过程：林与梁九从互救、因配粮和和解书失信，再形成限定作证合作；林与苏从受限调查责任发展到明确担保边界、分路承担；林与秦、贺、唐及陆氏兄弟的合作也均由具体救援、补偿、拒绝、供述或自决触发，并保留拒绝合作、停班、失单、受困或不再私下协助等代价。关系变化均为提案中的待实现节点，而非被当作既成正文事实。",
+              "revisionAdvice": "",
+              "evidenceCount": 8
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "pass",
+              "explanation": "已读章纲和秘密阶段对认知来源保持了实体证据、在场见闻与传播时序限制：林苏从公开账目、实物、口供和核验逐步缩小判断，不由残片、境界或信任直接补全九鼎和父案；赵对港口局势的知情受报告、送达和阅览节点限制；独立视角中的墨令、唐等人的见闻以及苏返宗信息均明确不得自动进入林的认知。第44章仍将点货夹、原账及吴卢去向保留为未获知或未核验事项，未提前兑现后续信息。",
+              "revisionAdvice": "",
+              "evidenceCount": 9
+            }
+          ]
         }
       ]
     },
@@ -1084,7 +1378,7 @@
       "id": "design_run_bec4e8bb-fe9f-4b34-8af5-5e27d9520794",
       "area": "story",
       "status": "running",
-      "completed": 1,
+      "completed": 7,
       "total": 29,
       "stages": [
         {
@@ -1131,6 +1425,449 @@
               "explanation": "就本批可检验的设计而言，玄幻要素不是纯术语装饰：寿储、真元、元罡、疗程和境界成本直接限制人物选择；大陆、界门和航路规则改变了行动路线；法宝与功法均有资格、对象、范围、供能、冷却和失败后果。宏观结局又明确不以逆命真解、越阶斩高境或免费返寿解决问题，符合有限能力、以代价换取阶段性胜果的类型方向。该通过仅限规则与宏观提案，不代表实际章节已完成呈现。",
               "revisionAdvice": "",
               "evidenceCount": 8
+            }
+          ]
+        },
+        {
+          "id": "batch-2",
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "pass",
+              "explanation": "本批可见的宏观因果没有自相矛盾：第一卷把获救、验药疗程和南行分开兑现；第二卷的救援不消除船损、停牌、供述责任或工人的自主去留；后段将北境救人、返乡修习、晋阶和截运以明确依赖串接。51–53章的安置、自述和航款均被标为拟落实或须实际支付，未被当作既成资源重复消费。",
+              "revisionAdvice": "",
+              "evidenceCount": 5
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "insufficient",
+              "explanation": "已读材料在宏观上可对齐：第32章第216日到赤霄、第67章起301–314日返程并于315日结算、第83章415日晋阶、第100章466日回访；跨海规则也明确实体航程。但第54–66章北航、北港行动及第67–72章返程的实际航款、放行、逐段日期和行动余量尚未提供本批原始计划里程碑，不能仅凭关系阶段和卷末日期确认执行账闭合。",
+              "revisionAdvice": "补读并核对北航、黑舱处置、返青玄三段的实际出发/到港日、封航或入港条件、14000专项款与3000回程款的支付和留存；若与既有日期锚点不同，应在计划中统一。",
+              "awaitingSources": [
+                "plan/milestones/ms_v2_voyage",
+                "plan/milestones/ms_v2_boundary",
+                "plan/milestones/ms_v3_return"
+              ],
+              "evidenceCount": 5
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "pass",
+              "explanation": "承诺没有被宏观提案提前结清：古境救命资源以解囚、交押、完整疗程和复诊为条件；第六箱只在实物与记录交叉核对后收束；百章救援明确分列赤霄五工、北境七人和青玄八人，且要求回访本地安置，不把异地状态冒充核实。九鼎全貌与返还既耗寿元分别保留为后续承诺和被否定的角色愿望。",
+              "revisionAdvice": "",
+              "evidenceCount": 5
+            },
+            {
+              "criterion": "opening",
+              "verdict": "pass",
+              "explanation": "就本批可见的前50章安排，冲突具有递进而非直接终局：矿务伤害与有限复核推进到古境解囚和付代价取泉；到港后又转为失箱核证、雇工自救、潮沟救援及由当事人自主脱控。关键转折均保留损失、伤情、停牌或未得原账等后果，未以一次胜利清空矛盾。",
+              "revisionAdvice": "",
+              "evidenceCount": 5
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "insufficient",
+              "explanation": "宏观节点显示前50章已压缩为矿务复核、修习入境、古境救援、港口核证、追船救援和门口脱控等不同目标；但本批未提供任何plan/chapters/1–50原文，无法实际比较相邻章的场次、核账/问询是否重复、转场是否有足够承接或喘息，因此不能作场景层面的节奏结论。",
+              "revisionAdvice": "补读前50章计划章纲，逐段核验调查、问询、救援和休整是否各自带来新的选择、信息或代价；不要求将51–100章补成逐章细纲。",
+              "awaitingSources": [
+                "plan/chapters/1",
+                "plan/chapters/2",
+                "plan/chapters/3",
+                "plan/chapters/4",
+                "plan/chapters/5",
+                "plan/chapters/6",
+                "plan/chapters/7",
+                "plan/chapters/8",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/13",
+                "plan/chapters/14",
+                "plan/chapters/15",
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ],
+              "evidenceCount": 5
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass",
+              "explanation": "玄幻要素在本批中实际约束选择：寿储不可逆、晋阶与术法另行支付，低境不能以境界名跳过训练；古境、赤霄港与北境外港均有准入、航程及防护边界。主角的成长止于付十元载的玄府初期，战胜同阶、救人和获取线索均借助分工并留下伤损或未解主线，未沦为术语装饰或免费越阶。",
+              "revisionAdvice": "",
+              "evidenceCount": 6
+            }
+          ]
+        },
+        {
+          "id": "batch-3",
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "pass",
+              "explanation": "矿难取证、伤后生计、受控训练、凝元准入、古境救援与药物复诊构成连续链条。关键能力均给出训练/权限、对象范围、支付和失败后果；古境救援没有把普通机关或凝元术写成越阶制伏。",
+              "revisionAdvice": "",
+              "evidenceCount": 9
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "pass",
+              "explanation": "第1—180日的伤愈、训练、凝元与入境前置按日期展开；188日求援链明确为05:00撤哨、06:00交图、07:00交岗出发、08:15抵营外、08:45到位，随后战斗、撤离和交押均留出实体时间。190—199日药程完成后才入账，未预支寿储。",
+              "revisionAdvice": "",
+              "evidenceCount": 7
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "pass",
+              "explanation": "开篇的矿道灭口、残缺账目和父亲线索没有被过早定案：第10—12章形成有限责任对象，第18章只确认父亲守门，第25—27章才取得残片接口与赤霄收货号，且仍明确不能还原旧案。灵泉则经追回、验毒、配额、十日疗程和复诊逐步兑现，未将救援功劳直接兑换为寿储。",
+              "revisionAdvice": "",
+              "evidenceCount": 7
+            },
+            {
+              "criterion": "opening",
+              "verdict": "pass",
+              "explanation": "本批开篇以矿道缺氧、毒烟和灭口建立即时生存冲突；林辰先救人而失去追凶机会。其后由证人、证物、权限和生计压力递进到古境救援，转折均要求人物在保人、取证、资源或安全之间作选择，而非直接升级解决。",
+              "revisionAdvice": "",
+              "evidenceCount": 6
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "pass",
+              "explanation": "第1—27章在逃生、核查、劳务恢复、训练、资格复核、侦察求援、救援战斗与药程静养之间切换。核账和问询持续改变权限、关系、物资或下一步行动，并非重复停留在同一调查状态；较慢的训练和疗程同时承担寿储、合作边界与选择代价。",
+              "revisionAdvice": "",
+              "evidenceCount": 7
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass",
+              "explanation": "玄幻要素实际限制并改变行动：寿储决定是否可突破，真元按可见目标与消耗施放，玄府术法须经训练、蓄势及伤情核算；古境准入、泉液污染与配额又将修炼资源转化为权限和道德选择。胜利由地形、协作与支付取得，未以境界名称补出万能能力。",
+              "revisionAdvice": "",
+              "evidenceCount": 8
+            }
+          ]
+        },
+        {
+          "id": "batch-4",
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "pass",
+              "explanation": "第28章完成第二剂疗程并确认新增寿储，第29—32章由复诊、有限劳务和实体航程自然导向南渡；第33章的失箱责任继续引出34—39章的证人、册页、火场与实物核验；40—50章则由港务受理、船位实测、报警、截驳和巡查带出吴卢脱控。能力和行动均有直接前置：轻物御动、剑诀、钩索与护航分别受对象、距离、训练、伤情和支付限制，没有用境界名称替代规则。",
+              "revisionAdvice": "",
+              "evidenceCount": 10
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "pass",
+              "explanation": "第200—254日的药程、静养、返程、两昼夜海程、港口调查、伤势复诊和船坞修期连续可排。第214日日暮出航至216日日暮抵港符合实体航程；第43—44章从244日戌初同一瞬接续，未重复报警、登船或提前施术。苏一侧的返宗与第41章来信也明确晚于第33章交接，未造成同日知情冲突。",
+              "revisionAdvice": "",
+              "evidenceCount": 12
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "pass",
+              "explanation": "本批对前置线索和承诺有条件兑现：货签与收货线导向程记，失箱通过侧门册、常的指位、陆沉川便条和实物核验逐步闭合；仓火只确认起火方向、救出陆沉川并保留灯架、焦绳和携页者等待查边界，没有过早宣布火因或主使。第50章兑现吴卢脱控，但保留改签全貌、原账和程去向等后续问题，属于已定义的阶段性结果而非重复消费。救人、拒绝伪证、拒绝转嫁责任和尊重工人去留均支付了船损、失单、现金耗尽、证物缺失或关系疏离等代价。",
+              "revisionAdvice": "",
+              "evidenceCount": 11
+            },
+            {
+              "criterion": "opening",
+              "verdict": "pass",
+              "explanation": "本批并未把第50章救援写成终局：第28章的共享证物选择先转为港口调查，第33—39章由货物责任转入扣工与火场证据，第40—44章由制度受理转成有限合作和有退路的截驳，第45—50章再把胜利拆成船损、失散、去留自主与实际脱控。每段选择都改变了下一步资源和关系，且没有把未确认的火因、原账或第二残片提前结论化。",
+              "revisionAdvice": "",
+              "evidenceCount": 10
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "pass",
+              "explanation": "34—39章虽围绕同一失箱案连续核验，但每章均产生新状态：常停班并给出范围、册页补齐、救援失败转为火场选择、陆身份与便条核实、实物去向闭合以及林拒绝把缺额转嫁给常。40—50章则持续改变行动权限和代价：撤缆、受理、实测退路、报警截驳、船损安置、失单、内线自主选择和最终脱控，未出现无后果的重复问询或重复救援。",
+              "revisionAdvice": "",
+              "evidenceCount": 14
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass",
+              "explanation": "玄幻要素实际改变了选择和风险，而非仅作术语：凝元轻物御动只能处理可见轻物，剑诀需训练、距离与真元，避火符只护人不护货，实体航路不能被界门或定位阵替代；伤势、真元和寿储因此直接决定林辰救人、追证、登船和撤退。第36、43—44章还明确展示了受训术式如何被普通门体、船桩、索具和站位限制，保留了有限能力下的奇异感与代价。",
+              "revisionAdvice": "",
+              "evidenceCount": 9
+            }
+          ]
+        },
+        {
+          "id": "batch-5",
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "revise",
+              "explanation": "第88–95章行动把顾峤真光写成“若用一次”的条件性动作，但成本却按“两次真光共0.5元载”计算；人物设定又限定真光同场仅一印。现有材料没有给出第二次发动的场次、触发原因及是否满足独立起印条件，导致顾的行动账和寿储账不能同时成立。其余主链的前置顺序、救人选择与后果在本批宏观中已有明确安排。",
+              "revisionAdvice": "统一第88–95章顾峤真光的实际次数：若仅一次，删除第二次成本并重算第436日寿储；若为两次，明确两次分别发生在哪个独立场次、各自服务的具体救援/撤离目标，并补明第二次满足功法冷却、余量及“同场一印”限制。",
+              "evidenceCount": 3
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "revise",
+              "explanation": "第431–436日的撤押、两车分批救人、两名玄府对峙及林辰三次局部护罡已有先后安排；但顾峤真光到底发动一次还是两次未定，第二次也没有落在435或436日的具体时点，无法核验其是否与同场一印、三息结印及战斗调度相容。跨海行程和其他明确日期本批未见硬冲突。",
+              "revisionAdvice": "在第88–95章的日程中标定顾峤每次真光的日期、场景边界、三息起印窗口、目标和撤离后果；并使该安排与最终采用的一次或两次寿储扣款一致。",
+              "evidenceCount": 4
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "pass",
+              "explanation": "百章结局明确只切断已实证运输链，保留第二片、九鼎机制、父案凶手与三地后续安置的证据边界；林辰拒以工友身份换未证实寿药，也使“活命不以无辜者为薪柴”的主题落到选择与代价上。赤霄五工、北境七人和青玄八人被明确区分，避免以重复救援虚增兑现。",
+              "revisionAdvice": "",
+              "evidenceCount": 3
+            },
+            {
+              "criterion": "opening",
+              "verdict": "pass",
+              "explanation": "就本批可见的宏观结构，开端从短寿矿工、矿务逃生和工友救援切入，第一卷以有限证物、伤势和复核推进；其后港口救援、北境取舍、返乡训练与押运截停逐级扩大冲突，没有把开篇直接跳成高境终局。此结论仅评价提案结构，不表示前50章正文已实现。",
+              "revisionAdvice": "",
+              "evidenceCount": 4
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "pass",
+              "explanation": "本批后两卷的宏观安排将复核、安置和生计账压入有明确选择变化的场景：如五工去留分歧、一次谈工完成分流、黑舱救人与放弃追片、训练失败后延后复仇。港口调查、航行、训练和押运高潮之间也有不同目标与后果，未见同类救援被无变化地重复消费。",
+              "revisionAdvice": "",
+              "evidenceCount": 5
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass",
+              "explanation": "玄幻规则实际塑造人物选择而非仅作术语：寿储不能返还且玄府须实付十元载；航海、避火、港口权限和界渊准入限制跨陆行动；林辰在黑舱与押运战中只能使用已训练、可支付且会受伤中断的低阶能力。阶段胜利因此保持有限，而界门与残片仍构成后续探索压力。",
+              "revisionAdvice": "",
+              "evidenceCount": 5
+            }
+          ]
+        },
+        {
+          "id": "cross-1-2",
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "pass",
+              "explanation": "宏观链条明确将凝元三重、古境救援、有限灵泉疗程、南渡、港口救人、北境救援、返乡训练、玄府晋阶和本地截押依次设为前置；主角多次以救人放弃追证或追凶，代价未被后续胜利取消。第51章后的关系变化均表述为拟定兑现义务，并未误作既成事实。",
+              "revisionAdvice": "",
+              "evidenceCount": 10
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "pass",
+              "explanation": "已给宏观日期可相互衔接：第32章216日抵赤霄，53—54章的262—273日首轮报令往返，61—66章北境节点至300日，67—72章301—315日返乡，83章415日晋玄府，95章436日救援，100章466日回访。实体海程规则也明确青玄—赤霄约两昼夜、赤霄—苍冥约五日、苍冥—青玄约六日，未见同日跨海或即时回传的安排。",
+              "revisionAdvice": "",
+              "evidenceCount": 10
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "pass",
+              "explanation": "各层承诺没有被提前结算：第一卷灵泉须完成疗程与复诊才入账；百章救援按赤霄五工、陆弟、北境七人和青玄八人分组清点，且明确不以异地未核安置冒充已完成；九鼎全貌和父案完整真相仍留给后续主线。秘密阶段也限制角色只能依据实际送达的报令、原件或亲历材料行动。",
+              "revisionAdvice": "",
+              "evidenceCount": 8
+            },
+            {
+              "criterion": "opening",
+              "verdict": "insufficient",
+              "explanation": "本批只携带了前50章的关系阶段、秘密阶段和宏观转折，未携带任何实际plan/chapters/1—50章纲。因而能够看到开篇至第50章被设计为矿务求生、古境救援、港口核证、追船救人及扣工脱控的递进，但无法核验每章冲突、选择与后果是否实际避免重复模板或高潮失衡。",
+              "revisionAdvice": "补读前50章实际章纲，重点核验10—12、23—29、34—39、43—45及47—50之间是否各有新的选择、损失与局势变化，而非仅以摘要中的事件标签构成递进。",
+              "awaitingSources": [
+                "plan/chapters/1",
+                "plan/chapters/2",
+                "plan/chapters/3",
+                "plan/chapters/4",
+                "plan/chapters/5",
+                "plan/chapters/6",
+                "plan/chapters/7",
+                "plan/chapters/8",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/13",
+                "plan/chapters/14",
+                "plan/chapters/15",
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ],
+              "evidenceCount": 5
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "insufficient",
+              "explanation": "关系与节拍摘要显示第33—50章并非单纯重复核账：失箱核证转为仓火救援，再转为潮沟追船、五工安置与吴卢脱控；但没有实际章纲，无法检查场次分布、连续问询是否被压缩、以及救援之间是否确有不同的行动条件和后果。仅凭宏观称“已压缩”不能判定节奏已成立。",
+              "revisionAdvice": "补读前50章章纲后，逐段核对调查、问询、劳动、救援和休整场景的戏剧目标；尤其确认34—36、41—43和47—50的场景没有以同一类核证或救援重复消费同一种转折。",
+              "awaitingSources": [
+                "plan/chapters/1",
+                "plan/chapters/2",
+                "plan/chapters/3",
+                "plan/chapters/4",
+                "plan/chapters/5",
+                "plan/chapters/6",
+                "plan/chapters/7",
+                "plan/chapters/8",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/13",
+                "plan/chapters/14",
+                "plan/chapters/15",
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ],
+              "evidenceCount": 8
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass",
+              "explanation": "玄幻元素实际限制并改变选择：寿储不能返还，凝元、玄府和术式均须训练、实测与支付；跨陆只能走实体航程并受港口准入约束；灵泉、航款和法器不能替代资格。百章胜果被限定为玄府成长、切断一条运输链和有限救援，而非越阶杀敌或万能界门解法，符合宗门成长与诸域探索的提案定位。",
+              "revisionAdvice": "",
+              "evidenceCount": 10
+            }
+          ]
+        },
+        {
+          "id": "cross-1-3",
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "pass",
+              "explanation": "开篇由矿难证物、伤势与有限权限推动到公开核验；凝元、入古境、救援和灵泉入账均列出实际前置、选择与不可撤销代价。古境救援不是以主角越阶取胜：秦禾亲见撤哨后实体送图，顾完成交岗并走完四里路才到场，林苏见手势后行动；制伏墨也依顾的同阶真光、接触条件和墨的伤势失稳完成。",
+              "revisionAdvice": "",
+              "evidenceCount": 5
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "pass",
+              "explanation": "已读章节的关键时点能相接：第120日突破、第180日达凝元三重、第181—183日入境；第188日05:00撤哨、06:00送图、07:00交岗出发、08:45到位，再接09:15战斗结束和10:45撤离。伤者队伍75分钟于12:00抵营，后续交押与夜班交接亦给出休息条件。真元、寿储和疗程收入没有被预支。",
+              "revisionAdvice": "",
+              "evidenceCount": 5
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "pass",
+              "explanation": "本批伏笔以受限方式兑现：矿道残片、货签、公开账目和父亲署名图只逐步提供可核线索；样箱刻痕与赤霄收货号只形成下一步追查，未被夸大为父案定案。灵泉须经来源、配额、验毒、十日疗程和复诊才成为寿储，避免将救援或持有原液重复兑现为力量与延寿。",
+              "revisionAdvice": "",
+              "evidenceCount": 4
+            },
+            {
+              "criterion": "opening",
+              "verdict": "pass",
+              "explanation": "已读开篇持续以不同层级的压力递进：矿道救人、证人和档案权限、以生计换口供、公开演练救人、恢复训练与古境救援。每次推进均保留伤势、债务、证词限制、失去窗口或人员伤亡等后果，未用早期胜利终结主线。",
+              "revisionAdvice": "",
+              "evidenceCount": 5
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "pass",
+              "explanation": "1—27章虽包含核账、诊疗和程序场景，但其戏剧目标持续变化：保全证人与证据、争取复核、选择训练代价、选择先救秦禾、求援受阻、等待实体援军、救援后分药与疗程。调查与喘息场同时改变资源、关系边界或后续行动条件，并非同一核查的原地重复。",
+              "revisionAdvice": "",
+              "evidenceCount": 5
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass",
+              "explanation": "玄幻规则实际改变选择与风险：境界不等于自动施术，凝元需支付三元载并训练；轻物御动、剑诀、真光与贴身运罡均受对象、距离、余量、伤势和中断条件约束。奇异资源灵泉亦受验真、配额和疗程限制，因此修行、资源争夺与救援策略形成同一套有代价的玄幻冲突。",
+              "revisionAdvice": "",
+              "evidenceCount": 6
             }
           ]
         }

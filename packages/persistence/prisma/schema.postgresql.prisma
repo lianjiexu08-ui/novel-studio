@@ -143,6 +143,7 @@ model ManuscriptRevision {
   revision            Int
   status              String
   chapterVersionIds   Json
+  exportSnapshot      Json?
   chapterCount        Int
   wordCount           Int                     @default(0)
   targetWordCount     Int                     @default(0)

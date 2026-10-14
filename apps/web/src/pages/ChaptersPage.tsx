@@ -4,12 +4,12 @@ import { DownloadOutlined, FileAddOutlined, FileTextOutlined, ReadOutlined } fro
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { api } from '../api';
 import { covenantReady } from '../covenant';
-import type { ChapterVersionDto, ManuscriptRevisionDto } from 'novel-studio-contracts';
+import type { ChapterVersionDto, ManuscriptExportWorkDto, ManuscriptRevisionDto } from 'novel-studio-contracts';
 import type { WorkspaceContext } from './Workspace';
 
 const { Paragraph, Text, Title } = Typography;
 type ExportedChapter = Pick<ChapterVersionDto, 'id' | 'chapterNumber' | 'content' | 'revision'>;
-type ReaderState = { manuscript: ManuscriptRevisionDto; chapters: ExportedChapter[] };
+type ReaderState = { work: ManuscriptExportWorkDto; manuscript: ManuscriptRevisionDto; chapters: ExportedChapter[] };
 
 function formatAdoptedAt(value: string) {
   return new Date(value).toLocaleString('zh-CN', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' });
@@ -47,7 +47,7 @@ export function ChaptersPage() {
       const url = URL.createObjectURL(blob);
       const anchor = document.createElement('a');
       anchor.href = url;
-      anchor.download = `${work.title}-manuscript-rev-${manuscript.revision}.json`;
+      anchor.download = `${exported.work.title ?? exported.work.id}-manuscript-rev-${manuscript.revision}.json`;
       anchor.click();
       URL.revokeObjectURL(url);
       message.success('书稿导出已下载');
@@ -61,12 +61,13 @@ export function ChaptersPage() {
         .sort((a, b) => a.chapterNumber - b.chapterNumber)
         .map((chapter) => `## 第 ${chapter.chapterNumber} 章\n\n${chapter.content.trim()}\n`)
         .join('\n');
-      const markdown = `# ${work.title}\n\n> 冻结书稿修订 ${manuscript.revision} · ${manuscript.chapterCount} 章 · ${manuscript.wordCount.toLocaleString()} / ${manuscript.targetWordCount.toLocaleString()} 字\n\n${body}`;
+      const title = exported.work.title ?? '历史书稿（原书名未保存）';
+      const markdown = `# ${title}\n\n> 冻结书稿修订 ${manuscript.revision} · ${manuscript.chapterCount} 章 · ${manuscript.wordCount.toLocaleString()} / ${manuscript.targetWordCount.toLocaleString()} 字\n\n${body}`;
       const blob = new Blob([markdown], { type: 'text/markdown;charset=utf-8' });
       const url = URL.createObjectURL(blob);
       const anchor = document.createElement('a');
       anchor.href = url;
-      anchor.download = `${work.title}-manuscript-rev-${manuscript.revision}.md`;
+      anchor.download = `${exported.work.title ?? exported.work.id}-manuscript-rev-${manuscript.revision}.md`;
       anchor.click();
       URL.revokeObjectURL(url);
       message.success('可读书稿已下载');

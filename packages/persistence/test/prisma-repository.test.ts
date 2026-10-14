@@ -25,6 +25,57 @@ function createDatabase(): string {
   return databaseUrl;
 }
 
+test('frozen manuscript metadata and exact design references survive database reload', async t => {
+  const databaseUrl = createDatabase();
+  process.env.DATABASE_URL = databaseUrl;
+  const { PrismaClient } = await import('@prisma/client');
+  const { PrismaWorkRepository } = await import('../src/prisma-repository.ts');
+  const { ChapterWorkflow } = await import('../../application/src/index.ts');
+  const { passChecker } = await import('../../../novel-service-core/src/core.ts');
+  const { createReadyWork } = await import('../../application/test/fixtures.ts');
+  const first = new PrismaWorkRepository();
+  const second = new PrismaWorkRepository();
+  const prisma = new PrismaClient();
+  t.after(async () => {
+    await first.disconnect(); await second.disconnect(); await prisma.$disconnect();
+    rmSync(databaseUrl.slice(5), { force: true });
+  });
+  const provider: ModelProvider = { generateChapter: ({ chapterNumber }) => {
+    const events = chapterNumber === 10 ? [
+      { eventType: 'arc_progress', subjectId: 'arc', predicate: 'status', value: { status: 'resolved' } },
+      { eventType: 'volume_progress', subjectId: 'vol-1', predicate: 'status', value: { status: 'resolved' } },
+    ] : [];
+    return { content: `第${chapterNumber}章`, proposedEvents: events, observedEvents: events };
+  } };
+  const workflow = new ChapterWorkflow(first, provider);
+  const work = await createReadyWork(workflow, '冻结时书名');
+  await workflow.runUntil(work.id, 10, [passChecker], 'frozen-book');
+  const manuscript = await workflow.finalizeManuscript(work.id);
+  assert.ok(manuscript.exportSnapshot);
+  await first.transaction(work.id, ({ work }) => {
+    work.title = '后来的书名';
+    work.recordCovenant({ ...work.covenant, chapterWords: 6000 });
+  });
+  await workflow.finalizeManuscript(work.id);
+  await first.disconnect();
+  const restored = (await second.get(work.id))!;
+  const previous = restored.manuscripts.get(manuscript.id)!;
+  assert.equal(previous.status, 'superseded');
+  assert.deepEqual(previous.exportSnapshot, JSON.parse(JSON.stringify(manuscript.exportSnapshot)));
+  assert.equal(previous.exportSnapshot!.title, '冻结时书名');
+  assert.equal(previous.exportSnapshot!.covenant.chapterWords, 2200);
+  assert.equal(restored.title, '后来的书名');
+  assert.ok(restored.designHistory.has(previous.exportSnapshot!.worldPackDesignId));
+  assert.ok(restored.designHistory.has(previous.exportSnapshot!.storyBibleDesignId));
+  assert.equal(previous.exportSnapshot!.closureCoverage.ready, true);
+  // Old rows remain unknown, even after a normal repository save.
+  await prisma.manuscriptRevision.update({ where: { id: manuscript.id }, data: { exportSnapshot: null } });
+  const legacy = (await second.get(work.id))!;
+  assert.equal(legacy.manuscripts.get(manuscript.id)!.exportSnapshot, undefined);
+  await second.save(legacy);
+  assert.equal((await second.get(work.id))!.manuscripts.get(manuscript.id)!.exportSnapshot, undefined);
+});
+
 test('early candidate replacement and paused-run recovery survive a database reload', async (t) => {
   const databaseUrl = createDatabase();
   const repositories: Array<{ disconnect(): Promise<void> }> = [];

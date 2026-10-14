@@ -338,6 +338,15 @@ export interface ManuscriptRevision {
   constraintRevision: number;
   worldPackRevision: number;
   storyBibleRevision: number;
+  /** Absent on legacy manuscripts: never backfill from today's mutable work. */
+  exportSnapshot?: {
+    title: string;
+    covenant: CreativeCovenant;
+    worldPackDesignId: string;
+    storyBibleDesignId: string;
+    designHistoryIds: string[];
+    closureCoverage: ClosureCoverage;
+  };
   createdAt: string;
 }
 
@@ -708,6 +717,8 @@ export class NovelService {
     if (!closure.ready) throw new AdoptionBlocked(`manuscript closure gate blocked: ${closure.errors.join('; ')}`);
     const wordCount = selected.reduce((sum, version) => sum + version.content.trim().length, 0);
     const targetWordCount = work.covenant.chapterWords * expectedChapterCount;
+    const worldDesign = work.recordDesignRevision('world_pack', work.worldPack);
+    const bibleDesign = work.recordDesignRevision('story_bible', work.storyBible);
     for (const manuscript of work.manuscripts.values()) manuscript.status = 'superseded';
     const contentHash = createHash('sha256').update(selected.map((version) => `${version.chapterNumber}\n${version.content}`).join('\n')).digest('hex');
     const manuscript: ManuscriptRevision = {
@@ -716,6 +727,11 @@ export class NovelService {
       wordCount, targetWordCount, lengthCoverage: targetWordCount > 0 ? wordCount / targetWordCount : 0,
       contentHash, stateRevision: work.stateRevision, constraintRevision: work.constraintRevision,
       worldPackRevision: work.worldPack.revision, storyBibleRevision: work.storyBible.revision, createdAt: now(),
+      exportSnapshot: {
+        title: work.title, covenant: structuredClone(work.covenant),
+        worldPackDesignId: worldDesign.id, storyBibleDesignId: bibleDesign.id,
+        designHistoryIds: [...work.designHistory.keys()], closureCoverage: structuredClone(closure),
+      },
     };
     work.manuscripts.set(manuscript.id, manuscript);
     return manuscript;

@@ -262,7 +262,8 @@ function toCandidateDto(candidate: ChapterCandidate, work: Work): CandidateDto {
 }
 
 function toManuscriptDto(manuscript: ManuscriptRevision): ManuscriptRevisionDto {
-  return manuscript;
+  const { exportSnapshot, ...dto } = manuscript;
+  return dto;
 }
 
 export function createApiServer(dependencies: ApiDependencies = {}): { app: FastifyInstance; repository: WorkRepository } {
@@ -593,20 +594,31 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     const chapters = manuscript.chapterVersionIds.map((versionId) => work.versions.get(versionId)).filter((version): version is NonNullable<typeof version> => Boolean(version));
     if (chapters.length !== manuscript.chapterVersionIds.length) throw new Error('manuscript references missing chapter versions');
     const chapterIds = new Set(manuscript.chapterVersionIds);
-    const worldPack = designSnapshotFor(work, 'world_pack', manuscript.worldPackRevision);
-    const storyBible = designSnapshotFor(work, 'story_bible', manuscript.storyBibleRevision);
+    const snapshot = manuscript.exportSnapshot;
+    const worldPack = snapshot ? work.designHistory.get(snapshot.worldPackDesignId)?.snapshot
+      : designSnapshotFor(work, 'world_pack', manuscript.worldPackRevision);
+    const storyBible = snapshot ? work.designHistory.get(snapshot.storyBibleDesignId)?.snapshot
+      : designSnapshotFor(work, 'story_bible', manuscript.storyBibleRevision);
     if (!worldPack || !storyBible) throw new CanonGateError('manuscript design snapshot is missing; export cannot substitute the current design');
+    const designHistory = snapshot
+      ? snapshot.designHistoryIds.map(id => work.designHistory.get(id))
+      : [...work.designHistory.values()].filter(item => item.createdAt <= manuscript.createdAt
+        && item.revision <= (item.kind === 'world_pack' ? manuscript.worldPackRevision : manuscript.storyBibleRevision));
+    if (designHistory.some(item => !item)) throw new CanonGateError('manuscript design history is missing; export cannot substitute the current history');
     return {
-      work: { id: work.id, title: work.title, covenant: work.covenant },
+      work: { id: work.id, title: snapshot?.title ?? null, covenant: snapshot?.covenant ?? null,
+        metadataStatus: snapshot ? 'frozen' : 'unavailable_legacy' },
       worldPack,
       storyBible,
-      designHistory: [...work.designHistory.values()].sort((a, b) => a.createdAt.localeCompare(b.createdAt)),
+      designHistory: designHistory.sort((a, b) => a!.createdAt.localeCompare(b!.createdAt)),
       manuscript: toManuscriptDto(manuscript),
       chapters: chapters.map((chapter) => ({ id: chapter.id, chapterNumber: chapter.chapterNumber, content: chapter.content, revision: chapter.revision })),
       events: [...work.events.values()]
         .filter((event) => chapterIds.has(event.chapterVersionId))
+        // Membership is effective in this frozen book, independently of the current draft.
+        .map(event => ({ ...event, active: true }))
         .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id)),
-      closureCoverage: closureCoverageFor(work, manuscript.chapterCount, { storyBibleRevision: manuscript.storyBibleRevision, chapterVersionIds: manuscript.chapterVersionIds }),
+      closureCoverage: snapshot?.closureCoverage ?? closureCoverageFor(work, manuscript.chapterCount, { storyBibleRevision: manuscript.storyBibleRevision, chapterVersionIds: manuscript.chapterVersionIds }),
     };
   });
 

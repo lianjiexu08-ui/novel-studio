@@ -195,6 +195,12 @@ export const manuscriptRevisionDtoSchema = z.object({
 });
 export type ManuscriptRevisionDto = z.infer<typeof manuscriptRevisionDtoSchema>;
 
+export const manuscriptExportWorkSchema = z.object({
+  id: z.string(), title: z.string().nullable(), covenant: creativeCovenantSchema.nullable(),
+  metadataStatus: z.enum(['frozen', 'unavailable_legacy']),
+});
+export type ManuscriptExportWorkDto = z.infer<typeof manuscriptExportWorkSchema>;
+
 export const generateChapterRequestSchema = z.object({
   runId: z.string().min(1).max(200).optional(),
   /** `demo` produces a trial candidate that can be read and checked but never adopted. */

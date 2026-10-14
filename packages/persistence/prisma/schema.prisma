@@ -127,6 +127,7 @@ model ManuscriptRevision {
   revision            Int
   status              String
   chapterVersionIds   String   // JSON: string[]
+  exportSnapshot      String?  // JSON: frozen metadata and exact design references; null for legacy manuscripts
   chapterCount        Int
   wordCount           Int      @default(0)
   targetWordCount     Int      @default(0)
