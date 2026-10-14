@@ -1,0 +1,108 @@
+{
+  "observedAt": "2026-10-14T06:12:26.778Z",
+  "status": "focused_controls_passed",
+  "formalAcceptance": false,
+  "savedToWork": false,
+  "rubricVersion": 10,
+  "scheduleVersion": 9,
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "activeApiStillUsesFrozenRubric8": true,
+  "tests": {
+    "total": 222,
+    "failed": 0
+  },
+  "cases": [
+    {
+      "name": "unchanged-parallel-routes",
+      "expected": "pass",
+      "actual": "pass",
+      "matchedExpected": true,
+      "inputHash": "6003e751325bd84b3a222fe5005417b1aade93430aa2909963e205dbea30bc1e",
+      "requestHash": "cdea2c3bace0aa0864a3d0636a76d9211ae16fb4566515e7315d7e27feea7fb3",
+      "checks": [
+        {
+          "criterion": "timeline",
+          "verdict": "pass",
+          "explanation": "林辰线清晰衔接：第211日仍在古境入口外营签约，212—213日经山路驿车抵达云梦天港外围，214日午后登船、日暮出航，经历第215日风暴后于216日日暮抵达天宝外港，217日继续处理卸货与交接。苏及押解队为并行路线：林辰第211日先离营后，押解队于212日核清全员退出，213—216日以伤者慢车返外门，217日完成外门轮岗；这与林辰已在赤霄外港的路线不重叠。苏于226日寄信、228日经外港转递，林辰至233日收到，消息传递顺序合理，且第217章明确林在收信前不知返宗结果。第32章的214日日暮至216日日暮海程与第33章的217日续接，也没有抵达早于出发的问题。",
+          "revisionAdvice": "",
+          "evidenceCount": 7
+        }
+      ]
+    },
+    {
+      "name": "same-person-overlapping-routes",
+      "expected": "revise",
+      "actual": "revise",
+      "matchedExpected": true,
+      "inputHash": "076202249362fcc2220aeb3431b4606d967b0d4fc4ef08e875fbe4b3a927697f",
+      "requestHash": "0232e2613d1435387c1cf828608024df32f4e9b1a8313045da613885d99e519a",
+      "checks": [
+        {
+          "criterion": "timeline",
+          "verdict": "revise",
+          "explanation": "按逐章安排，林辰第211日仍在入口外营签约，第212日出发，第213日晚抵云梦天港外围，第214日日暮出航，第216日日暮抵天宝外港，第217日仍在原船卸货区处理交割；这条路线的出发、抵达和海程时长能够衔接。苏凌霜则在第212日销班后，于第213—216日随伤者慢车返宗，属于并行路线，且林辰在收到第226日寄出的信前不知道结果。问题在于里程碑却写明“第212日林辰本人没有离开入口外营，第213至216日始终与苏凌霜同乘这辆伤者慢车，216日暮两人一道进入太清外门院”，同时又将林辰描述为身在赤霄；这会使林辰既已于第212日南行、经历第215日海上风暴并于第216日抵天宝外港，又在同一时段随苏返宗，构成不可相容的时空重叠。需修正里程碑的林辰行程与结果，明确苏线是独立并行路线，不能把林辰纳入慢车返宗。",
+          "revisionAdvice": "修改plan/milestones/ms_bridge_return：删除“第212日林辰本人没有离开入口外营”及“第213至216日始终与苏凌霜同乘伤者慢车”的表述，改为苏凌霜及押解队独立于第213—216日返宗；林辰按第29—33章路线于第212日离开入口外营、第214日日暮出航、第216日日暮抵天宝外港。同步核对该里程碑的outcome，保留“林辰在收到苏226日寄出的信后才知其返宗”这一认知时点。",
+          "evidenceCount": 5
+        }
+      ]
+    }
+  ],
+  "usage": [
+    {
+      "calls": 2,
+      "failedCalls": 1,
+      "inputTokens": 10969,
+      "outputTokens": 801,
+      "costUsd": 0,
+      "costKnown": false,
+      "byRole": {
+        "reviewing": {
+          "calls": 2,
+          "failedCalls": 1,
+          "outputTokens": 801,
+          "costUsd": 0
+        }
+      },
+      "limits": {
+        "budgetUsd": null,
+        "maxCalls": 4
+      }
+    },
+    {
+      "calls": 1,
+      "failedCalls": 0,
+      "inputTokens": 11003,
+      "outputTokens": 1044,
+      "costUsd": 0,
+      "costKnown": false,
+      "byRole": {
+        "reviewing": {
+          "calls": 1,
+          "failedCalls": 0,
+          "outputTokens": 1044,
+          "costUsd": 0
+        }
+      },
+      "limits": {
+        "budgetUsd": null,
+        "maxCalls": 4
+      }
+    }
+  ],
+  "totalCalls": 3,
+  "failedCalls": 1,
+  "retainedFailure": "openai-compatible request failed (stream): Our servers are currently overloaded. Please try again later.",
+  "syntheticChange": {
+    "sourceId": "plan/milestones/ms_bridge_return",
+    "before": "{\n  \"id\": \"ms_bridge_return\",\n  \"title\": \"本批销班与四日押解返宗\",\n  \"kind\": \"turn\",\n  \"startChapter\": 33,\n  \"endChapter\": 35,\n  \"setup\": [\n    \"第212日林已先离营。其余本批名册全员出境点齐才销太清本批接待班；不是关闭三方古境。\",\n    \"第213–216日伤者慢车四日返外门：乔邵昼夜各12小时近身看墨、另一人随车休息；杜褚白日前后护路、夜营休息，苏护证、白榆随医车、顾不计看押班。\",\n    \"到外门后杜乔褚邵每人6小时轮一处墨岗，其他宗务只在休息外安排；不改变古境或内门入境权限。\"\n  ],\n  \"cost\": \"褚原巡检延后、邵原晚巡缩减；后续437日两岗时四人停止外差，缺替班取消移送，不以休班增援后顺延偷换缺岗。\",\n  \"outcome\": \"本段采用苏独立视角回顾212–216日实际行程和外门接班。林远在赤霄，第41章收到苏226日寄出的信后才知道他们已安全返宗；不能提前把该消息当作林已知。\"\n}",
+    "after": "{\n  \"id\": \"ms_bridge_return\",\n  \"title\": \"本批销班与四日押解返宗\",\n  \"kind\": \"turn\",\n  \"startChapter\": 33,\n  \"endChapter\": 35,\n  \"setup\": [\n    \"第212日林辰本人没有离开入口外营，第213至216日始终与苏凌霜同乘这辆伤者慢车，216日暮两人一道进入太清外门院；不存在分身或遥传。其余本批名册全员出境点齐才销太清本批接待班。\",\n    \"第213–216日伤者慢车四日返外门：乔邵昼夜各12小时近身看墨、另一人随车休息；杜褚白日前后护路、夜营休息，苏护证、白榆随医车、顾不计看押班。\",\n    \"到外门后杜乔褚邵每人6小时轮一处墨岗，其他宗务只在休息外安排；不改变古境或内门入境权限。\"\n  ],\n  \"cost\": \"褚原巡检延后、邵原晚巡缩减；后续437日两岗时四人停止外差，缺替班取消移送，不以休班增援后顺延偷换缺岗。\",\n  \"outcome\": \"本段采用苏独立视角回顾212–216日实际行程和外门接班。林远在赤霄，第41章收到苏226日寄出的信后才知道他们已安全返宗；不能提前把该消息当作林已知。\"\n}"
+  },
+  "caveats": [
+    "The normal-case explanation misstates departure as day211 and calls day217 chapter217. Actual source remains day212 departure and chapter33/day217. Verdict alone is not proof every explanatory detail is correct.",
+    "The original formal55 cross-2-4 adverse date judgment remains intact. Its correction here is a separate focused evaluation, not an overwrite.",
+    "Two fixtures do not prove general review accuracy, and do not replace the full four-domain review.",
+    "Only the failed provider call was retried; the successful normal case was not rerun or selected from multiple responses.",
+    "Initial-skill wording was updated on manual analysis of the false objection; these two controls exercise timeline behavior only."
+  ]
+}

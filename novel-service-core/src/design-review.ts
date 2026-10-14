@@ -10,7 +10,7 @@ export const designReviewRubrics: Record<DesignReviewArea, Record<string, string
     capacity: '世界的差异性、规则和扩展空间是否匹配目标篇幅，不能以条目数量替代复杂度',
   },
   power: {
-    tiers: '境界、功法、法宝、资源的分级和使用门槛是否一致，角色起点与规划的晋阶是否合理',
+    tiers: '境界、功法、法宝、资源的分级和使用门槛是否一致，角色起点与规划的晋阶是否合理。区分作者明示的开篇前已学技能、书内新增学习和仅有境界资格：初始技能可由人物或章纲的作者设定说明，不要求每个配角都在正文从零训练，也不要求用新采纳事件倒填前史；但仍须核对具体技能是否满足规则的训练、实测、对象和使用限制，不能把身份或境界本身当作自动掌握。',
     costs: '力量的来源、消耗、恢复、冷却和不可逆代价是否守恒，资源的使用门槛、剂量、效用及重复使用上限是否明确；疗伤不能自动当成延寿，结局有没有取消核心代价',
     counters: '能力上限、反制和越阶胜利条件是否明确，是否与绝对压制规则矛盾',
   },
@@ -21,7 +21,7 @@ export const designReviewRubrics: Record<DesignReviewArea, Record<string, string
   },
   story: {
     causality: '主线、分卷目标、转折、高潮与收束是否因果相连，避免重复兑现同一法宝或伏笔',
-    timeline: '晋阶、跨陆、战斗、重建需要的时间是否合理，分卷边界和章纲是否统一',
+    timeline: '晋阶、跨陆、战斗、重建需要的时间是否合理，分卷边界和章纲是否统一。先按人物或队伍分别列清出发地、出发日、途中行动、目的地和抵达日，区分并行路线、插叙所述时间与叙述章节；同一人先离营、数日后抵港本身不是日期冲突，不同队伍同日在不同地点也不矛盾。应指出同一人物在不相容的时空重叠、行程不足、抵达早于出发或消息未送达却已知等实际冲突，并引用对应两端的原文；未读到中间路线时先按现有来源目录补读，不能靠混淆出发与抵达制造矛盾。',
     payoff: '伏笔、秘密、承诺和开放线是否有铺垫、兑现条件、代价与明确归宿',
     opening: '前五十章的冲突、人物选择和后果是否递进，高潮分布是否合理，有无过早终局或重复模板',
   },
@@ -108,10 +108,10 @@ export function designReviewHash(work: Work, planId?: string): string | undefine
   const plan = selectedId ? work.plans.get(selectedId) : undefined;
   if (!work.worldPack || !work.storyBible || !plan || plan.status === 'superseded' || (planId === undefined && plan.status !== 'approved')) return undefined;
   return createHash('sha256').update(JSON.stringify({
-    // Version 9 checks actual travel actions against world rules. Earlier
-    // geography passes could repeat route summaries while missing an illegal
-    // action inside the same milestone, and must not authorize this input.
-    rubricVersion: 9, title: work.title, covenant: work.covenant,
+    // Version 10 also distinguishes initial skills from new training, and
+    // reconstructs timelines per actor and route endpoint. Earlier reviews
+    // confused a departure with a later arrival and cannot authorize this input.
+    rubricVersion: 10, title: work.title, covenant: work.covenant,
     world: work.worldPack, bible: work.storyBible, planId: plan.id, plan: plan.plan,
     characters: [...work.characters.values()].sort((a, b) => a.id.localeCompare(b.id)),
     relationships: [...work.relationships.values()].sort((a, b) => a.id.localeCompare(b.id)),
