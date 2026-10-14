@@ -85,6 +85,16 @@ export function prepareDesignReviewEvidence(input: DesignReviewInput) {
       const result = designReviewResultSchema.parse({ ...parsed, checks: parsed.checks.map((check) => ({
         ...check, evidence: check.evidence.map((evidence) => ({ ...lookup.get(evidence.fragmentId)! })),
       })) });
+      // A dedicated follow-up has exactly one original question. A bare pass
+      // would finish the step while leaving that question unresolved forever.
+      // Ask the model to substantiate resolution or retain an honest blocker;
+      // never manufacture resolves or rewrite already stored legacy reports.
+      if (pending) {
+        const check = result.checks.find(check => check.criterion === pending.criterion);
+        if (check?.verdict === 'pass' && !check.resolves?.includes(pending.id)) {
+          throw new DesignReviewError(`专门补读通过必须显式说明解决原问题：resolves 应包含 ${pending.id}。重新核验原问题及每个必引来源；只有实际解决并提供全部必要引文才能声明 resolves，否则改为 insufficient 或 revise，不能仅补上编号维持未经核验的通过。`);
+        }
+      }
       // A valid anchor proves provenance only. Completeness and verdict requirements still apply.
       validateDesignReview(snapshot, result);
       return result;

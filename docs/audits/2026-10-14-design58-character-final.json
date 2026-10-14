@@ -1,0 +1,51 @@
+{
+  "observedAt": "2026-10-14T13:19:00.461Z",
+  "status": "inconclusive",
+  "runId": "design_run_1ecb47bb-36fd-4e06-9864-0f53d5f1e609",
+  "reportId": "design_review_4b621c34-21e4-4308-8671-ea3ab7972a48",
+  "completed": 21,
+  "total": 21,
+  "formalAcceptance": false,
+  "checks": [
+    {
+      "criterion": "agency",
+      "verdict": "pass",
+      "explanation": "主角及主要配角均有独立目标、拒绝边界和会改变路线的选择，并承担伤势、资源、权限、生计、证据或行动窗口损失。前50章已有具体行动支撑；51—100章虽主要是宏观提案，也明确安排救人、放弃残片或追凶、支付寿源晋阶等代价，不是由主角或能力自动替代他人作决定。",
+      "revisionAdvice": "",
+      "evidenceCount": 4
+    },
+    {
+      "criterion": "relationships",
+      "verdict": "insufficient",
+      "explanation": "现有证据能支持若干局部关系链：林苏的程序性庇护与有限合作、林贺围绕雇工和船务的有限合作、陆承担押送责任而不获免责、吴卢脱控后分别决定去留，均有选择、代价和拟定生效点。但前置报告明确指出，batch-2留下的普通不足要求将全部关系主档、21—50章细纲及51—100相关里程碑逐项对照；该不足不是已在resolvedDeferrals中解决的等待项。后续综合报告的局部或整体“pass”没有提供足以取消该历史不足的CURRENT DISPOSITION或逐项复核证据。",
+      "revisionAdvice": "保留并完成batch-2的逐项核对：对全部主要关系档、21—50章细纲及51—100相关里程碑，核实林苏分离与重聚、吴卢安置、陆氏责任、北境合作和后期救援是否均由对应人物的知情、选择、付出及实际生效条件推动，避免用终局关系标签提前覆盖阶段变化。",
+      "evidenceCount": 6
+    },
+    {
+      "criterion": "knowledge",
+      "verdict": "insufficient",
+      "explanation": "材料显示秘密认知原则上按亲见、实物、口供、实体送达、阅览和独立核验分期，林也被限制在局部证据范围内；但batch-2另有普通不足，要求将sec_01、sec_02与21—100章的实际取证、消息送达、报令和揭示节点逐项对照。该项没有对应的resolvedDeferrals或CURRENT DISPOSITION。batch-1关于知识档的等待已解决，不能外推为取消batch-2的另一项普通不足；后续综合报告直接判通过也不足以解除它。",
+      "revisionAdvice": "保留batch-2的补核要求，将sec_01、sec_02与21—100章实际取证、实体交接、消息送达、供述签认及独立核验节点逐项对照；特别确认角色不会把读者视角、转述、未核验供述、残片线索或未来规划锚点提前写成确定认知。",
+      "evidenceCount": 8
+    }
+  ],
+  "followupDiagnostic": {
+    "stageId": "followup-batch-2/knowledge",
+    "verdict": "pass",
+    "hasExplicitResolution": false,
+    "evidenceCount": 46,
+    "questionCited": true,
+    "missingRequiredSourceCount": 0,
+    "missingPriorSourceCount": 1,
+    "policy": "New model output must explicitly resolve with all mandatory evidence or return insufficient/revise; never repair historical reports by injecting resolves."
+  },
+  "relationshipCapacity": {
+    "awaited": 63,
+    "minimumSourcesIncludingPrior": 67,
+    "minimumCitationsIncludingQuestion": 68,
+    "maximumCitations": 64,
+    "minimumSourceChars": 142407,
+    "rawCapacity": 240000,
+    "note": "This is a citation-capacity gap, not evidence of a fictional relationship contradiction. It remains unresolved and must not be waived."
+  }
+}

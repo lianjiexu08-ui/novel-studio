@@ -1,0 +1,101 @@
+{
+  "status": "reviewed",
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "candidateHash": "6b8d0c5f77edcb8d8cdeb992d18d728e4d81d74c04c37336a6c4091b933e77e7",
+  "savedToWork": false,
+  "formalAcceptance": false,
+  "sourceCount": 127,
+  "sourceChars": 112995,
+  "protectedDesignAndHistoryUnchanged": true,
+  "usage": {
+    "calls": 1,
+    "failedCalls": 0,
+    "inputTokens": 70720,
+    "outputTokens": 1695,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 1,
+        "failedCalls": 0,
+        "outputTokens": 1695,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 1
+    }
+  },
+  "checks": [
+    {
+      "criterion": "logistics",
+      "verdict": "pass",
+      "explanation": "行动没有把护罡误作全程运输屏障：前车先停闸，林的短时牵制只换取四人下车及退至侧道；祁停斗、交械并命后车放人后，才开始八人的候运与两趟转送。货车容量限定为四人，首趟卸人后空返再运第二批，明列至少31分钟；两名门伤护卫另用原队担架，货车则在八人送达、空载清场后才因轮轴断裂退出。顾在交接视野监管祁，普通见证员不替代玄府看押，交接失败时亦规定等待具名同阶接押。",
+      "revisionAdvice": "",
+      "evidenceCount": 4,
+      "evidenceSources": [
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ]
+    },
+    {
+      "criterion": "power",
+      "verdict": "pass",
+      "explanation": "林的局部护罡资格被安排在第424日实测与复诊后才用于截车；三次均按聚罡一成、实接再一成结算，第三次击穿导致肩伤后立刻停术，余二成封存待复诊，未把三次短术延长为两趟运输防护。顾本场只对左前臂施放一次局部护罡并支付二成，前臂伤后停该侧施术；双方普通铁剑、铁刀明确只以肉身握持和步法交锋。真光本段明确不施，故顾只保留第25章一次0.25元载历史成本，未虚扣第二次寿元。祁交械是有限受押选择，提案也明示普通绳索不能封禁玄府。",
+      "revisionAdvice": "",
+      "evidenceCount": 7,
+      "evidenceSources": [
+        "world/axioms/ax_12",
+        "world/techniques/tech_06",
+        "story/characters/char_10",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy"
+      ]
+    },
+    {
+      "criterion": "agency",
+      "verdict": "pass",
+      "explanation": "祁的转向不是由对手承诺免罪触发：他已具名接押并寄出押报，亲见前车失守、身份被见证员认明及程离场，继续灭证也不能抹去既有文书；因此在仍有短刀、元罡和同伴可用的条件下，为留下赵亲签原令及逐级申辩空间，选择命令停斗、放人、交械受监管。顾只提出停斗、当众封存、具名移交，不许诺保职或裁决责任。林在肩伤后放弃追程，转而拉开夹住救护人员的车门；顾也以受伤和祁仍可反抗为风险，选择不追杀而维持距离。",
+      "revisionAdvice": "",
+      "evidenceCount": 6,
+      "evidenceSources": [
+        "story/characters/char_23",
+        "story/arcBeats/beat_v23_11",
+        "plan/milestones/ms_v3_convoy"
+      ]
+    },
+    {
+      "criterion": "continuity",
+      "verdict": "pass",
+      "explanation": "435—437日的文书、人员和认知链条一致：赵431日只阅祁关于两名旧工友的押报，433日据此签撤押令，435日祁实际签收；梁在432日已见两车各四人，故撤令触发的是撤离而非临时装载。林苏在现场取得原令前不知令文，赵在439日仅听程逃离前的有限面报，至445日才接触正式质询副本。436日祁受顾监管，437日邵闻在值守房具名接押，顾完成交接和伤情处置后才进一步复诊，未以普通人员或绳索替代玄府羁押。现有技能来源亦限于林424日护罡实测及顾既有基础操作。",
+      "revisionAdvice": "",
+      "evidenceCount": 10,
+      "evidenceSources": [
+        "story/relationships/rel_02",
+        "story/arcBeats/message-custody-report",
+        "story/arcBeats/message-withdraw-order",
+        "story/arcBeats/message-withdraw-delivery",
+        "story/arcBeats/message-withdraw-seized",
+        "story/arcBeats/message-defeat-report",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ]
+    },
+    {
+      "criterion": "narrative",
+      "verdict": "pass",
+      "explanation": "后段并非简单复演第25章的“同阶制敌—核账”流程。第25章的关键是顾以真光和贴身推劲制伏墨、林以取样箱与救援制造战术窗口；第88—95章则取消真光与必胜制伏，林在已受伤时放弃追程并救门伤者，顾与祁在无法安全脱离的牵制中把冲突推向停斗条件，祁则以失差使、受监管及仍须自证责任换取有限申辩可能。手续与原令不是替代冲突的解说，而是祁不能靠继续交战抹除的场上压力及其选择代价。",
+      "revisionAdvice": "",
+      "evidenceCount": 7,
+      "evidenceSources": [
+        "story/arcBeats/v1-gu-counter",
+        "plan/chapters/25",
+        "plan/milestones/ms_v3_convoy"
+      ]
+    }
+  ],
+  "limitation": "One read-only diagnostic of this convoy proposal, not full design acceptance or prose validation."
+}

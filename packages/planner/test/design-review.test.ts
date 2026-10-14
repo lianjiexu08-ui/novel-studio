@@ -389,3 +389,46 @@ test('cross checks index every pending question and name a missing required sour
   assert.deepEqual(result.checks[0].resolves, good.checks[0].resolves);
   assert.deepEqual(result.modelResponses, [JSON.stringify(missing), JSON.stringify(good)]);
 });
+
+for (const repairedVerdict of ['pass', 'insufficient'] as const) {
+  test(`dedicated follow-up cannot finish with a bare pass; repair may return ${repairedVerdict}`, async () => {
+    const request = await input();
+    request.rubric = { timeline: '实际送达后才能知情' };
+    request.sources = [
+      { id: 'unit/sender', text: '第9日寄出，第10日接收者还不知道内容。' },
+      { id: 'unit/arrival', text: '第12日驿使当面送达，收信人此后才知情。' },
+      { id: 'question', text: '原问题是接收者是否在信件送达前已经知情。' },
+    ];
+    request.stage = { kind: 'cross', label: '补读原问题', totalBatches: 3, followupFor: 'batch-1/timeline',
+      sourceMap: request.sources.slice(0, 2).map((s, i) => ({ id: s.id, sourceId: ['sender', 'arrival'][i], start: 0, end: s.text.length })),
+      coverage: { mode: 'local_sources', sourceLengths: {}, pendingChecks: [{ id: 'batch-1/timeline', criterion: 'timeline', questionSourceId: 'question', requiredSourceIds: ['arrival'], priorUnitIds: ['unit/sender'], priorSourceIds: ['sender'] }] },
+    };
+    const prepared = prepareDesignReviewEvidence(request);
+    const first = { requestId: prepared.requestId, summary: '本批通过', checks: [{ criterion: 'timeline', verdict: 'pass', explanation: '送达与知情相容', revisionAdvice: '', evidence: prepared.sources.map(s => ({ fragmentId: s.fragments[0].id })) }] };
+    assert.throws(() => prepared.resolve(first), /专门补读通过必须显式说明解决原问题/);
+    const repaired = { ...first, checks: [{ ...first.checks[0], verdict: repairedVerdict,
+      ...(repairedVerdict === 'pass' ? { resolves: ['batch-1/timeline'] } : { explanation: '虽有送达记录，但不能从本批断定角色此前没有别的消息渠道', revisionAdvice: '核验此前全部实际消息来源后再判断' }),
+    }] };
+    let calls = 0;
+    const planner = new JsonDesignPlanner({ complete: async call => {
+      if (++calls === 1) return JSON.stringify(first);
+      const repair = JSON.parse(call.user);
+      assert.match(repair.problems, /batch-1\/timeline/);
+      assert.match(repair.problems, /不能仅补上编号/);
+      assert.equal(repair.previousOutput, JSON.stringify(first));
+      assert.deepEqual(repair.originalRequest.sources, prepared.sources);
+      return JSON.stringify(repaired);
+    } });
+    const result = await planner.reviewDesignContent(request);
+    assert.equal(calls, 2);
+    assert.equal(result.checks[0].verdict, repairedVerdict);
+    assert.deepEqual(result.checks[0].resolves, repairedVerdict === 'pass' ? ['batch-1/timeline'] : undefined);
+    assert.deepEqual(result.modelResponses, [JSON.stringify(first), JSON.stringify(repaired)]);
+    assert.equal(Object.hasOwn(first.checks[0], 'resolves'), false, 'never mutate the original output into a resolution');
+    if (repairedVerdict === 'pass') {
+      const withoutQuestion = structuredClone(repaired);
+      withoutQuestion.checks[0].evidence.pop();
+      assert.throws(() => prepared.resolve(withoutQuestion), /必须引用原问题/);
+    }
+  });
+}
