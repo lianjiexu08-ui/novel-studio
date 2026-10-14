@@ -1,0 +1,177 @@
+{
+  "observedAt": "2026-10-14T21:25:38.060Z",
+  "status": "findings_mapped_not_quality_acceptance",
+  "candidateVersion": 6,
+  "candidateFileSha256": "337118ea173f66d5b9f9c9932f60695bd9bb8eea992231e04c47f8571f1a0bb2",
+  "allFourReportsReconstructed": true,
+  "unmappedFinalFindings": 0,
+  "reports": [
+    {
+      "area": "world",
+      "reportId": "design_review_a43f036f-dd2d-4948-b4ad-ed63dd8f527d",
+      "reportSha256": "71679ca79fb560f81f1d662420d489d8e7d51a4266ba8659d8e4ce39fad7b486",
+      "originalStatus": "needs_revision",
+      "totalStages": 53,
+      "checks": [
+        {
+          "criterion": "geography",
+          "originalVerdict": "revise",
+          "disposition": "candidate_repair_requires_new_formal_review",
+          "sources": [
+            "plan/milestones/ms_v3_return"
+          ],
+          "repair": "两席保温舟舱、实际暖炉烟道和六日燃料看火、原票款归属、登船核验及不合格候船改签分支。"
+        },
+        {
+          "criterion": "history",
+          "originalVerdict": "pass",
+          "disposition": "retained_current_version_only"
+        },
+        {
+          "criterion": "capacity",
+          "originalVerdict": "revise",
+          "disposition": "candidate_repair_requires_new_formal_review",
+          "sources": [
+            "world/artifacts/art_20",
+            "plan/chapters/9",
+            "plan/chapters/10",
+            "plan/chapters/11",
+            "plan/chapters/12"
+          ],
+          "repair": "独立双位引血槽的两路供石、腕针接触、共享周期、脱接断流、残能排散和止血封停；按原文场景逐项执行，未借高阶主阵解释低阶器具。"
+        }
+      ]
+    },
+    {
+      "area": "power",
+      "reportId": "design_review_2e46b414-47d6-4f2c-aaaf-9e39cf2b9fb8",
+      "reportSha256": "fa335fee01c08a0d8c18f3ee75f395e2109d9d932b3238c897a0ae86f8fe23e6",
+      "originalStatus": "needs_revision",
+      "totalStages": 85,
+      "checks": [
+        {
+          "criterion": "tiers",
+          "originalVerdict": "revise",
+          "disposition": "candidate_repair_requires_new_formal_review",
+          "sources": [
+            "world/techniques/tech_04",
+            "plan/chapters/20",
+            "plan/chapters/25",
+            "plan/chapters/44",
+            "plan/milestones/ms_v2_boundary"
+          ],
+          "repair": "可见目标、个人实测范围、失锁判据和既发余刃后果；切索后实际确认余刃与结构，保留第18章两丈实测和二成费用。"
+        },
+        {
+          "criterion": "costs",
+          "originalVerdict": "pass",
+          "disposition": "retained_current_version_only"
+        },
+        {
+          "criterion": "counters",
+          "originalVerdict": "revise",
+          "disposition": "candidate_repair_requires_new_formal_review",
+          "sources": [
+            "world/techniques/tech_04",
+            "plan/chapters/23",
+            "plan/chapters/20",
+            "plan/chapters/25",
+            "plan/chapters/44",
+            "plan/milestones/ms_v2_boundary"
+          ],
+          "repair": "同一锁定与余刃规则落实场景；第23章看守未施真元防护，须实际近身扣腕后短施血爪，保留伤害和付费。"
+        }
+      ]
+    },
+    {
+      "area": "characters",
+      "reportId": "design_review_2ccab3c6-0b0a-4b8c-a6ec-ae13f50d3234",
+      "reportSha256": "ad6c73b09844b38aaef1251545378c3196c5d19cb62f8eb12162421a8ac4a695",
+      "originalStatus": "passed",
+      "totalStages": 25,
+      "checks": [
+        {
+          "criterion": "agency",
+          "originalVerdict": "pass",
+          "disposition": "retained_current_version_only"
+        },
+        {
+          "criterion": "relationships",
+          "originalVerdict": "pass",
+          "disposition": "retained_current_version_only"
+        },
+        {
+          "criterion": "knowledge",
+          "originalVerdict": "pass",
+          "disposition": "retained_current_version_only"
+        }
+      ]
+    },
+    {
+      "area": "story",
+      "reportId": "design_review_506a4701-f858-4a60-9892-1b5457c4c12e",
+      "reportSha256": "85b4e434c930b1a6846a07e42d3c8764ee2fd1235bbbd302a3b7205588752600",
+      "originalStatus": "passed",
+      "totalStages": 49,
+      "checks": [
+        {
+          "criterion": "causality",
+          "originalVerdict": "pass",
+          "disposition": "retained_current_version_only"
+        },
+        {
+          "criterion": "timeline",
+          "originalVerdict": "pass",
+          "disposition": "retained_current_version_only"
+        },
+        {
+          "criterion": "payoff",
+          "originalVerdict": "pass",
+          "disposition": "retained_current_version_only"
+        },
+        {
+          "criterion": "opening",
+          "originalVerdict": "pass",
+          "disposition": "retained_current_version_only"
+        },
+        {
+          "criterion": "pacing",
+          "originalVerdict": "pass",
+          "disposition": "retained_current_version_only"
+        },
+        {
+          "criterion": "genre",
+          "originalVerdict": "pass",
+          "disposition": "retained_current_version_only"
+        }
+      ]
+    }
+  ],
+  "additionalLocalRepairs": [
+    {
+      "finding": "v4/worldPromise: opening has no clear attainable cultivation path",
+      "repair": "v5 adds chosen goals and conditions in chapters3/9/12 without advancing learning, recovery or paid advancement",
+      "latestDiagnostic": "v6 six checks pass; not formal acceptance"
+    },
+    {
+      "finding": "v5/pacing: repeated procedural scenes",
+      "repair": "v6 reorganizes chapters3/7/12 around conflict, choices and consequences, preserving necessary factual records",
+      "latestDiagnostic": "v6 six checks pass; original differing judgments retained"
+    }
+  ],
+  "historicalDispute": {
+    "finding": "power cross-1-2 art_10 low-tier usage inference",
+    "disposition": "Original limitations already explicitly forbid low-tier activation. Candidate only repeats those existing limits in effect text; does not claim original text authorized low-tier use or erase the negative."
+  },
+  "preserve": {
+    "originalNegativeFindings": true,
+    "oldReviews": true,
+    "approvedPlanRevision": 10,
+    "blockers": 41,
+    "proseVersions": 101,
+    "events": 383,
+    "manuscripts": 1
+  },
+  "productionApplied": false,
+  "newFourAreaReviewRequired": true
+}
