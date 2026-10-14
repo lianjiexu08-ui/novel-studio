@@ -103,6 +103,16 @@ export type RelationshipPatch = z.infer<typeof relationshipPatchSchema>;
 export const relationshipDtoSchema = relationshipInputSchema.extend({ id: z.string(), locked: z.boolean(), lockPolicy: lockPolicySchema.optional() });
 export type RelationshipDto = z.infer<typeof relationshipDtoSchema>;
 
+// Snapshot values come from stored prose or design, not the shorter settings
+// edit form. Their source must remain visible to state/history consumers.
+const relationshipSnapshotBaseSchema = relationshipDtoSchema.extend({ value: z.string() });
+export const relationshipSnapshotDtoSchema = z.discriminatedUnion('basis', [
+  relationshipSnapshotBaseSchema.extend({ basis: z.literal('adopted_event'), sourceEventId: z.string().min(1), sourceChapterVersionId: z.string().min(1), evidence: z.string() }),
+  relationshipSnapshotBaseSchema.extend({ basis: z.literal('author_setting') }),
+  relationshipSnapshotBaseSchema.extend({ basis: z.literal('story_plan'), storyBibleRevision: z.number().int(), untilChapter: z.number().int().optional(), plannedCause: z.string().optional(), plannedCost: z.string().optional() }),
+]);
+export type RelationshipSnapshotDto = z.infer<typeof relationshipSnapshotDtoSchema>;
+
 export const worldRuleCategorySchema = z.enum(['power', 'cost', 'resource', 'institution', 'geography', 'other']);
 export const worldRuleInputSchema = z.object({
   category: worldRuleCategorySchema,

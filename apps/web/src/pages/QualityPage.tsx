@@ -21,6 +21,7 @@ export function QualityPage() {
   const [history, setHistory] = useState<ChapterHistoryDto | null>(null);
   const [manuscripts, setManuscripts] = useState<ManuscriptRevisionDto[]>([]);
   const [loading, setLoading] = useState(false);
+  const relationships = history?.relationships.filter((row): row is NonNullable<typeof row> => Boolean(row)) ?? [];
 
   async function load(chapterNumber = chapter) {
     setLoading(true);
@@ -35,7 +36,7 @@ export function QualityPage() {
   }, [work.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return <section className="page">
-    <header className="page-head"><div><p className="page-kicker">复查</p><Title level={4} style={{ margin: 0 }}>章节质量与状态</Title><p className="page-desc">选择一个章节，查看已采用正文中的事实与角色状态；人物关系同时参考生效范围内的设定，未落实的故事线标为计划。</p></div><Space><InputNumber min={1} max={450} value={chapter} onChange={(value) => setChapter(value ?? 1)} /><Button type="primary" icon={<ReloadOutlined />} loading={loading} onClick={() => void load()}>加载第 {chapter} 章</Button></Space></header>
+    <header className="page-head"><div><p className="page-kicker">复查</p><Title level={4} style={{ margin: 0 }}>章节质量与状态</Title><p className="page-desc">选择一个章节，查看已采用正文中的事实与角色状态；关系逐条标明正文事件、作者设定或创作计划，未落实的故事线标为计划。</p></div><Space><InputNumber min={1} max={450} value={chapter} onChange={(value) => setChapter(value ?? 1)} /><Button type="primary" icon={<ReloadOutlined />} loading={loading} onClick={() => void load()}>加载第 {chapter} 章</Button></Space></header>
     <DesignAuditCard workId={work.id} revision={work.constraintRevision} />
     <DesignContentReviewCard workId={work.id} revision={work.constraintRevision} onReviewed={refresh} />
     {!history ? <div className="state-block"><Spin size="large" /></div> : <Space direction="vertical" size={16} style={{ width: '100%' }}>
@@ -68,7 +69,14 @@ export function QualityPage() {
         <Col xs={24} md={12}><Card title="法宝状态"><Table size="small" pagination={false} rowKey={(row) => row.subjectId + row.field} dataSource={history.artifactStates} locale={{ emptyText: <Empty description="暂无法宝变化" /> }} columns={[{ title: '法宝', dataIndex: 'subjectId' }, { title: '字段', dataIndex: 'field' }, { title: '当前值', dataIndex: 'value', render: valueOf }]} /></Card></Col>
       </Row>
       <Row gutter={16}>
-        <Col xs={24} md={12}><Card title="关系快照"><Table size="small" pagination={false} rowKey="id" dataSource={history.relationships.filter(Boolean)} columns={[{ title: '关系', dataIndex: 'kind' }, { title: '值', dataIndex: 'value' }, { title: '锁定', dataIndex: 'locked', render: (value: boolean) => value ? <Tag color="success">是</Tag> : '否' }]} /></Card></Col>
+        <Col xs={24} md={12}><Card title="关系快照与依据"><Text type="secondary">创作计划尚未落实；展开查看正文证据或计划的触发原因和代价。</Text><Table size="small" pagination={{ pageSize: 8 }} rowKey="id" dataSource={relationships} expandable={{ expandedRowRender: row => row.basis === 'adopted_event'
+          ? <Space direction="vertical"><Text>第 {row.sinceChapter} 章：{row.evidence || '该事件未附引文'}</Text><Text type="secondary">正文版本：{row.sourceChapterVersionId} · 事件：{row.sourceEventId}</Text></Space>
+          : row.basis === 'story_plan' ? <Space direction="vertical"><Text>故事圣经 v{row.storyBibleRevision} · 计划范围：{row.sinceChapter ?? 1}–{row.untilChapter ?? '后续'} 章</Text><Text>触发原因：{row.plannedCause || '未另列阶段原因'}</Text><Text>付出与约束：{row.plannedCost || '未另列阶段代价'}</Text><Text type="secondary">此记录没有对应的有效采纳事件，不证明关系已经变化。</Text></Space>
+          : <Text type="secondary">{row.basis === 'author_setting' ? '这是作者维护的关系设定，没有对应的正文变化证据。' : '此记录未标注来源，暂不能确认为已发生的关系变化。'}</Text> }} columns={[
+          { title: '关系', dataIndex: 'kind' }, { title: '值', dataIndex: 'value' },
+          { title: '依据', render: (_, row) => <Tag color={row.basis === 'adopted_event' ? 'success' : row.basis === 'story_plan' ? 'processing' : row.basis === 'author_setting' ? 'default' : 'warning'}>{row.basis === 'adopted_event' ? '正文事件' : row.basis === 'story_plan' ? '创作计划' : row.basis === 'author_setting' ? '作者设定' : '来源待核对'}</Tag> },
+          { title: '设定锁定', dataIndex: 'locked', render: (value: boolean) => value ? '是' : '否' },
+        ]} /></Card></Col>
         <Col xs={24} md={12}><Card title="分卷、弧光、秘密与收束"><Table size="small" pagination={{ pageSize: 8 }} rowKey="id" dataSource={[...history.volumeStates.map((state) => ({ id: state.volumeId, kind: '分卷', name: state.volumeId, status: state.status, value: valueOf(state.value) })), ...history.arcStates.map((state) => ({ id: state.arcId, kind: '弧光', name: state.arcId, status: state.status, value: valueOf(state.value) })), ...history.secretStates.map((state) => ({ id: state.secretId, kind: '秘密', name: state.secretId, status: state.revealed ? '已揭示' : '未揭示', value: valueOf(state.value) })), ...history.promiseStates.map((state) => ({ id: state.promiseId, kind: '承诺', name: state.promiseId, status: state.status, value: valueOf(state.value) })), ...history.threadStates.map((state) => ({ id: state.threadId, kind: '开放线', name: state.threadId, status: state.status, value: valueOf(state.value) }))]} columns={[{ title: '类型', dataIndex: 'kind' }, { title: 'ID', dataIndex: 'name' }, { title: '状态', dataIndex: 'status' }, { title: '证据', dataIndex: 'value' }]} /></Card></Col>
       </Row>
       <Card title="角色认知快照"><Table size="small" pagination={{ pageSize: 8 }} rowKey={(row) => `${row.characterId}:${row.proposition}`} dataSource={history.knowledgeStates} locale={{ emptyText: <Empty description="截至本章没有可重建的角色认知" /> }} columns={[{ title: '人物', dataIndex: 'characterId' }, { title: '关于', dataIndex: 'subjectId' }, { title: '命题', dataIndex: 'proposition' }, { title: '认知', dataIndex: 'belief', render: valueOf }]} /></Card>

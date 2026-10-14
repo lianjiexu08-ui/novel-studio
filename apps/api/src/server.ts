@@ -739,7 +739,7 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
       events,
       characterStates,
       knowledgeStates,
-      relationships: [...relationshipIds].map((relationshipId) => relationshipAt(work, relationshipId, chapterNumber)),
+      relationships: [...relationshipIds].map((relationshipId) => relationshipAt(work, relationshipId, chapterNumber)).filter((relationship): relationship is NonNullable<typeof relationship> => Boolean(relationship)),
       resourceStates: (work.worldPack?.resources ?? []).flatMap((resource) => [...new Set([...work.events.values()].filter((event) => event.active && event.eventType === 'resource_change' && event.subjectId === resource.id && event.chapterNumber <= chapterNumber).map((event) => event.predicate))].map((field) => resourceStateAt(work, resource.id, field, chapterNumber)).filter((state): state is NonNullable<typeof state> => Boolean(state))),
       artifactStates: (work.worldPack?.artifacts ?? []).flatMap((artifact) => [...new Set([...work.events.values()].filter((event) => event.active && event.eventType === 'artifact_change' && event.subjectId === artifact.id && event.chapterNumber <= chapterNumber).map((event) => event.predicate))].map((field) => artifactStateAt(work, artifact.id, field, chapterNumber)).filter((state): state is NonNullable<typeof state> => Boolean(state))),
       arcStates,

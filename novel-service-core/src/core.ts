@@ -377,6 +377,13 @@ export interface Relationship {
   sinceChapter?: number;
 }
 
+/** A readable fallback is not evidence that the planned relationship happened. */
+export type RelationshipSnapshot = Relationship & (
+  | { basis: 'adopted_event'; sourceEventId: string; sourceChapterVersionId: string; evidence: string }
+  | { basis: 'author_setting' }
+  | { basis: 'story_plan'; storyBibleRevision: number; untilChapter?: number; plannedCause?: string; plannedCost?: string }
+);
+
 export type CharacterRole = 'protagonist' | 'major' | 'supporting' | 'minor';
 
 export interface Character {
@@ -1433,8 +1440,8 @@ export function artifactStateAt(work: Work, artifactId: string, field: string, c
   return valueStateAt(work, 'artifact_change', artifactId, field, chapterNumber);
 }
 
-/** Reconstructs a relationship value at a chapter without mutating the author seed. */
-export function relationshipAt(work: Work, relationshipId: string, chapterNumber: number): Relationship | undefined {
+/** Returns an adopted change or an explicitly labelled author/plan fallback. */
+export function relationshipAt(work: Work, relationshipId: string, chapterNumber: number): RelationshipSnapshot | undefined {
   const setting = work.relationships.get(relationshipId);
   const seed = work.storyBible?.relationships.find((relationship) => relationship.id === relationshipId);
   const base: Relationship | undefined = setting ?? (seed ? {
@@ -1444,7 +1451,7 @@ export function relationshipAt(work: Work, relationshipId: string, chapterNumber
   } : undefined);
   if (!base) return undefined;
   const change = [...work.events.values()]
-    .filter((item) => item.active && item.eventType === 'relationship_change' && item.subjectId === relationshipId && item.chapterNumber <= chapterNumber)
+    .filter((item) => item.workId === work.id && item.active && item.eventType === 'relationship_change' && item.subjectId === relationshipId && item.chapterNumber <= chapterNumber)
     .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id))
     .at(-1);
   if (!change) {
@@ -1452,11 +1459,15 @@ export function relationshipAt(work: Work, relationshipId: string, chapterNumber
     if (!setting && seed?.untilChapter !== undefined && seed.untilChapter < chapterNumber) return undefined;
     if (!setting && seed?.stages?.length) {
       const stage = seed.stages.find((item) => item.sinceChapter <= chapterNumber && (item.untilChapter === undefined || item.untilChapter >= chapterNumber));
-      return stage ? { ...base, value: stage.value, sinceChapter: stage.sinceChapter } : undefined;
+      return stage ? { ...base, value: stage.value, sinceChapter: stage.sinceChapter, basis: 'story_plan',
+        storyBibleRevision: work.storyBible!.revision, untilChapter: stage.untilChapter ?? seed.untilChapter,
+        plannedCause: stage.cause, plannedCost: stage.cost } : undefined;
     }
-    return { ...base };
+    return setting ? { ...base, basis: 'author_setting' }
+      : { ...base, basis: 'story_plan', storyBibleRevision: work.storyBible!.revision, untilChapter: seed?.untilChapter };
   }
-  return { ...base, value: typeof change.value === 'string' ? change.value : JSON.stringify(change.value), sourceEventId: change.id, sinceChapter: change.chapterNumber };
+  return { ...base, value: typeof change.value === 'string' ? change.value : JSON.stringify(change.value), sourceEventId: change.id, sinceChapter: change.chapterNumber,
+    basis: 'adopted_event', sourceChapterVersionId: change.chapterVersionId, evidence: change.evidence };
 }
 
 /**
