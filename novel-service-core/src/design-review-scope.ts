@@ -12,9 +12,19 @@ const localStoryCriteria: Record<string, string> = {
   genre: '根据本批作者偏好、世界与实际场景，检查奇异环境、修炼和探索是否改变人物选择、风险或回报，还是只作术语装饰。有限能力与有代价的胜利可以成立；不要借此要求免费升级、越阶或新增万能法宝，也不能仅因本批没有高阶战斗判缺乏玄幻感。需要跨段对照时定位具体已存在来源。',
 };
 
+// v20 gives power partitions the same local/global distinction as story
+// partitions. A local reviewer must still inspect every supplied high-tier
+// rule, but need not independently re-read the entire unseen inventory.
+const localPowerCriteria: Record<string, string> = {
+  tiers: '逐项核验本批实际提供的境界、功法、法宝和资源分级，以及本批角色起点、晋阶和施术所需的资格。境界承载不等于已掌握术式：作者明确的开篇前学习可作为初始设定，书内新增学习须有前置；仍需核具体训练、实测、对象与使用门槛。若已读条目或行动明确依赖某个未读术式、器物或资源，指出该条目、具体依赖和所需原文再请求补读；目录中其他未读等级或物品的存在本身，不构成本批必须全读的理由。全等级分级的一致性由全部原文批次、交叉检查与综合共同验收。',
+  costs: '核算本批实际给出的规则成本和行动收支：力量来源、寿储、法力、资源剂量、恢复、冷却及不可逆代价应分别闭合；疗伤不等于延寿，未来收入不能预支。已给高阶规则即使尚未用于章纲，也必须审其自身成本、供能和限制。对具体已读安排确实缺少的前置账目，定位完整必要来源请求补读；不能仅因为其余资源表或后续章节尚未读到，就要求本批独自证明全书预算闭合。材料中已经存在的超支、重复收入或免费恢复必须保留返修。',
+  counters: '逐项审查本批已给能力的对象、范围、上限、打断、撤退和反制，以及本批越阶或同阶胜利的实际条件；公共高阶规则也不能跳过。若已读能力明确援引另一个未读术式来证明反制或上限，应说明具体关系并补读相应原文；不要把未使用、未关联的全部功法法宝和后续章节都当成本批待核材料。已给规则自身的万能能力、无代价越阶或明确冲突仍须返修，整体反制体系由全量覆盖后的综合检查。',
+};
+
 export function localDesignReviewRubric(input: DesignReviewInput, scheduleVersion = 7): Record<string, string> {
   return Object.fromEntries(Object.entries(input.rubric).map(([criterion, description]) => [criterion,
-    `本项是局部原文检查，pass仅表示本批可检验的安排成立，不代表整个领域通过。${input.area === 'story' && description === designReviewRubrics.story[criterion] ? localStoryCriteria[criterion] ?? description : description}`
+    `本项是局部原文检查，pass仅表示本批可检验的安排成立，不代表整个领域通过。${input.area === 'story' && description === designReviewRubrics.story[criterion] ? localStoryCriteria[criterion] ?? description
+      : scheduleVersion >= 20 && input.area === 'power' && description === designReviewRubrics.power[criterion] ? localPowerCriteria[criterion] ?? description : description}`
     + (input.area === 'power' ? '本批完整提供的各等级境界、功法、法宝和资源规则本身也是待审对象，包含尚未在章纲中使用的高阶规则；公共来源不只是背景。必须检查其自身约束，再核具体角色行动，不能只核低阶行动账而跳过已经给出的高阶能力缺口。' : '')
     + '逐一核验实际提供的规则和行动；本批自身缺少关键约束、预算不闭合或出现矛盾仍须返修。'
     + (scheduleVersion >= 8 ? '分卷、里程碑和圣经章概要不是完整的逐章执行账；摘要未列某项费用、余量或时机，本身不能证明细纲缺失。先查来源目录中对应的plan/chapters/章节号：如尚未读到，针对该动作以insufficient和awaitingSources请求对应细纲，不能直接判revise；已完整读到仍无必要规则或支出，或原文彼此冲突，必须保留revise。不能凭目录存在就假定细纲会补齐，更不能把摘要缺项自动判pass。规则自身缺陷仍须独立检查，不依赖章纲补救。' : '')

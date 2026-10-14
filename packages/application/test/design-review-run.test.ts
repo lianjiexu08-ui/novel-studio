@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { ChapterWorkflow, InMemoryWorkRepository, type DesignProvider, type WorkTransaction } from '../src/index.ts';
 import { createReadyWork } from './fixtures.ts';
 import { designReviewInput, designReviewOverview, designReviewRubrics, type DesignReviewInput, type DesignReviewResult } from '../../../novel-service-core/src/design-review.ts';
@@ -74,7 +75,7 @@ test('chapter-only power batches also receive complete tier and technique rules'
   ];
   input.sources = [...rules, ...input.sources];
   const run = createDesignReviewRun(input);
-  assert.equal(run.scheduleVersion, 19);
+  assert.equal(run.scheduleVersion, 20);
   for (const stage of run.stages) {
     const staged = designReviewStageInput(run, stage);
     assert.ok(JSON.stringify(staged.sources).length <= 240_000);
@@ -106,6 +107,52 @@ test('oversized shared candidates remain complete ordinary sources and legacy sc
   const restored = JSON.parse(JSON.stringify(legacy));
   for (const stage of restored.stages.slice(1)) acceptDesignReviewStage(restored, stage, stagePass(designReviewStageInput(restored, stage)));
   assert.equal(completeDesignReviewRun(restored).result.checks[0].verdict, 'pass');
+});
+
+test('v20 scopes power questions locally without dropping high-tier sources or changing saved v19 requests', () => {
+  const input: DesignReviewInput = { area: 'power', scope: { worldPackRevision: 1, storyBibleRevision: 1, planRevisionId: 'p', planRevision: 1 }, inputHash: 'a'.repeat(64), rubric: designReviewRubrics.power, sources: [
+    { id: 'world/techniques/high', text: '高阶术式仍须支付寿储并可被打断。'.repeat(10000) },
+    { id: 'plan/chapters/1', text: '本章只执行初阶训练。'.repeat(15000) },
+  ] };
+  const old = createDesignReviewRun(input, '2026-10-15T00:00:00Z', 19);
+  // Captured before v20 was implemented. Resuming persisted v19 must send the
+  // exact same local rubric and source envelope, not silently rewrite history.
+  const oldFirst = designReviewStageInput(old, old.stages[0]);
+  assert.equal(createHash('sha256').update(JSON.stringify(oldFirst)).digest('hex'), '45c48104b8e9be2fd0a129e6f13d7bc16f9aac6c71fd3e0376bc14dd5ae8ce18');
+  const current = createDesignReviewRun(input, old.createdAt);
+  assert.equal(current.scheduleVersion, 20);
+  assert.deepEqual(current.units, old.units);
+  assert.deepEqual(current.stages, old.stages);
+  for (const stage of current.stages) {
+    const staged = designReviewStageInput(current, stage);
+    const previous = designReviewStageInput(old, old.stages.find(s => s.id === stage.id)!);
+    assert.deepEqual(staged.sources, previous.sources);
+    if (stage.kind !== 'synthesis') {
+      assert.notDeepEqual(staged.rubric, previous.rubric);
+      const { rubric, ...rest } = staged, { rubric: ignored, ...oldRest } = previous;
+      assert.deepEqual(rest, oldRest, 'only the local questions change; capacity, coverage and obligations remain');
+    } else assert.deepEqual(staged.rubric, previous.rubric, 'global synthesis criteria remain unchanged');
+    const result = stagePass(staged), oldResult = stagePass(previous);
+    acceptDesignReviewStage(current, stage, result);
+    acceptDesignReviewStage(old, old.stages.find(s => s.id === stage.id)!, oldResult);
+  }
+  assert.deepEqual(completeDesignReviewRun(current).result, completeDesignReviewRun(old).result);
+});
+
+test('v20 never erases a real high-tier conflict or ordinary capacity insufficiency during synthesis', () => {
+  for (const verdict of ['revise', 'insufficient'] as const) {
+    const input = largeInput(); input.area = 'power'; input.rubric = designReviewRubrics.power;
+    const run = createDesignReviewRun(input);
+    for (const stage of run.stages) {
+      const staged = designReviewStageInput(run, stage), result = stagePass(staged);
+      if (stage === run.stages[0]) result.checks[0] = { ...result.checks[0], verdict,
+        explanation: verdict === 'revise' ? '已给高阶规则允许无代价跨界，存在明确冲突' : '同一能力确实依赖超出容量的完整必要原文',
+        revisionAdvice: '需要独立核验', ...(verdict === 'insufficient' ? { insufficiencyReason: 'capacity_limit' as const } : {}) };
+      acceptDesignReviewStage(run, stage, result);
+    }
+    assert.equal(run.stages.at(-1)!.result!.checks[0].verdict, 'pass');
+    assert.equal(completeDesignReviewRun(run).result.checks[0].verdict, verdict);
+  }
 });
 
 const chapterPairInput = (): DesignReviewInput => ({ ...largeInput(), sources: [
