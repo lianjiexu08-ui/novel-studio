@@ -1,0 +1,49 @@
+{
+  "status": "verified_on_observed_missing_training_case",
+  "scheduleVersion": 14,
+  "legacySchedulesPreservedThrough": 13,
+  "rubricVersion": 14,
+  "acceptanceCriteriaChanged": false,
+  "implementation": "When a deferred question requests a named technique, artifact or resource, include complete related chapter/milestone source candidates. Prefer full original batch; if necessary use the existing complete-cited-source focus plus shared rules and every requested source. If the entire related set cannot fit, retain bounded original follow-up and explicitly list omitted candidates when metadata fits.",
+  "sourcePolicy": "No truncation, no invented prerequisites, no automatic resolution, no changes to raw batch partitioning or existing review results.",
+  "tests": {
+    "passed": 244,
+    "failed": 0,
+    "focusedPassed": 5,
+    "webTypecheckAndBuildPassed": true
+  },
+  "realDiagnostic": {
+    "file": "2026-10-14-review-related-context-replay.json",
+    "model": "gpt-5.6-luna",
+    "fallback": false,
+    "calls": 1,
+    "formatRepairNeeded": false,
+    "sourceCount": 182,
+    "sourceChars": 156850,
+    "includedRelatedSources": [
+      "story/chapterPlans/chapter-plan-18",
+      "story/chapterPlans/chapter-plan-20",
+      "story/chapterPlans/chapter-plan-25",
+      "story/chapterPlans/bible-chapter-44",
+      "plan/milestones/ms_growth_v1_training",
+      "plan/milestones/ms_vol1_climax",
+      "plan/chapters/18",
+      "plan/chapters/20",
+      "plan/chapters/25",
+      "plan/chapters/44"
+    ],
+    "omittedRelatedSources": [],
+    "criterion": "causality",
+    "verdict": "pass",
+    "resolves": [
+      "cross-2-5/causality"
+    ],
+    "historicalResultOverwritten": false
+  },
+  "limitations": [
+    "One observed case; not a guarantee that models resolve every source or scope error.",
+    "Navigation-only cross-stage replay and related-source follow-up replay are different requests, not a controlled single-variable experiment.",
+    "Formal57 still runs schedule12 in its frozen runtime. No active design, old blocker or adopted history changed."
+  ],
+  "formalAcceptance": false
+}

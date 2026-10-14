@@ -1,0 +1,78 @@
+{
+  "status": "reviewed",
+  "purpose": "Diagnostic replay of the original completed followup-cross-2-5/causality with complete related plan sources supplied by schedule14. Original sources and rubric preserved; new request anchors. Current horizon and source-capacity prompt also applies, so not a pure single-variable comparison against original formal57.",
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "savedToWork": false,
+  "formalAcceptance": false,
+  "runId": "design_run_f6b0a6f9-767c-4650-8ec6-54910f97341a",
+  "stageId": "followup-cross-2-5/causality",
+  "originalStageHash": "96217441bc240c6982ecf3f680f688d40edc21b6fe08ae7c8d21e3d5addcf1f0",
+  "sourceCount": 182,
+  "sourceChars": 156850,
+  "existingRawSourceTextPreserved": true,
+  "newContextWholeSources": true,
+  "newRequestAnchors": true,
+  "rubricUnchanged": true,
+  "entityMentionsChars": 2026,
+  "fullCoverageChars": 23643,
+  "relatedSourceContext": {
+    "includedSourceIds": [
+      "story/chapterPlans/chapter-plan-18",
+      "story/chapterPlans/chapter-plan-20",
+      "story/chapterPlans/chapter-plan-25",
+      "story/chapterPlans/bible-chapter-44",
+      "plan/milestones/ms_growth_v1_training",
+      "plan/milestones/ms_vol1_climax",
+      "plan/chapters/18",
+      "plan/chapters/20",
+      "plan/chapters/25",
+      "plan/chapters/44"
+    ],
+    "omittedSourceIds": []
+  },
+  "modelCalls": 0,
+  "usage": {
+    "calls": 1,
+    "failedCalls": 0,
+    "inputTokens": 112579,
+    "outputTokens": 716,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 1,
+        "failedCalls": 0,
+        "outputTokens": 716,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 2
+    }
+  },
+  "attemptCount": 1,
+  "checks": [
+    {
+      "criterion": "causality",
+      "verdict": "pass",
+      "explanation": "原问题所指的第61—66章“二成真元风刃切绳”并非以凝元境界名称临时补足：剑诀明确允许凝元境使用，一次完整施展固定支付当境法力二成，并可沿锁定可见方向导刃；对清醒锁定与中断亦有约束。林辰起点虽为淬体，但第18章提案安排其先付三元载晋凝元、领取赤霞剑并练习剑诀，且明确记有失控停练和延期实测；第20、25、44章又分别把该剑诀安排为付二成真元的具体行动。因此，到第61—66章以一次同成本剑诀切普通绳索，有已学术式与重复受限使用作前置，不依赖轻物御动或境界自动授予。该结论仅确认按提案写作的可行性，相关训练、前章施术及北境救援仍须在逐章写作中兑现。",
+      "revisionAdvice": "",
+      "resolves": [
+        "cross-2-5/causality"
+      ],
+      "evidenceCount": 8,
+      "evidenceSourceIds": [
+        "review-question/cross-2-5/causality",
+        "review-unit/8",
+        "review-unit/10",
+        "review-unit/57",
+        "review-unit/111",
+        "review-unit/252",
+        "review-unit/254",
+        "review-unit/301"
+      ]
+    }
+  ]
+}

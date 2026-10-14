@@ -1,0 +1,139 @@
+{
+  "status": "completed_with_failures",
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "runtimeCommit": "4aacb02712bbd7f2a155de432ec773697234114d",
+  "rubricVersion": 14,
+  "scheduleVersion": 12,
+  "scope": {
+    "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+    "planId": "plan_f25dcbc08eab4bdb911de5ad10c69a90",
+    "world": 28,
+    "bible": 57,
+    "plan": 57
+  },
+  "startedAt": "2026-10-14T08:41:47.462Z",
+  "finishedAt": "2026-10-14T10:09:10.775Z",
+  "errors": [
+    {
+      "area": "power",
+      "message": "模型输出修正一次后仍不符合格式：等待补读来源不在完整目录中：plan/chapters/83。必须从sourceLengths选择确实存在且未完整读取的原始来源；没有逐章细纲时核对已有分卷或里程碑，不得推造章节ID。没有可补读来源时保留普通材料不足。"
+    },
+    {
+      "area": "characters",
+      "message": "openai-compatible request failed (524): openai_error"
+    },
+    {
+      "area": "world",
+      "message": "模型输出修正一次后仍不符合格式：解决待补读项必须引用原问题、原批材料及每个新增来源：batch-4/history；缺少：原批材料（至少一个实际支持判断的原批片段）。按本次来源目录选择真实支持片段，不得自动补引文或只删除resolves来掩盖未核验问题。"
+    }
+  ],
+  "usage": {
+    "calls": 69,
+    "failedCalls": 1,
+    "inputTokens": 6651085,
+    "outputTokens": 113936,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 69,
+        "failedCalls": 1,
+        "outputTokens": 113936,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 180
+    }
+  },
+  "protectedHistoryUnchanged": true,
+  "reports": [
+    {
+      "summary": "全部批次已完成，但仍有返修或材料不足项；详见逐项结论。",
+      "resolvedDeferrals": [
+        {
+          "checkId": "batch-1/causality",
+          "resolvedByStageId": "followup-batch-1/causality"
+        },
+        {
+          "checkId": "batch-1/timeline",
+          "resolvedByStageId": "followup-batch-1/timeline"
+        },
+        {
+          "checkId": "batch-1/opening",
+          "resolvedByStageId": "followup-batch-1/opening"
+        },
+        {
+          "checkId": "batch-2/opening",
+          "resolvedByStageId": "cross-2-3"
+        },
+        {
+          "checkId": "cross-1-3/opening",
+          "resolvedByStageId": "followup-cross-1-3/opening"
+        },
+        {
+          "checkId": "cross-2-5/timeline",
+          "resolvedByStageId": "followup-cross-2-5/timeline"
+        },
+        {
+          "checkId": "cross-2-5/payoff",
+          "resolvedByStageId": "followup-cross-2-5/payoff"
+        },
+        {
+          "checkId": "cross-3-5/causality",
+          "resolvedByStageId": "followup-cross-3-5/causality"
+        },
+        {
+          "checkId": "cross-3-5/timeline",
+          "resolvedByStageId": "followup-cross-3-5/timeline"
+        }
+      ],
+      "id": "design_review_c627a712-a649-41aa-8f99-d5677a9e854b",
+      "area": "story",
+      "inputHash": "bdf43ccd031986ec649ce01b0ee1cc2867668c69838e573327bbea3210d060c0",
+      "scope": {
+        "worldPackRevision": 28,
+        "storyBibleRevision": 57,
+        "planRevisionId": "plan_f25dcbc08eab4bdb911de5ad10c69a90",
+        "planRevision": 57
+      },
+      "status": "needs_revision",
+      "createdAt": "2026-10-14T10:08:58.283Z",
+      "runId": "design_run_f6b0a6f9-767c-4650-8ec6-54910f97341a",
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "revise",
+          "explanation": "第36章看守隔半丈抽出木楔、第43章伙计以轻钩挂住拖环，均依赖凝元轻物御动。通则要求此操作先有控制练习与实测；现有章纲虽限定了目标、距离、真元和机械受力，却未为两名施术者分别建立行动前的训练、实测范围及可用真元前置，不能由凝元身份自动补齐。另，第64章风刃的规则已获补读确认，但林辰在该章前的取得、锁定导刃实测与熟习链仍须实际写入相应计划，不能只依赖境界资格。",
+          "revisionAdvice": "为第36、43章各自施术者补明行动前已完成的轻物御动控制练习、实测对象/距离、可用真元与伤情条件；否则改为实体机关操作。并在第18—64章间明确林辰取得《乾元御风剑诀》、完成凝元风刃锁定与导刃实测、掌握中断条件的章节链，并在第64章落实稳定专注、可见目标和二成真元余量；不能建立该链则改用已有取得和训练依据的切绳手段。",
+          "evidenceCount": 8
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "revise",
+          "explanation": "第61–66章至第96–100章的日序、航程、疗程、复诊、晋阶训练和回访大体能顺接：285–300日救援，304–310日返青玄，316/330日伤情复诊，415–424日晋阶与护罡训练，431–466日押运和回访。可是第67–72章同一航次的支付安排同时出现“各1500、共3000”和“北航10000+回航3000”，未说明是不同航段或前后两笔付款，导致出航前后的可用款项与时间节点不能确定。",
+          "revisionAdvice": "在第67–72章补出唯一一致的付款节点和航段拆分；若10000并非该次北航客舱费，须明确其对应的旧债、货运或其他支出，不能与“两席各1500”并列为同一航次费用。",
+          "evidenceCount": 3
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "revise",
+          "explanation": "本批对伏笔与承诺的兑现边界写得清楚：第一片未重复消费，第二片仍在赵府；父案仅核实守门参与与掩案责任，不冒称查明投毒真凶；救援名单、安置地点和不同批次人员也明确区分。阶段胜果以救人、断运、部分证据闭合和玄府成长为限，未越过全书终局。但返乡航款矛盾会影响“贺垫款已结算、余款归还商盟”的兑现是否成立，因此相关支付代价和返乡承诺尚不能同时生效。",
+          "revisionAdvice": "修正第67–72章航款后，重新写明贺实际垫付、林贺承担或归还的金额，以及第72章结算时剩余款项；确保第80章“贺返赤霄交垫款余220”和第100章阶段胜果不再依赖两套金额。",
+          "evidenceCount": 4
+        },
+        {
+          "criterion": "opening",
+          "verdict": "insufficient",
+          "explanation": "本子树的报告仅验证第1—29章伤后成长、准入与古境救援链的局部连续，能够说明开篇由救人受伤、保全证据、受限调查、付费成长推进至救援，并不等于已核验前五十章的冲突升级、高潮分布、关系选择后果及第33—50章是否避免模板重复。总览本身也明确50章后仍有待正式整体验收的事项，不能把局部时间与因果通过扩大为前五十章开篇质量通过。",
+          "revisionAdvice": "待纳入覆盖第30—50章的原始章纲及相应开篇专项报告后，核对第一卷救援后果如何转化为港口线压力，检验第33—50章的调查、追船、救人和留置选择是否各有不同触发、代价与不可逆后果。",
+          "evidenceCount": 7
+        }
+      ]
+    }
+  ],
+  "formalAcceptance": false,
+  "scopeNote": "Original runner terminal only; recovery areas remain active."
+}

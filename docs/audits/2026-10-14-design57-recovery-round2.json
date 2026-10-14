@@ -1,13 +1,38 @@
 {
-  "status": "waiting_for_original_runner",
+  "status": "running",
   "originalPid": 17792,
-  "diagnosticPid": 42719,
-  "startedAt": "2026-10-14T10:05:16.417Z",
+  "diagnosticPid": 44771,
+  "startedAt": "2026-10-14T10:12:19.238Z",
   "model": "gpt-5.6-luna",
   "fallback": false,
   "runtimeCommit": "4aacb02712bbd7f2a155de432ec773697234114d",
   "concurrency": "At most two model calls sharing one repository instance, only after original writer exits",
-  "areas": [],
+  "areas": [
+    {
+      "area": "world",
+      "runId": "design_run_3839c593-a088-415d-8512-39ff4348b14c",
+      "status": "running",
+      "resumedFrom": "followup-batch-2/history",
+      "preservedSteps": 17,
+      "calls": 1
+    },
+    {
+      "area": "power",
+      "runId": "design_run_2c637f9b-5a78-4597-a8ef-6ffa40787d6a",
+      "status": "running",
+      "resumedFrom": "batch-2",
+      "preservedSteps": 1,
+      "calls": 0
+    },
+    {
+      "area": "character",
+      "runId": "design_run_9cf3b6d1-345e-452e-b980-79b7ec4163f9",
+      "status": "queued",
+      "resumedFrom": "batch-2",
+      "preservedSteps": 1,
+      "calls": 0
+    }
+  ],
   "errors": [],
   "reason": "Cross-process SQLite transactions timed out before claiming the next steps. Resume after original runner and read-only diagnostic exit, with a shared repository mutex in one process.",
   "expectedNextSteps": {
@@ -15,9 +40,11 @@
     "power": "batch-2",
     "character": "batch-2"
   },
-  "modelCalls": 0,
+  "modelCalls": 1,
   "completedStepsNotReplayed": true,
   "previousFailuresRetained": true,
   "formalAcceptance": false,
-  "additionalGate": "Wait for entity-navigation read-only diagnostic PID to exit too; previous waiting process was superseded before any model calls."
+  "additionalGate": "Original runner and related-context diagnostic have exited; recovery now uses one shared repository instance.",
+  "originalRunnerTerminalVerified": true,
+  "protectedHistoryUnchanged": true
 }

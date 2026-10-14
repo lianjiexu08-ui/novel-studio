@@ -1,5 +1,5 @@
 {
-  "status": "implementation_verified_live_diagnostic_running",
+  "status": "implementation_verified_navigation_alone_insufficient",
   "scheduleVersion": 13,
   "legacySchedulesPreservedThrough": 12,
   "rubricVersion": 14,
@@ -35,5 +35,11 @@
   },
   "formalAcceptance": false,
   "activeDesignChanged": false,
-  "apiRestarted": false
+  "apiRestarted": false,
+  "liveDiagnostic": {
+    "file": "2026-10-14-review-entity-navigation-replay.json",
+    "calls": 1,
+    "requestedTrainingChapter": false,
+    "conclusion": "Model still did not request chapter18 or the training milestone; source navigation alone did not fix the observed selection failure."
+  }
 }

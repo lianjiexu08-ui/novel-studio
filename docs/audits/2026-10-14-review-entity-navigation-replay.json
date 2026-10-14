@@ -1,0 +1,104 @@
+{
+  "status": "reviewed",
+  "purpose": "Diagnostic replay of the original completed cross-2-5 stage with entity-to-plan mention navigation. Same raw sources, fragments and rubric. Uses current horizon and source-capacity prompt too, so not a pure single-variable comparison against original formal57.",
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "savedToWork": false,
+  "formalAcceptance": false,
+  "runId": "design_run_f6b0a6f9-767c-4650-8ec6-54910f97341a",
+  "stageId": "cross-2-5",
+  "originalStageHash": "d390261aa478d24ce8caae95582515c1f11ba29bcadb608cfa280a41439425c3",
+  "sourceCount": 170,
+  "sourceChars": 136918,
+  "sourceAndFragmentTextUnchanged": true,
+  "rubricUnchanged": true,
+  "entityMentionsChars": 2026,
+  "fullCoverageChars": 19961,
+  "modelCalls": 0,
+  "usage": {
+    "calls": 1,
+    "failedCalls": 0,
+    "inputTokens": 97387,
+    "outputTokens": 2132,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 1,
+        "failedCalls": 0,
+        "outputTokens": 2132,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 2
+    }
+  },
+  "attemptCount": 1,
+  "checks": [
+    {
+      "criterion": "causality",
+      "verdict": "insufficient",
+      "explanation": "第61—66章的宏观安排把救出七人的关键动作明确设为林辰以一次二成真元“风刃”切绳；但当前已读规则要求实际施术须有已掌握功法或明确基础操作，并满足对象、供能与时机，凝元基础操作也未包含风刃。现有材料只给出林在此前为凝元三重，未给出该风刃的取得/训练/规则，也未给出54—60章航程后的真元余额，故不能以宏观摘要推定其可发动。其余选择链本身清楚：林放弃第二片救人，夜以不扩大封港和守栈桥承担程逃走的代价，未见同一成果被重复兑现。",
+      "revisionAdvice": "补读并核对 world/techniques/tech_04 是否确实定义林可学、已学的风刃及二成支付、距离和切绳限制；同时核对 ms_v2_voyage 中北航前的训练、伤情与真元支出/恢复，使第64章发动时的保守余量可闭合。若该术并不存在或不适用，应改写这一救援动作而非以凝元境界名称补足。",
+      "awaitingSources": [
+        "world/techniques/tech_04",
+        "plan/milestones/ms_v2_voyage"
+      ],
+      "evidenceCount": 5,
+      "evidenceSourceIds": [
+        "review-unit/301",
+        "review-unit/7",
+        "review-unit/8",
+        "review-unit/10",
+        "review-unit/285"
+      ]
+    },
+    {
+      "criterion": "timeline",
+      "verdict": "pass",
+      "explanation": "本批可核的后两卷日期连续：285—300日北境段结束，301—315日返乡；302日购两席、304日暮起航、310日暮抵港符合六昼夜海程，随后311—314日陆路返外山。316—410日训练、415日晋玄府、431—436日截押、437—466日安置回访依次衔接。赵的寄报、收报、发令、送达和后续报告也明确区分了发出、实到与知情时点，未见本批内部的同日越距获讯冲突。",
+      "revisionAdvice": "",
+      "evidenceCount": 7,
+      "evidenceSourceIds": [
+        "review-unit/36",
+        "review-unit/301",
+        "review-unit/302",
+        "review-unit/303",
+        "review-unit/304",
+        "review-unit/305",
+        "review-unit/306"
+      ]
+    },
+    {
+      "criterion": "payoff",
+      "verdict": "pass",
+      "explanation": "阶段承诺将百章成果限定为分别救援、安置三地不同人员并停止已证实的一条链，明确不把异地人员互相计数、不把本地回访扩张为异地近况已核；同时保留九鼎全貌、残片归属与父案完整因果为后续问题。首卷寿药承诺也把两剂完成疗程和复诊设为唯一入账节点，避免在第29章重复计入。北境、青玄两段的结果与代价均保留：程逃走、第二片未得、寿储不返还、赵仅就本批命令受可核问责，故作为拟定兑现结构成立。",
+      "revisionAdvice": "",
+      "evidenceCount": 7,
+      "evidenceSourceIds": [
+        "review-unit/223",
+        "review-unit/226",
+        "review-unit/228",
+        "review-unit/233",
+        "review-unit/301",
+        "review-unit/305",
+        "review-unit/306"
+      ]
+    },
+    {
+      "criterion": "opening",
+      "verdict": "pass",
+      "explanation": "已提供的第1—2章以矿道灭口、毒烟、伤者和销账构成即时外部压力；林两次选择救人、保全证人与账册而非独逃或追凶，分别付出内腑伤、线索中断和伤势恶化。随后宏观转折由有限复核、凝元训练、古境救人、港口救援、北境取舍到玄府截押递进，且每次高潮均保留伤势、船损、寿储或逃犯等后果，并非开篇即靠高阶能力终结主线。",
+      "revisionAdvice": "",
+      "evidenceCount": 4,
+      "evidenceSourceIds": [
+        "review-unit/307",
+        "review-unit/308",
+        "review-unit/285",
+        "review-unit/305"
+      ]
+    }
+  ]
+}
