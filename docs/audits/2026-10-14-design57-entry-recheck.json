@@ -1,0 +1,53 @@
+{
+  "observedAt": "2026-10-14T07:26:34.405Z",
+  "candidateVersion": 4,
+  "candidateHash": "88d0670eed8f7336c6735fabe21c919d2dec7d5a8bfd94e9b9ada2234e6972a8",
+  "savedToWork": false,
+  "formalAcceptance": false,
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "usage": {
+    "calls": 1,
+    "failedCalls": 0,
+    "inputTokens": 29045,
+    "outputTokens": 857,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 1,
+        "failedCalls": 0,
+        "outputTokens": 857,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 8
+    }
+  },
+  "checks": [
+    {
+      "criterion": "entry",
+      "verdict": "pass",
+      "explanation": "赤霄准入明确要求适用法门或避火灵符，普通避火衣只能辅助，且日常符不防明火、火法或喷发。214日船方按护货附单借出衣与符，验符至少72小时并于日暮启用；出航前仅查本航次非喷发通告，未把它当作未来保证。216日靠港前从海侧复核当日放行旗号，港务再核无喷发记录后准入泊。217日晨在受护交接位逐件归还借衣、借符，借符累计使用不超过60小时且按余纹验收；随后才以不同领用号领取租符并佩戴离开，时间和物品身份均未混同。",
+      "revisionAdvice": "",
+      "evidenceCount": 7
+    },
+    {
+      "criterion": "settlement",
+      "verdict": "pass",
+      "explanation": "护货劳务覆盖船方借符的本航次消耗，未生成为林可支取的现金。217日另签轻役总酬6枚，实际仅先扣租符2枚，余4枚明确只是待结算预计数；225日船医从药包实际付1枚敷伤药并列入同一轻役结算，230日据此结为6减2减1、实领3枚，未预支未到手收入，也未重复扣租费或药费。借衣借符217归还；租符有217—230合同期、余纹验收及230归还；231贺从自己60枚修船储备实付12枚购买两张满符，林取得其一，储备余48，和林个人3枚分账。新符的720小时上限及后续余量也已指定，未把预计4枚或旧符余量当作新符来源。",
+      "revisionAdvice": "",
+      "evidenceCount": 10
+    }
+  ],
+  "payment": {
+    "gross": 6,
+    "rental": 2,
+    "forecastAtDay217": 4,
+    "medicineAtDay225": 1,
+    "actualCashAtDay230": 3
+  },
+  "caveat": "This recheck includes chapters29–40 and the updated macro handover. It corrects the earlier audit description of 4 as final cash, without changing the original accurate chapter37/39 ledger or original review records."
+}
