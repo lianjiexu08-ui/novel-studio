@@ -1,0 +1,121 @@
+{
+  "observedAt": "2026-10-14T07:05:21.555Z",
+  "status": "unsaved_candidate_model_review_unavailable",
+  "candidateVersion": 2,
+  "candidateHash": "21a7ed956e60eac151097800e639e4719edd0fcb728880a945ea30735141428c",
+  "baseHash": "5b93fac2f56944a5e4af27088dc1fdfafac977ca3487f3e97d68806dbfd1b69d",
+  "baseVersions": {
+    "world": 27,
+    "bible": 56,
+    "plan": 56
+  },
+  "savedToWork": false,
+  "formalAcceptance": false,
+  "schemaPassed": true,
+  "structuralGatesIdenticalToBase": true,
+  "existingBlockersUnchanged": true,
+  "entryCandidateChangesRetained": true,
+  "changes": [
+    {
+      "path": "/worldPack/techniques/5/effect",
+      "before": "以玄府纯阳元罡凝成太乙真光，克制外放的阴煞血爪，可灼散其表层煞气、破坏出爪节奏；不自动消除对手的玄府元罡、境界或行动能力。克制后仍须同阶实战制伏，不能把属性相克当成永久封禁。",
+      "after": "以本人当境纯阳法力凝成太乙真光：玄府用元罡，神海用本境法力，均按ax_07从唯一当境账户支出；同一人不另开低境元罡余额。真光克制外放的阴煞血爪，可灼散其表层煞气、破坏出爪节奏；不自动消除对手的玄府元罡、境界或行动能力。克制后仍须同阶实战制伏，不能把属性相克当成永久封禁。"
+    },
+    {
+      "path": "/worldPack/techniques/5/cost",
+      "before": "每次完成法印支付三成健康稳定元罡上限与0.25元载寿储；旧称“三个月寿元”按命寿核算律固定为四分之一元载，不另用历法月长计费。",
+      "after": "每次完成法印支付三成本人当境健康稳定法力上限（玄府为元罡，神海为本境法力）与0.25元载寿储；旧称“三个月寿元”按命寿核算律固定为四分之一元载，不另用历法月长计费。"
+    },
+    {
+      "path": "/worldPack/techniques/5/limitations",
+      "before": [
+        "阴煞死渊深处光芒威能被大幅压制",
+        "蓄势施展需三个呼吸间隔",
+        "每次完成法印即支付三成健康稳定元罡上限与0.25元载，放空也不返还；法印未成即受近身打断时需散去蓄势，至少损一成元罡，不能把未付寿元当成已完成施术。",
+        "真光只在这一次正面交锋中灼散接触到的阴煞；不能隔墙锁定、长时间保持压制或对更高境界自动生效。同一场交战只准凝印一次，至少隔一昼夜且元罡和经脉复查稳定后才能再施；肩臂经脉伤未恢复者不可强开第二印。"
+      ],
+      "after": [
+        "阴煞死渊深处光芒威能被大幅压制",
+        "蓄势施展需三个呼吸间隔",
+        "每次完成法印即支付三成本人当境健康稳定法力上限与0.25元载，放空也不返还；法印未成即受近身打断时需散去蓄势，至少损本人当境法力一成（实际损耗按实测，不足不得起印），不能把未付寿元当成已完成施术。",
+        "真光只在这一次正面交锋中灼散接触到的阴煞；不能隔墙锁定、长时间保持压制或对更高境界自动生效。同一场交战只准凝印一次，至少隔一昼夜且本人当境法力余量足付、经脉复查稳定后才能再施；肩臂经脉伤未恢复者不可强开第二印。",
+        "两境均须先完成本境纯阳供能与凝印训练、三息起式及收势的受控实测、经脉复诊，晋入神海不自动完成这些条件。",
+        "玄府与神海的百分比各以本人本境健康稳定实测上限计费，不按伤后余量缩小；允许境界只表示可训练和承载，不额外授予探知、距离、持续压制或跨境破防。伤损上限、普通恢复与供能属性仍服从ax_07；真光须保持纯阳供能，不能用阴煞或其他账户代付。"
+      ]
+    },
+    {
+      "path": "/storyBible/characters/9/identity",
+      "before": "太清玄府剑修、古境当值护送执事；已修成玄府可用剑诀、元罡护体与地阶太清太乙真光。真光须三息结印、每次付三成元罡和0.25元载，同场只准一印，受伤与冷却仍按功法限制执行；玄府身份本身不等于自动掌握宗门所有术法。他没有王器、跨境瞬移和无限元罡。",
+      "after": "太清玄府剑修、古境当值护送执事；已修成玄府可用剑诀、元罡护体与地阶太清太乙真光。真光须三息结印、每次付三成元罡和0.25元载，同场只准一印，受伤与冷却仍按功法限制执行；玄府身份本身不等于自动掌握宗门所有术法。他没有王器、跨境瞬移和无限元罡。 作者开篇前技能设定：顾已由宗门师长指导完成玄府纯阳供能、三息凝印与主动收势的受控训练和实测，经脉复诊合格；这是既有修习背景，不代表后续伤情、余量或冷却自动满足，亦不把未来神海训练计为已完成。"
+    }
+  ],
+  "modelReview": {
+    "status": "failed",
+    "error": "openai-compatible request failed (stream): Our servers are currently overloaded. Please try again later.",
+    "model": "gpt-5.6-luna",
+    "fallback": false,
+    "usage": {
+      "calls": 1,
+      "failedCalls": 1,
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "costUsd": 0,
+      "costKnown": false,
+      "byRole": {
+        "reviewing": {
+          "calls": 1,
+          "failedCalls": 1,
+          "outputTokens": 0,
+          "costUsd": 0
+        }
+      },
+      "limits": {
+        "budgetUsd": null,
+        "maxCalls": 4
+      }
+    },
+    "receivedResult": false,
+    "wordingPolishedAfterFailedRequest": true
+  },
+  "unresolved": [
+    "墨幽屠噬血爪的开篇前掌握依据",
+    "23章元罡推车及25章近身制伏的具体能力边界",
+    "赵氏军需—炎煞代理—程记承运既有互供的资源与授权前史"
+  ],
+  "sourceNamesValidation": [
+    {
+      "area": "world",
+      "scheduleVersion": 10,
+      "sourceCount": 407,
+      "namedSources": 160,
+      "maxCoverageChars": 20923,
+      "artifact02": "青木护身灵符符佩",
+      "artifact03": "赤霞斩铁剑"
+    },
+    {
+      "area": "power",
+      "scheduleVersion": 10,
+      "sourceCount": 328,
+      "namedSources": 105,
+      "maxCoverageChars": 16394,
+      "artifact02": "青木护身灵符符佩",
+      "artifact03": "赤霞斩铁剑"
+    },
+    {
+      "area": "characters",
+      "scheduleVersion": 10,
+      "sourceCount": 279,
+      "namedSources": 56,
+      "maxCoverageChars": 13140
+    },
+    {
+      "area": "story",
+      "scheduleVersion": 10,
+      "sourceCount": 353,
+      "namedSources": 130,
+      "maxCoverageChars": 17853,
+      "artifact02": "青木护身灵符符佩",
+      "artifact03": "赤霞斩铁剑"
+    }
+  ]
+}

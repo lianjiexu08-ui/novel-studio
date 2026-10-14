@@ -33,3 +33,18 @@ export function designReviewPlanRanges(input: DesignReviewInput): NonNullable<No
     return [{ sourceId: source.id, startChapter, endChapter, ...(typeof title === 'string' ? { title } : {}) }];
   });
 }
+
+/** Names locate original entity records; they cannot establish any rule or verdict. */
+export function designReviewSourceNames(input: DesignReviewInput): Record<string, string> {
+  return Object.fromEntries(input.sources.flatMap(source => {
+    // Chapter numbers and macro ranges already locate plans. Keep the directory
+    // compact by naming world entities and characters, not every chapter title.
+    if (!source.id.startsWith('world/') && !source.id.startsWith('story/characters/') && !source.id.startsWith('settings/characters/')) return [];
+    let value: unknown;
+    try { value = JSON.parse(source.text); } catch { return []; }
+    if (!value || typeof value !== 'object' || Array.isArray(value)) return [];
+    const { name, title } = value as Record<string, unknown>;
+    const label = typeof name === 'string' && name.trim() ? name : title;
+    return typeof label === 'string' && label.trim() ? [[source.id, label]] : [];
+  }));
+}

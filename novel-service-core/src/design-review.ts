@@ -42,6 +42,8 @@ export interface DesignReviewInput {
       mode: 'whole_input' | 'local_sources' | 'reports_with_context';
       /** Complete inventory of this area's input, not evidence of source contents. */
       sourceLengths: Record<string, number>;
+      /** Navigation only: names copied from structured sources, never evidence. */
+      sourceNames?: Record<string, string>;
       /** Navigation only: ranges stated by existing plan sources, never evidence. */
       planRanges?: Array<{ sourceId: string; startChapter: number; endChapter: number; title?: string }>;
       pendingChecks?: Array<{ id: string; criterion: string; questionSourceId: string; requiredSourceIds: string[]; priorUnitIds: string[]; priorSourceIds?: string[] }>;
@@ -108,10 +110,9 @@ export function designReviewHash(work: Work, planId?: string): string | undefine
   const plan = selectedId ? work.plans.get(selectedId) : undefined;
   if (!work.worldPack || !work.storyBible || !plan || plan.status === 'superseded' || (planId === undefined && plan.status !== 'approved')) return undefined;
   return createHash('sha256').update(JSON.stringify({
-    // Version 11 includes actual chapter actions in world review. Geography
-    // cannot verify travel/entry prerequisites using macro summaries alone.
-    // Reviews produced without those sources must not authorize this input.
-    rubricVersion: 11, title: work.title, covenant: work.covenant,
+    // Version 12 adds named source navigation to prevent confusing adjacent
+    // entity IDs during follow-up, while preserving all adverse reports.
+    rubricVersion: 12, title: work.title, covenant: work.covenant,
     world: work.worldPack, bible: work.storyBible, planId: plan.id, plan: plan.plan,
     characters: [...work.characters.values()].sort((a, b) => a.id.localeCompare(b.id)),
     relationships: [...work.relationships.values()].sort((a, b) => a.id.localeCompare(b.id)),

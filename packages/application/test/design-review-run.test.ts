@@ -61,7 +61,7 @@ test('chapter-only power batches also receive complete tier and technique rules'
   ];
   input.sources = [...rules, ...input.sources];
   const run = createDesignReviewRun(input);
-  assert.equal(run.scheduleVersion, 9);
+  assert.equal(run.scheduleVersion, 10);
   for (const stage of run.stages) {
     const staged = designReviewStageInput(run, stage);
     assert.ok(JSON.stringify(staged.sources).length <= 240_000);
@@ -645,4 +645,49 @@ test('a follow-up expands cited sources split outside the original batch even wh
     assert.equal(staged.sources.filter(s => ids.includes(s.id)).map(s => s.text).join(''), input.sources.find(s => s.id === sourceId)!.text);
   }
   assert.ok(JSON.stringify(staged.sources).length <= 240_000);
+});
+
+test('v10 names locate the correct unread artifact without turning directory labels into evidence', () => {
+  const input = largeInput();
+  input.area = 'power';
+  input.rubric = { tiers: '核剑器承载，不可拿符佩替代' };
+  const sword = { id: 'world/artifacts/art_03', text: JSON.stringify({ name: '赤霞斩铁剑', limitations: ['不得强灌玄府元罡'], detail: '原始器身规则。'.repeat(1000) }) };
+  input.sources = [
+    { id: 'world/axioms/fill', text: JSON.stringify({ title: '公共规则', content: '规'.repeat(38_000) }) },
+    ...input.sources,
+    { id: 'world/artifacts/art_02', text: JSON.stringify({ name: '青木护身符佩', detail: '护身不是剑器。'.repeat(1000) }) },
+    sword,
+    { id: 'world/artifacts/invalid', text: '不是结构化名称' },
+    { id: 'world/artifacts/array', text: JSON.stringify([{ name: '不能捏造条目名' }]) },
+  ];
+  const run = createDesignReviewRun(input), legacy = createDesignReviewRun(input, undefined, 9);
+  assert.deepEqual(run.units, legacy.units);
+  assert.deepEqual(run.stages, legacy.stages);
+  const first = designReviewStageInput(run, run.stages[0]);
+  assert.ok(!first.stage!.sourceMap.some(u => u.sourceId === sword.id));
+  assert.equal(first.stage!.coverage!.sourceNames![sword.id], '赤霞斩铁剑');
+  assert.equal(first.stage!.coverage!.sourceNames!['world/artifacts/art_02'], '青木护身符佩');
+  assert.equal(first.stage!.coverage!.sourceNames!['world/artifacts/invalid'], undefined);
+  assert.equal(first.stage!.coverage!.sourceNames!['world/artifacts/array'], undefined);
+  assert.equal(designReviewStageInput(legacy, legacy.stages[0]).stage!.coverage!.sourceNames, undefined);
+  assert.deepEqual(designReviewStageInput(JSON.parse(JSON.stringify(run)), run.stages[0]), first);
+  const unread = stagePass(first);
+  unread.checks[0].evidence = [{ sourceId: sword.id, quote: '赤霞斩铁剑' }];
+  assert.throws(() => acceptDesignReviewStage(run, run.stages[0], unread), /引用不在原文/);
+  const pending = stagePass(first);
+  pending.checks[0] = { ...pending.checks[0], verdict: 'insufficient', explanation: '待核剑器承载', revisionAdvice: '按名称定位剑器原文', awaitingSources: [sword.id] };
+  acceptDesignReviewStage(run, run.stages[0], pending);
+  let coRead = false;
+  for (let i = 1; i < run.stages.length; i++) {
+    const stage = run.stages[i];
+    const staged = designReviewStageInput(run, stage), result = stagePass(staged);
+    const unit = staged.stage!.sourceMap.find(u => u.sourceId === sword.id);
+    if (unit && stage.kind !== 'synthesis') {
+      coRead = true;
+      result.checks[0] = { ...result.checks[0], verdict: 'revise', explanation: '原文明确限制玄府强灌，仍需处理违规使用', revisionAdvice: '保留承载限制', evidence: [{ sourceId: unit.id, quote: '不得强灌玄府元罡' }] };
+    }
+    acceptDesignReviewStage(run, stage, result);
+  }
+  assert.ok(coRead);
+  assert.equal(completeDesignReviewRun(run).result.checks[0].verdict, 'revise');
 });
