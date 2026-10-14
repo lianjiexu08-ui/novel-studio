@@ -7,6 +7,7 @@ const labels = { world: '世界、势力与历史', power: '力量、功法与�
 const statuses = { missing: '尚未评审', outdated: '设计已变，需重评', passed: '本项设计通过', needs_revision: '需要返修', inconclusive: '材料不足', reviewing: '评审进行中', interrupted: '评审未完成' };
 const verdicts = { pass: '通过', revise: '返修', insufficient: '材料不足' };
 const criteria: Record<string, string> = { geography: '地理与势力', history: '历史因果', capacity: '长篇承载能力', tiers: '品阶与门槛', costs: '消耗与恢复', counters: '上限与反制', agency: '独立动机与选择', relationships: '关系变化', knowledge: '秘密与认知', causality: '情节因果', timeline: '时空与分卷', payoff: '铺垫与兑现', opening: '开篇递进', pacing: '节奏与场次', genre: '题材体验与成长' };
+type ReviewRun = DesignReviewOverviewDto['runs'][number];
 
 export function DesignContentReviewCard({ workId, revision, onReviewed }: { workId: string; revision: number; onReviewed: () => Promise<void> }) {
   const { message } = App.useApp();
@@ -66,6 +67,22 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
       </Card>)}
     </Space>;
   }
+  function runDetails(run: ReviewRun, historical = false) {
+    return <Space direction="vertical" style={{ width: '100%' }}>
+      <Typography.Text type="secondary">世界 v{run.scope.worldPackRevision} · 圣经 v{run.scope.storyBibleRevision} · 计划 v{run.scope.planRevision} · {new Date(run.createdAt).toLocaleString()}</Typography.Text>
+      <Typography.Paragraph type="secondary">原文 {run.totalSources} 项 · {run.totalCharacters.toLocaleString()} 字符。{historical
+        ? run.reportId ? '已形成最终报告，具体结论可在历史评审记录中查看。' : '尚未形成最终报告，已保存的批次和失败记录仍可查阅。'
+        : run.status === 'completed' ? '所有批次已完成，结论见上方。' : run.status === 'running' ? '一批正在执行；断线后需等执行结束或租约到期再继续。' : '未完成，不计为本项通过；继续时保留已完成批次。'}</Typography.Paragraph>
+      <Collapse style={{ width: '100%' }} items={[{ key: 'stages', label: '查看批次、证据与失败记录', children: <Space direction="vertical" style={{ width: '100%' }}>{run.stages.map(stage => <div key={stage.id}>
+        <Tag color={stage.verdict === 'passed' ? 'success' : stage.verdict ? 'warning' : stage.error ? 'error' : 'default'}>{stage.verdict ? stage.verdict === 'passed' ? '本批通过' : statuses[stage.verdict] : stage.error ? historical ? '有失败记录' : '失败可重试' : '待审'}</Tag>{stage.label}
+        {(stage.completed || stage.error || stage.attempts > 0) && <Button type="link" size="small" onClick={() => void showStage(run.id, stage.id)}>原文与结果</Button>}
+        {stage.error && <Typography.Paragraph type="danger">{stage.error}</Typography.Paragraph>}
+      </div>)}</Space> }]} />
+    </Space>;
+  }
+  const currentRuns = data?.runs.filter((run, index, runs) => run.inputHash === data.inputHash && !runs.slice(index + 1).some(next => next.inputHash === data.inputHash && next.area === run.area)) ?? [];
+  const currentRunIds = new Set(currentRuns.map(run => run.id));
+  const historicalRuns = data?.runs.filter(run => !currentRunIds.has(run.id)).reverse() ?? [];
   return <Card title="分项内容评审" extra={<Button onClick={() => void load()}>刷新记录</Button>}>
     <Space direction="vertical" size={12} style={{ width: '100%' }}>
       <Alert type={data?.ready ? 'info' : 'warning'} showIcon message={data?.ready ? '所选计划的设计评审通过，写作仍需锁定和批准'  : '长篇写作前，先完成四项内容评审'} description="使用规划模型逐项审查内容，保存原文证据和返修建议。大材料先逐批审原文、对照各批之间的冲突，再综合结论；进度自动保存，刷新或失败后可继续。可以先评审待批准提案，评审不会批准计划；修改创作约定、设定或计划会使旧结论过期。模型建议尚未采纳，不会自动成为故事事实；设计通过也不代表已验收正文。" />
@@ -76,19 +93,18 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
           const report = data.reports.find((item) => item.id === area.reportId);
           return { key: area.area, label: <Space wrap>{labels[area.area]}<Tag color={area.status === 'passed' ? 'success' : 'warning'}>{statuses[area.status]}</Tag></Space>, extra: <Button size="small" loading={busy === area.area} disabled={busy !== null || !data.inputHash} onClick={(event) => { event.stopPropagation(); void review(area.area); }}>{['reviewing', 'interrupted'].includes(area.status) ? '继续本项' : '评审本项'}</Button>, children: report ? details(report) : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="尚无评审。先准备设计及计划提案，再评审本项。" /> };
         })} />
-        {data.runs.filter((run, index, runs) => run.inputHash === data.inputHash && !runs.slice(index + 1).some(next => next.inputHash === data.inputHash && next.area === run.area)).map(run => <Card size="small" key={run.id} title={`${labels[run.area]} · ${run.stages.filter(stage => stage.completed).length}/${run.stages.length} 步`}>
-          <Typography.Paragraph type="secondary">原文 {run.totalSources} 项 · {run.totalCharacters.toLocaleString()} 字符。{run.status === 'completed' ? '所有批次已完成，结论见上方。' : run.status === 'running' ? '一批正在执行；断线后需等执行结束或租约到期再继续。' : '未完成，不计为本项通过；继续时保留已完成批次。'}</Typography.Paragraph>
-          <Collapse items={[{ key: 'stages', label: '查看批次、证据与失败记录', children: <Space direction="vertical" style={{ width: '100%' }}>{run.stages.map(stage => <div key={stage.id}>
-            <Tag color={stage.verdict === 'passed' ? 'success' : stage.verdict ? 'warning' : stage.error ? 'error' : 'default'}>{stage.verdict ? stage.verdict === 'passed' ? '本批通过' : statuses[stage.verdict] : stage.error ? '失败可重试' : '待审'}</Tag>{stage.label}
-            {(stage.completed || stage.error) && <Button type="link" size="small" onClick={() => void showStage(run.id, stage.id)}>原文与结果</Button>}
-            {stage.error && <Typography.Paragraph type="danger">{stage.error}</Typography.Paragraph>}
-          </div>)}</Space> }]} />
-        </Card>)}
+        {currentRuns.map(run => <Card size="small" key={run.id} title={`${labels[run.area]} · ${run.stages.filter(stage => stage.completed).length}/${run.stages.length} 步`}>{runDetails(run)}</Card>)}
+        {historicalRuns.length > 0 && <Collapse items={[{ key: 'run-history', label: `历史评审任务与批次（${historicalRuns.length}）`, children: <Space direction="vertical" style={{ width: '100%' }}>
+          <Typography.Paragraph type="secondary">保留旧版本及同一设计的较早任务，包括未形成最终报告的失败或中断任务。这些历史记录不代表当前所选设计通过；继续评审请使用上方对应项目的入口。</Typography.Paragraph>
+          <Collapse style={{ width: '100%' }} items={historicalRuns.map(run => ({ key: run.id, label: <Space wrap>{labels[run.area]} · 计划 v{run.scope.planRevision} · {run.stages.filter(stage => stage.completed).length}/{run.stages.length} 步<Tag>{run.inputHash !== data.inputHash ? '与当前所选设计或计划不同' : '同一设计的较早任务'}</Tag><Typography.Text type="secondary">{new Date(run.createdAt).toLocaleString()}</Typography.Text></Space>, children: runDetails(run, true) }))} />
+        </Space> }]} />}
         <Collapse items={[{ key: 'history', label: `历史评审记录（${data.reports.length}）`, children: <Collapse items={[...data.reports].reverse().map((report) => ({ key: report.id, label: `${labels[report.area]} · ${statuses[report.status]} · ${new Date(report.createdAt).toLocaleString()}${report.inputHash !== data.inputHash ? '（已过期）' : ''}`, children: details(report) }))} /> }]} />
       </> : !error && <Typography.Text>正在加载评审记录…</Typography.Text>}
     </Space>
-    <Modal open={stageDetail !== null} title={stageDetail?.stage.label ?? '批次详情'} footer={null} onCancel={() => setStageDetail(null)} width={900}>
+    <Modal open={stageDetail !== null} title={stageDetail ? `${stageDetail.stage.label} · 计划 v${stageDetail.input.scope.planRevision}` : '批次详情'} footer={null} onCancel={() => setStageDetail(null)} width={900}>
       {stageDetail && <Space direction="vertical" style={{ width: '100%' }}>
+        {stageDetail.input.inputHash !== data?.inputHash && <Alert type="warning" showIcon message="此批次对应的设计或计划与当前所选版本不同，仅供历史核查。" />}
+        {!stageDetail.stage.result && <Typography.Text type="secondary">世界 v{stageDetail.input.scope.worldPackRevision} · 圣经 v{stageDetail.input.scope.storyBibleRevision} · 计划 v{stageDetail.input.scope.planRevision}</Typography.Text>}
         <Alert type="info" showIcon message={stageDetail.stage.kind === 'synthesis' ? '本步综合前置评审报告；新版流程另附计划原文。请按来源区分报告转述与原始设计。' : '本批结论只覆盖下列材料，不代表整项设计通过。'} />
         {stageDetail.stage.error && <Alert type="error" message="本批尚未完成" description={stageDetail.stage.error} />}
         {stageDetail.stage.result && details({ ...stageDetail.stage.result, sources: stageDetail.input.sources, scope: stageDetail.input.scope })}

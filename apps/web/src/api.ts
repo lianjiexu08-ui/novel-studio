@@ -46,6 +46,7 @@ export interface DesignReviewStageDetail {
     error?: string; modelResponses?: string[]; failures?: unknown[]; rejectedResult?: unknown;
   };
   input: {
+    inputHash: string;
     scope: DesignContentReviewDto['scope']; sources: DesignContentReviewDto['sources'];
     stage?: { sourceMap: Array<{ id: string; sourceId: string; start: number; end: number }> };
   };
