@@ -1,6 +1,6 @@
 {
-  "observedAt": "2026-10-14T16:45:11.196Z",
-  "status": "terminal_not_acceptance",
+  "observedAt": "2026-10-14T16:49:54.854Z",
+  "status": "in_progress_not_acceptance",
   "originalRunnerStatus": "completed_with_failures",
   "runtimeCommit": "7f9a9771bd3ca5a5db7323118b12e015587ca140",
   "scope": {
@@ -46,8 +46,76 @@
     }
   },
   "usageScope": "original_runner_only",
-  "recoveries": [],
-  "combinedCalls": 102,
+  "recoveries": [
+    {
+      "area": "world",
+      "round": 1,
+      "status": "running",
+      "runId": "design_run_7c8ca759-f3df-4f3e-92fc-b2502e06128a",
+      "usage": {
+        "calls": 1,
+        "failedCalls": 0,
+        "inputTokens": 110036,
+        "outputTokens": 860,
+        "costUsd": 0,
+        "costKnown": false,
+        "byRole": {
+          "reviewing": {
+            "calls": 1,
+            "failedCalls": 0,
+            "outputTokens": 860,
+            "costUsd": 0
+          }
+        },
+        "limits": {
+          "budgetUsd": null
+        }
+      },
+      "previousFailureRetained": true,
+      "completedStepsNotReplayed": 16
+    },
+    {
+      "area": "power",
+      "round": 1,
+      "status": "running",
+      "runId": "design_run_6da44acd-3475-4e6c-8f4f-b21c2833550b",
+      "usage": {
+        "calls": 0,
+        "failedCalls": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "costUsd": 0,
+        "costKnown": true,
+        "byRole": {},
+        "limits": {
+          "budgetUsd": null
+        }
+      },
+      "previousFailureRetained": true,
+      "completedStepsNotReplayed": 12
+    },
+    {
+      "area": "story",
+      "round": 1,
+      "status": "queued",
+      "runId": "design_run_15a23bc4-0828-4ffc-a7d1-7fe434a52af2",
+      "usage": {
+        "calls": 0,
+        "failedCalls": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "costUsd": 0,
+        "costKnown": true,
+        "byRole": {},
+        "limits": {
+          "budgetUsd": null
+        }
+      },
+      "previousFailureRetained": true,
+      "completedStepsNotReplayed": 29
+    }
+  ],
+  "combinedCalls": 103,
   "errors": [
     {
       "area": "world",
@@ -68,8 +136,8 @@
     {
       "id": "design_run_7c8ca759-f3df-4f3e-92fc-b2502e06128a",
       "area": "world",
-      "status": "failed",
-      "completed": 16,
+      "status": "ready",
+      "completed": 17,
       "total": 51,
       "stages": [
         {
@@ -666,13 +734,28 @@
               "evidenceCount": 19
             }
           ]
+        },
+        {
+          "id": "followup-batch-2/history",
+          "checks": [
+            {
+              "criterion": "history",
+              "verdict": "pass",
+              "explanation": "原等待项已获所需原文支持：三年前旧约仅交换赵方有限、已入账的军需额度与货签、炎煞外围代理的仓位/接驳及程记承运，不授予任何一方港务、商盟、库存或即时跨海指挥权；因此程的扣工、改签与货损是当批违法选择和可追责资产风险，而非旧约自动合法化。程报在262日才到赵，赵的263回令在268日才由程签收、273日才回执，赵只据实际报告依次于318日听北境损失、410日单方转为本地车队；炎煞真身则没有送达节点，不会被倒写为已知或已同意改约。北境救人后，夜为撤离通道放弃追程并承担巡程代价；赵的本地撤运又由其已收押报触发，最终因原令、见证和救援而停止该已证运输链。上述行动均有各自权限、信息来源、选择与损失，且百章结果只断一条链，未不当扩大为全网清算，解决了原先对历史协议边界及后续独立行动无法核验的不足。",
+              "revisionAdvice": "",
+              "resolves": [
+                "batch-2/history"
+              ],
+              "evidenceCount": 21
+            }
+          ]
         }
       ]
     },
     {
       "id": "design_run_6da44acd-3475-4e6c-8f4f-b21c2833550b",
       "area": "power",
-      "status": "failed",
+      "status": "running",
       "completed": 12,
       "total": 29,
       "stages": [
