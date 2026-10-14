@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto';
 import { anchoredDesignReviewResultSchema, designReviewResultSchema } from 'novel-studio-contracts';
 import { DesignReviewError, validateDesignReview, type DesignReviewInput } from '../../../novel-service-core/src/design-review.ts';
+import { designReviewHorizon } from './design-review-horizon.ts';
 
 export class DesignReviewEvidenceError extends DesignReviewError {}
 
@@ -69,6 +70,7 @@ export function prepareDesignReviewEvidence(input: DesignReviewInput) {
     })) : undefined;
   return {
     requestId,
+    planningHorizon: designReviewHorizon(snapshot),
     sources,
     citationRequirements,
     pendingCitationRequirements,

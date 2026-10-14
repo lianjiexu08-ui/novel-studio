@@ -64,6 +64,26 @@ test('intermediate synthesis scope reaches the model, binds evidence and does no
   assert.throws(() => prepareDesignReviewEvidence(differentScope).resolve(response), /请求编号/);
 });
 
+test('planning horizon reaches the model without substituting source evidence or clearing a real gap', async () => {
+  const request = await input();
+  const overview = request.sources.find(s => s.id === 'plan/overview')!;
+  overview.text = JSON.stringify({ targetChapterCount: 100, detailedThroughChapter: 50, outlinedChapterNumbers: Array.from({ length: 50 }, (_, i) => i + 1) });
+  const before = structuredClone(request), response = anchored(request), prepared = prepareDesignReviewEvidence(request);
+  Object.assign(response.checks[0], { verdict: 'insufficient', explanation: '宏观原文尚未说明受限区域的准入责任。', revisionAdvice: '补明实际准入前置。' });
+  const planner = new JsonDesignPlanner({ complete: async call => {
+    const sent = JSON.parse(call.user);
+    assert.deepEqual(sent.planningHorizon, prepared.planningHorizon);
+    assert.deepEqual(sent.planningHorizon.undetailedChapterRanges, [{ startChapter: 51, endChapter: 100 }]);
+    assert.deepEqual(sent.sources, prepared.sources);
+    assert.match(call.system, /宏观原文本身确缺必要前置或存在冲突仍须明确指出/);
+    return JSON.stringify(response);
+  } });
+  const result = await planner.reviewDesignContent(request);
+  assert.equal(result.checks[0].verdict, 'insufficient');
+  assert.deepEqual(result.checks[0].evidence, prepared.resolve(response).checks[0].evidence);
+  assert.deepEqual(request, before);
+});
+
 test('invented anchors receive one repair attempt then fail closed', async () => {
   const request = await input();
   let calls = 0;

@@ -33,6 +33,7 @@ export class JsonDesignPlanner implements DesignPlanner {
     try {
     const result = await completeValidated(recordingClient, {
       system: `你是玄幻长篇的独立设计编辑。本次只评审一个领域，不续写、不修改设定、不替作者补出证据。
+先读取planningHorizon（若提供）：它仅从本次完整plan/overview原文提取章节层级，detailedChapterRanges为已有细纲范围，undetailedChapterRanges为尚未展开细纲的范围。后者先核对应分卷/里程碑的实际因果、时间、权限、资源与选择，不能仅因没有逐章场景或plan/chapters编号就判缺料；宏观原文本身确缺必要前置或存在冲突仍须明确指出。这个索引不能代替原文、证明宏观已充分或解除任何既有问题，所审材料仍全部位于sources。
 先确定验收对象：evaluationStage=design_proposal 评估“按所给提案写下去是否成立”，不是核验“正文已经做到什么”。story/ 的关系阶段、秘密知情、弧光与 plan/ 的章纲、里程碑都是拟定安排，即使使用叙述式过去时也不自动成为采纳事实。分开判断：(1)该阶段假定哪些前置；(2)文本是否给出可行的变化原因、选择、代价和生效时点；(3)另一处是否否定这些安排。未写正文、未采纳事件、尚待逐章实现，不能单独构成 revise 或 insufficient。
 例如，关系甲拟第51章救出乙后建立有限合作，关系乙写第51章救援尚须在正文实现、未完成前不得认定获救；二者是同一条件与兑现义务，并不互相矛盾。若甲拟第51章已自由离港，乙却拟同一时刻仍被扣在无脱身路径的仓内，则是提案自身冲突，必须返修。不能只因文中有“拟”就通过：缺失必要来源、跳过能力门槛、同一时点知情不一致、重复消费或取消代价仍须指出具体原文问题。
 若带 stage：batch 只评价所给原文批次，cross 检查两个原文批次之间的矛盾，不因其他批次未在本次出现就断言全书缺失。sourceMap 给出各原文片段的来源和字符范围，不代表故事事实。synthesis 中 review-result/ 来源是前置评审报告，其他来源仍为明确附带的原文：对照其证据、时间和依赖，寻找跨报告冲突、重复兑现及无法闭合的因果；不得取消任何前置返修或未解决的材料不足项，不得只数通过票。只有下述显式等待补读机制允许后续原文复核解决局部未读问题；普通返修与全局缺料仍保留。解释保持精炼，结果总长度不超过40000字符。
@@ -60,7 +61,7 @@ pass 也必须有支撑证据；明确矛盾或设计缺陷用 revise；材料�
 这是设计评审，不是正文通读，不能声称正文已符合设计或完成了整书文学验收。关系 stages 是计划阶段，已采纳事件才是实际变化。不得为解释连续性漏洞而把新编的分裂、复活或转移当成已发生事实；优先修正重复兑现。
 只返回 JSON: {"requestId":"输入的requestId","summary":"本项结论","checks":[{"criterion":"rubric中的键","verdict":"pass|revise|insufficient","explanation":"判断理由","evidence":[{"fragmentId":"所选原文片段的id"}],"revisionAdvice":"返修或补充要求，通过时可为空"}]}。
 每个 rubric 键恰好一项。`,
-      user: JSON.stringify({ task: 'review_design_content', requestId: evidence.requestId, evaluationStage: 'design_proposal', scope: input.scope, area: input.area, stage: input.stage, rubric: input.rubric, ...(evidence.citationRequirements ? { citationRequirements: evidence.citationRequirements } : {}), ...(evidence.pendingCitationRequirements ? { pendingCitationRequirements: evidence.pendingCitationRequirements } : {}), sources: evidence.sources }),
+      user: JSON.stringify({ task: 'review_design_content', requestId: evidence.requestId, evaluationStage: 'design_proposal', ...(evidence.planningHorizon ? { planningHorizon: evidence.planningHorizon } : {}), scope: input.scope, area: input.area, stage: input.stage, rubric: input.rubric, ...(evidence.citationRequirements ? { citationRequirements: evidence.citationRequirements } : {}), ...(evidence.pendingCitationRequirements ? { pendingCitationRequirements: evidence.pendingCitationRequirements } : {}), sources: evidence.sources }),
       role: 'reviewing', maxOutputTokens: 8000,
     }, evidence.resolve);
     return { ...result, modelResponses };
