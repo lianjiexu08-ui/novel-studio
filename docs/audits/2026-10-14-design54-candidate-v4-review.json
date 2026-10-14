@@ -1,0 +1,44 @@
+{
+  "status": "reviewed",
+  "formalAcceptance": false,
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "usage": {
+    "calls": 1,
+    "failedCalls": 0,
+    "inputTokens": 136030,
+    "outputTokens": 1131,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 1,
+        "failedCalls": 0,
+        "outputTokens": 1131,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 2
+    }
+  },
+  "savedToWork": false,
+  "candidateSha256": "3a2314104e7a2cf135fddcec0b0079912df7849632454ac2d6fa01434b96a98e",
+  "checks": [
+    {
+      "criterion": "ledger",
+      "verdict": "pass",
+      "explanation": "基准为凝元健康上限十成。第20章先付剑诀二成、器身低流量试注半成，再经两小时专注吐纳实测恢复一成半，得到9成；两小时吐纳理论上限是2成，实记1.5成合规。第21章拨普通笼锁挂钩另付半成，余额8.5成。第25章以该8.5成为起点，剑诀新付二成、废料斗插销这一不同轻物御动新付半成，恰余6成；第21章的半成已包含在起点内，文本明确禁止重扣。腿伤后将可用上限下修至6成并停术，未以伤后上限折减已发生术费。第26章撤离和交押没有为林新增真元收入或重复扣款，符合第25章六成终态的后续承接。",
+      "revisionAdvice": "",
+      "evidenceCount": 7
+    },
+    {
+      "criterion": "presentation",
+      "verdict": "pass",
+      "explanation": "第20章将恢复明细置于cost后，summary、endState与scenes仍一致写明：剑诀后二成支出、试注半成、实际两小时吐纳一成半，且夜间复测为九成并预留下一次轻钩费用。第21章把拨笼锁挂钩单列为一次半成支出；第25章明确废料斗插销是另一动作，并说明其半成不是对第21章动作的重复扣款。账目也明示角色只见行动结果、不知他人精确余额；林自身余额属于其可复测的行动条件，未使其获得作者账本中的未知信息。全链未新增真元收入、未取消剑诀、御物、器身发热或伤后停术代价。",
+      "revisionAdvice": "",
+      "evidenceCount": 4
+    }
+  ]
+}
