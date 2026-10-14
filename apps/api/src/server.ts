@@ -736,6 +736,12 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     const checks = candidate?.checks ?? [];
     return {
       chapterNumber,
+      // Current author-facing identity labels, not chapter-time knowledge or
+      // additional story facts. Stable IDs remain on every relationship.
+      characterNames: Object.fromEntries([
+        ...(work.storyBible?.characters.map(character => [character.id, character.name]) ?? []),
+        ...[...work.characters.values()].map(character => [character.id, character.name]),
+      ]),
       events,
       characterStates,
       knowledgeStates,

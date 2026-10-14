@@ -55,6 +55,8 @@ export interface DesignReviewStageDetail {
 
 export interface ChapterHistoryDto {
   chapterNumber: number;
+  /** Current design labels for the author; older APIs may omit these. */
+  characterNames?: Record<string, string>;
   events: Array<{ id: string; chapterNumber: number; eventType: string; subjectId: string; predicate: string; value: unknown; evidence: string; storyTime?: number }>;
   characterStates: Array<{ characterId: string; field: string; value: unknown; sourceEventId: string; sourceChapterVersionId: string; storyTime?: number }>;
   knowledgeStates: Array<{ characterId: string; subjectId: string; proposition: string; belief: unknown; sourceEventId: string; sourceChapterVersionId: string; storyTime?: number }>;

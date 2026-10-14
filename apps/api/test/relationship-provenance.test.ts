@@ -19,6 +19,7 @@ test('chapter relationship snapshots distinguish author settings, future plans a
     const read = async (chapter: number) => {
       const response = await app.inject({ method: 'GET', url: `/works/${work.id}/state/${chapter}` });
       assert.equal(response.statusCode, 200, response.body);
+      assert.deepEqual(response.json().characterNames, { hero: '林渊', rival: '苏晚' }, 'relationship endpoints need readable labels from the current design');
       const rows = response.json().relationships;
       rows.forEach((row: unknown) => relationshipSnapshotDtoSchema.parse(row));
       return rows;
