@@ -1,0 +1,159 @@
+{
+  "observedAt": "2026-10-14T15:23:27.514Z",
+  "status": "in_progress_not_acceptance",
+  "originalRunnerStatus": "running",
+  "runtimeCommit": "7f9a9771bd3ca5a5db7323118b12e015587ca140",
+  "scope": {
+    "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+    "planId": "plan_f6c112de27db4a54b11ff58b652c4626",
+    "world": 29,
+    "bible": 59,
+    "plan": 59
+  },
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "scheduleVersion": 19,
+  "rubricVersion": 15,
+  "protectedDesignAndHistoryUnchanged": true,
+  "oldRunsUnchanged": 41,
+  "oldReportsUnchanged": 47,
+  "counts": {
+    "plans": 59,
+    "versions": 101,
+    "events": 383,
+    "manuscripts": 1,
+    "runs": 41,
+    "reports": 47
+  },
+  "usage": {
+    "calls": 2,
+    "failedCalls": 0,
+    "inputTokens": 204483,
+    "outputTokens": 5077,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 2,
+        "failedCalls": 0,
+        "outputTokens": 5077,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 300
+    }
+  },
+  "usageScope": "original_runner_only",
+  "recoveries": [],
+  "combinedCalls": 2,
+  "errors": [],
+  "runs": [
+    {
+      "id": "design_run_7c8ca759-f3df-4f3e-92fc-b2502e06128a",
+      "area": "world",
+      "status": "running",
+      "completed": 1,
+      "total": 29,
+      "stages": [
+        {
+          "id": "batch-1",
+          "checks": [
+            {
+              "criterion": "geography",
+              "verdict": "insufficient",
+              "explanation": "已读规则明确三大陆同属一天地、日常往来必须走实体虚海航线；青玄—赤霄约两昼夜、赤霄—苍冥约五昼夜、苍冥—青玄约六昼夜，且各港仍须验籍、支付/代付、担保及受当地封航约束。计划仅在概览中提出“付费北航”、黑舱救人及后续返乡，尚未提供第51—100章所依赖的分卷/里程碑原文，无法核验实际出发地、日期、船舶、北境准入、航款来源、离境担保和返程交接是否逐项满足这些规则；当前没有已证硬冲突。",
+              "revisionAdvice": "补读后须逐项核对北航、苍冥外港活动及返青玄：实际起讫地点与日期、船主/航次、验籍或具名担保、封航处置、款项或责任记录，以及五日、六日实体航程是否已计入。",
+              "awaitingSources": [
+                "plan/volumes/vol_02",
+                "plan/volumes/vol_03",
+                "plan/milestones/ms_v2_voyage",
+                "plan/milestones/ms_v2_boundary",
+                "plan/milestones/ms_v3_return"
+              ],
+              "evidenceCount": 5
+            },
+            {
+              "criterion": "history",
+              "verdict": "pass",
+              "explanation": "本批可核的历史—现状链条成立：界门落锁并未取消三大陆间实体商路，故跨陆航运仍有航程、风暴、验籍与担保成本；商盟据此控制航运和账务。赵、炎煞外围代理与程砚的旧约又明确为有限货路和垫付关系，库存、船票、港务权与消息均不因旧约自动取得，货损会触发程的追责、赵的停垫和代理的扣货选择。这能解释当前非法货运、港口扣工与各方互相推责，且保留势力独立决策空间。",
+              "revisionAdvice": "",
+              "evidenceCount": 6
+            },
+            {
+              "criterion": "capacity",
+              "verdict": "pass",
+              "explanation": "以100章为本轮范围，世界并非仅靠换地图重复冲突：青玄的宗门/皇权与寿源配额、赤霄的港务和火域准入、苍冥的寒境、巡界和空间污染分别具有资源、权限与风险差异；三类高阶寿源还分别受成熟窗、疗程、地域准入、保育份额和竞争分配约束。计划概览将百章定位为切断一条三地运输链、完成有限救援和玄府成长，而非提前解决界门总危机，并给出港口救人、北境取舍、返乡训练和押运核证等不同功能的阶段转折，容量与阶段目标相称。",
+              "revisionAdvice": "",
+              "evidenceCount": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "design_run_6da44acd-3475-4e6c-8f4f-b21c2833550b",
+      "area": "power",
+      "status": "running",
+      "completed": 1,
+      "total": 29,
+      "stages": [
+        {
+          "id": "batch-1",
+          "checks": [
+            {
+              "criterion": "tiers",
+              "verdict": "insufficient",
+              "explanation": "境界与功法条目已明确：境界仅为承载资格，实际施术仍须逐项满足已学术式、对象、供能和中断条件；玄府真光与玄府基础操作也各自要求训练、实测和复诊。人物档案对顾峤、墨幽屠的开篇前训练给出了可作为提案前置的具体说明，且赵玄极明确不具王阶皇道术的施术资格。可是前50章只在概览中列为已有细纲，当前未提供林辰凝元训练、25章交锋的原始章纲；83章玄府晋阶也仅有概览宣告，未提供对应里程碑。故无法核定实际训练、伤情、余量和晋阶前置是否逐项兑现。",
+              "revisionAdvice": "补读所列原始计划后，核对训练完成时点、实测对象、当场伤情及玄府晋阶所需丹府与寿储条件；若章纲与既有规则不符，再在相应章纲或里程碑中修正。",
+              "awaitingSources": [
+                "plan/chapters/16",
+                "plan/chapters/18",
+                "plan/chapters/25",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement"
+              ],
+              "evidenceCount": 8
+            },
+            {
+              "criterion": "costs",
+              "verdict": "insufficient",
+              "explanation": "规则层已将寿储、当境法力、神识和永久本源分账；燃寿不可逆，延寿资源须在完整疗程和复诊后才可入账。真光的元罡与寿储成本、血爪的逐息费用和积毒限制均已明确，灵泉亦禁止预支或返还既付成本。可是概览所称的古境战斗、两次十日疗程、南行、北航、黑舱救援及83章十年晋阶，尚缺对应章纲或后段里程碑原文，无法审计实际支付、恢复窗口、药程入账、航款和伤后可用余额是否闭合。",
+              "revisionAdvice": "补读后逐项核对：25章交锋的元罡/寿储与伤情账，26章及后续灵泉疗程的完成和复诊，31—40章避火物品与航程消耗，以及47—100章航款、寿储、医疗、玄府晋阶和回访期间的资源来源与支出。",
+              "awaitingSources": [
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/40",
+                "plan/milestones/ms_v2_fire",
+                "plan/milestones/ms_v2_voyage",
+                "plan/milestones/ms_v2_boundary",
+                "plan/milestones/ms_v3_return",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement",
+                "plan/milestones/ms_v3_convoy",
+                "plan/milestones/ms_v3_payoff"
+              ],
+              "evidenceCount": 10
+            },
+            {
+              "criterion": "counters",
+              "verdict": "insufficient",
+              "explanation": "本批规则已提供有效反制链：低阶不能凭意志抵消高阶法则；真光可破外放爪煞但不自动废除敌方境界，且会被近身快攻打断；局部护罡、推劲和定腕均限定接触、站位、间隙与伤后停术。高阶功法、法宝也普遍限定锁定、阵位、供能、可作用对象及中断后果。当前概览虽声称25章由顾峤同阶制敌、88—100章进行同阶截押，并明确百章不越阶斩高境，但未提供25章实战动作账及截押里程碑，不能确认胜利是否确由既定反制、人数、环境和代价达成，而非被摘要跳过。",
+              "revisionAdvice": "补读后核验25章中真光三息起印、血爪逐息、双方可用元罡和受伤停术节点；并核验88—100章顾峤牵制、祁嵩交械、伤者转运及看押是否保留同阶反制与失败路径，而非将宏观“救人/交械”当作自动结果。",
+              "awaitingSources": [
+                "plan/chapters/25",
+                "plan/milestones/ms_v3_convoy",
+                "plan/milestones/ms_v3_payoff"
+              ],
+              "evidenceCount": 10
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
