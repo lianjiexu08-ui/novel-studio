@@ -882,7 +882,7 @@ export class ChapterWorkflow {
         resume: createdAt ? { inputHash: input.inputHash, createdAt, stages: [...stages.values()] } : undefined };
     });
     if (!prepared) return;
-    let record: ChapterReviewRecord = { inputHash: prepared.input.inputHash };
+    let record: ChapterReviewRecord = { inputHash: prepared.input.inputHash, input: prepared.input };
     // Stage callbacks and the final response report the same cumulative invocation usage.
     // Advance this cursor only after the transaction commits, never before persistence.
     let accountedUsage: RunUsage | undefined;

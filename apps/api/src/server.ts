@@ -234,6 +234,13 @@ function candidateIsStale(candidate: ChapterCandidate, work: Work): boolean {
 }
 
 function toCandidateDto(candidate: ChapterCandidate, work: Work): CandidateDto {
+  // Full review inputs are immutable persistence evidence. Do not repeat the
+  // entire world, plan and prior chapters in both current and historical lists.
+  const checks = (rows: ChapterCandidate['checks']) => rows.map(check => {
+    if (!check.chapterReview) return check;
+    const { input: _input, ...chapterReview } = check.chapterReview;
+    return { ...check, chapterReview };
+  });
   return {
     id: candidate.id,
     workId: candidate.workId,
@@ -252,8 +259,8 @@ function toCandidateDto(candidate: ChapterCandidate, work: Work): CandidateDto {
     planRevisionId: candidate.planRevisionId,
     brief: candidate.brief,
     stale: candidateIsStale(candidate, work),
-    checks: candidate.checks,
-    checkHistory: candidate.checkRuns,
+    checks: checks(candidate.checks),
+    checkHistory: checks(candidate.checkRuns),
     rulings: candidate.rulings,
     usage: candidate.usage,
     adoptedVersionId: candidate.adoptedVersionId,

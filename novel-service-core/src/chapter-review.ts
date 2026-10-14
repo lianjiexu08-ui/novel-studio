@@ -40,8 +40,17 @@ export interface ChapterReviewInput {
   rubric: typeof chapterReviewRubric;
   sources: Array<{ id: string; text: string }>;
 }
+export function chapterReviewInputHash(input: Omit<ChapterReviewInput, 'inputHash'>, binding: {
+  stateRevision: number; constraintRevision: number; planId?: string; candidatePlanId?: string;
+}): string {
+  return createHash('sha256').update(JSON.stringify({ version: 1, candidateId: input.candidateId, chapterNumber: input.chapterNumber,
+    stateRevision: binding.stateRevision, constraintRevision: binding.constraintRevision, planId: binding.planId,
+    candidatePlanId: binding.candidatePlanId, sources: input.sources, rubric: input.rubric })).digest('hex');
+}
 export interface ChapterReviewRecord {
   inputHash: string;
+  /** Exact reviewed material, retained with completed checks for later manuscript verification. */
+  input?: ChapterReviewInput;
   /** A newer request owns the current review; retain this response only as history. */
   superseded?: boolean;
   result?: ChapterReviewResult;
@@ -139,11 +148,11 @@ export function chapterReviewInput(work: Work, candidate: ChapterCandidate): Cha
     { id: 'observed_events', text: json(candidate.observedEvents) },
     ...prior.map(v => ({ id: `chapter:${v.id}`, text: v.content })),
   ];
-  const binding = { version: 1, candidateId: candidate.id, chapterNumber: candidate.chapterNumber,
+  const input = { candidateId: candidate.id, chapterNumber: candidate.chapterNumber, sources, rubric: chapterReviewRubric };
+  return { ...input, inputHash: chapterReviewInputHash(input, {
     stateRevision: work.stateRevision, constraintRevision: work.constraintRevision, planId: work.activePlanId,
-    candidatePlanId: candidate.planRevisionId, sources, rubric: chapterReviewRubric };
-  return { candidateId: candidate.id, chapterNumber: candidate.chapterNumber, sources, rubric: chapterReviewRubric,
-    inputHash: createHash('sha256').update(json(binding)).digest('hex') };
+    candidatePlanId: candidate.planRevisionId,
+  }) };
 }
 
 export function validateChapterReview(value: unknown, input: ChapterReviewInput): ChapterReviewResult {

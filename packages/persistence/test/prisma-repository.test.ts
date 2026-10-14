@@ -42,7 +42,13 @@ test('independent chapter reports, failures and citations survive reload and sti
   const policy = { version: 'chapter-review-test', required: ['deterministic_rules', chapterReviewChecker] };
   let failing = true;
   const provider: ModelProvider = {
-    generateChapter: () => ({ content: '他按住伤口，放弃追击，先带同伴回城。', proposedEvents: [], observedEvents: [] }),
+    generateChapter: ({ chapterNumber }) => {
+      const events = chapterNumber === 10 ? [
+        { eventType: 'arc_progress', subjectId: 'arc', predicate: 'status', value: { status: 'resolved' } },
+        { eventType: 'volume_progress', subjectId: 'vol-1', predicate: 'status', value: { status: 'resolved' } },
+      ] : [];
+      return { content: '他按住伤口，放弃追击，先带同伴回城。', proposedEvents: events, observedEvents: events };
+    },
     reviewChapterAsync: async input => { if (failing) throw new Error('测试评审失败'); return fixtureChapterReview(input); },
   };
   const workflow = new ChapterWorkflow(first, provider, undefined, { checkPolicy: policy });
@@ -58,7 +64,14 @@ test('independent chapter reports, failures and citations survive reload and sti
   assert.ok(saved.checkRuns.some(c => c.chapterReview?.error === '测试评审失败'));
   assert.equal(saved.checks.find(c => c.checker === chapterReviewChecker)?.chapterReview?.result?.checks.length, 6);
   assert.equal(saved.checks.find(c => c.checker === chapterReviewChecker)?.chapterReview?.result?.checks[0].evidence[0].sourceId, 'draft');
+  const retainedInput = saved.checks.find(c => c.checker === chapterReviewChecker)!.chapterReview!.input!;
+  assert.equal(retainedInput.candidateId, candidate.id);
+  assert.equal(retainedInput.sources.find(source => source.id === 'draft')?.text, candidate.content);
+  assert.equal(retainedInput.inputHash, saved.checks.find(c => c.checker === chapterReviewChecker)!.chapterReview!.result!.inputHash);
   assert.equal((await workflow.adopt(work.id, candidate.id, 0)).version.chapterNumber, 1);
+  assert.deepEqual((await second.get(work.id))!.candidates.get(candidate.id)!.checks.find(c => c.checker === chapterReviewChecker)!.chapterReview!.input, retainedInput);
+  await workflow.runUntil(work.id, 10, [passChecker], 'remaining-chapters');
+  assert.equal((await restoredWorkflow.finalizeManuscript(work.id)).chapterCount, 10, 'saved review inputs remain usable after SQLite reload and later chapter adoption');
 });
 
 test('large chapter review checkpoints resume after SQLite restart without losing failures', async t => {

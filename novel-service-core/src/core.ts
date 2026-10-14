@@ -1,5 +1,5 @@
 import type { DesignReviewRun } from './design-review-run.ts';
-import { chapterReviewChecker, chapterReviewInput, chapterReviewStatus, validateChapterReview, type ChapterReviewInput, type ChapterReviewOptions, type ChapterReviewResult, type ChapterReviewRecord } from './chapter-review.ts';
+import { chapterReviewChecker, chapterReviewInput, chapterReviewInputHash, chapterReviewStatus, validateChapterReview, type ChapterReviewInput, type ChapterReviewOptions, type ChapterReviewResult, type ChapterReviewRecord } from './chapter-review.ts';
 import { designReviewOverview, requiresDesignContentReview, type DesignContentReview } from './design-review.ts';
 import { createHash, randomUUID } from 'node:crypto';
 import { isDeepStrictEqual } from 'node:util';
@@ -796,6 +796,29 @@ export class NovelService {
           && plan.contentHash === planContentHash(plan.plan) && source.contentHash === planContentHash(currentProjection));
       }
       if (!compatiblePlans.get(source.id)) reject('来源章纲或全书蓝图与当前计划不兼容');
+      if (this.checkPolicy?.required.includes(chapterReviewChecker)) {
+        const check = candidate.checks.find(item => item.checker === chapterReviewChecker);
+        const report = check?.chapterReview, input = report?.input;
+        try {
+          // Review hashes bind the state at review time. Later chapter adoption
+          // legitimately changes that state, so validate the retained original
+          // input rather than pretending the current book was reviewed then.
+          if (!check || check.status !== 'passed' || check.contentHash !== candidate.contentHash
+            || !check.inputs || !report || report.error || report.superseded || !input || !report.result
+            || input.candidateId !== candidate.id || input.chapterNumber !== version.chapterNumber
+            || input.inputHash !== report.inputHash
+            || input.sources.find(item => item.id === 'draft')?.text !== version.content
+            || chapterReviewStatus(validateChapterReview(report.result, input)) !== 'passed') {
+            throw new Error('missing or invalid chapter review evidence');
+          }
+          const reviewedPlan = JSON.parse(input.sources.find(item => item.id === 'plan')?.text ?? 'null') as { id?: string } | null;
+          if (chapterReviewInputHash(input, { ...check.inputs, planId: reviewedPlan?.id, candidatePlanId: candidate.planRevisionId }) !== report.inputHash) {
+            throw new Error('stored review material does not match its recorded hash');
+          }
+        } catch {
+          reject('缺少可复核的通过正文评审（原材料、引文或结论无效）');
+        }
+      }
     }
   }
 
@@ -898,6 +921,10 @@ export class NovelService {
         ...checker.check({ work, candidate }),
         id: id('check'), contentHash: candidate.contentHash, inputs, policyVersion: this.checkPolicy?.version,
       };
+      if (result.chapterReview?.result && !result.chapterReview.input) {
+        const input = chapterReviewInput(work, candidate);
+        if (input.inputHash === result.chapterReview.inputHash) result.chapterReview.input = structuredClone(input);
+      }
       if (!result.chapterReview?.superseded) byName.set(checker.name, result);
       candidate.checkRuns.push(result);
     }
