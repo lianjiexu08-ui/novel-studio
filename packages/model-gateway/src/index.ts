@@ -88,6 +88,7 @@ export class UsageLedger {
   private readonly budgetUsd: number;
   private readonly clock: () => string;
   private readonly limits: UsageLimits;
+  private readonly reservations = new Set<{ costUsd: number; outputTokens: number }>();
 
   constructor(budgetUsd: number, clock: () => string = () => new Date().toISOString(), limits: UsageLimits = {}) {
     this.budgetUsd = budgetUsd;
@@ -95,11 +96,19 @@ export class UsageLedger {
     this.limits = limits;
   }
 
-  reserve(estimatedCostUsd = 0, requestedOutputTokens = 0): void {
-    if (estimatedCostUsd < 0) throw new Error('estimated cost cannot be negative');
-    if (this.spentUsd + estimatedCostUsd > this.budgetUsd) throw new BudgetExceededError(`model budget exceeded (${this.budgetUsd.toFixed(4)} USD)`);
-    if (this.limits.maxCalls !== undefined && this.calls + 1 > this.limits.maxCalls) throw new BudgetExceededError(`model call limit reached (${this.limits.maxCalls})`);
-    if (this.limits.maxOutputTokens !== undefined && this.outputTokens + requestedOutputTokens > this.limits.maxOutputTokens) throw new BudgetExceededError(`model output token limit reached (${this.limits.maxOutputTokens})`);
+  /** Reserve before dispatch, then release after recording the outcome. */
+  reserve(estimatedCostUsd = 0, requestedOutputTokens = 0): () => void {
+    if (!Number.isFinite(estimatedCostUsd) || estimatedCostUsd < 0) throw new Error('estimated cost must be finite and nonnegative');
+    if (!Number.isSafeInteger(requestedOutputTokens) || requestedOutputTokens < 0) throw new Error('requested output tokens must be a nonnegative safe integer');
+    const pending = [...this.reservations];
+    const reservedCost = pending.reduce((total, item) => total + item.costUsd, 0);
+    const reservedTokens = pending.reduce((total, item) => total + item.outputTokens, 0);
+    if (this.spentUsd + reservedCost + estimatedCostUsd > this.budgetUsd) throw new BudgetExceededError(`model budget exceeded (${this.budgetUsd.toFixed(4)} USD)`);
+    if (this.limits.maxCalls !== undefined && this.calls + pending.length + 1 > this.limits.maxCalls) throw new BudgetExceededError(`model call limit reached (${this.limits.maxCalls})`);
+    if (this.limits.maxOutputTokens !== undefined && this.outputTokens + reservedTokens + requestedOutputTokens > this.limits.maxOutputTokens) throw new BudgetExceededError(`model output token limit reached (${this.limits.maxOutputTokens})`);
+    const reservation = { costUsd: estimatedCostUsd, outputTokens: requestedOutputTokens };
+    this.reservations.add(reservation);
+    return () => { this.reservations.delete(reservation); };
   }
 
   record(response: ModelResponse, role: ModelRole): UsageRecord {
@@ -155,18 +164,22 @@ export class ModelGateway {
   }
 
   async complete(request: ModelRequest, provider: string, credential: ModelCredential): Promise<ModelResponse> {
-    this.ledger.reserve(request.estimatedCostUsd ?? 0, request.maxOutputTokens ?? 0);
     const adapter = this.adapters.get(provider);
     if (!adapter) throw new Error(`unknown model provider: ${provider}`);
-    let response: ModelResponse;
+    const release = this.ledger.reserve(request.estimatedCostUsd ?? 0, request.maxOutputTokens ?? 0);
     try {
-      response = await adapter.complete(request, credential);
-    } catch (error) {
-      this.ledger.recordFailure(request.role);
-      throw error;
+      let response: ModelResponse;
+      try {
+        response = await adapter.complete(request, credential);
+      } catch (error) {
+        this.ledger.recordFailure(request.role);
+        throw error;
+      }
+      this.ledger.record(response, request.role);
+      return response;
+    } finally {
+      release();
     }
-    this.ledger.record(response, request.role);
-    return response;
   }
 
   usage(): UsageRecord[] { return this.ledger.list(); }

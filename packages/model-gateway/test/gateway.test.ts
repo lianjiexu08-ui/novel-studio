@@ -22,6 +22,77 @@ test('budget blocks an estimated overage before provider call', async () => {
   assert.equal(called, false);
 });
 
+for (const limit of ['calls', 'cost', 'tokens'] as const) {
+  test(`concurrent gateways sharing a ledger cannot oversubscribe ${limit}`, async () => {
+    let finish!: () => void;
+    const pending = new Promise<void>(resolve => { finish = resolve; });
+    let calls = 0;
+    const adapter: ModelAdapter = { provider: 'fake', complete: async input => {
+      calls++; await pending;
+      return { text: 'ok', usage: { inputTokens: 1, outputTokens: 10, costUsd: 0.1 }, provider: 'fake', model: input.model };
+    } };
+    const ledger = new UsageLedger(limit === 'cost' ? 0.15 : Infinity, undefined, {
+      ...(limit === 'calls' ? { maxCalls: 1 } : {}), ...(limit === 'tokens' ? { maxOutputTokens: 75 } : {}),
+    });
+    const gateways = [0, 1].map(() => new ModelGateway(new Map([['fake', adapter]]), ledger));
+    const jobs = gateways.map((gateway, index) => gateway.complete({ ...request, role: index ? 'reviewing' : 'writing', maxOutputTokens: 50 }, 'fake', { endpoint: '', apiKey: 'secret' }));
+    const settled = Promise.allSettled(jobs);
+    // Calls have entered their adapters synchronously, but neither has finished.
+    const dispatched = calls;
+    finish();
+    const [first, second] = await settled;
+    assert.equal(dispatched, 1, `${limit}: only one request fits while it is in flight`);
+    assert.equal(first.status, 'fulfilled');
+    assert.equal(second.status, 'rejected');
+    if (second.status === 'rejected') assert.ok(second.reason instanceof BudgetExceededError);
+    assert.equal(ledger.summary().calls, 1);
+    assert.equal(ledger.summary().failedCalls, 0, 'a preflight rejection is not a provider failure');
+  });
+}
+
+test('settled requests release unused reservations and failures still consume a call', async () => {
+  let attempt = 0;
+  const adapter: ModelAdapter = { provider: 'fake', complete: async input => {
+    if (++attempt === 1) throw new Error('provider disconnected');
+    return { text: 'ok', usage: { inputTokens: 1, outputTokens: 10, costUsd: 0.01 }, provider: 'fake', model: input.model };
+  } };
+  const ledger = new UsageLedger(0.13, undefined, { maxCalls: 3, maxOutputTokens: 60 });
+  const gateway = new ModelGateway(new Map([['fake', adapter]]), ledger);
+  const call = () => gateway.complete({ ...request, maxOutputTokens: 50 }, 'fake', { endpoint: '', apiKey: 'secret' });
+  await assert.rejects(call, /provider disconnected/);
+  await call();
+  await call();
+  await assert.rejects(call, /call limit/);
+  assert.equal(attempt, 3);
+  assert.equal(ledger.summary().outputTokens, 20);
+  assert.equal(ledger.summary().failedCalls, 1);
+  assert.equal(ledger.summary().costKnown, false);
+});
+
+test('unknown adapters do not hold a request reservation', async () => {
+  const adapter: ModelAdapter = { provider: 'fake', complete: async input => ({ text: 'ok', usage: { inputTokens: 1, outputTokens: 1, costUsd: 0 }, provider: 'fake', model: input.model }) };
+  const ledger = new UsageLedger(1, undefined, { maxCalls: 1 });
+  const gateway = new ModelGateway(new Map([['fake', adapter]]), ledger);
+  await assert.rejects(() => gateway.complete(request, 'missing', { endpoint: '', apiKey: 'secret' }), /unknown model provider/);
+  await gateway.complete(request, 'fake', { endpoint: '', apiKey: 'secret' });
+  assert.equal(ledger.summary().calls, 1);
+});
+
+test('invalid estimates cannot reduce or poison shared reservations', async () => {
+  let calls = 0;
+  const adapter: ModelAdapter = { provider: 'fake', complete: async input => {
+    calls++;
+    return { text: 'ok', usage: { inputTokens: 1, outputTokens: 1, costUsd: 0 }, provider: 'fake', model: input.model };
+  } };
+  const gateway = new ModelGateway(new Map([['fake', adapter]]), new UsageLedger(1, undefined, { maxCalls: 1, maxOutputTokens: 10 }));
+  for (const value of [-1, NaN, Infinity]) {
+    await assert.rejects(() => gateway.complete({ ...request, estimatedCostUsd: value }, 'fake', { endpoint: '', apiKey: 'secret' }), /estimated cost/);
+    await assert.rejects(() => gateway.complete({ ...request, maxOutputTokens: value }, 'fake', { endpoint: '', apiKey: 'secret' }), /output tokens/);
+  }
+  await gateway.complete({ ...request, maxOutputTokens: 10 }, 'fake', { endpoint: '', apiKey: 'secret' });
+  assert.equal(calls, 1);
+});
+
 test('failed calls count against the call cap and output tokens are capped across roles', async () => {
   let fail = true;
   const adapter: ModelAdapter = {
