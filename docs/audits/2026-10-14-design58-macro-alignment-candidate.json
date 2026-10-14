@@ -1,0 +1,68 @@
+{
+  "status": "unsaved_pending_scoped_review",
+  "candidateVersion": 3,
+  "candidateHash": "847ca4aea6af9369c06ec20581a52ad29e420ef363e6f9e1cd9d8805cbc6fd9f",
+  "previousCandidateHash": "83e22b4335d94d74762ae32a9cb4d6e396195ada3c8a8eefa09fa968b658a73c",
+  "baseHash": "ee7666e6cca30a1d79209a8494ea8b84e2208181380bfaef5953f0d7ff8c40fd",
+  "schemaPassed": true,
+  "changes": [
+    {
+      "path": "/storyBible/relationships/0/stages/13/cause",
+      "before": "验药后林将三滴先分给告急者，苏与顾放弃本次分润。",
+      "after": "验药与原批配额核对后，苏与顾撤回本批个人申请；林撤去一剂申请，同意告急者优先。三方配额台依诊察和可分余额核准告急者三滴、林六滴，林没有自行分配药物的权力。"
+    },
+    {
+      "path": "/storyBible/relationships/7/stages/6/cause",
+      "before": "顾午正交墨给乔才就医，次日核物并放弃泉液分润。",
+      "after": "顾午正交墨给乔才就医，次日参与核物并撤回本批个人泉液申请，不因救援功劳享有优先分药权；分配由三方配额台按诊察与原批可分余额核准。"
+    },
+    {
+      "path": "/plan/milestones/4/setup/5",
+      "before": "林辰凭先前核对的旧矿路坡向，以凝元御物拉掉普通废料斗插销，倒料挡住墨的直扑视线；苏隔开跟来的凝元看守，顾借已形成的遮挡完成三息蓄势，支付三成元罡和0.25元载发动一次太清太乙真光，克制墨的血煞爪，再以同阶剑势制伏。墨被擒靠顾承担正面玄府战，不是粉尘瓦砾困住玄府或低阶主角斩灭元神。林辰在拉销后腿被落石割伤，不能再追击。开战从08:45手势后开始，09:15前后同阶交锋结束；09:15–10:45止血、近身收押、用现有担架和原运人小车安置伤者与死者，10:45出发。",
+      "after": "林辰凭先前核对的旧矿路坡向，以凝元御物拉掉普通废料斗插销，倒料挡住墨的直扑视线；苏隔开跟来的凝元看守，顾借已形成的遮挡完成三息蓄势，支付三成元罡和0.25元载发动一次太清太乙真光，克制墨的血煞爪，真光结束后，顾按25章已训练的ax_13贴身推劲另付二成元罡，在实际接膝、墨前脚卡住普通废木且未及时抽腿或打断的条件下使墨失衡倒地；墨散劲时普通抓击伤顾右肩。不是另加剑术或付费便自动制伏同阶。墨被擒靠顾承担正面玄府战，不是粉尘瓦砾困住玄府或低阶主角斩灭元神。林辰在拉销后腿被落石割伤，不能再追击。开战从08:45手势后开始，09:15前后同阶交锋结束；09:15–10:45止血、近身收押、用现有担架和原运人小车安置伤者与死者，10:45出发。"
+    },
+    {
+      "path": "/plan/milestones/4/setup/7",
+      "before": "采集队既有分配约定为护送者不私占救命药，缴获药物优先救命、余量按实际夺回者分配。顾放弃本次个人泉液分润，苏也放弃份额，两人在第189日当众签认；林辰同意3滴先给诊断寿储告急的获救采集者，自己取得6滴。另一伤者只有外伤，不因此多分寿药。不是凭救人就取得整口泉所有权。",
+      "after": "依26章对同一批原封管、原采收登记及三方个人申请可分额的核验，追回12滴不新增配额；洁净9滴、污染3滴隔离。顾与苏撤回本批个人申请，不凭救援功劳取得优先分药权。林原申请9滴与告急采集者所需3滴冲突，他主动撤去一剂申请，同意先救急；三方配额台依据诊察、可分余额及双方签认，核准告急者3滴、林6滴。申请不是已归林的药，林不能自行处分他人或公共份额。另一伤者只需常规外伤治疗，不因此分寿药；189日只签收封存，林的疗程190日才开始，不提前增加寿储。"
+    }
+  ],
+  "totalChangesFromSaved": 22,
+  "proseChanged": false,
+  "activeDesignChanged": false,
+  "worldAndQuestionsUnchanged": true,
+  "priorScopedReview": {
+    "candidateVersion": 2,
+    "passedChecks": 6,
+    "appliesToV3": false,
+    "note": "V2 results retained, not relabelled for V3. Training/load case sources are unchanged; guard-transition case includes edited relationships and needs renewed evaluation."
+  },
+  "requiredReview": [
+    "Cross-read macro combat against chapter25 and ax_12/13 with actual costs and injuries.",
+    "Cross-read allocation against chapter26, original quota rules, and relationship causes.",
+    "Recheck guard-transition case with updated relationship inputs."
+  ],
+  "formalAcceptance": false,
+  "reviewPreflight": {
+    "modelCalls": 0,
+    "cases": [
+      {
+        "name": "macro-combat-and-allocation-alignment",
+        "sourceCount": 136,
+        "sourceChars": 158364
+      },
+      {
+        "name": "guard-duty-transition",
+        "sourceCount": 96,
+        "sourceChars": 129971
+      },
+      {
+        "name": "existing-protagonist-training-prerequisites",
+        "sourceCount": 97,
+        "sourceChars": 92988
+      }
+    ],
+    "capacity": 240000,
+    "passed": true
+  }
+}

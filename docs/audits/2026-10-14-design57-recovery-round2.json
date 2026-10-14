@@ -1,0 +1,22 @@
+{
+  "status": "waiting_for_original_runner",
+  "originalPid": 17792,
+  "diagnosticPid": 37572,
+  "startedAt": "2026-10-14T09:50:07.910Z",
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "runtimeCommit": "4aacb02712bbd7f2a155de432ec773697234114d",
+  "concurrency": "At most two model calls sharing one repository instance, only after original writer exits",
+  "areas": [],
+  "errors": [],
+  "reason": "Cross-process SQLite transactions timed out before claiming the next steps. Resume after original runner and read-only diagnostic exit, with a shared repository mutex in one process.",
+  "expectedNextSteps": {
+    "world": "followup-batch-2/history",
+    "power": "batch-2",
+    "character": "batch-2"
+  },
+  "modelCalls": 0,
+  "completedStepsNotReplayed": true,
+  "previousFailuresRetained": true,
+  "formalAcceptance": false
+}

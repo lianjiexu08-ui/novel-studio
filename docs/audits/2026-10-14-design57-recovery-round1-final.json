@@ -1,0 +1,49 @@
+{
+  "status": "completed_with_failures",
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "runtimeCommit": "4aacb02712bbd7f2a155de432ec773697234114d",
+  "runtimeRoot": "/var/folders/tr/8vt224595gdfg6w6kh6tkpt00000gn/T/novel57-power-recovery-runtime-1ybjqa1q",
+  "originalPid": 17792,
+  "concurrency": "one recovery while original runner is live; at most two after its verified terminal exit",
+  "startedAt": "2026-10-14T09:40:41.758Z",
+  "areas": [
+    {
+      "area": "world",
+      "runId": "design_run_3839c593-a088-415d-8512-39ff4348b14c",
+      "status": "failed",
+      "calls": 5,
+      "error": "Operations timed out after `N/A`. Context: The database failed to respond to a query within the configured timeout — see https://pris.ly/d/sqlite-connector for more details. Database: /Users/lianjie/Documents/ChatGPT/novel/data/novel-studio.db"
+    },
+    {
+      "area": "power",
+      "runId": "design_run_2c637f9b-5a78-4597-a8ef-6ffa40787d6a",
+      "status": "failed",
+      "calls": 0,
+      "error": "Operations timed out after `N/A`. Context: The database failed to respond to a query within the configured timeout — see https://pris.ly/d/sqlite-connector for more details. Database: /Users/lianjie/Documents/ChatGPT/novel/data/novel-studio.db"
+    },
+    {
+      "area": "character",
+      "runId": "design_run_9cf3b6d1-345e-452e-b980-79b7ec4163f9",
+      "status": "failed",
+      "calls": 1,
+      "error": "Operations timed out after `N/A`. Context: The database failed to respond to a query within the configured timeout — see https://pris.ly/d/sqlite-connector for more details. Database: /Users/lianjie/Documents/ChatGPT/novel/data/novel-studio.db"
+    }
+  ],
+  "errors": [
+    {
+      "area": "world",
+      "error": "Operations timed out after `N/A`. Context: The database failed to respond to a query within the configured timeout — see https://pris.ly/d/sqlite-connector for more details. Database: /Users/lianjie/Documents/ChatGPT/novel/data/novel-studio.db"
+    },
+    {
+      "area": "power",
+      "error": "Operations timed out after `N/A`. Context: The database failed to respond to a query within the configured timeout — see https://pris.ly/d/sqlite-connector for more details. Database: /Users/lianjie/Documents/ChatGPT/novel/data/novel-studio.db"
+    },
+    {
+      "area": "character",
+      "error": "Operations timed out after `N/A`. Context: The database failed to respond to a query within the configured timeout — see https://pris.ly/d/sqlite-connector for more details. Database: /Users/lianjie/Documents/ChatGPT/novel/data/novel-studio.db"
+    }
+  ],
+  "protectedHistoryUnchanged": true,
+  "finishedAt": "2026-10-14T09:48:13.925Z"
+}

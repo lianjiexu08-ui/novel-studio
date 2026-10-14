@@ -1,5 +1,5 @@
 {
-  "status": "recovery_started",
+  "status": "first_recovery_terminal_with_database_failures",
   "originalRunnerStatus": "running",
   "failedAreas": [
     {
@@ -38,5 +38,7 @@
   "formalAcceptance": false,
   "startedAt": "2026-10-14T09:40:41.758Z",
   "orchestration": "One recovery worker alongside original story runner; second recovery worker only after verified original terminal checkpoint and process exit.",
-  "supersededQueue": "Stopped while waiting, before any recovery model calls."
+  "supersededQueue": "Stopped while waiting, before any recovery model calls.",
+  "nextRecovery": "2026-10-14-design57-recovery-round2.json",
+  "finalRecord": "2026-10-14-design57-recovery-round1-final.json"
 }
