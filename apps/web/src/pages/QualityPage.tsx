@@ -1,9 +1,9 @@
 import { DesignContentReviewCard } from './DesignContentReviewCard';
-import { useEffect, useRef, useState } from 'react';
-import { Alert, App as AntApp, Button, Card, Col, Empty, InputNumber, Row, Select, Space, Spin, Table, Tag, Typography } from 'antd';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { Alert, App as AntApp, Button, Card, Col, Empty, InputNumber, Modal, Row, Select, Space, Spin, Table, Tag, Typography } from 'antd';
 import { ReloadOutlined } from '@ant-design/icons';
 import { useOutletContext } from 'react-router-dom';
-import { api, ApiRequestError, type ChapterHistoryDto } from '../api';
+import { api, ApiRequestError, type ChapterHistoryDto, type ChapterReviewSourceDto } from '../api';
 import type { ManuscriptRevisionDto } from 'novel-studio-contracts';
 import type { WorkspaceContext } from './Workspace';
 import { DesignAuditCard } from './DesignAuditCard';
@@ -22,8 +22,19 @@ export function QualityPage() {
   const [manuscripts, setManuscripts] = useState<ManuscriptRevisionDto[]>([]);
   const [loading, setLoading] = useState(false);
   const loadRequest = useRef(0);
+  const [selectedCheckId, setSelectedCheckId] = useState<string>();
+  const [reviewSource, setReviewSource] = useState<{ id: string; data?: ChapterReviewSourceDto; error?: string } | null>(null);
+  const [rawSource, setRawSource] = useState(false);
+  const sourceRequest = useRef(0);
+  const formattedSource = useMemo(() => {
+    const text = reviewSource?.data?.source.text ?? '';
+    try { return JSON.stringify(JSON.parse(text), null, 2); } catch { return text; }
+  }, [reviewSource?.data?.source.text]);
   const relationships = history?.relationships.filter((row): row is NonNullable<typeof row> => Boolean(row)) ?? [];
-  const chapterReview = history?.quality.candidate?.checks.find(check => check.checker === 'chapter_content_review');
+  const currentChapterReview = history?.quality.candidate?.checks.find(check => check.checker === 'chapter_content_review');
+  const reviewRecords = history?.quality.candidate?.checkHistory?.filter(check => check.chapterReview
+    && (check.chapterReview.result || check.chapterReview.error || check.id === currentChapterReview?.id)) ?? [];
+  const chapterReview = reviewRecords.find(check => check.id === selectedCheckId) ?? currentChapterReview;
   const chapterStages = history?.quality.candidate?.checkHistory?.flatMap(check => check.chapterReview?.stage
     ? [{ ...check.chapterReview.stage, checkId: check.id, checkedAt: check.checkedAt, superseded: check.chapterReview.superseded }] : []) ?? [];
   const reviewLabels = { causality: '因果与转折', characters: '人物选择与认知', power: '力量与代价', continuity: '事实连续性', obligations: '章纲兑现', prose: '场景与阅读效果' };
@@ -32,8 +43,25 @@ export function QualityPage() {
     return typeof name === 'string' && name ? name : id;
   };
 
+  function closeReviewSource() { sourceRequest.current++; setReviewSource(null); }
+
+  async function showReviewSource(sourceId: string) {
+    const candidateId = history?.quality.candidate?.id, checkId = chapterReview?.id;
+    if (!candidateId || !checkId) return;
+    const request = ++sourceRequest.current;
+    setRawSource(false);
+    setReviewSource({ id: sourceId });
+    try {
+      const data = await api.chapterReviewSource(work.id, candidateId, checkId, sourceId);
+      if (request === sourceRequest.current) setReviewSource({ id: sourceId, data });
+    } catch (error) {
+      if (request === sourceRequest.current) setReviewSource({ id: sourceId, error: error instanceof Error ? error.message : String(error) });
+    }
+  }
+
   async function load(chapterNumber = chapter, candidateId?: string) {
     const request = ++loadRequest.current;
+    setSelectedCheckId(undefined); closeReviewSource();
     setLoading(true);
     try {
       const result = await api.history(work.id, chapterNumber, candidateId);
@@ -50,7 +78,7 @@ export function QualityPage() {
     setManuscripts([]);
     void load(1);
     void api.manuscripts(work.id).then((result) => { if (!cancelled) setManuscripts(result.manuscripts); }).catch(() => { if (!cancelled) setManuscripts([]); });
-    return () => { cancelled = true; loadRequest.current++; };
+    return () => { cancelled = true; loadRequest.current++; sourceRequest.current++; };
   }, [work.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return <section className="page">
@@ -77,15 +105,24 @@ export function QualityPage() {
             }))} /></>}
           <Text type="secondary">{history.quality.version ? `事实与人物状态仍依据当前采纳稿（版本 ${history.quality.version.revision}）重建；选择其他评审稿不会将其内容变成已发生事实。` : '本章尚无采纳稿；候选内容与评审意见不计入本章事实。'}</Text>
           {history.quality.candidate?.content && <details key={history.quality.candidate.id}><summary>查看所选评审稿正文</summary><p style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{history.quality.candidate.content}</p></details>}
+          {reviewRecords.length > 1 && <><Text strong>选择评审记录</Text><Select aria-label="选择评审记录" style={{ width: '100%' }} value={chapterReview?.id}
+            onChange={value => { setSelectedCheckId(value); closeReviewSource(); }} options={[...reviewRecords].reverse().map(check => ({ value: check.id,
+              label: `${check.id === currentChapterReview?.id ? '当前评审' : '历史评审'} · ${new Date(check.checkedAt).toLocaleString('zh-CN', { hour12: false })} · ${{ passed: '通过', failed: '返修', inconclusive: '材料不足', unavailable: '未完成或失效' }[check.status]}`,
+            }))} /></>}
         </Space>
         {!chapterReview ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="暂无独立正文评审；规则检查通过不代表正文质量通过" /> : <Space direction="vertical" style={{ width: '100%' }}>
+          {chapterReview.id !== currentChapterReview?.id && <Alert type="info" showIcon message="正在查看历史评审；此结论不替代当前评审结果。" />}
           <Alert type={chapterReview.status === 'passed' ? 'success' : chapterReview.status === 'failed' ? 'error' : 'warning'} showIcon
             message={chapterReview.status === 'passed' ? '正文评审通过' : chapterReview.status === 'failed' ? '正文评审需要返修' : chapterReview.status === 'inconclusive' ? '评审材料不足，暂不能采纳' : '评审未完成或已失效，暂不能采纳'} description={chapterReview.message} />
           <Table size="small" pagination={false} rowKey="criterion" dataSource={chapterReview.chapterReview?.result?.checks ?? []} columns={[
             { title: '维度', dataIndex: 'criterion', render: (value: keyof typeof reviewLabels) => reviewLabels[value] },
             { title: '结论', dataIndex: 'verdict', render: (value: string) => <Tag color={value === 'pass' ? 'success' : value === 'revise' ? 'error' : 'warning'}>{value === 'pass' ? '通过' : value === 'revise' ? '返修' : '材料不足'}</Tag> },
             { title: '理由', dataIndex: 'explanation' }, { title: '修改要求', dataIndex: 'revisionAdvice' },
-          ]} expandable={{ expandedRowRender: row => <Space direction="vertical">{row.evidence.map((item, index) => <Text key={index}>[{item.sourceId}] {item.quote}</Text>)}</Space> }} />
+          ]} expandable={{ expandedRowRender: row => <Space direction="vertical">{row.evidence.map((item, index) => <div key={index}>
+            <Text>[{item.sourceId}] {item.quote}</Text>
+            {chapterReview.id && chapterReview.chapterReview?.inputAvailable && <Button type="link" size="small" onClick={() => void showReviewSource(item.sourceId)}>查看本次所审原文</Button>}
+          </div>)}</Space> }} />
+          {!chapterReview.chapterReview?.inputAvailable && <Text type="secondary">此记录没有可查看的原材料快照；保留结论与已有引文，不用当前设定补成历史原文。</Text>}
           {chapterStages.length > 0 && <details><summary>分批审读记录（{chapterStages.length}）</summary>
             <Text type="secondary">保留每次批次、交叉检查和综合的历史结论；单批完成不代表整章通过。展开查看原文证据。</Text>
             <Table size="small" rowKey={row => row.checkId ?? row.id + row.checkedAt} pagination={{ pageSize: 6 }} dataSource={chapterStages} columns={[
@@ -131,5 +168,14 @@ export function QualityPage() {
       <Card title="角色认知快照"><Table size="small" pagination={{ pageSize: 8 }} rowKey={(row) => `${row.characterId}:${row.proposition}`} dataSource={history.knowledgeStates} locale={{ emptyText: <Empty description="截至本章没有可重建的角色认知" /> }} columns={[{ title: '人物', dataIndex: 'characterId' }, { title: '关于', dataIndex: 'subjectId' }, { title: '命题', dataIndex: 'proposition' }, { title: '认知', dataIndex: 'belief', render: valueOf }]} /></Card>
       <Card title="大纲节点落实"><Table size="small" pagination={{ pageSize: 8 }} rowKey="id" dataSource={history.quality.plotNodes} locale={{ emptyText: <Empty description="暂无手工大纲节点" /> }} columns={[{ title: '节点', dataIndex: 'title' }, { title: '目标章', dataIndex: 'targetChapter', render: (value?: number) => value ?? '未设' }, { title: '状态', dataIndex: ['realization', 'status'], render: (status: string) => <Tag color={status === 'realized' ? 'success' : status === 'diverged' ? 'error' : 'warning'}>{status}</Tag> }, { title: '证据', dataIndex: ['realization', 'evidence'], render: (value?: string) => value || '暂无' }]} /></Card>
     </Space>}
+    <Modal open={reviewSource !== null} title="正文评审所审材料" footer={null} width={900} onCancel={closeReviewSource}>
+      {reviewSource?.error ? <Alert type="error" showIcon message="原材料加载失败" description={reviewSource.error} /> : reviewSource?.data ? <Space direction="vertical" style={{ width: '100%' }}>
+        <Alert type="info" showIcon message={reviewSource.data.kind === 'review_result' ? '这是前置评审报告摘录，属于综合判断的依据。' : reviewSource.data.kind === 'review_question' ? '这是当次评审提出的待补读问题。' : '这是该次评审实际读取的原文快照。'} description="材料保留于所选评审记录，可能与当前正文或设定不同。" />
+        <Text type="secondary">第 {reviewSource.data.chapterNumber} 章 · {new Date(reviewSource.data.checkedAt).toLocaleString()} · {reviewSource.data.source.id}</Text>
+        {reviewSource.data.original && <Text type="secondary">原始来源：{reviewSource.data.original.sourceId} · 字符 {reviewSource.data.original.start}–{reviewSource.data.original.end}</Text>}
+        {formattedSource !== reviewSource.data.source.text && <Button size="small" onClick={() => setRawSource(value => !value)}>{rawSource ? '按层级排版' : '显示原始文本'}</Button>}
+        <pre style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere', maxHeight: '55vh', overflow: 'auto', width: '100%' }}>{rawSource ? reviewSource.data.source.text : formattedSource}</pre>
+      </Space> : <Spin />}
+    </Modal>
   </section>;
 }

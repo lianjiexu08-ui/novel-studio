@@ -81,6 +81,13 @@ export interface ChapterHistoryDto {
   };
 }
 
+export interface ChapterReviewSourceDto {
+  candidateId: string; chapterNumber: number; checkId: string; checkedAt: string; inputHash: string;
+  source: { id: string; text: string };
+  kind: 'original' | 'review_result' | 'review_question';
+  original?: { sourceId: string; start: number; end: number };
+}
+
 export interface DesignHistoryDto {
   revisions: Array<{
     id: string;
@@ -161,6 +168,7 @@ export const api = {
   resumeRun: (workId: string, runId: string, targetChapter: number) =>
     call<{ runId: string; status: string; checkpoint?: RunCheckpoint }>(`/works/${workId}/runs`, { method: 'POST', body: { runId, targetChapter, background: true } }),
   history: (workId: string, chapterNumber: number, candidateId?: string) => call<ChapterHistoryDto>(`/works/${workId}/state/${chapterNumber}${candidateId ? `?candidateId=${encodeURIComponent(candidateId)}` : ''}`),
+  chapterReviewSource: (workId: string, candidateId: string, checkId: string, sourceId: string) => call<ChapterReviewSourceDto>(`/works/${workId}/candidates/${encodeURIComponent(candidateId)}/checks/${encodeURIComponent(checkId)}/source?sourceId=${encodeURIComponent(sourceId)}`),
   finalizeManuscript: (workId: string) => call<{ manuscript: import('novel-studio-contracts').ManuscriptRevisionDto }>(`/works/${workId}/manuscripts/finalize`, { method: 'POST', body: {} }),
   check: (workId: string, candidateId: string) =>
     call<{ candidate: CandidateDto }>(`/works/${workId}/candidates/${candidateId}/check`, { method: 'POST' }),

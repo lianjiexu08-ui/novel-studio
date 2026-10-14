@@ -1,4 +1,5 @@
-import { designReviewStageInput } from '../../../novel-service-core/src/design-review-run.ts';
+import { completeDesignReviewRun, designReviewStageInput } from '../../../novel-service-core/src/design-review-run.ts';
+import { restoreChapterReviewRun } from '../../../novel-service-core/src/chapter-review.ts';
 import { designReviewAreaSchema } from 'novel-studio-contracts';
 import { designReviewOverview, DesignReviewError } from '../../../novel-service-core/src/design-review.ts';
 import Fastify, { type FastifyInstance } from 'fastify';
@@ -238,8 +239,8 @@ function toCandidateDto(candidate: ChapterCandidate, work: Work): CandidateDto {
   // entire world, plan and prior chapters in both current and historical lists.
   const checks = (rows: ChapterCandidate['checks']) => rows.map(check => {
     if (!check.chapterReview) return check;
-    const { input: _input, ...chapterReview } = check.chapterReview;
-    return { ...check, chapterReview };
+    const { input, ...chapterReview } = check.chapterReview;
+    return { ...check, chapterReview: { ...chapterReview, inputAvailable: Boolean(input) } };
   });
   return {
     id: candidate.id,
@@ -887,6 +888,32 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     const work = await repository.get(workId);
     const candidate = work?.candidates.get(candidateId);
     return { ok: true, candidate: candidate && work ? toCandidateDto(candidate, work) : undefined };
+  });
+
+  app.get('/works/:workId/candidates/:candidateId/checks/:checkId/source', async (request) => {
+    const { workId, candidateId, checkId } = candidateParamSchema.extend({ checkId: z.string().min(1) }).parse(request.params);
+    const { sourceId } = z.object({ sourceId: z.string().min(1).max(500) }).parse(request.query);
+    const work = await repository.get(workId);
+    const candidate = work?.candidates.get(candidateId);
+    const check = candidate?.checkRuns.find(item => item.id === checkId);
+    if (!candidate || !check?.chapterReview) throw new NotFoundError('未找到此候选的正文评审记录');
+    const { input, result } = check.chapterReview;
+    if (!input) throw new NotFoundError('此旧评审未保存原材料，无法恢复当时原文');
+    let sources = input.sources;
+    let original: { sourceId: string; start: number; end: number } | undefined;
+    if (result?.stageProof) {
+      const run = restoreChapterReviewRun(input, result.stageProof);
+      sources = completeDesignReviewRun(run).input.sources;
+      original = run.units.find(unit => unit.id === sourceId);
+    }
+    const source = sources.find(item => item.id === sourceId);
+    if (!source) throw new NotFoundError('本次评审没有该来源，不能用当前材料补齐');
+    return {
+      candidateId, chapterNumber: candidate.chapterNumber, checkId, checkedAt: check.checkedAt,
+      inputHash: input.inputHash, source,
+      kind: sourceId.startsWith('review-result/') ? 'review_result' : sourceId.startsWith('review-question/') ? 'review_question' : 'original',
+      ...(original ? { original: { sourceId: original.sourceId, start: original.start, end: original.end } } : {}),
+    };
   });
 
   app.post('/works/:workId/candidates/:candidateId/adopt', async (request) => {
