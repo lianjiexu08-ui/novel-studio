@@ -1,7 +1,7 @@
 {
-  "observedAt": "2026-10-14T16:40:48.444Z",
-  "status": "in_progress_not_acceptance",
-  "originalRunnerStatus": "running",
+  "observedAt": "2026-10-14T16:45:11.196Z",
+  "status": "terminal_not_acceptance",
+  "originalRunnerStatus": "completed_with_failures",
   "runtimeCommit": "7f9a9771bd3ca5a5db7323118b12e015587ca140",
   "scope": {
     "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
@@ -26,17 +26,17 @@
     "reports": 47
   },
   "usage": {
-    "calls": 97,
-    "failedCalls": 2,
-    "inputTokens": 11404601,
-    "outputTokens": 166914,
+    "calls": 102,
+    "failedCalls": 3,
+    "inputTokens": 12016166,
+    "outputTokens": 169579,
     "costUsd": 0,
     "costKnown": false,
     "byRole": {
       "reviewing": {
-        "calls": 97,
-        "failedCalls": 2,
-        "outputTokens": 166914,
+        "calls": 102,
+        "failedCalls": 3,
+        "outputTokens": 169579,
         "costUsd": 0
       }
     },
@@ -47,7 +47,7 @@
   },
   "usageScope": "original_runner_only",
   "recoveries": [],
-  "combinedCalls": 97,
+  "combinedCalls": 102,
   "errors": [
     {
       "area": "world",
@@ -58,6 +58,10 @@
       "area": "power",
       "message": "fetch failed",
       "causeCode": "UND_ERR_HEADERS_TIMEOUT"
+    },
+    {
+      "area": "story",
+      "message": "openai-compatible request failed (stream): Upstream HTTP/2 stream failed"
     }
   ],
   "runs": [
@@ -2571,8 +2575,8 @@
     {
       "id": "design_run_15a23bc4-0828-4ffc-a7d1-7fe434a52af2",
       "area": "story",
-      "status": "ready",
-      "completed": 26,
+      "status": "failed",
+      "completed": 29,
       "total": 57,
       "stages": [
         {
@@ -3877,6 +3881,51 @@
                 "cross-2-3/causality"
               ],
               "evidenceCount": 15
+            }
+          ]
+        },
+        {
+          "id": "followup-cross-2-3/payoff",
+          "checks": [
+            {
+              "criterion": "payoff",
+              "verdict": "pass",
+              "explanation": "原问题要求核实第二剂、复诊、剩余原液及南行前的分离代价。第26章将九滴洁净原液按配额分为告急者三滴、林辰两支共六滴，并明确尚未入寿储；第27章第一剂三滴完成十日疗程后才入账5元载，库存余三滴。第28章明确第二剂于200—202日服完、静养至209日，209日复诊后才入账第二笔5元载，库存归零；第29章再确认两剂均已生效、腿伤未愈，苏选择随押解队回宗护证，林以受限护货劳务南行，构成资源兑现后仍保留伤情、职责与关系分离的代价。此链条符合prom_01指定的第28章入账及第29章核对条件，未将第26章封存或第27章首剂重复计作第二次兑现。均为拟定设计安排，仍须后续写作实现。",
+              "revisionAdvice": "",
+              "resolves": [
+                "cross-2-3/payoff"
+              ],
+              "evidenceCount": 10
+            }
+          ]
+        },
+        {
+          "id": "followup-cross-2-4/causality",
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "pass",
+              "explanation": "第43章先报警、以普通索具和艉桩形成拖偏，再将切索留到第44章同一瞬处理；第44章明确只切可见外露普通索、一次付二成真元并因剑热停术。补读剑诀规则确认其可切无附灵普通绳索，完整施展固定耗二成当境法力，且须可见、稳定锁定；第18章已安排林完成凝元式导刃训练与两丈内稳定实测。第44章目标距林不足一丈、路径无阻，处于既有实测范围，未把御物或剑诀偷换成持续拖船或追击，故原等待项可解除。",
+              "revisionAdvice": "",
+              "resolves": [
+                "cross-2-4/causality"
+              ],
+              "evidenceCount": 10
+            }
+          ]
+        },
+        {
+          "id": "followup-cross-3-5/causality",
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "pass",
+              "explanation": "原问题所疑的能力前置现已具备：顾峤在开篇前已完成真光的纯阳供能、三息凝印与复诊实测；墨幽屠也已完成噬血爪的本境聚爪、近身落点、收爪及毒伤停术训练。ax_06要求实际施术须有已掌握功法及明确对象、供能、时机与中断条件，不能仅凭境界名义补足；本案相应条件已由人物档、功法条目和章纲具体列明。第24章以秦禾实地送信、顾完成交岗并抵达侧廊建立救援到场条件；第25章明确林苏亲见手势后才行动。战斗顺序与规则相容：墨连续两息各付一成元罡开爪，顾在第三息凝印完成后才支付三成元罡及0.25元载，以真光接触当时外放爪煞；墨随即停爪，未在六息重启间隔内再施。真光并未废去墨的境界或余量，顾则在右肩受伤后停止重推及该侧施术，故不存在以境界名义补足能力、重复支付或取消代价的问题。",
+              "revisionAdvice": "",
+              "resolves": [
+                "cross-3-5/causality"
+              ],
+              "evidenceCount": 10
             }
           ]
         }
