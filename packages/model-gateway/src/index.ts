@@ -1,3 +1,13 @@
+import { getGlobalDispatcher, type Dispatcher } from 'undici';
+
+// Node's fetch has an independent transport timeout (typically five minutes)
+// that can preempt a longer configured model idle limit. Scope this override
+// to model requests; the adapter's AbortController remains the timeout owner.
+const modelDispatcher = {
+  dispatch: (options: Dispatcher.DispatchOptions, handler: Dispatcher.DispatchHandler) =>
+    getGlobalDispatcher().dispatch({ ...options, headersTimeout: 0, bodyTimeout: 0 }, handler),
+};
+
 export type ModelRole = 'planning' | 'writing' | 'extraction' | 'reviewing';
 
 export interface ModelRequest {
@@ -196,6 +206,7 @@ export class OpenAICompatibleAdapter implements ModelAdapter {
           headers: { 'content-type': 'application/json', authorization: `Bearer ${credential.apiKey}` },
           body: JSON.stringify({ model: request.model, messages: [{ role: 'system', content: request.system }, { role: 'user', content: request.user }], temperature: request.temperature, max_tokens: request.maxOutputTokens, response_format: request.responseFormat === 'json' ? { type: 'json_object' } : undefined, stream: this.streaming }),
           signal: controller.signal,
+          ...(this.fetcher === fetch ? { dispatcher: modelDispatcher } : {}),
         });
       } catch (error) {
         if (controller.signal.aborted) throw timedOut();

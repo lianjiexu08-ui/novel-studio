@@ -1,0 +1,32 @@
+{
+  "status": "verified_pending_deployment",
+  "runtimeModelUnchanged": "gpt-5.6-luna",
+  "fallback": false,
+  "additionalExternalModelCalls": 0,
+  "tests": 276,
+  "webBuild": "passed_after_replacing_shared_executable_links",
+  "workspaceTransportTests": 3,
+  "frozenRuntimeRecoveryTransportTests": 3,
+  "nativeRequestTimeouts": {
+    "headersTimeout": 0,
+    "bodyTimeout": 0
+  },
+  "modelIdleTimerStillEnforced": true,
+  "longStreamStillSupported": true,
+  "transportDependency": {
+    "package": "undici",
+    "version": "7.30.0"
+  },
+  "recovery": {
+    "script": "/tmp/novel59-recovery.mjs",
+    "sha256": "a5276f252fc4882d78581f6a456302f4ac9d9d17d0eefbc53602c99ee186af03",
+    "status": "prepared_not_started",
+    "guardedPreviousPid": 39235,
+    "sameFrozenReviewRuntime": true,
+    "samePromptSuffix": true,
+    "combinedCallLimit": 300,
+    "preservesCompletedStagesAndFailures": true
+  },
+  "productionApiRestarted": false,
+  "prismaClientRegenerated": false
+}
