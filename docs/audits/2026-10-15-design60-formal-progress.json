@@ -1,5 +1,5 @@
 {
-  "observedAt": "2026-10-14T19:41:23.510Z",
+  "observedAt": "2026-10-14T19:50:43.821Z",
   "status": "in_progress_not_acceptance",
   "checkpointStatus": "running",
   "scope": {
@@ -18,17 +18,17 @@
   "oldRunsUnchanged": 45,
   "oldReportsUnchanged": 51,
   "usageAtLastCheckpoint": {
-    "calls": 90,
+    "calls": 106,
     "failedCalls": 0,
-    "inputTokens": 10199924,
-    "outputTokens": 131089,
+    "inputTokens": 11928404,
+    "outputTokens": 147347,
     "costUsd": 0,
     "costKnown": false,
     "byRole": {
       "reviewing": {
-        "calls": 90,
+        "calls": 106,
         "failedCalls": 0,
-        "outputTokens": 131089,
+        "outputTokens": 147347,
         "costUsd": 0
       }
     },
@@ -41,17 +41,27 @@
     {
       "area": "world",
       "runId": "design_run_15619042-3dab-480f-82d1-90e16c4a609c",
-      "status": "ready",
-      "completed": 46,
+      "status": "completed",
+      "completed": 53,
       "total": 53,
+      "reportId": "design_review_a43f036f-dd2d-4948-b4ad-ed63dd8f527d",
+      "reportStatus": "needs_revision",
       "failures": 0
     },
     {
       "area": "power",
       "runId": "design_run_41a4860f-0bac-4935-9e7a-d9c81ed6e8d7",
       "status": "running",
-      "completed": 35,
+      "completed": 42,
       "total": 85,
+      "failures": 0
+    },
+    {
+      "area": "characters",
+      "runId": "design_run_d45b7c1a-692d-4df9-a8f8-6414ad1492b1",
+      "status": "running",
+      "completed": 1,
+      "total": 19,
       "failures": 0
     }
   ],

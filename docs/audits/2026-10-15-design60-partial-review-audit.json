@@ -1,0 +1,115 @@
+{
+  "observedAt": "2026-10-14T19:49:26.670Z",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "planId": "plan_dc748fcac00c45e4bbaa346e50f9fba7",
+  "planRevision": 60,
+  "inputHash": "7b8e40fc1b9b354f6b6c5f071c832a312746446f318633f632d48cfbae9ca340",
+  "status": "not_accepted",
+  "limitation": "Verifies saved evidence and report integrity only; does not approve the plan, resolve blockers, or validate prose quality.",
+  "areas": [
+    {
+      "area": "world",
+      "status": "needs_revision",
+      "runId": "design_run_15619042-3dab-480f-82d1-90e16c4a609c",
+      "reportId": "design_review_a43f036f-dd2d-4948-b4ad-ed63dd8f527d",
+      "completedStages": 53,
+      "totalStages": 53,
+      "retainedFailures": 0,
+      "verification": "verified",
+      "runSha256": "53e622986e1d2135144e49c422e5e3c86e06ecd56713befa58e793e0feed8c35",
+      "reportSha256": "71679ca79fb560f81f1d662420d489d8e7d51a4266ba8659d8e4ce39fad7b486",
+      "sourceEnvelopeSha256": "c4b67c5dab0863b30b8f3ee0e0df52543c4d143e88ec251c59eee264b25d365d",
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "history",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "capacity",
+          "verdict": "revise"
+        }
+      ],
+      "resolvedDeferrals": [
+        {
+          "checkId": "batch-2/geography",
+          "resolvedByStageId": "followup-batch-2/geography"
+        },
+        {
+          "checkId": "batch-2/history",
+          "resolvedByStageId": "cross-1-2"
+        },
+        {
+          "checkId": "batch-3/geography",
+          "resolvedByStageId": "followup-batch-3/geography"
+        },
+        {
+          "checkId": "cross-1-2/geography",
+          "resolvedByStageId": "followup-cross-1-2/geography"
+        },
+        {
+          "checkId": "cross-1-3/geography",
+          "resolvedByStageId": "followup-cross-1-3/geography"
+        },
+        {
+          "checkId": "cross-1-4/geography",
+          "resolvedByStageId": "followup-cross-1-4/geography"
+        },
+        {
+          "checkId": "cross-2-3/geography",
+          "resolvedByStageId": "followup-cross-2-3/geography"
+        },
+        {
+          "checkId": "cross-2-3/history",
+          "resolvedByStageId": "followup-cross-2-3/history"
+        },
+        {
+          "checkId": "cross-2-4/capacity",
+          "resolvedByStageId": "followup-cross-2-4/capacity"
+        },
+        {
+          "checkId": "cross-2-5/geography",
+          "resolvedByStageId": "followup-cross-2-5/geography"
+        },
+        {
+          "checkId": "cross-2-5/history",
+          "resolvedByStageId": "followup-cross-2-5/history"
+        },
+        {
+          "checkId": "cross-3-4/geography",
+          "resolvedByStageId": "followup-cross-3-4/geography"
+        }
+      ]
+    },
+    {
+      "area": "power",
+      "status": "reviewing",
+      "runId": "design_run_41a4860f-0bac-4935-9e7a-d9c81ed6e8d7",
+      "completedStages": 41,
+      "totalStages": 85,
+      "retainedFailures": 0,
+      "verification": "not_completed"
+    },
+    {
+      "area": "characters",
+      "status": "reviewing",
+      "runId": "design_run_d45b7c1a-692d-4df9-a8f8-6414ad1492b1",
+      "completedStages": 0,
+      "totalStages": 19,
+      "retainedFailures": 0,
+      "verification": "not_completed"
+    },
+    {
+      "area": "story",
+      "status": "outdated",
+      "reportId": "design_review_37573491-8287-4fad-8ad8-b618429ae0bf",
+      "completedStages": 0,
+      "totalStages": 0,
+      "retainedFailures": 0,
+      "verification": "missing"
+    }
+  ]
+}
