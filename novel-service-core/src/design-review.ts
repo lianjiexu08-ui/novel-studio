@@ -44,6 +44,8 @@ export interface DesignReviewInput {
     evidenceLimit?: 96;
     /** v17 checks the expanded report envelope during the model repair loop. */
     reportBudget?: { sourceId: string; maxCharacters: number };
+    /** v18 model outputs must classify ordinary local insufficiency explicitly. */
+    requireInsufficiencyReason?: true;
     sourceMap: Array<{ id: string; sourceId: string; start: number; end: number }>;
     coverage?: {
       mode: 'whole_input' | 'local_sources' | 'reports_with_context';
@@ -74,6 +76,8 @@ export interface DesignReviewCheck {
   revisionAdvice: string;
   /** Local uncertainty caused only by unread sources present in the inventory. */
   awaitingSources?: string[];
+  /** A real design gap, unlocatable evidence, or a bounded review capacity gap. */
+  insufficiencyReason?: 'missing_design' | 'unlocatable_sources' | 'capacity_limit';
   /** Explicit, evidenced disposition of an earlier local uncertainty. */
   resolves?: string[];
 }
@@ -194,6 +198,7 @@ export function validateDesignReview(input: DesignReviewInput, result: DesignRev
     if (check.evidence.length > designReviewEvidenceLimit(input)) throw new DesignReviewError(`本批每项证据不得超过${designReviewEvidenceLimit(input)}条，不能省略必引来源来凑数`);
     if (check.verdict !== 'insufficient' && check.evidence.length === 0) throw new DesignReviewError('通过或返修结论必须提供原文证据');
     if (check.verdict !== 'pass' && !check.revisionAdvice?.trim()) throw new DesignReviewError('未通过项目必须给出补充或返修要求');
+    if (check.insufficiencyReason !== undefined && (check.verdict !== 'insufficient' || check.awaitingSources !== undefined || !['missing_design', 'unlocatable_sources', 'capacity_limit'].includes(check.insufficiencyReason))) throw new DesignReviewError('普通不足原因只用于未建立补读等待的 insufficient，不能用于通过、返修或与 awaitingSources 同时出现');
     if (check.awaitingSources !== undefined) {
       if (input.stage?.followupFor) throw new DesignReviewError('专门补读不得递归建立等待；仍缺必要材料时保留普通材料不足');
       const coverage = input.stage?.coverage;

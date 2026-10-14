@@ -494,3 +494,58 @@ for (const repairFits of [true, false]) {
     assert.deepEqual(excessive, before, 'original output remains intact');
   });
 }
+
+for (const disposition of ['awaiting', 'missing_design', 'unlocatable_sources', 'capacity_limit', 'still_unclassified'] as const) {
+  test(`local insufficiency is classified before storage: ${disposition}`, async () => {
+    const request = await input();
+    request.rubric = { timeline: '消息必须实际送达' };
+    request.sources = [{ id: 'unit/dispatch', text: '第9日信使带信出发，不能据此认定收信人已经知道内容。' }];
+    request.stage = { kind: 'batch', label: '局部原文', totalBatches: 3, requireInsufficiencyReason: true,
+      sourceMap: [{ id: 'unit/dispatch', sourceId: 'plan/chapters/9', start: 0, end: request.sources[0].text.length }],
+      coverage: { mode: 'local_sources', sourceLengths: { 'plan/chapters/9': request.sources[0].text.length, 'plan/chapters/12': 200 } },
+    };
+    const prepared = prepareDesignReviewEvidence(request);
+    const first = { requestId: prepared.requestId, summary: '仍须核验送达', checks: [{ criterion: 'timeline', verdict: 'insufficient', explanation: '本批只有寄出材料，尚不能核验送达时间。', revisionAdvice: '需独立核对送达时点及消息来源。', evidence: [{ fragmentId: prepared.sources[0].fragments[0].id }] }] };
+    assert.throws(() => prepared.resolve(first), /局部材料不足必须说明是否需要补读/);
+    const legacy = structuredClone(request); delete legacy.stage!.requireInsufficiencyReason;
+    const legacyPrepared = prepareDesignReviewEvidence(legacy);
+    const original = legacyPrepared.resolve({ ...first, requestId: legacyPrepared.requestId });
+    assert.equal(original.checks[0].verdict, 'insufficient', 'old unclassified reports remain valid and blocking');
+    validateDesignReview(request, original); // Historical reconstruction never rewrites a saved verdict.
+    const repaired = { ...first, checks: [{ ...first.checks[0], ...(disposition === 'awaiting'
+      ? { awaitingSources: ['plan/chapters/12'] }
+      : disposition === 'still_unclassified' ? {} : { insufficiencyReason: disposition }) }] };
+    let calls = 0;
+    const planner = new JsonDesignPlanner({ complete: async call => {
+      if (++calls === 1) return JSON.stringify(first);
+      const body = JSON.parse(call.user);
+      assert.match(body.instruction, /列全awaitingSources/);
+      assert.match(body.instruction, /把未读材料说成不存在/);
+      assert.deepEqual(body.originalRequest.sources, prepared.sources);
+      assert.equal(body.previousOutput, JSON.stringify(first));
+      return JSON.stringify(repaired);
+    } });
+    if (disposition === 'still_unclassified') {
+      await assert.rejects(planner.reviewDesignContent(request), (error: Error & { modelResponses?: string[] }) => {
+        assert.match(error.message, /修正一次后仍不符合格式/);
+        assert.equal(error.modelResponses?.length, 2);
+        return true;
+      });
+    } else {
+      const result = await planner.reviewDesignContent(request);
+      assert.equal(result.checks[0].verdict, 'insufficient', 'classification does not turn missing evidence into approval');
+      assert.deepEqual(result.checks[0].awaitingSources, disposition === 'awaiting' ? ['plan/chapters/12'] : undefined);
+      assert.equal(result.checks[0].insufficiencyReason, disposition === 'awaiting' ? undefined : disposition);
+      assert.equal(result.modelResponses?.length, 2);
+      assert.throws(() => validateDesignReview(request, { ...result, checks: [{ ...result.checks[0], awaitingSources: ['plan/chapters/12'], insufficiencyReason: 'missing_design' }] }), /普通不足原因/);
+      assert.throws(() => validateDesignReview(request, { ...result, checks: [{ ...result.checks[0], verdict: 'pass', awaitingSources: undefined, insufficiencyReason: 'capacity_limit' }] }), /普通不足原因/);
+      if (disposition === 'awaiting') {
+        assert.throws(() => validateDesignReview(request, { ...result, checks: [{ ...result.checks[0], awaitingSources: ['plan/chapters/99'] }] }), /不在完整目录/);
+        assert.throws(() => validateDesignReview(request, { ...result, checks: [{ ...result.checks[0], awaitingSources: ['plan/chapters/9'] }] }), /已完整提供/);
+      }
+    }
+    assert.equal(calls, 2);
+    assert.equal(Object.hasOwn(first.checks[0], 'awaitingSources'), false);
+    assert.equal(Object.hasOwn(first.checks[0], 'insufficiencyReason'), false);
+  });
+}

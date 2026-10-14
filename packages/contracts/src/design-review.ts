@@ -14,6 +14,7 @@ export const designReviewResultSchema = z.object({
     evidence: z.array(z.object({ sourceId: z.string().min(1), quote: z.string().min(4).max(3000) })).max(maxDesignReviewEvidence),
     revisionAdvice: z.string().max(6000),
     awaitingSources: z.array(z.string().min(1)).min(1).max(maxDesignReviewAwaitingSources).optional(),
+    insufficiencyReason: z.enum(['missing_design', 'unlocatable_sources', 'capacity_limit']).optional(),
     resolves: z.array(z.string().min(1)).min(1).max(64).optional(),
   })).min(1).max(10),
 });

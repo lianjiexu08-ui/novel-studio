@@ -6,6 +6,7 @@ import { designReviewReportEnvelopeSize } from '../../../novel-service-core/src/
 
 export class DesignReviewEvidenceError extends DesignReviewError {}
 export class DesignReviewReportBudgetError extends DesignReviewError {}
+export class DesignReviewInsufficiencyError extends DesignReviewError {}
 
 /** Partition without rewriting, omitting or duplicating source text. Prefer line boundaries. */
 function fragments(text: string, size = 1200): string[] {
@@ -91,6 +92,10 @@ export function prepareDesignReviewEvidence(input: DesignReviewInput) {
       const result = designReviewResultSchema.parse({ ...parsed, checks: parsed.checks.map((check) => ({
         ...check, evidence: check.evidence.map((evidence) => ({ ...lookup.get(evidence.fragmentId)! })),
       })) });
+      if (snapshot.stage?.requireInsufficiencyReason) {
+        const unclassified = result.checks.filter(check => check.verdict === 'insufficient' && !check.awaitingSources && !check.insufficiencyReason);
+        if (unclassified.length) throw new DesignReviewInsufficiencyError(`局部材料不足必须说明是否需要补读：${unclassified.map(check => check.criterion).join('、')}。如果只因尚未读到目录中已有来源，完整填写 awaitingSources，不能只在说明中写“补读前50章”。确实缺设计、无法定位来源或完整必要材料超过容量时，使用 insufficiencyReason 的 missing_design、unlocatable_sources 或 capacity_limit，并在解释与建议中说明具体缺口。不能仅为通过校验改成 pass/revise、声称已读、缩小所需来源或把未读材料说成不存在。`);
+      }
       // A dedicated follow-up has exactly one original question. A bare pass
       // would finish the step while leaving that question unresolved forever.
       // Ask the model to substantiate resolution or retain an honest blocker;

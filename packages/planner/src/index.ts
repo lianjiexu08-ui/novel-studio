@@ -1,5 +1,5 @@
 import { designReviewEvidenceLimit, DesignReviewAwaitingSourceError, DesignReviewCitationError, DesignReviewError, type DesignReviewInput, type DesignReviewResult } from '../../../novel-service-core/src/design-review.ts';
-import { DesignReviewEvidenceError, DesignReviewReportBudgetError, prepareDesignReviewEvidence } from './design-review-evidence.ts';
+import { DesignReviewEvidenceError, DesignReviewInsufficiencyError, DesignReviewReportBudgetError, prepareDesignReviewEvidence } from './design-review-evidence.ts';
 import { isRetryableModelError, ModelGateway, OpenAICompatibleAdapter, UsageLedger, type ModelRole } from '../../model-gateway/src/index.ts';
 import { maxDesignReviewAwaitingSources, parseChapterOutlines, parseGenerateChapterResponse, parsePlanSkeleton, parseStoryBible, parseWorldPack, resourceDefinitionSchema } from 'novel-studio-contracts';
 import type { ChapterOutlineContract, PlanSkeletonContract } from 'novel-studio-contracts';
@@ -41,6 +41,7 @@ export class JsonDesignPlanner implements DesignPlanner {
 若有 stage.coverage：sourceLengths 是本领域完整输入的来源目录及原文长度；它只证明材料存在，不能证明内容正确，不能拿目录当引文。可选sourceNames将原始来源ID映射到该条目的原名，仅供定位功法、法宝、人物等；必须按名称匹配真实ID，不能凭编号顺序猜测，也不能把目录名称当作已读证据。若名称或编号混淆，应请求正确原条目，不能据读错的条目断言规则缺失。结合 sourceMap 判断本次实际读取了哪些来源及是否只是其中一段。local_sources 只对本批可检验的规则、行动和相互关系作局部结论；原文不在本批或只有部分字符时，不能断言该来源整体缺少某事实、开篇没有铺垫或全书没有恢复/支付。需要其他来源核对的关联在 explanation 明列原始来源ID与待核问题，留待跨批检查；这不等于已经通过全局检查，也不得脑补未读内容。当前条目自身缺少关键规则、所给两处互相矛盾或已给出的预算不闭合仍须返修；需要的原文确实缺失或本批即无法判断自身安排时用 insufficient，不能靠目录存在而通过。whole_input 才对本领域全部原文作整体判断。reports_with_context 是报告综合，计划原文中的详细章纲终点和目标章数优先于报告转述，发现报告误读应明确指出但保留原未通过项等待复核；不得再次把后半本宏观规划缺少逐场细节当作既定设计错误。
 coverage.entityMentions（若提供）将功法、法宝、资源条目对应到确实出现其名称或明确ID的章纲/里程碑原始来源，便于定位取得、训练、实测或使用前置。它只表示文字提及，否定句也会被列出，不能作为已学会、已取得、可使用或来源内容成立的证据；须按实际问题补读对应原文，不能盲目请求全部提及。缺项或entityMentionsOmitted=capacity不表示不存在前置，继续检查完整来源目录；不得引用此索引替代原文。
 仅当 coverage.mode 为 local_sources，局部检查因其他已存在但尚未读到的来源而无法判断时，仍用 insufficient，但必须同时加 awaitingSources 数组，列出 sourceLengths 目录中确切的原始来源ID（最多${maxDesignReviewAwaitingSources}项，不能写片段编号，不能写本批已完整提供的来源）。例如等待第47–50章，列出对应四个 plan/chapters/ ID。必须列全该具体问题所必需的未读来源，不得为了适应数量上限只取开头几章、代表章节或省略连续区间；超过上限时保留普通insufficient并说明完整范围，不能假装部分列表足够。不要把无需同读的全部章节笼统加入。这只是等待补读，不是认定设计缺陷。当前条目本身缺约束、全目录确无来源或无法具体定位缺料时，不得使用 awaitingSources；硬冲突必须 revise。
+若stage.requireInsufficiencyReason为true，每个insufficient必须二选一：(1)现有材料尚未完整读到，填写完整awaitingSources；(2)普通不足，填写insufficiencyReason，值为missing_design（本批条目本身缺必要设计，或完整目录没有对应设计）、unlocatable_sources（目前确实无法定位所需原文）、capacity_limit（完整必要来源超过数量/原文/报告容量，说明完整范围与容量缺口）。已有来源仅仅未读，不能标成missing_design；只在解释中写“补读前50章”而漏掉awaitingSources不合格。无需一同核验的全书材料不应笼统变成本批缺口；每一项不足必须具体到本批某个可检验安排。不得为了字段齐全删除问题、缩减必要来源、假称已读或改判通过/返修；pass/revise不要输出insufficiencyReason。
 若 coverage.pendingChecks 列出待补读项，本次已同时提供原批材料、所需来源及 review-question/ 原问题。对其中同一 criterion 逐一核验：只有原问题确已被实际原文解决且本批该标准通过，才在该 check 添加 resolves 数组，填 pendingChecks 的 id；证据必须包含原问题、原批实际原文以及每个新补读来源至少一个片段，并在 explanation 解释如何解决。只看到目录、有材料但没解决问题、或仍有冲突时，不得宣称 resolves。没有适用等待项时不要输出这两个可选字段，不要输出空数组。
 综合阶段 coverage.resolvedDeferrals 列的是系统已校验的原文复核记录。对应“等待补读”的旧 insufficient 已由明确后续证据处理，不要再当作未解决缺料重复传播；其它返修和普通 insufficient 不得取消。综合本身不能输出 awaitingSources 或 resolves，更不能自己宣布等待项解决；未解决等待仍由系统阻断，不准脑补。
 coverage.relatedSourceContext（若提供）标明补读附带的相关章纲原文与因容量未附带的候选来源。附带原文用于核取得、训练或使用前置，提及可能是否定，不能因已附带就通过；未附带的内容不得当作已读。
@@ -566,6 +567,8 @@ async function completeValidated<T>(client: PlanningClient, request: CompletionI
       system: request.system,
       user: JSON.stringify({ task: 'repair_previous_output', instruction: error instanceof DesignReviewAwaitingSourceError
         ? '上一次awaitingSources推造了不存在的来源。不要保留这个错误ID，也不要创建新的章纲来使它成立。逐项核对availableSourceIds和originalRequest.stage中的sourceMap，只有确实存在且尚未完整读到的来源才能请求补读。后段只有分卷或里程碑时按其实际宏观范围核验；不能假定每个目标章节都已有细纲。请重新判断所需来源；没有可补读来源时保留普通insufficient，不输出awaitingSources。目录不是证据，不得因更换ID自动判pass或声称问题已解决。返回完整评审JSON，保留原始问题的实质，不机械保留错误标识。'
+        : error instanceof DesignReviewInsufficiencyError
+        ? '上一次局部材料不足没有说明可执行的下一步。逐项回看originalRequest.stage.coverage.sourceLengths与sourceMap：仅因尚未读到已有材料时列全awaitingSources；确实缺设计、无法定位来源或完整必要材料超出容量时填写insufficiencyReason并解释具体缺口。不要改写旧答冒充已核验，也不要为满足格式把不足改为通过/返修、把未读材料说成不存在、只选代表章节或新造来源。返回全部检查与必要证据；新的判断必须依据本次实际可见材料。'
         : error instanceof DesignReviewReportBudgetError
         ? '上一次短JSON展开成原文引文后超过报告容量。按problems重新读取原材料并选择精确支持结论的必要片段，减少重复引文、精炼解释；返回全部rubric检查，保留已有实质问题及返修/不足，不得删必要来源、删检查、截断原文或为了变短改判通过。若完整证据仍无法放入容量，保留insufficient并说明具体容量缺口；不能虚称已解决原问题。返回完整评审JSON。'
         : error instanceof DesignReviewEvidenceError

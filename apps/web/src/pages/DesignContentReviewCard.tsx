@@ -6,6 +6,7 @@ import { api, type DesignReviewStageDetail } from '../api';
 const labels = { world: '世界、势力与历史', power: '力量、功法与法宝', characters: '人物、关系与认知', story: '主线、分卷与章纲' };
 const statuses = { missing: '尚未评审', outdated: '设计已变，需重评', passed: '本项设计通过', needs_revision: '需要返修', inconclusive: '材料不足', reviewing: '评审进行中', interrupted: '评审未完成' };
 const verdicts = { pass: '通过', revise: '返修', insufficient: '材料不足' };
+const insufficiencyReasons = { missing_design: '设计内容缺失', unlocatable_sources: '尚无法定位所需材料', capacity_limit: '完整核验材料超出本次容量' };
 const criteria: Record<string, string> = { geography: '地理与势力', history: '历史因果', capacity: '长篇承载能力', tiers: '品阶与门槛', costs: '消耗与恢复', counters: '上限与反制', agency: '独立动机与选择', relationships: '关系变化', knowledge: '秘密与认知', causality: '情节因果', timeline: '时空与分卷', payoff: '铺垫与兑现', opening: '开篇递进', pacing: '节奏与场次', genre: '题材体验与成长' };
 type ReviewRun = DesignReviewOverviewDto['runs'][number];
 
@@ -89,6 +90,7 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
       {report.resolvedDeferrals?.length ? <Typography.Paragraph>已完成的补读复核：{report.resolvedDeferrals.map(item => `${item.checkId} → ${item.resolvedByStageId}`).join('；')}。原问题与引用仍保留在批次记录中。</Typography.Paragraph> : null}
       {report.checks.map((check) => <Card size="small" key={check.criterion} title={<Space><Tag color={check.verdict === 'pass' ? 'success' : 'warning'}>{check.awaitingSources ? '等待跨批补读' : verdicts[check.verdict]}</Tag>{criteria[check.criterion] ?? check.criterion}</Space>}>
         <Typography.Paragraph>{check.explanation}</Typography.Paragraph>
+        {check.insufficiencyReason && <Typography.Paragraph type="secondary">不足原因：{insufficiencyReasons[check.insufficiencyReason]}。仍需补充或独立复核，不代表通过。</Typography.Paragraph>}
         {check.awaitingSources && <Typography.Paragraph>待核来源：{check.awaitingSources.join('、')}。其他批次须读取原文并明确复核，目录存在不等于通过。</Typography.Paragraph>}
         {check.resolves && <Typography.Paragraph>本批依据原文解决的补读项：{check.resolves.join('、')}</Typography.Paragraph>}
         {check.evidence.map((item, index) => <div key={`${item.sourceId}-${index}`}><Button type="link" size="small" onClick={() => setSource(report.sources.find((entry) => entry.id === item.sourceId) ?? null)}>查看所审材料：{item.sourceId}</Button><blockquote style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{item.quote}</blockquote></div>)}

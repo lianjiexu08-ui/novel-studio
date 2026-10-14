@@ -62,7 +62,7 @@ test('chapter-only power batches also receive complete tier and technique rules'
   ];
   input.sources = [...rules, ...input.sources];
   const run = createDesignReviewRun(input);
-  assert.equal(run.scheduleVersion, 17);
+  assert.equal(run.scheduleVersion, 18);
   for (const stage of run.stages) {
     const staged = designReviewStageInput(run, stage);
     assert.ok(JSON.stringify(staged.sources).length <= 240_000);
@@ -972,7 +972,7 @@ test('v16 can cite 63 requested sources plus four original sources without chang
 
 test('v17 predicts exact saved report envelopes and retains v16 request reconstruction', () => {
   const request = largeInput();
-  const current = createDesignReviewRun(request);
+  const current = createDesignReviewRun(request, undefined, 17);
   assert.equal(current.scheduleVersion, 17);
   const legacy = createDesignReviewRun(request, current.createdAt, 16);
   assert.deepEqual(current.units, legacy.units);
@@ -998,4 +998,23 @@ test('v17 predicts exact saved report envelopes and retains v16 request reconstr
   }
   assert.equal(completeDesignReviewRun(JSON.parse(JSON.stringify(current))).result.checks[0].verdict, 'pass');
   assert.equal(completeDesignReviewRun(JSON.parse(JSON.stringify(legacy))).result.checks[0].verdict, 'pass');
+});
+
+test('v18 classifies new local model judgments without changing legacy raw coverage or synthesis', () => {
+  const input = largeInput(), current = createDesignReviewRun(input), previous = createDesignReviewRun(input, current.createdAt, 17);
+  assert.equal(current.scheduleVersion, 18);
+  assert.deepEqual(current.units, previous.units);
+  assert.deepEqual(current.stages, previous.stages);
+  for (const stage of current.stages) {
+    const staged = designReviewStageInput(current, stage);
+    assert.equal(staged.stage!.requireInsufficiencyReason, stage.kind === 'synthesis' ? undefined : true);
+    const oldStage = previous.stages.find(s => s.id === stage.id)!;
+    const oldInput = designReviewStageInput(previous, oldStage);
+    const copy = structuredClone(staged); delete copy.stage!.requireInsufficiencyReason;
+    assert.deepEqual(copy, oldInput);
+    const result = stagePass(staged);
+    acceptDesignReviewStage(current, stage, result);
+    acceptDesignReviewStage(previous, oldStage, result);
+  }
+  assert.deepEqual(completeDesignReviewRun(current).result, completeDesignReviewRun(previous).result);
 });
