@@ -1,0 +1,88 @@
+{
+  "observedAt": "2026-10-14T12:06:03.072Z",
+  "status": "prepared_not_started",
+  "candidateVersion": 13,
+  "candidateHash": "14004f064ce7a83f5856eca317bcbb87edf991e5a33c6ed75caa33fa0a26a1d3",
+  "runtimeCommit": "21f69efcffa5aaef565960b208dfc6ac3c718e25",
+  "rubricVersion": 15,
+  "scheduleVersion": 15,
+  "modelCalls": 0,
+  "savedToWork": false,
+  "formalAcceptance": false,
+  "databaseDesignAndAdoptedHistoryUnchanged": true,
+  "expectedVersions": {
+    "world": 29,
+    "bible": 58,
+    "plan": 58
+  },
+  "areas": [
+    {
+      "area": "world",
+      "scheduleVersion": 15,
+      "sourceCount": 415,
+      "sourceChars": 390148,
+      "initialSteps": 29,
+      "rawSteps": 15,
+      "maxRawInputChars": 217654,
+      "allRawSourcesScheduledWhole": true,
+      "rubric": [
+        "geography",
+        "history",
+        "capacity"
+      ],
+      "guSourcePresent": true
+    },
+    {
+      "area": "power",
+      "scheduleVersion": 15,
+      "sourceCount": 335,
+      "sourceChars": 368992,
+      "initialSteps": 29,
+      "rawSteps": 15,
+      "maxRawInputChars": 217661,
+      "allRawSourcesScheduledWhole": true,
+      "rubric": [
+        "tiers",
+        "costs",
+        "counters"
+      ],
+      "guSourcePresent": true
+    },
+    {
+      "area": "characters",
+      "scheduleVersion": 15,
+      "sourceCount": 286,
+      "sourceChars": 322164,
+      "initialSteps": 19,
+      "rawSteps": 10,
+      "maxRawInputChars": 218699,
+      "allRawSourcesScheduledWhole": true,
+      "rubric": [
+        "agency",
+        "relationships",
+        "knowledge"
+      ],
+      "guSourcePresent": true
+    },
+    {
+      "area": "story",
+      "scheduleVersion": 15,
+      "sourceCount": 360,
+      "sourceChars": 374335,
+      "initialSteps": 29,
+      "rawSteps": 15,
+      "maxRawInputChars": 218822,
+      "allRawSourcesScheduledWhole": true,
+      "rubric": [
+        "causality",
+        "timeline",
+        "payoff",
+        "opening",
+        "pacing",
+        "genre"
+      ],
+      "guSourcePresent": true
+    }
+  ],
+  "limitation": "Schedule and whole-source capacity preview only. Dynamic followups and synthesis depend on actual model reports; no review run was persisted or accepted."
+}
