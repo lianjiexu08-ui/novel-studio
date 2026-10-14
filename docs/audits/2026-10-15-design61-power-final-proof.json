@@ -1,0 +1,251 @@
+{
+  "observedAt": "2026-10-14T23:14:59.573Z",
+  "scope": {
+    "worldPackRevision": 31,
+    "storyBibleRevision": 61,
+    "planRevisionId": "plan_e9b4422f5367453d957c8036c2d87b68",
+    "planRevision": 61
+  },
+  "area": "power",
+  "reportId": "design_review_d86dd303-cac9-46ca-b02d-66e75fc7ec3e",
+  "reportCreatedAt": "2026-10-14T23:12:11.162Z",
+  "status": "needs_revision",
+  "inputHash": "7b7892ad3d19537ab7aae549e0154344d22a3f5389772416658dba130da6dcc2",
+  "runtimeCommit": "fdf5a46de118b234f4416993049cec496c19d455",
+  "runSha256": "3624631ce34fc06c6cf69008d0d44ab7bf3d3fdcfed0c691ca98195640b9ba00",
+  "reportSha256": "912bd7ca15b7ddf4d4d1f9f766100023a7693a90b2019a3aaa708ac41b947395",
+  "sourceEnvelopeSha256": "93bab1fe99b0bf0eaf4e2f301e18764c5d349b855b2d2c9674fdca92ac23aa84",
+  "reconstructedScheduleAndAllStagesValidated": true,
+  "totalStages": 77,
+  "rawStages": 39,
+  "synthesisStages": 38,
+  "protectedDesignAndHistoryUnchanged": true,
+  "oldRunsUnchanged": 49,
+  "oldReportsUnchanged": 55,
+  "activePlanRevision": 10,
+  "allAreasReady": false,
+  "additionalModelCalls": 0,
+  "report": {
+    "summary": "全部批次已完成，但仍有返修或材料不足项；详见逐项结论。",
+    "checks": [
+      {
+        "criterion": "tiers",
+        "verdict": "insufficient",
+        "explanation": "已解决等待不应重复传播，但cross-1-2/tiers不在本次resolvedDeferrals中，前置综合亦明确尚未完成第2—50章成长、伤情、训练和实测至后段丹府训练、局部护罡及第95章资格的完整复核。另有独立普通缺口：局部护罡规则要求玄府后另经指导、聚散训练、轻木棍/普通铁刃受控实测及复诊，且晋阶不自动掌握；顾峤却被安排在第25章及第436日使用，现有报告未给出其自身非循环资格链。高阶功法不由境界或持有物自动启动、林辰百章止于玄府初期的安排本身相容，但不能抵销上述未解决项。",
+        "evidence": [
+          {
+            "sourceId": "review-result/synthesis-37",
+            "quote": "前置报告。以下引文是独立摘录；同一来源的摘录可能相隔很远，不可把不同摘录里的字段拼成同一条记录。字符范围采用原始来源的UTF-16下标，右端不含。\n{\n  \"summary\": \"部分报告综合：须保留境界资格链的未解决材料不足及顾峤局部护罡前置不足；《乾坤逆命真解》恢复分支的成本与反制边界仍须返修。已由原文复核处理的历史等待不重复作为当前缺料传播。\"\n}\n\nCHECK 1\n{\n  \"criterion\": \"tiers\",\n  \"verdict\": \"insufficient\",\n  \"explanation\": \"cross-1-2/tiers不在已解决等待记录中。现有报告仍未形成覆盖第2—50章训练、伤情、实测，以及后段丹府训练、玄府局部操作与第95章交锋资格的完整复核处理，不能用宏观终点或其他已解决等待替代。同时，局部护罡规则明确玄府晋阶不自动取得该操作；顾峤被安排在第25章及第436日使用该术，但现有材料未给出其独立的指导、聚散训练、受控接触实测和复诊前置，不能以已施术倒证已掌握。\",\n"
+          },
+          {
+            "sourceId": "review-result/synthesis-37",
+            "quote": "{\"sourceId\":\"review-result/synthesis-36\",\"start\":0,\"end\":569,\"unique\":true}\n前置报告。以下引文是独立摘录；同一来源的摘录可能相隔很远，不可把不同摘录里的字段拼成同一条记录。字符范围采用原始来源的UTF-16下标，右端不含。\n{\n  \"summary\": \"本次为部分前置报告综合。寿储成本与能力反制链的已复核安排相容；但顾峤在第25章及第436日使用局部护罡的独立训练、受控接触实测与复诊前置仍未补足，既有境界门槛不足必须保留。\"\n}\n\nCHECK 1\n{\n  \"criterion\": \"tiers\",\n  \"verdict\": \"insufficient\",\n  \"explanation\": \"局部护罡规则明确，玄府晋阶不自动获得该操作，须有指导、聚散训练、轻木棍与普通铁刃的受控接触实测及复诊。林辰的416—424日训练链已拟定，但顾峤在第25章和第436日均实际被安排使用护罡；现有综合证据只说明顾的真光具有开篇前训练资格及部分当场限制，未给出顾自身护罡的非循环资格链，不能以已施术倒证已掌握。该普通设计不足尚未解决。\",\n"
+          },
+          {
+            "sourceId": "review-result/synthesis-37",
+            "quote": "  \"content\": \"元罡护体是能力方向；本条只定义其中最基础的局部护罡，其他全身护持仍须另有术式。施术者须已入玄府，经有经验者指导，将元罡在本人一处掌大范围皮肤外稳定聚合，并通过轻木棍、普通铁刃的受控低负荷实测及复诊。完成晋阶不自动获得此操作。\\n每次聚罡先用一息并预付一成本人当境健康稳定元罡上限；只护同一选定部位，至多维持随后两息，不远控、不护他人、不同时覆盖全身。若承受一次实际接触，另预留并即时扣一成，随后该层即散；开启前须至少有两成获准可用余量。即使落空、提前收束或被打断，聚罡一成不退；未受击则不虚扣受击费。每次散后至少三息重新定息，间隙没有护罡。连续最多三次，此后至少休整一刻并复测，伤痛、麻木或气路不稳立即停用；控术和战斗期间不计恢复。此基础操作只用自身元罡，无额外神识、寿储或外物账户，不提供力量、速度、飞行或恢复。\\n效果只是在接触部位分散普通拳棍或无附灵铁刃一次擦击/斜击的表层冲击，需要站位退让与卸力；不保证挡住同阶全力正击、重刃、尖刺、多次连续攻势或已付费的攻杀术，不保证免伤。对方可换落点、抓聚罡一息、在三息空档进攻或持续压制。击穿时仍扣本次受击费，余力实际伤及该处，不把破罡化作无害光效；肩、腕或经脉受\nEND INDEPENDENT QUOTE 1.1\n\nBEGIN INDEPENDENT QUOTE 1.2\n\n\n"
+          },
+          {
+            "sourceId": "review-result/synthesis-37",
+            "quote": "END INDEPENDENT QUOTE 1.4\n\nBEGIN INDEPENDENT QUOTE 1.5\n{\"sourceId\":\"review-result/synthesis-36\",\"start\":4187,\"end\":4738,\"unique\":true}\n  \"content\": \"境界能力栏描述该层能够修习和承载的能力方向，不是一份自动掌握、免费发动的万能招式清单。晋阶费用、术法发动费与持续消耗分别记账；晋阶不等于预付后续法术。实际施术须有已掌握的功法、法宝或明确基础操作规则，逐项满足其对象、范围、供能、时机和中断后果；境界名称不能绕过这些条件。已由ax_05定义的凝元轻物御动等基础操作仍按原规则执行，普通步行、说话、握持不因此加收术法费。尚未展开的高阶术式可以保留为未来能力方向，但首次安排它解决剧情之前必须先完成具体规则与可取得资源的设计、复核；不得以读者未见的万能本能补齐现有行动缺口。\",\n\n\nEND INDEPENDENT QUOTE 1.6\n\nCHECK 2\n{\n  \"criterion\": \"costs\",\n  \"verdict\": \"pass\",\n"
+          },
+          {
+            "sourceId": "review-result/synthesis-34",
+            "quote": "  \"mainConflict\": \"先天短寿的林辰由矿务逃生追查跨陆扣工与非法货运，在寿储、境界与各方利益限制下同伙伴救人、查清父亲守门及外山掩案责任。百章只切断已实证的一条三地运输链；九鼎全貌、三残片与最终界门危机仍是约450章全书必须收束的主线。 人员口径：赤霄获救承运雇工是唐、许、冯、吴、卢五人；陆弟单列，陆本人是受看护的押送责任人，不算五工。北境黑舱七人是另一批来自青玄的矿工，至300日仍由北境港口救济所安置，不随林贺返青玄。435–436日青玄两车八人是开篇两名旧工友加430日后新扣六人，与赤霄五工、北境七人均不重合；梁九为自由领车救援者，不在被救八人内。三地名单不能互相改写为人数增长，首卷救过而再被移交的两名旧工友只算两位不同人，不因再次获救重复加人。\",\n  \"theme\": \"活命与查真相不能以牺牲无辜者代价换取；信任来自共同选择和承担自己一方的责任。\",\n  \"protagonistArc\": \"从负伤矿工到能接受伙伴自主选择的凝元修士，再经数月修习、实测丹府与支付十元载成为玄府初期；力量增加时可用寿储反而减少。百章不发动逆命真解，不越阶斩高境，不把神兵持有当作启动权限。\",\n\nEND INDEPENDENT QUOTE 1.4\n\nBEGIN INDEPENDENT QUOTE 1.5\n"
+          },
+          {
+            "sourceId": "review-result/synthesis-34",
+            "quote": "    \"第83章：数月努力与诊察后，实际付十元载晋玄府；不能再用旧法器承载元罡。\",\n\nEND INDEPENDENT QUOTE 1.5\n\nCHECK 2\n{\n  \"criterion\": \"costs\",\n  \"verdict\": \"pass\",\n  \"explanation\": \"寿储收入须经来源验真、配额、适格、完整疗程和复诊后才可入账，且不能返还燃寿、晋阶支出、自然衰老、道伤或本源损失。第83章的十元载预算被明确为第199、209日已完成疗程后的历史收入，并在凝元、自然流逝与玄府支出后保有余量；百章结局亦排除返寿和伤势凭空痊愈。高阶术式另保留寿储、法力、神识及永久本源/道伤成本，因此本覆盖范围内不存在重复入账或以疗伤取消核心代价。\",\n  \"revisionAdvice\": \"\"\n}\n\nBEGIN INDEPENDENT QUOTE 2.1\n{\"sourceId\":\"review-result/synthesis-28\",\"start\":6891,\"end\":7480,\"unique\":true}\n"
+          }
+        ],
+        "revisionAdvice": "保留cross-1-2/tiers不足，按原要求逐项复核第2—50章凝元三重、剑诀实测、灵泉疗程及后段丹府训练、玄府操作和第95章交锋时的已学能力、伤情、余量与资格。另在顾峤人物档案或其第25章前的提案中补足指导者、聚散训练、轻木棍与普通铁刃低负荷实测、复诊，并分别核明第25章及第436日的气路、伤情和元罡余量。"
+      },
+      {
+        "criterion": "costs",
+        "verdict": "revise",
+        "explanation": "寿储主账已具闭合设计：灵泉须完成疗程与复诊才入账，玄府晋阶支付既有收入，结局不返寿或以疗伤消除已付代价。但两项独立成本缺口仍未解决：第18章177—179日仅以温和灵气中的连续静息记入三、三、四成真元，未写恢复规则要求的实际进食或营养来源；《乾坤逆命真解》的三倍非永久伤势恢复没有绑定治疗输入、适用伤类、资源扣除、单次/十息上限、复诊和中断结算。燃寿预扣、窗口与冷却不能替代恢复效果本身的来源与结算。",
+        "evidence": [
+          {
+            "sourceId": "review-result/synthesis-37",
+            "quote": "  \"explanation\": \"寿储、元罡与伤病已分账：延寿资源须完成疗程、静养及复诊方可入账，两剂各5元载后库存归零；第415日玄府晋阶另付10元载且不重复入账。自然寿源不能返还既付晋阶费、燃寿或自然流逝，结局回访仍持续扣除自然流逝，未以疗伤或胜利取消核心代价。\",\n  \"revisionAdvice\": \"\"\n}\n\nBEGIN INDEPENDENT QUOTE 2.1\n\nEND INDEPENDENT QUOTE 1.5\n\nCHECK 2\n{\n  \"criterion\": \"costs\",\n  \"verdict\": \"revise\",\n  \"explanation\": \"寿储收入、晋阶支出、灵泉疗程及终局不返寿的链条已有闭合设计，但两项独立缺口未被通过报告覆盖：第18章177—179日将连续静息直接计为三、三、四成真元恢复，未写入规则要求的实际进食或营养输入；《乾坤逆命真解》的三倍非永久伤势恢复也未绑定治疗输入、适用伤类、资源扣除、单次上限、复诊及中断结算。燃寿成本与冷却不能代替恢复效果本身的来源和结算。\",\n"
+          },
+          {
+            "sourceId": "review-result/synthesis-37",
+            "quote": "  \"revisionAdvice\": \"修订plan/chapters/18，为177—179日各恢复时段写明已定义的进食或营养供给、连续时长和复测；若不能成立，重算后续真元余额。修订world/techniques/tech_10，将三倍恢复限定为对持续存在的具名治疗输入生效，明确适用和排除伤类、资源照常扣除、十息及单次上限、伤后可恢复上限、复诊，以及资源不足、治疗中断或再受创时已完成和未完成效果的结算。\"\n}\n\nBEGIN INDEPENDENT QUOTE 2.1\n{\"sourceId\":\"review-result/synthesis-35\",\"start\":6217,\"end\":6792,\"unique\":true}\n  \"revisionAdvice\": \"修订plan/chapters/18，为177—179日每段恢复补明实际进食或其他已定义营养供给、连续时段与复测；不能满足则重算后续真元余额。修订world/techniques/tech_10：将三倍恢复限定为对已启动且持续存在的具名治疗输入生效，明确适用/排除伤类、资源照常扣除、十息及单次结算上限、伤后可恢复上限、复诊要求，以及治疗资源不足、治疗中断或再受创时已完成与未完成效果的结算。\"\n}\n\nBEGIN INDEPENDENT QUOTE 2.1\n"
+          },
+          {
+            "sourceId": "review-result/synthesis-37",
+            "quote": "{\"sourceId\":\"review-result/synthesis-31\",\"start\":3366,\"end\":3937,\"unique\":true}\n  \"explanation\": \"必须保留两项未解决成本问题。其一，第18章计划把177—179日仅写为温和灵气中的连续静息，却分别记入三、三、四成真元；恢复总则要求静息恢复同时具有实际进食或营养来源，不能凭空回补。其二，逆命真解虽规定燃寿预扣、窗口、冷却和永久损失，但其“三倍伤势恢复效率”没有绑定既有治疗输入、伤类、资源扣除、单次结算上限、伤后上限、复诊或中断后果，不能闭合爆发疗伤成本。另一综合报告的成本通过只覆盖寿储收入、晋阶支出及已复核的高阶成本，未能反驳这两项具体缺口。\",\n\nEND INDEPENDENT QUOTE 2.1\n\nBEGIN INDEPENDENT QUOTE 2.2\n{\"sourceId\":\"review-result/synthesis-35\",\"start\":7809,\"end\":8390,\"unique\":true}\n{\"sourceId\":\"review-result/synthesis-31\",\"start\":4953,\"end\":5532,\"unique\":true}\n"
+          },
+          {
+            "sourceId": "review-result/synthesis-37",
+            "quote": "  \"cost\": \"凝元支付3元载，至第180日保守下界为7−3−161/365≈3.5589，仍保留至少1元载；训练风刃每次支付二成真元，斩铁剑须停手散热。林辰的劳务收入扣除木架赔款，苏没有再次支付一份已让出的优先位。 稳定实测后林在凝元三重的健康真元上限按十成记；训练按一式二成结算，御物另扣，休整时按公共恢复上限复测，余量不够或剑未冷就延期。 终段训练于176日结束后，保守余量按零重新起算，不预支此前未核的恢复；177–179日每夜各有八小时温和灵气环境中的连续静息且无施术，复测分别只记三成、再三成、再四成，179日晚达到健康十成，均未超过每夜四成的恢复上限。180日实测只额外御一次轻物扣半成，夜间两小时静息复测补回半成；181–183日按普通步行、乘车和宿营，不御物或施剑。184日行前再核十成，后续从这个明确余额起算。训练期每次施术前均须复测足以付费，余量不足即延期，不把多次训练视作免费。\",\n  \"threads\": [\n    \"th_01\",\n\nEND INDEPENDENT QUOTE 2.10\n\nCHECK 3\n{\n  \"criterion\": \"counters\",\n\nEND INDEPENDENT QUOTE 2.2\n\nBEGIN INDEPENDENT QUOTE 2.3\n"
+          },
+          {
+            "sourceId": "review-result/synthesis-37",
+            "quote": "{\"sourceId\":\"review-result/synthesis-35\",\"start\":8604,\"end\":9189,\"unique\":true}\n  \"content\": \"真元、元罡与寿储分别记账；元载只计寿储，不能拿真元恢复充作延寿。某修士的一成，指他在当前大境界及修习阶段经稳定实测的健康可用上限的十分之一，不是剩余量的十分之一，不随一场战斗中余量下降而缩小。凝元真元和玄府元罡的成数不能跨人、跨境界直接等量兑换。伤势会降低可用上限，但不使同一术法的成本打折。没有特殊资源且环境灵气温和时，恢复上限按一次连续有效时段的实际小时数h比例核算：凝元静息进食最多h/2成、专注温和吐纳最多h成；玄府静息最多h/4成、专注吐纳最多h/2成。此处成数仍以对应境界与修习阶段的健康稳定实测上限为基准。例如凝元八小时连续静息的理论上限为四成，两小时专注吐纳的理论上限为两成；实际只恢复三成或一成半均可，但须复测确认，不能按理论上限自动记满。两种恢复不能在同一时段叠加，累计不得超过当时伤势允许的上限；搏斗、疾跑、御物或警戒施术期间不算连续恢复时段，岔气、经脉伤及污染灵气须停下复测，不能按时长自动判满。恢复来源是饮食和环境灵气，不凭空回补，灵石供能另按实际库存扣除。普通步行和肉身握持不凭空附加施术；一次短时御动轻索、小钩或木楔按半成真元作保守支出，重物、活人和持续远控不在这个用量内。每场行动"
+          },
+          {
+            "sourceId": "review-result/synthesis-37",
+            "quote": "  \"explanation\": \"原问题所列寿储链已能按日序核对：第19日保守下界7元载；第120日自然流逝后支付凝元3元载；两剂灵泉均在三日服用、七日静养及复诊后，分别于第199、209日各入账5元载；第415日复诊与实测后支付玄府10元载，余额2.915068；至第466日再扣自然流逝为2.775342。灵泉库存于第二剂后归零，未被预支或重复入账。各段真元、元罡与寿储分账，伤后上限、冷却、器械发热、普通医疗和行旅款亦有独立限制；第88—100章明确不再施真光或重复扣顾的0.25元载，结局也明定不返寿、不以疗伤取消代价。这是待正文实现的闭合设计链，不等同已发生事实。\"\n}\n\nEND INDEPENDENT QUOTE 2.8\n\nCHECK 3\n{\n  \"criterion\": \"counters\",\n  \"verdict\": \"revise\",\n  \"explanation\": \"局部护罡的对象、预付、受击费、空档、伤后停术及同阶牵制场景已有可执行限制；但逆命真解恢复分支未界定治疗条件、可作用伤类、效果上限和中断状态。现有蓄势打断、十息窗口与冷却，只反制燃寿爆发本身，不能使敌手判断切断治疗、耗尽资源、造成特定伤势或拖延窗口将如何阻止或压低恢复，故该分支仍缺可执行反制。\",\n\nEND INDEPENDENT QUOTE 3.1\n\n"
+          }
+        ],
+        "revisionAdvice": "修订plan/chapters/18，逐段写明177—179日的实际进食或既定营养供给、连续恢复时长与复测；若不能满足则重算后续真元余额。修订world/techniques/tech_10：将恢复限定为依托持续存在的具名治疗输入，明确适用与排除伤类、资源照常扣除、十息和单次上限、伤后可恢复上限、复诊要求，以及资源不足、治疗中断或再受创时已完成和未完成效果的结算。"
+      },
+      {
+        "criterion": "counters",
+        "verdict": "revise",
+        "explanation": "局部护罡及第436日同阶牵制已有对象、逐次付费、受击后散罡、空档、伤后停术、车架遮挡和撤离限制，不构成正面必胜；其他低阶与高阶能力也保留路径、供能、打断及防御反制。然而逆命真解恢复分支仍未定义治疗开始与持续条件、可作用伤类、效果上限及受击/隔离/断供后的状态。现有蓄势打断、十息窗口和三十日冷却只能反制燃寿爆发，无法使敌手稳定通过隔离治疗、耗尽供给、制造特定伤损或拖延来限制恢复，反制链未闭合。",
+        "evidence": [
+          {
+            "sourceId": "review-result/synthesis-37",
+            "quote": "END INDEPENDENT QUOTE 2.6\n\nCHECK 3\n{\n  \"criterion\": \"counters\",\n  \"verdict\": \"revise\",\n  \"explanation\": \"局部护罡及第436日同阶牵制已具局部覆盖、逐次付费、空档、受伤停术、车架遮挡和撤离等限制，且不构成正面必胜；其他低阶行动也有刃路与停术边界。但逆命真解的恢复分支未定义治疗条件、适用对象、效果上限或中断后果。蓄势可打断、十息窗口和三十日冷却只反制燃寿爆发，不能让对手稳定通过隔离治疗、切断供给、耗尽资源或制造特定伤势来限制恢复。\",\n  \"revisionAdvice\": \"随tech_10成本修订，将恢复设计为可观察、可中断的流程：明确治疗开始与持续条件、供给或接触要求、适用和不可作用伤类、十息内恢复上限，以及供给被切断、治疗资源耗尽、受击或出现特定伤势时的停止和结算后果；保留恢复后的残余伤势对施术、撤离和可用上限的限制。\"\n}\n\nBEGIN INDEPENDENT QUOTE 3.1\n{\"sourceId\":\"review-result/synthesis-35\",\"start\":11788,\"end\":12335,\"unique\":true}\n"
+          },
+          {
+            "sourceId": "review-result/synthesis-37",
+            "quote": "BEGIN INDEPENDENT QUOTE 3.2\n{\"sourceId\":\"review-result/synthesis-35\",\"start\":12335,\"end\":12926,\"unique\":true}\n  \"revisionAdvice\": \"随tech_10的成本修订，明确恢复的治疗开始与持续条件、可作用和不可作用的伤类、十息内恢复上限、治疗资源耗尽或被隔离/打断时的结果，以及何种新增伤势强制停术诊治。使切断供给、拖过窗口、施压受击和制造特定伤势能够成为稳定、可观察的反制路径。\"\n}\n\nBEGIN INDEPENDENT QUOTE 3.1\n{\"sourceId\":\"review-result/synthesis-30\",\"start\":9856,\"end\":10302,\"unique\":true}\n  \"explanation\": \"局部护罡及百章同阶行动已有对象、时机、受击费用、间隙、伤后停术和撤离条件；第88—95章也把林的三次护罡限制为开门撤人窗口，而非正面取胜。可是乾坤逆命真解的恢复分支没有可观察的治疗流程、供给条件、效果上限或中断结算。对手无法判断隔离治疗、切断供给、施压受击或拖过十息窗口会阻止恢复、降低效率还是仍产生未定义恢复量，伤势、撤离和持续作战这一反制轴不可执行。\",\n"
+          },
+          {
+            "sourceId": "review-result/synthesis-37",
+            "quote": "  \"content\": \"元罡护体是能力方向；本条只定义其中最基础的局部护罡，其他全身护持仍须另有术式。施术者须已入玄府，经有经验者指导，将元罡在本人一处掌大范围皮肤外稳定聚合，并通过轻木棍、普通铁刃的受控低负荷实测及复诊。完成晋阶不自动获得此操作。\\n每次聚罡先用一息并预付一成本人当境健康稳定元罡上限；只护同一选定部位，至多维持随后两息，不远控、不护他人、不同时覆盖全身。若承受一次实际接触，另预留并即时扣一成，随后该层即散；开启前须至少有两成获准可用余量。即使落空、提前收束或被打断，聚罡一成不退；未受击则不虚扣受击费。每次散后至少三息重新定息，间隙没有护罡。连续最多三次，此后至少休整一刻并复测，伤痛、麻木或气路不稳立即停用；控术和战斗期间不计恢复。此基础操作只用自身元罡，无额外神识、寿储或外物账户，不提供力量、速度、飞行或恢复。\\n效果只是在接触部位分散普通拳棍或无附灵铁刃一次擦击/斜击的表层冲击，需要站位退让与卸力；不保证挡住同阶全力正击、重刃、尖刺、多次连续攻势或已付费的攻杀术，不保证免伤。对方可换落点、抓聚罡一息、在三息空档进攻或持续压制。击穿时仍扣本次受击费，余力实际伤及该处，不把破罡化作无害光效；肩、腕或经脉受损即停\nEND INDEPENDENT QUOTE 3.4\n\nBEGIN INDEPENDENT QUOTE 3.5\n\n\n\n"
+          },
+          {
+            "sourceId": "review-result/synthesis-37",
+            "quote": "    \"第435日跟车确认撤运路线与救护接应，第436日两车撤移时才发生这次短暂交锋。林与顾分别牵制一名既有玄府护卫，顾对应统领祁嵩，苏对付凝元押车者，梁九带获救矿工驾驶普通车撤人。林以424日实测学成的局部护罡配合车角、退步，短时牵制一名同阶押卫，仅争取前车开门与四人下车退至侧道待接点的机会，不支撑往返药棚。该押卫本段用已在手的普通短铁刀截人，不临时获得未定义的破罡术；他要守囚车，林也无力正面取胜。双方并非约好三招：押卫借车侧转角改变落点，前囚车在行动开始时已由押车者拉下普通车闸停在原位，救人后仍保持制动，梁九用于送人的自由雇工货车是另一辆，此时空车候在侧道，不进入林的交锋区；林用空囚车车架遮断直线，退到下一车角才有重新聚罡的间隙；并非护罡本身使敌人停攻。拟定前两次实接为退让中的斜擦，每次另付受击费；第三次也须支付受击费，但对手改刺肩侧、护罡被穿，林肩部实际受伤，立即停术沿空车道撤走。若落点、遮挡或三息间隔在逐章展开时不能成立，就改写撤退，不准靠付费自动抵住同阶攻击；三次是此段安排的上限，不是必能活过三击的保证。他未击杀这名老练玄府，不灌旧剑、不瞬移。\",\n\n\nEND INDEPENDENT QUOTE 3.5\n\nBEGIN INDEPENDENT QUOTE 3.6\n\nEND INDEPENDENT QUOTE 3.3\n\n\nEND INDEPENDENT QUOTE 3.3\n"
+          },
+          {
+            "sourceId": "review-result/synthesis-37",
+            "quote": "\nEND INDEPENDENT QUOTE 3.4\n\nBEGIN INDEPENDENT QUOTE 3.5\n{\"sourceId\":\"review-result/synthesis-35\",\"start\":14849,\"end\":15325,\"unique\":true}\n    \"局部护罡执行账：林行动前静息与复诊后确认玄府元罡可用八成，健康基准仍固定为十成；沿车步行、退步与拉普通车门不用额外术法，不御动旧剑。三次各预付聚罡一成并各付一次受击一成，八→六→四→二，第三次受伤后剩余二成封存待复诊、不得续用，不写气力归零或伤后自动满额。每次聚罡一息、作用至多两息、散后至少三息，三次只服务前车开门、下车的短暂牵制；伤后停术撤至待接点。后车开门与两趟转运都在祁实际命令停斗、交械之后，不要求林继续对抗另一玄府或覆盖31分钟以上的转运。此账不替代顾、苏和押卫各自实际使用术法的费用。\",\n\nEND INDEPENDENT QUOTE 3.14\nEND INDEPENDENT QUOTE 3.7\n\nBEGIN INDEPENDENT QUOTE 3.8\n\nEND INDEPENDENT QUOTE 3.4\n\nBEGIN INDEPENDENT QUOTE 3.5\n"
+          },
+          {
+            "sourceId": "review-result/synthesis-37",
+            "quote": "{\"sourceId\":\"review-result/synthesis-31\",\"start\":8320,\"end\":8793,\"unique\":true}\n\nEND INDEPENDENT QUOTE 3.5\n\nBEGIN INDEPENDENT QUOTE 3.6\n{\"sourceId\":\"review-result/synthesis-35\",\"start\":15325,\"end\":15854,\"unique\":true}\n  \"explanation\": \"空间、界门与低阶御物/风刃的范围、供能、定位、打断和后果已有可执行限制；但逆命真解的三倍恢复分支仍未定义作用对象、治疗条件、单次上限和中断状态。燃寿蓄势可被打断、十息窗口可被拖延，并不能代替恢复效果自身的失效边界；对手因而无法按规则通过切断治疗输入、耗尽资源或造成必须停术诊治的伤损来稳定反制。另一子树关于低阶行动及其他高阶术式的通过结论与此不冲突，但不能消除tech_10这一独立返修。\",\n  \"revisionAdvice\": \"随tech_10的成本修订，明确恢复分支可作用伤类、必须持续存在的治疗条件、十息内最大恢复量，以及治疗资源耗尽、治疗被打断或出现特定伤损时的停止与损失后果；明确哪些状态强制停术诊治，使切断治疗、拖过窗口、耗尽资源与制造特定伤势均成为实际可用的反制。\"\n}\n\n"
+          }
+        ],
+        "revisionAdvice": "随tech_10的成本修订把恢复明确为可观察、可中断的治疗流程：规定开始和持续所需的接触或供给、适用及不可作用伤类、十息内最大恢复量、资源耗尽/隔离/受击/新增特定伤损时的停止与结算，并保留恢复后残余伤势对施术、撤离及可用上限的限制。"
+      }
+    ],
+    "resolvedDeferrals": [
+      {
+        "checkId": "batch-1/tiers",
+        "resolvedByStageId": "followup-batch-1/tiers"
+      },
+      {
+        "checkId": "batch-1/costs",
+        "resolvedByStageId": "followup-batch-1/costs"
+      },
+      {
+        "checkId": "batch-1/counters",
+        "resolvedByStageId": "followup-batch-1/counters"
+      },
+      {
+        "checkId": "batch-2/tiers",
+        "resolvedByStageId": "followup-batch-2/tiers"
+      },
+      {
+        "checkId": "batch-2/costs",
+        "resolvedByStageId": "followup-batch-2/costs"
+      },
+      {
+        "checkId": "batch-2/counters",
+        "resolvedByStageId": "followup-batch-2/counters"
+      },
+      {
+        "checkId": "batch-3/tiers",
+        "resolvedByStageId": "cross-1-3"
+      },
+      {
+        "checkId": "batch-4/tiers",
+        "resolvedByStageId": "cross-1-4"
+      },
+      {
+        "checkId": "batch-4/costs",
+        "resolvedByStageId": "cross-1-4"
+      },
+      {
+        "checkId": "batch-4/counters",
+        "resolvedByStageId": "cross-1-4"
+      },
+      {
+        "checkId": "batch-5/tiers",
+        "resolvedByStageId": "cross-1-5"
+      },
+      {
+        "checkId": "batch-5/costs",
+        "resolvedByStageId": "cross-1-5"
+      },
+      {
+        "checkId": "batch-5/counters",
+        "resolvedByStageId": "cross-1-5"
+      },
+      {
+        "checkId": "cross-1-2/costs",
+        "resolvedByStageId": "followup-cross-1-2/costs"
+      },
+      {
+        "checkId": "cross-1-2/counters",
+        "resolvedByStageId": "followup-cross-1-2/counters"
+      },
+      {
+        "checkId": "cross-2-3/tiers",
+        "resolvedByStageId": "followup-cross-2-3/tiers"
+      },
+      {
+        "checkId": "cross-2-3/counters",
+        "resolvedByStageId": "followup-cross-2-3/counters"
+      },
+      {
+        "checkId": "cross-2-4/tiers",
+        "resolvedByStageId": "followup-cross-2-4/tiers"
+      },
+      {
+        "checkId": "cross-2-5/tiers",
+        "resolvedByStageId": "followup-cross-2-5/tiers"
+      },
+      {
+        "checkId": "cross-2-5/costs",
+        "resolvedByStageId": "followup-cross-2-5/costs"
+      },
+      {
+        "checkId": "cross-2-5/counters",
+        "resolvedByStageId": "followup-cross-2-5/counters"
+      },
+      {
+        "checkId": "cross-3-4/tiers",
+        "resolvedByStageId": "followup-cross-3-4/tiers"
+      },
+      {
+        "checkId": "cross-3-4/costs",
+        "resolvedByStageId": "followup-cross-3-4/costs"
+      },
+      {
+        "checkId": "cross-3-4/counters",
+        "resolvedByStageId": "followup-cross-3-4/counters"
+      },
+      {
+        "checkId": "cross-3-5/tiers",
+        "resolvedByStageId": "followup-cross-3-5/tiers"
+      },
+      {
+        "checkId": "cross-3-5/costs",
+        "resolvedByStageId": "followup-cross-3-5/costs"
+      },
+      {
+        "checkId": "cross-3-5/counters",
+        "resolvedByStageId": "followup-cross-3-5/counters"
+      },
+      {
+        "checkId": "cross-4-5/tiers",
+        "resolvedByStageId": "followup-cross-4-5/tiers"
+      },
+      {
+        "checkId": "cross-4-5/costs",
+        "resolvedByStageId": "followup-cross-4-5/costs"
+      },
+      {
+        "checkId": "cross-4-5/counters",
+        "resolvedByStageId": "followup-cross-4-5/counters"
+      }
+    ]
+  }
+}

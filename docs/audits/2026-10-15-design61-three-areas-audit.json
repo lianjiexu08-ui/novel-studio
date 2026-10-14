@@ -1,0 +1,286 @@
+{
+  "observedAt": "2026-10-14T23:16:10.926Z",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "planId": "plan_e9b4422f5367453d957c8036c2d87b68",
+  "planRevision": 61,
+  "inputHash": "7b7892ad3d19537ab7aae549e0154344d22a3f5389772416658dba130da6dcc2",
+  "status": "not_accepted",
+  "limitation": "Verifies saved evidence and report integrity only; does not approve the plan, resolve blockers, or validate prose quality.",
+  "areas": [
+    {
+      "area": "world",
+      "status": "needs_revision",
+      "runId": "design_run_6cb69d6b-162e-40e8-8d22-788cb08b103f",
+      "reportId": "design_review_c52c920a-0122-4728-885c-6b065ce6a197",
+      "completedStages": 55,
+      "totalStages": 55,
+      "retainedFailures": 0,
+      "verification": "verified",
+      "runSha256": "6322e422dfc692cfeb3e7b3de221fff54b0ca2a0b9b655a6667097bf9e3088b6",
+      "reportSha256": "855d5cc29364d21c62732b4ccbfffc9fd07b2a5dbbef13ffa06d7fcea1d779c1",
+      "sourceEnvelopeSha256": "b99da1b9a6c4b38694591ce72ee3337ba86d847b64c533c6de2967c8384342fd",
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "history",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "capacity",
+          "verdict": "pass"
+        }
+      ],
+      "resolvedDeferrals": [
+        {
+          "checkId": "batch-1/geography",
+          "resolvedByStageId": "followup-batch-1/geography"
+        },
+        {
+          "checkId": "batch-1/history",
+          "resolvedByStageId": "cross-1-5"
+        },
+        {
+          "checkId": "batch-2/geography",
+          "resolvedByStageId": "followup-batch-2/geography"
+        },
+        {
+          "checkId": "batch-2/history",
+          "resolvedByStageId": "cross-1-2"
+        },
+        {
+          "checkId": "batch-3/geography",
+          "resolvedByStageId": "followup-batch-3/geography"
+        },
+        {
+          "checkId": "batch-3/history",
+          "resolvedByStageId": "followup-batch-3/history"
+        },
+        {
+          "checkId": "batch-4/capacity",
+          "resolvedByStageId": "cross-1-4"
+        },
+        {
+          "checkId": "cross-1-2/geography",
+          "resolvedByStageId": "followup-cross-1-2/geography"
+        },
+        {
+          "checkId": "cross-2-3/geography",
+          "resolvedByStageId": "followup-cross-2-3/geography"
+        },
+        {
+          "checkId": "cross-2-3/history",
+          "resolvedByStageId": "followup-cross-2-3/history"
+        },
+        {
+          "checkId": "cross-2-4/history",
+          "resolvedByStageId": "followup-cross-2-4/history"
+        },
+        {
+          "checkId": "cross-2-5/geography",
+          "resolvedByStageId": "followup-cross-2-5/geography"
+        },
+        {
+          "checkId": "cross-2-5/history",
+          "resolvedByStageId": "followup-cross-2-5/history"
+        },
+        {
+          "checkId": "cross-3-4/geography",
+          "resolvedByStageId": "followup-cross-3-4/geography"
+        },
+        {
+          "checkId": "cross-3-4/history",
+          "resolvedByStageId": "followup-cross-3-4/history"
+        }
+      ]
+    },
+    {
+      "area": "power",
+      "status": "needs_revision",
+      "runId": "design_run_f12b8904-f80f-4544-8ecc-97d71a19c2ff",
+      "reportId": "design_review_d86dd303-cac9-46ca-b02d-66e75fc7ec3e",
+      "completedStages": 77,
+      "totalStages": 77,
+      "retainedFailures": 0,
+      "verification": "verified",
+      "runSha256": "3624631ce34fc06c6cf69008d0d44ab7bf3d3fdcfed0c691ca98195640b9ba00",
+      "reportSha256": "912bd7ca15b7ddf4d4d1f9f766100023a7693a90b2019a3aaa708ac41b947395",
+      "sourceEnvelopeSha256": "93bab1fe99b0bf0eaf4e2f301e18764c5d349b855b2d2c9674fdca92ac23aa84",
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "costs",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "counters",
+          "verdict": "revise"
+        }
+      ],
+      "resolvedDeferrals": [
+        {
+          "checkId": "batch-1/tiers",
+          "resolvedByStageId": "followup-batch-1/tiers"
+        },
+        {
+          "checkId": "batch-1/costs",
+          "resolvedByStageId": "followup-batch-1/costs"
+        },
+        {
+          "checkId": "batch-1/counters",
+          "resolvedByStageId": "followup-batch-1/counters"
+        },
+        {
+          "checkId": "batch-2/tiers",
+          "resolvedByStageId": "followup-batch-2/tiers"
+        },
+        {
+          "checkId": "batch-2/costs",
+          "resolvedByStageId": "followup-batch-2/costs"
+        },
+        {
+          "checkId": "batch-2/counters",
+          "resolvedByStageId": "followup-batch-2/counters"
+        },
+        {
+          "checkId": "batch-3/tiers",
+          "resolvedByStageId": "cross-1-3"
+        },
+        {
+          "checkId": "batch-4/tiers",
+          "resolvedByStageId": "cross-1-4"
+        },
+        {
+          "checkId": "batch-4/costs",
+          "resolvedByStageId": "cross-1-4"
+        },
+        {
+          "checkId": "batch-4/counters",
+          "resolvedByStageId": "cross-1-4"
+        },
+        {
+          "checkId": "batch-5/tiers",
+          "resolvedByStageId": "cross-1-5"
+        },
+        {
+          "checkId": "batch-5/costs",
+          "resolvedByStageId": "cross-1-5"
+        },
+        {
+          "checkId": "batch-5/counters",
+          "resolvedByStageId": "cross-1-5"
+        },
+        {
+          "checkId": "cross-1-2/costs",
+          "resolvedByStageId": "followup-cross-1-2/costs"
+        },
+        {
+          "checkId": "cross-1-2/counters",
+          "resolvedByStageId": "followup-cross-1-2/counters"
+        },
+        {
+          "checkId": "cross-2-3/tiers",
+          "resolvedByStageId": "followup-cross-2-3/tiers"
+        },
+        {
+          "checkId": "cross-2-3/counters",
+          "resolvedByStageId": "followup-cross-2-3/counters"
+        },
+        {
+          "checkId": "cross-2-4/tiers",
+          "resolvedByStageId": "followup-cross-2-4/tiers"
+        },
+        {
+          "checkId": "cross-2-5/tiers",
+          "resolvedByStageId": "followup-cross-2-5/tiers"
+        },
+        {
+          "checkId": "cross-2-5/costs",
+          "resolvedByStageId": "followup-cross-2-5/costs"
+        },
+        {
+          "checkId": "cross-2-5/counters",
+          "resolvedByStageId": "followup-cross-2-5/counters"
+        },
+        {
+          "checkId": "cross-3-4/tiers",
+          "resolvedByStageId": "followup-cross-3-4/tiers"
+        },
+        {
+          "checkId": "cross-3-4/costs",
+          "resolvedByStageId": "followup-cross-3-4/costs"
+        },
+        {
+          "checkId": "cross-3-4/counters",
+          "resolvedByStageId": "followup-cross-3-4/counters"
+        },
+        {
+          "checkId": "cross-3-5/tiers",
+          "resolvedByStageId": "followup-cross-3-5/tiers"
+        },
+        {
+          "checkId": "cross-3-5/costs",
+          "resolvedByStageId": "followup-cross-3-5/costs"
+        },
+        {
+          "checkId": "cross-3-5/counters",
+          "resolvedByStageId": "followup-cross-3-5/counters"
+        },
+        {
+          "checkId": "cross-4-5/tiers",
+          "resolvedByStageId": "followup-cross-4-5/tiers"
+        },
+        {
+          "checkId": "cross-4-5/costs",
+          "resolvedByStageId": "followup-cross-4-5/costs"
+        },
+        {
+          "checkId": "cross-4-5/counters",
+          "resolvedByStageId": "followup-cross-4-5/counters"
+        }
+      ]
+    },
+    {
+      "area": "characters",
+      "status": "passed",
+      "runId": "design_run_edab64b9-65ff-4605-b132-2f76f088bf6a",
+      "reportId": "design_review_c7a05715-05df-4f0d-b401-8bcc3591e01c",
+      "completedStages": 19,
+      "totalStages": 19,
+      "retainedFailures": 0,
+      "verification": "verified",
+      "runSha256": "67a09927a7b11ccb456db4bf205b874493920d004e10249fbb236826c96b7724",
+      "reportSha256": "ada6c7650a01fb45c056aa4b39309fda837d31e140c191a9439b3b8f1fc4724a",
+      "sourceEnvelopeSha256": "d215c413730b33b30faf846a6aaf053db413aa8ee6c137067692ab85c6890bf2",
+      "checks": [
+        {
+          "criterion": "agency",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "relationships",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "knowledge",
+          "verdict": "pass"
+        }
+      ],
+      "resolvedDeferrals": []
+    },
+    {
+      "area": "story",
+      "status": "interrupted",
+      "runId": "design_run_965bd77e-9483-4ee9-9bf9-0653d3f11817",
+      "completedStages": 1,
+      "totalStages": 29,
+      "retainedFailures": 1,
+      "verification": "not_completed"
+    }
+  ]
+}
