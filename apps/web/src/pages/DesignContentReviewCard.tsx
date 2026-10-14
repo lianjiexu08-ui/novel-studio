@@ -6,7 +6,7 @@ import { api, type DesignReviewStageDetail } from '../api';
 const labels = { world: '世界、势力与历史', power: '力量、功法与法宝', characters: '人物、关系与认知', story: '主线、分卷与章纲' };
 const statuses = { missing: '尚未评审', outdated: '设计已变，需重评', passed: '本项设计通过', needs_revision: '需要返修', inconclusive: '材料不足', reviewing: '评审进行中', interrupted: '评审未完成' };
 const verdicts = { pass: '通过', revise: '返修', insufficient: '材料不足' };
-const criteria: Record<string, string> = { geography: '地理与势力', history: '历史因果', capacity: '长篇承载能力', tiers: '品阶与门槛', costs: '消耗与恢复', counters: '上限与反制', agency: '独立动机与选择', relationships: '关系变化', knowledge: '秘密与认知', causality: '情节因果', timeline: '时空与分卷', payoff: '铺垫与兑现', opening: '开篇递进' };
+const criteria: Record<string, string> = { geography: '地理与势力', history: '历史因果', capacity: '长篇承载能力', tiers: '品阶与门槛', costs: '消耗与恢复', counters: '上限与反制', agency: '独立动机与选择', relationships: '关系变化', knowledge: '秘密与认知', causality: '情节因果', timeline: '时空与分卷', payoff: '铺垫与兑现', opening: '开篇递进', pacing: '节奏与场次', genre: '题材体验与成长' };
 
 export function DesignContentReviewCard({ workId, revision, onReviewed }: { workId: string; revision: number; onReviewed: () => Promise<void> }) {
   const { message } = App.useApp();

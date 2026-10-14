@@ -30,7 +30,7 @@ test('world capacity review receives the realm ladder and referenced ability rul
     { sourceId: 'world/techniques/technique', quote: '不得把晋阶费用视作施术预付' },
   ];
   validateDesignReview(input, report);
-  for (const rubricVersion of [7, 8, 9, 10, 11]) {
+  for (const rubricVersion of [7, 8, 9, 10, 11, 12, 13, 14]) {
     const legacyHash = createHash('sha256').update(JSON.stringify({
       rubricVersion, title: work.title, covenant: work.covenant,
       world, bible: work.storyBible, planId: work.activePlanId, plan: work.plans.get(work.activePlanId!)!.plan,
@@ -48,6 +48,33 @@ test('world capacity review receives the realm ladder and referenced ability rul
     assert.equal(overview.ready, false);
     assert.deepEqual(work.designContentReviews.get(oldReport.id), snapshot, 'old conclusions remain immutable history');
   }
+});
+
+test('story acceptance requires literary checks and keeps workflow questions intact', async () => {
+  const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), writer, reviewer);
+  const work = await createReadyWork(workflow);
+  const plan = work.plans.get(work.activePlanId!)!.plan;
+  plan.openQuestions.push({ id: 'old-review', question: '旧人物评审有返修，正文不放行', blocking: true, status: 'open' });
+  const originalQuestions = structuredClone(plan.openQuestions);
+  const input = designReviewInput(work, 'story');
+  assert.ok(input.rubric.pacing && input.rubric.genre);
+  assert.deepEqual(JSON.parse(input.sources.find(s => s.id === 'plan/overview')!.text).openQuestions, originalQuestions, 'workflow notes remain available, not silently filtered');
+  const oldCoverage = fixtureDesignReview(input);
+  oldCoverage.checks = oldCoverage.checks.filter(c => !['pacing', 'genre'].includes(c.criterion));
+  assert.throws(() => validateDesignReview(input, oldCoverage), /全部标准/);
+
+  for (const area of designReviewAreas.filter(a => a !== 'story')) {
+    const areaInput = designReviewInput(work, area);
+    recordDesignReview(work, areaInput, fixtureDesignReview(areaInput));
+  }
+  const report = fixtureDesignReview(input);
+  Object.assign(report.checks.find(c => c.criterion === 'pacing')!, {
+    verdict: 'revise', explanation: '连续问询没有改变当章目标或关系', revisionAdvice: '重构重复问询段的即时选择',
+  });
+  const saved = recordDesignReview(work, input, report);
+  assert.equal(saved.status, 'needs_revision');
+  assert.equal(designReviewOverview(work).ready, false, 'logical continuity cannot bypass a literary revision');
+  assert.deepEqual(plan.openQuestions, originalQuestions, 'review results do not close workflow blockers');
 });
 
 test('design review sees contradictory book-level promises even when chapter outlines omit them', async () => {

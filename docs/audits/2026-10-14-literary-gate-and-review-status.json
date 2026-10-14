@@ -1,0 +1,92 @@
+{
+  "observedAt": "2026-10-14T11:13:09.102Z",
+  "rubricVersion": 15,
+  "scheduleVersion": 15,
+  "formalRuntimeChanged": false,
+  "original": {
+    "runId": "design_run_9cf3b6d1-345e-452e-b980-79b7ec4163f9",
+    "reportId": "design_review_8b33fa15-dcd3-4b3c-b729-a0dd398296b2",
+    "status": "inconclusive",
+    "stageId": "synthesis-20",
+    "stageChecks": [
+      {
+        "criterion": "agency",
+        "verdict": "insufficient",
+        "explanation": "附带报告能支持角色能动性的局部可行性：林在救人、取证与自保之间承担错失窗口、伤损和资源代价，苏、贺、陆及工人也有可拒绝主角利益的选择；百章目标亦限制为切断一条运输链，而非以力量消解选择。但现行总纲仍称人物11步评审“有返修项”，未给出返修所涉人物、章节或是否已由这些报告处理，无法确认该未闭合返修不影响能动性结论。",
+        "revisionAdvice": "在计划的评审状态中逐项列明仍存的人物返修：对应角色、章节/里程碑、违反的能动性条件及修复状态；若已由本次报告解决，应明确关联相应报告与具体修复依据。"
+      },
+      {
+        "criterion": "relationships",
+        "verdict": "insufficient",
+        "explanation": "现有报告对关系阶段给出了可行链条：林苏的分路和重聚以留守、递信及当面交证为条件；林贺合作受船损、停牌和雇工自主限制；林陆的协助不换免罪，51—53章的照护与供述仍属待实际落实的安排。它们与总纲第50章后“拟”安排并不冲突。但总纲同时保留未定位的人物返修项，未说明是否涉及关系表、关系阶段或生效时点；该状态不能被本次部分综合自行取消。",
+        "revisionAdvice": "将未闭合人物返修映射到具体关系条目和阶段；核明是否涉及林苏、林贺、林陆或其他关系的初态、变化选择、代价与生效章点，并在已解决时更新总纲状态。"
+      },
+      {
+        "criterion": "knowledge",
+        "verdict": "insufficient",
+        "explanation": "报告与原始锚点已具体限制了知情：赵须经实体送达、签收和阅览才更新判断，林取得陆的签认副本也不等于内容已获独立核验，百章揭示不扩张为父案或九鼎全貌。这些安排本身未见互相否定。不过现行总纲仍笼统保留人物评审返修项，没有说明其是否涉及秘密、消息送达或角色知情边界，故不能确认先前未解决问题已经被这些通过报告完全覆盖。",
+        "revisionAdvice": "补充未闭合人物返修的criterion映射；若涉及认知，逐条注明角色、信息来源、送达/核验时点、禁止推论及其在现版本中的解决证据，避免以“评审完成”或局部通过替代状态闭合。"
+      }
+    ],
+    "children": [
+      {
+        "id": "synthesis-17",
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "id": "synthesis-18",
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass"
+          }
+        ]
+      }
+    ],
+    "inputSourcesHash": "eb5bc067758f6932392f5423cbc9139774a18820c795418f611197c07beb9204",
+    "inputSourceCount": 3,
+    "inputSourceChars": 77945
+  },
+  "change": {
+    "newStoryCriteria": [
+      "pacing",
+      "genre"
+    ],
+    "metadataRule": "Generic unaccepted/old-review workflow status alone cannot create a new content insufficiency; concrete design defects inside status fields still require review; preexisting failed reports remain immutable blockers.",
+    "historyPolicy": "No report or unresolved question is automatically resolved, no plan is approved, no prose released."
+  },
+  "verification": {
+    "tests": 246,
+    "passed": 246,
+    "failed": 0,
+    "focusedTests": 46,
+    "webBuild": "passed",
+    "warning": "Existing large bundle warning"
+  },
+  "realReplay": {
+    "status": "queued_after_design58_candidate_v9_diagnostic",
+    "file": "/tmp/novel57-workflow-status-replay.mjs",
+    "formalAcceptance": false
+  }
+}

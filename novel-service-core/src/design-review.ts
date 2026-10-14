@@ -25,6 +25,8 @@ export const designReviewRubrics: Record<DesignReviewArea, Record<string, string
     timeline: '晋阶、跨陆、战斗、重建需要的时间是否合理，分卷边界和章纲是否统一。先按人物或队伍分别列清出发地、出发日、途中行动、目的地和抵达日，区分并行路线、插叙所述时间与叙述章节；同一人先离营、数日后抵港本身不是日期冲突，不同队伍同日在不同地点也不矛盾。应指出同一人物在不相容的时空重叠、行程不足、抵达早于出发或消息未送达却已知等实际冲突，并引用对应两端的原文；未读到中间路线时先按现有来源目录补读，不能靠混淆出发与抵达制造矛盾。',
     payoff: '伏笔、秘密、承诺和开放线是否有铺垫、兑现条件、代价与明确归宿',
     opening: '前五十章的冲突、人物选择和后果是否递进，高潮分布是否合理，有无过早终局或重复模板',
+    pacing: '逐段检查戏剧目标与阅读节奏：相邻章节是否带来新的危机、发现、关系变化或有意义的喘息，还是反复用核账、问询、训练记录或相同救援结构推进。必要执行账是作者依据，不要求逐条写成场景；但把账移到另一字段不能替代真正的场次重构。相似行动只有在困境、选择或后果实质变化时才构成递进。用具体章节说明问题，不能机械要求每章打斗或升级。',
+    genre: '依据作者题材和偏好检查世界体验与成长吸引力。玄幻的地域、修炼、奇异事物和探索应实际影响观察、选择、风险或回报，不能只给普通程序事件贴境界、符箓或货号标签。低阶限制、职业经验与有代价的胜利也可产生满足感；不能以免费升级、新万能法宝或越阶胜利补救吸引力。指出实际成立的场景或最需重构的段落，不把条目数量、账目闭合当成文学质量。',
   },
 };
 
@@ -119,9 +121,9 @@ export function designReviewHash(work: Work, planId?: string): string | undefine
   const plan = selectedId ? work.plans.get(selectedId) : undefined;
   if (!work.worldPack || !work.storyBible || !plan || plan.status === 'superseded' || (planId === undefined && plan.status !== 'approved')) return undefined;
   return createHash('sha256').update(JSON.stringify({
-    // Version 14 displays validated raw-review resolutions beside historical
-    // waiting findings, without removing their original text or other blockers.
-    rubricVersion: 14, title: work.title, covenant: work.covenant,
+    // Version 15 requires pacing/genre checks and separates workflow status
+    // notes from substantive design evidence. Historical blockers remain.
+    rubricVersion: 15, title: work.title, covenant: work.covenant,
     world: work.worldPack, bible: work.storyBible, planId: plan.id, plan: plan.plan,
     characters: [...work.characters.values()].sort((a, b) => a.id.localeCompare(b.id)),
     relationships: [...work.relationships.values()].sort((a, b) => a.id.localeCompare(b.id)),
