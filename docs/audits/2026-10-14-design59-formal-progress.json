@@ -1,5 +1,5 @@
 {
-  "observedAt": "2026-10-14T16:29:47.900Z",
+  "observedAt": "2026-10-14T16:32:55.930Z",
   "status": "in_progress_not_acceptance",
   "originalRunnerStatus": "running",
   "runtimeCommit": "7f9a9771bd3ca5a5db7323118b12e015587ca140",
@@ -26,17 +26,17 @@
     "reports": 47
   },
   "usage": {
-    "calls": 84,
+    "calls": 88,
     "failedCalls": 2,
-    "inputTokens": 9656805,
-    "outputTokens": 153131,
+    "inputTokens": 10115662,
+    "outputTokens": 157951,
     "costUsd": 0,
     "costKnown": false,
     "byRole": {
       "reviewing": {
-        "calls": 84,
+        "calls": 88,
         "failedCalls": 2,
-        "outputTokens": 153131,
+        "outputTokens": 157951,
         "costUsd": 0
       }
     },
@@ -47,7 +47,7 @@
   },
   "usageScope": "original_runner_only",
   "recoveries": [],
-  "combinedCalls": 84,
+  "combinedCalls": 88,
   "errors": [
     {
       "area": "world",
@@ -1808,9 +1808,11 @@
     {
       "id": "design_run_ab2409b8-cb5d-4929-8516-ac805034a04f",
       "area": "characters",
-      "status": "running",
-      "completed": 25,
+      "status": "completed",
+      "completed": 27,
       "total": 27,
+      "reportId": "design_review_c9e080b7-1aaf-4dcf-abda-15f3ca45e612",
+      "reportStatus": "passed",
       "stages": [
         {
           "id": "batch-1",
@@ -2511,14 +2513,66 @@
               "evidenceCount": 6
             }
           ]
+        },
+        {
+          "id": "synthesis-12",
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass",
+              "explanation": "林、贺、陆、唐及吴卢均有不能互相代替的目标和选择：第44章林以真元、旧伤和失去原账追索窗口为代价优先救人，贺承担船底破损以接应；第50章林放弃以武力替工人决定去留，吴卢自行拒绝扣留，陆选择停止协助旧同伙并承认本次押送。后段宏观亦将救矿工、放弃第二残片及祁保留申辩机会的交械设为有限选择，不以力量自动消除代价。",
+              "revisionAdvice": "",
+              "evidenceCount": 8
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "pass",
+              "explanation": "已纳入报告将关系写为拟定阶段而非既成终局：林苏经救秦时的优先级争执、共同损失样箱窗口与有限分工形成协作，之后在第29章由苏留宗护证、林承担不再要求同行的选择完成分路。贺与获救雇工的救援不等于恢复雇佣，吴卢在第50章实际脱控后仍保留拒绝回船及自行决定去处的权利；陆的协助仍受看护、签认和独立核验约束。因此选择、付出与生效时点均未被无条件同盟或终局关系覆盖。",
+              "revisionAdvice": "",
+              "evidenceCount": 5
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "pass",
+              "explanation": "秘密材料、读者独立视角与人物认知保持区隔：吴卢在附棚内的谈话明确不为林贺所知，直到第50章当面回答和出门才改变其可知事实；赵在实际签收程的第一报前仅能依既有部署行事，签收后取得的仍是转述和程的自述，不能倒写为现场行动依据。首仓火的倾灯责任、携页者身份和纸页内容仍被保留为未明，且禁止由扣工事件反推火因；这与百章仅部分澄清父案的拟定范围相容，而非越权获得全案结论。",
+              "revisionAdvice": "",
+              "evidenceCount": 8
+            }
+          ]
+        },
+        {
+          "id": "synthesis-13",
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass",
+              "explanation": "主要人物具有不可互相代行的目标和选择：林在第44章以真元、旧伤及失去原账追索窗口为代价先救落水者，贺以船损换取接应；第50章林把去留回答交还吴卢，吴卢自行拒绝扣留，陆选择不再协助旧同伙并承认押送。后段也以救人、放弃残片和有限交械维持有代价的取舍，而非用升级自动消除冲突。",
+              "revisionAdvice": "",
+              "evidenceCount": 6
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "pass",
+              "explanation": "关系被明确处理为提案阶段而非终局标签。林苏先因救秦的优先级争执、共同撤退和有限材料共享形成协作，后由苏留宗护证、林承认不应要求同行而分路；吴卢在第48章只达成不再互相代答，第50章经巡员当面听取、自行出门后才实际脱控，且仍可拒绝回船。陆的协助仍受看护、签认和独立核验限制；51—53章的安置与自述亦明确须实际落实，未被预支为既有信任或免责。",
+              "revisionAdvice": "",
+              "evidenceCount": 6
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "pass",
+              "explanation": "提案持续区分读者独立视角、角色亲见、实体文书和消息送达：吴卢在附棚内作出的不再代答约定不为林贺所知，须到第50章当面重问；赵须在实际签收程的第一报后才取得有限转述，且回令不能倒写为254日现场行动的原因。首仓火的倾灯责任、携页者身份与纸页内容仍明确未明，不以扣工线索反推火因；父案也只计划澄清可核部分，符合百章阶段边界。",
+              "revisionAdvice": "",
+              "evidenceCount": 6
+            }
+          ]
         }
       ]
     },
     {
       "id": "design_run_15a23bc4-0828-4ffc-a7d1-7fe434a52af2",
       "area": "story",
-      "status": "ready",
-      "completed": 16,
+      "status": "running",
+      "completed": 18,
       "total": 57,
       "stages": [
         {
@@ -3673,6 +3727,36 @@
                 "batch-1/causality"
               ],
               "evidenceCount": 72
+            }
+          ]
+        },
+        {
+          "id": "followup-batch-1/timeline",
+          "checks": [
+            {
+              "criterion": "timeline",
+              "verdict": "pass",
+              "explanation": "第1—50章从第1日至254日连续推进：前期疗伤、训练、古境行动、两剂十日疗程及南渡均有明确日期；青玄至赤霄按214日暮至216日暮两昼夜实体海程安排。后续宏观将赤霄至苍冥五日航程、苍冥返青玄六日航程、301—315日限程离境与返乡、316—410日训练、415日晋玄府、431—466日押运与回访依次排开。赵、林苏与程的消息节点亦区分寄报、收报、回令、签收和面报，未将未送达消息提前作为行动依据。",
+              "revisionAdvice": "",
+              "resolves": [
+                "batch-1/timeline"
+              ],
+              "evidenceCount": 67
+            }
+          ]
+        },
+        {
+          "id": "followup-batch-1/payoff",
+          "checks": [
+            {
+              "criterion": "payoff",
+              "verdict": "pass",
+              "explanation": "原问题所忧的“局部线索直接升级为定罪”已被补读材料落实为分层兑现：林对赵的关系安排将95章实得原令、99章实体质询与父案/九鼎全貌明确区分；百章只断一条三地链，终局九鼎与界门问题仍留给后续。四项承诺分别规定古境救援及两剂复诊、全书终局公开、79—99章承认已耗寿不可返还、三地救援及本地八人的三十日回访，未把新寿储伪作返还旧成本。开放线亦明确父案只证守门与掩案、残片仍待逐片核实、门外及商盟问题不借口述或单链结案；第六箱则有独立的33—39章归宿。后段里程碑给出北境七人救援、第一片与第二片的取舍、返乡交证、肩伤复诊后延期训练、玄府支付、原令保全、两趟转运、30日回访及质询送达链，且将北境七人、赤霄五工和青玄八人的安置范围分开，足以支撑阶段性胜果而不取消长期未解项。",
+              "revisionAdvice": "",
+              "resolves": [
+                "batch-1/payoff"
+              ],
+              "evidenceCount": 45
             }
           ]
         }

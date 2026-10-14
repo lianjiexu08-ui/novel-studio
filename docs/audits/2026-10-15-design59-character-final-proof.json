@@ -1,0 +1,161 @@
+{
+  "observedAt": "2026-10-14T16:32:17.824Z",
+  "scope": {
+    "worldPackRevision": 29,
+    "storyBibleRevision": 59,
+    "planRevisionId": "plan_f6c112de27db4a54b11ff58b652c4626",
+    "planRevision": 59
+  },
+  "area": "characters",
+  "reportId": "design_review_c9e080b7-1aaf-4dcf-abda-15f3ca45e612",
+  "reportCreatedAt": "2026-10-14T16:30:55.384Z",
+  "status": "passed",
+  "inputHash": "48f99fc931b935214531ad356907f1aa9572f126a1377bfe521f308b68a06f64",
+  "runtimeCommit": "7f9a9771bd3ca5a5db7323118b12e015587ca140",
+  "runSha256": "2150f0af46861a0f656806a27af17b664d3bdecd1a3caf4a1a4891182076bb70",
+  "reportSha256": "01188a5d65fa2e7d6bfc4dc120d11c766730e22156b05c2fddd4c27cb20bb5b9",
+  "sourceEnvelopeSha256": "6b6f868952102e4e25c77e37fb74be8d4e748d43995886d42930fee19564e47c",
+  "reconstructedScheduleAndAllStagesValidated": true,
+  "totalStages": 27,
+  "rawStages": 14,
+  "synthesisStages": 13,
+  "protectedDesignAndHistoryUnchanged": true,
+  "oldRunsUnchanged": 41,
+  "oldReportsUnchanged": 47,
+  "activePlanRevision": 10,
+  "allAreasReady": false,
+  "additionalModelCalls": 0,
+  "report": {
+    "summary": "综合已纳入的完整报告子树及计划总纲后，角色设计提案在能动性、关系阶段和知情边界上可成立。历史等待项已由系统列为完成复核，不重复传播；计划中仍标注的正文落实、旧稿迁移与工作流阻塞不等同于本次角色设计缺陷。",
+    "checks": [
+      {
+        "criterion": "agency",
+        "verdict": "pass",
+        "explanation": "主要人物具有不可互相代行的目标和选择：林在第44章以真元、旧伤及失去原账追索窗口为代价先救落水者，贺以船损换取接应；第50章林把去留回答交还吴卢，吴卢自行拒绝扣留，陆选择不再协助旧同伙并承认押送。后段也以救人、放弃残片和有限交械维持有代价的取舍，而非用升级自动消除冲突。",
+        "evidence": [
+          {
+            "sourceId": "review-result/synthesis-12",
+            "quote": "{\"sourceId\":\"plan/chapters/44\",\"unitId\":\"review-unit/283\",\"start\":0,\"end\":523,\"unique\":true}\n{\n  \"id\": \"chapter-44\",\n  \"chapterNumber\": 44,\n  \"volumeId\": \"vol_02\",\n\nEND INDEPENDENT QUOTE 1.2\n\nBEGIN INDEPENDENT QUOTE 1.3\n{\"sourceId\":\"review-result/followup-cross-2-4/agency\",\"start\":3664,\"end\":4172,\"unique\":true}\n  \"title\": \"浅滩一剑\",\n  \"summary\": \"紧接43章244日戌初钩索拖偏的瞬间，林坐稳只用一次剑诀切断外露索，付二成真元、剑热停术。舷边收余索的伙计因驳艉骤摆、脚下湿滑失足跌水，陆驳转向时艉部被旧护桩顶住，陆和另一伙计忙撑篙脱困。唐趁看守离开推开未锁死的舱门外搭扣，放靠滩舷的短跳板；贺宁可撞裂自船底也把船头搁在沙舌，停到板端下面。林看见陆提原账箱向船头去，却先递固定浮圈给落水者。许、冯、唐依次趴板过船，唐带出自己挂着的点货夹。陆见巡艇灯接近，取舍保原账，撑开驳船逃向深槽。\",\n\nEND INDEPENDENT QUOTE 1.1\n\n"
+          },
+          {
+            "sourceId": "review-result/synthesis-12",
+            "quote": "{\"sourceId\":\"plan/chapters/44\",\"unitId\":\"review-unit/283\",\"start\":523,\"end\":1092,\"unique\":true}\n  \"choice\": \"林看见可追原账的方向，仍先把固定救生浮圈递给落水对手，不追陆；贺主动搁浅接板，唐先放许冯过船再带点货夹离开，救人分步不代表放弃另两人。\",\n\nEND INDEPENDENT QUOTE 1.2\n\nBEGIN INDEPENDENT QUOTE 1.3\n{\"sourceId\":\"review-result/synthesis-7\",\"start\":2963,\"end\":3542,\"unique\":true}\n  \"cost\": \"林一次剑诀支出二成真元，剑体热而停用；贺船底碰裂，三人暂上船但不能出海追击。原账随陆逃走，半页来源仍须核对；林不跳船不提整个人，腿因晃动酸胀，需再复查。 出剑前沿用239日复测的保守余量五成，一式二成后余三成；二成已含剑的供能，之后不再御物，浮圈用手递。剑独立散热，不能借散热把真元账重置。 送钩伙计承接43章四成半真元，44章没有再施术；断索、船摆和失足属于普通受力与站位后果，不扣寿储、不凭空封住其修为。\",\n  \"threads\": [\n    \"th_03\",\n    \"sec_02\"\n  ],\n"
+          },
+          {
+            "sourceId": "review-result/synthesis-12",
+            "quote": "  \"purpose\": \"254晨，陆带巡查到北三门。看守称吴伍、卢小满是自愿留下候工，贺在门外喊名，两人却要求出去。看守急着合门，吴卢从内侧顶住，旧押运头目陆被喊来帮忙压门。林原已握住剑柄，见门缝里露出两人的手，松开剑，让巡员走到能听清回答的位置，要求当面问他们是否愿留。陆伸向木闩的手停住，转而向外拉；一名巡员夺闩控制持闩者，另一名截住想退向后巷的看守。吴卢自己推开门走进外院。吴指认陆曾把他们点交到这里，陆当着巡员承认，不再用认路掩盖押送。贺说船修好便能接他们回去，吴却说回不回船要由他们自己定，卢也不愿立即上船。贺让开去船坞的方向，先陪两人去安全落脚。五名雇工至此全部脱控；被谁雇用、为谁作证，仍由他们自己回答。\",\n  \"conflict\": \"看守以自愿候工掩饰扣人，试图在巡员听到工人回答前合门；陆若顺着旧同伙压门，还能维持正常押运的说辞。开门不需要一场越阶胜负，真正改变局面的是吴卢当面拒绝、陆拒绝继续扣人及巡员亲见拦阻。贺接回人后还要面对他们拒绝立即回船。\",\n\nEND INDEPENDENT QUOTE 1.9\n\nBEGIN INDEPENDENT QUOTE 1.10\n\nEND INDEPENDENT QUOTE 1.5\n\nBEGIN INDEPENDENT QUOTE 1.6\n\nEND INDEPENDENT QUOTE 1.4\n\n"
+          },
+          {
+            "sourceId": "review-result/synthesis-12",
+            "quote": "BEGIN INDEPENDENT QUOTE 1.5\n{\"sourceId\":\"review-result/synthesis-7\",\"start\":4139,\"end\":4737,\"unique\":true}\n{\"sourceId\":\"review-result/followup-cross-2-4/agency\",\"start\":5919,\"end\":6500,\"unique\":true}\n{\"sourceId\":\"story/chapterPlans/bible-chapter-50\",\"unitId\":\"review-unit/216\",\"start\":514,\"end\":1002,\"unique\":true}\n  \"turningPoint\": \"林松开剑柄，把门前位置让给能现场处置的巡员，请其直接问吴卢，而不替他们宣布愿意去哪。吴卢自己顶门、要求离开；陆改为外拉木闩，协助控制旧手下，承认本次点交押送并接受继续看护。贺接受二人不立刻回船的回答，先安排安全落脚，不以救命索取服从。\",\n"
+          },
+          {
+            "sourceId": "review-result/synthesis-12",
+            "quote": "  \"endHook\": \"254晨，吴伍、卢小满自己走出北三门到安全外院，和244获救的唐许冯合计五人脱控；两名未入境普通看守均被巡员控制。陆当面承认本次点交押送，继续受看护，尚未写出完整改签自述。林未施术，保守余量三成半，旧伤许可不变；程不在现场，林不知道其位置或第二片封匣状态。吴卢拒绝立即承诺回贺船，贺接受先安置、再分别谈去留。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_15\",\n    \"char_16\",\n    \"char_24\",\n\nEND INDEPENDENT QUOTE 1.5\n\nBEGIN INDEPENDENT QUOTE 1.6\n{\"sourceId\":\"review-result/synthesis-7\",\"start\":4963,\"end\":5537,\"unique\":true}\n"
+          },
+          {
+            "sourceId": "review-unit/217",
+            "quote": "  \"endingDirection\": \"百章有救人、断运、部分父案澄清和玄府成长的可核结局。1–100是450章的阶段验收；接下来的有限寿源、高阶反派、钥匙余片与九鼎机制必须另建经审查的来源和行动链，不将450章全书结局撤销。 没有返寿、燃寿白发、道伤凭空痊愈或三大陆永久太平。此卷不清算全部九鼎，公开传播仍限实到地点。\",\n  \"keyTurns\": [\n    \"第10–12章：伤重林辰与曾撤供的梁九分工救人，只改变普通输送位置；苏保留封样及己方不利证词，争得有限复核，众人仍负伤、欠债和受限。\",\n    \"第23–29章：主角为救人暴露自己，创造顾峤同阶制敌的窗口，取得并分配有限泉液；完成两次十日疗程后南行，苏选择留宗。卷末凝元三重，不能沿用神海及二十年燃寿。\",\n    \"第44/50–53章：44林救落水对手而不追陆与原账，贺付船损；50林不施术而让工人自己回答，陆协助夺闩、两名看守被控，吴卢实际脱控并拒绝立即回船。51–53拟各自选择生计，陆新写改签自述，副本仍待独立核验。\",\n    \"第61–66章：付费北航后在受限外港救出七名矿工，夜真身守撤离路，林放弃第二片，不入界渊。\",\n    \"第83章：数月努力与诊察后，实际付十元载晋玄府；不能再用旧法器承载元罡。\",\n"
+          }
+        ],
+        "revisionAdvice": ""
+      },
+      {
+        "criterion": "relationships",
+        "verdict": "pass",
+        "explanation": "关系被明确处理为提案阶段而非终局标签。林苏先因救秦的优先级争执、共同撤退和有限材料共享形成协作，后由苏留宗护证、林承认不应要求同行而分路；吴卢在第48章只达成不再互相代答，第50章经巡员当面听取、自行出门后才实际脱控，且仍可拒绝回船。陆的协助仍受看护、签认和独立核验限制；51—53章的安置与自述亦明确须实际落实，未被预支为既有信任或免责。",
+        "evidence": [
+          {
+            "sourceId": "review-result/synthesis-12",
+            "quote": "  \"purpose\": \"第184日晚至185日午后，林辰与苏凌霜循残缺采集单找到前哨废料高台，只见一名尚清醒的秦禾被关在普通运人笼中。林辰发现靠车样箱外角有与残玉相似的刻痕，却不知道箱内是否有第一残片，坚持先趁换岗取货；苏凌霜反对，认为先救能辨路、能送信的秦禾。争执耗尽接近样箱的短窗后，林以凝元御物拨开普通笼锁挂钩，苏从盲弯潜入解人。秦禾带出自己的普通采药布袋，内有辨路用的旧麻绳和干粮，没有新宝物；苏以个人一枚下品青灵石补偿他本次引路和采集损失。秦禾当面说明主营方向与已走路线，只答应有限带路、送信，不承诺陪战。三人先退入旧支洞。切巡守独立视角，随后点名发现空笼，哨长从原装车护送岗调两名凝元看守去归路设卡；三人此时尚未见到封路岗。\",\n\nEND INDEPENDENT QUOTE 2.2\n\nBEGIN INDEPENDENT QUOTE 2.3\n{\"sourceId\":\"review-result/cross-3-4\",\"unique\":false}\n{\"sourceId\":\"story/chapterPlans/chapter-plan-29\",\"unitId\":\"review-unit/195\",\"start\":0,\"end\":569,\"unique\":true}\n{\n  \"id\": \"chapter-plan-29\",\n  \"chapterNumber\": 29,\n\n\n"
+          },
+          {
+            "sourceId": "review-result/synthesis-12",
+            "quote": "  \"purpose\": \"第210日白榆复诊，允许林辰短距步行、坐车旅行和轻物点数，禁止搬药箱、疾跑与持剑久战。灵泉两剂均已生效，腿伤仍未痊愈。林辰想邀苏一起追查天宝外港收货人，苏却选择随押解队回宗保护证人，不愿让获得延寿的人把所有留守代价交给别人。两人争执后分配副本与递信责任；押解队约定212日核清本批全员退出后销班，213–216日用伤者慢车返外门，乔邵昼夜近身看墨、杜褚护路，顾坐医车，林辰第一次承认同行不是她必须付的第三次代价。第211日，经苏先前商盟引荐、由过营承运人当面验明身份，林辰签下六箱低阶药材的本航次护货换普通舱合同：他负责轻物清点、封签和途中值看，搬运由车夫水手承担；天灾减奖金，主观失职另查，返程不担保。签约和复诊都在古境入口外营完成，尚未凭空回到外门院。\",\n\nEND INDEPENDENT QUOTE 2.3\n\nBEGIN INDEPENDENT QUOTE 2.4\n\nEND INDEPENDENT QUOTE 2.2\n\nBEGIN INDEPENDENT QUOTE 2.3\n{\"sourceId\":\"review-result/synthesis-10\",\"start\":6974,\"end\":7504,\"unique\":true}\n"
+          },
+          {
+            "sourceId": "review-result/synthesis-12",
+            "quote": "  \"explanation\": \"原待核问题要求验证18—50章关系阶段是否跳过选择、代价、知情或救援兑现。林苏在17章先划定“可核材料合作”的边界，18—28章由共同核图、放弃样箱窗口救秦、求援受阻后的共同撤退、亲见顾到场后分工救援、资源让渡和有限共享材料逐步推进；29章分路后，41章以前不共享异地近况，41章以实体来信才更新知情。林贺从34章共同查人且不以遗物换雇工性命，经过仓火救人、船损、拒绝转嫁责任、实测潮路、报警追船、安置获救者与拒绝撤证换赔款形成有限合作；其51—53章照护、工食与陆自述均明确为“拟”且以实际落实为条件，未倒灌为50章既成关系。吴卢在48章仅达成“各自回答”的共同选择，50章才在巡员当面听取回答、二人自行出门后脱控；二人仍拒绝被贺预先决定是否回船。林与陆的救命、对质、陆弟自主留港、陆到案指路及50章承认本次押送，也都保留了未完成改签和原账核验，未把有限协助写成免罪或同盟。故原问题所指的生效时点、在场知情与代价链能够闭合。\",\n  \"revisionAdvice\": \"\",\n  \"resolves\": [\n\nEND INDEPENDENT QUOTE 2.3\n\nBEGIN INDEPENDENT QUOTE 2.4\n\nEND INDEPENDENT QUOTE 2.3\n\nBEGIN INDEPENDENT QUOTE 2.4\n"
+          },
+          {
+            "sourceId": "review-result/synthesis-12",
+            "quote": "  \"purpose\": \"252日林贺随车夫到北三水台：返单指得出公共卸货口，却指不出哪扇门；林按伤限坐在路口，巡查接手公开入口排查，外线到此收束。主体转入吴伍、卢小满的独立视角。两人已在无牌附棚，不知道外面有人查到附近。看守让他们分开报下一趟是否继续做工，许诺答应就先让一人到门口透气，却始终不把门打开；吴怕先拒的人被独留，替卢说愿意。卢当面打断他：自己要出去，也不想再上船。吴第一次听见同伴和自己不是同一个答案。两人争过后商定，愿不愿跟谁走都各自说，不能再让另一个人代答。傍晚看守再问，吴撤回替卢的承诺，也要求出门；看守把外闩落下，明说等陆头来再谈。卢没有再求吴带他走，只把自己的外衣系好，坐到门边。读者确认两人仍在扣押，林贺尚不知道位置和这些谈话；下一次有人到门前，两人将自己回答。\",\n  \"conflict\": \"看守把暂开门的许诺与同意继续做工捆在一起，却不真正放人；吴的保护心也可能抹掉卢自己的选择。两人只有普通人力量，无法凭争执就穿过外闩。\",\n\nEND INDEPENDENT QUOTE 3.6\n\nBEGIN INDEPENDENT QUOTE 3.7\n\nEND INDEPENDENT QUOTE 3.4\n\nBEGIN INDEPENDENT QUOTE 3.5\n\nEND INDEPENDENT QUOTE 3.1\n\nBEGIN INDEPENDENT QUOTE 3.2\n"
+          },
+          {
+            "sourceId": "review-result/synthesis-12",
+            "quote": "{\"sourceId\":\"review-result/synthesis-10\",\"start\":13384,\"end\":13963,\"unique\":true}\n{\"sourceId\":\"review-result/synthesis-5\",\"start\":11453,\"end\":12006,\"unique\":true}\n  \"purpose\": \"254晨，陆带巡查到北三门。看守称吴伍、卢小满是自愿留下候工，贺在门外喊名，两人却要求出去。看守急着合门，吴卢从内侧顶住，旧押运头目陆被喊来帮忙压门。林原已握住剑柄，见门缝里露出两人的手，松开剑，让巡员走到能听清回答的位置，要求当面问他们是否愿留。陆伸向木闩的手停住，转而向外拉；一名巡员夺闩控制持闩者，另一名截住想退向后巷的看守。吴卢自己推开门走进外院。吴指认陆曾把他们点交到这里，陆当着巡员承认，不再用认路掩盖押送。贺说船修好便能接他们回去，吴却说回不回船要由他们自己定，卢也不愿立即上船。贺让开去船坞的方向，先陪两人去安全落脚。五名雇工至此全部脱控；被谁雇用、为谁作证，仍由他们自己回答。\",\n"
+          },
+          {
+            "sourceId": "review-result/synthesis-11",
+            "quote": "{\"sourceId\":\"review-result/synthesis-9\",\"start\":8541,\"end\":9141,\"unique\":true}\n      \"cause\": \"51承接50吴卢已脱控、陆已承认本次押送的拟定结果，分别照护和问询；不再以林救陆换信任。陆不能替工人选择去处。\",\n      \"cost\": \"陆仍受看护，未取得免罪或离港资格；53的自述须实际写出签认，不能预支原账或第二片。\"\n    },\n    {\n      \"sinceChapter\": 53,\n      \"untilChapter\": 53,\n      \"value\": \"接受有限且对自身不利的供述，不据此恢复无条件信任。\",\n      \"cause\": \"53章拟在到案复核中，弟只重申220夜亲见收钱签字并拒绝替兄担保条内内容。陆面对自己拦船、50当面承认押送与弟拒绝遮掩的连续后果，选择停止以正常押运搪塞，在巡员和贺面前新写亲历改签自述，逐项标明亲见与记忆不清处并签认；林只接经核对的签认副本。\",\n\nEND INDEPENDENT QUOTE 2.6\n\n\nEND INDEPENDENT QUOTE 2.5\n\nBEGIN INDEPENDENT QUOTE 2.6\n"
+          }
+        ],
+        "revisionAdvice": ""
+      },
+      {
+        "criterion": "knowledge",
+        "verdict": "pass",
+        "explanation": "提案持续区分读者独立视角、角色亲见、实体文书和消息送达：吴卢在附棚内作出的不再代答约定不为林贺所知，须到第50章当面重问；赵须在实际签收程的第一报后才取得有限转述，且回令不能倒写为254日现场行动的原因。首仓火的倾灯责任、携页者身份与纸页内容仍明确未明，不以扣工线索反推火因；父案也只计划澄清可核部分，符合百章阶段边界。",
+        "evidence": [
+          {
+            "sourceId": "review-result/synthesis-12",
+            "quote": "{\"sourceId\":\"plan/chapters/48\",\"unitId\":\"review-unit/287\",\"start\":0,\"end\":535,\"unique\":true}\n{\n  \"id\": \"chapter-48\",\n  \"chapterNumber\": 48,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"门内的两个人\",\n  \"summary\": \"252日林贺随车夫到北三水台：返单指得出公共卸货口，却指不出哪扇门；林按伤限坐在路口，巡查接手公开入口排查，外线到此收束。主体转入吴伍、卢小满的独立视角。两人已在无牌附棚，不知道外面有人查到附近。看守让他们分开报下一趟是否继续做工，许诺答应就先让一人到门口透气，却始终不把门打开；吴怕先拒的人被独留，替卢说愿意。卢当面打断他：自己要出去，也不想再上船。吴第一次听见同伴和自己不是同一个答案。两人争过后商定，愿不愿跟谁走都各自说，不能再让另一个人代答。傍晚看守再问，吴撤回替卢的承诺，也要求出门；看守把外闩落下，明说等陆头来再谈。卢没有再求吴带他走，只把自己的外衣系好，坐到门边。读者确认两人仍在扣押，林贺尚不知道位置和这些谈话；下一次有人到门前，两人将自己回答。\",\n\nEND INDEPENDENT QUOTE 2.11\n\nBEGIN INDEPENDENT QUOTE 2.12\n\n"
+          },
+          {
+            "sourceId": "review-result/synthesis-12",
+            "quote": "{\"sourceId\":\"review-result/synthesis-10\",\"start\":13384,\"end\":13963,\"unique\":true}\n{\"sourceId\":\"review-result/synthesis-5\",\"start\":11453,\"end\":12006,\"unique\":true}\n  \"purpose\": \"254晨，陆带巡查到北三门。看守称吴伍、卢小满是自愿留下候工，贺在门外喊名，两人却要求出去。看守急着合门，吴卢从内侧顶住，旧押运头目陆被喊来帮忙压门。林原已握住剑柄，见门缝里露出两人的手，松开剑，让巡员走到能听清回答的位置，要求当面问他们是否愿留。陆伸向木闩的手停住，转而向外拉；一名巡员夺闩控制持闩者，另一名截住想退向后巷的看守。吴卢自己推开门走进外院。吴指认陆曾把他们点交到这里，陆当着巡员承认，不再用认路掩盖押送。贺说船修好便能接他们回去，吴却说回不回船要由他们自己定，卢也不愿立即上船。贺让开去船坞的方向，先陪两人去安全落脚。五名雇工至此全部脱控；被谁雇用、为谁作证，仍由他们自己回答。\",\n"
+          },
+          {
+            "sourceId": "review-result/synthesis-12",
+            "quote": "END INDEPENDENT QUOTE 2.4\n\nBEGIN INDEPENDENT QUOTE 2.5\n{\"sourceId\":\"review-result/followup-cross-1-2/knowledge\",\"start\":7411,\"end\":8011,\"unique\":true}\n      \"belief\": \"已读程第一报，知道程转引脚夫见到254巡查在附棚门口处置、林贺留外院、两工自行出门及两看守被控，并相信程自述封匣尚自持；这些仍是转述与自述，未由赵独立核实。确认自己263签回令，不知道是否已送达程，也不确认林贺曾进入棚内。\",\n\nEND INDEPENDENT QUOTE 3.5\n\nBEGIN INDEPENDENT QUOTE 3.6\n{\"sourceId\":\"review-result/synthesis-7\",\"start\":9695,\"end\":10220,\"unique\":true}\n      \"trigger\": \"53章262收发房按封袋号签收交赵，赵实际阅览；263亲签纸质回令一号并封袋交骑使。骑使经263–265陆驿、265暮–267暮邮船，268在天宝当面交程验封；程的签收联尚未回赵府，不瞬时共享。\",\n"
+          },
+          {
+            "sourceId": "review-result/synthesis-12",
+            "quote": "      \"consequence\": \"要求保封存物、毁自己手中可追到军需的散账；回令不得倒写为254现场拦人的起因，脚夫报告也不等于门内全部事实已被证实。\",\n      \"forbiddenInferences\": [\n        \"不得由读者独立视角获得林苏尚未交出的材料、第一片去向、真解全文或林的寿储。\",\n        \"程的利己口供不等于所有过程均已证实，也不能代表炎煞真身知情。\",\n        \"未亲见封匣内物，不凭自述鉴明碎片用途。\",\n        \"尚不知道291北境失货、夜的行动或林得到父案副本。\"\n      ]\n    },\n    {\n\nEND INDEPENDENT QUOTE 1.10\n\nBEGIN INDEPENDENT QUOTE 1.11\n\nEND INDEPENDENT QUOTE 2.5\n\nBEGIN INDEPENDENT QUOTE 2.6\n\nEND INDEPENDENT QUOTE 3.6\n\nBEGIN INDEPENDENT QUOTE 3.7\n{\"sourceId\":\"review-result/synthesis-7\",\"start\":13908,\"end\":14499,\"unique\":true}\n"
+          },
+          {
+            "sourceId": "review-result/synthesis-12",
+            "quote": "      \"question\": \"第37章首仓火已有退包装、普通灯架倾倒、油火纸绳燃迹与外桌携页者的现场链；谁使灯倒、是否事故及携页者身份仍未确认，须后续查证。50章新提案已取消第二仓纵火，不能把旧方案当成另一场已发生火案，也不能据扣工现场反推首仓火因；若最终无法核实，明确未查明及证据边界，不称已破火案。 世界19/圣经33/计划33的36–39局部复审已通过，支持所列触发与现场分工；具体倾灯责任仍未查明，该通过不替代火案或全书验收。\",\n\nEND INDEPENDENT QUOTE 3.4\n\nBEGIN INDEPENDENT QUOTE 3.5\n{\"sourceId\":\"review-result/synthesis-7\",\"start\":9196,\"end\":9695,\"unique\":true}\nEND INDEPENDENT QUOTE 1.9\n\nBEGIN INDEPENDENT QUOTE 1.10\n{\"sourceId\":\"story/secrets/sec_02\",\"unitId\":\"review-unit/152\",\"start\":22342,\"end\":22941,\"unique\":true}\n      \"untilChapter\": 53,\n      \"certainty\": \"believes\",\n\n"
+          },
+          {
+            "sourceId": "review-unit/217",
+            "quote": "  \"endingDirection\": \"百章有救人、断运、部分父案澄清和玄府成长的可核结局。1–100是450章的阶段验收；接下来的有限寿源、高阶反派、钥匙余片与九鼎机制必须另建经审查的来源和行动链，不将450章全书结局撤销。 没有返寿、燃寿白发、道伤凭空痊愈或三大陆永久太平。此卷不清算全部九鼎，公开传播仍限实到地点。\",\n  \"keyTurns\": [\n    \"第10–12章：伤重林辰与曾撤供的梁九分工救人，只改变普通输送位置；苏保留封样及己方不利证词，争得有限复核，众人仍负伤、欠债和受限。\",\n    \"第23–29章：主角为救人暴露自己，创造顾峤同阶制敌的窗口，取得并分配有限泉液；完成两次十日疗程后南行，苏选择留宗。卷末凝元三重，不能沿用神海及二十年燃寿。\",\n    \"第44/50–53章：44林救落水对手而不追陆与原账，贺付船损；50林不施术而让工人自己回答，陆协助夺闩、两名看守被控，吴卢实际脱控并拒绝立即回船。51–53拟各自选择生计，陆新写改签自述，副本仍待独立核验。\",\n    \"第61–66章：付费北航后在受限外港救出七名矿工，夜真身守撤离路，林放弃第二片，不入界渊。\",\n    \"第83章：数月努力与诊察后，实际付十元载晋玄府；不能再用旧法器承载元罡。\",\n"
+          }
+        ],
+        "revisionAdvice": ""
+      }
+    ],
+    "resolvedDeferrals": [
+      {
+        "checkId": "cross-1-2/agency",
+        "resolvedByStageId": "followup-cross-1-2/agency"
+      },
+      {
+        "checkId": "cross-1-2/relationships",
+        "resolvedByStageId": "followup-cross-1-2/relationships"
+      },
+      {
+        "checkId": "cross-1-2/knowledge",
+        "resolvedByStageId": "followup-cross-1-2/knowledge"
+      },
+      {
+        "checkId": "cross-2-4/agency",
+        "resolvedByStageId": "followup-cross-2-4/agency"
+      }
+    ]
+  },
+  "httpVerification": {
+    "statusCode": 200,
+    "bytes": 82958633,
+    "viewRequested": "summary",
+    "deployedOldApiStillEmbedsFullReports": true,
+    "selectedPlanId": "plan_f6c112de27db4a54b11ff58b652c4626",
+    "area": {
+      "area": "characters",
+      "status": "passed",
+      "reportId": "design_review_c9e080b7-1aaf-4dcf-abda-15f3ca45e612"
+    },
+    "allAreasReady": false,
+    "reportChecksMatchValidatedDatabaseResult": true
+  }
+}
