@@ -1,0 +1,82 @@
+{
+  "status": "reviewed",
+  "formalAcceptance": false,
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "usage": {
+    "calls": 2,
+    "failedCalls": 0,
+    "inputTokens": 178204,
+    "outputTokens": 4003,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 2,
+        "failedCalls": 0,
+        "outputTokens": 4003,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 4
+    }
+  },
+  "trials": [
+    {
+      "name": "original partial batch with v8 scope",
+      "rawSourcesIdentical": true,
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "pass",
+          "explanation": "境界、功法、法宝和资源均明确区分承载资格、已掌握术式、供能、门槛与冷却，且第42—50章行动没有把境界名称当作免费能力。林在凝元境仅使用已获准的短时握剑、乾元御风剑诀和普通御物；第43章送钩的凝元伙计只短时御动并支付半成真元，第44章林以一次剑诀支付二成真元后停术；第50章则明确未施剑诀或御物。凝元对玄府的作用也仅限于普通索具、视线和船位窗口，没有被写成越阶击杀或封禁。",
+          "revisionAdvice": "",
+          "evidenceCount": 10
+        },
+        {
+          "criterion": "costs",
+          "verdict": "pass",
+          "explanation": "本批已给出的施术、恢复、器物和寿储账能够相互对应：第42章受伤后的真元上限、吐纳恢复与剑体试注分开记录；第43章送钩只付半成，停止御物后拖力转由普通索具和船桩承担；第44章剑诀支付二成且包含剑器供能，剑热、船损和伤势另记；第48—50章恢复没有因间隔自动回满，也没有把救助、诊察或劳动直接变成寿元收入。高阶规则同样保留永久损耗、冷却、道伤和资源不可替代性，未出现用疗伤、灵泉或胜利来撤销核心代价的安排。",
+          "revisionAdvice": "",
+          "evidenceCount": 11
+        },
+        {
+          "criterion": "counters",
+          "verdict": "pass",
+          "explanation": "规则对能力上限和反制条件已有明确约束，章纲也把反制落实为可执行的对象而非抽象压制。乾元御风剑诀只能在百丈内锁定目标、受清醒和专注限制；第43章敌方只用短时轻钩改变船位，不能持续远控；第44章断索、护桩、浅滩和巡艇形成有限窗口，林与贺未正面击败两名凝元对手；第50章面对普通看守则由巡员和吴卢的现场选择解决，不虚构战斗越阶。高阶领域、空间、法则和界门能力也明确不得由境界名称自动获得，因此没有与绝对压制规则冲突。",
+          "revisionAdvice": "",
+          "evidenceCount": 10
+        }
+      ]
+    },
+    {
+      "name": "synthetic explicit cost cancellation with complete action source",
+      "synthetic": true,
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "pass",
+          "explanation": "境界阶梯明确区分本体承载、功法品阶与实际掌握；凝元可使用乾元御风剑诀，玄府可使用太清太乙真光，且真光的允许境界包含玄府。第25章安排林辰以乾元御风剑诀、顾峤以太乙真光、墨幽屠以玄府元罡交锋，未出现以境界名称自动获得未掌握能力或破虚、通天级能力越级介入的情况。",
+          "revisionAdvice": "",
+          "evidenceCount": 8
+        },
+        {
+          "criterion": "costs",
+          "verdict": "revise",
+          "explanation": "世界规则明确：凝元轻物御动按半成真元作保守支出，伤势会降低可用上限，且术法成本不能因伤势打折；第25章却在成本栏写明“拨轻插销半成不扣账”，并称施术后仍有“原八成半”，等于把已经发生的御物支出取消。该表述还写成“伤势不限制继续施术”，没有保留伤后复测和余量核验义务。剑诀二成与轻物御动半成必须分别入账；若林辰起始为满额，剑诀后应为八成，完成御物后为七成半，或明确其他已存在的余量来源，不能保留八成半。",
+          "revisionAdvice": "修改第25章及其宏观对应条目：将废料斗插销的御物明确记为半成真元支出，重算林辰当场及后续行动余量；删除“不扣账”和“伤势不限制继续施术”，改为按腿伤复测可用上限、确认余量足够后才能继续施术。若确需不消耗真元，必须为该动作另设已定义的非术法机械因果，不能继续称为御物。",
+          "evidenceCount": 7
+        },
+        {
+          "criterion": "counters",
+          "verdict": "pass",
+          "explanation": "上限和反制链条基本闭合：境界不是自动胜负，普通闸门和废料斗只能制造遮挡而不能封禁玄府；墨的玄府元罡与凌空虚渡使其具备逃脱能力，顾则需等待三息蓄势并支付元罡和寿储。真光只灼散外放血爪、破坏出爪节奏，不降境或直接抹除能力，顾还需利用窗口进行同阶近身制伏；这与功法对属性克制、蓄势和中断条件的限制一致，未把越阶或单一克制写成绝对压制。",
+          "revisionAdvice": "",
+          "evidenceCount": 7
+        }
+      ]
+    }
+  ]
+}

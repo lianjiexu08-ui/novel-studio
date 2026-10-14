@@ -72,6 +72,16 @@ export interface DesignContentReview extends DesignReviewResult {
 }
 export class DesignReviewError extends Error {}
 
+export class DesignReviewAwaitingSourceError extends DesignReviewError {
+  readonly invalidSourceId: string;
+  readonly availableSourceIds: string[];
+  constructor(invalidSourceId: string, availableSourceIds: string[]) {
+    super(`等待补读来源不在完整目录中：${invalidSourceId}。必须从sourceLengths选择确实存在且未完整读取的原始来源；没有逐章细纲时核对已有分卷或里程碑，不得推造章节ID。没有可补读来源时保留普通材料不足。`);
+    this.invalidSourceId = invalidSourceId;
+    this.availableSourceIds = availableSourceIds;
+  }
+}
+
 export interface DesignReviewCitationProblem {
   criterion: string; evidenceIndex: number; sourceId: string; rejectedQuote: string; sourceText?: string;
   /** Exact text matches only; these are suggestions, never automatic citation repairs. */
@@ -164,7 +174,7 @@ export function validateDesignReview(input: DesignReviewInput, result: DesignRev
       const coverage = input.stage?.coverage;
       if (check.verdict !== 'insufficient' || input.stage?.kind === 'synthesis' || coverage?.mode !== 'local_sources' || !Array.isArray(check.awaitingSources) || !check.awaitingSources.length || check.awaitingSources.length > 12 || new Set(check.awaitingSources).size !== check.awaitingSources.length) throw new DesignReviewError('等待补读只能用于局部材料不足，并指定1至12个不同的未读来源');
       for (const sourceId of check.awaitingSources) {
-        if (!Object.hasOwn(coverage.sourceLengths, sourceId)) throw new DesignReviewError(`等待补读来源不在完整目录中：${sourceId}`);
+        if (!Object.hasOwn(coverage.sourceLengths, sourceId)) throw new DesignReviewAwaitingSourceError(sourceId, Object.keys(coverage.sourceLengths));
         const ranges = input.stage!.sourceMap.filter(u => u.sourceId === sourceId);
         if (ranges.length && ranges.reduce((sum, u) => sum + u.end - u.start, 0) === coverage.sourceLengths[sourceId]) throw new DesignReviewError(`等待补读来源已完整提供：${sourceId}`);
       }

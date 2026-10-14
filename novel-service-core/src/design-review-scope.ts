@@ -10,11 +10,12 @@ const localStoryCriteria: Record<string, string> = {
   opening: '比较本批实际提供章节的冲突、选择、后果与高潮递进；重复模板或过早终局必须由实际材料证明。需要跨段对比时指出具体场景和待比来源；本批未包含前五十章的全部细纲本身不是材料不足。整体高潮分布留给完整覆盖后的综合。',
 };
 
-export function localDesignReviewRubric(input: DesignReviewInput): Record<string, string> {
+export function localDesignReviewRubric(input: DesignReviewInput, scheduleVersion = 7): Record<string, string> {
   return Object.fromEntries(Object.entries(input.rubric).map(([criterion, description]) => [criterion,
     `本项是局部原文检查，pass仅表示本批可检验的安排成立，不代表整个领域通过。${input.area === 'story' && description === designReviewRubrics.story[criterion] ? localStoryCriteria[criterion] ?? description : description}`
     + (input.area === 'power' ? '本批完整提供的各等级境界、功法、法宝和资源规则本身也是待审对象，包含尚未在章纲中使用的高阶规则；公共来源不只是背景。必须检查其自身约束，再核具体角色行动，不能只核低阶行动账而跳过已经给出的高阶能力缺口。' : '')
     + '逐一核验实际提供的规则和行动；本批自身缺少关键约束、预算不闭合或出现矛盾仍须返修。'
+    + (scheduleVersion >= 8 ? '分卷、里程碑和圣经章概要不是完整的逐章执行账；摘要未列某项费用、余量或时机，本身不能证明细纲缺失。先查来源目录中对应的plan/chapters/章节号：如尚未读到，针对该动作以insufficient和awaitingSources请求对应细纲，不能直接判revise；已完整读到仍无必要规则或支出，或原文彼此冲突，必须保留revise。不能凭目录存在就假定细纲会补齐，更不能把摘要缺项自动判pass。规则自身缺陷仍须独立检查，不依赖章纲补救。' : '')
     + '仅当本批某条安排的正确性确实依赖其他已存在但未读的来源时，列出具体待核事实与完整所需来源并用awaitingSources；不要把尚未完成整体验收改报为本批缺料，也不能脑补未读事实。',
   ]));
 }

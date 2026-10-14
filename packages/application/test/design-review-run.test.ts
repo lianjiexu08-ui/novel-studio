@@ -61,7 +61,7 @@ test('chapter-only power batches also receive complete tier and technique rules'
   ];
   input.sources = [...rules, ...input.sources];
   const run = createDesignReviewRun(input);
-  assert.equal(run.scheduleVersion, 7);
+  assert.equal(run.scheduleVersion, 8);
   for (const stage of run.stages) {
     const staged = designReviewStageInput(run, stage);
     assert.ok(JSON.stringify(staged.sources).length <= 240_000);
@@ -522,6 +522,33 @@ test('v7 scopes local questions without changing raw coverage, legacy inputs or 
   assert.deepEqual(designReviewStageInput(small, small.stages[0]).rubric, original.rubric);
   const custom = createDesignReviewRun({ ...largeInput(), rubric: { timeline: '不得省略驿站交接用时这一自定义标准' } });
   assert.match(designReviewStageInput(custom, custom.stages[0]).rubric.timeline, /不得省略驿站交接用时这一自定义标准/);
+});
+
+test('v8 changes only local summary guidance and preserves v7 replay and real revision blockers', () => {
+  const input: DesignReviewInput = { ...largeInput(), area: 'power', rubric: { ...designReviewRubrics.power } };
+  const old = createDesignReviewRun(input, undefined, 7);
+  const current = createDesignReviewRun(input, undefined, 8);
+  assert.deepEqual(current.units, old.units);
+  assert.deepEqual(current.stages, old.stages);
+  for (const stage of current.stages) {
+    const before = designReviewStageInput(old, old.stages.find(s => s.id === stage.id)!);
+    const after = designReviewStageInput(current, stage);
+    assert.deepEqual(after.sources, before.sources, 'no missing-source claim may be repaired by invented source text');
+    assert.deepEqual(after.stage, before.stage);
+    if (after.stage!.coverage!.mode === 'local_sources') {
+      assert.doesNotMatch(before.rubric.costs, /摘要未列某项费用/);
+      assert.match(after.rubric.costs, /摘要未列某项费用/);
+      assert.match(after.rubric.costs, /规则自身缺陷仍须独立检查/);
+    } else assert.deepEqual(after.rubric, input.rubric);
+    const result = stagePass(after);
+    if (stage.id === 'batch-1') result.checks[0] = { ...result.checks[0], verdict: 'revise', explanation: '已提供规则明确取消代价', revisionAdvice: '保留原代价' };
+    acceptDesignReviewStage(current, stage, result);
+    acceptDesignReviewStage(old, old.stages.find(s => s.id === stage.id)!, structuredClone(result));
+  }
+  assert.equal(completeDesignReviewRun(JSON.parse(JSON.stringify(current))).result.checks[0].verdict, 'revise');
+  assert.equal(completeDesignReviewRun(JSON.parse(JSON.stringify(old))).result.checks[0].verdict, 'revise');
+  const whole = createDesignReviewRun({ ...input, sources: [{ id: 'complete', text: '当前已提供完整规则和细纲' }] });
+  assert.deepEqual(designReviewStageInput(whole, whole.stages[0]).rubric, input.rubric);
 });
 
 test('dedicated follow-ups cannot recursively defer or omit evidence, and unresolved oversized questions remain blockers', () => {

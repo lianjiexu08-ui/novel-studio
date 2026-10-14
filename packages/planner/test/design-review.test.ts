@@ -58,6 +58,39 @@ test('invented anchors receive one repair attempt then fail closed', async () =>
   assert.equal(calls, 2);
 });
 
+test('invented future chapter deferrals are repaired from the real inventory without manufacturing outlines', async () => {
+  const request = await input();
+  const unread = 'plan/milestones/convoy';
+  request.stage = { kind: 'batch', label: '局部材料', totalBatches: 2,
+    sourceMap: request.sources.map(s => ({ id: s.id, sourceId: s.id, start: 0, end: s.text.length })),
+    coverage: { mode: 'local_sources', sourceLengths: { ...Object.fromEntries(request.sources.map(s => [s.id, s.text.length])), [unread]: 100 } } };
+  const invalid = anchored(request);
+  Object.assign(invalid.checks[1], { verdict: 'insufficient', explanation: '需要核验后期押运安排', revisionAdvice: '补读押运宏观安排', awaitingSources: ['plan/chapters/88'] });
+  const repaired = structuredClone(invalid);
+  Object.assign(repaired.checks[1], { awaitingSources: [unread] });
+  const before = structuredClone(request);
+  let calls = 0;
+  const planner = new JsonDesignPlanner({ complete: async call => {
+    if (++calls === 1) return JSON.stringify(invalid);
+    const repair = JSON.parse(call.user);
+    assert.equal(repair.invalidSourceId, 'plan/chapters/88');
+    assert.deepEqual(repair.availableSourceIds, Object.keys(request.stage!.coverage!.sourceLengths));
+    assert.match(repair.instruction, /不要保留这个错误ID/);
+    assert.match(repair.instruction, /没有可补读来源时保留普通insufficient/);
+    assert.deepEqual(repair.previousOutput, JSON.stringify(invalid));
+    return JSON.stringify(repaired);
+  } });
+  const result = await planner.reviewDesignContent(request);
+  assert.equal(calls, 2);
+  assert.equal(result.checks[1].verdict, 'insufficient');
+  assert.deepEqual(result.checks[1].awaitingSources, [unread]);
+  assert.deepEqual(result.modelResponses, [JSON.stringify(invalid), JSON.stringify(repaired)]);
+  assert.deepEqual(request, before);
+  assert.equal(request.sources.some(s => s.id === 'plan/chapters/88'), false);
+  const unrepaired = new JsonDesignPlanner({ complete: async () => JSON.stringify(invalid) });
+  await assert.rejects(() => unrepaired.reviewDesignContent(request), /等待补读来源不在完整目录中/);
+});
+
 test('one repair receives every invalid anchor and can explicitly select current evidence', async () => {
   const request = await input();
   const expected = anchored(request);
