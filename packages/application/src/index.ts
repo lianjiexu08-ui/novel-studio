@@ -8,7 +8,7 @@ import type {
 import { lockStoryBible, lockWorldPack, reviewStoryBible, reviewWorldPack } from '../../../novel-service-core/src/world.ts';
 import type { StoryBible, WorldPack } from '../../../novel-service-core/src/world.ts';
 import {
-  activePlan, approvePlanRevision, confirmBrief, createPlanRevision, effectiveBrief, latestPlan, milestonePrerequisites, outlineWindow, PlanGateError, planRealization, reviewPlanRevision,
+  activePlan, approvePlanRevision, confirmBrief, createPlanRevision, effectiveBrief, latestPlan, milestonePrerequisites, outlineWindow, PlanConflictError, PlanGateError, planRealization, reviewPlanRevision,
 } from '../../../novel-service-core/src/planning.ts';
 import type {
   BookPlan, BriefEdits, ChapterBrief, ChapterOutline, EffectiveBrief, NodeRealization, PlanReview, PlanRevision, PlotMilestone, VolumePlan,
@@ -249,17 +249,31 @@ export class ChapterWorkflow {
   }
 
   private planningInput(work: Work, authorRequest?: string): PlanningInput {
-    return { title: work.title, covenant: work.covenant, worldPack: work.worldPack, storyBible: work.storyBible, adoptedFacts: this.adoptedFacts(work), authorRequest };
+    return structuredClone({ title: work.title, covenant: work.covenant, worldPack: work.worldPack, storyBible: work.storyBible, adoptedFacts: this.adoptedFacts(work), authorRequest });
+  }
+
+  /** Capture values before awaiting a provider, including for live in-memory works. */
+  private planningGuard(work: Work): (current: Work) => void {
+    const { stateRevision, constraintRevision, activePlanId } = work;
+    const latestId = latestPlan(work)?.id;
+    return current => {
+      if (current.stateRevision !== stateRevision || current.constraintRevision !== constraintRevision
+        || current.activePlanId !== activePlanId || latestPlan(current)?.id !== latestId) {
+        throw new PlanConflictError('生成期间设定、创作约定、正文事实或计划版本已变化；本次结果未保存，请刷新后重新生成。');
+      }
+    };
   }
 
   /** Outlines for [from, to] in groups; each group sees the outlines written before it. */
-  private async outlineBatches(input: PlanningInput, skeleton: PlanSkeleton, from: number, to: number, existing: ChapterOutline[]): Promise<ChapterOutline[]> {
+  private async outlineBatches(input: PlanningInput, skeleton: PlanSkeleton, from: number, to: number, existing: ChapterOutline[], assertCurrent: () => Promise<void>): Promise<ChapterOutline[]> {
     const written: ChapterOutline[] = [];
     for (let start = from; start <= to; start += this.outlineBatchSize) {
+      await assertCurrent();
       const end = Math.min(to, start + this.outlineBatchSize - 1);
       const before = [...existing.filter((item) => item.chapterNumber < from), ...written].sort((a, b) => a.chapterNumber - b.chapterNumber).slice(-10);
       const after = existing.filter((item) => item.chapterNumber > to).sort((a, b) => a.chapterNumber - b.chapterNumber).slice(0, 5);
       const batch = await this.planProvider!.generateChapterOutlines({ ...input, skeleton, from: start, to: end, before, after });
+      await assertCurrent();
       written.push(...normalizeOutlineBatch(batch, skeleton, start, end));
     }
     return written;
@@ -275,17 +289,21 @@ export class ChapterWorkflow {
     if (!this.planProvider) throw new PlanProviderMissingError('no planning model is configured');
     const snapshot = await this.snapshot(workId);
     const base = latestPlan(snapshot);
-    const previous = activePlan(snapshot);
+    const previousPlan = structuredClone(activePlan(snapshot)?.plan);
+    const assertCurrent = this.planningGuard(snapshot);
     const planning = this.planningInput(snapshot, input.authorRequest);
-    const skeleton = await this.planProvider.generatePlanSkeleton({ ...planning, targetChapterCount: input.targetChapterCount, volumeCount: input.volumeCount, previousPlan: previous?.plan });
-    const kept = (previous?.plan.chapters ?? []).filter((outline) => outline.chapterNumber <= planning.adoptedFacts.reachedChapter && outline.chapterNumber <= skeleton.targetChapterCount);
+    const skeleton = await this.planProvider.generatePlanSkeleton({ ...planning, targetChapterCount: input.targetChapterCount, volumeCount: input.volumeCount, previousPlan });
+    const kept = (previousPlan?.chapters ?? []).filter((outline) => outline.chapterNumber <= planning.adoptedFacts.reachedChapter && outline.chapterNumber <= skeleton.targetChapterCount);
     const from = kept.length ? Math.max(...kept.map((item) => item.chapterNumber)) + 1 : 1;
     const to = Math.min(skeleton.targetChapterCount, Math.max(outlineWindow(skeleton.targetChapterCount), planning.adoptedFacts.reachedChapter + 10));
-    const outlines = from <= to ? await this.outlineBatches(planning, skeleton, from, to, kept) : [];
-    return this.repository.transaction(workId, ({ work }) => createPlanRevision(work, { ...skeleton, chapters: [...kept, ...outlines] }, {
-      source: 'model', baseRevisionId: base?.id,
-      note: input.authorRequest?.trim() ? `模型生成：${input.authorRequest.trim()}` : `模型生成全书计划与第 ${from}-${to} 章章纲`,
-    }));
+    const outlines = from <= to ? await this.outlineBatches(planning, skeleton, from, to, kept, async () => assertCurrent(await this.snapshot(workId))) : [];
+    return this.repository.transaction(workId, ({ work }) => {
+      assertCurrent(work);
+      return createPlanRevision(work, { ...skeleton, chapters: [...kept, ...outlines] }, {
+        source: 'model', baseRevisionId: base?.id,
+        note: input.authorRequest?.trim() ? `模型生成：${input.authorRequest.trim()}` : `模型生成全书计划与第 ${from}-${to} 章章纲`,
+      });
+    });
   }
 
   /**
@@ -295,17 +313,23 @@ export class ChapterWorkflow {
   async generateOutlines(workId: string, input: { baseRevisionId: string; from: number; to: number; authorRequest?: string }): Promise<PlanRevision> {
     if (!this.planProvider) throw new PlanProviderMissingError('no planning model is configured');
     const snapshot = await this.snapshot(workId);
-    const base = snapshot.plans.get(input.baseRevisionId);
-    if (!base) throw new Error(`unknown plan ${input.baseRevisionId}`);
+    const stored = snapshot.plans.get(input.baseRevisionId);
+    if (!stored) throw new Error(`unknown plan ${input.baseRevisionId}`);
+    if (latestPlan(snapshot)?.id !== stored.id) throw new PlanConflictError('章纲基于旧计划，请刷新并选择最新提案后重新生成。');
+    const base = structuredClone(stored);
+    const assertCurrent = this.planningGuard(snapshot);
     const { chapters, ...skeleton } = base.plan;
     if (input.from < 1 || input.to < input.from || input.to > skeleton.targetChapterCount) throw new PlanGateError(`chapter range ${input.from}-${input.to} is outside the planned ${skeleton.targetChapterCount} chapters`);
     if (input.to - input.from + 1 > 20) throw new PlanGateError('regenerate at most 20 chapters at a time');
     const outside = chapters.filter((outline) => outline.chapterNumber < input.from || outline.chapterNumber > input.to);
-    const outlines = await this.outlineBatches(this.planningInput(snapshot, input.authorRequest), skeleton, input.from, input.to, outside);
-    return this.repository.transaction(workId, ({ work }) => createPlanRevision(work, { ...skeleton, chapters: [...outside, ...outlines] }, {
-      source: 'mixed', baseRevisionId: input.baseRevisionId,
-      note: `重生成第 ${input.from}-${input.to} 章章纲${input.authorRequest?.trim() ? `：${input.authorRequest.trim()}` : ''}`,
-    }));
+    const outlines = await this.outlineBatches(this.planningInput(snapshot, input.authorRequest), skeleton, input.from, input.to, outside, async () => assertCurrent(await this.snapshot(workId)));
+    return this.repository.transaction(workId, ({ work }) => {
+      assertCurrent(work);
+      return createPlanRevision(work, { ...skeleton, chapters: [...outside, ...outlines] }, {
+        source: 'mixed', baseRevisionId: input.baseRevisionId,
+        note: `重生成第 ${input.from}-${input.to} 章章纲${input.authorRequest?.trim() ? `：${input.authorRequest.trim()}` : ''}`,
+      });
+    });
   }
 
   /** Author edits: target length, volumes, outlines, milestones. Always a new proposed revision. */

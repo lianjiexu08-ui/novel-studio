@@ -226,6 +226,95 @@ test('plans are generated in outline groups that see earlier groups; regeneratin
   await assert.rejects(() => workflow.generateOutlines(work.id, { baseRevisionId: regenerated.id, from: 1, to: 25 }), PlanGateError);
 });
 
+for (const mode of ['plan', 'outlines'] as const) for (const change of ['world', 'bible', 'covenant', 'adoption'] as const) {
+  test(`${mode} generation rejects ${change} changes made while an outline batch is pending`, async () => {
+    let release!: () => void, started!: () => void;
+    const waiting = new Promise<void>(resolve => { release = resolve; });
+    const entered = new Promise<void>(resolve => { started = resolve; });
+    let batches = 0;
+    let seenCost: string | undefined;
+    const planProvider: PlanProvider = {
+      generatePlanSkeleton: async () => { const { chapters, ...skeleton } = minimalPlan(30); return skeleton; },
+      generateChapterOutlines: async ({ from, to, worldPack }) => {
+        batches++; started(); await waiting;
+        seenCost = worldPack?.realms[0].cost;
+        return Array.from({ length: to - from + 1 }, (_, i) => minimalOutline(from + i));
+      },
+    };
+    const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), scriptedProvider(), undefined, { planProvider });
+    const work = await createReadyWork(workflow, '生成期间的基线变更');
+    const base = await workflow.savePlan(work.id, { baseRevisionId: work.activePlanId, plan: minimalPlan(30) });
+    const beforePlans = JSON.stringify([...work.plans]);
+    const oldCost = work.worldPack!.realms[0].cost;
+    const pending = mode === 'plan' ? workflow.generatePlan(work.id, { targetChapterCount: 30, volumeCount: 1 })
+      : workflow.generateOutlines(work.id, { baseRevisionId: base.id, from: 1, to: 20 });
+    await entered;
+    if (change === 'world') await workflow.editSettings(work.id, draft => { draft.worldPack!.realms[0].cost = '新规则必须另付十年寿元'; });
+    if (change === 'bible') await workflow.saveStoryBible(work.id, { ...work.storyBible!, coreConflict: '修改后的主线' });
+    if (change === 'covenant') await workflow.updateWork(work.id, { title: work.title, covenant: { ...work.covenant, mustKeep: '不得违背的新约定' } });
+    if (change === 'adoption') await writeChapter(workflow, work.id, 1, 0);
+    release();
+    await assert.rejects(pending, PlanConflictError);
+    assert.equal(batches, 1, 'stop before paying for another batch under an obsolete baseline');
+    assert.equal(seenCost, oldCost, 'the provider sees a frozen input, including in-memory repository objects');
+    assert.equal(JSON.stringify([...work.plans]), beforePlans, 'do not rebind stale model output to the new design');
+    assert.equal(work.currentVersion(1)?.content, change === 'adoption' ? chapterBody(1) : undefined);
+  });
+}
+
+for (const mode of ['plan', 'outlines'] as const) {
+  test(`${mode} generation rechecks the baseline inside the queued commit transaction`, async () => {
+    const repository = new InMemoryWorkRepository();
+    const planProvider: PlanProvider = {
+      generatePlanSkeleton: async () => { const { chapters, ...skeleton } = minimalPlan(); return skeleton; },
+      generateChapterOutlines: async ({ from, to }) => Array.from({ length: to - from + 1 }, (_, i) => minimalOutline(from + i)),
+    };
+    const workflow = new ChapterWorkflow(repository, scriptedProvider(), undefined, { planProvider });
+    const work = await createReadyWork(workflow, '提交前并发改约定');
+    const beforePlans = JSON.stringify([...work.plans]);
+    let release!: () => void;
+    const waiting = new Promise<void>(resolve => { release = resolve; });
+    const editor = repository.transaction(work.id, async ({ work: draft }) => {
+      await waiting;
+      draft.recordCovenant({ ...draft.covenant, mustKeep: '正在提交的新约定' });
+      draft.constraintRevision++;
+    });
+    const pending = mode === 'plan' ? workflow.generatePlan(work.id, { targetChapterCount: 10, volumeCount: 1 })
+      : workflow.generateOutlines(work.id, { baseRevisionId: work.activePlanId!, from: 1, to: 10 });
+    // Let the model and read checks finish while the earlier editor owns the
+    // transaction queue. Its change becomes visible only when we release it.
+    await new Promise<void>(resolve => setImmediate(resolve));
+    release(); await editor;
+    await assert.rejects(pending, PlanConflictError);
+    assert.equal(JSON.stringify([...work.plans]), beforePlans);
+    assert.equal(work.covenant.mustKeep, '正在提交的新约定');
+  });
+}
+
+test('approving another plan while generation waits invalidates the previous adopted-fact baseline', async () => {
+  let release!: () => void, started!: () => void;
+  const waiting = new Promise<void>(resolve => { release = resolve; });
+  const entered = new Promise<void>(resolve => { started = resolve; });
+  let outlineCalls = 0;
+  const planProvider: PlanProvider = {
+    generatePlanSkeleton: async () => { started(); await waiting; const { chapters, ...skeleton } = minimalPlan(); return skeleton; },
+    generateChapterOutlines: async () => { outlineCalls++; return []; },
+  };
+  const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), scriptedProvider(), undefined, { planProvider });
+  const work = await createReadyWork(workflow, '批准版在规划期间变化');
+  const next = await workflow.savePlan(work.id, { baseRevisionId: work.activePlanId, plan: minimalPlan() });
+  await workflow.reviewPlan(work.id, next.id);
+  const pending = workflow.generatePlan(work.id, { targetChapterCount: 10, volumeCount: 1 });
+  await entered;
+  await workflow.approvePlan(work.id, next.id);
+  const approvedHistory = JSON.stringify([...work.plans]);
+  release();
+  await assert.rejects(pending, PlanConflictError);
+  assert.equal(outlineCalls, 0, 'stop after the obsolete skeleton without generating outlines');
+  assert.equal(JSON.stringify([...work.plans]), approvedHistory);
+  assert.equal(work.activePlanId, next.id);
+});
+
 test('AT-41 a manual character sharing a Bible name is reported, linked explicitly, and never merged silently', async () => {
   const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), scriptedProvider());
   const work = await createReadyWork(workflow, '统一人物');
