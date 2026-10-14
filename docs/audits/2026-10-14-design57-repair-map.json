@@ -1,0 +1,168 @@
+{
+  "observedAt": "2026-10-14T07:57:02.542Z",
+  "candidateHash": "69148def081160671a6a77f3100b53f38c207ae4829cc8fb83efc16e94bbe1b4",
+  "candidateSaved": false,
+  "formalAcceptance": false,
+  "scope": {
+    "world": 27,
+    "bible": 56,
+    "plan": 56
+  },
+  "originalStatus": "completed_with_failures",
+  "recovery": {
+    "status": "running",
+    "runId": "design_run_eae8ce3f-bac9-49d3-a1e6-e3a7dcbe20c7",
+    "completed": 23,
+    "total": 47,
+    "previousFailureRetained": true,
+    "protectedHistoryUnchanged": true
+  },
+  "items": [
+    {
+      "id": "arrival-protection",
+      "area": "world",
+      "criteria": [
+        "geography"
+      ],
+      "problem": "南渡入港前的避火资格、来源和有效期不完整",
+      "repair": "第31章先借衣和独立避火符，出港及入港各核喷发公告，33章在保护区交还并换租另一编号符；日217预计余4、日230实际余3分开记账。",
+      "paths": [
+        "worldPack.artifacts/art_16",
+        "plan.chapters/31",
+        "plan.chapters/32",
+        "plan.chapters/33"
+      ],
+      "evidence": "2026-10-14-design57-entry-recheck.json",
+      "status": "candidate_checked_pending_formal_review"
+    },
+    {
+      "id": "faction-history",
+      "area": "world",
+      "criteria": [
+        "history"
+      ],
+      "problem": "赵、炎煞、程记的旧互供只称既有联系，缺具体资源和风险边界",
+      "repair": "event_14与rel_06补三年前有限私约、实物与垫款、承运佣金、违约责任和原约保存处；调查者未取得原约，不增加角色知情。",
+      "paths": [
+        "worldPack.historicalEvents/event_14",
+        "storyBible.relationships/rel_06"
+      ],
+      "evidence": "2026-10-14-design57-background-candidate.json",
+      "status": "candidate_checked_pending_formal_review"
+    },
+    {
+      "id": "realm-account",
+      "area": "power",
+      "criteria": [
+        "tiers",
+        "costs"
+      ],
+      "problem": "太乙真光的两境账户和训练条件表达不明确；旧评审的“神海没有合法账户”忽略了ax_07别名条款",
+      "repair": "保留玄府、神海准入，显式使用唯一当境纯阳法力账户和本境训练实测；不另开低境账户，不提高威力。",
+      "paths": [
+        "worldPack.techniques/tech_06"
+      ],
+      "evidence": "2026-10-14-design57-background-candidate.json",
+      "status": "candidate_checked_pending_formal_review"
+    },
+    {
+      "id": "claw-training",
+      "area": "power",
+      "criteria": [
+        "tiers"
+      ],
+      "problem": "墨幽屠噬血爪缺开篇前修习与实测依据",
+      "repair": "补作者前史中的传授、控制、停术、毒性和冷却实测；境界仍不自动授予功法。",
+      "paths": [
+        "storyBible.characters"
+      ],
+      "evidence": "2026-10-14-design57-background-candidate.json",
+      "status": "candidate_checked_pending_formal_review"
+    },
+    {
+      "id": "contact-combat",
+      "area": "power",
+      "criteria": [
+        "tiers",
+        "costs",
+        "counters"
+      ],
+      "problem": "玄府推车、近身制伏和伤后押送缺可执行能力规则",
+      "repair": "ax_13定义训练、接触、负载、起式、预付和间隔，23/25/26章对应真实站位、选择、伤势及逐笔余额。",
+      "paths": [
+        "worldPack.axioms/ax_13",
+        "storyBible.characters",
+        "storyBible.chapterPlans",
+        "plan.chapters/23",
+        "plan.chapters/25",
+        "plan.chapters/26",
+        "plan.milestones/ms_vol1_climax"
+      ],
+      "evidence": "2026-10-14-design57-contact-candidate.json",
+      "status": "candidate_checked_pending_formal_review"
+    },
+    {
+      "id": "sword-source-selection",
+      "area": "power",
+      "criteria": [
+        "tiers",
+        "costs"
+      ],
+      "problem": "正式56误把art_02护身符佩作为赤霞斩铁剑，未核正确的art_03",
+      "repair": "保留已经存在的art_03及其散热/试注规则，不复制新剑或篡改旧结论；新调度10提供实体名称导航，证据仍须读取原文。",
+      "paths": [
+        "worldPack.artifacts/art_03"
+      ],
+      "evidence": "2026-10-14-design57-background-candidate.json",
+      "classification": "source_selection_error_requires_new_formal_review",
+      "status": "candidate_checked_pending_formal_review"
+    },
+    {
+      "id": "spring-provenance",
+      "area": "story",
+      "criteria": [
+        "causality",
+        "payoff"
+      ],
+      "problem": "验毒洁净不能代替灵泉来源验真、配额与分配权限",
+      "repair": "res_09/event_06及19/26/27/28章串起原采封记录、入口副联、管号、原有未指名个人配额、分配授权、林主动减额和两次完整疗程。",
+      "paths": [
+        "worldPack.resources/res_09",
+        "worldPack.historicalEvents/event_06",
+        "storyBible.chapterPlans",
+        "plan.chapters/19",
+        "plan.chapters/26",
+        "plan.chapters/27",
+        "plan.chapters/28",
+        "plan.milestones/ms_growth_v1_aftermath"
+      ],
+      "evidence": "2026-10-14-design57-spring-questions-candidate.json",
+      "status": "candidate_checked_pending_formal_review"
+    },
+    {
+      "id": "shared-question-state",
+      "area": "story",
+      "criteria": [
+        "causality",
+        "payoff"
+      ],
+      "problem": "五项共享悬问在世界包为开放、圣经却保留旧resolved状态",
+      "repair": "仅同步五项非阻塞悬问为当前问题与open；新增结构校验拒绝重复ID和共享状态/阻塞标记冲突。所有真正阻塞保持原样。",
+      "paths": [
+        "storyBible.unresolvedQuestions/uq_03",
+        "storyBible.unresolvedQuestions/uq_04",
+        "storyBible.unresolvedQuestions/uq_06",
+        "storyBible.unresolvedQuestions/uq_08",
+        "storyBible.unresolvedQuestions/uq_09"
+      ],
+      "evidence": "2026-10-14-design57-spring-questions-candidate.json",
+      "status": "candidate_checked_pending_formal_review"
+    }
+  ],
+  "limitations": [
+    "Mapping does not alter or resolve formal56 findings.",
+    "Candidate targeted checks do not replace all-area formal review.",
+    "Story recovery findings remain provisional until terminal aggregation.",
+    "Existing adopted prose and blockers are unchanged."
+  ]
+}
