@@ -1,6 +1,6 @@
 {
-  "observedAt": "2026-10-14T06:27:19.103Z",
-  "status": "in_progress_not_acceptance",
+  "observedAt": "2026-10-14T06:30:11.131Z",
+  "status": "terminal_not_acceptance",
   "originalRunnerStatus": "completed_with_failures",
   "runtimeCommit": "46afed3",
   "scope": {
@@ -73,20 +73,20 @@
     },
     {
       "area": "story",
-      "status": "running",
+      "status": "completed",
       "runId": "design_run_5f05881f-020e-4d78-a1f8-25502fee0aa0",
       "usage": {
-        "calls": 23,
+        "calls": 24,
         "failedCalls": 0,
-        "inputTokens": 2304842,
-        "outputTokens": 37824,
+        "inputTokens": 2349595,
+        "outputTokens": 39403,
         "costUsd": 0,
         "costKnown": false,
         "byRole": {
           "reviewing": {
-            "calls": 23,
+            "calls": 24,
             "failedCalls": 0,
-            "outputTokens": 37824,
+            "outputTokens": 39403,
             "costUsd": 0
           }
         },
@@ -99,7 +99,7 @@
       "completedStepsNotReplayed": 5
     }
   ],
-  "combinedCalls": 116,
+  "combinedCalls": 117,
   "errors": [
     {
       "area": "characters",
@@ -2178,9 +2178,11 @@
     {
       "id": "design_run_5f05881f-020e-4d78-a1f8-25502fee0aa0",
       "area": "story",
-      "status": "running",
-      "completed": 28,
+      "status": "completed",
+      "completed": 29,
       "total": 29,
+      "reportId": "design_review_27b72f4d-fb39-4a73-99a7-2c8ff38caa31",
+      "reportStatus": "needs_revision",
       "stages": [
         {
           "id": "batch-1",
@@ -3136,6 +3138,39 @@
               "explanation": "前置材料对第1—41章的递进已有支持，且总览把第44、50章设为“救人但放弃追账”与“由工人自主回答”的不同选择，未显示宏观上过早终局。可是前置综合报告明确保留：当时缺少第42—50章实际细纲，无法核验追船、救援、脱控后安置及第50章是否真正承接第41章，而不是重复仓火或无代价救援。当前实际原文仅为总览；它虽声明细纲覆盖至50章及已有交叉复审，仍不能替代该未解决项所需的具体场景、行动、代价与后果链。综合阶段不得因另一份报告直接判通过而撤销这一材料不足。",
               "revisionAdvice": "在后续专项复核中提供第42—50章的实际章纲，核对其以第41章三人受阻、吴卢失踪和北泊低驳线索为前置；分别落实追查、救援、实际脱控、安置与责任后果，并确认第50章不以重复火灾、无代价救援或提前破获全链替代新的阶段高潮。",
               "evidenceCount": 4
+            }
+          ]
+        },
+        {
+          "id": "synthesis-14",
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "revise",
+              "explanation": "后段主线依赖、选择与代价总体闭合，但第212—216日桥接仍存在主体冲突：总览依赖明确为“苏一侧”返宗、林已南航，桥接里程碑却写“第212日林已先离营”，这会影响第33章调查起点、消息来源及后续承接。另，第25章成本清单写“苏剑受损”，现有战斗与结束状态只明确林腿伤、顾肩伤、护卫伤亡和苏带担架，未说明苏剑由何动作受损，也没有维修、替换、停用或限制。两项均不是未采纳事件问题，而是提案自身因果与代价记录未闭合。",
+              "revisionAdvice": "重写ms_bridge_return，逐日标明林辰、苏凌霜及押解队的离营地点、交通、抵达、交班和通信节点，删除“第212日林已先离营”的歧义；补写第25章苏剑受损的具体动作、时点、程度与责任，并在第26章及后续安排维修、替换、停用或持续限制；若不能兑现该损失则删除相关成本。",
+              "evidenceCount": 5
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "revise",
+              "explanation": "总体日序、北航、返程、训练和晋阶预算已有连续安排，但卷一末仍不能通过解释性依赖消除桥接条目自身的日期歧义。第32章安排林辰第216日暮抵达赤霄外港，同时桥接条目写第212日“林”已离营，并把第213—216日用于返宗；总览虽说明实际是苏方返宗、林已南航，却未修改该里程碑的主体文字。由于该条目还承载第33—35章交押和第41章消息时点，须统一日历后才能判定边界稳定。",
+              "revisionAdvice": "直接改写ms_bridge_return的主体与行程，逐项核对第30—35章出发、海程、返宗、销班、交接及第41章来信可知时点；不能同时保留“林已先离营”和林第216日抵港两套表述。",
+              "evidenceCount": 5
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "revise",
+              "explanation": "大部分伏笔和承诺有分层兑现：六号箱去向与首仓火未查明边界、吴卢自主脱控、北境七人与其他救援批次区分、玄府支付与旧剑禁用均有条件和后果。但“苏剑受损”被反复列为第25章代价，却没有来源动作、损伤状态或后续处置；第25章结束状态也未列出该损失。因此不能把它视为已兑现的代价，且会造成支付/物品线的悬空。其余未完成的51—100章内容属于拟定兑现义务，不因尚未写正文而构成缺陷。",
+              "revisionAdvice": "为苏剑补充明确的受损场景、时点、程度、责任及可用性变化，并在后续章纲落实维修、替换、停用及相应资源/时间成本；否则从第25章和后续报告中删除该代价。",
+              "evidenceCount": 5
+            },
+            {
+              "criterion": "opening",
+              "verdict": "pass",
+              "explanation": "在补读后的材料范围内，前五十章递进成立：前段由调查、受限合作、疗程晋阶进入失箱与扣工线；34—39章转为失箱核验、仓火救人和证据损失；41章留下受阻见工与待查船路；43—45章再发展为报警、追船、切索、船损和落水救援；50章以吴卢当面自主选择、陆停止协助旧同伙、看守受控收束。各阶段的选择与代价不同，未把救援写成无成本胜利，也未提前解决父案、九鼎或界门。第44章放弃追账救落水者，第50章让当事人自行回答，构成不同于仓火的高潮选择。",
+              "revisionAdvice": "保持34—50章现有场景边界与连续消耗；后续落实追查、安置和责任后果时，不要重演仓火、潮沟救援或无代价脱控模板。",
+              "evidenceCount": 7
             }
           ]
         }
