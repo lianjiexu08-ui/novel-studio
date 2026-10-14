@@ -96,7 +96,9 @@ export function designReviewHash(work: Work, planId?: string): string | undefine
   const plan = selectedId ? work.plans.get(selectedId) : undefined;
   if (!work.worldPack || !work.storyBible || !plan || plan.status === 'superseded' || (planId === undefined && plan.status !== 'approved')) return undefined;
   return createHash('sha256').update(JSON.stringify({
-    rubricVersion: 7, title: work.title, covenant: work.covenant,
+    // Version 8 includes the complete world rule sources in world reviews.
+    // Reports made without those sources must not authorize this input.
+    rubricVersion: 8, title: work.title, covenant: work.covenant,
     world: work.worldPack, bible: work.storyBible, planId: plan.id, plan: plan.plan,
     characters: [...work.characters.values()].sort((a, b) => a.id.localeCompare(b.id)),
     relationships: [...work.relationships.values()].sort((a, b) => a.id.localeCompare(b.id)),
@@ -118,7 +120,7 @@ export function designReviewInput(work: Work, area: DesignReviewArea, planId?: s
   add('world/overview', { title: world.title, summary: world.summary, unresolvedQuestions: world.unresolvedQuestions });
   group('world/axioms', world.axioms);
   const groups = area === 'world'
-    ? ['locations', 'factions', 'historicalEvents', 'resources'] as const
+    ? ['powerSystems', 'tierLadders', 'realms', 'techniques', 'artifacts', 'locations', 'factions', 'historicalEvents', 'resources', 'terminology'] as const
     : area === 'power'
       ? ['powerSystems', 'tierLadders', 'realms', 'techniques', 'artifacts', 'resources'] as const
       : area === 'characters' ? ['factions', 'realms'] as const : ['locations', 'realms', 'techniques', 'artifacts', 'resources'] as const;

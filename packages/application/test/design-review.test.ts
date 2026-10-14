@@ -1,5 +1,6 @@
 import { createDesignReviewRun, designReviewStageInput } from '../../../novel-service-core/src/design-review-run.ts';
 import test from 'node:test';
+import { createHash } from 'node:crypto';
 import assert from 'node:assert/strict';
 import { ChapterWorkflow, InMemoryWorkRepository, type DesignProvider } from '../src/index.ts';
 import { designReviewAreas, designReviewHash, designReviewInput, designReviewOverview, recordDesignReview, validateDesignReview } from '../../../novel-service-core/src/design-review.ts';
@@ -8,6 +9,44 @@ import { createReadyWork, fixtureDesignReview, minimalWorldPack } from './fixtur
 
 const reviewer: DesignProvider = { generateWorldPack: async () => { throw new Error('unused'); }, generateStoryBible: async () => { throw new Error('unused'); }, reviewDesignContent: async (input) => fixtureDesignReview(input) };
 const writer = { generateChapter: () => ({ content: '测试正文', proposedEvents: [] }) };
+
+test('world capacity review receives the realm ladder and referenced ability rules, and expires incomplete-input acceptance', async () => {
+  const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), writer, reviewer);
+  const work = await createReadyWork(workflow);
+  const world = work.worldPack!;
+  world.tierLadders = [{ id: 'ladder', kind: 'realm', name: '境界阶梯', levels: ['炼气'], rule: '境界是承载资格，不赠送术式', status: 'reviewed' }];
+  world.realms[0].capabilities = ['引气必须遵守引气诀的费用与限制'];
+  world.techniques[0].limitations = ['不得把晋阶费用视作施术预付'];
+  const input = designReviewInput(work, 'world');
+  const expectedGroups = ['axioms', 'powerSystems', 'tierLadders', 'realms', 'techniques', 'artifacts', 'resources', 'locations', 'factions', 'historicalEvents', 'terminology'] as const;
+  for (const key of expectedGroups) for (const item of world[key] ?? []) {
+    const matches = input.sources.filter(s => s.id === `world/${key}/${item.id}`);
+    assert.equal(matches.length, 1, `${key}/${item.id} is available exactly once`);
+    assert.deepEqual(JSON.parse(matches[0].text), item, 'use original rules without summarizing their constraints away');
+  }
+  const report = fixtureDesignReview(input);
+  report.checks.find(c => c.criterion === 'capacity')!.evidence = [
+    { sourceId: 'world/tierLadders/ladder', quote: '境界是承载资格，不赠送术式' },
+    { sourceId: 'world/techniques/technique', quote: '不得把晋阶费用视作施术预付' },
+  ];
+  validateDesignReview(input, report);
+  const legacyHash = createHash('sha256').update(JSON.stringify({
+    rubricVersion: 7, title: work.title, covenant: work.covenant,
+    world, bible: work.storyBible, planId: work.activePlanId, plan: work.plans.get(work.activePlanId!)!.plan,
+    characters: [...work.characters.values()].sort((a, b) => a.id.localeCompare(b.id)),
+    relationships: [...work.relationships.values()].sort((a, b) => a.id.localeCompare(b.id)),
+    worldRules: [...work.worldRules.values()].sort((a, b) => a.id.localeCompare(b.id)),
+    ...(work.plotNodes.size ? { plotNodes: [...work.plotNodes.values()].sort((a, b) => a.id.localeCompare(b.id)) } : {}),
+  })).digest('hex');
+  assert.notEqual(input.inputHash, legacyHash);
+  const oldReport = recordDesignReview(work, input, report);
+  oldReport.inputHash = legacyHash;
+  const snapshot = structuredClone(oldReport);
+  const overview = designReviewOverview(work);
+  assert.equal(overview.areas.find(a => a.area === 'world')!.status, 'outdated');
+  assert.equal(overview.ready, false);
+  assert.deepEqual(work.designContentReviews.get(oldReport.id), snapshot, 'old conclusions remain immutable history');
+});
 
 test('design review sees contradictory book-level promises even when chapter outlines omit them', async () => {
   const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), writer, reviewer);
