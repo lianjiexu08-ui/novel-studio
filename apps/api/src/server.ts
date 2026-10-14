@@ -83,7 +83,7 @@ import {
   activeChannel, backupConnections, connectionOf, listModelIds, loadModelStore, newModelChannelId, providersFromConnection, removeChannel, saveModelStore, testModelConnection, toModelSettingsView, upsertChannel,
   type ModelChannel, type ModelConnection, type ModelStore,
 } from './model-settings.ts';
-import { randomUUID } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { mkdirSync } from 'node:fs';
@@ -537,11 +537,15 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     const { workId } = workParamSchema.parse(request.params);
     const work = await repository.get(workId);
     if (!work) throw new NotFoundError(`unknown work ${workId}`);
-    const { planId } = z.object({ planId: z.string().min(1).optional() }).parse(request.query);
+    const { planId, since } = z.object({ planId: z.string().min(1).optional(), since: z.string().max(64).optional() }).parse(request.query);
     const plans = [...work.plans.values()].filter((plan) => plan.status !== 'superseded').sort((a, b) => b.revision - a.revision);
     const selected = planId ? plans.find((plan) => plan.id === planId) : plans[0];
     if (planId && !selected) throw new NotFoundError(`unknown plan ${planId}`);
-    return { ...designReviewOverview(work, selected?.id), selectedPlan: selected ? { id: selected.id, revision: selected.revision, status: selected.status } : undefined, plans: plans.map((plan) => ({ id: plan.id, revision: plan.revision, status: plan.status })) };
+    const overview = { ...designReviewOverview(work, selected?.id), selectedPlan: selected ? { id: selected.id, revision: selected.revision, status: selected.status } : undefined, plans: plans.map((plan) => ({ id: plan.id, revision: plan.revision, status: plan.status })) };
+    // Saved reports are immutable. Track their identities and all mutable run
+    // metadata without serializing their potentially huge source/evidence text.
+    const revisionToken = createHash('sha256').update(JSON.stringify({ workId, ...overview, reports: overview.reports.map(report => report.id) })).digest('hex');
+    return since === revisionToken ? { unchanged: true, revisionToken } : { ...overview, revisionToken };
   });
 
   app.post('/works/:workId/design/content-reviews', async (request) => {

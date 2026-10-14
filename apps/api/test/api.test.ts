@@ -892,7 +892,12 @@ test('staged design review API preserves progress and cannot release partial rev
     assert.equal(response.statusCode, 200, response.body);
     assert.equal(response.json().completed, 1);
     assert.ok(response.json().total > 1);
-    const overview = designReviewOverviewSchema.parse((await app.inject({ method: 'GET', url: `${base}/content-reviews` })).json());
+    const firstOverview = (await app.inject({ method: 'GET', url: `${base}/content-reviews` })).json();
+    const overview = designReviewOverviewSchema.parse(firstOverview);
+    const unchanged = await app.inject({ method: 'GET', url: `${base}/content-reviews?since=${firstOverview.revisionToken}` });
+    assert.deepEqual(unchanged.json(), { unchanged: true, revisionToken: firstOverview.revisionToken });
+    assert.ok(unchanged.body.length < 150, 'unchanged polling must not retransmit historical evidence');
+    assert.equal(calls, 1, 'polling must not advance a review');
     assert.equal(overview.ready, false);
     assert.equal(overview.areas.find(a => a.area === 'story')!.status, 'interrupted');
     assert.equal(overview.reports.length, 0);
@@ -902,6 +907,10 @@ test('staged design review API preserves progress and cannot release partial rev
     assert.ok(detail.json().input.sources.length);
     while (response.json().status !== 'completed') {
       response = await step(); assert.equal(response.statusCode, 200, response.body);
+      const changed = (await app.inject({ method: 'GET', url: `${base}/content-reviews?since=${firstOverview.revisionToken}` })).json();
+      assert.equal(changed.unchanged, undefined, 'every later batch invalidates the previous token');
+      assert.notEqual(changed.revisionToken, firstOverview.revisionToken);
+      firstOverview.revisionToken = changed.revisionToken;
     }
     const count = calls;
     assert.equal((await step()).json().status, 'completed');
@@ -945,11 +954,20 @@ test('browser review client sends objects to the real API and preserves the sele
     const { runId } = await api.startDesignReview(work.id, 'world', proposal.id);
     assert.deepEqual(sent.at(-1), { area: 'world', planId: proposal.id });
     assert.equal(calls, 0);
+    const initialRecords = await api.pollDesignContentReviews(work.id, proposal.id);
+    assert.equal(initialRecords.selectedPlan.id, proposal.id);
+    assert.equal(initialRecords.ready, false);
+    assert.deepEqual(await api.pollDesignContentReviews(work.id, proposal.id, initialRecords.revisionToken), { unchanged: true, revisionToken: initialRecords.revisionToken });
+    const otherPlan = await api.pollDesignContentReviews(work.id, activeId, initialRecords.revisionToken);
+    assert.equal(otherPlan.selectedPlan.id, activeId, 'a token for another plan must not suppress its records');
     const progress = await api.stepDesignReview(work.id, runId);
     assert.deepEqual(sent.at(-1), {});
     assert.equal(progress.status, 'completed');
     const firstReport = current.designContentReviews.get(progress.reportId)!;
     assert.equal(firstReport.scope.planRevisionId, proposal.id);
+    const updatedRecords = await api.pollDesignContentReviews(work.id, proposal.id, initialRecords.revisionToken);
+    assert.equal(updatedRecords.reports.some((report: { id: string }) => report.id === firstReport.id), true);
+    assert.notEqual(updatedRecords.revisionToken, initialRecords.revisionToken);
     // Stage IDs are opaque path parameters. Dedicated follow-ups contain a
     // slash; test the actual browser client against Fastify's route decoder.
     const detailRun = structuredClone(current.designReviewRuns.get(runId)!);

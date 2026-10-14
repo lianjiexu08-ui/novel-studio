@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Alert, App, Button, Card, Collapse, Empty, Modal, Select, Space, Tag, Typography } from 'antd';
 import type { DesignContentReviewDto, DesignReviewAreaDto, DesignReviewOverviewDto } from 'novel-studio-contracts';
 import { api, type DesignReviewStageDetail } from '../api';
@@ -17,18 +17,47 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
   const [busy, setBusy] = useState<DesignReviewAreaDto | null>(null);
   const [source, setSource] = useState<{ id: string; text: string } | null>(null);
   const request = useRef(0);
+  const pendingLoad = useRef<number | null>(null);
+  const revisionToken = useRef<string>();
+  const nextPollAt = useRef(0);
+  const [refreshedAt, setRefreshedAt] = useState<string>();
   const stopReview = useRef(false);
   const [stopRequested, setStopRequested] = useState(false);
   const [stageDetail, setStageDetail] = useState<DesignReviewStageDetail | null>(null);
   const activeWork = useRef(workId);
   activeWork.current = workId;
-  async function load() {
+  const load = useCallback(async (reset = false, background = false) => {
+    if (background && pendingLoad.current !== null) return;
     const current = ++request.current;
-    setData(null); setError('');
-    try { const result = await api.designContentReviews(workId, planId); if (current === request.current) setData(result); }
+    pendingLoad.current = current;
+    if (reset) { setData(null); setRefreshedAt(undefined); setError(''); revisionToken.current = undefined; }
+    try {
+      const result = await api.pollDesignContentReviews(workId, planId, revisionToken.current);
+      if (current === request.current) {
+        if (!result.unchanged) setData(result);
+        revisionToken.current = result.revisionToken;
+        // Older servers return the full history; poll less often until upgraded.
+        nextPollAt.current = Date.now() + (result.revisionToken ? 15_000 : 60_000);
+        setError(''); setRefreshedAt(new Date().toLocaleTimeString());
+      }
+    }
     catch (cause) { if (current === request.current) setError(cause instanceof Error ? cause.message : String(cause)); }
-  }
-  useEffect(() => { void load(); return () => { request.current += 1; }; }, [workId, revision, planId]); // eslint-disable-line react-hooks/exhaustive-deps
+    finally { if (pendingLoad.current === current) pendingLoad.current = null; }
+  }, [workId, planId]);
+  useEffect(() => {
+    void load(true);
+    const refreshVisible = () => { if (document.visibilityState === 'visible') void load(false, true); };
+    const timer = window.setInterval(() => { if (Date.now() >= nextPollAt.current) refreshVisible(); }, 15_000);
+    window.addEventListener('focus', refreshVisible);
+    document.addEventListener('visibilitychange', refreshVisible);
+    return () => {
+      request.current += 1;
+      pendingLoad.current = null;
+      window.clearInterval(timer);
+      window.removeEventListener('focus', refreshVisible);
+      document.removeEventListener('visibilitychange', refreshVisible);
+    };
+  }, [load, revision]);
   useEffect(() => { activeWork.current = workId; setBusy(null); setSource(null); setStageDetail(null); setPlanId(undefined); return () => { activeWork.current = ''; stopReview.current = true; }; }, [workId]);
   async function review(area: DesignReviewAreaDto) {
     setBusy(area); stopReview.current = false; setStopRequested(false);
@@ -85,10 +114,12 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
   const historicalRuns = data?.runs.filter(run => !currentRunIds.has(run.id)).reverse() ?? [];
   return <Card title="分项内容评审" extra={<Button onClick={() => void load()}>刷新记录</Button>}>
     <Space direction="vertical" size={12} style={{ width: '100%' }}>
+      <Typography.Text type="secondary">页面可见时自动刷新评审记录，切回页面时立即刷新。{refreshedAt ? `最近检查：${refreshedAt}。` : ''}刷新只读取进度，不会启动或继续评审。</Typography.Text>
       <Alert type={data?.ready ? 'info' : 'warning'} showIcon message={data?.ready ? '所选计划的设计评审通过，写作仍需锁定和批准'  : '长篇写作前，先完成四项内容评审'} description="使用规划模型逐项审查内容，保存原文证据和返修建议。大材料先逐批审原文、对照各批之间的冲突，再综合结论；进度自动保存，刷新或失败后可继续。可以先评审待批准提案，评审不会批准计划；修改创作约定、设定或计划会使旧结论过期。模型建议尚未采纳，不会自动成为故事事实；设计通过也不代表已验收正文。" />
       {data?.plans?.length ? <Space wrap><Typography.Text>本次评审计划</Typography.Text><Select aria-label="本次评审计划" style={{ minWidth: 260 }} disabled={busy !== null} value={data.selectedPlan?.id} onChange={(value) => setPlanId(value)} options={data.plans.map((plan) => ({ value: plan.id, label: `计划 v${plan.revision} · ${{ proposed: '待批准提案', reviewed: '结构已审', approved: '当前批准版', superseded: '已替代' }[plan.status]}` }))} /><Typography.Text type="secondary">默认最新提案；写作仅使用批准版的评审。</Typography.Text></Space> : null}
       {busy && <Alert type="info" message={stopRequested ? '本批结束后停止，已完成进度会保留。' : `正在评审${labels[busy]}，每批可能需要几分钟。`} action={<Button disabled={stopRequested} onClick={() => { stopReview.current = true; setStopRequested(true); }}>本批后停止</Button>} />}
-      {error ? <Alert type="error" message="评审记录加载失败" description={error} /> : data ? <>
+      {error && <Alert type="error" message={data ? '评审记录刷新失败，以下仍为上次成功读取的记录' : '评审记录加载失败'} description={error} />}
+      {data ? <>
         <Collapse items={data.areas.map((area) => {
           const report = data.reports.find((item) => item.id === area.reportId);
           return { key: area.area, label: <Space wrap>{labels[area.area]}<Tag color={area.status === 'passed' ? 'success' : 'warning'}>{statuses[area.status]}</Tag></Space>, extra: <Button size="small" loading={busy === area.area} disabled={busy !== null || !data.inputHash} onClick={(event) => { event.stopPropagation(); void review(area.area); }}>{['reviewing', 'interrupted'].includes(area.status) ? '继续本项' : '评审本项'}</Button>, children: report ? details(report) : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="尚无评审。先准备设计及计划提案，再评审本项。" /> };
