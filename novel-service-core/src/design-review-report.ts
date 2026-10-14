@@ -1,0 +1,34 @@
+import type { DesignReviewResult } from './design-review.ts';
+
+export interface ReviewEvidenceSource {
+  sourceId: string;
+  text: string;
+  start?: number;
+  unitId?: string;
+}
+
+/** Keep independent excerpts visibly separate. JSON-encoding a report and then
+ * slicing its escaped quotation strings can make omitted records look adjacent. */
+export function renderDesignReviewReport(result: DesignReviewResult, resolve: (id: string) => ReviewEvidenceSource | undefined): string {
+  const lines = ['前置报告。以下引文是独立摘录；同一来源的摘录可能相隔很远，不可把不同摘录里的字段拼成同一条记录。字符范围采用原始来源的UTF-16下标，右端不含。'];
+  const { checks, ...head } = result;
+  lines.push(JSON.stringify(head, null, 2));
+  for (const [index, check] of checks.entries()) {
+    const { evidence, ...finding } = check;
+    lines.push(`\nCHECK ${index + 1}\n${JSON.stringify(finding, null, 2)}`);
+    for (const [citation, entry] of evidence.entries()) {
+      const source = resolve(entry.sourceId);
+      const offset = source?.text.indexOf(entry.quote) ?? -1;
+      const unique = offset >= 0 && source!.text.indexOf(entry.quote, offset + 1) < 0;
+      // Repeated quotations do not have a uniquely provable location. Never
+      // choose the first occurrence and present it as the original position.
+      const origin = source && unique ? {
+        sourceId: source.sourceId, ...(source.unitId ? { unitId: source.unitId } : {}),
+        start: (source.start ?? 0) + offset, end: (source.start ?? 0) + offset + entry.quote.length, unique: true,
+      } : { sourceId: source?.sourceId ?? entry.sourceId, ...(source?.unitId ? { unitId: source.unitId } : {}), unique: false };
+      const label = `${index + 1}.${citation + 1}`;
+      lines.push(`\nBEGIN INDEPENDENT QUOTE ${label}\n${JSON.stringify(origin)}\n${entry.quote}\nEND INDEPENDENT QUOTE ${label}`);
+    }
+  }
+  return lines.join('\n');
+}

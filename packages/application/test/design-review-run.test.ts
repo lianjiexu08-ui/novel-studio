@@ -4,6 +4,7 @@ import { ChapterWorkflow, InMemoryWorkRepository, type DesignProvider } from '..
 import { createReadyWork } from './fixtures.ts';
 import { designReviewInput, designReviewOverview, type DesignReviewInput, type DesignReviewResult } from '../../../novel-service-core/src/design-review.ts';
 import { createDesignReviewRun, designReviewStageInput, acceptDesignReviewStage, completeDesignReviewRun } from '../../../novel-service-core/src/design-review-run.ts';
+import { renderDesignReviewReport } from '../../../novel-service-core/src/design-review-report.ts';
 
 const writer = { generateChapter: () => ({ content: 'unused', proposedEvents: [] }) };
 export const stagePass = (input: DesignReviewInput): DesignReviewResult => ({ summary: '本批材料已核', checks: Object.keys(input.rubric).map(criterion => ({ criterion, verdict: 'pass', explanation: '依据本批原文', evidence: [{ sourceId: input.sources[0].id, quote: input.sources[0].text.slice(0, 40) }], revisionAdvice: '' })) });
@@ -60,7 +61,7 @@ test('chapter-only power batches also receive complete tier and technique rules'
   ];
   input.sources = [...rules, ...input.sources];
   const run = createDesignReviewRun(input);
-  assert.equal(run.scheduleVersion, 5);
+  assert.equal(run.scheduleVersion, 6);
   for (const stage of run.stages) {
     const staged = designReviewStageInput(run, stage);
     assert.ok(JSON.stringify(staged.sources).length <= 240_000);
@@ -384,7 +385,7 @@ test('v3 budgets full quotation envelopes so evidenced deferrals can fit without
   assert.throws(() => acceptDesignReviewStage(legacy, legacy.stages[0], large), /结论过长/);
 });
 
-function threePartitionRun(version: 4 | 5 = 5) {
+function threePartitionRun(version: 4 | 5 | 6 = 6) {
   const input: DesignReviewInput = { ...largeInput(), rubric: { timeline: '寄出与送达是否有实际时间', payoff: '承诺是否保持代价' }, sources: [
     { id: 'author', text: '仅检查本轮提案，不视为采纳事实。' },
     { id: 'early', text: '第9日寄出书信，送达前收信人不能知情。' + '日程说明。'.repeat(17000) },
@@ -408,7 +409,7 @@ function finishRawWithThirdPartitionQuestion(run: ReturnType<typeof threePartiti
   }
 }
 
-test('v5 rechecks a third-partition dependency with complete cited sources, survives restore and preserves hard revisions', () => {
+test('current schedule rechecks a third-partition dependency with complete cited sources, survives restore and preserves hard revisions', () => {
   for (const explicitlyResolve of [false, true]) {
     let run = threePartitionRun();
     const originalPlan = structuredClone(run.stages.map(s => ({ id: s.id, unitIds: s.unitIds })));
@@ -448,6 +449,45 @@ test('v5 rechecks a third-partition dependency with complete cited sources, surv
     const tampered = structuredClone(run);
     tampered.stages.find(s => s.followupFor)!.unitIds.pop();
     assert.throws(() => completeDesignReviewRun(tampered), /覆盖或跨批检查未完成/);
+  }
+});
+
+test('v6 reports separate nonadjacent excerpts and preserve provable UTF-16 positions without inventing locations', () => {
+  const early = '"sinceChapter": 18, "untilChapter": 26';
+  const late = '"trigger": "72章归乡当面交接"';
+  const original = `😀前文\n${early}\n第18章共同查阅记录。\n第72章的新阶段。\n${late}\n重复文字 重复文字`;
+  const result: DesignReviewResult = { summary: '分期认知', checks: [{ criterion: 'knowledge', verdict: 'pass', explanation: '两个独立阶段', revisionAdvice: '', evidence: [early, late, '重复文字'].map(quote => ({ sourceId: 'review-unit/1', quote })) }] };
+  const before = structuredClone(result);
+  const rendered = renderDesignReviewReport(result, () => ({ sourceId: 'story/secrets/one', unitId: 'review-unit/1', start: 100, text: original }));
+  const metadata = [...rendered.matchAll(/BEGIN INDEPENDENT QUOTE [^\n]+\n([^\n]+)/g)].map(match => JSON.parse(match[1]));
+  assert.equal(metadata.length, 3);
+  assert.equal(metadata[0].start, 100 + original.indexOf(early));
+  assert.equal(metadata[0].end, metadata[0].start + early.length);
+  assert.equal(metadata[1].start, 100 + original.indexOf(late));
+  assert.ok(metadata[1].start > metadata[0].end, 'the omitted interval remains visible');
+  assert.equal(metadata[2].unique, false);
+  assert.equal(metadata[2].start, undefined, 'repeated text must not be assigned its first matching position');
+  assert.ok(rendered.includes(`\n${early}\nEND INDEPENDENT QUOTE 1.1`));
+  assert.ok(rendered.includes(`\n${late}\nEND INDEPENDENT QUOTE 1.2`));
+  assert.deepEqual(result, before);
+});
+
+test('v5 frozen report JSON survives restore while v6 synthesizes and validates annotated independent quotations', () => {
+  for (const version of [5, 6] as const) {
+    const run = createDesignReviewRun(largeInput(), undefined, version);
+    for (const stage of run.stages) {
+      const input = designReviewStageInput(run, stage);
+      if (stage.kind === 'synthesis') {
+        const source = input.sources.find(s => s.id === `review-result/${stage.children[0]}`)!;
+        const child = run.stages.find(s => s.id === stage.children[0])!;
+        if (version === 5) assert.equal(source.text, JSON.stringify(child.result, null, 2));
+        else assert.ok(source.text.includes('BEGIN INDEPENDENT QUOTE'));
+        const restored = JSON.parse(JSON.stringify(run));
+        assert.deepEqual(designReviewStageInput(restored, restored.stages.find((s: { id: string }) => s.id === stage.id)), input);
+      }
+      acceptDesignReviewStage(run, stage, stagePass(input));
+    }
+    assert.equal(completeDesignReviewRun(run).result.checks[0].verdict, 'pass');
   }
 });
 
