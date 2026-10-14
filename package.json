@@ -12,6 +12,11 @@
     "test": "node scripts/test-all.mjs",
     "model:milestone": "node scripts/run-model-milestone.mjs",
     "dev:api": "npm run start -w novel-studio-api",
-    "dev:web": "npm run dev -w novel-studio-web"
+    "dev:web": "npm run dev -w novel-studio-web",
+    "typecheck:core": "tsc -p novel-service-core/tsconfig.json"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "typescript": "^5.9.3"
   }
 }

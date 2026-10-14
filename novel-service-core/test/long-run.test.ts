@@ -5,14 +5,14 @@ import { lockStoryBible, lockWorldPack } from '../src/world.ts';
 import { fixtureDesignReview, minimalPlan } from '../../packages/application/test/fixtures.ts';
 import { designReviewAreas, designReviewInput, recordDesignReview } from '../src/design-review.ts';
 import { createDesignReviewRun } from '../src/design-review-run.ts';
-import type { Work } from '../src/core.ts';
+import type { EventDraft, Work } from '../src/core.ts';
 import { createPlanRevision, planContentHash } from '../src/planning.ts';
 import type { StoryBible, WorldPack } from '../src/world.ts';
 
 const provider = {
   generateChapter: ({ chapterNumber }: { chapterNumber: number }) => {
     const event = { eventType: 'character_state', subjectId: 'hero', predicate: 'power', value: chapterNumber, storyTime: chapterNumber, evidence: 'paragraph 1' };
-    const events = [event];
+    const events: EventDraft[] = [event];
     if (chapterNumber === 90) events.push({ eventType: 'secret_reveal', subjectId: 'secret', predicate: 'revealed', value: true, evidence: '战争遗印真相揭示' });
     if (chapterNumber === 95) events.push({ eventType: 'thread_resolution', subjectId: 'thread', predicate: 'status', value: { status: 'resolved' }, evidence: '界门来历得到解释' });
     if (chapterNumber === 98) events.push({ eventType: 'promise_payoff', subjectId: 'promise', predicate: 'status', value: { status: 'paid' }, evidence: '三年之约兑现' });

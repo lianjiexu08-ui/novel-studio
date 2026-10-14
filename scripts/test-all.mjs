@@ -22,6 +22,8 @@ function run(label, command, args, cwd) {
   if (result.status !== 0) process.exit(result.status ?? 1);
 }
 
+run('core-types', process.execPath, ['node_modules/typescript/bin/tsc', '-p', 'novel-service-core/tsconfig.json'], root);
+
 for (const relative of packageDirs) {
   const directory = join(root, relative);
   const files = readdirSync(join(directory, 'test')).filter((file) => file.endsWith('.test.ts')).map((file) => join('test', file));
