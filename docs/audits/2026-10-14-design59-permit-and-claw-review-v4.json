@@ -1,0 +1,44 @@
+{
+  "status": "reviewed",
+  "purpose": "Narrow read-only review of unsaved candidate59v4 permit and chapter25 sequencing repairs; no full-design acceptance.",
+  "candidateHash": "4e39035f3d6ee2b8f878da4305fae5ed4b2c1c839f52bb614c12731f4a388fab",
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "savedToWork": false,
+  "formalAcceptance": false,
+  "startedAt": "2026-10-14T14:12:20.851Z",
+  "finishedAt": "2026-10-14T14:13:02.649Z",
+  "sourceCount": 87,
+  "sourceChars": 133153,
+  "usage": {
+    "calls": 1,
+    "failedCalls": 0,
+    "inputTokens": 76840,
+    "outputTokens": 722,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 1,
+        "failedCalls": 0,
+        "outputTokens": 722,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 2
+    }
+  },
+  "protectedDesignAndHistoryUnchanged": true,
+  "inputHash": "8daa020ea77dc7d4b91a968e37e15116fa7b75a72d22efd838568a8272e5cb97",
+  "checks": [
+    {
+      "criterion": "chronology",
+      "verdict": "pass",
+      "explanation": "旧结论指出rel_05曾将夜写成301日返岗，而返程里程碑同时要求其自301日起走十昼夜陆路，构成同日两地冲突。现rel_05明确为301日午交清名单和限程担保后出发、311日午抵驻地并完成当面值守交接后才返岗，且明确途中不在驻地执勤、不因返岗自动得知林贺结果。返程里程碑分别规定：林贺301—303日暖车至通天渡口、303日实际以封存3000购两席、304暮—310暮六昼夜航行、311—314日陆路返外山、315日当面交证；夜的限程担保由原巡队出港核验、沿岸岗哨逐站签注、终站港务候船监管承接，夜本人离开后担保责任不消失且须待实体纸单回传。14000专项款中北航票10000、回票3000、累计杂费780与余220的结算也明确为一次扣减：220封存待贺实际返赤霄交款，不成为林的资金。两队行程、知情和监管职责未混写。",
+      "revisionAdvice": "",
+      "evidenceCount": 5
+    }
+  ]
+}

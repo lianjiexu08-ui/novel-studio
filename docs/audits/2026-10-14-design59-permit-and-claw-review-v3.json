@@ -1,0 +1,72 @@
+{
+  "status": "reviewed",
+  "purpose": "Narrow read-only review of unsaved candidate59v3 permit and chapter25 sequencing repairs; no full-design acceptance.",
+  "candidateHash": "5dd7d385467889cafefa6b147ca2ce9f76ef9fc42645db38619a163da5dc508d",
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "savedToWork": false,
+  "formalAcceptance": false,
+  "startedAt": "2026-10-14T14:07:32.860Z",
+  "finishedAt": "2026-10-14T14:09:10.224Z",
+  "sourceCount": 115,
+  "sourceChars": 170859,
+  "usage": {
+    "calls": 1,
+    "failedCalls": 0,
+    "inputTokens": 105003,
+    "outputTokens": 2090,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 1,
+        "failedCalls": 0,
+        "outputTokens": 2090,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 2
+    }
+  },
+  "protectedDesignAndHistoryUnchanged": true,
+  "inputHash": "f38f037f97a6c9e233c69c2a7a9129e259715e6b55a9edee41c26ce51dadda15",
+  "checks": [
+    {
+      "criterion": "permission",
+      "verdict": "pass",
+      "explanation": "新限程担保明确由夜凝霜在港务与当值巡队见证下具名签发，逐项列明林、贺、封袋、会合地、301晨至304夜期限、限定驿路和禁止区域；301出港、逐站验籍签注、303候船监管交接及304以原单、名册、船票三者相符为登船条件均有实体执行人。任一站不放行或期限内未登船即须在受监管驿站/候船区停留、重审并改签，未将商票、路线安全或旧查货担保替代通行权。夜离开后仍保有限程担保的越界责任，巡队亦承担纸单回收追查责任。",
+      "revisionAdvice": "",
+      "evidenceCount": 3
+    },
+    {
+      "criterion": "chronology",
+      "verdict": "revise",
+      "explanation": "北航票10000、303日实际购买回票3000、累计杂费780和余220的单次结算明确；304暮至310暮六昼夜海程、311—314返外山及315交接亦已顺接，暖车、保温衣、受监管住宿与肩伤限制均未被免除。但关系阶段写夜凝霜“301日返岗”，返程里程碑却写她在301日签交后才沿十日陆路返驻地，二者不能同时发生；这会使第301日后的关系状态与行动地点失去唯一时间锚点。",
+      "revisionAdvice": "统一rel_05第67章起因与ms_v3_return：夜凝霜要么在301日仅完成签交并开始十日返程、到实际抵达日才返岗，要么修改里程碑中的返驻地行程及相应值守后果。不得保留同日既已返岗又刚开始十日陆路返程的表述。",
+      "evidenceCount": 4
+    },
+    {
+      "criterion": "combat",
+      "verdict": "pass",
+      "explanation": "第25章已将顾三息起印、墨第二息起爪与第三息续爪、真光完成后接触实际外放爪煞的顺序写为同一链条；墨每息预付一成、停爪后六息不得重启均明确。真光只灼散当次外放煞气，不取消墨至少三成余量或行动能力；其后制伏依赖墨为抢箱放弃撤退、货柱/废木造成的具体站位、顾实际接膝和一息聚劲，且墨仍有抽腿、打断或反击机会。顾右肩伤、墨腿伤与指口裂伤都导致停术，未用永久封禁或账面归零解释被擒。",
+      "revisionAdvice": "",
+      "evidenceCount": 5
+    },
+    {
+      "criterion": "qualification",
+      "verdict": "pass",
+      "explanation": "顾峤并非仅凭玄府身份施真光：其角色设定已给出开篇前的玄府纯阳供能、三息凝印、主动收势受控实测和经脉复诊；第25章明确该前史不代替当日十成余量、无新增伤情及未施真光的核验。墨的噬血爪与贴身推劲同样已有开篇前训练、实测和医修停术边界，章内仍另核187日后余量、指口与手指状态。林苏并未因此获得这些精确训练信息。",
+      "revisionAdvice": "",
+      "evidenceCount": 5
+    },
+    {
+      "criterion": "narrative",
+      "verdict": "pass",
+      "explanation": "第25章不是以属性克制直接取胜：林等待顾亲至才冒险开闸，苏放弃追看守而护送俘虏，顾支付寿元并承担肩伤，墨为货物舍弃撤路，护卫伤亡、林腿伤和墨仍须近身看押保留了损失。301返程亦让林贺主动申请受限离境、接受逐站受监管核验；夜以巡查容量与具名责任为代价，许可失败则停留改签，保留拒绝和失败后果，而非以安全路线或票据消解冲突。",
+      "revisionAdvice": "",
+      "evidenceCount": 5
+    }
+  ]
+}
