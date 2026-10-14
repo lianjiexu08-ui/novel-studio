@@ -1,0 +1,22 @@
+{
+  "status": "waiting_for_previous_runner",
+  "queuedAt": "2026-10-14T12:42:59.756Z",
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "runtimeCommit": "21f69efcffa5aaef565960b208dfc6ac3c718e25",
+  "previousRunnerPid": 83313,
+  "priorTransportErrors": [
+    {
+      "area": "power",
+      "message": "terminated",
+      "causeCode": "ERR_HTTP2_STREAM_ERROR"
+    },
+    {
+      "area": "world",
+      "message": "fetch failed",
+      "causeCode": "UND_ERR_HEADERS_TIMEOUT"
+    }
+  ],
+  "policy": "Wait for the current runner process to exit and its terminal checkpoint; resume only incomplete areas, preserve completed stages and failures, no design changes or prose generation.",
+  "formalAcceptance": false
+}

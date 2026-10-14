@@ -1,5 +1,5 @@
 {
-  "observedAt": "2026-10-14T12:41:07.041Z",
+  "observedAt": "2026-10-14T12:43:43.257Z",
   "status": "in_progress_not_acceptance",
   "originalRunnerStatus": "running",
   "runtimeCommit": "21f69efcffa5aaef565960b208dfc6ac3c718e25",
@@ -24,17 +24,17 @@
     "manuscripts": 1
   },
   "usage": {
-    "calls": 16,
+    "calls": 18,
     "failedCalls": 2,
-    "inputTokens": 1578567,
-    "outputTokens": 34908,
+    "inputTokens": 1767071,
+    "outputTokens": 39596,
     "costUsd": 0,
     "costKnown": false,
     "byRole": {
       "reviewing": {
-        "calls": 16,
+        "calls": 18,
         "failedCalls": 2,
-        "outputTokens": 34908,
+        "outputTokens": 39596,
         "costUsd": 0
       }
     },
@@ -45,7 +45,7 @@
   },
   "usageScope": "original_runner_only",
   "recoveries": [],
-  "combinedCalls": 16,
+  "combinedCalls": 18,
   "errors": [
     {
       "area": "power",
@@ -1044,17 +1044,97 @@
       "id": "design_run_1ecb47bb-36fd-4e06-9864-0f53d5f1e609",
       "area": "characters",
       "status": "running",
-      "completed": 0,
+      "completed": 1,
       "total": 19,
-      "stages": []
+      "stages": [
+        {
+          "id": "batch-1",
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass",
+              "explanation": "本批已给出的主角及主要配角具有彼此冲突的生存、调查、职责、生计或阵营目标，并且关键行动通常伴随明确选择与代价。林辰从矿工求生到接受伙伴自主选择、再以十年寿元晋入玄府，目标和能力成长由伤势、修习、诊察及支付条件推进；苏凌霜选择保留不利证词并留宗，顾峤、贺青梧、陆沉舟、吴伍、卢小满等也都有不替他人承担责任的独立取舍。51—100仍属宏观提案，尚未逐章兑现，但现有宏观安排没有因未展开场景而形成内容冲突。",
+              "revisionAdvice": "",
+              "evidenceCount": 11
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "pass",
+              "explanation": "关系条目普遍给出了初始状态、促成变化的具体选择、付出或损失，以及变化生效的章节时点，没有单凭终局标签跳跃。林—苏关系从受限庇护、共同作证、资源分配和分路消息延迟，递进到后期有限搭档；林—赵、林—墨、林—贺、林—陆及吴—卢等关系也分别由实际证据、救援、背叛、供述或自主去留推动。关系文本明确区分拟定阶段与尚待实际发生的事件，因此未把尚未写正文误判为既成事实。",
+              "revisionAdvice": "",
+              "evidenceCount": 13
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "insufficient",
+              "explanation": "已提供的秘密材料能够支持部分认知链：林辰对父案、九鼎、运输链和赵方的认知均按实物、当面交接与消息到达分期，明确禁止把读者视角或未来证据倒填给角色；赵也被限定为只能知道自身经历及实际收到的报令。可是本批仅提供story/secrets/sec_02的前10000字符，而目录显示该来源完整长度为26549；story/secrets/sec_03与sec_04虽在完整来源目录中存在，却未随本批提供。因而无法核验其他秘密持有者、后续认知阶段及其与人物弧光和关系安排的整体一致性。这是待补读材料不足，不等同于已发现设计矛盾。",
+              "revisionAdvice": "补读并核对story/secrets/sec_02的剩余原文以及story/secrets/sec_03、story/secrets/sec_04，重点检查各秘密持有者的知情阶段、消息传播条件、人物选择触发点是否与关系条目及51—100章宏观安排相容；不要把尚未发生的规划锚点当作已采纳认知。",
+              "awaitingSources": [
+                "story/secrets/sec_02",
+                "story/secrets/sec_03",
+                "story/secrets/sec_04"
+              ],
+              "evidenceCount": 9
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "design_run_bec4e8bb-fe9f-4b34-8af5-5e27d9520794",
       "area": "story",
       "status": "running",
-      "completed": 0,
+      "completed": 1,
       "total": 29,
-      "stages": []
+      "stages": [
+        {
+          "id": "batch-1",
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "insufficient",
+              "explanation": "宏观因果链有明确方向：林辰以短寿限制换取有限成长，先完成凝元、疗程、航行与救援，再进入玄府；且计划明示后段仍须逐层落实，不能以预期资源替代前置。但本批未提供计划第1—50章逐章原文，无法核验具体救援、药程、支付、伤情和权限是否实际按顺序闭合。需要对照plan/chapters/1至plan/chapters/50，尤其核查第23—32章泉液、疗程、南渡，以及第44—53章救援和消息链。",
+              "revisionAdvice": "补读并逐章核对第1—50章的行动、伤势、资源支付和准入条件；不得以关系阶段或里程碑摘要替代实际兑现账。",
+              "evidenceCount": 8
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "insufficient",
+              "explanation": "世界规则对自然日、疗程日、航程和恢复速率的约束清楚，宏观也给出第19日诊断、第188日救援、第214—216日航程、第466日回访等锚点。但本批没有对应逐章计划，无法确认这些日期是否能容纳训练、疗程、休养、消息传递和实体航程，也无法核验第33—35章返宗安排与第33章起的赤霄线是否连续。已有材料只能说明目标时间线存在，不能证明可执行。",
+              "revisionAdvice": "补读plan/chapters/1至plan/chapters/50，逐项列出日期、疗程、训练、航程、休息和通信到达日；特别复核第31—35章跨卷承接及第51—66章北航宏观与前段日期的衔接。",
+              "evidenceCount": 8
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "insufficient",
+              "explanation": "宏观设计明确了若干条件化兑现：取得有限泉液但不等于寿储立即生效，救援后仍承担伤势与职责，百章只持第一片、不取得第二片和第三片，玄府成长支付十年且不发动逆命真解；关系条目也区分了证据取得、知情范围和后续待兑现。但本批未带具体章纲，无法确认伏笔是否在对应时点消费、代价是否真正支付、消息是否重复使用，亦无法核对第51—100章宏观安排之间的兑现承接。",
+              "revisionAdvice": "补读对应章纲后建立伏笔—触发—选择—代价—结果表；重点核对父案证据、撤押原令、六号箱、第一片持有、北境七人和玄府支付是否各自只消费一次。",
+              "evidenceCount": 8
+            },
+            {
+              "criterion": "opening",
+              "verdict": "insufficient",
+              "explanation": "宏观递进方向成立：开篇是淬体求生与矿务证物，中段转为凝元后的古境救援和跨陆运输，后段才进入玄府、押运截停与有限胜果；结局也明确不提前清算九鼎或完成界门总收束。这说明提案没有把百章直接推到全书终局。但本批缺少第1—50章逐章场景及51—100的展开章纲，无法比较实际冲突升级、选择难度和高潮间隔，也不能仅凭计划摘要判定开篇是否重复模板或递进充分。",
+              "revisionAdvice": "补读第1—50章逐章纲并补充51—100的宏观转折执行表，核验每卷是否改变人物选择和风险，而非只更换地点、货物或救援对象。",
+              "evidenceCount": 5
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "insufficient",
+              "explanation": "世界与宏观计划提供了可形成节奏变化的材料：训练、疗程、调查、实体航程、救援、押运和三十日回访并非同一类行动；关系阶段也记录了从试探、分路到有限搭档的变化。但本批没有实际章节场次、场景后果或章间转折，无法判断第1—50章是否存在连续核账、问询或重复救援，也无法评价第51—100章宏观节点之间的留白是否会造成拖沓。",
+              "revisionAdvice": "补读已有逐章章纲，逐章标注新的行动目标、不可逆后果、关系选择和信息变化；若相邻章节只重复核验或救援，应合并或增加真正改变局势的选择。",
+              "evidenceCount": 5
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass",
+              "explanation": "就本批可检验的设计而言，玄幻要素不是纯术语装饰：寿储、真元、元罡、疗程和境界成本直接限制人物选择；大陆、界门和航路规则改变了行动路线；法宝与功法均有资格、对象、范围、供能、冷却和失败后果。宏观结局又明确不以逆命真解、越阶斩高境或免费返寿解决问题，符合有限能力、以代价换取阶段性胜果的类型方向。该通过仅限规则与宏观提案，不代表实际章节已完成呈现。",
+              "revisionAdvice": "",
+              "evidenceCount": 8
+            }
+          ]
+        }
+      ]
     }
   ]
 }
