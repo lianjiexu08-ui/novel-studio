@@ -1,0 +1,20 @@
+{
+  "observedAt": "2026-10-14T22:45:52.030526+00:00",
+  "kind": "sqlite_consistent_readonly_source_backup",
+  "source": "data/novel-studio.db",
+  "snapshotPath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-backups/20261015-design61-world-audit-snapshot.db",
+  "sha256": "a65e8d0a58059a6833ab7c54a7b4bae0002fce2a7fc21d7603fac433f4764d58",
+  "integrityCheck": "ok",
+  "sourceOpenedReadOnly": true,
+  "productionMigration": false,
+  "purpose": "Audit a stable snapshot while formal61 workers continue. Never restore this audit copy to production.",
+  "auditPath": "docs/audits/2026-10-15-design61-world-completed-audit.json",
+  "snapshotUnchangedAfterAudit": true,
+  "worldMatchesLiveFinalProof": true,
+  "liveAuditAttempts": {
+    "count": 2,
+    "result": "SQLite transaction query timeout; no report written",
+    "action": "Read-only source backup followed by isolated snapshot audit; live workers not stopped or restarted"
+  },
+  "auditStatus": "not_accepted"
+}

@@ -1,0 +1,60 @@
+{
+  "observedAt": "2026-10-14T22:48:21.618721+00:00",
+  "status": "world_final_mapped_with_unrepaired_local_finding",
+  "formalInputHash": "7b7892ad3d19537ab7aae549e0154344d22a3f5389772416658dba130da6dcc2",
+  "formalReportId": "design_review_c52c920a-0122-4728-885c-6b065ce6a197",
+  "formalReportSha256": "855d5cc29364d21c62732b4ccbfffc9fd07b2a5dbbef13ffa06d7fcea1d779c1",
+  "formalStatus": "needs_revision",
+  "candidateFileSha256": "009753175d0c2180854c44a2a7df7a23771ef6141cfa60c7e8841be05bd72196",
+  "productionApplied": false,
+  "readyToApplyCandidate": false,
+  "items": [
+    {
+      "criterion": "geography",
+      "issue": "310日暮返青玄港缺实际验籍、纳税、放行和失败后果",
+      "disposition": "unapplied_candidate_v3_repair",
+      "candidatePath": [
+        "plan",
+        "milestones",
+        "ms_v3_return"
+      ],
+      "evidence": "2026-10-15-design62-return-port-diagnostic-proof.json",
+      "remaining": "后续四领域复评与章节实现；局部通过不等于正式采纳。"
+    },
+    {
+      "criterion": "geography",
+      "issue": "rel_05中夜301日离开与311日返岗的原文独立对照未完成",
+      "disposition": "existing_source_locally_compared_no_timeline_edit",
+      "sourceIds": [
+        "story/relationships/rel_05",
+        "plan/milestones/ms_v3_return"
+      ],
+      "evidence": "2026-10-15-design61-night-return-proof.json",
+      "remaining": "原正式负面保留；下一次正式评审需对照完整证据，不能只读历史待核说明。"
+    },
+    {
+      "criterion": "geography",
+      "issue": "局部复核新增：离境签注回执传递、接收与未送达期间担保责任未完整规划",
+      "disposition": "unrepaired",
+      "sourceIds": [
+        "plan/milestones/ms_v3_return",
+        "world/locations/loc_02"
+      ],
+      "evidence": "2026-10-15-design61-night-return-diagnostic.json",
+      "remaining": "现稿没有宣称回执已送达或夜已知离境结果；不得倒填这类事实。在安排回执使用或责任结清前，须明确传递与责任流程，或明确阶段内仍未结清的后果。不能为补手续扩张跨域权限或新增无来源消息。"
+    },
+    {
+      "criterion": "history",
+      "disposition": "formal_pass_design_only",
+      "remaining": "不表示旧正文已实现或后续全书完结。"
+    },
+    {
+      "criterion": "capacity",
+      "disposition": "formal_pass_design_only",
+      "remaining": "100章为450章阶段验收，不表示已验收450章或文学正文。"
+    }
+  ],
+  "unrepairedLocalFindings": 1,
+  "allAreasAccepted": false,
+  "limitation": "World-only final disposition with one new adverse local finding. Power and characters continue; story remains pending. All original reports and history are preserved."
+}

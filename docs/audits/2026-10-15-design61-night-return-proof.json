@@ -1,0 +1,53 @@
+{
+  "observedAt": "2026-10-14T22:47:31.306Z",
+  "status": "local_timeline_relationship_pass_responsibility_needs_revision",
+  "formalInputHash": "7b7892ad3d19537ab7aae549e0154344d22a3f5389772416658dba130da6dcc2",
+  "originalRunId": "design_run_6cb69d6b-162e-40e8-8d22-788cb08b103f",
+  "originalStageId": "synthesis-27",
+  "originalFindingSha256": "4a57c42106c7f79e2a98c62e0a2ca380991f517191dc83d454c16073ac684095",
+  "originalAdverseFindingPreserved": true,
+  "diagnosticInputHash": "efd0f3b71e88e34f51db2a69447a40845ad77dc8ead0cab6c0a6ba89e7a6d4e3",
+  "resultSha256": "ab2b55a264886b2c9b02b258563b2e9484ae5b1930ef2e81897967d088048645",
+  "model": "gpt-5.6-luna",
+  "timeoutMs": 600000,
+  "fallback": false,
+  "checks": [
+    {
+      "criterion": "timeline",
+      "verdict": "pass"
+    },
+    {
+      "criterion": "responsibility",
+      "verdict": "revise"
+    },
+    {
+      "criterion": "relationship",
+      "verdict": "pass"
+    }
+  ],
+  "verifiedCitations": 6,
+  "allDesignSourcesExactlyFromFormal61Input": true,
+  "usage": {
+    "calls": 1,
+    "failedCalls": 0,
+    "inputTokens": 20891,
+    "outputTokens": 1272,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 1,
+        "failedCalls": 0,
+        "outputTokens": 1272,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 3
+    }
+  },
+  "productionWrites": false,
+  "formalAcceptance": false,
+  "limitation": "Targeted comparison of existing night-return relationship and milestone. Timeline agrees, but receipt delivery and unresolved guarantor responsibility need further design work. No overall world acceptance and no override of the formal adverse report."
+}
