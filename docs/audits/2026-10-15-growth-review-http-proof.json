@@ -1,0 +1,56 @@
+{
+  "observedAt": "2026-10-14T21:08:10.864Z",
+  "fixtureOnly": true,
+  "ports": {
+    "api": 8791,
+    "web": 5191
+  },
+  "criteria": [
+    {
+      "criterion": "causality",
+      "verdict": "pass"
+    },
+    {
+      "criterion": "timeline",
+      "verdict": "pass"
+    },
+    {
+      "criterion": "payoff",
+      "verdict": "pass"
+    },
+    {
+      "criterion": "opening",
+      "verdict": "pass"
+    },
+    {
+      "criterion": "pacing",
+      "verdict": "pass"
+    },
+    {
+      "criterion": "genre",
+      "verdict": "pass"
+    },
+    {
+      "criterion": "growth",
+      "verdict": "revise"
+    }
+  ],
+  "overallReady": false,
+  "otherAreasPassed": true,
+  "detailLoadsGrowthAdvice": true,
+  "unchangedPollVerified": true,
+  "cors": "http://127.0.0.1:5191",
+  "browserVerification": "verified via Codex in-app browser tab51",
+  "renderedUiVerified": true,
+  "modelCalls": 0,
+  "productionWrites": false,
+  "browserInitialFailure": "Chrome unavailable: Codex auth token is unavailable; no page opened there",
+  "uiObservedAt": "2026-10-14T21:12:08.031207+00:00",
+  "uiObservations": [
+    "Three other design areas passed; story still needs_revision",
+    "Other six story criteria passed; growth displayed as 返修 近期成长目标与回报",
+    "Explanation, revision advice and expandable evidence visible"
+  ],
+  "screenshot": "/tmp/novel-growth-review-ui.png",
+  "fixtureMutations": 0
+}

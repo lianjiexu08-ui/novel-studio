@@ -1,0 +1,492 @@
+{
+  "observedAt": "2026-10-14T21:05:59.865Z",
+  "status": "prepared_not_started_not_accepted",
+  "runtimeCommit": "fdf5a46de118b234f4416993049cec496c19d455",
+  "rubricVersion": 16,
+  "scheduleVersion": 21,
+  "candidateFileSha256": "337118ea173f66d5b9f9c9932f60695bd9bb8eea992231e04c47f8571f1a0bb2",
+  "snapshotDatabase": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-backups/design61-v6-atomic-rehearsal.db",
+  "isolatedPlanId": "plan_ebe68430825c48768876e0c06ae2de1d",
+  "isolatedInputHash": "28aa983a5bc7d9c761f5ceda62c07740912e4f95aea783f374505d8b9aebd1d8",
+  "expectedRevisions": {
+    "world": 31,
+    "bible": 61,
+    "plan": 61,
+    "approvedPlan": 10
+  },
+  "modelCalls": 0,
+  "productionWrites": false,
+  "areas": [
+    {
+      "area": "world",
+      "criteria": [
+        "geography",
+        "history",
+        "capacity"
+      ],
+      "sourceCount": 416,
+      "sourceEnvelopeSha256": "f59f2cf624ee2a797f91b2bad786f1099b3bbe1e96238590941944e36452e4d0",
+      "units": 419,
+      "batches": 5,
+      "crossChecks": 10,
+      "initialStages": 29,
+      "allOriginalCharactersCovered": true,
+      "allRawStagesReachFinalSynthesis": true,
+      "maxRawSourceCharacters": 218148,
+      "maxRawRequestCharacters": 264281,
+      "requests": [
+        {
+          "stage": "batch-1",
+          "sourceCharacters": 129669,
+          "requestCharacters": 171880,
+          "coverageCharacters": 23849,
+          "requestSha256": "72b68d94ca7a3114d3e25493dcc84e8f198727f0d6c9d02a8b436eea7f545669"
+        },
+        {
+          "stage": "batch-2",
+          "sourceCharacters": 123475,
+          "requestCharacters": 163864,
+          "coverageCharacters": 23849,
+          "requestSha256": "a553039015f0f999d01cceb7d0989c872ce4b464436b83b9b9af6ec351f2a077"
+        },
+        {
+          "stage": "batch-3",
+          "sourceCharacters": 125327,
+          "requestCharacters": 161482,
+          "coverageCharacters": 23849,
+          "requestSha256": "004a9337370a5ccd9c1457cc828d4f55e9f04455f80f708b412889c02162378c"
+        },
+        {
+          "stage": "batch-4",
+          "sourceCharacters": 128258,
+          "requestCharacters": 164161,
+          "coverageCharacters": 23849,
+          "requestSha256": "8fb8cc9f963f85288b1421a7387e7de49b7658e385b363bde2bcc585f817d23d"
+        },
+        {
+          "stage": "batch-5",
+          "sourceCharacters": 111177,
+          "requestCharacters": 146744,
+          "coverageCharacters": 23849,
+          "requestSha256": "9c17b43e2676f3d1495d691454fe96d2fa2083b072cbebee7f5fdfbe15e44f49"
+        },
+        {
+          "stage": "cross-1-2",
+          "sourceCharacters": 213365,
+          "requestCharacters": 263984,
+          "coverageCharacters": 23849,
+          "requestSha256": "8514bf1b4ead30571eeb8147ddbb5a840939a961568ff1b70ead643e64f1314c"
+        },
+        {
+          "stage": "cross-1-3",
+          "sourceCharacters": 215217,
+          "requestCharacters": 261602,
+          "coverageCharacters": 23849,
+          "requestSha256": "9a3f73de3225931e1d0d735883d049262762cf5ba3759eb18b02d20b0661ec3d"
+        },
+        {
+          "stage": "cross-1-4",
+          "sourceCharacters": 218148,
+          "requestCharacters": 264281,
+          "coverageCharacters": 23849,
+          "requestSha256": "05a2470aedf72d8cd62425d2953f2261b1e0facc0dac162e6dc4083cbb5067ab"
+        },
+        {
+          "stage": "cross-1-5",
+          "sourceCharacters": 201067,
+          "requestCharacters": 246864,
+          "coverageCharacters": 23849,
+          "requestSha256": "f1bbe309d18f1844dcfe526fb99900db185d27f605d3d06a5ccaf25c937c4273"
+        },
+        {
+          "stage": "cross-2-3",
+          "sourceCharacters": 209023,
+          "requestCharacters": 253586,
+          "coverageCharacters": 23849,
+          "requestSha256": "dc5681402e67c0b5668febaf51314961ebb1a7fc2660d98873d1fd6e4314486a"
+        },
+        {
+          "stage": "cross-2-4",
+          "sourceCharacters": 211954,
+          "requestCharacters": 256265,
+          "coverageCharacters": 23849,
+          "requestSha256": "8fe87f370898207f96c12146531239b49dd4eac3316b2b93f6ddc90243a454a8"
+        },
+        {
+          "stage": "cross-2-5",
+          "sourceCharacters": 194873,
+          "requestCharacters": 238848,
+          "coverageCharacters": 23849,
+          "requestSha256": "e4b90bb37d512f3deb875e31a95a7243a475be3bdf9a9b251e20565e0dd03247"
+        },
+        {
+          "stage": "cross-3-4",
+          "sourceCharacters": 213806,
+          "requestCharacters": 253883,
+          "coverageCharacters": 23849,
+          "requestSha256": "96c849ddd0e9f51e623ad9443dd4a8d6fc8fcb821bd08684abb782c7f62be27a"
+        },
+        {
+          "stage": "cross-3-5",
+          "sourceCharacters": 196725,
+          "requestCharacters": 236466,
+          "coverageCharacters": 23849,
+          "requestSha256": "c3dcc059989f6267d4fc950da618194d7e569a8d44ea30d033a31b65816dfd21"
+        },
+        {
+          "stage": "cross-4-5",
+          "sourceCharacters": 199656,
+          "requestCharacters": 239145,
+          "coverageCharacters": 23849,
+          "requestSha256": "d4d669c7efc8e6abce1949e44666eb8c9e53c44def499ee1aef8ed34c134211a"
+        }
+      ]
+    },
+    {
+      "area": "power",
+      "criteria": [
+        "tiers",
+        "costs",
+        "counters"
+      ],
+      "sourceCount": 336,
+      "sourceEnvelopeSha256": "41eb0573b62b2b202117091ce83d8b601195bd52cc675eba3791f214366c29ee",
+      "units": 339,
+      "batches": 5,
+      "crossChecks": 10,
+      "initialStages": 29,
+      "allOriginalCharactersCovered": true,
+      "allRawStagesReachFinalSynthesis": true,
+      "maxRawSourceCharacters": 218708,
+      "maxRawRequestCharacters": 259927,
+      "requests": [
+        {
+          "stage": "batch-1",
+          "sourceCharacters": 129437,
+          "requestCharacters": 162220,
+          "coverageCharacters": 19231,
+          "requestSha256": "9df801378e5978c8abdefdbc2f89f2f9422c45b125b02f6c257aa116e90be8e8"
+        },
+        {
+          "stage": "batch-2",
+          "sourceCharacters": 129113,
+          "requestCharacters": 163555,
+          "coverageCharacters": 19231,
+          "requestSha256": "116bc557fae1584fd4ec2f7412fcc6347ee2b971da0b061056b9c5a704f4929f"
+        },
+        {
+          "stage": "batch-3",
+          "sourceCharacters": 127650,
+          "requestCharacters": 157721,
+          "coverageCharacters": 19231,
+          "requestSha256": "a2d28790832631ee7a15fde9b0637d888fbf36730bad211e10c0b2c5b6511976"
+        },
+        {
+          "stage": "batch-4",
+          "sourceCharacters": 126801,
+          "requestCharacters": 156908,
+          "coverageCharacters": 19231,
+          "requestSha256": "3f7358d2a5968cd62dbfcf64aadaf64ad25784ffb3514caba12faa919944c53b"
+        },
+        {
+          "stage": "batch-5",
+          "sourceCharacters": 77933,
+          "requestCharacters": 105986,
+          "coverageCharacters": 19231,
+          "requestSha256": "0ff52196444d55ce557792c4bc1e2ae85d98836c166399df1bf96b478d36110b"
+        },
+        {
+          "stage": "cross-1-2",
+          "sourceCharacters": 218708,
+          "requestCharacters": 259927,
+          "coverageCharacters": 19231,
+          "requestSha256": "c67aa80f44b569f55a101bbcfcf00812d49847064269013762fc15d78c118d1a"
+        },
+        {
+          "stage": "cross-1-3",
+          "sourceCharacters": 217245,
+          "requestCharacters": 254093,
+          "coverageCharacters": 19231,
+          "requestSha256": "8eaedcfa0749fa2a79a057578a18d5c2c07f6ad36796dfa61d97c4749c76b7a0"
+        },
+        {
+          "stage": "cross-1-4",
+          "sourceCharacters": 216396,
+          "requestCharacters": 253280,
+          "coverageCharacters": 19231,
+          "requestSha256": "470e1c49f4e87a325509889e733458f40437ba59942388ab225e047d12b15933"
+        },
+        {
+          "stage": "cross-1-5",
+          "sourceCharacters": 167528,
+          "requestCharacters": 202358,
+          "coverageCharacters": 19231,
+          "requestSha256": "c775c838d2e7bc41e015a7e3d33ea606e656147916feb11e8e16d5db8010714e"
+        },
+        {
+          "stage": "cross-2-3",
+          "sourceCharacters": 216921,
+          "requestCharacters": 255428,
+          "coverageCharacters": 19231,
+          "requestSha256": "039ff4e48109bc8714fc6c32a03b3c07ca86f8f2b1423c4fffa300aff2261252"
+        },
+        {
+          "stage": "cross-2-4",
+          "sourceCharacters": 216072,
+          "requestCharacters": 254615,
+          "coverageCharacters": 19231,
+          "requestSha256": "df864d32fe2acdb527e3c77d8d522309707f6bfb49f2cbe131d7a4d15713647d"
+        },
+        {
+          "stage": "cross-2-5",
+          "sourceCharacters": 167204,
+          "requestCharacters": 203693,
+          "coverageCharacters": 19231,
+          "requestSha256": "79dd3254ee4c2bbf517d4827c8dac0107e544d57d9503d7322270ca48e89eb40"
+        },
+        {
+          "stage": "cross-3-4",
+          "sourceCharacters": 214609,
+          "requestCharacters": 248781,
+          "coverageCharacters": 19231,
+          "requestSha256": "cb4ddc06df86b65d9efeb624e7f3383dd0a2dfed0a5b8b1b0c9e8cbb435be994"
+        },
+        {
+          "stage": "cross-3-5",
+          "sourceCharacters": 165741,
+          "requestCharacters": 197859,
+          "coverageCharacters": 19231,
+          "requestSha256": "17ee7f2fd6fb965de8deac3e4004b477b12647eedbf32d1d9faf753e9f9f7bca"
+        },
+        {
+          "stage": "cross-4-5",
+          "sourceCharacters": 164892,
+          "requestCharacters": 197046,
+          "coverageCharacters": 19231,
+          "requestSha256": "465684822db22a1afede8e783f226c060e24af3035e7a51a4a13f028d2c5bfc9"
+        }
+      ]
+    },
+    {
+      "area": "characters",
+      "criteria": [
+        "agency",
+        "relationships",
+        "knowledge"
+      ],
+      "sourceCount": 286,
+      "sourceEnvelopeSha256": "3ea3c57d6995f7fc321ec42802f6d3bc72eb0712c4d5d7719721667de6cf4593",
+      "units": 289,
+      "batches": 4,
+      "crossChecks": 6,
+      "initialStages": 19,
+      "allOriginalCharactersCovered": true,
+      "allRawStagesReachFinalSynthesis": true,
+      "maxRawSourceCharacters": 218482,
+      "maxRawRequestCharacters": 247237,
+      "requests": [
+        {
+          "stage": "batch-1",
+          "sourceCharacters": 120105,
+          "requestCharacters": 149115,
+          "coverageCharacters": 13492,
+          "requestSha256": "759956fc2eb63ac129c88e3618951b22f466186d836a5d3d3a1b46c199915a44"
+        },
+        {
+          "stage": "batch-2",
+          "sourceCharacters": 129913,
+          "requestCharacters": 154748,
+          "coverageCharacters": 13492,
+          "requestSha256": "268c6dc1e86dd987ff4ff16e55d65705168829b7290fa04059ff86fe9948b1ec"
+        },
+        {
+          "stage": "batch-3",
+          "sourceCharacters": 128517,
+          "requestCharacters": 153357,
+          "coverageCharacters": 13492,
+          "requestSha256": "919079f994d01275727a39cea8643621c427219b6069bb2e9232a5d684542eb1"
+        },
+        {
+          "stage": "batch-4",
+          "sourceCharacters": 117947,
+          "requestCharacters": 142795,
+          "coverageCharacters": 13492,
+          "requestSha256": "5c3eb4b56b5e58815b642da402137b7955b921fe5cdc0055a831a3e86cdbd468"
+        },
+        {
+          "stage": "cross-1-2",
+          "sourceCharacters": 210070,
+          "requestCharacters": 242995,
+          "coverageCharacters": 13492,
+          "requestSha256": "65c140354df35f065c27663603cda803cfc429552fb11fcb6b9906d37b45d9f8"
+        },
+        {
+          "stage": "cross-1-3",
+          "sourceCharacters": 208674,
+          "requestCharacters": 241604,
+          "coverageCharacters": 13492,
+          "requestSha256": "61c06bf8a73b8de5d4af9436abd9e2dc0c8e18812ca0a2bf42d94b6fc68d3c26"
+        },
+        {
+          "stage": "cross-1-4",
+          "sourceCharacters": 198104,
+          "requestCharacters": 231042,
+          "coverageCharacters": 13492,
+          "requestSha256": "14da350d018e30ff18c7d615b50ab65f292fdf2196f28dc9bd46823be71d7bbc"
+        },
+        {
+          "stage": "cross-2-3",
+          "sourceCharacters": 218482,
+          "requestCharacters": 247237,
+          "coverageCharacters": 13492,
+          "requestSha256": "d697e5230fa9eb6aa05d10f03ae74bb082383732da67ea96c9f45f68d565a608"
+        },
+        {
+          "stage": "cross-2-4",
+          "sourceCharacters": 207912,
+          "requestCharacters": 236675,
+          "coverageCharacters": 13492,
+          "requestSha256": "d3ab76443db06fc993ccb78ded2fc0f6eb5b647bf9d6ce75135b9181648391f4"
+        },
+        {
+          "stage": "cross-3-4",
+          "sourceCharacters": 206516,
+          "requestCharacters": 235284,
+          "coverageCharacters": 13492,
+          "requestSha256": "5f27ccfc005f463071be91a7a5647088d45768796c299db2bccd91e28cfb4325"
+        }
+      ]
+    },
+    {
+      "area": "story",
+      "criteria": [
+        "causality",
+        "timeline",
+        "payoff",
+        "opening",
+        "pacing",
+        "genre",
+        "growth"
+      ],
+      "sourceCount": 361,
+      "sourceEnvelopeSha256": "9a692392fb3925b652a84e5fd0537f103af5e1bf229fbc83cfeec399bf5e8cc6",
+      "units": 364,
+      "batches": 5,
+      "crossChecks": 10,
+      "initialStages": 29,
+      "allOriginalCharactersCovered": true,
+      "allRawStagesReachFinalSynthesis": true,
+      "maxRawSourceCharacters": 219405,
+      "maxRawRequestCharacters": 266255,
+      "requests": [
+        {
+          "stage": "batch-1",
+          "sourceCharacters": 129452,
+          "requestCharacters": 168337,
+          "coverageCharacters": 20690,
+          "requestSha256": "6f5788b12cbc5adb4ad6fadd63a24a2913fc262a3eb0cb9dccd4a32eb932ed11"
+        },
+        {
+          "stage": "batch-2",
+          "sourceCharacters": 129732,
+          "requestCharacters": 170051,
+          "coverageCharacters": 20690,
+          "requestSha256": "333e321f5a7357b250c4886bf8c4e75a61585fb7e0eaecaf7d45742e8dab5455"
+        },
+        {
+          "stage": "batch-3",
+          "sourceCharacters": 126339,
+          "requestCharacters": 163403,
+          "coverageCharacters": 20690,
+          "requestSha256": "0cdc03819c2c1f8fac77b0512181fe4ebf8e2d3e2de2fd86fb078581d9969af5"
+        },
+        {
+          "stage": "batch-4",
+          "sourceCharacters": 127019,
+          "requestCharacters": 163302,
+          "coverageCharacters": 20690,
+          "requestSha256": "382392f828bb13e007cbfd651ab3a938a9aed7698a46017f849747ca0da0f9eb"
+        },
+        {
+          "stage": "batch-5",
+          "sourceCharacters": 85175,
+          "requestCharacters": 119918,
+          "coverageCharacters": 20690,
+          "requestSha256": "9a9ec4672ea9835660f611b65cb43480a650010387626114513e2e1372436129"
+        },
+        {
+          "stage": "cross-1-2",
+          "sourceCharacters": 219405,
+          "requestCharacters": 266255,
+          "coverageCharacters": 20690,
+          "requestSha256": "3c69ad850d7ea7583a6f9675639a2650bdc12ef85213b91c09596b9475bb03aa"
+        },
+        {
+          "stage": "cross-1-3",
+          "sourceCharacters": 216012,
+          "requestCharacters": 259607,
+          "coverageCharacters": 20690,
+          "requestSha256": "76291888a56fd54b7eb8a5413f2d907d2c773cc800df33c7aadb3f5c45a880cf"
+        },
+        {
+          "stage": "cross-1-4",
+          "sourceCharacters": 216692,
+          "requestCharacters": 259506,
+          "coverageCharacters": 20690,
+          "requestSha256": "0e1f2a72bd4351e34fcf432b35479c061dcac992944435c277eaa96410ab3346"
+        },
+        {
+          "stage": "cross-1-5",
+          "sourceCharacters": 174848,
+          "requestCharacters": 216122,
+          "coverageCharacters": 20690,
+          "requestSha256": "1252f4672535be053f1f331f8c491e50be9830c7ec82780e050ff438cf1d8b09"
+        },
+        {
+          "stage": "cross-2-3",
+          "sourceCharacters": 216292,
+          "requestCharacters": 261321,
+          "coverageCharacters": 20690,
+          "requestSha256": "21218c425b500b4fe507f997e6995416faeffbb25c9d8c8afdc3f01ebf0f8e15"
+        },
+        {
+          "stage": "cross-2-4",
+          "sourceCharacters": 216972,
+          "requestCharacters": 261220,
+          "coverageCharacters": 20690,
+          "requestSha256": "bce787a391bceb6dd2166b672d95c6b0071246fbda7093b7cf431285284b6ba0"
+        },
+        {
+          "stage": "cross-2-5",
+          "sourceCharacters": 175128,
+          "requestCharacters": 217836,
+          "coverageCharacters": 20690,
+          "requestSha256": "a665e3fd99cc141d17ace8e143ca9bfc0ac770d231f21a833fc2fdfad04ded64"
+        },
+        {
+          "stage": "cross-3-4",
+          "sourceCharacters": 213579,
+          "requestCharacters": 254572,
+          "coverageCharacters": 20690,
+          "requestSha256": "e208f9d32dc173fbe0f3a463df1070e8e60e007cc9baf459eb22247003741ca4"
+        },
+        {
+          "stage": "cross-3-5",
+          "sourceCharacters": 171735,
+          "requestCharacters": 211188,
+          "coverageCharacters": 20690,
+          "requestSha256": "264f971419ca631e244591731674936a592a3f64b782fbdbb6550c2b8495c594"
+        },
+        {
+          "stage": "cross-4-5",
+          "sourceCharacters": 172415,
+          "requestCharacters": 211087,
+          "coverageCharacters": 20690,
+          "requestSha256": "88e98948d5e93c3ad6fc7b814a8aed4e29e5c3dded8b61e42ddcd54e601d86f4"
+        }
+      ]
+    }
+  ],
+  "initialStages": 106,
+  "limitation": "Initial raw coverage/capacity only. Followups and synthesis response sizes remain unknown until actual model responses. Snapshot plan ID/input hash are not final production bindings. Production save and the new formal review are not authorized by this proof alone."
+}
