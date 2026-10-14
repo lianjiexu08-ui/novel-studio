@@ -1,0 +1,99 @@
+{
+  "observedAt": "2026-10-14T21:57:29.541Z",
+  "status": "targeted_v2_pass_not_formal_acceptance",
+  "model": "gpt-5.6-luna",
+  "timeoutMs": 600000,
+  "fallback": false,
+  "rows": [
+    {
+      "version": "v1",
+      "candidateFileSha256": "a24c993798441fbcb8dd8b9988289319afbaea39a7d6b34b031090793ed05d3f",
+      "checks": [
+        {
+          "criterion": "recovery",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "interruption",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "consistency",
+          "verdict": "revise"
+        }
+      ],
+      "verifiedCitations": 11,
+      "usage": {
+        "calls": 1,
+        "failedCalls": 0,
+        "inputTokens": 10757,
+        "outputTokens": 1494,
+        "costUsd": 0,
+        "costKnown": false,
+        "byRole": {
+          "reviewing": {
+            "calls": 1,
+            "failedCalls": 0,
+            "outputTokens": 1494,
+            "costUsd": 0
+          }
+        },
+        "limits": {
+          "budgetUsd": null,
+          "maxCalls": 3
+        }
+      },
+      "resultSha256": "d7ec863c5ca8603ef08ed4caa968910a936d7dc98f2681a405280ef93f639c53"
+    },
+    {
+      "version": "v2",
+      "candidateFileSha256": "70644fb1cef4afd6bc32c6adcd2c67e23434487aa0472c9fa0cb75d70f718414",
+      "checks": [
+        {
+          "criterion": "nutrition",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "recovery",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "interruption",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "consistency",
+          "verdict": "pass"
+        }
+      ],
+      "verifiedCitations": 16,
+      "usage": {
+        "calls": 1,
+        "failedCalls": 0,
+        "inputTokens": 18484,
+        "outputTokens": 1582,
+        "costUsd": 0,
+        "costKnown": false,
+        "byRole": {
+          "reviewing": {
+            "calls": 1,
+            "failedCalls": 0,
+            "outputTokens": 1582,
+            "costUsd": 0
+          }
+        },
+        "limits": {
+          "budgetUsd": null,
+          "maxCalls": 3
+        }
+      },
+      "resultSha256": "3559ef7fb94bca13e0c39b0cbf86fa0a0cb9284ac1e5adff4378b7d4680cb0dd"
+    }
+  ],
+  "totalCalls": 2,
+  "inputTokens": 29241,
+  "outputTokens": 3076,
+  "costKnown": false,
+  "productionApplied": false,
+  "limitation": "The v1 adverse scope finding is retained. V2 passes four local checks only; final formal61 findings and a new full review of any applied repair remain required."
+}
