@@ -255,3 +255,49 @@ test('follow-up repair identifies the omitted original source without copying ev
   assert.deepEqual(result.modelResponses, [JSON.stringify(first), JSON.stringify(good)]);
   assert.deepEqual(result.checks[0].resolves, ['batch-1/timeline']);
 });
+
+test('cross checks index every pending question and name a missing required source during repair', async () => {
+  const request = await input();
+  request.rubric = { timeline: '两次递送均须收到后才知情' };
+  request.sources = [
+    { id: 'old-a', text: '甲信第1日寄出，第2日尚未收到。' },
+    { id: 'old-b', text: '乙信第3日寄出，第4日尚未收到。' },
+    { id: 'late-a', text: '甲信第3日实际交收，之后才被阅知。' },
+    { id: 'late-b', text: '乙信第5日实际交收，之后才被阅知。' },
+    { id: 'question-a', text: '甲信是否在实际送达之前就被收信者知道？' },
+    { id: 'question-b', text: '乙信是否在实际送达之前就被收信者知道？' },
+  ];
+  request.stage = { kind: 'cross', label: '跨批原文', totalBatches: 3,
+    sourceMap: request.sources.slice(0, 4).map((s, i) => ({ id: s.id, sourceId: ['letters/a', 'letters/b', 'arrival/a', 'arrival/b'][i], start: 0, end: s.text.length })),
+    coverage: { mode: 'local_sources', sourceLengths: {}, pendingChecks: [
+      { id: 'batch-1/timeline', criterion: 'timeline', questionSourceId: 'question-a', requiredSourceIds: ['arrival/a'], priorUnitIds: ['old-a', 'old-b'] },
+      { id: 'batch-2/timeline', criterion: 'timeline', questionSourceId: 'question-b', requiredSourceIds: ['arrival/b'], priorUnitIds: ['old-b'] },
+    ] },
+  };
+  const prepared = prepareDesignReviewEvidence(request);
+  assert.equal(prepared.citationRequirements, undefined);
+  assert.deepEqual(prepared.pendingCitationRequirements!.map(r => r.requiredSources.map(s => s.sourceId)), [['question-a', 'arrival/a'], ['question-b', 'arrival/b']]);
+  assert.deepEqual(prepared.pendingCitationRequirements![0].oneOfPriorUnits.map(s => s.id), ['old-a', 'old-b']);
+  assert.deepEqual(prepared.pendingCitationRequirements![1].requiredSources[1].units, [{ id: 'late-b', fragmentIds: [prepared.sources[3].fragments[0].id] }]);
+  const good = { requestId: prepared.requestId, summary: '两信送达后才知情', checks: [{ criterion: 'timeline', verdict: 'pass', explanation: '两个收信时点均在各自交收后', revisionAdvice: '', resolves: ['batch-1/timeline', 'batch-2/timeline'], evidence: prepared.sources.slice(1).map(s => ({ fragmentId: s.fragments[0].id })) }] };
+  assert.equal(prepared.resolve(good).checks[0].evidence.length, 5, 'one original unit can support both questions; alternatives do not all become mandatory');
+  const missing = structuredClone(good);
+  missing.checks[0].evidence = missing.checks[0].evidence.filter(e => e.fragmentId !== prepared.sources[3].fragments[0].id);
+  assert.throws(() => prepared.resolve(missing), /新增来源 arrival\/b/);
+  let calls = 0;
+  const planner = new JsonDesignPlanner({ complete: async call => {
+    const sent = JSON.parse(call.user);
+    if (++calls === 1) {
+      assert.deepEqual(sent.pendingCitationRequirements, prepared.pendingCitationRequirements);
+      return JSON.stringify(missing);
+    }
+    assert.match(sent.problems, /batch-2\/timeline.*新增来源 arrival\/b/);
+    assert.deepEqual(sent.originalRequest.pendingCitationRequirements, prepared.pendingCitationRequirements);
+    assert.equal(sent.previousOutput, JSON.stringify(missing));
+    return JSON.stringify(good);
+  } });
+  const result = await planner.reviewDesignContent(request);
+  assert.equal(calls, 2);
+  assert.deepEqual(result.checks[0].resolves, good.checks[0].resolves);
+  assert.deepEqual(result.modelResponses, [JSON.stringify(missing), JSON.stringify(good)]);
+});

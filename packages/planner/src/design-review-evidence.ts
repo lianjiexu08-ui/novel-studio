@@ -53,10 +53,25 @@ export function prepareDesignReviewEvidence(input: DesignReviewInput) {
         .map(source => ({ id: source.id, fragmentIds: source.fragments.map(fragment => fragment.id) })),
     })),
   } : undefined;
+  // Ordinary cross checks can settle several deferrals at once. They need the
+  // same navigation help as dedicated follow-ups, while requiring only one
+  // original-batch citation unless priorSourceIds explicitly says otherwise.
+  const pendingCitationRequirements = !snapshot.stage?.followupFor && snapshot.stage?.coverage?.pendingChecks?.length
+    ? snapshot.stage.coverage.pendingChecks.map(check => ({
+      checkId: check.id, criterion: check.criterion,
+      requiredSources: [...new Set([check.questionSourceId, ...(check.priorSourceIds ?? []), ...check.requiredSourceIds])].map(sourceId => ({
+        sourceId,
+        units: sources.filter(source => source.id === check.questionSourceId ? source.id === sourceId : (source.origin?.sourceId ?? source.id) === sourceId)
+          .map(source => ({ id: source.id, fragmentIds: source.fragments.map(fragment => fragment.id) })),
+      })),
+      oneOfPriorUnits: sources.filter(source => check.priorUnitIds.includes(source.id))
+        .map(source => ({ id: source.id, fragmentIds: source.fragments.map(fragment => fragment.id) })),
+    })) : undefined;
   return {
     requestId,
     sources,
     citationRequirements,
+    pendingCitationRequirements,
     resolve(value: unknown) {
       const parsed = anchoredDesignReviewResultSchema.parse(value);
       if (parsed.requestId !== requestId) throw new DesignReviewEvidenceError(`评审请求编号不属于本次材料：必须重新核对本次 requestId 与全部原文片段，不能沿用旧请求编号 ${parsed.requestId}`);

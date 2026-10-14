@@ -52,13 +52,13 @@ export class JsonDesignPlanner implements DesignPlanner {
 结果顶层 requestId 必须逐字复制输入 requestId，绑定这一次材料；证据仅返回所选 fragments 条目的简短 id（如 e1），字段名 fragmentId。不要输出 sourceId 或 quote，不得编造、拼接编号或使用原文内部对象的 id。短编号只在当前请求有效，不能沿用其他请求或原文中嵌入的旧评审编号。系统会同时校验 requestId 和片段编号，再从本次材料还原来源及原文。
 选择与结论直接相关的片段，并在 explanation 解释其中哪些事实支持判断；编号有效不代表结论成立，不能引用无关片段凑数。
 每项check的evidence最多${maxDesignReviewEvidence}个。补读要求引用每个必要来源，不等于引用这些来源的全部片段；按sourceMap找到对应来源后，选择直接支持该判断的片段。修正漏引时只补齐必要证据并重新核验结论，不要把全部输入编号机械列入evidence；无法支持解决时保留材料不足，不得凑数声明resolves。
-来源的origin给出原始来源ID及切片范围；专门补读的citationRequirements将每个必引来源直接对应到本次可选fragmentIds。该索引只帮助定位，不能作为内容证据，也不表示某个片段一定支持判断。需要声明resolves时逐一核对这些来源，仍须实际读片段后自行选择证据，不能用同章的另一种来源代替被要求的原来源。
+来源的origin给出原始来源ID及切片范围；专门补读的citationRequirements将每个必引来源直接对应到本次可选fragmentIds。普通跨批步骤的pendingCitationRequirements为每个待解决问题列出requiredSources（每个来源都须引用）和oneOfPriorUnits（至少选择一个实际支持判断的原批片段，不是要求全引）。同一标准同时解决多个问题时逐项核对各自要求。该索引只帮助定位，不能作为内容证据，也不表示某个片段一定支持判断。需要声明resolves时逐一核对这些来源，仍须实际读片段后自行选择证据，不能用同章的另一种来源代替被要求的原来源。
 pass 也必须有支撑证据；明确矛盾或设计缺陷用 revise；材料不足无法判断用 insufficient，绝不能脑补后通过。
 缺少约束时可引用不完整条目并解释缺失。建议必须具体到需修改的设定/人物/卷，不允许用增加条目数量代替质量。
 这是设计评审，不是正文通读，不能声称正文已符合设计或完成了整书文学验收。关系 stages 是计划阶段，已采纳事件才是实际变化。不得为解释连续性漏洞而把新编的分裂、复活或转移当成已发生事实；优先修正重复兑现。
 只返回 JSON: {"requestId":"输入的requestId","summary":"本项结论","checks":[{"criterion":"rubric中的键","verdict":"pass|revise|insufficient","explanation":"判断理由","evidence":[{"fragmentId":"所选原文片段的id"}],"revisionAdvice":"返修或补充要求，通过时可为空"}]}。
 每个 rubric 键恰好一项。`,
-      user: JSON.stringify({ task: 'review_design_content', requestId: evidence.requestId, evaluationStage: 'design_proposal', scope: input.scope, area: input.area, stage: input.stage, rubric: input.rubric, ...(evidence.citationRequirements ? { citationRequirements: evidence.citationRequirements } : {}), sources: evidence.sources }),
+      user: JSON.stringify({ task: 'review_design_content', requestId: evidence.requestId, evaluationStage: 'design_proposal', scope: input.scope, area: input.area, stage: input.stage, rubric: input.rubric, ...(evidence.citationRequirements ? { citationRequirements: evidence.citationRequirements } : {}), ...(evidence.pendingCitationRequirements ? { pendingCitationRequirements: evidence.pendingCitationRequirements } : {}), sources: evidence.sources }),
       role: 'reviewing', maxOutputTokens: 8000,
     }, evidence.resolve);
     return { ...result, modelResponses };

@@ -188,7 +188,12 @@ export function validateDesignReview(input: DesignReviewInput, result: DesignRev
         const pending = input.stage?.coverage?.pendingChecks?.find(p => p.id === checkId && p.criterion === check.criterion);
         if (!pending) throw new DesignReviewError(`没有符合本批覆盖范围的待补读项：${checkId}`);
         const cited = new Set(check.evidence.map(e => e.sourceId));
-        if (!cited.has(pending.questionSourceId) || !pending.priorUnitIds.some(id => cited.has(id)) || pending.requiredSourceIds.some(id => !input.stage!.sourceMap.some(u => u.sourceId === id && cited.has(u.id)))) throw new DesignReviewError(`解决待补读项必须引用原问题、原批材料及每个新增来源：${checkId}`);
+        const missing = [
+          ...(!cited.has(pending.questionSourceId) ? [`原问题 ${pending.questionSourceId}`] : []),
+          ...(!pending.priorUnitIds.some(id => cited.has(id)) ? ['原批材料（至少一个实际支持判断的原批片段）'] : []),
+          ...pending.requiredSourceIds.filter(id => !input.stage!.sourceMap.some(u => u.sourceId === id && cited.has(u.id))).map(id => `新增来源 ${id}`),
+        ];
+        if (missing.length) throw new DesignReviewError(`解决待补读项必须引用原问题、原批材料及每个新增来源：${checkId}；缺少：${missing.join('、')}。按本次来源目录选择真实支持片段，不得自动补引文或只删除resolves来掩盖未核验问题。`);
         const missingPrior = pending.priorSourceIds?.filter(id => !input.stage!.sourceMap.some(u => u.sourceId === id && cited.has(u.id))) ?? [];
         if (missingPrior.length) throw new DesignReviewError(`专门补读必须引用原问题所依据的每个原始来源：${checkId}；缺少来源：${missingPrior.join('、')}。请按sourceMap对应本次来源选择支持判断的片段，不需穷举其全部片段。`);
       }
