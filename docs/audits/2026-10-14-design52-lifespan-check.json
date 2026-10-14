@@ -1,0 +1,142 @@
+{
+  "formalAcceptance": false,
+  "scope": "设计51/候选52中林辰第19—216日寿储算术核对，不验证全书叙事质量",
+  "rows": [
+    {
+      "chapter": 13,
+      "day": 19,
+      "baselineDay": 19,
+      "baselineConservativeLowerBound": 7,
+      "cumulativeSpentLifespan": 0,
+      "cumulativeValidatedGain": 0,
+      "naturalElapsedDays": 0,
+      "formula": "7 - 0 + 0 - 0/365",
+      "lowerBound": "7.000000",
+      "sourceId": "plan/chapters/13",
+      "sourceTime": "第19日至第22日，午前复诊、午后口述劳务、夜间核页"
+    },
+    {
+      "chapter": 15,
+      "day": 60,
+      "baselineDay": 19,
+      "baselineConservativeLowerBound": 7,
+      "cumulativeSpentLifespan": 0,
+      "cumulativeValidatedGain": 0,
+      "naturalElapsedDays": 41,
+      "formula": "7 - 0 + 0 - 41/365",
+      "lowerBound": "6.887671",
+      "sourceId": "plan/chapters/15",
+      "sourceTime": "第40日至第60日，第60日完成转段复诊"
+    },
+    {
+      "chapter": 18,
+      "day": 120,
+      "baselineDay": 19,
+      "baselineConservativeLowerBound": 7,
+      "cumulativeSpentLifespan": 0,
+      "cumulativeValidatedGain": 0,
+      "naturalElapsedDays": 101,
+      "formula": "7 - 0 + 0 - 101/365",
+      "lowerBound": "6.723288",
+      "sourceId": "plan/chapters/18",
+      "sourceTime": "第120日至第180日；第120日突破，第180日核验"
+    },
+    {
+      "chapter": 18,
+      "day": 120,
+      "baselineDay": 19,
+      "baselineConservativeLowerBound": 7,
+      "cumulativeSpentLifespan": 3,
+      "cumulativeValidatedGain": 0,
+      "naturalElapsedDays": 101,
+      "formula": "7 - 3 + 0 - 101/365",
+      "lowerBound": "3.723288",
+      "sourceId": "plan/chapters/18",
+      "sourceTime": "第120日至第180日；第120日突破，第180日核验"
+    },
+    {
+      "chapter": 18,
+      "day": 180,
+      "baselineDay": 19,
+      "baselineConservativeLowerBound": 7,
+      "cumulativeSpentLifespan": 3,
+      "cumulativeValidatedGain": 0,
+      "naturalElapsedDays": 161,
+      "formula": "7 - 3 + 0 - 161/365",
+      "lowerBound": "3.558904",
+      "sourceId": "plan/chapters/18",
+      "sourceTime": "第120日至第180日；第120日突破，第180日核验"
+    },
+    {
+      "chapter": 27,
+      "day": 199,
+      "baselineDay": 19,
+      "baselineConservativeLowerBound": 7,
+      "cumulativeSpentLifespan": 3,
+      "cumulativeValidatedGain": 5,
+      "naturalElapsedDays": 180,
+      "formula": "7 - 3 + 5 - 180/365",
+      "lowerBound": "8.506849",
+      "sourceId": "plan/chapters/27",
+      "sourceTime": "第190日至第199日；每日服药与轮值交接"
+    },
+    {
+      "chapter": 28,
+      "day": 209,
+      "baselineDay": 19,
+      "baselineConservativeLowerBound": 7,
+      "cumulativeSpentLifespan": 3,
+      "cumulativeValidatedGain": 10,
+      "naturalElapsedDays": 190,
+      "formula": "7 - 3 + 10 - 190/365",
+      "lowerBound": "13.479452",
+      "sourceId": "plan/chapters/28",
+      "sourceTime": "第200日至第209日；第二剂十日疗程"
+    },
+    {
+      "chapter": 32,
+      "day": 216,
+      "baselineDay": 19,
+      "baselineConservativeLowerBound": 7,
+      "cumulativeSpentLifespan": 3,
+      "cumulativeValidatedGain": 10,
+      "naturalElapsedDays": 197,
+      "formula": "7 - 3 + 10 - 197/365",
+      "lowerBound": "13.460274",
+      "sourceId": "plan/chapters/32",
+      "sourceTime": "第214日日暮至第216日日暮；实体海程两昼夜"
+    }
+  ],
+  "resourceChain": [
+    {
+      "chapter": 26,
+      "cleanDrops": 9,
+      "givenToOther": 3,
+      "linRetained": 6
+    },
+    {
+      "chapter": 27,
+      "doseDrops": 3,
+      "ingestedDays": [
+        190,
+        191,
+        192
+      ],
+      "reviewDay": 199,
+      "validatedGain": 5
+    },
+    {
+      "chapter": 28,
+      "doseDrops": 3,
+      "ingestedDays": [
+        200,
+        201,
+        202
+      ],
+      "reviewDay": 209,
+      "validatedGain": 5,
+      "remainingDrops": 0
+    }
+  ],
+  "note": "第32章两次轻物御动合计一成真元，从六成减至五成；不是0.1元载，不得从寿储13.460274中扣除。寿储仍为条件性保守下界，伤变复诊及真实支出可改变条件，不是保证死期。"
+}
