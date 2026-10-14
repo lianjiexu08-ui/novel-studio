@@ -108,10 +108,10 @@ export function designReviewHash(work: Work, planId?: string): string | undefine
   const plan = selectedId ? work.plans.get(selectedId) : undefined;
   if (!work.worldPack || !work.storyBible || !plan || plan.status === 'superseded' || (planId === undefined && plan.status !== 'approved')) return undefined;
   return createHash('sha256').update(JSON.stringify({
-    // Version 10 also distinguishes initial skills from new training, and
-    // reconstructs timelines per actor and route endpoint. Earlier reviews
-    // confused a departure with a later arrival and cannot authorize this input.
-    rubricVersion: 10, title: work.title, covenant: work.covenant,
+    // Version 11 includes actual chapter actions in world review. Geography
+    // cannot verify travel/entry prerequisites using macro summaries alone.
+    // Reviews produced without those sources must not authorize this input.
+    rubricVersion: 11, title: work.title, covenant: work.covenant,
     world: work.worldPack, bible: work.storyBible, planId: plan.id, plan: plan.plan,
     characters: [...work.characters.values()].sort((a, b) => a.id.localeCompare(b.id)),
     relationships: [...work.relationships.values()].sort((a, b) => a.id.localeCompare(b.id)),
@@ -140,7 +140,7 @@ export function designReviewInput(work: Work, area: DesignReviewArea, planId?: s
   for (const key of groups) group(`world/${key}`, world[key]);
   add('story/overview', { coreConflict: bible.coreConflict, endingDirection: bible.endingDirection, unresolvedQuestions: bible.unresolvedQuestions });
   for (const key of ['characters', 'relationships', 'arcs', 'arcBeats', 'secrets', 'promises', 'openThreads', 'volumes'] as const) group(`story/${key}`, bible[key]);
-  if (area !== 'world') group('story/chapterPlans', bible.chapterPlans);
+  group('story/chapterPlans', bible.chapterPlans);
   const outlinedChapterNumbers = [...new Set(plan.plan.chapters.map(chapter => chapter.chapterNumber))].sort((a, b) => a - b);
   const outlined = new Set(outlinedChapterNumbers);
   let detailedThroughChapter = 0;
@@ -155,7 +155,7 @@ export function designReviewInput(work: Work, area: DesignReviewArea, planId?: s
   group('plan/volumes', plan.plan.volumes);
   group('plan/milestones', plan.plan.milestones);
   // All currently outlined chapters are reviewed. Never truncate a large design silently.
-  if (area !== 'world') for (const chapter of plan.plan.chapters) add(`plan/chapters/${chapter.chapterNumber}`, chapter);
+  for (const chapter of plan.plan.chapters) add(`plan/chapters/${chapter.chapterNumber}`, chapter);
   group('settings/characters', [...work.characters.values()]);
   group('settings/relationships', [...work.relationships.values()]);
   group('settings/worldRules', [...work.worldRules.values()]);

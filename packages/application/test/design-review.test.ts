@@ -30,7 +30,7 @@ test('world capacity review receives the realm ladder and referenced ability rul
     { sourceId: 'world/techniques/technique', quote: '不得把晋阶费用视作施术预付' },
   ];
   validateDesignReview(input, report);
-  for (const rubricVersion of [7, 8, 9]) {
+  for (const rubricVersion of [7, 8, 9, 10]) {
     const legacyHash = createHash('sha256').update(JSON.stringify({
       rubricVersion, title: work.title, covenant: work.covenant,
       world, bible: work.storyBible, planId: work.activePlanId, plan: work.plans.get(work.activePlanId!)!.plan,
@@ -92,6 +92,34 @@ test('power review includes late chapter costs instead of reviewing only the pow
   for (const stage of run.stages.filter(stage => stage.kind !== 'synthesis')) assert.ok(JSON.stringify(designReviewStageInput(run, stage).sources).length <= 240_000);
 });
 
+test('world review includes chapter-level entry evidence and conflicting travel actions beyond macro summaries', async () => {
+  const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), writer, reviewer);
+  const work = await createReadyWork(workflow);
+  const plan = work.plans.get(work.activePlanId!)!.plan;
+  plan.chapters = Array.from({ length: 100 }, (_, index) => ({ ...plan.chapters[0], id: `chapter-${index + 1}`, chapterNumber: index + 1 }));
+  plan.chapters[30].summary = '承运人当面签护货换舱合同，交付已验明的避火衣，抵港先验籍。';
+  plan.chapters[96].summary = '无许可的主角当天从外港直接进入禁地，章纲不能只凭卷末抵达结局免除准入。';
+  work.storyBible!.chapterPlans = [{ id: 'bible-31', chapterNumber: 31, title: '抵港', purpose: '核对实际准入条件', conflict: '准入限制与交货期限冲突', turningPoint: '先接受港务查验', endHook: '后续付款仍须核实', characterIds: [], locationIds: [], arcBeatIds: [], requiredEvents: [] }];
+  const input = designReviewInput(work, 'world');
+  assert.equal(input.sources.filter(s => s.id.startsWith('plan/chapters/')).length, 100);
+  for (const chapter of plan.chapters) assert.deepEqual(JSON.parse(input.sources.find(s => s.id === `plan/chapters/${chapter.chapterNumber}`)!.text), chapter);
+  for (const chapter of work.storyBible!.chapterPlans) assert.deepEqual(JSON.parse(input.sources.find(s => s.id === `story/chapterPlans/${chapter.id}`)!.text), chapter);
+  const run = createDesignReviewRun(input);
+  const stages = run.stages.filter(s => s.kind === 'batch').map(s => designReviewStageInput(run, s));
+  for (const number of [31, 97]) {
+    const sourceId = `plan/chapters/${number}`;
+    assert.ok(stages.some(s => s.stage!.sourceMap.some(u => u.sourceId === sourceId)), 'the batch scheduler must deliver the actual chapter, not merely list its ID');
+    assert.ok(stages.every(s => s.stage!.coverage!.sourceLengths[sourceId] === input.sources.find(s => s.id === sourceId)!.text.length), 'later batches remain addressable for required follow-up');
+  }
+  const report = fixtureDesignReview(input);
+  report.checks.find(c => c.criterion === 'geography')!.verdict = 'revise';
+  Object.assign(report.checks.find(c => c.criterion === 'geography')!, {
+    explanation: '第97章的实际进入行动缺少许可', revisionAdvice: '给出合法准入或取消这次进入',
+    evidence: [{ sourceId: 'plan/chapters/97', quote: plan.chapters[96].summary }],
+  });
+  assert.equal(recordDesignReview(work, input, report).status, 'needs_revision');
+});
+
 test('rolling outline coverage distinguishes a contiguous opening from isolated later chapters', async () => {
   const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), writer, reviewer);
   const work = await createReadyWork(workflow);
@@ -106,7 +134,7 @@ test('rolling outline coverage distinguishes a contiguous opening from isolated 
     assert.equal(overview.targetChapterCount, 100);
     assert.equal(overview.detailedThroughChapter, 2, 'chapter50 must not imply that chapters3–49 already have outlines');
     assert.deepEqual(overview.outlinedChapterNumbers, [1, 2, 50]);
-    if (area !== 'world') assert.ok(input.sources.some(s => s.id === 'plan/chapters/50'), 'isolated later outlines still need review');
+    assert.ok(input.sources.some(s => s.id === 'plan/chapters/50'), 'isolated later outlines still need review in every area');
   }
   plan.chapters.push({ ...template, id: 'chapter-3', chapterNumber: 3 });
   assert.notEqual(designReviewHash(work), before, 'expanding the detailed horizon invalidates earlier acceptance');
