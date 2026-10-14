@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { ChapterWorkflow, InMemoryWorkRepository, type DesignProvider } from '../src/index.ts';
+import { ChapterWorkflow, InMemoryWorkRepository, type DesignProvider, type WorkTransaction } from '../src/index.ts';
 import { createReadyWork } from './fixtures.ts';
 import { designReviewInput, designReviewOverview, designReviewRubrics, type DesignReviewInput, type DesignReviewResult } from '../../../novel-service-core/src/design-review.ts';
 import { createDesignReviewRun, designReviewStageInput, acceptDesignReviewStage, completeDesignReviewRun } from '../../../novel-service-core/src/design-review-run.ts';
@@ -199,6 +199,57 @@ test('lease takeover fences a delayed worker, and changed versions cannot resume
   work.worldPack!.summary += '世界变更';
   await assert.rejects(() => fast.stepDesignReview(work.id, fresh.id), /设计或计划已变化/);
   assert.equal(work.designContentReviews.size, 1);
+});
+
+test('review result preparation runs outside the write transaction and still publishes atomically', async () => {
+  class ObservedRepository extends InMemoryWorkRepository {
+    inTransaction = false;
+    override async transaction<T>(id: string, callback: (tx: WorkTransaction) => Promise<T> | T): Promise<T> {
+      return super.transaction(id, async tx => {
+        this.inTransaction = true;
+        try { return await callback(tx); } finally { this.inTransaction = false; }
+      });
+    }
+  }
+  const repository = new ObservedRepository();
+  let inspected = 0;
+  const workflow = new ChapterWorkflow(repository, writer, { ...provider, reviewDesignContent: async input => {
+    const result = stagePass(input), checks = result.checks;
+    Object.defineProperty(result, 'checks', { enumerable: true, get() {
+      assert.equal(repository.inTransaction, false, 'model result must be prepared before taking the database write lock');
+      inspected++; return checks;
+    } });
+    return result;
+  } });
+  const work = await createReadyWork(workflow, '事务外评审准备');
+  const run = await workflow.startDesignReview(work.id, 'story');
+  const completed = await workflow.stepDesignReview(work.id, run.id);
+  assert.ok(inspected > 0);
+  assert.equal(completed.status, 'completed');
+  assert.equal(work.designContentReviews.size, 1);
+  assert.equal(work.designContentReviews.get(completed.reportId!)!.runId, run.id);
+  assert.equal(work.versions.size, 0);
+});
+
+test('a design changed during detached preparation cannot publish a report and retains the rejected answer', async () => {
+  const repository = new InMemoryWorkRepository();
+  let changeDesign = () => {};
+  const workflow = new ChapterWorkflow(repository, writer, { ...provider, reviewDesignContent: async input => {
+    const result = stagePass(input), checks = result.checks;
+    Object.defineProperty(result, 'checks', { enumerable: true, get() { changeDesign(); return checks; } });
+    return result;
+  } });
+  const work = await createReadyWork(workflow, '准备期间改设定');
+  const run = await workflow.startDesignReview(work.id, 'story');
+  changeDesign = () => { work.worldPack!.summary = '作者在评审结果准备期间修改了世界规则'; };
+  await assert.rejects(() => workflow.stepDesignReview(work.id, run.id), /设计或计划已变化/);
+  const failed = work.designReviewRuns.get(run.id)!;
+  assert.equal(failed.status, 'outdated');
+  assert.equal(failed.stages[0].result, undefined);
+  assert.equal(failed.stages[0].failures!.length, 1);
+  assert.ok(failed.stages[0].rejectedResult);
+  assert.equal(work.designContentReviews.size, 0);
+  assert.equal(failed.leaseToken, undefined);
 });
 
 test('local scope inventories omitted sources without authorizing citations to unread material', () => {

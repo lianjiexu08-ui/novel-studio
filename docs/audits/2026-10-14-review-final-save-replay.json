@@ -1,0 +1,55 @@
+{
+  "status": "passed",
+  "startedAt": "2026-10-14T14:41:44.019Z",
+  "mode": "isolated_database_replay_of_preserved_answer",
+  "productionChanged": false,
+  "realModelCalls": 0,
+  "formalAcceptance": false,
+  "sourceRunId": "design_run_f907bebf-1c60-4def-b6ae-71d4b07d15a8",
+  "originalError": "\nInvalid `prisma.project.updateMany()` invocation:\n\n\nTransaction API error: Transaction already closed: A query cannot be executed on an expired transaction. The timeout for this transaction was 30000 ms, however 49026 ms passed since the start of the transaction. Consider increasing the interactive transaction timeout or doing less work in the transaction.",
+  "transactions": [
+    {
+      "startedAt": 1857.889375,
+      "totalMs": 11017.803458999999,
+      "callbackMs": 2.61850000000004
+    },
+    {
+      "startedAt": 55149.152834,
+      "totalMs": 19844.247165999994,
+      "callbackMs": 8.071749999995518
+    }
+  ],
+  "finishedAt": "2026-10-14T14:43:00.066Z",
+  "elapsedMs": 73135.897958,
+  "replayedSavedAnswers": 1,
+  "preservedCompletedStages": 52,
+  "originalFailurePreserved": true,
+  "protectedDesignAndHistoryUnchanged": true,
+  "reportStatus": "needs_revision",
+  "checks": [
+    {
+      "criterion": "geography",
+      "verdict": "revise",
+      "explanation": "苍冥规则要求无令者的具名担保由实际到场者承担，且只在约定范围、期限内有效，并须区分受监管码头候查、沿岸入境担保和界渊准入。现有宏观安排却在夜凝霜结束仅覆盖外港指定仓区、截至第300日的有限担保后，让林、贺于第301—303日沿海岸公共驿路去通天渡口。道路勘验、暖车、后续船票和实体海程只能说明路径、交通和支付，不能推出二人已获离开担保范围、沿岸转港及通天渡口验籍交接的政治许可。综合报告中对此判通过的结论与规则及行动链不相容，故须保留既有返修。",
+      "revisionAdvice": "在第301日离开葬骨外港前，于返乡里程碑明确林、贺的沿岸离境或转港依据：签发者或具名担责者、有效期、许可海岸路段、通天渡口的验籍交接程序，以及被拒后的停留、担保延展或改签后果。不得把截至第300日的外港查货担保、道路勘验或商船客票当作沿岸陆路政治通行权。",
+      "evidenceCount": 5
+    },
+    {
+      "criterion": "history",
+      "verdict": "pass",
+      "explanation": "旧约具有足以驱动现状的有限因果链：赵、炎煞外围代理与程记分别以有限货签/仓位/承运获利，逐批验货结算并由程优先承担改签、扣货和遗失损失；该旧约不赋予免检、无限资源或即时共知。货损后程的转嫁、赵在实际报告后停垫并改线、外围代理在收到通知后拒供或扣货，都有独立利益和消息时点；调查者仍须按批签、口供和回令逐项核证，未将局部线索升级为全案真相。",
+      "revisionAdvice": "",
+      "evidenceCount": 6
+    },
+    {
+      "criterion": "capacity",
+      "verdict": "pass",
+      "explanation": "应以本轮100章而非约450章终局衡量。提案将阶段成果限定为有限救援、切断一条已实证的三地运输链、部分父案核证与玄府初期成长；残片、九鼎、界门及高阶成长均保留为后续另建来源与行动链。三卷分别以古境准入与宗门责任、赤霄港务/劳工网络、苍冥受监管救援及返乡掩案形成不同制度压力，且寿储、伤势、实体航程和支付持续限制行动，未依赖无代价升级或换地图重复战斗。地理项的返程许可返修不改变该阶段容量判断。",
+      "revisionAdvice": "",
+      "evidenceCount": 6
+    }
+  ],
+  "transactionTimeoutMs": 30000,
+  "maxTransactionMs": 19844.247165999994,
+  "preparationOutsideTransactionMs": 42273.46000000001
+}

@@ -594,20 +594,25 @@ export class ChapterWorkflow {
       const input = designReviewStageInput(claimed.run, stage);
       const result = await reviewer.reviewDesignContent(structuredClone(input));
       rejectedResult = result;
+      // Rebuild coverage and validate every historical stage before opening the
+      // write transaction. Large final reports can take longer than its deadline.
+      // This detached run is published only if its lease and design still match.
+      const prepared = structuredClone(claimed.run);
+      const preparedStage = prepared.stages.find(s => s.id === stage.id)!;
+      const { modelResponses, ...content } = result;
+      acceptDesignReviewStage(prepared, preparedStage, content);
+      preparedStage.modelResponses = modelResponses; preparedStage.rejectedResult = undefined;
+      const completed = prepared.stages.every(s => s.result) ? completeDesignReviewRun(prepared) : undefined;
       clearInterval(timer); await renewal;
       if (heartbeatError) throw heartbeatError;
       return await this.repository.transaction(workId, ({ work }) => {
-        const run = structuredClone(work.designReviewRuns.get(runId)!);
-        if (run.leaseToken !== token || Date.parse(run.leaseExpiresAt ?? '') <= this.now()) throw new DesignReviewError('本批评审执行权已失效，请刷新进度');
-        if (designReviewHash(work, run.input.scope.planRevisionId) !== run.input.inputHash) throw new DesignReviewError('评审期间设计或计划已变化，请针对当前版本重新评审');
-        const currentStage = run.stages.find(s => s.id === stage.id)!;
-        const { modelResponses, ...content } = result;
-        acceptDesignReviewStage(run, currentStage, content);
-        currentStage.modelResponses = modelResponses; currentStage.rejectedResult = undefined;
+        const current = work.designReviewRuns.get(runId);
+        if (!current || current.leaseToken !== token || Date.parse(current.leaseExpiresAt ?? '') <= this.now()) throw new DesignReviewError('本批评审执行权已失效，请刷新进度');
+        if (designReviewHash(work, prepared.input.scope.planRevisionId) !== prepared.input.inputHash) throw new DesignReviewError('评审期间设计或计划已变化，请针对当前版本重新评审');
+        const run = prepared;
         run.leaseToken = undefined; run.leaseExpiresAt = undefined;
         run.updatedAt = new Date(this.now()).toISOString(); run.status = 'ready';
-        if (run.stages.every(s => s.result)) {
-          const completed = completeDesignReviewRun(run);
+        if (completed) {
           const report = recordDesignReview(work, completed.input, completed.result);
           report.runId = run.id;
           run.reportId = report.id; run.status = 'completed';
