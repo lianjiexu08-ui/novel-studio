@@ -61,6 +61,36 @@ export function designReviewSourceNames(input: DesignReviewInput): Record<string
   }));
 }
 
+/** One explicit planning edge is navigation, never evidence of feasibility.
+ * Do not infer links from prose or recursively pull the entire book into a
+ * follow-up. Ambiguous and dangling object IDs cannot select a source. */
+export function designReviewPlanNeighbors(input: DesignReviewInput, sourceIds: string[]): string[] {
+  let overview: unknown;
+  try { overview = JSON.parse(input.sources.find(source => source.id === 'plan/overview')?.text ?? 'null'); } catch { return []; }
+  if (!overview || typeof overview !== 'object' || Array.isArray(overview)) return [];
+  const dependencies = (overview as Record<string, unknown>).dependencies;
+  if (!Array.isArray(dependencies)) return [];
+  const byObjectId = new Map<string, string[]>();
+  for (const source of input.sources) {
+    if (!['plan/chapters/', 'plan/milestones/', 'plan/volumes/'].some(prefix => source.id.startsWith(prefix))) continue;
+    let value: unknown;
+    try { value = JSON.parse(source.text); } catch { continue; }
+    if (!value || typeof value !== 'object' || Array.isArray(value)) continue;
+    const id = (value as Record<string, unknown>).id;
+    if (typeof id === 'string' && id) byObjectId.set(id, [...(byObjectId.get(id) ?? []), source.id]);
+  }
+  const unique = (id: unknown): string | undefined => typeof id === 'string' && byObjectId.get(id)?.length === 1 ? byObjectId.get(id)![0] : undefined;
+  const seeds = new Set(sourceIds), neighbors = new Set<string>();
+  for (const edge of dependencies) {
+    if (!edge || typeof edge !== 'object' || Array.isArray(edge)) continue;
+    const from = unique(edge.sourceId), to = unique(edge.targetId);
+    if (!from || !to) continue;
+    if (seeds.has(from) && !seeds.has(to)) neighbors.add(to);
+    if (seeds.has(to) && !seeds.has(from)) neighbors.add(from);
+  }
+  return input.sources.filter(source => neighbors.has(source.id)).map(source => source.id);
+}
+
 /** Locate acquisition/training/use candidates without interpreting their meaning.
  * A negative statement ("has not learned X") is still a mention, not evidence
  * that X is available. Missing entries must never establish absence of a skill. */

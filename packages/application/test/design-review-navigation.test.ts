@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { designReviewEntityMentions } from '../../../novel-service-core/src/design-review-scope.ts';
+import { designReviewEntityMentions, designReviewPlanNeighbors } from '../../../novel-service-core/src/design-review-scope.ts';
 import { createDesignReviewRun, designReviewStageInput, acceptDesignReviewStage } from '../../../novel-service-core/src/design-review-run.ts';
 import { validateDesignReview, type DesignReviewInput } from '../../../novel-service-core/src/design-review.ts';
 
@@ -175,3 +175,72 @@ for (const oversizedProfile of [false, true]) {
     assert.equal(inputs[1].stage!.coverage!.entityMentions!['world/techniques/tech_04'].includes(profile.id), true);
   });
 }
+
+function dependencyInput(extra = ''): DesignReviewInput {
+  return { area: 'power', inputHash: 'b'.repeat(64), scope: { worldPackRevision: 1, storyBibleRevision: 1, planRevisionId: 'p', planRevision: 1 }, rubric: { counters: '核反制和行动条件' }, sources: [
+    source('plan/overview', { dependencies: [
+      { sourceId: 'training', targetId: 'convoy', requiredness: 'must' },
+      { sourceId: 'convoy', targetId: 'aftermath', requiredness: 'must' },
+      { sourceId: 'missing', targetId: 'training', requiredness: 'must' },
+    ] }),
+    source('world/axioms/shared', { content: '规则。'.repeat(11000) }),
+    source('plan/chapters/80', { id: 'chapter-80', chapterNumber: 80, summary: '后续护罡牵制需核已有训练及对抗条件。' }),
+    ...Array.from({ length: 3 }, (_, n) => ({ id: `padding/${n}`, text: '原文。'.repeat(29000) })),
+    source('plan/milestones/training', { id: 'training', startChapter: 81, endChapter: 87, setup: '局部护罡训练和实测，不等于能持续挡刀。' }),
+    source('plan/milestones/convoy', { id: 'convoy', startChapter: 88, endChapter: 95, setup: '利用车角退步，三次护罡八成减至二成，第三次肩伤后立即退出。' + extra }),
+    source('plan/milestones/aftermath', { id: 'aftermath', startChapter: 96, endChapter: 100, setup: '伤后转运，尚未发生。' }),
+  ] };
+}
+
+function dependencyFollowup(version: 20 | 21, extra = '') {
+  const input = dependencyInput(extra), run = createDesignReviewRun(input, undefined, version);
+  for (const stage of [...run.stages.filter(s => s.kind !== 'synthesis')]) {
+    const staged = designReviewStageInput(run, stage);
+    const unit = staged.stage!.sourceMap.find(u => u.sourceId === 'plan/chapters/80');
+    const cited = unit ? staged.sources.find(s => s.id === unit.id)! : staged.sources[0];
+    acceptDesignReviewStage(run, stage, { summary: '局部核验', checks: [{ criterion: 'counters', verdict: stage.id === 'batch-1' ? 'insufficient' : 'pass', explanation: '需对照实际训练', revisionAdvice: stage.id === 'batch-1' ? '补读训练原文后核验' : '', evidence: [{ sourceId: cited.id, quote: cited.text.slice(0, 40) }], ...(stage.id === 'batch-1' ? { awaitingSources: ['plan/milestones/training'] } : {}) }] });
+  }
+  const followup = run.stages.find(s => s.followupFor === 'batch-1/counters')!;
+  return { run, input, followup, staged: designReviewStageInput(run, followup) };
+}
+
+test('plan dependency navigation follows one explicit edge in either direction, excluding dangling and ambiguous IDs', () => {
+  const input = dependencyInput();
+  assert.deepEqual(designReviewPlanNeighbors(input, ['plan/milestones/training']), ['plan/milestones/convoy']);
+  assert.deepEqual(designReviewPlanNeighbors(input, ['plan/milestones/convoy']), ['plan/milestones/training', 'plan/milestones/aftermath']);
+  assert.deepEqual(designReviewPlanNeighbors(input, ['plan/overview']), []);
+  const unchanged = structuredClone(input);
+  designReviewPlanNeighbors(input, ['plan/milestones/training']);
+  assert.deepEqual(input, unchanged);
+  input.sources.push(source('plan/chapters/99', { id: 'convoy', chapterNumber: 99 }));
+  assert.deepEqual(designReviewPlanNeighbors(input, ['plan/milestones/training']), [], 'ambiguous object IDs must not guess a matching source');
+  input.sources[0].text = 'invalid overview';
+  assert.deepEqual(designReviewPlanNeighbors(input, ['plan/milestones/training']), []);
+});
+
+test('v21 co-reads complete direct plan dependencies in followups without expanding to transitive plans or changing v20', () => {
+  const old = dependencyFollowup(20), current = dependencyFollowup(21);
+  assert.ok(!old.staged.stage!.sourceMap.some(u => u.sourceId === 'plan/milestones/convoy'));
+  assert.deepEqual(old.staged.stage!.coverage!.relatedSourceContext, undefined);
+  const ids = current.staged.stage!.sourceMap.filter(u => u.sourceId === 'plan/milestones/convoy').map(u => u.id);
+  assert.equal(current.staged.sources.filter(s => ids.includes(s.id)).map(s => s.text).join(''), current.input.sources.find(s => s.id === 'plan/milestones/convoy')!.text);
+  assert.ok(current.staged.stage!.coverage!.relatedSourceContext!.includedSourceIds.includes('plan/milestones/convoy'));
+  assert.ok(!current.staged.stage!.sourceMap.some(u => u.sourceId === 'plan/milestones/aftermath'));
+  assert.equal(current.followup.result, undefined, 'supplying evidence never resolves the question automatically');
+  assert.deepEqual(current.staged.stage!.coverage!.pendingChecks![0].requiredSourceIds, ['plan/milestones/training']);
+  assert.deepEqual(current.run.stages.filter(s => !s.followupFor && s.kind !== 'synthesis'), old.run.stages.filter(s => !s.followupFor && s.kind !== 'synthesis'));
+  assert.deepEqual(designReviewStageInput(JSON.parse(JSON.stringify(old.run)), old.followup), old.staged);
+});
+
+test('v21 never truncates an oversized optional dependency or evicts required sources', () => {
+  const { input, staged, followup } = dependencyFollowup(21, '完整对抗条件不能截断。'.repeat(30000));
+  assert.ok(JSON.stringify(staged.sources).length <= 240000);
+  assert.ok(!staged.stage!.sourceMap.some(u => u.sourceId === 'plan/milestones/convoy'));
+  assert.deepEqual(staged.stage!.coverage!.relatedSourceContext!.omittedSourceIds, ['plan/milestones/convoy']);
+  for (const id of ['plan/chapters/80', 'plan/milestones/training']) {
+    const ids = staged.stage!.sourceMap.filter(u => u.sourceId === id).map(u => u.id);
+    assert.equal(staged.sources.filter(s => ids.includes(s.id)).map(s => s.text).join(''), input.sources.find(s => s.id === id)!.text);
+  }
+  assert.ok(staged.sources.some(s => s.id === 'review-question/batch-1/counters'));
+  assert.equal(followup.result, undefined);
+});

@@ -75,7 +75,7 @@ test('chapter-only power batches also receive complete tier and technique rules'
   ];
   input.sources = [...rules, ...input.sources];
   const run = createDesignReviewRun(input);
-  assert.equal(run.scheduleVersion, 20);
+  assert.equal(run.scheduleVersion, 21);
   for (const stage of run.stages) {
     const staged = designReviewStageInput(run, stage);
     assert.ok(JSON.stringify(staged.sources).length <= 240_000);
@@ -119,7 +119,7 @@ test('v20 scopes power questions locally without dropping high-tier sources or c
   // exact same local rubric and source envelope, not silently rewrite history.
   const oldFirst = designReviewStageInput(old, old.stages[0]);
   assert.equal(createHash('sha256').update(JSON.stringify(oldFirst)).digest('hex'), '45c48104b8e9be2fd0a129e6f13d7bc16f9aac6c71fd3e0376bc14dd5ae8ce18');
-  const current = createDesignReviewRun(input, old.createdAt);
+  const current = createDesignReviewRun(input, old.createdAt, 20);
   assert.equal(current.scheduleVersion, 20);
   assert.deepEqual(current.units, old.units);
   assert.deepEqual(current.stages, old.stages);
