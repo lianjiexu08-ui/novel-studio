@@ -4,7 +4,7 @@
   "candidateHash": "af02bf9040c2d15a1b91bad4dde7d982ebf0a69ccc50cd725e15ae723ea1d939",
   "savedToWork": false,
   "formalAcceptance": false,
-  "status": "unsaved_awaiting_targeted_review",
+  "status": "unsaved_targeted_review_needs_revision",
   "reason": "Formal57 followup-cross-3-4/geography interpreted the effect phrase 斩敌 as an exclusive enemy target whitelist, although the proposal repeatedly cuts ordinary ropes. Clarify intended material targets and consequences; do not label that interpretation an established original hard contradiction.",
   "techniqueId": "tech_04",
   "before": {
@@ -69,17 +69,20 @@
     "scopeLimitation": "A future v9 literary diagnostic applies only to these identical sources; it does not evaluate the changed technique or replace a full v10 formal review."
   },
   "diagnostic": {
-    "status": "queued_after_workflow_status_replay",
+    "status": "reviewed_needs_revision",
     "model": "gpt-5.6-luna",
     "fallback": false,
-    "sourceCount": 35,
-    "sourceChars": 41565,
+    "sourceCount": 39,
+    "sourceChars": 45096,
     "criteria": [
       "targets",
       "consequences",
       "continuity"
     ],
-    "formalAcceptance": false
+    "formalAcceptance": false,
+    "expandedBeforeFirstModelCall": true,
+    "includesLaterUse": "ms_v2_boundary chapter64 and ms_v2_voyage plus loc_24 and char_05",
+    "resultRecord": "2026-10-14-design58-sword-review-v10.json"
   },
   "manualCrossCheck": {
     "type": "source_reading_not_model_verdict",
@@ -97,6 +100,6 @@
       "48章纲、人物圣经、关系rel_22及人物弧光同步，未新增雇工人数。",
       "45修船付款48，46无赔款，47林付最后1枚食宿；后续没有因改场次新增可用钱。"
     ],
-    "limitation": "No new literary acceptance; latest completed literary review remains v8 pacing/fantasy revise."
+    "limitation": "Source reading is not model acceptance. v9 literary diagnostic has now passed on v10-identical literary sources; sword changes and complete design remain unaccepted."
   }
 }

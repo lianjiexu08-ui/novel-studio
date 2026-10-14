@@ -1,0 +1,91 @@
+{
+  "observedAt": "2026-10-14T11:37:56.227747+00:00",
+  "status": "targeted_literary_review_passed_not_formal_acceptance",
+  "candidateVersion": 9,
+  "candidateHash": "329ef0b848d217bd8c44c570375d96e2e419adefc41d4204e5241390f40e31f5",
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "savedToWork": false,
+  "formalAcceptance": false,
+  "sourceCount": 169,
+  "sourceChars": 233098,
+  "sourcesHash": "ba461dc5b72413fa3d019c013424331a9124e47224c166062fc54f9a44b9375f",
+  "usage": {
+    "calls": 1,
+    "failedCalls": 0,
+    "inputTokens": 150953,
+    "outputTokens": 2053,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 1,
+        "failedCalls": 0,
+        "outputTokens": 2053,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 1
+    }
+  },
+  "result": {
+    "summary": "前50章提案具备清晰的四段递进：矿难求生与受限取证、康复达标后古境救援、外港失箱核证、追船与五工脱控。主要转折均由人物在权限、伤势、生计和证据边界下的选择推动，而非仅靠账目或规则自动结案；关系进展和阶段回报也有实际行动兑现。",
+    "checks": [
+      {
+        "criterion": "causality",
+        "verdict": "pass",
+        "explanation": "1—12章由林辰选择留证人与梁九选择保家人、苏选择保全不利证词，推动矿场救援后的受限复核；局部胜利是救出两名工友并留置执行人，代价是伤势、器械债与行动限制，而非破获全案。13—26章以林拒卖原件、接受慢修与实测为古境准入前提；22章旧图旁路失败、23章确认墨仍具玄府战力，迫使求援和同阶分工，25—26章才形成救囚、夺样箱、交押与有限分药的高潮。33—39章的失箱线从侧门册、火场救人到实物和医铺原页互证，完成的是本箱去向核清而非扩大定罪。40—50章则由贺撤回船务资源、唐的失败脱身、实测潮路、报警追船、陆到案指路，最终进入巡员在场的吴卢脱控；每段失败都改变了可行目标和下一步路径。",
+        "revisionAdvice": "",
+        "evidenceCount": 9
+      },
+      {
+        "criterion": "agency",
+        "verdict": "pass",
+        "explanation": "关键配角并非只替主角服务。梁九为家人签和解、仍限定证言范围，之后又自担停粮和器械赔偿救工友；苏拒绝替残玉背书、留宗护证而不随林南渡；顾坚持准入、守口和交岗条件，救援后也不接受以口供换松押。外港段贺多次否决主角或程的便利方案：先救五工、拒押船认赔、实测不利潮路即退船、拒绝撤证换替船；唐、许、吴、卢分别拥有不等同于贺或林的脱身、生计与去留选择。反派也有自己的目的性：墨因逃人和催交集中人手赶运，并为保住交货物放弃撤离；程以反诉、空运单和拒供保护自身利益；陆在弟弟拒绝遮掩及现场扣人冲突中作出不可轻易撤回的协助巡查和受看护选择。",
+        "revisionAdvice": "",
+        "evidenceCount": 9
+      },
+      {
+        "criterion": "relationships",
+        "verdict": "pass",
+        "explanation": "林苏关系没有用信任标签跳过分歧：早期庇护受权限和诊单约束；梁九和解、韩叙改账被保留后才形成有限同盟；17章围绕“谁为遗物背书”重划材料边界；29章苏选择护证、林南行，分离构成真实消息延迟而非感情考验的虚设。林与梁九、白榆、顾峤的关系也都以生计、医嘱、职责限制主角。外港关系尤其有效：林贺先以公共货道互助建立查人路径，救三人后仍因船损、工人安置和追案优先级发生改变；陆弟拒绝哥哥代答，吴卢拒绝由同伴或船主决定回船，均使“获救”不等于忠诚或服从。",
+        "revisionAdvice": "",
+        "evidenceCount": 9
+      },
+      {
+        "criterion": "pacing",
+        "verdict": "pass",
+        "explanation": "前50章的紧张与喘息分布可辨：1—12章连续矿难、逃亡、公开演练救人后，以13—18章康复、劳务和修炼选择换取下一阶段门槛；19—26章先探路受阻再完成营地高潮；27—32章以疗程、分路和实体航行收束第一卷。33—39章虽有多次核账，但每次核验都对应新的戏剧问题：失箱责任、火场救人、身份核实、是否转嫁责任，并以六号箱阶段结案结束。40—50章从五工失联、潮路退却、提前报警追船、船损救人，到吴卢在门前自行回答，困境从“找人”升级为“救出后是否仍能替他们安排人生”，没有机械重复同一救人结构。规章、票款和诊察均被嵌在可失去的选择中，没有单独取代事件。",
+        "revisionAdvice": "",
+        "evidenceCount": 8
+      },
+      {
+        "criterion": "payoff",
+        "verdict": "pass",
+        "explanation": "前50章已提供分层回报而没有提前清空长线。矿难线在12章兑现为救出本轮工友、封样和执行者留置，却明确高阶阵法与上层链未破；父亲线在18章得到“参与守门”的有限实证，27—31章又把刻痕与收货号转为可追的跨陆线索。寿命线不是即时奖励：3元载突破、两次十日药程和复诊后才分别生效，且灵泉不治腿伤。古境救人承诺在26—29章兑现为墨被具名交押、获救者脱控、九滴中林只获六滴并完成两剂；外港的第六箱在39章明确以12回收、6火毁、6售用收束，首仓火因保留未明；五工线则在44章救三人、50章救吴卢后达成脱控，同时保留去留、生计、改签和程的责任问题。",
+        "revisionAdvice": "",
+        "evidenceCount": 8
+      },
+      {
+        "criterion": "fantasy_identity",
+        "verdict": "pass",
+        "explanation": "提案的玄幻身份不只依赖设定名词。矿道、古境支洞、掳人营地、灵泉与残片共同构成可探索的奇异世界；成长满足感来自林在短寿和伤势限制下通过实测、训练、地形判断与有限御物取得凝元三重，而不是无代价越阶。25章的爽点由林苏的普通结构分工、顾的同阶付费制敌、墨为夺货失去撤路共同组成，明确避免低阶主角硬杀玄府。外港段则把玄幻能力克制地用于轻钩、切索和救援，同时保留潮沟、飞舟、三大陆商路所带来的冒险视野；46章林对苍冥雪的向往，使追案之外出现世界探索的情感牵引。",
+        "revisionAdvice": "",
+        "evidenceCount": 6
+      }
+    ]
+  },
+  "v10Applicability": {
+    "candidateHash": "af02bf9040c2d15a1b91bad4dde7d982ebf0a69ccc50cd725e15ae723ea1d939",
+    "literarySourceCount": 169,
+    "literarySourceChars": 233098,
+    "literarySourcesHash": "ba461dc5b72413fa3d019c013424331a9124e47224c166062fc54f9a44b9375f",
+    "v9AndV10LiterarySourcesIdentical": true,
+    "changedTechniqueOutsideLiteraryScope": true,
+    "formalAcceptance": false,
+    "scopeLimitation": "A future v9 literary diagnostic applies only to these identical sources; it does not evaluate the changed technique or replace a full v10 formal review."
+  },
+  "priorNegativeRetained": "v8 pacing and fantasy revise are retained in their original reports; this is a new review after substantive harbor restructuring."
+}

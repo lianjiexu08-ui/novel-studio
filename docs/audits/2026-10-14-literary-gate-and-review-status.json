@@ -1,5 +1,5 @@
 {
-  "observedAt": "2026-10-14T11:13:09.102Z",
+  "observedAt": "2026-10-14T11:37:56.229590+00:00",
   "rubricVersion": 15,
   "scheduleVersion": 15,
   "formalRuntimeChanged": false,
@@ -85,8 +85,59 @@
     "warning": "Existing large bundle warning"
   },
   "realReplay": {
-    "status": "queued_after_design58_candidate_v9_diagnostic",
-    "file": "/tmp/novel57-workflow-status-replay.mjs",
-    "formalAcceptance": false
+    "status": "reviewed",
+    "model": "gpt-5.6-luna",
+    "fallback": false,
+    "sourceCount": 3,
+    "sourcesHash": "eb5bc067758f6932392f5423cbc9139774a18820c795418f611197c07beb9204",
+    "originalSnapshotUnchanged": true,
+    "usage": {
+      "calls": 1,
+      "failedCalls": 0,
+      "inputTokens": 51149,
+      "outputTokens": 1152,
+      "costUsd": 0,
+      "costKnown": false,
+      "byRole": {
+        "reviewing": {
+          "calls": 1,
+          "failedCalls": 0,
+          "outputTokens": 1152,
+          "costUsd": 0
+        }
+      },
+      "limits": {
+        "budgetUsd": null,
+        "maxCalls": 1
+      }
+    },
+    "result": {
+      "summary": "本次为已覆盖报告子树的中间综合，只评估提案可行性。已由原文补读解决的历史等待不再传播；当前报告证据与总纲可相容，未发现角色领域须保留的返修、普通材料不足或跨报告硬冲突。此结论不构成正文实现、全领域总验收或工作流放行。",
+      "checks": [
+        {
+          "criterion": "agency",
+          "verdict": "pass",
+          "explanation": "角色行动不是主角单向驱动。林在救人、追证、自保之间持续承担伤势、收入、线索和追凶机会的取舍；苏、梁、贺、顾、陆及雇工分别能依程序、生计、船务、职责、受看护责任和自主去留作出不服从林利益的选择。港口段将林让出判断权、吴卢自行脱控、陆停止协助扣人但继续受看护、贺接受雇工不立即回船落实为不同人物的行动后果；后段救人优先、放弃追片或追凶亦保留资源与责任代价。总纲将百章成果限制为切断一条已实证运输链，未以高阶战力或终局身份消解上述选择。",
+          "revisionAdvice": "",
+          "evidenceCount": 8
+        },
+        {
+          "criterion": "relationships",
+          "verdict": "pass",
+          "explanation": "关系均以阶段性选择、付出和生效条件推进，而非以后期搭档关系覆盖初识。林苏由受限庇护、共同救援与资源分配，发展至分路、实体递信和当面交证后的有限协作；林贺的合作受船损、停牌、雇工自主去留与航款用途约束；林陆始终保留协助不免罪、继续受看护、弟弟不代为担保及供述待核的边界。第50章是吴卢自行出门并拒绝立即回船的实际生效节点；51—53章的安置、短工、交检和陆的签认均仍为拟定兑现义务，且须实际落实或独立核验，因此未被倒填为既成信任或脱责。后段关系安排也保留实际交证、指定责任与异地消息不可即时共享等条件。",
+          "revisionAdvice": "",
+          "evidenceCount": 12
+        },
+        {
+          "criterion": "knowledge",
+          "verdict": "pass",
+          "explanation": "秘密与认知变化以亲见、实体证物、文书送达、签收和独立核验为条件。第50章现场仅能支持吴卢的意愿、门前拦阻及陆对本次押送的有限承认，不能推出原账、完整改签、程的位置或第二片状态；第53章拟取得的陆签认副本也只确认供述行为，内容仍待独立互证。赵、程、骑使等消息链区分寄报、阅报、发令、实际送达及回执返还，赵不能由程的利己自述、下属现场或读者视角预知北境结果或命令执行。百章揭示亦限于可核的一条三地运输链，未提前确证父案全貌或九鼎机制；人物弧光由拒绝转嫁、放弃武力代答、救人优先等可观察选择构成。",
+          "revisionAdvice": "",
+          "evidenceCount": 16
+        }
+      ]
+    },
+    "formalAcceptance": false,
+    "originalReportStillInconclusive": true
   }
 }

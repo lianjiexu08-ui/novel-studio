@@ -10,10 +10,11 @@
     {
       "area": "world",
       "runId": "design_run_3839c593-a088-415d-8512-39ff4348b14c",
-      "status": "running",
+      "status": "failed",
       "resumedFrom": "followup-cross-1-3/geography",
       "preservedSteps": 23,
-      "calls": 19
+      "calls": 29,
+      "error": "openai-compatible request failed (524): openai_error"
     },
     {
       "area": "power",
@@ -21,12 +22,17 @@
       "status": "running",
       "resumedFrom": "cross-1-2",
       "preservedSteps": 5,
-      "calls": 11
+      "calls": 30
     }
   ],
-  "errors": [],
+  "errors": [
+    {
+      "area": "world",
+      "error": "openai-compatible request failed (524): openai_error"
+    }
+  ],
   "diagnosticGate": "/tmp/novel58-pacing-review-v8.json",
   "protectedHistoryUnchanged": true,
-  "observedAt": "2026-10-14T11:24:47.058716+00:00",
+  "observedAt": "2026-10-14T11:44:48.890306+00:00",
   "formalAcceptance": false
 }
