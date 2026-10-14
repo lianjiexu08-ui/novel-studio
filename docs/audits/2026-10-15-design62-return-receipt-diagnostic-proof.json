@@ -1,0 +1,51 @@
+{
+  "observedAt": "2026-10-14T22:54:03.854Z",
+  "status": "targeted_receipt_chain_pass_not_formal_acceptance",
+  "model": "gpt-5.6-luna",
+  "timeoutMs": 600000,
+  "fallback": false,
+  "candidateFileSha256": "8caa68edd8b77ad399b789e4cfd8f0ca4a90c7fa9a3515b69c8b54d537a6a679",
+  "checks": [
+    {
+      "criterion": "custody",
+      "verdict": "pass"
+    },
+    {
+      "criterion": "responsibility",
+      "verdict": "pass"
+    },
+    {
+      "criterion": "budget",
+      "verdict": "pass"
+    },
+    {
+      "criterion": "continuity",
+      "verdict": "pass"
+    }
+  ],
+  "verifiedCitations": 13,
+  "resultSha256": "88e4cd6181900dcb7b869945f4b5107def25bf42a2d6b209b13d4eee9d34b715",
+  "usage": {
+    "calls": 1,
+    "failedCalls": 0,
+    "inputTokens": 20398,
+    "outputTokens": 1617,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 1,
+        "failedCalls": 0,
+        "outputTokens": 1617,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 3
+    }
+  },
+  "productionWrites": false,
+  "formalAcceptance": false,
+  "limitation": "Local receipt custody, responsibility, budget and chronology only. All formal61 findings and a fresh full review remain required; proposal is unapplied and old history/blockers remain unchanged."
+}
