@@ -870,11 +870,16 @@ export class ChapterWorkflow {
       if (!requiresReview) return undefined;
       const candidate = work.candidates.get(candidateId)!;
       const input = chapterReviewInput(work, candidate);
+      const records = candidate.checkRuns.flatMap(check => check.chapterReview?.inputHash === input.inputHash && check.chapterReview.stage && check.chapterReview.progress
+        ? [check.chapterReview] : []);
+      const createdAt = records.at(-1)?.progress?.createdAt;
+      const stages = new Map(records.filter(r => r.progress!.createdAt === createdAt).map(r => [r.stage!.id, r.stage!]));
       this.service.runChecks(workId, candidateId, [{ name: chapterReviewChecker, check: () => ({
         checker: chapterReviewChecker, status: 'unavailable', candidateId, checkedAt: new Date().toISOString(),
         message: '独立正文评审正在进行，尚不能采纳', chapterReview: { inputHash: input.inputHash },
       }) }]);
-      return { input, pendingId: candidate.checks.find(c => c.checker === chapterReviewChecker)!.id };
+      return { input, pendingId: candidate.checks.find(c => c.checker === chapterReviewChecker)!.id,
+        resume: createdAt ? { inputHash: input.inputHash, createdAt, stages: [...stages.values()] } : undefined };
     });
     if (!prepared) return;
     let record: ChapterReviewRecord = { inputHash: prepared.input.inputHash };
@@ -888,7 +893,28 @@ export class ChapterWorkflow {
     timer?.unref();
     try {
       if (!this.provider.reviewChapterAsync) throw new Error('当前模型未配置独立正文评审');
-      const response = await this.provider.reviewChapterAsync(prepared.input);
+      const response = await this.provider.reviewChapterAsync(prepared.input, {
+        resume: prepared.resume,
+        onStage: async (stage, progress) => {
+          const saved = await this.repository.transaction(workId, ({ work }) => {
+            guard(work);
+            this.service.works.set(work.id, work);
+            const candidate = work.candidates.get(candidateId)!;
+            const stale = chapterReviewInput(work, candidate).inputHash !== prepared.input.inputHash
+              || candidate.checks.find(c => c.checker === chapterReviewChecker)?.id !== prepared.pendingId;
+            this.service.runChecks(workId, candidateId, [{ name: chapterReviewChecker, check: () => ({
+              checker: chapterReviewChecker, candidateId, checkedAt: new Date().toISOString(), status: 'unavailable',
+              message: stale ? '评审材料或执行请求已变化，保留本批结果供复查' : `正文分批评审 ${progress.completed}/${progress.total}：${stage.label}${stage.error ? `；${stage.error}` : ''}`,
+              chapterReview: { inputHash: prepared.input.inputHash, stage, progress },
+            }) }]);
+            return { stale, stopped: lease ? Boolean(work.checkpoints.get(lease.runId)?.control) : false,
+              id: candidate.checks.find(c => c.checker === chapterReviewChecker)!.id };
+          });
+          prepared.pendingId = saved.id;
+          if (saved.stale) throw new StaleCandidateError('正文分批评审的材料或执行请求已过期');
+          if (saved.stopped) throw new Error('已收到暂停或取消请求；本批已保存，可从下一批继续');
+        },
+      });
       record.usage = response.usage;
       record = { ...record, result: validateChapterReview(response, prepared.input), usage: response.usage };
     } catch (error) {

@@ -32,6 +32,8 @@ export const designReviewRubrics: Record<DesignReviewArea, Record<string, string
 
 export interface DesignReviewSource { id: string; text: string }
 export interface DesignReviewInput {
+  /** Reuse coverage/provenance machinery without treating prose as a design proposal. */
+  purpose?: 'chapter_review';
   area: DesignReviewArea;
   inputHash: string;
   scope: { worldPackRevision: number; storyBibleRevision: number; planRevisionId: string; planRevision: number };

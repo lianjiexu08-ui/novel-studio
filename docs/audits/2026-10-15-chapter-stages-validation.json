@@ -1,0 +1,36 @@
+{
+  "testEnvironment": "isolated validation checkout",
+  "productionPrismaRegenerated": false,
+  "productionDatabaseMigrated": false,
+  "productionApiRestarted": false,
+  "originalFullTestLog": "/tmp/novel-chapter-stages-final-tests.log",
+  "failure": "Seven Prisma test database setups failed after isolated @prisma support package entry files became missing. Production installed packages were present.",
+  "repair": "Copied matching installed Prisma 5.22.0 engines and support package files into isolated node_modules only; generated client untouched. CLI import then succeeded.",
+  "retryFullTestLog": "/tmp/novel-chapter-stages-final-tests-retry.log",
+  "buildLog": "/tmp/novel-chapter-stages-build.log",
+  "browserScreenshot": "/tmp/novel-chapter-stages-ui.png",
+  "retryFailure": "After Prisma support package repair, the prior sandbox also lacked the contracts workspace package manifest. The cause of missing files was not established.",
+  "freshEnvironment": {
+    "root": "/var/folders/tr/8vt224595gdfg6w6kh6tkpt00000gn/T/novel-chapter-validation-o9hldenn",
+    "independentGeneratedClient": true,
+    "rootPrismaRegenerated": false,
+    "workspaceContractsBindingVerified": true,
+    "pathAssertion": "Compared canonical paths on both sides to account for /var and /private/var; confirmed contracts resolves inside the isolated copy."
+  },
+  "finalFullTestLog": "/tmp/novel-chapter-stages-fresh-tests.log",
+  "finalTests": {
+    "status": "passed",
+    "count": 341,
+    "failed": 0
+  },
+  "finalBuildLog": "/tmp/novel-chapter-stages-fresh-build.log",
+  "finalBuild": {
+    "status": "passed",
+    "warning": "Existing Vite chunk size warning"
+  },
+  "formalProgressReader": {
+    "originalReaderError": "Frozen runtime @prisma/client/index.js missing; runtime not modified or restarted.",
+    "fallback": "Read-only repository import from fresh isolated validation checkout. Protected design/history and old report/run hashes matched baseline. Live review continued saving stages.",
+    "script": "/tmp/novel60-formal-progress-isolated-reader.mjs"
+  }
+}

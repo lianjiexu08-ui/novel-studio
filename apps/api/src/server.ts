@@ -756,7 +756,7 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
       quality: {
         contextManifest: contextManifestFor(work, chapterNumber),
         version: version ? { id: version.id, revision: version.revision, status: version.status, stale: version.stale, sourceCandidateId: version.sourceCandidateId } : undefined,
-        candidate: candidate ? { id: candidate.id, status: candidate.status, proposedEvents: candidate.proposedEvents, observedEvents: candidate.observedEvents, checks } : undefined,
+        candidate: candidate ? { id: candidate.id, status: candidate.status, proposedEvents: candidate.proposedEvents, observedEvents: candidate.observedEvents, checks, checkHistory: candidate.checkRuns } : undefined,
         checkCoverage: {
           total: checks.length,
           passed: checks.filter((check) => check.status === 'passed').length,

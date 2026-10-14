@@ -2,6 +2,9 @@ import { designReviewInput, designReviewOverview, recordDesignReview } from '../
 import { fixtureDesignReview } from '../../application/test/fixtures.ts';
 import { fixtureChapterReview, createReadyWork } from '../../application/test/fixtures.ts';
 import { chapterReviewChecker } from '../../../novel-service-core/src/chapter-review.ts';
+import { passingStageOutput } from '../../planner/test/chapter-review-fixture.ts';
+import { OpenAICompatibleChapterProvider } from '../../planner/src/index.ts';
+import { emptyUsage } from '../../../novel-service-core/src/core.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
@@ -56,6 +59,44 @@ test('independent chapter reports, failures and citations survive reload and sti
   assert.equal(saved.checks.find(c => c.checker === chapterReviewChecker)?.chapterReview?.result?.checks.length, 6);
   assert.equal(saved.checks.find(c => c.checker === chapterReviewChecker)?.chapterReview?.result?.checks[0].evidence[0].sourceId, 'draft');
   assert.equal((await workflow.adopt(work.id, candidate.id, 0)).version.chapterNumber, 1);
+});
+
+test('large chapter review checkpoints resume after SQLite restart without losing failures', async t => {
+  const databaseUrl = createDatabase();
+  process.env.DATABASE_URL = databaseUrl;
+  const { PrismaWorkRepository } = await import('../src/prisma-repository.ts');
+  const { ChapterWorkflow } = await import('../../application/src/index.ts');
+  const { passChecker } = await import('../../../novel-service-core/src/core.ts');
+  const first = new PrismaWorkRepository(), second = new PrismaWorkRepository();
+  t.after(async () => { await first.disconnect(); await second.disconnect(); rmSync(databaseUrl.slice(5), { force: true }); });
+  const policy = { version: 'staged-chapter-review', required: ['deterministic_rules', chapterReviewChecker] };
+  let calls = 0;
+  const labels: string[] = [];
+  const reviewer = new OpenAICompatibleChapterProvider('', '', '', 10, 5000, true, { completeWithUsage: async request => {
+    labels.push(JSON.parse(request.user).stage.label);
+    if (++calls === 2) throw new Error('第二批网络中断');
+    return { text: passingStageOutput(request), usage: { ...emptyUsage(), calls: 1 } };
+  } });
+  const provider: ModelProvider = { generateChapter: () => ({ content: '他按住伤口，放弃追击，先带同伴回城。', proposedEvents: [], observedEvents: [] }),
+    reviewChapterAsync: reviewer.reviewChapterAsync.bind(reviewer) };
+  const workflow = new ChapterWorkflow(first, provider, undefined, { checkPolicy: policy });
+  const work = await createReadyWork(workflow, '大材料检查点恢复');
+  await first.transaction(work.id, ({ work }) => { work.worldPack!.summary = '完整规则不能截断。'.repeat(36_000); });
+  const candidate = await workflow.generate(work.id, 1, 'checkpoint');
+  await workflow.check(work.id, candidate.id, [passChecker]);
+  const interrupted = (await first.get(work.id))!.candidates.get(candidate.id)!;
+  assert.equal(calls, 2);
+  assert.ok(interrupted.checkRuns.some(c => c.chapterReview?.stage?.result));
+  assert.ok(interrupted.checkRuns.some(c => c.chapterReview?.stage?.failures?.[0]?.error === '第二批网络中断'));
+  await first.disconnect();
+  const restored = new ChapterWorkflow(second, provider, undefined, { checkPolicy: policy });
+  await restored.check(work.id, candidate.id, [passChecker]);
+  assert.equal(labels.filter(label => label === labels[0]).length, 1, 'first completed batch must not be called again');
+  const saved = (await second.get(work.id))!.candidates.get(candidate.id)!;
+  assert.equal(saved.checks.find(c => c.checker === chapterReviewChecker)?.status, 'passed');
+  const proof = saved.checks.find(c => c.checker === chapterReviewChecker)!.chapterReview!.result!.stageProof!;
+  assert.ok(proof.stages.some(s => s.attempts === 2 && s.failures?.[0]?.error === '第二批网络中断'));
+  assert.equal((await restored.adopt(work.id, candidate.id, 0)).version.chapterNumber, 1);
 });
 
 test('frozen manuscript metadata and exact design references survive database reload', async t => {

@@ -5,6 +5,8 @@ import { ChapterReviewError, chapterReviewChecker, chapterReviewInput, validateC
 import { emptyUsage, passChecker, QualityGateError } from '../../../novel-service-core/src/core.ts';
 import type { ModelProvider } from '../../../novel-service-core/src/core.ts';
 import { createReadyWork, fixtureChapterReview } from './fixtures.ts';
+import { OpenAICompatibleChapterProvider } from '../../planner/src/index.ts';
+import { passingStageOutput } from '../../planner/test/chapter-review-fixture.ts';
 
 const policy = { version: 'review-test', required: ['deterministic_rules', chapterReviewChecker] };
 const writer: ModelProvider = { generateChapter: () => ({ content: '他按住伤口，放弃追击，先将同伴带回城中。', proposedEvents: [], observedEvents: [] }) };
@@ -120,4 +122,29 @@ test('sequential writing reviews each chapter and honors pause received during r
   const saved = (await repository.get(workId))!;
   assert.equal(saved.versions.size, 1);
   assert.equal(saved.currentVersion(2), undefined);
+});
+
+test('pause during a raw review stage saves that stage and resumes before adopting', async () => {
+  const repository = new InMemoryWorkRepository();
+  let calls = 0;
+  let workId = '';
+  let workflow!: ChapterWorkflow;
+  const labels: string[] = [];
+  const reviewer = new OpenAICompatibleChapterProvider('', '', '', 10, 5000, true, { completeWithUsage: async request => {
+    labels.push(JSON.parse(request.user).stage.label);
+    if (++calls === 1) await workflow.controlRun(workId, 'staged-book', 'pause');
+    return { text: passingStageOutput(request), usage: { ...emptyUsage(), calls: 1 } };
+  } });
+  workflow = new ChapterWorkflow(repository, { ...writer, reviewChapterAsync: reviewer.reviewChapterAsync.bind(reviewer) }, undefined, { checkPolicy: policy });
+  workId = (await createReadyWork(workflow, '分批暂停')).id;
+  await repository.transaction(workId, ({ work }) => { work.worldPack!.summary = '完整规则不能截断。'.repeat(36_000); });
+  const paused = await workflow.runUntil(workId, 1, [passChecker], 'staged-book');
+  assert.equal(paused.phase, 'paused');
+  assert.equal(calls, 1);
+  assert.equal((await repository.get(workId))!.versions.size, 0);
+  const finished = await workflow.runUntil(workId, 1, [passChecker], 'staged-book');
+  assert.equal(finished.phase, 'complete');
+  assert.equal(labels.filter(label => label === labels[0]).length, 1);
+  assert.equal((await repository.get(workId))!.versions.size, 1);
+  assert.equal(finished.usage?.calls, calls);
 });

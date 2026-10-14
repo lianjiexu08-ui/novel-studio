@@ -23,6 +23,8 @@ export function QualityPage() {
   const [loading, setLoading] = useState(false);
   const relationships = history?.relationships.filter((row): row is NonNullable<typeof row> => Boolean(row)) ?? [];
   const chapterReview = history?.quality.candidate?.checks.find(check => check.checker === 'chapter_content_review');
+  const chapterStages = history?.quality.candidate?.checkHistory?.flatMap(check => check.chapterReview?.stage
+    ? [{ ...check.chapterReview.stage, checkId: check.id, checkedAt: check.checkedAt }] : []) ?? [];
   const reviewLabels = { causality: '因果与转折', characters: '人物选择与认知', power: '力量与代价', continuity: '事实连续性', obligations: '章纲兑现', prose: '场景与阅读效果' };
   const characterName = (id: string) => {
     const name = history?.characterNames?.[id];
@@ -64,6 +66,16 @@ export function QualityPage() {
             { title: '结论', dataIndex: 'verdict', render: (value: string) => <Tag color={value === 'pass' ? 'success' : value === 'revise' ? 'error' : 'warning'}>{value === 'pass' ? '通过' : value === 'revise' ? '返修' : '材料不足'}</Tag> },
             { title: '理由', dataIndex: 'explanation' }, { title: '修改要求', dataIndex: 'revisionAdvice' },
           ]} expandable={{ expandedRowRender: row => <Space direction="vertical">{row.evidence.map((item, index) => <Text key={index}>[{item.sourceId}] {item.quote}</Text>)}</Space> }} />
+          {chapterStages.length > 0 && <details><summary>分批审读记录（{chapterStages.length}）</summary>
+            <Text type="secondary">保留每次批次、交叉检查和综合的历史结论；单批完成不代表整章通过。展开查看原文证据。</Text>
+            <Table size="small" rowKey={row => row.checkId ?? row.id + row.checkedAt} pagination={{ pageSize: 6 }} dataSource={chapterStages} columns={[
+              { title: '步骤', dataIndex: 'label' }, { title: '尝试', dataIndex: 'attempts' },
+              { title: '结果', render: (_, row) => row.error || row.result?.summary || '尚未完成' },
+            ]} expandable={{ expandedRowRender: row => <Space direction="vertical">{row.result?.checks.map(check => <div key={check.criterion}>
+              <Text strong>{reviewLabels[check.criterion as keyof typeof reviewLabels] ?? check.criterion} · {check.verdict === 'pass' ? '本批通过' : check.verdict === 'revise' ? '返修' : '材料不足'}</Text>
+              <p>{check.explanation} {check.revisionAdvice}</p>{check.evidence.map((item, index) => <p key={index}>[{item.sourceId}] {item.quote}</p>)}
+            </div>)}</Space> }} />
+          </details>}
         </Space>}
       </Card>
       <Row gutter={16}>

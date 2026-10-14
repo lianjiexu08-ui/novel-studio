@@ -22,6 +22,9 @@ const localPowerCriteria: Record<string, string> = {
 };
 
 export function localDesignReviewRubric(input: DesignReviewInput, scheduleVersion = 7): Record<string, string> {
+  if (input.purpose === 'chapter_review') return Object.fromEntries(Object.entries(input.rubric).map(([criterion, description]) => [criterion,
+    `本项评审的是共享 draft 正文。${description} 本批只对照实际携带的设定、计划、历史与正文；pass只表示本批没有发现该维度问题，整体结论由全量原文、跨批检查及综合决定。不要把未读的无关后续计划当作本章必须兑现的任务，也不要要求本批独自证明全书一致。只有具体判断依赖目录中确实存在但未读的来源时，用insufficient和awaitingSources列全必要来源并说明问题；不要凭未读资料补完正文。已发现的正文矛盾、缺乏动机或质量问题必须revise，不能用等待掩盖。`,
+  ]));
   return Object.fromEntries(Object.entries(input.rubric).map(([criterion, description]) => [criterion,
     `本项是局部原文检查，pass仅表示本批可检验的安排成立，不代表整个领域通过。${input.area === 'story' && description === designReviewRubrics.story[criterion] ? localStoryCriteria[criterion] ?? description
       : scheduleVersion >= 20 && input.area === 'power' && description === designReviewRubrics.power[criterion] ? localPowerCriteria[criterion] ?? description : description}`

@@ -1,5 +1,5 @@
 import type { DesignReviewRun } from './design-review-run.ts';
-import { chapterReviewChecker, chapterReviewInput, chapterReviewStatus, validateChapterReview, type ChapterReviewInput, type ChapterReviewResult, type ChapterReviewRecord } from './chapter-review.ts';
+import { chapterReviewChecker, chapterReviewInput, chapterReviewStatus, validateChapterReview, type ChapterReviewInput, type ChapterReviewOptions, type ChapterReviewResult, type ChapterReviewRecord } from './chapter-review.ts';
 import { designReviewOverview, requiresDesignContentReview, type DesignContentReview } from './design-review.ts';
 import { createHash, randomUUID } from 'node:crypto';
 import { chapterGenerationGate, validateStoryBible, validateWorldPack } from './world.ts';
@@ -110,7 +110,7 @@ export function usageOfError(error: unknown): RunUsage | undefined {
 }
 
 export interface ModelProvider {
-  reviewChapterAsync?(input: ChapterReviewInput): Promise<ChapterReviewResult>;
+  reviewChapterAsync?(input: ChapterReviewInput, options?: ChapterReviewOptions): Promise<ChapterReviewResult>;
   /** Placeholder writers declare themselves; their output is isolated from formal adoption. */
   demo?: boolean;
   generateChapter(input: { work: Work; chapterNumber: number; context: ContextManifest }): GeneratedChapter;

@@ -1,5 +1,7 @@
 import { createHash } from 'node:crypto';
 import type { ChapterCandidate, CheckStatus, RunUsage, Work } from './core.ts';
+import type { DesignReviewInput } from './design-review.ts';
+import { acceptDesignReviewStage, completeDesignReviewRun, createDesignReviewRun, designReviewStageInput, type DesignReviewStage } from './design-review-run.ts';
 
 export const chapterReviewChecker = 'chapter_content_review';
 export const chapterReviewRubric = {
@@ -17,6 +19,12 @@ export interface ChapterReviewResult {
   checks: Array<{ criterion: ChapterReviewCriterion; verdict: 'pass' | 'revise' | 'insufficient'; explanation: string;
     evidence: Array<{ sourceId: string; quote: string }>; revisionAdvice: string }>;
   usage?: RunUsage;
+  stageProof?: ChapterReviewStageProof;
+}
+export interface ChapterReviewStageProof { inputHash: string; createdAt: string; stages: DesignReviewStage[] }
+export interface ChapterReviewOptions {
+  resume?: ChapterReviewStageProof;
+  onStage?: (stage: DesignReviewStage, progress: { createdAt: string; completed: number; total: number }) => Promise<void>;
 }
 export interface ChapterReviewInput {
   inputHash: string;
@@ -30,8 +38,78 @@ export interface ChapterReviewRecord {
   result?: ChapterReviewResult;
   error?: string;
   usage?: RunUsage;
+  stage?: DesignReviewStage;
+  progress?: { createdAt: string; completed: number; total: number };
 }
 export class ChapterReviewError extends Error {}
+
+export function chapterReviewDesignInput(input: ChapterReviewInput): DesignReviewInput {
+  const document = (id: string): Record<string, unknown> => {
+    try { const value = JSON.parse(input.sources.find(s => s.id === id)?.text ?? 'null'); return value && typeof value === 'object' ? value : {}; }
+    catch { return {}; }
+  };
+  const world = document('world'), bible = document('bible'), plan = document('plan');
+  return { purpose: 'chapter_review', area: 'story', inputHash: input.inputHash,
+    // No design acceptance is recorded; the chapter hash also binds candidate and facts.
+    scope: { worldPackRevision: Number(world.revision ?? 0), storyBibleRevision: Number(bible.revision ?? 0),
+      planRevisionId: typeof plan.id === 'string' ? plan.id : 'unplanned', planRevision: Number(plan.revision ?? 0) },
+    rubric: input.rubric, sources: input.sources };
+}
+
+/** Restore only valid completed stages on the canonically rebuilt schedule. */
+export function restoreChapterReviewRun(input: ChapterReviewInput, proof?: ChapterReviewStageProof) {
+  if (proof && (proof.inputHash !== input.inputHash || !Array.isArray(proof.stages) || typeof proof.createdAt !== 'string')) {
+    throw new ChapterReviewError('正文评审检查点不属于当前材料');
+  }
+  const run = createDesignReviewRun(chapterReviewDesignInput(input), proof?.createdAt);
+  const seen = new Set<string>();
+  for (const stored of proof?.stages ?? []) {
+    if (seen.has(stored.id)) throw new ChapterReviewError('正文评审检查点包含重复步骤');
+    seen.add(stored.id);
+    const next = run.stages.find(s => !s.result);
+    if (!next || next.id !== stored.id || next.kind !== stored.kind || JSON.stringify(next.unitIds) !== JSON.stringify(stored.unitIds)
+      || JSON.stringify(next.children) !== JSON.stringify(stored.children) || next.followupFor !== stored.followupFor) {
+      throw new ChapterReviewError('正文评审检查点与原文覆盖计划不一致');
+    }
+    if (stored.result) {
+      validateChapterReviewStage(run, next, stored.result);
+      acceptDesignReviewStage(run, next, stored.result);
+    }
+    Object.assign(next, structuredClone(stored));
+    if (!stored.result && stored !== proof!.stages.at(-1)) throw new ChapterReviewError('正文评审不能跳过失败步骤');
+  }
+  return run;
+}
+
+export function validateChapterReviewStage(run: ReturnType<typeof createDesignReviewRun>, stage: DesignReviewStage, result: NonNullable<DesignReviewStage['result']>) {
+  const local = designReviewStageInput(run, stage);
+  validateChapterStageEvidence(local, result);
+}
+
+export function validateChapterStageEvidence(local: DesignReviewInput, result: NonNullable<DesignReviewStage['result']>) {
+  if (local.stage?.kind === 'synthesis') return;
+  const draftIds = local.stage!.sourceMap.filter(s => s.sourceId === 'draft').map(s => s.id);
+  for (const check of result.checks) if (check.verdict !== 'insufficient'
+    && !check.evidence.some(e => draftIds.includes(e.sourceId))) {
+    throw new ChapterReviewError('正文原文批次通过或返修必须引用共享 draft，不能只评设定');
+  }
+}
+
+export function completedChapterReview(input: ChapterReviewInput, proof: ChapterReviewStageProof): ChapterReviewResult {
+  const run = restoreChapterReviewRun(input, proof);
+  const completed = completeDesignReviewRun(run);
+  const result: ChapterReviewResult = { inputHash: input.inputHash, summary: completed.result.summary,
+    checks: completed.result.checks as ChapterReviewResult['checks'], stageProof: proof };
+  // A collection of locally passing reports still needs the expected rule/brief evidence.
+  for (const [criterion, family] of Object.entries({ characters: 'bible', power: 'world', obligations: 'brief', continuity: 'bible' })) {
+    if (result.checks.find(c => c.criterion === criterion)?.verdict !== 'pass') continue;
+    const supported = run.stages.filter(s => s.kind !== 'synthesis').some(s => s.result!.checks.some(c => c.criterion === criterion && c.verdict === 'pass'
+      && c.evidence.some(e => run.units.some(u => u.id === e.sourceId && !['null', '[]', '{}'].includes(input.sources.find(source => source.id === u.sourceId)!.text)
+        && (u.sourceId === family || criterion === 'continuity' && (u.sourceId === 'facts' || u.sourceId.startsWith('chapter:')))))));
+    if (!supported) throw new ChapterReviewError(`${criterion} 缺少原文规则或任务卡依据，不能合成通过`);
+  }
+  return result;
+}
 
 /** Full sources, never silent truncation. Capacity overflow is a failed review attempt. */
 export function chapterReviewInput(work: Work, candidate: ChapterCandidate): ChapterReviewInput {
@@ -61,6 +139,13 @@ export function chapterReviewInput(work: Work, candidate: ChapterCandidate): Cha
 
 export function validateChapterReview(value: unknown, input: ChapterReviewInput): ChapterReviewResult {
   const record = value as ChapterReviewResult | null;
+  if (record?.stageProof) {
+    const verified = completedChapterReview(input, record.stageProof);
+    if (record.inputHash !== verified.inputHash || record.summary !== verified.summary || JSON.stringify(record.checks) !== JSON.stringify(verified.checks)) {
+      throw new ChapterReviewError('正文综合结果与完整原文检查记录不一致');
+    }
+    return verified;
+  }
   const text = (v: unknown) => typeof v === 'string' && v.trim().length > 0;
   if (!record || record.inputHash !== input.inputHash || !text(record.summary) || !Array.isArray(record.checks)) {
     throw new ChapterReviewError('正文评审缺少正确 inputHash、summary 或 checks');

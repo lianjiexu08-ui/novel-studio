@@ -66,7 +66,7 @@ export function createDesignReviewRun(input: DesignReviewInput, now = new Date()
   // bounded, complete sources; unselected sources remain in the ordinary batches.
   const shared: DesignReviewUnit[] = [];
   if (!small && scheduleVersion >= 2) {
-    const priorities = input.area === 'power'
+    const priorities = input.purpose === 'chapter_review' ? ['draft', 'brief', 'covenant', 'proposed_events', 'observed_events'] : input.area === 'power'
       ? ['author', 'plan/overview', 'world/axioms/', 'world/powerSystems/', 'world/tierLadders/', 'world/realms/', 'world/techniques/', 'world/artifacts/', 'world/resources/']
       : input.area === 'characters'
         ? ['author', 'plan/overview', 'world/axioms/', 'story/characters/', 'world/realms/', 'story/overview', 'world/factions/']
@@ -105,7 +105,8 @@ export function createDesignReviewRun(input: DesignReviewInput, now = new Date()
   }
   // Keep the real planning horizon visible during synthesis. A prior report
   // saying "all 100 chapters need detailed scenes" is not the source plan.
-  const overviewUnits = scheduleVersion >= 3 ? units.filter(u => u.sourceId === 'plan/overview') : [];
+  const overviewUnits = scheduleVersion >= 3 ? units.filter(u => input.purpose === 'chapter_review'
+    ? ['draft', 'brief', 'covenant'].includes(u.sourceId) : u.sourceId === 'plan/overview') : [];
   const synthesisContext = JSON.stringify(overviewUnits.map(unitSource)).length <= sharedContextCapacity ? overviewUnits : [];
   let level = stages.map(s => s.id);
   let sequence = 0;
