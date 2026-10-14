@@ -1038,3 +1038,70 @@ test('browser review client sends objects to the real API and preserves the sele
     assert.equal(current.versions.size, 0);
   } finally { await app.close(); }
 });
+
+test('chapter quality can inspect rewrite and historical candidates without projecting unadopted facts', async () => {
+  const repository = new InMemoryWorkRepository();
+  let revision = 1;
+  let rejectRewrite = true;
+  const provider: ModelProvider = {
+    generateChapter: ({ chapterNumber }) => {
+      const event = { eventType: 'character_state', subjectId: 'hero', predicate: 'power', value: revision, evidence: '本章行动' };
+      return { content: `第${revision}稿正文。${chapterBody(chapterNumber)}`, proposedEvents: [event], observedEvents: [event] };
+    },
+    reviewChapterAsync: async input => {
+      const result = await fixtureChapterReview(input);
+      if (revision > 1 && rejectRewrite) Object.assign(result.checks[0], { verdict: 'revise', explanation: '新稿转折需要补充因果', revisionAdvice: '补充行动依据' });
+      return result;
+    },
+  };
+  const { app } = createApiServer({ repository, provider });
+  try {
+    const work = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('重写质量查看') })).json();
+    await lockDesign(repository, work.id);
+    const base = `/works/${work.id}`;
+    const original = (await app.inject({ method: 'POST', url: `${base}/chapters/1/generate`, payload: {} })).json().candidate;
+    await app.inject({ method: 'POST', url: `${base}/candidates/${original.id}/check` });
+    const adopted = await app.inject({ method: 'POST', url: `${base}/candidates/${original.id}/adopt`, payload: { expectedStateRevision: 0 } });
+    assert.equal(adopted.statusCode, 200, adopted.body);
+    revision = 2;
+    const rewrite = (await app.inject({ method: 'POST', url: `${base}/chapters/1/generate`, payload: {} })).json().candidate;
+    const checked = await app.inject({ method: 'POST', url: `${base}/candidates/${rewrite.id}/check` });
+    assert.equal(checked.statusCode, 200, checked.body);
+    const other = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('另一部书') })).json();
+    await lockDesign(repository, other.id);
+    const foreign = (await app.inject({ method: 'POST', url: `/works/${other.id}/chapters/1/generate`, payload: {} })).json().candidate;
+    const before = structuredClone(await repository.get(work.id));
+    const current = (await app.inject({ method: 'GET', url: `${base}/state/1` })).json();
+    const selectedResponse = await app.inject({ method: 'GET', url: `${base}/state/1?candidateId=${rewrite.id}` });
+    assert.equal(selectedResponse.statusCode, 200, selectedResponse.body);
+    const selected = selectedResponse.json();
+    assert.equal(current.quality.candidate.id, original.id, 'default remains the adopted manuscript');
+    assert.equal(current.quality.candidate.checks.find(c => c.checker === 'chapter_content_review').status, 'passed');
+    assert.equal(selected.quality.candidate.id, rewrite.id);
+    assert.equal(selected.quality.candidate.content, rewrite.content);
+    assert.equal(selected.quality.candidate.checks.find(c => c.checker === 'chapter_content_review').status, 'failed');
+    assert.ok(selected.quality.candidate.checkHistory.some(c => c.chapterReview?.result));
+    assert.deepEqual(selected.events, current.events);
+    assert.deepEqual(selected.characterStates, current.characterStates);
+    assert.deepEqual(selected.relationships, current.relationships);
+    assert.deepEqual(selected.quality.version, current.quality.version);
+    assert.equal(selected.characterStates.find(s => s.characterId === 'hero' && s.field === 'power').value, 1);
+    assert.equal(selected.quality.reviewCandidates.length, 2);
+    assert.equal(selected.quality.reviewCandidates.find(c => c.id === original.id).isCurrentVersion, true);
+    assert.equal(selected.quality.reviewCandidates.find(c => c.id === rewrite.id).isCurrentVersion, false);
+    for (const url of [`${base}/state/1?candidateId=missing`, `${base}/state/1?candidateId=${foreign.id}`, `${base}/state/2?candidateId=${rewrite.id}`]) {
+      assert.equal((await app.inject({ method: 'GET', url })).statusCode, 404);
+    }
+    assert.deepEqual(structuredClone(await repository.get(work.id)), before, 'all inspection requests are read-only');
+    rejectRewrite = false;
+    await app.inject({ method: 'POST', url: `${base}/candidates/${rewrite.id}/check` });
+    const replacement = await app.inject({ method: 'POST', url: `${base}/candidates/${rewrite.id}/adopt`, payload: { expectedStateRevision: 1 } });
+    assert.equal(replacement.statusCode, 200, replacement.body);
+    const historical = (await app.inject({ method: 'GET', url: `${base}/state/1?candidateId=${original.id}` })).json();
+    assert.equal(historical.quality.candidate.content, original.content);
+    assert.equal(historical.quality.version.sourceCandidateId, rewrite.id);
+    assert.equal(historical.quality.reviewCandidates.find(c => c.id === original.id).isCurrentVersion, false);
+    assert.equal(historical.quality.reviewCandidates.find(c => c.id === rewrite.id).isCurrentVersion, true);
+    assert.equal(historical.characterStates.find(s => s.characterId === 'hero' && s.field === 'power').value, 2);
+  } finally { await app.close(); }
+});

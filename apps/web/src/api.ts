@@ -72,7 +72,8 @@ export interface ChapterHistoryDto {
   quality: {
     contextManifest: { chapterNumber: number; stateRevision: number; constraintRevision: number; worldPackRevision?: number; storyBibleRevision?: number; adoptedVersionIds: string[]; includedEventIds: string[]; requiredMaterialStatus: string; omittedOptionalMaterial: string[]; estimatedTokens: number; contextBudget: number; canonHash: string; stateHash: string; createdAt: string };
     version?: { id: string; revision: number; status: string; stale: boolean; sourceCandidateId?: string };
-    candidate?: { id: string; status: string; proposedEvents: Array<{ eventType: string; subjectId: string; predicate: string; value: unknown; evidence?: string; plotNodeId?: string }>; observedEvents?: Array<{ eventType: string; subjectId: string; predicate: string; value: unknown; evidence?: string; plotNodeId?: string }>; checks: import('novel-studio-contracts').CheckResultDto[]; checkHistory?: import('novel-studio-contracts').CheckResultDto[] };
+    candidate?: { id: string; status: string; content?: string; createdAt?: string; proposedEvents: Array<{ eventType: string; subjectId: string; predicate: string; value: unknown; evidence?: string; plotNodeId?: string }>; observedEvents?: Array<{ eventType: string; subjectId: string; predicate: string; value: unknown; evidence?: string; plotNodeId?: string }>; checks: import('novel-studio-contracts').CheckResultDto[]; checkHistory?: import('novel-studio-contracts').CheckResultDto[] };
+    reviewCandidates?: Array<{ id: string; status: CandidateDto['status']; origin: CandidateDto['origin']; createdAt: string; isCurrentVersion: boolean; stale: boolean }>;
     checkCoverage: { total: number; passed: number; failed: number; inconclusive: number; unavailable: number };
     plotNodes: Array<{ id: string; title: string; expectedResult: string; targetChapter?: number; realization: { status: string; chapterVersionId?: string; evidence?: string; updatedAt: string } }>;
     impacts: Array<{ id: string; changedChapterNumber: number; affectedChapterNumbers: number[]; reason: string; createdAt: string }>;
@@ -159,7 +160,7 @@ export const api = {
     call<{ checkpoint: RunCheckpoint }>(`/works/${workId}/runs/${encodeURIComponent(runId)}/${action}`, { method: 'POST', body: {} }),
   resumeRun: (workId: string, runId: string, targetChapter: number) =>
     call<{ runId: string; status: string; checkpoint?: RunCheckpoint }>(`/works/${workId}/runs`, { method: 'POST', body: { runId, targetChapter, background: true } }),
-  history: (workId: string, chapterNumber: number) => call<ChapterHistoryDto>(`/works/${workId}/state/${chapterNumber}`),
+  history: (workId: string, chapterNumber: number, candidateId?: string) => call<ChapterHistoryDto>(`/works/${workId}/state/${chapterNumber}${candidateId ? `?candidateId=${encodeURIComponent(candidateId)}` : ''}`),
   finalizeManuscript: (workId: string) => call<{ manuscript: import('novel-studio-contracts').ManuscriptRevisionDto }>(`/works/${workId}/manuscripts/finalize`, { method: 'POST', body: {} }),
   check: (workId: string, candidateId: string) =>
     call<{ candidate: CandidateDto }>(`/works/${workId}/candidates/${candidateId}/check`, { method: 'POST' }),

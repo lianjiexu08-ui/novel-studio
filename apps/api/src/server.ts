@@ -694,8 +694,13 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
 
   app.get('/works/:workId/state/:chapterNumber', async (request) => {
     const { workId, chapterNumber } = chapterStateParamSchema.parse(request.params);
+    const { candidateId } = z.object({ candidateId: z.string().min(1).optional() }).parse(request.query);
     const work = await repository.get(workId);
     if (!work) throw new NotFoundError(`unknown work ${workId}`);
+    const chapterCandidates = [...work.candidates.values()].filter(item => item.chapterNumber === chapterNumber)
+      .reverse().sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+    const selectedCandidate = candidateId ? chapterCandidates.find(item => item.id === candidateId) : undefined;
+    if (candidateId && !selectedCandidate) throw new NotFoundError('candidate does not belong to this work and chapter');
     const events = [...work.events.values()]
       .filter((event) => event.active && event.chapterNumber <= chapterNumber)
       .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id));
@@ -730,9 +735,9 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
       volumeId: volume.id, status: 'planned' as const, value: { endState: volume.endState }, sourceEventId: '', sourceChapterVersionId: '',
     });
     const version = work.currentVersion(chapterNumber);
-    const candidate = version?.sourceCandidateId
+    const candidate = selectedCandidate ?? (version?.sourceCandidateId
       ? work.candidates.get(version.sourceCandidateId)
-      : [...work.candidates.values()].filter((item) => item.chapterNumber === chapterNumber).sort((a, b) => b.createdAt.localeCompare(a.createdAt))[0];
+      : chapterCandidates[0]);
     const checks = candidate?.checks ?? [];
     return {
       chapterNumber,
@@ -756,7 +761,12 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
       quality: {
         contextManifest: contextManifestFor(work, chapterNumber),
         version: version ? { id: version.id, revision: version.revision, status: version.status, stale: version.stale, sourceCandidateId: version.sourceCandidateId } : undefined,
-        candidate: candidate ? { id: candidate.id, status: candidate.status, proposedEvents: candidate.proposedEvents, observedEvents: candidate.observedEvents, checks, checkHistory: candidate.checkRuns } : undefined,
+        candidate: candidate ? toCandidateDto(candidate, work) : undefined,
+        reviewCandidates: chapterCandidates.map(item => ({
+          id: item.id, status: item.status, origin: item.origin, createdAt: item.createdAt,
+          isCurrentVersion: version?.sourceCandidateId === item.id,
+          stale: item.status === 'adopted' ? Boolean(item.adoptedVersionId && work.versions.get(item.adoptedVersionId)?.stale) : candidateIsStale(item, work),
+        })),
         checkCoverage: {
           total: checks.length,
           passed: checks.filter((check) => check.status === 'passed').length,

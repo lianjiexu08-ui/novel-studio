@@ -1,6 +1,6 @@
 import { DesignContentReviewCard } from './DesignContentReviewCard';
-import { useEffect, useState } from 'react';
-import { Alert, App as AntApp, Button, Card, Col, Empty, InputNumber, Row, Space, Spin, Table, Tag, Typography } from 'antd';
+import { useEffect, useRef, useState } from 'react';
+import { Alert, App as AntApp, Button, Card, Col, Empty, InputNumber, Row, Select, Space, Spin, Table, Tag, Typography } from 'antd';
 import { ReloadOutlined } from '@ant-design/icons';
 import { useOutletContext } from 'react-router-dom';
 import { api, ApiRequestError, type ChapterHistoryDto } from '../api';
@@ -21,6 +21,7 @@ export function QualityPage() {
   const [history, setHistory] = useState<ChapterHistoryDto | null>(null);
   const [manuscripts, setManuscripts] = useState<ManuscriptRevisionDto[]>([]);
   const [loading, setLoading] = useState(false);
+  const loadRequest = useRef(0);
   const relationships = history?.relationships.filter((row): row is NonNullable<typeof row> => Boolean(row)) ?? [];
   const chapterReview = history?.quality.candidate?.checks.find(check => check.checker === 'chapter_content_review');
   const chapterStages = history?.quality.candidate?.checkHistory?.flatMap(check => check.chapterReview?.stage
@@ -31,20 +32,29 @@ export function QualityPage() {
     return typeof name === 'string' && name ? name : id;
   };
 
-  async function load(chapterNumber = chapter) {
+  async function load(chapterNumber = chapter, candidateId?: string) {
+    const request = ++loadRequest.current;
     setLoading(true);
-    try { setHistory(await api.history(work.id, chapterNumber)); }
-    catch (error) { message.error(error instanceof ApiRequestError ? '[' + error.code + '] ' + error.message : String(error)); }
-    finally { setLoading(false); }
+    try {
+      const result = await api.history(work.id, chapterNumber, candidateId);
+      if (request === loadRequest.current) setHistory(result);
+    }
+    catch (error) { if (request === loadRequest.current) message.error(error instanceof ApiRequestError ? '[' + error.code + '] ' + error.message : String(error)); }
+    finally { if (request === loadRequest.current) setLoading(false); }
   }
 
   useEffect(() => {
+    let cancelled = false;
+    setChapter(1);
+    setHistory(null);
+    setManuscripts([]);
     void load(1);
-    void api.manuscripts(work.id).then((result) => setManuscripts(result.manuscripts)).catch(() => setManuscripts([]));
+    void api.manuscripts(work.id).then((result) => { if (!cancelled) setManuscripts(result.manuscripts); }).catch(() => { if (!cancelled) setManuscripts([]); });
+    return () => { cancelled = true; loadRequest.current++; };
   }, [work.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return <section className="page">
-    <header className="page-head"><div><p className="page-kicker">复查</p><Title level={4} style={{ margin: 0 }}>章节质量与状态</Title><p className="page-desc">选择一个章节，查看已采用正文中的事实与角色状态；关系逐条标明正文事件、作者设定或创作计划，未落实的故事线标为计划。</p></div><Space><InputNumber min={1} max={450} value={chapter} onChange={(value) => setChapter(value ?? 1)} /><Button type="primary" icon={<ReloadOutlined />} loading={loading} onClick={() => void load()}>加载第 {chapter} 章</Button></Space></header>
+    <header className="page-head"><div><p className="page-kicker">复查</p><Title level={4} style={{ margin: 0 }}>章节质量与状态</Title><p className="page-desc">选择一个章节，查看已采用正文中的事实与角色状态；关系逐条标明正文事件、作者设定或创作计划，未落实的故事线标为计划。</p></div><Space><InputNumber min={1} max={450} value={chapter} onChange={(value) => setChapter(value ?? 1)} /><Button type="primary" icon={<ReloadOutlined />} loading={loading} onClick={() => void load(chapter, chapter === history?.chapterNumber ? history.quality.candidate?.id : undefined)}>加载第 {chapter} 章</Button></Space></header>
     <DesignAuditCard workId={work.id} revision={work.constraintRevision} />
     <DesignContentReviewCard workId={work.id} revision={work.constraintRevision} onReviewed={refresh} />
     {!history ? <div className="state-block"><Spin size="large" /></div> : <Space direction="vertical" size={16} style={{ width: '100%' }}>
@@ -59,8 +69,18 @@ export function QualityPage() {
         ]} />}
       </Card>
       <Card title="独立正文评审">
+        <Space direction="vertical" style={{ width: '100%', marginBottom: 12 }}>
+          {!!history.quality.reviewCandidates?.length && <><Text strong>选择评审稿</Text><Select aria-label="选择评审稿" style={{ width: '100%' }} disabled={loading}
+            value={history.quality.candidate?.id} onChange={value => void load(history.chapterNumber, value)}
+            options={history.quality.reviewCandidates.map((item, index, rows) => ({ value: item.id,
+              label: `${item.isCurrentVersion ? '当前采纳稿' : item.status === 'adopted' ? '历史采纳稿' : item.origin === 'demo' ? '试写稿' : item.status === 'rejected' ? '已驳回候选' : '待采纳候选'} · 第 ${rows.length - index} 稿 · ${new Date(item.createdAt).toLocaleString('zh-CN', { hour12: false })}${item.stale ? '（已过期）' : ''}`,
+            }))} /></>}
+          <Text type="secondary">{history.quality.version ? `事实与人物状态仍依据当前采纳稿（版本 ${history.quality.version.revision}）重建；选择其他评审稿不会将其内容变成已发生事实。` : '本章尚无采纳稿；候选内容与评审意见不计入本章事实。'}</Text>
+          {history.quality.candidate?.content && <details key={history.quality.candidate.id}><summary>查看所选评审稿正文</summary><p style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{history.quality.candidate.content}</p></details>}
+        </Space>
         {!chapterReview ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="暂无独立正文评审；规则检查通过不代表正文质量通过" /> : <Space direction="vertical" style={{ width: '100%' }}>
-          <Alert type={chapterReview.status === 'passed' ? 'success' : 'warning'} showIcon message={chapterReview.message} />
+          <Alert type={chapterReview.status === 'passed' ? 'success' : chapterReview.status === 'failed' ? 'error' : 'warning'} showIcon
+            message={chapterReview.status === 'passed' ? '正文评审通过' : chapterReview.status === 'failed' ? '正文评审需要返修' : chapterReview.status === 'inconclusive' ? '评审材料不足，暂不能采纳' : '评审未完成或已失效，暂不能采纳'} description={chapterReview.message} />
           <Table size="small" pagination={false} rowKey="criterion" dataSource={chapterReview.chapterReview?.result?.checks ?? []} columns={[
             { title: '维度', dataIndex: 'criterion', render: (value: keyof typeof reviewLabels) => reviewLabels[value] },
             { title: '结论', dataIndex: 'verdict', render: (value: string) => <Tag color={value === 'pass' ? 'success' : value === 'revise' ? 'error' : 'warning'}>{value === 'pass' ? '通过' : value === 'revise' ? '返修' : '材料不足'}</Tag> },
