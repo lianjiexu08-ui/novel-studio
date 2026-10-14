@@ -141,12 +141,33 @@ test('pause during a raw review stage saves that stage and resumes before adopti
   const paused = await workflow.runUntil(workId, 1, [passChecker], 'staged-book');
   assert.equal(paused.phase, 'paused');
   assert.equal(calls, 1);
+  assert.equal(paused.usage?.calls, 1, 'stage and final pause record must not count the same call twice');
   assert.equal((await repository.get(workId))!.versions.size, 0);
   const finished = await workflow.runUntil(workId, 1, [passChecker], 'staged-book');
   assert.equal(finished.phase, 'complete');
   assert.equal(labels.filter(label => label === labels[0]).length, 1);
   assert.equal((await repository.get(workId))!.versions.size, 1);
   assert.equal(finished.usage?.calls, calls);
+});
+
+test('failed staged review persists failed calls once alongside completed stage usage', async () => {
+  const repository = new InMemoryWorkRepository();
+  let calls = 0;
+  const reviewer = new OpenAICompatibleChapterProvider('', '', '', 10, 5000, true, { completeWithUsage: async request => {
+    if (++calls === 2) throw new Error('第二批连接中断');
+    return { text: passingStageOutput(request), usage: { ...emptyUsage(), calls: 1, inputTokens: 43, outputTokens: 11, costUsd: 0.02 } };
+  } });
+  const workflow = new ChapterWorkflow(repository, { ...writer, reviewChapterAsync: reviewer.reviewChapterAsync.bind(reviewer) }, undefined, { checkPolicy: policy });
+  const work = await createReadyWork(workflow, '失败批次计量');
+  await repository.transaction(work.id, ({ work }) => { work.worldPack!.summary = '完整规则不能截断。'.repeat(36_000); });
+  await assert.rejects(() => workflow.runUntil(work.id, 1, [passChecker], 'failed-stages'), QualityGateError);
+  const saved = (await repository.get(work.id))!;
+  const expected = { calls: 2, failedCalls: 1, inputTokens: 43, outputTokens: 11, costUsd: 0.02, costKnown: false };
+  assert.deepEqual(saved.checkpoints.get('failed-stages')!.usage, expected);
+  const records = [...saved.candidates.values()][0].checkRuns.map(c => c.chapterReview).filter(Boolean);
+  assert.deepEqual(records.find(r => r?.stage?.error)?.progress?.usage, expected);
+  assert.deepEqual(records.at(-1)?.usage, expected, 'final history retains the full invocation usage, not just its uncounted remainder');
+  assert.equal(saved.versions.size, 0);
 });
 
 test('late chapter reports remain historical and cannot replace a newer review', async () => {

@@ -99,6 +99,64 @@ test('large chapter review checkpoints resume after SQLite restart without losin
   assert.equal((await restored.adopt(work.id, candidate.id, 0)).version.chapterNumber, 1);
 });
 
+test('stage usage is durable before final review and survives lease takeover without replay or double counting', async t => {
+  const databaseUrl = createDatabase();
+  process.env.DATABASE_URL = databaseUrl;
+  const { PrismaWorkRepository } = await import('../src/prisma-repository.ts');
+  const { ChapterWorkflow, LeaseLostError } = await import('../../application/src/index.ts');
+  const { passChecker } = await import('../../../novel-service-core/src/core.ts');
+  const first = new PrismaWorkRepository(), second = new PrismaWorkRepository();
+  t.after(async () => { await first.disconnect(); await second.disconnect(); rmSync(databaseUrl.slice(5), { force: true }); });
+  let release!: () => void, started!: () => void;
+  const gate = new Promise<void>(resolve => { release = resolve; });
+  const signal = new Promise<void>(resolve => { started = resolve; });
+  let calls = 0, now = Date.now();
+  const labels: string[] = [];
+  const firstUsage = { ...emptyUsage(), calls: 1, inputTokens: 101, outputTokens: 17, costUsd: 0.01 };
+  const nextUsage = { ...emptyUsage(), calls: 1, inputTokens: 103, outputTokens: 19, costKnown: false };
+  const reviewer = new OpenAICompatibleChapterProvider('', '', '', 10, 5000, true, { completeWithUsage: async request => {
+    const call = ++calls;
+    labels.push(JSON.parse(request.user).stage.label);
+    if (call === 2) { started(); await gate; }
+    return { text: passingStageOutput(request), usage: call === 1 ? firstUsage : nextUsage };
+  } });
+  const provider: ModelProvider = { generateChapter: () => ({ content: '他按住伤口，放弃追击，先带同伴回城。', proposedEvents: [], observedEvents: [] }),
+    reviewChapterAsync: reviewer.reviewChapterAsync.bind(reviewer) };
+  const options = { checkPolicy: { version: 'durable-review-usage', required: ['deterministic_rules', chapterReviewChecker] },
+    leaseMs: 86_400_000, now: () => now };
+  const workflow = new ChapterWorkflow(first, provider, undefined, options);
+  const work = await createReadyWork(workflow, '审读批次原子计量');
+  await first.transaction(work.id, ({ work }) => { work.worldPack!.summary = '完整规则不能截断。'.repeat(36_000); });
+  const old = workflow.runUntil(work.id, 1, [passChecker], 'durable');
+  // Capture rejection now so an assertion failure cannot leave an unhandled old worker.
+  const oldResult = old.then(() => undefined, error => error);
+  try {
+    await signal;
+    const during = (await second.get(work.id))!;
+    assert.deepEqual(during.checkpoints.get('durable')!.usage, firstUsage, 'usage must already be durable while the next call is parked');
+    const candidate = [...during.candidates.values()][0];
+    const batch = candidate.checkRuns.find(c => c.chapterReview?.stage?.result)!.chapterReview!;
+    assert.deepEqual(batch.progress?.usage, firstUsage);
+    assert.ok(!candidate.checkRuns.some(c => c.chapterReview?.result), 'no final review has run yet');
+    assert.equal(during.versions.size, 0);
+
+    // A fresh repository/workflow takes over after the unavailable worker's lease expires.
+    now += 2 * 86_400_000;
+    const restored = new ChapterWorkflow(second, provider, undefined, options);
+    const finished = await restored.runUntil(work.id, 1, [passChecker], 'durable');
+    assert.equal(finished.phase, 'complete');
+    assert.equal(labels.filter(label => label === labels[0]).length, 1);
+    const completedNewCalls = calls - 2; // The old in-flight request has not returned or checkpointed.
+    assert.deepEqual(finished.usage, { calls: 1 + completedNewCalls, failedCalls: 0,
+      inputTokens: 101 + 103 * completedNewCalls, outputTokens: 17 + 19 * completedNewCalls, costUsd: 0.01, costKnown: false });
+    release();
+    assert.ok(await oldResult instanceof LeaseLostError);
+    const final = (await second.get(work.id))!;
+    assert.deepEqual(final.checkpoints.get('durable')!.usage, finished.usage, 'fenced worker cannot change the recovered checkpoint');
+    assert.equal(final.versions.size, 1);
+  } finally { release(); await oldResult; }
+});
+
 test('frozen manuscript metadata and exact design references survive database reload', async t => {
   const databaseUrl = createDatabase();
   process.env.DATABASE_URL = databaseUrl;

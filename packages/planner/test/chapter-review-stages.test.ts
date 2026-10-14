@@ -37,6 +37,7 @@ test('large chapter review keeps full draft in each raw batch and resumes withou
   } });
   await assert.rejects(() => provider.reviewChapterAsync(input, { onStage: async (stage, progress) => {
     proof.createdAt = progress.createdAt; proof.stages.push(stage);
+    assert.equal(progress.usage?.calls, 1);
     throw new Error('测试进程在首批保存后停止');
   } }), /首批保存/);
   assert.equal(calls, 1);
@@ -72,15 +73,16 @@ test('staged citation repair keeps fragment-only format when the model cites an 
     if (sent.task === 'repair_previous_output') {
       assert.match(sent.instruction, /严禁增加 quote 或 sourceId/);
       repaired = true;
-      return { text: passingStageOutput({ user: JSON.stringify(sent.originalRequest) }), usage: emptyUsage() };
+      return { text: passingStageOutput({ user: JSON.stringify(sent.originalRequest) }), usage: { ...emptyUsage(), calls: 1, inputTokens: 30 } };
     }
     const result = JSON.parse(passingStageOutput(request));
     const empty = sent.sources.flatMap((s: { fragments: Array<{ id: string; text: string }> }) => s.fragments).find((f: { text: string }) => f.text === '[]');
     assert.ok(empty);
     result.checks[0].evidence.push({ fragmentId: empty.id });
-    return { text: JSON.stringify(result), usage: emptyUsage() };
+    return { text: JSON.stringify(result), usage: { ...emptyUsage(), calls: 1, inputTokens: 50, costKnown: false } };
   } });
-  await assert.rejects(() => provider.reviewChapterAsync(input, { onStage: async stage => {
+  await assert.rejects(() => provider.reviewChapterAsync(input, { onStage: async (stage, progress) => {
+    assert.deepEqual(progress.usage, { ...emptyUsage(), calls: 2, inputTokens: 80, costKnown: false });
     assert.ok(stage.result); throw new Error('stop after repaired stage');
   } }), /stop after repaired stage/);
   assert.equal(repaired, true);

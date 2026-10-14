@@ -22,9 +22,16 @@ export interface ChapterReviewResult {
   stageProof?: ChapterReviewStageProof;
 }
 export interface ChapterReviewStageProof { inputHash: string; createdAt: string; stages: DesignReviewStage[] }
+export interface ChapterReviewProgress {
+  createdAt: string;
+  completed: number;
+  total: number;
+  /** Cumulative usage in this provider invocation only; resumes start at zero. */
+  usage?: RunUsage;
+}
 export interface ChapterReviewOptions {
   resume?: ChapterReviewStageProof;
-  onStage?: (stage: DesignReviewStage, progress: { createdAt: string; completed: number; total: number }) => Promise<void>;
+  onStage?: (stage: DesignReviewStage, progress: ChapterReviewProgress) => Promise<void>;
 }
 export interface ChapterReviewInput {
   inputHash: string;
@@ -41,7 +48,7 @@ export interface ChapterReviewRecord {
   error?: string;
   usage?: RunUsage;
   stage?: DesignReviewStage;
-  progress?: { createdAt: string; completed: number; total: number };
+  progress?: ChapterReviewProgress;
 }
 export class ChapterReviewError extends Error {}
 

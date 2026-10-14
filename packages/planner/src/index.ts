@@ -326,7 +326,10 @@ export class OpenAICompatibleChapterProvider implements ModelProvider {
     } };
     try {
       if (user.length > 300_000 || options.resume) {
-        const result = await reviewChapterInStages(client, input, options);
+        const result = await reviewChapterInStages(client, input, {
+          ...options,
+          onStage: (stage, progress) => options.onStage?.(stage, { ...progress, usage: { ...usage } }) ?? Promise.resolve(),
+        });
         return { ...result, usage };
       }
       const result = await completeValidated(client, {

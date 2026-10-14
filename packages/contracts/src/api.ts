@@ -242,7 +242,9 @@ export const checkResultDtoSchema = z.object({
     stage: z.object({ id: z.string(), kind: z.enum(['batch', 'cross', 'synthesis']), label: z.string(), attempts: z.number().int(),
       error: z.string().optional(), result: designReviewResultSchema.optional(),
     }).passthrough().optional(),
-    progress: z.object({ createdAt: z.string(), completed: z.number().int(), total: z.number().int() }).optional(),
+    progress: z.object({ createdAt: z.string(), completed: z.number().int(), total: z.number().int(),
+      usage: z.object({ calls: z.number(), failedCalls: z.number(), inputTokens: z.number(), outputTokens: z.number(), costUsd: z.number(), costKnown: z.boolean() }).optional(),
+    }).optional(),
     usage: z.object({ calls: z.number(), failedCalls: z.number(), inputTokens: z.number(), outputTokens: z.number(), costUsd: z.number(), costKnown: z.boolean() }).optional(),
     result: z.object({
       inputHash: z.string(), summary: z.string(),

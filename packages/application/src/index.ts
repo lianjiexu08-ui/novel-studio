@@ -4,7 +4,7 @@ import { randomUUID } from 'node:crypto';
 import { chapterReviewChecker, chapterReviewInput, chapterReviewStatus, validateChapterReview, type ChapterReviewRecord } from '../../../novel-service-core/src/chapter-review.ts';
 import { addUsage, AdoptionBlocked, generationReadiness, NovelService, ReadinessError, StaleCandidateError, usageOfError, Work } from '../../../novel-service-core/src/core.ts';
 import type {
-  CandidateChecker, ChapterCandidate, ChapterVersion, CheckPolicy, CheckRuling, Checkpoint, ContextManifest, CreativeCovenant, GeneratedChapter, ManuscriptRevision, ModelProvider, ReadinessBlocker,
+  CandidateChecker, ChapterCandidate, ChapterVersion, CheckPolicy, CheckRuling, Checkpoint, ContextManifest, CreativeCovenant, GeneratedChapter, ManuscriptRevision, ModelProvider, ReadinessBlocker, RunUsage,
 } from '../../../novel-service-core/src/core.ts';
 import { lockStoryBible, lockWorldPack, reviewStoryBible, reviewWorldPack } from '../../../novel-service-core/src/world.ts';
 import type { StoryBible, WorldPack } from '../../../novel-service-core/src/world.ts';
@@ -883,6 +883,17 @@ export class ChapterWorkflow {
     });
     if (!prepared) return;
     let record: ChapterReviewRecord = { inputHash: prepared.input.inputHash };
+    // Stage callbacks and the final response report the same cumulative invocation usage.
+    // Advance this cursor only after the transaction commits, never before persistence.
+    let accountedUsage: RunUsage | undefined;
+    const remainingUsage = (total?: RunUsage): RunUsage | undefined => total && ({
+      calls: Math.max(0, total.calls - (accountedUsage?.calls ?? 0)),
+      failedCalls: Math.max(0, total.failedCalls - (accountedUsage?.failedCalls ?? 0)),
+      inputTokens: Math.max(0, total.inputTokens - (accountedUsage?.inputTokens ?? 0)),
+      outputTokens: Math.max(0, total.outputTokens - (accountedUsage?.outputTokens ?? 0)),
+      costUsd: Math.max(0, total.costUsd - (accountedUsage?.costUsd ?? 0)),
+      costKnown: total.costKnown,
+    });
     let renewal = Promise.resolve();
     let leaseError: unknown;
     const timer = lease ? setInterval(() => {
@@ -907,9 +918,14 @@ export class ChapterWorkflow {
               message: stale ? '评审材料或执行请求已变化，保留本批结果供复查' : `正文分批评审 ${progress.completed}/${progress.total}：${stage.label}${stage.error ? `；${stage.error}` : ''}`,
               chapterReview: { inputHash: prepared.input.inputHash, stage, progress, ...(superseded ? { superseded: true } : {}) },
             }) }]);
+            if (lease && progress.usage) {
+              const checkpoint = this.holdLease(work, lease.runId, lease.token);
+              checkpoint.usage = addUsage(checkpoint.usage, remainingUsage(progress.usage));
+            }
             return { stale, superseded, stopped: lease ? Boolean(work.checkpoints.get(lease.runId)?.control) : false,
               id: candidate.checks.find(c => c.checker === chapterReviewChecker)!.id };
           });
+          if (lease && progress.usage) accountedUsage = { ...progress.usage };
           if (!saved.superseded) prepared.pendingId = saved.id;
           if (saved.stale) throw new StaleCandidateError('正文分批评审的材料或执行请求已过期');
           if (saved.stopped) throw new Error('已收到暂停或取消请求；本批已保存，可从下一批继续');
@@ -941,7 +957,7 @@ export class ChapterWorkflow {
       }) }]);
       if (lease) {
         const checkpoint = this.holdLease(work, lease.runId, lease.token);
-        checkpoint.usage = addUsage(checkpoint.usage, record.usage);
+        checkpoint.usage = addUsage(checkpoint.usage, remainingUsage(record.usage));
       }
     });
   }

@@ -1,0 +1,16 @@
+# Persist chapter-review usage with each stage
+
+Previously, a completed review batch was durable but its calls, tokens and reported cost only reached the run checkpoint after the entire review returned. An unavailable worker could therefore resume from the saved batch while losing that batch's usage. The new SQLite regression failed against the previous implementation: after batch one completed and batch two was parked, checkpoint usage was still zero (`/tmp/novel-stage-usage-regression-before.log`).
+
+The chapter provider now supplies cumulative usage for the current invocation with each successful or failed stage, including format-repair calls. The workflow saves the stage and the unaccounted usage in the same transaction. It advances its accounting cursor only after the transaction succeeds. Final results retain full invocation usage in review history but add only the remaining amount to the run checkpoint. A resumed invocation starts its counter at zero, while the persisted run retains earlier usage. Unknown costs remain unknown. Providers without stage usage remain compatible with final-response accounting; no database migration is needed.
+
+Validation used the isolated checkout, never the production database:
+
+- The new SQLite regression reads usage through a separate repository while the next call is still parked and before any final report exists. A fresh workflow takes over after lease expiry, reuses the first completed batch, and finishes with exact call/token/cost totals. The old worker is fenced when its delayed request returns and cannot alter the recovered checkpoint or adopted chapter. This simulates worker unavailability and lease takeover, not an OS-level kill.
+- Pausing preserves one call exactly once. A failed second batch preserves both completed and failed usage without double counting. Final audit history retains the full invocation total. Format-repair calls are included in stage progress.
+- The full suite passed 346 tests with no failures (`/tmp/novel-stage-usage-full-tests.log`). After adding the explicit failed-batch accounting regression, all 9 application chapter-review tests passed (`/tmp/novel-stage-usage-failure-tests.log`); the only subsequent change was that additional test. The focused planner/application and SQLite runs passed 11 and 2 tests respectively.
+- The frontend TypeScript/Vite build passed (`/tmp/novel-stage-usage-build.log`), with the existing bundle-size warning.
+
+This cannot reconstruct billing for an in-flight request that never returns a response or reaches a durable checkpoint, including a delayed response fenced after lease takeover. Such calls require provider-side reconciliation; the checkpoint is not claimed to be a complete billing ledger.
+
+The production API and design60 formal review were not restarted or migrated. The 2026-10-15 04:18 Asia/Shanghai read-only snapshot verified unchanged protected designs, candidates and adopted history, all 45 old runs and 51 old reports. World review still requires revision; power was 67/85 and characters 23/25. No plan approval, blocker closure, new prose generation or design61 application occurred. This code remains undeployed until the running formal review finishes.
