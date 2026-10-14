@@ -1,0 +1,166 @@
+{
+  "observedAt": "2026-10-14T05:20:27.365Z",
+  "status": "reviewed_experiment_not_formal_acceptance",
+  "runtimeCommit": "d4d1dad",
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "savedToWork": false,
+  "formalAcceptance": false,
+  "scope": {
+    "world": 26,
+    "bible": 55,
+    "plan": 55
+  },
+  "originalRun": "design_run_b4ef0ace-16b4-4f9a-ba80-5812b83754e1",
+  "validation": {
+    "testsPassed": 221,
+    "webBuildPassed": true,
+    "existingSchedule8Replay": {
+      "runId": "design_run_b4ef0ace-16b4-4f9a-ba80-5812b83754e1",
+      "scheduleVersion": 8,
+      "stageCount": 13,
+      "originalStatus": "inconclusive",
+      "allStoredResultsUnchanged": true,
+      "recomputedChecksIdentical": true,
+      "originalIncompleteGeographyPreserved": true,
+      "dbWrites": false
+    }
+  },
+  "directoryTrial": {
+    "name": "original world batch with range directory",
+    "synthetic": false,
+    "inputHash": "0755935a44758a60dd13fe7cb9267ff262238da4d5726ff82c3630346177516c",
+    "sourceCount": 187,
+    "checks": [
+      {
+        "criterion": "geography",
+        "verdict": "insufficient",
+        "explanation": "已读规则能支撑青玄—赤霄两昼夜、赤霄—苍冥五日、苍冥—青玄六日的实体航程，并明确商盟、沿岸政权和巡界使分别掌管船务、港口与紧急引渡；苍冥入境还要求验令或具名担保，界渊、极冰内地另有更高准入，不存在借界门或“破界”名义免费跨域的问题。可行性尚不能判定为通过：百章提案安排第54—66章付费北航、外港救援及后续返青玄，但本批只读到计划总览，未读到对应里程碑的款项来源、港口担保、货物/人员准入和航程衔接原文；总览中的“付费北航”不能自行补足这些条件。",
+        "revisionAdvice": "补读并核验第47—72章相关里程碑：逐项明确北航船票或专项款的实际来源与支付时点、外港担保/验籍责任、七名矿工的合法上船与安置路径，以及六日返航前满足的船舶、燃料或担保条件；不得以商盟身份、界门线索或未来收入替代。",
+        "awaitingSources": [
+          "plan/milestones/ms_v2_fire",
+          "plan/milestones/ms_v2_voyage",
+          "plan/milestones/ms_v2_boundary",
+          "plan/milestones/ms_v3_return"
+        ],
+        "evidenceCount": 7
+      },
+      {
+        "criterion": "history",
+        "verdict": "revise",
+        "explanation": "界门落锁史的因果链本身完整：灵气枯竭和掠夺小界本源导致危机，补天阁以圣器封禁，界门相关资源与阶层断裂由此遗留；大乾建国、古境界约、药税战与界渊灾变也分别给出了资源争夺和现势后果，足以驱动各方独立行动。但“落锁之变”后果写成“三大陆修士无法自由穿梭诸域”，而界门基本律明确三大陆同属一天地，普通实体飞舟可跨虚海，商盟历史也以同一天地内跨大陆商路为基础。若“诸域”包含三大陆，该历史后果直接否定现有商路；若仅指天地界壁外的域界，则原文范围不清，会误导后续把封门当作禁绝三大陆交通。",
+        "revisionAdvice": "修正event_01的后果范围：明确封禁的是穿越天地界壁、通向域外/小界的完整界门与飞升路径，不禁止同一天地内三大陆经虚海实体航路往来；并保持太古界门不作为日常交通的限制。",
+        "evidenceCount": 6
+      },
+      {
+        "criterion": "capacity",
+        "verdict": "pass",
+        "explanation": "本批可检验的容量设计不是靠条目堆砌：八阶境界、功法和法宝均要求具体资格、供能、冷却与反制；寿储、法力、神识和永久本源分账，阻止以高品资源或境界名称跳过成本。有限寿源的成熟窗口、公共保留、个人上限、疗程与竞争分配又把长期成长绑定到生态、医疗、运输和势力博弈。百章阶段仅规划主角至玄府、保留界门与高阶成长供后续另建来源链，和100章阶段验收而非全书终局的定位相容，足以支撑后续扩展而不要求本轮一次展开450章细纲。",
+        "revisionAdvice": "",
+        "evidenceCount": 8
+      }
+    ]
+  },
+  "limitedSourceTrials": [
+    {
+      "name": "focused complete macro geography without new outlines",
+      "synthetic": false,
+      "inputHash": "be08cdf09c662227d0567ef8533e0a068397676a8b8fd21c07d4abe54a3609f7",
+      "sourceCount": 76,
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "pass",
+          "explanation": "跨域结构明确为同一天地内、受虚海分隔的三大陆：日常往来必须走实体飞舟和沿岸查验，不能以界门、钥匙或商盟信物瞬移规避；青玄—赤霄两昼夜、赤霄—苍冥五昼夜、苍冥—青玄六昼夜的航程、票款、担保、港口权限和战时封锁均可成为分卷行动的实际约束。三地又分别具有寒候与引渡担保、火煞与避火条件、古境准入等不同进入门槛。势力冲突也不是抽象阵营对立：太清与大乾争古境及宗权，神炎与焚天魔谷争地火与封锁，极冰与万妖祖庭争边境及生存空间，巡界使、商盟与补天阁分别受巡防、人手、应急额和商业履约限制；有限寿源配额使医疗交换和边境休战具有不可兼得的政治代价。计划据此将第一卷置于青玄古境的有限泉液与宗门/皇权矛盾，第二卷置于赤霄港口的失箱、扣工和北航黑舱，第三卷回到青玄处理本地转运链、证人保护和押运，地域转换均改变了资源、通行、对手与选择条件。",
+          "revisionAdvice": "",
+          "evidenceCount": 19
+        }
+      ]
+    },
+    {
+      "name": "synthetic macro cancels travel qualifications and costs",
+      "synthetic": true,
+      "inputHash": "3e8a1b8d2cf2c00e7f3f4f693ecfb894fe001bf370a58a74e05098040cbb4144",
+      "sourceCount": 76,
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "revise",
+          "explanation": "地理结构本身可支撑递进：三大陆同属一天地但由虚海隔开，日常跨陆只能走实体航线，不能把界门或商盟信物写成瞬移；青玄—赤霄两昼夜、赤霄—苍冥五昼夜、苍冥—青玄六昼夜及港口验籍、票款、担保和地方查验，均能让每次换域带来不同政治与资源压力。势力目标也已把青玄宗朝争权、赤霄火髓与商路、苍冥妖域—极冰边境及寿药配额连接为可发展的冲突，而非单纯换图打怪。但北行资金链不闭合：第51–53章安排林现金为零，明确271日的14000专项款还须当日实际拨付；紧接着北航段却直接写“现金余4000”，没有说明该余额从何而来、14000专项款的实际金额如何分配，也没有把其与前段零现金衔接。更有同一返航方案的票价自相矛盾：302日明确两席各1500、共付3000，315日结算却写“两席北航10000+回航3000已付”。这不是尚待正文兑现的问题，而是已给出的通行预算和航程方案彼此冲突；在修正前，卷二赴苍冥及卷三返青玄的跨域条件不能稳定成立。",
+          "revisionAdvice": "统一第271日专项款的金额、具名拨付者、实际到账时间、可动用余额及其与林、贺各自账目的归属；随后重写北航和返航两段票价/客舱数/支付记录，使“各1500、合计3000”与315日总账二选一或明确10000所含的额外项目及来源。并在对应章节计划中明确实际订船、验籍、保温与外港担保的发生日，保持与五日北航、六日返航及既定港口权限一致。",
+          "evidenceCount": 8
+        }
+      ]
+    },
+    {
+      "name": "synthetic unsupported teleport preserving all original budget entries",
+      "synthetic": true,
+      "inputHash": "63bef780ed8ec693e7eeddfd0648488de6039232de5a38b29cb7657f81ce343f",
+      "sourceCount": 76,
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "insufficient",
+          "explanation": "提案已把三大陆区分为寒冷苍冥、地火赤霄与青玄正道腹地，并设置保温、避火、境界、担保、港口验籍、商盟运费及界渊准入等不同门槛；无尽虚海的实体航程、港口管辖和不能穿越太古界门的限制，也能支撑跨卷移动而非任意换图。各方利益冲突具有地域依托：太清与大乾争夺青玄权力，极冰与万妖争夺边境与医药配额，神炎与焚天魔谷争夺火脉和天坑，商盟控制航线，巡界使维持苍冥裂隙秩序，这些足以形成不同类型的调查、护运、救援和政治阻力。 但势力的资源栏主要仍是res_05至res_19等未展开编号，原文没有逐项说明资源的具体产地、形成条件、控制者、可运输性、配额或为何会引发对应利益冲突；部分目标虽提到火髓、玄铁地脉、年轮晶、寿药和虚空资源，仍不足以核对所有分卷资源链是否闭合。因此可确认通行和冲突骨架，不能确认“资源来源”这一验收项已成立。",
+          "revisionAdvice": "补齐并纳入本次世界设定的资源条目：逐项对应各势力引用的res编号，明确产地与生态/地理条件、采收和疗程周期、配额与损耗、控制权、运输保存限制、交易或审批条件，以及它们如何具体触发青玄、赤霄、苍冥各卷的利益冲突。随后核对各卷所需资源是否有实际来源、通行权限和支付路径，避免只以势力目标或资源编号代替资源链。",
+          "evidenceCount": 15
+        }
+      ]
+    }
+  ],
+  "completeWorldAndMacroTrials": [
+    {
+      "name": "all world rules and macro plan geography",
+      "synthetic": false,
+      "inputHash": "76854f203b905be1a0a9b509c71bf18a40cee42fb20125d8d9c3ae17f53f8f41",
+      "sourceCount": 182,
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "pass",
+          "explanation": "地理分区有明确的环境门槛与政治准入：青玄依赖虚海航线和沿岸验籍，苍冥同时受寒冷、港口验引渡令及界渊准入约束，赤霄有火法、避火与地火喷发限制；古境、界门、界渊等特殊地点又分别设置境界、符牌、阵基或器具门槛，避免地点名称直接等同通行权。三大陆的资源来源和势力利益相互咬合：太清与大乾争夺青玄延寿资源及宗皇权，大乾经营死渊矿脉，神炎控制火髓并依赖青玄药材，极冰与万妖争夺北境生存空间和寿材，巡界使在采胶、守界与医疗之间分配有限人手，商盟控制航路、泊位和结算。资源还具有形成周期、保护配额、运输保存和疗程失败损失，能把地理冲突转化为持续剧情压力。跨域路线明确区分实体海程与界门：青玄—赤霄约两昼夜、赤霄—苍冥约五昼夜、苍冥返青玄约六日，且票款、港口验籍、担保、寒热装备和货物责任分别核算；太古界门被明确排除为日常交通。卷章安排也实际使用这些差异：第一卷在青玄古境围绕灵泉与宗皇博弈，第二卷沿赤霄港口、仓储和黑舱追查扣工，第三卷经北境救援后返青玄查押运链，地域变化伴随资源、准入和利益结构变化。",
+          "revisionAdvice": "",
+          "evidenceCount": 23
+        }
+      ]
+    },
+    {
+      "name": "synthetic unsupported teleport preserving all original budget entries",
+      "synthetic": true,
+      "inputHash": "ef29d207988a2788db1feb4c778506ca867de9697fc63226a0285f217626ecb1",
+      "sourceCount": 182,
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "pass",
+          "explanation": "世界将三大陆的地理差异与资源来源绑定：青玄侧重宗门、灵虚古境和大乾龙脉，赤霄依托地火与火髓，苍冥则由极寒、妖域及虚空裂隙资源构成；相应势力的目标也围绕资源控制、边境扩张、商路和界渊安全发生冲突，而不是重复设置同类敌人。无尽虚海明确是实体航路，太古界门另受通天层级和完整门户限制，因此跨大陆移动有时间与费用，不能用钥匙或称谓免费跳过。计划中的青玄—赤霄两昼夜航程、赤霄—苍冥五昼夜航程，以及港口验籍、担保、受监管码头和境界准入，能具体支撑三卷的失货追查、跨域救援和返乡核证。诸如虚空神晶大量采集的后果仍是后续悬念，但不妨碍本阶段已安排的地理因果。",
+          "revisionAdvice": "",
+          "evidenceCount": 10
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "The initial focused geography trial omitted resource rules and other world rules. Its pass cannot substantiate complete geography acceptance.",
+    "First negative replaced the whole voyage setup and also removed real funding. Its revise discusses missing funding and mistakenly contrasts outward and return ticket prices; it does not verify detection of the planted travel violation.",
+    "Second negative preserved all funding and changed only travel ability, but still used the limited source set. It returned insufficient for missing resource detail and did not identify the unsupported teleport. This is a recorded miss, not a passing robustness check.",
+    "Final two trials include every original world/* and plan/* source plus author. They remain isolated experiments; original formal55 reports, stages and failed/insufficient findings are unchanged.",
+    "Passing examples do not guarantee model reliability, constitute a whole-world formal pass, or approve prose."
+  ],
+  "usage": {
+    "calls": 6,
+    "inputTokens": 392069,
+    "outputTokens": 7550,
+    "costKnown": false
+  },
+  "completeInputs": {
+    "baseline": "76854f203b905be1a0a9b509c71bf18a40cee42fb20125d8d9c3ae17f53f8f41",
+    "negative": "ef29d207988a2788db1feb4c778506ca867de9697fc63226a0285f217626ecb1"
+  },
+  "negativeControlAssessment": {
+    "completeMaterialNegativeVerdict": "pass",
+    "expectedVerdict": "revise",
+    "passed": false,
+    "reason": "The full-source reviewer did not identify the planted unsupported whole-ship teleport and repeated the normal five-day route description. This is an observed false pass, not acceptance evidence."
+  }
+}

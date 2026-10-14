@@ -1,0 +1,97 @@
+{
+  "observedAt": "2026-10-14T05:15:40.999Z",
+  "status": "reviewed_unsaved_candidate",
+  "formalAcceptance": false,
+  "savedToWork": false,
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "candidateVersion": 4,
+  "candidateHash": "ab211238a9212ed421dd32186ca976d3ac1be62217c35c7704a54c27ab9467cc",
+  "previousCandidateHash": "ea60e705a5b93e13a0bf669c78af1308940d715fb942971c43da67991c701e13",
+  "baseVersions": {
+    "world": 26,
+    "bible": 55,
+    "plan": 55
+  },
+  "onlyChangeFromPrevious": "event_01 consequences explicitly distinguish extra-world gates from intra-world sea routes",
+  "priorTech17AndCombatCandidateUnchanged": true,
+  "schemaPassed": true,
+  "existingBlockersUnchanged": true,
+  "changes": [
+    {
+      "path": "/worldPack/historicalEvents/event_01",
+      "before": {
+        "id": "event_01",
+        "title": "太古界门落锁之变",
+        "storyTime": "太古纪末（距今约一万年）",
+        "causes": [
+          "三大陆天地灵气总量暴跌，触犯灵气守恒律反噬，域外虚空乱流涌入",
+          "太古通天境诸祖强行掠夺各域小界本源引发界面崩解危机"
+        ],
+        "consequences": [
+          "补天阁先祖以圣器补天定世鉴合力布下界门封禁律，永封三大陆极天界门",
+          "三大陆修士无法自由穿梭诸域，通天境破界飞升之路断绝，诞生界门阶层断裂",
+          "虚空神晶（六品资源）沿界门闭合缝隙结晶沉积，成为极为罕有的界空圣物"
+        ],
+        "factionIds": [
+          "fac_09"
+        ],
+        "status": "proposed"
+      },
+      "after": {
+        "id": "event_01",
+        "title": "太古界门落锁之变",
+        "storyTime": "太古纪末（距今约一万年）",
+        "causes": [
+          "三大陆天地灵气总量暴跌，触犯灵气守恒律反噬，域外虚空乱流涌入",
+          "太古通天境诸祖强行掠夺各域小界本源引发界面崩解危机"
+        ],
+        "consequences": [
+          "补天阁先祖以圣器补天定世鉴合力布下封禁，封住三大陆通往天地界壁外的极天界门",
+          "三大陆修士无法再经极天界门自由前往天地界壁外的诸域，原有破界飞升道路中断，形成界门阶层断裂；青玄、赤霄、苍冥仍同属一天地，彼此间既有虚海实体航线不因域外界门落锁而消失。航船仍受航程、风暴、燃料、验籍与担保约束；恢复域外通行须另行具备完整开门条件，通天境资格本身不足以开门，不能把商路复通等同解封极天界门。",
+          "虚空神晶（六品资源）沿界门闭合缝隙结晶沉积，成为极为罕有的界空圣物"
+        ],
+        "factionIds": [
+          "fac_09"
+        ],
+        "status": "proposed"
+      }
+    }
+  ],
+  "usage": {
+    "calls": 1,
+    "failedCalls": 0,
+    "inputTokens": 25540,
+    "outputTokens": 801,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 1,
+        "failedCalls": 0,
+        "outputTokens": 801,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 2
+    }
+  },
+  "checks": [
+    {
+      "criterion": "scope",
+      "verdict": "pass",
+      "explanation": "event_01明确将极天界门定义为通往天地界壁外诸域的通道，并说明落锁后域外通行中断；同时明确青玄、赤霄、苍冥仍同属一天地，既有虚海实体航线不因落锁消失。loc_21进一步保留实体航程、风暴、燃料、验籍、担保、港口管理和实际支付，不授予钥匙免费航行或瞬移，也未取消港口与风暴限制。",
+      "revisionAdvice": "",
+      "evidenceCount": 5
+    },
+    {
+      "criterion": "continuity",
+      "verdict": "pass",
+      "explanation": "event_01仍沿用灵气暴跌、域外乱流和太古诸祖掠夺小界本源导致的落锁历史原因；补天阁仍承担封禁与巡守、惩戒强行破门者的独立职责，万象商盟仍以经营三大陆实体航运并研究界门贸易为独立利益，且其野心不等于已有开门能力。虚空神晶仍被设定为界门闭合缝隙或虚空乱流相关的稀有产物，未被改成可自由取得的航行燃料。通天境仅获得参与界门工程的必要承载资格，完整开门仍需另行核定门体、阵基、权限、供能、协作与失败代价；loc_06也明确通天之力、持匙、精血或寿元均不能单独替代完整开门条件。所给条目之间未见具体历史或资格冲突。",
+      "revisionAdvice": "",
+      "evidenceCount": 8
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "status": "running",
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "runtimeCommit": "46afed3",
+  "runId": "design_run_454be6ad-db3a-48cb-83e5-f5d8f5fc3121",
+  "scope": {
+    "worldPackRevision": 26,
+    "storyBibleRevision": 55,
+    "planRevisionId": "plan_b4e334bea6d54a1aad2d86e2110e7851",
+    "planRevision": 55
+  },
+  "resumedFrom": "cross-1-3",
+  "completedStepsNotReplayed": 5,
+  "previousFailureRetained": true,
+  "startedAt": "2026-10-14T05:29:01.872Z",
+  "outputInstruction": "Select only necessary supporting fragments, keep all required deferral citations; no source truncation or verdict changes to fit size.",
+  "protectedHistoryUnchanged": true,
+  "usage": {
+    "calls": 4,
+    "failedCalls": 0,
+    "inputTokens": 604926,
+    "outputTokens": 5903,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 4,
+        "failedCalls": 0,
+        "outputTokens": 5903,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 60
+    }
+  },
+  "formalAcceptance": false,
+  "completed": 8,
+  "total": 19,
+  "runStatus": "ready",
+  "usageIsSeparateFromFormalRunner": true
+}

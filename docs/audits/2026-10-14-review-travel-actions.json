@@ -1,0 +1,95 @@
+{
+  "observedAt": "2026-10-14T05:40:56.453Z",
+  "status": "targeted_faults_detected_baseline_needs_interpretation",
+  "formalAcceptance": false,
+  "savedToWork": false,
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "inputHashVersion": 9,
+  "scheduleVersion": 9,
+  "sourceSha256": "01fe2343c3136c166dab15c7e87b7a6c9d3695f0ebe747fd7481f7c98fd218c4",
+  "usage": {
+    "calls": 3,
+    "failedCalls": 0,
+    "inputTokens": 266633,
+    "outputTokens": 4235,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 3,
+        "failedCalls": 0,
+        "outputTokens": 4235,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 6
+    }
+  },
+  "fullWorldAndMacroSources": true,
+  "trials": [
+    {
+      "name": "all world rules and macro plan geography",
+      "synthetic": false,
+      "inputHash": "39746f8bef388c312f6bb354d629632b9013455fc74ecd24fac736036338e92f",
+      "sourceCount": 182,
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "revise",
+          "explanation": "计划明确采用实体航程而非太古界门或未定义挪移：灵虚古境以凝元三重和联名符牌进入，赤霄外港按验籍与避火符活动，苍冥外港由巡界使具名担保且不进入界渊，这些安排与地点门槛相容（e183、e185、e197、e198）。但资源兑现出现直接矛盾：高潮后验出9滴洁净灵泉、其中林得6滴、另3滴给寿储告急者，另有3滴污染；而卷一终点却写“两剂共6滴均已完成疗程”且“泉液余量为零”。若另3滴洁净滴已给第三名患者，必须安排其疗程、验收和剩余状态；若尚未使用，则不能把灵泉余量写成零（e186、e188、e179）。此外，返程段一处概称“既有10日陆路返驻地”，同段实际行动却是第301—303日陆路至通天渡口、第304—310日六日海程至沧溟古港；需明确10日指哪一段或总返程，避免把陆路航程与海程重复计算（e199、e198）。",
+          "revisionAdvice": "统一第一卷灵泉账：明确9滴洁净中的第三剂由谁取得、何时开始并完成十日疗程，或保留为未用库存；同步修改“共6滴”“余量为零”等终点表述，并重算相关疗程与可用寿储。另将第301—310日返程拆成明确的陆路段、通天渡口停留和六日海程，说明“10日陆路”是否为误称或总行程，避免重复计时。",
+          "evidenceCount": 8
+        }
+      ]
+    },
+    {
+      "name": "synthetic unsupported teleport preserving all original budget entries",
+      "synthetic": true,
+      "inputHash": "b5a75f58306684b39a1ce3e2de1bf515abae30d8b362f9130014c1375b92a7e9",
+      "sourceCount": 182,
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "revise",
+          "explanation": "提案已为青玄—赤霄安排实体海程，也明确三大陆商路不穿越太古界门；但第275–281日的实际行动写成林辰以凝元境“本能”将整船瞬移穿越虚海，并让船在外海等待五昼夜。这同时跳过实体航程、船舶燃料与操作者资格：凝元只能使用已掌握且有明确规则的基础操作，不能凭境界获得空间移动；跨海商路依赖实体飞舟，定空万里梭也要求至少破虚境、认主、虚空神晶和二十年阳寿，且不能由低阶代持。标题、票款和最终五日日期不能抵消该行动本身的未授权能力与省略行程。应将276–281日改为实际五昼夜航行，并补齐船舶、航程中的供能/值守、护罩与抵港日期；或者另行设计并满足合法的高阶交通来源，但不能由林的凝元境本能瞬移。",
+          "revisionAdvice": "返修第54–60章航行安排：删除凝元瞬移及“船在外海等待”的动作，明确赤霄极焱天港至苍冥葬骨玄冰原外港的五昼夜实体航程、实际承运船与供能、林贺在船上的职责及受监管码头准入；若保留空间器具，须改为具名且至少破虚境的合格操作者，并逐项补足器具来源、神晶、阳寿、冷却和不可穿越界壁等条件。",
+          "evidenceCount": 4
+        }
+      ]
+    },
+    {
+      "name": "synthetic local warehouse guarantee grants forbidden rift access",
+      "synthetic": true,
+      "inputHash": "d54d69ad5655c998d3219f96a0e5a547eb78300881b853b392b81ea0c82e1a2a",
+      "sourceCount": 182,
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "revise",
+          "explanation": "计划已为青玄—赤霄两昼夜、赤霄—苍冥五昼夜、苍冥—青玄六昼夜分别安排实体飞舟、票款/劳务、验籍与到港后的行动边界；地域资源和势力矛盾亦能驱动古境、赤霄港口、北境外港及返乡卷的不同目标，而非单纯换图打怪。但第61–66章提案明确把夜的“外港指定仓区查货”担保写成同时免除林辰的境界、护持和界渊入口查验，继而安排他当日独自进入界渊裂隙。这不是尚待正文实现的问题，而是提案自身与地点规则的硬冲突：苍冥大陆的担保例外只到指定会合地，不自动授予界渊权利；界渊还要求神海境以上、已验收的虚空破障梭、当日许可和稳定通道。林在第二卷结局仍为凝元三重，不能凭外港担保越过这些门槛。",
+          "revisionAdvice": "修改第61–66章：将林、贺和夜的行动限定在担保所列外港/指定仓区与普通货舱、栈桥、港卫通道；删除“进入界渊裂隙”及其豁免表述。若剧情必须进入loc_15，则另行安排实际神海资格、验收梭具、当日巡界许可、稳定通道、操作人员和撤离条件，且不能由凝元林辰单独执行。",
+          "evidenceCount": 6
+        }
+      ]
+    }
+  ],
+  "assessment": {
+    "teleportFaultDetected": true,
+    "warehouseGuaranteeOverreachDetected": true,
+    "baselinePassed": false,
+    "baselineConcerns": "Original-plan review conflated Lin’s own exhausted six-drop stock with another patient’s three drops, and Night Ningshuang’s independent ten-day land return with Lin/He’s six-day sea journey. Inspect ownership and subjects; do not change correct arithmetic or make them travel together to satisfy the model.",
+    "action": "Candidate v5 explicitly names the stock owner and independent traveller; focused ownership/travel review passed. Full design acceptance remains outstanding."
+  },
+  "validation": {
+    "testsPassed": 221,
+    "oldHash7And8ReportsBecomeOutdatedWithoutMutation": true
+  },
+  "limitations": [
+    "The expanded rubric detected these two concrete negative controls, but the baseline result is not a clean pass. This does not establish general reviewer reliability or formal acceptance.",
+    "No synthetic travel or permission change was applied to the work; every failed/false-positive control and all raw responses are retained."
+  ],
+  "syntheticChangesConfinedToTrials": true
+}

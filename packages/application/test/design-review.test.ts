@@ -30,22 +30,24 @@ test('world capacity review receives the realm ladder and referenced ability rul
     { sourceId: 'world/techniques/technique', quote: '不得把晋阶费用视作施术预付' },
   ];
   validateDesignReview(input, report);
-  const legacyHash = createHash('sha256').update(JSON.stringify({
-    rubricVersion: 7, title: work.title, covenant: work.covenant,
-    world, bible: work.storyBible, planId: work.activePlanId, plan: work.plans.get(work.activePlanId!)!.plan,
-    characters: [...work.characters.values()].sort((a, b) => a.id.localeCompare(b.id)),
-    relationships: [...work.relationships.values()].sort((a, b) => a.id.localeCompare(b.id)),
-    worldRules: [...work.worldRules.values()].sort((a, b) => a.id.localeCompare(b.id)),
-    ...(work.plotNodes.size ? { plotNodes: [...work.plotNodes.values()].sort((a, b) => a.id.localeCompare(b.id)) } : {}),
-  })).digest('hex');
-  assert.notEqual(input.inputHash, legacyHash);
-  const oldReport = recordDesignReview(work, input, report);
-  oldReport.inputHash = legacyHash;
-  const snapshot = structuredClone(oldReport);
-  const overview = designReviewOverview(work);
-  assert.equal(overview.areas.find(a => a.area === 'world')!.status, 'outdated');
-  assert.equal(overview.ready, false);
-  assert.deepEqual(work.designContentReviews.get(oldReport.id), snapshot, 'old conclusions remain immutable history');
+  for (const rubricVersion of [7, 8]) {
+    const legacyHash = createHash('sha256').update(JSON.stringify({
+      rubricVersion, title: work.title, covenant: work.covenant,
+      world, bible: work.storyBible, planId: work.activePlanId, plan: work.plans.get(work.activePlanId!)!.plan,
+      characters: [...work.characters.values()].sort((a, b) => a.id.localeCompare(b.id)),
+      relationships: [...work.relationships.values()].sort((a, b) => a.id.localeCompare(b.id)),
+      worldRules: [...work.worldRules.values()].sort((a, b) => a.id.localeCompare(b.id)),
+      ...(work.plotNodes.size ? { plotNodes: [...work.plotNodes.values()].sort((a, b) => a.id.localeCompare(b.id)) } : {}),
+    })).digest('hex');
+    assert.notEqual(input.inputHash, legacyHash);
+    const oldReport = recordDesignReview(work, input, report);
+    oldReport.inputHash = legacyHash;
+    const snapshot = structuredClone(oldReport);
+    const overview = designReviewOverview(work);
+    assert.equal(overview.areas.find(a => a.area === 'world')!.status, 'outdated');
+    assert.equal(overview.ready, false);
+    assert.deepEqual(work.designContentReviews.get(oldReport.id), snapshot, 'old conclusions remain immutable history');
+  }
 });
 
 test('design review sees contradictory book-level promises even when chapter outlines omit them', async () => {

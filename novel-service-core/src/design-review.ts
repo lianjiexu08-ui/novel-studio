@@ -5,7 +5,7 @@ export const designReviewAreas = ['world', 'power', 'characters', 'story'] as co
 export type DesignReviewArea = typeof designReviewAreas[number];
 export const designReviewRubrics: Record<DesignReviewArea, Record<string, string>> = {
   world: {
-    geography: '大陆、地点与势力的资源来源、利益冲突、跨域通行条件是否能支撑分卷，而非换地图重复打怪',
+    geography: '大陆、地点与势力的资源来源、利益冲突、跨域通行条件是否能支撑分卷，而非换地图重复打怪。先核对本批计划实际写出的每次跨域移动和受限地点进入：从哪里到哪里、实际采用何种交通或能力、谁有资格操作、依据什么取得准入，以及对应的时间、支付和供能是否与世界原文相容；再判断地域差异与分卷作用。不能只复述世界规定的标准航程或计划标题，而忽略同一条计划中的具体动作；实际动作优先接受核验，正确的标题、总日数、票款或结局不能抵消其中未获授权的能力、未经许可的入境或省略的实体行程。已给原文的明确冲突必须revise，并引用规则与冲突行动；未读到必要依据才请求补读，不能以其他材料不足掩盖已证冲突。',
     history: '历史的原因、代价和后果能否解释现状，势力是否会独立行动',
     capacity: '世界的差异性、规则和扩展空间是否匹配目标篇幅，不能以条目数量替代复杂度',
   },
@@ -108,9 +108,10 @@ export function designReviewHash(work: Work, planId?: string): string | undefine
   const plan = selectedId ? work.plans.get(selectedId) : undefined;
   if (!work.worldPack || !work.storyBible || !plan || plan.status === 'superseded' || (planId === undefined && plan.status !== 'approved')) return undefined;
   return createHash('sha256').update(JSON.stringify({
-    // Version 8 includes the complete world rule sources in world reviews.
-    // Reports made without those sources must not authorize this input.
-    rubricVersion: 8, title: work.title, covenant: work.covenant,
+    // Version 9 checks actual travel actions against world rules. Earlier
+    // geography passes could repeat route summaries while missing an illegal
+    // action inside the same milestone, and must not authorize this input.
+    rubricVersion: 9, title: work.title, covenant: work.covenant,
     world: work.worldPack, bible: work.storyBible, planId: plan.id, plan: plan.plan,
     characters: [...work.characters.values()].sort((a, b) => a.id.localeCompare(b.id)),
     relationships: [...work.relationships.values()].sort((a, b) => a.id.localeCompare(b.id)),
