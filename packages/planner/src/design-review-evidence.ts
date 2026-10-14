@@ -33,7 +33,8 @@ export function prepareDesignReviewEvidence(input: DesignReviewInput) {
   const sources = snapshot.sources.map((source) => {
     if (sourceIds.has(source.id)) throw new DesignReviewError(`评审来源 ID 重复：${source.id}`);
     sourceIds.add(source.id);
-    return { id: source.id, fragments: fragments(source.text).map((text) => {
+    const unit = snapshot.stage?.sourceMap.find(unit => unit.id === source.id);
+    return { id: source.id, ...(unit ? { origin: { sourceId: unit.sourceId, start: unit.start, end: unit.end } } : {}), fragments: fragments(source.text).map((text) => {
       // Copy one request fingerprint, then select short local IDs. Repeating a
       // long hash in every citation caused otherwise complete reviews to fail.
       const id = `e${lookup.size + 1}`;
@@ -41,9 +42,21 @@ export function prepareDesignReviewEvidence(input: DesignReviewInput) {
       return { id, text };
     }) };
   });
+  // Give the reviewer a direct index for dedicated follow-ups. These IDs are
+  // navigational metadata, never proof that any fragment supports a verdict.
+  const pending = snapshot.stage?.coverage?.pendingChecks?.find(check => check.id === snapshot.stage?.followupFor);
+  const citationRequirements = pending ? {
+    checkId: pending.id, criterion: pending.criterion,
+    sources: [...new Set([pending.questionSourceId, ...(pending.priorSourceIds ?? []), ...pending.requiredSourceIds])].map(sourceId => ({
+      sourceId,
+      units: sources.filter(source => source.id === pending.questionSourceId ? source.id === sourceId : (source.origin?.sourceId ?? source.id) === sourceId)
+        .map(source => ({ id: source.id, fragmentIds: source.fragments.map(fragment => fragment.id) })),
+    })),
+  } : undefined;
   return {
     requestId,
     sources,
+    citationRequirements,
     resolve(value: unknown) {
       const parsed = anchoredDesignReviewResultSchema.parse(value);
       if (parsed.requestId !== requestId) throw new DesignReviewEvidenceError(`评审请求编号不属于本次材料：必须重新核对本次 requestId 与全部原文片段，不能沿用旧请求编号 ${parsed.requestId}`);

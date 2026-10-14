@@ -196,12 +196,19 @@ test('follow-up repair identifies the omitted original source without copying ev
   };
   const prepared = prepareDesignReviewEvidence(request);
   const good = { requestId: prepared.requestId, summary: '送达前没有预支知情', checks: [{ criterion: 'timeline', verdict: 'pass', explanation: '第10日未知，第12日实际送达，两个时点相容', revisionAdvice: '', resolves: ['batch-1/timeline'], evidence: prepared.sources.map(s => ({ fragmentId: s.fragments[0].id })) }] };
+  assert.deepEqual(prepared.sources[1].origin, { sourceId: 'original/recipient', start: 0, end: request.sources[1].text.length });
+  assert.deepEqual(prepared.citationRequirements!.sources.find(s => s.sourceId === 'original/recipient')!.units,
+    [{ id: 'unit/b', fragmentIds: [prepared.sources[1].fragments[0].id] }]);
+  assert.equal(prepared.citationRequirements!.sources.length, 4);
   const first = structuredClone(good);
   first.checks[0].evidence.splice(1, 1);
   let calls = 0;
   const planner = new JsonDesignPlanner({ complete: async call => {
     assert.match(call.system, /evidence最多64个/);
-    if (++calls === 1) return JSON.stringify(first);
+    if (++calls === 1) {
+      assert.deepEqual(JSON.parse(call.user).citationRequirements, prepared.citationRequirements);
+      return JSON.stringify(first);
+    }
     const repair = JSON.parse(call.user);
     assert.match(repair.problems, /缺少来源：original\/recipient/);
     assert.match(repair.problems, /不需穷举其全部片段/);
