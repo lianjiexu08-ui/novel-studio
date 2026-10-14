@@ -1,0 +1,325 @@
+{
+  "observedAt": "2026-10-14T17:39:11.435Z",
+  "mode": "isolated_memory_only",
+  "candidateSha256": "92a4a486af9856736301a464c6397c4d10ed96eebfe2d7294196ec8149c094b2",
+  "productionWrites": false,
+  "formalAcceptance": false,
+  "modelCalls": 0,
+  "expectedRevisions": {
+    "world": 29,
+    "bible": 60,
+    "proposedPlan": 60,
+    "approvedPlan": 10
+  },
+  "newPlanBindings": {
+    "world": 29,
+    "bible": 60
+  },
+  "oldHistoryAndReportsUnchanged": true,
+  "productionDesignAndAdoptedHistoryUnchanged": true,
+  "blockersPreserved": true,
+  "structure": {
+    "id": "plan_review_c66b2c7c43a84b3da73b1a11d17fb1d7",
+    "contentHash": "000d22dd79c378b20b514a276e6547ec36b88587ff2e4c542198d926dcd9c015",
+    "worldPackRevision": 29,
+    "storyBibleRevision": 60,
+    "passed": false,
+    "issues": [
+      {
+        "code": "BLOCKING_QUESTION",
+        "message": "未决问题会阻断开篇：现有前50章替换提案，批准旧版仍10。整体设计质量、各章正文与历史事件一致性尚未验收，局部章纲复审不能放行正式写作。",
+        "nodeId": "baseline-content-review",
+        "severity": "error"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "message": "未决问题会阻断开篇：完整1–50章纲交叉复审已核查成长、伤情、晋阶和资源时序并通过；仍须应用力量领域整体验收及新正文逐章落实。旧稿高阶成就不能充作新方案前置。",
+        "nodeId": "opening-growth-repair",
+        "severity": "error"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "message": "未决问题会阻断开篇：当前完整1–50章纲及关联约束交叉复审四项通过；应用四领域分批与综合评审、文学正文和历史事件一致性尚未验收。不能从章纲通过推导全书或旧正文通过。",
+        "nodeId": "opening-quality-review",
+        "severity": "error"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "message": "未决问题会阻断开篇：新章纲逐项核对寿储、药程、航款和物品；第51–100章尚未完整逐章落地，不据宏观预算认定已经获得或花费。",
+        "nodeId": "resource-growth-budget",
+        "severity": "error"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "message": "未决问题会阻断开篇：第一卷32章已提案化，值守交接本轮修到188日午正与首夜；第一卷与后卷连续性及旧正文差异仍待整体复核。",
+        "nodeId": "first-volume-blueprint",
+        "severity": "error"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "message": "未决问题会阻断开篇：完整1–50章纲交叉复审已覆盖当前第一卷人物、认知、资源与值守方案并通过；应用四领域及正文一致性未验收，不能把设计检查当第一卷正文实现。",
+        "nodeId": "v1-outline-review",
+        "severity": "error"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "message": "未决问题会阻断开篇：33–50章纲已齐，完整1–50章纲交叉复审通过；51–100尚未逐章展开，后两卷宏观仍须正式整体验收。六号箱核证与仓火经过章节重组，前50通过不代表旧正文已实现，新旧差异尚未修复。",
+        "nodeId": "v23-macro",
+        "severity": "error"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "message": "未决问题会阻断开篇：世界19/圣经31/计划30的值守专项已在正确的提案评审阶段通过；当前轮班没有修改。该结论不是正文已实现或整体设计通过，仍须按实际章节核对交接、休息、伤情和返宗。",
+        "nodeId": "guard-return-chain",
+        "severity": "error"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "message": "未决问题会阻断开篇：第37章首仓火已有退包装、普通灯架倾倒、油火纸绳燃迹与外桌携页者的现场链；谁使灯倒、是否事故及携页者身份仍未确认，须后续查证。50章新提案已取消第二仓纵火，不能把旧方案当成另一场已发生火案，也不能据扣工现场反推首仓火因；若最终无法核实，明确未查明及证据边界，不称已破火案。 世界19/圣经33/计划33的36–39局部复审已通过，支持所列触发与现场分工；具体倾灯责任仍未查明，该通过不替代火案或全书验收。",
+        "nodeId": "first-warehouse-fire",
+        "severity": "error"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "message": "未决问题会阻断开篇：此前1–50章纲交叉复审曾通过；当前50章改为完成吴卢实际撤离并留下去留分歧，51–53拟落实七人生计、船舶交检及陆签认自述副本，须当前版本复审及后续逐章实现。应用四领域与旧正文未验收，不因提案写入便关闭救援、安置或独立核验问题。",
+        "nodeId": "barge-inspection",
+        "severity": "error"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "message": "未决问题会阻断开篇：当前50提案改为门口核实自愿、陆停止协助旧同伙与两看守被控制，完成吴卢脱控；旧提案第二仓纵火、林受新伤、携匣追逃不再沿用。须复核相应关系、认知、52消息来源和旧正文后再处理本阻塞。51–53三日救助、七人到270工食、255交检及260棚主1枚直付客舍须逐章落实；陆53自述仍待签认和独立核验。",
+        "nodeId": "second-warehouse-fire",
+        "severity": "error"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "message": "未决问题会阻断开篇：已将34–36调查压为34–35，36写唐带五人脱身失败及外口工序被撤；41–43过渡压为41–42，43实际报警追船、44切索救援。最终完整1–50章纲及关联约束交叉复审：时间、知情、故事线、叙事四项通过。该报告不是应用四领域或正文验收，旧正文一致性未完成，保持阻塞。",
+        "nodeId": "first50-narrative",
+        "severity": "error"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "message": "未决问题会阻断开篇：已规划52寄报、53阅报/回令/程签收、54骑使返都交签收联、73当面报北境、80重整、87寄押报88阅、90签撤令92到、95截得、98程败报99正式质询。关系和知情按这些触发拆分；51–100仍须逐批落实章纲与证据，不能把锚点当已采纳事件。全局内容复审与历史替换未完成。",
+        "nodeId": "message-arrivals",
+        "severity": "error"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "message": "未决问题会阻断开篇：应用已实现原文分批、跨批检查与综合，39版人物11步真实评审完成但有返修项；新提案仍须完成四领域复审，未获整体通过。不得截断材料、用局部报告替代全项结论或把原有容量报错当尚未实现的功能。",
+        "nodeId": "review-capacity",
+        "severity": "error"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "message": "未决问题会阻断开篇：后段高潮改为原令暴露后的有限交械：已撤去无阴煞目标的真光及第二次寿元扣款，改由顾牵制、祁为保留申辩原令交械。该宏观因果、伤情看押及人物选择尚待四领域完整复审和后续分批章纲落实，不能据此批准计划或宣称正文事实成立。另已把前车短时脱困与停斗后两趟送医分开，转运至少31分钟；车门伤、货车在卸完伤者后损坏及担架另送护卫均须后续按现场执行，不得把宏观预算当已发生事实。",
+        "nodeId": "convoy-custody-causality",
+        "severity": "error"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "message": "未决问题会阻断开篇：设计59草案补充301—304日苍冥限程离境担保、逐站验籍与候船交接，回程购票改为303日实到通天后；需核权责、时间、费用及旧稿差异，未经复评不能把草案许可视为既有事实。 专项复核另发现rel_05把301出发写成返岗；v4同步为301午出发、311午实到交接后返岗，须独立复核，不倒改原负面记录。",
+        "nodeId": "north-coast-exit-permit",
+        "severity": "error"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "message": "未决问题会阻断开篇：设计59草案明确25章顾起印第二、第三息对应墨两息付费血爪，真光第三息完成后才接触已外放爪煞，并补引顾既有训练资格；须对照两套章纲、功法限制和动作账复评，旧正文与负面报告仍保留。",
+        "nodeId": "chapter25-claw-sequence",
+        "severity": "error"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "severity": "error",
+        "message": "设计仍有阻塞问题：旧正文开篇燃寿越阶问题仍未改写；当前1–32章替换提案不发动真解，33–100宏观也不发动。须在新章纲、正文及事件一致后复核；不得把旧燃寿额与新提案下界混账。",
+        "nodeId": "audit-power-opening"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "severity": "error",
+        "message": "设计仍有阻塞问题：已补充绝命死息 res_15、诸天通宝 res_16 的资源提案并修正势力引用；新增品阶、材质、发行与保存规则尚需对照正文核验，不能视为已确立事实。",
+        "nodeId": "audit-resource-definitions"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "severity": "error",
+        "message": "设计仍有阻塞问题：新宏观采用北航五日、返航六日、14,000枚专项款及有时限的外港担保，尚待逐章落地。旧稿打点、火晶换舱和第55章信物均不作为新版实际支付或准入依据；历史保留待对照。",
+        "nodeId": "audit-travel-rules"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "severity": "error",
+        "message": "设计仍有阻塞问题：旧稿越阶施术与神器使用仍待替换正文修复。新版百章玄府、赵仍玄府，不采用破虚杀主宰或通天禁术反噬的旧结局；原世界各阶门槛与成本完全保留，后续450章高阶成长仍需有来源。",
+        "nodeId": "audit-tier-exceptions"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "severity": "error",
+        "message": "设计仍有阻塞问题：资源使用规则为新提案，必须内容复核并重算各章收入/支出。灵泉终生上限30年不能支撑旧第28章神海突破及早期燃寿；历史正文未改，不得倒填已经饮用或凭未来库存先花寿元。",
+        "nodeId": "audit-resource-usage"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "severity": "error",
+        "message": "设计仍有阻塞问题：当前世界的分区、寿储诊断与凝元三重规则仍为提案；已有1–32章替换章纲和33–100宏观，但需分项内容复核与逐章生成，不视新诊断、修炼、药程为已采纳事实。",
+        "nodeId": "audit-first-volume-foundation"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "severity": "error",
+        "message": "设计仍有阻塞问题：当前三卷32/66/100边界不变，新宏观第436日高潮、第466日三十日回访。旧稿第50/80日终局与十载血战不作为新时间线。新日历仍须逐章实现并验证。",
+        "nodeId": "audit-volume-timeline"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "severity": "error",
+        "message": "设计仍有阻塞问题：新百章只持第一片，第二片经程抵押赵府，第三片未取得；不再安排73章合匙、88章宝鉴或98章锁销。旧稿对应越阶使用尚未替换，新的持物和角色认知须分开复核。",
+        "nodeId": "audit-artifact-continuity"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "severity": "error",
+        "message": "设计仍有阻塞问题：新宏观采用第19日诊察下界7、120日扣3、199/209日各加5、415日扣10并扣自然流逝；466日约2.775342仅为健康条件成立时的提案预算。旧稿不足两年/三年数字保留历史，不混入新账。须通过实际新章节与复诊才能认定余额。",
+        "nodeId": "audit-ending-cost"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "severity": "error",
+        "message": "设计仍有阻塞问题：本轮撤回旧投影、苏被囚与夜南征的未来关系，改为苏留宗独立调查、夜外港有限合作、贺有账航款、陆自认改签。宏观阶段已同步，尚须在逐章行动中验证，不改已采纳事件。",
+        "nodeId": "audit-relationship-stages"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "severity": "error",
+        "message": "设计仍有阻塞问题：报令锚点和赵认知分期已修订，林苏只在95章实得撤押原令，第一报、北境面报不共享；318抵押只属异地提案。原有父案材料递进与旧稿认知待逐章复核。51–100未有完整章纲，规划锚点不是已采纳事实，不得倒填历史。",
+        "nodeId": "audit-knowledge-reveal-order"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "severity": "error",
+        "message": "设计仍有阻塞问题：第1–32章成长提案仍须对照各章动作、伤情与晋阶前置复核；33–50已补，前50章已齐但整体质量尚待复核。旧稿高阶成就不能充作新方案前置。",
+        "nodeId": "audit-opening-growth"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "severity": "error",
+        "message": "设计仍有阻塞问题：前50章现有提案；33–35局部叙事复审通过不代表前50章整体、文学正文或全书通过。仍需分批和整体质量验收。",
+        "nodeId": "audit-opening-quality"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "severity": "error",
+        "message": "设计仍有阻塞问题：新章纲逐项核对寿储、药程、航款和物品；第51–100章尚未完整逐章落地，不据宏观预算认定已经获得或花费。",
+        "nodeId": "audit-resource-growth-budget"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "severity": "error",
+        "message": "设计仍有阻塞问题：第一卷32章已提案化，值守交接本轮修到188日午正与首夜；第一卷与后卷连续性及旧正文差异仍待整体复核。",
+        "nodeId": "audit-first-volume-blueprint"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "severity": "error",
+        "message": "设计仍有阻塞问题：完整1–50章纲交叉复审已覆盖当前第一卷人物、认知、资源与值守方案并通过；应用四领域及正文一致性未验收，不能把设计检查当第一卷正文实现。",
+        "nodeId": "audit-v1-outline-review"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "severity": "error",
+        "message": "设计仍有阻塞问题：33–50章纲已齐，完整1–50章纲交叉复审通过；51–100尚未逐章展开，后两卷宏观仍须正式整体验收。六号箱核证与仓火经过章节重组，前50通过不代表旧正文已实现，新旧差异尚未修复。",
+        "nodeId": "audit-v23-macro"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "severity": "error",
+        "message": "设计仍有阻塞问题：世界19/圣经31/计划30的值守专项已在正确的提案评审阶段通过；当前轮班没有修改。该结论不是正文已实现或整体设计通过，仍须按实际章节核对交接、休息、伤情和返宗。",
+        "nodeId": "audit-guard-return-chain"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "severity": "error",
+        "message": "设计仍有阻塞问题：第37章首仓火已有退包装、普通灯架倾倒、油火纸绳燃迹与外桌携页者的现场链；谁使灯倒、是否事故及携页者身份仍未确认，须后续查证。50章新提案已取消第二仓纵火，不能把旧方案当成另一场已发生火案，也不能据扣工现场反推首仓火因；若最终无法核实，明确未查明及证据边界，不称已破火案。 世界19/圣经33/计划33的36–39局部复审已通过，支持所列触发与现场分工；具体倾灯责任仍未查明，该通过不替代火案或全书验收。",
+        "nodeId": "audit-first-warehouse-fire"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "severity": "error",
+        "message": "设计仍有阻塞问题：此前1–50章纲交叉复审曾通过；当前50章改为完成吴卢实际撤离并留下去留分歧，51–53拟落实七人生计、船舶交检及陆签认自述副本，须当前版本复审及后续逐章实现。应用四领域与旧正文未验收，不因提案写入便关闭救援、安置或独立核验问题。",
+        "nodeId": "audit-barge-inspection"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "severity": "error",
+        "message": "设计仍有阻塞问题：当前50提案改为门口核实自愿、陆停止协助旧同伙与两看守被控制，完成吴卢脱控；旧提案第二仓纵火、林受新伤、携匣追逃不再沿用。须复核相应关系、认知、52消息来源和旧正文后再处理本阻塞。51–53三日救助、七人到270工食、255交检及260棚主1枚直付客舍须逐章落实；陆53自述仍待签认和独立核验。",
+        "nodeId": "audit-second-warehouse-fire"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "severity": "error",
+        "message": "设计仍有阻塞问题：已将34–36调查压为34–35，36写唐带五人脱身失败及外口工序被撤；41–43过渡压为41–42，43实际报警追船、44切索救援。最终完整1–50章纲及关联约束交叉复审：时间、知情、故事线、叙事四项通过。该报告不是应用四领域或正文验收，旧正文一致性未完成，保持阻塞。",
+        "nodeId": "audit-first50-narrative"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "severity": "error",
+        "message": "设计仍有阻塞问题：已规划52寄报、53阅报/回令/程签收、54骑使返都交签收联、73当面报北境、80重整、87寄押报88阅、90签撤令92到、95截得、98程败报99正式质询。关系和知情按这些触发拆分；51–100仍须逐批落实章纲与证据，不能把锚点当已采纳事件。全局内容复审与历史替换未完成。",
+        "nodeId": "audit-message-arrivals"
+      },
+      {
+        "code": "BLOCKING_QUESTION",
+        "severity": "error",
+        "message": "设计仍有阻塞问题：应用已实现原文分批、跨批检查与综合，39版人物11步真实评审完成但有返修项；新提案仍须完成四领域复审，未获整体通过。不得截断材料、用局部报告替代全项结论或把原有容量报错当尚未实现的功能。",
+        "nodeId": "audit-review-capacity"
+      }
+    ],
+    "reviewedAt": "2026-10-14T17:39:10.176Z"
+  },
+  "contentReview": {
+    "ready": false,
+    "areas": [
+      {
+        "area": "world",
+        "status": "outdated",
+        "reportId": "design_review_ea69d953-6750-47a1-97de-4bcd3c393afe"
+      },
+      {
+        "area": "power",
+        "status": "outdated",
+        "reportId": "design_review_11dbd1a7-c5ec-456e-8553-7c26f1a9d94c"
+      },
+      {
+        "area": "characters",
+        "status": "outdated",
+        "reportId": "design_review_c9e080b7-1aaf-4dcf-abda-15f3ca45e612"
+      },
+      {
+        "area": "story",
+        "status": "outdated",
+        "reportId": "design_review_ec557cb0-d785-4d23-ae17-2381d473161f"
+      }
+    ]
+  },
+  "writingBlockers": [
+    {
+      "code": "CANON_NOT_READY",
+      "message": "chapter generation gate blocked: world pack is not locked; story bible is not locked; blocking world pack questions must be resolved before writing; blocking story questions must be resolved before writing",
+      "nextAction": "处理设计门禁问题后重新锁定"
+    },
+    {
+      "code": "PLAN_OUTDATED",
+      "message": "the approved plan was drafted against an older world pack or story bible",
+      "nextAction": "基于当前设计另存计划，审核后重新批准"
+    },
+    {
+      "code": "DESIGN_REVIEW_REQUIRED",
+      "message": "当前设计尚未通过全部分项内容评审；结构锁定不能代替内容质量审核",
+      "nextAction": "到世界构建完成世界、力量、人物与故事四项内容评审并处理返修问题"
+    }
+  ],
+  "counts": {
+    "versions": 101,
+    "events": 383,
+    "manuscripts": 1
+  },
+  "limitation": "Save mechanics only; no production approval, adoption, deployment or prose. Formal design59 writers are still running."
+}
