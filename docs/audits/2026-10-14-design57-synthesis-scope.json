@@ -1,0 +1,151 @@
+{
+  "status": "reviewed",
+  "purpose": "Offline replay of unchanged formal56 synthesis-1 reports with explicit partial-tree scope. Does not edit or resolve any formal report.",
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "savedToWork": false,
+  "formalAcceptance": false,
+  "runId": "design_run_eae8ce3f-bac9-49d3-a1e6-e3a7dcbe20c7",
+  "stageId": "synthesis-1",
+  "originalStageHash": "f466614e42c132f2e90324e2fb402470667b7f06038a98d60e6fd93e55161d1a",
+  "originalInputHash": "6a26a12d8e680779807aec0827301087f95f57d7f809cf5ad8432e4e7ac40a83",
+  "inputHash": "cad3c61c418b3b1c93a9de0c09a68fb76c972dd22a6d9a612a372793046fbe68",
+  "inputUnchangedExceptSynthesisScope": true,
+  "scope": {
+    "scope": "partial_reports",
+    "coveredStageIds": [
+      "batch-1",
+      "batch-2"
+    ],
+    "totalStages": 24
+  },
+  "usage": {
+    "calls": 1,
+    "failedCalls": 0,
+    "inputTokens": 47600,
+    "outputTokens": 2135,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 1,
+        "failedCalls": 0,
+        "outputTokens": 2135,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 2
+    }
+  },
+  "finding": "Explicit subtree metadata was delivered, but this replay still repeated resolved deferrals as insufficiencies. This is not evidence that the model misunderstanding is fixed.",
+  "codeVersions": {
+    "repositoryRubricVersion": 13,
+    "repositoryScheduleVersion": 11,
+    "activeFormalRubricVersion": 10,
+    "activeFormalScheduleVersion": 9
+  },
+  "sourceHashes": {
+    "novel-service-core/src/design-review.ts": "bc3b0d8a4f7399027a0942a523286924c9a5ed1e0ca6e3a08a6d5f6af200d1d1",
+    "novel-service-core/src/design-review-run.ts": "e61969fafd240bf6ecad8abb0c23ac98f3367a76d0087a65c71f06b484abb91b",
+    "packages/planner/src/index.ts": "6dfc0664d18d831403350a05306dc78878176a45978e3a1a053d0a9112b19a5e"
+  },
+  "validation": {
+    "focusedTests": 41,
+    "fullTests": 230,
+    "failedTests": 0,
+    "webBuild": "passed",
+    "originalDesignAndHistoryUnchanged": true
+  },
+  "originalChecks": [
+    {
+      "criterion": "causality",
+      "verdict": "pass",
+      "explanation": "计划将三卷目标、转折、救援、跨海、返乡、晋阶与最终押运按强制依赖链排列，明确前段救援、实物交接、健康状态和可用款项成立后，才能进入后段行动，不能以预期收入、持有物或未具能力替代前置。百章终点也被限定为切断一条运输链、部分澄清父案和完成玄府成长，而非提前解决九鼎、界门或全部父案。前置报告中关于第51—100章因果不足的待核项已列入系统已解决的补读记录，故不再把未携带的补读原文当作新的材料不足。",
+      "revisionAdvice": "",
+      "evidenceCount": 6
+    },
+    {
+      "criterion": "timeline",
+      "verdict": "pass",
+      "explanation": "提案给出了100章范围、三卷边界、前50章细纲终点及后半段宏观节点；跨海规则明确青玄至赤霄约两昼夜、赤霄至苍冥约五昼夜、苍冥返青玄约六日，并要求另计内陆、停留、支付和担保。现有综合记录将285日外港会见、301日分路、315日重聚、431—466日青玄押运与回访安排为顺序链，且没有把并行队伍或分路误判成同一人物时空冲突。前置关于后半段日期、航程和晋阶的待核项已由系统登记为补读/跨批解决，因此本项按综合阶段通过。",
+      "revisionAdvice": "",
+      "evidenceCount": 7
+    },
+    {
+      "criterion": "payoff",
+      "verdict": "insufficient",
+      "explanation": "百章成果边界和代价方向明确：第一片保留、第二片在黑舱救援中放弃，救援不等于父案或界门全案结案；赵方撤人令、林苏取得原令、三十日回访等也有阶段性兑现条件与代价。前置报告中部分秘密与兑现项虽已由补读记录处理，但故事总览仍明确保留未解决的物件连续性和认知揭示审计：不得恢复旧稿第73章合匙、88章宝鉴、98章锁销路线，且林苏只能在第95章实得撤押原令，第一报、北境面报不共享。当前综合材料没有足够直接证据证明这些限制与所有后半段伏笔的首次取得、知情范围、支付代价和最终归宿已经全部闭合，因此不能通过。",
+      "revisionAdvice": "继续保留并完成artifact continuity与knowledge reveal order两项阻塞审计；逐项列明第一片、撤押原令、运输链证据和父案材料的首次取得者、可知角色、交接时点、消耗代价与有限兑现，确认不重复消费救援或证物，也不把局部问责升级为父案全貌结案。",
+      "evidenceCount": 8
+    },
+    {
+      "criterion": "opening",
+      "verdict": "pass",
+      "explanation": "前五十章的提案递进从矿道灭口与带伤救人开始，转入账册、证人和程序性封口，再经有限同盟、修习门槛、古境救援、分药与跨海查货，推进至仓火、扣工、脱控和后续追链；每阶段保留伤势、债务、资格、证词、船损或消息未送达等后果。第1—2章的实际细纲也证明开局选择与代价闭合，未提前发动高阶功法或完成主线终局。前置综合记录将后半段高潮限定为救援、断运、部分澄清和回访，没有把百章写成重复的全案终局。",
+      "revisionAdvice": "",
+      "evidenceCount": 8
+    }
+  ],
+  "replayChecks": [
+    {
+      "criterion": "causality",
+      "verdict": "insufficient",
+      "explanation": "前置报告确认开局及前五十章宏观递进基本成立，但后续各里程碑严格依赖实际救援、物品交接、健康状态、可用款项、行动资格与消息送达。当前综合子树未提供足以核对第51—100章这些条件的完整里程碑原文，因此无法确认北航、黑舱救援、返青玄、训练晋阶和最终截押之间是否闭合，也无法排除重复消费或缺少来源。该材料不足项应保留，不能因计划列出了必经依赖就视为已兑现。",
+      "revisionAdvice": "补齐并逐段核对第51—100章里程碑中的实际付款或担保、人员与物品交接、能力门槛、伤情恢复、消息送达和下一段准入；若存在未定义来源或同一成果重复消费，按具体里程碑修正。",
+      "evidenceCount": 4
+    },
+    {
+      "criterion": "timeline",
+      "verdict": "insufficient",
+      "explanation": "现有报告未发现已证明的硬日期冲突，且前五十章的第1—3日开局时序可执行；但五日北航、六日返航、停留与疗程、航款有效期以及第83章晋玄府的具体日期仍未由当前综合子树中的完整后续里程碑逐项核验。报告明确指出第51—100章时间安排尚不能仅凭宏观锚点通过，因此不能把285、301、315、431—466日等规划日期当作已经闭合的行程证据。",
+      "revisionAdvice": "按林辰、苏凌霜、夜南征及各队伍分别列出出发地、出发日、途中行动、目的地和抵达日，补核实体航程、内陆抵港、休整疗程、训练和消息传递；尤其核对第83章晋阶与前后伤情、航程是否重叠。",
+      "evidenceCount": 4
+    },
+    {
+      "criterion": "payoff",
+      "verdict": "insufficient",
+      "explanation": "提案边界本身清楚：百章只完成一条已实证运输链的切断、有限救援、部分父案澄清和玄府成长，不提前清算九鼎、三残片或界门总危机；开局也只投放残片、账册和异常批号，没有把局部线索写成终局真相。但当前综合子树仍缺少秘密条目及后续关键里程碑对首次取得、知情范围、证据交接、撤押原令、第二片取舍和代价支付的完整核验，故无法确认伏笔兑现是否来源充分、是否重复或是否与认知阶段冲突。",
+      "revisionAdvice": "补读秘密条目及后两卷关键里程碑，逐项建立首次投放、可知角色、取得条件、支付代价、有限兑现和保留未解问题；明确第一片、第二片、撤押原令、运输链证据与父案线索各自的归宿，避免救援或截运被重复写成全案结案。",
+      "evidenceCount": 5
+    },
+    {
+      "criterion": "opening",
+      "verdict": "pass",
+      "explanation": "在当前综合子树可支持的范围内，开局从矿道灭口与带伤救人，递进到保护证人、保存残账，再进入有限取证、修习门槛和后续调查；选择均伴随伤势、证物损失、追凶中断、债务或资格限制。前置报告对前五十章宏观开局判断为成立，批次2对第1—2章的因果、时间和伏笔投放也分别通过；没有把凝元、古境夺泉或百章主线结局提前兑现。该通过仅是设计层的开局检查，不等同于正文或全书验收。",
+      "revisionAdvice": "",
+      "evidenceCount": 5
+    }
+  ],
+  "resolvedDeferralsPresented": [
+    {
+      "checkId": "batch-1/causality",
+      "resolvedByStageId": "followup-batch-1/causality"
+    },
+    {
+      "checkId": "batch-1/timeline",
+      "resolvedByStageId": "followup-batch-1/timeline"
+    },
+    {
+      "checkId": "batch-1/payoff",
+      "resolvedByStageId": "followup-batch-1/payoff"
+    },
+    {
+      "checkId": "batch-3/payoff",
+      "resolvedByStageId": "followup-batch-3/payoff"
+    },
+    {
+      "checkId": "batch-5/causality",
+      "resolvedByStageId": "cross-4-5"
+    },
+    {
+      "checkId": "batch-5/timeline",
+      "resolvedByStageId": "cross-4-5"
+    },
+    {
+      "checkId": "batch-5/opening",
+      "resolvedByStageId": "followup-batch-5/opening"
+    }
+  ]
+}

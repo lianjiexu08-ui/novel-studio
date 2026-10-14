@@ -44,6 +44,8 @@ export interface DesignReviewInput {
       sourceLengths: Record<string, number>;
       /** Navigation only: names copied from structured sources, never evidence. */
       sourceNames?: Record<string, string>;
+      /** Report-tree coverage, not proof that any design criterion passed. */
+      synthesis?: { scope: 'partial_reports' | 'complete_reports'; coveredStageIds: string[]; totalStages: number };
       /** Navigation only: ranges stated by existing plan sources, never evidence. */
       planRanges?: Array<{ sourceId: string; startChapter: number; endChapter: number; title?: string }>;
       pendingChecks?: Array<{ id: string; criterion: string; questionSourceId: string; requiredSourceIds: string[]; priorUnitIds: string[]; priorSourceIds?: string[] }>;
@@ -110,9 +112,9 @@ export function designReviewHash(work: Work, planId?: string): string | undefine
   const plan = selectedId ? work.plans.get(selectedId) : undefined;
   if (!work.worldPack || !work.storyBible || !plan || plan.status === 'superseded' || (planId === undefined && plan.status !== 'approved')) return undefined;
   return createHash('sha256').update(JSON.stringify({
-    // Version 12 adds named source navigation to prevent confusing adjacent
-    // entity IDs during follow-up, while preserving all adverse reports.
-    rubricVersion: 12, title: work.title, covenant: work.covenant,
+    // Version 13 distinguishes intermediate report subtrees from the final
+    // synthesis while preserving every adverse finding and original criterion.
+    rubricVersion: 13, title: work.title, covenant: work.covenant,
     world: work.worldPack, bible: work.storyBible, planId: plan.id, plan: plan.plan,
     characters: [...work.characters.values()].sort((a, b) => a.id.localeCompare(b.id)),
     relationships: [...work.relationships.values()].sort((a, b) => a.id.localeCompare(b.id)),

@@ -61,7 +61,7 @@ test('chapter-only power batches also receive complete tier and technique rules'
   ];
   input.sources = [...rules, ...input.sources];
   const run = createDesignReviewRun(input);
-  assert.equal(run.scheduleVersion, 10);
+  assert.equal(run.scheduleVersion, 11);
   for (const stage of run.stages) {
     const staged = designReviewStageInput(run, stage);
     assert.ok(JSON.stringify(staged.sources).length <= 240_000);
@@ -385,7 +385,7 @@ test('v3 budgets full quotation envelopes so evidenced deferrals can fit without
   assert.throws(() => acceptDesignReviewStage(legacy, legacy.stages[0], large), /结论过长/);
 });
 
-function threePartitionRun(version: 4 | 5 | 6 | 7 = 7) {
+function threePartitionRun(version: 4 | 5 | 6 | 7 | 11 = 7) {
   const input: DesignReviewInput = { ...largeInput(), rubric: { timeline: '寄出与送达是否有实际时间', payoff: '承诺是否保持代价' }, sources: [
     { id: 'author', text: '仅检查本轮提案，不视为采纳事实。' },
     { id: 'early', text: '第9日寄出书信，送达前收信人不能知情。' + '日程说明。'.repeat(17000) },
@@ -690,4 +690,90 @@ test('v10 names locate the correct unread artifact without turning directory lab
   }
   assert.ok(coRead);
   assert.equal(completeDesignReviewRun(run).result.checks[0].verdict, 'revise');
+});
+
+test('v11 distinguishes partial report trees from complete coverage without replacing v10 materials or criteria', () => {
+  const input = largeInput();
+  const current = createDesignReviewRun(input), legacy = createDesignReviewRun(input, current.createdAt, 10);
+  assert.deepEqual(current.units, legacy.units);
+  assert.deepEqual(current.stages, legacy.stages);
+  const rawIds = current.stages.filter(s => s.kind !== 'synthesis').map(s => s.id);
+  let intermediate = 0, complete = 0;
+  for (let i = 0; i < current.stages.length; i++) {
+    const stage = current.stages[i], oldStage = legacy.stages[i];
+    const next = designReviewStageInput(current, stage), old = designReviewStageInput(legacy, oldStage);
+    assert.deepEqual(next.rubric, old.rubric);
+    assert.deepEqual(next.sources, old.sources);
+    assert.equal(old.stage!.coverage!.synthesis, undefined);
+    const tree = next.stage!.coverage!.synthesis;
+    if (stage.kind === 'synthesis') {
+      assert.ok(tree);
+      assert.equal(tree.totalStages, rawIds.length);
+      assert.equal(new Set(tree.coveredStageIds).size, tree.coveredStageIds.length);
+      assert.ok(tree.coveredStageIds.every(id => rawIds.includes(id)));
+      if (i === current.stages.length - 1) {
+        complete++;
+        assert.equal(tree.scope, 'complete_reports');
+        assert.deepEqual(tree.coveredStageIds, rawIds);
+      } else {
+        intermediate++;
+        assert.equal(tree.scope, 'partial_reports');
+        assert.ok(tree.coveredStageIds.length < rawIds.length);
+      }
+      if (stage.id === 'synthesis-1') assert.deepEqual(tree.coveredStageIds, stage.children);
+      const restored = JSON.parse(JSON.stringify(current));
+      assert.deepEqual(designReviewStageInput(restored, restored.stages[i]), next);
+      const withoutScope = structuredClone(next);
+      delete withoutScope.stage!.coverage!.synthesis;
+      assert.deepEqual(withoutScope, old);
+    } else assert.equal(tree, undefined);
+    acceptDesignReviewStage(current, stage, stagePass(next));
+    acceptDesignReviewStage(legacy, oldStage, stagePass(old));
+  }
+  assert.ok(intermediate > 0);
+  assert.equal(complete, 1);
+  assert.equal(completeDesignReviewRun(current).result.checks[0].verdict, 'pass');
+  assert.equal(completeDesignReviewRun(legacy).result.checks[0].verdict, 'pass');
+});
+
+test('partial synthesis coverage cannot erase a raw insufficiency or an intermediate contradiction', () => {
+  const input = largeInput();
+  input.rubric = { timeline: '检查日历', causality: '检查前置因果' };
+  const run = createDesignReviewRun(input);
+  for (const stage of run.stages) {
+    const staged = designReviewStageInput(run, stage), result = stagePass(staged);
+    if (stage.id === 'batch-1') Object.assign(result.checks[0], { verdict: 'insufficient', explanation: '本批明确缺少书信的实际寄出日期', revisionAdvice: '提供寄出日期' });
+    if (stage.id === 'synthesis-1') {
+      assert.equal(staged.stage!.coverage!.synthesis!.scope, 'partial_reports');
+      Object.assign(result.checks[1], { verdict: 'revise', explanation: '前置报告之间存在未支付收入的冲突', revisionAdvice: '修复收入来源' });
+      const invalid = structuredClone(result);
+      invalid.checks[1].evidence = [{ sourceId: 'coverage.synthesis', quote: 'partial_reports' }];
+      assert.throws(() => acceptDesignReviewStage(run, stage, invalid), /引用不在原文/);
+    }
+    acceptDesignReviewStage(run, stage, result);
+  }
+  assert.ok(run.stages.at(-1)!.result!.checks.every(c => c.verdict === 'pass'));
+  const final = completeDesignReviewRun(run).result;
+  assert.equal(final.checks.find(c => c.criterion === 'timeline')!.verdict, 'insufficient');
+  assert.equal(final.checks.find(c => c.criterion === 'causality')!.verdict, 'revise');
+});
+
+test('v11 complete report coverage includes scheduled followups and still blocks unresolved questions', () => {
+  const run = threePartitionRun(11);
+  finishRawWithThirdPartitionQuestion(run);
+  const followup = run.stages.find(s => s.followupFor)!;
+  assert.ok(followup);
+  for (const stage of run.stages.filter(s => !s.result)) {
+    const input = designReviewStageInput(run, stage);
+    acceptDesignReviewStage(run, stage, stagePass(input));
+  }
+  const finalInput = designReviewStageInput(run, run.stages.at(-1)!);
+  const scope = finalInput.stage!.coverage!.synthesis!;
+  assert.equal(scope.scope, 'complete_reports');
+  assert.ok(scope.coveredStageIds.includes(followup.id));
+  assert.deepEqual(scope.coveredStageIds, run.stages.filter(s => s.kind !== 'synthesis').map(s => s.id));
+  assert.equal(scope.totalStages, 7);
+  const final = completeDesignReviewRun(run).result;
+  assert.equal(final.checks[0].verdict, 'insufficient', 'a pass without explicit evidenced resolution cannot clear the original question');
+  assert.equal(final.checks[1].verdict, 'revise');
 });

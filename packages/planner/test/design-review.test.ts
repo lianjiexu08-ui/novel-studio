@@ -39,6 +39,31 @@ test('content reviewer selects exact request-bound fragments using the reviewing
   validateDesignReview(request, result);
 });
 
+test('intermediate synthesis scope reaches the model, binds evidence and does not force a pass', async () => {
+  const request = await input();
+  request.stage = { kind: 'synthesis', label: '中间汇总', totalBatches: 3, sourceMap: [], coverage: {
+    mode: 'reports_with_context', sourceLengths: Object.fromEntries(request.sources.map(s => [s.id, s.text.length])),
+    synthesis: { scope: 'partial_reports', coveredStageIds: ['batch-1', 'batch-2'], totalStages: 6 },
+  } };
+  const before = structuredClone(request), response = anchored(request);
+  Object.assign(response.checks[0], { verdict: 'insufficient', explanation: '报告中的具体能力没有门槛依据', revisionAdvice: '补齐能力门槛' });
+  const planner = new JsonDesignPlanner({ complete: async call => {
+    const sent = JSON.parse(call.user);
+    assert.deepEqual(sent.stage.coverage.synthesis, request.stage!.coverage!.synthesis);
+    assert.deepEqual(sent.rubric, request.rubric);
+    assert.match(call.system, /partial_reports表示中间汇总/);
+    assert.match(call.system, /complete_reports才合并全部步骤/);
+    assert.match(call.system, /具体返修、普通不足、尚未解决等待/);
+    return JSON.stringify(response);
+  } });
+  const result = await planner.reviewDesignContent(request);
+  assert.equal(result.checks[0].verdict, 'insufficient');
+  assert.deepEqual(request, before);
+  const differentScope = structuredClone(request);
+  differentScope.stage!.coverage!.synthesis = { scope: 'complete_reports', coveredStageIds: ['batch-1', 'batch-2', 'batch-3', 'cross-1-2', 'cross-1-3', 'cross-2-3'], totalStages: 6 };
+  assert.throws(() => prepareDesignReviewEvidence(differentScope).resolve(response), /请求编号/);
+});
+
 test('invented anchors receive one repair attempt then fail closed', async () => {
   const request = await input();
   let calls = 0;
