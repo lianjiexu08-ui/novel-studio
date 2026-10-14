@@ -432,3 +432,20 @@ for (const repairedVerdict of ['pass', 'insufficient'] as const) {
     }
   });
 }
+
+test('v16 uses bounded smaller citation anchors without dropping text or changing legacy fragments', async () => {
+  const request = await input();
+  request.sources = [{ id: 'long-source', text: '开篇原文。' + '😀人物关系不得凭空变化。'.repeat(400) + '末尾' }];
+  const legacy = { ...request, stage: { kind: 'cross' as const, label: '旧任务', totalBatches: 3, sourceMap: [{ id: 'long-source', sourceId: 'original', start: 0, end: request.sources[0].text.length }] } };
+  const previous = prepareDesignReviewEvidence(legacy);
+  const current = prepareDesignReviewEvidence({ ...legacy, stage: { ...legacy.stage, evidenceLimit: 96 } });
+  assert.ok(previous.sources[0].fragments.some(f => f.text.length > 600));
+  assert.ok(current.sources[0].fragments.every(f => f.text.length <= 603)); // A tiny tail may merge into its predecessor.
+  for (const prepared of [previous, current]) {
+    const fragments = prepared.sources[0].fragments;
+    assert.equal(fragments.map(f => f.text).join(''), request.sources[0].text);
+    assert.ok(fragments.every(f => !/[\uD800-\uDBFF]$/.test(f.text) && !/^[\uDC00-\uDFFF]/.test(f.text)));
+  }
+  assert.deepEqual(prepareDesignReviewEvidence(JSON.parse(JSON.stringify(legacy))).sources, previous.sources);
+  assert.notEqual(current.requestId, previous.requestId);
+});

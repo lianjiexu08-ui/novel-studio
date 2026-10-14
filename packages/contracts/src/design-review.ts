@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
-export const maxDesignReviewEvidence = 64;
+// A 64-source deferral also needs its original basis and question cited.
+export const maxDesignReviewEvidence = 96;
 // This bounds the request metadata, not raw-source coverage. The scheduler still
 // requires every requested source to fit and every required citation to exist.
 export const maxDesignReviewAwaitingSources = 64;

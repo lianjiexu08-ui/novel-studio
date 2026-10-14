@@ -62,7 +62,7 @@ test('chapter-only power batches also receive complete tier and technique rules'
   ];
   input.sources = [...rules, ...input.sources];
   const run = createDesignReviewRun(input);
-  assert.equal(run.scheduleVersion, 15);
+  assert.equal(run.scheduleVersion, 16);
   for (const stage of run.stages) {
     const staged = designReviewStageInput(run, stage);
     assert.ok(JSON.stringify(staged.sources).length <= 240_000);
@@ -911,4 +911,61 @@ test('v12 refuses a resolution note when the underlying raw review evidence is i
   assert.throws(() => designReviewStageInput(run, stage), /引用不在原文|每个原始来源|补读/);
   const ordinary = stagePass(input);
   assert.throws(() => renderDesignReviewReport(ordinary, () => undefined, { timeline: { checkId: 'batch-1/timeline', resolvedByStageId: followup.id, explanation: '无权解除普通判定' } }), /只有显式等待补读项/);
+});
+
+test('v16 can cite 63 requested sources plus four original sources without changing a v15 schedule', () => {
+  const originals = ['a', 'b', 'c', 'd'].map(id => ({ id: `original/${id}`, text: `原始关系依据${id}，必须与后续全部变更一起核验。` }));
+  const requested = Array.from({ length: 63 }, (_, i) => ({ id: `relation/${i + 1}`, text: `关系阶段${i + 1}的独立变化依据。` + '原文条件与选择。'.repeat(160) }));
+  const input: DesignReviewInput = { ...largeInput(), area: 'characters', rubric: { relationships: '每个关系变化均须有原始依据' }, sources: [
+    ...originals, { id: 'padding-a', text: '旁支背景。'.repeat(16000) }, { id: 'padding-b', text: '另一旁支。'.repeat(16000) }, ...requested,
+  ] };
+  const results = [];
+  for (const version of [15, 16] as const) {
+    let run = createDesignReviewRun(input, '2026-10-14T00:00:00Z', version);
+    const raw = run.stages.filter(s => s.kind !== 'synthesis');
+    for (const stage of raw) {
+      const staged = designReviewStageInput(run, stage), result = stagePass(staged);
+      if (stage.id === 'batch-1') {
+        assert.ok(requested.every(s => !staged.stage!.sourceMap.some(u => u.sourceId === s.id)));
+        result.checks[0] = { ...result.checks[0], verdict: 'insufficient', explanation: '四项原始依据与63个关系阶段须一起核对', revisionAdvice: '补读全部63个来源', awaitingSources: requested.map(s => s.id), evidence: originals.map(s => ({ sourceId: staged.stage!.sourceMap.find(u => u.sourceId === s.id)!.id, quote: s.text })) };
+      }
+      acceptDesignReviewStage(run, stage, result);
+    }
+    run = JSON.parse(JSON.stringify(run));
+    const followup = run.stages.find(s => s.followupFor === 'batch-1/relationships');
+    assert.equal(Boolean(followup), version === 16);
+    if (followup) {
+      const staged = designReviewStageInput(run, followup);
+      assert.equal(staged.stage!.evidenceLimit, 96);
+      assert.ok(JSON.stringify(staged.sources).length <= 240000);
+      for (const source of [...originals, ...requested]) {
+        const units = staged.stage!.sourceMap.filter(u => u.sourceId === source.id);
+        assert.equal(units.map(u => staged.sources.find(s => s.id === u.id)!.text).join(''), source.text);
+      }
+      const pending = staged.stage!.coverage!.pendingChecks!.find(p => p.id === followup.followupFor)!;
+      const ids = [pending.questionSourceId, ...[...originals, ...requested].map(s => staged.stage!.sourceMap.find(u => u.sourceId === s.id)!.id)];
+      const result = stagePass(staged);
+      result.checks[0].resolves = [pending.id];
+      result.checks[0].evidence = ids.map(id => ({ sourceId: id, quote: staged.sources.find(s => s.id === id)!.text.slice(0, 40) }));
+      assert.equal(result.checks[0].evidence.length, 68);
+      designReviewResultSchema.parse(result);
+      const missing = structuredClone(result); missing.checks[0].evidence.pop();
+      assert.throws(() => acceptDesignReviewStage(run, followup, missing), /每个新增来源/);
+      const oversized = structuredClone(result);
+      oversized.checks[0].evidence = Array.from({ length: 97 }, () => result.checks[0].evidence[0]);
+      assert.throws(() => acceptDesignReviewStage(run, followup, oversized), /不得超过96条/);
+      acceptDesignReviewStage(run, followup, result);
+    }
+    for (const stage of run.stages.filter(s => !s.result)) {
+      const staged = designReviewStageInput(run, stage);
+      assert.ok(JSON.stringify(staged.sources).length <= 240000);
+      if (version === 15) assert.equal(staged.stage!.evidenceLimit, undefined);
+      acceptDesignReviewStage(run, stage, stagePass(staged));
+    }
+    results.push(completeDesignReviewRun(JSON.parse(JSON.stringify(run))).result);
+    assert.equal(run.stages[0].result!.checks[0].verdict, 'insufficient', 'original finding remains immutable');
+  }
+  assert.equal(results[0].checks[0].verdict, 'insufficient');
+  assert.equal(results[1].checks[0].verdict, 'pass');
+  assert.deepEqual(results[1].resolvedDeferrals, [{ checkId: 'batch-1/relationships', resolvedByStageId: 'followup-batch-1/relationships' }]);
 });

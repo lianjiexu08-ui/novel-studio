@@ -6,11 +6,11 @@ import { designReviewHorizon } from './design-review-horizon.ts';
 export class DesignReviewEvidenceError extends DesignReviewError {}
 
 /** Partition without rewriting, omitting or duplicating source text. Prefer line boundaries. */
-function fragments(text: string): string[] {
+function fragments(text: string, size = 1200): string[] {
   const parts: string[] = [];
   let start = 0;
   while (start < text.length) {
-    let end = Math.min(start + 1200, text.length);
+    let end = Math.min(start + size, text.length);
     if (end < text.length) {
       const newline = text.lastIndexOf('\n', end - 1);
       if (newline >= start + 80) end = newline + 1;
@@ -31,11 +31,15 @@ export function prepareDesignReviewEvidence(input: DesignReviewInput) {
   const requestId = `review_${requestHash.slice(0, 24)}`;
   const lookup = new Map<string, { sourceId: string; quote: string }>();
   const sourceIds = new Set<string>();
+  // v16 can need >64 independent citations. Smaller anchors keep the report
+  // within its existing synthesis bound while still sending every source byte.
+  // Legacy requests keep their original fragment boundaries and identifiers.
+  const fragmentSize = snapshot.stage?.evidenceLimit === 96 ? 600 : 1200;
   const sources = snapshot.sources.map((source) => {
     if (sourceIds.has(source.id)) throw new DesignReviewError(`评审来源 ID 重复：${source.id}`);
     sourceIds.add(source.id);
     const unit = snapshot.stage?.sourceMap.find(unit => unit.id === source.id);
-    return { id: source.id, ...(unit ? { origin: { sourceId: unit.sourceId, start: unit.start, end: unit.end } } : {}), fragments: fragments(source.text).map((text) => {
+    return { id: source.id, ...(unit ? { origin: { sourceId: unit.sourceId, start: unit.start, end: unit.end } } : {}), fragments: fragments(source.text, fragmentSize).map((text) => {
       // Copy one request fingerprint, then select short local IDs. Repeating a
       // long hash in every citation caused otherwise complete reviews to fail.
       const id = `e${lookup.size + 1}`;

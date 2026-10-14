@@ -1,5 +1,5 @@
 import { createHash, randomUUID } from 'node:crypto';
-import { maxDesignReviewAwaitingSources } from '../../packages/contracts/src/index.ts';
+import { maxDesignReviewAwaitingSources, maxDesignReviewEvidence } from '../../packages/contracts/src/index.ts';
 import type { Work } from './core.ts';
 
 export const designReviewAreas = ['world', 'power', 'characters', 'story'] as const;
@@ -40,6 +40,8 @@ export interface DesignReviewInput {
   stage?: {
     kind: 'batch' | 'cross' | 'synthesis'; label: string; totalBatches: number;
     followupFor?: string;
+    /** v16 gives required new sources, original evidence and the question room together. */
+    evidenceLimit?: 96;
     sourceMap: Array<{ id: string; sourceId: string; start: number; end: number }>;
     coverage?: {
       mode: 'whole_input' | 'local_sources' | 'reports_with_context';
@@ -175,6 +177,11 @@ export function designReviewInput(work: Work, area: DesignReviewArea, planId?: s
   return { area, inputHash, scope: { worldPackRevision: world.revision, storyBibleRevision: bible.revision, planRevisionId: plan.id, planRevision: plan.revision }, sources, rubric: designReviewRubrics[area] };
 }
 
+export function designReviewEvidenceLimit(input: DesignReviewInput): number {
+  // Historical staged requests retain their old bound and schedule.
+  return input.stage ? input.stage.evidenceLimit ?? 64 : maxDesignReviewEvidence;
+}
+
 /** A model cannot invent citations or omit a difficult criterion to pass. */
 export function validateDesignReview(input: DesignReviewInput, result: DesignReviewResult): void {
   const criteria = Object.keys(input.rubric);
@@ -182,6 +189,7 @@ export function validateDesignReview(input: DesignReviewInput, result: DesignRev
   if (!result.summary?.trim() || !Array.isArray(result.checks) || result.checks.length !== criteria.length || new Set(result.checks.map((check) => check.criterion)).size !== criteria.length) throw new DesignReviewError('内容评审必须逐项覆盖全部标准');
   for (const check of result.checks) {
     if (!criteria.includes(check.criterion) || !['pass', 'revise', 'insufficient'].includes(check.verdict) || !check.explanation?.trim() || !Array.isArray(check.evidence)) throw new DesignReviewError('内容评审结果不完整');
+    if (check.evidence.length > designReviewEvidenceLimit(input)) throw new DesignReviewError(`本批每项证据不得超过${designReviewEvidenceLimit(input)}条，不能省略必引来源来凑数`);
     if (check.verdict !== 'insufficient' && check.evidence.length === 0) throw new DesignReviewError('通过或返修结论必须提供原文证据');
     if (check.verdict !== 'pass' && !check.revisionAdvice?.trim()) throw new DesignReviewError('未通过项目必须给出补充或返修要求');
     if (check.awaitingSources !== undefined) {
