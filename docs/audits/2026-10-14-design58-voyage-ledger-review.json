@@ -1,0 +1,60 @@
+{
+  "status": "reviewed",
+  "candidateVersion": 5,
+  "candidateHash": "137cb6b2bb31309c343d8a9b580d8dd48d723a743bc06dc20d5077af744c45ff",
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "savedToWork": false,
+  "formalAcceptance": false,
+  "usage": {
+    "calls": 1,
+    "failedCalls": 0,
+    "inputTokens": 80824,
+    "outputTokens": 1232,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 1,
+        "failedCalls": 0,
+        "outputTokens": 1232,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 8
+    }
+  },
+  "cases": [
+    {
+      "name": "voyage-funds-and-payment-timing",
+      "status": "reviewed",
+      "sourceCount": 134,
+      "summary": "该提案的同一笔14000专项款已能在北航、回航、杂费与待交回余额之间闭合；两段实体海程、付款时点及贺青梧的有限责任安排相互一致。",
+      "checks": [
+        {
+          "criterion": "costs",
+          "verdict": "pass",
+          "explanation": "账目把14000专项款限定为有追偿风险的商盟周转垫款：271日两张避火符12已从杂费额度扣除，275日北航两票实付10000，302日才以封存的3000实付回航两席。315日累计杂费明确为780，且明示其中包括两符12及其后768，故结余为14000−10000−3000−780＝220。3988只是扣北航票和符费后的现金上限，988只是其中扣除封存回程款后的未支杂费上限，均未被误作期末余额；220另袋封存待交回，也未被写成收入。",
+          "revisionAdvice": "",
+          "evidenceCount": 3
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass",
+          "explanation": "275日付款与276暮至281暮五昼夜北航相连，符合赤霄极焱至苍冥外港约五日的实体航程；返程则在302日另付3000，304暮出航、310暮抵青玄，符合六昼夜航程。311–314日尚有陆路返外山，315日才可当面核累计账，因此没有把两笔票款重算为同一航次，也没有把315写成已跨海返赤霄交220。贺返赤霄交款被安排在之后的独立合法货船行程。",
+          "revisionAdvice": "",
+          "evidenceCount": 4
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass",
+          "explanation": "航款来源、领款人和用途均有边界：商盟为追缴与避免封港实拨给具名领款的贺，且仅限二人查货、回青玄交证及沿途必要开销；这不是林或贺的获赠财富。贺公开支出而失去私下和解空间，并在关系安排中不承诺无限垫款；追偿失败责任仍待结案。此前261–270日食宿须由劳动、棚主向客舍实付的1枚及救助账分别结清，文本又明确271专项不得重复支付这批已结生活账。220仍由贺封存待实际返赤霄交回，既保留其具名交款义务，也不与二人后续有限、各负生计的关系阶段冲突。",
+          "revisionAdvice": "",
+          "evidenceCount": 4
+        }
+      ]
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "observedAt": "2026-10-14T10:13:48.849Z",
+  "observedAt": "2026-10-14T10:29:20.164Z",
   "status": "in_progress_not_acceptance",
   "originalRunnerStatus": "completed_with_failures",
   "runtimeCommit": "4aacb02712bbd7f2a155de432ec773697234114d",
@@ -77,23 +77,31 @@
     {
       "area": "world",
       "round": 2,
-      "status": "running",
+      "status": "failed",
       "runId": "design_run_3839c593-a088-415d-8512-39ff4348b14c",
       "usage": {
-        "calls": 0,
-        "failedCalls": 0,
-        "inputTokens": 0,
-        "outputTokens": 0,
+        "calls": 7,
+        "failedCalls": 1,
+        "inputTokens": 687394,
+        "outputTokens": 8043,
         "costUsd": 0,
-        "costKnown": true,
-        "byRole": {},
+        "costKnown": false,
+        "byRole": {
+          "reviewing": {
+            "calls": 7,
+            "failedCalls": 1,
+            "outputTokens": 8043,
+            "costUsd": 0
+          }
+        },
         "limits": {
           "budgetUsd": null,
           "maxCalls": 90
         }
       },
       "previousFailureRetained": true,
-      "completedStepsNotReplayed": 17
+      "completedStepsNotReplayed": 17,
+      "error": "openai-compatible request failed (stream): Upstream response stream was interrupted"
     },
     {
       "area": "power",
@@ -120,23 +128,31 @@
     {
       "area": "power",
       "round": 2,
-      "status": "running",
+      "status": "failed",
       "runId": "design_run_2c637f9b-5a78-4597-a8ef-6ffa40787d6a",
       "usage": {
-        "calls": 0,
-        "failedCalls": 0,
-        "inputTokens": 0,
-        "outputTokens": 0,
+        "calls": 5,
+        "failedCalls": 1,
+        "inputTokens": 345274,
+        "outputTokens": 10164,
         "costUsd": 0,
-        "costKnown": true,
-        "byRole": {},
+        "costKnown": false,
+        "byRole": {
+          "reviewing": {
+            "calls": 5,
+            "failedCalls": 1,
+            "outputTokens": 10164,
+            "costUsd": 0
+          }
+        },
         "limits": {
           "budgetUsd": null,
           "maxCalls": 90
         }
       },
       "previousFailureRetained": true,
-      "completedStepsNotReplayed": 1
+      "completedStepsNotReplayed": 1,
+      "error": "openai-compatible request failed (524): openai_error"
     },
     {
       "area": "character",
@@ -166,9 +182,37 @@
       "previousFailureRetained": true,
       "completedStepsNotReplayed": 0,
       "error": "Operations timed out after `N/A`. Context: The database failed to respond to a query within the configured timeout — see https://pris.ly/d/sqlite-connector for more details. Database: /Users/lianjie/Documents/ChatGPT/novel/data/novel-studio.db"
+    },
+    {
+      "area": "character",
+      "round": 2,
+      "status": "running",
+      "runId": "design_run_9cf3b6d1-345e-452e-b980-79b7ec4163f9",
+      "usage": {
+        "calls": 5,
+        "failedCalls": 0,
+        "inputTokens": 564962,
+        "outputTokens": 8621,
+        "costUsd": 0,
+        "costKnown": false,
+        "byRole": {
+          "reviewing": {
+            "calls": 5,
+            "failedCalls": 0,
+            "outputTokens": 8621,
+            "costUsd": 0
+          }
+        },
+        "limits": {
+          "budgetUsd": null,
+          "maxCalls": 90
+        }
+      },
+      "previousFailureRetained": true,
+      "completedStepsNotReplayed": 1
     }
   ],
-  "combinedCalls": 75,
+  "combinedCalls": 92,
   "errors": [
     {
       "area": "power",
@@ -187,8 +231,8 @@
     {
       "id": "design_run_3839c593-a088-415d-8512-39ff4348b14c",
       "area": "world",
-      "status": "running",
-      "completed": 17,
+      "status": "failed",
+      "completed": 23,
       "total": 57,
       "stages": [
         {
@@ -753,14 +797,95 @@
               "evidenceCount": 26
             }
           ]
+        },
+        {
+          "id": "followup-batch-2/history",
+          "checks": [
+            {
+              "criterion": "history",
+              "verdict": "pass",
+              "explanation": "原问题要求核对旧约能否支撑港口失箱、扣工、船务追责及实体消息链。event_14明确旧约仅提供赵方有限垫款/货签、炎煞外围代理的有限仓位与接驳、程记自行签运约；同时明确扣人与禁物转运是赵、程等当批组织者另行作出的违法选择，程须先以自身资产承担改签、扣货与遗失责任，炎煞真身也不会在实际获报前自动知悉港火或货损。故该历史既提供程记经营和转运动机，也没有把旧约误写成港务豁免或无限授权。33—43章以程拒收索赔、严私挪、程记实际控制五工、唐的脱身失败、首仓火中的救人选择、现场受阻问询、巡查与潮路观察逐步推进；程的扣工、遮掩与利用船务压力均有当批行动和代价，非由旧约自动推出。林的知情也被限制在实际货签、目击、信件和现场阻拦；赵未在本段收到港口新报，炎煞亦无送达节点。52章才拟由程依据脚夫实际所见寄出程报，进一步保持消息时序。因此此前缺少原始历史和33—43行动链的材料不足已被实际原文补足；火因及携页者身份仍是提案保留的待查事实，并不破坏本项历史因果。",
+              "revisionAdvice": "",
+              "resolves": [
+                "batch-2/history"
+              ],
+              "evidenceCount": 19
+            }
+          ]
+        },
+        {
+          "id": "followup-batch-3/geography",
+          "checks": [
+            {
+              "criterion": "geography",
+              "verdict": "revise",
+              "explanation": "原问题要求核对首航、北航及返程的实体交通、准入、防护、支付和航期。补读后，首卷南渡明确为云梦天港至天宝外港两昼夜实体航程，护货劳务抵舱费，抵港时复核放行旗号、验籍及借领防护；北航明确以普通车先至极焱天港、再以两张实付普通舱票五昼夜至葬骨外港，抵港仅在受监管码头候查，后由夜具名担保限定外港仓区；返青玄则写明通天渡口实付两席、六昼夜到沧溟古港及后续驿路验籍。上述安排能支撑三卷由货运责任、北境救援到携证返乡的地域递进，而非换图打怪。\\n但赤霄规则只承认普通避火符满足“天宝外港及既有受护街段”的日常炙热；离开受护区须另核当地危险与适配防护，且旧通告不能代替实际航次/地点复核。第54—60章安排林、贺在天宝外港购两张普通避火符后，于271—274日沿海岸路去极焱天港，仅写“非火煞喷发期、可通行海岸路”，没有说明该陆路属于受护街段、沿线实际风险与防护适配，或另有足以覆盖该路段的法门/装备和放行核验。不能以两张普通符或港口非喷发条件直接推出可合法、安全通过外港之外的赤霄路段。此为当前提案中已写行动与地点门槛的明确缺口。",
+              "revisionAdvice": "修订ms_v2_voyage及对应第54—60章实施纲：明确天宝外港至极焱天港的实际陆路是否全程为受护通道；若非，逐段补明当日热裂/硫烟/地火风险核验、适配防护来源与余量、放行责任人及遇封路时等待或返港方案。不得把仅适用于天宝外港受护街段的普通避火符泛化为赤霄境内通行资格。",
+              "evidenceCount": 14
+            }
+          ]
+        },
+        {
+          "id": "followup-batch-3/history",
+          "checks": [
+            {
+              "criterion": "history",
+              "verdict": "pass",
+              "explanation": "原问题所指的矿务线近因后果仍成立：留置核查保留了证据与限制，修缮劳务的利益冲突促成林辰拒绝删改，承运批次调查只形成后续线索而非越级定案。补读后，寿材运医约解释了通天渡口普通医舍、配额否决权、跨海保费与预约/准入分账的历史来源；赵府私运旧约则明确赵、炎煞外围代理、程砚各自交换的有限资源、逐批结算责任、货损后的止损动机，以及消息必须实体送达。后两卷安排与这些边界相容：失箱和仓火触发程记反诉、船主损失和扣工调查；潮沟救人付出船损并留下原账逃脱；第50章后以有限救助、短工与自述待核收束，而非把旧约变成全知或无限供给；北航、北境查扣和返乡均保留航程、担保、安置、追偿和回执成本。赵的报令、程的到案与后续本地改线也被置于实际报告、签收和面报之后，势力会依自身账目、风险和权限独立选择。故此前缺少的历史—现状—后果链已获得原文支撑，未见与既有前段限制相冲突的安排。",
+              "revisionAdvice": "",
+              "resolves": [
+                "batch-3/history"
+              ],
+              "evidenceCount": 15
+            }
+          ]
+        },
+        {
+          "id": "followup-batch-4/geography",
+          "checks": [
+            {
+              "criterion": "geography",
+              "verdict": "insufficient",
+              "explanation": "原问题要求核对第25章剑诀的取得与训练前置。第13—17章仅铺陈伤后劳务、引气、三经循环及复核条件；第18章首次写林辰按登记领用赤霞斩铁剑、练习乾元御风剑诀，并在多次延期后稳定，却没有说明该剑诀由何人授予、何处取得或何种既有资格使他可学习。因而它能支持“已安排训练过程”，不能单独证明ax_06所要求的“已掌握功法”的取得来源。第19—20章及后续第21、25、30—32、43—44章虽把该剑诀当作既有行动能力并为其列出真元、距离和实体行程，不能反向补足授权。跨域移动本身与界门、青玄入港和虚海两昼夜实体航程规则相容；当前未见把商路写成界门传送的地理冲突，但该直接影响救援、陆路护货及港口追船行动的能力前置仍须补齐。",
+              "revisionAdvice": "在第18章或更早的已展开章纲中明确林辰取得乾元御风剑诀的来源与准入依据（如获准传授、登记借阅或既有传承），并把其控制训练、实测合格及与赤霞斩铁剑的适配写为第20章首次实战前已完成的条件；同时与该功法自身的对象、距离、供能和冷却规则逐项对齐。",
+              "evidenceCount": 27
+            }
+          ]
+        },
+        {
+          "id": "followup-batch-5/history",
+          "checks": [
+            {
+              "criterion": "history",
+              "verdict": "pass",
+              "explanation": "原问题所指46—50章的即时冲突并非孤立发生：赵府以可追责的军需额度、炎煞外围代理的有限仓位和程砚的承运附单维持一条逐批验货结算的私运链；程须先以个人资产承担改签、遗失与违约，赵也只能在收到报告并清点欠账后决定是否停垫，故程以反诉、扣工和保账自保，而非任何一方可即时无限调度，均有历史动因及边界。商盟掌握船舶、仓储、运费和查验谈判，封港、扣押和走私会造成内部利益分歧，足以支持其暂缓贺的新单、同时继续核证而不直接替程或贺定责。太清与大乾、幽罗各有不相同的资源和政治目标；主线将矿务掩案、跨陆扣工和父亲守门线索限定为待逐步核实的同一调查方向，未将赵的私约直接写成已证明的全部旧案真相。林苏关系也保留分路和实体送信限制，不会以异地关系替代证据或即时共享情报。第46—50章具体保留原账、改签全貌和首仓火因未明；后续51—53的陆自述被明定为拟写的签认副本，原件留巡查、不能等同220章原条或原账，仍须独立物证复核。因此，历史原因、代价和后果能够支撑现状，各势力亦有独立行动空间；这是设计可行性判断，不认定这些拟定章节已经发生。",
+              "revisionAdvice": "",
+              "resolves": [
+                "batch-5/history"
+              ],
+              "evidenceCount": 21
+            }
+          ]
+        },
+        {
+          "id": "followup-cross-1-2/geography",
+          "checks": [
+            {
+              "criterion": "geography",
+              "verdict": "insufficient",
+              "explanation": "第19章将古境行动限定为凝元三重、联名符牌与登记区域，且明确不涉界门；第20—25章的古境移动、四里求援和顾的实体接应均有实际路径与时长，第26—28章仍留在外营完成疗程、轮值和分路，未把地点切换伪作瞬移。第29—30章进一步给出从古境外营经驿车到云梦天港外围的实体陆路、轻物制动操作及封签复验责任，和商路必须依实体航程、港口验籍及支付/代付分开的规则相容。可是本批细纲止于第213日抵达云梦港外围，只有第29章对第214日暮出航的预定，未列实际登船的承运船舶、验籍、票款或劳务换舱如何结算，也没有抵达天宝外港后的准入执行。更未提供赤霄至苍冥五日北航、葬骨外港至通天渡口陆路、北境担保/指定范围、以及六日返青玄的章节行动。故不能仅凭卷目标或商路标准航程确认全部跨域移动与受限地点进入闭合。需补读plan/chapters/31、plan/chapters/32及覆盖第51—71章相关航行、外港担保、北境准入与返航的实际章纲。",
+              "revisionAdvice": "补齐实际跨域章节：分别写明云梦登船与天宝到港的船主/货约、验籍和换舱结算；极焱—葬骨北航的船舶、五日供能与14,000专项款账；葬骨港至通天渡口的实体路线；外港担保人、期限和可进入范围；以及通天渡口—沧溟古港六日返航的船票、供给者和验籍。",
+              "evidenceCount": 30
+            }
+          ]
         }
       ]
     },
     {
       "id": "design_run_2c637f9b-5a78-4597-a8ef-6ffa40787d6a",
       "area": "power",
-      "status": "running",
-      "completed": 1,
+      "status": "failed",
+      "completed": 5,
       "total": 29,
       "stages": [
         {
@@ -788,14 +913,165 @@
               "evidenceCount": 8
             }
           ]
+        },
+        {
+          "id": "batch-2",
+          "checks": [
+            {
+              "criterion": "tiers",
+              "verdict": "insufficient",
+              "explanation": "已读规则明确境界只是承载资格，不自动授予术式；第1章暗桩的凝元附掌则给出了开篇前训练、实测、接触对象、两次各一成真元支付和四成起始余量，符合凝元基础操作的门槛。林辰作为淬体者未使用真元，且第83章规划仅写经数月诊察后支付十元载晋玄府，并未把晋阶当作自动掌握元罡术式，现有安排不构成已见的越阶冲突。不过，高阶成长见证将后续晋阶和术式支出分别关联到未读的tech_15、tech_16及res_17至res_19；第4章又实际调用未读的art_19封袋震指符。须核对这些条目的允许境界、器物承载、取得和训练条件，才能判断全批已给高阶规则与行动的分级准入是否一致。",
+              "revisionAdvice": "补读并核对world/techniques/tech_15、world/techniques/tech_16、world/resources/res_17、world/resources/res_18、world/resources/res_19、world/artifacts/art_19：尤其确认候选成长见证中的资源适格、疗程、终生限制及高阶术式的境界/训练/器物门槛；确认封袋符的一次反震、制作材料与非修士操作者条件。",
+              "awaitingSources": [
+                "world/techniques/tech_15",
+                "world/techniques/tech_16",
+                "world/resources/res_17",
+                "world/resources/res_18",
+                "world/resources/res_19",
+                "world/artifacts/art_19"
+              ],
+              "evidenceCount": 10
+            },
+            {
+              "criterion": "costs",
+              "verdict": "insufficient",
+              "explanation": "本批已读部分的账目设计可执行：寿储、真元/元罡、神识与本源分账，燃耗寿元不可返还；附掌、真光、领域、惊梦刺、裂空等术式均有预付、失败不退、冷却或反制条件。第1章两次附掌合计支付二成、余二成的行动账与基础操作规则相符；第2章也明确普通疗伤不产生寿元。第4章将反震归于预充一次、随即损毁的符，而非林辰等人的真元支出，方向上可成立。可是候选高阶成长账把大额寿储收入建立在res_17/18/19的具体剂量、采收周期、疗程、配额与停药规则上，并以tech_15/16的额外法力、神识、本源和冷却为前提；这些原条目未读，不能仅凭见证算例确认收入未重复、支付未漏项。此外封袋符消耗的一枚下品青灵石及符的预充机制须由res_01、art_19核实。",
+              "revisionAdvice": "补读world/resources/res_01、world/resources/res_17、world/resources/res_18、world/resources/res_19、world/artifacts/art_19、world/techniques/tech_15、world/techniques/tech_16，并逐项核对：候选寿源是否满足入账疗程和个人/世界配额，算例是否与资源条目剂量一致，高阶术式除寿储外的账户是否可支付，以及封袋符是否确可由一枚下品青灵石预充一次且不额外扣使用者法力。",
+              "awaitingSources": [
+                "world/resources/res_01",
+                "world/resources/res_17",
+                "world/resources/res_18",
+                "world/resources/res_19",
+                "world/artifacts/art_19",
+                "world/techniques/tech_15",
+                "world/techniques/tech_16"
+              ],
+              "evidenceCount": 15
+            },
+            {
+              "criterion": "counters",
+              "verdict": "insufficient",
+              "explanation": "已读规则对当前可检验行动提供了有效反制而非绝对压制：附掌可被躲闪、格挡或聚气时打断；第1章暗桩只击裂腐朽薄木而非岩壁，林辰受伤后也未靠低阶能力反杀凝元者。境界阶梯同时要求跨境对抗说明外部能量、可作用对象及不可逆代价，首卷规划亦明确由顾峤以同阶真光制伏玄府墨，而非主角越阶取胜。高阶已读术式同样列有范围、起式、中断和对应反制。但通天、主宰条目将其可用能力和反制明确落到未读的tech_15、tech_16；候选成长见证也直接依赖两术的本源、法力、神识与冷却限制。未核原术式前，不能确认这些高阶“非万能”描述与实际效果、上限及反制完全一致。",
+              "revisionAdvice": "补读world/techniques/tech_15与world/techniques/tech_16，核验其作用对象、阵基/界源要求、范围、起式、持续、打断、冷却及法力/神识/本源成本，确保与realm_07、realm_08的能力说明、反制条款和ax_11见证所列支付完全相符。",
+              "awaitingSources": [
+                "world/techniques/tech_15",
+                "world/techniques/tech_16"
+              ],
+              "evidenceCount": 16
+            }
+          ]
+        },
+        {
+          "id": "batch-3",
+          "checks": [
+            {
+              "criterion": "tiers",
+              "verdict": "revise",
+              "explanation": "分级本身明确区分境界承载资格与已掌握术式，凝元御物、玄府护罡和贴身运罡均要求训练、实测及伤情/复诊条件；林辰和苏凌霜的凝元行动已有从训练、对象到逐笔消耗的链条。顾峤在第25章却实际使用局部护罡、真光和贴身推劲：第15章只说明其真光的起式与成本，并未说明其已完成真光所要求的本境纯阳供能、凝印实测与复诊，也未给出顾已完成局部护罡及贴身推劲所需训练、受控测试和医修确认的提案前置。第25章直接以“已学”使用，不能由玄府境或角色身份自动补齐。",
+              "revisionAdvice": "在顾峤首次于第25章施用前，明确写入其作为开篇前既有技能或书内完成的：局部护罡的受控受击与复诊、贴身推劲的滑车/配合者测试及气路复查、太乙真光的本境纯阳供能与三息凝印实测/复诊；并说明这些记录如何使其在右肩受伤前满足本次施术资格。",
+              "evidenceCount": 7
+            },
+            {
+              "criterion": "costs",
+              "verdict": "pass",
+              "explanation": "寿储、当境法力、神识与本源分账，恢复必须有连续有效时段和复测，且不能以疗伤、胜利或资源品级替代寿储收入。已展开行动逐项给出消耗、余量、伤后上限与恢复：林辰在第20—25章的真元从十成扣至六成，灵泉也仅在完整三日服用、后续静养和复诊后各入账5元载；未将原液、申请或疗伤提前算为寿储。",
+              "revisionAdvice": "",
+              "evidenceCount": 10
+            },
+            {
+              "criterion": "counters",
+              "verdict": "pass",
+              "explanation": "规则明确禁止低阶以意志抵销高阶法则，并为功法和境界设置对象、距离、起式、打断、伤势、地形与同阶反制。第25章没有把普通机关或属性克制写成对玄府的绝对压制：废料仅遮断视线，真光只灼散当次血爪，墨仍保有元罡；顾的推劲还依赖接膝、立足、废木卡足和墨主动抢箱而生效。",
+              "revisionAdvice": "",
+              "evidenceCount": 8
+            }
+          ]
+        },
+        {
+          "id": "batch-4",
+          "checks": [
+            {
+              "criterion": "tiers",
+              "verdict": "insufficient",
+              "explanation": "已读规则明确境界只是承载资格而非自动掌握；凝元御物、剑诀及玄府能力均要求训练、实测、对象和独立支付。32章两次御轻物均限于直视、未承重的小件；43—44章把拖船力落实为索具和船桩承担，林仅以已练剑诀支付二成真元切索；50章则明确不施术。现有细纲中的凝元行动与这些门槛相容。可是功法条目仍把赤霞斩铁剑、赤霄神火髓及灵泉/高阶寿源的具体承载、剂量和配额交给未读的法宝、资源原条目；尤其tech_04、tech_07及寿储见证无法仅凭阶梯目录核验其物件与资源规则，因此不能对本批所涉法宝、资源分级作完整局部结论。",
+              "revisionAdvice": "补读并核对赤霞斩铁剑、普通避火符、延寿灵泉、赤霄神火髓及三种未来寿源的原条目：确认允许境界、承载、剂量、疗程、库存/配额与现有章纲引用一致；若存在不一致，再修订对应功法或章纲。",
+              "awaitingSources": [
+                "world/artifacts/art_03",
+                "world/artifacts/art_16",
+                "world/resources/res_09",
+                "world/resources/res_12",
+                "world/resources/res_17",
+                "world/resources/res_18",
+                "world/resources/res_19"
+              ],
+              "evidenceCount": 9
+            },
+            {
+              "criterion": "costs",
+              "verdict": "insufficient",
+              "explanation": "已读部分的行动账可闭合：32章两次轻物御动各半成，六成降至五成；239章先以半成试注、再经一小时吐纳复测回半成，44章剑诀再付二成至三成；252章一小时吐纳由三成回四成、试注后保守三成半，50章未施术，未把间隔自动写成回满。寿储规则也明确燃寿不可逆、疗程完成及复诊后才可入账，且高阶见证将未来资源说明为候选条件而非角色现有资产。可是灵泉两剂各五元载的疗程、res_12火髓炉供，以及res_17—19的剂量、成熟窗、个人上限和实际可竞争供给均依赖未读资源原条目；这些是核实寿储收入与高阶示例预算的必要规则，当前不能仅据转述判定完整守恒。",
+              "revisionAdvice": "补读所列寿源、灵泉和火髓原条目，逐项复核疗程完成时点、单剂净收入、终生/周期配额、库存来源和火髓标准炉供；若原条目不能支持现有两剂灵泉或高阶见证，须修正预算或将其降为未满足条件的分支。",
+              "awaitingSources": [
+                "world/resources/res_09",
+                "world/resources/res_12",
+                "world/resources/res_17",
+                "world/resources/res_18",
+                "world/resources/res_19"
+              ],
+              "evidenceCount": 11
+            },
+            {
+              "criterion": "counters",
+              "verdict": "pass",
+              "explanation": "本批已读的境界与功法均给出明确上限和可操作反制：跨境不能以意志抵消高阶法则；御物限视距、重量、时长与阻力，剑诀受锁定、专注、二成法力及剑热限制，领域、神魂、空间等高阶能力也均列出范围、供能与反制。细纲没有把凝元行动写成越阶压制：44章切的是外露普通索，不与两名凝元对手久战；50章面对普通看守时，林让巡员处置并保留当事人亲口选择，未把剑诀当万能解法。",
+              "revisionAdvice": "",
+              "evidenceCount": 9
+            }
+          ]
+        },
+        {
+          "id": "batch-5",
+          "checks": [
+            {
+              "criterion": "tiers",
+              "verdict": "insufficient",
+              "explanation": "已读规则明确区分境界承载资格与实际掌握，禁止以晋阶、身份或器物持有替代训练、供能和实测；各已读境界与前14种功法的允许境界也基本对应。计划仅拟定林辰第83章付十元载晋玄府、88—100章同阶行动，并明确不用旧法器承载元罡，方向上未见直接越阶冲突。但高阶成长见证依赖res_17、res_18、res_19的剂量、终生限额和疗程规则，九龙通天卷又明确依赖九龙镇岳金印自身规则；第73—95章的训练、晋阶和同阶押运前置也未在本批读到，无法核对准入、资源取得与法宝承载的一致性。",
+              "revisionAdvice": "补读后核验：寿源资源的适格境界、疗程、个人上限及库存竞争；九龙镇岳金印的承载、启动和费用；以及第73—95章宏观里林辰完成玄府训练、十元载支付、同阶截押运所需的已学术式和资源链。",
+              "awaitingSources": [
+                "world/resources/res_09",
+                "world/resources/res_17",
+                "world/resources/res_18",
+                "world/resources/res_19",
+                "world/artifacts/art_11",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement",
+                "plan/milestones/ms_v3_convoy"
+              ],
+              "evidenceCount": 8
+            },
+            {
+              "criterion": "costs",
+              "verdict": "revise",
+              "explanation": "寿储、当境法力、可用神识和永久本源在已读规则中被明确分账；燃寿、晋阶、术法中断及恢复也普遍规定了不退款、复测和不可用疗伤抵销历史代价。计划的百章终局同样保留失寿与十元载玄府成本，没有把胜利或救人写成返寿。可是全域公理“夺天地者受因果反噬”没有定义何种夺取会触发、反噬由谁承担、其具体损失为何、是否可恢复或如何与寿储/法力/本源账并列。这是一条已宣示的全域成本，却无法在任何资源采集、吐纳或高阶施术中核算，不能由后续章纲补救。",
+              "revisionAdvice": "将ax_01改为可执行约束：界定“夺天地”的行为和阈值，明确反噬的账户、数值或可诊断后果、触发时点、叠加与恢复/不可逆规则，并说明它与既有寿储、法力、本源及资源疗程账的优先关系；若仅为世界观背景，应删除其作为强制反噬成本的表述。",
+              "evidenceCount": 11
+            },
+            {
+              "criterion": "counters",
+              "verdict": "pass",
+              "explanation": "本批已读的层级规则不把境界设为无条件胜负判定，要求跨境对抗说明外部能量、可作用对象、限制和不可逆代价。各已读高阶境界及术式均给出明确范围、起式、持续、供能与中断条件，并配置空间封锁、同阶领域、神魂防护、阵基/权限破坏、地形或近身打断等反制；计划也明确百章不越阶斩高境，结局采用同阶截押运而非以未定义高阶能力解决矛盾。就本批可检验的上限与反制而言成立。",
+              "revisionAdvice": "",
+              "evidenceCount": 12
+            }
+          ]
         }
       ]
     },
     {
       "id": "design_run_9cf3b6d1-345e-452e-b980-79b7ec4163f9",
       "area": "characters",
-      "status": "ready",
-      "completed": 1,
+      "status": "running",
+      "completed": 6,
       "total": 19,
       "stages": [
         {
@@ -858,6 +1134,200 @@
                 "plan/milestones/ms_v3_payoff"
               ],
               "evidenceCount": 12
+            }
+          ]
+        },
+        {
+          "id": "batch-2",
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass",
+              "explanation": "林辰并非被动随剧情升级：第1章放弃独逃救工友而受伤失线索；第6—8章拒绝以和解换资源、又承认梁九为家人生计作不同选择；第14—17章以失去报酬、训练时间和部分劳务为代价，拒绝删改逃生图并放弃让苏为未验遗物背书；第18章经诊察、支付寿储和实测后才取得古境位置。梁九、苏凌霜、韩叙、白榆、顾峤亦各有与主角目标不完全一致的职责、利益和选择，且均造成可见后果。凝元支付、伤情、真元消耗、准入和证据权限均由已给规则及细纲限制，未见以身份或境界跳过门槛。",
+              "revisionAdvice": "",
+              "evidenceCount": 9
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "pass",
+              "explanation": "本批关系不是终局标签。林辰与梁九从矿道互救，发展到梁为配粮签和解、双方公开失信，再以“只证亲见、保留自主口供”的有限搭档方式继续合作；每一步均有生计压力、救援行动或证词代价。林苏从受限核验与三日凭证开始，经历封袋越权受伤、共同承担留置核查限制，再在第17章明确重订担保范围：苏只担保公开材料和程序，不为残玉、原件或林的准入背书。韩叙也从自保留底联转为承认改账并承担公开登记风险。第18章取得联名符牌和限定路线，是前述协作、实测和权限条件满足后才生效，并未将信任直接兑换为特权。",
+              "revisionAdvice": "",
+              "evidenceCount": 9
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "pass",
+              "explanation": "本批对角色知情和证据强度限制明确。林、苏及梁九从矿道现象、残片、公开账目、缺页底联、封样和伤者记录逐级获得线索；每一节点均禁止由局部材料推定九鼎、父案或幕后全貌。赵在第1—32章只掌握亲自部署和已签常令，不因现场事件、读者视角或使团在场而即时知悉执行结果。第14章墨收到实体回报被明确限定为读者信息，尚未进入林苏认知。至第18—20章，父亲署名仅证明守门参与，残缺采集单只证明附近存在拦截与转运，二人仍未识破墨或全网；这一递进与秘密条目的阶段划分一致。",
+              "revisionAdvice": "",
+              "evidenceCount": 10
+            }
+          ]
+        },
+        {
+          "id": "batch-3",
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass",
+              "explanation": "主要人物均有不完全重合的目标，并以实际选择承担后果。林辰在样箱线索与救秦禾之间放弃前者，付出真元和取证窗口；秦禾拒绝硬闯报警哨；顾峤必须完成交岗、实体赶路后才介入。港口段中，贺青梧撤回自有缆具和人手而失去订单，林放弃把未核缺额转嫁给常钧；唐顺坚持带五人共同脱身，失败后承担责任。陆沉舟在其弟获救后仍选择护账、拖船，避免“救人即收服”的无代价转向。行动的能力、伤情、物资或责任边界均被写入具体限制与后果。",
+              "revisionAdvice": "",
+              "evidenceCount": 8
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "pass",
+              "explanation": "本批可检验的关系不是终局标签，而由冲突、选择和代价逐步生效：林苏在救人优先次序上争执后形成有限协作，后续又因苏选择留守、林选择南行而明确分路；秦禾获救后仅承诺有限带路送信，不被救命之恩买断。林与贺从共同查箱转向把五名雇工置于追货之前，双方均付出船务、订单和追查机会。林与常因转嫁责任提案发生明确裂痕，常只保留正式作证；林救出陆沉川也未换得陆沉舟合作，后者实际参与拦船。各变化均有行动触发和未被取消的后果。",
+              "revisionAdvice": "",
+              "evidenceCount": 8
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "pass",
+              "explanation": "提案持续区分角色亲见、独立视角信息与尚待核验的推论。古境段中，林苏须经秦禾说明和亲耳所闻才确认墨幽屠身份，且不知道上层催令；港口段中，林对六号箱去向、仓火起因、携页者身份和陆氏兄弟关系均按实际接触顺序获知。证物链也限制结论：侧门册、便条、分架页、实物与原件需逐项互证，批号相同只构成追查关联，不证明军需真伪或赵玄极知情。吴伍、卢小满的去向在本批末仍明确保持未知，未被救出三人或空铺调查越级替代。",
+              "revisionAdvice": "",
+              "evidenceCount": 7
+            }
+          ]
+        },
+        {
+          "id": "batch-4",
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass",
+              "explanation": "主角与主要配角不是被主线单向驱动：贺青梧为保船、雇工与接货资格，拒绝以撤证换补偿并承担失单；唐、许、冯分别选择等待同伴、恢复生计与休养后再决定是否作证。林辰从包赔冲动退回到提供收据、接受无力赔付的现实。第50章中，吴卢自主要求离开，陆沉舟在继续协助旧同伙与承认押送、接受看护之间作出选择；林让位给巡员和当事人回答，未以武力替代工人意志。后续宏观亦把林“放弃第二片先救人”、夜凝霜限制封港、梁九拒绝作伪证等选择绑定为实际损失或未竟追查，人物行动会实质改变主线推进方式。",
+              "revisionAdvice": "",
+              "evidenceCount": 9
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "pass",
+              "explanation": "本批关系变化具有初态、触发选择和明确边界。林贺从共同追查但存在资源误用风险，发展为仅限陆上找人、任何新危险须重谈的有限合作；贺拒绝林以剩余灵石或救命情分替她决定船的用途。获救工人与贺之间也没有被写成“救后自动归队”：唐许冯分别保留作证、轻工和休养的选择，吴卢脱控后明确拒绝立即回船，贺随即接受并改为先安置。陆氏兄弟因陆的签条与押送责任发生正面冲突，沉川留下复核、陆接受看护和有限指路，未被一次合作消解。后卷将林苏的分路、重逢协作与公开己方不利材料纳入具体行动和代价，未把终局信任倒灌为既成关系。",
+              "revisionAdvice": "",
+              "evidenceCount": 9
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "pass",
+              "explanation": "已读安排清楚区分亲见、转述、未核实线索与后续可得信息。第48章的车夫返单只能把范围缩至公共卸货口，不能确认吴卢去处；第49章沉川只见到收钱签字、不知条文，林只知入口而不知完整改签；第50章陆仅承认本次点交，220夜改签及原账仍待独立核验。后续消息链规定脚夫、程、赵、骑使各自只能知其实际接触到的内容，签收联只证明送达而不证明执行；夜凝霜的北境档案亦只证明父亲参与守门，不证明投毒真凶。主角弧光由多次可观察的选择推进：从急于包赔、绕巷追人，转为尊重当事人回答与有限合作；其后放弃残片追击、接受短寿和未结父仇，因果并非只列终局标签。",
+              "revisionAdvice": "",
+              "evidenceCount": 8
+            }
+          ]
+        },
+        {
+          "id": "cross-1-2",
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "insufficient",
+              "explanation": "已读1—20章中，林辰多次在救人、追查、生计和修行间作出不可兼得的选择：救人而失去追凶窗口，拒绝以遗物换资助，以慢练、折粮和停练承担成长成本；梁九保家人、韩叙自保兼认责、苏承担签名与停俸、白榆拒绝为成长放宽医嘱，均有独立利益和对主线的实际影响。凝元突破亦先有诊察、三年寿储支付、训练失败与实测，未以身份跳过门槛。可是贺青梧、陆沉舟、夜凝霜、赵玄极及后段顾、苏等人的关键选择、失败代价和对主线影响，主要依赖第21章之后的具体行动；本批只有宏观/关系叙述，尚不能核验这些安排能否按各章执行。",
+              "revisionAdvice": "补读第21—32章细纲，优先核验古境救援、墨被擒、泉液分配、苏留宗与林南渡如何分别落实人物选择、伤势、资源和职责；后续跨批再核验33章后的港口、北境与返乡人物线。",
+              "awaitingSources": [
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32"
+              ],
+              "evidenceCount": 8
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "insufficient",
+              "explanation": "林辰—苏凌霜在已读章节具备清楚的初始戒备、变化原因、生效节点和代价：苏以受限凭证承担调查责任；两人保留梁九和韩叙的不利证词；林在第17章承认试图让苏为未验遗物背书，双方据此改为只共享可质询的矿路图；第18章共同核图也仅提升为“父亲参与守门”的有限结论。林—梁、林—白的关系同样保留了生计、医疗与证言边界。可是关系表把这些关系推进至古境救援、分路通信、港口救工、北境合作和第100章回访；其中许多阶段明示为“拟”，不应因未写正文而否定，但其所需的行动、支付及生效时点尚未由本批已读细纲支撑，不能直接判为成立。",
+              "revisionAdvice": "补读第21—32章，逐项核对秦禾带路、顾峤接应、墨的交押、泉液分配、苏留宗和林南渡是否与关系阶段的原因、代价及知情限制一致；涉及33章后的贺、陆、夜及消息链安排，留待后续批次按对应章节细纲复核。",
+              "awaitingSources": [
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32"
+              ],
+              "evidenceCount": 8
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "insufficient",
+              "explanation": "已读部分的认知设计边界明确且相互吻合：林、苏只能从公开摘录、签条、实物和限时调阅材料逐级提升判断；赵的常令与使团现场决定被明确分开，不能据此写成赵即时知晓矿难；第18章署名图只证明父亲参与守门，不能补出投毒或完整守门经过。第1—20章还给出了林、苏的禁推论，阻止以残玉、境界或读者视角补齐未知事实。然秘密表进一步规定第21章后的墨身份确认、程—赵报令、北境互证、撤押令取得和第99章质询等精确知情变化；本批没有这些章节细纲，宏观锚点及关系表不足以核验每一次送达、阅读、证据取得是否真实发生且不被提前共享。",
+              "revisionAdvice": "补读第21—32章，先核验墨的身份信息、求援送达、战后证物与父案图纸的取得路径是否严格对应各角色知情；程—赵的第52—54章报令、后续北境和撤押令链应在提供相应章节细纲时继续逐节点复核，不能仅凭规划锚点视为已闭合。",
+              "awaitingSources": [
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32"
+              ],
+              "evidenceCount": 8
+            }
+          ]
+        },
+        {
+          "id": "cross-1-3",
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "insufficient",
+              "explanation": "已读安排中，林在样箱机会与救秦之间选择救人、接受错失窗口；秦拒绝硬闯封哨且只承诺有限带路；苏、顾、贺、唐、常、陆氏兄弟均有独立利益、拒绝或承担代价的选择。特别是林在第39章拒绝将未核缺额转嫁给常、贺在第40章撤回自有缆具、唐在第44章先放同伴过板，均非由主角单向驱动。第46—50章却是吴卢脱控、陆转为有限协助、贺船交检及其后有条件合作的直接前置；现有关系和宏观条目虽写出拟定结果，未读细纲前不能核验这些选择、代价和生效路径是否可执行。",
+              "revisionAdvice": "补读第46—50章细纲，重点核对吴、卢脱控是否由其自主选择与现场控制条件达成，陆的协助是否仍保留押送与改签责任，贺的船损、停牌、工人生计与后续合作是否逐项支付。",
+              "awaitingSources": [
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ],
+              "evidenceCount": 9
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "insufficient",
+              "explanation": "第21—45章已形成连续关系链：林苏从救秦、求援、共同承担战术风险发展为分路后依实体书信维持的有限互信；林贺由公共货道互助、共同报警追船，发展为船损和工人安置优先的有限合作；林与陆沉舟则因其实际拦船而破裂，未因救下陆沉川自动和解。关系条目也明确把第50章吴卢自行出门、第51—53章生计安排和陆的签认供述设为后续条件，而非既成事实。由于第46—50章未读，无法核验这些阶段与已读第45章“吴卢位置不明、贺船修至255日”的状态如何无冲突地衔接。",
+              "revisionAdvice": "补读第46—50章后，逐项核对唐、许、冯与吴、卢的信息传播和会面顺序；确认吴卢由“位置不明”到实际脱控之间有现场路径；确认贺接受其不立即回船的选择不与其船主责任、船舶停牌及修船时间冲突。",
+              "awaitingSources": [
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ],
+              "evidenceCount": 10
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "insufficient",
+              "explanation": "已读细纲对第21—45章的认知限制较严：秦的封哨见闻须当面送达；林苏在顾实际到场前不得发动；林只在第41章实体收到苏信后获知青玄近况；第43—45章林只凭亲见拘束、残联与旧货封追链，未将其升级为赵知情或全网定罪。首仓火亦明确只保留灯架、油火和携页者逃离的现场链，不把未见倾灯动作写成纵火结论。但秘密条目sec_02本批仅提供前10000字符，且第46—50章尚未读取；后续关于吴卢、陆自述、程寄报和赵方是否、何时获得信息的知情阶段，不能仅凭关系阶段或宏观锚点确认无矛盾。",
+              "revisionAdvice": "补读第46—50章及sec_02未提供部分，核对：吴卢获救和去处由谁在场得知；陆的供述是否仅作为待独立核验材料；程获得门口消息的来源是否限于脚夫亲见；林、苏、赵、贺、唐及陆氏兄弟之间是否均无越过实体送达的知情。",
+              "awaitingSources": [
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50",
+                "story/secrets/sec_02"
+              ],
+              "evidenceCount": 10
             }
           ]
         }

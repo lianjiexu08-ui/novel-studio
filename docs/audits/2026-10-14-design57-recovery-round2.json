@@ -11,26 +11,28 @@
     {
       "area": "world",
       "runId": "design_run_3839c593-a088-415d-8512-39ff4348b14c",
-      "status": "running",
+      "status": "failed",
       "resumedFrom": "followup-batch-2/history",
       "preservedSteps": 17,
-      "calls": 1
+      "calls": 7,
+      "error": "openai-compatible request failed (stream): Upstream response stream was interrupted"
     },
     {
       "area": "power",
       "runId": "design_run_2c637f9b-5a78-4597-a8ef-6ffa40787d6a",
-      "status": "running",
+      "status": "failed",
       "resumedFrom": "batch-2",
       "preservedSteps": 1,
-      "calls": 0
+      "calls": 5,
+      "error": "openai-compatible request failed (524): openai_error"
     },
     {
       "area": "character",
       "runId": "design_run_9cf3b6d1-345e-452e-b980-79b7ec4163f9",
-      "status": "queued",
+      "status": "running",
       "resumedFrom": "batch-2",
       "preservedSteps": 1,
-      "calls": 0
+      "calls": 7
     }
   ],
   "errors": [],
@@ -40,11 +42,12 @@
     "power": "batch-2",
     "character": "batch-2"
   },
-  "modelCalls": 1,
+  "modelCalls": 19,
   "completedStepsNotReplayed": true,
   "previousFailuresRetained": true,
   "formalAcceptance": false,
   "additionalGate": "Original runner and related-context diagnostic have exited; recovery now uses one shared repository instance.",
   "originalRunnerTerminalVerified": true,
-  "protectedHistoryUnchanged": true
+  "protectedHistoryUnchanged": true,
+  "nextRecovery": "2026-10-14-design57-recovery-round3.json"
 }

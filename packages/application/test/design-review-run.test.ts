@@ -62,7 +62,7 @@ test('chapter-only power batches also receive complete tier and technique rules'
   ];
   input.sources = [...rules, ...input.sources];
   const run = createDesignReviewRun(input);
-  assert.equal(run.scheduleVersion, 14);
+  assert.equal(run.scheduleVersion, 15);
   for (const stage of run.stages) {
     const staged = designReviewStageInput(run, stage);
     assert.ok(JSON.stringify(staged.sources).length <= 240_000);
@@ -420,7 +420,7 @@ test('v3 budgets full quotation envelopes so evidenced deferrals can fit without
   assert.throws(() => acceptDesignReviewStage(legacy, legacy.stages[0], large), /结论过长/);
 });
 
-function threePartitionRun(version: 4 | 5 | 6 | 7 | 11 | 12 = 7) {
+function threePartitionRun(version: 4 | 5 | 6 | 7 | 11 | 12 | 14 | 15 = 7) {
   const input: DesignReviewInput = { ...largeInput(), rubric: { timeline: '寄出与送达是否有实际时间', payoff: '承诺是否保持代价' }, sources: [
     { id: 'author', text: '仅检查本轮提案，不视为采纳事实。' },
     { id: 'early', text: '第9日寄出书信，送达前收信人不能知情。' + '日程说明。'.repeat(17000) },
@@ -431,6 +431,53 @@ function threePartitionRun(version: 4 | 5 | 6 | 7 | 11 | 12 = 7) {
   assert.equal(run.stages.filter(s => s.kind === 'batch').length, 3);
   return run;
 }
+
+test('v15 merges only criteria represented by its child reports while the root and final blockers retain every standard', () => {
+  const original = { ...threePartitionRun(14).input, rubric: { timeline: '核时序', payoff: '核兑现', opening: '核前五十章质量' } };
+  const runs = [createDesignReviewRun(original, undefined, 14), createDesignReviewRun(original, undefined, 15)];
+  for (const run of runs) {
+    for (const stage of [...run.stages.filter(s => s.kind !== 'synthesis')]) {
+      const input = designReviewStageInput(run, stage), result = stagePass(input);
+      if (stage.id === 'batch-2') Object.assign(result.checks[2], { verdict: 'revise', explanation: '已有场景重复，独立问题必须保留', revisionAdvice: '修改重复的角色选择' });
+      if (stage.id === 'cross-1-2') {
+        const unit = input.stage!.sourceMap.find(u => u.sourceId === 'early')!;
+        for (const check of result.checks.slice(0, 2)) Object.assign(check, { verdict: 'insufficient', explanation: '需核送达原文', revisionAdvice: '补读送达记录', awaitingSources: ['arrival'], evidence: [{ sourceId: unit.id, quote: '第9日寄出书信，送达前收信人不能知情。' }] });
+      }
+      acceptDesignReviewStage(run, stage, result);
+    }
+    for (const stage of run.stages.filter(s => s.followupFor)) {
+      const input = designReviewStageInput(run, stage);
+      acceptDesignReviewStage(run, stage, stagePass(input)); // No explicit resolution: the waits must remain.
+    }
+  }
+  const [legacy, current] = runs;
+  assert.deepEqual(current.units, legacy.units);
+  assert.deepEqual(current.stages.map(({ id, kind, children, unitIds }) => ({ id, kind, children, unitIds })), legacy.stages.map(({ id, kind, children, unitIds }) => ({ id, kind, children, unitIds })));
+  let scoped = 0;
+  for (const stage of current.stages.filter(s => s.kind === 'synthesis')) {
+    const oldStage = legacy.stages.find(s => s.id === stage.id)!;
+    const input = designReviewStageInput(current, stage), oldInput = designReviewStageInput(legacy, oldStage);
+    assert.deepEqual(oldInput.rubric, original.rubric);
+    const onlyFollowups = stage.children.every(id => current.stages.find(s => s.id === id)!.followupFor);
+    if (onlyFollowups) {
+      scoped++;
+      assert.deepEqual(Object.keys(input.rubric), ['timeline', 'payoff']);
+      assert.equal(input.stage!.coverage!.synthesis!.scope, 'partial_reports');
+      assert.deepEqual(input.sources, oldInput.sources);
+      const invalid = stagePass(input);
+      invalid.checks.push({ ...invalid.checks[0], criterion: 'opening', verdict: 'insufficient', explanation: '本子树不是前五十章' });
+      assert.throws(() => acceptDesignReviewStage(current, stage, invalid), /逐项覆盖全部标准/);
+    }
+    if (stage === current.stages.at(-1)) assert.deepEqual(input.rubric, original.rubric);
+    acceptDesignReviewStage(current, stage, stagePass(input));
+    acceptDesignReviewStage(legacy, oldStage, stagePass(oldInput));
+  }
+  assert.equal(scoped, 1);
+  const restored = JSON.parse(JSON.stringify(current));
+  const final = completeDesignReviewRun(restored).result;
+  assert.deepEqual(final.checks.map(c => [c.criterion, c.verdict]), [['timeline', 'insufficient'], ['payoff', 'insufficient'], ['opening', 'revise']]);
+  assert.deepEqual(Object.keys(designReviewStageInput(restored, restored.stages.at(-1)!).rubric), Object.keys(original.rubric));
+});
 function finishRawWithThirdPartitionQuestion(run: ReturnType<typeof threePartitionRun>, evidence = true) {
   const originalRaw = run.stages.filter(s => s.kind !== 'synthesis');
   for (const stage of originalRaw) {

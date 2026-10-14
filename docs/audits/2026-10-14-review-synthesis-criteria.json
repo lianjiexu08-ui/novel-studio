@@ -1,0 +1,59 @@
+{
+  "status": "offline_scope_trace_passed",
+  "modelCalls": 0,
+  "originalRunId": "design_run_f6b0a6f9-767c-4650-8ec6-54910f97341a",
+  "stageId": "synthesis-12",
+  "originalRunHash": "65e808a5384a04aefca3ddbd4ef1ad693f3050d853a1689323cd41da0919f8aa",
+  "children": [
+    {
+      "id": "followup-cross-3-5/causality",
+      "criteria": [
+        "causality"
+      ]
+    },
+    {
+      "id": "followup-cross-3-5/timeline",
+      "criteria": [
+        "timeline"
+      ]
+    }
+  ],
+  "originalRubric": [
+    "causality",
+    "timeline",
+    "payoff",
+    "opening"
+  ],
+  "newRubric": [
+    "causality",
+    "timeline"
+  ],
+  "rootRubric": [
+    "causality",
+    "timeline",
+    "payoff",
+    "opening"
+  ],
+  "sourceCount": 3,
+  "sourceCharacters": 39700,
+  "sourceTextUnchanged": true,
+  "oldReportsUnchanged": true,
+  "originalFinding": {
+    "criterion": "opening",
+    "verdict": "insufficient",
+    "explanation": "本子树的报告仅验证第1—29章伤后成长、准入与古境救援链的局部连续，能够说明开篇由救人受伤、保全证据、受限调查、付费成长推进至救援，并不等于已核验前五十章的冲突升级、高潮分布、关系选择后果及第33—50章是否避免模板重复。总览本身也明确50章后仍有待正式整体验收的事项，不能把局部时间与因果通过扩大为前五十章开篇质量通过。",
+    "revisionAdvice": "待纳入覆盖第30—50章的原始章纲及相应开篇专项报告后，核对第一卷救援后果如何转化为港口线压力，检验第33—50章的调查、追船、救人和留置选择是否各有不同触发、代价与不可逆后果。",
+    "evidenceCount": 7
+  },
+  "formalAcceptance": false,
+  "scheduleVersion": 15,
+  "legacySchedulesPreservedThrough": 14,
+  "rubricVersion": 14,
+  "tests": {
+    "passed": 245,
+    "failed": 0,
+    "focusedPassed": 32,
+    "webTypecheckAndBuildPassed": true
+  },
+  "limitation": "Offline reconstruction and regression tests only; no new model call or override of the original synthesis finding."
+}

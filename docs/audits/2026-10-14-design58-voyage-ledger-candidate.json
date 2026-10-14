@@ -1,0 +1,67 @@
+{
+  "status": "unsaved_scoped_review_passed",
+  "candidateVersion": 5,
+  "candidateHash": "137cb6b2bb31309c343d8a9b580d8dd48d723a743bc06dc20d5077af744c45ff",
+  "previousCandidateHash": "c686187c53c738655ea710335f980e7d5cbc6e3ff21a3c62e68259f089f607b5",
+  "baseHash": "ee7666e6cca30a1d79209a8494ea8b84e2208181380bfaef5953f0d7ff8c40fd",
+  "schemaPassed": true,
+  "changes": [
+    {
+      "path": "/plan/milestones/11/cost",
+      "before": "现金余4000，其中回程3000封存预留，1000作本航食宿医疗与保暖预算；预留不等于已买回程票。避火符交船库保管，极寒阶段购买两件普通保温衣并靠暖舱御寒，淬体贺不能露宿冰原。 其中271日两张新符12计入1000杂费额度，余988；归程仍封存3000。261–270食宿拟由260棚主已付客舍的1枚与林十日有限坐姿轻役交换结清，作业在原受护住处；这项前提须在53实际落实，不挪用本次航款补旧账。",
+      "after": "专项款共14000；275日北航票实付10000，且271日符费12已经扣除后，现金上限3988，其中回程3000仍封存预留，不能挪用，预留不是已买回程票。原1000杂费额度未用部分上限988，沿途车费、食宿、医疗与保暖衣的实际支出继续从中扣；3988不是本段结束时未经核验的现金余额，已发生的其他杂费不能漏记。两张新符12属于后续累计核销780的一部分，315日不可再扣一次。避火符交船库保管，极寒阶段购买两件普通保温衣并靠暖舱御寒，淬体贺不能露宿冰原。261–270食宿拟由260棚主已付客舍的1枚与林十日有限坐姿轻役交换结清，作业在原受护住处；这项前提须在53实际落实，不挪用本次航款补旧账。"
+    },
+    {
+      "path": "/plan/milestones/13/outcome",
+      "before": "第301–315日。苏林的分路变为有分歧的协作。到315日两席北航10000+回航3000已付，保温衣、医药、食宿和查验共实际780，余220由贺封存归还商盟，不转成林的寿药钱。",
+      "after": "第301–315日。苏林的分路变为有分歧的协作。315日结算的是271日起同一笔14000专项垫款的累计账：275日赤霄极焱至北境葬骨两席北航票共10000已在前段实付，不是本返乡段的新支出；302日北境通天至青玄沧溟两席回航票各1500、共3000在本段实付。两航段分开，不重扣10000，也不把封存3000再记成收入。杂费累计780，包括271日两符12及其后车费、保温衣、医药、食宿、查验等768；14000−10000−3000−780=220。结余220由贺另袋封存，待实际返赤霄交回商盟，不记已经交款或转成林的寿药钱。"
+    }
+  ],
+  "totalChangesFromSaved": 28,
+  "ledger": [
+    {
+      "day": 271,
+      "item": "专项实拨",
+      "delta": 14000,
+      "runningTotal": 14000
+    },
+    {
+      "day": 271,
+      "item": "两张避火符",
+      "delta": -12,
+      "runningTotal": 13988
+    },
+    {
+      "day": 275,
+      "item": "两张北航票",
+      "delta": -10000,
+      "runningTotal": 3988
+    },
+    {
+      "day": 302,
+      "item": "两张回航票",
+      "delta": -3000,
+      "runningTotal": 988
+    },
+    {
+      "throughDay": 315,
+      "item": "其余杂费累计；分日支出仍按实际发生",
+      "delta": -768,
+      "runningTotal": 220
+    }
+  ],
+  "ledgerLimit": "Other miscellaneous spending is cumulative through day315, not all incurred on day315. Intermediate totals are upper bounds before unitemized actual spending, not asserted daily cash balances.",
+  "cashCeilingAfterKnownOutboundCharges": 3988,
+  "returnReserved": 3000,
+  "remainingMiscellaneousCeiling": 988,
+  "closingRemainder": 220,
+  "worldBibleAndChaptersUnchanged": true,
+  "activeDesignChanged": false,
+  "formalAcceptance": false,
+  "scopedReview": {
+    "file": "2026-10-14-design58-voyage-ledger-review.json",
+    "calls": 1,
+    "passedChecks": 3,
+    "formalAcceptance": false
+  }
+}
