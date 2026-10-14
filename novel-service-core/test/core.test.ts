@@ -169,6 +169,31 @@ test('content-only early edits preserve the edited chapter fact ledger', () => {
   assert.equal(work.currentVersion(2), undefined);
 });
 
+test('reviewed replacement clears obsolete plot realizations and core runs do not reuse stale candidates', () => {
+  const service = new NovelService(provider);
+  const work = service.createWork('替换与剧情依据');
+  service.runUntil(work.id, 3, [passChecker], 'core-run');
+  const oldSecond = work.currentVersion(2)!;
+  const oldThird = work.currentVersion(3)!;
+  const node = service.addPlotNode(work.id, { title: '旧稿兑现', expectedResult: '得到密信', prerequisites: [] });
+  node.realization = { status: 'realized', chapterVersionId: oldThird.id, evidence: '旧第三章密信', updatedAt: new Date().toISOString() };
+  const replacement = service.recordCandidate(work.id, 2, 'replace-second', service.contextFor(work, 2), { content: '第二章没有旧突破与密信', proposedEvents: [], observedEvents: [] }, 'model');
+  service.runChecks(work.id, replacement.id, [passChecker]);
+  service.adoptCandidate(work.id, replacement.id);
+  assert.equal(work.states.get('hero|power')?.value, 1, 'removing the old second-chapter event must restore the earlier state');
+  assert.equal(work.currentVersion(3), undefined);
+  assert.equal(node.realization.status, 'unrealized');
+  assert.equal(node.realization.chapterVersionId, undefined);
+  assert.equal(service.contextFor(work, 3).includedEventIds.length, 1);
+  assert.equal(work.versions.get(oldSecond.id)?.content, oldSecond.content);
+  assert.equal(work.versions.get(oldThird.id)?.content, oldThird.content);
+  service.runUntil(work.id, 3, [passChecker], 'core-run');
+  assert.notEqual(work.currentVersion(3)?.id, oldThird.id);
+  assert.equal(work.currentVersion(3)?.revision, 2);
+  assert.equal(work.states.get('hero|power')?.value, 4, 'regenerated chapter uses only the surviving earlier event');
+  assert.equal(node.realization.status, 'unrealized', 'old payoff must not reappear without new evidence');
+});
+
 test('run checkpoint is idempotent for a completed run', () => {
   const service = new NovelService(provider);
   const work = service.createWork('恢复');

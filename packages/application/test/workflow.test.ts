@@ -70,6 +70,50 @@ test('repeating an adoption returns the same version and outbox rows', async () 
   assert.equal((await repository.get(work.id))?.stateRevision, 1);
 });
 
+test('adopting an early replacement invalidates later facts and resumes the same run from the first affected chapter', async () => {
+  const repository = new InMemoryWorkRepository();
+  let replacement = false;
+  const generated: number[] = [];
+  const workflow = new ChapterWorkflow(repository, {
+    generateChapter: ({ chapterNumber }) => {
+      generated.push(chapterNumber);
+      const events = [{ eventType: 'character_state', subjectId: 'hero', predicate: 'power', value: replacement ? 100 + chapterNumber : chapterNumber, storyTime: chapterNumber, evidence: 'p1' }];
+      if (!replacement && chapterNumber === 3) events.push({ eventType: 'character_state', subjectId: 'hero', predicate: 'oldWound', value: 1, storyTime: 3, evidence: 'p2' });
+      return { content: `第${chapterNumber}章${replacement ? '新版' : '旧版'}`, proposedEvents: events, observedEvents: events };
+    },
+  });
+  const work = await createReadyWork(workflow, '早章候选替换');
+  await workflow.runUntil(work.id, 3, [passChecker], 'original-run');
+  const oldIds = (await repository.get(work.id))!.adoptedVersions().map(v => v.id);
+  replacement = true;
+  const candidate = await workflow.generate(work.id, 1, 'replace-one');
+  await workflow.check(work.id, candidate.id, [passChecker]);
+  const adopted = await workflow.adopt(work.id, candidate.id, 3);
+  const changed = (await repository.get(work.id))!;
+  assert.equal(adopted.version.parentVersionId, oldIds[0]);
+  assert.equal(changed.currentVersion(2), undefined);
+  assert.equal(changed.currentVersion(3), undefined);
+  assert.equal(changed.states.has('hero|oldWound'), false);
+  assert.equal(changed.states.get('hero|power')?.value, 101);
+  assert.ok([...changed.events.values()].filter(e => oldIds.includes(e.chapterVersionId)).every(e => !e.active));
+  assert.deepEqual(changed.impacts.at(-1)?.affectedChapterNumbers, [2, 3]);
+  assert.equal(changed.checkpoints.get('original-run')?.phase, 'paused');
+  assert.equal(changed.checkpoints.get('original-run')?.nextChapter, 2);
+  assert.equal((await workflow.prepareNextChapter(work.id)).chapterNumber, 2);
+  const impactCount = changed.impacts.length;
+  await workflow.adopt(work.id, candidate.id, 3);
+  assert.equal((await repository.get(work.id))!.impacts.length, impactCount, 'retry must not invalidate or record impacts twice');
+  await workflow.runUntil(work.id, 3, [passChecker], 'original-run');
+  const resumed = (await repository.get(work.id))!;
+  assert.deepEqual(generated, [1, 2, 3, 1, 2, 3]);
+  assert.equal(resumed.currentVersion(1)?.id, adopted.version.id);
+  assert.ok([2, 3].every(n => !oldIds.includes(resumed.currentVersion(n)!.id)));
+  assert.equal(resumed.checkpoints.get('original-run')?.phase, 'complete');
+  assert.equal([...resumed.events.values()].filter(e => e.active).length, 3);
+  assert.equal(resumed.states.has('hero|oldWound'), false);
+  assert.equal(resumed.versions.size, 6, 'old versions remain available for history');
+});
+
 test('blocked adoption does not create outbox events', async () => {
   const repository = new InMemoryWorkRepository();
   const workflow = new ChapterWorkflow(repository, provider);

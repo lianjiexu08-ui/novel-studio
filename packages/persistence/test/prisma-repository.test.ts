@@ -25,6 +25,57 @@ function createDatabase(): string {
   return databaseUrl;
 }
 
+test('early candidate replacement and paused-run recovery survive a database reload', async (t) => {
+  const databaseUrl = createDatabase();
+  const repositories: Array<{ disconnect(): Promise<void> }> = [];
+  t.after(async () => {
+    for (const repository of repositories) await repository.disconnect();
+    rmSync(databaseUrl.slice(5), { force: true });
+  });
+  process.env.DATABASE_URL = databaseUrl;
+  const { PrismaWorkRepository } = await import('../src/prisma-repository.ts');
+  const { ChapterWorkflow } = await import('../../application/src/index.ts');
+  const { passChecker } = await import('../../../novel-service-core/src/core.ts');
+  const { createReadyWork } = await import('../../application/test/fixtures.ts');
+  let replacing = false;
+  const calls: number[] = [];
+  const provider: ModelProvider = { generateChapter: ({ chapterNumber }) => {
+    calls.push(chapterNumber);
+    const event = { eventType: 'character_state', subjectId: 'hero', predicate: 'power', value: replacing ? 100 + chapterNumber : chapterNumber, storyTime: chapterNumber, evidence: 'p1' };
+    return { content: `第${chapterNumber}章${replacing ? '修订' : '原稿'}`, proposedEvents: [event], observedEvents: [event] };
+  } };
+  const first = new PrismaWorkRepository();repositories.push(first);
+  const workflow = new ChapterWorkflow(first, provider);
+  const work = await createReadyWork(workflow, '持久化早章修订');
+  await workflow.runUntil(work.id, 3, [passChecker], 'persisted-run');
+  const original = (await first.get(work.id))!.adoptedVersions();
+  replacing = true;
+  const candidate = await workflow.generate(work.id, 1, 'persisted-replacement');
+  await workflow.check(work.id, candidate.id, [passChecker]);
+  const adopted = await workflow.adopt(work.id, candidate.id, 3);
+  await first.disconnect();
+
+  const second = new PrismaWorkRepository();repositories.push(second);
+  const reloaded = (await second.get(work.id))!;
+  assert.equal(reloaded.currentVersion(1)?.id, adopted.version.id);
+  assert.equal(reloaded.currentVersion(2), undefined);
+  assert.equal(reloaded.currentVersion(3), undefined);
+  assert.equal(reloaded.states.get('hero|power')?.value, 101);
+  assert.equal([...reloaded.events.values()].filter(e => e.active).length, 1);
+  assert.equal(reloaded.checkpoints.get('persisted-run')?.phase, 'paused');
+  assert.equal(reloaded.checkpoints.get('persisted-run')?.nextChapter, 2);
+  assert.deepEqual(reloaded.impacts.at(-1)?.affectedChapterNumbers, [2, 3]);
+  const resumedWorkflow = new ChapterWorkflow(second, provider);
+  await resumedWorkflow.runUntil(work.id, 3, [passChecker], 'persisted-run');
+  const after = (await second.get(work.id))!;
+  assert.deepEqual(calls, [1, 2, 3, 1, 2, 3]);
+  assert.equal(after.adoptedVersions().length, 3);
+  assert.equal(after.versions.size, 6);
+  assert.equal([...after.events.values()].filter(e => e.active).length, 3);
+  assert.equal(after.checkpoints.get('persisted-run')?.phase, 'complete');
+  for (const version of original) assert.equal(after.versions.get(version.id)?.content, version.content);
+});
+
 test('prisma repository persists a full adoption roundtrip', async (t) => {
   const databaseUrl = createDatabase();
   const repositories: Array<{ disconnect(): Promise<void> }> = [];

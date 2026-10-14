@@ -848,7 +848,7 @@ export class NovelService {
     return ruling;
   }
 
-  adoptCandidate(workId: string, candidateId: string): ChapterVersion {
+  adoptCandidate(workId: string, candidateId: string, replacementReason = 'earlier chapter replaced by a reviewed candidate'): ChapterVersion {
     const work = this.getWork(workId);
     const candidate = this.getCandidate(work, candidateId);
     if (candidate.status === 'adopted' && candidate.adoptedVersionId) return work.versions.get(candidate.adoptedVersionId)!;
@@ -864,7 +864,7 @@ export class NovelService {
     const previous = work.currentVersion(candidate.chapterNumber);
     if (previous) {
       previous.status = 'superseded';
-      for (const event of work.events.values()) if (event.chapterVersionId === previous.id) event.active = false;
+      this.invalidateReplacementDependencies(work, previous, replacementReason);
     }
     const sameChapter = [...work.versions.values()].filter((version) => version.chapterNumber === candidate.chapterNumber);
     const version: ChapterVersion = {
@@ -878,7 +878,37 @@ export class NovelService {
     candidate.status = 'adopted';
     candidate.adoptedVersionId = version.id;
     work.stateRevision += 1;
+    if (previous) this.rebuildStates(work);
     return version;
+  }
+
+  /** Every adoption path must remove downstream facts before they can enter new context. */
+  private invalidateReplacementDependencies(work: Work, previous: ChapterVersion, reason: string): void {
+    const chapterNumber = previous.chapterNumber;
+    const affected = work.adoptedVersions().filter(version => version.chapterNumber > chapterNumber);
+    const invalidated = new Set([previous.id, ...affected.map(version => version.id)]);
+    for (const version of affected) version.stale = true;
+    for (const event of work.events.values()) if (invalidated.has(event.chapterVersionId)) event.active = false;
+    for (const node of work.plotNodes.values()) {
+      if (node.realization.chapterVersionId && invalidated.has(node.realization.chapterVersionId)) {
+        node.realization = { status: 'unrealized', updatedAt: now() };
+      }
+    }
+    work.impacts.push({ id: id('impact'), changedChapterNumber: chapterNumber, affectedChapterNumbers: affected.map(version => version.chapterNumber).sort((a, b) => a - b), reason, createdAt: now() });
+    for (const checkpoint of work.checkpoints.values()) {
+      if (checkpoint.phase === 'cancelled' || checkpoint.targetChapter <= chapterNumber) continue;
+      checkpoint.nextChapter = Math.min(checkpoint.nextChapter, chapterNumber + 1);
+      checkpoint.phase = 'paused';
+      checkpoint.error = `chapter ${chapterNumber} was replaced; re-check from chapter ${checkpoint.nextChapter}`;
+      checkpoint.leaseToken = undefined;
+      checkpoint.leaseExpiresAt = undefined;
+      // Keep the old candidates as history, but never resume using an adopted
+      // stale candidate or its idempotency key after an earlier replacement.
+      for (let chapter = checkpoint.nextChapter; chapter <= checkpoint.targetChapter; chapter += 1) {
+        delete checkpoint.candidateIds[chapter];
+        checkpoint.attempts = { ...checkpoint.attempts, [chapter]: (checkpoint.attempts?.[chapter] ?? 1) + 1 };
+      }
+    }
   }
 
   editAdoptedChapter(workId: string, chapterNumber: number, content: string, checkers: CandidateChecker[], reason = 'early chapter edited'): ChapterVersion {
@@ -904,15 +934,7 @@ export class NovelService {
     };
     work.candidates.set(candidate.id, candidate);
     this.runChecks(workId, candidate.id, checkers);
-    const version = this.adoptCandidate(workId, candidate.id);
-    const affected = [...work.versions.values()].filter((item) => item.chapterNumber > chapterNumber && !item.stale);
-    for (const item of affected) {
-      item.stale = true;
-      for (const event of work.events.values()) if (event.chapterVersionId === item.id) event.active = false;
-    }
-    work.impacts.push({ id: id('impact'), changedChapterNumber: chapterNumber, affectedChapterNumbers: [...new Set(affected.map((item) => item.chapterNumber))].sort((a, b) => a - b), reason, createdAt: now() });
-    this.rebuildStates(work);
-    return version;
+    return this.adoptCandidate(workId, candidate.id, reason);
   }
 
   /** Resuming an existing run keeps its original target; a run never widens itself. */
@@ -932,9 +954,10 @@ export class NovelService {
     const checkpoint = this.openCheckpoint(workId, targetChapter, runId);
     while (checkpoint.nextChapter <= checkpoint.targetChapter) {
       const chapter = checkpoint.nextChapter;
+      const attempt = checkpoint.attempts?.[chapter] ?? 1;
       const candidate = checkpoint.candidateIds[chapter]
         ? this.getCandidate(work, checkpoint.candidateIds[chapter])
-        : this.generateCandidate(workId, chapter, runId);
+        : this.generateCandidate(workId, chapter, attempt === 1 ? runId : `${runId}#${chapter}.${attempt}`);
       checkpoint.candidateIds[chapter] = candidate.id;
       checkpoint.phase = 'generated';
       this.runChecks(workId, candidate.id, checkers);
