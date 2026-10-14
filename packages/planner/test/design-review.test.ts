@@ -180,3 +180,38 @@ test('stored quotation validation still rejects wrong sources and ambiguous sugg
   });
   assert.equal(result.checks[0].evidence[0].sourceId, 'shared/missing');
 });
+
+test('follow-up repair identifies the omitted original source without copying every fragment', async () => {
+  const request = await input();
+  request.rubric = { timeline: '寄出与送达是否相容' };
+  request.sources = [
+    { id: 'unit/a', text: '第9日寄出，本地递交人留有寄据。' },
+    { id: 'unit/b', text: '第10日收信者还不知道信中内容。' },
+    { id: 'unit/arrival', text: '第12日才由驿使实际送达收信者。' },
+    { id: 'question', text: '需要核验收信人的知情是否早于实际送达。' },
+  ];
+  request.stage = { kind: 'cross', label: '补读', totalBatches: 3, followupFor: 'batch-1/timeline',
+    sourceMap: request.sources.slice(0, 3).map((s, i) => ({ id: s.id, sourceId: ['original/sender', 'original/recipient', 'arrival'][i], start: 0, end: s.text.length })),
+    coverage: { mode: 'local_sources', sourceLengths: {}, pendingChecks: [{ id: 'batch-1/timeline', criterion: 'timeline', questionSourceId: 'question', requiredSourceIds: ['arrival'], priorUnitIds: ['unit/a', 'unit/b'], priorSourceIds: ['original/sender', 'original/recipient'] }] },
+  };
+  const prepared = prepareDesignReviewEvidence(request);
+  const good = { requestId: prepared.requestId, summary: '送达前没有预支知情', checks: [{ criterion: 'timeline', verdict: 'pass', explanation: '第10日未知，第12日实际送达，两个时点相容', revisionAdvice: '', resolves: ['batch-1/timeline'], evidence: prepared.sources.map(s => ({ fragmentId: s.fragments[0].id })) }] };
+  const first = structuredClone(good);
+  first.checks[0].evidence.splice(1, 1);
+  let calls = 0;
+  const planner = new JsonDesignPlanner({ complete: async call => {
+    assert.match(call.system, /evidence最多64个/);
+    if (++calls === 1) return JSON.stringify(first);
+    const repair = JSON.parse(call.user);
+    assert.match(repair.problems, /缺少来源：original\/recipient/);
+    assert.match(repair.problems, /不需穷举其全部片段/);
+    assert.deepEqual(repair.previousOutput, JSON.stringify(first));
+    assert.deepEqual(repair.originalRequest.sources, prepared.sources);
+    return JSON.stringify(good);
+  } });
+  const result = await planner.reviewDesignContent(request);
+  assert.equal(calls, 2);
+  assert.equal(result.checks[0].evidence.length, 4);
+  assert.deepEqual(result.modelResponses, [JSON.stringify(first), JSON.stringify(good)]);
+  assert.deepEqual(result.checks[0].resolves, ['batch-1/timeline']);
+});
