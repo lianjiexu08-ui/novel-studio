@@ -61,7 +61,7 @@ test('chapter-only power batches also receive complete tier and technique rules'
   ];
   input.sources = [...rules, ...input.sources];
   const run = createDesignReviewRun(input);
-  assert.equal(run.scheduleVersion, 8);
+  assert.equal(run.scheduleVersion, 9);
   for (const stage of run.stages) {
     const staged = designReviewStageInput(run, stage);
     assert.ok(JSON.stringify(staged.sources).length <= 240_000);
@@ -549,6 +549,52 @@ test('v8 changes only local summary guidance and preserves v7 replay and real re
   assert.equal(completeDesignReviewRun(JSON.parse(JSON.stringify(old))).result.checks[0].verdict, 'revise');
   const whole = createDesignReviewRun({ ...input, sources: [{ id: 'complete', text: '当前已提供完整规则和细纲' }] });
   assert.deepEqual(designReviewStageInput(whole, whole.stages[0]).rubric, input.rubric);
+});
+
+test('v9 locates existing macro sources by chapter range without granting unread evidence or removing blockers', () => {
+  const input: DesignReviewInput = { ...largeInput(), area: 'world', rubric: { geography: '核对跨海的日期、航款与准入' } };
+  const boundary = { id: 'plan/milestones/boundary', text: JSON.stringify({ title: '北港救援', startChapter: 61, endChapter: 66, setup: ['船已到港，但入港许可仍未取得。'] }) };
+  input.sources.unshift({ id: 'plan/overview', text: JSON.stringify({ targetChapterCount: 100, detailedThroughChapter: 50, outlinedChapterNumbers: [1, 50] }) });
+  input.sources.push(boundary,
+    { id: 'plan/volumes/second', text: JSON.stringify({ title: '北海', startChapter: 33, endChapter: 66 }) },
+    { id: 'plan/milestones/invalid', text: JSON.stringify({ startChapter: 80, endChapter: 60 }) },
+    { id: 'plan/milestones/text', text: '没有结构化的章号，不能靠名称猜范围。' },
+    { id: 'story/volumes/not-a-plan-range', text: JSON.stringify({ startChapter: 61, endChapter: 66 }) });
+  const current = createDesignReviewRun(input, undefined, 9), legacy = createDesignReviewRun(input, undefined, 8);
+  assert.deepEqual(current.units, legacy.units);
+  assert.deepEqual(current.stages, legacy.stages);
+  const first = designReviewStageInput(current, current.stages[0]);
+  assert.ok(!first.stage!.sourceMap.some(u => u.sourceId === boundary.id));
+  assert.deepEqual(first.stage!.coverage!.planRanges, [
+    { sourceId: boundary.id, startChapter: 61, endChapter: 66, title: '北港救援' },
+    { sourceId: 'plan/volumes/second', startChapter: 33, endChapter: 66, title: '北海' },
+  ]);
+  assert.equal(Object.hasOwn(first.stage!.coverage!.sourceLengths, 'plan/chapters/61'), false);
+  const unreadCitation = stagePass(first);
+  unreadCitation.checks[0].evidence = [{ sourceId: boundary.id, quote: boundary.text }];
+  assert.throws(() => acceptDesignReviewStage(current, current.stages[0], unreadCitation), /引用不在原文/);
+  const invented = stagePass(first);
+  invented.checks[0] = { ...invented.checks[0], verdict: 'insufficient', revisionAdvice: '补读不存在的细纲', awaitingSources: ['plan/chapters/61'] };
+  assert.throws(() => acceptDesignReviewStage(current, current.stages[0], invented), /不在完整目录/);
+  for (const stage of current.stages) {
+    const after = designReviewStageInput(current, stage);
+    const oldStage = legacy.stages.find(s => s.id === stage.id)!;
+    const before = designReviewStageInput(legacy, oldStage);
+    assert.equal(before.stage!.coverage!.planRanges, undefined);
+    assert.deepEqual(after.sources, before.sources);
+    if (after.stage!.coverage!.mode === 'local_sources') {
+      assert.match(after.rubric.geography, /目录没有某章不等于作品缺少该章/);
+      assert.doesNotMatch(before.rubric.geography, /coverage.planRanges/);
+    }
+    const result = stagePass(after);
+    if (stage.id === 'batch-1') result.checks[0] = { ...result.checks[0], verdict: 'insufficient', explanation: '尚无法确认具体准入条件', revisionAdvice: '核实准入而不是自动放行' };
+    acceptDesignReviewStage(current, stage, result);
+    acceptDesignReviewStage(legacy, oldStage, result);
+    const restored = JSON.parse(JSON.stringify(current));
+    assert.deepEqual(designReviewStageInput(restored, restored.stages.find((s: { id: string }) => s.id === stage.id)), after);
+  }
+  assert.equal(completeDesignReviewRun(current).result.checks[0].verdict, 'insufficient');
+  assert.equal(completeDesignReviewRun(legacy).result.checks[0].verdict, 'insufficient');
 });
 
 test('dedicated follow-ups cannot recursively defer or omit evidence, and unresolved oversized questions remain blockers', () => {

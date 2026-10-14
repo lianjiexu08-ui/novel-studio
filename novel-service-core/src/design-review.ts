@@ -42,6 +42,8 @@ export interface DesignReviewInput {
       mode: 'whole_input' | 'local_sources' | 'reports_with_context';
       /** Complete inventory of this area's input, not evidence of source contents. */
       sourceLengths: Record<string, number>;
+      /** Navigation only: ranges stated by existing plan sources, never evidence. */
+      planRanges?: Array<{ sourceId: string; startChapter: number; endChapter: number; title?: string }>;
       pendingChecks?: Array<{ id: string; criterion: string; questionSourceId: string; requiredSourceIds: string[]; priorUnitIds: string[]; priorSourceIds?: string[] }>;
       resolvedDeferrals?: Array<{ checkId: string; resolvedByStageId: string }>;
     };
