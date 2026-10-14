@@ -1,0 +1,98 @@
+{
+  "status": "reviewed",
+  "candidateVersion": 2,
+  "candidateHash": "83e22b4335d94d74762ae32a9cb4d6e396195ada3c8a8eefa09fa968b658a73c",
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "savedToWork": false,
+  "formalAcceptance": false,
+  "usage": {
+    "calls": 2,
+    "failedCalls": 0,
+    "inputTokens": 163166,
+    "outputTokens": 2764,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 2,
+        "failedCalls": 0,
+        "outputTokens": 2764,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 8
+    }
+  },
+  "cases": [
+    {
+      "name": "npc-light-object-training-and-load",
+      "status": "reviewed",
+      "sourceCount": 104,
+      "sourceCharacters": 94188,
+      "attempts": 1,
+      "summary": "本批第36章与第43章的凝元轻物御动均已补足训练、实测、对象与现场资格；两次支付和承重边界明确区分；第35至44章的脱身、控制、报警、跟船与切索保留了各方选择、失败及代价。三项通过。",
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "pass",
+          "explanation": "第36章明确门侧看守在上岗前以小门销、废木片反复练习并完成半丈、一息、不足两斤自由木片的实测，本场又有臂掌完好、气路稳定和可用真元前提；第43章送钩伙计也明确有同类未受力钩索头的起动、落钩、停术训练，并实测两丈内、三息内、不足两斤。本场没有把凝元境名称直接当作掌握证明。",
+          "revisionAdvice": "",
+          "evidenceCount": 4
+        },
+        {
+          "criterion": "costs",
+          "verdict": "pass",
+          "explanation": "第36章把御物对象限定为半丈内、未受载且不足两斤的单片木片，预付半成、拨开即停，门重和空筐不进入术费；若被车压、楔紧或遮挡则不能强拔。第43章把轻钩与未受力松索头作为一件不足两斤的目标，限定两丈内、两息内、预付半成后停术；之后由驳船前行、普通拖索和艉桩承受拖力，没有把整船拖力或持续控制藏进半成费用，余额也分别记录。",
+          "revisionAdvice": "",
+          "evidenceCount": 5
+        },
+        {
+          "criterion": "agency",
+          "verdict": "pass",
+          "explanation": "第35至36章保留了林贺追查与先疏通货道的选择、唐带五人脱身的主动尝试、木楔被拨和五人被拦回的失败，以及程撤掉外口工序并加看的代价。第37至42章中林选择救人而放弃追携页者，贺撤回缆工、拒押船换见工，并以实测退路放弃危险观察位。第43至44章林先敲岸钟再跟船，陆选择命伙计挂钩拖船，林切索但优先递浮圈救落水者；切索、失足、护桩、搁浅和原账逃脱均有独立因果与代价，未变成无条件压制或抹掉工人的失败。",
+          "revisionAdvice": "",
+          "evidenceCount": 9
+        }
+      ]
+    },
+    {
+      "name": "guard-duty-transition",
+      "status": "reviewed",
+      "sourceCount": 96,
+      "sourceCharacters": 115176,
+      "attempts": 1,
+      "summary": "三项核查均通过。213—216日的在途12小时看押/护路与216日19时抵宗、217日07时起单一墨岗6小时轮值已区分阶段，并给出交接、休息和知情边界；伤情、元罡动作及顾峤不再兼岗的安排能够闭合。",
+      "checks": [
+        {
+          "criterion": "timeline",
+          "verdict": "pass",
+          "explanation": "213—216日明确由乔、邵按07—19与19—次日07两班看押墨，杜、褚承担护路；216日19时抵外门后，先由邵继续旧夜班至217日07时，再由杜当面接押。之后撤销返程护路任务，改为杜07—13、乔13—19、褚19—次日01、邵01—07的一处墨岗6小时轮值。原文明确该换制“不追改古境两岗及在途12小时班”，且有实际抵达与当面交接，不构成重叠或空岗。",
+          "revisionAdvice": "",
+          "evidenceCount": 3
+        },
+        {
+          "criterion": "costs",
+          "verdict": "pass",
+          "explanation": "战后顾峤因肩伤、施术与元罡消耗在午正交押后退出看守，乔、邵与杜、褚承担既定岗位；乔邵各12小时看押、杜褚护路，并安排交班后的连续休息。看守动作按定腕每次半成、最多两次后停止，健康看守仅预留两成有限动作额度，不能把备用额度写成持续禁锢。217日新制每人两班间有18小时休息，伤情或反抗变化时须停运重核，也没有让顾峤补夜班或兼岗。",
+          "revisionAdvice": "",
+          "evidenceCount": 3
+        },
+        {
+          "criterion": "causality",
+          "verdict": "pass",
+          "explanation": "返宗安排没有凭空取消古境管理：212日全员退出后仅注销本批入口班，古境三方管理继续；213—216日实体慢车返宗，216日19时才完成护路任务交接。217日新单岗是在外门实际接押后启动。苏亲见交接和班表，但林在赤霄，直到第41章收到苏于226日寄出的信才知返宗结果，避免了提前知情。墨仍作为受伤的玄府俘虏由具名轮班看守，普通绳索和换班并未取消其反抗风险或古境管理约束。",
+          "revisionAdvice": "",
+          "evidenceCount": 3
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Six scoped checks only; not full formal acceptance.",
+    "Candidate remains unsaved; active design 28/57/57 unchanged.",
+    "Existing blockers and historical reviews remain intact."
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "status": "queued_not_started",
+  "status": "recovery_started",
   "originalRunnerStatus": "running",
   "failedAreas": [
     {
@@ -9,9 +9,14 @@
     {
       "area": "characters",
       "message": "openai-compatible request failed (524): openai_error"
+    },
+    {
+      "area": "world",
+      "message": "模型输出修正一次后仍不符合格式：解决待补读项必须引用原问题、原批材料及每个新增来源：batch-4/history；缺少：原批材料（至少一个实际支持判断的原批片段）。按本次来源目录选择真实支持片段，不得自动补引文或只删除resolves来掩盖未核验问题。"
     }
   ],
   "recoveryOrder": [
+    "world",
     "power",
     "character"
   ],
@@ -21,13 +26,17 @@
   "model": "gpt-5.6-luna",
   "fallback": false,
   "guards": [
-    "Original runner terminal and process exited",
-    "No other ready/running review",
     "Matching immutable design fingerprint",
+    "At most two concurrent model calls across original and recovery runners",
     "Completed stages not replayed",
-    "Original failures retained",
-    "All other reports, runs and adopted history hashes unchanged"
+    "Original failure prefixes retained",
+    "All 33 old runs and 39 old reports unchanged",
+    "Proposed design and adopted history hashes unchanged",
+    "Second recovery worker requires original runner terminal checkpoint and process exit"
   ],
   "workspaceDependencies": "Recovery workspace modules resolve to the frozen archive, including the original 12-source contract. The new 64-source change is not injected into this run.",
-  "formalAcceptance": false
+  "formalAcceptance": false,
+  "startedAt": "2026-10-14T09:40:41.758Z",
+  "orchestration": "One recovery worker alongside original story runner; second recovery worker only after verified original terminal checkpoint and process exit.",
+  "supersededQueue": "Stopped while waiting, before any recovery model calls."
 }
