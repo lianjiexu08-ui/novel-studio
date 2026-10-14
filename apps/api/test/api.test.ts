@@ -7,7 +7,7 @@ import type { ModelProvider } from '../../../novel-service-core/src/core.ts';
 import { UsageLedger } from '../../../packages/model-gateway/src/index.ts';
 import { approveMinimalPlan, fixtureDesignReview, chapterBody, lockMinimalDesign, minimalPlan } from '../../../packages/application/test/fixtures.ts';
 import type { BookPlan } from '../../../novel-service-core/src/planning.ts';
-import { designReviewOverviewSchema, qualityAuditDtoSchema } from 'novel-studio-contracts';
+import { designReviewOverviewSchema, designReviewSummarySchema, qualityAuditDtoSchema } from 'novel-studio-contracts';
 
 const writer: ModelProvider = {
   generateChapter: ({ chapterNumber }) => {
@@ -919,6 +919,30 @@ test('staged design review API preserves progress and cannot release partial rev
     assert.equal(current.versions.size, 0);
     assert.equal(current.checkpoints.size, 0);
     assert.equal(current.designContentReviews.size, 1);
+    const stored = [...current.designContentReviews.values()][0];
+    const before = JSON.stringify(stored);
+    const fullResponse = await app.inject({ method: 'GET', url: `${base}/content-reviews` });
+    const summaryResponse = await app.inject({ method: 'GET', url: `${base}/content-reviews?view=summary` });
+    const summary = designReviewSummarySchema.parse(summaryResponse.json());
+    assert.deepEqual(summary.areas, fullResponse.json().areas, 'list projection must not change readiness or verdicts');
+    assert.equal(summary.ready, fullResponse.json().ready);
+    assert.equal(summary.reports[0].summary, stored.summary);
+    assert.deepEqual(summary.reports[0].scope, stored.scope);
+    for (const field of ['sources', 'checks', 'resolvedDeferrals']) assert.equal(field in summaryResponse.json().reports[0], false);
+    assert.ok(summaryResponse.body.length < fullResponse.body.length / 10, 'progress refreshes should not resend full design evidence');
+    const token = summaryResponse.json().revisionToken;
+    assert.deepEqual((await app.inject({ method: 'GET', url: `${base}/content-reviews?view=summary&since=${token}` })).json(), { unchanged: true, revisionToken: token });
+    const fullWithSummaryToken = (await app.inject({ method: 'GET', url: `${base}/content-reviews?since=${token}` })).json();
+    assert.equal(fullWithSummaryToken.unchanged, undefined, 'summary token must not suppress a request for full reports');
+    assert.deepEqual(fullWithSummaryToken.reports[0], stored, 'legacy full response remains intact');
+    const reportResponse = await app.inject({ method: 'GET', url: `${base}/content-reviews/${encodeURIComponent(stored.id)}` });
+    assert.deepEqual(reportResponse.json().report, stored, 'detail preserves every quotation, source and resolved deferral');
+    assert.equal((await app.inject({ method: 'GET', url: `${base}/content-reviews/unknown` })).statusCode, 404);
+    const otherWork = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('其他作品') })).json();
+    assert.equal((await app.inject({ method: 'GET', url: `/works/${otherWork.id}/design/content-reviews/${stored.id}` })).statusCode, 404, 'reports cannot be read through a different work');
+    assert.equal((await app.inject({ method: 'GET', url: `/works/unknown/design/content-reviews/${stored.id}` })).statusCode, 404);
+    assert.equal(JSON.stringify(stored), before, 'list and detail reads must not mutate stored evidence');
+    assert.equal(calls, count, 'summary and detail reads must not advance reviews');
   } finally { await app.close(); }
 });
 
@@ -968,6 +992,8 @@ test('browser review client sends objects to the real API and preserves the sele
     const updatedRecords = await api.pollDesignContentReviews(work.id, proposal.id, initialRecords.revisionToken);
     assert.equal(updatedRecords.reports.some((report: { id: string }) => report.id === firstReport.id), true);
     assert.notEqual(updatedRecords.revisionToken, initialRecords.revisionToken);
+    assert.equal('sources' in updatedRecords.reports[0], false, 'browser polls request the lightweight summary');
+    assert.deepEqual((await api.designContentReview(work.id, firstReport.id)).report, firstReport);
     // Stage IDs are opaque path parameters. Dedicated follow-ups contain a
     // slash; test the actual browser client against Fastify's route decoder.
     const detailRun = structuredClone(current.designReviewRuns.get(runId)!);

@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 import { Alert, App, Button, Card, Collapse, Empty, Modal, Select, Space, Tag, Typography } from 'antd';
-import type { DesignContentReviewDto, DesignReviewAreaDto, DesignReviewOverviewDto } from 'novel-studio-contracts';
+import type { DesignContentReviewDto, DesignContentReviewSummaryDto, DesignReviewAreaDto, DesignReviewSummaryDto } from 'novel-studio-contracts';
 import { api, type DesignReviewStageDetail } from '../api';
 
 const labels = { world: '世界、势力与历史', power: '力量、功法与法宝', characters: '人物、关系与认知', story: '主线、分卷与章纲' };
@@ -8,11 +8,35 @@ const statuses = { missing: '尚未评审', outdated: '设计已变，需重评'
 const verdicts = { pass: '通过', revise: '返修', insufficient: '材料不足' };
 const insufficiencyReasons = { missing_design: '设计内容缺失', unlocatable_sources: '尚无法定位所需材料', capacity_limit: '完整核验材料超出本次容量' };
 const criteria: Record<string, string> = { geography: '地理与势力', history: '历史因果', capacity: '长篇承载能力', tiers: '品阶与门槛', costs: '消耗与恢复', counters: '上限与反制', agency: '独立动机与选择', relationships: '关系变化', knowledge: '秘密与认知', causality: '情节因果', timeline: '时空与分卷', payoff: '铺垫与兑现', opening: '开篇递进', pacing: '节奏与场次', genre: '题材体验与成长' };
-type ReviewRun = DesignReviewOverviewDto['runs'][number];
+type ReviewRun = DesignReviewSummaryDto['runs'][number];
+
+function LazyReviewReport({ workId, report, render }: { workId: string; report: DesignContentReviewSummaryDto; render: (report: DesignContentReviewDto) => ReactNode }) {
+  const [detail, setDetail] = useState<DesignContentReviewDto>();
+  const [error, setError] = useState('');
+  const [attempt, setAttempt] = useState(0);
+  // Older API versions embed full reports. Keep their evidence usable during
+  // a rolling upgrade without calling an endpoint they do not yet support.
+  const embedded = 'sources' in report && 'checks' in report ? report as DesignContentReviewDto : undefined;
+  useEffect(() => {
+    if (embedded) return;
+    let cancelled = false;
+    setDetail(undefined); setError('');
+    void api.designContentReview(workId, report.id).then(({ report: full }) => {
+      if (!cancelled) setDetail(full);
+    }).catch(cause => { if (!cancelled) setError(cause instanceof Error ? cause.message : String(cause)); });
+    return () => { cancelled = true; };
+  }, [workId, report.id, embedded, attempt]);
+  if (embedded || detail) return render(embedded ?? detail!);
+  return <Space direction="vertical" style={{ width: '100%' }}>
+    <Typography.Text type="secondary">世界 v{report.scope.worldPackRevision} · 圣经 v{report.scope.storyBibleRevision} · 计划 v{report.scope.planRevision}</Typography.Text>
+    <Typography.Paragraph>{report.summary}</Typography.Paragraph>
+    {error ? <Alert type="error" message="评审详情加载失败" description={error} action={<Button onClick={() => setAttempt(value => value + 1)}>重试</Button>} /> : <Typography.Text>正在加载逐项结论与原文证据…</Typography.Text>}
+  </Space>;
+}
 
 export function DesignContentReviewCard({ workId, revision, onReviewed }: { workId: string; revision: number; onReviewed: () => Promise<void> }) {
   const { message } = App.useApp();
-  const [data, setData] = useState<DesignReviewOverviewDto | null>(null);
+  const [data, setData] = useState<DesignReviewSummaryDto | null>(null);
   const [error, setError] = useState('');
   const [planId, setPlanId] = useState<string>();
   const [busy, setBusy] = useState<DesignReviewAreaDto | null>(null);
@@ -111,6 +135,9 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
       </div>)}</Space> }]} />
     </Space>;
   }
+  function reportDetails(report: DesignContentReviewSummaryDto) {
+    return <LazyReviewReport key={`${workId}/${report.id}`} workId={workId} report={report} render={details} />;
+  }
   const currentRuns = data?.runs.filter((run, index, runs) => run.inputHash === data.inputHash && !runs.slice(index + 1).some(next => next.inputHash === data.inputHash && next.area === run.area)) ?? [];
   const currentRunIds = new Set(currentRuns.map(run => run.id));
   const historicalRuns = data?.runs.filter(run => !currentRunIds.has(run.id)).reverse() ?? [];
@@ -124,14 +151,14 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
       {data ? <>
         <Collapse items={data.areas.map((area) => {
           const report = data.reports.find((item) => item.id === area.reportId);
-          return { key: area.area, label: <Space wrap>{labels[area.area]}<Tag color={area.status === 'passed' ? 'success' : 'warning'}>{statuses[area.status]}</Tag></Space>, extra: <Button size="small" loading={busy === area.area} disabled={busy !== null || !data.inputHash} onClick={(event) => { event.stopPropagation(); void review(area.area); }}>{['reviewing', 'interrupted'].includes(area.status) ? '继续本项' : '评审本项'}</Button>, children: report ? details(report) : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="尚无评审。先准备设计及计划提案，再评审本项。" /> };
+          return { key: area.area, label: <Space wrap>{labels[area.area]}<Tag color={area.status === 'passed' ? 'success' : 'warning'}>{statuses[area.status]}</Tag></Space>, extra: <Button size="small" loading={busy === area.area} disabled={busy !== null || !data.inputHash} onClick={(event) => { event.stopPropagation(); void review(area.area); }}>{['reviewing', 'interrupted'].includes(area.status) ? '继续本项' : '评审本项'}</Button>, children: report ? reportDetails(report) : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="尚无评审。先准备设计及计划提案，再评审本项。" /> };
         })} />
         {currentRuns.map(run => <Card size="small" key={run.id} title={`${labels[run.area]} · ${run.stages.filter(stage => stage.completed).length}/${run.stages.length} 步`}>{runDetails(run)}</Card>)}
         {historicalRuns.length > 0 && <Collapse items={[{ key: 'run-history', label: `历史评审任务与批次（${historicalRuns.length}）`, children: <Space direction="vertical" style={{ width: '100%' }}>
           <Typography.Paragraph type="secondary">保留旧版本及同一设计的较早任务，包括未形成最终报告的失败或中断任务。这些历史记录不代表当前所选设计通过；继续评审请使用上方对应项目的入口。</Typography.Paragraph>
           <Collapse style={{ width: '100%' }} items={historicalRuns.map(run => ({ key: run.id, label: <Space wrap>{labels[run.area]} · 计划 v{run.scope.planRevision} · {run.stages.filter(stage => stage.completed).length}/{run.stages.length} 步<Tag>{run.inputHash !== data.inputHash ? '与当前所选设计或计划不同' : '同一设计的较早任务'}</Tag><Typography.Text type="secondary">{new Date(run.createdAt).toLocaleString()}</Typography.Text></Space>, children: runDetails(run, true) }))} />
         </Space> }]} />}
-        <Collapse items={[{ key: 'history', label: `历史评审记录（${data.reports.length}）`, children: <Collapse items={[...data.reports].reverse().map((report) => ({ key: report.id, label: `${labels[report.area]} · ${statuses[report.status]} · ${new Date(report.createdAt).toLocaleString()}${report.inputHash !== data.inputHash ? '（已过期）' : ''}`, children: details(report) }))} /> }]} />
+        <Collapse items={[{ key: 'history', label: `历史评审记录（${data.reports.length}）`, children: <Collapse items={[...data.reports].reverse().map((report) => ({ key: report.id, label: `${labels[report.area]} · ${statuses[report.status]} · ${new Date(report.createdAt).toLocaleString()}${report.inputHash !== data.inputHash ? '（已过期）' : ''}`, children: reportDetails(report) }))} /> }]} />
       </> : !error && <Typography.Text>正在加载评审记录…</Typography.Text>}
     </Space>
     <Modal open={stageDetail !== null} title={stageDetail ? `${stageDetail.stage.label} · 计划 v${stageDetail.input.scope.planRevision}` : '批次详情'} footer={null} onCancel={() => setStageDetail(null)} width={900}>

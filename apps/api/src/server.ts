@@ -537,15 +537,24 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     const { workId } = workParamSchema.parse(request.params);
     const work = await repository.get(workId);
     if (!work) throw new NotFoundError(`unknown work ${workId}`);
-    const { planId, since } = z.object({ planId: z.string().min(1).optional(), since: z.string().max(64).optional() }).parse(request.query);
+    const { planId, since, view } = z.object({ planId: z.string().min(1).optional(), since: z.string().max(64).optional(), view: z.enum(['full', 'summary']).default('full') }).parse(request.query);
     const plans = [...work.plans.values()].filter((plan) => plan.status !== 'superseded').sort((a, b) => b.revision - a.revision);
     const selected = planId ? plans.find((plan) => plan.id === planId) : plans[0];
     if (planId && !selected) throw new NotFoundError(`unknown plan ${planId}`);
     const overview = { ...designReviewOverview(work, selected?.id), selectedPlan: selected ? { id: selected.id, revision: selected.revision, status: selected.status } : undefined, plans: plans.map((plan) => ({ id: plan.id, revision: plan.revision, status: plan.status })) };
     // Saved reports are immutable. Track their identities and all mutable run
     // metadata without serializing their potentially huge source/evidence text.
-    const revisionToken = createHash('sha256').update(JSON.stringify({ workId, ...overview, reports: overview.reports.map(report => report.id) })).digest('hex');
-    return since === revisionToken ? { unchanged: true, revisionToken } : { ...overview, revisionToken };
+    const revisionToken = createHash('sha256').update(JSON.stringify({ workId, view, ...overview, reports: overview.reports.map(report => report.id) })).digest('hex');
+    if (since === revisionToken) return { unchanged: true, revisionToken };
+    return { ...overview, reports: view === 'summary' ? overview.reports.map(({ sources, checks, resolvedDeferrals, ...report }) => report) : overview.reports, revisionToken };
+  });
+
+  app.get('/works/:workId/design/content-reviews/:reportId', async (request) => {
+    const { workId, reportId } = workParamSchema.extend({ reportId: z.string().min(1) }).parse(request.params);
+    const work = await repository.get(workId);
+    const report = work?.designContentReviews.get(reportId);
+    if (!report) throw new NotFoundError('unknown design review report');
+    return { report };
   });
 
   app.post('/works/:workId/design/content-reviews', async (request) => {

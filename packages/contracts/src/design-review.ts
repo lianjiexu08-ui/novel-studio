@@ -52,3 +52,9 @@ export const designReviewOverviewSchema = z.object({
 export type DesignReviewAreaDto = z.infer<typeof designReviewAreaSchema>;
 export type DesignContentReviewDto = z.infer<typeof designContentReviewSchema>;
 export type DesignReviewOverviewDto = z.infer<typeof designReviewOverviewSchema>;
+// List views retain conclusions and version binding; full evidence is fetched
+// by immutable report ID when the reader opens a report.
+export const designContentReviewSummarySchema = designContentReviewSchema.omit({ sources: true, checks: true, resolvedDeferrals: true });
+export const designReviewSummarySchema = designReviewOverviewSchema.extend({ reports: z.array(designContentReviewSummarySchema) });
+export type DesignContentReviewSummaryDto = z.infer<typeof designContentReviewSummarySchema>;
+export type DesignReviewSummaryDto = z.infer<typeof designReviewSummarySchema>;
