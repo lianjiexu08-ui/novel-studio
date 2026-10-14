@@ -1,0 +1,29 @@
+{
+  "status": "prepared_not_deployed_unbound_to_design",
+  "observedAt": "2026-10-14T22:32:23.645900+00:00",
+  "root": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design62-2085f06",
+  "commit": "2085f068f666499948bcfda91ee15f1cc13dbc6c",
+  "rubricVersion": 16,
+  "scheduleVersion": 22,
+  "model": "gpt-5.6-luna",
+  "timeoutMs": 600000,
+  "fallback": false,
+  "candidateBinding": null,
+  "productionRestarted": false,
+  "modelCalls": 0,
+  "workspaceModulesPinned": true,
+  "prismaClientPinned": true,
+  "prismaSchemaSha256": "708ca841acae408f306329dff405a7e7d00609ccd70cb5240bdfcc6c3b097f98",
+  "dependencies": {
+    "source": "isolated_validation_workspace",
+    "entryCount": 40575,
+    "treeSha256": "3c868a6ed3cc488f987f33d91d69305740c859716be340cd26df8aa571bc566d",
+    "allSymlinksStayWithinRuntime": true,
+    "generatedClientCopiedWithoutGeneration": true
+  },
+  "validation": "360 tests and strict core types passed before freeze; frozen core/persistence imports and default schedule22 smoke passed; every frozen source hash verified. No DB connection, model call or server startup.",
+  "importSmokePassed": true,
+  "sourceCount": 117,
+  "manifestPath": "data/audit-runtimes/design62-runtime.json",
+  "manifestSha256": "873ebd489270ca693261c9390a5a761f9cd0bec1e527f5d60684c1bb49839f18"
+}
