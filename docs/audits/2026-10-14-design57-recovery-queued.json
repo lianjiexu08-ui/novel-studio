@@ -1,0 +1,33 @@
+{
+  "status": "queued_not_started",
+  "originalRunnerStatus": "running",
+  "failedAreas": [
+    {
+      "area": "power",
+      "message": "模型输出修正一次后仍不符合格式：等待补读来源不在完整目录中：plan/chapters/83。必须从sourceLengths选择确实存在且未完整读取的原始来源；没有逐章细纲时核对已有分卷或里程碑，不得推造章节ID。没有可补读来源时保留普通材料不足。"
+    },
+    {
+      "area": "characters",
+      "message": "openai-compatible request failed (524): openai_error"
+    }
+  ],
+  "recoveryOrder": [
+    "power",
+    "character"
+  ],
+  "runtimeCommit": "4aacb02712bbd7f2a155de432ec773697234114d",
+  "scheduleVersion": 12,
+  "rubricVersion": 14,
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "guards": [
+    "Original runner terminal and process exited",
+    "No other ready/running review",
+    "Matching immutable design fingerprint",
+    "Completed stages not replayed",
+    "Original failures retained",
+    "All other reports, runs and adopted history hashes unchanged"
+  ],
+  "workspaceDependencies": "Recovery workspace modules resolve to the frozen archive, including the original 12-source contract. The new 64-source change is not injected into this run.",
+  "formalAcceptance": false
+}
