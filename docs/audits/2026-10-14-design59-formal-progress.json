@@ -1,5 +1,5 @@
 {
-  "observedAt": "2026-10-14T15:33:07.424Z",
+  "observedAt": "2026-10-14T15:39:35.685Z",
   "status": "in_progress_not_acceptance",
   "originalRunnerStatus": "running",
   "runtimeCommit": "7f9a9771bd3ca5a5db7323118b12e015587ca140",
@@ -26,17 +26,17 @@
     "reports": 47
   },
   "usage": {
-    "calls": 17,
+    "calls": 24,
     "failedCalls": 0,
-    "inputTokens": 1797310,
-    "outputTokens": 37280,
+    "inputTokens": 2947693,
+    "outputTokens": 51365,
     "costUsd": 0,
     "costKnown": false,
     "byRole": {
       "reviewing": {
-        "calls": 17,
+        "calls": 24,
         "failedCalls": 0,
-        "outputTokens": 37280,
+        "outputTokens": 51365,
         "costUsd": 0
       }
     },
@@ -47,14 +47,14 @@
   },
   "usageScope": "original_runner_only",
   "recoveries": [],
-  "combinedCalls": 17,
+  "combinedCalls": 24,
   "errors": [],
   "runs": [
     {
       "id": "design_run_7c8ca759-f3df-4f3e-92fc-b2502e06128a",
       "area": "world",
       "status": "running",
-      "completed": 6,
+      "completed": 10,
       "total": 29,
       "stages": [
         {
@@ -306,6 +306,176 @@
               "evidenceCount": 10
             }
           ]
+        },
+        {
+          "id": "cross-1-3",
+          "checks": [
+            {
+              "criterion": "geography",
+              "verdict": "insufficient",
+              "explanation": "已读前20章中，古境进入按凝元三重、联名符牌和登记路线执行，未将古境通路混同界门；但百章提案的青玄—赤霄、赤霄—苍冥、苍冥—青玄实体航程，以及赤霄、苍冥港口的验籍、担保、票款和离境安排，落在未附的21—50章细纲及后段里程碑中。现有商路规则明确这些事项不能由标题或商盟身份替代，故不能据宏观“北航/返乡”表述判定其已闭合，也未见本批已读内容与规则构成硬冲突。",
+              "revisionAdvice": "补读所列章纲和里程碑后，逐航段核对出发与抵达日、实体船舶或陆路、港口验籍/担保、实际付款或代付责任、封航应对及人员可进入范围；尤其核实北境外港救援后的离境与回青玄航程。",
+              "awaitingSources": [
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50",
+                "plan/milestones/ms_growth_v1_crossing",
+                "plan/milestones/ms_bridge_return",
+                "plan/milestones/ms_v2_loss",
+                "plan/milestones/ms_v2_voyage",
+                "plan/milestones/ms_v2_boundary",
+                "plan/milestones/ms_v3_return",
+                "plan/volumes/vol_01",
+                "plan/volumes/vol_02",
+                "plan/volumes/vol_03"
+              ],
+              "evidenceCount": 5
+            },
+            {
+              "criterion": "history",
+              "verdict": "pass",
+              "explanation": "待核原文已表明：太清与大乾围绕寿材、矿产和宗权存在长期结构性竞争，幽罗殿具有收集命寿、死息并颠覆两方秩序的独立目标；寿材运医约又使跨海医护、港口、舟票与名额成为可争夺且不能预支的制度环节。赵府、炎煞外围代理与程砚的旧约则具体限定为逐批核验的低阶货物、仓位、承运和结算，并明确扣人、禁物转运及货损后的停垫、追索、拒供均是各行动者需自行承担的选择与后果。因而矿务—港口—北境的一条有限链可由既存利益和责任推动，而非主角发现后凭空生成；同时旧约不自动赋予免检、即时传讯或全案知情，和百章只取证一条链的边界相容。",
+              "revisionAdvice": "",
+              "resolves": [
+                "batch-3/history"
+              ],
+              "evidenceCount": 9
+            },
+            {
+              "criterion": "capacity",
+              "verdict": "pass",
+              "explanation": "本轮100章以三卷完成有限救援、断运和玄府成长，而非提前耗尽约450章的界门总线；三大陆又通过实体商路、不同港口准入、资源成熟周期和势力配额产生不同的冲突机制。年轮晶、伏龄根与命胶均以自然窗口、保育/应急份额、医疗资格、运输和疗程约束后续成长，足以持续提供竞争、拒绝与代价，而不是以条目数量或无成本资源扩容。",
+              "revisionAdvice": "",
+              "evidenceCount": 6
+            }
+          ]
+        },
+        {
+          "id": "cross-1-4",
+          "checks": [
+            {
+              "criterion": "geography",
+              "verdict": "pass",
+              "explanation": "本批实际跨域移动采用实体商路而非界门或瞬移：林辰由古境经陆路抵云梦港，214日暮起航、216日暮抵天宝外港，符合青玄—赤霄约两昼夜的航程；靠港前复核放行旗号，且普通避火衣、借符与后续租符按受护区域和时限分别交接。港内追船也以公共近岸航道、测深、漂木实测、岸钟和巡艇实体赶赴推进，未把凝元御物偷换成拖船或跨域能力。",
+              "revisionAdvice": "",
+              "evidenceCount": 6
+            },
+            {
+              "criterion": "history",
+              "verdict": "pass",
+              "explanation": "当前港口冲突能由既有私运旧约及其可追责的货号、垫款、仓位和承运责任自然推出，而非凭历史势力标签强行驱动。赵方、炎煞外围代理与程砚的旧约明确不授予免检、无限赊额或即时跨域调度；第31—43章据此将程记收货、失箱、扣工、拒见、撤缆和低驳转运拆为可独立选择且会付出停班、失单、仓占、巡查与人身风险的行动链。各方也未因掌握一段货物流向而自动获得完整罪证或搜船权。",
+              "revisionAdvice": "",
+              "evidenceCount": 7
+            },
+            {
+              "criterion": "capacity",
+              "verdict": "pass",
+              "explanation": "就本批可见设计，百章阶段容量并非依赖无限升级或重复换地图：总纲将100章限定为切断一条三地运输链的阶段验收，后段仍保留北境救援、玄府晋阶、押运截停与有限回访等不同目标；三大陆的航运、港务、寒区医疗和界渊寿源均有不同准入、自然周期、配额、运输与人员占用约束。前50章已展开为古境救援—跨海货运—外港扣工调查，后50章保留宏观里程碑即可，不因尚未逐章展开而构成容量缺口。",
+              "revisionAdvice": "",
+              "evidenceCount": 7
+            }
+          ]
+        },
+        {
+          "id": "cross-1-5",
+          "checks": [
+            {
+              "criterion": "geography",
+              "verdict": "pass",
+              "explanation": "原待核问题已补齐：赤霄—苍冥五昼夜、苍冥—青玄六昼夜的实体航程与验籍、担保规则明确。北航安排先以专项款购票并在受护沿岸驿道逐日核放行；北境只在外港受限查货。返程另由夜具名签发限程离境担保、逐站验籍，303日实到通天渡口后才购票，304日出航、310日抵青玄，未把船票、担保或航程当作瞬移。该链与三卷的地点和时间安排相容。",
+              "revisionAdvice": "",
+              "resolves": [
+                "batch-1/geography"
+              ],
+              "evidenceCount": 7
+            },
+            {
+              "criterion": "history",
+              "verdict": "pass",
+              "explanation": "旧约将赵的有限军需额度、炎煞外围代理的有限仓位、程自行签船约和逐批追责分开，明确不构成无限赊额、免检权或自动知情；当前计划中程的扣工/改签、赵的实体回令、商盟追缴垫款和巡界使的外港担保均未越过这些边界。太清与大乾的既有权力对立、商盟的航运逐利和巡界使不得抽空岗位的限制，也能解释各方不会无代价协作。寿材运医约所要求的预约、港口准入、名额和舟票分项落实，未被转运线偷换为既有医疗或通行权。",
+              "revisionAdvice": "",
+              "resolves": [
+                "batch-5/history"
+              ],
+              "evidenceCount": 12
+            },
+            {
+              "criterion": "capacity",
+              "verdict": "pass",
+              "explanation": "百章范围明确以凝元至玄府、三大陆实体商路、有限寿源与地方运输链为阶段性冲突，不冒充全书高阶终局。灵气与寿储分账、跨域航行和高阶能力门槛共同限制升级捷径；各大陆的资源产地、准入、配额、生态代价及势力利益又提供了可持续但不可随取的后续矛盾。三卷分别围绕青玄古境、赤霄港运、苍冥外港与返乡押运展开，地域功能和冲突机制存在实质差异，足以支撑本轮100章的递进。",
+              "revisionAdvice": "",
+              "evidenceCount": 12
+            }
+          ]
+        },
+        {
+          "id": "cross-2-3",
+          "checks": [
+            {
+              "criterion": "geography",
+              "verdict": "insufficient",
+              "explanation": "已读部分可核：林、苏在第180日实测凝元三重并持联名符牌，随后按登记路线进入灵虚古境，符合该地“凝元三重以上+联名准入符牌”的门槛；古境亦明确属于同一天地内部，不借太古界门。跨海规则则规定青玄—赤霄须约两昼夜实体航程、赤霄—苍冥须约五昼夜且分别核验票款、货物换舱、验籍和当日封航。提案确有赤霄、苍冥、返青玄的后续路线和日期安排，但本批未读第31—32章的实际南渡执行账，也未提供北航、北境出入及返航的相应里程碑原文；现有关系阶段不能替代对船舶、付款、港口资格和防护条件的核验。",
+              "revisionAdvice": "补读所列来源，逐项核对南渡、北航和返青玄的起讫港、船舶/担保、实际付款或代付责任、赤霄避火与苍冥验籍防寒条件；如宏观安排与具体章纲不一致，以实际动作账修正。",
+              "awaitingSources": [
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/milestones/ms_growth_v1_crossing",
+                "plan/milestones/ms_v2_voyage",
+                "plan/milestones/ms_v2_boundary",
+                "plan/milestones/ms_v3_return"
+              ],
+              "evidenceCount": 5
+            },
+            {
+              "criterion": "history",
+              "verdict": "insufficient",
+              "explanation": "前20章自身的因果链可读：使团常令只授权矿额与商路，现场拒开内册由执事作出；苏、梁、韩各自承担限行、停俸、配粮与改账后果，未被主角意志抹平。后续却将赵—炎煞—程记的互供明确建立在event_14“三年前私运框架”上，并涉及太清、朝廷、幽罗、商盟与巡界使的独立权限；本批只读到关系条目的转述，未读该历史事件及相应势力原档，无法核验旧约是否真能支撑后续跨陆货运、扣工和问责逻辑。",
+              "revisionAdvice": "补读事件与势力原档，核对旧约的参与方、可交换资源、授权范围、违约代价，以及其是否与赵、程、炎煞后续实际知情和行动权限一致。",
+              "awaitingSources": [
+                "world/historicalEvents/event_14",
+                "world/factions/fac_01",
+                "world/factions/fac_02",
+                "world/factions/fac_03",
+                "world/factions/fac_08",
+                "world/factions/fac_12"
+              ],
+              "evidenceCount": 4
+            },
+            {
+              "criterion": "capacity",
+              "verdict": "pass",
+              "explanation": "以本轮100章为验收范围，三卷并非换地图重复战斗：青玄卷以矿务、古境准入和有限泉液为压力；赤霄—苍冥段以港口扣工、航款、受限外港和救援取舍推进；归乡卷以训练、减寿晋玄府、押运救人和可复核问责收束。世界规则同时给出有限寿源、竞争、疗程及长期成长的条件见证，并明确该见证不自动授予主角，避免用条目数量或未来资源直接填平百章成长。其容量足以支撑当前阶段，也保留后续主线空间。",
+              "revisionAdvice": "",
+              "evidenceCount": 6
+            }
+          ]
         }
       ]
     },
@@ -313,7 +483,7 @@
       "id": "design_run_6da44acd-3475-4e6c-8f4f-b21c2833550b",
       "area": "power",
       "status": "running",
-      "completed": 5,
+      "completed": 7,
       "total": 29,
       "stages": [
         {
@@ -677,6 +847,278 @@
                 "world/techniques/tech_16"
               ],
               "evidenceCount": 11
+            }
+          ]
+        },
+        {
+          "id": "cross-1-2",
+          "checks": [
+            {
+              "criterion": "tiers",
+              "verdict": "insufficient",
+              "explanation": "已读规则明确境界不自动授予术法，且第1章把暗桩的附掌训练、两次一成真元支付与林辰淬体阶段无法施展逆命真解分开处理，局部不存在越阶冲突。可是计划声明1—50章均有细纲，而本批只读到第1章；第83章晋玄府及88—95章同阶截押等宏观安排还依赖未读里程碑。无法核验其余既有细纲中的技能取得、实测、伤情与法宝承载是否满足门槛。",
+              "revisionAdvice": "补读所列章纲与里程碑后，逐项核对凝元至玄府的训练、实测、伤后可用上限、剑器更替，以及截押中每名玄府的已学操作和对象限制。",
+              "awaitingSources": [
+                "plan/chapters/2",
+                "plan/chapters/3",
+                "plan/chapters/4",
+                "plan/chapters/5",
+                "plan/chapters/6",
+                "plan/chapters/7",
+                "plan/chapters/8",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/13",
+                "plan/chapters/14",
+                "plan/chapters/15",
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50",
+                "plan/milestones/ms_v2_fire",
+                "plan/milestones/ms_v2_voyage",
+                "plan/milestones/ms_v2_boundary",
+                "plan/milestones/ms_v3_return",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement",
+                "plan/milestones/ms_v3_convoy",
+                "plan/milestones/ms_v3_payoff"
+              ],
+              "evidenceCount": 12
+            },
+            {
+              "criterion": "costs",
+              "verdict": "insufficient",
+              "explanation": "已读公理将寿储、当境法力与永久本源分账，禁止预支未来寿源；灵泉也须完成疗程和复诊后才入账。开篇暗桩两次附掌按各一成真元支付，和基础操作规则相符。林辰在第466日的玄府预算、51—66航程资源及后段截押受伤后的法力、寿储和安置支出，仍仅见宏观结果或阶段锚点，未见对应细纲/里程碑执行账，不能确认预算闭合或成本未被重复取消。",
+              "revisionAdvice": "补读后应按实际日期逐项复核：两剂灵泉的疗程与复诊、凝元三年和玄府十年扣款、自然流逝、战斗法力及恢复窗口、航款专款与回程款，以及伤后不能按健康基准继续支付的限制。",
+              "awaitingSources": [
+                "plan/chapters/2",
+                "plan/chapters/3",
+                "plan/chapters/4",
+                "plan/chapters/5",
+                "plan/chapters/6",
+                "plan/chapters/7",
+                "plan/chapters/8",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/13",
+                "plan/chapters/14",
+                "plan/chapters/15",
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50",
+                "plan/milestones/ms_v2_fire",
+                "plan/milestones/ms_v2_voyage",
+                "plan/milestones/ms_v2_boundary",
+                "plan/milestones/ms_v3_return",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement",
+                "plan/milestones/ms_v3_convoy",
+                "plan/milestones/ms_v3_payoff"
+              ],
+              "evidenceCount": 13
+            },
+            {
+              "criterion": "counters",
+              "verdict": "insufficient",
+              "explanation": "已读规则为附掌、剑诀、真光、局部护罡及各高阶术式给出了对象、起式、打断、冷却和反制；第1章也把暗桩第二掌限定为击裂既有腐朽薄木，而非无代价破岩，符合附掌上限。可是第25章同阶制墨、第44章切索救援、第61—66章救黑舱与第88—95章截押的具体攻击对象、余量、站位、反制和伤害后果均未在本批细纲中读取。宏观称“同阶”或“救人优先”不能替代这些条件。",
+              "revisionAdvice": "补读后需核验每场对抗是否有可用的已学术式、明确目标与距离/接触条件；尤其复核墨的血爪与顾真光顺序、普通绳索切断不承担载荷、以及截押中局部护罡和近身动作不得扩张为全身护体或永久封禁。",
+              "awaitingSources": [
+                "plan/chapters/2",
+                "plan/chapters/3",
+                "plan/chapters/4",
+                "plan/chapters/5",
+                "plan/chapters/6",
+                "plan/chapters/7",
+                "plan/chapters/8",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/13",
+                "plan/chapters/14",
+                "plan/chapters/15",
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50",
+                "plan/milestones/ms_v2_fire",
+                "plan/milestones/ms_v2_voyage",
+                "plan/milestones/ms_v2_boundary",
+                "plan/milestones/ms_v3_return",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement",
+                "plan/milestones/ms_v3_convoy",
+                "plan/milestones/ms_v3_payoff"
+              ],
+              "evidenceCount": 12
+            }
+          ]
+        },
+        {
+          "id": "cross-1-3",
+          "checks": [
+            {
+              "criterion": "tiers",
+              "verdict": "pass",
+              "explanation": "此前待核的四类前提与章纲一致：震指符为预储一枚青灵石、触碰扣口才一次反震；赤霞剑仅承凝元真元且完整剑诀费用已含供能并须散热；青灵石不能直接增寿或替代境界；灵泉三滴一剂、十日完成并复诊后才入账五年。林辰的凝元支付、剑诀训练、符袋受伤和两剂灵泉安排均未把持有、申请或疗程中资源当作已获能力/寿储。",
+              "revisionAdvice": "",
+              "resolves": [
+                "batch-3/tiers"
+              ],
+              "evidenceCount": 7
+            },
+            {
+              "criterion": "costs",
+              "verdict": "pass",
+              "explanation": "已补读条目与已读账目相容：赤霞剑的剑诀合并二成费用、散热限制，震指符的预充一次性耗尽，青灵石的单次库存消耗，以及灵泉三滴、三日炼化加七日静养、复诊后新增五元载，均与第4、18、20—21、25—27章的扣款、恢复、封存和入账时点一致。未见以符毁、疗伤、资源品阶或真光属性返还既付真元、寿储或伤损。",
+              "revisionAdvice": "",
+              "resolves": [
+                "batch-3/costs"
+              ],
+              "evidenceCount": 7
+            },
+            {
+              "criterion": "counters",
+              "verdict": "insufficient",
+              "explanation": "已读规则为境界差、术法和器物列出了对象上限、打断、伤损、供能及反制；已读第25章也将同阶制伏限定为真光的短时破爪、站位和伤情共同造成，未写成绝对压制。但本批未提供第28—50章的细纲，亦未提供第51—100章对应的分卷与里程碑原文；无法核验这些尚未读到的具体对抗是否继续满足反制、越阶限制及行动代价。",
+              "revisionAdvice": "补读所列章节细纲与后两卷宏观原文后，逐项核对后续战斗、救援、玄府晋阶和押运截停是否写明可作用对象、对手反制、供能余量、伤情及失败后果。",
+              "awaitingSources": [
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50",
+                "plan/volumes/vol_02",
+                "plan/volumes/vol_03",
+                "plan/milestones/ms_v2_loss",
+                "plan/milestones/ms_v2_barge",
+                "plan/milestones/ms_v2_fire",
+                "plan/milestones/ms_v2_voyage",
+                "plan/milestones/ms_v2_boundary",
+                "plan/milestones/ms_v3_return",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement",
+                "plan/milestones/ms_v3_convoy",
+                "plan/milestones/ms_v3_payoff"
+              ],
+              "evidenceCount": 5
             }
           ]
         }
