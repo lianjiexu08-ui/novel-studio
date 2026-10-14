@@ -1,0 +1,126 @@
+{
+  "observedAt": "2026-10-14T21:02:41.846795+00:00",
+  "status": "isolated_rehearsal_not_acceptance",
+  "sourceDatabaseOpenedReadOnly": true,
+  "snapshotDatabase": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-backups/design61-v6-atomic-rehearsal.db",
+  "failure": {
+    "observedAt": "2026-10-14T21:01:36.831Z",
+    "status": "expected_database_insert_failure",
+    "databaseErrorCode": "P2003",
+    "driverLimitation": "Prisma maps SQLite trigger ABORT to P2003; success after removing only this trigger separately confirms cause.",
+    "querySteps": [
+      "update_project",
+      "insert_plan",
+      "rollback"
+    ],
+    "injection": "SQLite BEFORE INSERT PlanRevision revision 61; repository has already updated Project within the same transaction",
+    "originalDesignReadback": true,
+    "oldHistoryUnchanged": true,
+    "productionWrites": false,
+    "modelCalls": 0
+  },
+  "rollback": {
+    "database": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-backups/design61-v6-atomic-rehearsal.db",
+    "allTableHashesUnchanged": true,
+    "tables": 18,
+    "tableHashes": {
+      "Chapter": "0a47a7c74f75020b0a5b4f0c5c45de6db21c1d39b3fc16b8f80dd0b964d9c8a1",
+      "ChapterBrief": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "ChapterCandidate": "0a8d4664f623a5891025e522c416e435fc590a58cb146ad7b8fc78f3b85d7a6d",
+      "ChapterVersion": "4710715c576837fddf3fbec6d4d7242d826a7e74977da14f61ccfa9fca9a7639",
+      "Character": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "CheckExecution": "6ebdd2e7c94c4dd5fa18d7cb5058eb97044c42a1d0b0f8859ffe2e4229509865",
+      "CheckRuling": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "ImpactRecord": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "ManuscriptRevision": "d68f97f1e72f46f19470c53cfd402dff02d0933f5a1751788fd796a47640b4b6",
+      "OutboxEvent": "3cf5149a59834fd1281e54c3431a06f99b7b493200680132a26dcd8f975d0fbd",
+      "PlanRealization": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "PlanRevision": "133451c61415e2b19fa797bd6e15d7feadc4017f6b160de6d3e0df6e845e43a7",
+      "PlotNode": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "Project": "b409403281957967264f4a1879b894d9fe395ec94858eb1382f163fb851841ae",
+      "Relationship": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "RunCheckpoint": "5e1cafa5dfb4cbf78ae321df296bfb18e8c9053951ad271491d89a77dd70a2a9",
+      "StoryEvent": "be4dac1a2da1e026b8f48d9f92a04b277732e0a87c340d4008d06bef47d4db7f",
+      "WorldRule": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "integrityCheck": "ok",
+    "failureTriggerRemoved": true
+  },
+  "success": {
+    "observedAt": "2026-10-14T21:02:15.772Z",
+    "status": "isolated_sqlite_rehearsal_not_acceptance",
+    "candidateFileSha256": "337118ea173f66d5b9f9c9932f60695bd9bb8eea992231e04c47f8571f1a0bb2",
+    "changedRecords": 25,
+    "patchReplayMatchesCandidate": true,
+    "persistedReadbackVerified": true,
+    "oldHistoryUnchanged": true,
+    "productionWrites": false,
+    "modelCalls": 0,
+    "proseGenerated": false,
+    "planId": "plan_ebe68430825c48768876e0c06ae2de1d",
+    "world": 31,
+    "bible": 61,
+    "plan": 61,
+    "retainedBlockers": 41,
+    "approvedPlanRevision": 10,
+    "oldRuns": 49,
+    "oldReports": 54,
+    "contentReview": {
+      "ready": false,
+      "inputHash": "28aa983a5bc7d9c761f5ceda62c07740912e4f95aea783f374505d8b9aebd1d8",
+      "areas": [
+        {
+          "area": "world",
+          "status": "outdated",
+          "reportId": "design_review_a43f036f-dd2d-4948-b4ad-ed63dd8f527d"
+        },
+        {
+          "area": "power",
+          "status": "outdated",
+          "reportId": "design_review_2e46b414-47d6-4f2c-aaaf-9e39cf2b9fb8"
+        },
+        {
+          "area": "characters",
+          "status": "outdated",
+          "reportId": "design_review_2ccab3c6-0b0a-4b8c-a6ec-ae13f50d3234"
+        },
+        {
+          "area": "story",
+          "status": "outdated",
+          "reportId": "design_review_37573491-8287-4fad-8ad8-b618429ae0bf"
+        }
+      ]
+    }
+  },
+  "changedTablesAfterSuccess": [
+    "PlanRevision",
+    "Project"
+  ],
+  "tableHashesAfterSuccess": {
+    "Chapter": "0a47a7c74f75020b0a5b4f0c5c45de6db21c1d39b3fc16b8f80dd0b964d9c8a1",
+    "ChapterBrief": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "ChapterCandidate": "0a8d4664f623a5891025e522c416e435fc590a58cb146ad7b8fc78f3b85d7a6d",
+    "ChapterVersion": "4710715c576837fddf3fbec6d4d7242d826a7e74977da14f61ccfa9fca9a7639",
+    "Character": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "CheckExecution": "6ebdd2e7c94c4dd5fa18d7cb5058eb97044c42a1d0b0f8859ffe2e4229509865",
+    "CheckRuling": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "ImpactRecord": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "ManuscriptRevision": "d68f97f1e72f46f19470c53cfd402dff02d0933f5a1751788fd796a47640b4b6",
+    "OutboxEvent": "3cf5149a59834fd1281e54c3431a06f99b7b493200680132a26dcd8f975d0fbd",
+    "PlanRealization": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "PlanRevision": "21dce1bc422b539fb5e79a6e41c005488477173898f7897b4f6f7221b1c98489",
+    "PlotNode": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "Project": "f5075a92536bc55630855377993425b1bfd20f06bf82498ab6f14cabf230b5d1",
+    "Relationship": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "RunCheckpoint": "5e1cafa5dfb4cbf78ae321df296bfb18e8c9053951ad271491d89a77dd70a2a9",
+    "StoryEvent": "be4dac1a2da1e026b8f48d9f92a04b277732e0a87c340d4008d06bef47d4db7f",
+    "WorldRule": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "integrityCheckAfterSuccess": "ok",
+  "productionWrites": false,
+  "limitations": [
+    "Candidate remains unapplied until story60 finishes and all its findings are merged.",
+    "Snapshot includes a running story review, is only for isolated persistence testing and must not restore production.",
+    "No model calls, approvals, blocker closure or prose generation."
+  ]
+}
