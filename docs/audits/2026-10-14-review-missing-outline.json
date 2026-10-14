@@ -1,0 +1,87 @@
+{
+  "status": "reviewed",
+  "formalAcceptance": false,
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "usage": {
+    "calls": 1,
+    "failedCalls": 0,
+    "inputTokens": 93745,
+    "outputTokens": 2065,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 1,
+        "failedCalls": 0,
+        "outputTokens": 2065,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 4
+    }
+  },
+  "failedRunId": "design_run_cbe4d8bb-c5d6-4220-9d2c-2c70229d56fe",
+  "replayedResponses": 1,
+  "priorFailure": "模型输出修正一次后仍不符合格式：等待补读来源不在完整目录中：plan/chapters/88",
+  "checks": [
+    {
+      "criterion": "causality",
+      "verdict": "insufficient",
+      "explanation": "1—50章的直接行动链仍具备可行前置：古境救援依赖实测准入、实体求援和顾峤现场接应；赤霄线由失箱核查递进至救人；第50章吴、卢脱控与51—53章拟定安置、供述明确区分，不能提前视为已完成。后段玄府晋阶、押运截停和断运结局虽然写明需要修习、诊察、十年寿储及分工选择，但本批只提供了宏观目标，没有读取对应后段里程碑，无法核算这些前置与后果是否闭合。目录中没有plan/chapters/83或任何51—100逐章来源，因此不请求虚构章节。",
+      "revisionAdvice": "补读实际存在的后段里程碑，逐项核对玄府晋阶、押运截停、断运和寿储支付的前置、行动与代价；不要把51—53章拟定安置或供述当作已完成事实。",
+      "awaitingSources": [
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "evidenceCount": 9
+    },
+    {
+      "criterion": "timeline",
+      "verdict": "insufficient",
+      "explanation": "本批可直接核对的局部时序相容：第216日暮抵赤霄、第254日吴卢脱控，以及关系材料中的北航、301—314返程、315日交证、431—466日押运和回访未显示已知的直接撞期；无尽虚海规则也明确实体航程、消息送达和航款不能省略。但54章后航款、北航、返航、训练疗程、押运和回访仍主要以关系阶段及宏观锚点出现，未读取对应实际里程碑，不能完成后段日数与资源时序核算。plan/chapters/83不存在，不将其列为补读来源。",
+      "revisionAdvice": "补读目录中实际存在的航行、边界、返程、训练、晋阶和押运里程碑，核对54章后专项航款、276—281北航、302起返航、315日交证及431—466日押运/回访的实际日期；继续区分寄出、送达、阅览三个节点。",
+      "awaitingSources": [
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "evidenceCount": 9
+    },
+    {
+      "criterion": "payoff",
+      "verdict": "insufficient",
+      "explanation": "本批可见的兑现边界仍成立：第50章只完成吴、卢脱控，安置、陆沉舟自述和独立核验被留到后续；北港段以救七人、放弃第二片为代价，不提前合匙或取得界渊准入；百章只计划切断一条已证运输链并部分澄清父案，九鼎、界门和完整父案保留为后续主线。可是父案、残片、运输链的秘密与承诺条目，以及95—100相关兑现来源，本批未读，无法判断证据条件、知情边界和归宿是否充分。上次的不存在来源ID不再保留。",
+      "revisionAdvice": "补读实际存在的秘密、承诺、开放线与相关宏观里程碑，核对父案、残片、运输链、工友安置和陆氏供述的证据来源、实际知情者、代价及未解决边界；继续保留“首仓火倾灯责任未明”及“部分父案澄清不等于全案证实”。",
+      "awaitingSources": [
+        "story/secrets/sec_01",
+        "story/secrets/sec_02",
+        "story/promises/prom_01",
+        "story/promises/prom_02",
+        "story/openThreads/th_01",
+        "story/openThreads/th_02",
+        "plan/milestones/ms_v2_loss",
+        "plan/milestones/ms_v2_barge",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "evidenceCount": 11
+    },
+    {
+      "criterion": "opening",
+      "verdict": "pass",
+      "explanation": "就本批实际读取的1—50章安排，冲突递进明确：矿务逃生与有限复核，转为达标入古境、受限求援和同阶救援，再转为失箱追责、仓火救援、追船救人及第50章尊重工人自主选择完成脱控。每次转折都保留伤势、债务、资格、船损、看押或生计代价；第50章没有把后续安置、供述或独立核验提前算作兑现。后两卷仅有宏观安排，不影响本项对本批开篇实际章节的局部判断，也不代表正文或全书质量已验收。",
+      "revisionAdvice": "",
+      "evidenceCount": 14
+    }
+  ]
+}
