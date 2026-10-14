@@ -27,6 +27,7 @@ export const designReviewRubrics: Record<DesignReviewArea, Record<string, string
     opening: '前五十章的冲突、人物选择和后果是否递进，高潮分布是否合理，有无过早终局或重复模板',
     pacing: '逐段检查戏剧目标与阅读节奏：相邻章节是否带来新的危机、发现、关系变化或有意义的喘息，还是反复用核账、问询、训练记录或相同救援结构推进。必要执行账是作者依据，不要求逐条写成场景；但把账移到另一字段不能替代真正的场次重构。相似行动只有在困境、选择或后果实质变化时才构成递进。用具体章节说明问题，不能机械要求每章打斗或升级。',
     genre: '依据作者题材和偏好检查世界体验与成长吸引力。玄幻的地域、修炼、奇异事物和探索应实际影响观察、选择、风险或回报，不能只给普通程序事件贴境界、符箓或货号标签。低阶限制、职业经验与有代价的胜利也可产生满足感；不能以免费升级、新万能法宝或越阶胜利补救吸引力。指出实际成立的场景或最需重构的段落，不把条目数量、账目闭合当成文学质量。',
+    growth: '单独核对主角的近期成长承诺，不以世界规则合理或出现玄幻术语替代：在已提供的开篇和阶段计划里，主角具体想学会或改变什么、为何主动选择这条路、下一步能做什么、需要何种条件与代价、读者可以期待什么可观察的阶段回报？区分明确目标、获得学习条件、实际训练与已兑现能力，远期高阶秘术或反复说明不能使用不等于近期成长路径。结合作者题材和慢热偏好判断，目标也可体现为知识、判断、关系或职业能力；不强求固定章数突破，不为制造回报放宽伤势、授业、资源、寿储或权限。用具体场景证明路径已进入人物选择；只有泛泛愿望或规则说明时指出需补强的行动，尚未读到相关计划则请求补读。此项只评估设计支撑力，不宣称已验证正文文笔或真实读者喜好。',
   },
 };
 
@@ -131,9 +132,9 @@ export function designReviewHash(work: Work, planId?: string): string | undefine
   const plan = selectedId ? work.plans.get(selectedId) : undefined;
   if (!work.worldPack || !work.storyBible || !plan || plan.status === 'superseded' || (planId === undefined && plan.status !== 'approved')) return undefined;
   return createHash('sha256').update(JSON.stringify({
-    // Version 15 requires pacing/genre checks and separates workflow status
-    // notes from substantive design evidence. Historical blockers remain.
-    rubricVersion: 15, title: work.title, covenant: work.covenant,
+    // Version 16 checks attainable growth separately from world/genre logic.
+    // Earlier reviews remain history and cannot imply coverage of this check.
+    rubricVersion: 16, title: work.title, covenant: work.covenant,
     world: work.worldPack, bible: work.storyBible, planId: plan.id, plan: plan.plan,
     characters: [...work.characters.values()].sort((a, b) => a.id.localeCompare(b.id)),
     relationships: [...work.relationships.values()].sort((a, b) => a.id.localeCompare(b.id)),

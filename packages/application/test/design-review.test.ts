@@ -30,7 +30,7 @@ test('world capacity review receives the realm ladder and referenced ability rul
     { sourceId: 'world/techniques/technique', quote: '不得把晋阶费用视作施术预付' },
   ];
   validateDesignReview(input, report);
-  for (const rubricVersion of [7, 8, 9, 10, 11, 12, 13, 14]) {
+  for (const rubricVersion of [7, 8, 9, 10, 11, 12, 13, 14, 15]) {
     const legacyHash = createHash('sha256').update(JSON.stringify({
       rubricVersion, title: work.title, covenant: work.covenant,
       world, bible: work.storyBible, planId: work.activePlanId, plan: work.plans.get(work.activePlanId!)!.plan,
@@ -75,6 +75,30 @@ test('story acceptance requires literary checks and keeps workflow questions int
   assert.equal(saved.status, 'needs_revision');
   assert.equal(designReviewOverview(work).ready, false, 'logical continuity cannot bypass a literary revision');
   assert.deepEqual(plan.openQuestions, originalQuestions, 'review results do not close workflow blockers');
+});
+
+test('story acceptance requires a separate attainable growth check even when genre and continuity pass', async () => {
+  const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), writer, reviewer);
+  const work = await createReadyWork(workflow);
+  const input = designReviewInput(work, 'story');
+  const missingGrowth = fixtureDesignReview(input);
+  missingGrowth.checks = missingGrowth.checks.filter(check => check.criterion !== 'growth');
+  assert.throws(() => validateDesignReview(input, missingGrowth), /全部标准/);
+
+  for (const area of designReviewAreas.filter(area => area !== 'story')) {
+    const areaInput = designReviewInput(work, area);
+    recordDesignReview(work, areaInput, fixtureDesignReview(areaInput));
+  }
+  const result = fixtureDesignReview(input);
+  Object.assign(result.checks.find(check => check.criterion === 'growth')!, {
+    verdict: 'revise', explanation: '开篇只有远期高阶能力，主角没有选择近期可达的修习目标',
+    revisionAdvice: '在既有伤势和成本内明确下一步行动及可观察的阶段回报',
+  });
+  const report = recordDesignReview(work, input, result);
+  assert.equal(report.status, 'needs_revision');
+  assert.equal(designReviewOverview(work).ready, false);
+  assert.equal(report.checks.find(check => check.criterion === 'genre')!.verdict, 'pass');
+  assert.equal(report.checks.find(check => check.criterion === 'causality')!.verdict, 'pass');
 });
 
 test('design review sees contradictory book-level promises even when chapter outlines omit them', async () => {
