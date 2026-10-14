@@ -53,11 +53,11 @@ export interface DesignReviewInput {
       sourceLengths: Record<string, number>;
       /** Navigation only: names copied from structured sources, never evidence. */
       sourceNames?: Record<string, string>;
-      /** Exact name/ID mentions in existing plans; locate sources, never prove mastery or use. */
+      /** Exact name/ID mentions in plans and (v19+) profiles; never prove mastery or use. */
       entityMentions?: Record<string, string[]>;
       /** Optional navigation is omitted whole if it cannot fit; raw sources are never removed. */
       entityMentionsOmitted?: 'capacity';
-      /** Complete raw plan candidates added to a follow-up, or omitted for capacity. */
+      /** Complete raw context candidates added to a follow-up, or omitted for capacity. */
       relatedSourceContext?: { includedSourceIds: string[]; omittedSourceIds: string[] };
       /** Report-tree coverage, not proof that any design criterion passed. */
       synthesis?: { scope: 'partial_reports' | 'complete_reports'; coveredStageIds: string[]; totalStages: number };

@@ -102,3 +102,63 @@ test('oversized optional mention navigation is omitted whole without removing ra
   assert.deepEqual(staged.sources, input.sources);
   assert.deepEqual(Object.keys(staged.stage!.coverage!.sourceLengths), input.sources.map(s => s.id));
 });
+
+test('v19 can locate existing character training without treating mentions as mastery or changing older indexes', () => {
+  const input = request();
+  input.sources.push(
+    source('story/characters/gu', { id: 'gu', identity: '开篇前已由师长指导实测乾元御风剑诀，伤后仍需复诊。' }),
+    source('settings/characters/lin', { id: 'lin', background: '尚未学会乾元御风剑诀，不可由境界推断。' }),
+    source('story/characters/other', { id: 'other', reference: 'tech_040' }),
+    source('story/characters/id-reference', { id: 'id-reference', techniqueId: 'tech_04' }),
+    source('story/characters/unnamed', { id: 'unnamed', identity: '剑修，未具名任何功法。' }),
+  );
+  const old = designReviewEntityMentions(input), current = designReviewEntityMentions(input, true);
+  assert.deepEqual(old['world/techniques/tech_04'], ['plan/chapters/18', 'plan/milestones/training']);
+  assert.deepEqual(current['world/techniques/tech_04'], [...old['world/techniques/tech_04'], 'story/characters/gu', 'settings/characters/lin', 'story/characters/id-reference']);
+  assert.equal(current['world/techniques/tech_04'].includes('story/characters/unnamed'), false);
+  assert.equal(current['world/techniques/tech_04'].includes('story/characters/other'), false);
+  assert.equal(input.sources.find(s => s.id === 'settings/characters/lin')!.text.includes('尚未学会'), true);
+});
+
+for (const oversizedProfile of [false, true]) {
+  test(`v19 adds complete character skill context only when it fits; oversized=${oversizedProfile}`, () => {
+    const input = request();
+    input.area = 'power';
+    const profile = { id: 'story/characters/gu', text: JSON.stringify({ identity: '顾既有训练涉及乾元御风剑诀，但不表示当前伤情合格。' + (oversizedProfile ? '完整前史不得裁切。'.repeat(30000) : '') }) };
+    input.sources = [
+      { id: 'world/axioms/shared', text: '规则原文'.repeat(9000) },
+      source('plan/chapters/64', { chapterNumber: 64, summary: '顾拟用乾元御风剑诀切普通绳索，须核既有训练及当前条件。' }),
+      ...Array.from({ length: 3 }, (_, n) => ({ id: `padding/${n}`, text: '原始材料'.repeat(22000) })),
+      source('world/techniques/tech_04', { id: 'tech_04', name: '乾元御风剑诀', requirement: '先训练并实测，不由身份推断。'.repeat(700) }),
+      profile,
+    ];
+    const inputs = [];
+    for (const version of [18, 19] as const) {
+      const run = createDesignReviewRun(input, undefined, version);
+      for (const stage of [...run.stages.filter(s => s.kind !== 'synthesis')]) {
+        const staged = designReviewStageInput(run, stage);
+        const use = staged.stage!.sourceMap.find(u => u.sourceId === 'plan/chapters/64');
+        const quoted = use ? staged.sources.find(s => s.id === use.id)! : staged.sources[0];
+        acceptDesignReviewStage(run, stage, { summary: '只核所给原文', checks: Object.keys(staged.rubric).map(criterion => ({ criterion,
+          verdict: stage.id === 'batch-1' ? 'insufficient' : 'pass', explanation: '原安排需要核功法条件', revisionAdvice: stage.id === 'batch-1' ? '补读功法规则' : '',
+          evidence: [{ sourceId: quoted.id, quote: quoted.text.slice(0, 40) }], ...(stage.id === 'batch-1' ? { awaitingSources: ['world/techniques/tech_04'] } : {}),
+        })) });
+      }
+      const followup = run.stages.find(s => s.followupFor)!;
+      const staged = designReviewStageInput(run, followup);
+      const units = staged.stage!.sourceMap.filter(u => u.sourceId === profile.id);
+      assert.equal(followup.result, undefined, 'navigation never manufactures a passed or resolved review');
+      assert.ok(JSON.stringify(staged.sources).length <= 240000);
+      const expected = version === 19 && !oversizedProfile;
+      assert.equal(units.length > 0, expected);
+      if (expected) assert.equal(units.map(u => staged.sources.find(s => s.id === u.id)!.text).join(''), profile.text);
+      if (version === 19 && oversizedProfile) assert.ok(staged.stage!.coverage!.relatedSourceContext!.omittedSourceIds.includes(profile.id));
+      const mandatory = staged.stage!.sourceMap.filter(u => u.sourceId === 'world/techniques/tech_04');
+      assert.ok(mandatory.length > 0, 'optional biography never evicts requested rules');
+      assert.equal(run.units.filter(u => u.sourceId === profile.id).map(u => profile.text.slice(u.start, u.end)).join(''), profile.text, 'original full biography stays in the review input');
+      inputs.push(staged);
+    }
+    assert.equal(inputs[0].stage!.coverage!.entityMentions!['world/techniques/tech_04'].includes(profile.id), false);
+    assert.equal(inputs[1].stage!.coverage!.entityMentions!['world/techniques/tech_04'].includes(profile.id), true);
+  });
+}

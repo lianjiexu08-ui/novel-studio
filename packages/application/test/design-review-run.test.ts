@@ -62,7 +62,7 @@ test('chapter-only power batches also receive complete tier and technique rules'
   ];
   input.sources = [...rules, ...input.sources];
   const run = createDesignReviewRun(input);
-  assert.equal(run.scheduleVersion, 18);
+  assert.equal(run.scheduleVersion, 19);
   for (const stage of run.stages) {
     const staged = designReviewStageInput(run, stage);
     assert.ok(JSON.stringify(staged.sources).length <= 240_000);
@@ -1001,7 +1001,7 @@ test('v17 predicts exact saved report envelopes and retains v16 request reconstr
 });
 
 test('v18 classifies new local model judgments without changing legacy raw coverage or synthesis', () => {
-  const input = largeInput(), current = createDesignReviewRun(input), previous = createDesignReviewRun(input, current.createdAt, 17);
+  const input = largeInput(), current = createDesignReviewRun(input, undefined, 18), previous = createDesignReviewRun(input, current.createdAt, 17);
   assert.equal(current.scheduleVersion, 18);
   assert.deepEqual(current.units, previous.units);
   assert.deepEqual(current.stages, previous.stages);
