@@ -46,6 +46,14 @@ npm run model:milestone
 
 脚本尝试启动 100 章并导出成稿。先在界面准备并锁定对应设计、批准全书计划、通过四项内容评审，再设置 `NOVEL_MILESTONE_WORK_ID` 指向该作品；批量入口默认关闭，需要显式开启 `NOVEL_ENABLE_BATCH_RUNS=true`。设置 `NOVEL_MILESTONE_EXPAND=true` 会尝试继续到 450 章，但仍要求单独审核过的 450 章设计和计划，不会自动扩写或批准。中断后用同一个作品 ID 和 runId 可以接着跑。
 
+设计评审完成后，可先独立核查保存的报告：
+
+```sh
+DATABASE_URL='file:/absolute/path/novel-studio.db' node --experimental-strip-types scripts/audit-design-reviews.mjs --work-id WORK_ID --plan-id PLAN_ID --output review-audit.json
+```
+
+工具在同一个只读事务中读取作品，随后重建每项已完成评审的全部批次，核对原文引用、补读解除记录、结论、报告来源和当前设计绑定；未完成的新评审不能沿用旧通过记录。不会调用模型、批准计划、解除阻塞或改写数据库。输出文件必须尚不存在，避免覆盖历史证据。退出码 `0` 表示四项当前设计报告均通过且重建一致，`2` 表示尚未验收（包括未完成、返修、过期或无法重建的旧报告），`1` 表示证据不一致或工具执行失败。报告一致性不能替代文学质量判断和后续逐章正文验收。
+
 ## 网页
 
 创作空间里已经接上的页面：
@@ -74,6 +82,7 @@ npm run model:milestone
 - `apps/web/`：创作网页
 - `novel-service-spike/`：早期状态边界验证
 - `scripts/run-model-milestone.mjs`：真实模型的 100 章 / 450 章验收
+- `scripts/audit-design-reviews.mjs`：只读重建与核验四项当前设计评审
 
 ## 先读
 

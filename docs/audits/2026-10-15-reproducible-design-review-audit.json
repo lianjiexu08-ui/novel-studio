@@ -1,0 +1,83 @@
+{
+  "observedAt": "2026-10-14T16:56:28.336Z",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "planId": "plan_f6c112de27db4a54b11ff58b652c4626",
+  "planRevision": 59,
+  "inputHash": "48f99fc931b935214531ad356907f1aa9572f126a1377bfe521f308b68a06f64",
+  "status": "not_accepted",
+  "limitation": "Verifies saved evidence and report integrity only; does not approve the plan, resolve blockers, or validate prose quality.",
+  "areas": [
+    {
+      "area": "world",
+      "status": "reviewing",
+      "runId": "design_run_7c8ca759-f3df-4f3e-92fc-b2502e06128a",
+      "completedStages": 23,
+      "totalStages": 51,
+      "retainedFailures": 1,
+      "verification": "not_completed"
+    },
+    {
+      "area": "power",
+      "status": "reviewing",
+      "runId": "design_run_6da44acd-3475-4e6c-8f4f-b21c2833550b",
+      "completedStages": 14,
+      "totalStages": 29,
+      "retainedFailures": 1,
+      "verification": "not_completed"
+    },
+    {
+      "area": "characters",
+      "status": "passed",
+      "runId": "design_run_ab2409b8-cb5d-4929-8516-ac805034a04f",
+      "reportId": "design_review_c9e080b7-1aaf-4dcf-abda-15f3ca45e612",
+      "completedStages": 27,
+      "totalStages": 27,
+      "retainedFailures": 0,
+      "verification": "verified",
+      "runSha256": "2150f0af46861a0f656806a27af17b664d3bdecd1a3caf4a1a4891182076bb70",
+      "reportSha256": "01188a5d65fa2e7d6bfc4dc120d11c766730e22156b05c2fddd4c27cb20bb5b9",
+      "sourceEnvelopeSha256": "6b6f868952102e4e25c77e37fb74be8d4e748d43995886d42930fee19564e47c",
+      "checks": [
+        {
+          "criterion": "agency",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "relationships",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "knowledge",
+          "verdict": "pass"
+        }
+      ],
+      "resolvedDeferrals": [
+        {
+          "checkId": "cross-1-2/agency",
+          "resolvedByStageId": "followup-cross-1-2/agency"
+        },
+        {
+          "checkId": "cross-1-2/relationships",
+          "resolvedByStageId": "followup-cross-1-2/relationships"
+        },
+        {
+          "checkId": "cross-1-2/knowledge",
+          "resolvedByStageId": "followup-cross-1-2/knowledge"
+        },
+        {
+          "checkId": "cross-2-4/agency",
+          "resolvedByStageId": "followup-cross-2-4/agency"
+        }
+      ]
+    },
+    {
+      "area": "story",
+      "status": "interrupted",
+      "runId": "design_run_15a23bc4-0828-4ffc-a7d1-7fe434a52af2",
+      "completedStages": 29,
+      "totalStages": 57,
+      "retainedFailures": 1,
+      "verification": "not_completed"
+    }
+  ]
+}
