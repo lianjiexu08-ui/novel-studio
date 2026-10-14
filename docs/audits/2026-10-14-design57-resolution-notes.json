@@ -1,0 +1,308 @@
+{
+  "repositoryVersions": {
+    "rubric": 14,
+    "schedule": 12
+  },
+  "activeFormalVersions": {
+    "rubric": 10,
+    "schedule": 9
+  },
+  "formalAcceptance": false,
+  "activeDesignChanged": false,
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "cases": [
+    {
+      "case": "synthesis-scope",
+      "status": "reviewed",
+      "model": "gpt-5.6-luna",
+      "fallback": false,
+      "savedToWork": false,
+      "formalAcceptance": false,
+      "stageId": "synthesis-1",
+      "originalStageHash": "f466614e42c132f2e90324e2fb402470667b7f06038a98d60e6fd93e55161d1a",
+      "scope": {
+        "scope": "partial_reports",
+        "coveredStageIds": [
+          "batch-1",
+          "batch-2"
+        ],
+        "totalStages": 24
+      },
+      "sourceCharacters": 70475,
+      "usage": {
+        "calls": 1,
+        "failedCalls": 0,
+        "inputTokens": 47600,
+        "outputTokens": 2135,
+        "costUsd": 0,
+        "costKnown": false,
+        "byRole": {
+          "reviewing": {
+            "calls": 1,
+            "failedCalls": 0,
+            "outputTokens": 2135,
+            "costUsd": 0
+          }
+        },
+        "limits": {
+          "budgetUsd": null,
+          "maxCalls": 2
+        }
+      },
+      "negativeControlPassed": null,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "insufficient",
+          "explanation": "前置报告确认开局及前五十章宏观递进基本成立，但后续各里程碑严格依赖实际救援、物品交接、健康状态、可用款项、行动资格与消息送达。当前综合子树未提供足以核对第51—100章这些条件的完整里程碑原文，因此无法确认北航、黑舱救援、返青玄、训练晋阶和最终截押之间是否闭合，也无法排除重复消费或缺少来源。该材料不足项应保留，不能因计划列出了必经依赖就视为已兑现。",
+          "revisionAdvice": "补齐并逐段核对第51—100章里程碑中的实际付款或担保、人员与物品交接、能力门槛、伤情恢复、消息送达和下一段准入；若存在未定义来源或同一成果重复消费，按具体里程碑修正。",
+          "evidenceCount": 4
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "insufficient",
+          "explanation": "现有报告未发现已证明的硬日期冲突，且前五十章的第1—3日开局时序可执行；但五日北航、六日返航、停留与疗程、航款有效期以及第83章晋玄府的具体日期仍未由当前综合子树中的完整后续里程碑逐项核验。报告明确指出第51—100章时间安排尚不能仅凭宏观锚点通过，因此不能把285、301、315、431—466日等规划日期当作已经闭合的行程证据。",
+          "revisionAdvice": "按林辰、苏凌霜、夜南征及各队伍分别列出出发地、出发日、途中行动、目的地和抵达日，补核实体航程、内陆抵港、休整疗程、训练和消息传递；尤其核对第83章晋阶与前后伤情、航程是否重叠。",
+          "evidenceCount": 4
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "insufficient",
+          "explanation": "提案边界本身清楚：百章只完成一条已实证运输链的切断、有限救援、部分父案澄清和玄府成长，不提前清算九鼎、三残片或界门总危机；开局也只投放残片、账册和异常批号，没有把局部线索写成终局真相。但当前综合子树仍缺少秘密条目及后续关键里程碑对首次取得、知情范围、证据交接、撤押原令、第二片取舍和代价支付的完整核验，故无法确认伏笔兑现是否来源充分、是否重复或是否与认知阶段冲突。",
+          "revisionAdvice": "补读秘密条目及后两卷关键里程碑，逐项建立首次投放、可知角色、取得条件、支付代价、有限兑现和保留未解问题；明确第一片、第二片、撤押原令、运输链证据与父案线索各自的归宿，避免救援或截运被重复写成全案结案。",
+          "evidenceCount": 5
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass",
+          "explanation": "在当前综合子树可支持的范围内，开局从矿道灭口与带伤救人，递进到保护证人、保存残账，再进入有限取证、修习门槛和后续调查；选择均伴随伤势、证物损失、追凶中断、债务或资格限制。前置报告对前五十章宏观开局判断为成立，批次2对第1—2章的因果、时间和伏笔投放也分别通过；没有把凝元、古境夺泉或百章主线结局提前兑现。该通过仅是设计层的开局检查，不等同于正文或全书验收。",
+          "revisionAdvice": "",
+          "evidenceCount": 5
+        }
+      ]
+    },
+    {
+      "case": "resolution",
+      "status": "reviewed",
+      "model": "gpt-5.6-luna",
+      "fallback": false,
+      "savedToWork": false,
+      "formalAcceptance": false,
+      "stageId": "synthesis-1",
+      "originalStageHash": "f466614e42c132f2e90324e2fb402470667b7f06038a98d60e6fd93e55161d1a",
+      "scope": {
+        "scope": "partial_reports",
+        "coveredStageIds": [
+          "batch-1",
+          "batch-2"
+        ],
+        "totalStages": 24
+      },
+      "sourceCharacters": 147711,
+      "usage": {
+        "calls": 1,
+        "failedCalls": 0,
+        "inputTokens": 93981,
+        "outputTokens": 2143,
+        "costUsd": 0,
+        "costKnown": false,
+        "byRole": {
+          "reviewing": {
+            "calls": 1,
+            "failedCalls": 0,
+            "outputTokens": 2143,
+            "costUsd": 0
+          }
+        },
+        "limits": {
+          "budgetUsd": null,
+          "maxCalls": 2
+        }
+      },
+      "negativeControlPassed": null,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass",
+          "explanation": "此前关于第51—100章资源、准入、交接、伤情和行动链的材料不足，已由补读里程碑解决。各段依次由失箱与仓火、有限合作、北航救援、返乡训练、玄府晋阶和押运截停承接，前段条件均被写成后段前置，未以预期收入、境界名称或未送达消息替代实际支付与资格。14000枚专项款、航款、船损、寿储、局部护罡和真光费用均有单独用途与代价；第一片、第二片及人员名单也未被重复消费。补读报告明确结论为因果链连续且未发现关键物品或支出重复兑现。",
+          "revisionAdvice": "继续写作时须逐章兑现现有依赖链；若改变救援人员、物品归属、伤情、航款或术法成本，应同步重算后续准入与余额，不得把宏观节点直接当作已发生事实。",
+          "evidenceCount": 8
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass",
+          "explanation": "补读已按路线核对出发、途中行动、抵达与消息送达：271—274日陆路至极焱，276日暮出航、281日暮抵北境；285—300日外港救援；301—303日到通天渡口，304日暮出航、310日暮抵青玄，311—314日返外山，315日重聚。316—410日用于复诊、训练和调查，415日晋阶支付、416—424日稳定训练，431—436日押运救援，437—466日处理伤势并完成三十日回访。赵—程的报令链按258寄、262阅、263发、268签收、273交回签收联分开，林苏没有提前知情。上述节点符合虚海五昼夜、返航六昼夜及消息邮路约束，未发现人物时空重叠、行程不足或抵达早于出发。",
+          "revisionAdvice": "写作阶段仍需保留各段实际停留、复诊、航款和送达日；若增加战斗、疗程或消息，应以实际日期重排，不得沿用示例预算或把未送达信息前置。",
+          "evidenceCount": 9
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass",
+          "explanation": "补读后，主要伏笔、秘密与承诺均有来源、条件、代价和有限归宿。第一片至百章末仍由林封存持有，第二片仍在程手中；黑舱救援以放弃追片换取救人，并承担肩伤、奖金和巡查机会成本。撤人令经过赵签发、骑使递送、现场截获、监督寄案与赵答询，形成可追溯闭环，同时保持各角色知情边界。父案由旧图、巡查副本、返乡交接和外山存根逐步互证，百章只确认守门参与与外山掩案责任，不宣称查清投毒全貌。第六箱完成实物与账目核验，但首仓火因仍明确未查明。结局保留三地人员分开安置、九鼎全貌、界门危机和后续高阶成长，没有把局部断运或救援重复宣告为全书终局。",
+          "revisionAdvice": "维持现有边界：不得把守门与掩案证据升级为完整父案结案，不得让第二片、九鼎全阵或界门真相提前兑现；首仓火因及未送达的异地信息须继续保留证据边界。",
+          "evidenceCount": 8
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass",
+          "explanation": "开局从矿道灭口、伤势与救人取舍推进到账册、证人和宗门封口；前五十章继续经由修习门槛、古境救援、有限分药、跨海核货、仓火调查和扣工脱控递进，人物每次选择都留下伤势、债务、证词、资格或船损后果。后半段的黑舱救援、返乡分歧、延期晋阶和押运截停构成新的阶段高潮，并没有把前卷夺泉或运输线索重复包装成终局。百章末仅收束一条已实证运输链、部分父案和玄府成长，仍保留更长主线，未见过早终局或同模板无代价升级。",
+          "revisionAdvice": "前五十章已有细纲、后半段仍以宏观里程碑为主；后续展开时应保持救人—取证—分路—再合作的递进，不把后续宏观节点提前写成既成事件，也不要用旧版已撤回的高阶终局替换当前阶段结尾。",
+          "evidenceCount": 9
+        }
+      ]
+    },
+    {
+      "case": "resolution-note",
+      "status": "reviewed",
+      "model": "gpt-5.6-luna",
+      "fallback": false,
+      "savedToWork": false,
+      "formalAcceptance": false,
+      "stageId": "synthesis-1",
+      "originalStageHash": "f466614e42c132f2e90324e2fb402470667b7f06038a98d60e6fd93e55161d1a",
+      "scope": {
+        "scope": "partial_reports",
+        "coveredStageIds": [
+          "batch-1",
+          "batch-2"
+        ],
+        "totalStages": 24
+      },
+      "sourceCharacters": 72634,
+      "usage": {
+        "calls": 1,
+        "failedCalls": 0,
+        "inputTokens": 51089,
+        "outputTokens": 1808,
+        "costUsd": 0,
+        "costKnown": false,
+        "byRole": {
+          "reviewing": {
+            "calls": 1,
+            "failedCalls": 0,
+            "outputTokens": 1808,
+            "costUsd": 0
+          }
+        },
+        "limits": {
+          "budgetUsd": null,
+          "maxCalls": 2
+        }
+      },
+      "negativeControlPassed": null,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass",
+          "explanation": "提案将三卷行动按救援、交接、健康与可用款项、航程、北境救援、返乡、训练晋阶和截押依次串联，并明确前段条件必须实际完成，不能以预期收入、持有物或未具能力替代。补读结论进一步说明第33—100章的救援、有限合作、航款、准入、返航、晋阶和最终质询均有对应前置与代价；第一片、第二片及高阶成长也未被重复消费。世界规则同时禁止境界名称、善行或未定义能力跳过支付与施术门槛。",
+          "revisionAdvice": "",
+          "evidenceCount": 5
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass",
+          "explanation": "已给报告提供了可闭合的主要时序：北行前的陆路抵港、五昼夜实体海程、外港救援、至通天渡口的陆路段、六昼夜返航、返外山、复诊训练、玄府支付及押运救援之间均留有连续时段。赵—程的寄报、阅报、发令、签收与交回也被拆开，未把尚未送达的消息写成林苏提前知情；分路后的林、苏不被安排在同一地点同时行动。后续逐章仍须落实这些拟定日期，但这属于兑现义务，不构成当前提案自身的时空冲突。",
+          "revisionAdvice": "",
+          "evidenceCount": 5
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass",
+          "explanation": "百章的兑现边界清楚限定为一条三地运输链的局部切断、有限救援、撤人令问责、父亲守门及外山掩案责任的部分澄清和玄府成长，没有提前结清九鼎全貌、三残片、界门危机或父案投毒全貌。第一片继续由林持有，第二片未被重复取得；黑舱救人以放弃追片、返程与巡查机会为代价。撤人令按签发、传递、截获、监督寄案和答询形成归宿，父案证据则由早期图纸、巡档副本、当面交接和原存根递进，且首仓火因明确保留为未查明。关系线也按实际见面、分路、送信、救援和回访推进，没有把计划阶段标签冒充已发生事实。",
+          "revisionAdvice": "",
+          "evidenceCount": 8
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass",
+          "explanation": "前五十章的提案递进从矿务逃生与程序性封口，推进到证人和账册保全、修习与救援，再进入跨海核货、仓火调查、落水救援及扣工脱控；冲突不是单纯境界升级。每次选择都保留伤势、债务、资格、证词、船损或消息未达等后果，且第1—2章已显示救人与追凶、证人与证物之间的实际取舍。第23—29章的古境救援和第44/50—53章的运输链冲突也被限定为阶段成果，未提前终结全案。",
+          "revisionAdvice": "",
+          "evidenceCount": 8
+        }
+      ]
+    },
+    {
+      "case": "resolution-negative",
+      "status": "reviewed",
+      "model": "gpt-5.6-luna",
+      "fallback": false,
+      "savedToWork": false,
+      "formalAcceptance": false,
+      "stageId": "synthesis-2",
+      "originalStageHash": "60e05de357b71902c31ffc899bd2fb41e773e465511a8acb1e9ffe77387c5f24",
+      "scope": {
+        "scope": "partial_reports",
+        "coveredStageIds": [
+          "batch-3",
+          "batch-4"
+        ],
+        "totalStages": 24
+      },
+      "sourceCharacters": 77249,
+      "usage": {
+        "calls": 1,
+        "failedCalls": 0,
+        "inputTokens": 61085,
+        "outputTokens": 1878,
+        "costUsd": 0,
+        "costKnown": false,
+        "byRole": {
+          "reviewing": {
+            "calls": 1,
+            "failedCalls": 0,
+            "outputTokens": 1878,
+            "costUsd": 0
+          }
+        },
+        "limits": {
+          "budgetUsd": null,
+          "maxCalls": 2
+        }
+      },
+      "negativeControlPassed": true,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "insufficient",
+          "explanation": "批次3的历史检查明确指出，第199日与第209日各将三滴泉液疗程计为5元载，是后续南行和行动预算的关键因果，但当时无法核验资源来源、登记权限、适格剂量及净寿储入账条件。后续材料已明确解决payoff对应的等待项，并说明两次疗程没有重复消费；但coverage.resolvedDeferrals并未列出batch-3/causality，因此不能把payoff的复核处理自动扩展为因果检查已解决。批次4的港口失箱、救援与门前脱控链本身可执行，但不能消除该前段预算因果的未解除项。",
+          "revisionAdvice": "补充或正式登记对batch-3/causality的复核结论：明确引用res_09的来源验真、配额登记、适格境界、疗程复诊和净寿储入账条件，说明两次5元载如何合法进入后续行动预算；若该资源不适用，则改写第26—29章及南行前的预算与动机。",
+          "evidenceCount": 4
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass",
+          "explanation": "批次3报告确认第120日晋阶、181—188日入境救援、190—209日两段疗程及212—214日赴港出航连续；第188日秦禾送图、顾到场、救援结束、伤者队伍返营均区分了实体行程和抵达时点。批次4又保持第214日日暮至第216日日暮的实际海程，并将244日戌初报警、切索、救援和后续船修、调查按连续日期展开，没有把43、44章动作重复计算或制造同人同时在不相容地点的冲突。",
+          "revisionAdvice": "",
+          "evidenceCount": 6
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass",
+          "explanation": "原先关于两次灵泉疗程是否越过资源条件和个人配额的等待项已有明确复核处理：第26章将十二滴分为九滴洁净、三滴污染，先给一名告急者三滴，林仅封存六滴；第27、28章分别完成三日服用、七日静养和复诊后各入账5元载，且第二剂后洁净泉液归零。残片、货签、墨的供述、失箱证据和原账均保留证据边界，没有把局部线索冒充父案或运输网终局。批次4进一步以实物、交接页、工人证词和吴卢自行脱控兑现失箱与扣工线，同时保留首仓火因、原账和完整改签未解。",
+          "revisionAdvice": "",
+          "evidenceCount": 6
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass",
+          "explanation": "前五十章的冲突呈递进而非重复通关：前段由伤势、封样和程序限制建立调查边界；第23—29章通过实体送信、同阶制敌、伤亡、泉液分配和分路选择推进；第32—39章转为失箱核验、拒绝伪证和火仓救人；第43—50章再以有限截驳、船损、现金耗尽、伙伴拒绝无限代付及工人亲口选择完成阶段高潮。报告明确保留原账、火因、去向和后续生计问题，没有在第50章提前结清全案。",
+          "revisionAdvice": "",
+          "evidenceCount": 7
+        }
+      ]
+    }
+  ],
+  "validation": {
+    "focusedTests": 43,
+    "fullTests": 232,
+    "failedTests": 0,
+    "webBuild": "passed"
+  },
+  "sourceHashes": {
+    "novel-service-core/src/design-review.ts": "83ab38aa692840de0ee4ef11c1b68816b8d74d63392ff8e005318fc9f9c097c8",
+    "novel-service-core/src/design-review-run.ts": "8ce81daf7858acf97d2cefc53092902e7d0125379beeda9c3d40f667a81027e0",
+    "novel-service-core/src/design-review-report.ts": "df7f4f5c05980f79e8416448fa0a9a4095c561b89610ab74130a2c767851bb0f",
+    "packages/planner/src/index.ts": "a1d0d20233ebcadaaf878e390a921dfb9be4ba9a5a2075328e814500f1c822d4"
+  }
+}

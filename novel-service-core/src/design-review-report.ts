@@ -7,14 +7,26 @@ export interface ReviewEvidenceSource {
   unitId?: string;
 }
 
+export interface ReviewResolutionNote {
+  checkId: string;
+  resolvedByStageId: string;
+  explanation: string;
+}
+
 /** Keep independent excerpts visibly separate. JSON-encoding a report and then
  * slicing its escaped quotation strings can make omitted records look adjacent. */
-export function renderDesignReviewReport(result: DesignReviewResult, resolve: (id: string) => ReviewEvidenceSource | undefined): string {
+export function renderDesignReviewReport(result: DesignReviewResult, resolve: (id: string) => ReviewEvidenceSource | undefined, resolutions: Readonly<Record<string, ReviewResolutionNote>> = {}): string {
   const lines = ['前置报告。以下引文是独立摘录；同一来源的摘录可能相隔很远，不可把不同摘录里的字段拼成同一条记录。字符范围采用原始来源的UTF-16下标，右端不含。'];
+  if (Object.keys(resolutions).length) lines.push('本报告含已由原文补读显式解决的等待项。下面保留原始摘要和判定作为历史，并在对应检查前列出当前处理说明。复核解释仍是评审结论，完整原文和引用保存在所指的复核步骤；它不是正文事实，也不代表本报告或全领域通过。其他返修和普通不足仍然有效。');
   const { checks, ...head } = result;
   lines.push(JSON.stringify(head, null, 2));
   for (const [index, check] of checks.entries()) {
     const { evidence, ...finding } = check;
+    const resolution = resolutions[check.criterion];
+    if (resolution) {
+      if (check.verdict !== 'insufficient' || !check.awaitingSources?.length) throw new Error('只有显式等待补读项可以附加解除说明');
+      lines.push(`\nCURRENT DISPOSITION ${index + 1}\n${JSON.stringify({ disposition: 'resolved_by_raw_review', ...resolution }, null, 2)}\n下列原始insufficient属于已解决的历史等待，不得因本步未重发全部补读原文而重新认定缺料；仍须检查本步实际可见的具体矛盾。`);
+    }
     lines.push(`\nCHECK ${index + 1}\n${JSON.stringify(finding, null, 2)}`);
     for (const [citation, entry] of evidence.entries()) {
       const source = resolve(entry.sourceId);

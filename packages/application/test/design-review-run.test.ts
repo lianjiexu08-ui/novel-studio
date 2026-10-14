@@ -61,7 +61,7 @@ test('chapter-only power batches also receive complete tier and technique rules'
   ];
   input.sources = [...rules, ...input.sources];
   const run = createDesignReviewRun(input);
-  assert.equal(run.scheduleVersion, 11);
+  assert.equal(run.scheduleVersion, 12);
   for (const stage of run.stages) {
     const staged = designReviewStageInput(run, stage);
     assert.ok(JSON.stringify(staged.sources).length <= 240_000);
@@ -385,7 +385,7 @@ test('v3 budgets full quotation envelopes so evidenced deferrals can fit without
   assert.throws(() => acceptDesignReviewStage(legacy, legacy.stages[0], large), /结论过长/);
 });
 
-function threePartitionRun(version: 4 | 5 | 6 | 7 | 11 = 7) {
+function threePartitionRun(version: 4 | 5 | 6 | 7 | 11 | 12 = 7) {
   const input: DesignReviewInput = { ...largeInput(), rubric: { timeline: '寄出与送达是否有实际时间', payoff: '承诺是否保持代价' }, sources: [
     { id: 'author', text: '仅检查本轮提案，不视为采纳事实。' },
     { id: 'early', text: '第9日寄出书信，送达前收信人不能知情。' + '日程说明。'.repeat(17000) },
@@ -694,7 +694,7 @@ test('v10 names locate the correct unread artifact without turning directory lab
 
 test('v11 distinguishes partial report trees from complete coverage without replacing v10 materials or criteria', () => {
   const input = largeInput();
-  const current = createDesignReviewRun(input), legacy = createDesignReviewRun(input, current.createdAt, 10);
+  const current = createDesignReviewRun(input, undefined, 11), legacy = createDesignReviewRun(input, current.createdAt, 10);
   assert.deepEqual(current.units, legacy.units);
   assert.deepEqual(current.stages, legacy.stages);
   const rawIds = current.stages.filter(s => s.kind !== 'synthesis').map(s => s.id);
@@ -776,4 +776,57 @@ test('v11 complete report coverage includes scheduled followups and still blocks
   const final = completeDesignReviewRun(run).result;
   assert.equal(final.checks[0].verdict, 'insufficient', 'a pass without explicit evidenced resolution cannot clear the original question');
   assert.equal(final.checks[1].verdict, 'revise');
+});
+
+test('v12 shows validated resolutions beside historical waits without erasing findings or changing old report rendering', () => {
+  for (const explicitlyResolve of [false, true]) {
+    const run = threePartitionRun(12);
+    finishRawWithThirdPartitionQuestion(run);
+    const original = structuredClone(run.stages.find(s => s.id === 'cross-1-2')!.result);
+    const followup = run.stages.find(s => s.followupFor)!;
+    const input = designReviewStageInput(run, followup);
+    const result = explicitlyResolve ? resolvePending(input) : stagePass(input);
+    if (explicitlyResolve) {
+      const unit = input.stage!.sourceMap.find(u => u.sourceId === 'early')!;
+      result.checks[0].evidence.push({ sourceId: unit.id, quote: '第9日寄出书信，送达前收信人不能知情。' });
+    }
+    acceptDesignReviewStage(run, followup, result);
+    const stage = run.stages.find(s => s.kind === 'synthesis' && s.children.includes('cross-1-2'))!;
+    const next = designReviewStageInput(run, stage);
+    const source = next.sources.find(s => s.id === 'review-result/cross-1-2')!;
+    assert.match(source.text, /"verdict": "insufficient"/);
+    assert.ok(source.text.includes(original!.checks[0].explanation));
+    assert.ok(source.text.includes(original!.checks[0].evidence[0].quote));
+    assert.equal(source.text.includes('CURRENT DISPOSITION'), explicitlyResolve);
+    const legacy = structuredClone(run); legacy.scheduleVersion = 11;
+    const oldSource = designReviewStageInput(legacy, stage).sources.find(s => s.id === source.id)!;
+    assert.ok(!oldSource.text.includes('CURRENT DISPOSITION'));
+    if (explicitlyResolve) {
+      assert.ok(source.text.includes(followup.id));
+      assert.ok(source.text.includes(result.checks[0].explanation));
+      assert.match(source.text, /resolved_by_raw_review/);
+    } else assert.equal(source.text, oldSource.text);
+    assert.deepEqual(run.stages.find(s => s.id === 'cross-1-2')!.result, original);
+    const restored = JSON.parse(JSON.stringify(run));
+    assert.deepEqual(designReviewStageInput(restored, stage), next);
+    for (const remaining of run.stages.filter(s => !s.result)) acceptDesignReviewStage(run, remaining, stagePass(designReviewStageInput(run, remaining)));
+    const final = completeDesignReviewRun(run).result;
+    assert.equal(final.checks[0].verdict, explicitlyResolve ? 'pass' : 'insufficient');
+    assert.equal(final.checks[1].verdict, 'revise');
+  }
+});
+
+test('v12 refuses a resolution note when the underlying raw review evidence is invalid', () => {
+  const run = threePartitionRun(12);
+  finishRawWithThirdPartitionQuestion(run);
+  const followup = run.stages.find(s => s.followupFor)!;
+  const input = designReviewStageInput(run, followup), result = resolvePending(input);
+  const unit = input.stage!.sourceMap.find(u => u.sourceId === 'early')!;
+  result.checks[0].evidence.push({ sourceId: unit.id, quote: '第9日寄出书信，送达前收信人不能知情。' });
+  acceptDesignReviewStage(run, followup, result);
+  const stage = run.stages.find(s => s.kind === 'synthesis' && s.children.includes('cross-1-2'))!;
+  followup.result!.checks[0].evidence = [{ sourceId: unit.id, quote: '捏造的送达证据不能解除等待' }];
+  assert.throws(() => designReviewStageInput(run, stage), /引用不在原文|每个原始来源|补读/);
+  const ordinary = stagePass(input);
+  assert.throws(() => renderDesignReviewReport(ordinary, () => undefined, { timeline: { checkId: 'batch-1/timeline', resolvedByStageId: followup.id, explanation: '无权解除普通判定' } }), /只有显式等待补读项/);
 });
