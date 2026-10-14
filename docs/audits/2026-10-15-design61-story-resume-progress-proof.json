@@ -1,0 +1,983 @@
+{
+  "observedAt": "2026-10-14T23:42:26.922Z",
+  "status": "in_progress_not_accepted",
+  "writerPid": 49464,
+  "writerAlive": true,
+  "inputHash": "7b7892ad3d19537ab7aae549e0154344d22a3f5389772416658dba130da6dcc2",
+  "planId": "plan_e9b4422f5367453d957c8036c2d87b68",
+  "protectedHistoryUnchanged": true,
+  "oldRuns": 49,
+  "oldReports": 55,
+  "areas": [
+    {
+      "area": "story",
+      "runId": "design_run_965bd77e-9483-4ee9-9bf9-0653d3f11817",
+      "status": "running",
+      "completedStages": 18,
+      "totalStages": 47,
+      "verification": "completed_stages_replayed_not_final_acceptance",
+      "stages": [
+        {
+          "id": "batch-1",
+          "kind": "batch",
+          "resultSha256": "fc5388fb412684fe07082a637a573263ba6d98127c21f7df4dc7845e7d1f09fb",
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "opening",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/1",
+                "plan/chapters/2",
+                "plan/chapters/3",
+                "plan/chapters/4",
+                "plan/chapters/5",
+                "plan/chapters/6",
+                "plan/chapters/7",
+                "plan/chapters/8",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/13",
+                "plan/chapters/14",
+                "plan/chapters/15",
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/1",
+                "plan/chapters/2",
+                "plan/chapters/3",
+                "plan/chapters/4",
+                "plan/chapters/5",
+                "plan/chapters/6",
+                "plan/chapters/7",
+                "plan/chapters/8",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/13",
+                "plan/chapters/14",
+                "plan/chapters/15",
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "growth",
+              "verdict": "pass",
+              "awaitingSources": []
+            }
+          ],
+          "citations": 36
+        },
+        {
+          "id": "batch-2",
+          "kind": "batch",
+          "resultSha256": "beb5578032faf557b7bfa6643d3b9ae7de455ff555e5fc899fd0c6fbeca88ea2",
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/milestones/ms_v2_loss",
+                "plan/milestones/ms_v2_barge",
+                "plan/milestones/ms_v2_fire",
+                "plan/milestones/ms_v2_voyage",
+                "plan/milestones/ms_v2_boundary",
+                "plan/milestones/ms_v3_return",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement",
+                "plan/milestones/ms_v3_convoy",
+                "plan/milestones/ms_v3_payoff"
+              ]
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/milestones/ms_v2_fire",
+                "plan/milestones/ms_v2_voyage",
+                "plan/milestones/ms_v2_boundary",
+                "plan/milestones/ms_v3_return",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement",
+                "plan/milestones/ms_v3_convoy",
+                "plan/milestones/ms_v3_payoff"
+              ]
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "opening",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/1",
+                "plan/chapters/2",
+                "plan/chapters/3",
+                "plan/chapters/4",
+                "plan/chapters/5",
+                "plan/chapters/6",
+                "plan/chapters/7",
+                "plan/chapters/8",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/13",
+                "plan/chapters/14",
+                "plan/chapters/15",
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "growth",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/milestones/ms_v3_return",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement"
+              ]
+            }
+          ],
+          "citations": 50
+        },
+        {
+          "id": "batch-3",
+          "kind": "batch",
+          "resultSha256": "bbad97994c6ca9d4234fb600b5c8cef6970068c65275aed96c596b811be62ce7",
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/techniques/tech_04",
+                "world/techniques/tech_05"
+              ]
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/techniques/tech_04",
+                "world/techniques/tech_05"
+              ]
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "opening",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "growth",
+              "verdict": "pass",
+              "awaitingSources": []
+            }
+          ],
+          "citations": 41
+        },
+        {
+          "id": "batch-4",
+          "kind": "batch",
+          "resultSha256": "fc6c45550d10419994c1fcfaa67344565734e06d08c0defbeabe3be050f5b2a7",
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "opening",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "growth",
+              "verdict": "pass",
+              "awaitingSources": []
+            }
+          ],
+          "citations": 42
+        },
+        {
+          "id": "batch-5",
+          "kind": "batch",
+          "resultSha256": "bc422e15c1fc2a80b7f20be1c17d2f6e43e8724abbbd4841d390e3aaf1685c14",
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "opening",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "growth",
+              "verdict": "pass",
+              "awaitingSources": []
+            }
+          ],
+          "citations": 40
+        },
+        {
+          "id": "cross-1-2",
+          "kind": "cross",
+          "resultSha256": "70eeaa7d8f73b62738e9316e287cfff772a39ab9169292d0131472ece111d1cc",
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "opening",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "growth",
+              "verdict": "pass",
+              "awaitingSources": []
+            }
+          ],
+          "citations": 53
+        },
+        {
+          "id": "cross-1-3",
+          "kind": "cross",
+          "resultSha256": "7a53cbf19241efd9796f97e53c9c4938d3a6a6e2ed8eb3d914a9aec8487e82e9",
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "opening",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "growth",
+              "verdict": "pass",
+              "awaitingSources": []
+            }
+          ],
+          "citations": 59
+        },
+        {
+          "id": "cross-1-4",
+          "kind": "cross",
+          "resultSha256": "e96d38b1aca8904b073336487e124fbd2c09fb13ad7fa92efb45bebc41e0d3b2",
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/18",
+                "plan/chapters/21"
+              ]
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "opening",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "growth",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/18"
+              ]
+            }
+          ],
+          "citations": 45
+        },
+        {
+          "id": "cross-1-5",
+          "kind": "cross",
+          "resultSha256": "e52c5ff708f620ecacdf35e1f6eb2fcd3a9ec8451dbf5cd3066bd915a794f642",
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "opening",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "growth",
+              "verdict": "pass",
+              "awaitingSources": []
+            }
+          ],
+          "citations": 42
+        },
+        {
+          "id": "cross-2-3",
+          "kind": "cross",
+          "resultSha256": "c49634eb8b6a4e0346df24a1c4902e3be225a2838395871a489b194d21079ad3",
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "opening",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "growth",
+              "verdict": "pass",
+              "awaitingSources": []
+            }
+          ],
+          "citations": 38
+        },
+        {
+          "id": "cross-2-4",
+          "kind": "cross",
+          "resultSha256": "cfcd091d66265284fbdd8fba88048fd7137f3f0f12eaf7a71ae70d0eed0b5d55",
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/techniques/tech_04",
+                "world/techniques/tech_05",
+                "world/techniques/tech_06",
+                "story/characters/char_10"
+              ]
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "opening",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "growth",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "world/techniques/tech_02",
+                "world/techniques/tech_04"
+              ]
+            }
+          ],
+          "citations": 47
+        },
+        {
+          "id": "cross-2-5",
+          "kind": "cross",
+          "resultSha256": "3581eda97c3d7fc7d598fcafe07570fb72b3aca208143cc2a1d55b57799c9012",
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "opening",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "growth",
+              "verdict": "pass",
+              "awaitingSources": []
+            }
+          ],
+          "citations": 56
+        },
+        {
+          "id": "cross-3-4",
+          "kind": "cross",
+          "resultSha256": "d3a11863510f993f1538f1da6e2310fdb89f86ed1cba469164e556506032fd86",
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "opening",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "growth",
+              "verdict": "pass",
+              "awaitingSources": []
+            }
+          ],
+          "citations": 44
+        },
+        {
+          "id": "cross-3-5",
+          "kind": "cross",
+          "resultSha256": "c20eb6d914fcf39c795cbc2da467bd70c0c0addfff537cb56b9d42aa7e7de83e",
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/25"
+              ]
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "opening",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "growth",
+              "verdict": "pass",
+              "awaitingSources": []
+            }
+          ],
+          "citations": 44
+        },
+        {
+          "id": "cross-4-5",
+          "kind": "cross",
+          "resultSha256": "ce3fe7e1046523ee4b2f817d857ba1d80a2d2f201e0b62aa5c51514bd16c14a3",
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "opening",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass",
+              "awaitingSources": []
+            },
+            {
+              "criterion": "growth",
+              "verdict": "pass",
+              "awaitingSources": []
+            }
+          ],
+          "citations": 55
+        },
+        {
+          "id": "followup-batch-1/opening",
+          "kind": "cross",
+          "resultSha256": "319ebb2713cd922bf2ee0f621ede27ee7917046dba43bb8dd8d1c5e3796427b8",
+          "checks": [
+            {
+              "criterion": "opening",
+              "verdict": "pass",
+              "awaitingSources": []
+            }
+          ],
+          "citations": 52
+        },
+        {
+          "id": "followup-batch-1/pacing",
+          "kind": "cross",
+          "resultSha256": "58e5511cc0ab87f3a0f6d370825fff4369680a4b9bfba53f2146fdd28a42a5d3",
+          "checks": [
+            {
+              "criterion": "pacing",
+              "verdict": "pass",
+              "awaitingSources": []
+            }
+          ],
+          "citations": 52
+        },
+        {
+          "id": "followup-batch-2/opening",
+          "kind": "cross",
+          "resultSha256": "dcc2f63f9534b10949e0de7ef74effb375b5c966292636ce30bd601808fe90af",
+          "checks": [
+            {
+              "criterion": "opening",
+              "verdict": "pass",
+              "awaitingSources": []
+            }
+          ],
+          "citations": 58
+        }
+      ]
+    }
+  ],
+  "checkpointUsage": {
+    "calls": 19,
+    "failedCalls": 0,
+    "inputTokens": 2785340,
+    "outputTokens": 38773,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 19,
+        "failedCalls": 0,
+        "outputTokens": 38773,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 140
+    }
+  },
+  "totalCalls": 179,
+  "originalFailedCalls": 1,
+  "originalFailureRetained": true,
+  "completedOtherAreasUnchanged": true,
+  "executionErrors": [],
+  "readiness": {
+    "chapterNumber": 1,
+    "ready": false,
+    "modelConfigured": true,
+    "blockers": [
+      {
+        "code": "CANON_NOT_READY",
+        "message": "chapter generation gate blocked: world pack is not locked; story bible is not locked; blocking world pack questions must be resolved before writing; blocking story questions must be resolved before writing",
+        "nextAction": "处理设计门禁问题后重新锁定"
+      },
+      {
+        "code": "PLAN_OUTDATED",
+        "message": "the approved plan was drafted against an older world pack or story bible",
+        "nextAction": "基于当前设计另存计划，审核后重新批准"
+      },
+      {
+        "code": "DESIGN_REVIEW_REQUIRED",
+        "message": "当前设计尚未通过全部分项内容评审；结构锁定不能代替内容质量审核",
+        "nextAction": "到世界构建完成世界、力量、人物与故事四项内容评审并处理返修问题"
+      }
+    ],
+    "requiredChecks": [
+      "deterministic_rules",
+      "canon_consistency",
+      "observed_events",
+      "chapter_length",
+      "chapter_content_review"
+    ],
+    "checkPolicyVersion": "chapter-policy-v3"
+  },
+  "limitation": "Partial completed stages only; unfinished areas and deferred questions are not accepted. No production prose or approval."
+}

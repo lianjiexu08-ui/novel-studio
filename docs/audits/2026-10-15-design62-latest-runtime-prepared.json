@@ -1,0 +1,49 @@
+{
+  "status": "prepared_not_deployed_unbound_to_design",
+  "observedAt": "2026-10-14T23:40:21.315658+00:00",
+  "root": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design62-2d6ebaa",
+  "commit": "2d6ebaa620a1381ee0d4c90257d4e9a8c24831e5",
+  "rubricVersion": 16,
+  "scheduleVersion": 22,
+  "model": "gpt-5.6-luna",
+  "timeoutMs": 600000,
+  "fallback": false,
+  "candidateBinding": null,
+  "productionRestarted": false,
+  "modelCalls": 0,
+  "workspaceModulesPinned": true,
+  "prismaClientPinned": true,
+  "prismaSchemaSha256": "708ca841acae408f306329dff405a7e7d00609ccd70cb5240bdfcc6c3b097f98",
+  "dependencies": {
+    "source": "isolated_validation_workspace",
+    "entryCount": 40575,
+    "treeSha256": "3c868a6ed3cc488f987f33d91d69305740c859716be340cd26df8aa571bc566d",
+    "allSymlinksStayWithinRuntime": true,
+    "generatedClientCopiedWithoutGeneration": true
+  },
+  "validation": "372 tests and strict core types passed before freeze; frozen core, application, API and persistence imports passed; default schedule22 and whole-design API smoke passed using memory-only fixtures. All source hashes match. No database connection, production restart, model call, approval or prose generation.",
+  "importSmokePassed": true,
+  "candidatePreflight": {
+    "candidateFileSha256": "9667339be4be5b18d277e688340e719dadd00ddefcc635ab629ebd23b3959134",
+    "valid": true,
+    "retainedBlockers": 41,
+    "formalAcceptance": false,
+    "productionApplied": false
+  },
+  "webBuild": {
+    "status": "built_and_typechecked",
+    "sourceCommit": "2d6ebaa620a1381ee0d4c90257d4e9a8c24831e5",
+    "files": {
+      "apps/web/dist/assets/index-BwwTqUmW.js": "1996110a4cc4a4d600b6b80a786af28b2da40e3a92657973caf744c06e601fa5",
+      "apps/web/dist/assets/index-CJ7YV8mp.css": "0d87cb9f4f422081c5d5562a7ca412f8913dc879586c3c419bfefd52d39da789",
+      "apps/web/dist/index.html": "665d5ad5c608922bd1871a0b98f0440f2b574b2a686cb77f8cd4b4312a9e118f"
+    },
+    "sourcesAndDependenciesUnchangedAfterBuild": true,
+    "warning": "Vite reports an existing bundle larger than 500 kB; build completed."
+  },
+  "sourceCount": 125,
+  "manifestPath": "data/audit-runtimes/design62-runtime-2d6ebaa.json",
+  "manifestSha256": "46962fd47b7bb82917d39f12d5500f8ea28d36396ef0380f5f85ff8cc249f6f8",
+  "replacesPreparedRuntime": "data/audit-runtimes/design62-2085f06",
+  "priorPreparedRuntimeRetained": true
+}
