@@ -1,0 +1,480 @@
+{
+  "observedAt": "2026-10-14T07:40:43.628Z",
+  "status": "focused_spring_and_question_reviews_passed_unsaved",
+  "candidateVersion": 6,
+  "candidateHash": "69148def081160671a6a77f3100b53f38c207ae4829cc8fb83efc16e94bbe1b4",
+  "baseVersions": {
+    "world": 27,
+    "bible": 56,
+    "plan": 56
+  },
+  "savedToWork": false,
+  "formalAcceptance": false,
+  "validation": {
+    "observedAt": "2026-10-14T07:38:38.783Z",
+    "candidateVersion": 6,
+    "candidateHash": "69148def081160671a6a77f3100b53f38c207ae4829cc8fb83efc16e94bbe1b4",
+    "baseHash": "5b93fac2f56944a5e4af27088dc1fdfafac977ca3487f3e97d68806dbfd1b69d",
+    "schemaPassed": true,
+    "worldAndPlanStructuralGatesUnchanged": true,
+    "bibleStructuralGate": {
+      "before": [
+        "story question uq_03 status resolved conflicts with world status open; reconcile the same question or use a distinct id",
+        "story question uq_04 status resolved conflicts with world status open; reconcile the same question or use a distinct id",
+        "story question uq_06 status resolved conflicts with world status open; reconcile the same question or use a distinct id",
+        "story question uq_08 status resolved conflicts with world status open; reconcile the same question or use a distinct id",
+        "story question uq_09 status resolved conflicts with world status open; reconcile the same question or use a distinct id"
+      ],
+      "after": [],
+      "warningsUnchanged": true
+    },
+    "existingBlockersUnchanged": true,
+    "worldQuestionsUnchanged": true,
+    "planQuestionsUnchanged": true,
+    "reopenedNonblockingQuestionIds": [
+      "uq_03",
+      "uq_04",
+      "uq_06",
+      "uq_08",
+      "uq_09"
+    ],
+    "chapterBibleActionsSynchronized": true,
+    "priorCombatCostsAndEntrySettlementUnchanged": true,
+    "springLedger": {
+      "recovered": 12,
+      "clean": 9,
+      "polluted": 3,
+      "urgentRecipient": 3,
+      "linReceived": 6,
+      "firstDose": 3,
+      "secondDose": 3,
+      "linRemaining": 0,
+      "firstCourse": [
+        190,
+        199
+      ],
+      "secondCourse": [
+        200,
+        209
+      ],
+      "courseDays": [
+        10,
+        10
+      ],
+      "effectiveDoses": [
+        0,
+        1,
+        2
+      ],
+      "futureLifeIncrements": [
+        5,
+        5
+      ]
+    },
+    "savedToWork": false,
+    "formalAcceptance": false
+  },
+  "springReview": {
+    "candidateHash": "458306e146f56ebe1d2e7a389b391c7da2e01f245c4cefbe823988d5a1e99426",
+    "model": "gpt-5.6-luna",
+    "fallback": false,
+    "usage": {
+      "calls": 1,
+      "failedCalls": 0,
+      "inputTokens": 34753,
+      "outputTokens": 1024,
+      "costUsd": 0,
+      "costKnown": false,
+      "byRole": {
+        "reviewing": {
+          "calls": 1,
+          "failedCalls": 0,
+          "outputTokens": 1024,
+          "costUsd": 0
+        }
+      },
+      "limits": {
+        "budgetUsd": null,
+        "maxCalls": 8
+      }
+    },
+    "cases": [
+      {
+        "name": "spring-provenance-quota-and-use",
+        "checks": [
+          {
+            "criterion": "provenance",
+            "verdict": "pass",
+            "explanation": "设计没有把“洁净”、墨的承认或瓶中滴数单独当作来源证明：189日先由实际采封人就182日分封亲历作证，再以采封原联、入口对照页、领管号、管号、封签接缝和滴数逐件核验。仅三支原封管相合，另一支因破损隔离；随后独立验毒验煞确认三支共9滴可用、破损管3滴污染。来源链与洁净检验分开，且破损部分暂停可用分配并记作原批损失。",
+            "revisionAdvice": "",
+            "evidenceCount": 3
+          },
+          {
+            "criterion": "quota",
+            "verdict": "pass",
+            "explanation": "第19章明确三剂九滴仅为当期申请、未授予原液或所有权；第26章将追回12、洁净9、污染3接回182日同一批，明确不得另开第二份12滴配额。原簿所列为尚未指名的本期个人申请可分额，并经书吏核除保育、公共医疗、应急及他人已得份额。林辰主动撤去一剂申请，告急者凭诊察、签认及入口配额台核准独立领3滴；余6滴才核给林辰。该选择保留林原申请被压缩的实际损失，且申请冲突时本可暂缓三方复核，并非以救命强迫林让药；顾、苏放弃申请亦未转化为林的当然份额。",
+            "revisionAdvice": "",
+            "evidenceCount": 4
+          },
+          {
+            "criterion": "course",
+            "verdict": "pass",
+            "explanation": "疗程、有效剂数和库存具有明确生效时点：林辰在分配时既用有效剂数为0、封存6滴；第一剂于190—192日每日一滴，193—199日静养，199日复诊后才入账5元载并变为1剂、余3滴；第二剂于200—202日服用、203—209日静养，209日复诊后才入账第二笔5元载，变为2剂且库存归零。白榆参与伤情、药程和复诊，林腿伤仍另行清创换药，设计明示灵泉不治伤也不用于提前行动。告急者的3滴另立药页，不计入林辰库存或第三剂，故不存在混账、提前消费或以延寿替代疗伤。",
+            "revisionAdvice": "",
+            "evidenceCount": 5
+          }
+        ]
+      }
+    ]
+  },
+  "questionsReview": {
+    "candidateHash": "69148def081160671a6a77f3100b53f38c207ae4829cc8fb83efc16e94bbe1b4",
+    "model": "gpt-5.6-luna",
+    "fallback": false,
+    "usage": {
+      "calls": 1,
+      "failedCalls": 0,
+      "inputTokens": 43652,
+      "outputTokens": 898,
+      "costUsd": 0,
+      "costKnown": false,
+      "byRole": {
+        "reviewing": {
+          "calls": 1,
+          "failedCalls": 0,
+          "outputTokens": 898,
+          "costUsd": 0
+        }
+      },
+      "limits": {
+        "budgetUsd": null,
+        "maxCalls": 8
+      }
+    },
+    "cases": [
+      {
+        "name": "shared-question-state-and-scope",
+        "checks": [
+          {
+            "criterion": "status",
+            "verdict": "pass",
+            "explanation": "世界包将uq_03、uq_04、uq_06、uq_08及uq_09均列为open；故事圣经以相同问题文本、相同open状态重复列出。尤其uq_06当前明确的是高阶成长仍受“灵泉只增加未来寿储、不得治疗道伤或返还既付成本”约束，待设计的是逐层来源与疗程，并未回退为旧的“灵泉能否治疗永久暗伤”问题。世界规则也明确自然寿源不返还历史燃寿、晋阶成本或道伤。",
+            "revisionAdvice": "",
+            "evidenceCount": 6
+          },
+          {
+            "criterion": "scope",
+            "verdict": "pass",
+            "explanation": "百章边界限定为切断一条已实证三地链、救人、部分父案澄清及玄府成长；九鼎全貌、余片、界门危机和高阶成长均保留给约450章后续链条。作者层面的界门死渊真相不等于角色已完成亲验或机制证据闭合：林仅在65章相信夜的有限证言，且本百章明确不进界渊、不合匙开门。结局同时重申无返寿、无道伤凭空痊愈、无三大陆永久太平，故开放悬问没有被当成取消既定代价或解禁力量的依据。",
+            "revisionAdvice": "",
+            "evidenceCount": 7
+          }
+        ]
+      }
+    ]
+  },
+  "springChanges": [
+    {
+      "path": "/worldPack/resources/8/usage/requirements/3",
+      "after": "按灵虚界约，当期三方联名采收簿分别登记实采日期、灵眼采点、采封人、管号、滴数及所属份额；入口保存联名对照页。采封后至分配前的封管逐件验收，失窃追回物还须由实际采封人核对亲历、原簿和封签，来源或封管链不能相合时暂停分配，不能用“洁净”替代验真。"
+    },
+    {
+      "path": "/worldPack/resources/8/usage/requirements/4",
+      "after": "个人只能取得当期已采实物中获准分给自己的个人份额。入口配额书吏按当期联名授权、原簿的份额归属、同批申请及医修诊察登记分配；发现或救回原液不自动获得所有权。保育、公共医疗、应急、他人已指名份额及未来产量不得移作主角个人库存；追回物不再生成第二份采收额度，污染部分扣原批实物并记录损失，不自动补发。"
+    },
+    {
+      "path": "/worldPack/resources/8/usage/limitations/4",
+      "after": "领到个人份额只记封存原液和拟用剂额，不提前记寿储；实际服用、完成药程、已用有效剂数和复诊收入分别登记。每次分配仍须核同批申请及可分余量，历史分配不能保证未来再获份额。"
+    },
+    {
+      "path": "/worldPack/historicalEvents/5/consequences/3",
+      "after": "联名配额与采封登记的权力限于当期实采、确权和分配；本期个人申请可分额与保育、公共医疗、应急及已指名份额分别存账。失窃追回须回原批核封、核滴数与权属，不能以救援功劳直接据为己有；具体自然形成和用药规则仍按res_09，不由界约无限增产。"
+    },
+    {
+      "path": "/storyBible/chapterPlans/18/requiredEvents/0",
+      "before": "th_01",
+      "after": "第三日山风忽大，林辰扶住车上的药箱，望见归期已过的采集名牌；顾催队伍先安顿外营，不为疑点撤掉守口人。"
+    },
+    {
+      "path": "/storyBible/chapterPlans/18/requiredEvents/1",
+      "after": "入口执事核对两人的凝元三重实测、联名符牌和本次路线。"
+    },
+    {
+      "path": "/storyBible/chapterPlans/18/requiredEvents/2",
+      "after": "顾峤与杜砺面交入口岗位牌，乔岑接管夜班和押解备勤。"
+    },
+    {
+      "path": "/storyBible/chapterPlans/18/requiredEvents/3",
+      "after": "白榆清点外营药材与伤者转移路线，确认未达三重者不得入境。"
+    },
+    {
+      "path": "/storyBible/chapterPlans/18/requiredEvents/4",
+      "after": "林辰提出绕查承运线，苏指出私改路线会使整队失去准入，林辰将疑点写入任务册后入境。"
+    },
+    {
+      "path": "/storyBible/chapterPlans/18/requiredEvents/5",
+      "after": "183日入口联名登记台收林的既有寿储诊单与本期三剂共九滴的个人用泉申请，记既往有效剂数为零，只受理、不预授原液。书吏说明采封管须对应当期采收簿、分配须看实际追回量与同批诊察排序；苏放弃的旧优先位不再支付一次，也不使林免审获配。林将申请回执与路线单分收，未把未来药额写入当日寿储。"
+    },
+    {
+      "path": "/storyBible/chapterPlans/25/purpose",
+      "before": "第188日10:45，顾带伤近身看押墨，苏与能行动的获救采集者轮替抬林的担架、推载伤护卫和包裹死者的原运人小车，绕开落料侧廊沿已核四里主支洞撤回；伤者队伍用75分钟，到12:00抵外营，由已休足的乔当面接墨，杜仍守入口。顾交押后先让白榆止血、固定肩伤，夜间休息，次日才参加核验。乔从午正守到酉初，杜从辰初守到酉初。褚、邵按预排在途中白昼补眠后暮抵，酉初分别当面接入口和墨岗，夜班到189日辰初，再由休足的杜、乔接两处日班；顾不充作夜间后备。189日众人按各自亲见范围登记获救者，核对样箱、封瓶和十二滴泉液。白榆确认九滴洁净、三滴污染，林同意先给一名寿储告急者完整三滴，自取六滴封存；顾、苏放弃分润。墨只承认本次营地与货物，林腿伤仍不能追击。",
+      "after": "第188日10:45，顾带伤近身看押墨，苏与能行动的获救采集者轮替抬林的担架、推载伤护卫和包裹死者的原运人小车，绕开落料侧廊沿已核四里主支洞撤回；伤者队伍用75分钟，到12:00抵外营，由已休足的乔当面接墨，杜仍守入口。顾交押后先让白榆止血、固定肩伤，夜间休息，次日才参加核验。乔从午正守到酉初，杜从辰初守到酉初。褚、邵按预排在途中白昼补眠后暮抵，酉初分别当面接入口和墨岗，夜班到189日辰初，再由休足的杜、乔接两处日班；顾不充作夜间后备。189日众人按各自亲见范围登记获救者，核对样箱和四支各三滴的原封管，与182日采封原联、实际采封人的亲历及入口对照页逐项相合，先确认灵眼原液来源与本期个人可分额归属。白榆再独立验毒验煞，九滴洁净、三滴污染；联名授权的入口配额台核同批诊察与申请，林主动将原三剂申请减为两剂，让告急者的一剂先完成签领；配额台批准余两剂给林封存，顾、苏放弃本批分配申请。林不占污染管或未来配额，不能由救援功劳自行分药。墨只承认本次营地与货物，林腿伤仍不能追击。"
+    },
+    {
+      "path": "/storyBible/chapterPlans/25/requiredEvents/3",
+      "before": "白榆逐管验毒验煞，九滴洁净、三滴污染分封；一名采集者寿储告急，另一名只需常规外伤治疗。",
+      "after": "189日实际获救的原采封人只就亲历作证：182日在灵眼按当期联名簿分封四支管、每管三滴，返路被劫；采收原联由入口对照页与其领管号核验。配额书吏逐件对管号、封签接缝和滴数，三支原封相合，另一支有破损须隔离；墨承认收过此批只作旁证。原簿将这十二滴列在太清本期尚未指名的个人申请可分额，不属保育、公共医疗、应急或他人已分到手的药。未经核验不因瓶里有液就确认来源。"
+    },
+    {
+      "path": "/storyBible/chapterPlans/25/requiredEvents/4",
+      "before": "林同意三滴完整一剂先给告急者，自己封存六滴；顾苏放弃分润。药程190日才开始，不能把两剂未来十元载先花掉。",
+      "after": "白榆在来源核对之外逐管独立验毒验煞：三支原封管共九滴可用，破损管三滴污染单独封存待处置；没有把污染管重新算进可用量。入口书吏将追回12、洁净9、污染损失3接回182日同一批，追回不另开12滴配额。白榆复查同批申请：一名采集者寿储告急，林寿储仍低且此前未用过灵泉，另一伤者只需常规外伤治疗；顾苏撤回本批个人申请，不据救援功劳优先分药。"
+    },
+    {
+      "path": "/storyBible/chapterPlans/25/requiredEvents/5",
+      "before": "墨只承认本营货物，林因腿伤不能追击；常规外伤先治、非急迫核验次日做，没有用整夜伤者看押换取手续提前。",
+      "after": "白榆建议先救急，书吏说明林原申请九滴与告急者三滴相冲突，若坚持原申请须暂缓本批个人分配交三方复核；申请不是已经归林的药。林主动撤去一剂申请，同意告急者先领3滴，不索回报。入口配额台据双方签认、诊察与本批余量核准另6滴两支封管给林，净分9不超过原批可分量；林不动污染管、不预借下期份额。原批登记、各人领用页、林既用有效剂数零及拟用两剂分栏记，林与告急者各自签收；189日只有原液出入账，林药程190日才开始，两剂未来10元载不能先花。另一伤者常规治疗另走既有药账，泉液不治伤。"
+    },
+    {
+      "path": "/storyBible/chapterPlans/25/requiredEvents/6",
+      "after": "墨只承认本营货物，林因腿伤不能追击；常规外伤先治、非急迫核验次日做，没有用整夜伤者看押换取手续提前。"
+    },
+    {
+      "path": "/storyBible/chapterPlans/26/requiredEvents/0",
+      "before": "th_01",
+      "after": "乔把看押牌亲交邵后去休息，杜与褚另在入口换班；顾复诊只听取记录，不被算作第三个不停休的值守。"
+    },
+    {
+      "path": "/storyBible/chapterPlans/26/requiredEvents/1",
+      "before": "乔把看押牌亲交邵后去休息，杜与褚另在入口换班；顾复诊只听取记录，不被算作第三个不停休的值守。",
+      "after": "第190日林辰下床想去问墨，腿伤牵痛被迫坐回；白榆把敷药和灵泉分别放在两个碗旁。"
+    },
+    {
+      "path": "/storyBible/chapterPlans/26/requiredEvents/2",
+      "before": "第190日林辰下床想去问墨，腿伤牵痛被迫坐回；白榆把敷药和灵泉分别放在两个碗旁。",
+      "after": "苏同林辰核对样箱刻痕、残片与父亲图纸，发现对应接口及一张天宝外港收货号货签，不能据此看见过去。"
+    },
+    {
+      "path": "/storyBible/chapterPlans/26/requiredEvents/3",
+      "before": "苏同林辰核对样箱刻痕、残片与父亲图纸，发现对应接口及一张天宝外港收货号货签，不能据此看见过去。",
+      "after": "第190–192日每日炼化一滴，共三滴；林辰看着伤口未因服泉闭合，接受继续换药。"
+    },
+    {
+      "path": "/storyBible/chapterPlans/26/requiredEvents/4",
+      "before": "第190–192日每日炼化一滴，共三滴；林辰看着伤口未因服泉闭合，接受继续换药。",
+      "after": "第195日商队铃声经过外营，林辰把尚未完成的药程签压回枕下，没有追出去。"
+    },
+    {
+      "path": "/storyBible/chapterPlans/26/requiredEvents/5",
+      "before": "第195日商队铃声经过外营，林辰把尚未完成的药程签压回枕下，没有追出去。",
+      "after": "第199日白榆复诊确认完整疗程有效才入账5元载；林辰封好残片，托苏先询问收货号属于哪条航线。"
+    },
+    {
+      "path": "/storyBible/chapterPlans/26/requiredEvents/6",
+      "before": "第199日白榆复诊确认完整疗程有效才入账5元载；林辰封好残片，托苏先询问收货号属于哪条航线。",
+      "after": "190日白榆按189日获配的第一支管号开用药页，林每日实际服一滴，193–199日静养，不把另一支封管先启。199日复诊确认本剂完整炼化有效，才登记寿储新增5元载、有效剂数由0到1，个人封存原液由6滴减至3滴；常规换药与自然流逝另记。"
+    },
+    {
+      "path": "/storyBible/chapterPlans/27/requiredEvents/0",
+      "before": "th_01",
+      "after": "第200–202日按剂服完三滴，林辰将空瓶放到首剂空瓶旁，后七日继续静养。"
+    },
+    {
+      "path": "/storyBible/chapterPlans/27/requiredEvents/1",
+      "before": "第200–202日按剂服完三滴，林辰将空瓶放到首剂空瓶旁，后七日继续静养。",
+      "after": "苏将外营停靠册的登记副本交给林辰，确认收货号所在航线，承认尚未见到实际收货人。"
+    },
+    {
+      "path": "/storyBible/chapterPlans/27/requiredEvents/2",
+      "before": "苏将外营停靠册的登记副本交给林辰，确认收货号所在航线，承认尚未见到实际收货人。",
+      "after": "第203日白榆只准顾每日最多2小时入口轻值，顾向杜面接岗位，杜额外休息；到时杜接回，乔邵继续原看押班，不把顾的2小时扩大成整夜。"
+    },
+    {
+      "path": "/storyBible/chapterPlans/27/requiredEvents/3",
+      "before": "第203日白榆只准顾每日最多2小时入口轻值，顾向杜面接岗位，杜额外休息；到时杜接回，乔邵继续原看押班，不把顾的2小时扩大成整夜。",
+      "after": "墨提议以别名换松押，乔只留书面原话，拒绝改变看守条件；苏带来的记录也没有被主角当作真供词。"
+    },
+    {
+      "path": "/storyBible/chapterPlans/27/requiredEvents/4",
+      "before": "墨提议以别名换松押，乔只留书面原话，拒绝改变看守条件；苏带来的记录也没有被主角当作真供词。",
+      "after": "林苏为共享证物争执后，分别封存货签副本，家传笔记仍不交出。"
+    },
+    {
+      "path": "/storyBible/chapterPlans/27/requiredEvents/5",
+      "before": "林苏为共享证物争执后，分别封存货签副本，家传笔记仍不交出。",
+      "after": "第209日完整药程与复诊确认第二笔5元载收入，林辰开始在医嘱范围内试走，为旅途负荷复查做准备。"
+    },
+    {
+      "path": "/storyBible/chapterPlans/27/requiredEvents/6",
+      "before": "第209日完整药程与复诊确认第二笔5元载收入，林辰开始在医嘱范围内试走，为旅途负荷复查做准备。",
+      "after": "200日按第二支个人获配管号起第二用药页，200–202日每日一滴、203–209日静养。209日复诊确认有效才登记新增5元载，有效剂数从1到2、原液库存从3到0，未再从原批或下一周期领一剂；曾给告急者的3滴属于其独立药页，不算林第三剂。"
+    },
+    {
+      "path": "/plan/milestones/5/setup/0",
+      "before": "乔/邵与杜/褚分看押、入口两岗，各12小时轮班。顾203日复诊后每日最多2小时入口轻值，只给原值守额外休息，不改变看押班。乔拒绝松押换口供，任何换班先实际面交。",
+      "after": "189日先按182日联名采封原联、入口对照页和获救采封人的亲历核四支各3滴原管；三支原封相合、独立验毒后共9滴洁净，破损污染3滴在原批扣损，不重复记追回配额。原批属尚未指名的本期个人申请可分额，林将183日原三剂申请自愿下调两剂，联名授权入口配额台据协商签认与诊察先分告急者3滴，余6滴批准林两剂并记领管号、既用有效剂数0；不占公共医疗、应急、保育或他人已指名量。190、200各启一支，199、209复诊后才各记5元载，有效剂数到2、个人原液到0。"
+    },
+    {
+      "path": "/plan/milestones/5/setup/1",
+      "before": "残片作为遗物封装由林辰保管，白榆不替他施展神识融印。所带父亲检修笔记、残片刻痕与地方调令仅构成查证路径，父案私人真相仍需后续实证。",
+      "after": "乔/邵与杜/褚分看押、入口两岗，各12小时轮班。顾203日复诊后每日最多2小时入口轻值，只给原值守额外休息，不改变看押班。乔拒绝松押换口供，任何换班先实际面交。"
+    },
+    {
+      "path": "/plan/milestones/5/setup/2",
+      "before": "第190–199日第一剂3滴，前三日每日1滴再静养7日；完整复诊后才新增5元载。第200–209日第二剂同样完成再新增5元载；至少1元载安全余量仍保留。腿伤用常规医治和休养，灵泉不治伤，不生白发或返青春。",
+      "after": "残片作为遗物封装由林辰保管，白榆不替他施展神识融印。所带父亲检修笔记、残片刻痕与地方调令仅构成查证路径，父案私人真相仍需后续实证。"
+    },
+    {
+      "path": "/plan/milestones/5/setup/3",
+      "before": "第210日复诊评估旅途负荷。苏决定留下保护供证者并监督押解，林辰带修缮图与货签副本南行追查收货人，两人因去留争执后形成有限分工。",
+      "after": "第190–199日第一剂3滴，前三日每日1滴再静养7日；完整复诊后才新增5元载。第200–209日第二剂同样完成再新增5元载；至少1元载安全余量仍保留。腿伤用常规医治和休养，灵泉不治伤，不生白发或返青春。"
+    },
+    {
+      "path": "/plan/milestones/5/setup/4",
+      "before": "苏提供的是商盟引荐而非免检或免票令；第211日签下护送低阶药材到天宝外港的劳务换舱合同，约定职责、事故限责和返程不担保，不能凭救命恩情无限赊账。",
+      "after": "第210日复诊评估旅途负荷。苏决定留下保护供证者并监督押解，林辰带修缮图与货签副本南行追查收货人，两人因去留争执后形成有限分工。"
+    },
+    {
+      "path": "/plan/milestones/5/setup/5",
+      "after": "苏提供的是商盟引荐而非免检或免票令；第211日签下护送低阶药材到天宝外港的劳务换舱合同，约定职责、事故限责和返程不担保，不能凭救命恩情无限赊账。"
+    },
+    {
+      "path": "/plan/chapters/18/cost",
+      "before": "三日山路消耗干粮，林辰为省力需轮流乘货车，不能把离院后的训练时间重算为休养；苏的许可仅限登记的采集、勘路与遇险救援支路。",
+      "after": "三日山路消耗干粮，林辰为省力需轮流乘货车，不能把离院后的训练时间重算为休养；苏的许可仅限登记的采集、勘路与遇险救援支路。 本期个人用泉申请只是进入同批复核，未得原液、未得份额保证；不得提前消费未来延寿。"
+    },
+    {
+      "path": "/plan/chapters/18/scenes/5",
+      "after": "183日入口联名登记台收林的既有寿储诊单与本期三剂共九滴的个人用泉申请，记既往有效剂数为零，只受理、不预授原液。书吏说明采封管须对应当期采收簿、分配须看实际追回量与同批诊察排序；苏放弃的旧优先位不再支付一次，也不使林免审获配。林将申请回执与路线单分收，未把未来药额写入当日寿储。"
+    },
+    {
+      "path": "/plan/chapters/25/summary",
+      "before": "第188日10:45，顾带伤近身看押墨，苏与能行动的获救采集者轮替抬林的担架、推载伤护卫和包裹死者的原运人小车，绕开落料侧廊沿已核四里主支洞撤回；伤者队伍用75分钟，到12:00抵外营，由已休足的乔当面接墨，杜仍守入口。顾交押后先让白榆止血、固定肩伤，夜间休息，次日才参加核验。乔从午正守到酉初，杜从辰初守到酉初。褚、邵按预排在途中白昼补眠后暮抵，酉初分别当面接入口和墨岗，夜班到189日辰初，再由休足的杜、乔接两处日班；顾不充作夜间后备。189日众人按各自亲见范围登记获救者，核对样箱、封瓶和十二滴泉液。白榆确认九滴洁净、三滴污染，林同意先给一名寿储告急者完整三滴，自取六滴封存；顾、苏放弃分润。墨只承认本次营地与货物，林腿伤仍不能追击。",
+      "after": "第188日10:45，顾带伤近身看押墨，苏与能行动的获救采集者轮替抬林的担架、推载伤护卫和包裹死者的原运人小车，绕开落料侧廊沿已核四里主支洞撤回；伤者队伍用75分钟，到12:00抵外营，由已休足的乔当面接墨，杜仍守入口。顾交押后先让白榆止血、固定肩伤，夜间休息，次日才参加核验。乔从午正守到酉初，杜从辰初守到酉初。褚、邵按预排在途中白昼补眠后暮抵，酉初分别当面接入口和墨岗，夜班到189日辰初，再由休足的杜、乔接两处日班；顾不充作夜间后备。189日众人按各自亲见范围登记获救者，核对样箱和四支各三滴的原封管，与182日采封原联、实际采封人的亲历及入口对照页逐项相合，先确认灵眼原液来源与本期个人可分额归属。白榆再独立验毒验煞，九滴洁净、三滴污染；联名授权的入口配额台核同批诊察与申请，林主动将原三剂申请减为两剂，让告急者的一剂先完成签领；配额台批准余两剂给林封存，顾、苏放弃本批分配申请。林不占污染管或未来配额，不能由救援功劳自行分药。墨只承认本次营地与货物，林腿伤仍不能追击。"
+    },
+    {
+      "path": "/plan/chapters/25/characterGoals",
+      "before": "林辰要保住六滴洁净泉液、残片和本次证据，同时确保自己与伤者先撤；苏要优先照顾获救者并保存口供；顾要完成制伏后的责任交接；乔、杜、褚、邵要维持押解与入口守备不断班；墨要隐瞒上层与更大网络。",
+      "after": "林辰要为申请的六滴洁净泉液完成来源与配额复核，并保住残片和本次证据，同时确保自己与伤者先撤；苏要优先照顾获救者并保存口供；顾要完成制伏后的责任交接；乔、杜、褚、邵要维持押解与入口守备不断班；墨要隐瞒上层与更大网络。"
+    },
+    {
+      "path": "/plan/chapters/25/choice",
+      "before": "林同意先给告急采集者完整三滴，不抢占全部药物；顾把急于核验的事交给苏，先在188日午正亲交乔再疗伤。众人将非急迫核验留到次日，按实际到场与已休时间交岗。",
+      "after": "林主动将尚未获准的三剂申请减为两剂，使告急者的一剂先获签领；不拖延复核争余量，也不以救回者身份包揽药物；顾把急于核验的事交给苏，先在188日午正亲交乔再疗伤。众人将非急迫核验留到次日，按实际到场与已休时间交岗。"
+    },
+    {
+      "path": "/plan/chapters/25/endState",
+      "before": "第189日，墨已于188日午正由顾交乔、酉初由乔交邵，夜班未空置；杜/褚守入口、乔/邵看押，07–19日班与19–次日07夜班各12小时，顾休养不占班额。九滴洁净泉液按三滴给告急者、六滴由林封存，三滴污染物单独登记；幕后网络仍未揭开。",
+      "after": "第189日，墨已于188日午正由顾交乔、酉初由乔交邵，夜班未空置；杜/褚守入口、乔/邵看押，07–19日班与19–次日07夜班各12小时，顾休养不占班额。九滴洁净泉液已按原批个人可分额正式登记三滴给告急者、六滴由林封存；污染管三滴单独登记扣原批损失，不补额；林只登记领药、既用有效剂数仍零，未提前增加寿储；幕后网络仍未揭开。"
+    },
+    {
+      "path": "/plan/chapters/25/scenes/3",
+      "before": "白榆逐管验毒验煞，九滴洁净、三滴污染分封；一名采集者寿储告急，另一名只需常规外伤治疗。",
+      "after": "189日实际获救的原采封人只就亲历作证：182日在灵眼按当期联名簿分封四支管、每管三滴，返路被劫；采收原联由入口对照页与其领管号核验。配额书吏逐件对管号、封签接缝和滴数，三支原封相合，另一支有破损须隔离；墨承认收过此批只作旁证。原簿将这十二滴列在太清本期尚未指名的个人申请可分额，不属保育、公共医疗、应急或他人已分到手的药。未经核验不因瓶里有液就确认来源。"
+    },
+    {
+      "path": "/plan/chapters/25/scenes/4",
+      "before": "林同意三滴完整一剂先给告急者，自己封存六滴；顾苏放弃分润。药程190日才开始，不能把两剂未来十元载先花掉。",
+      "after": "白榆在来源核对之外逐管独立验毒验煞：三支原封管共九滴可用，破损管三滴污染单独封存待处置；没有把污染管重新算进可用量。入口书吏将追回12、洁净9、污染损失3接回182日同一批，追回不另开12滴配额。白榆复查同批申请：一名采集者寿储告急，林寿储仍低且此前未用过灵泉，另一伤者只需常规外伤治疗；顾苏撤回本批个人申请，不据救援功劳优先分药。"
+    },
+    {
+      "path": "/plan/chapters/25/scenes/5",
+      "before": "墨只承认本营货物，林因腿伤不能追击；常规外伤先治、非急迫核验次日做，没有用整夜伤者看押换取手续提前。",
+      "after": "白榆建议先救急，书吏说明林原申请九滴与告急者三滴相冲突，若坚持原申请须暂缓本批个人分配交三方复核；申请不是已经归林的药。林主动撤去一剂申请，同意告急者先领3滴，不索回报。入口配额台据双方签认、诊察与本批余量核准另6滴两支封管给林，净分9不超过原批可分量；林不动污染管、不预借下期份额。原批登记、各人领用页、林既用有效剂数零及拟用两剂分栏记，林与告急者各自签收；189日只有原液出入账，林药程190日才开始，两剂未来10元载不能先花。另一伤者常规治疗另走既有药账，泉液不治伤。"
+    },
+    {
+      "path": "/plan/chapters/25/scenes/6",
+      "after": "墨只承认本营货物，林因腿伤不能追击；常规外伤先治、非急迫核验次日做，没有用整夜伤者看押换取手续提前。"
+    },
+    {
+      "path": "/plan/chapters/26/scenes/6",
+      "after": "190日白榆按189日获配的第一支管号开用药页，林每日实际服一滴，193–199日静养，不把另一支封管先启。199日复诊确认本剂完整炼化有效，才登记寿储新增5元载、有效剂数由0到1，个人封存原液由6滴减至3滴；常规换药与自然流逝另记。"
+    },
+    {
+      "path": "/plan/chapters/27/scenes/6",
+      "after": "200日按第二支个人获配管号起第二用药页，200–202日每日一滴、203–209日静养。209日复诊确认有效才登记新增5元载，有效剂数从1到2、原液库存从3到0，未再从原批或下一周期领一剂；曾给告急者的3滴属于其独立药页，不算林第三剂。"
+    }
+  ],
+  "questionChanges": [
+    {
+      "path": "/storyBible/unresolvedQuestions/0",
+      "before": {
+        "id": "uq_03",
+        "question": "【既有记录，非后卷事实依据】三大陆界门开启时是否会触发天地灵气守恒律的反向大吞噬？",
+        "blocking": false,
+        "status": "resolved"
+      },
+      "after": {
+        "id": "uq_03",
+        "question": "三大陆界门开启时是否会触发天地灵气守恒律的反向大吞噬？",
+        "blocking": false,
+        "status": "open"
+      }
+    },
+    {
+      "path": "/storyBible/unresolvedQuestions/1",
+      "before": {
+        "id": "uq_04",
+        "question": "【既有记录，非后卷事实依据】大乾天朝皇室命修是否秘密掌握借国运转移燃寿反噬之法？",
+        "blocking": false,
+        "status": "resolved"
+      },
+      "after": {
+        "id": "uq_04",
+        "question": "大乾天朝皇室命修是否秘密掌握借国运转移燃寿反噬之法？",
+        "blocking": false,
+        "status": "open"
+      }
+    },
+    {
+      "path": "/storyBible/unresolvedQuestions/2",
+      "before": {
+        "id": "uq_06",
+        "question": "【既有记录，非后卷事实依据】主角以命寿换力突破至归一境时，延寿灵泉能否中和其肉身永久衰老的暗伤？",
+        "blocking": false,
+        "status": "resolved"
+      },
+      "after": {
+        "id": "uq_06",
+        "question": "未来高阶成长仍须遵守灵泉仅增未来寿储、不治疗道伤或返还已付晋阶/燃寿成本的规则；实际可得来源与疗程尚需逐层设计。",
+        "blocking": false,
+        "status": "open"
+      }
+    },
+    {
+      "path": "/storyBible/unresolvedQuestions/3",
+      "before": {
+        "id": "uq_08",
+        "question": "【既有记录，非后卷事实依据】太古界门破虚匙共有几柄，补天阁内部是否封存有另外的钥匙残片？",
+        "blocking": false,
+        "status": "resolved"
+      },
+      "after": {
+        "id": "uq_08",
+        "question": "太古界门破虚匙共有几柄，补天阁内部是否封存有另外的钥匙残片？",
+        "blocking": false,
+        "status": "open"
+      }
+    },
+    {
+      "path": "/storyBible/unresolvedQuestions/4",
+      "before": {
+        "id": "uq_09",
+        "question": "【既有记录，非后卷事实依据】十年前青玄极天界门的无故灵震是否由主角家族或某位通天境强者的秘密燃寿破门引发？",
+        "blocking": false,
+        "status": "resolved"
+      },
+      "after": {
+        "id": "uq_09",
+        "question": "十年前青玄极天界门的无故灵震是否由主角家族或某位通天境强者的秘密燃寿破门引发？",
+        "blocking": false,
+        "status": "open"
+      }
+    }
+  ],
+  "caveats": [
+    "Spring review binds v5; v6 only reopens five nonblocking legacy question records. World, plans and other bible fields are identical.",
+    "All actual blocking questions remain unchanged; no acceptance, plan approval, prose generation or adopted-history replacement occurred.",
+    "Structural validation now diagnoses exactly five divergent shared question states in the old baseline and zero in the candidate. Old reviews retain their original runtime and findings."
+  ]
+}

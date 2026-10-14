@@ -207,3 +207,36 @@ test('long-form readiness blocks resources whose names imply undefined powers', 
   world.resources[0].status = 'deprecated';
   assert.ok(!validateLongFormWorldPack(world).errors.some((message) => message.includes('requires explicit effect')));
 });
+
+test('shared unresolved questions cannot disagree across world and bible or bypass locked generation', () => {
+  const world = lockWorldPack(reviewedWorld());
+  const bible = lockStoryBible(reviewedBible(world.id, world.revision), world);
+  world.unresolvedQuestions.push({ id: 'gate-question', question: '界门打开后果', blocking: false, status: 'open' });
+  bible.unresolvedQuestions.push({ id: 'gate-question', question: '【旧记录】界门打开后果', blocking: false, status: 'resolved' });
+  const original = structuredClone({ world, bible });
+  assert.match(validateStoryBible(bible, world).errors.join(';'), /gate-question status resolved conflicts with world status open/);
+  assert.equal(chapterGenerationGate(world, bible).ready, false, 'locked flags cannot hide a divergent resolution');
+  assert.throws(() => reviewStoryBible({ ...bible, status: 'proposed' }, world), /conflicts with world status/);
+  assert.throws(() => lockStoryBible({ ...bible, status: 'reviewed' }, world), /conflicts with world status/);
+  assert.deepEqual({ world, bible }, original, 'validation does not resolve or reopen historical objects');
+  world.unresolvedQuestions[0].status = 'resolved';
+  bible.unresolvedQuestions[0].status = 'deferred';
+  assert.match(validateStoryBible(bible, world).errors.join(';'), /status deferred conflicts with world status resolved/);
+  bible.unresolvedQuestions[0].status = 'resolved';
+  bible.unresolvedQuestions[0].blocking = true;
+  assert.match(validateStoryBible(bible, world).errors.join(';'), /blocking flag conflicts/);
+  bible.unresolvedQuestions[0].blocking = false;
+  assert.equal(validateStoryBible(bible, world).ready, true);
+  bible.unresolvedQuestions.push({ id: 'story-only', question: '配角的后续选择', blocking: false, status: 'deferred' });
+  assert.equal(validateStoryBible(bible, world).ready, true, 'independent story questions need no matching world entry');
+});
+
+test('duplicate question ids cannot hide a conflicting resolution within one document', () => {
+  const world = reviewedWorld();
+  const bible = reviewedBible(world.id, world.revision);
+  const question = { id: 'duplicate-question', question: '未核前置', blocking: false, status: 'open' as const };
+  world.unresolvedQuestions = [question, { ...question, status: 'resolved' }];
+  bible.unresolvedQuestions = [question, { ...question, status: 'resolved' }];
+  assert.ok(validateWorldPack(world).errors.includes('world questions has duplicate id duplicate-question'));
+  assert.ok(validateStoryBible(bible, world).errors.includes('story questions has duplicate id duplicate-question'));
+});

@@ -368,6 +368,7 @@ export function validateWorldPack(pack: WorldPack): GateResult {
   collectIds(pack.resources, 'resources', errors);
   collectIds(pack.historicalEvents, 'historical events', errors);
   collectIds(pack.terminology, 'terminology', errors);
+  collectIds(pack.unresolvedQuestions, 'world questions', errors);
 
   for (const system of pack.powerSystems) {
     for (const realmId of system.realmIds) if (!realmIds.has(realmId)) errors.push(`power system ${system.id} references unknown realm ${realmId}`);
@@ -484,6 +485,16 @@ export function validateStoryBible(bible: StoryBible, worldPack: WorldPack): Gat
   collectIds(bible.openThreads ?? [], 'open threads', errors);
   collectIds(bible.volumes, 'volumes', errors);
   collectIds(bible.chapterPlans ?? [], 'chapter plans', errors);
+  collectIds(bible.unresolvedQuestions, 'story questions', errors);
+  const worldQuestions = new Map(worldPack.unresolvedQuestions.map(question => [question.id, question]));
+  for (const question of bible.unresolvedQuestions) {
+    const shared = worldQuestions.get(question.id);
+    if (!shared) continue;
+    // A reused ID denotes the same unresolved design question, not a local
+    // override of its resolution or blocking state. Never silently reconcile.
+    if (question.status !== shared.status) errors.push(`story question ${question.id} status ${question.status} conflicts with world status ${shared.status}; reconcile the same question or use a distinct id`);
+    if (question.blocking !== shared.blocking) errors.push(`story question ${question.id} blocking flag conflicts with world question`);
+  }
   for (const character of bible.characters) {
     if (character.locationId && !locationIds.has(character.locationId)) errors.push(`character ${character.id} references unknown location ${character.locationId}`);
     if (character.factionId && !factionIds.has(character.factionId)) errors.push(`character ${character.id} references unknown faction ${character.factionId}`);
