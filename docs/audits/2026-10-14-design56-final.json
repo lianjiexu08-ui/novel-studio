@@ -1,0 +1,261 @@
+{
+  "observedAt": "2026-10-14T08:38:24.696Z",
+  "status": "all_four_completed_not_acceptance",
+  "originalRunnerStatus": "completed_with_failures",
+  "recoveryStatus": "completed",
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "runtimeCommit": "efb7cc4ea84933fd588d7b74c725c6815863d9d3",
+  "rubricVersion": 10,
+  "scheduleVersion": 9,
+  "scope": {
+    "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+    "planId": "plan_ffe1273f20c7434a92f25e0adbe138c6",
+    "world": 27,
+    "bible": 56,
+    "plan": 56
+  },
+  "originalFailureRetained": true,
+  "recoveredStage": "followup-batch-1/timeline",
+  "completedStepsNotReplayed": 16,
+  "protectedDesignAndHistoryUnchanged": true,
+  "oldRunsUnchanged": 29,
+  "oldReportsUnchanged": 35,
+  "counts": {
+    "plans": 56,
+    "versions": 101,
+    "events": 383,
+    "manuscripts": 1
+  },
+  "usage": {
+    "original": {
+      "calls": 87,
+      "failedCalls": 0,
+      "inputTokens": 8288614,
+      "outputTokens": 126974,
+      "costUsd": 0,
+      "costKnown": false,
+      "byRole": {
+        "reviewing": {
+          "calls": 87,
+          "failedCalls": 0,
+          "outputTokens": 126974,
+          "costUsd": 0
+        }
+      },
+      "limits": {
+        "budgetUsd": null,
+        "maxCalls": 180
+      }
+    },
+    "recovery": {
+      "calls": 31,
+      "failedCalls": 0,
+      "inputTokens": 2065301,
+      "outputTokens": 44042,
+      "costUsd": 0,
+      "costKnown": false,
+      "byRole": {
+        "reviewing": {
+          "calls": 31,
+          "failedCalls": 0,
+          "outputTokens": 44042,
+          "costUsd": 0
+        }
+      },
+      "limits": {
+        "budgetUsd": null,
+        "maxCalls": 90
+      }
+    },
+    "combinedCalls": 118
+  },
+  "runs": [
+    {
+      "area": "world",
+      "id": "design_run_c64a52f3-17e8-4254-a191-9dec0353389b",
+      "reportId": "design_review_ae8212db-f0dc-4a19-9303-741196d92b76",
+      "status": "completed",
+      "completed": 13,
+      "total": 13,
+      "reportStatus": "needs_revision",
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "revise",
+          "explanation": "第30—32章的云梦至天宝两昼夜实体航程、护货换舱和抵达外港本身符合虚海商路；但赤霄准入明确要求抗火法门或避火灵符，玄府以下还须避开喷发期。该段只概称“验籍及实际避火防护”，没有防护类型、持有人、取得来源与对价、覆盖范围、喷发期核验及验籍责任生效点。第217日才由船主付费租符的安排不能倒填第214—216日的入港前置。后续北航已有航款、船票、受监管码头和外港担保等较具体宏观安排，但不消除这一已证缺口，也仍须在正式后续章纲逐航次落实返青玄的实体通行链。",
+          "revisionAdvice": "修订第30—32章：明确所用抗火法门或避火物的名称、持有人、取得渠道、费用或劳务对价、可覆盖的船舱和外港区域、停喷/喷发期判断，以及云梦出港和天宝入港验籍、责任记录的生效时点。说明其与第217日归还旧避火衣、另租避火符的连续性，避免倒填前置或重复记账。第54章后各实际航次继续明确船舶或具名供给/担保、支付责任、准入和实体日期。",
+          "evidenceCount": 8,
+          "evidenceSourceIds": [
+            "review-result/synthesis-5",
+            "review-unit/288"
+          ]
+        },
+        {
+          "criterion": "history",
+          "verdict": "insufficient",
+          "explanation": "界门落锁、三大陆实体航运、帝宗冲突、赤霄长期火脉争夺和商盟商路可解释一般资源与监管格局；计划中的失箱、救援、消息传递及赵方单边重整也已限制了远程即时知情。然而赵氏军需、炎煞港口代理与程记承运的旧互供关系仍明确承认原约及三年前签约原物未展现，只能称为“既有联系”。一般势力目标与资源不能推出这条私下关系的交换物、授权边界、程记承运资格、违约损失和监管压力，故不足以支撑三方在货损、封港、北境失败和赵转向本地车队后的独立行动。此前补读亦未解决该具体材料不足，必须保留。",
+          "revisionAdvice": "补充赵氏军需—炎煞代理—程记承运旧互供的可核前史或等效凭据：赵方提供或取得的资源和授权、炎煞可实际交付的港口能力、程记承运资格及收益；明确三年前协议的交换物、风险分担和监管边界。再将本批失箱、毁账、封港、北境失败及赵转向本地车队分别接入这些既有约束，写清各方可承受损失与行动动机。",
+          "evidenceCount": 9,
+          "evidenceSourceIds": [
+            "review-result/synthesis-5",
+            "review-result/synthesis-4"
+          ]
+        },
+        {
+          "criterion": "capacity",
+          "verdict": "pass",
+          "explanation": "以本轮100章阶段验收衡量，三卷分别承担青玄的矿务与宗门门槛、赤霄的港口扣工和货运调查、苍冥受限外港救援及返乡后的训练和截运，不是单纯换地图重复战斗。实体航程、环境防护、验籍监管、航款、寿储、伤势、人员安置和证据传播能持续产生不同选择压力。百章成果限定为救人、切断一条已证三地运输链、部分父案澄清及玄府成长，九鼎、残片与界门危机留作约450章总线；前50章有细纲、后50章采用宏观里程碑，符合分层设计，不因未展开后半段逐场细节而构成容量缺陷。",
+          "revisionAdvice": "",
+          "evidenceCount": 6,
+          "evidenceSourceIds": [
+            "review-result/synthesis-5",
+            "review-unit/288",
+            "review-result/synthesis-4"
+          ]
+        }
+      ]
+    },
+    {
+      "area": "power",
+      "id": "design_run_8728f421-936e-405f-bcbf-317c6ccf14b1",
+      "reportId": "design_review_57214ab1-71c0-4954-9f02-48d0d4539185",
+      "status": "completed",
+      "completed": 31,
+      "total": 31,
+      "reportStatus": "needs_revision",
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "revise",
+          "explanation": "前置报告与补读一致确认：第18、20、25章安排林辰登记领用并使用赤霞斩铁剑施展剑诀，但当前对应的art_02实际是青木护身符佩，不能证明剑器的品阶、凝元承载、剑诀兼容、领用或热损规则。乾元御风剑诀可徒手导刃，也不能替代剑器本身的门槛。墨幽屠使用幽冥噬血爪的掌握前置亦未补足，玄府境不能自动等于已掌握该术。",
+          "revisionAdvice": "提供赤霞斩铁剑独立且准确的法宝条目，明确品阶、允许境界、与剑诀的承载及供能、领用归还、热损/冷却和损坏限制，并复核第18、20、25章。为墨幽屠补明幽冥噬血爪的取得、修习、控制与实测前置，保留其尸毒和停术限制。",
+          "evidenceCount": 4,
+          "evidenceSourceIds": [
+            "review-result/synthesis-14",
+            "review-result/synthesis-13"
+          ]
+        },
+        {
+          "criterion": "costs",
+          "verdict": "revise",
+          "explanation": "真光、噬血爪、寿储和高阶本源账户已有较完整的分账，但tech_06允许神海使用却固定从玄府元罡支付，违反神海及以上只能使用唯一当境法力账户的规则。第23章元罡推车的二成支出没有负载、时长或恢复依据，第25章顾的同阶近身制伏也没有发动、持续、失败和伤后成本。另剑器的发热、散热试注虽被章节作为实际消耗，现有法宝条目却没有对应规则。",
+          "revisionAdvice": "修订tech_06，使适用境界与当境法力账一致，并补明打断损耗、冷却和复查。为推车助力、近身制伏及赤霞斩铁剑分别固定预付/持续费用、并行限制、失败或打断是否退款、伤后上限与停术条件，再重算第23、25章余额。",
+          "evidenceCount": 6,
+          "evidenceSourceIds": [
+            "review-result/synthesis-13",
+            "review-result/synthesis-14"
+          ]
+        },
+        {
+          "criterion": "counters",
+          "verdict": "revise",
+          "explanation": "真光、噬血爪、局部护罡及鸿蒙典本身已有范围、蓄势、打断和反制；但前置多份报告仍确认第23章的元罡推车和第25章的同阶近身制伏缺少起式、接触范围、承受上限、站位/地形限制及可被打断或卸力条件。因此无法复核顾的胜利确实依赖真光破坏当次阴煞节奏、墨的既有伤势和贴身看押，而不是未定义能力的无条件压制。综合中出现的“通过”判断没有提供足以消除这些缺口的新规则证据，不能覆盖既存返修。",
+          "revisionAdvice": "为推车助力明确接触方式、站位、惯性、可推动负载、地形阻断及被打断/卸力条件；为近战明确对同阶护罡和受伤目标的效果、落点、闪避/打断节点、不可作用对象与失败后果，确保第25章制伏链不变成无条件压制。",
+          "evidenceCount": 5,
+          "evidenceSourceIds": [
+            "review-result/synthesis-13",
+            "review-result/synthesis-14"
+          ]
+        }
+      ]
+    },
+    {
+      "area": "characters",
+      "id": "design_run_f1d4d359-9488-4b69-986f-f3e0873b927a",
+      "reportId": "design_review_3b995623-fa20-4f34-9e3e-e6d16e4d5544",
+      "status": "completed",
+      "completed": 21,
+      "total": 21,
+      "reportStatus": "passed",
+      "checks": [
+        {
+          "criterion": "agency",
+          "verdict": "pass",
+          "explanation": "林辰的救人、追证、追凶与自保被安排为互有排斥的选择；其后期截押时仍须在伤势、寿储、真元、人员分工和可见证据内行动，并明确放弃追程以救援同伴。贺、梁九、苏、顾及工人也各有生计、职责、证词与去留边界，能够拒绝主角方案并承担失单、伤势、停供、看护或调查受阻等后果。总纲把阶段推进限定为前段救援、交接、健康与可用款项实际成立后，未以时间经过或拟定成果替代能力前置。",
+          "revisionAdvice": "",
+          "evidenceCount": 6,
+          "evidenceSourceIds": [
+            "review-result/synthesis-9",
+            "review-unit/210"
+          ]
+        },
+        {
+          "criterion": "relationships",
+          "verdict": "pass",
+          "explanation": "关系设计未以终局互信倒灌初识。林苏的合作受护证分路、有限副本和实际递信限制；林贺的同行及安置合作受船损、工人自主去留、垫款结算与船务生计限制；陆的协助亦不抵销其押送责任。51—53章的安置、生计安排和陆的自述均被标明为拟定条件，须在实际落实、签认及独立核验后才产生相应关系效果，因此与第50章拟定脱控的前置安排可以衔接而非冲突。",
+          "revisionAdvice": "",
+          "evidenceCount": 6,
+          "evidenceSourceIds": [
+            "review-result/synthesis-9",
+            "review-result/synthesis-8"
+          ]
+        },
+        {
+          "criterion": "knowledge",
+          "verdict": "pass",
+          "explanation": "秘密和消息链按亲见、有限供述、实体副本、发令、送达、签收、回执及正式质询分层。林对父案只能由署名图、存根和副本逐步确认守门参与与外山掩案，持续不得外推投毒全貌、九鼎全知或未在场者知识；陆的新自述只确认其作出供述，内容仍待独立核验。赵对港口、北境与押运信息也分别在实际收到相应文书或面报后更新认知。该限制使人物由追仇冲动转向按可核证据救人与追查具有明确因果，而非依赖读者视角。",
+          "revisionAdvice": "",
+          "evidenceCount": 6,
+          "evidenceSourceIds": [
+            "review-result/synthesis-9"
+          ]
+        }
+      ]
+    },
+    {
+      "area": "story",
+      "id": "design_run_eae8ce3f-bac9-49d3-a1e6-e3a7dcbe20c7",
+      "reportId": "design_review_7b3b32d5-89b7-43c4-b6bb-4751dd6d0103",
+      "status": "completed",
+      "completed": 47,
+      "total": 47,
+      "reportStatus": "needs_revision",
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "revise",
+          "explanation": "提案的阶段依赖链和局部行动顺序基本明确，但有两项实质性缺口。其一，world/overview 将 uq_03、uq_04、uq_06、uq_08、uq_09 保留为 open/deferred，而 story/overview 又标为 resolved，并以“既有记录，非后卷事实依据”替代具体场景、证据、知情范围与代价，造成同一提案的前置状态冲突。其二，第26—29章的两笔灵泉收益依赖灵眼来源验真、配额登记、持有凭证和林辰处分权限，现有安排仅写洁净筛检、服用和复诊，不能自动闭合后续寿储与预算链。报告还保留第39—50章至51—53章的连续承接不足，不能由宏观转折代替。",
+          "revisionAdvice": "统一 world/overview、story/overview 与 plan 的悬问状态；对 uq_03、uq_04、uq_06、uq_08、uq_09 逐项明确本百章兑现、历史记录或后置，并补章号、场景、证据来源、知情角色和代价。第26—28章补出灵泉来源验真、配额/持有登记及六滴处分授权；无法成立则撤销两笔5元载并重算后续预算。同时补足第39—50章至51—53章的连续行动因果。",
+          "evidenceCount": 6,
+          "evidenceSourceIds": [
+            "review-result/synthesis-22",
+            "review-result/synthesis-21"
+          ]
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "insufficient",
+          "explanation": "已有材料能支持部分时序：第188—211日的救援、疗程、分路和南行，以及第251日后的北航、返航、训练、押运和回访总体可顺接，未显示已确认的抵达早于出发或同一人物硬性地点重叠。但前置报告之间对本项存在冲突：部分报告据后半程日期判为通过，另一些报告明确指出第39—50章的港内移动、船损维修、消息寄送与抵达、吴卢脱控，以及51—53章安置前提没有直接章纲核验。sourceLengths 目录只能证明相关来源存在，不能替代未提供的原文，因此不能整体通过。",
+          "revisionAdvice": "补读并交叉核对 plan/chapters/39 至 plan/chapters/50，逐章建立人物出发地、港内地点与移动、船损及修理节点、消息签发/送达/阅知、吴卢脱控和51—53章安置前提，再与第54章后的五日北航、六日返程及后续消息链统一复核。",
+          "evidenceCount": 6,
+          "evidenceSourceIds": [
+            "review-result/synthesis-21"
+          ]
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "revise",
+          "explanation": "第一片继续持有、第二片未得、三地人员分列安置、父案仅部分澄清、百章不清算九鼎与界门总危机等兑现边界较清楚，未见把局部救援重复写成全案终局。但灵泉资源兑现仍不成立：规则要求灵虚古境灵眼来源、独立验毒验煞、滴数记录及相关登记/权限；第26—28章只证明九滴洁净、六滴封存、两次完整疗程和复诊，未证明来源凭证、配额登记或林辰合法处分六滴。因此两笔各5元载不能作为已闭合的伏笔兑现，也不能无条件支撑后续航款、寿储和晋阶预算。核心悬问的 open/deferred 与 resolved 冲突也使秘密和开放线总账不一致。",
+          "revisionAdvice": "重做伏笔、秘密与承诺兑现账：逐项列出首次取得、证据来源、交接时点、知情角色、兑现条件、代价和归宿。补齐灵泉来源、配额/持有登记与处分授权，并令两次复诊明确以合规记录为前提；补齐前不得把十元载作为已兑现资源。同步修正 uq_03、uq_04、uq_06、uq_08、uq_09 的状态，避免与百章不清算九鼎、钥匙余片和界门危机的边界冲突。",
+          "evidenceCount": 9,
+          "evidenceSourceIds": [
+            "review-result/synthesis-22",
+            "review-result/synthesis-21"
+          ]
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass",
+          "explanation": "前五十章的冲突功能呈递进而非重复救援模板：前段是矿道生存、有限复核和不利证词，中段升级为有条件古境救援、伤亡、污染泉液、疗程与分路，后段转为救落水者与保全证据的取舍，再到现场确认工人意愿、陆停止扣人及巡员见证。各阶段都保留伤势、债务、证据不足、船损、延误或关系选择等后果，且计划明确百章只完成局部运输链、部分父案澄清与阶段性成长，未提前清算全书终局。报告已特别说明该判断只针对拟定提案，不等同于正文已实现。",
+          "revisionAdvice": "",
+          "evidenceCount": 7,
+          "evidenceSourceIds": [
+            "review-result/synthesis-21",
+            "review-unit/284"
+          ]
+        }
+      ]
+    }
+  ]
+}
