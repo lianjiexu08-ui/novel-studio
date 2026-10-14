@@ -3,7 +3,7 @@ import { designReviewOverview, requiresDesignContentReview, type DesignContentRe
 import { createHash, randomUUID } from 'node:crypto';
 import { chapterGenerationGate, validateStoryBible, validateWorldPack } from './world.ts';
 import type { StoryBible, WorldPack } from './world.ts';
-import { activePlan, effectiveBrief, planBlockers } from './planning.ts';
+import { activePlan, effectiveBrief, planBlockers, planDesignIssues } from './planning.ts';
 import type { ChapterBrief, PlanRevision } from './planning.ts';
 
 const id = (prefix: string) => `${prefix}_${randomUUID().replaceAll('-', '')}`;
@@ -715,6 +715,17 @@ export class NovelService {
     if (selected.length !== expectedChapterCount) throw new AdoptionBlocked('manuscript contains stale or duplicate chapter versions');
     const closure = closureCoverageFor(work, expectedChapterCount);
     if (!closure.ready) throw new AdoptionBlocked(`manuscript closure gate blocked: ${closure.errors.join('; ')}`);
+    const plan = activePlan(work);
+    if (!plan || plan.status !== 'approved' || plan.worldPackRevision !== work.worldPack.revision || plan.storyBibleRevision !== work.storyBible.revision) {
+      throw new AdoptionBlocked('manuscript requires an approved plan bound to the current world pack and story bible');
+    }
+    const planIssues = planDesignIssues(work, plan.plan);
+    if (planIssues.length) throw new AdoptionBlocked(`manuscript plan gate blocked: ${planIssues.map(issue => issue.message).join('; ')}`);
+    // Chapter adoption is historical evidence. A later negative or unfinished
+    // design review must also block minting a new final manuscript revision.
+    if (requiresDesignContentReview(work) && !designReviewOverview(work).ready) {
+      throw new AdoptionBlocked('manuscript content review gate blocked: 当前设计尚未通过全部分项内容评审');
+    }
     const wordCount = selected.reduce((sum, version) => sum + version.content.trim().length, 0);
     const targetWordCount = work.covenant.chapterWords * expectedChapterCount;
     const worldDesign = work.recordDesignRevision('world_pack', work.worldPack);

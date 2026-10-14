@@ -2,7 +2,10 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { closureCoverageFor, NovelService, passChecker, qualityAuditFor } from '../src/core.ts';
 import { lockStoryBible, lockWorldPack } from '../src/world.ts';
-import { minimalPlan } from '../../packages/application/test/fixtures.ts';
+import { fixtureDesignReview, minimalPlan } from '../../packages/application/test/fixtures.ts';
+import { designReviewAreas, designReviewInput, recordDesignReview } from '../src/design-review.ts';
+import { createDesignReviewRun } from '../src/design-review-run.ts';
+import type { Work } from '../src/core.ts';
 import { createPlanRevision } from '../src/planning.ts';
 import type { StoryBible, WorldPack } from '../src/world.ts';
 
@@ -65,6 +68,25 @@ function lockedDesign(): { world: WorldPack; bible: StoryBible } {
   return { world, bible: lockStoryBible(bibleDraft, world) };
 }
 
+/** Explicit test doubles for the approved plan and four content reviews. */
+function reviewedPlan(work: Work) {
+  const plan = minimalPlan(100, { volumeSize: 34, outlined: 100 });
+  let start = 1;
+  plan.volumes = work.storyBible!.volumes.map((volume, index) => {
+    const result = { ...plan.volumes[index], id: volume.id, startChapter: start, endChapter: start + volume.plannedChapterCount - 1 };
+    start = result.endChapter + 1;
+    return result;
+  });
+  for (const chapter of plan.chapters) chapter.volumeId = plan.volumes.find(v => v.startChapter <= chapter.chapterNumber && v.endChapter >= chapter.chapterNumber)!.id;
+  const revision = createPlanRevision(work, plan, { source: 'author' });
+  revision.status = 'approved'; work.activePlanId = revision.id;
+  for (const area of designReviewAreas) {
+    const input = designReviewInput(work, area);
+    recordDesignReview(work, input, fixtureDesignReview(input));
+  }
+  return revision;
+}
+
 test('the first long-form milestone runs three volumes and freezes a 100-chapter manuscript', () => {
   const design = lockedDesign();
   const service = new NovelService(provider);
@@ -75,6 +97,7 @@ test('the first long-form milestone runs three volumes and freezes a 100-chapter
   assert.equal(checkpoint.phase, 'complete');
   assert.equal(checkpoint.nextChapter, 101);
   assert.equal(work.adoptedVersions().length, 100);
+  reviewedPlan(work);
   const manuscript = service.finalizeManuscript(work.id);
   assert.equal(manuscript.chapterCount, 100);
   assert.equal(manuscript.chapterVersionIds.length, 100);
@@ -151,11 +174,46 @@ test('manuscript closure is isolated from later design and event activity change
   service.setWorldPack(work.id, design.world);
   service.setStoryBible(work.id, design.bible);
   service.runUntil(work.id, 100, [passChecker], 'frozen-evidence');
+  reviewedPlan(work);
   const manuscript = service.finalizeManuscript(work.id);
   for (const event of work.events.values()) event.active = false;
   work.storyBible = { ...design.bible, revision: 99, secrets: [{ ...design.bible.secrets![0], id: 'future-secret' }] };
   assert.equal(closureCoverageFor(work, 100).ready, false);
   assert.equal(closureCoverageFor(work, 100, manuscript).ready, true);
+});
+
+test('finalization rechecks current design reviews and preserves the existing manuscript on rejection', () => {
+  const design = lockedDesign(), service = new NovelService(provider), work = service.createWork('最终稿不能绕过复评');
+  service.setWorldPack(work.id, design.world); service.setStoryBible(work.id, design.bible);
+  service.runUntil(work.id, 100, [passChecker], 'final-review-gate');
+  assert.throws(() => service.finalizeManuscript(work.id), /approved plan/);
+  const plan = reviewedPlan(work);
+  const original = service.finalizeManuscript(work.id);
+  const before = JSON.stringify([...work.manuscripts]);
+  const reports = [...work.designContentReviews];
+  const rejected = (pattern = /content review|内容评审/) => {
+    assert.throws(() => service.finalizeManuscript(work.id), pattern);
+    assert.equal(JSON.stringify([...work.manuscripts]), before);
+    assert.equal(original.status, 'final');
+  };
+  plan.status = 'proposed'; rejected(/approved plan/); plan.status = 'approved';
+  const worldRevision = plan.worldPackRevision;
+  plan.worldPackRevision = -1; rejected(/approved plan/); plan.worldPackRevision = worldRevision;
+  const end = plan.plan.volumes[0].endChapter;
+  plan.plan.volumes[0].endChapter -= 1; rejected(/plan gate blocked/); plan.plan.volumes[0].endChapter = end;
+  work.designContentReviews.clear(); rejected();
+  for (const [id, report] of reports) work.designContentReviews.set(id, report);
+  const input = designReviewInput(work, 'power'), result = fixtureDesignReview(input);
+  result.checks[0] = { ...result.checks[0], verdict: 'revise', explanation: '测试复评发现不可支付的功法成本', revisionAdvice: '先修复并重新评审' };
+  const negative = recordDesignReview(work, input, result); rejected();
+  work.designContentReviews.delete(negative.id);
+  const run = createDesignReviewRun(input); work.designReviewRuns.set(run.id, run); rejected();
+  work.designReviewRuns.delete(run.id);
+  work.title += '（新约定）'; rejected();
+  work.title = '最终稿不能绕过复评';
+  const final = service.finalizeManuscript(work.id);
+  assert.equal(final.revision, original.revision + 1);
+  assert.equal(original.status, 'superseded');
 });
 
 test('audit checks actual volume ranges and keeps deferred questions visible', () => {

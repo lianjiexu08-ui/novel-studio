@@ -576,11 +576,16 @@ test('content review API defaults to the latest proposal and preserves the appro
 
 test('100-chapter milestone endpoint starts from locked design and reaches a final checkpoint', async () => {
   const design = milestoneDesign();
+  let requireRevision = false;
   const { app } = createApiServer({
     repository: new InMemoryWorkRepository(),
     allowBatchRuns: true,
     provider: { generateChapter: ({ chapterNumber }) => { const events = milestoneChapterEvents(chapterNumber); return { content: chapterBody(chapterNumber), proposedEvents: events, observedEvents: events }; } },
-    designProvider: { reviewDesignContent: async (input) => fixtureDesignReview(input), generateWorldPack: async () => design.world, generateStoryBible: async () => design.bible },
+    designProvider: { reviewDesignContent: async (input) => {
+      const result = fixtureDesignReview(input);
+      if (requireRevision) result.checks[0] = { ...result.checks[0], verdict: 'revise', explanation: '测试复评发现当前设计有冲突', revisionAdvice: '先修订再复评' };
+      return result;
+    }, generateWorldPack: async () => design.world, generateStoryBible: async () => design.bible },
   });
   try {
     const work = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('一键百章') })).json();
@@ -610,6 +615,19 @@ test('100-chapter milestone endpoint starts from locked design and reaches a fin
     assert.equal(finalized.statusCode, 200);
     assert.equal(finalized.json().manuscript.chapterCount, 100);
     assert.ok(finalized.json().manuscript.targetWordCount > finalized.json().manuscript.wordCount);
+    const exportUrl = `/works/${work.id}/manuscripts/${finalized.json().manuscript.id}/export`;
+    const originalExport = (await app.inject({ method: 'GET', url: exportUrl })).json();
+    requireRevision = true;
+    const negative = await app.inject({ method: 'POST', url: `/works/${work.id}/design/content-reviews`, payload: { area: 'world' } });
+    assert.equal(negative.json().report.status, 'needs_revision');
+    const blockedFinal = await app.inject({ method: 'POST', url: `/works/${work.id}/manuscripts/finalize`, payload: {} });
+    assert.equal(blockedFinal.statusCode, 409);
+    assert.match(blockedFinal.json().error.message, /content review gate blocked/);
+    assert.deepEqual((await app.inject({ method: 'GET', url: exportUrl })).json(), originalExport, 'a rejected finalization leaves the old frozen manuscript export unchanged');
+    assert.equal((await app.inject({ method: 'GET', url: `/works/${work.id}/manuscripts` })).json().manuscripts.length, 1);
+    requireRevision = false;
+    assert.equal((await app.inject({ method: 'POST', url: `/works/${work.id}/design/content-reviews`, payload: { area: 'world' } })).json().report.status, 'passed');
+    assert.equal((await app.inject({ method: 'POST', url: `/works/${work.id}/manuscripts/finalize`, payload: {} })).statusCode, 200);
   } finally {
     await app.close();
   }
