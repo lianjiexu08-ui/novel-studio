@@ -1,0 +1,470 @@
+{
+  "observedAt": "2026-10-14T18:24:56.597Z",
+  "candidateSha256": "0e18e1c553fc3c38a19ff8c25b516aa09908629cfb5b4af9200d2760afdbd26a",
+  "mode": "isolated_memory_only",
+  "scheduleVersion": 21,
+  "expectedRevisions": {
+    "world": 30,
+    "bible": 60,
+    "plan": 60,
+    "approvedPlan": 10
+  },
+  "modelCalls": 0,
+  "productionWrites": false,
+  "snapshotProtectedHistoryMatchesBaseline": true,
+  "snapshotPath": "/tmp/novel60-preflight-snapshot.db",
+  "allOriginalCharactersCovered": true,
+  "formalAcceptance": false,
+  "areas": [
+    {
+      "area": "world",
+      "sourceCount": 415,
+      "sourceEnvelopeSha256": "f0a9355cf438b39e9e4ff77d1e3e7397748cb140b3dd32db55e70d8a56ce66db",
+      "units": 418,
+      "batches": 5,
+      "crossChecks": 10,
+      "initialStages": 29,
+      "allOriginalCharactersCovered": true,
+      "allRawStagesReachFinalSynthesis": true,
+      "maxRawSourceCharacters": 217780,
+      "maxRawRequestCharacters": 264935,
+      "requests": [
+        {
+          "stage": "batch-1",
+          "sourceCharacters": 129093,
+          "requestCharacters": 171568,
+          "coverageCharacters": 23614,
+          "requestSha256": "36f502e39e5216a69decce44a93d92df3ffe8937e697fbac45fff024e42ed301"
+        },
+        {
+          "stage": "batch-2",
+          "sourceCharacters": 121140,
+          "requestCharacters": 160713,
+          "coverageCharacters": 23614,
+          "requestSha256": "701cbc2616e63ec8cd072986560f14226bcd3b974d9b0cb0560d37d510a9e902"
+        },
+        {
+          "stage": "batch-3",
+          "sourceCharacters": 128466,
+          "requestCharacters": 164892,
+          "coverageCharacters": 23614,
+          "requestSha256": "0c720337c3cfaa359f3670951b80a7b0272582e6377ece9008c5140dc51523eb"
+        },
+        {
+          "stage": "batch-4",
+          "sourceCharacters": 127776,
+          "requestCharacters": 163447,
+          "coverageCharacters": 23614,
+          "requestSha256": "1ce59fa9c7089e6bc1fba407175aba6c35b865a8ba051b3ea782022d7407d386"
+        },
+        {
+          "stage": "batch-5",
+          "sourceCharacters": 98241,
+          "requestCharacters": 133060,
+          "coverageCharacters": 23614,
+          "requestSha256": "5b549b84579b93ee1888a4da25dd682ab24481af5c7bc10bdf4723f50c6bbb74"
+        },
+        {
+          "stage": "cross-1-2",
+          "sourceCharacters": 210454,
+          "requestCharacters": 260756,
+          "coverageCharacters": 23614,
+          "requestSha256": "5a16b638f4e395437d01e9fd0bdf72ae8194f2647e548710ce893c0bf9cceab8"
+        },
+        {
+          "stage": "cross-1-3",
+          "sourceCharacters": 217780,
+          "requestCharacters": 264935,
+          "coverageCharacters": 23614,
+          "requestSha256": "ad11acccb5146f0bf9d429ca1f3224a06f35ab5cb0c1cc82e4372b54f188eded"
+        },
+        {
+          "stage": "cross-1-4",
+          "sourceCharacters": 217090,
+          "requestCharacters": 263490,
+          "coverageCharacters": 23614,
+          "requestSha256": "bed6064d0331c298c82b10c4cac362f9281e9e9554b5420325cad5c7482b542c"
+        },
+        {
+          "stage": "cross-1-5",
+          "sourceCharacters": 187555,
+          "requestCharacters": 233103,
+          "coverageCharacters": 23614,
+          "requestSha256": "901b4d9de1e3de831b5fbc10765dd87d7fd5958e586d1c765ba4dccaecb529c0"
+        },
+        {
+          "stage": "cross-2-3",
+          "sourceCharacters": 209827,
+          "requestCharacters": 254080,
+          "coverageCharacters": 23614,
+          "requestSha256": "19a49f33c0af9bdf75f6c6a02c72bf4fbff4741059970cae39013c212801934e"
+        },
+        {
+          "stage": "cross-2-4",
+          "sourceCharacters": 209137,
+          "requestCharacters": 252635,
+          "coverageCharacters": 23614,
+          "requestSha256": "af7fd07da5fb0b361ee61122b6f25649e556debb62d7c98df99c32126f07f2b7"
+        },
+        {
+          "stage": "cross-2-5",
+          "sourceCharacters": 179602,
+          "requestCharacters": 222248,
+          "coverageCharacters": 23614,
+          "requestSha256": "afe1cf9313e73917a482ed5d4ffdc4cf41987e46f4a3240046198394955e43ed"
+        },
+        {
+          "stage": "cross-3-4",
+          "sourceCharacters": 216463,
+          "requestCharacters": 256814,
+          "coverageCharacters": 23614,
+          "requestSha256": "69da4146448be056b503925c12fd30b0c2bbb81d2519c6bac38da4e65bcbe140"
+        },
+        {
+          "stage": "cross-3-5",
+          "sourceCharacters": 186928,
+          "requestCharacters": 226427,
+          "coverageCharacters": 23614,
+          "requestSha256": "04ff9bc12d4c544d2fb8948bc781aedae1a200c39aaa3746a513d6355eddcf9b"
+        },
+        {
+          "stage": "cross-4-5",
+          "sourceCharacters": 186238,
+          "requestCharacters": 224982,
+          "coverageCharacters": 23614,
+          "requestSha256": "0a5421be2f30bc80ac33bfdd8664a1e765c9a0f7646d991ca26e62ead83f4a95"
+        }
+      ]
+    },
+    {
+      "area": "power",
+      "sourceCount": 335,
+      "sourceEnvelopeSha256": "039f5a6d1d070a8d115a6902e259a36640b43e97660a81645548cb227f7cec28",
+      "units": 338,
+      "batches": 5,
+      "crossChecks": 10,
+      "initialStages": 29,
+      "allOriginalCharactersCovered": true,
+      "allRawStagesReachFinalSynthesis": true,
+      "maxRawSourceCharacters": 216398,
+      "maxRawRequestCharacters": 256699,
+      "requests": [
+        {
+          "stage": "batch-1",
+          "sourceCharacters": 127536,
+          "requestCharacters": 160087,
+          "coverageCharacters": 18996,
+          "requestSha256": "58eb8fe4a90952a4217f63113383bf7f795245fc1c60cf8d4db7d495c420a973"
+        },
+        {
+          "stage": "batch-2",
+          "sourceCharacters": 128194,
+          "requestCharacters": 162398,
+          "coverageCharacters": 18996,
+          "requestSha256": "a4e1f4635a513de901b2652124023e318c0acaff97513723281926a228ac4c84"
+        },
+        {
+          "stage": "batch-3",
+          "sourceCharacters": 128137,
+          "requestCharacters": 158391,
+          "coverageCharacters": 18996,
+          "requestSha256": "46e91d74bf9b38e4f3ad365885ec80589108400e803c24d114a7dc3a16c07ac3"
+        },
+        {
+          "stage": "batch-4",
+          "sourceCharacters": 127727,
+          "requestCharacters": 158125,
+          "coverageCharacters": 18996,
+          "requestSha256": "37c7cea5b67ca9d0d4a0598c4c023071f55f38f8c3096eeb5d2131824f831706"
+        },
+        {
+          "stage": "batch-5",
+          "sourceCharacters": 66514,
+          "requestCharacters": 93630,
+          "coverageCharacters": 18996,
+          "requestSha256": "e8d6f6ff7434db2750c49d7f6d43e02c16c14e3c13448f70f5831f794f758be5"
+        },
+        {
+          "stage": "cross-1-2",
+          "sourceCharacters": 215797,
+          "requestCharacters": 256699,
+          "coverageCharacters": 18996,
+          "requestSha256": "c275270e44df6901fc2e1c676da291a62db4c1d06a78e838261d739ce3295adf"
+        },
+        {
+          "stage": "cross-1-3",
+          "sourceCharacters": 215740,
+          "requestCharacters": 252692,
+          "coverageCharacters": 18996,
+          "requestSha256": "0b49a8cb8475b603f2e12a182e4fb84354fb98951123f3e6182972f309bcf433"
+        },
+        {
+          "stage": "cross-1-4",
+          "sourceCharacters": 215330,
+          "requestCharacters": 252426,
+          "coverageCharacters": 18996,
+          "requestSha256": "c88726231840b7182a6990d7865680e389fbaba84f3db4fa515ba63e8e4bc6ae"
+        },
+        {
+          "stage": "cross-1-5",
+          "sourceCharacters": 154117,
+          "requestCharacters": 187931,
+          "coverageCharacters": 18996,
+          "requestSha256": "e29de91f4480c0eb71e2a1477305cdd115d6c768d104963a8bee32fadddebb33"
+        },
+        {
+          "stage": "cross-2-3",
+          "sourceCharacters": 216398,
+          "requestCharacters": 255003,
+          "coverageCharacters": 18996,
+          "requestSha256": "1e8a479a0e3daa039bab24a98220acebb57068335201b9fa0923ce02e9e11b63"
+        },
+        {
+          "stage": "cross-2-4",
+          "sourceCharacters": 215988,
+          "requestCharacters": 254737,
+          "coverageCharacters": 18996,
+          "requestSha256": "abb99b4732d95b69a81566edab2ebfce800ea83293361cadfb1db12e6f9942fb"
+        },
+        {
+          "stage": "cross-2-5",
+          "sourceCharacters": 154775,
+          "requestCharacters": 190242,
+          "coverageCharacters": 18996,
+          "requestSha256": "19338c469095bff8b768512d96609af09723fc979eb203f73c10964a7d9d3ec6"
+        },
+        {
+          "stage": "cross-3-4",
+          "sourceCharacters": 215931,
+          "requestCharacters": 250730,
+          "coverageCharacters": 18996,
+          "requestSha256": "c2e520040cf18166aed60996b008cada18d3e1cf34c6abf7e5bb97d8fcae9986"
+        },
+        {
+          "stage": "cross-3-5",
+          "sourceCharacters": 154718,
+          "requestCharacters": 186235,
+          "coverageCharacters": 18996,
+          "requestSha256": "7d69d7ab7d0cf6738ef099ba4677810d2708523d65df45484e32ac21d2b42ef1"
+        },
+        {
+          "stage": "cross-4-5",
+          "sourceCharacters": 154308,
+          "requestCharacters": 185969,
+          "coverageCharacters": 18996,
+          "requestSha256": "31101347ae876506258c9cc10b8268805b1e81b0f05d631be0e3e83165c0789b"
+        }
+      ]
+    },
+    {
+      "area": "characters",
+      "sourceCount": 286,
+      "sourceEnvelopeSha256": "e1b67a97fa356f501eb89c7ebc80955ed4764ec1ead98c36bd40b6d036483576",
+      "units": 289,
+      "batches": 4,
+      "crossChecks": 6,
+      "initialStages": 19,
+      "allOriginalCharactersCovered": true,
+      "allRawStagesReachFinalSynthesis": true,
+      "maxRawSourceCharacters": 216443,
+      "maxRawRequestCharacters": 245532,
+      "requests": [
+        {
+          "stage": "batch-1",
+          "sourceCharacters": 120105,
+          "requestCharacters": 149111,
+          "coverageCharacters": 13488,
+          "requestSha256": "485dea559ccc683c4881940177335ad63a2b912134adfb4e21d7ba897be0b491"
+        },
+        {
+          "stage": "batch-2",
+          "sourceCharacters": 129234,
+          "requestCharacters": 154402,
+          "coverageCharacters": 13488,
+          "requestSha256": "35f35a88bf60969e823221d0d3beba611dc26883383f84da8b77372a3d448749"
+        },
+        {
+          "stage": "batch-3",
+          "sourceCharacters": 127157,
+          "requestCharacters": 151994,
+          "coverageCharacters": 13488,
+          "requestSha256": "d756f15eace63f753f0d291b1b52a307bd9d51fbcc9c02ea44830bee7a0f83c2"
+        },
+        {
+          "stage": "batch-4",
+          "sourceCharacters": 109707,
+          "requestCharacters": 134209,
+          "coverageCharacters": 13488,
+          "requestSha256": "87d28bbb36c9a53265b6fe82539cdba581f0955544296adc048c430681e573c4"
+        },
+        {
+          "stage": "cross-1-2",
+          "sourceCharacters": 209391,
+          "requestCharacters": 242649,
+          "coverageCharacters": 13488,
+          "requestSha256": "421796dbc32949173b137e1b176162cc8079b6158c88cddf0148a1cb72d08a49"
+        },
+        {
+          "stage": "cross-1-3",
+          "sourceCharacters": 207314,
+          "requestCharacters": 240241,
+          "coverageCharacters": 13488,
+          "requestSha256": "d1f872fa6a921594d3d3e28df33d923cdac76755a3a1872599704d363cd5e362"
+        },
+        {
+          "stage": "cross-1-4",
+          "sourceCharacters": 189864,
+          "requestCharacters": 222456,
+          "coverageCharacters": 13488,
+          "requestSha256": "65642cc2b70d0f20e3d4592a208f6cc6b957c611d116cc0e8de050f797861a13"
+        },
+        {
+          "stage": "cross-2-3",
+          "sourceCharacters": 216443,
+          "requestCharacters": 245532,
+          "coverageCharacters": 13488,
+          "requestSha256": "dea3c3dc6fc8fe8a01ebbc544e3d1eaf159622e684e4bf5ba632b0d2035f9002"
+        },
+        {
+          "stage": "cross-2-4",
+          "sourceCharacters": 198993,
+          "requestCharacters": 227747,
+          "coverageCharacters": 13488,
+          "requestSha256": "6d7b4cf2c8ab4c23770c02a7d5f019fc9a0b14e2bf0f2c8fa8cea4baf1dcfc39"
+        },
+        {
+          "stage": "cross-3-4",
+          "sourceCharacters": 196916,
+          "requestCharacters": 225339,
+          "coverageCharacters": 13488,
+          "requestSha256": "0b24d5470a62a6d426cfa8495a8a60401359f4d069c84164b2ad6ff517c2513f"
+        }
+      ]
+    },
+    {
+      "area": "story",
+      "sourceCount": 360,
+      "sourceEnvelopeSha256": "22c5392fb1ce52c5f1941d581e53390cc0703e698c94551e552235a9ec8bd3ca",
+      "units": 363,
+      "batches": 5,
+      "crossChecks": 10,
+      "initialStages": 29,
+      "allOriginalCharactersCovered": true,
+      "allRawStagesReachFinalSynthesis": true,
+      "maxRawSourceCharacters": 219597,
+      "maxRawRequestCharacters": 263786,
+      "requests": [
+        {
+          "stage": "batch-1",
+          "sourceCharacters": 128056,
+          "requestCharacters": 165654,
+          "coverageCharacters": 20455,
+          "requestSha256": "ccd0af1d2c56902be922c5f4fc22d25a0151ecc9c36f5d2157838572087bd328"
+        },
+        {
+          "stage": "batch-2",
+          "sourceCharacters": 129622,
+          "requestCharacters": 168974,
+          "coverageCharacters": 20455,
+          "requestSha256": "d1a7556ee0d63a610b5be427801fb1338f5930d3e8ee788e71d040e87501f30d"
+        },
+        {
+          "stage": "batch-3",
+          "sourceCharacters": 129754,
+          "requestCharacters": 165453,
+          "coverageCharacters": 20455,
+          "requestSha256": "1a43a87185dcc7cfe28e909371f1a50a4958dd66f2e96961f80ca4a0368f5037"
+        },
+        {
+          "stage": "batch-4",
+          "sourceCharacters": 129564,
+          "requestCharacters": 165243,
+          "coverageCharacters": 20455,
+          "requestSha256": "8dd05beeec9680adb49b5284b49a1e43e79fef7273e5c86af86187983bc82b67"
+        },
+        {
+          "stage": "batch-5",
+          "sourceCharacters": 67531,
+          "requestCharacters": 99956,
+          "coverageCharacters": 20455,
+          "requestSha256": "9ce59f28f6441cd505b96cb78e6e967558f14b980fc24a7b34443bdb7685c282"
+        },
+        {
+          "stage": "cross-1-2",
+          "sourceCharacters": 217899,
+          "requestCharacters": 263786,
+          "coverageCharacters": 20455,
+          "requestSha256": "1664dd54361b4c4d336885a3a4cf3faae6c925d448915917406896821572b822"
+        },
+        {
+          "stage": "cross-1-3",
+          "sourceCharacters": 218031,
+          "requestCharacters": 260265,
+          "coverageCharacters": 20455,
+          "requestSha256": "32f17c4990af89f3d194dd09701b82af58e8d68de7ff072a6070930451605f25"
+        },
+        {
+          "stage": "cross-1-4",
+          "sourceCharacters": 217841,
+          "requestCharacters": 260055,
+          "coverageCharacters": 20455,
+          "requestSha256": "581d17c4f753e70d89242f0fbf099ad972fbb70c3aaadb6ff0aab1b307803222"
+        },
+        {
+          "stage": "cross-1-5",
+          "sourceCharacters": 155808,
+          "requestCharacters": 194768,
+          "coverageCharacters": 20455,
+          "requestSha256": "223312845b8d9f4cd76665d07c5ca014d12d36eb199d8c2c015a1c8b10b4da31"
+        },
+        {
+          "stage": "cross-2-3",
+          "sourceCharacters": 219597,
+          "requestCharacters": 263585,
+          "coverageCharacters": 20455,
+          "requestSha256": "e59c38003845012e69a5044319dc65a9d6de5f04443009b7a4f8e7c5120e2322"
+        },
+        {
+          "stage": "cross-2-4",
+          "sourceCharacters": 219407,
+          "requestCharacters": 263375,
+          "coverageCharacters": 20455,
+          "requestSha256": "ede60a1dba3981bfcbe7467a2e08d8b3083f3ecfb3229b43b9d49b4ad8df63b0"
+        },
+        {
+          "stage": "cross-2-5",
+          "sourceCharacters": 157374,
+          "requestCharacters": 198088,
+          "coverageCharacters": 20455,
+          "requestSha256": "559e543ac6762a652878775a55e03a23bfb0ba2ef5dee184e49b0cda4368991a"
+        },
+        {
+          "stage": "cross-3-4",
+          "sourceCharacters": 219539,
+          "requestCharacters": 259854,
+          "coverageCharacters": 20455,
+          "requestSha256": "10ec2382c8dc7592313818ea990c078836dbaf0b61cae01c28ca4d03c76f388b"
+        },
+        {
+          "stage": "cross-3-5",
+          "sourceCharacters": 157506,
+          "requestCharacters": 194567,
+          "coverageCharacters": 20455,
+          "requestSha256": "a87701826b1fa5e909019fd5142e9b5ee70d9b4be537706d25f164866a6d37ae"
+        },
+        {
+          "stage": "cross-4-5",
+          "sourceCharacters": 157316,
+          "requestCharacters": 194357,
+          "coverageCharacters": 20455,
+          "requestSha256": "7f04ae5925e85aa0e041cfa441150f77d67134b7ef562e6ad74fa28996835d62"
+        }
+      ]
+    }
+  ],
+  "limitation": "Initial raw request capacities and coverage only. Model-generated follow-ups and synthesis result sizes cannot be validated before their actual responses. No design quality verdict, approval, prose, or production save.",
+  "snapshotAcquisitionHistory": {
+    "code": "P1008",
+    "meaning": "Read transaction timed out; formal writer was not restarted"
+  }
+}

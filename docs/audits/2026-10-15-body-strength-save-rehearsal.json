@@ -1,0 +1,67 @@
+{
+  "observedAt": "2026-10-14T18:23:24.047Z",
+  "mode": "snapshot_to_memory_only",
+  "snapshotPath": "/tmp/novel60-preflight-snapshot.db",
+  "candidateSha256": "0e18e1c553fc3c38a19ff8c25b516aa09908629cfb5b4af9200d2760afdbd26a",
+  "productionWrites": false,
+  "modelCalls": 0,
+  "formalAcceptance": false,
+  "expectedRevisions": {
+    "world": 30,
+    "bible": 60,
+    "proposedPlan": 60,
+    "approvedPlan": 10
+  },
+  "worldValidation": {
+    "ready": true,
+    "errors": [],
+    "warnings": [
+      "blocking unresolved questions remain"
+    ]
+  },
+  "bibleValidation": {
+    "ready": true,
+    "errors": [],
+    "warnings": [
+      "blocking unresolved story questions remain"
+    ]
+  },
+  "structure": {
+    "passed": false,
+    "issues": 41
+  },
+  "contentReview": {
+    "ready": false,
+    "areas": [
+      {
+        "area": "world",
+        "status": "outdated",
+        "reportId": "design_review_ea69d953-6750-47a1-97de-4bcd3c393afe"
+      },
+      {
+        "area": "power",
+        "status": "outdated",
+        "reportId": "design_review_11dbd1a7-c5ec-456e-8553-7c26f1a9d94c"
+      },
+      {
+        "area": "characters",
+        "status": "outdated",
+        "reportId": "design_review_c9e080b7-1aaf-4dcf-abda-15f3ca45e612"
+      },
+      {
+        "area": "story",
+        "status": "outdated",
+        "reportId": "design_review_37573491-8287-4fad-8ad8-b618429ae0bf"
+      }
+    ]
+  },
+  "writingBlockers": 3,
+  "oldHistoryAndReportsUnchanged": true,
+  "allOriginalBlockersPreserved": true,
+  "counts": {
+    "chapterVersions": 101,
+    "events": 383,
+    "manuscripts": 1
+  },
+  "limitation": "No production save or approval; candidate local recheck and new complete formal review still required."
+}

@@ -1,0 +1,1398 @@
+{
+  "scope": "Two local diagnostic calls, not formal design acceptance",
+  "originalNegativePreserved": true,
+  "records": [
+    {
+      "observedAt": "2026-10-14T18:18:25.738Z",
+      "model": "gpt-5.6-luna",
+      "fallback": false,
+      "productionWrites": false,
+      "formalAcceptance": false,
+      "candidateSha256": "92a4a486af9856736301a464c6397c4d10ed96eebfe2d7294196ec8149c094b2",
+      "scope": {
+        "worldPackRevision": 29,
+        "storyBibleRevision": 60,
+        "planRevisionId": "unapplied-candidate60",
+        "planRevision": 60
+      },
+      "inputSha256": "fff3b5a23a00fc93b00b2e63b456b14df75bcdb1296df012c3c6507834e90554",
+      "sourceCharacters": 111882,
+      "sourceCount": 116,
+      "sources": [
+        {
+          "id": "world/axioms/ax_01",
+          "sha256": "88fc441dd148dac77e773ed6ba6ad4cbb6c45c643f6f510a0d7fbffc57d7720a",
+          "characters": 805
+        },
+        {
+          "id": "world/axioms/ax_02",
+          "sha256": "3b9a0ef9e8689676408f399e1c6cee89c22377bbb4cc50e00d59b5713946c9f6",
+          "characters": 210
+        },
+        {
+          "id": "world/axioms/ax_03",
+          "sha256": "9017033c47b227911ec2d3fc482a470d96da617b3114e04a4744394cb71e8017",
+          "characters": 228
+        },
+        {
+          "id": "world/axioms/ax_04",
+          "sha256": "25ba4aafae0f0a2cf8936e89688c8a431b78a19aecb844f20ae6ed06bc08c0e7",
+          "characters": 372
+        },
+        {
+          "id": "world/axioms/ax_05",
+          "sha256": "937c49277090a7e240ae6427f034ba08ede35c0c9ef5658c9ef0cbfea89d9e6c",
+          "characters": 682
+        },
+        {
+          "id": "world/axioms/ax_06",
+          "sha256": "bf6eb8a9b696a2d5dcc0ff1dcdd0ed4a2be06297200e0684d75075a992147696",
+          "characters": 394
+        },
+        {
+          "id": "world/axioms/ax_07",
+          "sha256": "29a21423b5d950c014e88b044e678600fca9e1d43d101dc71dd00766b75e5d63",
+          "characters": 919
+        },
+        {
+          "id": "world/axioms/ax_08",
+          "sha256": "a9d83606ad14fd99d73adcb50fd36b2e959c1208be009b863f5832a66e8849c5",
+          "characters": 683
+        },
+        {
+          "id": "world/axioms/ax_09",
+          "sha256": "891bc67389dd899afbe6ddbeddfe2d18a395de9fb9600ece36de4f4dab656448",
+          "characters": 341
+        },
+        {
+          "id": "world/axioms/ax_10",
+          "sha256": "2d378484f55ffe8ec3fdc0cd06978f1183309f1e6401aa6c496492d0f7f92f76",
+          "characters": 313
+        },
+        {
+          "id": "world/axioms/ax_11",
+          "sha256": "425ffc4131a419972d3fa55875a30f5bb8f211d7aec1583746c628434a30db3c",
+          "characters": 1913
+        },
+        {
+          "id": "world/axioms/ax_12",
+          "sha256": "7990354c72645731e86fdc125711159a7d990a64aa4b810ebb29069c34815c8f",
+          "characters": 693
+        },
+        {
+          "id": "world/axioms/ax_13",
+          "sha256": "1265038969ab5590c217cca2994916081889583a52710eb7f3d1fed456e798b4",
+          "characters": 1010
+        },
+        {
+          "id": "world/tierLadders/ladder_realm",
+          "sha256": "ae9b5f3f70cdea54f75f03c22ad38cd4bc654c7c1c23e91ae7c7c0c37d7d036f",
+          "characters": 334
+        },
+        {
+          "id": "world/tierLadders/ladder_technique",
+          "sha256": "1d54203b5ca60fd2657bbcbff753775287c3e07732a0aed50afdab34c5d42ee7",
+          "characters": 268
+        },
+        {
+          "id": "world/tierLadders/ladder_artifact",
+          "sha256": "9393f45271962bc64a11ca29b61fd4c1c18e4f142557f740873319a4161b4004",
+          "characters": 266
+        },
+        {
+          "id": "world/tierLadders/ladder_resource",
+          "sha256": "ca3d4d072b9c56d737d953e43b0da9897ac8a4177d57a15bd9086a80b9eb63bd",
+          "characters": 303
+        },
+        {
+          "id": "world/realms/realm_01",
+          "sha256": "f8b4865b9cf7fb585401930cea17052d15f61ce3db147b342475f7698ff84d56",
+          "characters": 404
+        },
+        {
+          "id": "world/realms/realm_02",
+          "sha256": "abc115c2cb71fc732526a4a08146116f8322523913ed76502b2b747212474ea3",
+          "characters": 334
+        },
+        {
+          "id": "world/realms/realm_03",
+          "sha256": "d3624d83aa0bfbeb9da50611f66dc6b39f915576c2ab35c2c6dbac36546f46fc",
+          "characters": 236
+        },
+        {
+          "id": "world/realms/realm_04",
+          "sha256": "0daac72a741a7cf81891fca5b8cd1b26a7d9a53001832bde2f3e80daada8d095",
+          "characters": 481
+        },
+        {
+          "id": "world/realms/realm_05",
+          "sha256": "dbc1cacbace3590533e39c52d2501d55292dd90f4da53eb26ed5536219420bb7",
+          "characters": 558
+        },
+        {
+          "id": "world/realms/realm_06",
+          "sha256": "9cc7848d2ad82467aa1e54a77cd8bb1687246175befd6a4ff306c7d438c5daca",
+          "characters": 673
+        },
+        {
+          "id": "world/realms/realm_07",
+          "sha256": "7fc3da9d9eaa415ec4ff370d2a789f7fddde1b13bf952b37181faf786f9197e4",
+          "characters": 705
+        },
+        {
+          "id": "world/realms/realm_08",
+          "sha256": "643d15f79956f3ebfa2b51af1cba7dc7252141d0313cae040cddc64883d385f6",
+          "characters": 1092
+        },
+        {
+          "id": "world/techniques/tech_01",
+          "sha256": "514c619cbd093005c19a987ee1ba550a723d500715b0ddc2777758a811b3f4bb",
+          "characters": 541
+        },
+        {
+          "id": "world/techniques/tech_02",
+          "sha256": "6e0148324defabf133f37b330af395796532d4df69e693953b71759053dfeab6",
+          "characters": 677
+        },
+        {
+          "id": "world/techniques/tech_03",
+          "sha256": "6fba4f91f0eb6b3395439ceda80ca515796928287840a5f5ef626d065afee18f",
+          "characters": 623
+        },
+        {
+          "id": "world/techniques/tech_04",
+          "sha256": "6b9ebd357a942cf52bf1232fb01da6617c2c7439514f73c17cfdad2e54c089ce",
+          "characters": 1140
+        },
+        {
+          "id": "world/techniques/tech_05",
+          "sha256": "88e109e267646ba6f5efb067456de9ffcb82852c4ce1fc4b6764642d3d66384e",
+          "characters": 768
+        },
+        {
+          "id": "world/techniques/tech_06",
+          "sha256": "896c0474ea05b46dc09fb006c77d1a3359cef09bba11fbda40aa5048cd197038",
+          "characters": 931
+        },
+        {
+          "id": "world/techniques/tech_07",
+          "sha256": "e2c056f619ca8903238a67ba4b4ea5048b87281a955c324a06762493b5274b52",
+          "characters": 787
+        },
+        {
+          "id": "world/techniques/tech_08",
+          "sha256": "57df4a11af580aed025d5387e62a3873ab474b67ef65c091f8e8a4ca80e82f19",
+          "characters": 786
+        },
+        {
+          "id": "world/techniques/tech_09",
+          "sha256": "bd16c6bad96426f8c7e1da606be20af46b6d2b4d945712ea64c72d743a14a35c",
+          "characters": 773
+        },
+        {
+          "id": "world/techniques/tech_10",
+          "sha256": "9b8526f26ea78ce099b2608552bf42e3ffdd52b79fca9dbde3f6c93489b1952f",
+          "characters": 793
+        },
+        {
+          "id": "world/techniques/tech_11",
+          "sha256": "c588262578a3282c82c84263ad8430de110f721c7768a0d49a0e3df8683c3d9c",
+          "characters": 835
+        },
+        {
+          "id": "world/techniques/tech_12",
+          "sha256": "7ea051c761f87840298d7b5b34f77908e4e3081ca04e3450992a198db5dcac81",
+          "characters": 852
+        },
+        {
+          "id": "world/techniques/tech_13",
+          "sha256": "03d7eb4e4316c2a6c88e90c7b4f4674511ad6bbd281f6cc25fa220a4974567b7",
+          "characters": 820
+        },
+        {
+          "id": "world/techniques/tech_14",
+          "sha256": "ab4cddd52fb66d4123209d0045c69ea882577eaf764722fbf22415ef9f646162",
+          "characters": 1303
+        },
+        {
+          "id": "world/techniques/tech_15",
+          "sha256": "e2c38224d239c83a01c82535ad16ed67139489387d7d654117cc297cc74b52d8",
+          "characters": 918
+        },
+        {
+          "id": "world/techniques/tech_16",
+          "sha256": "27262ee4d31bb7db227d144d4f83210d6234490cbb6e8b7f871ed24f9d6dacd9",
+          "characters": 946
+        },
+        {
+          "id": "world/techniques/tech_17",
+          "sha256": "ef0f6e1d6242c598dad2a978414a13e65901523f1fcbf917096b1abe9fbae1f9",
+          "characters": 2421
+        },
+        {
+          "id": "world/techniques/tech_18",
+          "sha256": "7984381430b37704ff1542fd9c097abbff57a7af93da37bd698cae434bb45d50",
+          "characters": 908
+        },
+        {
+          "id": "world/artifacts/art_01",
+          "sha256": "c024d3467be7834e5d760faee1738698106c7eb00d473ce8983d7927a8deaea9",
+          "characters": 352
+        },
+        {
+          "id": "world/artifacts/art_02",
+          "sha256": "8e8c9ccaa3f622ebaa7c89cd36d8aa6ccf6e7083ad1d46b285aa43a29c269938",
+          "characters": 468
+        },
+        {
+          "id": "world/artifacts/art_03",
+          "sha256": "88817317e7d18f0a6c6dca60dbd9b9cbdd975a4e8a3aaad039550d915efb8b0b",
+          "characters": 378
+        },
+        {
+          "id": "world/artifacts/art_04",
+          "sha256": "7b2b6047481c67235998d9e631280949f3c921d017256e799de18214762daab5",
+          "characters": 671
+        },
+        {
+          "id": "world/artifacts/art_05",
+          "sha256": "865ff0194224b81e7f7f8e9d43c7dd35b4c5047de969a8f7895b08e3ec693692",
+          "characters": 656
+        },
+        {
+          "id": "world/artifacts/art_06",
+          "sha256": "d5b7d3d4baed6ca0ec7236016d7c2e92d437fdf5953ca5f64c409982e813d018",
+          "characters": 675
+        },
+        {
+          "id": "world/artifacts/art_07",
+          "sha256": "6cccf40e09064a22186f91d268cbcf25c2faab66a9179f6fd1ea76be3e47bdf1",
+          "characters": 704
+        },
+        {
+          "id": "world/artifacts/art_08",
+          "sha256": "724a9e59b1c8cdf36073d21e49f91b6084c41402156cc5b78d56f6cf1ef8d71d",
+          "characters": 701
+        },
+        {
+          "id": "world/artifacts/art_09",
+          "sha256": "7a6812819436e67331151e446b16889b0ae6221411570d97eaefe8179ea9882a",
+          "characters": 776
+        },
+        {
+          "id": "world/artifacts/art_10",
+          "sha256": "97c56718dc780367fcd1ed7ed12749934657b91fed7a800f578e7ba325b136b5",
+          "characters": 402
+        },
+        {
+          "id": "world/artifacts/art_11",
+          "sha256": "b4545c6ccfc0470dac1b68d9a9a2cb5741a800d99405fcf90ddbebd0c0824410",
+          "characters": 789
+        },
+        {
+          "id": "world/artifacts/art_12",
+          "sha256": "4c987a46619103a7d6193acc1ff9a162cefd1480205e47d1249079ec112a584a",
+          "characters": 829
+        },
+        {
+          "id": "world/artifacts/art_13",
+          "sha256": "bb38612a36dac3bfc783e3937b1a08db09354f4aaf9418929bee0cae7ca7a61f",
+          "characters": 926
+        },
+        {
+          "id": "world/artifacts/art_14",
+          "sha256": "f07fea53fda7e0ca1b8389f99a21174cbc3c40178cbbad983b855e551e06c6b6",
+          "characters": 866
+        },
+        {
+          "id": "world/artifacts/art_15",
+          "sha256": "48ce09f771eead600cd58badb40b78eec01b60ab046c2ea2263ddb36c106f39d",
+          "characters": 340
+        },
+        {
+          "id": "world/artifacts/art_16",
+          "sha256": "4f391e0aff6953bd825eb273d34df8e223fa0aab081698a50c5396be7b4b2e41",
+          "characters": 600
+        },
+        {
+          "id": "world/artifacts/art_17",
+          "sha256": "136eeee90a70683c9849c199b606d12d810179a5ac5cad22282ebe0009694d19",
+          "characters": 1044
+        },
+        {
+          "id": "world/artifacts/art_18",
+          "sha256": "8a3225b99c44c2ef622fac47b6d0606e140f0ab5a47c7672c23457845bb6cf58",
+          "characters": 1256
+        },
+        {
+          "id": "world/artifacts/art_19",
+          "sha256": "83b5a23317f8019e96da75d4db8e6647f05101e568c121507ce446805e560355",
+          "characters": 768
+        },
+        {
+          "id": "story/characters/char_01",
+          "sha256": "ff285a48a109bb97e0bfe0a3c9b6a6d2058e1dbbb8943940c6e8cc26acc6ced1",
+          "characters": 241
+        },
+        {
+          "id": "story/characters/char_02",
+          "sha256": "ef3b038fec27ec195d700d9dcfff077003ebe87b75d721afd8f05a8ae0131036",
+          "characters": 371
+        },
+        {
+          "id": "story/characters/char_03",
+          "sha256": "25b666ee55b0d015e091a9a82700fd43b5b919189d76f3765101501e9d2b5951",
+          "characters": 268
+        },
+        {
+          "id": "story/characters/char_04",
+          "sha256": "0c723ec00b5f60da1845fd627292521f4133d875c9bd141bc96eb678585a0f06",
+          "characters": 534
+        },
+        {
+          "id": "story/characters/char_05",
+          "sha256": "1a4418e022eb94522a28b5083a331923718581d5d802971d9c90fa0288468377",
+          "characters": 222
+        },
+        {
+          "id": "story/characters/char_06",
+          "sha256": "d8593fb55166078096870ae3f951950842acdacdd82d6e2807cb12cd0bd437ce",
+          "characters": 220
+        },
+        {
+          "id": "story/characters/char_07",
+          "sha256": "2c4e7fd0408d1da29c902fb9b6a16dfe49c2bc2b58cf10ac762eba91c2f1d0bf",
+          "characters": 219
+        },
+        {
+          "id": "story/characters/char_08",
+          "sha256": "407acecde5e94e5d6f96802082b3aef6b6e6cbb059b1c6f5c8298fa0db04f069",
+          "characters": 215
+        },
+        {
+          "id": "story/characters/char_09",
+          "sha256": "8f10b88699db549ecdd492531cf99c59596085a76b79716c4be31d6c0746a00e",
+          "characters": 266
+        },
+        {
+          "id": "story/characters/char_10",
+          "sha256": "fc6b31cc410a3b0abb01cfbf8cc6318c2b2c768dbf742e4eadfbfe5bcdc37bbd",
+          "characters": 957
+        },
+        {
+          "id": "story/characters/char_11",
+          "sha256": "5b1fd542232b33b7c4698b2e1b22d3eab7b5c0b0d51d6c991339bd54397d0a50",
+          "characters": 217
+        },
+        {
+          "id": "story/characters/char_12",
+          "sha256": "f830f09a0c652760e259ffc7a3f06773915d9d42b31774295a75f5950f42259f",
+          "characters": 244
+        },
+        {
+          "id": "story/characters/char_13",
+          "sha256": "2fa849d6e17b1b09b0f63a90e9da1220a02a70ac42b7fcb7ffdda8eb0df299b9",
+          "characters": 249
+        },
+        {
+          "id": "story/characters/char_14",
+          "sha256": "c94823069aa74519f59a6efb62eea15bcad422101f4483c9c53b9555af597544",
+          "characters": 251
+        },
+        {
+          "id": "story/characters/char_15",
+          "sha256": "a66cf984abddbeebbfd375a6c03f4e18079f53edf0ebaa36bb94a10dc6cd43e8",
+          "characters": 255
+        },
+        {
+          "id": "story/characters/char_16",
+          "sha256": "f6e0b886f3517b8848935717215f6631d761a5433d04e1c357a21852a238137b",
+          "characters": 258
+        },
+        {
+          "id": "story/characters/char_17",
+          "sha256": "6aeb7439c77c5d0ba208d95ce463fce4bbacac727f26e7e665eefc5e459fbd74",
+          "characters": 271
+        },
+        {
+          "id": "story/characters/char_18",
+          "sha256": "56ac6142d7e0a03c6b43167817427a6c41c4c5aadbb2fc34bd9292fe2a9db1a7",
+          "characters": 248
+        },
+        {
+          "id": "story/characters/char_19",
+          "sha256": "db199e22a07585a1024d864466d54f54cb1240162c327aa1ce3057e60f867164",
+          "characters": 217
+        },
+        {
+          "id": "story/characters/char_20",
+          "sha256": "01e57a29dfb15287a79ddfb10cdb2538244d2127be4bca5dd8bd6bca5a99c4d8",
+          "characters": 218
+        },
+        {
+          "id": "story/characters/char_21",
+          "sha256": "9fe2629e1052968e1c8a5423915e686fb443dbbf582c35ba4cca54d40280373a",
+          "characters": 263
+        },
+        {
+          "id": "story/characters/char_22",
+          "sha256": "8828a55d53fd566bdddb1564cc3d90d7735e7dbed1ca58ae36c96814a288134a",
+          "characters": 228
+        },
+        {
+          "id": "story/characters/char_23",
+          "sha256": "209cf5737f29553451b190c6b57e141d07a2a796c64d7ce9ae779cd641b78df7",
+          "characters": 452
+        },
+        {
+          "id": "story/characters/char_24",
+          "sha256": "3852da5bc257985edd4a39e18c9c151515299309042024830f5054ef47ab586c",
+          "characters": 226
+        },
+        {
+          "id": "story/characters/char_25",
+          "sha256": "a1e1e1c016559cdb55dd21545baa984a4beffafd41ebcb98dd5779f297cad401",
+          "characters": 229
+        },
+        {
+          "id": "plan/chapters/1",
+          "sha256": "4a548543fc1ebc6abb1e36798b97153cde5b7b52c36cf9a16ec445392d24c9e8",
+          "characters": 1686
+        },
+        {
+          "id": "plan/chapters/2",
+          "sha256": "8f29ac9a2a856b9238abc374b4c79eff344af5c8d091c4bc8f35f89337777aca",
+          "characters": 1182
+        },
+        {
+          "id": "plan/chapters/3",
+          "sha256": "acced9f8de51da695d5332a271dafd96ce246c82f75f2e6da1762a1d09b80676",
+          "characters": 1064
+        },
+        {
+          "id": "plan/chapters/4",
+          "sha256": "e1605ea98d3ea6b85d329fc54aa162a7d1c05d6d1be89b32ff51ba531d79a2f2",
+          "characters": 1462
+        },
+        {
+          "id": "plan/chapters/5",
+          "sha256": "11edb5dc3febe764dfa3269085353e8cee159dd12b6e35cfc1ebb57bbfdbd122",
+          "characters": 1281
+        },
+        {
+          "id": "plan/chapters/6",
+          "sha256": "b8b8cb22e9734e4d1a77db1fe5be1e6cfb2767fce14b7066d3c4101c4223c08a",
+          "characters": 1131
+        },
+        {
+          "id": "plan/chapters/7",
+          "sha256": "e5b17613925811a33121b074a01eae80a8b0faa4424c5a8ca5439c8adb12ad39",
+          "characters": 1478
+        },
+        {
+          "id": "plan/chapters/8",
+          "sha256": "03f062225eb7730960d955c754f64ae4ef27648c72493614d7627faac923c757",
+          "characters": 1200
+        },
+        {
+          "id": "plan/chapters/9",
+          "sha256": "be748e4715b5e8d5ca147c9b53addc98e117f25ecac9c3986f9247c668c11989",
+          "characters": 1373
+        },
+        {
+          "id": "plan/chapters/10",
+          "sha256": "9ddffbbf5caa59f319000f8accd6c74974700a420693e88c24c9dec5037b40fb",
+          "characters": 1432
+        },
+        {
+          "id": "plan/chapters/11",
+          "sha256": "eb1bb8c8342e94d4c48439ca533b908ebc2e558f32a628d33320decf542646bd",
+          "characters": 1795
+        },
+        {
+          "id": "plan/chapters/12",
+          "sha256": "7e089234808457082c9ddd59ee2335de54a562ac8745900a58a1c00536c6b73d",
+          "characters": 1824
+        },
+        {
+          "id": "plan/chapters/13",
+          "sha256": "724e0acf3973e4c0e403d783fbd0187d666bc0d72c0d9a1a06a199edc0bc7f03",
+          "characters": 1614
+        },
+        {
+          "id": "plan/chapters/14",
+          "sha256": "095fd3ecb7a8e4a23d2c806cf1b1590a36e8e149c9db9fe15befb46796c0724a",
+          "characters": 1836
+        },
+        {
+          "id": "plan/chapters/15",
+          "sha256": "16a5dfc5ed1842da1b1f01a791bd50459c3fc83f6ff974d2283bc5a9321f8104",
+          "characters": 1934
+        },
+        {
+          "id": "plan/chapters/16",
+          "sha256": "927180aa66913488f75775a3d84e2e5ce2b9f97e973f294430c5aaac13f1e2a4",
+          "characters": 1635
+        },
+        {
+          "id": "plan/chapters/17",
+          "sha256": "5b725d4838ac704ccb66c20ea3f3110e6365a97347356df4539e5aabd211b211",
+          "characters": 1761
+        },
+        {
+          "id": "plan/chapters/18",
+          "sha256": "d47d43a75b2c5474c11a8395d946bd4c270f61eb8e2e20d9e51f857dc927e919",
+          "characters": 2588
+        },
+        {
+          "id": "plan/chapters/19",
+          "sha256": "1a9d6b2224b3cfb8392f19a3ea7a609972e394ac971ad9821035157943becd94",
+          "characters": 1384
+        },
+        {
+          "id": "plan/chapters/20",
+          "sha256": "76085d2b19a017512c5e12de218f46deb66d0c87300cda5cd57af3f802750960",
+          "characters": 1624
+        },
+        {
+          "id": "plan/chapters/21",
+          "sha256": "ce7c6b254983df7dea094c5545b5ff1799976fcf26b398fe7acdbb8e694fd380",
+          "characters": 1743
+        },
+        {
+          "id": "plan/chapters/22",
+          "sha256": "4d4a90b4c80f7e6940a52950e6c846f8823618488ecd6e4ed7cfbbc20a701eb4",
+          "characters": 1769
+        },
+        {
+          "id": "plan/chapters/23",
+          "sha256": "b244b7b153822a635fdb86de428ab2f0cda04356d6ed3e99928d4fd353280c28",
+          "characters": 2530
+        },
+        {
+          "id": "plan/chapters/24",
+          "sha256": "7ad494d68d884d15e184bad402c5d31c38b067d6985fe9aa910e755e49970308",
+          "characters": 1628
+        },
+        {
+          "id": "plan/chapters/25",
+          "sha256": "e33680df817a197b47b22ef15231c5da232d8ed234d12ce4fec982ef91a10a91",
+          "characters": 3702
+        },
+        {
+          "id": "plan/chapters/26",
+          "sha256": "65932e6c1cb64eef87caa847268f6ccdda440ffbaf02c5b8a90a6a9a5e1016d1",
+          "characters": 3158
+        },
+        {
+          "id": "plan/chapters/27",
+          "sha256": "7b2308142b5edc33fcf17f0368d7517047f804b9a45a1a80664628f9b31a680b",
+          "characters": 1577
+        },
+        {
+          "id": "world/locations/loc_12",
+          "sha256": "ad1ca3ee8529df49c21e83d2b30a4e9bced647554f2b64d0fd2a2868abb132c4",
+          "characters": 168
+        },
+        {
+          "id": "diagnostic/question",
+          "sha256": "3e0056bd397ed208d2e206912297356f1f8e903e18d7edfb26cf39fc3d4506d8",
+          "characters": 319
+        }
+      ],
+      "result": {
+        "summary": "力量体系已对功法增益、境界承载和术法效果作出多处限制，但“力达千钧”的尺度及其与个人实测上限的关系尚未闭合；秦禾救援的开笼机械过程成立，但其此前不能自行脱困及主动求援的因果尚缺必要说明。",
+        "checks": [
+          {
+            "criterion": "scale",
+            "verdict": "revise",
+            "explanation": "淬体条目将“力达千钧”列为境界能力，境界总则又说明境界是常态能力与承载上限而非无条件胜负；莽牛诀则明确“五百斤”仅为完成一阶段后、相对入门同姿势负重测试的增力上限，非人人必得、不可叠加。这足以避免把五百斤误读为人人固定肉身值，也不能把附掌、推劲等限定术法效用误作普遍肉身上限。可是现有原文未界定“千钧”在同一负重尺度中究竟是淬体的准入/代表性能力、个人可达上限，还是另一个固定数值；也未直接说明它如何容纳训练收益、先天差异与伤后实测。因此读者仍无法稳定比较“淬体力达千钧”与莽牛诀增力五百斤，存在关键尺度歧义。",
+            "evidence": [
+              {
+                "sourceId": "world/tierLadders/ladder_realm",
+                "quote": "{\n  \"id\": \"ladder_realm\",\n  \"kind\": \"realm\",\n  \"name\": \"境界阶梯\",\n  \"levels\": [\n    \"淬体\",\n    \"凝元\",\n    \"玄府\",\n    \"神海\",\n    \"归一\",\n    \"破虚\",\n    \"通天\",\n    \"主宰\"\n  ],\n  \"rule\": \"境界表示修士本体常态能力与承载上限，不是无条件的胜负判定。低阶不得靠意志抵消高阶法则；借阵法、法宝或环境只能攻击明确暴露的薄弱环节，须列出外部能量、可作用的最高对象、限制和不可逆代价，且不改变本人境界。任何跨境对抗仍须说明可作用对象与真实代价，不能凭本规则自动视为合法。\",\n  \"status\": \"proposed\"\n}"
+              },
+              {
+                "sourceId": "world/realms/realm_01",
+                "quote": "{\n  \"id\": \"realm_01\",\n  \"systemId\": \"ps_01\",\n  \"name\": \"淬体境\",\n  \"rank\": 1,\n  \"prerequisites\": [\n    \"引气洗髓\"\n  ],\n  \"capabilities\": [\n    \"力达千钧\",\n    \"皮肉坚韧\"\n  ],\n  \"cost\": \"修习消耗体能、饮食营养与气血调养条件，不另造气血点数。按莽牛炼体诀（tech_01）循序训练，饥饿、失血、筋骨伤或胸闷眩晕时减量或停练；进食与睡眠支持正常恢复，不抵消伤势。恢复训练前须清醒站稳、平稳呼吸，在既定轻负荷下无加重疼痛；失血、内腑或骨伤者先由医修复查许可，再逐步加量，固定休息时长不保证伤愈。本境不产生凝元真元、元罡或可用神识的施术资格。\",\n  \"counters\": [\n    \"内腑重创\"\n  ],\n  \"status\": \"proposed\"\n}"
+              },
+              {
+                "sourceId": "world/techniques/tech_01",
+                "quote": "{\n  \"id\": \"tech_01\",\n  \"name\": \"莽牛炼体诀\",\n  \"kind\": \"technique\",\n  \"tier\": \"黄阶\",\n  \"allowedRealmIds\": [\n    \"realm_01\"\n  ],\n  \"effect\": \"循序搬运气血、锻打筋骨；“增力五百斤”是健康淬体修士完成本诀一个完整修习阶段后，相对入门前同姿势负重测试的增力上限，并非人人必得，也不是每次运功临时增加五百斤。皮膜坚韧只是耐磨抗钝击的俗称，仍会割伤、灼伤。\",\n  \"cost\": \"训练消耗体能和饮食营养，须有实际食物、睡眠与循序负重；饥饿、失血或筋骨伤时减量或停练。疲劳与肌肉损伤须靠休息、营养和必要治疗恢复，不能靠再运一遍功消除。\",\n  \"limitations\": [\n    \"仅适用于淬体境修士打熬筋骨\",\n    \"无法抵御锐利法器贯穿与内家真元震荡\",\n    \"增力为同一训练收益，反复运行不叠加；完成阶段须经训练和复测，不能临战读诀即时获得。此术不提供真元、元罡或寿储。\"\n  ],\n  \"counters\": [\n    \"破甲重矢直贯心脉\",\n    \"凝元真元暗劲透体伤脏\"\n  ],\n  \"status\": \"proposed\"\n}"
+              },
+              {
+                "sourceId": "world/axioms/ax_06",
+                "quote": "{\n  \"id\": \"ax_06\",\n  \"title\": \"境界承载与实际施术\",\n  \"content\": \"境界能力栏描述该层能够修习和承载的能力方向，不是一份自动掌握、免费发动的万能招式清单。晋阶费用、术法发动费与持续消耗分别记账；晋阶不等于预付后续法术。实际施术须有已掌握的功法、法宝或明确基础操作规则，逐项满足其对象、范围、供能、时机和中断后果；境界名称不能绕过这些条件。已由ax_05定义的凝元轻物御动等基础操作仍按原规则执行，普通步行、说话、握持不因此加收术法费。尚未展开的高阶术式可以保留为未来能力方向，但首次安排它解决剧情之前必须先完成具体规则与可取得资源的设计、复核；不得以读者未见的万能本能补齐现有行动缺口。\",\n  \"scope\": \"全部境界、功法、法宝及后续能力扩展\",\n  \"precedence\": 6,\n  \"status\": \"proposed\"\n}"
+              },
+              {
+                "sourceId": "world/axioms/ax_13",
+                "quote": "{\n  \"id\": \"ax_13\",\n  \"title\": \"玄府贴身运罡的推劲与定腕\",\n  \"content\": \"只定义玄府以本人元罡辅助已接触目标的近身操作，不由境界自动授予。须经已掌握者指导，完成握持、立足、单侧导罡与主动停术训练，在普通滑车及配合者受控低负荷的推压/脱手测试中通过复测，再由医修确认使用肢体气路稳定。上限服从个人受控实测及当前伤情，不能以本条直接推定任一玄府都有同样肉身力量。\\n短促推劲：先以手掌或前臂实际贴住目标、双足有稳定支撑，用一息聚罡并预付本人健康稳定元罡上限二成，随后至多一息沿一个方向推压或扳转，随即散劲。只加强这一次接触，不能隔空、传到器械远端、贯穿整车或同时作用多人。在个人已测负荷内，至多将轮轴完好、无锁止、平地总重六百斤以下的普通滑车滚移一步；不是托起六百斤或上坡拖车。用于人体须先实际接到暴露部位并取得立足和关节方向优势，能否跌倒或受伤依双方站位、卸力与伤情，不因付款保证折骨、破同阶完整护罡或压制高境。对方可抽身、换支点、在聚罡一息内攻击施术臂，或以实际已发动的防护与术法反抗。失去接触、立足或被打断立即散劲，二成不退。\\n定腕：先由未受伤的手实际握住对方一只手腕，用一息导罡并预付半成健康稳定元罡，随后最多一息辅助一次小幅向下或向内的姿势纠正；不能提起、拖行、封经或隔空制动。只可应对未施攻杀/强化术的普通转腕挣动，须本来就有正常握持与站位优势；对方一旦实际凝罡攻来、双足发力挣脱或另一手反击，应松开避让、呼援或按另有规则的能力应对，不能用半成抵销任意同阶反抗。接触丢失、落空和打断均不退款，不维持持续禁锢。\\n两种方式使用期间不能同时发动局部护罡、噬血爪、真光或其他控术；散劲后至少三息调息才能再用本条，同一短暂交锋连续最多两次，此后至少休整一刻并复测，战斗中不计普通恢复。使用肢体及相关气路有麻木、动作失准、疼痛加剧或创口止不住血立即停术。伤后仅可用实检仍稳定的另一侧完成定腕轻操作，不得以换手绕过全身气路失稳；伤后上限和余额按ax_05复核，剩余不足先停术。普通绳索、牢房和看守人手另行承担羁押，不能以本条宣称永久封禁。此条不提供飞行、速度、远程拳罡、治疗或寿储恢复，也不自动允许神海及以上沿用。\",\n  \"scope\": \"受训玄府的接触式短促推压与有限看押动作\",\n  \"precedence\": 13,\n  \"status\": \"proposed\"\n}"
+              }
+            ],
+            "revisionAdvice": "在realm_01或统一力量尺度条目中以最小补句定义“力达千钧”的测试单位、它是境界承载方向/达标描述还是个人实测上限，并明确个人峰值仍取决于训练、体况与复测；同时说明莽牛诀的五百斤只是同姿势测试的阶段性相对增益，不能免费把任何角色的既有实测能力增减到某一固定值。无需把附掌或玄府推劲改写为常态肉身力量。"
+          },
+          {
+            "criterion": "captivity",
+            "verdict": "revise",
+            "explanation": "提案正确没有从秦禾凝元三重自动推出御物：境界与真元外放仅提供修习、承载方向，轻物御动还须完成控制练习和实测；秦禾档案也只确认其境界、符牌和路线知识，未记载该操作。救援时的机械分工亦具体：苏先在门外扶稳门板、卸去横闩侧压，林才对一丈内可见、无受载的小钩支付御物费，之后由苏肉身抽闩开门；这能说明林并非以御物托门或破笼。问题是秦禾此前为何不能自行脱钩、徒手开门、趁换岗呼救或以其他已知行动求援，尚未被原文闭合：他被写为“尚清醒”，内钩是笼内自由悬挂且无钥匙锁、法纹锁，门闩的侧压可由苏从外侧卸除，但没有交代秦是否够不到钩、是否受束缚或伤到无法施力、外侧看守如何覆盖其尝试，亦未写其在可行时机主动发出求救/配合信号的选择。普通运人笼、外有巡守和苏支付补偿本身不能替代这些原因。",
+            "evidence": [
+              {
+                "sourceId": "world/axioms/ax_06",
+                "quote": "{\n  \"id\": \"ax_06\",\n  \"title\": \"境界承载与实际施术\",\n  \"content\": \"境界能力栏描述该层能够修习和承载的能力方向，不是一份自动掌握、免费发动的万能招式清单。晋阶费用、术法发动费与持续消耗分别记账；晋阶不等于预付后续法术。实际施术须有已掌握的功法、法宝或明确基础操作规则，逐项满足其对象、范围、供能、时机和中断后果；境界名称不能绕过这些条件。已由ax_05定义的凝元轻物御动等基础操作仍按原规则执行，普通步行、说话、握持不因此加收术法费。尚未展开的高阶术式可以保留为未来能力方向，但首次安排它解决剧情之前必须先完成具体规则与可取得资源的设计、复核；不得以读者未见的万能本能补齐现有行动缺口。\",\n  \"scope\": \"全部境界、功法、法宝及后续能力扩展\",\n  \"precedence\": 6,\n  \"status\": \"proposed\"\n}"
+              },
+              {
+                "sourceId": "world/axioms/ax_08",
+                "quote": "{\n  \"id\": \"ax_08\",\n  \"title\": \"凝元基础操作的学习、对象与支付\",\n  \"content\": \"凝元真元外放只是承载资格。下列基础操作须先完成相应控制练习与实测，不能靠晋阶自动掌握；不授予更高境界、感知或伤势免疫。\\n轻物御动沿ax_05每次预付半成健康稳定真元上限执行：只控制三丈内直接可见、单件至多两斤的轻小自由物，每次至多三息，早停、落空或被打断不退。一次只作用一件，移第二件另付，时间不足或目标出界即停止。轻索头、小钩、木楔和小插销均须未受重物牵拉或锁死；阻力超过同物正常徒手轻拨即不属于此操作，不能借物轻而隔空拉整车、托活人、硬拔承重楔或穿透法纹锁。操作轻小机关可释放原有机械作用，但轨道、闸片、沙挡、重力及承重部件须真实存在且各自承力，不能把整个机构的载荷藏在半成御物费里。\\n近身附掌是将真元短时集中于自己一只手掌的入门练习：须有一息聚气，聚气开始预付一成健康稳定真元上限，只支持随后一息内一次实际接触的掌击，落空或受扰均损已付款；出掌后至少一息重新收束，不能凭接触持续灌入。对未有真元防护的肉身可造成震伤，对腐朽薄木封板可辅助击裂；伤害仍取决于接触、落点与目标承受，不能隔空震脏、穿完整石壁、自动破同阶护体或使所有人一掌毙命。躲开、挡开手臂、甲胄卸力或聚气时打断均可反制；腕掌伤、气路不稳或不足一成时停用。两种基础操作的消耗、恢复及伤后上限均按ax_05，不另开一份免费真元。\",\n  \"scope\": \"凝元轻物御动与近身附掌\",\n  \"precedence\": 8,\n  \"status\": \"proposed\"\n}"
+              },
+              {
+                "sourceId": "story/characters/char_11",
+                "quote": "{\n  \"id\": \"char_11\",\n  \"name\": \"秦禾\",\n  \"role\": \"stage\",\n  \"goal\": \"救出同批被扣同伴，也要保住这一季的采药收入，不愿只因欠救命恩情无限冒险。\",\n  \"identity\": \"达到凝元三重并持本次联名符牌的散修采集者，熟悉入口至前哨的实体路线。\",\n  \"locationId\": \"loc_05\",\n  \"startingRealmId\": \"realm_02\"\n}"
+              },
+              {
+                "sourceId": "plan/chapters/21",
+                "quote": "{\n  \"id\": \"chapter-21\",\n  \"chapterNumber\": 21,\n  \"volumeId\": \"vol_01\",\n  \"title\": \"笼边的取舍\",\n  \"summary\": \"第184日晚至185日午后，林辰与苏凌霜循残缺采集单找到前哨废料高台，只见一名尚清醒的秦禾被关在普通运人笼中。林辰发现靠车样箱外角有与残玉相似的刻痕，却不知道箱内是否有第一残片，坚持先趁换岗取货；苏凌霜反对，认为先救能辨路、能送信的秦禾。争执耗尽接近样箱的短窗后，苏先从盲弯到笼门外扶稳门板、暂不抽外侧横闩；林从侧面直视笼内自由悬挂的小防脱钩，以一次凝元御物抬钩脱开，苏才抽闩开门接人。秦禾带出自己的普通采药布袋，内有辨路用的旧麻绳和干粮，没有新宝物；苏以个人一枚下品青灵石补偿他本次引路和采集损失。秦禾当面说明主营方向与已走路线，只答应有限带路、送信，不承诺陪战。三人先退入旧支洞。切巡守独立视角，随后点名发现空笼，哨长从原装车护送岗调两名凝元看守去归路设卡；三人此时尚未见到封路岗。\",\n  \"characterGoals\": \"林辰想确认样箱线索并保留撤离余地；苏凌霜要先救出能提供实体路线的秦禾；秦禾要脱身、保住同伴获救希望与自己的生计边界。\",\n  \"conflict\": \"样箱窗口与救人窗口无法兼得，前哨巡守、盲弯和林辰此前消耗的真元限制两人同时行动；秦禾也不接受获救便无限报恩的安排。\",\n  \"choice\": \"林辰放弃本次接近样箱的机会，改以御物抬开无受载的小防脱钩，配合苏凌霜抽闩救秦禾；苏只支付一次青灵石补偿，不以未来灵泉许诺买断秦禾的性命。\",\n  \"cost\": \"接近样箱的窗口已经错过，林为稳定御物消耗真元，秦失去本次采集时段、苏付出一枚补偿。同批同伴仍在主营，救秦只取得一个能自选是否带路的伙伴。 拨开轻钩支出半成真元，以上一章复测九成为起点，此动作后至多八成半；本次没有再发动剑诀。 本章只扣一次：9−0.5=8.5成，已经包含拨钩支出，不得再扣同一动作。\",\n  \"threads\": [\n    \"th_01\",\n    \"sec_01\",\n    \"sec_02\",\n    \"rel_01\",\n    \"rel_10\"\n  ],\n  \"endState\": \"前哨只救出秦禾一人，林苏与秦带普通布袋、旧麻绳和剩余干粮藏入旧支洞；秦已说明主营大致方向，尚未实核布局或辨清指挥者。三人还不知道巡守在他们离开后准备封路。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_11\"\n  ],\n  \"location\": \"loc_05灵虚古境旧运矿支洞、前哨废料高台\",\n  \"storyTime\": \"第184日晚至第185日午后\",\n  \"scenes\": [\n"
+              },
+              {
+                "sourceId": "plan/chapters/21",
+                "quote": "    \"林辰与苏凌霜在废料高台外观察换岗，确认笼中只有清醒的秦禾一名可立即救出者。\",\n    \"林辰看见样箱外角与残玉相似的刻痕，主张趁车队间隙先取货；苏凌霜指出秦禾尚能带路，要求先解笼。\",\n    \"两人因优先次序争执，错过巡守离开后接近样箱的短暂窗口。\",\n    \"笼门由原有铰链和门框承重，外侧普通横闩仅由笼内一枚四两重的无灵纹防脱钩扣住，无钥匙锁或法纹锁。苏从盲弯到门外，扶稳门板卸去横闩侧压、暂不拉闩；林在侧面一丈内直视内钩，确认钩口有松隙、未被横闩绷紧，才按已学轻物御动抬这一个自由小钩一息，预付半成真元。脱钩后林停术，苏以肉身抽开外闩、推开门接出秦禾；开门和承门重量由苏、铰链与门框承担，不由御物托门或拔锁。钩若受载卡住、被锁死或视线被挡，林便不起式；苏先停拉并重新扶门，不能解除则放弃这一窗口退回遮蔽处，不强行御物硬拔。\",\n    \"秦禾取回自己的采药布袋，展示辨路旧麻绳和剩余干粮，当面说出主营方向、已走路线及不陪战的界限。\",\n    \"苏从个人积蓄付一枚下品青灵石补本次引路采集损失，三人退进旧支洞。切巡守独立视角：点名见秦的笼子已空，哨长从原装车护送岗调两名凝元看守去归路设卡追索逃者；不是三人远知的消息。\"\n  ],\n  \"source\": \"author\"\n}"
+              }
+            ],
+            "revisionAdvice": "在第21章补足最小的既有囚禁条件与选择链：明确秦禾对内钩的实际可及性、身体与手部状态，外侧横闩受压时他徒手操作为何无效，以及看守视线、巡查或报警风险如何使其不能安全尝试；再明确他在林苏接近时以何种有限行动求救或配合，并保留其仅答应有限带路送信的自主边界。不要为此自动赋予秦禾御物、未载明的破笼术或对林操作的预知，也不必新增其从零训练经历。"
+          }
+        ],
+        "modelResponses": [
+          "{\"requestId\":\"review_fff3b5a23a00fc93b00b2e63\",\"summary\":\"力量体系已对功法增益、境界承载和术法效果作出多处限制，但“力达千钧”的尺度及其与个人实测上限的关系尚未闭合；秦禾救援的开笼机械过程成立，但其此前不能自行脱困及主动求援的因果尚缺必要说明。\",\"checks\":[{\"criterion\":\"scale\",\"verdict\":\"revise\",\"explanation\":\"淬体条目将“力达千钧”列为境界能力，境界总则又说明境界是常态能力与承载上限而非无条件胜负；莽牛诀则明确“五百斤”仅为完成一阶段后、相对入门同姿势负重测试的增力上限，非人人必得、不可叠加。这足以避免把五百斤误读为人人固定肉身值，也不能把附掌、推劲等限定术法效用误作普遍肉身上限。可是现有原文未界定“千钧”在同一负重尺度中究竟是淬体的准入/代表性能力、个人可达上限，还是另一个固定数值；也未直接说明它如何容纳训练收益、先天差异与伤后实测。因此读者仍无法稳定比较“淬体力达千钧”与莽牛诀增力五百斤，存在关键尺度歧义。\",\"evidence\":[{\"fragmentId\":\"e15\"},{\"fragmentId\":\"e19\"},{\"fragmentId\":\"e27\"},{\"fragmentId\":\"e6\"},{\"fragmentId\":\"e14\"}],\"revisionAdvice\":\"在realm_01或统一力量尺度条目中以最小补句定义“力达千钧”的测试单位、它是境界承载方向/达标描述还是个人实测上限，并明确个人峰值仍取决于训练、体况与复测；同时说明莽牛诀的五百斤只是同姿势测试的阶段性相对增益，不能免费把任何角色的既有实测能力增减到某一固定值。无需把附掌或玄府推劲改写为常态肉身力量。\"},{\"criterion\":\"captivity\",\"verdict\":\"revise\",\"explanation\":\"提案正确没有从秦禾凝元三重自动推出御物：境界与真元外放仅提供修习、承载方向，轻物御动还须完成控制练习和实测；秦禾档案也只确认其境界、符牌和路线知识，未记载该操作。救援时的机械分工亦具体：苏先在门外扶稳门板、卸去横闩侧压，林才对一丈内可见、无受载的小钩支付御物费，之后由苏肉身抽闩开门；这能说明林并非以御物托门或破笼。问题是秦禾此前为何不能自行脱钩、徒手开门、趁换岗呼救或以其他已知行动求援，尚未被原文闭合：他被写为“尚清醒”，内钩是笼内自由悬挂且无钥匙锁、法纹锁，门闩的侧压可由苏从外侧卸除，但没有交代秦是否够不到钩、是否受束缚或伤到无法施力、外侧看守如何覆盖其尝试，亦未写其在可行时机主动发出求救/配合信号的选择。普通运人笼、外有巡守和苏支付补偿本身不能替代这些原因。\",\"evidence\":[{\"fragmentId\":\"e6\"},{\"fragmentId\":\"e8\"},{\"fragmentId\":\"e78\"},{\"fragmentId\":\"e130\"},{\"fragmentId\":\"e131\"}],\"revisionAdvice\":\"在第21章补足最小的既有囚禁条件与选择链：明确秦禾对内钩的实际可及性、身体与手部状态，外侧横闩受压时他徒手操作为何无效，以及看守视线、巡查或报警风险如何使其不能安全尝试；再明确他在林苏接近时以何种有限行动求救或配合，并保留其仅答应有限带路送信的自主边界。不要为此自动赋予秦禾御物、未载明的破笼术或对林操作的预知，也不必新增其从零训练经历。\"}]}"
+        ]
+      },
+      "usage": {
+        "calls": 1,
+        "failedCalls": 0,
+        "inputTokens": 84546,
+        "outputTokens": 1519,
+        "costUsd": 0,
+        "costKnown": false,
+        "byRole": {
+          "reviewing": {
+            "calls": 1,
+            "failedCalls": 0,
+            "outputTokens": 1519,
+            "costUsd": 0
+          }
+        },
+        "limits": {
+          "budgetUsd": null,
+          "maxCalls": 1
+        }
+      },
+      "rawPath": "/tmp/novel60-body-strength-diagnostic.json",
+      "rawSha256": "22edbcd13ef7b77042761c6c85a7176076e45deda06fe9ef64d7e2f4de60321e"
+    },
+    {
+      "observedAt": "2026-10-14T18:22:52.000Z",
+      "model": "gpt-5.6-luna",
+      "fallback": false,
+      "productionWrites": false,
+      "formalAcceptance": false,
+      "candidateSha256": "0e18e1c553fc3c38a19ff8c25b516aa09908629cfb5b4af9200d2760afdbd26a",
+      "scope": {
+        "worldPackRevision": 30,
+        "storyBibleRevision": 60,
+        "planRevisionId": "unapplied-candidate60",
+        "planRevision": 60
+      },
+      "inputSha256": "93a8c57206f5cd868f79a6107fb44240337c8fa5400e184017acf0dfb3b6c93b",
+      "sourceCharacters": 116047,
+      "sourceCount": 118,
+      "sources": [
+        {
+          "id": "world/axioms/ax_01",
+          "sha256": "88fc441dd148dac77e773ed6ba6ad4cbb6c45c643f6f510a0d7fbffc57d7720a",
+          "characters": 805
+        },
+        {
+          "id": "world/axioms/ax_02",
+          "sha256": "3b9a0ef9e8689676408f399e1c6cee89c22377bbb4cc50e00d59b5713946c9f6",
+          "characters": 210
+        },
+        {
+          "id": "world/axioms/ax_03",
+          "sha256": "9017033c47b227911ec2d3fc482a470d96da617b3114e04a4744394cb71e8017",
+          "characters": 228
+        },
+        {
+          "id": "world/axioms/ax_04",
+          "sha256": "25ba4aafae0f0a2cf8936e89688c8a431b78a19aecb844f20ae6ed06bc08c0e7",
+          "characters": 372
+        },
+        {
+          "id": "world/axioms/ax_05",
+          "sha256": "937c49277090a7e240ae6427f034ba08ede35c0c9ef5658c9ef0cbfea89d9e6c",
+          "characters": 682
+        },
+        {
+          "id": "world/axioms/ax_06",
+          "sha256": "bf6eb8a9b696a2d5dcc0ff1dcdd0ed4a2be06297200e0684d75075a992147696",
+          "characters": 394
+        },
+        {
+          "id": "world/axioms/ax_07",
+          "sha256": "29a21423b5d950c014e88b044e678600fca9e1d43d101dc71dd00766b75e5d63",
+          "characters": 919
+        },
+        {
+          "id": "world/axioms/ax_08",
+          "sha256": "a9d83606ad14fd99d73adcb50fd36b2e959c1208be009b863f5832a66e8849c5",
+          "characters": 683
+        },
+        {
+          "id": "world/axioms/ax_09",
+          "sha256": "891bc67389dd899afbe6ddbeddfe2d18a395de9fb9600ece36de4f4dab656448",
+          "characters": 341
+        },
+        {
+          "id": "world/axioms/ax_10",
+          "sha256": "2d378484f55ffe8ec3fdc0cd06978f1183309f1e6401aa6c496492d0f7f92f76",
+          "characters": 313
+        },
+        {
+          "id": "world/axioms/ax_11",
+          "sha256": "425ffc4131a419972d3fa55875a30f5bb8f211d7aec1583746c628434a30db3c",
+          "characters": 1913
+        },
+        {
+          "id": "world/axioms/ax_12",
+          "sha256": "7990354c72645731e86fdc125711159a7d990a64aa4b810ebb29069c34815c8f",
+          "characters": 693
+        },
+        {
+          "id": "world/axioms/ax_13",
+          "sha256": "1265038969ab5590c217cca2994916081889583a52710eb7f3d1fed456e798b4",
+          "characters": 1010
+        },
+        {
+          "id": "world/tierLadders/ladder_realm",
+          "sha256": "ae9b5f3f70cdea54f75f03c22ad38cd4bc654c7c1c23e91ae7c7c0c37d7d036f",
+          "characters": 334
+        },
+        {
+          "id": "world/tierLadders/ladder_technique",
+          "sha256": "1d54203b5ca60fd2657bbcbff753775287c3e07732a0aed50afdab34c5d42ee7",
+          "characters": 268
+        },
+        {
+          "id": "world/tierLadders/ladder_artifact",
+          "sha256": "9393f45271962bc64a11ca29b61fd4c1c18e4f142557f740873319a4161b4004",
+          "characters": 266
+        },
+        {
+          "id": "world/tierLadders/ladder_resource",
+          "sha256": "ca3d4d072b9c56d737d953e43b0da9897ac8a4177d57a15bd9086a80b9eb63bd",
+          "characters": 303
+        },
+        {
+          "id": "world/realms/realm_01",
+          "sha256": "aa6ddb9b926e4171d2a4d5ee7bfcdb3d1710fdd6ff36402c3c4702af54f499b7",
+          "characters": 788
+        },
+        {
+          "id": "world/realms/realm_02",
+          "sha256": "abc115c2cb71fc732526a4a08146116f8322523913ed76502b2b747212474ea3",
+          "characters": 334
+        },
+        {
+          "id": "world/realms/realm_03",
+          "sha256": "d3624d83aa0bfbeb9da50611f66dc6b39f915576c2ab35c2c6dbac36546f46fc",
+          "characters": 236
+        },
+        {
+          "id": "world/realms/realm_04",
+          "sha256": "0daac72a741a7cf81891fca5b8cd1b26a7d9a53001832bde2f3e80daada8d095",
+          "characters": 481
+        },
+        {
+          "id": "world/realms/realm_05",
+          "sha256": "dbc1cacbace3590533e39c52d2501d55292dd90f4da53eb26ed5536219420bb7",
+          "characters": 558
+        },
+        {
+          "id": "world/realms/realm_06",
+          "sha256": "9cc7848d2ad82467aa1e54a77cd8bb1687246175befd6a4ff306c7d438c5daca",
+          "characters": 673
+        },
+        {
+          "id": "world/realms/realm_07",
+          "sha256": "7fc3da9d9eaa415ec4ff370d2a789f7fddde1b13bf952b37181faf786f9197e4",
+          "characters": 705
+        },
+        {
+          "id": "world/realms/realm_08",
+          "sha256": "643d15f79956f3ebfa2b51af1cba7dc7252141d0313cae040cddc64883d385f6",
+          "characters": 1092
+        },
+        {
+          "id": "world/techniques/tech_01",
+          "sha256": "514c619cbd093005c19a987ee1ba550a723d500715b0ddc2777758a811b3f4bb",
+          "characters": 541
+        },
+        {
+          "id": "world/techniques/tech_02",
+          "sha256": "6e0148324defabf133f37b330af395796532d4df69e693953b71759053dfeab6",
+          "characters": 677
+        },
+        {
+          "id": "world/techniques/tech_03",
+          "sha256": "6fba4f91f0eb6b3395439ceda80ca515796928287840a5f5ef626d065afee18f",
+          "characters": 623
+        },
+        {
+          "id": "world/techniques/tech_04",
+          "sha256": "6b9ebd357a942cf52bf1232fb01da6617c2c7439514f73c17cfdad2e54c089ce",
+          "characters": 1140
+        },
+        {
+          "id": "world/techniques/tech_05",
+          "sha256": "88e109e267646ba6f5efb067456de9ffcb82852c4ce1fc4b6764642d3d66384e",
+          "characters": 768
+        },
+        {
+          "id": "world/techniques/tech_06",
+          "sha256": "896c0474ea05b46dc09fb006c77d1a3359cef09bba11fbda40aa5048cd197038",
+          "characters": 931
+        },
+        {
+          "id": "world/techniques/tech_07",
+          "sha256": "e2c056f619ca8903238a67ba4b4ea5048b87281a955c324a06762493b5274b52",
+          "characters": 787
+        },
+        {
+          "id": "world/techniques/tech_08",
+          "sha256": "57df4a11af580aed025d5387e62a3873ab474b67ef65c091f8e8a4ca80e82f19",
+          "characters": 786
+        },
+        {
+          "id": "world/techniques/tech_09",
+          "sha256": "bd16c6bad96426f8c7e1da606be20af46b6d2b4d945712ea64c72d743a14a35c",
+          "characters": 773
+        },
+        {
+          "id": "world/techniques/tech_10",
+          "sha256": "9b8526f26ea78ce099b2608552bf42e3ffdd52b79fca9dbde3f6c93489b1952f",
+          "characters": 793
+        },
+        {
+          "id": "world/techniques/tech_11",
+          "sha256": "c588262578a3282c82c84263ad8430de110f721c7768a0d49a0e3df8683c3d9c",
+          "characters": 835
+        },
+        {
+          "id": "world/techniques/tech_12",
+          "sha256": "7ea051c761f87840298d7b5b34f77908e4e3081ca04e3450992a198db5dcac81",
+          "characters": 852
+        },
+        {
+          "id": "world/techniques/tech_13",
+          "sha256": "03d7eb4e4316c2a6c88e90c7b4f4674511ad6bbd281f6cc25fa220a4974567b7",
+          "characters": 820
+        },
+        {
+          "id": "world/techniques/tech_14",
+          "sha256": "ab4cddd52fb66d4123209d0045c69ea882577eaf764722fbf22415ef9f646162",
+          "characters": 1303
+        },
+        {
+          "id": "world/techniques/tech_15",
+          "sha256": "e2c38224d239c83a01c82535ad16ed67139489387d7d654117cc297cc74b52d8",
+          "characters": 918
+        },
+        {
+          "id": "world/techniques/tech_16",
+          "sha256": "27262ee4d31bb7db227d144d4f83210d6234490cbb6e8b7f871ed24f9d6dacd9",
+          "characters": 946
+        },
+        {
+          "id": "world/techniques/tech_17",
+          "sha256": "ef0f6e1d6242c598dad2a978414a13e65901523f1fcbf917096b1abe9fbae1f9",
+          "characters": 2421
+        },
+        {
+          "id": "world/techniques/tech_18",
+          "sha256": "7984381430b37704ff1542fd9c097abbff57a7af93da37bd698cae434bb45d50",
+          "characters": 908
+        },
+        {
+          "id": "world/artifacts/art_01",
+          "sha256": "c024d3467be7834e5d760faee1738698106c7eb00d473ce8983d7927a8deaea9",
+          "characters": 352
+        },
+        {
+          "id": "world/artifacts/art_02",
+          "sha256": "8e8c9ccaa3f622ebaa7c89cd36d8aa6ccf6e7083ad1d46b285aa43a29c269938",
+          "characters": 468
+        },
+        {
+          "id": "world/artifacts/art_03",
+          "sha256": "88817317e7d18f0a6c6dca60dbd9b9cbdd975a4e8a3aaad039550d915efb8b0b",
+          "characters": 378
+        },
+        {
+          "id": "world/artifacts/art_04",
+          "sha256": "7b2b6047481c67235998d9e631280949f3c921d017256e799de18214762daab5",
+          "characters": 671
+        },
+        {
+          "id": "world/artifacts/art_05",
+          "sha256": "865ff0194224b81e7f7f8e9d43c7dd35b4c5047de969a8f7895b08e3ec693692",
+          "characters": 656
+        },
+        {
+          "id": "world/artifacts/art_06",
+          "sha256": "d5b7d3d4baed6ca0ec7236016d7c2e92d437fdf5953ca5f64c409982e813d018",
+          "characters": 675
+        },
+        {
+          "id": "world/artifacts/art_07",
+          "sha256": "6cccf40e09064a22186f91d268cbcf25c2faab66a9179f6fd1ea76be3e47bdf1",
+          "characters": 704
+        },
+        {
+          "id": "world/artifacts/art_08",
+          "sha256": "724a9e59b1c8cdf36073d21e49f91b6084c41402156cc5b78d56f6cf1ef8d71d",
+          "characters": 701
+        },
+        {
+          "id": "world/artifacts/art_09",
+          "sha256": "7a6812819436e67331151e446b16889b0ae6221411570d97eaefe8179ea9882a",
+          "characters": 776
+        },
+        {
+          "id": "world/artifacts/art_10",
+          "sha256": "97c56718dc780367fcd1ed7ed12749934657b91fed7a800f578e7ba325b136b5",
+          "characters": 402
+        },
+        {
+          "id": "world/artifacts/art_11",
+          "sha256": "b4545c6ccfc0470dac1b68d9a9a2cb5741a800d99405fcf90ddbebd0c0824410",
+          "characters": 789
+        },
+        {
+          "id": "world/artifacts/art_12",
+          "sha256": "4c987a46619103a7d6193acc1ff9a162cefd1480205e47d1249079ec112a584a",
+          "characters": 829
+        },
+        {
+          "id": "world/artifacts/art_13",
+          "sha256": "bb38612a36dac3bfc783e3937b1a08db09354f4aaf9418929bee0cae7ca7a61f",
+          "characters": 926
+        },
+        {
+          "id": "world/artifacts/art_14",
+          "sha256": "f07fea53fda7e0ca1b8389f99a21174cbc3c40178cbbad983b855e551e06c6b6",
+          "characters": 866
+        },
+        {
+          "id": "world/artifacts/art_15",
+          "sha256": "48ce09f771eead600cd58badb40b78eec01b60ab046c2ea2263ddb36c106f39d",
+          "characters": 340
+        },
+        {
+          "id": "world/artifacts/art_16",
+          "sha256": "4f391e0aff6953bd825eb273d34df8e223fa0aab081698a50c5396be7b4b2e41",
+          "characters": 600
+        },
+        {
+          "id": "world/artifacts/art_17",
+          "sha256": "136eeee90a70683c9849c199b606d12d810179a5ac5cad22282ebe0009694d19",
+          "characters": 1044
+        },
+        {
+          "id": "world/artifacts/art_18",
+          "sha256": "8a3225b99c44c2ef622fac47b6d0606e140f0ab5a47c7672c23457845bb6cf58",
+          "characters": 1256
+        },
+        {
+          "id": "world/artifacts/art_19",
+          "sha256": "83b5a23317f8019e96da75d4db8e6647f05101e568c121507ce446805e560355",
+          "characters": 768
+        },
+        {
+          "id": "story/characters/char_01",
+          "sha256": "ff285a48a109bb97e0bfe0a3c9b6a6d2058e1dbbb8943940c6e8cc26acc6ced1",
+          "characters": 241
+        },
+        {
+          "id": "story/characters/char_02",
+          "sha256": "ef3b038fec27ec195d700d9dcfff077003ebe87b75d721afd8f05a8ae0131036",
+          "characters": 371
+        },
+        {
+          "id": "story/characters/char_03",
+          "sha256": "25b666ee55b0d015e091a9a82700fd43b5b919189d76f3765101501e9d2b5951",
+          "characters": 268
+        },
+        {
+          "id": "story/characters/char_04",
+          "sha256": "0c723ec00b5f60da1845fd627292521f4133d875c9bd141bc96eb678585a0f06",
+          "characters": 534
+        },
+        {
+          "id": "story/characters/char_05",
+          "sha256": "1a4418e022eb94522a28b5083a331923718581d5d802971d9c90fa0288468377",
+          "characters": 222
+        },
+        {
+          "id": "story/characters/char_06",
+          "sha256": "d8593fb55166078096870ae3f951950842acdacdd82d6e2807cb12cd0bd437ce",
+          "characters": 220
+        },
+        {
+          "id": "story/characters/char_07",
+          "sha256": "2c4e7fd0408d1da29c902fb9b6a16dfe49c2bc2b58cf10ac762eba91c2f1d0bf",
+          "characters": 219
+        },
+        {
+          "id": "story/characters/char_08",
+          "sha256": "407acecde5e94e5d6f96802082b3aef6b6e6cbb059b1c6f5c8298fa0db04f069",
+          "characters": 215
+        },
+        {
+          "id": "story/characters/char_09",
+          "sha256": "8f10b88699db549ecdd492531cf99c59596085a76b79716c4be31d6c0746a00e",
+          "characters": 266
+        },
+        {
+          "id": "story/characters/char_10",
+          "sha256": "fc6b31cc410a3b0abb01cfbf8cc6318c2b2c768dbf742e4eadfbfe5bcdc37bbd",
+          "characters": 957
+        },
+        {
+          "id": "story/characters/char_11",
+          "sha256": "fc5c9087b7fe6c8fdd9b886d160cce97b3da110888c63d9ebe5b5212b20b68b6",
+          "characters": 331
+        },
+        {
+          "id": "story/characters/char_12",
+          "sha256": "f830f09a0c652760e259ffc7a3f06773915d9d42b31774295a75f5950f42259f",
+          "characters": 244
+        },
+        {
+          "id": "story/characters/char_13",
+          "sha256": "2fa849d6e17b1b09b0f63a90e9da1220a02a70ac42b7fcb7ffdda8eb0df299b9",
+          "characters": 249
+        },
+        {
+          "id": "story/characters/char_14",
+          "sha256": "c94823069aa74519f59a6efb62eea15bcad422101f4483c9c53b9555af597544",
+          "characters": 251
+        },
+        {
+          "id": "story/characters/char_15",
+          "sha256": "a66cf984abddbeebbfd375a6c03f4e18079f53edf0ebaa36bb94a10dc6cd43e8",
+          "characters": 255
+        },
+        {
+          "id": "story/characters/char_16",
+          "sha256": "f6e0b886f3517b8848935717215f6631d761a5433d04e1c357a21852a238137b",
+          "characters": 258
+        },
+        {
+          "id": "story/characters/char_17",
+          "sha256": "6aeb7439c77c5d0ba208d95ce463fce4bbacac727f26e7e665eefc5e459fbd74",
+          "characters": 271
+        },
+        {
+          "id": "story/characters/char_18",
+          "sha256": "56ac6142d7e0a03c6b43167817427a6c41c4c5aadbb2fc34bd9292fe2a9db1a7",
+          "characters": 248
+        },
+        {
+          "id": "story/characters/char_19",
+          "sha256": "db199e22a07585a1024d864466d54f54cb1240162c327aa1ce3057e60f867164",
+          "characters": 217
+        },
+        {
+          "id": "story/characters/char_20",
+          "sha256": "01e57a29dfb15287a79ddfb10cdb2538244d2127be4bca5dd8bd6bca5a99c4d8",
+          "characters": 218
+        },
+        {
+          "id": "story/characters/char_21",
+          "sha256": "9fe2629e1052968e1c8a5423915e686fb443dbbf582c35ba4cca54d40280373a",
+          "characters": 263
+        },
+        {
+          "id": "story/characters/char_22",
+          "sha256": "8828a55d53fd566bdddb1564cc3d90d7735e7dbed1ca58ae36c96814a288134a",
+          "characters": 228
+        },
+        {
+          "id": "story/characters/char_23",
+          "sha256": "209cf5737f29553451b190c6b57e141d07a2a796c64d7ce9ae779cd641b78df7",
+          "characters": 452
+        },
+        {
+          "id": "story/characters/char_24",
+          "sha256": "3852da5bc257985edd4a39e18c9c151515299309042024830f5054ef47ab586c",
+          "characters": 226
+        },
+        {
+          "id": "story/characters/char_25",
+          "sha256": "a1e1e1c016559cdb55dd21545baa984a4beffafd41ebcb98dd5779f297cad401",
+          "characters": 229
+        },
+        {
+          "id": "plan/chapters/1",
+          "sha256": "4a548543fc1ebc6abb1e36798b97153cde5b7b52c36cf9a16ec445392d24c9e8",
+          "characters": 1686
+        },
+        {
+          "id": "plan/chapters/2",
+          "sha256": "8f29ac9a2a856b9238abc374b4c79eff344af5c8d091c4bc8f35f89337777aca",
+          "characters": 1182
+        },
+        {
+          "id": "plan/chapters/3",
+          "sha256": "acced9f8de51da695d5332a271dafd96ce246c82f75f2e6da1762a1d09b80676",
+          "characters": 1064
+        },
+        {
+          "id": "plan/chapters/4",
+          "sha256": "e1605ea98d3ea6b85d329fc54aa162a7d1c05d6d1be89b32ff51ba531d79a2f2",
+          "characters": 1462
+        },
+        {
+          "id": "plan/chapters/5",
+          "sha256": "11edb5dc3febe764dfa3269085353e8cee159dd12b6e35cfc1ebb57bbfdbd122",
+          "characters": 1281
+        },
+        {
+          "id": "plan/chapters/6",
+          "sha256": "b8b8cb22e9734e4d1a77db1fe5be1e6cfb2767fce14b7066d3c4101c4223c08a",
+          "characters": 1131
+        },
+        {
+          "id": "plan/chapters/7",
+          "sha256": "e5b17613925811a33121b074a01eae80a8b0faa4424c5a8ca5439c8adb12ad39",
+          "characters": 1478
+        },
+        {
+          "id": "plan/chapters/8",
+          "sha256": "03f062225eb7730960d955c754f64ae4ef27648c72493614d7627faac923c757",
+          "characters": 1200
+        },
+        {
+          "id": "plan/chapters/9",
+          "sha256": "be748e4715b5e8d5ca147c9b53addc98e117f25ecac9c3986f9247c668c11989",
+          "characters": 1373
+        },
+        {
+          "id": "plan/chapters/10",
+          "sha256": "9ddffbbf5caa59f319000f8accd6c74974700a420693e88c24c9dec5037b40fb",
+          "characters": 1432
+        },
+        {
+          "id": "plan/chapters/11",
+          "sha256": "eb1bb8c8342e94d4c48439ca533b908ebc2e558f32a628d33320decf542646bd",
+          "characters": 1795
+        },
+        {
+          "id": "plan/chapters/12",
+          "sha256": "7e089234808457082c9ddd59ee2335de54a562ac8745900a58a1c00536c6b73d",
+          "characters": 1824
+        },
+        {
+          "id": "plan/chapters/13",
+          "sha256": "724e0acf3973e4c0e403d783fbd0187d666bc0d72c0d9a1a06a199edc0bc7f03",
+          "characters": 1614
+        },
+        {
+          "id": "plan/chapters/14",
+          "sha256": "095fd3ecb7a8e4a23d2c806cf1b1590a36e8e149c9db9fe15befb46796c0724a",
+          "characters": 1836
+        },
+        {
+          "id": "plan/chapters/15",
+          "sha256": "16a5dfc5ed1842da1b1f01a791bd50459c3fc83f6ff974d2283bc5a9321f8104",
+          "characters": 1934
+        },
+        {
+          "id": "plan/chapters/16",
+          "sha256": "927180aa66913488f75775a3d84e2e5ce2b9f97e973f294430c5aaac13f1e2a4",
+          "characters": 1635
+        },
+        {
+          "id": "plan/chapters/17",
+          "sha256": "5b725d4838ac704ccb66c20ea3f3110e6365a97347356df4539e5aabd211b211",
+          "characters": 1761
+        },
+        {
+          "id": "plan/chapters/18",
+          "sha256": "d47d43a75b2c5474c11a8395d946bd4c270f61eb8e2e20d9e51f857dc927e919",
+          "characters": 2588
+        },
+        {
+          "id": "plan/chapters/19",
+          "sha256": "1a9d6b2224b3cfb8392f19a3ea7a609972e394ac971ad9821035157943becd94",
+          "characters": 1384
+        },
+        {
+          "id": "plan/chapters/20",
+          "sha256": "76085d2b19a017512c5e12de218f46deb66d0c87300cda5cd57af3f802750960",
+          "characters": 1624
+        },
+        {
+          "id": "plan/chapters/21",
+          "sha256": "81e1c79edbef68b8c984a531edb3e732647975291c1490c668f3cbf09fa37b43",
+          "characters": 2183
+        },
+        {
+          "id": "plan/chapters/22",
+          "sha256": "4d4a90b4c80f7e6940a52950e6c846f8823618488ecd6e4ed7cfbbc20a701eb4",
+          "characters": 1769
+        },
+        {
+          "id": "plan/chapters/23",
+          "sha256": "b244b7b153822a635fdb86de428ab2f0cda04356d6ed3e99928d4fd353280c28",
+          "characters": 2530
+        },
+        {
+          "id": "plan/chapters/24",
+          "sha256": "7ad494d68d884d15e184bad402c5d31c38b067d6985fe9aa910e755e49970308",
+          "characters": 1628
+        },
+        {
+          "id": "plan/chapters/25",
+          "sha256": "e33680df817a197b47b22ef15231c5da232d8ed234d12ce4fec982ef91a10a91",
+          "characters": 3702
+        },
+        {
+          "id": "plan/chapters/26",
+          "sha256": "65932e6c1cb64eef87caa847268f6ccdda440ffbaf02c5b8a90a6a9a5e1016d1",
+          "characters": 3158
+        },
+        {
+          "id": "plan/chapters/27",
+          "sha256": "7b2308142b5edc33fcf17f0368d7517047f804b9a45a1a80664628f9b31a680b",
+          "characters": 1577
+        },
+        {
+          "id": "world/locations/loc_12",
+          "sha256": "ad1ca3ee8529df49c21e83d2b30a4e9bced647554f2b64d0fd2a2868abb132c4",
+          "characters": 168
+        },
+        {
+          "id": "story/chapterPlans/chapter-plan-21",
+          "sha256": "48f12e8011e40e2148f1f9b47c3e06c010354717ee9bbf4a1fafbdd62a909f2a",
+          "characters": 1830
+        },
+        {
+          "id": "plan/milestones/ms_growth_v1_expedition",
+          "sha256": "1bc7313e3f5cc447fbb0e49413f10243f8a1f7fb45b60613084a6c9ef724c4f2",
+          "characters": 1082
+        },
+        {
+          "id": "diagnostic/question",
+          "sha256": "2c7a6e95f331dcb04652951be3ed0e4c267f52d4e515738277e68424e217da34",
+          "characters": 384
+        }
+      ],
+      "result": {
+        "summary": "power领域的两项设计均可成立：肉身力量、境界承载与术法效用已分尺度；秦禾被囚及由林苏救出的路径也具备具体机关、技能、时机与代价约束。",
+        "checks": [
+          {
+            "criterion": "scale",
+            "verdict": "pass",
+            "explanation": "淬体“力达千钧”被限定为健康、双足着地、双手近身举托稳定实物时的肉身路线设计承载上界，不是准入线、平均值或任意角色现有力量；个人只能按训练、同姿势实测与当前伤情取值。莽牛炼体诀的五百斤则是完成一个修习阶段后相对入门测试的单次增力上限，不与千钧相加、也不能反复叠加。凝元附掌被定义为付费、近身、一次接触掌击，对薄木仅能辅助击裂；玄府推劲则须训练、贴住目标和稳定立足，且只是已测负荷内将无锁平地滑车移一步，明确不是托举重量或普遍肉身数值。由此常态个人能力、境界承载方向、实测上限及具体术法效果没有混为同一尺度。",
+            "evidence": [
+              {
+                "sourceId": "world/realms/realm_01",
+                "quote": "{\n  \"id\": \"realm_01\",\n  \"systemId\": \"ps_01\",\n  \"name\": \"淬体境\",\n  \"rank\": 1,\n  \"prerequisites\": [\n    \"引气洗髓\"\n  ],\n  \"capabilities\": [\n    \"肉身负重可随相应功法与长期训练增强。“力达千钧”在本世界指淬体肉身路线的设计承载上界：一钧为三十斤，测试姿势为健康稳定、双足着地、双手近身举托同一稳定实物。它不是淬体准入标准、平均常态或每名修士已经拥有的力量，也不承诺任一功法都能练到这个上界。某人的实际可用负重取其已有训练、同姿势实测和当前伤情；未记载实测时不得按境界名分配千钧力量，晋入凝元也不自动补齐该肉身上界。近身静态举托不能直接换算成奔跑速度、徒手破铁、抗锐器或某一掌的冲击效果。莽牛炼体诀所述阶段增力至多五百斤，是同姿势测试相对入门值的单次阶段收益，仍按其训练与复测规则，不与千钧上界相加，也不靠反复运诀叠满。既有角色没有因此凭空增加或削减一个实测数值；后续需要更强肉身时先落实相应训练、实测与行动条件。\",\n    \"皮肉坚韧指对应炼体训练所得的耐磨和抗钝击程度，不是入境即免伤；锐器、火烧、内腑震伤及负重超过个人伤后能力仍可造成损伤。\"\n  ],\n  \"cost\": \"修习消耗体能、饮食营养与气血调养条件，不另造气血点数。按莽牛炼体诀（tech_01）循序训练，饥饿、失血、筋骨伤或胸闷眩晕时减量或停练；进食与睡眠支持正常恢复，不抵消伤势。恢复训练前须清醒站稳、平稳呼吸，在既定轻负荷下无加重疼痛；失血、内腑或骨伤者先由医修复查许可，再逐步加量，固定休息时长不保证伤愈。本境不产生凝元真元、元罡或可用神识的施术资格。\",\n  \"counters\": [\n    \"内腑重创\"\n  ],\n  \"status\": \"proposed\"\n}"
+              },
+              {
+                "sourceId": "world/techniques/tech_01",
+                "quote": "{\n  \"id\": \"tech_01\",\n  \"name\": \"莽牛炼体诀\",\n  \"kind\": \"technique\",\n  \"tier\": \"黄阶\",\n  \"allowedRealmIds\": [\n    \"realm_01\"\n  ],\n  \"effect\": \"循序搬运气血、锻打筋骨；“增力五百斤”是健康淬体修士完成本诀一个完整修习阶段后，相对入门前同姿势负重测试的增力上限，并非人人必得，也不是每次运功临时增加五百斤。皮膜坚韧只是耐磨抗钝击的俗称，仍会割伤、灼伤。\",\n  \"cost\": \"训练消耗体能和饮食营养，须有实际食物、睡眠与循序负重；饥饿、失血或筋骨伤时减量或停练。疲劳与肌肉损伤须靠休息、营养和必要治疗恢复，不能靠再运一遍功消除。\",\n  \"limitations\": [\n    \"仅适用于淬体境修士打熬筋骨\",\n    \"无法抵御锐利法器贯穿与内家真元震荡\",\n    \"增力为同一训练收益，反复运行不叠加；完成阶段须经训练和复测，不能临战读诀即时获得。此术不提供真元、元罡或寿储。\"\n  ],\n  \"counters\": [\n    \"破甲重矢直贯心脉\",\n    \"凝元真元暗劲透体伤脏\"\n  ],\n  \"status\": \"proposed\"\n}"
+              },
+              {
+                "sourceId": "world/axioms/ax_08",
+                "quote": "{\n  \"id\": \"ax_08\",\n  \"title\": \"凝元基础操作的学习、对象与支付\",\n  \"content\": \"凝元真元外放只是承载资格。下列基础操作须先完成相应控制练习与实测，不能靠晋阶自动掌握；不授予更高境界、感知或伤势免疫。\\n轻物御动沿ax_05每次预付半成健康稳定真元上限执行：只控制三丈内直接可见、单件至多两斤的轻小自由物，每次至多三息，早停、落空或被打断不退。一次只作用一件，移第二件另付，时间不足或目标出界即停止。轻索头、小钩、木楔和小插销均须未受重物牵拉或锁死；阻力超过同物正常徒手轻拨即不属于此操作，不能借物轻而隔空拉整车、托活人、硬拔承重楔或穿透法纹锁。操作轻小机关可释放原有机械作用，但轨道、闸片、沙挡、重力及承重部件须真实存在且各自承力，不能把整个机构的载荷藏在半成御物费里。\\n近身附掌是将真元短时集中于自己一只手掌的入门练习：须有一息聚气，聚气开始预付一成健康稳定真元上限，只支持随后一息内一次实际接触的掌击，落空或受扰均损已付款；出掌后至少一息重新收束，不能凭接触持续灌入。对未有真元防护的肉身可造成震伤，对腐朽薄木封板可辅助击裂；伤害仍取决于接触、落点与目标承受，不能隔空震脏、穿完整石壁、自动破同阶护体或使所有人一掌毙命。躲开、挡开手臂、甲胄卸力或聚气时打断均可反制；腕掌伤、气路不稳或不足一成时停用。两种基础操作的消耗、恢复及伤后上限均按ax_05，不另开一份免费真元。\",\n  \"scope\": \"凝元轻物御动与近身附掌\",\n  \"precedence\": 8,\n  \"status\": \"proposed\"\n}"
+              },
+              {
+                "sourceId": "world/axioms/ax_13",
+                "quote": "{\n  \"id\": \"ax_13\",\n  \"title\": \"玄府贴身运罡的推劲与定腕\",\n  \"content\": \"只定义玄府以本人元罡辅助已接触目标的近身操作，不由境界自动授予。须经已掌握者指导，完成握持、立足、单侧导罡与主动停术训练，在普通滑车及配合者受控低负荷的推压/脱手测试中通过复测，再由医修确认使用肢体气路稳定。上限服从个人受控实测及当前伤情，不能以本条直接推定任一玄府都有同样肉身力量。\\n短促推劲：先以手掌或前臂实际贴住目标、双足有稳定支撑，用一息聚罡并预付本人健康稳定元罡上限二成，随后至多一息沿一个方向推压或扳转，随即散劲。只加强这一次接触，不能隔空、传到器械远端、贯穿整车或同时作用多人。在个人已测负荷内，至多将轮轴完好、无锁止、平地总重六百斤以下的普通滑车滚移一步；不是托起六百斤或上坡拖车。用于人体须先实际接到暴露部位并取得立足和关节方向优势，能否跌倒或受伤依双方站位、卸力与伤情，不因付款保证折骨、破同阶完整护罡或压制高境。对方可抽身、换支点、在聚罡一息内攻击施术臂，或以实际已发动的防护与术法反抗。失去接触、立足或被打断立即散劲，二成不退。\\n定腕：先由未受伤的手实际握住对方一只手腕，用一息导罡并预付半成健康稳定元罡，随后最多一息辅助一次小幅向下或向内的姿势纠正；不能提起、拖行、封经或隔空制动。只可应对未施攻杀/强化术的普通转腕挣动，须本来就有正常握持与站位优势；对方一旦实际凝罡攻来、双足发力挣脱或另一手反击，应松开避让、呼援或按另有规则的能力应对，不能用半成抵销任意同阶反抗。接触丢失、落空和打断均不退款，不维持持续禁锢。\\n两种方式使用期间不能同时发动局部护罡、噬血爪、真光或其他控术；散劲后至少三息调息才能再用本条，同一短暂交锋连续最多两次，此后至少休整一刻并复测，战斗中不计普通恢复。使用肢体及相关气路有麻木、动作失准、疼痛加剧或创口止不住血立即停术。伤后仅可用实检仍稳定的另一侧完成定腕轻操作，不得以换手绕过全身气路失稳；伤后上限和余额按ax_05复核，剩余不足先停术。普通绳索、牢房和看守人手另行承担羁押，不能以本条宣称永久封禁。此条不提供飞行、速度、远程拳罡、治疗或寿储恢复，也不自动允许神海及以上沿用。\",\n  \"scope\": \"受训玄府的接触式短促推压与有限看押动作\",\n  \"precedence\": 13,\n  \"status\": \"proposed\"\n}"
+              },
+              {
+                "sourceId": "story/characters/char_11",
+                "quote": "{\n  \"id\": \"char_11\",\n  \"name\": \"秦禾\",\n  \"role\": \"stage\",\n  \"goal\": \"救出同批被扣同伴，也要保住这一季的采药收入，不愿只因欠救命恩情无限冒险。\",\n  \"identity\": \"达到凝元三重并持本次联名符牌的散修采集者，熟悉入口至前哨的实体路线。 开篇既有能力边界：凝元三重是修为与入境资格，不是千钧肉身实测记录；采药经历没有赋予他炼体巅峰力量。他尚未完成轻物御动的控制练习和实测，当前不能使用该操作，不能因看见别人施术便临场学会。这不降低已记载能力，也不新增破笼或封修术。\",\n  \"locationId\": \"loc_05\",\n  \"startingRealmId\": \"realm_02\"\n}"
+              },
+              {
+                "sourceId": "story/characters/char_10",
+                "quote": "{\n  \"id\": \"char_10\",\n  \"name\": \"顾峤\",\n  \"role\": \"supporting\",\n  \"goal\": \"守住古境出口和宗门采集份额，不愿替长老掩盖伤亡，但也不肯为私人家仇弃守出口。\",\n  \"identity\": \"太清玄府剑修、古境当值护送执事；已修成玄府可用剑诀、元罡护体与地阶太清太乙真光。真光须三息结印、每次付三成元罡和0.25元载，同场只准一印，受伤与冷却仍按功法限制执行；玄府身份本身不等于自动掌握宗门所有术法。他没有王器、跨境瞬移和无限元罡。 作者开篇前技能设定：顾已由宗门师长指导完成玄府纯阳供能、三息凝印与主动收势的受控训练和实测，经脉复诊合格；这是既有修习背景，不代表后续伤情、余量或冷却自动满足，亦不把未来神海训练计为已完成。 开篇前另已完成ax_12局部护罡的低负荷实测，以及ax_13贴身运罡的推劲、定腕训练和受控摔解实测；只在实际接触、站位和伤情允许时使用，不把未具名“玄府剑诀”当作本场额外攻击。 上述开篇前两项基础操作另有各自资格记录：同一宗门已掌握者实际指导顾完成局部掌大聚罡、主动收束，并用轻木棍及普通铁刃作受控低负荷擦击实测；事后由宗门医修复诊，确认测试处与运罡气路稳定，才准将ax_12列入已掌握操作。贴身运罡另完成握持、立足、单侧导罡和主动停术训练，在轮轴完好、平地无锁止的普通滑车上实测一次推移一步，个人本次已测总重只记三百斤；再由自愿配合者完成低负荷推压、脱手和定腕测试，医修随后确认双侧使用肢体气路稳定。三百斤不是托举能力，也不把世界规则六百斤上限当作本人实测，更不等于可强制摔倒同阶敌人。上述均在开篇前完成，未挪用188日交战期间练习、恢复或诊察；真光仍按原独立凝印实测和经脉复诊记录。25章前无新增伤情，使用时仍核当场余量、接触、立足、冷却；25章右肩受伤即停止推劲及该侧施术，不因旧资格合格而恢复。26章如用左手有限定腕，必须按原实检左侧及全身气路仍稳、余额和对象允许才施，任一失稳即停。此为作者可核的既有背景，不赋予林苏尚未获知的精确训练经历。\",\n  \"locationId\": \"loc_07\",\n  \"factionId\": \"fac_01\",\n  \"startingRealmId\": \"realm_03\"\n}"
+              }
+            ],
+            "revisionAdvice": ""
+          },
+          {
+            "criterion": "captivity",
+            "verdict": "pass",
+            "explanation": "秦禾的凝元三重只构成修为及入境资格，不赋予千钧实测肉身、轻物御动或临场破笼能力；境界栏本身也不自动授予可用术法。第21章进一步给出不能自救的实际结构：普通铁栅和门框完好，横闩、防脱钩均在外侧闩槽，内侧连续挡板隔开其手指、随身物及机关；他推门、扳栅无效且引来看守，因此停止硬闯、保留力气等待机会。该限制不依赖“普通笼必然困住凝元”的泛化判断，而是结合其未掌握御物、无法触及外机关、看守会因声响回查及当时求援时机成立。救援也未把秦默认知晓林的操作：他仅以手势指出外侧机关并按苏的示意退开；苏先扶门卸去横闩侧压，林才在门外一丈直视、确认无受载松隙后，以已训练的轻物御动抬起四两自由小钩并支付半成真元，随后由苏肉身抽闩开门。若钩受载、卡死、视线受阻或看守回望，计划明确要求放弃窗口而非强行破笼。",
+            "evidence": [
+              {
+                "sourceId": "world/axioms/ax_06",
+                "quote": "{\n  \"id\": \"ax_06\",\n  \"title\": \"境界承载与实际施术\",\n  \"content\": \"境界能力栏描述该层能够修习和承载的能力方向，不是一份自动掌握、免费发动的万能招式清单。晋阶费用、术法发动费与持续消耗分别记账；晋阶不等于预付后续法术。实际施术须有已掌握的功法、法宝或明确基础操作规则，逐项满足其对象、范围、供能、时机和中断后果；境界名称不能绕过这些条件。已由ax_05定义的凝元轻物御动等基础操作仍按原规则执行，普通步行、说话、握持不因此加收术法费。尚未展开的高阶术式可以保留为未来能力方向，但首次安排它解决剧情之前必须先完成具体规则与可取得资源的设计、复核；不得以读者未见的万能本能补齐现有行动缺口。\",\n  \"scope\": \"全部境界、功法、法宝及后续能力扩展\",\n  \"precedence\": 6,\n  \"status\": \"proposed\"\n}"
+              },
+              {
+                "sourceId": "story/characters/char_11",
+                "quote": "{\n  \"id\": \"char_11\",\n  \"name\": \"秦禾\",\n  \"role\": \"stage\",\n  \"goal\": \"救出同批被扣同伴，也要保住这一季的采药收入，不愿只因欠救命恩情无限冒险。\",\n  \"identity\": \"达到凝元三重并持本次联名符牌的散修采集者，熟悉入口至前哨的实体路线。 开篇既有能力边界：凝元三重是修为与入境资格，不是千钧肉身实测记录；采药经历没有赋予他炼体巅峰力量。他尚未完成轻物御动的控制练习和实测，当前不能使用该操作，不能因看见别人施术便临场学会。这不降低已记载能力，也不新增破笼或封修术。\",\n  \"locationId\": \"loc_05\",\n  \"startingRealmId\": \"realm_02\"\n}"
+              },
+              {
+                "sourceId": "world/axioms/ax_08",
+                "quote": "{\n  \"id\": \"ax_08\",\n  \"title\": \"凝元基础操作的学习、对象与支付\",\n  \"content\": \"凝元真元外放只是承载资格。下列基础操作须先完成相应控制练习与实测，不能靠晋阶自动掌握；不授予更高境界、感知或伤势免疫。\\n轻物御动沿ax_05每次预付半成健康稳定真元上限执行：只控制三丈内直接可见、单件至多两斤的轻小自由物，每次至多三息，早停、落空或被打断不退。一次只作用一件，移第二件另付，时间不足或目标出界即停止。轻索头、小钩、木楔和小插销均须未受重物牵拉或锁死；阻力超过同物正常徒手轻拨即不属于此操作，不能借物轻而隔空拉整车、托活人、硬拔承重楔或穿透法纹锁。操作轻小机关可释放原有机械作用，但轨道、闸片、沙挡、重力及承重部件须真实存在且各自承力，不能把整个机构的载荷藏在半成御物费里。\\n近身附掌是将真元短时集中于自己一只手掌的入门练习：须有一息聚气，聚气开始预付一成健康稳定真元上限，只支持随后一息内一次实际接触的掌击，落空或受扰均损已付款；出掌后至少一息重新收束，不能凭接触持续灌入。对未有真元防护的肉身可造成震伤，对腐朽薄木封板可辅助击裂；伤害仍取决于接触、落点与目标承受，不能隔空震脏、穿完整石壁、自动破同阶护体或使所有人一掌毙命。躲开、挡开手臂、甲胄卸力或聚气时打断均可反制；腕掌伤、气路不稳或不足一成时停用。两种基础操作的消耗、恢复及伤后上限均按ax_05，不另开一份免费真元。\",\n  \"scope\": \"凝元轻物御动与近身附掌\",\n  \"precedence\": 8,\n  \"status\": \"proposed\"\n}"
+              },
+              {
+                "sourceId": "plan/chapters/21",
+                "quote": "{\n  \"id\": \"chapter-21\",\n  \"chapterNumber\": 21,\n  \"volumeId\": \"vol_01\",\n  \"title\": \"笼边的取舍\",\n  \"summary\": \"第184日晚至185日午后，林辰与苏凌霜循残缺采集单找到前哨废料高台，只见一名尚清醒、手脚未伤的秦禾被关在固定铁栅的普通运人笼中。门外横闩及防脱钩位于外侧闩槽，内侧挡板隔开笼内手指和随身物，秦在笼内够不到机关。他已试过推门和扳动栅条，未能松动，响声反而引来看守，故停止无效硬闯并留意来人；看见苏从盲弯接近时，他主动以短促手势示意外侧机关，等她示意才退开门边，避免冲撞制造声响。林辰发现靠车样箱外角有与残玉相似的刻痕，却不知道箱内是否有第一残片，坚持先趁换岗取货；苏凌霜反对，认为先救能辨路、能送信的秦禾。争执耗尽接近样箱的短窗后，苏先从盲弯到笼门外扶稳门板、暂不抽外侧横闩；林从侧面直视外侧闩槽内自由悬挂的小防脱钩，以一次凝元御物抬钩脱开，苏才抽闩开门接人。秦禾带出自己的普通采药布袋，内有辨路用的旧麻绳和干粮，没有新宝物；苏以个人一枚下品青灵石补偿他本次引路和采集损失。秦禾当面说明主营方向与已走路线，只答应有限带路、送信，不承诺陪战。三人先退入旧支洞。切巡守独立视角，随后点名发现空笼，哨长从原装车护送岗调两名凝元看守去归路设卡；三人此时尚未见到封路岗。\",\n  \"characterGoals\": \"林辰想确认样箱线索并保留撤离余地；苏凌霜要先救出能提供实体路线的秦禾；秦禾要脱身、保住同伴获救希望与自己的生计边界。\",\n  \"conflict\": \"样箱窗口与救人窗口无法兼得，前哨巡守、盲弯和林辰此前消耗的真元限制两人同时行动；秦禾也不接受获救便无限报恩的安排。\",\n  \"choice\": \"林辰放弃本次接近样箱的机会，改以御物抬开无受载的小防脱钩，配合苏凌霜抽闩救秦禾；苏只支付一次青灵石补偿，不以未来灵泉许诺买断秦禾的性命。\",\n  \"cost\": \"接近样箱的窗口已经错过，林为稳定御物消耗真元，秦失去本次采集时段、苏付出一枚补偿。同批同伴仍在主营，救秦只取得一个能自选是否带路的伙伴。 拨开轻钩支出半成真元，以上一章复测九成为起点，此动作后至多八成半；本次没有再发动剑诀。 本章只扣一次：9−0.5=8.5成，已经包含拨钩支出，不得再扣同一动作。\",\n  \"threads\": [\n    \"th_01\",\n    \"sec_01\",\n    \"sec_02\",\n    \"rel_01\",\n    \"rel_10\"\n  ],\n  \"endState\": \"前哨只救出秦禾一人，林苏与秦带普通布袋、旧麻绳和剩余干粮藏入旧支洞；秦已说明主营大致方向，尚未实核布局或辨清指挥者。三人还不知道巡守在他们离开后准备封路。\",\n  \"characterIds\": [\n"
+              },
+              {
+                "sourceId": "plan/chapters/21",
+                "quote": "    \"char_01\",\n    \"char_02\",\n    \"char_11\"\n  ],\n  \"location\": \"loc_05灵虚古境旧运矿支洞、前哨废料高台\",\n  \"storyTime\": \"第184日晚至第185日午后\",\n  \"scenes\": [\n    \"林辰与苏凌霜在废料高台外观察换岗，确认笼中只有清醒的秦禾一名可立即救出者。秦手脚未伤，普通铁栅和门框固定完好；门闩及防脱钩都在门外闩槽，内侧连续挡板遮住机关，笼内没有能把手指或随身物伸到槽内的缝。秦此前推门、扳栅未能松动，却使看守回来查看，因此停止硬闯，保留力气并留意求援时机。这里没有封修、法纹锁或境界压制，也不宣称任何修士都破不开这只普通笼；秦没有已掌握的御物操作或可用的破笼手段。\",\n    \"林辰看见样箱外角与残玉相似的刻痕，主张趁车队间隙先取货；苏凌霜指出秦禾尚能带路，要求先解笼。\",\n    \"两人因优先次序争执，错过巡守离开后接近样箱的短暂窗口。\",\n    \"秦看见苏由盲弯接近，主动用手势指向门外闩槽；苏示意稍退，他便离开门边等候，不知道林将采用何种操作。换岗看守的视线已转向装车侧，苏利用这一短窗扶门，林仍在侧面遮蔽处。笼门由原有铰链和门框承重，外侧普通横闩由闩槽内一枚四两重的无灵纹防脱钩扣住，无钥匙锁或法纹锁；槽朝门外侧面开口，内侧挡板挡住秦的手与视线，但不挡林此时从门外侧面的直接视线。苏扶稳门板卸去横闩侧压、暂不拉闩；林在侧面一丈内直视钩口，确认有松隙、未被横闩绷紧，才按已学轻物御动抬这一个自由小钩一息，预付半成真元。脱钩后林停术，苏以肉身抽开外闩、推开门接出秦禾；开门和承门重量由苏、铰链与门框承担，不由御物托门或拔锁。钩若受载卡住、被锁死、视线被挡或看守提前回望，林便不起式；苏先停拉并退回遮蔽处，不能解除则放弃这一窗口，不强行御物硬拔。秦的手势仅指明门外机关，不代表他知道林的技能、费用或后来封哨安排。\",\n    \"秦禾取回自己的采药布袋，展示辨路旧麻绳和剩余干粮，当面说出主营方向、已走路线及不陪战的界限。\",\n    \"苏从个人积蓄付一枚下品青灵石补本次引路采集损失，三人退进旧支洞。切巡守独立视角：点名见秦的笼子已空，哨长从原装车护送岗调两名凝元看守去归路设卡追索逃者；不是三人远知的消息。\"\n  ],\n  \"source\": \"author\"\n}"
+              },
+              {
+                "sourceId": "story/chapterPlans/chapter-plan-21",
+                "quote": "{\n  \"id\": \"chapter-plan-21\",\n  \"chapterNumber\": 21,\n  \"title\": \"笼边的取舍\",\n  \"purpose\": \"第184日晚至185日午后，林辰与苏凌霜循残缺采集单找到前哨废料高台，只见一名尚清醒、手脚未伤的秦禾被关在固定铁栅的普通运人笼中。门外横闩及防脱钩位于外侧闩槽，内侧挡板隔开笼内手指和随身物，秦在笼内够不到机关。他已试过推门和扳动栅条，未能松动，响声反而引来看守，故停止无效硬闯并留意来人；看见苏从盲弯接近时，他主动以短促手势示意外侧机关，等她示意才退开门边，避免冲撞制造声响。林辰发现靠车样箱外角有与残玉相似的刻痕，却不知道箱内是否有第一残片，坚持先趁换岗取货；苏凌霜反对，认为先救能辨路、能送信的秦禾。争执耗尽接近样箱的短窗后，苏先从盲弯到笼门外扶稳门板、暂不抽外侧横闩；林从侧面直视外侧闩槽内自由悬挂的小防脱钩，以一次凝元御物抬钩脱开，苏才抽闩开门接人。秦禾带出自己的普通采药布袋，内有辨路用的旧麻绳和干粮，没有新宝物；苏以个人一枚下品青灵石补偿他本次引路和采集损失。秦禾当面说明主营方向与已走路线，只答应有限带路、送信，不承诺陪战。三人先退入旧支洞。切巡守独立视角，随后点名发现空笼，哨长从原装车护送岗调两名凝元看守去归路设卡；三人此时尚未见到封路岗。\",\n  \"conflict\": \"样箱窗口与救人窗口无法兼得，前哨巡守、盲弯和林辰此前消耗的真元限制两人同时行动；秦禾也不接受获救便无限报恩的安排。\",\n  \"turningPoint\": \"林辰放弃本次接近样箱的机会，改以御物抬开无受载的小防脱钩，配合苏凌霜抽闩救秦禾；苏只支付一次青灵石补偿，不以未来灵泉许诺买断秦禾的性命。\",\n  \"endHook\": \"前哨只救出秦禾一人，林苏与秦带普通布袋、旧麻绳和剩余干粮藏入旧支洞；秦已说明主营大致方向，尚未实核布局或辨清指挥者。三人还不知道巡守在他们离开后准备封路。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_11\"\n  ],\n  \"locationIds\": [\n    \"loc_05\"\n  ],\n  \"arcBeatIds\": [\n    \"v1-qin-bargain\"\n  ],\n  \"requiredEvents\": [\n    \"林辰与苏凌霜在废料高台外观察换岗，确认笼中只有清醒的秦禾一名可立即救出者。秦手脚未伤，普通铁栅和门框固定完好；门闩及防脱钩都在门外闩槽，内侧连续挡板遮住机关，笼内没有能把手指或随身物伸到槽内的缝。秦此前推门、扳栅未能松动，却使看守回来查看，因此停止硬闯，保留力气并留意求援时机。这里没有封修、法纹锁或境界压制，也不宣称任何修士都破不开这只普通笼；秦没有已掌握的御物操作或可用的破笼手段。\",\n"
+              },
+              {
+                "sourceId": "story/chapterPlans/chapter-plan-21",
+                "quote": "    \"林辰看见样箱外角与残玉相似的刻痕，主张趁车队间隙先取货；苏凌霜指出秦禾尚能带路，要求先解笼。\",\n    \"两人因优先次序争执，错过巡守离开后接近样箱的短暂窗口。\",\n    \"秦看见苏由盲弯接近，主动用手势指向门外闩槽；苏示意稍退，他便离开门边等候，不知道林将采用何种操作。换岗看守的视线已转向装车侧，苏利用这一短窗扶门，林仍在侧面遮蔽处。笼门由原有铰链和门框承重，外侧普通横闩由闩槽内一枚四两重的无灵纹防脱钩扣住，无钥匙锁或法纹锁；槽朝门外侧面开口，内侧挡板挡住秦的手与视线，但不挡林此时从门外侧面的直接视线。苏扶稳门板卸去横闩侧压、暂不拉闩；林在侧面一丈内直视钩口，确认有松隙、未被横闩绷紧，才按已学轻物御动抬这一个自由小钩一息，预付半成真元。脱钩后林停术，苏以肉身抽开外闩、推开门接出秦禾；开门和承门重量由苏、铰链与门框承担，不由御物托门或拔锁。钩若受载卡住、被锁死、视线被挡或看守提前回望，林便不起式；苏先停拉并退回遮蔽处，不能解除则放弃这一窗口，不强行御物硬拔。秦的手势仅指明门外机关，不代表他知道林的技能、费用或后来封哨安排。\",\n    \"秦禾取回自己的采药布袋，展示辨路旧麻绳和剩余干粮，当面说出主营方向、已走路线及不陪战的界限。\",\n    \"苏从个人积蓄付一枚下品青灵石补本次引路采集损失，三人退进旧支洞。切巡守独立视角：点名见秦的笼子已空，哨长从原装车护送岗调两名凝元看守去归路设卡追索逃者；不是三人远知的消息。\"\n  ]\n}"
+              }
+            ],
+            "revisionAdvice": ""
+          }
+        ],
+        "modelResponses": [
+          "{\"requestId\":\"review_93a8c57206f5cd868f79a610\",\"summary\":\"power领域的两项设计均可成立：肉身力量、境界承载与术法效用已分尺度；秦禾被囚及由林苏救出的路径也具备具体机关、技能、时机与代价约束。\",\"checks\":[{\"criterion\":\"scale\",\"verdict\":\"pass\",\"explanation\":\"淬体“力达千钧”被限定为健康、双足着地、双手近身举托稳定实物时的肉身路线设计承载上界，不是准入线、平均值或任意角色现有力量；个人只能按训练、同姿势实测与当前伤情取值。莽牛炼体诀的五百斤则是完成一个修习阶段后相对入门测试的单次增力上限，不与千钧相加、也不能反复叠加。凝元附掌被定义为付费、近身、一次接触掌击，对薄木仅能辅助击裂；玄府推劲则须训练、贴住目标和稳定立足，且只是已测负荷内将无锁平地滑车移一步，明确不是托举重量或普遍肉身数值。由此常态个人能力、境界承载方向、实测上限及具体术法效果没有混为同一尺度。\",\"evidence\":[{\"fragmentId\":\"e19\"},{\"fragmentId\":\"e27\"},{\"fragmentId\":\"e8\"},{\"fragmentId\":\"e14\"},{\"fragmentId\":\"e78\"},{\"fragmentId\":\"e77\"}],\"revisionAdvice\":\"\"},{\"criterion\":\"captivity\",\"verdict\":\"pass\",\"explanation\":\"秦禾的凝元三重只构成修为及入境资格，不赋予千钧实测肉身、轻物御动或临场破笼能力；境界栏本身也不自动授予可用术法。第21章进一步给出不能自救的实际结构：普通铁栅和门框完好，横闩、防脱钩均在外侧闩槽，内侧连续挡板隔开其手指、随身物及机关；他推门、扳栅无效且引来看守，因此停止硬闯、保留力气等待机会。该限制不依赖“普通笼必然困住凝元”的泛化判断，而是结合其未掌握御物、无法触及外机关、看守会因声响回查及当时求援时机成立。救援也未把秦默认知晓林的操作：他仅以手势指出外侧机关并按苏的示意退开；苏先扶门卸去横闩侧压，林才在门外一丈直视、确认无受载松隙后，以已训练的轻物御动抬起四两自由小钩并支付半成真元，随后由苏肉身抽闩开门。若钩受载、卡死、视线受阻或看守回望，计划明确要求放弃窗口而非强行破笼。\",\"evidence\":[{\"fragmentId\":\"e6\"},{\"fragmentId\":\"e78\"},{\"fragmentId\":\"e8\"},{\"fragmentId\":\"e130\"},{\"fragmentId\":\"e131\"},{\"fragmentId\":\"e149\"},{\"fragmentId\":\"e150\"}],\"revisionAdvice\":\"\"}]}"
+        ]
+      },
+      "usage": {
+        "calls": 1,
+        "failedCalls": 0,
+        "inputTokens": 87982,
+        "outputTokens": 878,
+        "costUsd": 0,
+        "costKnown": false,
+        "byRole": {
+          "reviewing": {
+            "calls": 1,
+            "failedCalls": 0,
+            "outputTokens": 878,
+            "costUsd": 0
+          }
+        },
+        "limits": {
+          "budgetUsd": null,
+          "maxCalls": 1
+        }
+      },
+      "rawPath": "/tmp/novel60-body-strength-recheck.json",
+      "rawSha256": "b9d28a6349acbfa2476eb2e2367d585c15db7b0fb77875e06481b9de3aca7916"
+    }
+  ]
+}
