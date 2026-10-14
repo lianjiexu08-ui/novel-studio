@@ -1,3 +1,5 @@
+import { validateDesignCandidate, DesignCandidateValidationError, type DesignCandidate } from './design-candidate.ts';
+export { validateDesignCandidate, DesignCandidateValidationError } from './design-candidate.ts';
 import { createDesignReviewRun, designReviewStageInput, acceptDesignReviewStage, completeDesignReviewRun, type DesignReviewRun } from '../../../novel-service-core/src/design-review-run.ts';
 import { designReviewHash, designReviewOverview, requiresDesignContentReview, designReviewInput, recordDesignReview, DesignReviewError, type DesignReviewInput, type DesignReviewResult, type DesignReviewArea, type DesignContentReview } from '../../../novel-service-core/src/design-review.ts';
 import { randomUUID } from 'node:crypto';
@@ -463,6 +465,46 @@ export class ChapterWorkflow {
       if (covenantChanged || input.authorText?.trim()) work.recordCovenant(input.covenant, input.authorText?.trim() ?? '', input.acceptedSuggestions ?? []);
       work.constraintRevision += 1;
       return { work, impact: { covenantChanged, staleCandidateIds: staleCandidates, planToRecheck: covenantChanged ? work.activePlanId : undefined } };
+    });
+  }
+
+  /** Export one editing baseline; later saves must still match this exact design. */
+  async designCandidate(workId: string) {
+    const work = await this.snapshot(workId), plan = latestPlan(work);
+    const inputHash = plan && designReviewHash(work, plan.id);
+    if (!inputHash || !work.worldPack || !work.storyBible || !plan) throw new PlanConflictError('整体修订需要已有世界包、人物设定和大纲');
+    return { basePlanId: plan.id, expectedInputHash: inputHash,
+      candidate: JSON.parse(JSON.stringify({ worldPack: work.worldPack, storyBible: work.storyBible, plan: plan.plan })) as DesignCandidate };
+  }
+
+  /** Stage all mutations before publishing to either repository, then commit once. */
+  async saveDesignCandidate(workId: string, input: { basePlanId: string; expectedInputHash: string; candidate: unknown; note?: string }) {
+    const candidate = structuredClone(input.candidate);
+    const validation = validateDesignCandidate(candidate);
+    if (!validation.valid) throw new DesignCandidateValidationError(validation.issues);
+    const submitted = candidate as DesignCandidate;
+    return this.repository.transaction(workId, ({ work }) => {
+      if (!input.expectedInputHash || latestPlan(work)?.id !== input.basePlanId || designReviewHash(work, input.basePlanId) !== input.expectedInputHash) {
+        throw new PlanConflictError('世界包、人物设定或大纲已改变，请重新载入整体修订基线');
+      }
+      // Only these two maps and documents change. Prepare them on a detached
+      // Work so even the in-memory adapter cannot retain a partial mutation.
+      const staged = new Work(work.title, work.id);
+      staged.worldPack = work.worldPack; staged.storyBible = work.storyBible;
+      for (const [id, revision] of work.designHistory) staged.designHistory.set(id, revision);
+      for (const [id, revision] of work.plans) staged.plans.set(id, revision);
+      staged.worldPack = withServerRevision(staged, 'world_pack', { ...submitted.worldPack, status: 'proposed', lockedAt: undefined });
+      staged.recordDesignRevision('world_pack', staged.worldPack);
+      staged.storyBible = withServerRevision(staged, 'story_bible', { ...submitted.storyBible, status: 'proposed', lockedAt: undefined,
+        worldPackId: staged.worldPack.id, worldPackRevision: staged.worldPack.revision });
+      staged.recordDesignRevision('story_bible', staged.storyBible);
+      const plan = createPlanRevision(staged, submitted.plan, { source: 'author', baseRevisionId: input.basePlanId, note: input.note });
+      work.worldPack = staged.worldPack; work.storyBible = staged.storyBible;
+      for (const [id, revision] of staged.designHistory) if (!work.designHistory.has(id)) work.designHistory.set(id, revision);
+      work.plans.set(plan.id, plan);
+      work.constraintRevision += 1;
+      return { worldPack: work.worldPack, storyBible: work.storyBible, plan, validation,
+        contentReview: designReviewOverview(work, plan.id) };
     });
   }
 

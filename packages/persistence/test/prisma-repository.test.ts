@@ -703,3 +703,42 @@ test('SQLite reload keeps a newer rejection current when an older passing respon
   assert.equal(saved.checkRuns.at(-1)?.chapterReview?.result?.checks[0].verdict, 'pass');
   await assert.rejects(() => new ChapterWorkflow(second, provider, undefined, { checkPolicy: policy }).adopt(work.id, candidate.id, 0), QualityGateError);
 });
+
+test('whole-design save rolls back world and bible when plan insertion fails, then survives reload as one proposal', async t => {
+  const databaseUrl = createDatabase(); process.env.DATABASE_URL = databaseUrl;
+  const { PrismaClient } = await import('@prisma/client');
+  const { PrismaWorkRepository } = await import('../src/prisma-repository.ts');
+  const { ChapterWorkflow } = await import('../../application/src/index.ts');
+  const prisma = new PrismaClient({ datasources: { db: { url: databaseUrl } }, log: [{ emit: 'event', level: 'query' }] });
+  const repository = new PrismaWorkRepository(prisma), reader = new PrismaWorkRepository();
+  t.after(async () => { await repository.disconnect(); await reader.disconnect(); rmSync(databaseUrl.slice(5), { force: true }); });
+  const provider = { generateChapter: () => { throw new Error('No prose expected'); } };
+  const workflow = new ChapterWorkflow(repository, provider);
+  const work = await createReadyWork(workflow, '原子设计修订');
+  const baseline = await workflow.designCandidate(work.id);
+  baseline.candidate.worldPack.summary += '真实治疗才能恢复。';
+  baseline.candidate.storyBible.coreConflict += '修复后的冲突。';
+  baseline.candidate.plan.openQuestions.push({ id: 'still-open', question: '内容仍待正式评审', blocking: true, status: 'open' });
+  const before = structuredClone(await repository.get(work.id));
+  await prisma.$executeRawUnsafe(`CREATE TRIGGER fail_bundle_plan BEFORE INSERT ON PlanRevision WHEN NEW.revision = 2 BEGIN SELECT RAISE(ABORT, 'injected_plan_failure'); END`);
+  const queries: string[] = [];
+  prisma.$on('query', event => {
+    if (event.query.startsWith('UPDATE') && event.query.includes('Project')) queries.push('update_project');
+    if (event.query.startsWith('INSERT') && event.query.includes('PlanRevision')) queries.push('insert_plan');
+    if (event.query === 'ROLLBACK') queries.push('rollback');
+  });
+  await assert.rejects(() => workflow.saveDesignCandidate(work.id, baseline));
+  assert.deepEqual(queries, ['update_project', 'insert_plan', 'rollback']);
+  assert.deepEqual(structuredClone(await reader.get(work.id)), before, 'failed plan INSERT leaves no partial design or history');
+  await prisma.$executeRawUnsafe('DROP TRIGGER fail_bundle_plan');
+  const saved = await workflow.saveDesignCandidate(work.id, baseline), restored = (await reader.get(work.id))!;
+  assert.equal(restored.worldPack!.revision, before!.worldPack!.revision + 1);
+  assert.equal(restored.storyBible!.worldPackRevision, restored.worldPack!.revision);
+  assert.equal(restored.plans.get(saved.plan.id)!.storyBibleRevision, restored.storyBible!.revision);
+  assert.deepEqual(restored.plans.get(saved.plan.id)!.plan, baseline.candidate.plan);
+  assert.equal(restored.activePlanId, before!.activePlanId);
+  assert.deepEqual(restored.plans.get(restored.activePlanId!), before!.plans.get(before!.activePlanId!));
+  assert.equal(restored.plans.get(saved.plan.id)!.status, 'proposed');
+  assert.equal(saved.validation.blockers.length, 1);
+  assert.equal(saved.contentReview.ready, false);
+});

@@ -65,6 +65,7 @@ import { CanonGateError } from '../../../novel-service-core/src/world.ts';
 import { effectiveBrief, PlanConflictError, PlanGateError } from '../../../novel-service-core/src/planning.ts';
 import {
   ChapterWorkflow,
+  DesignCandidateValidationError,
   IdempotencyConflictError,
   InMemoryWorkRepository,
   LeaseLostError,
@@ -238,9 +239,10 @@ function toCandidateDto(candidate: ChapterCandidate, work: Work): CandidateDto {
   // Full review inputs are immutable persistence evidence. Do not repeat the
   // entire world, plan and prior chapters in both current and historical lists.
   const checks = (rows: ChapterCandidate['checks']) => rows.map(check => {
-    if (!check.chapterReview) return check;
-    const { input, ...chapterReview } = check.chapterReview;
-    return { ...check, chapterReview: { ...chapterReview, inputAvailable: Boolean(input) } };
+    const { chapterReview: record, ...rest } = check;
+    if (!record) return rest;
+    const { input, stage, ...chapterReview } = record;
+    return { ...rest, chapterReview: { ...chapterReview, ...(stage ? { stage: { ...stage } } : {}), inputAvailable: Boolean(input) } };
   });
   return {
     id: candidate.id,
@@ -648,6 +650,17 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     return { manuscript: toManuscriptDto(await workflow.finalizeManuscript(workId)) };
   });
 
+  app.get('/works/:workId/design/candidate', async (request) =>
+    workflow.designCandidate(workParamSchema.parse(request.params).workId));
+
+  app.put('/works/:workId/design/candidate', { bodyLimit: 20 * 1024 * 1024 }, async (request, reply) => {
+    const { workId } = workParamSchema.parse(request.params);
+    // Keep the candidate raw: the workflow rejects silent schema transforms.
+    const body = z.object({ basePlanId: z.string().min(1), expectedInputHash: z.string().regex(/^[a-f0-9]{64}$/),
+      candidate: z.unknown(), note: z.string().max(2000).optional() }).strict().parse(request.body);
+    return reply.code(201).send(await workflow.saveDesignCandidate(workId, { ...body, candidate: body.candidate }));
+  });
+
   app.put('/works/:workId/world-pack', async (request) => {
     const { workId } = workParamSchema.parse(request.params);
     const worldPack = saveWorldPackRequestSchema.parse(request.body ?? {});
@@ -940,9 +953,10 @@ function apiError(code: ApiErrorCode, message: string, details?: unknown): ApiEr
 
 function mapError(error: unknown): { status: number; body: ApiError } {
   if (error instanceof ZodError || (typeof (error as { statusCode?: unknown }).statusCode === 'number' && (error as { statusCode: number }).statusCode === 400)) {
-    const issues = error instanceof ZodError ? error.issues.map((issue) => ({ path: issue.path.join('.'), message: issue.message })) : [{ path: '$', message: error.message }];
+    const issues = error instanceof ZodError ? error.issues.map((issue) => ({ path: issue.path.join('.'), message: issue.message })) : [{ path: '$', message: error instanceof Error ? error.message : 'Invalid request' }];
     return { status: 400, body: apiError('VALIDATION_FAILED', 'request failed contract validation', issues) };
   }
+  if (error instanceof DesignCandidateValidationError) return { status: 400, body: apiError('VALIDATION_FAILED', error.message, error.issues) };
   if (error instanceof ReadinessError) return { status: 409, body: apiError(error.code, error.message, { blockers: error.blockers }) };
   if (error instanceof DemoCandidateError) return { status: 409, body: apiError('DEMO_CANDIDATE_NOT_ADOPTABLE', error.message) };
   if (error instanceof QualityGateError) return { status: 409, body: apiError('REQUIRED_CHECK_FAILED', error.message) };
