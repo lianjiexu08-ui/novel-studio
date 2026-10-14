@@ -394,3 +394,24 @@ test('review-only saves skip historical rows while nested edits and rollback rem
   assert.equal(after.plans.get(planId)!.reviews[0].passed, false);
   assert.equal((await repository.outbox()).length, 0);
 });
+
+test('atomic aggregate saves can finish beyond the default five-second transaction deadline', async t => {
+  const databaseUrl = createDatabase();
+  const { PrismaClient } = await import('@prisma/client');
+  const { PrismaWorkRepository } = await import('../src/prisma-repository.ts');
+  const { Work } = await import('../../../novel-service-core/src/core.ts');
+  const repository = new PrismaWorkRepository(new PrismaClient({ datasources: { db: { url: databaseUrl } } }));
+  t.after(async () => { await repository.disconnect(); rmSync(databaseUrl.slice(5), { force: true }); });
+  const work = new Work('长篇汇总保存');
+  await repository.save(work);
+  await repository.transaction(work.id, async ({ work: current, enqueue }) => {
+    // Reproduce time spent preparing a large report before the final SQL write.
+    await new Promise(resolve => setTimeout(resolve, 5200));
+    current.title = '汇总已保存';
+    current.constraintRevision += 1;
+    enqueue({ workId: work.id, dedupeKey: 'slow-final-save', kind: 'export', aggregateId: work.id, payload: {} });
+  });
+  assert.equal((await repository.get(work.id))!.title, '汇总已保存');
+  assert.equal((await repository.get(work.id))!.constraintRevision, work.constraintRevision + 1);
+  assert.equal((await repository.outbox()).length, 1);
+});

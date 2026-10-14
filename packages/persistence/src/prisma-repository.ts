@@ -133,6 +133,12 @@ export class PrismaWorkRepository implements WorkRepository {
           Object.assign(event, mapOutbox(stored));
         }
         return result;
+      }, {
+        // A long novel includes immutable designs, review evidence and chapter
+        // history. Serializing a final report can exceed Prisma's 5s default
+        // even with incremental writes. Keep the atomic save bounded, but allow
+        // this measured workload to finish; model calls stay outside the tx.
+        timeout: 30_000,
       });
     } finally {
       release();

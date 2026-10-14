@@ -1,0 +1,37 @@
+{
+  "formalScope": {
+    "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+    "planId": "plan_6426de7a18354e24ac93a272c542a2a5",
+    "world": 23,
+    "bible": 52,
+    "plan": 52
+  },
+  "failures": [
+    {
+      "area": "characters",
+      "runId": "design_run_b50cd4e7-bd68-4d67-bfc0-ca50ee35a31f",
+      "stageId": "synthesis-10",
+      "error": "Transaction API error: Transaction not found. Transaction ID is invalid, refers to an old closed transaction Prisma doesn't have information about anymore, or was obtained before disconnecting.",
+      "hasSavedModelResult": true
+    },
+    {
+      "area": "power",
+      "runId": "design_run_6a938d11-e0b5-4a09-944a-257bdf77c5c1",
+      "stageId": "synthesis-12",
+      "error": "Transaction API error: Transaction already closed: A commit cannot be executed on an expired transaction. The timeout for this transaction was 5000 ms, however 5997 ms passed since the start of the transaction. Consider increasing the interactive transaction timeout or doing less work in the transaction.",
+      "hasSavedModelResult": true
+    }
+  ],
+  "isolatedReproduction": {
+    "originalDeadlineMs": 5000,
+    "expiredCommitAfterMs": 5548,
+    "fixedDeadlineMs": 30000,
+    "fixedWorkflowMs": 10571.996875,
+    "finalStatus": "completed",
+    "usedSavedModelAnswer": true,
+    "freshModelCalls": 0,
+    "productionRecovered": false
+  },
+  "automatedTests": 208,
+  "fullSuitePassed": true
+}
