@@ -1,0 +1,69 @@
+{
+  "status": "scope_mismatch_needs_targeted_recheck",
+  "formalAcceptance": false,
+  "historicalFindingChanged": false,
+  "runId": "design_run_3839c593-a088-415d-8512-39ff4348b14c",
+  "stageId": "batch-5",
+  "inputHash": "bdf43ccd031986ec649ce01b0ee1cc2867668c69838e573327bbea3210d060c0",
+  "scope": {
+    "worldPackRevision": 28,
+    "storyBibleRevision": 57,
+    "planRevisionId": "plan_f25dcbc08eab4bdb911de5ad10c69a90",
+    "planRevision": 57
+  },
+  "finding": {
+    "criterion": "geography",
+    "verdict": "insufficient",
+    "explanation": "已读规则明确要求虚海实体航程、港口验籍、赤霄避火与苍冥入境限制，前50章天宝外港的查人、门口控制和人员离港也未越过界门或高阶能力门槛。第30—32章宏观安排写明云梦天港至天宝外港的实体两昼夜航程，第54—60章写明先由天宝外港陆路转至极焱天港，再乘五昼夜航至葬骨外港，方向上与规则相容；但本批没有第51—60章的逐章原文，目录也只列出plan/chapters/1至50，无法核对后段每段交通主体、验籍、候查、避火或保温防护及实际支付是否闭合。该缺口没有可请求的对应逐章来源，故保留普通insufficient，不虚构补读ID。",
+    "revisionAdvice": "在已有宏观范围内补足后段可执行的移动账：明确天宝外港至极焱天港的陆路交通、车主与防护，极焱候查及验籍，五昼夜航程的船舶与票款来源，以及葬骨外港停留、苍冥准入和后续返航支付。若后续没有对应逐章来源，应在计划中明确这些仍是待展开宏观安排，不能把标题、总日数或预算结论当作已核验的执行证据。"
+  },
+  "observedMismatch": "The finding demands chapter51–60 detailed outlines even though this review deliberately stops detailed outlines at50; fully supplied macro sources already specify transport, dates, payment, protection and regulated entry. This proves a scope mismatch, not overall geography acceptance.",
+  "evidence": [
+    {
+      "sourceId": "plan/overview",
+      "fullSourceWasProvided": true,
+      "unitIds": [
+        "review-unit/340"
+      ],
+      "characters": 9809,
+      "sha256": "687cf369e38d069f271679e45ec6af495932262cfa2da3cfd5b318d213ad5c9d"
+    },
+    {
+      "sourceId": "plan/milestones/ms_v2_fire",
+      "fullSourceWasProvided": true,
+      "unitIds": [
+        "review-unit/354"
+      ],
+      "characters": 3525,
+      "sha256": "83cd5fb18e5c32b24548bf24e0a9d99932404bd73e598a7571dee2a1f0b5c0ef"
+    },
+    {
+      "sourceId": "plan/milestones/ms_v2_voyage",
+      "fullSourceWasProvided": true,
+      "unitIds": [
+        "review-unit/355"
+      ],
+      "characters": 1114,
+      "sha256": "0f5a677f9dfa4a0eaed60242d9d85d44e9a21549d44994546d94d3b8c4cc736b"
+    },
+    {
+      "sourceId": "plan/milestones/ms_v2_boundary",
+      "fullSourceWasProvided": true,
+      "unitIds": [
+        "review-unit/356"
+      ],
+      "characters": 1127,
+      "sha256": "3defce7112bdf1755ae6793912856cb980aadb035e563c0d927f3175b1ba1077"
+    },
+    {
+      "sourceId": "world/locations/loc_21",
+      "fullSourceWasProvided": true,
+      "unitIds": [
+        "review-unit/86"
+      ],
+      "characters": 640,
+      "sha256": "cf644923b058c2750b6554012c5ac628498b7fde94b6131e7fe5d7b36d212354"
+    }
+  ],
+  "nextAction": "After the active formal review, recheck the disputed finding against these complete source records and the declared planning horizon; preserve genuine omissions and the original report. Do not generate later outlines solely to satisfy this scope error."
+}
