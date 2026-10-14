@@ -1,6 +1,7 @@
+import { DesignRevisionEditor } from './DesignRevisionEditor';
 import { DesignContentReviewCard } from './DesignContentReviewCard';
 import { KnowledgePlanView } from './KnowledgePlanView';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Alert, App as AntApp, Button, Card, Collapse, Col, Empty, List, Modal, Row, Space, Spin, Statistic, Table, Tag, Typography } from 'antd';
 import { LockOutlined, PlayCircleOutlined, SafetyCertificateOutlined } from '@ant-design/icons';
 import { api, ApiRequestError, type DesignHistoryDto } from '../api';
@@ -54,20 +55,25 @@ export function DesignPage() {
   const [design, setDesign] = useState<DesignDto | null>(null);
   const [designHistory, setDesignHistory] = useState<DesignHistoryDto['revisions']>([]);
   const [selectedRevision, setSelectedRevision] = useState<DesignHistoryDto['revisions'][number] | null>(null);
+  const [editingDesign, setEditingDesign] = useState(false);
   const [busy, setBusy] = useState<string | null>(null);
 
+  const loadRequest = useRef(0);
   async function load() {
-    setDesign(null);
+    const token = ++loadRequest.current;
     try {
       const [current, history] = await Promise.all([api.design(work.id), api.designHistory(work.id)]);
+      if (token !== loadRequest.current) return;
       setDesign(current);
       setDesignHistory(history.revisions);
     } catch {
+      if (token !== loadRequest.current) return;
       setDesign({ constraintRevision: work.constraintRevision });
       setDesignHistory([]);
     }
   }
-  useEffect(() => { void load(); }, [work.id, work.constraintRevision]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { setDesign(null); setEditingDesign(false); }, [work.id]);
+  useEffect(() => { void load(); return () => { loadRequest.current += 1; }; }, [work.id, work.constraintRevision]); // eslint-disable-line react-hooks/exhaustive-deps
 
   async function run(key: string, action: () => Promise<unknown>, success: string) {
     setBusy(key);
@@ -106,6 +112,10 @@ export function DesignPage() {
     <div><Space align="start" style={{ width: '100%', justifyContent: 'space-between' }}><div><Title level={4} style={{ margin: 0 }}>世界构建与全书蓝图</Title><Text type="secondary">作者提供创意和偏好，模型先产出世界包，再产出人物关系、人物弧光、伏笔和分卷大纲；每一步都要审核并锁定。</Text></div></Space></div>
     {!ready && <Alert type="warning" showIcon message="正文生产尚未开放" description="World Pack 和 Story Bible 都锁定后，章节候选才会通过生成门禁。" />}
     {ready && <Alert type="info" showIcon message="设计已锁定，写作前还需核对计划和质量问题" description="先检查下方审计，再到章节创作确认下一章任务卡；逐章生成、检查、采用。锁定状态不代表内容质量已经通过。" />}
+    {design.atomicCandidateSave && world && bible && <Card size="small" title="设计修订" extra={<Button onClick={() => setEditingDesign(true)}>修订设定与全书计划</Button>}>
+      <Text type="secondary">按评审建议修改现有文本，逐项查看改前与改后，再整套另存为待评审提案。草稿自动保存在本机浏览器中。</Text>
+    </Card>}
+    {editingDesign && <DesignRevisionEditor key={work.id} workId={work.id} onClose={() => setEditingDesign(false)} onSaved={async () => { await refresh(); await load(); }} />}
     <DesignAuditCard workId={work.id} revision={work.constraintRevision} />
     <DesignContentReviewCard workId={work.id} revision={work.constraintRevision} onReviewed={refresh} />
     <Row gutter={16}>

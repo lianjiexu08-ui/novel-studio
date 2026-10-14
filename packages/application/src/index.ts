@@ -474,7 +474,11 @@ export class ChapterWorkflow {
     const inputHash = plan && designReviewHash(work, plan.id);
     if (!inputHash || !work.worldPack || !work.storyBible || !plan) throw new PlanConflictError('整体修订需要已有世界包、人物设定和大纲');
     return { basePlanId: plan.id, expectedInputHash: inputHash,
-      candidate: JSON.parse(JSON.stringify({ worldPack: work.worldPack, storyBible: work.storyBible, plan: plan.plan })) as DesignCandidate };
+      // The editing proposal targets the current world even when earlier
+      // separate edits left the stored bible bound to a previous revision.
+      // The optimistic hash above still covers the unmodified stored baseline.
+      candidate: JSON.parse(JSON.stringify({ worldPack: work.worldPack,
+        storyBible: { ...work.storyBible, worldPackId: work.worldPack.id, worldPackRevision: work.worldPack.revision }, plan: plan.plan })) as DesignCandidate };
   }
 
   /** Stage all mutations before publishing to either repository, then commit once. */

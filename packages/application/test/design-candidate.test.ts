@@ -67,7 +67,8 @@ test('stale world edits and competing whole-design editors cannot overwrite a ne
   await assert.rejects(() => workflow.saveDesignCandidate(work.id, baseline), PlanConflictError);
   assert.deepEqual(structuredClone(work), before);
   const fresh = await workflow.designCandidate(work.id);
-  fresh.candidate.storyBible.worldPackRevision = fresh.candidate.worldPack.revision;
+  assert.equal(fresh.candidate.storyBible.worldPackRevision, fresh.candidate.worldPack.revision, 'editing proposal rebinds stale bible metadata for the current world');
+  assert.deepEqual(structuredClone(work), before, 'export does not mutate the stored stale bible or history');
   const results = await Promise.allSettled([workflow.saveDesignCandidate(work.id, fresh), workflow.saveDesignCandidate(work.id, fresh)]);
   assert.equal(results.filter(r => r.status === 'fulfilled').length, 1);
   assert.ok(results.some(r => r.status === 'rejected' && r.reason instanceof PlanConflictError));

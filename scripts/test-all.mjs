@@ -13,6 +13,7 @@ const packageDirs = [
   'packages/persistence',
   'packages/worker',
   'apps/api',
+  'apps/web',
 ];
 
 function run(label, command, args, cwd) {

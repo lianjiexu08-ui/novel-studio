@@ -1,3 +1,4 @@
+import type { DesignEditingBaseline, DesignBundle } from './design-revision';
 import type { DesignContentReviewDto, DesignReviewAreaDto, DesignReviewOverviewDto, DesignReviewSummaryDto } from 'novel-studio-contracts';
 import type {
   AdoptionResponse,
@@ -109,6 +110,7 @@ export class ApiRequestError extends Error {
     readonly code: ApiError['error']['code'],
     message: string,
     readonly status: number,
+    readonly details?: unknown,
   ) {
     super(message);
   }
@@ -126,12 +128,14 @@ async function call<T>(path: string, options: { method?: string; body?: unknown 
   const payload = (await response.json()) as T & ApiError;
   if (!response.ok) {
     const error = payload.error;
-    throw new ApiRequestError(error?.code ?? 'INTERNAL', error?.message ?? `HTTP ${response.status}`, response.status);
+    throw new ApiRequestError(error?.code ?? 'INTERNAL', error?.message ?? `HTTP ${response.status}`, response.status, error?.details);
   }
   return payload;
 }
 
 export const api = {
+  designCandidate: (workId: string) => call<DesignEditingBaseline>(`/works/${workId}/design/candidate`),
+  saveDesignCandidate: (workId: string, body: DesignEditingBaseline) => call<{ worldPack: DesignBundle['worldPack']; storyBible: DesignBundle['storyBible']; plan: PlanRevisionDto; validation: { blockers: unknown[] } }>(`/works/${workId}/design/candidate`, { method: 'PUT', body }),
   designContentReviews: (workId: string, planId?: string) => call<DesignReviewOverviewDto>(`/works/${workId}/design/content-reviews${planId ? `?planId=${encodeURIComponent(planId)}` : ''}`),
   pollDesignContentReviews: (workId: string, planId?: string, since?: string) => {
     const query = new URLSearchParams({ view: 'summary', ...(planId ? { planId } : {}), ...(since ? { since } : {}) });

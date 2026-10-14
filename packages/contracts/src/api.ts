@@ -169,6 +169,7 @@ export const bibleDtoSchema = z.object({
 export type BibleDto = z.infer<typeof bibleDtoSchema>;
 
 export const designDtoSchema = z.object({
+  atomicCandidateSave: z.boolean().optional(),
   worldPack: worldPackSchema.optional(),
   storyBible: storyBibleSchema.optional(),
   constraintRevision: z.number().int().min(0),

@@ -529,7 +529,7 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     const { workId } = workParamSchema.parse(request.params);
     const work = await repository.get(workId);
     if (!work) throw new NotFoundError(`unknown work ${workId}`);
-    return { worldPack: work.worldPack, storyBible: work.storyBible, constraintRevision: work.constraintRevision };
+    return { worldPack: work.worldPack, storyBible: work.storyBible, constraintRevision: work.constraintRevision, atomicCandidateSave: true };
   });
 
   app.get('/works/:workId/design/history', async (request) => {
