@@ -238,6 +238,7 @@ export type WorkDto = z.infer<typeof workDtoSchema>;
 export const checkResultDtoSchema = z.object({
   chapterReview: z.object({
     inputHash: z.string(), error: z.string().optional(),
+    superseded: z.boolean().optional(),
     stage: z.object({ id: z.string(), kind: z.enum(['batch', 'cross', 'synthesis']), label: z.string(), attempts: z.number().int(),
       error: z.string().optional(), result: designReviewResultSchema.optional(),
     }).passthrough().optional(),

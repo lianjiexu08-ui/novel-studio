@@ -1,0 +1,9 @@
+# Preserve the current chapter review when older requests finish late
+
+A second manual check can start while the first model request is still in flight. Previously, the older response overwrote the current check with an unavailable result. In staged review it also took ownership of the newer request’s checkpoint, stopping otherwise valid work and potentially selecting the older incomplete schedule on the next retry.
+
+Superseded stages and final responses now carry an explicit history-only marker. They remain in append-only check history, including original findings, failures and evidence; they cannot replace the current result or supply resume checkpoints. The older staged request stops after saving its in-flight response. SQLite reconstruction applies the same rule, so restarting the service cannot promote a historical response. The quality page labels late stage records as historical and shows their timestamps. No schema migration is required.
+
+Validation: 344 tests passed in the isolated validation checkout, with zero failures (`/tmp/novel-chapter-concurrency-full-tests.log`). New regressions cover both directions of conflicting late verdicts, an old raw stage arriving after a newer complete review, resume without repeating completed model calls, and SQLite restart retaining a newer rejection despite an older passing response. The frontend TypeScript/Vite build passed (`/tmp/novel-chapter-concurrency-build.log`), with the existing chunk-size warning. A prior focused run passed 21 relevant tests.
+
+These are deterministic concurrency and persistence checks, not literary-quality calibration. The production API and ongoing design60 formal review were not restarted, and no production design, blocker, candidate or adopted history was changed. Deployment remains deferred until the active formal review ends.

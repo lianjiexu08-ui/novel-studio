@@ -857,7 +857,7 @@ export class NovelService {
         ...checker.check({ work, candidate }),
         id: id('check'), contentHash: candidate.contentHash, inputs, policyVersion: this.checkPolicy?.version,
       };
-      byName.set(checker.name, result);
+      if (!result.chapterReview?.superseded) byName.set(checker.name, result);
       candidate.checkRuns.push(result);
     }
     candidate.checks = [...byName.values()];

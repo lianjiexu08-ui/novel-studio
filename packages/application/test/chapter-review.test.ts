@@ -148,3 +148,67 @@ test('pause during a raw review stage saves that stage and resumes before adopti
   assert.equal((await repository.get(workId))!.versions.size, 1);
   assert.equal(finished.usage?.calls, calls);
 });
+
+test('late chapter reports remain historical and cannot replace a newer review', async () => {
+  for (const lateVerdict of ['pass', 'revise'] as const) {
+    let release!: () => void;
+    let started!: () => void;
+    const gate = new Promise<void>(resolve => { release = resolve; });
+    const signal = new Promise<void>(resolve => { started = resolve; });
+    let calls = 0;
+    const repository = new InMemoryWorkRepository();
+    const workflow = new ChapterWorkflow(repository, { ...writer, reviewChapterAsync: async input => {
+      const first = ++calls === 1;
+      if (first) { started(); await gate; }
+      const result = await fixtureChapterReview(input);
+      const verdict = first ? lateVerdict : lateVerdict === 'pass' ? 'revise' : 'pass';
+      if (verdict === 'revise') Object.assign(result.checks[0], { verdict, revisionAdvice: '补足转折因果' });
+      return result;
+    } }, undefined, { checkPolicy: policy });
+    const work = await createReadyWork(workflow, '并发正文检查');
+    const candidate = await workflow.generate(work.id, 1, 'concurrent');
+    const old = workflow.check(work.id, candidate.id, [passChecker]);
+    await signal;
+    await workflow.check(work.id, candidate.id, [passChecker]);
+    const currentId = (await repository.get(work.id))!.candidates.get(candidate.id)!.checks.find(c => c.checker === chapterReviewChecker)!.id;
+    release(); await old;
+    const saved = (await repository.get(work.id))!.candidates.get(candidate.id)!;
+    assert.equal(saved.checks.find(c => c.checker === chapterReviewChecker)?.id, currentId);
+    const historical = saved.checkRuns.at(-1)!;
+    assert.equal(historical.chapterReview?.superseded, true);
+    assert.equal(historical.status, 'unavailable');
+    assert.equal(historical.chapterReview?.result?.checks[0].verdict, lateVerdict);
+    if (lateVerdict === 'pass') await assert.rejects(() => workflow.adopt(work.id, candidate.id, 0), QualityGateError);
+    else assert.equal((await workflow.adopt(work.id, candidate.id, 0)).version.chapterNumber, 1);
+  }
+});
+
+test('late raw stages cannot interrupt a newer review or become its resume checkpoint', async () => {
+  let release!: () => void;
+  let started!: () => void;
+  const gate = new Promise<void>(resolve => { release = resolve; });
+  const signal = new Promise<void>(resolve => { started = resolve; });
+  let calls = 0;
+  const reviewer = new OpenAICompatibleChapterProvider('', '', '', 10, 5000, true, { completeWithUsage: async request => {
+    if (++calls === 1) { started(); await gate; }
+    return { text: passingStageOutput(request), usage: { ...emptyUsage(), calls: 1 } };
+  } });
+  const repository = new InMemoryWorkRepository();
+  const workflow = new ChapterWorkflow(repository, { ...writer, reviewChapterAsync: reviewer.reviewChapterAsync.bind(reviewer) }, undefined, { checkPolicy: policy });
+  const work = await createReadyWork(workflow, '迟到批次');
+  await repository.transaction(work.id, ({ work }) => { work.worldPack!.summary = '完整规则不能截断。'.repeat(36_000); });
+  const candidate = await workflow.generate(work.id, 1, 'staged-concurrent');
+  const old = workflow.check(work.id, candidate.id, [passChecker]);
+  await signal;
+  await workflow.check(work.id, candidate.id, [passChecker]);
+  const callsAfterNew = calls;
+  const currentId = (await repository.get(work.id))!.candidates.get(candidate.id)!.checks.find(c => c.checker === chapterReviewChecker)!.id;
+  release(); await old;
+  const saved = (await repository.get(work.id))!.candidates.get(candidate.id)!;
+  assert.equal(calls, callsAfterNew, 'superseded run must stop after saving its in-flight stage');
+  assert.equal(saved.checks.find(c => c.checker === chapterReviewChecker)?.id, currentId);
+  assert.ok(saved.checkRuns.some(c => c.chapterReview?.superseded && c.chapterReview.stage?.result));
+  await workflow.check(work.id, candidate.id, [passChecker]);
+  assert.equal(calls, callsAfterNew, 'resume must reuse the newer completed run, not the late checkpoint');
+  assert.equal((await workflow.adopt(work.id, candidate.id, 0)).version.chapterNumber, 1);
+});

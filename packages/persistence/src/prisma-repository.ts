@@ -229,7 +229,7 @@ export class PrismaWorkRepository implements WorkRepository {
           };
         });
       const latest = new Map<string, CheckResult>();
-      for (const check of checkRuns) latest.set(check.checker, check);
+      for (const check of checkRuns) if (!check.chapterReview?.superseded) latest.set(check.checker, check);
       const mapped: ChapterCandidate = {
         id: row.id, workId, chapterNumber: chapterNumberById.get(row.chapterId) ?? 0,
         content: row.content,

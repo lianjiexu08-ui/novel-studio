@@ -591,3 +591,44 @@ test('atomic aggregate saves can finish beyond the default five-second transacti
   assert.equal((await repository.get(work.id))!.constraintRevision, work.constraintRevision + 1);
   assert.equal((await repository.outbox()).length, 1);
 });
+
+test('SQLite reload keeps a newer rejection current when an older passing response arrives late', async t => {
+  const databaseUrl = createDatabase();
+  process.env.DATABASE_URL = databaseUrl;
+  const { PrismaWorkRepository } = await import('../src/prisma-repository.ts');
+  const { ChapterWorkflow } = await import('../../application/src/index.ts');
+  const { passChecker, QualityGateError } = await import('../../../novel-service-core/src/core.ts');
+  const first = new PrismaWorkRepository(), second = new PrismaWorkRepository();
+  t.after(async () => { await first.disconnect(); await second.disconnect(); rmSync(databaseUrl.slice(5), { force: true }); });
+  let release!: () => void;
+  let started!: () => void;
+  const gate = new Promise<void>(resolve => { release = resolve; });
+  const signal = new Promise<void>(resolve => { started = resolve; });
+  let calls = 0;
+  const provider: ModelProvider = {
+    generateChapter: () => ({ content: '他按住伤口，放弃追击，先带同伴回城。', proposedEvents: [], observedEvents: [] }),
+    reviewChapterAsync: async input => {
+      const old = ++calls === 1;
+      if (old) { started(); await gate; }
+      const result = await fixtureChapterReview(input);
+      if (!old) Object.assign(result.checks[0], { verdict: 'revise', revisionAdvice: '转折缺乏因果依据' });
+      return result;
+    },
+  };
+  const policy = { version: 'concurrent-chapter-review', required: ['deterministic_rules', chapterReviewChecker] };
+  const workflow = new ChapterWorkflow(first, provider, undefined, { checkPolicy: policy });
+  const work = await createReadyWork(workflow, '并发评审持久化');
+  const candidate = await workflow.generate(work.id, 1, 'concurrent');
+  const old = workflow.check(work.id, candidate.id, [passChecker]);
+  await signal;
+  await workflow.check(work.id, candidate.id, [passChecker]);
+  const currentId = (await first.get(work.id))!.candidates.get(candidate.id)!.checks.find(c => c.checker === chapterReviewChecker)!.id;
+  release(); await old;
+  await first.disconnect();
+  const saved = (await second.get(work.id))!.candidates.get(candidate.id)!;
+  assert.equal(saved.checks.find(c => c.checker === chapterReviewChecker)?.id, currentId);
+  assert.equal(saved.checks.find(c => c.checker === chapterReviewChecker)?.status, 'failed');
+  assert.equal(saved.checkRuns.at(-1)?.chapterReview?.superseded, true);
+  assert.equal(saved.checkRuns.at(-1)?.chapterReview?.result?.checks[0].verdict, 'pass');
+  await assert.rejects(() => new ChapterWorkflow(second, provider, undefined, { checkPolicy: policy }).adopt(work.id, candidate.id, 0), QualityGateError);
+});

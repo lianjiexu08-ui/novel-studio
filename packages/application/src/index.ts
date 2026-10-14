@@ -870,7 +870,7 @@ export class ChapterWorkflow {
       if (!requiresReview) return undefined;
       const candidate = work.candidates.get(candidateId)!;
       const input = chapterReviewInput(work, candidate);
-      const records = candidate.checkRuns.flatMap(check => check.chapterReview?.inputHash === input.inputHash && check.chapterReview.stage && check.chapterReview.progress
+      const records = candidate.checkRuns.flatMap(check => check.chapterReview?.inputHash === input.inputHash && !check.chapterReview.superseded && check.chapterReview.stage && check.chapterReview.progress
         ? [check.chapterReview] : []);
       const createdAt = records.at(-1)?.progress?.createdAt;
       const stages = new Map(records.filter(r => r.progress!.createdAt === createdAt).map(r => [r.stage!.id, r.stage!]));
@@ -900,17 +900,17 @@ export class ChapterWorkflow {
             guard(work);
             this.service.works.set(work.id, work);
             const candidate = work.candidates.get(candidateId)!;
-            const stale = chapterReviewInput(work, candidate).inputHash !== prepared.input.inputHash
-              || candidate.checks.find(c => c.checker === chapterReviewChecker)?.id !== prepared.pendingId;
+            const superseded = candidate.checks.find(c => c.checker === chapterReviewChecker)?.id !== prepared.pendingId;
+            const stale = chapterReviewInput(work, candidate).inputHash !== prepared.input.inputHash || superseded;
             this.service.runChecks(workId, candidateId, [{ name: chapterReviewChecker, check: () => ({
               checker: chapterReviewChecker, candidateId, checkedAt: new Date().toISOString(), status: 'unavailable',
               message: stale ? '评审材料或执行请求已变化，保留本批结果供复查' : `正文分批评审 ${progress.completed}/${progress.total}：${stage.label}${stage.error ? `；${stage.error}` : ''}`,
-              chapterReview: { inputHash: prepared.input.inputHash, stage, progress },
+              chapterReview: { inputHash: prepared.input.inputHash, stage, progress, ...(superseded ? { superseded: true } : {}) },
             }) }]);
-            return { stale, stopped: lease ? Boolean(work.checkpoints.get(lease.runId)?.control) : false,
+            return { stale, superseded, stopped: lease ? Boolean(work.checkpoints.get(lease.runId)?.control) : false,
               id: candidate.checks.find(c => c.checker === chapterReviewChecker)!.id };
           });
-          prepared.pendingId = saved.id;
+          if (!saved.superseded) prepared.pendingId = saved.id;
           if (saved.stale) throw new StaleCandidateError('正文分批评审的材料或执行请求已过期');
           if (saved.stopped) throw new Error('已收到暂停或取消请求；本批已保存，可从下一批继续');
         },
@@ -933,9 +933,9 @@ export class ChapterWorkflow {
       const superseded = candidate.checks.find(c => c.checker === chapterReviewChecker)?.id !== prepared.pendingId;
       // A late concurrent response stays in history but cannot authorize adoption.
       this.service.runChecks(workId, candidateId, [{ name: chapterReviewChecker, check: () => ({
-        checker: chapterReviewChecker, candidateId, checkedAt: new Date().toISOString(), chapterReview: record,
+        checker: chapterReviewChecker, candidateId, checkedAt: new Date().toISOString(), chapterReview: { ...record, ...(superseded ? { superseded: true } : {}) },
         status: stale || superseded || record.error ? 'unavailable' : chapterReviewStatus(record.result!),
-        message: superseded ? '存在更新的评审请求，本次迟到报告仅供参考，请重新复查'
+        message: superseded ? '存在更新的评审请求，本次迟到报告仅供复查，不改变当前结论'
           : stale ? '评审期间正文、设计或事实已变化，本次报告已过期'
           : record.error ? `正文评审未完成：${record.error}` : record.result!.summary,
       }) }]);

@@ -35,6 +35,8 @@ export interface ChapterReviewInput {
 }
 export interface ChapterReviewRecord {
   inputHash: string;
+  /** A newer request owns the current review; retain this response only as history. */
+  superseded?: boolean;
   result?: ChapterReviewResult;
   error?: string;
   usage?: RunUsage;
