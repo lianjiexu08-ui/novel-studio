@@ -1,0 +1,335 @@
+{
+  "observedAt": "2026-10-14T22:36:28.474491+00:00",
+  "status": "partial_findings_disposition_not_final_acceptance",
+  "formalInputHash": "7b7892ad3d19537ab7aae549e0154344d22a3f5389772416658dba130da6dcc2",
+  "formalScope": {
+    "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+    "planId": "plan_e9b4422f5367453d957c8036c2d87b68",
+    "world": 31,
+    "bible": 61,
+    "plan": 61
+  },
+  "areas": [
+    {
+      "area": "world",
+      "completedStages": 49,
+      "totalStages": 55
+    },
+    {
+      "area": "power",
+      "completedStages": 44,
+      "totalStages": 77
+    }
+  ],
+  "queuedAreas": [
+    "characters",
+    "story"
+  ],
+  "findings": [
+    {
+      "area": "world",
+      "runId": "design_run_6cb69d6b-162e-40e8-8d22-788cb08b103f",
+      "stageId": "followup-cross-1-3/geography",
+      "criterion": "geography",
+      "verdict": "revise",
+      "checkSha256": "4296b6cd2da879c8fece7f73d2c411860095161402d62f70b2b8af772db57a21",
+      "explanation": "原待补读问题已可核验：青玄至赤霄采用214日暮出航、216日暮抵港的两昼夜实体航程，入港前复核当日非喷发旗号，且借符、验籍与护货换舱均有明确来源；赤霄至苍冥则先以逐日岗哨放行的沿岸车路到极焱港，再实付两张普通舱票并走五昼夜海程，到港后只留受监管码头，未把船票当作苍冥内地准入。夜凝霜随后以具名、限路线、逐站签注的担保把林贺送至通天渡口，返青玄船票及暖舱亦有实际付款和六昼夜航程。这些地域差异分别服务于赤霄的防护/港务调查、苍冥的担保与受限救援、青玄的返证与后续选择，而非换地图重复战斗。\\n但苍冥—青玄返航链仍缺一项明确生效动作：商路规则要求北境上岸凭证、回师供给与每航次实际支付在章纲补齐，青玄对外来海路入港也要求沿岸政权验籍征税；现有安排只写310日暮抵沧溟古港、311—314日凭名册和既有路引走大乾驿路，未写310日到港时由谁验籍、是否征税或登记代付责任。专项款的220结余和“杂费累计780”不能自行替代港口已验籍或已支付/记账的事实。故返航虽有实体交通、保温和票款，仍未闭合入青玄港的准入责任。",
+      "revisionAdvice": "在第67章或返航里程碑明确补入310日暮沧溟古港的实际入港手续：验籍主体、林贺所持名册/路引如何核验、应纳费用的具体金额与付款来源，或由何方具名代付并记入何账；同时将该项与14000专项款累计780、封存3000已付船票及220结余对应，避免重复扣款。若该手续失败，也应保留候查、补件或改期的实体后果。",
+      "dispositions": [
+        "return_port"
+      ],
+      "formalFindingOverridden": false
+    },
+    {
+      "area": "world",
+      "runId": "design_run_6cb69d6b-162e-40e8-8d22-788cb08b103f",
+      "stageId": "synthesis-4",
+      "criterion": "geography",
+      "verdict": "insufficient",
+      "checkSha256": "8027eb46bd49ad0268517189f8a4000650c2e90d37364ccb29c3eb0515bab8a3",
+      "explanation": "cross-1-4已用第31—32章核实林辰第214日自云梦港出航、第216日抵天宝外港，护货劳务抵舱费、借符余量、当日放行旗号与受护卸货区均有对应安排，符合两昼夜实体海程，未将避火符扩张为内陆或火场权限。但cross-1-3原先要求核验的范围还包括第30章后续港口行动、第54—66章北航与苍冥受限外港、第67章后返青玄等移动；该报告只证明首段青玄—赤霄航程，未给出其余行动的实际船舶、付款/供给、具名担保、验籍及限定准入证据。前置不足未列入已解决等待，故仍须保留，不能由“已读行动均可执行”的概括结论覆盖。",
+      "revisionAdvice": "补足并逐段复核后续跨域行动：至少写明赤霄至苍冥、苍冥离境返青玄各自的实际承运/航期、票款或劳务换舱及供给者、封航复核、港务验籍、苍冥具名担保的责任人和有效范围；受限外港准入不得替代界渊准入。",
+      "dispositions": [
+        "transport_deferral"
+      ],
+      "formalFindingOverridden": false
+    },
+    {
+      "area": "world",
+      "runId": "design_run_6cb69d6b-162e-40e8-8d22-788cb08b103f",
+      "stageId": "synthesis-11",
+      "criterion": "geography",
+      "verdict": "revise",
+      "checkSha256": "70e6b59e87875dea50c78b9423aead650a4b2af70a8c3854f467b2c7cc4aa9a3",
+      "explanation": "三段跨陆移动大体均非以标题或境界跳过：南渡有云梦验籍、劳务换舱、避火符和两昼夜实体航程；北航有逐日复核沿岸路、实付船票、五昼夜航程及抵港候查；苍冥离境则有具名限程担保、逐站验籍、暖舱付款和六昼夜航程。可是返航安排仅写310日暮抵沧溟古港，311—314日再凭名册与既有路引走大乾驿路，未明确310日抵港时的验籍主体、征税/查验费用或具名代付记账责任；220结余及“杂费累计780”不能替代已完成的港口准入手续。此前一份报告据同类安排判通过，另一份则准确指出此未闭合责任，故该通过推论不能覆盖既有具体缺口。",
+      "revisionAdvice": "在第67章或ms_v3_return补明310日暮沧溟古港的实际入港动作：由何港务/沿岸政权核验林、贺的身份、名册和离境材料；是否征税、收取何种查验费，或由谁具名代付并记入14000专项款的哪一项。将该金额与既付北航10000、回航暖舱3000及累计杂费780/结余220统一核算，避免重复扣款；若验籍未通过，应规定候查、补件或改期的实体后果。",
+      "dispositions": [
+        "return_port"
+      ],
+      "formalFindingOverridden": false
+    },
+    {
+      "area": "world",
+      "runId": "design_run_6cb69d6b-162e-40e8-8d22-788cb08b103f",
+      "stageId": "synthesis-16",
+      "criterion": "geography",
+      "verdict": "insufficient",
+      "checkSha256": "3030adaef39b8c690dd96ab13c67dafcab869be652381630ae2dd9b2d4c5149c",
+      "explanation": "前置cross-1-3/cross-1-4综合明确保留了第30章后赤霄—苍冥、苍冥离境返青玄等行动的核验不足，且该等待项不在系统resolvedDeferrals中，综合阶段不得自行撤销。batch-5报告确已给出北航实付船票、五日航程、外港受监管候查、具名限程担保、逐站验籍及回程暖舱等设计证据，足以表明新提案正在覆盖原缺口；但它与仍标为未解决的前置insufficient形成报告状态上的不一致，须由独立复核确认后才能改判通过。",
+      "revisionAdvice": "保留并独立复核cross-1-3所列后续移动：逐段确认承运、航期、付款/供给、封航复核、港务验籍、担保责任与限定准入；若采纳batch-5所引安排，应以正式复核步骤处理该历史等待项，而非仅以综合报告覆盖。",
+      "dispositions": [
+        "transport_deferral"
+      ],
+      "formalFindingOverridden": false
+    },
+    {
+      "area": "world",
+      "runId": "design_run_6cb69d6b-162e-40e8-8d22-788cb08b103f",
+      "stageId": "synthesis-20",
+      "criterion": "geography",
+      "verdict": "revise",
+      "checkSha256": "a6713a1b2747940adad657b94e1ac5fdc2322e69a5b2946bc206e560cbd836e4",
+      "explanation": "青玄—赤霄、赤霄—苍冥及苍冥境内至通天渡口均已安排实体交通、防护、逐次查验或具名担保和付款；返航也有暖舱、六昼夜海程及专项款核算。可是青玄规则要求外来海路入港由沿岸政权验籍征税，而返航安排只写310日暮抵沧溟古港、311—314日凭名册和既有路引走大乾驿路，未规定310日港口由谁验籍、是否征税/查验、费用或具名代付责任。后续驿路查验费和累计杂费不能替代抵港准入的实际生效动作。此前将全链判通过的报告未处理这一具体缺口，不能覆盖有规则依据的返修结论。",
+      "revisionAdvice": "在第67章或ms_v3_return明确310日暮沧溟古港的入港执行：验籍的港务或沿岸政权主体、核验林贺身份及离境材料的程序、征税/查验费数额或免缴情形，以及由谁具名支付或记入14000专项款。将此笔与北航10000、回航暖舱3000、杂费累计780和结余220统一核算；同时规定验籍未通过时的候查、补件、改签及后续日程后果。",
+      "dispositions": [
+        "return_port"
+      ],
+      "formalFindingOverridden": false
+    },
+    {
+      "area": "world",
+      "runId": "design_run_6cb69d6b-162e-40e8-8d22-788cb08b103f",
+      "stageId": "synthesis-21",
+      "criterion": "geography",
+      "verdict": "insufficient",
+      "checkSha256": "20eb0a2f738b6a323565cd759e958ef2b07cef9110b18966b074c961aefab2a8",
+      "explanation": "前置补读报告具体支持了赤霄港内行动受受护区和公共水道限制、北航采用沿岸驿道与实付船票、五昼夜海程，以及苍冥离境担保、逐站验籍和六昼夜返航；其与虚海实体航程、港口管辖及赤霄防护规则相容。可是计划总览仍明确记录一项未独立复核的具体问题：rel_05曾将夜写作301日出发返岗，而更新方案改为301日午出发、311日午实到交接后返岗。本次报告未附rel_05原文或对该两种时序的实际核对，不能凭其概述性通过结论确认该矛盾已消除。",
+      "revisionAdvice": "保留并独立核对rel_05与301—311日限程担保、返航及交接安排；统一夜离岗、担保有效期、返岗实到时点和责任承接后，再判定该跨域链路是否完全闭合。",
+      "dispositions": [
+        "transport_deferral"
+      ],
+      "formalFindingOverridden": false
+    },
+    {
+      "area": "power",
+      "runId": "design_run_f12b8904-f80f-4544-8ecc-97d71a19c2ff",
+      "stageId": "batch-3",
+      "criterion": "costs",
+      "verdict": "revise",
+      "checkSha256": "58f992bdd65f17850f6029e36c243ad1085415acd1885538ea73aa60faaba871",
+      "explanation": "乾坤逆命真解虽规定燃寿额、分段支付、安全余量和冷却，但“将非永久性伤势的恢复效率提高至三倍”没有定义恢复对象所需的治疗、营养或法力来源、十息内可恢复的量、伤势上限及中断后的实际效果。它因此可能把一般伤势恢复写成无来源的即时收益，不能与“恢复不抵消伤势、须复测入账”的既有规则核算。相较之下，第20—25章对真元、元罡、寿储和伤后停术已有可追的逐笔账，问题集中于该高阶术式自身。",
+      "revisionAdvice": "为tech_10补定非永久伤势三倍恢复的唯一可用治疗来源、每次/十息最大恢复量、不能跨越的伤情与诊察上限、燃寿中断时已产生的恢复量及后续复诊限制；明确其不以“效率”凭空产生疗效。",
+      "dispositions": [
+        "tech10_recovery"
+      ],
+      "formalFindingOverridden": false
+    },
+    {
+      "area": "power",
+      "runId": "design_run_f12b8904-f80f-4544-8ecc-97d71a19c2ff",
+      "stageId": "batch-3",
+      "criterion": "counters",
+      "verdict": "revise",
+      "checkSha256": "a68924fa5f12c3367eeecee229c6fb1a4727090164d38351e64064269a624ed9",
+      "explanation": "逆命真解对燃寿蓄势、三十日冷却和十息爆发有打断、拖延与封锁反制，但其伤势恢复分支没有对应的可打断节点和效果上限：对手无法判断是切断未完成治疗、降低三倍效率，还是仍会在十息内获得未定义的恢复。该缺口会使“伤势、撤退与持续作战”这一反制轴失去可执行判定。已读的剑诀、局部护罡、贴身推劲和真光均明确了对象、时机、失效或伤后停术，形成鲜明对照。",
+      "revisionAdvice": "在tech_10中明确恢复过程是否必须持续治疗/接触药物、受击或失去治疗条件时的中断结果、恢复后的可用上限与撤退限制，并规定对手可通过何种实际行动阻止或压低该恢复；不得只以燃寿成本替代恢复效果的反制规则。",
+      "dispositions": [
+        "tech10_recovery"
+      ],
+      "formalFindingOverridden": false
+    },
+    {
+      "area": "power",
+      "runId": "design_run_f12b8904-f80f-4544-8ecc-97d71a19c2ff",
+      "stageId": "cross-2-3",
+      "criterion": "costs",
+      "verdict": "revise",
+      "checkSha256": "df084a3a9dcf997bf5d29b9d76f62cc5580538c6525440c3d02f68b7e670d36d",
+      "explanation": "寿储、真元和元罡总体分账清晰：林在第120日先复诊再付3元载，20—21—25章真元从十成到九成、八成半、六成连续扣算；顾与墨在第25章的真光、护罡、血爪和推劲亦分别预付并保留伤后停术条件。但第18章称177—179日每夜八小时“温和灵气环境中的连续静息”即可分别回三、三、四成；ax_05规定凝元静息恢复的来源是饮食和环境灵气，且静息进食才适用h/2成上限。该章未交代这些夜间具备实际进食/营养条件，不能仅以环境与静息直接入账。",
+      "revisionAdvice": "在第18章177—179日的恢复执行账中明确每段静息恢复所依赖的实际进食或营养供给、连续时段与复测结果；若无此条件，则改按已定义且实际满足的恢复方式重算第179日晚及184日行前余量。",
+      "dispositions": [
+        "chapter18_nutrition"
+      ],
+      "formalFindingOverridden": false
+    },
+    {
+      "area": "power",
+      "runId": "design_run_f12b8904-f80f-4544-8ecc-97d71a19c2ff",
+      "stageId": "cross-2-4",
+      "criterion": "costs",
+      "verdict": "revise",
+      "checkSha256": "1885eab916a37a47c11b843e1320cc025b95d31364f492a9258b748d00f9ad70",
+      "explanation": "《乾坤逆命真解》明确燃寿、冷却、境界和安全余量，却把“非永久性伤势的恢复效率提高至三倍”作为效果，未限定它只能增幅哪一种已定义治疗/恢复操作、是否仍须实际药物或医修流程、可恢复到何种伤后上限，以及不能对应何类治疗资源。现有总则要求实际恢复来源、复测和伤后上限，不能把未定义效应当作免费恢复；该空白会让高阶爆发在十息内获得任意尺度的未定价疗伤。",
+      "revisionAdvice": "在tech_10中将“三倍恢复效率”接到明确、已存在的治疗操作：列明可增幅对象、实际资源/医修或术法输入、十息内可结算的最大效果、伤后上限与复诊要求，并明确其不自行生成治疗、不能绕过疗程、冷却、经脉伤或资源消耗。",
+      "dispositions": [
+        "tech10_recovery"
+      ],
+      "formalFindingOverridden": false
+    },
+    {
+      "area": "power",
+      "runId": "design_run_f12b8904-f80f-4544-8ecc-97d71a19c2ff",
+      "stageId": "cross-2-4",
+      "criterion": "counters",
+      "verdict": "revise",
+      "checkSha256": "2e9e6748968ca0641eda38866c4d3713427e4912bb06800db34942639b51b124",
+      "explanation": "逆命真解可将“非永久性伤势恢复效率”提高三倍，却没有界定可作用伤类、恢复入口、上限和被打断后的状态；因此对手无法据规则判断是用拖延十息、破坏治疗条件、造成何种伤势，还是以资源耗尽来反制其续战。其燃寿蓄势与三十日冷却提供了部分反制，但不能补足这一恢复分支本身的对象与边界。",
+      "revisionAdvice": "为tech_10的伤势恢复增幅补写可作用伤类、必须依附的已启动治疗操作、每次爆发可恢复上限、治疗被打断/资源不足时的后果，并明确哪些伤势或状态仍迫使施术者停战诊治；使拖延、打断、耗尽治疗资源和造成特定伤损成为可执行反制。",
+      "dispositions": [
+        "tech10_recovery"
+      ],
+      "formalFindingOverridden": false
+    },
+    {
+      "area": "power",
+      "runId": "design_run_f12b8904-f80f-4544-8ecc-97d71a19c2ff",
+      "stageId": "followup-cross-1-2/tiers",
+      "criterion": "tiers",
+      "verdict": "insufficient",
+      "checkSha256": "9315c00ddf97452b31b68d7eefb98c4fcdd52126b6c9c22989622de135549f46",
+      "explanation": "原问题所要求的林辰链条已可核对：第18章先诊察、支付三元载并经训练实测凝元剑诀；两剂灵泉均在完整疗程复诊后入账；第83章再以十元载晋玄府，随后安排元罡稳定与局部护罡实测；第88—95章将林的三次局部护罡限定为三次短促牵制并逐次支付、受伤停术，未以旧剑承载元罡或把护罡延长为转运全程。可是规则明确要求局部护罡须先经玄府训练、低负荷接触实测与复诊，不能由晋阶自动获得。第25章已让顾实际施用该操作，第88—95章又以“已学”局部护罡安排其牵制，但已读章纲仅给出顾的真光开篇前资格、林的后续受训，以及看守的定腕训练，未给顾峤局部护罡的训练、实测或明确开篇前作者设定。因此不能仅以其已在行动中使用反证其已满足前置，也不能宣称原 tiers 等待项已解决。需补读或在提案中明确 world/axioms/ax_12 所要求的顾峤前置；可优先核对 story/characters/char_10，或在相关章纲补列其既有指导、受控接触实测、复诊与当前伤情许可。",
+      "revisionAdvice": "补充顾峤在第25章及第88—95章使用局部护罡前，已经完成的指导者、聚散训练、轻木棍/普通铁刃低负荷接触实测、复诊及伤后可用条件；若该事实原载于人物档案，请提供 story/characters/char_10 的原文供复核。",
+      "dispositions": [
+        "cast_evidence"
+      ],
+      "formalFindingOverridden": false
+    },
+    {
+      "area": "power",
+      "runId": "design_run_f12b8904-f80f-4544-8ecc-97d71a19c2ff",
+      "stageId": "synthesis-2",
+      "criterion": "costs",
+      "verdict": "revise",
+      "checkSha256": "0c044dd533f9e0f3b007d39c24721bb79830bd3a1adaa19e762f4e8a12b1220f",
+      "explanation": "乾坤逆命真解虽已规定燃寿总额、分段永久支付、安全余量、十息窗口和三十日冷却，但其“非永久性伤势恢复效率三倍”未规定必须依托的治疗、营养或法力来源，也没有十息内的最大恢复量、伤情适用上限、受击或中断后的已生效结果。该效果因而可能把“效率”写成无来源的即时治疗，无法与既有恢复须有实际来源、复测且不抵消伤势的规则闭合。",
+      "revisionAdvice": "修订tech_10：明确恢复唯一可依托的治疗来源与供给条件、十息及单次最大恢复量、适用和不可跨越的伤情边界；规定蓄势/爆发中断、治疗条件丧失或受创时，已恢复部分、未完成部分及复诊后的可用上限如何结算。不得让燃寿本身凭空生成治疗效果。",
+      "dispositions": [
+        "tech10_recovery"
+      ],
+      "formalFindingOverridden": false
+    },
+    {
+      "area": "power",
+      "runId": "design_run_f12b8904-f80f-4544-8ecc-97d71a19c2ff",
+      "stageId": "synthesis-2",
+      "criterion": "counters",
+      "verdict": "revise",
+      "checkSha256": "5897c8dc2a3ab6456ddfe428fff93f4c529fee7c0e8d9a33747e34157979bbbc",
+      "explanation": "逆命真解已有对燃寿引导、蓄势和爆发窗口的打断、拖延与封锁反制，但伤势恢复分支没有独立的过程节点和效果上限。对手无法据此判断切断治疗条件、施压受击或迫使撤离时，究竟阻止恢复、仅降低效率，还是仍会获得未定义的恢复量；伤势与持续作战因而不能形成可执行反制轴。相比之下，局部护罡、推劲和真光都把对象、时机、打断或伤后停术写明。",
+      "revisionAdvice": "在tech_10为恢复分支补足可观察的治疗过程、持续条件和中断结算，并明确敌手可通过打断供给、隔离治疗、造成何类伤势或拖过何时限来阻止或压低恢复；同时规定恢复后是否仍受伤势导致的施术、撤退和可用上限限制。",
+      "dispositions": [
+        "tech10_recovery"
+      ],
+      "formalFindingOverridden": false
+    },
+    {
+      "area": "power",
+      "runId": "design_run_f12b8904-f80f-4544-8ecc-97d71a19c2ff",
+      "stageId": "synthesis-3",
+      "criterion": "tiers",
+      "verdict": "insufficient",
+      "checkSha256": "65be1c6aed40687f05fed4291a66a0ba8f0c6f3358dfcd90252ad685ccdb1e4b",
+      "explanation": "batch-5此前关于高阶功法、寿源准入的等待已由cross-1-5复核解决，且规则明确境界承载不等于自动掌握；但cross-1-2仍保留未解决的跨段成长核验：林辰由淬体至凝元三重、两剂灵泉后的玄府突破，以及后段玄府操作，需要第2—50章细纲及相关后段里程碑逐项核对训练、实测、伤情与当时资格。当前综合记录没有该check的resolved_by_raw_review处理，不能以宏观目标或其他已解决等待替代。",
+      "revisionAdvice": "保留cross-1-2/tiers的原等待，待其所列章节与里程碑的实际训练、疗程、复诊、实测及施术前置被原文复核并形成明确处理记录后再判定。",
+      "dispositions": [
+        "cast_evidence"
+      ],
+      "formalFindingOverridden": false
+    },
+    {
+      "area": "power",
+      "runId": "design_run_f12b8904-f80f-4544-8ecc-97d71a19c2ff",
+      "stageId": "synthesis-5",
+      "criterion": "costs",
+      "verdict": "revise",
+      "checkSha256": "3ab81cb1a1b5568586b9655b9670b1f65bbd09c6027e07ad1d9bc9b01a736d57",
+      "explanation": "高阶术式将寿储、法力、神识和永久本源分账，寿源也明确疗程、复诊、间隔及历史支出不可返还；ax_11未将其候选收入当作已取得资源。可是第18章将177—179日三段八小时夜间静息分别恢复三、三、四成真元，只写温和灵气、连续静息和复测，未写ax_05要求的实际进食或营养供给。环境灵气与静息本身不足以凭空回补，故该段恢复账不能成立。",
+      "revisionAdvice": "修订plan/chapters/18中第177—179日恢复执行账：逐段明确实际进食或其他已定义营养供给、连续恢复时段和复测结果；若不能满足，则按实际可用恢复方式重算第179日晚至第184日行前的真元余额及后续行动前提。",
+      "dispositions": [
+        "chapter18_nutrition"
+      ],
+      "formalFindingOverridden": false
+    }
+  ],
+  "groups": {
+    "tech10_recovery": {
+      "status": "unapplied_content_repair",
+      "patchPaths": [
+        [
+          "worldPack",
+          "techniques",
+          "tech_10"
+        ]
+      ],
+      "evidence": [
+        "2026-10-15-design62-local-diagnostic-proof.json",
+        "2026-10-15-design62-v3-static-validation.json"
+      ],
+      "note": "保留原三倍恢复能力，补真实治疗入口、十息基准、3B总量、资源上限和中断；局部通过不等于正式验收。"
+    },
+    "chapter18_nutrition": {
+      "status": "unapplied_content_repair",
+      "patchPaths": [
+        [
+          "plan",
+          "chapters",
+          "chapter-18"
+        ],
+        [
+          "storyBible",
+          "chapterPlans",
+          "chapter-plan-18"
+        ]
+      ],
+      "evidence": [
+        "2026-10-15-design62-local-diagnostic-proof.json",
+        "2026-10-15-design62-v3-static-validation.json"
+      ],
+      "note": "补实际劳务食水供给，同步章纲和设定集摘要；不增虚构收入、不改既有三三四恢复账。"
+    },
+    "return_port": {
+      "status": "unapplied_content_repair",
+      "patchPaths": [
+        [
+          "plan",
+          "milestones",
+          "ms_v3_return"
+        ]
+      ],
+      "evidence": [
+        "2026-10-15-design62-return-port-diagnostic-proof.json",
+        "2026-10-15-design62-v3-atomic-save-rehearsal.json"
+      ],
+      "note": "补310日暮入港核验、24税费实际支付、放行与失败停留；归入原780杂费，保持220结余。"
+    },
+    "transport_deferral": {
+      "status": "historical_question_retained_pending_final_review",
+      "patchPaths": [
+        [
+          "plan",
+          "milestones",
+          "ms_v3_return"
+        ]
+      ],
+      "evidence": [
+        "2026-10-15-design61-return-port-finding.json"
+      ],
+      "note": "原cross-1-3补读已执行且指出返航入港缺口；综合中的历史不足不另造重复情节，保留原问题等待最终归并。"
+    },
+    "cast_evidence": {
+      "status": "existing_sources_locally_rechecked_formal_finding_retained",
+      "patchPaths": [],
+      "evidence": [
+        "2026-10-15-design61-cast-source-replay.json",
+        "2026-10-15-design61-cast-qualification-proof.json"
+      ],
+      "note": "顾峤原档案已有开篇训练与复诊；局部三项复核通过。调度22补人物档案来源，不改设定、不覆盖原不足。原cross-1-2问题及其子树仍待正式最终处理。"
+    }
+  },
+  "explicitDeferredChecksNotIncluded": 47,
+  "candidateFileSha256": "009753175d0c2180854c44a2a7df7a23771ef6141cfa60c7e8841be05bd72196",
+  "productionApplied": false,
+  "formalAcceptance": false,
+  "unmappedObservedSubstantiveFindings": 0,
+  "limitations": "Only completed checks observed at this timestamp. Original waiting-source questions and all negative reports remain; pending and later stages may add findings. Full four-area final audit is mandatory before saving the next proposal. Local model checks are not formal acceptance."
+}

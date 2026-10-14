@@ -1,0 +1,53 @@
+{
+  "observedAt": "2026-10-14T22:35:51.091Z",
+  "status": "local_qualification_usage_recovery_pass_not_formal_acceptance",
+  "formalInputHash": "7b7892ad3d19537ab7aae549e0154344d22a3f5389772416658dba130da6dcc2",
+  "originalRunId": "design_run_f12b8904-f80f-4544-8ecc-97d71a19c2ff",
+  "originalStageId": "followup-cross-1-2/tiers",
+  "originalFindingSha256": "71b0f9e58d7af6d5088095b98f02b180bec1bd1c5e2ea5e0aed3c62724687ee7",
+  "originalAdverseFindingPreserved": true,
+  "diagnosticInputHash": "6acbdfa1cc8f78d84cd98afd4eb58b3cc546640db133a6071d839c0b502ad548",
+  "resultSha256": "42ab75242735dba2a1ecf48c9416721d549d274a5e97a1e220a33faef1c77862",
+  "model": "gpt-5.6-luna",
+  "timeoutMs": 600000,
+  "fallback": false,
+  "checks": [
+    {
+      "criterion": "qualification",
+      "verdict": "pass"
+    },
+    {
+      "criterion": "usage",
+      "verdict": "pass"
+    },
+    {
+      "criterion": "continuity",
+      "verdict": "pass"
+    }
+  ],
+  "verifiedCitations": 16,
+  "allDesignSourcesExactlyFromFormal61Input": true,
+  "usage": {
+    "calls": 1,
+    "failedCalls": 0,
+    "inputTokens": 26078,
+    "outputTokens": 998,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 1,
+        "failedCalls": 0,
+        "outputTokens": 998,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 3
+    }
+  },
+  "productionWrites": false,
+  "formalAcceptance": false,
+  "limitation": "Targeted diagnosis of existing Gu Qiao qualification and injury/use continuity. Does not accept all power rules, other characters, story lines or prose; does not override the incomplete formal run."
+}
