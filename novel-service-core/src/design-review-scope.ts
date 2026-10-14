@@ -94,6 +94,32 @@ export function designReviewPlanNeighbors(input: DesignReviewInput, sourceIds: s
   return input.sources.filter(source => neighbors.has(source.id)).map(source => source.id);
 }
 
+/** Explicit chapter cast IDs locate complete biographies, not proof of skill.
+ * Never infer a cast member from names in prose or follow relationship edges. */
+export function designReviewPlanCharacters(input: DesignReviewInput, sourceIds: string[]): string[] {
+  const seeds = new Set(sourceIds), characterIds = new Set<string>();
+  for (const source of input.sources) {
+    if (!seeds.has(source.id) || !source.id.startsWith('plan/chapters/')) continue;
+    let value: unknown;
+    try { value = JSON.parse(source.text); } catch { continue; }
+    if (!value || typeof value !== 'object' || Array.isArray(value)) continue;
+    const ids = (value as Record<string, unknown>).characterIds;
+    if (Array.isArray(ids)) for (const id of ids) if (typeof id === 'string' && id) characterIds.add(id);
+  }
+  const matches = new Map<string, string[]>();
+  for (const source of input.sources) {
+    if (!['story/characters/', 'settings/characters/'].some(prefix => source.id.startsWith(prefix))) continue;
+    let value: unknown;
+    try { value = JSON.parse(source.text); } catch { continue; }
+    if (!value || typeof value !== 'object' || Array.isArray(value)) continue;
+    const id = (value as Record<string, unknown>).id;
+    if (typeof id !== 'string' || !characterIds.has(id) || !source.id.endsWith(`/${id}`)) continue;
+    matches.set(id, [...(matches.get(id) ?? []), source.id]);
+  }
+  const unique = new Set([...matches.values()].filter(ids => ids.length === 1).flat());
+  return input.sources.filter(source => unique.has(source.id)).map(source => source.id);
+}
+
 /** Locate acquisition/training/use candidates without interpreting their meaning.
  * A negative statement ("has not learned X") is still a mention, not evidence
  * that X is available. Missing entries must never establish absence of a skill. */

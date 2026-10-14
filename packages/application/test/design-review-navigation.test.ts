@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { designReviewEntityMentions, designReviewPlanNeighbors } from '../../../novel-service-core/src/design-review-scope.ts';
+import { designReviewEntityMentions, designReviewPlanCharacters, designReviewPlanNeighbors } from '../../../novel-service-core/src/design-review-scope.ts';
 import { createDesignReviewRun, designReviewStageInput, acceptDesignReviewStage } from '../../../novel-service-core/src/design-review-run.ts';
 import { validateDesignReview, type DesignReviewInput } from '../../../novel-service-core/src/design-review.ts';
 
@@ -240,6 +240,79 @@ test('v21 never truncates an oversized optional dependency or evicts required so
   for (const id of ['plan/chapters/80', 'plan/milestones/training']) {
     const ids = staged.stage!.sourceMap.filter(u => u.sourceId === id).map(u => u.id);
     assert.equal(staged.sources.filter(s => ids.includes(s.id)).map(s => s.text).join(''), input.sources.find(s => s.id === id)!.text);
+  }
+  assert.ok(staged.sources.some(s => s.id === 'review-question/batch-1/counters'));
+  assert.equal(followup.result, undefined);
+});
+
+
+test('chapter cast navigation uses exact unique profile bindings without inferring training or following relationships', () => {
+  const input = dependencyInput();
+  input.sources.push(
+    source('plan/chapters/25', { characterIds: ['gu', 'missing', 'ambiguous', 'mismatch', 10], summary: '未列入出场的林也被提到。' }),
+    source('story/characters/gu', { id: 'gu', identity: '尚未完成护罡实测，不能使用。', relatedCharacterIds: ['lin'] }),
+    source('story/characters/lin', { id: 'lin', identity: '关系人不应递归补读。' }),
+    source('story/characters/ambiguous', { id: 'ambiguous' }),
+    source('settings/characters/ambiguous', { id: 'ambiguous' }),
+    source('story/characters/wrong', { id: 'mismatch' }),
+    { id: 'plan/chapters/26', text: 'invalid JSON' },
+    source('plan/chapters/27', { characterIds: 'gu' }),
+  );
+  const before = structuredClone(input);
+  assert.deepEqual(designReviewPlanCharacters(input, ['plan/chapters/25', 'plan/chapters/26', 'plan/chapters/27']), ['story/characters/gu']);
+  assert.deepEqual(designReviewPlanCharacters(input, ['plan/overview']), []);
+  assert.deepEqual(input, before);
+});
+
+function castFollowup(version: 21 | 22, oversized = false) {
+  const input = dependencyInput();
+  input.sources.find(s => s.id === 'plan/chapters/80')!.text = JSON.stringify({ id: 'chapter-80', characterIds: ['gu'], summary: '顾拟用局部护罡，必须核对既有训练和当前伤情。' });
+  // The requested chapter and the cited chapter each contribute an explicit cast.
+  input.sources.push(
+    source('plan/chapters/83', { id: 'chapter-83', characterIds: ['lin'], summary: '林准备训练。' }),
+    source('story/characters/gu', { id: 'gu', identity: '开篇前已指导、低负荷接触实测和复诊；伤后仍需停术。' + (oversized ? '完整档案不得截断。'.repeat(40000) : '') }),
+    source('story/characters/lin', { id: 'lin', identity: '尚未完成护罡训练，不能凭晋阶自动掌握。' }),
+    source('story/characters/unrelated', { id: 'unrelated', identity: '未参与本次待核行动。' }),
+  );
+  const run = createDesignReviewRun(input, undefined, version);
+  for (const stage of [...run.stages.filter(s => s.kind !== 'synthesis')]) {
+    const staged = designReviewStageInput(run, stage);
+    const unit = staged.stage!.sourceMap.find(u => u.sourceId === 'plan/chapters/80');
+    const cited = unit ? staged.sources.find(s => s.id === unit.id)! : staged.sources[0];
+    acceptDesignReviewStage(run, stage, { summary: '局部核验', checks: [{ criterion: 'counters', verdict: stage.id === 'batch-1' ? 'insufficient' : 'pass', explanation: '需核动作规则与角色资格', revisionAdvice: stage.id === 'batch-1' ? '补读训练原文' : '', evidence: [{ sourceId: cited.id, quote: cited.text.slice(0, 40) }], ...(stage.id === 'batch-1' ? { awaitingSources: ['plan/milestones/training', 'plan/chapters/83'] } : {}) }] });
+  }
+  const followup = run.stages.find(s => s.followupFor === 'batch-1/counters')!;
+  return { run, input, followup, staged: designReviewStageInput(run, followup) };
+}
+
+test('v22 co-reads complete cast biographies for requested and cited chapters while preserving v21 and unresolved findings', () => {
+  const old = castFollowup(21), current = castFollowup(22);
+  for (const id of ['story/characters/gu', 'story/characters/lin']) {
+    assert.ok(!old.staged.stage!.sourceMap.some(u => u.sourceId === id));
+    const units = current.staged.stage!.sourceMap.filter(u => u.sourceId === id);
+    assert.ok(units.length);
+    assert.equal(units.map(u => current.staged.sources.find(s => s.id === u.id)!.text).join(''), current.input.sources.find(s => s.id === id)!.text);
+    assert.ok(current.staged.stage!.coverage!.relatedSourceContext!.includedSourceIds.includes(id));
+  }
+  assert.ok(!current.staged.stage!.sourceMap.some(u => u.sourceId === 'story/characters/unrelated'));
+  assert.equal(current.followup.result, undefined);
+  assert.deepEqual(current.staged.stage!.coverage!.pendingChecks![0].requiredSourceIds, ['plan/milestones/training', 'plan/chapters/83']);
+  assert.deepEqual(current.run.units, old.run.units);
+  assert.deepEqual(current.run.stages.filter(s => !s.followupFor && s.kind !== 'synthesis'), old.run.stages.filter(s => !s.followupFor && s.kind !== 'synthesis'));
+  assert.deepEqual(designReviewStageInput(JSON.parse(JSON.stringify(old.run)), old.followup), old.staged);
+  assert.deepEqual(designReviewStageInput(JSON.parse(JSON.stringify(current.run)), current.followup), current.staged);
+  const profile = current.staged.stage!.sourceMap.find(u => u.sourceId === 'story/characters/gu')!;
+  assert.throws(() => validateDesignReview(current.staged, { summary: '仅有档案不等于通过', checks: [{ criterion: 'counters', verdict: 'pass', explanation: '不能跳过待核问题和规则', revisionAdvice: '', resolves: ['batch-1/counters'], evidence: [{ sourceId: profile.id, quote: current.staged.sources.find(s => s.id === profile.id)!.text.slice(0, 40) }] }] }), /必须引用|缺少/);
+});
+
+test('v22 omits oversized optional biographies whole and retains mandatory sources and pending question', () => {
+  const { staged, input, followup } = castFollowup(22, true);
+  assert.ok(JSON.stringify(staged.sources).length <= 240000);
+  assert.ok(!staged.stage!.sourceMap.some(u => u.sourceId === 'story/characters/gu'));
+  assert.ok(staged.stage!.coverage!.relatedSourceContext!.omittedSourceIds.includes('story/characters/gu'));
+  for (const id of ['plan/chapters/80', 'plan/milestones/training', 'plan/chapters/83']) {
+    const units = staged.stage!.sourceMap.filter(u => u.sourceId === id);
+    assert.equal(units.map(u => staged.sources.find(s => s.id === u.id)!.text).join(''), input.sources.find(s => s.id === id)!.text);
   }
   assert.ok(staged.sources.some(s => s.id === 'review-question/batch-1/counters'));
   assert.equal(followup.result, undefined);

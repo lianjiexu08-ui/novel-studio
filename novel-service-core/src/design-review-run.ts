@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import { maxDesignReviewEvidence } from '../../packages/contracts/src/index.ts';
 import { renderDesignReviewReport } from './design-review-report.ts';
-import { designReviewEntityMentions, designReviewPlanNeighbors, designReviewPlanRanges, designReviewSourceNames, localDesignReviewRubric } from './design-review-scope.ts';
+import { designReviewEntityMentions, designReviewPlanCharacters, designReviewPlanNeighbors, designReviewPlanRanges, designReviewSourceNames, localDesignReviewRubric } from './design-review-scope.ts';
 import { DesignReviewError, validateDesignReview, type DesignReviewInput, type DesignReviewResult, type DesignReviewSource } from './design-review.ts';
 
 export const designReviewCapacity = 240_000;
@@ -30,7 +30,7 @@ export interface DesignReviewStage {
 export interface DesignReviewRun {
   id: string;
   /** Absent on persisted legacy schedules, which must resume without reshuffling. */
-  scheduleVersion?: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21;
+  scheduleVersion?: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22;
   input: DesignReviewInput;
   units: DesignReviewUnit[];
   stages: DesignReviewStage[];
@@ -44,7 +44,7 @@ export interface DesignReviewRun {
 
 /** All raw text is retained. Cross checks co-read every pair of partitions;
  * synthesis then combines every finding without allowing a blocker to disappear. */
-export function createDesignReviewRun(input: DesignReviewInput, now = new Date().toISOString(), scheduleVersion: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 = 21): DesignReviewRun {
+export function createDesignReviewRun(input: DesignReviewInput, now = new Date().toISOString(), scheduleVersion: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 = 22): DesignReviewRun {
   if (new Set(input.sources.map(s => s.id)).size !== input.sources.length) throw new DesignReviewError('评审来源 ID 重复');
   const units: DesignReviewUnit[] = [];
   const stages: DesignReviewStage[] = [];
@@ -119,7 +119,7 @@ export function createDesignReviewRun(input: DesignReviewInput, now = new Date()
     }
     level = next;
   }
-  return { id: `design_run_${randomUUID()}`, ...(scheduleVersion >= 2 ? { scheduleVersion: scheduleVersion as 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 } : {}), input: structuredClone(input), units, stages, status: 'ready', createdAt: now, updatedAt: now };
+  return { id: `design_run_${randomUUID()}`, ...(scheduleVersion >= 2 ? { scheduleVersion: scheduleVersion as 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 } : {}), input: structuredClone(input), units, stages, status: 'ready', createdAt: now, updatedAt: now };
 }
 
 function chapterUnitGroups(sources: DesignReviewSource[], units: DesignReviewUnit[]): DesignReviewUnit[][] {
@@ -253,7 +253,16 @@ function relatedFollowupSources(run: DesignReviewRun, pending: ReturnType<typeof
   // These optional complete sources use the same capacity/omission rules as
   // skill context; existing schedules and mandatory evidence stay unchanged.
   const planNeighbors = (run.scheduleVersion ?? 1) >= 21 ? designReviewPlanNeighbors(run.input, requested) : [];
-  return [...new Set([...requested.flatMap(id => mentions[id] ?? []), ...planNeighbors])];
+  // v22 carries the explicitly requested/cited chapters' cast profiles too.
+  // This closes a rule-only navigation gap for basic operations defined in
+  // axioms, while preserving complete-source capacity and omission handling.
+  const cited = pending.check.evidence.flatMap(e => {
+    const unit = run.units.find(u => u.id === e.sourceId && pending.stage.unitIds.includes(u.id));
+    return unit ? [unit.sourceId] : [];
+  });
+  const characters = (run.scheduleVersion ?? 1) >= 22
+    ? designReviewPlanCharacters(run.input, [...requested, ...cited]) : [];
+  return [...new Set([...requested.flatMap(id => mentions[id] ?? []), ...planNeighbors, ...characters])];
 }
 
 /** Freeze additional checks after all original raw checks finish, before any
@@ -406,7 +415,7 @@ export function acceptDesignReviewStage(run: DesignReviewRun, stage: DesignRevie
  * only explicitly deferred unread-source questions can be settled by a raw
  * stage covering both the original material and every requested source. */
 export function completeDesignReviewRun(run: DesignReviewRun): { input: DesignReviewInput; result: DesignReviewResult } {
-  if (run.scheduleVersion !== undefined && ![2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21].includes(run.scheduleVersion)) throw new DesignReviewError('未知评审调度版本');
+  if (run.scheduleVersion !== undefined && ![2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22].includes(run.scheduleVersion)) throw new DesignReviewError('未知评审调度版本');
   const expected = createDesignReviewRun(run.input, run.createdAt, run.scheduleVersion ?? 1);
   if ((run.scheduleVersion ?? 1) >= 5) {
     // Validate the original raw results against canonical coverage before using
