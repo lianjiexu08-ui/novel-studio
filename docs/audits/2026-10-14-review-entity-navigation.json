@@ -1,0 +1,39 @@
+{
+  "status": "implementation_verified_live_diagnostic_running",
+  "scheduleVersion": 13,
+  "legacySchedulesPreservedThrough": 12,
+  "rubricVersion": 14,
+  "acceptanceCriteriaChanged": false,
+  "purpose": "Locate existing technique, artifact and resource mentions in actual chapter outlines and milestones so reviews can request acquisition/training evidence. Mentions are not proof of mastery or use.",
+  "sourcePolicy": "No raw sources, fragments or stages removed or rewritten. Oversized optional mention index is omitted whole; inventory remains complete.",
+  "regressionChecks": [
+    "Exact names and explicit IDs including negative mentions",
+    "No ID prefix guesses, malformed entity records or report-derived mentions",
+    "V12 staged input preserved; V13 raw units and partitions identical",
+    "Unread source cannot be cited through index metadata",
+    "Oversized navigation omits no raw text or inventory IDs",
+    "Model transport retains insufficient verdict and explicit source request"
+  ],
+  "tests": {
+    "passed": 242,
+    "failed": 0,
+    "focusedPassed": 19,
+    "webTypecheckAndBuildPassed": true,
+    "existingBuildWarning": "Bundle exceeds 500kB; unchanged warning."
+  },
+  "realReplay": {
+    "runId": "design_run_f6b0a6f9-767c-4650-8ec6-54910f97341a",
+    "stageId": "cross-2-5",
+    "originalStageHash": "d390261aa478d24ce8caae95582515c1f11ba29bcadb608cfa280a41439425c3",
+    "sourceCount": 170,
+    "sourceChars": 136918,
+    "sourceAndFragmentTextUnchanged": true,
+    "rubricUnchanged": true,
+    "entityMentionsChars": 2026,
+    "fullCoverageChars": 19961,
+    "modelCalls": 0
+  },
+  "formalAcceptance": false,
+  "activeDesignChanged": false,
+  "apiRestarted": false
+}

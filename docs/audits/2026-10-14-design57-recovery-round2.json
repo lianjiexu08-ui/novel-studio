@@ -1,8 +1,8 @@
 {
   "status": "waiting_for_original_runner",
   "originalPid": 17792,
-  "diagnosticPid": 37572,
-  "startedAt": "2026-10-14T09:50:07.910Z",
+  "diagnosticPid": 42719,
+  "startedAt": "2026-10-14T10:05:16.417Z",
   "model": "gpt-5.6-luna",
   "fallback": false,
   "runtimeCommit": "4aacb02712bbd7f2a155de432ec773697234114d",
@@ -18,5 +18,6 @@
   "modelCalls": 0,
   "completedStepsNotReplayed": true,
   "previousFailuresRetained": true,
-  "formalAcceptance": false
+  "formalAcceptance": false,
+  "additionalGate": "Wait for entity-navigation read-only diagnostic PID to exit too; previous waiting process was superseded before any model calls."
 }

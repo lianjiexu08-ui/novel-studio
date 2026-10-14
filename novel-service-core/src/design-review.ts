@@ -45,6 +45,10 @@ export interface DesignReviewInput {
       sourceLengths: Record<string, number>;
       /** Navigation only: names copied from structured sources, never evidence. */
       sourceNames?: Record<string, string>;
+      /** Exact name/ID mentions in existing plans; locate sources, never prove mastery or use. */
+      entityMentions?: Record<string, string[]>;
+      /** Optional navigation is omitted whole if it cannot fit; raw sources are never removed. */
+      entityMentionsOmitted?: 'capacity';
       /** Report-tree coverage, not proof that any design criterion passed. */
       synthesis?: { scope: 'partial_reports' | 'complete_reports'; coveredStageIds: string[]; totalStages: number };
       /** Navigation only: ranges stated by existing plan sources, never evidence. */

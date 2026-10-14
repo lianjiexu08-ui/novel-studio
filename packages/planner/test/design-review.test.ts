@@ -39,6 +39,27 @@ test('content reviewer selects exact request-bound fragments using the reviewing
   validateDesignReview(request, result);
 });
 
+test('entity mentions reach the model as navigation and never turn a negative prerequisite into a pass', async () => {
+  const request = await input();
+  request.stage = { kind: 'batch', label: '能力前置', totalBatches: 2, sourceMap: [], coverage: {
+    mode: 'local_sources', sourceLengths: { ...Object.fromEntries(request.sources.map(s => [s.id, s.text.length])), 'plan/chapters/18': 100 },
+    entityMentions: { 'world/techniques/tech_04': ['plan/chapters/18'] },
+  } };
+  const before = structuredClone(request), response = anchored(request);
+  Object.assign(response.checks[0], { verdict: 'insufficient', explanation: '需要补读具体训练与实测', revisionAdvice: '补读18章', awaitingSources: ['plan/chapters/18'] });
+  const planner = new JsonDesignPlanner({ complete: async call => {
+    const body = JSON.parse(call.user);
+    assert.deepEqual(body.stage.coverage.entityMentions, request.stage!.coverage!.entityMentions);
+    assert.match(call.system, /否定句也会被列出/);
+    assert.deepEqual(body.sources, prepareDesignReviewEvidence(request).sources);
+    return JSON.stringify(response);
+  } });
+  const result = await planner.reviewDesignContent(request);
+  assert.equal(result.checks[0].verdict, 'insufficient');
+  assert.deepEqual(result.checks[0].awaitingSources, ['plan/chapters/18']);
+  assert.deepEqual(request, before);
+});
+
 test('intermediate synthesis scope reaches the model, binds evidence and does not force a pass', async () => {
   const request = await input();
   request.stage = { kind: 'synthesis', label: '中间汇总', totalBatches: 3, sourceMap: [], coverage: {

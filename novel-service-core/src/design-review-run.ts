@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import { maxDesignReviewEvidence } from '../../packages/contracts/src/index.ts';
 import { renderDesignReviewReport } from './design-review-report.ts';
-import { designReviewPlanRanges, designReviewSourceNames, localDesignReviewRubric } from './design-review-scope.ts';
+import { designReviewEntityMentions, designReviewPlanRanges, designReviewSourceNames, localDesignReviewRubric } from './design-review-scope.ts';
 import { DesignReviewError, validateDesignReview, type DesignReviewInput, type DesignReviewResult, type DesignReviewSource } from './design-review.ts';
 
 export const designReviewCapacity = 240_000;
@@ -30,7 +30,7 @@ export interface DesignReviewStage {
 export interface DesignReviewRun {
   id: string;
   /** Absent on persisted legacy schedules, which must resume without reshuffling. */
-  scheduleVersion?: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+  scheduleVersion?: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
   input: DesignReviewInput;
   units: DesignReviewUnit[];
   stages: DesignReviewStage[];
@@ -44,7 +44,7 @@ export interface DesignReviewRun {
 
 /** All raw text is retained. Cross checks co-read every pair of partitions;
  * synthesis then combines every finding without allowing a blocker to disappear. */
-export function createDesignReviewRun(input: DesignReviewInput, now = new Date().toISOString(), scheduleVersion: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 = 12): DesignReviewRun {
+export function createDesignReviewRun(input: DesignReviewInput, now = new Date().toISOString(), scheduleVersion: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 = 13): DesignReviewRun {
   if (new Set(input.sources.map(s => s.id)).size !== input.sources.length) throw new DesignReviewError('评审来源 ID 重复');
   const units: DesignReviewUnit[] = [];
   const stages: DesignReviewStage[] = [];
@@ -118,7 +118,7 @@ export function createDesignReviewRun(input: DesignReviewInput, now = new Date()
     }
     level = next;
   }
-  return { id: `design_run_${randomUUID()}`, ...(scheduleVersion >= 2 ? { scheduleVersion: scheduleVersion as 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 } : {}), input: structuredClone(input), units, stages, status: 'ready', createdAt: now, updatedAt: now };
+  return { id: `design_run_${randomUUID()}`, ...(scheduleVersion >= 2 ? { scheduleVersion: scheduleVersion as 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 } : {}), input: structuredClone(input), units, stages, status: 'ready', createdAt: now, updatedAt: now };
 }
 
 function chapterUnitGroups(sources: DesignReviewSource[], units: DesignReviewUnit[]): DesignReviewUnit[][] {
@@ -310,6 +310,13 @@ export function designReviewStageInput(run: DesignReviewRun, stage: DesignReview
     coverage.resolvedDeferrals = resolvedDeferrals(run, stageIndex);
     if ((run.scheduleVersion ?? 1) >= 11) coverage.synthesis = synthesisCoverage(run, stage);
   }
+  if (coverage && (run.scheduleVersion ?? 1) >= 13) {
+    const entityMentions = designReviewEntityMentions(run.input);
+    if (Object.keys(entityMentions).length) {
+      if (JSON.stringify({ ...coverage, entityMentions }).length <= sharedContextCapacity) coverage.entityMentions = entityMentions;
+      else if (JSON.stringify({ ...coverage, entityMentionsOmitted: 'capacity' }).length <= sharedContextCapacity) coverage.entityMentionsOmitted = 'capacity';
+    }
+  }
   if (coverage && JSON.stringify(coverage).length > sharedContextCapacity) throw new DesignReviewError('评审范围目录与补读元数据超过容量，请拆分作品验收阶段；目录未截断');
   const rubric = followup ? { [followup.check.criterion]: run.input.rubric[followup.check.criterion] }
     : (run.scheduleVersion ?? 1) >= 7 && coverage?.mode === 'local_sources' ? localDesignReviewRubric(run.input, run.scheduleVersion) : structuredClone(run.input.rubric);
@@ -336,7 +343,7 @@ export function acceptDesignReviewStage(run: DesignReviewRun, stage: DesignRevie
  * only explicitly deferred unread-source questions can be settled by a raw
  * stage covering both the original material and every requested source. */
 export function completeDesignReviewRun(run: DesignReviewRun): { input: DesignReviewInput; result: DesignReviewResult } {
-  if (run.scheduleVersion !== undefined && ![2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].includes(run.scheduleVersion)) throw new DesignReviewError('未知评审调度版本');
+  if (run.scheduleVersion !== undefined && ![2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].includes(run.scheduleVersion)) throw new DesignReviewError('未知评审调度版本');
   const expected = createDesignReviewRun(run.input, run.createdAt, run.scheduleVersion ?? 1);
   if ((run.scheduleVersion ?? 1) >= 5) {
     // Validate the original raw results against canonical coverage before using

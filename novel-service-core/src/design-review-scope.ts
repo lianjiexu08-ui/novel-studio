@@ -48,3 +48,31 @@ export function designReviewSourceNames(input: DesignReviewInput): Record<string
     return typeof label === 'string' && label.trim() ? [[source.id, label]] : [];
   }));
 }
+
+/** Locate acquisition/training/use candidates without interpreting their meaning.
+ * A negative statement ("has not learned X") is still a mention, not evidence
+ * that X is available. Missing entries must never establish absence of a skill. */
+export function designReviewEntityMentions(input: DesignReviewInput): Record<string, string[]> {
+  const strings = (value: unknown): string[] => {
+    if (typeof value === 'string') return [value];
+    if (Array.isArray(value)) return value.flatMap(strings);
+    if (value && typeof value === 'object') return Object.values(value).flatMap(strings);
+    return [];
+  };
+  const plans = input.sources.flatMap(source => {
+    if (!['plan/chapters/', 'plan/milestones/', 'story/chapterPlans/'].some(prefix => source.id.startsWith(prefix))) return [];
+    try { return [{ id: source.id, strings: strings(JSON.parse(source.text)) }]; } catch { return []; }
+  });
+  return Object.fromEntries(input.sources.flatMap(source => {
+    if (!['world/techniques/', 'world/artifacts/', 'world/resources/'].some(prefix => source.id.startsWith(prefix))) return [];
+    let value: unknown;
+    try { value = JSON.parse(source.text); } catch { return []; }
+    if (!value || typeof value !== 'object' || Array.isArray(value)) return [];
+    const { name, id } = value as Record<string, unknown>;
+    const label = typeof name === 'string' && name.trim().length >= 2 ? name : undefined;
+    const entityId = typeof id === 'string' && id && source.id.endsWith(`/${id}`) ? id : undefined;
+    if (!label && !entityId) return [];
+    const mentions = plans.filter(plan => plan.strings.some(text => label && text.includes(label) || entityId && text === entityId)).map(plan => plan.id);
+    return mentions.length ? [[source.id, mentions]] : [];
+  }));
+}
