@@ -1,0 +1,68 @@
+{
+  "observedAt": "2026-10-14T18:44:49.941Z",
+  "status": "in_progress_not_acceptance",
+  "checkpointStatus": "running",
+  "scope": {
+    "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+    "planId": "plan_dc748fcac00c45e4bbaa346e50f9fba7",
+    "world": 30,
+    "bible": 60,
+    "plan": 60
+  },
+  "inputHash": "7b8e40fc1b9b354f6b6c5f071c832a312746446f318633f632d48cfbae9ca340",
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "scheduleVersion": 21,
+  "runtimeCommit": "ee2f0556f09a2dc86078ec3c5b016c35cef0489f",
+  "protectedDesignAndAdoptedHistoryUnchanged": true,
+  "oldRunsUnchanged": 45,
+  "oldReportsUnchanged": 51,
+  "usageAtLastCheckpoint": {
+    "calls": 2,
+    "failedCalls": 0,
+    "inputTokens": 205633,
+    "outputTokens": 5997,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 2,
+        "failedCalls": 0,
+        "outputTokens": 5997,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 300
+    }
+  },
+  "runs": [
+    {
+      "area": "world",
+      "runId": "design_run_15619042-3dab-480f-82d1-90e16c4a609c",
+      "status": "running",
+      "completed": 1,
+      "total": 29,
+      "failures": 0
+    },
+    {
+      "area": "power",
+      "runId": "design_run_41a4860f-0bac-4935-9e7a-d9c81ed6e8d7",
+      "status": "running",
+      "completed": 1,
+      "total": 29,
+      "failures": 0
+    }
+  ],
+  "counts": {
+    "world": 30,
+    "bible": 60,
+    "plan": 60,
+    "approvedPlan": 10,
+    "versions": 101,
+    "events": 383,
+    "manuscripts": 1
+  },
+  "limitation": "Read-only progress; live process must be checked separately. Does not approve design, resolve blockers or validate prose."
+}

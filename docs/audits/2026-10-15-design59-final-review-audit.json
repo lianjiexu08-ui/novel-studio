@@ -1,0 +1,419 @@
+{
+  "observedAt": "2026-10-14T18:38:39.777Z",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "planId": "plan_f6c112de27db4a54b11ff58b652c4626",
+  "planRevision": 59,
+  "inputHash": "48f99fc931b935214531ad356907f1aa9572f126a1377bfe521f308b68a06f64",
+  "status": "not_accepted",
+  "limitation": "Verifies saved evidence and report integrity only; does not approve the plan, resolve blockers, or validate prose quality.",
+  "areas": [
+    {
+      "area": "world",
+      "status": "passed",
+      "runId": "design_run_7c8ca759-f3df-4f3e-92fc-b2502e06128a",
+      "reportId": "design_review_ea69d953-6750-47a1-97de-4bcd3c393afe",
+      "completedStages": 51,
+      "totalStages": 51,
+      "retainedFailures": 1,
+      "verification": "verified",
+      "runSha256": "31ac9c2d0ba53bb46b8c50aaed20f8ef0518d0e11db98f18c63c7930f078914b",
+      "reportSha256": "fb74eed9e3d5888393386a517b18c98b5ae3e2764a80f316d01a41a2011f8af9",
+      "sourceEnvelopeSha256": "e7b7af791a0b54499a63f9aa5bcde4c1fe0780035de677452a99fb4ed36f15a2",
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "history",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "capacity",
+          "verdict": "pass"
+        }
+      ],
+      "resolvedDeferrals": [
+        {
+          "checkId": "batch-1/geography",
+          "resolvedByStageId": "cross-1-5"
+        },
+        {
+          "checkId": "batch-2/geography",
+          "resolvedByStageId": "followup-batch-2/geography"
+        },
+        {
+          "checkId": "batch-2/history",
+          "resolvedByStageId": "followup-batch-2/history"
+        },
+        {
+          "checkId": "batch-3/geography",
+          "resolvedByStageId": "followup-batch-3/geography"
+        },
+        {
+          "checkId": "batch-3/history",
+          "resolvedByStageId": "cross-1-3"
+        },
+        {
+          "checkId": "batch-5/history",
+          "resolvedByStageId": "cross-1-5"
+        },
+        {
+          "checkId": "cross-1-2/geography",
+          "resolvedByStageId": "followup-cross-1-2/geography"
+        },
+        {
+          "checkId": "cross-1-3/geography",
+          "resolvedByStageId": "followup-cross-1-3/geography"
+        },
+        {
+          "checkId": "cross-2-3/geography",
+          "resolvedByStageId": "followup-cross-2-3/geography"
+        },
+        {
+          "checkId": "cross-2-3/history",
+          "resolvedByStageId": "followup-cross-2-3/history"
+        },
+        {
+          "checkId": "cross-2-5/history",
+          "resolvedByStageId": "followup-cross-2-5/history"
+        },
+        {
+          "checkId": "cross-3-4/geography",
+          "resolvedByStageId": "followup-cross-3-4/geography"
+        },
+        {
+          "checkId": "cross-3-5/history",
+          "resolvedByStageId": "followup-cross-3-5/history"
+        },
+        {
+          "checkId": "cross-4-5/history",
+          "resolvedByStageId": "followup-cross-4-5/history"
+        }
+      ]
+    },
+    {
+      "area": "power",
+      "status": "needs_revision",
+      "runId": "design_run_6da44acd-3475-4e6c-8f4f-b21c2833550b",
+      "reportId": "design_review_f67485fc-854d-4ebe-9d8b-2c39cc09799c",
+      "completedStages": 95,
+      "totalStages": 95,
+      "retainedFailures": 2,
+      "verification": "verified",
+      "runSha256": "9c534b78cbb27efc90d8509300b72d6befc1a4d697c951d999399ff6ed47e5b4",
+      "reportSha256": "f82fe5bec772123e056697c1c2a3e9e6f5223731d975ee29c43105e5132a001c",
+      "sourceEnvelopeSha256": "02b777abbfd56ea1bc542083d02a18552d6ff9304db46e206e24875df92aae67",
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "costs",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "counters",
+          "verdict": "revise"
+        }
+      ],
+      "resolvedDeferrals": [
+        {
+          "checkId": "batch-1/tiers",
+          "resolvedByStageId": "followup-batch-1/tiers"
+        },
+        {
+          "checkId": "batch-1/costs",
+          "resolvedByStageId": "followup-batch-1/costs"
+        },
+        {
+          "checkId": "batch-1/counters",
+          "resolvedByStageId": "followup-batch-1/counters"
+        },
+        {
+          "checkId": "batch-2/tiers",
+          "resolvedByStageId": "followup-batch-2/tiers"
+        },
+        {
+          "checkId": "batch-2/costs",
+          "resolvedByStageId": "followup-batch-2/costs"
+        },
+        {
+          "checkId": "batch-2/counters",
+          "resolvedByStageId": "followup-batch-2/counters"
+        },
+        {
+          "checkId": "batch-3/tiers",
+          "resolvedByStageId": "cross-1-3"
+        },
+        {
+          "checkId": "batch-3/costs",
+          "resolvedByStageId": "cross-1-3"
+        },
+        {
+          "checkId": "batch-4/tiers",
+          "resolvedByStageId": "followup-batch-4/tiers"
+        },
+        {
+          "checkId": "batch-4/costs",
+          "resolvedByStageId": "cross-1-4"
+        },
+        {
+          "checkId": "batch-5/tiers",
+          "resolvedByStageId": "followup-batch-5/tiers"
+        },
+        {
+          "checkId": "batch-5/costs",
+          "resolvedByStageId": "followup-batch-5/costs"
+        },
+        {
+          "checkId": "batch-5/counters",
+          "resolvedByStageId": "followup-batch-5/counters"
+        },
+        {
+          "checkId": "cross-1-2/tiers",
+          "resolvedByStageId": "followup-cross-1-2/tiers"
+        },
+        {
+          "checkId": "cross-1-2/costs",
+          "resolvedByStageId": "followup-cross-1-2/costs"
+        },
+        {
+          "checkId": "cross-1-2/counters",
+          "resolvedByStageId": "followup-cross-1-2/counters"
+        },
+        {
+          "checkId": "cross-1-3/counters",
+          "resolvedByStageId": "followup-cross-1-3/counters"
+        },
+        {
+          "checkId": "cross-1-5/costs",
+          "resolvedByStageId": "followup-cross-1-5/costs"
+        },
+        {
+          "checkId": "cross-1-5/counters",
+          "resolvedByStageId": "followup-cross-1-5/counters"
+        },
+        {
+          "checkId": "cross-2-3/tiers",
+          "resolvedByStageId": "followup-cross-2-3/tiers"
+        },
+        {
+          "checkId": "cross-2-3/costs",
+          "resolvedByStageId": "followup-cross-2-3/costs"
+        },
+        {
+          "checkId": "cross-2-3/counters",
+          "resolvedByStageId": "followup-cross-2-3/counters"
+        },
+        {
+          "checkId": "cross-2-4/tiers",
+          "resolvedByStageId": "followup-cross-2-4/tiers"
+        },
+        {
+          "checkId": "cross-2-4/costs",
+          "resolvedByStageId": "followup-cross-2-4/costs"
+        },
+        {
+          "checkId": "cross-2-4/counters",
+          "resolvedByStageId": "followup-cross-2-4/counters"
+        },
+        {
+          "checkId": "cross-2-5/tiers",
+          "resolvedByStageId": "followup-cross-2-5/tiers"
+        },
+        {
+          "checkId": "cross-2-5/costs",
+          "resolvedByStageId": "followup-cross-2-5/costs"
+        },
+        {
+          "checkId": "cross-2-5/counters",
+          "resolvedByStageId": "followup-cross-2-5/counters"
+        },
+        {
+          "checkId": "cross-3-4/tiers",
+          "resolvedByStageId": "followup-cross-3-4/tiers"
+        },
+        {
+          "checkId": "cross-3-4/costs",
+          "resolvedByStageId": "followup-cross-3-4/costs"
+        },
+        {
+          "checkId": "cross-3-4/counters",
+          "resolvedByStageId": "followup-cross-3-4/counters"
+        },
+        {
+          "checkId": "cross-4-5/tiers",
+          "resolvedByStageId": "followup-cross-4-5/tiers"
+        },
+        {
+          "checkId": "cross-4-5/costs",
+          "resolvedByStageId": "followup-cross-4-5/costs"
+        },
+        {
+          "checkId": "cross-4-5/counters",
+          "resolvedByStageId": "followup-cross-4-5/counters"
+        }
+      ]
+    },
+    {
+      "area": "characters",
+      "status": "passed",
+      "runId": "design_run_ab2409b8-cb5d-4929-8516-ac805034a04f",
+      "reportId": "design_review_c9e080b7-1aaf-4dcf-abda-15f3ca45e612",
+      "completedStages": 27,
+      "totalStages": 27,
+      "retainedFailures": 0,
+      "verification": "verified",
+      "runSha256": "2150f0af46861a0f656806a27af17b664d3bdecd1a3caf4a1a4891182076bb70",
+      "reportSha256": "01188a5d65fa2e7d6bfc4dc120d11c766730e22156b05c2fddd4c27cb20bb5b9",
+      "sourceEnvelopeSha256": "6b6f868952102e4e25c77e37fb74be8d4e748d43995886d42930fee19564e47c",
+      "checks": [
+        {
+          "criterion": "agency",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "relationships",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "knowledge",
+          "verdict": "pass"
+        }
+      ],
+      "resolvedDeferrals": [
+        {
+          "checkId": "cross-1-2/agency",
+          "resolvedByStageId": "followup-cross-1-2/agency"
+        },
+        {
+          "checkId": "cross-1-2/relationships",
+          "resolvedByStageId": "followup-cross-1-2/relationships"
+        },
+        {
+          "checkId": "cross-1-2/knowledge",
+          "resolvedByStageId": "followup-cross-1-2/knowledge"
+        },
+        {
+          "checkId": "cross-2-4/agency",
+          "resolvedByStageId": "followup-cross-2-4/agency"
+        }
+      ]
+    },
+    {
+      "area": "story",
+      "status": "passed",
+      "runId": "design_run_15a23bc4-0828-4ffc-a7d1-7fe434a52af2",
+      "reportId": "design_review_37573491-8287-4fad-8ad8-b618429ae0bf",
+      "completedStages": 57,
+      "totalStages": 57,
+      "retainedFailures": 1,
+      "verification": "verified",
+      "runSha256": "e370426ce21f487cb308764aa3f8d2f9f2a88580fa64af0d6550cb5c2f8bdcbf",
+      "reportSha256": "54e769ad6ed282ca9ee7ed4eda1107dc2c53b146f90eb0e5c0acb0b663cb1fef",
+      "sourceEnvelopeSha256": "5b0d311fb42e078f900d52de989586a2ff1d2e938308631b6fe096fd9455122d",
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass"
+        }
+      ],
+      "resolvedDeferrals": [
+        {
+          "checkId": "batch-1/causality",
+          "resolvedByStageId": "followup-batch-1/causality"
+        },
+        {
+          "checkId": "batch-1/timeline",
+          "resolvedByStageId": "followup-batch-1/timeline"
+        },
+        {
+          "checkId": "batch-1/payoff",
+          "resolvedByStageId": "followup-batch-1/payoff"
+        },
+        {
+          "checkId": "batch-1/opening",
+          "resolvedByStageId": "followup-batch-1/opening"
+        },
+        {
+          "checkId": "batch-1/pacing",
+          "resolvedByStageId": "followup-batch-1/pacing"
+        },
+        {
+          "checkId": "batch-2/causality",
+          "resolvedByStageId": "cross-2-5"
+        },
+        {
+          "checkId": "batch-2/timeline",
+          "resolvedByStageId": "cross-2-5"
+        },
+        {
+          "checkId": "batch-3/causality",
+          "resolvedByStageId": "cross-1-3"
+        },
+        {
+          "checkId": "batch-4/causality",
+          "resolvedByStageId": "followup-batch-4/causality"
+        },
+        {
+          "checkId": "batch-5/causality",
+          "resolvedByStageId": "followup-batch-5/causality"
+        },
+        {
+          "checkId": "batch-5/timeline",
+          "resolvedByStageId": "cross-4-5"
+        },
+        {
+          "checkId": "cross-1-5/timeline",
+          "resolvedByStageId": "followup-cross-1-5/timeline"
+        },
+        {
+          "checkId": "cross-1-5/opening",
+          "resolvedByStageId": "followup-cross-1-5/opening"
+        },
+        {
+          "checkId": "cross-1-5/pacing",
+          "resolvedByStageId": "followup-cross-1-5/pacing"
+        },
+        {
+          "checkId": "cross-2-3/causality",
+          "resolvedByStageId": "followup-cross-2-3/causality"
+        },
+        {
+          "checkId": "cross-2-3/payoff",
+          "resolvedByStageId": "followup-cross-2-3/payoff"
+        },
+        {
+          "checkId": "cross-2-4/causality",
+          "resolvedByStageId": "followup-cross-2-4/causality"
+        },
+        {
+          "checkId": "cross-3-5/causality",
+          "resolvedByStageId": "followup-cross-3-5/causality"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "observedAt": "2026-10-14T18:28:35.889Z",
+  "mode": "isolated_sqlite_transaction",
+  "candidateSha256": "0e18e1c553fc3c38a19ff8c25b516aa09908629cfb5b4af9200d2760afdbd26a",
+  "planId": "plan_fbb0597baf4947a087488016a82578df",
+  "worldRevision": 30,
+  "bibleRevision": 60,
+  "planRevision": 60,
+  "approvedPlanRevision": 10,
+  "originalBlockers": 41,
+  "oldHistorySha256": "ebf16e490f6eb15d76ef1e01f956cd927eac204aaddde8750aefa2180d61ba33",
+  "allOldHistoryPreserved": true,
+  "newDesignStatuses": [
+    "proposed",
+    "proposed",
+    "proposed"
+  ],
+  "contentReview": {
+    "ready": false,
+    "areas": [
+      {
+        "area": "world",
+        "status": "outdated",
+        "reportId": "design_review_ea69d953-6750-47a1-97de-4bcd3c393afe"
+      },
+      {
+        "area": "power",
+        "status": "outdated",
+        "reportId": "design_review_11dbd1a7-c5ec-456e-8553-7c26f1a9d94c"
+      },
+      {
+        "area": "characters",
+        "status": "outdated",
+        "reportId": "design_review_c9e080b7-1aaf-4dcf-abda-15f3ca45e612"
+      },
+      {
+        "area": "story",
+        "status": "outdated",
+        "reportId": "design_review_37573491-8287-4fad-8ad8-b618429ae0bf"
+      }
+    ]
+  },
+  "modelCalls": 0,
+  "proseGenerated": false,
+  "persistedReadbackVerified": true,
+  "counts": {
+    "versions": 101,
+    "events": 383,
+    "manuscripts": 1
+  },
+  "simulatedFailureRollback": {
+    "trigger": "after all three in-memory edits, before transaction commit",
+    "allTablesUnchanged": true,
+    "tableCount": 18,
+    "tableHashes": {
+      "Chapter": "0a47a7c74f75020b0a5b4f0c5c45de6db21c1d39b3fc16b8f80dd0b964d9c8a1",
+      "ChapterBrief": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "ChapterCandidate": "0a8d4664f623a5891025e522c416e435fc590a58cb146ad7b8fc78f3b85d7a6d",
+      "ChapterVersion": "4710715c576837fddf3fbec6d4d7242d826a7e74977da14f61ccfa9fca9a7639",
+      "Character": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "CheckExecution": "6ebdd2e7c94c4dd5fa18d7cb5058eb97044c42a1d0b0f8859ffe2e4229509865",
+      "CheckRuling": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "ImpactRecord": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "ManuscriptRevision": "d68f97f1e72f46f19470c53cfd402dff02d0933f5a1751788fd796a47640b4b6",
+      "OutboxEvent": "3cf5149a59834fd1281e54c3431a06f99b7b493200680132a26dcd8f975d0fbd",
+      "PlanRealization": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "PlanRevision": "6c80999b620f7987d4d8a3d2d903359045f7ac5549c5db2c90854c920490484e",
+      "PlotNode": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "Project": "7783b537cd750b712619dd1fff68fca045cc9ed1fafe25409b293adb76ddd793",
+      "Relationship": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "RunCheckpoint": "5e1cafa5dfb4cbf78ae321df296bfb18e8c9053951ad271491d89a77dd70a2a9",
+      "StoryEvent": "be4dac1a2da1e026b8f48d9f92a04b277732e0a87c340d4008d06bef47d4db7f",
+      "WorldRule": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  }
+}
