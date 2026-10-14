@@ -29,9 +29,30 @@
     "fixedWorkflowMs": 10571.996875,
     "finalStatus": "completed",
     "usedSavedModelAnswer": true,
-    "freshModelCalls": 0,
-    "productionRecovered": false
+    "freshModelCalls": 0
   },
   "automatedTests": 208,
-  "fullSuitePassed": true
+  "fullSuitePassed": true,
+  "productionRecovery": {
+    "replayed": [
+      {
+        "area": "characters",
+        "runId": "design_run_b50cd4e7-bd68-4d67-bfc0-ca50ee35a31f",
+        "stageId": "synthesis-10",
+        "source": "saved rejectedResult from database transaction failure",
+        "newModelCalls": 0,
+        "originalFailurePreserved": true
+      },
+      {
+        "area": "power",
+        "runId": "design_run_6a938d11-e0b5-4a09-944a-257bdf77c5c1",
+        "stageId": "synthesis-12",
+        "source": "saved rejectedResult from database transaction failure",
+        "newModelCalls": 0,
+        "originalFailurePreserved": true
+      }
+    ],
+    "protectedHistoryUnchanged": true,
+    "formalVerdictsChangedToPass": false
+  }
 }
