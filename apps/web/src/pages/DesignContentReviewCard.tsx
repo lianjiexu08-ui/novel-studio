@@ -111,14 +111,24 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
     return <Space direction="vertical" style={{ width: '100%' }}>
       <Typography.Text type="secondary">世界 v{report.scope.worldPackRevision} · 圣经 v{report.scope.storyBibleRevision} · 计划 v{report.scope.planRevision} {report.createdAt ? ` · ${new Date(report.createdAt).toLocaleString()}` : ''}</Typography.Text>
       <Typography.Paragraph>{report.summary}</Typography.Paragraph>
-      {report.resolvedDeferrals?.length ? <Typography.Paragraph>已完成的补读复核：{report.resolvedDeferrals.map(item => `${item.checkId} → ${item.resolvedByStageId}`).join('；')}。原问题与引用仍保留在批次记录中。</Typography.Paragraph> : null}
+      {report.resolvedDeferrals?.length ? <Collapse size="small" style={{ width: '100%' }} items={[{
+        key: 'deferrals', label: `补读复核记录（${report.resolvedDeferrals.length} 项）`,
+        children: <Typography.Paragraph>已完成的补读复核：{report.resolvedDeferrals.map(item => `${item.checkId} → ${item.resolvedByStageId}`).join('；')}。原问题与引用仍保留在批次记录中。</Typography.Paragraph>,
+      }]} /> : null}
       {report.checks.map((check) => <Card size="small" key={check.criterion} title={<Space><Tag color={check.verdict === 'pass' ? 'success' : 'warning'}>{check.awaitingSources ? '等待跨批补读' : verdicts[check.verdict]}</Tag>{criteria[check.criterion] ?? check.criterion}</Space>}>
         <Typography.Paragraph>{check.explanation}</Typography.Paragraph>
         {check.insufficiencyReason && <Typography.Paragraph type="secondary">不足原因：{insufficiencyReasons[check.insufficiencyReason]}。仍需补充或独立复核，不代表通过。</Typography.Paragraph>}
         {check.awaitingSources && <Typography.Paragraph>待核来源：{check.awaitingSources.join('、')}。其他批次须读取原文并明确复核，目录存在不等于通过。</Typography.Paragraph>}
         {check.resolves && <Typography.Paragraph>本批依据原文解决的补读项：{check.resolves.join('、')}</Typography.Paragraph>}
-        {check.evidence.map((item, index) => <div key={`${item.sourceId}-${index}`}><Button type="link" size="small" onClick={() => setSource(report.sources.find((entry) => entry.id === item.sourceId) ?? null)}>查看所审材料：{item.sourceId}</Button><blockquote style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{item.quote}</blockquote></div>)}
         {check.revisionAdvice && <Typography.Paragraph><strong>模型返修建议（待核对）：</strong>{check.revisionAdvice}</Typography.Paragraph>}
+        {check.evidence.length > 0 && <Collapse size="small" items={[{
+          key: 'evidence', label: `${criteria[check.criterion] ?? check.criterion}的原文证据（${check.evidence.length} 条）`,
+          children: <Space direction="vertical" style={{ width: '100%' }}>{check.evidence.map((item, index) => <div key={`${item.sourceId}-${index}`} style={{ width: '100%' }}>
+            <Typography.Text type="secondary">证据 {index + 1} · {item.sourceId.startsWith('review-result/') ? '前置评审报告摘录' : item.sourceId.startsWith('review-question/') ? '待补读问题' : '所审材料摘录'}</Typography.Text>
+            <Button type="link" size="small" onClick={() => setSource(report.sources.find((entry) => entry.id === item.sourceId) ?? null)}>查看所审材料：{item.sourceId}</Button>
+            <blockquote style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{item.quote}</blockquote>
+          </div>)}</Space>,
+        }]} />}
       </Card>)}
     </Space>;
   }
