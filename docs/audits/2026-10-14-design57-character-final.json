@@ -1,0 +1,55 @@
+{
+  "status": "completed",
+  "runId": "design_run_9cf3b6d1-345e-452e-b980-79b7ec4163f9",
+  "completed": 43,
+  "total": 43,
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "report": {
+    "id": "design_review_8b33fa15-dcd3-4b3c-b729-a0dd398296b2",
+    "status": "inconclusive",
+    "summary": "全部批次已完成，但仍有返修或材料不足项；详见逐项结论。",
+    "checks": [
+      {
+        "criterion": "agency",
+        "verdict": "insufficient",
+        "explanation": "已覆盖的提案为林、苏、贺、陆、工人等配置了相互制约的目标、可拒绝选择及伤损、船损、失去追查窗口、继续受看护等后果，百章目标也没有以高阶胜利消解选择，局部因果可行。但总纲仍称人物11步评审“有返修项”，未标明返修涉及哪一角色、章节或标准，亦未建立其与已通过报告的解决对应；不能确认该未闭合项不影响能动性。",
+        "revisionAdvice": "在总纲中逐项定位仍存人物返修：对应角色、章节或里程碑、违反的能动性约束、修复证据和当前状态；若已由本轮报告解决，明确关联其具体结论。"
+      },
+      {
+        "criterion": "relationships",
+        "verdict": "insufficient",
+        "explanation": "林苏分路、林贺有限合作、林陆“协助不免罪”等关系均已有选择、代价与消息/签认等生效条件；51—53章明确仍为拟定安排，不与第50章状态冲突。不过总纲未定位的“人物评审返修项”仍可能涉及关系初态、阶段变化或生效时点。此前综合已保留这一不足，本次不能以局部关系通过报告自行消除。",
+        "revisionAdvice": "将未闭合人物返修映射至具体关系条目和阶段，核明是否影响林苏、林贺、林陆或其他主要关系的初态、触发选择、代价及生效章点；已解决者须更新总纲状态并列出对应依据。"
+      },
+      {
+        "criterion": "knowledge",
+        "verdict": "insufficient",
+        "explanation": "现有设计已把知情限制在亲见、具名证词、实体文书送达和独立核验：陆的签认副本不等于内容为真，赵须实际收阅报令，百章揭示也限于一条运输链。相关报告与消息锚点相容。但总纲仍笼统保留人物评审返修项，未说明其是否涉及秘密、送达、核验或禁止推论；前置综合据此保留的材料不足不能在本次综合中取消。",
+        "revisionAdvice": "补充未闭合人物返修的标准映射；如涉及认知，逐项注明角色、信息来源、送达或核验时点、可知范围、禁止推论及现版本的修复证据。"
+      }
+    ]
+  },
+  "usage": {
+    "calls": 43,
+    "failedCalls": 0,
+    "inputTokens": 3993864,
+    "outputTokens": 50702,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 43,
+        "failedCalls": 0,
+        "outputTokens": 50702,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 90
+    }
+  },
+  "protectedHistoryUnchanged": true,
+  "formalAcceptance": false
+}
