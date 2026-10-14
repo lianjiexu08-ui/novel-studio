@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { ChapterWorkflow, InMemoryWorkRepository, type DesignProvider } from '../src/index.ts';
 import { createReadyWork } from './fixtures.ts';
-import { designReviewInput, designReviewOverview, type DesignReviewInput, type DesignReviewResult } from '../../../novel-service-core/src/design-review.ts';
+import { designReviewInput, designReviewOverview, designReviewRubrics, type DesignReviewInput, type DesignReviewResult } from '../../../novel-service-core/src/design-review.ts';
 import { createDesignReviewRun, designReviewStageInput, acceptDesignReviewStage, completeDesignReviewRun } from '../../../novel-service-core/src/design-review-run.ts';
 import { renderDesignReviewReport } from '../../../novel-service-core/src/design-review-report.ts';
 
@@ -61,7 +61,7 @@ test('chapter-only power batches also receive complete tier and technique rules'
   ];
   input.sources = [...rules, ...input.sources];
   const run = createDesignReviewRun(input);
-  assert.equal(run.scheduleVersion, 6);
+  assert.equal(run.scheduleVersion, 7);
   for (const stage of run.stages) {
     const staged = designReviewStageInput(run, stage);
     assert.ok(JSON.stringify(staged.sources).length <= 240_000);
@@ -385,7 +385,7 @@ test('v3 budgets full quotation envelopes so evidenced deferrals can fit without
   assert.throws(() => acceptDesignReviewStage(legacy, legacy.stages[0], large), /结论过长/);
 });
 
-function threePartitionRun(version: 4 | 5 | 6 = 6) {
+function threePartitionRun(version: 4 | 5 | 6 | 7 = 7) {
   const input: DesignReviewInput = { ...largeInput(), rubric: { timeline: '寄出与送达是否有实际时间', payoff: '承诺是否保持代价' }, sources: [
     { id: 'author', text: '仅检查本轮提案，不视为采纳事实。' },
     { id: 'early', text: '第9日寄出书信，送达前收信人不能知情。' + '日程说明。'.repeat(17000) },
@@ -489,6 +489,39 @@ test('v5 frozen report JSON survives restore while v6 synthesizes and validates 
     }
     assert.equal(completeDesignReviewRun(run).result.checks[0].verdict, 'pass');
   }
+});
+
+test('v7 scopes local questions without changing raw coverage, legacy inputs or the final global rubric', () => {
+  const original: DesignReviewInput = { ...largeInput(), rubric: { ...designReviewRubrics.story } };
+  const current = createDesignReviewRun(original, undefined, 7);
+  const legacy = createDesignReviewRun(original, undefined, 6);
+  assert.deepEqual(current.units, legacy.units);
+  assert.deepEqual(current.stages, legacy.stages);
+  for (const stage of current.stages) {
+    const scoped = designReviewStageInput(current, stage);
+    const frozen = designReviewStageInput(legacy, legacy.stages.find(s => s.id === stage.id)!);
+    assert.deepEqual(frozen.rubric, original.rubric);
+    if (scoped.stage!.coverage!.mode === 'local_sources') {
+      assert.deepEqual(scoped.sources, frozen.sources);
+      assert.deepEqual(scoped.stage, frozen.stage);
+      assert.match(scoped.rubric.opening, /本批未包含前五十章的全部细纲本身不是材料不足/);
+      assert.deepEqual(Object.keys(scoped.rubric), Object.keys(original.rubric));
+    } else assert.deepEqual(scoped.rubric, original.rubric);
+    const verdict = stagePass(scoped);
+    // A local failure remains a final blocker even when all syntheses pass.
+    if (stage.id === 'batch-1') verdict.checks[0] = { ...verdict.checks[0], verdict: 'revise', explanation: '本批取消已付代价', revisionAdvice: '恢复不可逆后果' };
+    acceptDesignReviewStage(current, stage, verdict);
+    acceptDesignReviewStage(legacy, legacy.stages.find(s => s.id === stage.id)!, stagePass(frozen));
+  }
+  const restored = JSON.parse(JSON.stringify(current));
+  const completed = completeDesignReviewRun(restored);
+  assert.deepEqual(completed.input.rubric, original.rubric);
+  assert.equal(completed.result.checks[0].verdict, 'revise');
+  assert.deepEqual(original.rubric, designReviewRubrics.story, 'the global standards are not mutated');
+  const small = createDesignReviewRun({ ...original, sources: [{ id: 'only', text: '全部材料能够一次读完。' }] });
+  assert.deepEqual(designReviewStageInput(small, small.stages[0]).rubric, original.rubric);
+  const custom = createDesignReviewRun({ ...largeInput(), rubric: { timeline: '不得省略驿站交接用时这一自定义标准' } });
+  assert.match(designReviewStageInput(custom, custom.stages[0]).rubric.timeline, /不得省略驿站交接用时这一自定义标准/);
 });
 
 test('dedicated follow-ups cannot recursively defer or omit evidence, and unresolved oversized questions remain blockers', () => {
