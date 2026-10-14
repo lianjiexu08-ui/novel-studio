@@ -235,6 +235,18 @@ export const workDtoSchema = z.object({
 export type WorkDto = z.infer<typeof workDtoSchema>;
 
 export const checkResultDtoSchema = z.object({
+  chapterReview: z.object({
+    inputHash: z.string(), error: z.string().optional(),
+    usage: z.object({ calls: z.number(), failedCalls: z.number(), inputTokens: z.number(), outputTokens: z.number(), costUsd: z.number(), costKnown: z.boolean() }).optional(),
+    result: z.object({
+      inputHash: z.string(), summary: z.string(),
+      checks: z.array(z.object({
+        criterion: z.enum(['causality', 'characters', 'power', 'continuity', 'obligations', 'prose']),
+        verdict: z.enum(['pass', 'revise', 'insufficient']), explanation: z.string(), revisionAdvice: z.string(),
+        evidence: z.array(z.object({ sourceId: z.string(), quote: z.string() })),
+      })),
+    }).optional(),
+  }).optional(),
   checker: z.string(),
   status: z.enum(['passed', 'failed', 'inconclusive', 'unavailable']),
   message: z.string(),

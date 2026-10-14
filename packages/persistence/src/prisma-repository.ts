@@ -218,11 +218,16 @@ export class PrismaWorkRepository implements WorkRepository {
     for (const row of candidates) {
       const checkRuns: CheckResult[] = [...row.checks]
         .sort((a, b) => a.sequence - b.sequence || a.createdAt.getTime() - b.createdAt.getTime())
-        .map((check) => ({
-          id: check.id, checker: check.checker, status: check.status as never, message: check.message ?? '',
-          candidateId: row.id, checkedAt: check.createdAt.toISOString(), policyVersion: check.policyVersion ?? undefined,
-          contentHash: check.contentHash ?? undefined, inputs: readJson<CheckInputs>(check.inputs),
-        }));
+        .map((check) => {
+          // Store optional review evidence in the existing JSON metadata column.
+          const metadata = readJson<CheckInputs & { chapterReview?: CheckResult['chapterReview'] }>(check.inputs);
+          const { chapterReview, ...inputs } = metadata ?? {};
+          return {
+            id: check.id, checker: check.checker, status: check.status as never, message: check.message ?? '',
+            candidateId: row.id, checkedAt: check.createdAt.toISOString(), policyVersion: check.policyVersion ?? undefined,
+            contentHash: check.contentHash ?? undefined, inputs: metadata ? inputs as CheckInputs : undefined, chapterReview,
+          };
+        });
       const latest = new Map<string, CheckResult>();
       for (const check of checkRuns) latest.set(check.checker, check);
       const mapped: ChapterCandidate = {
@@ -403,7 +408,7 @@ export class PrismaWorkRepository implements WorkRepository {
             id: check.id ?? id('check'), candidateId: candidate.id, checker: check.checker, sequence,
             status: check.status, message: check.message, stateRevision: check.inputs?.stateRevision ?? candidate.generatedAgainstRevision,
             policyVersion: check.policyVersion ?? null, contentHash: check.contentHash ?? null,
-            inputs: check.inputs ? JSON.stringify(check.inputs) : null, createdAt: new Date(check.checkedAt),
+            inputs: check.inputs ? JSON.stringify({ ...check.inputs, ...(check.chapterReview ? { chapterReview: check.chapterReview } : {}) }) : null, createdAt: new Date(check.checkedAt),
           },
         });
       }

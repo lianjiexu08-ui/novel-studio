@@ -5,11 +5,12 @@ import { ChapterWorkflow, InMemoryWorkRepository } from '../../../packages/appli
 import { createEmptyWorldPack } from '../../../novel-service-core/src/world.ts';
 import type { ModelProvider } from '../../../novel-service-core/src/core.ts';
 import { UsageLedger } from '../../../packages/model-gateway/src/index.ts';
-import { approveMinimalPlan, fixtureDesignReview, chapterBody, lockMinimalDesign, minimalPlan } from '../../../packages/application/test/fixtures.ts';
+import { approveMinimalPlan, fixtureChapterReview, fixtureDesignReview, chapterBody, lockMinimalDesign, minimalPlan } from '../../../packages/application/test/fixtures.ts';
 import type { BookPlan } from '../../../novel-service-core/src/planning.ts';
 import { designReviewOverviewSchema, designReviewSummarySchema, qualityAuditDtoSchema } from 'novel-studio-contracts';
 
 const writer: ModelProvider = {
+  reviewChapterAsync: fixtureChapterReview,
   generateChapter: ({ chapterNumber }) => {
     const event = { eventType: 'character_state', subjectId: 'hero', predicate: 'power', value: chapterNumber, storyTime: chapterNumber, evidence: 'paragraph 1' };
     return { content: chapterBody(chapterNumber), proposedEvents: [event], observedEvents: [event] };
@@ -151,7 +152,7 @@ test('local API runs create -> generate -> check -> adopt -> outbox', async () =
     await lockDesign(repository, work.id);
     const readiness = await app.inject({ method: 'GET', url: `/works/${work.id}/chapters/1/readiness` });
     assert.equal(readiness.json().ready, true);
-    assert.deepEqual(readiness.json().requiredChecks, ['deterministic_rules', 'canon_consistency', 'observed_events', 'chapter_length']);
+    assert.deepEqual(readiness.json().requiredChecks, ['deterministic_rules', 'canon_consistency', 'observed_events', 'chapter_length', 'chapter_content_review']);
 
     const generated = await app.inject({ method: 'POST', url: `/works/${work.id}/chapters/1/generate`, payload: { runId: 'api-run-1' } });
     assert.equal(generated.statusCode, 201);
@@ -169,8 +170,8 @@ test('local API runs create -> generate -> check -> adopt -> outbox', async () =
 
     const checked = await app.inject({ method: 'POST', url: `/works/${work.id}/candidates/${candidate.id}/check` });
     assert.equal(checked.statusCode, 200);
-    assert.ok(checked.json().candidate.checks.every((check: { status: string; policyVersion: string }) => check.status === 'passed' && check.policyVersion === 'chapter-policy-v2'));
-    assert.equal(checked.json().candidate.checks.length, 4);
+    assert.ok(checked.json().candidate.checks.every((check: { status: string; policyVersion: string }) => check.status === 'passed' && check.policyVersion === 'chapter-policy-v3'));
+    assert.equal(checked.json().candidate.checks.length, 5);
 
     const adopted = await app.inject({ method: 'POST', url: `/works/${work.id}/candidates/${candidate.id}/adopt`, payload: { expectedStateRevision: 0 } });
     assert.equal(adopted.statusCode, 200);
@@ -182,7 +183,7 @@ test('local API runs create -> generate -> check -> adopt -> outbox', async () =
     assert.equal(history.statusCode, 200);
     assert.equal(history.json().events.length, 1);
     assert.equal(history.json().quality.contextManifest.chapterNumber, 1);
-    assert.equal(history.json().quality.checkCoverage.passed, 4);
+    assert.equal(history.json().quality.checkCoverage.passed, 5);
     assert.equal(history.json().quality.candidate.status, 'adopted');
   } finally {
     await app.close();
@@ -268,7 +269,7 @@ test('local API rejects adoption when the state revision is stale', async () => 
 test('state API exposes chapter-scoped character knowledge', async () => {
   const event = { eventType: 'knowledge_belief', subjectId: 'hero', predicate: 'rival_identity', value: { subjectId: 'rival', belief: '对手来自北陆' }, evidence: '正文揭示身份' };
   const repository = new InMemoryWorkRepository();
-  const { app } = createApiServer({ repository, provider: { generateChapter: () => ({ content: `认知变化 ${chapterBody(1)}`, proposedEvents: [event], observedEvents: [event] }) } });
+  const { app } = createApiServer({ repository, provider: { reviewChapterAsync: fixtureChapterReview, generateChapter: () => ({ content: `认知变化 ${chapterBody(1)}`, proposedEvents: [event], observedEvents: [event] }) } });
   try {
     const work = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('认知复查') })).json();
     await lockDesign(repository, work.id);
@@ -368,6 +369,7 @@ test('design API saves and locks the world pack before the story bible', async (
   const { app } = createApiServer({
     repository: new InMemoryWorkRepository(),
     provider: {
+      reviewChapterAsync: fixtureChapterReview,
       generateChapter: ({ chapterNumber }) => {
         const events: Array<{ eventType: string; subjectId: string; predicate: string; value: unknown }> = [{ eventType: 'character_state', subjectId: 'hero', predicate: 'power', value: chapterNumber }];
         if (chapterNumber === 10) events.push(
@@ -580,7 +582,7 @@ test('100-chapter milestone endpoint starts from locked design and reaches a fin
   const { app } = createApiServer({
     repository: new InMemoryWorkRepository(),
     allowBatchRuns: true,
-    provider: { generateChapter: ({ chapterNumber }) => { const events = milestoneChapterEvents(chapterNumber); return { content: chapterBody(chapterNumber), proposedEvents: events, observedEvents: events }; } },
+    provider: { reviewChapterAsync: fixtureChapterReview, generateChapter: ({ chapterNumber }) => { const events = milestoneChapterEvents(chapterNumber); return { content: chapterBody(chapterNumber), proposedEvents: events, observedEvents: events }; } },
     designProvider: { reviewDesignContent: async (input) => {
       const result = fixtureDesignReview(input);
       if (requireRevision) result.checks[0] = { ...result.checks[0], verdict: 'revise', explanation: '测试复评发现当前设计有冲突', revisionAdvice: '先修订再复评' };
@@ -645,7 +647,7 @@ test('450-chapter expansion resumes after the first hundred chapters', async () 
   const { app } = createApiServer({
     repository: new InMemoryWorkRepository(),
     allowBatchRuns: true,
-    provider: { generateChapter: ({ chapterNumber }) => { const events = milestoneChapterEvents(chapterNumber); return { content: chapterBody(chapterNumber), proposedEvents: events, observedEvents: events }; } },
+    provider: { reviewChapterAsync: fixtureChapterReview, generateChapter: ({ chapterNumber }) => { const events = milestoneChapterEvents(chapterNumber); return { content: chapterBody(chapterNumber), proposedEvents: events, observedEvents: events }; } },
     designProvider: {
       reviewDesignContent: async (input) => fixtureDesignReview(input),
       generateWorldPack: async () => design.world,
@@ -706,6 +708,7 @@ test('450-chapter expansion resumes after the first hundred chapters', async () 
 
 test('API rulings clear only overridable checks and run controls report stable errors', async () => {
   const shortWriter: ModelProvider = {
+    reviewChapterAsync: fixtureChapterReview,
     generateChapter: ({ chapterNumber }) => {
       const event = { eventType: 'character_state', subjectId: 'hero', predicate: 'power', value: chapterNumber, storyTime: chapterNumber, evidence: 'paragraph 1' };
       return { content: `短章 ${chapterNumber}`, proposedEvents: [event], observedEvents: [event] };

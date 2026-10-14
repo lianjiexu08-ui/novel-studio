@@ -1,6 +1,7 @@
 import { createDesignReviewRun, designReviewStageInput, acceptDesignReviewStage, completeDesignReviewRun, type DesignReviewRun } from '../../../novel-service-core/src/design-review-run.ts';
 import { designReviewHash, designReviewOverview, requiresDesignContentReview, designReviewInput, recordDesignReview, DesignReviewError, type DesignReviewInput, type DesignReviewResult, type DesignReviewArea, type DesignContentReview } from '../../../novel-service-core/src/design-review.ts';
 import { randomUUID } from 'node:crypto';
+import { chapterReviewChecker, chapterReviewInput, chapterReviewStatus, validateChapterReview, type ChapterReviewRecord } from '../../../novel-service-core/src/chapter-review.ts';
 import { addUsage, AdoptionBlocked, generationReadiness, NovelService, ReadinessError, StaleCandidateError, usageOfError, Work } from '../../../novel-service-core/src/core.ts';
 import type {
   CandidateChecker, ChapterCandidate, ChapterVersion, CheckPolicy, CheckRuling, Checkpoint, ContextManifest, CreativeCovenant, GeneratedChapter, ManuscriptRevision, ModelProvider, ReadinessBlocker,
@@ -777,14 +778,18 @@ export class ChapterWorkflow {
           if (committed.stop) return committed.checkpoint;
           candidateId = committed.candidateId;
         }
-        await this.repository.transaction(workId, ({ work }) => {
+        await this.check(workId, candidateId!, checkers, { runId, token });
+        const stopped = await this.repository.transaction(workId, ({ work }) => {
           this.service.works.set(work.id, work);
           const checkpoint = this.holdLease(work, runId, token);
-          this.service.runChecks(workId, candidateId!, checkers);
+          if (checkpoint.control) return this.stopRun(checkpoint);
           checkpoint.phase = 'checked';
+          return undefined;
         });
+        if (stopped) return stopped;
         const finished = await this.repository.transaction(workId, (transaction) => {
           const checkpoint = this.holdLease(transaction.work, runId, token);
+          if (checkpoint.control) return this.stopRun(checkpoint);
           this.adoptInTransaction(transaction, candidateId!);
           checkpoint.nextChapter = step.chapter + 1;
           checkpoint.phase = 'adopted';
@@ -852,10 +857,66 @@ export class ChapterWorkflow {
     });
   }
 
-  async check(workId: string, candidateId: string, checkers: CandidateChecker[]): Promise<void> {
-    await this.repository.transaction(workId, ({ work }) => {
+  async check(workId: string, candidateId: string, checkers: CandidateChecker[], lease?: { runId: string; token: string }): Promise<void> {
+    const guard = (work: Work) => {
+      if (lease) this.holdLease(work, lease.runId, lease.token);
+      else if (this.liveLeaseHolder(work)) throw new RunInProgressError('请先暂停自动运行，再手动复查候选');
+    };
+    const requiresReview = this.checkPolicy?.required.includes(chapterReviewChecker);
+    const prepared = await this.repository.transaction(workId, ({ work }) => {
+      guard(work);
       this.service.works.set(work.id, work);
-      this.service.runChecks(workId, candidateId, checkers);
+      this.service.runChecks(workId, candidateId, checkers.filter(c => c.name !== chapterReviewChecker));
+      if (!requiresReview) return undefined;
+      const candidate = work.candidates.get(candidateId)!;
+      const input = chapterReviewInput(work, candidate);
+      this.service.runChecks(workId, candidateId, [{ name: chapterReviewChecker, check: () => ({
+        checker: chapterReviewChecker, status: 'unavailable', candidateId, checkedAt: new Date().toISOString(),
+        message: '独立正文评审正在进行，尚不能采纳', chapterReview: { inputHash: input.inputHash },
+      }) }]);
+      return { input, pendingId: candidate.checks.find(c => c.checker === chapterReviewChecker)!.id };
+    });
+    if (!prepared) return;
+    let record: ChapterReviewRecord = { inputHash: prepared.input.inputHash };
+    let renewal = Promise.resolve();
+    let leaseError: unknown;
+    const timer = lease ? setInterval(() => {
+      renewal = renewal.then(async () => {
+        await this.repository.transaction(workId, ({ work }) => { guard(work); });
+      }).catch(error => { leaseError = error; });
+    }, Math.max(10, Math.floor(this.leaseMs / 3))) : undefined;
+    timer?.unref();
+    try {
+      if (!this.provider.reviewChapterAsync) throw new Error('当前模型未配置独立正文评审');
+      const response = await this.provider.reviewChapterAsync(prepared.input);
+      record.usage = response.usage;
+      record = { ...record, result: validateChapterReview(response, prepared.input), usage: response.usage };
+    } catch (error) {
+      record.error = error instanceof Error ? error.message : String(error);
+      record.usage = usageOfError(error) ?? record.usage;
+    } finally {
+      if (timer) clearInterval(timer);
+      await renewal;
+    }
+    if (leaseError) throw leaseError;
+    await this.repository.transaction(workId, ({ work }) => {
+      guard(work);
+      this.service.works.set(work.id, work);
+      const candidate = work.candidates.get(candidateId)!;
+      const stale = chapterReviewInput(work, candidate).inputHash !== prepared.input.inputHash;
+      const superseded = candidate.checks.find(c => c.checker === chapterReviewChecker)?.id !== prepared.pendingId;
+      // A late concurrent response stays in history but cannot authorize adoption.
+      this.service.runChecks(workId, candidateId, [{ name: chapterReviewChecker, check: () => ({
+        checker: chapterReviewChecker, candidateId, checkedAt: new Date().toISOString(), chapterReview: record,
+        status: stale || superseded || record.error ? 'unavailable' : chapterReviewStatus(record.result!),
+        message: superseded ? '存在更新的评审请求，本次迟到报告仅供参考，请重新复查'
+          : stale ? '评审期间正文、设计或事实已变化，本次报告已过期'
+          : record.error ? `正文评审未完成：${record.error}` : record.result!.summary,
+      }) }]);
+      if (lease) {
+        const checkpoint = this.holdLease(work, lease.runId, lease.token);
+        checkpoint.usage = addUsage(checkpoint.usage, record.usage);
+      }
     });
   }
 

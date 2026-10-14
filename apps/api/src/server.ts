@@ -186,8 +186,8 @@ const chapterCheckers = [passChecker, canonConsistencyChecker, observedEventsChe
  * others guard hard constraints and the independent extraction.
  */
 export const chapterCheckPolicy: CheckPolicy = {
-  version: 'chapter-policy-v2',
-  required: chapterCheckers.map((checker) => checker.name),
+  version: 'chapter-policy-v3',
+  required: [...chapterCheckers.map((checker) => checker.name), 'chapter_content_review'],
   overridable: ['chapter_length'],
 };
 

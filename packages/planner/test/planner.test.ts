@@ -5,8 +5,34 @@ import { JsonBookPlanner, JsonDesignPlanner, OpenAICompatibleChapterProvider, Pl
 import { minimalPlan, minimalStoryBible, minimalWorldPack } from '../../application/test/fixtures.ts';
 import { contextManifestFor, emptyUsage, knowledgeAt, NovelService } from '../../../novel-service-core/src/core.ts';
 import { createEmptyWorldPack } from '../../../novel-service-core/src/world.ts';
+import { ChapterWorkflow, InMemoryWorkRepository } from '../../application/src/index.ts';
+import { chapterReviewInput } from '../../../novel-service-core/src/chapter-review.ts';
+import { createReadyWork, fixtureChapterReview } from '../../application/test/fixtures.ts';
 
 const covenant = { entryMode: 'expand' as const, genre: 'xuanhuan' as const, substyle: '宗门成长', audience: '长篇玄幻读者', hook: '以代价换力量', mustKeep: '', lockedNotes: '', avoid: '', targetLength: '百万字', chapterWords: 2200, updateCadence: '日更' };
+
+test('chapter reviewer repairs fabricated citations and refuses repeated invalid verdicts', async () => {
+  const repository = new InMemoryWorkRepository();
+  const workflow = new ChapterWorkflow(repository, { generateChapter: () => ({ content: '他按住伤口，放弃追击，先带同伴回城。', proposedEvents: [] }) });
+  const work = await createReadyWork(workflow, '正文评审');
+  const candidate = await workflow.generate(work.id, 1, 'review');
+  const input = chapterReviewInput((await repository.get(work.id))!, candidate);
+  const valid = await fixtureChapterReview(input);
+  const broken = structuredClone(valid);
+  broken.checks[0].evidence[0].quote = '凭空捏造的证据';
+  for (const repairs of [true, false]) {
+    let calls = 0;
+    const provider = new OpenAICompatibleChapterProvider('', '', '', 10, 5000, true, { completeWithUsage: async request => {
+      assert.equal(request.role, 'reviewing');
+      calls++;
+      if (calls === 2) assert.equal(JSON.parse(request.user).previousOutput, JSON.stringify(broken));
+      return { text: JSON.stringify(calls === 2 && repairs ? valid : broken), usage: { ...emptyUsage(), calls: 1 } };
+    } });
+    if (repairs) assert.equal((await provider.reviewChapterAsync(input)).usage?.calls, 2);
+    else await assert.rejects(() => provider.reviewChapterAsync(input), error => error instanceof PlanningParseError && (error as any).usage.calls === 2);
+    assert.equal(calls, 2);
+  }
+});
 
 test('writer receives current knowledge plans and prior adopted beliefs without inventing learned facts', async () => {
   let sent: Record<string, any> = {};

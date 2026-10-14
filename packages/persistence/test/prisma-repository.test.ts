@@ -1,5 +1,7 @@
 import { designReviewInput, designReviewOverview, recordDesignReview } from '../../../novel-service-core/src/design-review.ts';
 import { fixtureDesignReview } from '../../application/test/fixtures.ts';
+import { fixtureChapterReview, createReadyWork } from '../../application/test/fixtures.ts';
+import { chapterReviewChecker } from '../../../novel-service-core/src/chapter-review.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
@@ -24,6 +26,37 @@ function createDatabase(): string {
   });
   return databaseUrl;
 }
+
+test('independent chapter reports, failures and citations survive reload and still gate adoption', async t => {
+  const databaseUrl = createDatabase();
+  process.env.DATABASE_URL = databaseUrl;
+  const { PrismaWorkRepository } = await import('../src/prisma-repository.ts');
+  const { ChapterWorkflow } = await import('../../application/src/index.ts');
+  const { passChecker, QualityGateError } = await import('../../../novel-service-core/src/core.ts');
+  const first = new PrismaWorkRepository();
+  const second = new PrismaWorkRepository();
+  t.after(async () => { await first.disconnect(); await second.disconnect(); rmSync(databaseUrl.slice(5), { force: true }); });
+  const policy = { version: 'chapter-review-test', required: ['deterministic_rules', chapterReviewChecker] };
+  let failing = true;
+  const provider: ModelProvider = {
+    generateChapter: () => ({ content: '他按住伤口，放弃追击，先带同伴回城。', proposedEvents: [], observedEvents: [] }),
+    reviewChapterAsync: async input => { if (failing) throw new Error('测试评审失败'); return fixtureChapterReview(input); },
+  };
+  const workflow = new ChapterWorkflow(first, provider, undefined, { checkPolicy: policy });
+  const work = await createReadyWork(workflow, '正文评审持久化');
+  const candidate = await workflow.generate(work.id, 1, 'review');
+  await workflow.check(work.id, candidate.id, [passChecker]);
+  const restoredWorkflow = new ChapterWorkflow(second, provider, undefined, { checkPolicy: policy });
+  await assert.rejects(() => restoredWorkflow.adopt(work.id, candidate.id, 0), QualityGateError);
+  failing = false;
+  await restoredWorkflow.check(work.id, candidate.id, [passChecker]);
+  const reloaded = (await first.get(work.id))!;
+  const saved = reloaded.candidates.get(candidate.id)!;
+  assert.ok(saved.checkRuns.some(c => c.chapterReview?.error === '测试评审失败'));
+  assert.equal(saved.checks.find(c => c.checker === chapterReviewChecker)?.chapterReview?.result?.checks.length, 6);
+  assert.equal(saved.checks.find(c => c.checker === chapterReviewChecker)?.chapterReview?.result?.checks[0].evidence[0].sourceId, 'draft');
+  assert.equal((await workflow.adopt(work.id, candidate.id, 0)).version.chapterNumber, 1);
+});
 
 test('frozen manuscript metadata and exact design references survive database reload', async t => {
   const databaseUrl = createDatabase();

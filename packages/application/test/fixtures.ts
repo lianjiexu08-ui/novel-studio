@@ -1,3 +1,4 @@
+import type { ChapterReviewInput, ChapterReviewResult } from '../../../novel-service-core/src/chapter-review.ts';
 import type { DesignReviewInput, DesignReviewResult } from '../../../novel-service-core/src/design-review.ts';
 import { defaultCovenant } from '../../../novel-service-core/src/core.ts';
 import type { CreativeCovenant, Work } from '../../../novel-service-core/src/core.ts';
@@ -104,4 +105,12 @@ export async function createReadyWork(workflow: ChapterWorkflow, title: string, 
 export function fixtureDesignReview(input: DesignReviewInput): DesignReviewResult {
   const source = input.sources.find((item) => item.id.startsWith('world/axioms/')) ?? input.sources[0];
   return { summary: '测试夹具的评审结果', checks: Object.keys(input.rubric).map((criterion) => ({ criterion, verdict: 'pass', explanation: '测试模型对该标准的固定结论', evidence: [{ sourceId: source.id, quote: source.text.slice(0, 500) }], revisionAdvice: '' })) };
+}
+
+/** Test-only reviewer; never used by production providers. */
+export async function fixtureChapterReview(input: ChapterReviewInput): Promise<ChapterReviewResult> {
+  return { inputHash: input.inputHash, summary: '测试正文评审通过', checks: Object.keys(input.rubric).map(criterion => ({
+    criterion: criterion as ChapterReviewResult['checks'][number]['criterion'], verdict: 'pass', explanation: '测试来源支持判断', revisionAdvice: '',
+    evidence: ['draft', 'world', 'bible', 'brief'].map(id => ({ sourceId: id, quote: input.sources.find(s => s.id === id)!.text.slice(0, 16) })),
+  })) };
 }

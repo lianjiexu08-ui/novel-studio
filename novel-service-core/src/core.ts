@@ -1,4 +1,5 @@
 import type { DesignReviewRun } from './design-review-run.ts';
+import { chapterReviewChecker, chapterReviewInput, chapterReviewStatus, validateChapterReview, type ChapterReviewInput, type ChapterReviewResult, type ChapterReviewRecord } from './chapter-review.ts';
 import { designReviewOverview, requiresDesignContentReview, type DesignContentReview } from './design-review.ts';
 import { createHash, randomUUID } from 'node:crypto';
 import { chapterGenerationGate, validateStoryBible, validateWorldPack } from './world.ts';
@@ -109,6 +110,7 @@ export function usageOfError(error: unknown): RunUsage | undefined {
 }
 
 export interface ModelProvider {
+  reviewChapterAsync?(input: ChapterReviewInput): Promise<ChapterReviewResult>;
   /** Placeholder writers declare themselves; their output is isolated from formal adoption. */
   demo?: boolean;
   generateChapter(input: { work: Work; chapterNumber: number; context: ContextManifest }): GeneratedChapter;
@@ -117,6 +119,7 @@ export interface ModelProvider {
 }
 
 export interface CheckResult {
+  chapterReview?: ChapterReviewRecord;
   checker: string;
   status: CheckStatus;
   message: string;
@@ -889,7 +892,7 @@ export class NovelService {
     if (candidate.status === 'adopted' && candidate.adoptedVersionId) return work.versions.get(candidate.adoptedVersionId)!;
     if (candidate.origin === 'demo') throw new DemoCandidateError('demo candidates cannot be adopted into the formal story');
     if (candidate.contentHash !== contentHashOf(candidate.content)) throw new AdoptionBlocked('candidate content does not match its recorded hash');
-    this.qualityGate(candidate);
+    this.qualityGate(candidate, work);
     if (candidate.generatedAgainstRevision !== work.stateRevision || candidate.generatedAgainstConstraintRevision !== work.constraintRevision) throw new StaleCandidateError('candidate context is stale; regenerate or re-check');
     if (candidate.generatedAgainstWorldPackRevision !== work.worldPack?.revision || candidate.generatedAgainstStoryBibleRevision !== work.storyBible?.revision) throw new StaleCandidateError('candidate design inputs are stale; regenerate or re-check');
     if (work.activePlanId && candidate.planRevisionId !== work.activePlanId) throw new StaleCandidateError('candidate was written against a different book plan; regenerate under the approved plan');
@@ -1045,11 +1048,22 @@ export class NovelService {
     }
   }
 
-  private qualityGate(candidate: ChapterCandidate): void {
+  private qualityGate(candidate: ChapterCandidate, work: Work): void {
     if (!candidate.checks.length) throw new QualityGateError('no quality checks have completed');
     const current = candidate.checks.filter((result) => !result.contentHash || result.contentHash === candidate.contentHash);
     const missing = (this.checkPolicy?.required ?? []).filter((name) => !current.some((result) => result.checker === name));
     if (missing.length) throw new QualityGateError(`quality gate blocked: required checks missing: ${missing.join(', ')}`);
+    if (this.checkPolicy?.required.includes(chapterReviewChecker)) {
+      const report = current.find(c => c.checker === chapterReviewChecker)?.chapterReview;
+      const input = chapterReviewInput(work, candidate);
+      try {
+        if (!report?.result || report.inputHash !== input.inputHash || chapterReviewStatus(validateChapterReview(report.result, input)) !== 'passed') {
+          throw new Error('missing, stale or non-passing review');
+        }
+      } catch {
+        throw new QualityGateError('正文内容评审缺失、已过期或未通过，请重新评审当前候选与设计');
+      }
+    }
     const overridable = new Set(this.checkPolicy?.overridable ?? []);
     const ruledAway = (result: CheckResult) => overridable.has(result.checker)
       && (result.status === 'failed' || result.status === 'inconclusive')
