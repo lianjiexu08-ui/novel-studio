@@ -122,7 +122,7 @@ export const api = {
   designContentReviews: (workId: string, planId?: string) => call<DesignReviewOverviewDto>(`/works/${workId}/design/content-reviews${planId ? `?planId=${encodeURIComponent(planId)}` : ''}`),
   startDesignReview: (workId: string, area: DesignReviewAreaDto, planId?: string) => call<{ runId: string }>(`/works/${workId}/design/review-runs`, { method: 'POST', body: { area, planId } }),
   stepDesignReview: (workId: string, runId: string) => call<{ runId: string; status: string; completed: number; total: number; reportId?: string }>(`/works/${workId}/design/review-runs/${runId}/step`, { method: 'POST', body: {} }),
-  designReviewStage: (workId: string, runId: string, stageId: string) => call<DesignReviewStageDetail>(`/works/${workId}/design/review-runs/${runId}/stages/${stageId}`),
+  designReviewStage: (workId: string, runId: string, stageId: string) => call<DesignReviewStageDetail>(`/works/${workId}/design/review-runs/${runId}/stages/${encodeURIComponent(stageId)}`),
   reviewDesignContent: (workId: string, area: DesignReviewAreaDto, planId?: string) => call<{ report: DesignContentReviewDto }>(`/works/${workId}/design/content-reviews`, { method: 'POST', body: { area, planId } }),
   qualityAudit: (workId: string) => call<{ audit: QualityAuditDto }>(`/works/${workId}/quality-audit`),
   hotTopics: (query = '') => call<HotTopicsResponse>(`/topics/hot?q=${encodeURIComponent(query)}`),

@@ -950,6 +950,17 @@ test('browser review client sends objects to the real API and preserves the sele
     assert.equal(progress.status, 'completed');
     const firstReport = current.designContentReviews.get(progress.reportId)!;
     assert.equal(firstReport.scope.planRevisionId, proposal.id);
+    // Stage IDs are opaque path parameters. Dedicated follow-ups contain a
+    // slash; test the actual browser client against Fastify's route decoder.
+    const detailRun = structuredClone(current.designReviewRuns.get(runId)!);
+    detailRun.id += '-detail-fixture';
+    detailRun.stages[0].id = 'followup-batch-1/geography';
+    current.designReviewRuns.set(detailRun.id, detailRun);
+    const detail = await api.designReviewStage(work.id, detailRun.id, detailRun.stages[0].id);
+    assert.equal(detail.stage.id, 'followup-batch-1/geography');
+    assert.deepEqual(detail.stage.result, detailRun.stages[0].result);
+    assert.deepEqual(detail.input.sources, detailRun.input.sources);
+    assert.equal(calls, 1, 'reading a stage must not invoke a model');
     const { report } = await api.reviewDesignContent(work.id, 'power', proposal.id);
     assert.deepEqual(sent.at(-1), { area: 'power', planId: proposal.id });
     assert.equal(report.scope.planRevisionId, proposal.id);
