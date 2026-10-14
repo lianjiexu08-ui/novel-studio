@@ -32,6 +32,7 @@ for (const relative of packageDirs) {
 
 run('candidate-budget-audit', process.execPath, ['--test', 'scripts/check-lifespan-path.test.mjs'], root);
 run('design-review-audit', process.execPath, ['--experimental-strip-types', '--test', 'scripts/audit-design-reviews.test.mjs'], root);
+run('design-candidate-preflight', process.execPath, ['--experimental-strip-types', '--test', 'scripts/validate-design-candidate.test.mjs'], root);
 
 const spike = join(root, 'novel-service-spike');
 if (existsSync(join(spike, 'test_queue.mjs'))) run('novel-service-spike/node', process.execPath, ['--test', 'test_queue.mjs'], spike);

@@ -1,0 +1,115 @@
+{
+  "observedAt": "2026-10-14T23:03:29.978112+00:00",
+  "status": "full_contract_preflight_and_isolated_atomic_save_pass_not_acceptance",
+  "candidateFileSha256": "9667339be4be5b18d277e688340e719dadd00ddefcc635ab629ebd23b3959134",
+  "applicationRuntimeCommit": "2085f068f666499948bcfda91ee15f1cc13dbc6c",
+  "preflightSourceSha256": "80d12416a30f2fc8b973a7247b44132e67456c5442eb8d6a7e5ce4784dfd0e6a",
+  "database": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-backups/design62-v5-atomic-rehearsal.db",
+  "sourceOpenedReadOnly": true,
+  "productionWrites": false,
+  "proseGenerated": false,
+  "modelCalls": 0,
+  "fullThreeDocumentPreflightBeforeTransaction": true,
+  "retainedBlockers": 41,
+  "rollback": {
+    "querySteps": [
+      "update_project",
+      "insert_plan",
+      "rollback"
+    ],
+    "all18TableHashesUnchanged": true,
+    "expectedErrorCode": "P2003"
+  },
+  "success": {
+    "observedAt": "2026-10-14T23:02:29.846Z",
+    "status": "isolated_sqlite_rehearsal_not_acceptance",
+    "candidateFileSha256": "9667339be4be5b18d277e688340e719dadd00ddefcc635ab629ebd23b3959134",
+    "changedRecords": 7,
+    "patchReplayMatchesCandidate": true,
+    "persistedReadbackVerified": true,
+    "oldHistoryUnchanged": true,
+    "productionWrites": false,
+    "modelCalls": 0,
+    "proseGenerated": false,
+    "planId": "plan_764f178866434740b3d2bbb39c33e963",
+    "world": 32,
+    "bible": 62,
+    "plan": 62,
+    "retainedBlockers": 41,
+    "approvedPlanRevision": 10,
+    "oldRuns": 52,
+    "oldReports": 56,
+    "contentReview": {
+      "ready": false,
+      "inputHash": "ab6c317cd3deefe510c3ba6681905141e0fb89d82d895f3c4003238d3c1d8428",
+      "areas": [
+        {
+          "area": "world",
+          "status": "outdated",
+          "reportId": "design_review_c52c920a-0122-4728-885c-6b065ce6a197"
+        },
+        {
+          "area": "power",
+          "status": "outdated",
+          "reportId": "design_review_2e46b414-47d6-4f2c-aaaf-9e39cf2b9fb8"
+        },
+        {
+          "area": "characters",
+          "status": "outdated",
+          "reportId": "design_review_2ccab3c6-0b0a-4b8c-a6ec-ae13f50d3234"
+        },
+        {
+          "area": "story",
+          "status": "outdated",
+          "reportId": "design_review_506a4701-f858-4a60-9892-1b5457c4c12e"
+        }
+      ]
+    }
+  },
+  "changedTables": [
+    "PlanRevision",
+    "Project"
+  ],
+  "beforeTableHashes": {
+    "Chapter": "0a47a7c74f75020b0a5b4f0c5c45de6db21c1d39b3fc16b8f80dd0b964d9c8a1",
+    "ChapterBrief": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "ChapterCandidate": "0a8d4664f623a5891025e522c416e435fc590a58cb146ad7b8fc78f3b85d7a6d",
+    "ChapterVersion": "4710715c576837fddf3fbec6d4d7242d826a7e74977da14f61ccfa9fca9a7639",
+    "Character": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "CheckExecution": "6ebdd2e7c94c4dd5fa18d7cb5058eb97044c42a1d0b0f8859ffe2e4229509865",
+    "CheckRuling": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "ImpactRecord": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "ManuscriptRevision": "d68f97f1e72f46f19470c53cfd402dff02d0933f5a1751788fd796a47640b4b6",
+    "OutboxEvent": "3cf5149a59834fd1281e54c3431a06f99b7b493200680132a26dcd8f975d0fbd",
+    "PlanRealization": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "PlanRevision": "1c4a36cbc20b0db1d0160395f103f8a2dcb504080b46ce872295fe345a88f8eb",
+    "PlotNode": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "Project": "59d3e9f45b97b11b71a63ecca4e769387f7801141b39bd19fa408139820cf52c",
+    "Relationship": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "RunCheckpoint": "5e1cafa5dfb4cbf78ae321df296bfb18e8c9053951ad271491d89a77dd70a2a9",
+    "StoryEvent": "be4dac1a2da1e026b8f48d9f92a04b277732e0a87c340d4008d06bef47d4db7f",
+    "WorldRule": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "afterTableHashes": {
+    "Chapter": "0a47a7c74f75020b0a5b4f0c5c45de6db21c1d39b3fc16b8f80dd0b964d9c8a1",
+    "ChapterBrief": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "ChapterCandidate": "0a8d4664f623a5891025e522c416e435fc590a58cb146ad7b8fc78f3b85d7a6d",
+    "ChapterVersion": "4710715c576837fddf3fbec6d4d7242d826a7e74977da14f61ccfa9fca9a7639",
+    "Character": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "CheckExecution": "6ebdd2e7c94c4dd5fa18d7cb5058eb97044c42a1d0b0f8859ffe2e4229509865",
+    "CheckRuling": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "ImpactRecord": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "ManuscriptRevision": "d68f97f1e72f46f19470c53cfd402dff02d0933f5a1751788fd796a47640b4b6",
+    "OutboxEvent": "3cf5149a59834fd1281e54c3431a06f99b7b493200680132a26dcd8f975d0fbd",
+    "PlanRealization": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "PlanRevision": "7e22e90e7afe4bb3bf4f81c059600a7de02a541aad0d360762860da464c228d1",
+    "PlotNode": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "Project": "1de83e73dee84d670b279b5882e835fb3fb4855da2202f520417775df4380caa",
+    "Relationship": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "RunCheckpoint": "5e1cafa5dfb4cbf78ae321df296bfb18e8c9053951ad271491d89a77dd70a2a9",
+    "StoryEvent": "be4dac1a2da1e026b8f48d9f92a04b277732e0a87c340d4008d06bef47d4db7f",
+    "WorldRule": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "integrityCheck": "ok",
+  "limitation": "Unapplied candidate; never restore this rehearsal database to production. V4 model diagnostics remain bound to V4. V5 preserves the same text split into two schema-compliant list entries; formal reevaluation is still required."
+}
