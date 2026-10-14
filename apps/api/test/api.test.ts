@@ -638,16 +638,29 @@ test('100-chapter milestone endpoint starts from locked design and reaches a fin
 test('450-chapter expansion resumes after the first hundred chapters', async () => {
   const design = milestoneDesign();
   let previousBibleForExpansion: unknown;
+  const openingPlan = minimalPlan(100, { volumeSize: 34, outlined: 100 });
+  const fullPlan = structuredClone(openingPlan);
+  fullPlan.targetChapterCount = 450; fullPlan.volumeCount = 10;
+  for (let order = 4; order <= 10; order += 1) fullPlan.volumes.push({ ...openingPlan.volumes[0], id: `vol-${order}`, order,
+    title: `第${order}卷`, startChapter: 101 + (order - 4) * 50, endChapter: 150 + (order - 4) * 50 });
+  fullPlan.chapters.push(...minimalPlan(450, { outlined: 450 }).chapters.slice(100)
+    .map(chapter => ({ ...chapter, volumeId: `vol-${4 + Math.floor((chapter.chapterNumber - 101) / 50)}` })));
   const fullBible = {
     ...design.bible,
     id: 'full-bible',
-    volumes: [1, 2, 3].map((order) => ({ ...design.bible.volumes[order - 1], plannedChapterCount: 150 })),
-    arcBeats: [...(design.bible.arcBeats ?? []), ...[125, 175, 225, 275, 325, 375, 425].map((plannedChapter, index) => ({ id: `expansion-beat-${index + 1}`, arcId: 'arc', characterId: 'hero', kind: 'choice' as const, plannedChapter, expectedChange: `扩展主线推进 ${index + 1}` }))],
+    volumes: [...design.bible.volumes, ...Array.from({ length: 7 }, (_, index) => ({ ...design.bible.volumes[0],
+      id: `vol-${index + 4}`, order: index + 4, title: `第${index + 4}卷`, plannedChapterCount: 50 }))],
+    arcBeats: [...(design.bible.arcBeats ?? []), ...Array.from({ length: 7 }, (_, volume) => [110, 125, 145].map(chapter => chapter + volume * 50)).flat()
+      .map((plannedChapter, index) => ({ id: `expansion-beat-${index + 1}`, arcId: 'arc', characterId: 'hero', kind: 'choice' as const, plannedChapter, expectedChange: `扩展主线推进 ${index + 1}` }))],
   };
   const { app } = createApiServer({
     repository: new InMemoryWorkRepository(),
     allowBatchRuns: true,
-    provider: { reviewChapterAsync: fixtureChapterReview, generateChapter: ({ chapterNumber }) => { const events = milestoneChapterEvents(chapterNumber); return { content: chapterBody(chapterNumber), proposedEvents: events, observedEvents: events }; } },
+    provider: { reviewChapterAsync: fixtureChapterReview, generateChapter: ({ chapterNumber }) => {
+      const events = milestoneChapterEvents(chapterNumber);
+      if (chapterNumber >= 150 && chapterNumber % 50 === 0) events.push({ eventType: 'volume_progress', subjectId: `vol-${chapterNumber / 50 + 1}`, predicate: 'status', value: { status: 'resolved' }, evidence: '新增卷完成' });
+      return { content: chapterBody(chapterNumber), proposedEvents: events, observedEvents: events };
+    } },
     designProvider: {
       reviewDesignContent: async (input) => fixtureDesignReview(input),
       generateWorldPack: async () => design.world,
@@ -660,7 +673,7 @@ test('450-chapter expansion resumes after the first hundred chapters', async () 
   try {
     const work = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('扩展百万字') })).json();
     await prepareMilestoneDesign(app.inject.bind(app), work.id);
-    await approvePlanViaApi(app.inject.bind(app), work.id, minimalPlan(100, { volumeSize: 34, outlined: 100 }));
+    await approvePlanViaApi(app.inject.bind(app), work.id, openingPlan);
     const first = await app.inject({ method: 'POST', url: `/works/${work.id}/milestones/100/start`, payload: {} });
     assert.equal(first.statusCode, 202, first.body);
     for (let attempt = 0; attempt < 60; attempt += 1) {
@@ -677,14 +690,16 @@ test('450-chapter expansion resumes after the first hundred chapters', async () 
     const unchanged = (await app.inject({ method: 'GET', url: `/works/${work.id}/design` })).json();
     assert.equal(unchanged.storyBible.volumes.reduce((sum: number, volume: { plannedChapterCount: number }) => sum + volume.plannedChapterCount, 0), 100);
     await app.inject({ method: 'PUT', url: `/works/${work.id}/story-bible`, payload: fullBible });
-    await app.inject({ method: 'POST', url: `/works/${work.id}/story-bible/review`, payload: {} });
-    await app.inject({ method: 'POST', url: `/works/${work.id}/story-bible/lock`, payload: {} });
+    const expansionReviewed = await app.inject({ method: 'POST', url: `/works/${work.id}/story-bible/review`, payload: {} });
+    assert.equal(expansionReviewed.statusCode, 200, expansionReviewed.body);
+    const expansionLocked = await app.inject({ method: 'POST', url: `/works/${work.id}/story-bible/lock`, payload: {} });
+    assert.equal(expansionLocked.statusCode, 200, expansionLocked.body);
     const frozen = await app.inject({ method: 'GET', url: `/works/${work.id}/manuscripts/${firstManuscript.json().manuscript.id}/export` });
     assert.equal(frozen.statusCode, 200);
     assert.equal(frozen.json().storyBible.revision, firstManuscript.json().manuscript.storyBibleRevision);
     assert.equal(frozen.json().storyBible.volumes.reduce((sum: number, volume: { plannedChapterCount: number }) => sum + volume.plannedChapterCount, 0), 100);
     assert.equal(frozen.json().closureCoverage.ready, true);
-    await approvePlanViaApi(app.inject.bind(app), work.id, minimalPlan(450, { volumeSize: 150, outlined: 450 }));
+    await approvePlanViaApi(app.inject.bind(app), work.id, fullPlan);
     const started = await app.inject({ method: 'POST', url: `/works/${work.id}/milestones/450/start`, payload: {} });
     assert.equal(started.statusCode, 202, started.body);
     assert.equal(started.json().milestone.targetChapter, 450);
@@ -698,8 +713,10 @@ test('450-chapter expansion resumes after the first hundred chapters', async () 
     assert.equal(status.json().checkpoints.find((checkpoint: { runId: string }) => checkpoint.runId === started.json().runId).nextChapter, 451);
     assert.equal((await app.inject({ method: 'GET', url: `/works/${work.id}/design` })).json().storyBible.volumes.reduce((sum, volume) => sum + volume.plannedChapterCount, 0), 450);
     const finalManuscript = await app.inject({ method: 'POST', url: `/works/${work.id}/manuscripts/finalize`, payload: {} });
-    assert.equal(finalManuscript.statusCode, 200);
+    assert.equal(finalManuscript.statusCode, 200, finalManuscript.body);
     assert.equal(finalManuscript.json().manuscript.chapterCount, 450);
+    assert.deepEqual(finalManuscript.json().manuscript.chapterVersionIds.slice(0, 100), firstManuscript.json().manuscript.chapterVersionIds,
+      'compatible expansion reuses the exact reviewed first hundred versions');
     assert.ok(finalManuscript.json().manuscript.targetWordCount > finalManuscript.json().manuscript.wordCount);
   } finally {
     await app.close();

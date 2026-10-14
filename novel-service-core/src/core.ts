@@ -2,9 +2,10 @@ import type { DesignReviewRun } from './design-review-run.ts';
 import { chapterReviewChecker, chapterReviewInput, chapterReviewStatus, validateChapterReview, type ChapterReviewInput, type ChapterReviewOptions, type ChapterReviewResult, type ChapterReviewRecord } from './chapter-review.ts';
 import { designReviewOverview, requiresDesignContentReview, type DesignContentReview } from './design-review.ts';
 import { createHash, randomUUID } from 'node:crypto';
+import { isDeepStrictEqual } from 'node:util';
 import { chapterGenerationGate, validateStoryBible, validateWorldPack } from './world.ts';
 import type { StoryBible, WorldPack } from './world.ts';
-import { activePlan, effectiveBrief, planBlockers, planDesignIssues } from './planning.ts';
+import { activePlan, effectiveBrief, planBlockers, planContentHash, planDesignIssues } from './planning.ts';
 import type { ChapterBrief, PlanRevision } from './planning.ts';
 
 const id = (prefix: string) => `${prefix}_${randomUUID().replaceAll('-', '')}`;
@@ -737,6 +738,7 @@ export class NovelService {
     if (requiresDesignContentReview(work) && !designReviewOverview(work).ready) {
       throw new AdoptionBlocked('manuscript content review gate blocked: 当前设计尚未通过全部分项内容评审');
     }
+    this.verifyManuscriptChapterSources(work, selected, plan);
     const wordCount = selected.reduce((sum, version) => sum + version.content.trim().length, 0);
     const targetWordCount = work.covenant.chapterWords * expectedChapterCount;
     const worldDesign = work.recordDesignRevision('world_pack', work.worldPack);
@@ -757,6 +759,44 @@ export class NovelService {
     };
     work.manuscripts.set(manuscript.id, manuscript);
     return manuscript;
+  }
+
+  private verifyManuscriptChapterSources(work: Work, versions: ChapterVersion[], plan: PlanRevision): void {
+    const compatiblePlans = new Map<string, boolean>();
+    const compatibleBibles = new Map<number, boolean>();
+    for (const version of versions) {
+      const reject: (reason: string) => never = reason => { throw new AdoptionBlocked(`manuscript chapter provenance gate blocked: 第${version.chapterNumber}章${reason}，请修复或重新审查正文来源`); };
+      const candidate = version.sourceCandidateId ? work.candidates.get(version.sourceCandidateId) : undefined;
+      if (!candidate || candidate.workId !== work.id || candidate.chapterNumber !== version.chapterNumber
+        || candidate.status !== 'adopted' || candidate.adoptedVersionId !== version.id || candidate.origin !== 'model') reject('缺少对应的已采纳正式候选');
+      if (candidate.content !== version.content || candidate.contentHash !== contentHashOf(version.content)) reject('正文与采纳时的候选不一致');
+      if (candidate.generatedAgainstWorldPackRevision !== work.worldPack!.revision) reject('依据的世界观已过期');
+      const bibleRevision = candidate.generatedAgainstStoryBibleRevision;
+      if (bibleRevision === undefined) reject('缺少来源设定集版本');
+      if (!compatibleBibles.has(bibleRevision)) {
+        const previous = designSnapshotFor(work, 'story_bible', bibleRevision) as StoryBible | undefined;
+        compatibleBibles.set(bibleRevision, Boolean(previous && compatibleBibleExtension(previous, work.storyBible!)));
+      }
+      if (!compatibleBibles.get(bibleRevision)) reject('来源设定集与当前设计不兼容');
+      const source = candidate.planRevisionId ? work.plans.get(candidate.planRevisionId) : undefined;
+      if (!source || source.workId !== work.id || !['approved', 'superseded'].includes(source.status)
+        || source.worldPackRevision !== work.worldPack!.revision || source.storyBibleRevision !== bibleRevision
+        || !source.plan.chapters.some(chapter => chapter.chapterNumber === version.chapterNumber)) reject('缺少匹配设计版本的已批准来源章纲');
+      if (!compatiblePlans.has(source.id)) {
+        // Additional volumes/outlines cannot rewrite the original horizon.
+        const originalNumbers = new Set(source.plan.chapters.map(chapter => chapter.chapterNumber));
+        const originalVolumes = new Set(source.plan.volumes.map(volume => volume.id));
+        const currentProjection = { ...plan.plan, targetChapterCount: source.plan.targetChapterCount, volumeCount: source.plan.volumeCount,
+          volumes: plan.plan.volumes.filter(volume => originalVolumes.has(volume.id)),
+          milestones: plan.plan.milestones.filter(milestone => milestone.startChapter <= source.plan.targetChapterCount),
+          chapters: plan.plan.chapters.filter(chapter => originalNumbers.has(chapter.chapterNumber)) };
+        compatiblePlans.set(source.id, plan.plan.targetChapterCount >= source.plan.targetChapterCount
+          && plan.plan.volumes.filter(volume => !originalVolumes.has(volume.id)).every(volume => volume.startChapter > source.plan.targetChapterCount)
+          && source.contentHash === planContentHash(source.plan)
+          && plan.contentHash === planContentHash(plan.plan) && source.contentHash === planContentHash(currentProjection));
+      }
+      if (!compatiblePlans.get(source.id)) reject('来源章纲或全书蓝图与当前计划不兼容');
+    }
   }
 
   addRelationship(workId: string, input: Omit<Relationship, 'id'>): Relationship {
@@ -1093,6 +1133,25 @@ export function designSnapshotFor(work: Work, kind: DesignRevisionKind, revision
     .sort((a, b) => b.createdAt.localeCompare(a.createdAt))[0];
   const current = kind === 'world_pack' ? work.worldPack : work.storyBible;
   return entry?.snapshot ?? (current?.revision === revision ? current : undefined);
+}
+
+/** Only explicitly future additions can reuse prose reviewed under an older bible. */
+function compatibleBibleExtension(previous: StoryBible, current: StoryBible): boolean {
+  const horizon = previous.volumes.reduce((sum, volume) => sum + volume.plannedChapterCount, 0);
+  const previousBeats = new Set((previous.arcBeats ?? []).map(beat => beat.id));
+  const previousChapters = new Set((previous.chapterPlans ?? []).map(chapter => chapter.id));
+  if (current.volumes.length < previous.volumes.length
+    || (current.arcBeats ?? []).some(beat => !previousBeats.has(beat.id) && (beat.plannedChapter === undefined || beat.plannedChapter <= horizon))
+    || (current.chapterPlans ?? []).some(chapter => !previousChapters.has(chapter.id) && chapter.chapterNumber <= horizon)) return false;
+  const content = (bible: StoryBible) => {
+    const { id: _id, revision: _revision, status: _status, createdAt: _createdAt, lockedAt: _lockedAt, ...rest } = bible;
+    return JSON.parse(JSON.stringify(rest));
+  };
+  return isDeepStrictEqual(content(previous), content({ ...current,
+    volumes: current.volumes.slice(0, previous.volumes.length),
+    arcBeats: previous.arcBeats === undefined ? undefined : (current.arcBeats ?? []).filter(beat => previousBeats.has(beat.id)),
+    chapterPlans: previous.chapterPlans === undefined ? undefined : (current.chapterPlans ?? []).filter(chapter => previousChapters.has(chapter.id)),
+  }));
 }
 
 /** Requires every seeded arc/secret/promise/thread to leave a final adopted event. */

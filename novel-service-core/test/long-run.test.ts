@@ -6,7 +6,7 @@ import { fixtureDesignReview, minimalPlan } from '../../packages/application/tes
 import { designReviewAreas, designReviewInput, recordDesignReview } from '../src/design-review.ts';
 import { createDesignReviewRun } from '../src/design-review-run.ts';
 import type { Work } from '../src/core.ts';
-import { createPlanRevision } from '../src/planning.ts';
+import { createPlanRevision, planContentHash } from '../src/planning.ts';
 import type { StoryBible, WorldPack } from '../src/world.ts';
 
 const provider = {
@@ -264,6 +264,70 @@ test('finalization rechecks current design reviews and preserves the existing ma
   const final = service.finalizeManuscript(work.id);
   assert.equal(final.revision, original.revision + 1);
   assert.equal(original.status, 'superseded');
+});
+
+test('finalization rejects old-design or untraceable prose without changing an existing manuscript', () => {
+  const design = lockedDesign(), service = new NovelService(provider), work = service.createWork('成稿逐章来源');
+  service.setWorldPack(work.id, design.world); service.setStoryBible(work.id, design.bible);
+  const plan = reviewedPlan(work);
+  service.runUntil(work.id, 100, [passChecker], 'source-book');
+  service.finalizeManuscript(work.id);
+  const before = JSON.stringify([...work.manuscripts]);
+  const version = work.currentVersion(1)!, candidate = work.candidates.get(version.sourceCandidateId!)!;
+  const rejected = () => {
+    assert.throws(() => service.finalizeManuscript(work.id), /chapter provenance|章节来源/);
+    assert.equal(JSON.stringify([...work.manuscripts]), before);
+  };
+  const source = version.sourceCandidateId;
+  version.sourceCandidateId = undefined; rejected(); version.sourceCandidateId = source;
+  const content = version.content; version.content += '未经评审的改动'; rejected(); version.content = content;
+  const candidateVersion = candidate.adoptedVersionId;
+  candidate.adoptedVersionId = 'different-version'; rejected(); candidate.adoptedVersionId = candidateVersion;
+  const sourcePlan = candidate.planRevisionId;
+  candidate.planRevisionId = undefined; rejected(); candidate.planRevisionId = sourcePlan;
+  const bible = work.storyBible!;
+  work.storyBible = { ...bible, characters: bible.characters.map((character, index) => index ? character : { ...character, goal: '与旧稿不同的核心目标' }) };
+  for (const area of designReviewAreas) {
+    const input = designReviewInput(work, area); recordDesignReview(work, input, fixtureDesignReview(input));
+  }
+  rejected(); work.storyBible = bible;
+  work.worldPack!.revision += 1; work.storyBible!.worldPackRevision = work.worldPack!.revision;
+  plan.worldPackRevision = work.worldPack!.revision;
+  for (const area of designReviewAreas) {
+    const input = designReviewInput(work, area); recordDesignReview(work, input, fixtureDesignReview(input));
+  }
+  rejected();
+  assert.equal(candidate.generatedAgainstWorldPackRevision, design.world.revision - 1, 'new design approval cannot relabel old prose');
+});
+
+test('finalization permits additive rolling outlines but rejects changed earlier story content', () => {
+  const design = lockedDesign(), service = new NovelService(provider), work = service.createWork('滚动章纲成稿');
+  service.setWorldPack(work.id, design.world); service.setStoryBible(work.id, design.bible);
+  const original = reviewedPlan(work), fullPlan = structuredClone(original.plan);
+  original.plan.chapters = original.plan.chapters.slice(0, 50);
+  original.contentHash = planContentHash(original.plan);
+  for (const area of designReviewAreas) {
+    const input = designReviewInput(work, area); recordDesignReview(work, input, fixtureDesignReview(input));
+  }
+  service.runUntil(work.id, 50, [passChecker], 'first-half');
+  const expanded = createPlanRevision(work, fullPlan, { source: 'author', baseRevisionId: original.id });
+  original.status = 'superseded'; expanded.status = 'approved'; work.activePlanId = expanded.id;
+  for (const area of designReviewAreas) {
+    const input = designReviewInput(work, area); recordDesignReview(work, input, fixtureDesignReview(input));
+  }
+  service.runUntil(work.id, 100, [passChecker], 'second-half');
+  const manuscript = service.finalizeManuscript(work.id);
+  assert.equal(manuscript.chapterCount, 100);
+  const before = JSON.stringify([...work.manuscripts]);
+  const changed = structuredClone(expanded.plan);
+  changed.chapters[0].summary = '改变第一章的行动与结果';
+  const replacement = createPlanRevision(work, changed, { source: 'author', baseRevisionId: expanded.id });
+  expanded.status = 'superseded'; replacement.status = 'approved'; work.activePlanId = replacement.id;
+  for (const area of designReviewAreas) {
+    const input = designReviewInput(work, area); recordDesignReview(work, input, fixtureDesignReview(input));
+  }
+  assert.throws(() => service.finalizeManuscript(work.id), /chapter provenance|章节来源/);
+  assert.equal(JSON.stringify([...work.manuscripts]), before);
 });
 
 test('audit checks actual volume ranges and keeps deferred questions visible', () => {
