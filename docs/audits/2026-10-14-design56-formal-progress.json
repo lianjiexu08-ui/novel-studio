@@ -1,7 +1,7 @@
 {
-  "observedAt": "2026-10-14T07:41:31.533Z",
+  "observedAt": "2026-10-14T07:48:31.862Z",
   "status": "in_progress_not_acceptance",
-  "originalRunnerStatus": "running",
+  "originalRunnerStatus": "completed_with_failures",
   "runtimeCommit": "efb7cc4ea84933fd588d7b74c725c6815863d9d3",
   "scope": {
     "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
@@ -24,17 +24,17 @@
     "manuscripts": 1
   },
   "usage": {
-    "calls": 83,
+    "calls": 87,
     "failedCalls": 0,
-    "inputTokens": 7860888,
-    "outputTokens": 122485,
+    "inputTokens": 8288614,
+    "outputTokens": 126974,
     "costUsd": 0,
     "costKnown": false,
     "byRole": {
       "reviewing": {
-        "calls": 83,
+        "calls": 87,
         "failedCalls": 0,
-        "outputTokens": 122485,
+        "outputTokens": 126974,
         "costUsd": 0
       }
     },
@@ -44,9 +44,35 @@
     }
   },
   "usageScope": "original_runner_only",
-  "recoveries": [],
-  "combinedCalls": 83,
-  "errors": [],
+  "recoveries": [
+    {
+      "area": "story",
+      "status": "running",
+      "runId": "design_run_eae8ce3f-bac9-49d3-a1e6-e3a7dcbe20c7",
+      "usage": {
+        "calls": 0,
+        "failedCalls": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "costUsd": 0,
+        "costKnown": true,
+        "byRole": {},
+        "limits": {
+          "budgetUsd": null,
+          "maxCalls": 90
+        }
+      },
+      "previousFailureRetained": true,
+      "completedStepsNotReplayed": 16
+    }
+  ],
+  "combinedCalls": 87,
+  "errors": [
+    {
+      "area": "story",
+      "message": "模型输出修正一次后仍不符合格式：评审请求编号不属于本次材料：必须重新核对本次 requestId 与全部原文片段，不能沿用旧请求编号 review_32827d848330e89439a26cd9a"
+    }
+  ],
   "runs": [
     {
       "id": "design_run_c64a52f3-17e8-4254-a191-9dec0353389b",
@@ -1804,8 +1830,8 @@
       "id": "design_run_eae8ce3f-bac9-49d3-a1e6-e3a7dcbe20c7",
       "area": "story",
       "status": "running",
-      "completed": 14,
-      "total": 29,
+      "completed": 16,
+      "total": 47,
       "stages": [
         {
           "id": "batch-1",
@@ -2362,6 +2388,60 @@
               "explanation": "本批从第3章的受限凭证和局部合作，递进到第8章证词分歧、第12章受限核查、第18章付寿凝元、第21章救人与取物取舍，再到第25章依赖顾峤到场的有限制胜，冲突规模和行动权限逐步扩大；没有把父案、九鼎或墨幽屠的全貌过早定案。每次推进都伴随失去窗口、停俸、赔偿、受伤、失去药液或承担值守等代价。",
               "revisionAdvice": "",
               "evidenceCount": 7
+            }
+          ]
+        },
+        {
+          "id": "cross-4-5",
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "pass",
+              "explanation": "此前问题所问的后段前置已可闭合：北境救援后以已付回程、实体返乡和当面交证进入训练；肩伤复诊、丹府实测及十元载实付是玄府与截押的明确门槛；截押前又以实际车队、人数与撤令到达作为行动条件。第436日救出的八人和受伤统领经具名值守交接，才进入第96章安置、看押与回访，未把宏观安排当作已经发生的正文事实。",
+              "revisionAdvice": "",
+              "resolves": [
+                "batch-5/causality"
+              ],
+              "evidenceCount": 8
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "pass",
+              "explanation": "航程和日历可以顺接：271—281日完成陆路与五昼夜北航，285—300日外港行动；301—315日经六昼夜回航及陆路返外山；316—430日留出诊疗、训练、复诊和晋阶窗口，431—436日再发生押运截停。既有虚海规则要求的实体五日、六日航程也被逐段采用；第437日交接及第466日距高潮三十日回访相容。",
+              "revisionAdvice": "",
+              "resolves": [
+                "batch-5/timeline"
+              ],
+              "evidenceCount": 10
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "pass",
+              "explanation": "本批伏笔兑现保留证据边界且未重复消费：六号箱线索先经侧门册、便条与原件核账，首仓火只救出陆沉川并仍保留火因和携页者未明；五名雇工则先有唐等三人实际脱离、吴卢后续自行出门，明确是分次救援而非将同一救援重复计数。点货夹仅作为待验的追链线索，未被夸大为总案证据。",
+              "revisionAdvice": "",
+              "evidenceCount": 8
+            },
+            {
+              "criterion": "opening",
+              "verdict": "pass",
+              "explanation": "第32—50章冲突递进成立：风暴失箱先造成责任与调查压力，查证导致工人失去脱身路径；仓火救人以放弃追证换取有限物证，潮沟救出三人付出船损与停牌，最后以现场问答和巡员处置救出另两人。各段都保留伤势、收入、船损、行动权限或他人自主选择的代价，未把前段救援直接写成终局胜利。",
+              "revisionAdvice": "",
+              "evidenceCount": 8
+            }
+          ]
+        },
+        {
+          "id": "followup-batch-1/causality",
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "pass",
+              "explanation": "原问题指出宏观节点无法证明第51–100章的支付、准入、交接、伤情和行动链闭合。补读后，33–39章以失箱、仓火、救人和实际追偿承接前卷；40–46章以现有款项、伤情复查、船损和有限证物推进救援；47–53章在现金耗尽、救助账、消息邮路和陆自述的约束下完成吴卢脱控并把未核事项保留到后续。54–66章明确14000枚专项款、两段实体航程、北境准入边界、第一片与第二片的分离及七名矿工救援代价。67–80章以回航支付、复诊、训练失败和证人线索承接；81–87章明确玄府晋阶十元载、余额计算、局部护罡训练和赵方押运前置；88–95章再以已实测能力、既有护卫、撤令送达顺序和护罡/真光逐笔成本完成截押；96–100章以交接、治疗、三十日回访和质询流程收束。境界、法力、寿储、跨海航程及界门限制均未被境界名称、传闻资源或未送达消息绕过；旧版路线、第二片归属和高阶结局也未被重复消费。",
+              "revisionAdvice": "",
+              "resolves": [
+                "batch-1/causality"
+              ],
+              "evidenceCount": 26
             }
           ]
         }

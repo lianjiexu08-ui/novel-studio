@@ -1,0 +1,106 @@
+{
+  "observedAt": "2026-10-14T07:46:36.507Z",
+  "candidateVersion": 6,
+  "candidateHash": "69148def081160671a6a77f3100b53f38c207ae4829cc8fb83efc16e94bbe1b4",
+  "scope": "Combined chapter18–33 causality, agency and narrative checks with relevant rule and relationship context",
+  "savedToWork": false,
+  "formalAcceptance": false,
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "usage": {
+    "calls": 1,
+    "failedCalls": 0,
+    "inputTokens": 46720,
+    "outputTokens": 1454,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 1,
+        "failedCalls": 0,
+        "outputTokens": 1454,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 8
+    }
+  },
+  "checks": [
+    {
+      "criterion": "causality",
+      "verdict": "pass",
+      "explanation": "前置链条按“凝元与准入—遇袭及救秦—封哨致首次求援失败—亲见撤哨后实体送图—顾交岗赶到—救援战斗—伤后交押验收—完整疗程—分路南渡”推进。顾仅在秦实际送图、完成入口交岗并到场发手势后参战；林苏未据预计行程提前行动。泉液先完成原联、采封人、封管、配额和验毒核验，再分管、服用、静养及复诊入账；污染三滴不补额。战后的林腿伤、顾肩伤、苏剑损、护卫死伤、墨未供全网及分离成本均被保留，真元、元罡和寿储余额亦与各章承接一致。",
+      "revisionAdvice": "",
+      "evidenceCount": 10
+    },
+    {
+      "criterion": "agency",
+      "verdict": "pass",
+      "explanation": "林的核心转向有明确且不可兼得的选择：21章舍弃样箱窗口先救秦，25章在顾实际到场后仍以开笼、诱敌和自身腿伤换取同阶制伏窗口，26章主动缩减尚未获批的三剂申请以让告急者先领药，29章承认苏不能被要求再付同行代价。秦保有不冲哨、不陪战、亲见撤哨才送信及送达后留外营的边界；一枚补偿仅补其本次损失，不转化为陪战义务。苏在救人优先、牵制看守、留守证人与押解及共享何种证物上均作独立决定；她此前失去的优先位没有被重复当作新的支付。核验制度确认条件，而非把救援、分药或补偿变成自动领奖。",
+      "revisionAdvice": "",
+      "evidenceCount": 8
+    },
+    {
+      "criterion": "narrative",
+      "verdict": "pass",
+      "explanation": "18至33章并非仅按手续罗列：18章以燃寿晋阶、训练失控与父亲署名的有限证明建立入境动机；20至25章连续把残单、救秦、封哨、敌首实见和实体求援转化为救援战术；26至29章将验收、疗程、押解与分路分别置入救急分药、错过商队、拒绝松押换供词及去留争执。30至33章的护货线亦持续以伤情限制、如实登记、风暴中救人和港口责任争执推进收货线索，而非以技术核验取消货损、奖金损失或异地信息延迟。执行账本在此用于限定动作和保留后果，仍有可写的场景冲突、决定与后果。",
+      "revisionAdvice": "",
+      "evidenceCount": 11
+    }
+  ],
+  "nextReviewPreflight": [
+    {
+      "area": "world",
+      "scheduleVersion": 10,
+      "sourceCount": 409,
+      "initialSteps": 29,
+      "rawSteps": 15,
+      "totalSourceChars": 376165,
+      "namedSources": 162,
+      "maxCoverageChars": 21076,
+      "artifact02": "青木护身灵符符佩",
+      "artifact03": "赤霞斩铁剑"
+    },
+    {
+      "area": "power",
+      "scheduleVersion": 10,
+      "sourceCount": 329,
+      "initialSteps": 29,
+      "rawSteps": 15,
+      "totalSourceChars": 355045,
+      "namedSources": 106,
+      "maxCoverageChars": 16458,
+      "artifact02": "青木护身灵符符佩",
+      "artifact03": "赤霞斩铁剑"
+    },
+    {
+      "area": "characters",
+      "scheduleVersion": 10,
+      "sourceCount": 280,
+      "initialSteps": 19,
+      "rawSteps": 10,
+      "totalSourceChars": 308933,
+      "namedSources": 57,
+      "maxCoverageChars": 13203
+    },
+    {
+      "area": "story",
+      "scheduleVersion": 10,
+      "sourceCount": 354,
+      "initialSteps": 29,
+      "rawSteps": 15,
+      "totalSourceChars": 360388,
+      "namedSources": 131,
+      "maxCoverageChars": 17917,
+      "artifact02": "青木护身灵符符佩",
+      "artifact03": "赤霞斩铁剑"
+    }
+  ],
+  "caveats": [
+    "Focused continuity review is not all-four-area formal acceptance or prose quality acceptance.",
+    "Preflight constructs review inputs only; it makes no model calls and does not persist or start a review run.",
+    "Prepared save script is syntax-checked but not executed. It requires terminal completed formal56, a database backup, exact candidate hashes and no active review workers."
+  ]
+}

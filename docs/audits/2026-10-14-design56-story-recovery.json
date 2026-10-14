@@ -1,0 +1,39 @@
+{
+  "status": "recovery_started_not_acceptance",
+  "originalRunnerStatus": "completed_with_failures",
+  "originalUsage": {
+    "calls": 87,
+    "failedCalls": 0,
+    "inputTokens": 8288614,
+    "outputTokens": 126974,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 87,
+        "failedCalls": 0,
+        "outputTokens": 126974,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 180
+    }
+  },
+  "originalErrors": [
+    {
+      "area": "story",
+      "message": "模型输出修正一次后仍不符合格式：评审请求编号不属于本次材料：必须重新核对本次 requestId 与全部原文片段，不能沿用旧请求编号 review_32827d848330e89439a26cd9a"
+    }
+  ],
+  "runId": "design_run_eae8ce3f-bac9-49d3-a1e6-e3a7dcbe20c7",
+  "resumedFrom": "followup-batch-1/timeline",
+  "completedStepsNotReplayed": 16,
+  "previousFailureRetained": true,
+  "runtimeCommit": "efb7cc4ea84933fd588d7b74c725c6815863d9d3",
+  "runtimeOverlays": [],
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "candidateSaved": false
+}
