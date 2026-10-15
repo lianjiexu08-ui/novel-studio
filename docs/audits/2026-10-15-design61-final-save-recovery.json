@@ -1,0 +1,33 @@
+{
+  "observedAt": "2026-10-15T00:49:27.887673+00:00",
+  "status": "completed_report_recovered_not_design_acceptance",
+  "runId": "design_run_965bd77e-9483-4ee9-9bf9-0653d3f11817",
+  "rubricVersion": 16,
+  "scheduleVersion": 21,
+  "runtimeCommit": "fdf5a46de118b234f4416993049cec496c19d455",
+  "persistenceSha256": "1c1653782f3a7b8c7f6a7f7fbd55c40909970843692080ac02c2996e68ced8be",
+  "oldTimeoutMs": 30000,
+  "newTimeoutMs": 120000,
+  "backup": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-backups/20261015-before-design61-report-recovery.db",
+  "backupSha256": "05d34734484a2fa58f4540d7a1ac5b556d4eff72e9ce61d1e63a52cfe1d3195a",
+  "completedStages": 47,
+  "modelCalls": 0,
+  "replayedSavedResults": 1,
+  "originalFailureRetained": true,
+  "allPriorCompletedStagesUnchanged": true,
+  "protectedDesignAndHistoryUnchanged": true,
+  "allFourReportsReconstructed": true,
+  "overallStatus": "not_accepted",
+  "tests": {
+    "command": "node scripts/test-all.mjs",
+    "count": 372,
+    "failures": 0,
+    "strictCoreTypesPassed": true,
+    "isolatedWorkspace": true
+  },
+  "productionDesignChanged": false,
+  "proseGenerated": false,
+  "planApproved": false,
+  "retainedBlockers": 41,
+  "nextRuntimeMustIncludePersistenceFix": true
+}

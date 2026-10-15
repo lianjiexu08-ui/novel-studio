@@ -135,10 +135,11 @@ export class PrismaWorkRepository implements WorkRepository {
         return result;
       }, {
         // A long novel includes immutable designs, review evidence and chapter
-        // history. Serializing a final report can exceed Prisma's 5s default
-        // even with incremental writes. Keep the atomic save bounded, but allow
-        // this measured workload to finish; model calls stay outside the tx.
-        timeout: 30_000,
+        // history. A measured final review save with 53 retained runs and 59
+        // reports takes over 32s, even with incremental writes. Allow bounded
+        // headroom for serialization and SQLite I/O without dropping history;
+        // model calls and report reconstruction stay outside the transaction.
+        timeout: 120_000,
       });
     } finally {
       release();

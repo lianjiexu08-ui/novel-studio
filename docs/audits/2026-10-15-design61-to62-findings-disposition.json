@@ -1,0 +1,256 @@
+{
+  "observedAt": "2026-10-15T00:49:27.882190+00:00",
+  "scope": {
+    "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+    "planId": "plan_e9b4422f5367453d957c8036c2d87b68",
+    "world": 31,
+    "bible": 61,
+    "plan": 61
+  },
+  "inputHash": "7b7892ad3d19537ab7aae549e0154344d22a3f5389772416658dba130da6dcc2",
+  "findings": [
+    {
+      "area": "world",
+      "criterion": "geography",
+      "verdict": "revise",
+      "reportId": "design_review_c52c920a-0122-4728-885c-6b065ce6a197",
+      "reportSha256": "855d5cc29364d21c62732b4ccbfffc9fd07b2a5dbbef13ffa06d7fcea1d779c1",
+      "explanation": "赤霄—苍冥北航及苍冥境内离境、返航本身已有实体航程、船票、担保、逐站验籍与暖舱安排：北航五昼夜、返航六昼夜，且商业船票未被扩张为受限地域准入。但青玄规则要求外来海路入港须由沿岸政权验籍征税；现有返程只写310日暮抵沧溟古港及随后凭名册、既有路引走驿路，未落实抵港当刻的核验主体、离境材料与货证核验、税费/查验费或豁免、具名付款责任以及不通过后的候查后果。“杂费780”与后段驿路查验不能代替港口准入。另，原计划仍记载rel_05的301日返岗表述与更新后“301日午离岗、311日午交接返岗”的时序待独立对照，不能由其他航程安排推定已统一。",
+      "revisionAdvice": "在第67章或ms_v3_return明确310日暮沧溟古港的沿岸/港务验籍主体，林、贺的身份、苍冥离境材料及货证核验，税费或查验费的金额/豁免条件、具名支付或代付责任及其与14000专项、10000北航票、3000回航暖舱票、780杂费和220结余的对应关系；写明未获准时的候查、补件、改签及日程后果。另实际对照rel_05与301—311日限程担保、交接和返岗安排，统一夜凝霜离岗、担保责任期限、实到交接和返岗时点。",
+      "dispositions": [
+        "return_port",
+        "receipt_responsibility"
+      ],
+      "dispositionNote": "未应用的v5补310日港口实际核验与付税、纸件寄递和318日实际回执；原正式返修保留。",
+      "formalFindingOverridden": false
+    },
+    {
+      "area": "world",
+      "criterion": "history",
+      "verdict": "pass",
+      "reportId": "design_review_c52c920a-0122-4728-885c-6b065ce6a197",
+      "reportSha256": "855d5cc29364d21c62732b4ccbfffc9fd07b2a5dbbef13ffa06d7fcea1d779c1",
+      "explanation": "十年前界门事件、三年前私运旧约与当前调查被分层处理。旧约只赋予赵方有限已入账额度、炎煞外围代理的有限仓位/接驳与程砚逐批承运；签号、库存、收讫联和违约损失均须按批核算，不能转化为港务控制、免检、无限资源或跨域即时情报。货损、港务复核与实际收报分别驱动程、赵和炎煞方后续选择，且调查者未取得旧约原物，父案只能由现有记录局部确认，未被夸大为九鼎或全部投毒真相；势力可以基于各自信息和利益独立行动。",
+      "revisionAdvice": "",
+      "dispositions": [],
+      "dispositionNote": "本轮正式通过；仅针对当前设计与审查范围，不验收旧正文或全书。",
+      "formalFindingOverridden": false
+    },
+    {
+      "area": "world",
+      "criterion": "capacity",
+      "verdict": "pass",
+      "reportId": "design_review_c52c920a-0122-4728-885c-6b065ce6a197",
+      "reportSha256": "855d5cc29364d21c62732b4ccbfffc9fd07b2a5dbbef13ffa06d7fcea1d779c1",
+      "explanation": "100章明确是约450章主线中的阶段验收：本阶段收束一条已实证的三地运输链、有限救援、部分父案澄清与支付寿储代价后的玄府成长，九鼎、残片与界门总危机保留为后续另建行动链。三卷分别以矿务与寿源、港务劳动/受限外港、返乡举证与本地押运形成不同制度压力；不可逆寿耗、能力门槛、实体航程和准入限制持续约束解决方式。因此当前目标与100章范围相称，未以换地图或提前终结全书主线支撑篇幅。",
+      "revisionAdvice": "",
+      "dispositions": [],
+      "dispositionNote": "本轮正式通过；仅针对当前设计与审查范围，不验收旧正文或全书。",
+      "formalFindingOverridden": false
+    },
+    {
+      "area": "power",
+      "criterion": "tiers",
+      "verdict": "insufficient",
+      "reportId": "design_review_d86dd303-cac9-46ca-b02d-66e75fc7ec3e",
+      "reportSha256": "912bd7ca15b7ddf4d4d1f9f766100023a7693a90b2019a3aaa708ac41b947395",
+      "explanation": "已解决等待不应重复传播，但cross-1-2/tiers不在本次resolvedDeferrals中，前置综合亦明确尚未完成第2—50章成长、伤情、训练和实测至后段丹府训练、局部护罡及第95章资格的完整复核。另有独立普通缺口：局部护罡规则要求玄府后另经指导、聚散训练、轻木棍/普通铁刃受控实测及复诊，且晋阶不自动掌握；顾峤却被安排在第25章及第436日使用，现有报告未给出其自身非循环资格链。高阶功法不由境界或持有物自动启动、林辰百章止于玄府初期的安排本身相容，但不能抵销上述未解决项。",
+      "revisionAdvice": "保留cross-1-2/tiers不足，按原要求逐项复核第2—50章凝元三重、剑诀实测、灵泉疗程及后段丹府训练、玄府操作和第95章交锋时的已学能力、伤情、余量与资格。另在顾峤人物档案或其第25章前的提案中补足指导者、聚散训练、轻木棍与普通铁刃低负荷实测、复诊，并分别核明第25章及第436日的气路、伤情和元罡余量。",
+      "dispositions": [
+        "cast_evidence",
+        "growth_cross_review"
+      ],
+      "dispositionNote": "原人物档案已含资格链；调度22补读人物档案，局部复核通过。正式cross-1-2/tiers仍材料不足，下一轮必须完成跨章节及后段能力复核。",
+      "formalFindingOverridden": false
+    },
+    {
+      "area": "power",
+      "criterion": "costs",
+      "verdict": "revise",
+      "reportId": "design_review_d86dd303-cac9-46ca-b02d-66e75fc7ec3e",
+      "reportSha256": "912bd7ca15b7ddf4d4d1f9f766100023a7693a90b2019a3aaa708ac41b947395",
+      "explanation": "寿储主账已具闭合设计：灵泉须完成疗程与复诊才入账，玄府晋阶支付既有收入，结局不返寿或以疗伤消除已付代价。但两项独立成本缺口仍未解决：第18章177—179日仅以温和灵气中的连续静息记入三、三、四成真元，未写恢复规则要求的实际进食或营养来源；《乾坤逆命真解》的三倍非永久伤势恢复没有绑定治疗输入、适用伤类、资源扣除、单次/十息上限、复诊和中断结算。燃寿预扣、窗口与冷却不能替代恢复效果本身的来源与结算。",
+      "revisionAdvice": "修订plan/chapters/18，逐段写明177—179日的实际进食或既定营养供给、连续恢复时长与复测；若不能满足则重算后续真元余额。修订world/techniques/tech_10：将恢复限定为依托持续存在的具名治疗输入，明确适用与排除伤类、资源照常扣除、十息和单次上限、伤后可恢复上限、复诊要求，以及资源不足、治疗中断或再受创时已完成和未完成效果的结算。",
+      "dispositions": [
+        "tech10_recovery",
+        "chapter18_nutrition"
+      ],
+      "dispositionNote": "v5补真实治疗输入、3B总量、资源上限与中断结算，并同步第18章饭食饮水供给。未应用、未正式通过。",
+      "formalFindingOverridden": false
+    },
+    {
+      "area": "power",
+      "criterion": "counters",
+      "verdict": "revise",
+      "reportId": "design_review_d86dd303-cac9-46ca-b02d-66e75fc7ec3e",
+      "reportSha256": "912bd7ca15b7ddf4d4d1f9f766100023a7693a90b2019a3aaa708ac41b947395",
+      "explanation": "局部护罡及第436日同阶牵制已有对象、逐次付费、受击后散罡、空档、伤后停术、车架遮挡和撤离限制，不构成正面必胜；其他低阶与高阶能力也保留路径、供能、打断及防御反制。然而逆命真解恢复分支仍未定义治疗开始与持续条件、可作用伤类、效果上限及受击/隔离/断供后的状态。现有蓄势打断、十息窗口和三十日冷却只能反制燃寿爆发，无法使敌手稳定通过隔离治疗、耗尽供给、制造特定伤损或拖延来限制恢复，反制链未闭合。",
+      "revisionAdvice": "随tech_10的成本修订把恢复明确为可观察、可中断的治疗流程：规定开始和持续所需的接触或供给、适用及不可作用伤类、十息内最大恢复量、资源耗尽/隔离/受击/新增特定伤损时的停止与结算，并保留恢复后残余伤势对施术、撤离及可用上限的限制。",
+      "dispositions": [
+        "tech10_recovery"
+      ],
+      "dispositionNote": "v5补可观察的治疗持续条件、打断方式、残伤和复诊；待正式复评。",
+      "formalFindingOverridden": false
+    },
+    {
+      "area": "characters",
+      "criterion": "agency",
+      "verdict": "pass",
+      "reportId": "design_review_c7a05715-05df-4f0d-b401-8bcc3591e01c",
+      "reportSha256": "ada6c7650a01fb45c056aa4b39309fda837d31e140c191a9439b3b8f1fc4724a",
+      "explanation": "林辰的救援、取证、脱责、追线索与成长始终必须在伤势、资源、程序及可放弃机会之间取舍；主要配角亦保有不服从主角利益的职责、生计、自保或申辩目标。后段把救人优先于追残片或追凶、祁嵩为保留具名原令和申辩机会而交械等设为有损失的自主选择，并未写成主角单方面结算。计划依赖链要求前段救援、实物交接、健康和可用款项实际成立后才能进入下一里程碑，支持这些代价不会被后段成果预支。",
+      "revisionAdvice": "",
+      "dispositions": [],
+      "dispositionNote": "本轮正式通过；仅针对当前设计与审查范围，不验收旧正文或全书。",
+      "formalFindingOverridden": false
+    },
+    {
+      "area": "characters",
+      "criterion": "relationships",
+      "verdict": "pass",
+      "reportId": "design_review_c7a05715-05df-4f0d-b401-8bcc3591e01c",
+      "reportSha256": "ada6c7650a01fb45c056aa4b39309fda837d31e140c191a9439b3b8f1fc4724a",
+      "explanation": "关系并未以终局信任概括初识。林苏先围绕残玉担保范围冲突，再由林承认私心、改交可质询材料及苏限定担保责任形成有限合作，并因证人与护货职责分路；异地近况须实体送达。吴卢在被扣押时先拒绝彼此代答，至第50章经当面回答、实际脱控后才各自获得去留选择，贺接受其不立即回船；陆的协助、受看护、供述签认和问责被明确分开。第51—53章安置、短工和陆自述均仍是待落实、待核验的提案条件，未被倒写为既成信任或免罪。",
+      "revisionAdvice": "",
+      "dispositions": [],
+      "dispositionNote": "本轮正式通过；仅针对当前设计与审查范围，不验收旧正文或全书。",
+      "formalFindingOverridden": false
+    },
+    {
+      "area": "characters",
+      "criterion": "knowledge",
+      "verdict": "pass",
+      "reportId": "design_review_c7a05715-05df-4f0d-b401-8bcc3591e01c",
+      "reportSha256": "ada6c7650a01fb45c056aa4b39309fda837d31e140c191a9439b3b8f1fc4724a",
+      "explanation": "秘密与认知按亲见、实体证物、签认、送达、阅览及可推论范围分层。林辰不能从局部账证、供述副本、救援结果或读者视角推出九鼎全貌、第二残片或父案全部责任；吴卢附棚内线不向林贺传递，第50章仍须重新当面取得回答。赵玄极对港口处置、回令送达和后段押运结果也须经实体报件、签收、回执或正式质询逐步得知，不能隔空获得现场或未来信息。百章揭示条件仅支持一条三地运输链，保留九鼎机制及其他责任的后续取证空间，前置报告对此没有相互否定。",
+      "revisionAdvice": "",
+      "dispositions": [],
+      "dispositionNote": "本轮正式通过；仅针对当前设计与审查范围，不验收旧正文或全书。",
+      "formalFindingOverridden": false
+    },
+    {
+      "area": "story",
+      "criterion": "causality",
+      "verdict": "pass",
+      "reportId": "design_review_adda8d1d-4f12-4242-9348-ca473cf083db",
+      "reportSha256": "2cc0aba843930161288fa352cc8549c4764370d029a968b1c124ec2a7ddf9508",
+      "explanation": "三卷目标从矿务救援与古境取证，递进至港口扣工脱控、北境救人与放弃残片、返乡训练及截押断运；百章目标明确限定为切断一条已实证运输链，而非提前终结九鼎主线。依赖链要求健康、实物、款项、行程与能力实际成立后才进入后段，未见同一救援或线索被重复兑现。",
+      "revisionAdvice": "",
+      "dispositions": [],
+      "dispositionNote": "本轮故事线正式通过；不覆盖其他领域未解决项，不验收正文。",
+      "formalFindingOverridden": false
+    },
+    {
+      "area": "story",
+      "criterion": "timeline",
+      "verdict": "pass",
+      "reportId": "design_review_adda8d1d-4f12-4242-9348-ca473cf083db",
+      "reportSha256": "2cc0aba843930161288fa352cc8549c4764370d029a968b1c124ec2a7ddf9508",
+      "explanation": "已审设计将古境、两段疗程、首次跨海、港口行动、北行、北境行动、限程离境、返乡训练与截押分列为连续日期链；不同人物的分路、寄报与签收另设锚点。林与苏在211日分路后分别南航、返宗，也明确排除了同一人物同时在两地交押的冲突。",
+      "revisionAdvice": "",
+      "dispositions": [],
+      "dispositionNote": "本轮故事线正式通过；不覆盖其他领域未解决项，不验收正文。",
+      "formalFindingOverridden": false
+    },
+    {
+      "area": "story",
+      "criterion": "payoff",
+      "verdict": "pass",
+      "reportId": "design_review_adda8d1d-4f12-4242-9348-ca473cf083db",
+      "reportSha256": "2cc0aba843930161288fa352cc8549c4764370d029a968b1c124ec2a7ddf9508",
+      "explanation": "救援人数按赤霄五工、北境七人、青玄八人分组且明确互不重合；疗程、供述、物证和安置均保留复诊、签认或独立核验条件。百章仅承诺三地链断运、部分父案澄清与本地回访，未将异地近况、首仓火因或九鼎总谜题虚假结案。",
+      "revisionAdvice": "",
+      "dispositions": [],
+      "dispositionNote": "本轮故事线正式通过；不覆盖其他领域未解决项，不验收正文。",
+      "formalFindingOverridden": false
+    },
+    {
+      "area": "story",
+      "criterion": "opening",
+      "verdict": "pass",
+      "reportId": "design_review_adda8d1d-4f12-4242-9348-ca473cf083db",
+      "reportSha256": "2cc0aba843930161288fa352cc8549c4764370d029a968b1c124ec2a7ddf9508",
+      "explanation": "前50章由矿难救人、伤势与有限复核，经训练门槛、古境救援与疗程后果，转至港口失箱、扣工、火场、潮沟救援和吴卢自主脱控。各段行动对象、权限与代价不同；第50章只完成五工脱控，仍留下生计、供述、火因、原账及跨陆运输链，未构成过早终局。",
+      "revisionAdvice": "",
+      "dispositions": [],
+      "dispositionNote": "本轮故事线正式通过；不覆盖其他领域未解决项，不验收正文。",
+      "formalFindingOverridden": false
+    },
+    {
+      "area": "story",
+      "criterion": "pacing",
+      "verdict": "pass",
+      "reportId": "design_review_adda8d1d-4f12-4242-9348-ca473cf083db",
+      "reportSha256": "2cc0aba843930161288fa352cc8549c4764370d029a968b1c124ec2a7ddf9508",
+      "explanation": "调查、核验与救援虽反复出现，但港口段依次改变查人路径、扣工处境、证据状态、船损与安置责任、当事人的自主边界和现场脱控条件。第48—50章已由外线排查转入吴卢选择、陆的责任冲突与巡员核实，不是同一手续或同构救援的拆分重复。",
+      "revisionAdvice": "",
+      "dispositions": [],
+      "dispositionNote": "本轮故事线正式通过；不覆盖其他领域未解决项，不验收正文。",
+      "formalFindingOverridden": false
+    },
+    {
+      "area": "story",
+      "criterion": "genre",
+      "verdict": "pass",
+      "reportId": "design_review_adda8d1d-4f12-4242-9348-ca473cf083db",
+      "reportSha256": "2cc0aba843930161288fa352cc8549c4764370d029a968b1c124ec2a7ddf9508",
+      "explanation": "玄幻能力实际改变风险和选择：轻物御动、风刃与护罡分别受对象、距离、可见性、真元、伤情、实测及中断条件限制；实体航程、防护票款和港务权限又限制可达地点。能力只处理局部动作，救援仍须承担失线、船损或放弃追击、残片的代价，未沦为程序事件的标签。",
+      "revisionAdvice": "",
+      "dispositions": [],
+      "dispositionNote": "本轮故事线正式通过；不覆盖其他领域未解决项，不验收正文。",
+      "formalFindingOverridden": false
+    },
+    {
+      "area": "story",
+      "criterion": "growth",
+      "verdict": "pass",
+      "reportId": "design_review_adda8d1d-4f12-4242-9348-ca473cf083db",
+      "reportSha256": "2cc0aba843930161288fa352cc8549c4764370d029a968b1c124ec2a7ddf9508",
+      "explanation": "林辰的近期成长有明确主动目标与分段回报：先辨伤情和引气条件，经资源取舍、岔气停练、复查、支付三元载、授业和实测，取得受限凝元能力；后段再以诊察、十元载支付、元罡稳定与低负荷护罡实测进入玄府初期。境界名称、远期秘术和旧法器均未被当作自动能力，成长仍受寿储、伤势与停术约束。",
+      "revisionAdvice": "",
+      "dispositions": [],
+      "dispositionNote": "本轮故事线正式通过；不覆盖其他领域未解决项，不验收正文。",
+      "formalFindingOverridden": false
+    }
+  ],
+  "candidateFile": "data/design-candidates/design62-recovery-draft-v5.json",
+  "candidateFileSha256": "9667339be4be5b18d277e688340e719dadd00ddefcc635ab629ebd23b3959134",
+  "productionApplied": false,
+  "formalAcceptance": false,
+  "pendingAreas": [],
+  "storyInterruption": {
+    "runId": "design_run_965bd77e-9483-4ee9-9bf9-0653d3f11817",
+    "originalStatus": "completed_with_failures",
+    "originalCheckpointSha256": "ac4897c332c4ae4709b06e97ba282e81acab973e27fbe3894d78765cafd2f9ad",
+    "originalCalls": 160,
+    "originalFailedCalls": 1,
+    "error": "openai-compatible request failed (stream): Upstream HTTP/2 stream failed",
+    "resumeScript": "data/audit-runtimes/design61-control/story-resume-1.mjs",
+    "resumeScriptSha256": "d5d834315e84b0654b3ab7e3d62467ccfbd1cec2af7940338c5df8a0807db063",
+    "resumeSameRun": true,
+    "maxAdditionalCalls": 140,
+    "maxCombinedCalls": 300,
+    "preserveCompletedStages": true,
+    "preserveFailureHistory": true,
+    "preserveCompletedOtherAreas": true,
+    "model": "gpt-5.6-luna",
+    "fallback": false
+  },
+  "limitations": "All four formal61 reports reconstructed. Overall design remains not accepted. Candidate v5 is unapplied and still requires formal review; no blocker or approval changed. Prepared 2d6ebaa runtime must be superseded with the persistence timeout fix before the next deployment.",
+  "allFourReportsReconstructed": true,
+  "changedRecords": 7,
+  "unmappedFinalFindings": 0,
+  "storyRecovery": {
+    "completedStages": 47,
+    "totalStages": 47,
+    "sameRun": true,
+    "totalModelCallsAcrossRun": 208,
+    "originalHttp2FailureRetained": true,
+    "priorProcessInterruptionCheckpointRetained": true,
+    "finalSaveFailureRetained": true,
+    "savedFinalResponseReplayedExactly": true,
+    "recoveryModelCalls": 0,
+    "recoveryResultFile": "data/audit-runtimes/design61-control/story-save-recovery-result.json",
+    "recoveryResultSha256": "28e29d22c61e1905dd47c03c324d9c190364955aa842f087fa803579dc1dbff6"
+  }
+}
