@@ -3,16 +3,16 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { ChapterWorkflow, InMemoryWorkRepository } from '../src/index.ts';
+import { ChapterWorkflow, InMemoryWorkRepository, type PlanProvider } from '../src/index.ts';
 import { JsonWorkRepository } from '../../persistence/src/json-repository.ts';
 import { ChapterReviewError, chapterReviewChecker, chapterReviewInput, validateChapterReview } from '../../../novel-service-core/src/chapter-review.ts';
 import { emptyUsage, passChecker, qualityAuditFor, QualityGateError, type ModelProvider, type Work } from '../../../novel-service-core/src/core.ts';
-import { effectiveBrief, planContentHash, reviewBookPlan } from '../../../novel-service-core/src/planning.ts';
+import { effectiveBrief, PlanGateError, planContentHash, reviewBookPlan } from '../../../novel-service-core/src/planning.ts';
 import { bookPlanSchema, chapterBriefDtoSchema } from '../../contracts/src/planning.ts';
 import { checkResultDtoSchema, qualityAuditDtoSchema } from '../../contracts/src/api.ts';
 import { OpenAICompatibleChapterProvider } from '../../planner/src/index.ts';
 import { passingStageOutput } from '../../planner/test/chapter-review-fixture.ts';
-import { approveMinimalPlan, createReadyWork, fixtureChapterReview, minimalPlan } from './fixtures.ts';
+import { approveMinimalPlan, createReadyWork, fixtureChapterReview, minimalOutline, minimalPlan } from './fixtures.ts';
 
 const writer: ModelProvider = { generateChapter: () => ({ content: '他先付两成真元，再切断绳索；伤腿仍痛，便停手让同伴搬走木箱。', proposedEvents: [], observedEvents: [] }) };
 function checkedPlan() {
@@ -26,6 +26,55 @@ function checkedPlan() {
 }
 
 const evidenceFor = (work: Work) => qualityAuditFor(work).questions.find(q => q.questionId === 'spell-cost')!.executionChecks[0].executionEvidence;
+
+test('range regeneration receives original requirements and retains omitted checks across batches and JSON restart', async t => {
+  const dir = mkdtempSync(join(tmpdir(), 'novel-regenerate-checks-')); t.after(() => rmSync(dir, { recursive: true, force: true }));
+  const path = join(dir, 'work.json'), plan = checkedPlan();
+  plan.chapters[5].executionChecks = [{ id: 'later-cost', requirement: '先付药钱再取药，不预支未来收入。' }];
+  const batches: number[][] = [];
+  const provider: PlanProvider = {
+    generatePlanSkeleton: async () => { throw new Error('unused'); },
+    generateChapterOutlines: async ({ from, to, replacing }) => {
+      batches.push(replacing!.map(c => c.chapterNumber));
+      assert.deepEqual(replacing, plan.chapters.filter(c => c.chapterNumber >= from && c.chapterNumber <= to));
+      // A provider mutating its input must not weaken the server's baseline.
+      for (const c of replacing!) c.executionChecks = [];
+      return Array.from({ length: to - from + 1 }, (_, i) => ({ ...minimalOutline(from + i), summary: '新场面', executionChecks: from + i === 1 ? [{ id: 'new-choice', requirement: '由同伴自主决定去留，不以救命索取服从。' }] : [] }));
+    },
+  };
+  const workflow = new ChapterWorkflow(new JsonWorkRepository(path), writer, undefined, { planProvider: provider, outlineBatchSize: 5 });
+  const work = await createReadyWork(workflow, '重新规划保留要求', plan), oldPlanId = work.activePlanId!;
+  const revision = await workflow.generateOutlines(work.id, { baseRevisionId: oldPlanId, from: 1, to: 7 });
+  assert.deepEqual(batches, [[1, 2, 3, 4, 5], [6, 7]]);
+  const restored = await new ChapterWorkflow(new JsonWorkRepository(path), writer).snapshot(work.id);
+  assert.deepEqual(restored.plans.get(oldPlanId)!.plan, plan, 'base plan stays intact');
+  const saved = restored.plans.get(revision.id)!;
+  assert.equal(saved.status, 'proposed'); assert.equal(restored.activePlanId, oldPlanId);
+  assert.deepEqual(saved.plan.chapters[0].executionChecks!.slice(0, 2), plan.chapters[0].executionChecks);
+  assert.equal(saved.plan.chapters[0].executionChecks!.at(-1)!.id, 'new-choice');
+  assert.deepEqual(saved.plan.chapters[5].executionChecks, plan.chapters[5].executionChecks);
+  assert.deepEqual(saved.plan.chapters.slice(7), plan.chapters.slice(7));
+});
+
+for (const failure of ['rewrite', 'unlink', 'duplicate', 'overflow'] as const) test(`regeneration cannot silently weaken requirements: ${failure}`, async () => {
+  const plan = checkedPlan();
+  if (failure === 'overflow') plan.chapters[0].executionChecks = Array.from({ length: 24 }, (_, i) => ({ id: `check-${i}`, requirement: `保留第${i}项动作代价。` }));
+  const provider: PlanProvider = {
+    generatePlanSkeleton: async () => { throw new Error('unused'); },
+    generateChapterOutlines: async () => {
+      const checks = structuredClone(plan.chapters[0].executionChecks!);
+      if (failure === 'rewrite') checks[0].requirement = '不必先支付真元。';
+      if (failure === 'unlink') delete checks[0].sourceQuestion;
+      if (failure === 'duplicate') checks.push(checks[0]);
+      if (failure === 'overflow') checks.push({ id: 'extra', requirement: '不能丢弃已有要求以腾出位置。' });
+      return [{ ...minimalOutline(1), executionChecks: checks }];
+    },
+  };
+  const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), writer, undefined, { planProvider: provider });
+  const work = await createReadyWork(workflow, failure, plan), before = structuredClone([...work.plans]);
+  await assert.rejects(() => workflow.generateOutlines(work.id, { baseRevisionId: work.activePlanId!, from: 1, to: 1 }), PlanGateError);
+  assert.deepEqual([...work.plans], before, 'a failed batch must not store a weaker proposal');
+});
 
 test('question execution evidence requires adoption, survives later chapters and restart, and never closes the question', async t => {
   const dir = mkdtempSync(join(tmpdir(), 'novel-execution-evidence-')); t.after(() => rmSync(dir, { recursive: true, force: true }));

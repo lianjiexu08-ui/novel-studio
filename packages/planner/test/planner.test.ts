@@ -405,6 +405,28 @@ test('outline generation repairs fields hidden by draft defaults and refuses an 
   assert.equal(calls, 2);
 });
 
+test('outline planner sends original requirements, repairs rewrites and retains omitted obligations', async () => {
+  const { chapters, ...skeleton } = minimalPlan(1, { volumeSize: 1, outlined: 1 });
+  const original = { ...chapters[0], location: '矿口', storyTime: '第1日', scenes: ['先付真元后切断绳索。'],
+    executionChecks: [{ id: 'cost-first', requirement: '先付两成真元再切绳。', sourceQuestion: { document: 'plan' as const, questionId: 'cost' } }] };
+  skeleton.openQuestions = [{ id: 'cost', question: '切绳前实际付出代价', blocking: false, status: 'open' }];
+  const requests: Array<{ user: string; system: string }> = [];
+  const planner = new JsonBookPlanner({ complete: async request => {
+    requests.push(request);
+    if (requests.length === 1) return JSON.stringify({ chapters: [{ ...original, executionChecks: [{ ...original.executionChecks[0], requirement: '切绳不必支付真元。' }] }] });
+    return JSON.stringify({ chapters: [{ ...original, executionChecks: [] }] });
+  } });
+  const input = { title: '重新规划', covenant, adoptedFacts: {}, skeleton, from: 1, to: 1, before: [], after: [], replacing: [original] };
+  const result = await planner.generateChapterOutlines(input);
+  assert.equal(requests.length, 2);
+  assert.deepEqual(JSON.parse(requests[0].user).replacingOutlines, [original]);
+  const repair = JSON.parse(requests[1].user);
+  assert.match(repair.problems, /cost-first.*被改写/);
+  assert.deepEqual(repair.originalRequest.replacingOutlines, [original]);
+  assert.deepEqual(result[0].executionChecks, original.executionChecks);
+  assert.match(requests[0].system, /不能只因同属旅行、资源或认知主题就关联/);
+});
+
 test('outline generation refuses duplicated or extra chapters instead of silently dropping them', async () => {
   const { chapters, ...skeleton } = minimalPlan(1, { volumeSize: 1, outlined: 1 });
   const chapter = { ...chapters[0], location: '矿口', storyTime: '第1日', scenes: ['主角选择救人。'] };

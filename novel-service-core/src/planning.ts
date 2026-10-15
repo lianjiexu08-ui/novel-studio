@@ -1,4 +1,5 @@
 import { createHash, randomUUID } from 'node:crypto';
+import { isDeepStrictEqual } from 'node:util';
 import type { ReadinessBlocker, RealizationStatus, StoryEvent, Work } from './core.ts';
 
 /**
@@ -152,6 +153,24 @@ export interface PlanRevision {
 export class PlanConflictError extends Error {}
 /** Review or approval preconditions are not met. */
 export class PlanGateError extends Error {}
+
+/** Range regeneration may add obligations, but changing an existing obligation
+ * requires an explicit design revision rather than an incidental model edit. */
+export function retainExecutionChecks(previous: ChapterExecutionCheck[] | undefined, generated: ChapterExecutionCheck[] | undefined, chapterNumber: number): ChapterExecutionCheck[] | undefined {
+  if (previous === undefined && generated === undefined) return undefined;
+  const original = previous ?? [], proposed = generated ?? [];
+  for (const checks of [original, proposed]) if (new Set(checks.map(c => c.id)).size !== checks.length) {
+    throw new PlanGateError(`第 ${chapterNumber} 章验收要求编号重复，不能合并`);
+  }
+  for (const check of original) {
+    const replacement = proposed.find(item => item.id === check.id);
+    if (replacement && !isDeepStrictEqual(replacement, check)) throw new PlanGateError(`第 ${chapterNumber} 章验收要求 ${check.id} 被改写；重生成须保留原要求，调整要求请另存明确的设计修订`);
+  }
+  const ids = new Set(original.map(c => c.id));
+  const merged = [...original, ...proposed.filter(c => !ids.has(c.id))];
+  if (merged.length > 24) throw new PlanGateError(`第 ${chapterNumber} 章保留原要求后超过 24 项，须先整理设计修订，不能丢弃原要求`);
+  return structuredClone(merged);
+}
 
 export const OUTLINE_WINDOW = 50;
 

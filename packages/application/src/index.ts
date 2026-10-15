@@ -11,7 +11,7 @@ import type {
 import { lockStoryBible, lockWorldPack, reviewStoryBible, reviewWorldPack } from '../../../novel-service-core/src/world.ts';
 import type { StoryBible, WorldPack } from '../../../novel-service-core/src/world.ts';
 import {
-  activePlan, approvePlanRevision, confirmBrief, createPlanRevision, effectiveBrief, latestPlan, milestonePrerequisites, outlineWindow, PlanConflictError, PlanGateError, planRealization, reviewPlanRevision,
+  activePlan, approvePlanRevision, confirmBrief, createPlanRevision, effectiveBrief, latestPlan, milestonePrerequisites, outlineWindow, PlanConflictError, PlanGateError, planRealization, retainExecutionChecks, reviewPlanRevision,
 } from '../../../novel-service-core/src/planning.ts';
 import type {
   BookPlan, BriefEdits, ChapterBrief, ChapterOutline, EffectiveBrief, NodeRealization, PlanReview, PlanRevision, PlotMilestone, VolumePlan,
@@ -45,7 +45,7 @@ export interface PlanningInput {
 /** Model-backed planner. Its output only ever becomes a proposed plan revision. */
 export interface PlanProvider {
   generatePlanSkeleton(input: PlanningInput & { targetChapterCount: number; volumeCount: number; previousPlan?: BookPlan }): Promise<PlanSkeleton>;
-  generateChapterOutlines(input: PlanningInput & { skeleton: PlanSkeleton; from: number; to: number; before: ChapterOutline[]; after: ChapterOutline[] }): Promise<ChapterOutline[]>;
+  generateChapterOutlines(input: PlanningInput & { skeleton: PlanSkeleton; from: number; to: number; before: ChapterOutline[]; after: ChapterOutline[]; replacing?: ChapterOutline[] }): Promise<ChapterOutline[]>;
 }
 
 export class PlanProviderMissingError extends Error {}
@@ -275,9 +275,13 @@ export class ChapterWorkflow {
       const end = Math.min(to, start + this.outlineBatchSize - 1);
       const before = [...existing.filter((item) => item.chapterNumber < from), ...written].sort((a, b) => a.chapterNumber - b.chapterNumber).slice(-10);
       const after = existing.filter((item) => item.chapterNumber > to).sort((a, b) => a.chapterNumber - b.chapterNumber).slice(0, 5);
-      const batch = await this.planProvider!.generateChapterOutlines({ ...input, skeleton, from: start, to: end, before, after });
+      const replacing = existing.filter(item => item.chapterNumber >= start && item.chapterNumber <= end);
+      const batch = await this.planProvider!.generateChapterOutlines({ ...input, skeleton, from: start, to: end, before, after, replacing: structuredClone(replacing) });
       await assertCurrent();
-      written.push(...normalizeOutlineBatch(batch, skeleton, start, end));
+      written.push(...normalizeOutlineBatch(batch, skeleton, start, end).map(outline => {
+        const executionChecks = retainExecutionChecks(replacing.find(item => item.chapterNumber === outline.chapterNumber)?.executionChecks, outline.executionChecks, outline.chapterNumber);
+        return executionChecks === undefined ? outline : { ...outline, executionChecks };
+      }));
     }
     return written;
   }
@@ -325,7 +329,7 @@ export class ChapterWorkflow {
     if (input.from < 1 || input.to < input.from || input.to > skeleton.targetChapterCount) throw new PlanGateError(`chapter range ${input.from}-${input.to} is outside the planned ${skeleton.targetChapterCount} chapters`);
     if (input.to - input.from + 1 > 20) throw new PlanGateError('regenerate at most 20 chapters at a time');
     const outside = chapters.filter((outline) => outline.chapterNumber < input.from || outline.chapterNumber > input.to);
-    const outlines = await this.outlineBatches(this.planningInput(snapshot, input.authorRequest), skeleton, input.from, input.to, outside, async () => assertCurrent(await this.snapshot(workId)));
+    const outlines = await this.outlineBatches(this.planningInput(snapshot, input.authorRequest), skeleton, input.from, input.to, chapters, async () => assertCurrent(await this.snapshot(workId)));
     return this.repository.transaction(workId, ({ work }) => {
       assertCurrent(work);
       return createPlanRevision(work, { ...skeleton, chapters: [...outside, ...outlines] }, {

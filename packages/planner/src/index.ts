@@ -8,6 +8,7 @@ import type { ChapterOutlineContract, PlanSkeletonContract } from 'novel-studio-
 import { addUsage, emptyUsage } from '../../../novel-service-core/src/core.ts';
 import type { ContextManifest, CreativeCovenant, GeneratedChapter, ModelProvider, RunUsage, Work } from '../../../novel-service-core/src/core.ts';
 import { hasResourceUsage, normalizeFactionResources, plannedKnowledgeAt, validateWorldPack } from '../../../novel-service-core/src/world.ts';
+import { retainExecutionChecks } from '../../../novel-service-core/src/planning.ts';
 import type { StoryBible, WorldPack } from '../../../novel-service-core/src/world.ts';
 
 export interface PlanningClient {
@@ -187,7 +188,7 @@ export class JsonBookPlanner {
     });
   }
 
-  async generateChapterOutlines(input: BookPlanningInput & { skeleton: unknown; from: number; to: number; before: unknown[]; after: unknown[] }): Promise<ChapterOutlineContract[]> {
+  async generateChapterOutlines(input: BookPlanningInput & { skeleton: unknown; from: number; to: number; before: unknown[]; after: unknown[]; replacing?: ChapterOutlineContract[] }): Promise<ChapterOutlineContract[]> {
     // The current plan supplies neighboring outlines. Do not flood a small
     // replacement batch with all fifty older Bible chapter plans as well.
     const storyBible = input.storyBible ? {
@@ -195,10 +196,10 @@ export class JsonBookPlanner {
       chapterPlans: input.storyBible.chapterPlans?.filter((chapter) => chapter.chapterNumber >= input.from && chapter.chapterNumber <= input.to),
     } : undefined;
     return completeValidated(this.client, {
-      system: chapterOutlineSystem + narrativePlanningGuidance + '\nscenes 字段必须是字符串数组，每个元素是一句场景描述，不得返回对象。',
+      system: chapterOutlineSystem + narrativePlanningGuidance + '\nscenes 字段必须是字符串数组，每个元素是一句场景描述，不得返回对象。\nreplacingOutlines 是本批被替换的原章纲；可重构场面，但其 executionChecks 的 id、requirement、sourceQuestion 必须原样保留，不能因重生成删除或改写验收要求。可追加本章确需的独立要求，每章合计最多24项。每项格式为 {id,requirement,sourceQuestion?}；requirement须说明正文可验证的行动、代价或认知边界。sourceQuestion 仅在该要求直接回答 worldPack.unresolvedQuestions、storyBible.unresolvedQuestions 或 plan.openQuestions 中的具体问题时填写 {document:"world|story|plan",questionId}，须匹配对象、人物、时段和因果链；不能只因同属旅行、资源或认知主题就关联。没有准确对应问题时省略 sourceQuestion，不要编造问题，也不把关联当作问题已解决。',
       user: JSON.stringify({
         task: 'generate_chapter_outlines', from: input.from, to: input.to, title: input.title, covenant: input.covenant, authorRequest: input.authorRequest,
-        plan: input.skeleton, previousOutlines: input.before, followingOutlines: input.after, worldPack: input.worldPack, storyBible, adoptedFacts: input.adoptedFacts,
+        plan: input.skeleton, previousOutlines: input.before, followingOutlines: input.after, replacingOutlines: input.replacing ?? [], worldPack: input.worldPack, storyBible, adoptedFacts: input.adoptedFacts,
       }, null, 2),
       maxOutputTokens: Math.min(12_000, 900 * (input.to - input.from + 1) + 1_000),
     }, (value) => {
@@ -218,7 +219,12 @@ export class JsonBookPlanner {
       if (incomplete.length) throw new PlanningParseError(`generated outlines are incomplete: ${incomplete.join('; ')}`);
       const ids = new Set(outlines.map((outline) => outline.id));
       if (ids.size !== outlines.length) throw new PlanningParseError('generated outlines have duplicate IDs; each chapter must have a distinct reference ID');
-      return outlines;
+      return outlines.map(outline => {
+        try {
+          const executionChecks = retainExecutionChecks(input.replacing?.find(item => item.chapterNumber === outline.chapterNumber)?.executionChecks, outline.executionChecks, outline.chapterNumber);
+          return executionChecks === undefined ? outline : { ...outline, executionChecks };
+        } catch (error) { throw new PlanningParseError((error as Error).message); }
+      });
     });
   }
 }
