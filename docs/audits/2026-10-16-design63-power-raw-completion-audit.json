@@ -1,0 +1,690 @@
+{
+  "checkpointSource": "data/audit-runtimes/design63-control/power-raw-completed-recovery3-snapshot.json",
+  "checkpointSha256": "ca9b01807d5e7e5a8a95c78e8a107dcf8153b6d0dcf4feea294401a21a0fd70b",
+  "verifierSha256": "1f672854171c4172a7c569715b6b25f6c719855f9d3d87c33521c1300e2670f7",
+  "negativeFindings": [
+    {
+      "stageId": "batch-2",
+      "criterion": "costs",
+      "explanation": "寿储规则要求资源剂量、疗程和收入逐笔核算且不得重复记入（e14-e15）。但第一卷结果写“两剂共6滴灵泉”，同时另一处写林让出完整三滴后“自己封存六滴”，按字面形成至少9滴的库存口径，与两剂共6滴不闭合；该矛盾不能靠后续细纲补账。另有第25章真光消耗0.25元载和三成元罡的明确成本，规则与beat记录一致，但仍需在对应章确认余量与恢复未被重复使用。"
+    }
+  ],
+  "progressAuditorSha256": "cec032c429417b96ada3a22655277589c4cc17a547d1c9cb47084bed6766e109",
+  "productionReads": 0,
+  "observedAt": "2026-10-15T20:45:53.154Z",
+  "scope": {
+    "worldPackRevision": 33,
+    "storyBibleRevision": 63,
+    "planRevisionId": "plan_6fa43ac6419c44f1b64fbe3390eff759",
+    "planRevision": 63
+  },
+  "inputHash": "7a49ebc0415c36a0c9a92c1180e0ecddfc29466dc3f6221fa5c10881df1e02f0",
+  "runtimeCommit": "6c505a3d6afae5bb275f8cd509e2455a48753857",
+  "scheduleVersion": 23,
+  "area": {
+    "area": "power",
+    "status": "interrupted",
+    "runId": "design_run_5f1d3886-b45e-4009-9d97-a24b8c8ce1af",
+    "completedStages": 43,
+    "totalStages": 85,
+    "retainedFailures": 3,
+    "verification": "not_completed",
+    "progress": {
+      "verification": "verified",
+      "completedStages": 43,
+      "totalStages": 85,
+      "runSha256": "67314dc12dce0875b7d1e69ad3ac7215e946c6caadf1d5decdc5ada6b5b1bc9e",
+      "formalAcceptance": false,
+      "limitation": "Validates saved stage results, citations and pending schedule against the supplied input; does not replay raw model responses or approve incomplete work."
+    }
+  },
+  "records": [
+    {
+      "stageId": "batch-1",
+      "inputSha256": "480eebd3244cfdc777cf0e8cbbd2cadb0d91a1bc694e27e081ec04fbf4482a9e",
+      "stageSha256": "410adc33c42ce69b95ae30c4fa1d3c1caf4863252bfde29b2f2e285153cd4eb6",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "costs",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "counters",
+          "verdict": "insufficient"
+        }
+      ]
+    },
+    {
+      "stageId": "batch-2",
+      "inputSha256": "d24d1f30f6d9d16bb165b771426dd8fe3e7003795e0fb35de4dc61576b12655c",
+      "stageSha256": "ff0876b5e8b6f0eba725e4d0c186e7626b8431065ad6dd7c6d3f019c515950c7",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "costs",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "counters",
+          "verdict": "insufficient"
+        }
+      ]
+    },
+    {
+      "stageId": "batch-3",
+      "inputSha256": "bc3bf901a3a11d6c5efe5e544af6585c4c3ab1a9107554c6d60fe99944714f66",
+      "stageSha256": "645775b2082f381170c55343cf3e8493f1b2047597c087c2f0fa924e3280353b",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "costs",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "counters",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "batch-4",
+      "inputSha256": "39e62f7358f1e5df56abecfc8df5fa366cb343aeaf9fd7aded13495202e782f2",
+      "stageSha256": "ca34faa0dbaebc773f4faf61a61589a3d09bebb69b10e2a7e56637e7c52d9d57",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "costs",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "counters",
+          "verdict": "insufficient"
+        }
+      ]
+    },
+    {
+      "stageId": "batch-5",
+      "inputSha256": "b0dbe8bea8ec221e33623585990beb3a93a370e375e8c8b517d59d09d9fadf06",
+      "stageSha256": "8e3fb4d4a3e9f97d905ee5348d1c12be3e8ea073800ba447cb1aadcbba978afa",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "costs",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "counters",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "cross-1-2",
+      "inputSha256": "6730c5b51a4c0ecff78c87e44bdcd9f3a34646e17289640232c06c1c7bb0aa69",
+      "stageSha256": "ef8660acbba7d3ce31e6a45445ce5ed4734fb2c43f687591a62fa51137542282",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "costs",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "counters",
+          "verdict": "insufficient"
+        }
+      ]
+    },
+    {
+      "stageId": "cross-1-3",
+      "inputSha256": "c08a480320356e2d1b29f49747570ed1462b03923beb28709d936d20ba97e32e",
+      "stageSha256": "42ffdd9f90937d0f3fcbae675e16cb8a06eee8740a4c4c29ec9d7f6ff9ac9b38",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "costs",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "counters",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "cross-1-4",
+      "inputSha256": "c1bb119e6518e0cf99da5936990312532c9887f4ea922f4304de0078a0c6fde1",
+      "stageSha256": "d79fa8a86473ed11d7f099ccbd3097120b2086c97e1ffefde6fcbe041ee29c68",
+      "replayedResponses": 2,
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "costs",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "counters",
+          "verdict": "insufficient"
+        }
+      ]
+    },
+    {
+      "stageId": "cross-1-5",
+      "inputSha256": "7d1ecb4c471fa1440ecc65b10c31aec9abdb1705e60504f1674b6a21ea1102cf",
+      "stageSha256": "2c444458e7652583d71d33b54392d8e7720d8833e81b5cde50d0fc338bb85213",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "costs",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "counters",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "cross-2-3",
+      "inputSha256": "46924de59fe482352f87b40736955271bbafcfd961739812529c7b1b6cdd2ff5",
+      "stageSha256": "909a9539679548d1a200cf5675e609dd6ea609daa9551f5b60e6680c197afcde",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "costs",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "counters",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "cross-2-4",
+      "inputSha256": "6a6d740e7feae9e769ea4e8685fede0e0e486312911f1cc376f4375a02650b2d",
+      "stageSha256": "e19e6761351ea52954f3a4030c0ac7b727d815c81e07d23d5eaaa4d0dd5c64ff",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "costs",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "counters",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "cross-2-5",
+      "inputSha256": "9b90011f6d484a48e61ebf949cc010da4f310ff65b6c64b38be4866274740fe1",
+      "stageSha256": "52bf769c70a16ed28803811f73a4f3e459a2d5f526d60e599d8f88ae47a6e7f7",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "costs",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "counters",
+          "verdict": "insufficient"
+        }
+      ]
+    },
+    {
+      "stageId": "cross-3-4",
+      "inputSha256": "cc79bbf8699ce1bf16eb6231a2c9086a1874c7a8ca6099c38a43619cbdc7c89d",
+      "stageSha256": "255abf2c1ae06f3708f07091dfabefa9c7705040e184559eeb7226fdb6e1a716",
+      "replayedResponses": 2,
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "costs",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "counters",
+          "verdict": "insufficient"
+        }
+      ]
+    },
+    {
+      "stageId": "cross-3-5",
+      "inputSha256": "662a6316da5c2719dfcb7cb513c0cfe2e197713f53a188be611d3a03b344423e",
+      "stageSha256": "42a9afe9de2ee657894c0624246e7ba569cdd8bd3617e4c982f202cebd5ac6d6",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "costs",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "counters",
+          "verdict": "insufficient"
+        }
+      ]
+    },
+    {
+      "stageId": "cross-4-5",
+      "inputSha256": "87efb1a91953632969e7f60c5d842b41f1ed78be69d818a6eea706410906d22d",
+      "stageSha256": "38ea28a1c1810eb29f765cafe0b4ca9414d272b3d32390b81ef766d00a1d0ec8",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "costs",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "counters",
+          "verdict": "insufficient"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-batch-1/tiers",
+      "inputSha256": "2ac056c84dd4ef911dfb71b20ced94214f3b1d727077ab5a96a1ea697171d8e1",
+      "stageSha256": "7d8a25f99314a2f2ba5b9581168c199187e132beedeaf2f6171e989e24c31a03",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-batch-1/costs",
+      "inputSha256": "3b8d7996b2ed492eef78a01b1427bae5ab601d1acc34f3a1590bfb14cd27f0fc",
+      "stageSha256": "3205b5f51faa42df43bc937e51d417e54af36abc3a50256254dea77ad9d6da03",
+      "replayedResponses": 2,
+      "checks": [
+        {
+          "criterion": "costs",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-batch-1/counters",
+      "inputSha256": "c4d57133d96f166f71508dcb95263890eb3491312392d1a53584b6b4dc7a4ca0",
+      "stageSha256": "7cbb15315f18f9e6070d193ff219c37819347744bb6db20761230803f69629b2",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "counters",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-batch-2/tiers",
+      "inputSha256": "b048fee77d9707d61f9204db29d9d57a46dfc72279ab9bb0269b0f3c321c0446",
+      "stageSha256": "d744bf8daa8d79671c8eb9ac1fe198ddbe8ddf6be0fd74cd28124407e46bfcd9",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-batch-2/counters",
+      "inputSha256": "de8aba15bc9af95805b0b695b99f47ae3ad0590ee3cc4b8bc152a7122f2d6035",
+      "stageSha256": "6e95493691dd9542e37795ab17c7f710597755fa3e7d1896ebed7dc12f78eedd",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "counters",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-batch-4/tiers",
+      "inputSha256": "9498f84dc6cce371b985ed8a6c7e0b4ce909d53a074245b0de37cb3ec18dea7c",
+      "stageSha256": "7089f56941acd0969fb10be99ee16607cdda7a87e7dd54d578d7e4462c5034a6",
+      "replayedResponses": 2,
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-batch-4/costs",
+      "inputSha256": "778a591a5bbff4eab12695fb88722add27ae836e8fef37206169dce3392a23ac",
+      "stageSha256": "86c2bf92497f534c85ec515e00791c79b982770eeadf7ae489154c4de752a9d3",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "costs",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-batch-4/counters",
+      "inputSha256": "9ec690eab6918ce36ccb89ff76b6e9f1646ed048fdb42bc0155a4b4f34cc8b1d",
+      "stageSha256": "7709322084eecf90b8f78b2dec71e2ab3f017b0de927ed79ececbc06f7d40675",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "counters",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-1-2/tiers",
+      "inputSha256": "48d9d426e76121a72f4be70cd82c3aea450e3d86bbd856244c3ce347bc22f16d",
+      "stageSha256": "da32ad26d6e783239bcfd3e30c9fc72a5f97498c05a06ecce7c6ca6f0c8b0e0f",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-1-2/costs",
+      "inputSha256": "9351ed5840de84fac271c021f23f3214cfb49b2aeccd38b7a3f69f3385bcf5d8",
+      "stageSha256": "5a081e837422e5d821d45fa06d34d6562f21225a0d503fb6aa7243070ef15483",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "costs",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-1-2/counters",
+      "inputSha256": "24381fedae380bba9f82cbae1ec1005446b3fc1289dd56b2bdf38947f8409e7b",
+      "stageSha256": "7d0f69126438d6d9e471e69dc0d17fc754d178e3b67e38f47d76db8eaa2f41bb",
+      "replayedResponses": 2,
+      "checks": [
+        {
+          "criterion": "counters",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-1-4/tiers",
+      "inputSha256": "b5d98fddaffb8d4c3111621c49171898fe244d778bc29b1d109efc814b004e93",
+      "stageSha256": "c5fa54eedf5c74db6fe1ed674a7183d845c292f0878719fc69e3006978c833bf",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-1-4/costs",
+      "inputSha256": "a07c4966c26dab05b7628e659b3e0230593b13b04005504aa5eb3e2d0c5161c2",
+      "stageSha256": "9b112b181087ab915d912c68fc01dcaa144fe1183c66080e37d82b81be39ac62",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "costs",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-1-4/counters",
+      "inputSha256": "33c9e1d63d180cdc00bcd2406cb88b39fb35d1dab0ca6233032fcd722c7d216b",
+      "stageSha256": "1c7ceeaa42caa1fa01098dbf776b3bee98c819c9499ef1b8d453ec53d4e6e9d7",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "counters",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-2-4/tiers",
+      "inputSha256": "7aa73d1ef582b9bbeb8826ab3b8187ac02994fe41a0c1af9a444446132332665",
+      "stageSha256": "b74b96248c02703bfdba556d689d1e344b4c10ae5b34eef7a3b188c4e7fed6c2",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-2-4/costs",
+      "inputSha256": "a8dd4af95b853f1427c74d7f8652bb0e4838fbded452b2c0eea3ca1d877e0392",
+      "stageSha256": "384064a1c1f2fd3acf01389df3de91d84ec4f3fb9c9e99085faed317b00f66d9",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "costs",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-2-5/tiers",
+      "inputSha256": "db8d9492561a74ebd6a58d01a76f9385e06aee99ecbe9fca2d94d32a6a9ff6f3",
+      "stageSha256": "1e4c6b04b8e488160613defa6aba28443451702cd3f6f9049e27f5ee3bcee876",
+      "replayedResponses": 2,
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-2-5/costs",
+      "inputSha256": "2d6702f4e2f8548dfafdedea812957639c3019b91c84e0787117d99781a13353",
+      "stageSha256": "a6ec12aecb1734023a6b0888e81ae9f05f6e73b13397b23bdba0e86c9a75a81e",
+      "replayedResponses": 2,
+      "checks": [
+        {
+          "criterion": "costs",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-2-5/counters",
+      "inputSha256": "2156dba92b64beebc363dc9dbff8540235c6369b9e4e41a9ec34cc44d95bf449",
+      "stageSha256": "0a3f8657f640f9d38cd5ecbf32cb42025965920c6bbb87d625202c10dbfa1f0f",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "counters",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-3-4/tiers",
+      "inputSha256": "e5d6cd4baf7e519be13b6d44b136af86c07efbb812739df4d435c1f81a712510",
+      "stageSha256": "9727fdb0c904b311e375f4ef47cf3b81a47a93c40c98837a18999b73a1710fb4",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-3-4/costs",
+      "inputSha256": "aea64628faf3ba19582b5a32b0d0c0566c353d5fccc99ffa5dad78a1714fa188",
+      "stageSha256": "95069ace1544d0a3ad0efb7bbb8d0020570cd95adeaf96b581fbb85c50affa81",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "costs",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-3-4/counters",
+      "inputSha256": "b87f47ee965e95fa9bf578a33986a402f9765a39b41bd8757bf9f95039b37249",
+      "stageSha256": "d1e7313b04cfe8a0fa454075d0ee2b7585da27816fa193a0de5450618040a839",
+      "replayedResponses": 2,
+      "checks": [
+        {
+          "criterion": "counters",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-3-5/tiers",
+      "inputSha256": "67c634fdab4f72029fc342edba54b4375c2376178a69484b7a82a8ff74a2fdd3",
+      "stageSha256": "6fe88ca49b2431bb24941370a1fed938907b344a2c097bc39a72a7da798d2792",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-3-5/costs",
+      "inputSha256": "fce02a54fc02262c353e0046bbdea64be6963d73735e7a32151e888c2fc0eeb2",
+      "stageSha256": "2b8758296c3fa63f581138713a07666bd88997ffe3c80750576859509c3919c5",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "costs",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-3-5/counters",
+      "inputSha256": "c4afc4080595462eea46eb233a077ded857f3455216e4a63ffc3dff0d9a0d7dc",
+      "stageSha256": "cf5483dbacf264111b31a3e65cea7ac4e4a2ecdb51b94b8f810e0d397679ae02",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "counters",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-4-5/tiers",
+      "inputSha256": "f9917d4de6c78c98715ef47a2bb92c5f3c330bf216bb0252145eca7d3dc2fb8a",
+      "stageSha256": "aa980d52223c27b572993f82773375cdae72003b6c378c141243432326969d69",
+      "replayedResponses": 2,
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-4-5/costs",
+      "inputSha256": "4ec33f947929e8c30230610b6b31bc3564a1b8e72f4fb4769d88d378ef51aee3",
+      "stageSha256": "880209329137b2ea0b7a8b8339e371c673a615aeea7ff0e309dbcbb455fd43ee",
+      "replayedResponses": 2,
+      "checks": [
+        {
+          "criterion": "costs",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-4-5/counters",
+      "inputSha256": "18e081cbf67521987b686b7d206af1c633ff800e104edd66361f277a7132ba79",
+      "stageSha256": "694aaa782ee30ca23c8b9c77bc4ca0653223664302ace7aa29473844140b8d78",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "counters",
+          "verdict": "pass"
+        }
+      ]
+    }
+  ],
+  "rawStagesVerified": 43,
+  "rawResponsesReplayed": 53,
+  "failedAttemptsRetained": 3,
+  "sourceFilesVerified": 130,
+  "protectedHistoryUnchanged": true,
+  "oldRunsVerified": 57,
+  "oldReportsVerified": 63,
+  "realModelCalls": 0,
+  "productionWrites": 0,
+  "overallStatus": "not_accepted",
+  "limitation": "Replays the accepted raw/cross/followup power responses using frozen parsers and verifies saved progress against the protected isolated design snapshot with checkpoint overlay. Synthesis and final report remain incomplete. Formal negatives and manual findings remain; not semantic acceptance, plan approval, blocker resolution or prose acceptance."
+}

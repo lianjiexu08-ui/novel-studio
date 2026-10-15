@@ -1,0 +1,67 @@
+{
+  "verification": "verified",
+  "checkpoints": [
+    {
+      "sha256": "002d0b8ae14660717cb64bb133fed5ceeed2639ea587bd7dbd9286479066dbce",
+      "status": "completed_with_failures",
+      "calls": 137,
+      "completedStages": 108
+    },
+    {
+      "sha256": "7b2b52d95bfeb4f87744389b65672f6b4c2497fdc0244c04b32b8e6ae7ffa4e7",
+      "status": "stopped_after_failure",
+      "calls": 143,
+      "completedStages": 110
+    },
+    {
+      "sha256": "0bcabe9a7e375b36ac2081a6c0644bf6e63b64eed8b35e9feb52addfe6bedc54",
+      "status": "stopped_after_failure",
+      "calls": 212,
+      "completedStages": 170
+    },
+    {
+      "sha256": "ca9b01807d5e7e5a8a95c78e8a107dcf8153b6d0dcf4feea294401a21a0fd70b",
+      "status": "stopped_after_failure",
+      "calls": 243,
+      "completedStages": 193
+    },
+    {
+      "sha256": "cbfe797f144bed4e9dbf491c07bac775135fc387807741372ce366686ce17dd5",
+      "status": "running",
+      "calls": 243,
+      "completedStages": 193
+    }
+  ],
+  "modelCalls": 0,
+  "databaseWrites": false,
+  "designApproved": false,
+  "observedAt": "2026-10-15T20:46:44.415Z",
+  "capturedCheckpoint": "data/audit-runtimes/design63-control/recovery4-start-snapshot.json",
+  "pid": 42816,
+  "workerConfirmedAlive": true,
+  "originalCap": 400,
+  "remainingCalls": 157,
+  "preflight": {
+    "status": "preflight_passed",
+    "priorCheckpointSha256": "ca9b01807d5e7e5a8a95c78e8a107dcf8153b6d0dcf4feea294401a21a0fd70b",
+    "targets": [
+      {
+        "area": "power",
+        "runId": "design_run_5f1d3886-b45e-4009-9d97-a24b8c8ce1af"
+      },
+      {
+        "area": "story",
+        "runId": "design_run_a1ae5a57-f9bf-4af3-8093-550e3d3ded22"
+      }
+    ],
+    "remainingCalls": 157,
+    "modelCalls": 0,
+    "databaseWrites": false
+  },
+  "auditorSha256": "01088487eed9b5a6f125760eea31a5e3c71e5d1839a24ccaa8d2f7f1b47e689d",
+  "runtimeCommit": "6c505a3d6afae5bb275f8cd509e2455a48753857",
+  "scheduleVersion": 23,
+  "recoveryScriptSha256": "a9aa18b847294cf1877af37b71ee2d019b2956b57baa0334168d3e480a8946ea",
+  "productionReads": 0,
+  "limitation": "Live recovery prefix only. Verifies exact-byte parents, retained completed results/reports and failures, unchanged inputs/schedules and accumulated usage. No final design acceptance."
+}
