@@ -1,0 +1,18 @@
+{
+  "kind": "diagnostic_metadata_rejected",
+  "diagnosticPath": "data/audit-runtimes/design64-control/receipt-v7-review-result.json",
+  "pid": 49323,
+  "statusAtObservation": "running",
+  "mismatches": [
+    {
+      "sourceId": "plan/milestones/ms_v3_return",
+      "actualSourceUtf16Length": 4978,
+      "declaredLength": 4798
+    }
+  ],
+  "wholeSourceWasProvided": true,
+  "eligibleForAcceptance": false,
+  "replacementScriptPrepared": true,
+  "replacementStarted": false,
+  "note": "The response and request remain unmodified. Wait for worker exit before a corrected request; no overlapping retry and no formal verdict change."
+}

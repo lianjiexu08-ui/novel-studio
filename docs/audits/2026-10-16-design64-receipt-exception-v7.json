@@ -1,0 +1,252 @@
+{
+  "status": "unapplied_draft",
+  "baseFile": "data/design-candidates/design64-execution-and-rescue-draft-v6.json",
+  "baseSha256": "7dfb01857374359923766086b18cb0ea58c1b306b009b68bfc0cf23993d25920",
+  "candidateFile": "data/design-candidates/design64-receipt-exception-draft-v7.json",
+  "candidateSha256": "3af9d36cdf13ec5c1164386ba210334406f9c97149dfd0a957bf9a690ad9322a",
+  "originalFormalInputHash": "7a49ebc0415c36a0c9a92c1180e0ecddfc29466dc3f6221fa5c10881df1e02f0",
+  "reviewFile": "data/audit-runtimes/design64-control/receipt-review-result.json",
+  "reviewSha256": "56e442a87f4625fd95dd11daddc53e102b0088dba12be38ea9f7e0ea7b46b17f",
+  "change": {
+    "path": "plan/milestones/ms_v3_return/setup/12",
+    "before": "若305日封袋未交车、308日原巡队未收件、封签/身份/日期不符，通天留本与原巡队留本均保留；原巡队当班案牍岗在308日暮查收登记后将缺单交本轮当班巡队负责人立项，按原公共驿路实派查件人员向通天核留本和船方签认，先查件与行踪、不凭缺单直接断定两人逃逸。夜在驻地未收到实体询问前不会远程得知追查，责任仍待核；318未到驻地同样保持待核并由驻地文书向原巡队发起实体查件。任何查件、重寄、重新批准都须另核实际人手、行程与费用，不能自动复用18邮资、3000船票、220封存款或追加免费交通；缺件情况下不沿用318知情和责任结清。",
+    "after": "若305日封袋未交车、308日原巡队未收件或封签/身份/日期不符，通天与原巡队留本均保留；308日暮原巡队案牍岗交当班负责人立项，先在既有值守内核本队留本。向通天核留本及船方签认的实体查件，须由负责人向本队公用办差账申请本案人手、交通食宿款，具名核准、款项和人员落实后才沿原公共驿路派出。通天重寄由港务按承运联核责，向确认的责任方申请实付重寄费；318驻地未到件由值守文书立项，向驻地当班负责人申请同类办差来源后才实体查件。未获款、缺人或责任未定，只留本核对、保留待办与责任待核，不虚写派出、重寄或查得结果；按实际发出及运期重排到件日期，不沿用318知情或结清。夜未实际收到询问前不知追查，缺单不等于逃逸。18邮资、3000票款、220封存款不得自动复用，追加办差款不属林贺收入；重批仍须另核人手、行程与费用。邮递异常在离境后，不倒写林贺困在北境；若出发前许可、交通或供暖失败，另按本里程碑已有暖处停行、核余款及向原垫款方申请确认追加来源的延期分支办理，未获款不花，不挪邮递办差款。",
+    "beforeSha256": "6848d49cff15b5ee86be5d942f7868c1e120cf28b8f7d32c1cb71fa4c3ec8042",
+    "afterSha256": "5e2be9dbaed96e52e70d2968e1d90ddfccb290e2913d3ed667f794afc2e98b81"
+  },
+  "onlyOneParagraphChanged": true,
+  "existingExecutionChecks": 27,
+  "blockingRecords": 41,
+  "worldUnchanged": true,
+  "bibleUnchanged": true,
+  "questionsUnchanged": true,
+  "validation": {
+    "valid": true,
+    "issues": [],
+    "warnings": [
+      {
+        "path": "worldPack",
+        "message": "blocking unresolved questions remain"
+      },
+      {
+        "path": "storyBible",
+        "message": "blocking unresolved story questions remain"
+      }
+    ],
+    "blockers": [
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-power-opening",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-resource-definitions",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-travel-rules",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-tier-exceptions",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-resource-usage",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-first-volume-foundation",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-volume-timeline",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-artifact-continuity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-ending-cost",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-relationship-stages",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-knowledge-reveal-order",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-opening-growth",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-opening-quality",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-resource-growth-budget",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first-volume-blueprint",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-v1-outline-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-v23-macro",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-guard-return-chain",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-barge-inspection",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-second-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first50-narrative",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-message-arrivals",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-review-capacity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "baseline-content-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "opening-growth-repair",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "opening-quality-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "resource-growth-budget",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first-volume-blueprint",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "v1-outline-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "v23-macro",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "guard-return-chain",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "barge-inspection",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "second-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first50-narrative",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "message-arrivals",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "review-capacity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "convoy-custody-causality",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "north-coast-exit-permit",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "chapter25-claw-sequence",
+        "code": "BLOCKING_QUESTION"
+      }
+    ],
+    "formalAcceptance": false,
+    "productionWrites": false,
+    "limitation": "Checks API contracts and structural references only. Open blockers remain; this does not approve a plan, accept content quality, or certify an atomic save."
+  },
+  "contentReviewPassed": false,
+  "productionReads": 0,
+  "productionWrites": 0,
+  "modelCalls": 0,
+  "limitation": "Clarifies approval/funding before dispatch, and distinguishes mail failure after departure from passenger delay before departure. No automatic funding, permission, information, successful dispatch or chapter execution is created. Fresh source review is required."
+}
