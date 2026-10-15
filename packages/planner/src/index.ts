@@ -81,7 +81,7 @@ pass 也必须有支撑证据；明确矛盾或设计缺陷用 revise；材料�
     // and offline fixtures remain compatible; production prompts ask for the
     // skeleton only and then continue through four dependent stages.
     const skeleton = await completeWorldStage(this.client, {
-      system: worldSkeletonSystem + worldSkeletonShape,
+      system: worldSkeletonSystem + worldProposalGuidance + worldSkeletonShape,
       user: JSON.stringify({ task: 'generate_world_skeleton', title: input.title, covenant: input.covenant, targetChapters }, null, 2),
       maxOutputTokens: 10_000,
     }, 'skeleton');
@@ -94,17 +94,17 @@ pass 也必须有支撑证据；明确矛盾或设计缺陷用 revise；材料�
       return complete;
     }
     const geography = await completeWorldStage(this.client, {
-      system: worldGeographySystem + worldGeographyShape,
+      system: worldGeographySystem + worldProposalGuidance + worldGeographyShape,
       user: JSON.stringify({ task: 'generate_world_geography_and_factions', title: input.title, covenant: input.covenant, targetChapters, skeleton }, null, 2),
       maxOutputTokens: 10_000,
     }, 'geography');
     const power = await completeWorldStage(this.client, {
-      system: worldPowerSystem + worldPowerShape,
+      system: worldPowerSystem + worldProposalGuidance + worldPowerShape,
       user: JSON.stringify({ task: 'generate_world_power_and_assets', title: input.title, covenant: input.covenant, targetChapters, skeleton, geography }, null, 2),
       maxOutputTokens: 10_000,
     }, 'power');
     const history = await completeWorldStage(this.client, {
-      system: worldHistorySystem + worldHistoryShape,
+      system: worldHistorySystem + worldProposalGuidance + worldHistoryShape,
       user: JSON.stringify({ task: 'generate_world_history', title: input.title, covenant: input.covenant, targetChapters, skeleton, geography, power }, null, 2),
       maxOutputTokens: targetChapters >= 450 ? 20_000 : 8_000,
     }, 'history');
@@ -806,8 +806,8 @@ function assertWorldPackScale(pack: WorldPack, targetChapters = 100): void {
   if (pack.artifacts.some((artifact) => !artifact.tier)) missing.push('every artifact must declare tier');
   if (pack.resources.some((resource) => !resource.tier)) missing.push('every resource must declare tier');
   if (pack.resources.some((resource) => resource.status !== 'deprecated' && !hasResourceUsage(resource))) missing.push('every resource must declare usage effect, requirements, cost and limitations');
-  const blockingQuestions = pack.unresolvedQuestions.filter((question) => question.blocking && question.status === 'open');
-  if (blockingQuestions.length) missing.push(`blocking unresolved questions must be resolved (${blockingQuestions.map((question) => question.id).join(', ')})`);
+  // Generation returns a proposal. Preserve unresolved design questions for
+  // review; review, locking and writing gates enforce their resolution.
   if (missing.length) throw new PlanningParseError(`world pack is too small for the long-form milestone: ${missing.join(', ')}`);
 }
 
@@ -876,7 +876,9 @@ function mergeExpandedStoryBible(previous: StoryBible, next: StoryBible): StoryB
   };
 }
 
-const worldSkeletonSystem = `你是长篇玄幻小说世界观的第一阶段骨架规划器。只返回一个 JSON 对象，不要 Markdown，不要解释。严格只允许顶层 keys：id、revision、title、summary、status、createdAt、axioms、powerSystems、tierLadders、realms、terminology、unresolvedQuestions。严禁输出 techniques、artifacts、resources、locations、factions、historicalEvents，也不要把它们嵌在其它字段里；它们会在后续阶段单独生成。只生成公理、力量系统名称、连续境界骨架和四条等级阶梯（realm、technique、artifact、resource）。境界至少八个，且每个对象的每个文本字段控制在 20 个汉字以内。每条等级阶梯写出至少六个简短、有顺序的等级名称和一句跨级规则，后续阶段的每个功法、法宝、资源都必须引用对应等级。ID 在后续阶段保持稳定。关键问题必须直接定案，只有不影响开篇的探索项才可 deferred 且 blocking=false。所有状态使用 proposed，createdAt 使用 ISO 8601 时间。`;
+const worldProposalGuidance = `\n本次产出是待评审提案，不是已验收世界。尽力给出可执行的设定；仍无法确定的关键规则或因果要如实保留在 unresolvedQuestions，写清问题、涉及对象及待核依据，blocking=true、status=open。不得为满足规模校验、让流程继续或声称开篇可写而删除问题、降为非阻断或虚标 resolved。后续阶段不得把前阶段的问题省略视为已解决；不影响当前创作范围的探索项才可 blocking=false 并 deferred。保存提案不代表审核、锁定或允许生成正文。\n`;
+
+const worldSkeletonSystem = `你是长篇玄幻小说世界观的第一阶段骨架规划器。只返回一个 JSON 对象，不要 Markdown，不要解释。严格只允许顶层 keys：id、revision、title、summary、status、createdAt、axioms、powerSystems、tierLadders、realms、terminology、unresolvedQuestions。严禁输出 techniques、artifacts、resources、locations、factions、historicalEvents，也不要把它们嵌在其它字段里；它们会在后续阶段单独生成。只生成公理、力量系统名称、连续境界骨架和四条等级阶梯（realm、technique、artifact、resource）。境界至少八个，且每个对象的每个文本字段控制在 20 个汉字以内。每条等级阶梯写出至少六个简短、有顺序的等级名称和一句跨级规则，后续阶段的每个功法、法宝、资源都必须引用对应等级。ID 在后续阶段保持稳定。关键规则尽力给出明确安排，无法确定的问题按待审提案规则保留。所有状态使用 proposed，createdAt 使用 ISO 8601 时间。`;
 const worldSkeletonShape = shapeIntro + [
   '顶层只能是: {id, revision: 1, title, summary, status: "proposed", createdAt, axioms[], powerSystems[], tierLadders[], realms[], terminology[], unresolvedQuestions[]}',
   'axioms[]: {id, title, content, scope, precedence: 整数, status}',
@@ -903,7 +905,7 @@ const worldPowerShape = shapeIntro + [
   'terminology[]: {id, canonical, aliases: [字符串], kind, status}',
   'unresolvedQuestions[]: {id, question, blocking: 布尔, status: "open"|"resolved"|"deferred"}',
 ].join('');
-const worldHistorySystem = `你是同一部玄幻长篇的世界观第四阶段规划器。只返回一个 JSON 对象，不要 Markdown，不要解释。基于全部输入补齐至少十个有因果链的历史事件（450章扩展至少十八个），覆盖大陆、势力和力量体系的形成、断裂与现状；每个事件必须写 causes、consequences、factionIds，并标明它影响的等级体系或资源流转。不得新增或修改已有实体 ID；可以补充少量术语和不阻断开篇的探索问题。`;
+const worldHistorySystem = `你是同一部玄幻长篇的世界观第四阶段规划器。只返回一个 JSON 对象，不要 Markdown，不要解释。基于全部输入补齐至少十个有因果链的历史事件（450章扩展至少十八个），覆盖大陆、势力和力量体系的形成、断裂与现状；每个事件必须写 causes、consequences、factionIds，并标明它影响的等级体系或资源流转。不得新增或修改已有实体 ID；可以补充少量术语，并如实列出仍需复核的历史因果问题。`;
 const worldHistoryShape = shapeIntro + [
   '顶层: {historicalEvents[], terminology[], unresolvedQuestions[]}',
   'historicalEvents[]: {id, title, storyTime, causes: [字符串], consequences: [字符串], factionIds: [faction id], status}',
