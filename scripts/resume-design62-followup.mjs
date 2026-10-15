@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
+import { citationRecoveryGuidance, citationRecoverySuffix } from './design62-citation-recovery.mjs';
 
 // Run from the project root whose frozen binding and checkpoints are verified below.
 const root = process.cwd();
@@ -10,8 +11,11 @@ const runtime = read(root + '/data/audit-runtimes/design62-runtime-bound.json');
 const baseline = read(root + '/data/audit-runtimes/design62-control/baseline.json');
 const afterTransportFailure = process.argv.includes('--after-transport-failure');
 const afterSecondTransportFailure = process.argv.includes('--after-second-transport-failure');
-assert.ok(!(afterTransportFailure && afterSecondTransportFailure), 'Choose one recovery checkpoint');
-const recoveryBinding = afterSecondTransportFailure
+const afterCitationFailure = process.argv.includes('--after-citation-failure');
+assert.ok([afterTransportFailure, afterSecondTransportFailure, afterCitationFailure].filter(Boolean).length <= 1, 'Choose one recovery checkpoint');
+const recoveryBinding = afterCitationFailure
+  ? { file: 'followup-after-second-transport-1-result.json', sha256: '92e15fc6900daf5ddbe6f8ec2d6aa8df76ee37d523a564581c42f697ae70df52', outputPrefix: 'followup-after-citation' }
+  : afterSecondTransportFailure
   ? { file: 'followup-after-transport-1-result.json', sha256: '48e43fc2bd9e49c58e8318ecff6cca31e5a16df3473d52f4224d1dc841b6d52c', outputPrefix: 'followup-after-second-transport' }
   : afterTransportFailure
   ? { file: 'followup-1-result.json', sha256: '45a8a91dcc1c4c9d8871227b5f47332dd5856f2400acce436852d86f034c330d', outputPrefix: 'followup-after-transport' }
@@ -111,12 +115,13 @@ try {
       ledger = new UsageLedger(Infinity, undefined, { maxCalls: remainingCalls }); redact = redactSecrets;
       const gateway = new ModelGateway(new Map([['openai-compatible', new OpenAICompatibleAdapter(fetch, conn.timeoutMs, true)]]), ledger);
       const endpoint = conn.endpoint.replace(/\/$/, '').replace(/(?:\/v1)?$/, '/v1');
-      reviewProvider = new JsonDesignPlanner({ complete: async req => (await gateway.complete({ role: req.role ?? 'reviewing', model: conn.planningModel, system: req.system + suffix, user: req.user, maxOutputTokens: req.maxOutputTokens, responseFormat: 'json', temperature: 0.2 }, 'openai-compatible', { endpoint, apiKey: conn.apiKey })).text });
+      reviewProvider = new JsonDesignPlanner({ complete: async req => (await gateway.complete({ role: req.role ?? 'reviewing', model: conn.planningModel, system: req.system + suffix + (afterCitationFailure ? citationRecoverySuffix(req.user) : ''), user: req.user, maxOutputTokens: req.maxOutputTokens, responseFormat: 'json', temperature: 0.2 }, 'openai-compatible', { endpoint, apiKey: conn.apiKey })).text });
     } else {
       reviewProvider = { reviewDesignContent: async () => { throw new Error('REHEARSAL: simulated provider quota failure; no network call'); } };
     }
     const workflow = new ChapterWorkflow(repo, { generateChapter: () => { throw new Error('Resume must not generate prose'); } }, reviewProvider);
     const state = { status: 'running', startedAt: new Date().toISOString(), rehearsal, attempt, previousAttempts, workers: 1, runtimeCommit: runtime.commit, priorCheckpointSha256: hash(priorBytes), scope: prior.scope, areas: prior.areas, priorUsage: prior.resumeUsage ?? prior.usage, priorTotalCalls: prior.totalCalls, maxCalls: prior.maxCalls, errors: [], stepsStarted: [], suffixSha256: hash(suffix) };
+    if (afterCitationFailure) state.citationRecovery = { area: 'power', followupFor: 'cross-2-3/tiers', guidanceSha256: hash(citationRecoveryGuidance), helperSha256: hash(fs.readFileSync(root + '/scripts/design62-citation-recovery.mjs', 'utf8')), appliesToInitialAndRepair: true, sourceMaterialChanged: false, validatorChanged: false };
     fs.writeFileSync(out, JSON.stringify(state, null, 2) + '\n', { flag: 'wx' });
     const queue = [...targets]; let stopped = false, checkpointQueue = Promise.resolve();
     const checkpoint = () => {

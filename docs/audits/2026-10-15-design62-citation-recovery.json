@@ -1,0 +1,42 @@
+{
+  "observedAt": "2026-10-15T11:57:55.576653+00:00",
+  "cause": "Power followup-cross-2-3/tiers failed again: missing plan/overview citation; process 79072 exited and checkpoint terminal",
+  "runtimeCommit": "9df915493be44a310c910610b44ef2b65cb153e6",
+  "priorCheckpoint": "data/audit-runtimes/design62-control/followup-after-second-transport-1-result.json",
+  "priorCheckpointSha256": "92e15fc6900daf5ddbe6f8ec2d6aa8df76ee37d523a564581c42f697ae70df52",
+  "priorTotalCalls": 223,
+  "originalMaxCalls": 300,
+  "remainingCalls": 77,
+  "nextPowerStage": "followup-cross-2-3/tiers",
+  "completedStagesPreserved": 190,
+  "finalReportsPreserved": 3,
+  "preflight": "passed; full production progress matched terminal checkpoint",
+  "dispatchChange": {
+    "area": "power",
+    "followupFor": "cross-2-3/tiers",
+    "guidanceSha256": "de5aca6c1574211519296f6f3770c583a34dc0f9ea83736a86caf1b332d3f752",
+    "helperSha256": "abdb7d2e8970b6b101d2c4674a0e715d956d2264d056124903ad3b279e564473",
+    "appliesToInitialAndRepair": true,
+    "sourceMaterialChanged": false,
+    "validatorChanged": false
+  },
+  "rehearsal": {
+    "database": "/var/folders/tr/8vt224595gdfg6w6kh6tkpt00000gn/T/novel62-citation-1ckxlbh_/rehearsal.db",
+    "checkpoint": "data/audit-runtimes/design62-control/followup-after-citation-rehearsal-1-result.json",
+    "checkpointSha256": "58af6f6ef11642548c2a2abc8cab48371693f225381c4ef96e487860a469ef97",
+    "stepsStarted": 1,
+    "simulatedProviderFailures": 1,
+    "modelCalls": 0,
+    "completedStagesUnchanged": true,
+    "originalFailuresRetained": true,
+    "protectedHistoryUnchanged": true
+  },
+  "routingTests": {
+    "passed": 2,
+    "initialAndRepairOnly": true,
+    "unrelatedRequestsUnchanged": true
+  },
+  "productionWritesDuringPreflightAndRehearsal": false,
+  "designApproval": false,
+  "proseGenerated": false
+}
