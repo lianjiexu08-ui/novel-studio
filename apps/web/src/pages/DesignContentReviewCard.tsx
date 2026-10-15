@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 import { Alert, App, Button, Card, Collapse, Empty, Modal, Select, Space, Tag, Typography } from 'antd';
 import type { DesignContentReviewDto, DesignContentReviewSummaryDto, DesignReviewAreaDto, DesignReviewSummaryDto } from 'novel-studio-contracts';
 import { api, type DesignReviewStageDetail } from '../api';
+import { ReviewSourceCoverage } from './ReviewSourceCoverage';
 
 const labels = { world: '世界、势力与历史', power: '力量、功法与法宝', characters: '人物、关系与认知', story: '主线、分卷与章纲' };
 const statuses = { missing: '尚未评审', outdated: '设计已变，需重评', passed: '本项设计通过', needs_revision: '需要返修', inconclusive: '材料不足', reviewing: '评审进行中', interrupted: '评审未完成' };
@@ -227,6 +228,7 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
         {stageDetail.stage.error && <Alert type="error" message="本批尚未完成" description={stageDetail.stage.error} />}
         {stageDetail.stage.result && details({ ...stageDetail.stage.result, sources: stageDetail.input.sources, scope: stageDetail.input.scope })}
         <Collapse style={{ width: '100%' }} items={[
+          { key: 'source-coverage', label: '核对本步原文范围与完整来源目录', children: <ReviewSourceCoverage key={`${stageView?.runId}/${stageView?.stageId}`} input={stageDetail.input} onSource={setSource} /> },
           { key: 'materials', label: `查看全部所审材料（${stageDetail.input.sources.length} 项）`, children: <Space direction="vertical">{stageDetail.input.sources.map(item => {
             const original = stageDetail.input.stage?.sourceMap.find(unit => unit.id === item.id);
             return <Button key={item.id} type="link" onClick={() => setSource(item)}>{original ? `${original.sourceId} · 字符 ${original.start}–${original.end}` : item.id}</Button>;

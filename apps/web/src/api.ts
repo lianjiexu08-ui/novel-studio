@@ -1,4 +1,5 @@
 import type { DesignEditingBaseline, DesignBundle } from './design-revision';
+import type { ReviewSourceInput } from './design-review-coverage';
 import type { DesignContentReviewDto, DesignReviewAreaDto, DesignReviewOverviewDto, DesignReviewSummaryDto } from 'novel-studio-contracts';
 import type {
   AdoptionResponse,
@@ -50,7 +51,7 @@ export interface DesignReviewStageDetail {
   input: {
     inputHash: string;
     scope: DesignContentReviewDto['scope']; sources: DesignContentReviewDto['sources'];
-    stage?: { sourceMap: Array<{ id: string; sourceId: string; start: number; end: number }> };
+    stage?: ReviewSourceInput['stage'];
   };
 }
 
