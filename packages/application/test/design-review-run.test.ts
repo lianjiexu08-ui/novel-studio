@@ -75,7 +75,7 @@ test('chapter-only power batches also receive complete tier and technique rules'
   ];
   input.sources = [...rules, ...input.sources];
   const run = createDesignReviewRun(input);
-  assert.equal(run.scheduleVersion, 23);
+  assert.equal(run.scheduleVersion, 24);
   for (const stage of run.stages) {
     const staged = designReviewStageInput(run, stage);
     assert.ok(JSON.stringify(staged.sources).length <= 240_000);
@@ -757,6 +757,46 @@ test('v23 scopes growth locally while preserving v22 replay, global standards an
   const custom = createDesignReviewRun({ ...input, rubric: { growth: '作者指定：核对工匠成长中的失败代价' } });
   assert.match(designReviewStageInput(custom, custom.stages[0]).rubric.growth, /作者指定：核对工匠成长中的失败代价/);
   assert.doesNotMatch(designReviewStageInput(custom, custom.stages[0]).rubric.growth, /本批实际提供的主角成长安排/);
+});
+
+test('v24 scopes world capacity locally without changing v23 evidence, final standards or negative findings', () => {
+  const input: DesignReviewInput = { ...largeInput(), area: 'world', rubric: { ...designReviewRubrics.world } };
+  const old = createDesignReviewRun(input, '2026-10-15T00:00:00Z', 23);
+  assert.equal(createHash('sha256').update(JSON.stringify(designReviewStageInput(old, old.stages[0]))).digest('hex'),
+    'e848d8b7dceb8b4b9447017dc696e76b52bf1622fd256d4cae7589e1a3ffd693', 'frozen v23 requests remain reproducible');
+  for (const verdict of ['revise', 'insufficient'] as const) {
+    const previous = structuredClone(old), current = createDesignReviewRun(input, old.createdAt, 24);
+    assert.deepEqual(current.units, previous.units);
+    assert.deepEqual(current.stages, previous.stages, 'all raw text and cross pairs remain required');
+    for (const stage of current.stages) {
+      const oldStage = previous.stages.find(s => s.id === stage.id)!;
+      const before = designReviewStageInput(previous, oldStage), after = designReviewStageInput(current, stage);
+      const { rubric, ...rest } = after, { rubric: oldRubric, ...oldRest } = before;
+      assert.deepEqual(rest, oldRest, 'source selection, citation rules and capacities are unchanged');
+      if (after.stage!.coverage!.mode === 'local_sources') {
+        assert.match(rubric.capacity, /本批实际提供的世界差异/);
+        assert.match(rubric.capacity, /具体行动矛盾仍须返修/);
+        assert.match(rubric.capacity, /请求全部必要来源/);
+        const { capacity, ...others } = rubric, { capacity: oldCapacity, ...oldOthers } = oldRubric;
+        assert.notEqual(capacity, oldCapacity);
+        assert.deepEqual(others, oldOthers);
+      } else assert.deepEqual(rubric, input.rubric, 'final synthesis still judges whole-book capacity');
+      const result = stagePass(after);
+      if (stage.id === 'batch-1') Object.assign(result.checks.find(c => c.criterion === 'capacity')!, {
+        verdict, explanation: '已有地域只改名，行动规则与资源代价没有差异', revisionAdvice: '补足影响行动的真实差异',
+        ...(verdict === 'insufficient' ? { insufficiencyReason: 'missing_design' } : {}),
+      });
+      acceptDesignReviewStage(current, stage, result);
+      acceptDesignReviewStage(previous, oldStage, structuredClone(result));
+    }
+    assert.equal(completeDesignReviewRun(JSON.parse(JSON.stringify(current))).result.checks.find(c => c.criterion === 'capacity')!.verdict, verdict);
+    assert.equal(completeDesignReviewRun(previous).result.checks.find(c => c.criterion === 'capacity')!.verdict, verdict);
+  }
+  const whole = createDesignReviewRun({ ...input, sources: [{ id: 'all', text: '一次完整提供的世界材料' }] });
+  assert.deepEqual(designReviewStageInput(whole, whole.stages[0]).rubric, input.rubric);
+  const custom = createDesignReviewRun({ ...input, rubric: { capacity: '作者指定：必须核对所有地域的差异' } });
+  assert.match(designReviewStageInput(custom, custom.stages[0]).rubric.capacity, /作者指定：必须核对所有地域的差异/);
+  assert.doesNotMatch(designReviewStageInput(custom, custom.stages[0]).rubric.capacity, /本批实际提供的世界差异/);
 });
 
 test('v8 changes only local summary guidance and preserves v7 replay and real revision blockers', () => {
