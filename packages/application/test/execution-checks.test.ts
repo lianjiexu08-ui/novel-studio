@@ -184,3 +184,47 @@ test('manuscript finalization requires intact per-item review evidence without a
   assert.equal((await workflow.finalizeManuscript(work.id)).revision, manuscript.revision + 1);
   assert.equal(reviewCalls, 1, 'finalization validates retained evidence without another model call');
 });
+
+test('all 24 execution requirements survive large-material synthesis, including a last-item revision', async () => {
+  const plan = checkedPlan();
+  plan.chapters[0].executionChecks = Array.from({ length: 24 }, (_, index) => ({
+    id: `limit_${index}`, requirement: '人物行动须符合当场资源与伤情限制。'.repeat(50),
+  }));
+  let firstRaw = true, synthesisCalls = 0;
+  const reviewer = new OpenAICompatibleChapterProvider('', '', '', 100, 5000, true, { completeWithUsage: async request => {
+    // Shape/evidence fixture only. This does not assess the prose or simulate literary approval.
+    const input = JSON.parse(request.user), result = JSON.parse(passingStageOutput(request));
+    const origins = new Map<string, string>(input.sources.flatMap((source: { id: string; origin?: { sourceId: string }; fragments: Array<{ id: string }> }) =>
+      source.fragments.map(fragment => [fragment.id, source.origin?.sourceId ?? source.id])));
+    for (const check of result.checks) {
+      const extra = check.criterion.startsWith('execution/') || check.criterion === 'obligations' ? 'brief'
+        : check.criterion === 'power' ? 'world' : ['characters', 'continuity'].includes(check.criterion) ? 'bible' : undefined;
+      check.evidence = check.evidence.filter((e: { fragmentId: string }) => input.stage.kind === 'synthesis'
+        ? origins.get(e.fragmentId)?.startsWith('review-result/')
+        : origins.get(e.fragmentId) === 'draft' || origins.get(e.fragmentId) === extra);
+    }
+    if (input.stage.kind === 'synthesis') synthesisCalls++;
+    else if (firstRaw) {
+      firstRaw = false;
+      Object.assign(result.checks.find((check: { criterion: string }) => check.criterion === 'execution/limit_23'), {
+        verdict: 'revise', explanation: '最后一项仍缺少行动代价', revisionAdvice: '补写伤情导致的实际选择与损失',
+      });
+    }
+    return { text: JSON.stringify(result), usage: { ...emptyUsage(), calls: 1 } };
+  } });
+  const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), { ...writer, reviewChapterAsync: reviewer.reviewChapterAsync.bind(reviewer) });
+  const work = await createReadyWork(workflow, '上限不得漏审末项', plan);
+  work.worldPack!.summary = '规则原文不得截断。'.repeat(36_000);
+  const candidate = await workflow.generate(work.id, 1, 'maximum-requirements');
+  await workflow.check(work.id, candidate.id, [passChecker]);
+  const check = work.candidates.get(candidate.id)!.checks.find(check => check.checker === chapterReviewChecker)!;
+  assert.ok(synthesisCalls > 0, 'large material must reach synthesis');
+  assert.equal(check.status, 'failed', check.message);
+  assert.equal(check.chapterReview?.error, undefined, 'the review completed; it did not merely fail on capacity');
+  const checks = checkResultDtoSchema.parse(check).chapterReview!.result!.checks;
+  assert.equal(checks.length, 30, 'all six standard and 24 execution results survive the API');
+  assert.equal(checks.find(item => item.criterion === 'execution/limit_23')?.verdict, 'revise', 'later passing syntheses cannot erase the raw negative');
+  assert.equal(validateChapterReview(check.chapterReview!.result, check.chapterReview!.input!).checks.length, 30);
+  await assert.rejects(() => workflow.adopt(work.id, candidate.id, 0), QualityGateError);
+  assert.equal(work.versions.size, 0);
+});
