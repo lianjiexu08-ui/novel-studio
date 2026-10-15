@@ -301,18 +301,32 @@ export class ChapterWorkflow {
     const snapshot = await this.snapshot(workId);
     const base = latestPlan(snapshot);
     const previousPlan = structuredClone(activePlan(snapshot)?.plan);
+    const previousOutlines = structuredClone(base?.plan.chapters ?? []);
     const retainedQuestions = structuredClone(base?.plan.openQuestions ?? []);
     const assertCurrent = this.planningGuard(snapshot);
     const planning = this.planningInput(snapshot, input.authorRequest);
+    const plannedThrough = Math.min(input.targetChapterCount, Math.max(outlineWindow(input.targetChapterCount), planning.adoptedFacts.reachedChapter + 10));
+    const unretained = previousOutlines.filter(outline => outline.executionChecks?.length && outline.chapterNumber > plannedThrough);
+    if (unretained.length) throw new PlanGateError(`全书重生成仅展开至第 ${plannedThrough} 章，会丢失第 ${unretained.map(c => c.chapterNumber).join('、')} 章验收要求；请改用局部章纲重生成，或先另存明确的设计修订。`);
     const generated = await this.planProvider.generatePlanSkeleton({ ...structuredClone(planning), targetChapterCount: input.targetChapterCount, volumeCount: input.volumeCount, previousPlan: structuredClone(previousPlan), retainedQuestions: structuredClone(retainedQuestions) });
     const skeleton = { ...generated, openQuestions: retainDesignQuestions(retainedQuestions, generated.openQuestions) };
     const kept = (previousPlan?.chapters ?? []).filter((outline) => outline.chapterNumber <= planning.adoptedFacts.reachedChapter && outline.chapterNumber <= skeleton.targetChapterCount);
     const from = kept.length ? Math.max(...kept.map((item) => item.chapterNumber)) + 1 : 1;
     const to = Math.min(skeleton.targetChapterCount, Math.max(outlineWindow(skeleton.targetChapterCount), planning.adoptedFacts.reachedChapter + 10));
-    const outlines = from <= to ? await this.outlineBatches(planning, skeleton, from, to, kept, async () => assertCurrent(await this.snapshot(workId))) : [];
+    // The latest proposal owns the obligations, even when an older plan is
+    // approved. Keep adopted prose context separately from replacement input.
+    const existing = [...kept, ...previousOutlines.filter(outline => outline.chapterNumber >= from)];
+    const outlines = from <= to ? await this.outlineBatches(planning, skeleton, from, to, existing, async () => assertCurrent(await this.snapshot(workId))) : [];
+    const chapters = [...kept, ...outlines].map(outline => {
+      const executionChecks = retainExecutionChecks(previousOutlines.find(c => c.chapterNumber === outline.chapterNumber)?.executionChecks, outline.executionChecks, outline.chapterNumber);
+      return executionChecks === undefined ? outline : { ...outline, executionChecks };
+    });
+    for (const previous of previousOutlines) if (previous.executionChecks?.length && !chapters.some(c => c.chapterNumber === previous.chapterNumber)) {
+      throw new PlanGateError(`全书重生成缺少第 ${previous.chapterNumber} 章，不能丢失其验收要求；请另存明确的设计修订。`);
+    }
     return this.repository.transaction(workId, ({ work }) => {
       assertCurrent(work);
-      return createPlanRevision(work, { ...skeleton, chapters: [...kept, ...outlines] }, {
+      return createPlanRevision(work, { ...skeleton, chapters }, {
         source: 'model', baseRevisionId: base?.id,
         note: input.authorRequest?.trim() ? `模型生成：${input.authorRequest.trim()}` : `模型生成全书计划与第 ${from}-${to} 章章纲`,
       });

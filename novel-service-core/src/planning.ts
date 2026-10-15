@@ -155,7 +155,7 @@ export class PlanConflictError extends Error {}
 /** Review or approval preconditions are not met. */
 export class PlanGateError extends Error {}
 
-/** Range regeneration may add obligations, but changing an existing obligation
+/** Model regeneration may add obligations, but changing an existing obligation
  * requires an explicit design revision rather than an incidental model edit. */
 export function retainExecutionChecks(previous: ChapterExecutionCheck[] | undefined, generated: ChapterExecutionCheck[] | undefined, chapterNumber: number): ChapterExecutionCheck[] | undefined {
   if (previous === undefined && generated === undefined) return undefined;
