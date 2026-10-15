@@ -469,17 +469,22 @@ function dependenciesFor(plan: BookPlan, chapterNumber: number): PlanDependency[
 
 function evaluateDependency(work: Work, plan: BookPlan, dependency: PlanDependency, chapterNumber: number): BriefDependency {
   const result: BriefDependency = { dependencyId: dependency.id, description: dependency.description, requiredness: dependency.requiredness, satisfied: false };
+  // A prerequisite for a multi-chapter milestone is due before its first
+  // chapter, including when a later chapter within that range is rewritten.
+  const beforeChapter = Math.min(chapterNumber, plan.milestones.find(item => item.id === dependency.targetId)?.startChapter ?? chapterNumber);
   if (dependency.fact) {
     const match = [...work.events.values()]
-      .filter((event) => event.active && event.chapterNumber < chapterNumber && matchesFact(event, dependency.fact!))
+      .filter((event) => event.active && event.chapterNumber < beforeChapter && matchesFact(event, dependency.fact!))
       .sort((a, b) => a.chapterNumber - b.chapterNumber).at(-1);
     if (!match) return result;
     return { ...result, satisfied: true, evidence: `第 ${match.chapterNumber} 章：${match.evidence || JSON.stringify(match.value)}` };
   }
-  const realization = nodeRealization(work, plan, dependency.sourceId!);
+  // Rewriting an earlier chapter must use only facts already known before it,
+  // even when later adopted chapters completed or reversed this plan node.
+  const realization = nodeRealization(work, plan, dependency.sourceId!, beforeChapter);
   const sourceStart = plan.chapters.find((item) => item.id === dependency.sourceId)?.chapterNumber
     ?? plan.milestones.find((item) => item.id === dependency.sourceId)?.endChapter ?? Number.POSITIVE_INFINITY;
-  if (realization?.status !== 'realized' || sourceStart >= chapterNumber) return result;
+  if (realization?.status !== 'realized' || sourceStart >= beforeChapter) return result;
   return { ...result, satisfied: true, evidence: realization.evidence[0]?.text };
 }
 
@@ -584,9 +589,9 @@ function lastContiguousAdopted(work: Work): number {
   return chapter;
 }
 
-function progressEvidence(work: Work, nodeId: string): { status?: RealizationStatus; evidence: RealizationEvidence[] } {
+function progressEvidence(work: Work, nodeId: string, beforeChapter = Number.POSITIVE_INFINITY): { status?: RealizationStatus; evidence: RealizationEvidence[] } {
   const events = [...work.events.values()]
-    .filter((event) => event.active && event.eventType === 'plot_progress' && event.subjectId === nodeId)
+    .filter((event) => event.active && event.chapterNumber < beforeChapter && event.eventType === 'plot_progress' && event.subjectId === nodeId)
     .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id));
   if (!events.length) return { evidence: [] };
   const latest = events.at(-1)!;
@@ -595,12 +600,12 @@ function progressEvidence(work: Work, nodeId: string): { status?: RealizationSta
   return { status, evidence: events.map((event) => ({ chapterNumber: event.chapterNumber, versionId: event.chapterVersionId, eventId: event.id, text: event.evidence })) };
 }
 
-function nodeRealization(work: Work, plan: BookPlan, nodeId: string): NodeRealization | undefined {
-  const reached = lastContiguousAdopted(work);
+function nodeRealization(work: Work, plan: BookPlan, nodeId: string, beforeChapter = Number.POSITIVE_INFINITY): NodeRealization | undefined {
+  const reached = Math.min(lastContiguousAdopted(work), beforeChapter - 1);
   const outline = plan.chapters.find((item) => item.id === nodeId);
   if (outline) {
-    const adopted = Boolean(work.currentVersion(outline.chapterNumber));
-    const { status, evidence } = progressEvidence(work, outline.id);
+    const adopted = outline.chapterNumber < beforeChapter && Boolean(work.currentVersion(outline.chapterNumber));
+    const { status, evidence } = progressEvidence(work, outline.id, beforeChapter);
     return {
       nodeId, kind: 'chapter', title: outline.title || outline.summary, startChapter: outline.chapterNumber, endChapter: outline.chapterNumber,
       status: !adopted ? 'unrealized' : status ?? 'insufficient', due: outline.chapterNumber <= reached,
@@ -609,7 +614,7 @@ function nodeRealization(work: Work, plan: BookPlan, nodeId: string): NodeRealiz
   }
   const milestone = plan.milestones.find((item) => item.id === nodeId);
   if (!milestone) return undefined;
-  const { status, evidence } = progressEvidence(work, milestone.id);
+  const { status, evidence } = progressEvidence(work, milestone.id, beforeChapter);
   // Chapter writers are instructed to realize chapter/outline nodes, while a
   // milestone ID is a planning node rather than a story-event subject. Once
   // every chapter in the milestone range is outlined, adopted and explicitly
@@ -618,13 +623,14 @@ function nodeRealization(work: Work, plan: BookPlan, nodeId: string): NodeRealiz
   // leaves a partially written range unrealized.
   const milestoneChapters = plan.chapters.filter((item) => item.chapterNumber >= milestone.startChapter && item.chapterNumber <= milestone.endChapter)
     .sort((a, b) => a.chapterNumber - b.chapterNumber);
-  const chapterEvidence = milestoneChapters.flatMap((outline) => progressEvidence(work, outline.id).evidence);
+  const chapterEvidence = milestoneChapters.flatMap((outline) => progressEvidence(work, outline.id, beforeChapter).evidence);
   // Rolling outlines may stop inside a macro milestone. Completing only that
   // outlined prefix cannot realize the unoutlined remainder or unlock its dependants.
   const completeRange = milestoneChapters.length === milestone.endChapter - milestone.startChapter + 1
     && milestoneChapters.every((outline, index) => outline.chapterNumber === milestone.startChapter + index);
   const rangeRealized = completeRange
-    && milestoneChapters.every((outline) => Boolean(work.currentVersion(outline.chapterNumber)) && progressEvidence(work, outline.id).status === 'realized');
+    && milestoneChapters.every((outline) => outline.chapterNumber < beforeChapter
+      && Boolean(work.currentVersion(outline.chapterNumber)) && progressEvidence(work, outline.id, beforeChapter).status === 'realized');
   const inferredStatus = status ?? (rangeRealized ? 'realized' : undefined);
   const due = milestone.startChapter <= reached;
   const finalStatus: RealizationStatus = inferredStatus ?? 'unrealized';

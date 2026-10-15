@@ -111,6 +111,62 @@ test('AT-07 an unmet fact prerequisite blocks the chapter until the ledger satis
   assert.match(effectiveBrief(work, 2)?.brief.dependsOn[0].evidence ?? '', /第 1 章/);
 });
 
+for (const sourceKind of ['chapter', 'milestone', 'inferred-milestone'] as const) {
+  for (const eventChapter of [4, 6]) test(`rewriting an earlier chapter cannot borrow chapter ${eventChapter} ${sourceKind} completion for prerequisites`, async () => {
+    const sourceId = sourceKind === 'chapter' ? 'chapter-2' : 'setup';
+    const subjects = sourceKind === 'inferred-milestone' ? ['chapter-1', 'chapter-2'] : [sourceId];
+    const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), scriptedProvider(chapter => chapter === eventChapter
+      ? subjects.map(subjectId => ({ eventType: 'plot_progress', subjectId, predicate: 'status', value: { status: 'realized' }, evidence: `第${eventChapter}章才拿到先前未得的通行文书` })) : []));
+    const plan = minimalPlan();
+    plan.milestones = [
+      { id: 'setup', title: '取得文书', kind: 'turn', startChapter: 1, endChapter: 2, setup: ['申请'], cost: '押金', outcome: '获准通行' },
+      { id: 'journey', title: '凭文书出航', kind: 'climax', startChapter: 4, endChapter: 5, setup: ['文书已到手'], cost: '航费', outcome: '抵港' },
+    ];
+    const work = await createReadyWork(workflow, '前置不得读取未来', plan);
+    for (let chapter = 1; chapter <= 6; chapter++) await writeChapter(workflow, work.id, chapter, work.stateRevision);
+    plan.dependencies = [{ id: 'needs-permit', targetId: 'journey', sourceId, requiredness: 'must', description: '出航前实际取得文书' }];
+    const revision = await approveMinimalPlan(workflow, work.id, plan);
+    const before = JSON.stringify({ versions: [...work.versions], events: [...work.events] });
+    assert.equal(planRealization(work, revision).nodes.find(node => node.nodeId === sourceId)?.status, 'realized', 'the all-book overview still records later completion');
+    assert.equal(milestonePrerequisites(work, revision, 'journey')[0].satisfied, false, 'future evidence cannot satisfy the earlier milestone');
+    assert.equal(effectiveBrief(work, 4)?.brief.dependsOn[0].satisfied, false);
+    assert.equal(effectiveBrief(work, 5)?.brief.dependsOn[0].satisfied, false, 'a milestone prerequisite is due before its start, not halfway through');
+    await assert.rejects(() => workflow.generate(work.id, 4, 'rewrite-before-permit'),
+      (error: unknown) => error instanceof ReadinessError && error.blockers.some(blocker => blocker.code === 'PLAN_PREREQUISITE_UNMET'));
+    assert.equal(JSON.stringify({ versions: [...work.versions], events: [...work.events] }), before, 'checking an earlier chapter preserves later history');
+  });
+}
+
+test('fact prerequisites also remain due before the start of a multi-chapter milestone', async () => {
+  const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), scriptedProvider(chapter => chapter === 4
+    ? [{ eventType: 'character_state', subjectId: 'hero', predicate: 'permit', value: true, evidence: '第四章才收到文书' }] : []));
+  const plan = minimalPlan();
+  plan.milestones = [{ id: 'journey', title: '凭文书出航', kind: 'climax', startChapter: 4, endChapter: 5, setup: ['已取得文书'], cost: '航费', outcome: '抵港' }];
+  const work = await createReadyWork(workflow, '跨章前置时间一致', plan);
+  for (let chapter = 1; chapter <= 5; chapter++) await writeChapter(workflow, work.id, chapter, work.stateRevision);
+  plan.dependencies = [{ id: 'needs-permit', targetId: 'journey', fact: { eventType: 'character_state', subjectId: 'hero', predicate: 'permit', equals: true }, requiredness: 'must', description: '出航前取得文书' }];
+  const revision = await approveMinimalPlan(workflow, work.id, plan);
+  assert.equal(milestonePrerequisites(work, revision, 'journey')[0].satisfied, false);
+  assert.equal(effectiveBrief(work, 5)?.brief.dependsOn[0].satisfied, false);
+  await assert.rejects(() => workflow.generate(work.id, 5, 'rewrite-mid-journey'),
+    (error: unknown) => error instanceof ReadinessError && error.blockers.some(blocker => blocker.code === 'PLAN_PREREQUISITE_UNMET'));
+});
+
+test('a later reversal cannot retroactively invalidate an earlier satisfied prerequisite', async () => {
+  const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), scriptedProvider(chapter => [2, 6].includes(chapter)
+    ? [{ eventType: 'plot_progress', subjectId: 'chapter-2', predicate: 'status', value: { status: chapter === 2 ? 'realized' : 'diverged' }, evidence: chapter === 2 ? '第二章实际收到文书' : '第六章文书才被撤回' }] : []));
+  const plan = minimalPlan();
+  const work = await createReadyWork(workflow, '后果不改写前置历史', plan);
+  for (let chapter = 1; chapter <= 6; chapter++) await writeChapter(workflow, work.id, chapter, work.stateRevision);
+  plan.dependencies = [{ id: 'needs-permit', targetId: 'chapter-4', sourceId: 'chapter-2', requiredness: 'must', description: '出航前取得文书' }];
+  const revision = await approveMinimalPlan(workflow, work.id, plan);
+  assert.equal(planRealization(work, revision).nodes.find(node => node.nodeId === 'chapter-2')?.status, 'diverged');
+  const prerequisite = effectiveBrief(work, 4)!.brief.dependsOn[0];
+  assert.equal(prerequisite.satisfied, true);
+  assert.match(prerequisite.evidence ?? '', /第二章实际收到文书/);
+  assert.deepEqual(await workflow.readiness(work.id, 4), []);
+});
+
 test('AT-09/24 approving a new plan makes an open candidate stale and leaves adopted text untouched', async () => {
   const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), scriptedProvider());
   const work = await createReadyWork(workflow, '计划变更');
