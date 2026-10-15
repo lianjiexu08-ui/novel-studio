@@ -1,0 +1,25 @@
+{
+  "observedAt": "2026-10-15T09:12:39.016Z",
+  "candidateFile": "data/design-candidates/design63-cold-chain-draft-v6.json",
+  "candidateSha256": "dad3679b97382938679b564c0b0f8630fdcf5862dd2ceb0268a9a98236a9b014",
+  "parentCandidateFile": "data/design-candidates/design63-cold-chain-draft-v5.json",
+  "parentCandidateSha256": "c463fa39fd3160fc75495f39ea3ccb05cd059191abc97f39aa3b599152777266",
+  "changedFields": [
+    {
+      "path": "plan.chapters[chapterNumber=33].cost",
+      "before": "租铺交符时按余纹验明尚可连续隔暑至少336小时，覆盖217至230日合同期；14日租期不代表返还时灵气回满，230日按余纹退回。",
+      "after": "217日租铺交付的这一张符，按余纹只确认交付时尚可连续隔暑至少336小时，足以覆盖217至230日的14日租期；336小时是这张租符的余量保证下界，不是art_16规定的满符总时长，也不将租来的符认作全新满符。230日酉时按39章在受护住处退还这一张，租用与计费到此结束，已耗灵气不恢复；此符不延用到231日，更不是40章另花12枚买入的两张满符。"
+    },
+    {
+      "path": "plan.chapters[chapterNumber=40].cost",
+      "before": "两张新符经余纹核验均为满符，各可连续隔暑最多720小时，佩戴即耗符内灵气，无需林贺真元；不隔火烟。231至254即便按整日佩戴也只计至多576小时，各至少余144小时，后续不能默认永续。",
+      "after": "231日贺用12枚买入的两张符，是与33章所租、39章230日酉时已退还之符不同的两件实物；一张交林、一张由贺佩戴，均经余纹核验为满符，各按art_16最多累计隔暑720小时。两张购入符各自从231日实际佩戴起计耗，不能把217日起的旧租用时段扣在它们名下，也不能把退还租符的余量转入新符。佩戴即耗符内灵气，无需林贺真元；不隔火烟。231至254即便按整日佩戴也只计至多576小时，各至少余144小时，后续不能默认永续。"
+    }
+  ],
+  "allOtherFieldsUnchanged": true,
+  "structuralValidationPassed": true,
+  "retainedBlockers": 41,
+  "productionApplied": false,
+  "modelCalls": 0,
+  "formalAcceptance": false
+}
