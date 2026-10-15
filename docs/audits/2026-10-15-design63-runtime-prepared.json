@@ -1,0 +1,43 @@
+{
+  "status": "prepared_not_deployed_unbound_to_design",
+  "observedAt": "2026-10-15T07:36:13.676790+00:00",
+  "root": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design63-dc24715",
+  "commit": "dc24715fa231acd35ff05ec7f5dedd29e85d5efa",
+  "rubricVersion": 16,
+  "scheduleVersion": 22,
+  "model": "gpt-5.6-luna",
+  "timeoutMs": 600000,
+  "fallback": false,
+  "candidateBinding": null,
+  "dependenciesCopiedFrom": "data/audit-runtimes/design62-9df9154/node_modules",
+  "allSymlinksStayWithinRuntime": true,
+  "generatedClientCopiedWithoutGeneration": true,
+  "modelCalls": 0,
+  "productionRestarted": false,
+  "dependencies": {
+    "entryCount": 40575,
+    "manifest": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design63-dc24715/dependency-hashes.json",
+    "sha256": "bb45d2b8805fa2e37438701e2962729fd6592cd841bc0f249e15717215d0f3cc"
+  },
+  "frozenDesign62SourcesUnchanged": true,
+  "validation": {
+    "coreTypes": "passed",
+    "frozenCitationRepairTests": 3,
+    "imports": [
+      "core",
+      "planner",
+      "persistence",
+      "application",
+      "api"
+    ],
+    "importsPassed": true,
+    "defaultSchedule": 22,
+    "databaseConnected": false,
+    "serverStarted": false,
+    "modelCalls": 0
+  },
+  "sourceCount": 130,
+  "manifestPath": "data/audit-runtimes/design63-runtime-prepared.json",
+  "manifestSha256": "0d29c1e00e143545c9a3c40efcd74d3303d037b475c01e86cc26c0d989fe77a9",
+  "activationPrerequisite": "Complete four-area review findings, reconcile final candidate, rehearse that exact candidate, then back up and save proposed with readback before binding. Not active production runtime."
+}
