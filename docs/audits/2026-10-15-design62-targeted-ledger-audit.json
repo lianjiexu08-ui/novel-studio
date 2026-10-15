@@ -1,0 +1,137 @@
+{
+  "observedAt": "2026-10-15T01:11:59.059411+00:00",
+  "candidateFile": "data/design-candidates/design62-recovery-draft-v5.json",
+  "candidateFileSha256": "9667339be4be5b18d277e688340e719dadd00ddefcc635ab629ebd23b3959134",
+  "planId": "plan_d50cad0b6d0142c9b79ab0cad2eabc9b",
+  "inputHash": "80b5930d47111b420c22ae16ecfc355d0dd5d47f8098bad104f8fa08543e1c24",
+  "exactReviewedSourceBindings": {
+    "world/techniques/tech_10": "c446f0356ddfa6f77e88909fcf6d950cc19a4a72605e12071d1efb56dcd75c38",
+    "story/relationships/rel_05": "8f83f16a989ab61daecdbdecc74b0e384cc40bde70d4946c70d6ce7557699df7",
+    "plan/milestones/ms_v2_voyage": "e9fe7a14cf0e6816b3b8c59e102eb8cdfc42092799db44db125eebac43194602",
+    "plan/milestones/ms_v2_boundary": "c12072c85d1d399ddd0c2ec7fccf3e835c9e07524ca9076d6573be158c2333f4",
+    "plan/milestones/ms_v3_return": "a496fdfe1a93e0fe382b19fd5470e4a923ea994281c50333bf94c88643ecc78f",
+    "plan/milestones/ms_v3_training": "6cb8565309ec52dd1b90ef620698ee665e6bf890105f1df2fe44dc6b2fed43f1"
+  },
+  "method": "Numbers and excerpts extracted from candidate v5; selected entities compared exactly to frozen review sources. No model call or database write.",
+  "status": "targeted_arithmetic_and_timeline_consistent",
+  "funding": {
+    "received": 14000,
+    "northTickets": 10000,
+    "returnTickets": 3000,
+    "miscellaneous": 780,
+    "remaining": 220
+  },
+  "miscellaneous": {
+    "talismans": 12,
+    "diagnosis": 1,
+    "postage": 18,
+    "prePortOther": 669,
+    "portTax": 24,
+    "lateTravelAndLodging": 56
+  },
+  "travel": [
+    {
+      "label": "北航",
+      "startDay": 276,
+      "endDay": 281,
+      "durationDays": 5
+    },
+    {
+      "label": "返航",
+      "startDay": 304,
+      "endDay": 310,
+      "durationDays": 6
+    },
+    {
+      "label": "夜返岗",
+      "startDay": 301,
+      "endDay": 311,
+      "durationDays": 10
+    },
+    {
+      "label": "回执第一段",
+      "startDay": 305,
+      "endDay": 308,
+      "durationDays": 3
+    },
+    {
+      "label": "回执第二段",
+      "startDay": 308,
+      "endDay": 318,
+      "durationDays": 10
+    }
+  ],
+  "knowledgeBoundary": {
+    "returnToDutyDay": 311,
+    "receiptReadDay": 318,
+    "day315ReceiptStillInTransit": true
+  },
+  "evidence": [
+    {
+      "sourceId": "plan/milestones/ms_v2_voyage",
+      "quote": "实拨14000枚下品灵石"
+    },
+    {
+      "sourceId": "plan/milestones/ms_v2_voyage",
+      "quote": "按原报价5000/人实付10000"
+    },
+    {
+      "sourceId": "plan/milestones/ms_v3_return",
+      "quote": "回航票各1500、共3000"
+    },
+    {
+      "sourceId": "plan/milestones/ms_v3_return",
+      "quote": "14000−10000−3000−780=220"
+    },
+    {
+      "sourceId": "plan/milestones/ms_v3_return",
+      "quote": "已付杂费累计700"
+    },
+    {
+      "sourceId": "plan/milestones/ms_v3_return",
+      "quote": "含271两符12、290诊费1、303两段回执寄递18，以及此前实际车费、保温衣、医药、食宿与查验669"
+    },
+    {
+      "sourceId": "plan/milestones/ms_v3_return",
+      "quote": "当场付24后累计724、余276"
+    },
+    {
+      "sourceId": "plan/milestones/ms_v3_return",
+      "quote": "再实付56，累计780、余220"
+    },
+    {
+      "sourceId": "plan/milestones/ms_v2_voyage",
+      "quote": "276日暮离港、281日暮抵葬骨外港"
+    },
+    {
+      "sourceId": "plan/milestones/ms_v3_return",
+      "quote": "第304日暮出航、第310日暮沧溟古港抵达"
+    },
+    {
+      "sourceId": "plan/milestones/ms_v3_return",
+      "quote": "夜在301日午交清具名名单和责任后，沿既有陆路走满十昼夜，311日午实际抵驻地"
+    },
+    {
+      "sourceId": "plan/milestones/ms_v3_return",
+      "quote": "305日晨将封袋实交承运联上的本班车正并互签收件；驿车沿原公共路线实走三昼夜，308日晨到葬骨"
+    },
+    {
+      "sourceId": "plan/milestones/ms_v3_return",
+      "quote": "308日午交已在承运联列明的下一班公文驿车，沿夜回驻地的同一陆路实走十昼夜；318日午才交驻地"
+    },
+    {
+      "sourceId": "story/relationships/rel_05",
+      "quote": "本次另按回执链区分返岗与知情：311交岗时向值守文书登记回执未到、担保仍待核；318午实到封袋"
+    },
+    {
+      "sourceId": "plan/milestones/ms_v3_training",
+      "quote": "318日午，驻地当班值守文书实际接到308日午自葬骨出发"
+    }
+  ],
+  "limitations": [
+    "Checks only selected proposal arithmetic and explicit timeline anchors, not all four design areas or literary quality.",
+    "669 and 56 remain planned aggregate costs; later detailed outlines and prose must establish actual payments without duplicate labor, tickets, or income.",
+    "Receipt confirms departure from Cangming only; it does not prove Qingxuan arrival, safety, or the father-case outcome.",
+    "No approval, blocker resolution, manuscript acceptance, or production prose generation follows from this diagnostic."
+  ]
+}
