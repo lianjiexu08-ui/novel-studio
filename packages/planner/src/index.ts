@@ -1,4 +1,4 @@
-import { designReviewEvidenceLimit, DesignReviewAwaitingSourceError, DesignReviewCitationError, DesignReviewError, type DesignReviewInput, type DesignReviewResult } from '../../../novel-service-core/src/design-review.ts';
+import { designReviewEvidenceLimit, DesignReviewAwaitingSourceError, DesignReviewCitationError, DesignReviewError, DesignReviewResolutionEvidenceError, type DesignReviewInput, type DesignReviewResult } from '../../../novel-service-core/src/design-review.ts';
 import { ChapterReviewError, completedChapterReview, restoreChapterReviewRun, validateChapterReview, validateChapterStageEvidence, type ChapterReviewInput, type ChapterReviewOptions, type ChapterReviewResult } from '../../../novel-service-core/src/chapter-review.ts';
 import { acceptDesignReviewStage, designReviewStageInput } from '../../../novel-service-core/src/design-review-run.ts';
 import { DesignReviewEvidenceError, DesignReviewInsufficiencyError, DesignReviewReportBudgetError, prepareDesignReviewEvidence } from './design-review-evidence.ts';
@@ -671,6 +671,8 @@ async function completeValidated<T>(client: PlanningClient, request: CompletionI
       system: request.system,
       user: JSON.stringify({ task: 'repair_previous_output', instruction: JSON.parse(request.user).task === 'review_chapter_stage'
         ? '修正本次正文批次评审。证据格式仍然只能是 {"fragmentId":"本请求真实编号"}，严禁增加 quote 或 sourceId 字段。根据 problems 重新从 originalRequest.sources.fragments 选择原文至少四字、直接支持判断的片段；空数组等短来源可读取但不可作为引文。逐字保留本次 requestId，不复用其他请求编号。按 citationRequirements/pendingCitationRequirements 补齐必引依据，不得为修格式把返修或不足改为通过；缺材料需如实说明。返回完整且符合原结构的评审 JSON。'
+        : error instanceof DesignReviewResolutionEvidenceError
+        ? '本次 problems 同时列出各待解决问题缺少的原问题、原批依据和新增来源。按 originalRequest 的 citationRequirements/pendingCitationRequirements 与 sources 逐项重读，选择真正支持判断的片段，只返回本请求的 fragmentId，保留 requestId。不得自动补引文、机械枚举全部片段或只删除 resolves 掩盖未核验问题。不能证明原问题已经解决时如实返回 insufficient 或 revise 并说明原因，不得维持无证据的通过。返回完整评审 JSON。'
         : error instanceof DesignReviewAwaitingSourceError
         ? '上一次awaitingSources推造了不存在的来源。不要保留这个错误ID，也不要创建新的章纲来使它成立。逐项核对availableSourceIds和originalRequest.stage中的sourceMap，只有确实存在且尚未完整读到的来源才能请求补读。后段只有分卷或里程碑时按其实际宏观范围核验；不能假定每个目标章节都已有细纲。请重新判断所需来源；没有可补读来源时保留普通insufficient，不输出awaitingSources。目录不是证据，不得因更换ID自动判pass或声称问题已解决。返回完整评审JSON，保留原始问题的实质，不机械保留错误标识。'
         : error instanceof DesignReviewInsufficiencyError

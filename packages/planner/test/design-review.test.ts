@@ -302,7 +302,8 @@ test('stored quotation validation still rejects wrong sources and ambiguous sugg
   assert.equal(result.checks[0].evidence[0].sourceId, 'shared/missing');
 });
 
-test('follow-up repair identifies the omitted original source without copying every fragment', async () => {
+for (const omitted of ['original', 'question-and-original', 'question-and-original-unrepaired'] as const) {
+test(`follow-up repair identifies all missing sources in one bounded repair: ${omitted}`, async () => {
   const request = await input();
   request.rubric = { timeline: '寄出与送达是否相容' };
   request.sources = [
@@ -323,6 +324,8 @@ test('follow-up repair identifies the omitted original source without copying ev
   assert.equal(prepared.citationRequirements!.sources.length, 4);
   const first = structuredClone(good);
   first.checks[0].evidence.splice(1, 1);
+  if (omitted !== 'original') first.checks[0].evidence.pop();
+  const before = structuredClone(first);
   let calls = 0;
   const planner = new JsonDesignPlanner({ complete: async call => {
     assert.match(call.system, /evidence最多64个/);
@@ -333,16 +336,29 @@ test('follow-up repair identifies the omitted original source without copying ev
     const repair = JSON.parse(call.user);
     assert.match(repair.problems, /缺少来源：original\/recipient/);
     assert.match(repair.problems, /不需穷举其全部片段/);
+    if (omitted !== 'original') assert.match(repair.problems, /原问题 question/);
     assert.deepEqual(repair.previousOutput, JSON.stringify(first));
     assert.deepEqual(repair.originalRequest.sources, prepared.sources);
-    return JSON.stringify(good);
+    return JSON.stringify(omitted === 'question-and-original-unrepaired' ? first : good);
   } });
-  const result = await planner.reviewDesignContent(request);
+  if (omitted === 'question-and-original-unrepaired') {
+    await assert.rejects(planner.reviewDesignContent(request), (error: Error & { modelResponses?: string[] }) => {
+      assert.match(error.message, /修正一次后仍不符合格式/);
+      assert.match(error.message, /原问题 question/);
+      assert.match(error.message, /original\/recipient/);
+      assert.deepEqual(error.modelResponses, [JSON.stringify(first), JSON.stringify(first)]);
+      return true;
+    });
+  } else {
+    const result = await planner.reviewDesignContent(request);
+    assert.equal(result.checks[0].evidence.length, 4);
+    assert.deepEqual(result.modelResponses, [JSON.stringify(first), JSON.stringify(good)]);
+    assert.deepEqual(result.checks[0].resolves, ['batch-1/timeline']);
+  }
   assert.equal(calls, 2);
-  assert.equal(result.checks[0].evidence.length, 4);
-  assert.deepEqual(result.modelResponses, [JSON.stringify(first), JSON.stringify(good)]);
-  assert.deepEqual(result.checks[0].resolves, ['batch-1/timeline']);
+  assert.deepEqual(first, before, 'the validator must not fill missing citations');
 });
+}
 
 test('cross checks index every pending question and name a missing required source during repair', async () => {
   const request = await input();

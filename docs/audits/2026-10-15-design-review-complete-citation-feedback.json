@@ -1,0 +1,40 @@
+{
+  "observedAt": "2026-10-15T06:59:25.994197+00:00",
+  "cause": "First missing question/new-source error hid additional missing original sources from the single model repair attempt.",
+  "changes": {
+    "collectAllResolutionEvidenceProblems": true,
+    "dedicatedRepairInstructions": true,
+    "validatorStillRejectsMissingSources": true,
+    "boundedRepairAttempts": 1,
+    "frozenRuntimeChanged": false
+  },
+  "regression": {
+    "before": {
+      "pass": 1,
+      "fail": 2
+    },
+    "after": {
+      "tests": 381,
+      "passed": 381,
+      "coreTypes": "passed"
+    },
+    "testCommand": "node scripts/test-all.mjs",
+    "isolatedWorkspace": "/var/folders/tr/8vt224595gdfg6w6kh6tkpt00000gn/T/novel-chapter-validation-o9hldenn",
+    "testLogSha256": "17f1b204bab74ccb3b11707aa0eb71caa70a14b4e07d35e3d461410c9fca1977"
+  },
+  "realFailureReplay": {
+    "stage": "followup-cross-2-3/tiers",
+    "responses": 2,
+    "allMissingSourcesReportedOnFirstFailure": true,
+    "bothInvalidResponsesRejected": true,
+    "networkCalls": 0,
+    "errors": [
+      "解决待补读项必须引用原问题、原批材料及每个新增来源：cross-2-3/tiers；缺少：原问题 review-question/cross-2-3/tiers。按本次来源目录选择真实支持片段，不得自动补引文或只删除resolves来掩盖未核验问题。\n专门补读必须引用原问题所依据的每个原始来源：cross-2-3/tiers；缺少来源：story/chapterPlans/chapter-plan-18、world/realms/realm_06、world/realms/realm_07、world/realms/realm_08、plan/overview。请按sourceMap对应本次来源选择支持判断的片段，不需穷举其全部片段。",
+      "专门补读必须引用原问题所依据的每个原始来源：cross-2-3/tiers；缺少来源：story/chapterPlans/chapter-plan-18、world/realms/realm_06、world/realms/realm_07、world/realms/realm_08、plan/overview。请按sourceMap对应本次来源选择支持判断的片段，不需穷举其全部片段。"
+    ]
+  },
+  "limitations": [
+    "Does not prove that the model will choose correct citations or that the design passes.",
+    "Existing formal review retains frozen validator and prompt; no runtime replacement."
+  ]
+}

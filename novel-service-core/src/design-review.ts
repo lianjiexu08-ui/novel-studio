@@ -97,6 +97,10 @@ export interface DesignContentReview extends DesignReviewResult {
   runId?: string;
 }
 export class DesignReviewError extends Error {}
+export class DesignReviewResolutionEvidenceError extends DesignReviewError {
+  readonly problems: string[];
+  constructor(problems: string[]) { super(problems.join('\n')); this.problems = problems; }
+}
 
 export class DesignReviewAwaitingSourceError extends DesignReviewError {
   readonly invalidSourceId: string;
@@ -195,6 +199,7 @@ export function designReviewEvidenceLimit(input: DesignReviewInput): number {
 export function validateDesignReview(input: DesignReviewInput, result: DesignReviewResult): void {
   const criteria = Object.keys(input.rubric);
   const citationProblems: DesignReviewCitationProblem[] = [];
+  const resolutionProblems: string[] = [];
   if (!result.summary?.trim() || !Array.isArray(result.checks) || result.checks.length !== criteria.length || new Set(result.checks.map((check) => check.criterion)).size !== criteria.length) throw new DesignReviewError('内容评审必须逐项覆盖全部标准');
   for (const check of result.checks) {
     if (!criteria.includes(check.criterion) || !['pass', 'revise', 'insufficient'].includes(check.verdict) || !check.explanation?.trim() || !Array.isArray(check.evidence)) throw new DesignReviewError('内容评审结果不完整');
@@ -223,9 +228,9 @@ export function validateDesignReview(input: DesignReviewInput, result: DesignRev
           ...(!pending.priorUnitIds.some(id => cited.has(id)) ? ['原批材料（至少一个实际支持判断的原批片段）'] : []),
           ...pending.requiredSourceIds.filter(id => !input.stage!.sourceMap.some(u => u.sourceId === id && cited.has(u.id))).map(id => `新增来源 ${id}`),
         ];
-        if (missing.length) throw new DesignReviewError(`解决待补读项必须引用原问题、原批材料及每个新增来源：${checkId}；缺少：${missing.join('、')}。按本次来源目录选择真实支持片段，不得自动补引文或只删除resolves来掩盖未核验问题。`);
+        if (missing.length) resolutionProblems.push(`解决待补读项必须引用原问题、原批材料及每个新增来源：${checkId}；缺少：${missing.join('、')}。按本次来源目录选择真实支持片段，不得自动补引文或只删除resolves来掩盖未核验问题。`);
         const missingPrior = pending.priorSourceIds?.filter(id => !input.stage!.sourceMap.some(u => u.sourceId === id && cited.has(u.id))) ?? [];
-        if (missingPrior.length) throw new DesignReviewError(`专门补读必须引用原问题所依据的每个原始来源：${checkId}；缺少来源：${missingPrior.join('、')}。请按sourceMap对应本次来源选择支持判断的片段，不需穷举其全部片段。`);
+        if (missingPrior.length) resolutionProblems.push(`专门补读必须引用原问题所依据的每个原始来源：${checkId}；缺少来源：${missingPrior.join('、')}。请按sourceMap对应本次来源选择支持判断的片段，不需穷举其全部片段。`);
       }
     }
     for (const [evidenceIndex, evidence] of check.evidence.entries()) {
@@ -236,6 +241,7 @@ export function validateDesignReview(input: DesignReviewInput, result: DesignRev
       });
     }
   }
+  if (resolutionProblems.length) throw new DesignReviewResolutionEvidenceError(resolutionProblems);
   if (citationProblems.length) throw new DesignReviewCitationError(citationProblems);
 }
 
