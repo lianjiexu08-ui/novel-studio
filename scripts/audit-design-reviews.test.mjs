@@ -5,7 +5,9 @@ import { createPlanRevision } from '../novel-service-core/src/planning.ts';
 import { createDesignReviewRun, acceptDesignReviewStage, designReviewStageInput, completeDesignReviewRun } from '../novel-service-core/src/design-review-run.ts';
 import { designReviewAreas, designReviewInput, recordDesignReview } from '../novel-service-core/src/design-review.ts';
 import { minimalWorldPack, minimalStoryBible, minimalPlan, fixtureDesignReview } from '../packages/application/test/fixtures.ts';
-import { auditDesignReviews, auditDesignReviewPrefix } from './audit-design-reviews.mjs';
+import { auditDesignReviews, auditDesignReviewPrefix, replayDesignReviewPrefix } from './audit-design-reviews.mjs';
+import { prepareDesignReviewEvidence } from '../packages/planner/src/design-review-evidence.ts';
+import { JsonDesignPlanner } from '../packages/planner/src/index.ts';
 
 function finish(work, planId, area, verdict = 'pass') {
   const run = createDesignReviewRun(designReviewInput(work, area, planId));
@@ -72,6 +74,45 @@ test('validates a partial accepted prefix while preserving failed responses and 
   assert.equal(result.verification, 'verified');
   assert.equal(result.completedStages, 1);
   assert.equal(result.formalAcceptance, false);
+  assert.equal(JSON.stringify(run), before);
+});
+
+async function responseFixture() {
+  const { input } = partialFixture(), run = createDesignReviewRun(input), stage = run.stages[0];
+  const request = designReviewStageInput(run, stage), prepared = prepareDesignReviewEvidence(request);
+  const output = { ...fixtureDesignReview(request), requestId: prepared.requestId };
+  output.checks = output.checks.map(check => ({ ...check, evidence: [{ fragmentId: prepared.sources[0].fragments[0].id }] }));
+  Object.assign(output.checks[0], { verdict: 'revise', revisionAdvice: '保留原始返修结论' });
+  const responses = [JSON.stringify({ ...output, checks: output.checks.slice(1) }), JSON.stringify(output)];
+  let calls = 0;
+  const { modelResponses, ...result } = await new JsonDesignPlanner({ complete: async () => responses[calls++] }).reviewDesignContent(request);
+  acceptDesignReviewStage(run, stage, result); stage.modelResponses = modelResponses;
+  run.stages[1].failures = [{ at: '2026-10-16T00:00:00Z', error: 'transport interrupted', modelResponses: ['unfinished'] }];
+  return { run, input };
+}
+
+test('offline replay retains repairs, negative verdicts and pending failures without making model calls', async () => {
+  const { run, input } = await responseFixture(), before = JSON.stringify(run);
+  const result = await replayDesignReviewPrefix(run, input);
+  assert.equal(result.responsesReplayed, 2);
+  assert.equal(result.records.length, 1);
+  assert.equal(result.records[0].checks[0].verdict, 'revise');
+  assert.equal(result.failures.length, 1);
+  assert.equal(result.modelCalls, 0);
+  assert.equal(result.formalAcceptance, false);
+  assert.equal(JSON.stringify(run), before);
+});
+
+for (const [name, corrupt] of [
+  ['missing original responses', stage => { delete stage.modelResponses; }],
+  ['changed original response', stage => { stage.modelResponses[1] = '{}'; }],
+  ['unused extra response', stage => { stage.modelResponses.push(stage.modelResponses[1]); }],
+  ['rewritten accepted explanation', stage => { stage.result.checks[0].explanation = '重写后仍是合法格式'; }],
+  ['removed initial repair response', stage => { stage.modelResponses.shift(); stage.modelResponses.push('{}'); }],
+]) test(`offline replay rejects ${name}`, async () => {
+  const { run, input } = await responseFixture(); corrupt(run.stages[0]);
+  const before = JSON.stringify(run);
+  await assert.rejects(() => replayDesignReviewPrefix(run, input));
   assert.equal(JSON.stringify(run), before);
 });
 
