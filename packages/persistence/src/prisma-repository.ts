@@ -55,13 +55,18 @@ export class PrismaWorkRepository implements WorkRepository {
   }
 
   async get(workId: string): Promise<Work | undefined> {
-    const project = await this.prisma.project.findUnique({ where: { id: workId } });
+    // findUnique batches concurrent reads into a single driver JSON response.
+    // Preserved long-form review histories can exceed Node's string limit in
+    // that combined envelope. The id remains unique; return each row separately.
+    const project = await this.prisma.project.findFirst({ where: { id: workId } });
     if (!project) return undefined;
     return this.loadAggregate(project);
   }
 
   async list(): Promise<Array<{ id: string; title: string; stateRevision: number; constraintRevision: number; covenant: ReturnType<typeof parseCovenant> }>> {
-    const projects = await this.prisma.project.findMany({ orderBy: { createdAt: 'desc' } });
+    const projects = await this.prisma.project.findMany({ orderBy: { createdAt: 'desc' },
+      select: { id: true, title: true, stateRevision: true, constraintRevision: true, covenant: true },
+    });
     return projects.map((project) => ({
       id: project.id,
       title: project.title,

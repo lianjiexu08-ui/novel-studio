@@ -598,6 +598,41 @@ test('SQLite review checkpoints survive repository restart and resume without re
   assert.equal(final.versions.size, 0);
 });
 
+test('parallel detail reads keep separate response envelopes and bookshelf reads omit full histories', async t => {
+  const databaseUrl = createDatabase();
+  const { PrismaClient } = await import('@prisma/client');
+  const { PrismaWorkRepository } = await import('../src/prisma-repository.ts');
+  const { ChapterWorkflow } = await import('../../application/src/index.ts');
+  const prisma = new PrismaClient({ datasources: { db: { url: databaseUrl } }, log: [{ emit: 'event', level: 'query' }] });
+  const queries: string[] = [];
+  prisma.$on('query', event => { if (/^SELECT .* FROM [`"]?(?:main[`"]?\.)?[`"]?Project[`"]?\s/.test(event.query)) queries.push(event.query); });
+  const repository = new PrismaWorkRepository(prisma);
+  t.after(async () => { await repository.disconnect(); rmSync(databaseUrl.slice(5), { force: true }); });
+  const workflow = new ChapterWorkflow(repository, { generateChapter: () => ({ content: 'unused', proposedEvents: [] }) });
+  const a = await createReadyWork(workflow, '作品甲'), b = await createReadyWork(workflow, '作品乙');
+  await repository.transaction(a.id, ({ work }) => { const input = designReviewInput(work, 'world'); recordDesignReview(work, input, fixtureDesignReview(input)); });
+  const expectedA = (await repository.get(a.id))!;
+  queries.length = 0;
+  const [readA, readB, missing] = await Promise.all([repository.get(a.id), repository.get(b.id), repository.get('absent')]);
+  assert.equal(queries.length, 3, 'driver must not merge large detail responses into one JSON string');
+  assert.deepEqual(readA!.designContentReviews, expectedA.designContentReviews);
+  assert.deepEqual(readA!.designHistory, expectedA.designHistory);
+  assert.equal(readB!.id, b.id);
+  assert.equal(missing, undefined);
+  queries.length = 0;
+  const listed = await repository.list();
+  assert.equal(listed.length, 2);
+  for (const row of listed) {
+    const original = row.id === a.id ? readA! : readB!;
+    assert.deepEqual(row, { id: original.id, title: original.title, stateRevision: original.stateRevision,
+      constraintRevision: original.constraintRevision, covenant: original.covenant });
+  }
+  assert.equal(queries.length, 1);
+  assert.doesNotMatch(queries[0], /designHistory|designReviewRuns|designContentReviews|worldPack|storyBible/,
+    'listing must not transfer growing design or review history through the driver');
+  assert.equal((await repository.get(a.id))!.designContentReviews.size, expectedA.designContentReviews.size);
+});
+
 test('review-only saves skip historical rows while nested edits and rollback remain atomic', async t => {
   const databaseUrl = createDatabase();
   const { PrismaClient } = await import('@prisma/client');

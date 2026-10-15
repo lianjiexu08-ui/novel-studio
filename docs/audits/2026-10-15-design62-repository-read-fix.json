@@ -1,0 +1,21 @@
+{
+  "observedAt": "2026-10-15T07:12:06.223313+00:00",
+  "productionProof": {
+    "observedAt": "2026-10-15T07:07:19.545Z",
+    "parallelAggregateReads": 2,
+    "protectedBaselineMatches": true,
+    "oldRunsPreserved": 53,
+    "oldReportsPreserved": 59,
+    "designHistoryMatches": true,
+    "bookshelfReadSucceeded": true,
+    "modelCalls": 0,
+    "databaseWrites": false
+  },
+  "isolatedTestLogSha256": "6c7abc3fbf60463eb1d190e26aeda7fd2d7c7e417b9490aa62b026d31658dba7",
+  "testCommand": "node scripts/test-all.mjs",
+  "testLog": "/tmp/novel62-detail-reads-tests.log",
+  "implementation": "packages/persistence/src/prisma-repository.ts",
+  "modelCalls": 0,
+  "databaseWrites": false,
+  "scope": "read path only; no review/prose/design approval"
+}
