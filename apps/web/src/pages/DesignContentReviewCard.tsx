@@ -146,7 +146,7 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
         {check.insufficiencyReason && <Typography.Paragraph type="secondary">不足原因：{insufficiencyReasons[check.insufficiencyReason]}。仍需补充或独立复核，不代表通过。</Typography.Paragraph>}
         {check.awaitingSources && <Typography.Paragraph>待核来源：{check.awaitingSources.join('、')}。其他批次须读取原文并明确复核，目录存在不等于通过。</Typography.Paragraph>}
         {check.resolves && <Typography.Paragraph>本批依据原文解决的补读项：{check.resolves.join('、')}</Typography.Paragraph>}
-        {check.revisionAdvice && <Typography.Paragraph><strong>模型返修建议（待核对）：</strong>{check.revisionAdvice}</Typography.Paragraph>}
+        {check.revisionAdvice && <Typography.Paragraph><strong>{check.verdict === 'pass' ? '模型后续建议（待核对）：' : '模型返修建议（待核对）：'}</strong>{check.revisionAdvice}</Typography.Paragraph>}
         {check.evidence.length > 0 && <Collapse size="small" items={[{
           key: 'evidence', label: `${criteria[check.criterion] ?? check.criterion}的原文证据（${check.evidence.length} 条）`,
           children: <Space direction="vertical" style={{ width: '100%' }}>{check.evidence.map((item, index) => <div key={`${item.sourceId}-${index}`} style={{ width: '100%' }}>
