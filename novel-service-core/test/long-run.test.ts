@@ -424,3 +424,66 @@ test('quality audit retains approved-plan blockers and supports an unapproved pl
   assert.ok(audit.findings.some(f => f.id === 'active-plan-question-old' && f.evidence?.includes('批准计划 v1')));
   assert.ok(audit.findings.some(f => f.id === 'plan-question-new'));
 });
+
+test('question obligations retain document and plan provenance without resolving blockers', () => {
+  const design = lockedDesign(), service = new NovelService(provider), work = service.createWork('验收追溯');
+  service.setWorldPack(work.id, design.world); service.setStoryBible(work.id, design.bible);
+  const question = { id: 'shared', question: '写出代价', blocking: true, status: 'deferred' as const };
+  work.worldPack!.unresolvedQuestions = [structuredClone(question)];
+  work.storyBible!.unresolvedQuestions = [structuredClone(question)];
+  const draft = minimalPlan(); draft.openQuestions = [structuredClone(question)];
+  draft.chapters[0].executionChecks = (['world', 'story', 'plan'] as const).map(document => ({
+    id: `check-${document}`, requirement: `${document} 原要求`, sourceQuestion: { document, questionId: 'shared' },
+  }));
+  draft.chapters[1].executionChecks = [{ id: 'second-world', requirement: '另一章的要求', sourceQuestion: { document: 'world', questionId: 'shared' } },
+    { id: 'unlinked', requirement: '没有问题引用' }];
+  const active = createPlanRevision(work, draft, { source: 'author' });
+  active.status = 'approved'; work.activePlanId = active.id;
+  const next = structuredClone(draft); next.chapters[0].executionChecks![0].requirement = '提案中的新要求';
+  const proposed = createPlanRevision(work, next, { source: 'author', baseRevisionId: active.id });
+  const before = structuredClone(work), audit = qualityAuditFor(work);
+  const worldLinks = audit.questions.find(q => q.source === 'world')!.executionChecks;
+  assert.deepEqual(worldLinks.map(c => [c.planRevision, c.isLatest, c.isActive, c.chapterNumber, c.requirement]), [
+    [2, true, false, 1, '提案中的新要求'], [2, true, false, 2, '另一章的要求'],
+    [1, false, true, 1, 'world 原要求'], [1, false, true, 2, '另一章的要求'],
+  ]);
+  assert.deepEqual(worldLinks.map(c => c.planStatus), ['proposed', 'proposed', 'approved', 'approved']);
+  assert.deepEqual(audit.questions.find(q => q.source === 'story')!.executionChecks.map(c => c.checkId), ['check-story', 'check-story']);
+  assert.deepEqual(audit.questions.find(q => q.source === 'plan')!.executionChecks.map(c => c.planId), [proposed.id], 'latest plan question must not inherit approved plan obligations');
+  assert.ok(audit.questions.every(q => q.status === 'deferred' && q.blocking));
+  assert.equal(audit.status, 'blocked');
+  assert.deepEqual(qualityAuditDtoSchema.parse(audit).questions, audit.questions);
+  assert.deepEqual(structuredClone(work), before);
+});
+
+test('question obligations exclude obsolete and unbound design revisions and superseded plans', () => {
+  const design = lockedDesign(), service = new NovelService(provider), work = service.createWork('同名问题换版');
+  service.setWorldPack(work.id, design.world); service.setStoryBible(work.id, design.bible);
+  const question = { id: 'same', question: '新设定中的问题', blocking: true, status: 'open' as const };
+  work.worldPack!.unresolvedQuestions = [structuredClone(question)]; work.storyBible!.unresolvedQuestions = [structuredClone(question)];
+  const draft = minimalPlan();
+  draft.chapters[0].executionChecks = (['world', 'story'] as const).map(document => ({
+    id: document, requirement: '旧版要求', sourceQuestion: { document, questionId: 'same' },
+  }));
+  const active = createPlanRevision(work, draft, { source: 'author' }); active.status = 'approved'; work.activePlanId = active.id;
+  work.worldPack!.revision++; work.storyBible!.revision++;
+  assert.ok(qualityAuditFor(work).questions.every(q => q.executionChecks.length === 0));
+  const stale = createPlanRevision(work, draft, { source: 'author', baseRevisionId: active.id }); stale.status = 'superseded';
+  const latest = createPlanRevision(work, draft, { source: 'author', baseRevisionId: stale.id });
+  assert.ok(qualityAuditFor(work).questions.every(q => q.executionChecks.length === 1 && q.executionChecks[0].planId === latest.id));
+  latest.worldPackRevision = undefined; latest.storyBibleRevision = undefined;
+  assert.ok(qualityAuditFor(work).questions.every(q => q.executionChecks.length === 0), 'missing binding cannot stand in for current revision');
+});
+
+test('question obligations deduplicate a latest active plan and distinguish legacy absence from no links', () => {
+  const service = new NovelService(provider), work = service.createWork('同一批准计划');
+  const draft = minimalPlan(); draft.openQuestions = [{ id: 'q', question: '待核', blocking: true, status: 'open' }, { id: 'empty', question: '未关联', blocking: false, status: 'open' }];
+  draft.chapters[0].executionChecks = [{ id: 'check', requirement: '具体要求', sourceQuestion: { document: 'plan', questionId: 'q' } }];
+  const active = createPlanRevision(work, draft, { source: 'author' }); active.status = 'approved'; work.activePlanId = active.id;
+  const audit = qualityAuditFor(work), linked = audit.questions[0].executionChecks;
+  assert.equal(linked.length, 1); assert.equal(linked[0].isActive, true); assert.equal(linked[0].isLatest, true);
+  assert.deepEqual(qualityAuditDtoSchema.parse(audit).questions![1].executionChecks, []);
+  const legacy = { ...audit, questions: audit.questions.map(({ executionChecks, ...q }) => q) };
+  assert.ok(qualityAuditDtoSchema.parse(legacy).questions!.every(q => !('executionChecks' in q)));
+  assert.equal(qualityAuditDtoSchema.parse({ ...audit, questions: undefined }).questions, undefined);
+});

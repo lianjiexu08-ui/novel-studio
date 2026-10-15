@@ -489,6 +489,10 @@ export interface QualityAudit {
   questions: Array<{
     id: string; source: 'world' | 'story' | 'plan'; revision: number;
     questionId: string; question: string; blocking: boolean; status: 'open' | 'resolved' | 'deferred';
+    executionChecks: Array<{
+      planId: string; planRevision: number; planStatus: PlanRevision['status'];
+      isLatest: boolean; isActive: boolean; chapterNumber: number; checkId: string; requirement: string;
+    }>;
   }>;
   findings: QualityAuditFinding[];
 }
@@ -1269,7 +1273,24 @@ export function qualityAuditFor(work: Work): QualityAudit {
     for (const [index, question] of (records ?? []).entries()) questions.push({
       id: JSON.stringify([source, revision, index, question.id]), source, revision,
       questionId: question.id, question: question.question, blocking: question.blocking, status: question.status,
+      executionChecks: [],
     });
+  }
+  // References are scoped to the plan's bound design revision. Equal question
+  // IDs in a newer world/bible must not inherit an old plan's obligations.
+  const linkedPlans = [...new Map([latest, plan].filter((p): p is PlanRevision => !!p).map(p => [p.id, p])).values()];
+  for (const question of questions) for (const linkedPlan of linkedPlans) {
+    const boundRevision = question.source === 'world' ? linkedPlan.worldPackRevision
+      : question.source === 'story' ? linkedPlan.storyBibleRevision : linkedPlan.revision;
+    if (boundRevision !== question.revision) continue;
+    for (const outline of linkedPlan.plan.chapters) for (const check of outline.executionChecks ?? []) {
+      if (check.sourceQuestion?.document !== question.source || check.sourceQuestion.questionId !== question.questionId) continue;
+      question.executionChecks.push({
+        planId: linkedPlan.id, planRevision: linkedPlan.revision, planStatus: linkedPlan.status,
+        isLatest: linkedPlan.id === latest?.id, isActive: linkedPlan.id === plan?.id,
+        chapterNumber: outline.chapterNumber, checkId: check.id, requirement: check.requirement,
+      });
+    }
   }
   for (const question of questions.filter(q => q.blocking && q.status !== 'resolved')) add({
     id: `${question.source}-question-${question.questionId}`, area: question.source,

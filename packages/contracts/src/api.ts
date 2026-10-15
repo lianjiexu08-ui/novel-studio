@@ -195,6 +195,11 @@ export const qualityAuditDtoSchema = z.object({
   questions: z.array(z.object({
     id: z.string(), source: z.enum(['world', 'story', 'plan']), revision: z.number().int(),
     questionId: z.string(), question: z.string(), blocking: z.boolean(), status: z.enum(['open', 'resolved', 'deferred']),
+    // Missing on older servers is distinct from a verified empty mapping.
+    executionChecks: z.array(z.object({
+      planId: z.string(), planRevision: z.number().int(), planStatus: z.enum(['proposed', 'reviewed', 'approved', 'superseded']),
+      isLatest: z.boolean(), isActive: z.boolean(), chapterNumber: z.number().int().positive(), checkId: z.string(), requirement: z.string(),
+    })).optional(),
   })).optional(),
   findings: z.array(z.object({
     id: z.string(),
