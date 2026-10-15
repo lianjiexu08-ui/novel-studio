@@ -1,0 +1,1761 @@
+{
+  "kind": "manual_disputed_findings_original_source_reconciliation",
+  "observedAt": "2026-10-15T23:23:50.720Z",
+  "inputHash": "32f6ca9f61bbb70b8b56a0a7908ca086a0ce1b6ff4554ff3bafdf7428f05465f",
+  "planId": "plan_f2a3d700d38940ca89155b13e076fdb6",
+  "runId": "design_run_5aa806e5-49b6-4e13-9c0a-b6f01e2597ce",
+  "runtimeCommit": "ffd28c973b398c7b12728e45ef864d1cba0217a7",
+  "checkpointPath": "/var/folders/tr/8vt224595gdfg6w6kh6tkpt00000gn/T/novel64-geography-audit-neerr5ca/checkpoint.json",
+  "checkpointSha256": "d054df2e2a550c95cdab5e352c9178699ef51313020ebcb4c14706e4dc2c8fcb",
+  "databaseSnapshot": "/var/folders/tr/8vt224595gdfg6w6kh6tkpt00000gn/T/novel64-geography-audit-neerr5ca/snapshot.db",
+  "sourceFilesVerified": 138,
+  "verifierSha256": "2e3020799315dd580b4cfc9195c105d67f0c271657d0958026f80927518ae2de",
+  "replay": {
+    "verification": "verified",
+    "completedStages": 41,
+    "totalStages": 45,
+    "runSha256": "b6dc06345ce7e07dd41189cabc5c72dbb4a8277de05217b9d1413616672cd76e",
+    "formalAcceptance": false,
+    "limitation": "Replays saved responses, repairs, citations and conclusions against independently supplied materials. Pending work, semantic quality, blocker disposition and prose acceptance remain separate.",
+    "responseReplay": "verified",
+    "responsesReplayed": 48,
+    "records": [
+      {
+        "stageId": "batch-1",
+        "kind": "batch",
+        "stageSha256": "bd3adf20ff260a4a86556a1d5c6449c230984becdfe93fb30eb154f44e293664",
+        "inputSha256": "6ba6cb4cfb36f0de277c43455d7395ac54ed191c98e7e63998ddc96c3eb9170c",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32"
+            ]
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "batch-2",
+        "kind": "batch",
+        "stageSha256": "fbf5c76a3f57ca83e86bd0833829afdf0359a47c5d9fde0c3d606b95629390c5",
+        "inputSha256": "f593a7ec730f8661f40a47bdfc132956751480006d2972b6e9aeed04e51cbace",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/19",
+              "plan/chapters/20",
+              "plan/chapters/21",
+              "plan/chapters/22",
+              "plan/chapters/23",
+              "plan/chapters/24",
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/33",
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50"
+            ]
+          },
+          {
+            "criterion": "history",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/historicalEvents/event_13",
+              "world/historicalEvents/event_14",
+              "world/factions/fac_01",
+              "world/factions/fac_02",
+              "world/factions/fac_03",
+              "world/factions/fac_08",
+              "world/factions/fac_12"
+            ]
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "batch-3",
+        "kind": "batch",
+        "stageSha256": "4e3a05f2a71bbfacfffe20ff1732095406f9ea79255239287d597c245c7c6c16",
+        "inputSha256": "00acdfd83c42514e418b813713edaf6e28b95e0406b1ff4d0f2c2732ada6f2a0",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/milestones/ms_growth_v1_crossing",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return"
+            ]
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "batch-4",
+        "kind": "batch",
+        "stageSha256": "498b8ad74f27e843582b0bb823aab4020aa135aec80ea17e6796512eeacbab22",
+        "inputSha256": "ae2442173abe14877c6f9727b734d2db4b481d496d97f7a924e8a6b8f8948017",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "batch-5",
+        "kind": "batch",
+        "stageSha256": "e40260913bee8b7727962fbe14837c34026590a88fac52ec7bb09b78d8f882e4",
+        "inputSha256": "127dfae32ebe28b2d9a5cc98c78cdf654d2b1f312c0fffbe4996ff036d8a24c9",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/artifacts/art_16",
+              "world/artifacts/art_21"
+            ]
+          },
+          {
+            "criterion": "history",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/factions/fac_02",
+              "world/factions/fac_03",
+              "world/factions/fac_06",
+              "world/factions/fac_07",
+              "world/factions/fac_08",
+              "world/factions/fac_12",
+              "world/historicalEvents/event_08",
+              "world/historicalEvents/event_09",
+              "world/historicalEvents/event_10",
+              "world/historicalEvents/event_14"
+            ]
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-2",
+        "kind": "cross",
+        "stageSha256": "8af664ec192e96caed78e962a1c00d4dbefdfbf4d06e629edb608ce1dc642d28",
+        "inputSha256": "f58586f86fbe030810697750625147b2b4b9b6bf282bbbbba38aaefba307440f",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return",
+              "plan/chapters/31",
+              "plan/chapters/32"
+            ]
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass",
+            "resolves": [
+              "batch-2/history"
+            ]
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-3",
+        "kind": "cross",
+        "stageSha256": "72dc45749270119a554c05aca8e088b5c99ce1f5c7c35139dd1e3c5fda95dde1",
+        "inputSha256": "9b5139782436807520f64a70c9d50ecd6c4f2b712d70112314afb37ed6e2f7ef",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/18",
+              "plan/chapters/19",
+              "plan/chapters/20",
+              "plan/chapters/21",
+              "plan/chapters/22",
+              "plan/chapters/23",
+              "plan/chapters/24",
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/33",
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50"
+            ]
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-4",
+        "kind": "cross",
+        "stageSha256": "c3a4beedd2078de291177a9a1e6a6a41bc00bc3a5b6e8affb59c938120ab4910",
+        "inputSha256": "e9ab5b85f92190de1a6fd06f3de245aee74345674663634b61c4ec389fc3164f",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "pass",
+            "resolves": [
+              "batch-1/geography"
+            ]
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-5",
+        "kind": "cross",
+        "stageSha256": "1e24e4d82d219441ad479d85834063ebcb3153b48b06c69adc1b7f37479cedf5",
+        "inputSha256": "dddba3b2a302db646b8838862c16083f173e93c0d5088f4475b9739589fe6e37",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "pass",
+            "resolves": [
+              "batch-5/geography"
+            ]
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass",
+            "resolves": [
+              "batch-5/history"
+            ]
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-2-3",
+        "kind": "cross",
+        "stageSha256": "a9a9c899c72dd7e9eb78aa5b0241f3644e5bd4fc3fd0d75bfb1e01663ae182e5",
+        "inputSha256": "b7189b70489daf6cd13ff5b70c039ea36f4626f104c73b4f07bcc044c2f848e7",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/18",
+              "plan/chapters/19",
+              "plan/chapters/20",
+              "plan/chapters/21",
+              "plan/chapters/22",
+              "plan/chapters/23",
+              "plan/chapters/24",
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/33",
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50",
+              "plan/milestones/ms_growth_v1_expedition",
+              "plan/milestones/ms_vol1_climax",
+              "plan/milestones/ms_growth_v1_crossing",
+              "plan/milestones/ms_bridge_return",
+              "plan/milestones/ms_v2_loss",
+              "plan/milestones/ms_v2_barge",
+              "plan/milestones/ms_v2_fire",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return"
+            ]
+          },
+          {
+            "criterion": "history",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/factions/fac_01",
+              "world/factions/fac_02",
+              "world/factions/fac_03",
+              "world/factions/fac_08",
+              "world/factions/fac_12",
+              "world/historicalEvents/event_01",
+              "world/historicalEvents/event_08",
+              "world/historicalEvents/event_09",
+              "world/historicalEvents/event_13",
+              "world/historicalEvents/event_14",
+              "plan/chapters/18",
+              "plan/chapters/19",
+              "plan/chapters/20",
+              "plan/chapters/21",
+              "plan/chapters/22",
+              "plan/chapters/23",
+              "plan/chapters/24",
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/33",
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50"
+            ]
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-2-4",
+        "kind": "cross",
+        "stageSha256": "0008624fde1df80a1f9c566222d0d8d4657bfa07a9420c4e82a546192f478a58",
+        "inputSha256": "7b6bfb4888b6c300ebd90a1acf004b9954f0c1afbc9093738564e2033bd35ce7",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-2-5",
+        "kind": "cross",
+        "stageSha256": "622725130126b45e789c753a9354f562a7128457192f8485132105006690d50c",
+        "inputSha256": "b9af86b43d92f0f629ce13e0e7fe83a8240534eeb7a7d50180c1f98ee1e368c6",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-3-4",
+        "kind": "cross",
+        "stageSha256": "cc72325970fd4628c8c70aa295de1aeeb904ab3d17f2b68204fdc00c42cb9db4",
+        "inputSha256": "e2fb742e09d677db06315a092a1666994399e3ddc684e1694514d67ebc53d51e",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "history",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/factions/fac_01",
+              "world/factions/fac_02",
+              "world/factions/fac_03",
+              "world/factions/fac_08",
+              "world/factions/fac_12",
+              "world/historicalEvents/event_08",
+              "world/historicalEvents/event_14",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50"
+            ]
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-3-5",
+        "kind": "cross",
+        "stageSha256": "727bf565ed5f7bcb33127b019911a9a8f8d2307ea2140695060b25174d23a563",
+        "inputSha256": "cef66df2b720b469bc22108972d701a3e85f00f83e9d04f65eb6c14e4c2426d4",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "history",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/historicalEvents/event_01",
+              "world/historicalEvents/event_02",
+              "world/historicalEvents/event_03",
+              "world/historicalEvents/event_04",
+              "world/historicalEvents/event_05",
+              "world/historicalEvents/event_06",
+              "world/historicalEvents/event_07",
+              "world/historicalEvents/event_08",
+              "world/historicalEvents/event_09",
+              "world/historicalEvents/event_10",
+              "world/historicalEvents/event_11",
+              "world/historicalEvents/event_12",
+              "world/historicalEvents/event_13",
+              "world/historicalEvents/event_14",
+              "world/factions/fac_01",
+              "world/factions/fac_02",
+              "world/factions/fac_03",
+              "world/factions/fac_05",
+              "world/factions/fac_08",
+              "world/factions/fac_09",
+              "world/factions/fac_12"
+            ]
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-4-5",
+        "kind": "cross",
+        "stageSha256": "bfab4ce7e980cda1850f186f5d1ed2af36db7a7277a1db19c1e78690bc900524",
+        "inputSha256": "54e203882dacdaa518fcfa1966604f3031100c13dc893de822fb5e56add58b37",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "followup-batch-2/geography",
+        "kind": "cross",
+        "stageSha256": "7ec3167be4f7a0a90dee8d6205769ad4565ae0a58740b14b158ffe9a0738e40e",
+        "inputSha256": "bee331bad6b72ba8b424a8d38cc04a7e8448feb469117b69cb1dd83100be22d8",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "pass",
+            "resolves": [
+              "batch-2/geography"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-batch-3/geography",
+        "kind": "cross",
+        "stageSha256": "b081c764effe340fb9e84b0658dad4d437dbaf513eaaf27ea012b8631a8679f7",
+        "inputSha256": "65421282c97d5b5a6a6d7be0912988b997ec740c749347def38549ccee951633",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "pass",
+            "resolves": [
+              "batch-3/geography"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-1-2/geography",
+        "kind": "cross",
+        "stageSha256": "c72936bc9fd2c706ed6d78e2e68cda7c598f92f6bc74c5677e2674dce3c17af1",
+        "inputSha256": "803d7387455297ea882bdb3bc574f19c549ac91f78420f8528da9644fb81475c",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "pass",
+            "resolves": [
+              "cross-1-2/geography"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-1-3/geography",
+        "kind": "cross",
+        "stageSha256": "18bba84c0b1d67d1bcf9d9116f76cf6b170ed3d24506b6fe5cd5f5075ebc6324",
+        "inputSha256": "161ba0fcdbe2d3469277f5e9bd5ebe052cb91671aa145c4df4d51ed3f0246e39",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "revise"
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-2-3/geography",
+        "kind": "cross",
+        "stageSha256": "7024f71fe8e014ef7d73714e7d4a08ed412dc439a00775eadedd465d73ee76cb",
+        "inputSha256": "f2dbe1f099eafcd846fe9f52a6848f8d031290f71437e6aec9cf85de82a2dd28",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "pass",
+            "resolves": [
+              "cross-2-3/geography"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-2-3/history",
+        "kind": "cross",
+        "stageSha256": "16665ead93e4a63855b669cb06901f3d22294dffa99cc0b7918c8974d13ab829",
+        "inputSha256": "f0685eb5b5e96ccca03e10ca167dba81b2d2139486ebb520d62a3e197fff858f",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "history",
+            "verdict": "pass",
+            "resolves": [
+              "cross-2-3/history"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-3-4/history",
+        "kind": "cross",
+        "stageSha256": "e4e06b6e3f81537c8208ea1fb9aebe136940fd6e0f0d638f575787a0b05c804e",
+        "inputSha256": "faa45836b0d8630133fa6127d4a31b4ea6c23de6437e15851b2f6f53c75eef60",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "history",
+            "verdict": "pass",
+            "resolves": [
+              "cross-3-4/history"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-3-5/history",
+        "kind": "cross",
+        "stageSha256": "f677b9c12eefa45687eb70dbdd9ca38231b83bc262fe1a27f7e41bf11ba2a2e8",
+        "inputSha256": "85cac8db0a5601d86a2b2e8fd4580a98e67f3362417b1ac69178164cf0d50cdd",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "history",
+            "verdict": "pass",
+            "resolves": [
+              "cross-3-5/history"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-1",
+        "kind": "synthesis",
+        "stageSha256": "f175011258bfc63f7cf39ce5389e8bde006980c8850b512bc1f22fd35fca56c8",
+        "inputSha256": "e8c7a80911b2b8d3f71501eb21b69d70a1f8101f2934688a0b2717eb816551b1",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "revise"
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-2",
+        "kind": "synthesis",
+        "stageSha256": "a322e9761a14e3e2cb346a8549951880b169ab631a91898148aebf9e15e3bca4",
+        "inputSha256": "76db3c0e735abe67374b7f5ff569d1e0f09f8e544194ebe3a63ac86adbeefdf9",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-3",
+        "kind": "synthesis",
+        "stageSha256": "e140406abfd9c97326bdf4526b0dd683a8d0d9470ba3a9872b0a9afff1e79a70",
+        "inputSha256": "778121ce3bb13329d3f26ff6e2e96b752a1403c84c921e57b90bc14e37ff83bf",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-4",
+        "kind": "synthesis",
+        "stageSha256": "e9437ebe1c62e30abeb6f5371377fd40601ab9387cb23a75e1154e2fa5b44a99",
+        "inputSha256": "ef1d0377ef4bf0c61f26bde77c73e42f836ec3be16f7bfa63790ec70a2d09706",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "insufficient"
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-5",
+        "kind": "synthesis",
+        "stageSha256": "09e21bcf7e9da5d2134e4fdc80233841d3e789a74d7f8cd50b19671a5ed8c96b",
+        "inputSha256": "35bbca9994f6fdfd6d08b922ff5c5cb3cd0905d48b810217db15fac264ef4aca",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-6",
+        "kind": "synthesis",
+        "stageSha256": "1cc69fa2c2146cbedf5210e9414f702ea405e4aaa26b1f8cd4e7bfb4d2488ec4",
+        "inputSha256": "10092e806ef7b0537907e95979602845a76a8284044f614729c134e468f7e9d6",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-7",
+        "kind": "synthesis",
+        "stageSha256": "495a94003e3189d87b1afce124a5b9824bfcc38a99e46be2cc5b80cdf47b3c71",
+        "inputSha256": "20e0500d2b37c30ef3d2bd5c471f224ebec73c62d1bb70c3c4cb96266433f34c",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-8",
+        "kind": "synthesis",
+        "stageSha256": "e0b7e298a716ea677271fb10aa457a718e6e79a82e1e237c03fcd537f7141d03",
+        "inputSha256": "c94f0bb9128e68765eaac0f81526aab681f06c1cc3314cd59c93320bd7716244",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-9",
+        "kind": "synthesis",
+        "stageSha256": "30e0718bc53001466ca98ca52f9532d9f121f150b66f92b0e63258987534c358",
+        "inputSha256": "0e40dcd1435be6f1bfcc929e279004201c8036e4cc6e6e0e1f8b576fa9384074",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-10",
+        "kind": "synthesis",
+        "stageSha256": "dbbf9db1f1cb0673bacce5bccbb05bd70568cf901b4019913c22142e63abf50c",
+        "inputSha256": "c2acb66a3dbbc6d32304e24fb13f08602b9622f9c280d6b2208d178fa5c8e341",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "revise"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-11",
+        "kind": "synthesis",
+        "stageSha256": "f664291a09838d50694df02dee9848d29466647815a4feb1a52685453960f510",
+        "inputSha256": "dcee6ea484022e31b153fa73fc6e3acb88d3595bbf6000a8afc44be331098d03",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-12",
+        "kind": "synthesis",
+        "stageSha256": "d9ccdbde2e95fb3391188bd0e5392fd5f8c89adb1b2303772140f15e852113d2",
+        "inputSha256": "f07e5c4894243ba79bacf365772c8d2583fe7bdbc7844dd21d2af1e837434628",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "revise"
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-13",
+        "kind": "synthesis",
+        "stageSha256": "12ae96fa317be93720ac928764ceb67eeb5ba4a66783ab412753774590a083eb",
+        "inputSha256": "0bbd3efaaade6646bc88684f4847726985d24211e5f144c7bda995413423fb9e",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "insufficient"
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-14",
+        "kind": "synthesis",
+        "stageSha256": "48191725087b9bc8dd74a93cf6f7d95da6d40b572771c0def832b991a04a599d",
+        "inputSha256": "303692fa81d9fd7bc7c2cbae03c5a7903a245bda545c98aa8ec1a5eec3210cd6",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-15",
+        "kind": "synthesis",
+        "stageSha256": "55d08dc57ddd963aa6ab4dc12902c286de7d22720acc1ad670fbc6f434f997d5",
+        "inputSha256": "9e1d0e0d2d3af1ba9e91a192534b4582d7e2cacb8c06016df4f0e93731dd4680",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-16",
+        "kind": "synthesis",
+        "stageSha256": "abed291f80bdd7b8bab6f3e2d9ae5eead5cbbc769b744cd9ff98f2ec022a5114",
+        "inputSha256": "e838e07a61687112ff0b9bb80e3ef10266187d91bdd8574407b01215d04c864e",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "revise"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-17",
+        "kind": "synthesis",
+        "stageSha256": "3c9a6872ef5f746e6b0789397eac14c40dad18783501f1b893ef374c4c87e88d",
+        "inputSha256": "50efa6ddf311c7faff3b016fa346370e1d205f1de2d999339a624fd19f86d74e",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-18",
+        "kind": "synthesis",
+        "stageSha256": "523d59a2a1e70eb79d50a987b7e061bb692af8aaab08dc1e4ce367d06e827bf3",
+        "inputSha256": "629f4493bbb8ed4494f3f4ecbe6dd74af9690f99c63383b0f41f03914dc2c5ce",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "revise"
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      }
+    ],
+    "failures": [],
+    "modelCalls": 0
+  },
+  "findings": [
+    {
+      "stageId": "followup-cross-1-3/geography",
+      "kind": "cross",
+      "children": [],
+      "resultSha256": "1f9313445cacb55b199cd90bce155020bcaed05d5cd8cd0188b85b17f690afe4",
+      "modelResponsesSha256": "bbd5cb2358002df2676ec4e05c8246333fd82e79b1803d48ca27dd2a8ea63a88",
+      "requestId": "review_161ba0fcdbe2d3469277f5e9",
+      "stageInputSha256": "161ba0fcdbe2d3469277f5e9bd5ebe052cb91671aa145c4df4d51ed3f0246e39",
+      "directlyProvidedSourceIds": [
+        "author",
+        "world/axioms/ax_01",
+        "world/axioms/ax_02",
+        "world/axioms/ax_03",
+        "world/axioms/ax_04",
+        "world/axioms/ax_05",
+        "world/axioms/ax_06",
+        "world/axioms/ax_07",
+        "world/axioms/ax_08",
+        "world/axioms/ax_09",
+        "world/axioms/ax_10",
+        "world/axioms/ax_11",
+        "world/axioms/ax_12",
+        "world/axioms/ax_13",
+        "world/realms/realm_01",
+        "world/realms/realm_02",
+        "world/realms/realm_03",
+        "world/realms/realm_04",
+        "world/realms/realm_05",
+        "world/realms/realm_06",
+        "world/realms/realm_07",
+        "world/realms/realm_08",
+        "world/locations/loc_01",
+        "world/locations/loc_02",
+        "world/locations/loc_03",
+        "world/locations/loc_04",
+        "world/locations/loc_05",
+        "world/locations/loc_06",
+        "world/locations/loc_07",
+        "world/locations/loc_08",
+        "world/locations/loc_09",
+        "world/locations/loc_10",
+        "world/locations/loc_11",
+        "world/locations/loc_12",
+        "world/locations/loc_13",
+        "world/locations/loc_14",
+        "world/locations/loc_15",
+        "world/locations/loc_16",
+        "world/locations/loc_17",
+        "world/locations/loc_18",
+        "world/locations/loc_19",
+        "world/locations/loc_20",
+        "world/locations/loc_21",
+        "world/locations/loc_22",
+        "world/locations/loc_23",
+        "world/locations/loc_24",
+        "world/locations/loc_25",
+        "world/locations/loc_26",
+        "world/locations/loc_27",
+        "world/locations/loc_28",
+        "world/locations/loc_29",
+        "world/locations/loc_30",
+        "story/characters/char_01",
+        "story/characters/char_02",
+        "story/characters/char_03",
+        "story/characters/char_04",
+        "story/characters/char_05",
+        "story/characters/char_06",
+        "story/characters/char_07",
+        "story/characters/char_08",
+        "story/characters/char_09",
+        "story/characters/char_10",
+        "story/characters/char_11",
+        "story/characters/char_12",
+        "story/characters/char_13",
+        "story/characters/char_14",
+        "story/characters/char_15",
+        "story/characters/char_16",
+        "story/characters/char_17",
+        "story/characters/char_18",
+        "story/characters/char_19",
+        "story/characters/char_20",
+        "story/characters/char_21",
+        "story/characters/char_22",
+        "story/characters/char_24",
+        "story/characters/char_25",
+        "story/chapterPlans/chapter-plan-3",
+        "story/chapterPlans/chapter-plan-9",
+        "plan/overview",
+        "plan/chapters/1",
+        "plan/chapters/3",
+        "plan/chapters/18",
+        "plan/chapters/19",
+        "plan/chapters/20",
+        "plan/chapters/21",
+        "plan/chapters/22",
+        "plan/chapters/23",
+        "plan/chapters/24",
+        "plan/chapters/25",
+        "plan/chapters/26",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/29",
+        "plan/chapters/30",
+        "plan/chapters/31",
+        "plan/chapters/32",
+        "plan/chapters/33",
+        "plan/chapters/34",
+        "plan/chapters/35",
+        "plan/chapters/36",
+        "plan/chapters/37",
+        "plan/chapters/38",
+        "plan/chapters/39",
+        "plan/chapters/40",
+        "plan/chapters/41",
+        "plan/chapters/42",
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50"
+      ],
+      "macroCoverage": [
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "inCompleteInput": true,
+          "directlyProvided": false,
+          "mentionedInReportText": false
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_boundary",
+          "inCompleteInput": true,
+          "directlyProvided": false,
+          "mentionedInReportText": false
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "inCompleteInput": true,
+          "directlyProvided": false,
+          "mentionedInReportText": false
+        }
+      ],
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "revise",
+          "explanation": "本批已补读的计划基本落实了实体交通、权限与费用：灵虚古境需凝元三重及联名符牌，林辰与苏按山路抵达；古境内救援依四里实体路线、撤哨、送信和交接推进；离开后经山路、驿车到云梦天港，再按两昼夜实体海程抵达赤霄天宝外港，港口验籍、当日放行旗号、避火防护、船费/劳务换舱和货物交接均有实际依据，未把界门或境界能力当作跨海捷径。可是第18章明确写为第186日出发、第188日抵达外营，而第19章又把同一段入境写成第181—183日完成，并在第20章以第184日已经进入古境并遇袭为前提；这不是尚待正文实现，而是提案内部的日期与行程冲突，会连带影响第18—26章的训练、守口、救援与返程时序。应统一古境出发/抵达日期，并同步重算第18—29章的在境日程、值守交接、药程和后续分路；不能只修改章标题或总日数。",
+          "revisionAdvice": "重点修正第18—20章：第18章的“186日出发、188日到外营”必须与第19章“181—183日抵达灵虚古境”、第20章“184日古境遇袭”三者择一统一；随后检查第21—29章所有救援、药程、交接、返程和第30章到港日期是否仍连续。保留并逐章核实已成立的实体山路、两昼夜/五昼夜海程、港口验籍、当日放行旗号、护符与劳务换舱支付链。",
+          "evidenceSha256": "e6d919c46d04c1264f37a54a230d4f714c94e48a670a1993c8a9585bf7c83af9",
+          "evidenceCount": 14
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-1",
+      "kind": "synthesis",
+      "children": [
+        "batch-1",
+        "batch-2"
+      ],
+      "resultSha256": "e4512ea93041f62af9e6377aab921e6749ec1861fd93e24ac97d9b8c0d06d911",
+      "modelResponsesSha256": "08957d46880507685633c72e9b1bbb38104921e2804e6262f22460375077fd2f",
+      "requestId": "review_e8c7a80911b2b8d3f71501eb",
+      "stageInputSha256": "e8c7a80911b2b8d3f71501eb21b69d70a1f8101f2934688a0b2717eb816551b1",
+      "synthesis": {
+        "scope": "partial_reports",
+        "coveredStageIds": [
+          "batch-1",
+          "batch-2"
+        ],
+        "totalStages": 23
+      },
+      "directlyProvidedSourceIds": [
+        "plan/overview"
+      ],
+      "macroCoverage": [
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "inCompleteInput": true,
+          "directlyProvided": false,
+          "mentionedInReportText": false
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_boundary",
+          "inCompleteInput": true,
+          "directlyProvided": false,
+          "mentionedInReportText": false
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "inCompleteInput": true,
+          "directlyProvided": false,
+          "mentionedInReportText": false
+        }
+      ],
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "revise",
+          "explanation": "前50章的灵虚准入与青玄—赤霄航段已有前置复核结论支持，且世界规则明确跨海必须依实体飞舟、支付责任和港口验籍，赤霄须避火并受当日放行旗号约束。可是后段宏观只写“第61—66章付费北航后在受限外港救出七名矿工”，未在提案层明确从哪个赤霄港出发、谁提供五日航程的票款或换舱物、北境外港所需引渡令/巡界使担保、凝元以下的寒符或保温舟舱、封航处理及返程六日的船舶与供给责任。既有规则还明确商盟信物不自动代付、商业信物不能豁免查验，不能用“付费北航”四字替代这些条件。后半段尚未展开逐章本身不是问题，但这些跨域前置已是宏观安排成立所必需的设计约束。",
+          "revisionAdvice": "在ms_v2_voyage、ms_v2_boundary、ms_v3_return及plan/overview对应段落补齐同一条北航—外港—返程链：明确出发/到港时点、实际支付或货物换舱及账户、船舶和供能者、赤霄放行旗号与港口验籍、苍冥引渡令或具名担保、寒防物资与持续责任，以及六日返程的承运和支付来源；同时说明受限外港救援只获得何种范围的准入，不把救援资格扩成界渊准入。",
+          "evidenceSha256": "ed64ff5f0ec1006d299bf67c6227d0cab0ea2a430da795a50f26134e961bf574",
+          "evidenceCount": 4
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-10",
+      "kind": "synthesis",
+      "children": [
+        "followup-cross-1-3/geography",
+        "followup-cross-2-3/geography"
+      ],
+      "resultSha256": "0f0951c5981abeb2531af25c915a22235843fbfc7a2e2d5795bbfa4e1d7fe13e",
+      "modelResponsesSha256": "e4831f0b36a4c4558562591c76f0b75ccdb6c575713cd1ea82f8892600e8dc1c",
+      "requestId": "review_c2acb66a3dbbc6d32304e24f",
+      "stageInputSha256": "c2acb66a3dbbc6d32304e24fb13f08602b9622f9c280d6b2208d178fa5c8e341",
+      "synthesis": {
+        "scope": "partial_reports",
+        "coveredStageIds": [
+          "followup-cross-1-3/geography",
+          "followup-cross-2-3/geography"
+        ],
+        "totalStages": 23
+      },
+      "directlyProvidedSourceIds": [
+        "plan/overview"
+      ],
+      "macroCoverage": [
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "inCompleteInput": true,
+          "directlyProvided": false,
+          "mentionedInReportText": true
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_boundary",
+          "inCompleteInput": true,
+          "directlyProvided": false,
+          "mentionedInReportText": true
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "inCompleteInput": true,
+          "directlyProvided": false,
+          "mentionedInReportText": true
+        }
+      ],
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "revise",
+          "explanation": "世界规则要求跨大陆依赖实体虚海航程，灵虚古境还要求凝元三重与联名准入符牌；提案在第19章明确以两项条件沿山路于第181—183日抵达古境，第20章又以第184日已在古境遇袭为前提，这条进入与行动链本身成立。可是第18章同一出发安排又写成第186日出发、第188日抵达外营，并安排188日才接班，无法与第19章的181—183日入境及第20章第184日行动同时成立。该冲突会连带破坏救援、撤哨、值守、药程和后续返程的连续日期。前置补读报告虽称第18—50章地理行动通过，但其引文没有消解这组具体日期矛盾；综合结论应保留该返修项。",
+          "revisionAdvice": "统一第18—20章的古境出发、抵达与遇袭日期，明确保留哪一套行程；随后逐章重算第18—29章的山路耗时、换班与值守交接、救援及撤离时间、疗程与返程，并复核第30—32章抵达云梦天港、两昼夜海程及第216日到港是否仍连续。不得只改章标题或总日数；同时保留并核对灵虚准入的境界/符牌门槛、四里实体路线、港口验籍、避火防护与实际支付链。",
+          "evidenceSha256": "457c6592615cedb7c7711db8d72a0cd777d64a2dd745a9af93b552a491b8e08e",
+          "evidenceCount": 6
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-12",
+      "kind": "synthesis",
+      "children": [
+        "synthesis-1",
+        "synthesis-2"
+      ],
+      "resultSha256": "32a9b5def5bbb9e45421faf54d36c77431098175c7f04700056ae8f4c13c95ed",
+      "modelResponsesSha256": "20c7aafce5d5bb11f8e918cee8c26349d0d03c6a3183d734a915a459177145ae",
+      "requestId": "review_f07e5c4894243ba79bacf365",
+      "stageInputSha256": "f07e5c4894243ba79bacf365772c8d2583fe7bdbc7844dd21d2af1e837434628",
+      "synthesis": {
+        "scope": "partial_reports",
+        "coveredStageIds": [
+          "batch-1",
+          "batch-2",
+          "batch-3",
+          "batch-4"
+        ],
+        "totalStages": 23
+      },
+      "directlyProvidedSourceIds": [
+        "plan/overview"
+      ],
+      "macroCoverage": [
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "inCompleteInput": true,
+          "directlyProvided": false,
+          "mentionedInReportText": false
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_boundary",
+          "inCompleteInput": true,
+          "directlyProvided": false,
+          "mentionedInReportText": false
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "inCompleteInput": true,
+          "directlyProvided": false,
+          "mentionedInReportText": false
+        }
+      ],
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "revise",
+          "explanation": "前50章已核验的跨域移动具备实体航程、港口验籍、赤霄避火与灵虚准入条件，相关报告的通过结论可成立。但当前提案对第54—72章只写“付费北航”并在受限外港救出七名矿工，未明确出发港、船舶与供能者、票款或换舱物及账户、赤霄放行旗号、苍冥引渡令或具名担保、凝元以下的寒防和封航处理，也未闭合返程的船舶、供给与支付责任。后半段尚未展开逐章并非问题，但这些是宏观安排本身成立所必需的前置；商业信物和救援资格不能替代查验、担保或界渊准入。",
+          "revisionAdvice": "在ms_v2_voyage、ms_v2_boundary、ms_v3_return及plan/overview对应段落补齐同一条北航—受限外港—返程链：明确出发与到港日期、船舶/承运方、实际票款或货物换舱及账户、赤霄放行旗号、沿岸验籍、苍冥引渡令或具名限程担保、寒防物资及持续照料责任，并说明救援所得准入范围不扩展为界渊准入。",
+          "evidenceSha256": "239a5a2ddd6705220df26111b8588468b72a8c24c084754b4854af2968ef3ab6",
+          "evidenceCount": 4
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-16",
+      "kind": "synthesis",
+      "children": [
+        "synthesis-9",
+        "synthesis-10"
+      ],
+      "resultSha256": "ddd2746cee8f688200f73dc77dbb1f22ebb87e723bc067c781d48dfc41298bb6",
+      "modelResponsesSha256": "8fb02b6edc0e7932e86d6f70181c9a99165d96b4d3fdde5c5091ad31197dbce7",
+      "requestId": "review_e838e07a61687112ff0b9bb8",
+      "stageInputSha256": "e838e07a61687112ff0b9bb80e3ef10266187d91bdd8574407b01215d04c864e",
+      "synthesis": {
+        "scope": "partial_reports",
+        "coveredStageIds": [
+          "followup-batch-3/geography",
+          "followup-cross-1-2/geography",
+          "followup-cross-1-3/geography",
+          "followup-cross-2-3/geography"
+        ],
+        "totalStages": 23
+      },
+      "directlyProvidedSourceIds": [
+        "plan/overview"
+      ],
+      "macroCoverage": [
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "inCompleteInput": true,
+          "directlyProvided": false,
+          "mentionedInReportText": false
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_boundary",
+          "inCompleteInput": true,
+          "directlyProvided": false,
+          "mentionedInReportText": true
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "inCompleteInput": true,
+          "directlyProvided": false,
+          "mentionedInReportText": true
+        }
+      ],
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "revise",
+          "explanation": "现有材料显示，灵虚古境的进入前置本身清楚：须先达成凝元三重、取得联名符牌，再沿实体山路进入，且古境权限不等同于界门权限；第19章安排第181—183日抵达，第20章以第184日已入境并遇袭为前提。可是同一提案的第18章又安排第186日出发、第188日抵达外营并接班，直接晚于第19—20章已经发生的入境与遇袭。该矛盾会连带影响第18—29章的训练后出发、守口与换班、救援撤离、药程及后续返程，属于提案内部硬冲突，不是等待正文实现的问题。虽有后续报告概括称地理行动已通过，但其自身同时保留了这组具体日期冲突，未提供修正后的唯一时间链，因此不能覆盖返修项。其余第30—32章南渡、第54—60章北航、第67—72章返青玄的实体行程和准入安排在所给报告中已有较完整闭合，但不能抵消第一卷的冲突。",
+          "revisionAdvice": "统一第18—20章究竟采用第181—184日还是第186—188日的出发、抵达与遇袭时间，并明确保留一套完整行程；随后逐章重算第18—29章的山路耗时、外营与入口交接、值守和休息、救援撤离、疗程及返程日期。修订后还须复核第30—32章抵达云梦天港、两昼夜海程与第216日到港是否仍连续，并保留灵虚古境的凝元三重、联名符牌、登记路线和实体交通门槛。",
+          "evidenceSha256": "50636ba7699eb16d647aad8b1c0cb12f0ce4a423af21a899ab45fd461939b106",
+          "evidenceCount": 10
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-18",
+      "kind": "synthesis",
+      "children": [
+        "synthesis-12",
+        "synthesis-13"
+      ],
+      "resultSha256": "a3748e2f02d0a8b698b2b711a4e5f24d64cdc6852ea987716195db36779b834a",
+      "modelResponsesSha256": "16fdd3302b598df23ccd9b76aef1630c3b4584768fb4fc17fe3860db7c5f692e",
+      "requestId": "review_629f4493bbb8ed4494f3f4ec",
+      "stageInputSha256": "629f4493bbb8ed4494f3f4ecbe6dd74af9690f99c63383b0f41f03914dc2c5ce",
+      "synthesis": {
+        "scope": "partial_reports",
+        "coveredStageIds": [
+          "batch-1",
+          "batch-2",
+          "batch-3",
+          "batch-4",
+          "batch-5",
+          "cross-1-2",
+          "cross-1-3",
+          "cross-1-4"
+        ],
+        "totalStages": 23
+      },
+      "directlyProvidedSourceIds": [
+        "plan/overview"
+      ],
+      "macroCoverage": [
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "inCompleteInput": true,
+          "directlyProvided": false,
+          "mentionedInReportText": false
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_boundary",
+          "inCompleteInput": true,
+          "directlyProvided": false,
+          "mentionedInReportText": false
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "inCompleteInput": true,
+          "directlyProvided": false,
+          "mentionedInReportText": false
+        }
+      ],
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "revise",
+          "explanation": "前50章已核实的青玄—赤霄节点具备实体航程、验籍、避火防护与实际支付，但提案对第54—72章仍只写“付费北航”及“受限外港救出七名矿工”。苍冥规则要求凝元以下具备保温舟舱或护身寒符，沿岸需引渡令或巡界使具名担保，界渊准入另行受限；既有航程规则还要求明确船舶、支付来源、日期、供给与返程责任。商盟信物、救援资格或境界本身不能替代这些条件。该缺口是宏观安排已缺必要前置，不是因为51—100尚未展开逐章细纲。",
+          "revisionAdvice": "在ms_v2_voyage、ms_v2_boundary、ms_v3_return及plan/overview对应段落补齐同一条北航—受限外港—返程链：明确出发港、船舶与承运方、出发/到港日期、票款或换舱物及所属账户、赤霄放行旗号、沿岸验籍、引渡令或具名限程担保、寒防物资及持续照料责任，并写明救援所得准入范围不扩展为界渊准入。",
+          "evidenceSha256": "d80fd0a988c57643782083a9dcf0a6e9f7ab4087a56a9bcd14707540dcce6709",
+          "evidenceCount": 7
+        }
+      ]
+    }
+  ],
+  "disputes": [
+    {
+      "id": "different-travel-parties",
+      "originatingStage": "followup-cross-1-3/geography",
+      "assessment": "原文明确区分林辰、苏凌霜181–183日先行与褚衡、邵闻186–188日换班行程。负面报告将二者视为同一段入境，所引日期本身不足以证明矛盾。此项仅反驳该同队前提，不证明18–29全部时间线通过。",
+      "action": "保留原负面结论，待最终核对及定向复评；不按此建议统一两队日期或改写整条时间线。",
+      "evidence": [
+        {
+          "sourceId": "plan/chapters/18",
+          "sourceSha256": "7cbbb84690efa3e0006d79172e98ea0851b93ebe8e1a9d20b2fc8aa3ae1dd33d",
+          "field": "summary",
+          "start": 106,
+          "end": 717,
+          "encoding": "JSON string, UTF-16 offsets, exclusive end",
+          "quote": "第120日清晨，白榆复查旧伤、经脉与寿储，确认未有新增耗损，下界为7−101/365≈6.7233元载。林辰在屋里以清风引气诀收束气流，按既定晋阶法门主动付出3元载，真元初成而寿储下界降至约3.7233；白榆复诊后才允许继续修习。此后两月，他先用普通木块练御物，第132日，顾以护送候补的授业职责，向已凝元并获准练习的林辰借授宗门乾元御风剑诀的凝元导刃章，当面讲解定向、收势和赤霞斩铁剑的承载限制；这次基础授业随候补训练安排，不另收学费，也不授予古境名额或玄府式。林辰按登记领剑，从短距导刃开始，第一次失控打翻架子，停练并偿付损坏的木架。苏检验他的三经循环，也直言两人尚不能正面抗玄府。第179日，顾签发本次限时调阅单，韩叙交接父亲署名的旧检修图与撤离记录；林苏核看之后只确认父亲参与守门。第180日，顾逐一实测二人的凝元三重，核查双方联名符牌；苏取得仅限本次任务路线的外出解除文书。林辰收起木架赔账与练习记录，第一次凭达标而非人情拿到出发位置。 褚衡与邵闻在外门核对186日出发的换班牌与行粮，只承诺按期护送，不接受林辰提前同行探古境的试探。 换班牌提前规定188日白昼在山路歇脚棚补眠、暮抵后接夜班；186–187日按日程行路和宿营，187日20时至188日05时睡足9小时，188日05–09时走前段，10–16时睡6小时，16–18时走最后一段，19时才接班。歇脚棚在外营以前的普通山路，不赋予古境准入或瞬移。"
+        },
+        {
+          "sourceId": "plan/chapters/19",
+          "sourceSha256": "aec0a13517fd09a82ad8de884e7a53303123ca4bdba57cdd1b8d5773cfa2b273",
+          "field": "summary",
+          "start": 104,
+          "end": 355,
+          "encoding": "JSON string, UTF-16 offsets, exclusive end",
+          "quote": "第181日至183日，林辰、苏凌霜携本批联名符牌沿大乾山路抵达灵虚古境固定入口。入口验明两人均为凝元三重，符牌准本次登记的采集与勘路区域；该区域内遇险救援仍须返回原入口并报告，不授予内门或界门权限；古境通路依旧属于同一天地内部，不涉及太古界门。顾峤与杜砺在内外口交接，乔岑确认夜班与押解备勤，白榆留外营接伤者。林辰想绕去查旧承运线，苏坚持先完成入境登记，林辰为保住全队资格暂时收回私查，改把路线疑点写入任务册。三日山路耗去部分干粮，他们只能看见入口旁归期已过却未销号的采集名牌，尚不知失踪者在哪里。"
+        },
+        {
+          "sourceId": "plan/chapters/20",
+          "sourceSha256": "d2174b286ca94296c842ac4c0b3b6c4434d609a5d4309555c3209b880fc7d95c",
+          "field": "summary",
+          "start": 103,
+          "end": 345,
+          "encoding": "JSON string, UTF-16 offsets, exclusive end",
+          "quote": "第184日清晨，林辰与苏沿登记支路核对旧运矿图，遭三名凝元劫掠者截击。对方盯着两人的符牌与粮袋；林辰以第三重真元御动赤霞斩铁剑，支付一次乾元御风剑诀所需的二成真元，借窄坡和倒塌石柱逼开追兵，苏持剑守住二人的退路。剑体过热，林辰被迫停剑，二人没有追杀逃散者；亲见本次唯一余刃碰坡散尽、柱石落定且原侧后方撤路未塌后，才带伤退入支洞，不以停剑撤销倒柱与碎石擦伤。苏从一名劫掠者遗落的采集单上看到前哨编号、被扣人数和异常泉液转运栏，只能确认有人在拦截采集队，不能据此认定九鼎或幽罗殿全网。"
+        },
+        {
+          "sourceId": "plan/chapters/26",
+          "sourceSha256": "65932e6c1cb64eef87caa847268f6ccdda440ffbaf02c5b8a90a6a9a5e1016d1",
+          "field": "summary",
+          "start": 104,
+          "end": 545,
+          "encoding": "JSON string, UTF-16 offsets, exclusive end",
+          "quote": "第188日10:45，顾带伤近身看押墨，苏与能行动的获救采集者轮替抬林的担架、推载伤护卫和包裹死者的原运人小车，绕开落料侧廊沿已核四里主支洞撤回；伤者队伍用75分钟，到12:00抵外营，由已休足的乔当面接墨，杜仍守入口。顾交押后先让白榆止血、固定肩伤，夜间休息，次日才参加核验。乔从午正守到酉初，杜从辰初守到酉初。褚、邵按预排在途中白昼补眠后暮抵，酉初分别当面接入口和墨岗，夜班到189日辰初，再由休足的杜、乔接两处日班；顾不充作夜间后备。189日众人按各自亲见范围登记获救者，核对样箱和四支各三滴的原封管，与182日采封原联、实际采封人的亲历及入口对照页逐项相合，先确认灵眼原液来源与本期个人可分额归属。白榆再独立验毒验煞，九滴洁净、三滴污染；联名授权的入口配额台核同批诊察与申请，林主动将原三剂申请减为两剂，让告急者的一剂先完成签领；配额台批准余两剂给林封存，顾、苏放弃本批分配申请。林不占污染管或未来配额，不能由救援功劳自行分药。墨只承认本次营地与货物，林腿伤仍不能追击。"
+        }
+      ]
+    },
+    {
+      "id": "unread-macro-is-not-absent",
+      "originatingStage": "synthesis-1",
+      "assessment": "初始负面结论产生于仅包含batch-1、batch-2的局部综合，三个被要求补写的里程碑既未直接提供，也未在所附报告文本中提及；冻结输入却已经包含对应航程、资金、供暖、担保与异常分支。此项反驳“一概未设计”，不代替这些设计的完整质量与执行验收。",
+      "action": "保留原负面结论及后续传播链；最终复评须同读下列原文，逐项核对仍有无真实缺口，不能依据目录存在就改判通过。",
+      "evidence": [
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "sourceSha256": "c592b3ad81c9f0136995da76b2ecb6881b02dace0c8d7ce756bb90a5622cabb8",
+          "field": "setup",
+          "index": 0,
+          "start": 127,
+          "end": 233,
+          "encoding": "JSON string, UTF-16 offsets, exclusive end",
+          "quote": "第271日商盟港务理事会为追缴被挪货与避免北境封港，从本案追偿周转款实拨14000枚下品灵石给具名领款的贺青梧；这是有账有追偿风险的商盟垫款，不是几天劳务值一万。用途限两人北航查货、回青玄交证及沿途食宿医药。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "sourceSha256": "c592b3ad81c9f0136995da76b2ecb6881b02dace0c8d7ce756bb90a5622cabb8",
+          "field": "setup",
+          "index": 1,
+          "start": 239,
+          "end": 395,
+          "encoding": "JSON string, UTF-16 offsets, exclusive end",
+          "quote": "第271–274日乘普通车沿每日复核开放的既有沿岸驿道从天宝外港到极焱天港；271日出发前贺从已拨1000杂费额度中实付12购两张满额普通避火符（各6枚，计入后来核销780而非另加支出），两人核余纹后佩戴新符；旧符不得续算有效，不进太微城、神炎内地、魔谷或天坑。陆与弟弟留赤霄接受传唤，不能无交通随队到北境。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "sourceSha256": "c592b3ad81c9f0136995da76b2ecb6881b02dace0c8d7ce756bb90a5622cabb8",
+          "field": "setup",
+          "index": 2,
+          "start": 401,
+          "end": 588,
+          "encoding": "JSON string, UTF-16 offsets, exclusive end",
+          "quote": "林延续252及254回访的短走、坐车许可，仍不负重，拒绝接受程记以撤供换赔偿的口信。第275日贺在极焱航司柜台按本航次实报5000/人支付10000，购买两张普通保温客舱票；船方在两人具名舱单上列明隔火暖炉、通风烟道、五昼夜保温舱位及燃料、当班船员添料看火均含在这10000内，普通是舱等，不是敞舱或仅发一件保温衣。276日暮离港、281日暮抵葬骨外港，五昼夜完整航程。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "sourceSha256": "c592b3ad81c9f0136995da76b2ecb6881b02dace0c8d7ce756bb90a5622cabb8",
+          "field": "setup",
+          "index": 7,
+          "start": 897,
+          "end": 1208,
+          "encoding": "JSON string, UTF-16 offsets, exclusive end",
+          "quote": "第271–274日乘普通车沿天宝外港至极焱天港的既有沿岸驿道行进，不穿内陆地火带。该道不是全程受护街段：本次271日出发前、272–274每日续行前，由沿岸岗哨把当日巡路所见的热裂、硫烟及异常地火结果交驿站当值车头核对；本次开放段仅有日晒与日常热气，无明火、硫烟和喷发，车头据此放行普通客车。贺逐段看当日放行牌、核两人的符纹，车夫只走已核段，夜宿既有受护驿舍；受护驿舍仅降低环境危险，不替符充能。若新见硫烟、热裂、地火或符纹不足，停在受护驿舍或沿已确认安全段回站，须等待复核，不能为赶275票期硬闯；延期就改签并重排后续日期和实际费用，不能保持原抵达日。本次逐日复核可行才按四日抵极焱，入港另验籍，不用商业款代替放行。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "sourceSha256": "c592b3ad81c9f0136995da76b2ecb6881b02dace0c8d7ce756bb90a5622cabb8",
+          "field": "setup",
+          "index": 9,
+          "start": 1314,
+          "end": 1477,
+          "encoding": "JSON string, UTF-16 offsets, exclusive end",
+          "quote": "北航登船核验并入本次出港场面：276日林贺、港务当班人员与实际船方共同核对具名舱位、隔火炉和通风烟道完好、五日燃料实载及船员值守安排；只在本次核验合格后登船。贺全程在该保温舱内，守证与换班也在舱内完成；林279日温和吐纳仍在已确认有供暖的同一客舱，不因暖舱增加真元恢复额或放宽伤后上限。船体航路护罩不被写成额外免费护寒术。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "sourceSha256": "c592b3ad81c9f0136995da76b2ecb6881b02dace0c8d7ce756bb90a5622cabb8",
+          "field": "setup",
+          "index": 10,
+          "start": 1483,
+          "end": 1680,
+          "encoding": "JSON string, UTF-16 offsets, exclusive end",
+          "quote": "北航防寒失效分支：舱位或五日燃料未兑现、炉道不合格就不登船，在极焱原有获准客舍候船并办理改签；途中失暖先由船员核实备用保温舱并实际转移，无法转移则赴最近可安全抵达且允许接泊的港口补修救助，不凭普通衣物硬熬。延期要重记票款退款或补价、食宿、抵港与后续会面日期，现金不足先取得经确认的真实来源，不再花已付的10000或挪封存3000。原276—281航期仅适用于本次五日供暖实际持续的正常路径。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "sourceSha256": "c592b3ad81c9f0136995da76b2ecb6881b02dace0c8d7ce756bb90a5622cabb8",
+          "field": "setup",
+          "index": 11,
+          "start": 1686,
+          "end": 1895,
+          "encoding": "JSON string, UTF-16 offsets, exclusive end",
+          "quote": "275日贺在极焱航司同街商盟登记的制符门市实购art_21普通护身寒符六张，本次报价每张6枚、共36；另购两件干燥保温衣共8。货架实物由店方出示本制式符师制成与逐张验收记录，林贺现场试扣、读取每张尚余至少220小时，再各自编号三张并干封；符师本境、工时、制符材料与耗灵记录均须可核，不把店名当现货。36从原杂费669中细分，衣费8也原在该项，剩余其他625；不增垫款、不挪回程3000、不把制符已耗石再当主角收入。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "sourceSha256": "c592b3ad81c9f0136995da76b2ecb6881b02dace0c8d7ce756bb90a5622cabb8",
+          "field": "setup",
+          "index": 12,
+          "start": 1901,
+          "end": 2060,
+          "encoding": "JSON string, UTF-16 offsets, exclusive end",
+          "quote": "281日暮抵葬骨时，港务当班人员在本船暖舱门内核本次码头寒候和候查暖房是否开放。林贺先穿干衣，各启第一张护寒符、确认余纹与温热正常后才过短栈桥；只去受监管候查暖房。该房有实燃隔火炉、烟道和当班添料者，食宿供暖按本次到港登记实付并计原杂费，不由船舱免费覆盖岸上。查验与防寒分别成立，符不能替代285日才获的查货担保。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "sourceSha256": "c592b3ad81c9f0136995da76b2ecb6881b02dace0c8d7ce756bb90a5622cabb8",
+          "field": "setup",
+          "index": 13,
+          "start": 2066,
+          "end": 2262,
+          "encoding": "JSON string, UTF-16 offsets, exclusive end",
+          "quote": "护符作者执行账：两人各第一张从281暮用至289晨，第二张289晨至297晨，第三张297晨至304暮进入返航保温舱后摘下封存；每次先在实有暖房内验新符，再换旧符、登记其余纹，旧符不计新收入。即使把每段所有室内时间也算持续佩戴，各张均不超过192小时，交付至少220小时的下界留至少28小时。不能把六张共用成一个无限账户；雨湿、破符或延误时按实际重新核验和购置，不因表上还余时就保证有效。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "sourceSha256": "c592b3ad81c9f0136995da76b2ecb6881b02dace0c8d7ce756bb90a5622cabb8",
+          "field": "setup",
+          "index": 14,
+          "start": 2268,
+          "end": 2456,
+          "encoding": "JSON string, UTF-16 offsets, exclusive end",
+          "quote": "北境停留期间，林贺每次离开实际暖房查货、诊治或到码头，先核当日巡路的普通寒候、最短开放段与暖房撤返点，再核本人护符与干衣；本次正常路径逐日具备才安排出门。缺符或失暖先留合法暖处、按真实库存与现金补给，必要时向原担保岗申请延期；未获准不得越界，后续日程与780预算必须据实重排，不能预花封存220或默认商盟再付。该安排只作既有场面的随身装备与供给约束，不另加逐日办手续章节。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_boundary",
+          "sourceSha256": "ddeed7c2abd167d065b66904f017e7cf3da15a0fe76844417404c037afa15898",
+          "field": "setup",
+          "index": 0,
+          "start": 131,
+          "end": 259,
+          "encoding": "JSON string, UTF-16 offsets, exclusive end",
+          "quote": "第285日夜在外港真身会见，对照北境原封签存根、45章交接残联与旧封的签认拓本、53章拟取得的陆新写改签自述签认副本；这些是货运线索，不是第二片图样，不能凭同封号认定匣内物。她具名担保林贺仅在外港指定仓区查货至300日；归一实力不赋予林准入界渊的能力。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "sourceSha256": "c2ea2f5856998a4717bcf33be420f8cd04711dc904d08db6074ee3626d892bad",
+          "field": "setup",
+          "index": 0,
+          "start": 126,
+          "end": 480,
+          "encoding": "JSON string, UTF-16 offsets, exclusive end",
+          "quote": "第300日，夜的原外港查货担保仍只到当日，不自动延长。林贺当面申请回青玄交证；夜依loc_02具名担保规则，在葬骨外港原港务和本轮当值巡队见证下另签限程离境担保，列林、贺实名、原名册及货证封袋，指定会合/交接地为通天渡口受监管候船区。许可仅301日晨至304日夜有效，沿已勘验的葬骨外港—海岸公共驿路—通天渡口路线坐暖车，夜宿所列原驿站；不准离道查货、入极冰国、妖域、神宫或界渊。原巡队在301日出港时复核名单并交当班驿车的纸质限程单，沿岸既有岗哨在车辆实际到站时逐站验籍、签注到离时点，终站港务于303日实际到达后验原单接收候船监管，304日只在原单、名册和船票相符后办理登船离境。夜仍承担这份限程担保的越界责任，原巡队承担出港核验和未按期交回签注单时的追查责任；没有远程瞬时验籍或只有商业票就能通行。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "sourceSha256": "c2ea2f5856998a4717bcf33be420f8cd04711dc904d08db6074ee3626d892bad",
+          "field": "setup",
+          "index": 1,
+          "start": 486,
+          "end": 726,
+          "encoding": "JSON string, UTF-16 offsets, exclusive end",
+          "quote": "夜在301日午交清具名名单和责任后，沿既有陆路走满十昼夜，311日午实际抵驻地；与在岗巡队当面交接后才返岗补巡，301—311在途中，不随林回青玄，也不在301日虚写已抵岗。限程担保的越界责任并不因本人出发而取消，林贺是否按期离境须以后续实体纸单送达得知，不能由311日返岗自动推定。林贺本次各站验籍通过，301–303日坐暖车到通天；若任一关未放行或304夜前未完成登船，停在最近受监管驿站/候船区，申请重审并改签，后续抵达、训练及费用必须重排，不允许沿用315日返乡日期。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "sourceSha256": "c2ea2f5856998a4717bcf33be420f8cd04711dc904d08db6074ee3626d892bad",
+          "field": "setup",
+          "index": 2,
+          "start": 732,
+          "end": 1075,
+          "encoding": "JSON string, UTF-16 offsets, exclusive end",
+          "quote": "商盟在第303日两人已在通天渡口受监管候船区，实际航司在当地柜台报价确认本案两席设有隔火暖炉、通风烟道的密闭保温舟舱各1500（普通货船的实有暖舱，不是仅加一件保温衣），贺用此前封存3000实付；船方具名舱单注明两席六昼夜保温舟舱、暖炉燃料与当班船员添料看火均包含在这3000中，按loc_02满足凝元以下乘客的舱内防寒要求，不另虚开免费护身符。304日登船前林贺与港务当面核对实际舱位、炉道完好和六日燃料配载，贺全程住该暖舱；第304日暮出航、第310日暮沧溟古港抵达，六昼夜。第310日暮到港后先在沧溟古港受监管泊区办理下述入港核验，不把到港当成已获准上岸；实际核验放行后，第311–314日才沿大乾普通驿路返外山，各站验本次入港签注、名册和现有路引，费用按同一杂费账据实结算。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "sourceSha256": "c2ea2f5856998a4717bcf33be420f8cd04711dc904d08db6074ee3626d892bad",
+          "field": "setup",
+          "index": 6,
+          "start": 1354,
+          "end": 1611,
+          "encoding": "JSON string, UTF-16 offsets, exclusive end",
+          "quote": "返航防护失效分支：若304日实际暖舱、燃料配载或炉道核验不合格，不登船，留在通天渡口受监管的既有暖房候船区，先申请延长监管与改签；未获新许可不得继续移动。航行中若供暖故障，船员先将贺移到经实际确认仍有供暖的备用船员舱；没有可用暖舱就停靠最近可到的受监管港补修，不假定一件保温衣能抵销大陆门槛。任何延误均重排到港、返乡与训练日期，按实记录退款、补价和食宿；原封存3000已付票后不能再花一次，余款不足须另有已核付款来源才续行。正常路径本次核验合格、六日供暖持续，故仍按304暮出航、310暮抵港和315返乡结算。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "sourceSha256": "c2ea2f5856998a4717bcf33be420f8cd04711dc904d08db6074ee3626d892bad",
+          "field": "setup",
+          "index": 7,
+          "start": 1617,
+          "end": 2031,
+          "encoding": "JSON string, UTF-16 offsets, exclusive end",
+          "quote": "返青玄入港执行约束（并入返航到岸场面，不另开一轮办手续章节）：310日暮船靠沧溟古港受监管泊区，船方交实际到港舱单；林贺当面向大乾沿岸守军所属的当班港务验籍岗出示本人原籍凭证、原名册、现有路引及苍冥实际签注离境单，逐一核人、核航次和随身封袋。林的本土身份不替贺免除外来海路入港查验；苍冥限程单只证明此前获准离境，不能充当大乾入境许可。核验岗按loc_01、loc_21及loc_27的既有分工登记本次入港，税务经办当面核定本案两人本航次的应缴税费合计24枚下品灵石，贺从原专项杂费现金实际交清并收有日期、两人姓名、航次、金额及经办签记的收讫联；这是本次拟定实缴情节，不设通用税率、不增商盟代付或免检特权。港务在原名册及现有路引签注本次核验放行，船方只负责舱单交接，不代替守军放行；实际放行后两人当晚进入港内原有普通客舍，次晨按普通驿路离港。检查封袋只核申报、外观和封记，不启动残片，不把北境见证或父案副本当作本地已认定罪证。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "sourceSha256": "c2ea2f5856998a4717bcf33be420f8cd04711dc904d08db6074ee3626d892bad",
+          "field": "setup",
+          "index": 8,
+          "start": 2037,
+          "end": 2263,
+          "encoding": "JSON string, UTF-16 offsets, exclusive end",
+          "quote": "返航入港失败分支：籍贯或航次对不上、封袋申报存疑、遇战时封锁或税费未实缴时，港务不签放行；林贺先留港方指定的受监管候查处，由原当班港务处理核验与后续转交，贺承担本案须实付的食宿查验费，不让夜的北境担保或商业信物越境免除责任。延期重新记录现金、住处、伤情与交通，必要时向原垫款方申请经确认的追加来源，获款前不花；311离港、315返乡及其后训练日期均须重排。正常提案本次当班核验通过、24实付并获签注，才保留310暮入港、311出发和315当面交证。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "sourceSha256": "c2ea2f5856998a4717bcf33be420f8cd04711dc904d08db6074ee3626d892bad",
+          "field": "setup",
+          "index": 13,
+          "start": 3726,
+          "end": 3914,
+          "encoding": "JSON string, UTF-16 offsets, exclusive end",
+          "quote": "301–303沿已获限程许可的公共驿路坐暖车前，当班车正与林贺核车厢隔风、隔火炉烟道、三日实际燃料及轮班添料者，暖车和所列夜宿驿站供暖费用均按原杂费现金实付。林贺继续佩戴各自297晨启用的第三张护寒符，验籍、换车和进出暖房时亦逐次核余纹；普通衣物和暖车名称不能代替实际供暖。天气封路、车炉故障或人有持续寒颤即停在最近已核温暖的受监管驿站，申请延期并重排真实费用和后续航期。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "sourceSha256": "c2ea2f5856998a4717bcf33be420f8cd04711dc904d08db6074ee3626d892bad",
+          "field": "setup",
+          "index": 14,
+          "start": 3920,
+          "end": 4053,
+          "encoding": "JSON string, UTF-16 offsets, exclusive end",
+          "quote": "303–304通天候船区有港务已核验的实燃暖房，按原杂费登记实际住食与供暖；两人第三张符在304暮实入已核返航保温舱后才摘封，之后靠票款已包的暖舱，保留符实际余纹而不虚记新符。入港、舱位与燃料任何一项不成立均按既有延期分支处理，护符不能在失暖后无限代替六日暖舱。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "sourceSha256": "c2ea2f5856998a4717bcf33be420f8cd04711dc904d08db6074ee3626d892bad",
+          "field": "outcome",
+          "start": 4551,
+          "end": 4976,
+          "encoding": "JSON string, UTF-16 offsets, exclusive end",
+          "quote": "第301–315日。苏林的分路变为有分歧的协作。315日结算的是271日起同一笔14000专项垫款的累计账：275日赤霄极焱至北境葬骨两席北航票共10000已在前段实付，不是本返乡段的新支出；303日北境通天至青玄沧溟两席回航票各1500、共3000在本段实付。两航段分开，不重扣10000，也不把封存3000再记成收入。杂费累计780，包括271两符12、290诊费1、303两段回执寄递18、310入青玄港税费24、275护寒符36及其余车费、保温衣、医药、食宿、供暖、查验689；310税前累计700、付税后724，310夜至314实付56后才达到780，港税已在原768中细分，不重复加收；14000−10000−3000−780=220。结余220由贺另袋封存，待实际返赤霄交回商盟，不记已经交款或转成林的寿药钱。 回执两段18已于303实付，315结算时第二段在途，尚不能记夜已签收或担保已结清；正常318实体到件仅在后续里程碑入账。"
+        }
+      ]
+    }
+  ],
+  "protectedHistoryUnchanged": true,
+  "preservedOldRuns": 61,
+  "preservedOldReports": 67,
+  "modelCalls": 0,
+  "productionDatabaseWrites": 0,
+  "formalVerdictsOverridden": false,
+  "questionsResolved": 0,
+  "designApproved": false,
+  "proseGenerated": false,
+  "limitation": "保存响应回放验证来源和响应完整性；人工核对仅标出两项争议，不撤销正式返修、不通过整套设计、不证明旧正文已实现。四领域结束后必须纳入最终核对。"
+}
