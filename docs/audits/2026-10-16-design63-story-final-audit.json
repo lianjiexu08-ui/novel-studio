@@ -1,0 +1,2047 @@
+{
+  "checkpointSource": "data/audit-runtimes/design63-control/resume-4-result.json",
+  "checkpointSha256": "2e399feff03fbff6142710c4e41190d283a180aac71013f071fa4d1163f6494e",
+  "verifierSha256": "0b87041e125c14f66aacbff6af9883b34f9fa307f84ae1743cff56122b114a87",
+  "negativeFindings": [
+    {
+      "stageId": "batch-4",
+      "criterion": "causality",
+      "explanation": "24—46章的救援、撤离、分路、护货、失箱、仓火与再救援能够逐步相连，且25章明确了等待顾峤手势、顾的蓄势窗口和墨因夺货放弃撤退等直接因果。但25章的林辰余量账与27章寿储公式冲突：25章写明其以8.5成真元支付二成剑诀和半成御物，余六成；27章却按“7−3+5−180/365”计算新增第一剂后的寿储，未说明7元载如何从前述账面得到，也未计入25章之后至199日的连续自然流逝。该差异会影响后续护货、诊费和航行选择的资源前置。"
+    },
+    {
+      "stageId": "batch-4",
+      "criterion": "timeline",
+      "explanation": "本批实体行程和疗程大多闭合：24章四里路与顾的实体抵达、26章75分钟撤回、29—32章陆路及两昼夜海程、33章217日交接均有明确时点。问题在于27—28章把寿储自然流逝与疗程收入的时点算错或至少未与25章终点接上：25章结束时林已在188日受伤并余六成真元，27章却以另一组7元载基数直接推到199日，既未交代重置来源，也未按实际日数连续扣减。若不修正，199日和209日的“新增5元载后余额”不能作为29—32章支出与行动许可的可靠前置。"
+    },
+    {
+      "stageId": "batch-4",
+      "criterion": "payoff",
+      "explanation": "本批的伏笔与兑现边界总体清楚：样箱刻痕只导向赤霄收货号而非直接破案，火场携页者逃脱、陆沉川身份和分架页分别在后续核验，救援也支付了伤势、船损、失去奖金和未追回吴卢等代价，未把阶段性线索误写成终局真相。但灵泉两剂的兑现结果依赖寿储核算，27章宣称第一剂完成后余额约8.506849，28章再宣称约13.479452，而25章已给出的伤后资源账无法推出该数值；因此“完成疗程—增加5元载—承担后续航行成本”的代价链仍未闭合。"
+    },
+    {
+      "stageId": "batch-4",
+      "criterion": "growth",
+      "explanation": "林辰在本批有清晰的非境界成长：接受疗程而放弃商队，选择有限护货职责，公开记录封签异常，分享货签但保留家传笔记，先救火场被困者，拒绝把缺额转嫁给常，并逐步接受贺、苏、唐、许各自选择。可观察的限制和支付也基本落实，尤其伤腿、掌伤、真元余量和行动许可持续影响选择。然而寿储核算冲突会削弱“疗程完成后获得未来行动资本”的成长闭环；27—28章的余额不能由25章终点账推出，后续南渡选择的资源成本因此缺少可信前置。"
+    },
+    {
+      "stageId": "synthesis-2",
+      "criterion": "causality",
+      "explanation": "第24—46章的救援、撤离、失箱、仓火和追船行动有连续的选择与后果，但资源前置存在硬冲突：第25章明确林辰由8.5成余量支付二成剑诀和半成御物后只剩六成，腿伤后上限也降为六成；第27章却直接以“7−3+5−180/365”计算第一剂入账后的寿储，未说明7元载来源，也未接续此前账面。后续疗程、护货与航行选择因此缺少可执行的资源因果。"
+    },
+    {
+      "stageId": "synthesis-2",
+      "criterion": "timeline",
+      "explanation": "实体路线和疗程日期大体有明确节点：第25章战斗在188日结束，第27章190—199日完成第一剂，第28章200—209日完成第二剂，第29—32章再陆路至港并经历两昼夜海程。但第25章的六成战后资源与第27章从7元载起算的公式没有时间或事件上的合法转换，导致199日、209日的余额不是可靠的时间推进结果。若自然寿源从错误基数扣除，后续第29—32章的行动许可和支出时序均不能验收。"
+    },
+    {
+      "stageId": "synthesis-2",
+      "criterion": "payoff",
+      "explanation": "伏笔和阶段边界本身较清楚：样箱刻痕只导向收货号，火场携页者、陆沉川和六号箱仍保留证据边界；救援也支付了伤势、护卫死亡、失去商队、失去奖金和线索逃逸等代价。然而“取得泉液—完成两剂十日疗程—获得两笔各5元载—以此承担南渡与护货成本”的核心兑现链无法由第25章账面推出。资源兑现的数值冲突使承诺的代价与回报尚未闭合。"
+    },
+    {
+      "stageId": "synthesis-2",
+      "criterion": "growth",
+      "explanation": "林辰的近期成长路径和关系/职业变化是可观察的：他从伤后询问第一缕真元，到分段修习、支付三元载晋入凝元、训练导刃，再在本批接受疗程、有限护货、公开记录和伙伴自主选择。但第25—28章寿储账冲突削弱了“完成疗程后获得可支配行动资本”的成长回报；第27、28章的余额不能从第25章终点账推出，因而后续南行选择的条件与代价缺少可信前置。"
+    },
+    {
+      "stageId": "synthesis-18",
+      "criterion": "causality",
+      "explanation": "第24—50章的救援、失箱、仓火、追船与后续宏观目标具有连续选择和后果，分卷依赖也明确要求前段救援、健康、实物交接和可用款项成立后才能进入后段。但第25章明确林辰由8.5成可用余量支付二成剑诀与半成御物后余六成，伤后上限也降至六成；第27章却以“7−3+5−180/365”计算第一剂完成后的寿储，未说明7元载的合法来源，也未接续第25章至第199日的连续账。该冲突会使疗程、护货、航行及后续成长的资源因果无法执行。"
+    },
+    {
+      "stageId": "synthesis-18",
+      "criterion": "timeline",
+      "explanation": "现有时间节点本身大体可排：第25章188日战后，第27—28章190—209日疗程，第29—32章陆路赴港并完成两昼夜海程；后续宏观也有271—281日北航、301—315日返乡等明确安排。但第25章六成资源与第27章直接从7元载起算之间不存在已给出的时间或事件转换，故199日、209日的资源状态不是可靠的时间推进结果，进而影响第29—32章的行动许可和支出时序。实体虚海也明确要求两昼夜航程与分别核算的费用，不能用宏观日期掩盖账本断点。"
+    },
+    {
+      "stageId": "synthesis-18",
+      "criterion": "payoff",
+      "explanation": "父案、样箱刻痕、收货号、仓火携页者、陆的自述及后续残片均保留了证据边界和阶段性归宿，没有提前清算九鼎或重复取回已放弃的线索；但核心“取得泉液—完成两剂十日疗程—获得两笔各5元载—承担南渡与护货成本”的兑现链依赖同一寿储账。第25章的六成无法推出第27、28章所写的约8.506849和约13.479452元载，因此承诺的代价与回报尚未闭合。"
+    },
+    {
+      "stageId": "synthesis-18",
+      "criterion": "growth",
+      "explanation": "林辰的近期成长目标、选择和可观察回报总体清楚：伤后以有限资源分段修习，经历失败和赔偿后支付3元载进入凝元并取得古境资格；随后接受疗程、有限护货、公开记录和伙伴自主选择，远期再以诊察、延期和实测进入玄府。但第25—28章寿储账冲突削弱了“完成疗程后获得可支配行动资本”的回报闭环，导致南渡选择的条件与代价缺少可信前置。灵泉也必须保持为寿储回报，不能替代治伤、恢复持剑或自动扩大能力。"
+    },
+    {
+      "stageId": "synthesis-26",
+      "criterion": "causality",
+      "explanation": "主线的救援、疗程、南渡、港口脱控至后续北航、返乡、训练、截押运的依赖链已明确，且宏观阶段以健康、实物、款项、能力为前置。可是前置返修仍指出第25章战斗后的“六成”与第27章以7元载入账的关系未被统一说明。现有反证显示前者很可能是真元、后者是寿储，故该返修的“同账冲突”推论本身可疑；但历史revise不能由本综合撤销，当前仍须将双账及其衔接写明并独立复核。"
+    },
+    {
+      "stageId": "synthesis-26",
+      "criterion": "timeline",
+      "explanation": "已读报告给出了188日战斗、190—209日两剂疗程、214—216日实体海程及251—255日港口救援/修船的顺序，未见同一人物实际时空重叠；后50章宏观顺序也设定了北行、返乡、训练和晋阶的阶段间隔。但第25—28章资源状态仍承接既有返修：synthesis-18将真元六成与寿储7元载混同后判为时间账断点，而其他材料显示两者属于不同账目。这一报告间矛盾必须以原章纲的双账、自然扣减和入账时点消除，不能仅据较晚报告的通过结论覆盖旧返修。"
+    },
+    {
+      "stageId": "synthesis-26",
+      "criterion": "payoff",
+      "explanation": "父案、收货号、吴卢脱控和百章节段结局均保留了证据边界：第50章不是全案定罪，陆的完整自述仍待独立核验；百章也只切断一条运输链。灵泉兑现的条件亦被安排为两次十日疗程、复诊后各入账5元载，且不得治疗腿伤。可前置报告对该链的核心账面作出未闭合返修；虽然其将第25章真元余额与寿储余额混作同一账的依据受到其他报告反驳，本综合仍须保留该历史返修，直到原章纲逐项证实两账户、有效剂数和支付余额的一致性。"
+    },
+    {
+      "stageId": "synthesis-26",
+      "criterion": "growth",
+      "explanation": "近期成长路径本身明确：林辰在劳务、灵石、休息和训练间主动取舍，因失控、岔气与赔偿承担代价；凝元取得、导刃训练、疗程后的有限职责及远期玄府十元载支付都有可观察门槛。可是疗程所得“可支配行动资本”仍受第25—28章历史资源账返修影响。其他报告提供了寿储与真元分账的强烈迹象，意味着旧返修可能源自误读；但在原章纲明确并复核前，本综合不得删除该既有不足。"
+    },
+    {
+      "stageId": "synthesis-30",
+      "criterion": "causality",
+      "explanation": "救援、疗程、南渡、港口脱控、北航、返乡与晋阶的宏观依赖链基本连贯，且计划明确要求健康、实物、款项和能力条件依次成立。但前置报告仍保留第25章“真元六成”与第27—28章“寿储7元载及两次入账”的资源衔接返修；另一报告认为两者应为不同账户。报告之间尚未把双账、自然扣减、疗程入账和后续行动许可统一到同一原章纲口径，因而主线关键前置仍未闭合。"
+    },
+    {
+      "stageId": "synthesis-30",
+      "criterion": "timeline",
+      "explanation": "实体路线和主要日期本身大体成立：第188日行动、190—209日疗程、214—216日两昼夜海程及后续修船救援均有时间间隔，未见凭界门瞬移或抵达早于出发。但资源状态是行动许可的一部分，前置报告指出第25章终点与第27—28章寿储数值之间没有已说明的转换；另一报告虽主张真元与寿储分账，却未在本综合中消除该报告冲突。因此199、209日复诊后的余额及211—216日出航条件仍需复核，不能仅凭日期顺序通过。"
+    },
+    {
+      "stageId": "synthesis-30",
+      "criterion": "payoff",
+      "explanation": "父案、样箱、收货号、吴卢脱控、陆的有限承认及第二片放弃均有阶段性边界，未把局部证据冒充终局；泉液也明确要求验真、分配、两次十日疗程和复诊后才入账。但前置报告对第25—28章资源链仍作出未闭合返修：第25章的六成不能在未说明账户转换的情况下直接推出第27、28章约8.506849与13.479452元载。即使另一报告提供了分账解释，也尚未形成跨报告一致的原文核对结果，故疗程回报、代价和南渡行动资本仍需修订。"
+    },
+    {
+      "stageId": "synthesis-30",
+      "criterion": "growth",
+      "explanation": "林辰的近期成长目标和路径明确：伤后主动学习控制无负载小物，经分段引气、支付三元载晋入凝元，再接受导刃授业、失败赔偿、复测和伤后有限职责；远期玄府也安排了数月训练、诊察、十元载支付及局部护罡实测。可是疗程所带来的寿储回报仍受第25—28章双账冲突影响，导致南渡时“获得可支配行动资本”的阶段回报与代价尚未完全可信。不能因其他报告已通过成长路径就删除该具体历史返修。"
+    },
+    {
+      "stageId": "synthesis-32",
+      "criterion": "causality",
+      "explanation": "救援、疗程、南渡、港口脱控、北行救人、返乡训练、晋阶与断运的阶段依赖明确，百章亦限定为切断一条运输链而非终局。但前置综合仍保留第25—29章真元、寿储、疗程入账及后续行动许可未统一复核的返修；虽有材料表明第25章“六成”应为真元且疗程另入寿储，报告之间尚未形成可替代该返修的一致原章纲结论，不能以较晚的通过判断覆盖它。"
+    },
+    {
+      "stageId": "synthesis-32",
+      "criterion": "timeline",
+      "explanation": "已核部分的188日古境行动、190—209日疗程、214—216日实体海程及245—255日修船/脱控链可排，且林、苏分路避免同人两地重叠。但一方面第25—29章双账仍影响199、209日复诊和211—216日行动许可；另一方面北境返宗链仍有前置报告明确保留的局部材料不足：300—318日限程担保、逐站验籍、寄递签收、缺单追查、担保终止与311/318知情变化尚未完成针对性原文核验。"
+    },
+    {
+      "stageId": "synthesis-32",
+      "criterion": "payoff",
+      "explanation": "父案、仓火、原账、吴卢去留、第二片与九鼎均保留阶段性证据边界；疗程也被安排为两次十日完成并复诊后方可入账，未把北境救援或百章胜果写成全案终局。但既有报告对该疗程回报与第25章资源账的衔接仍维持返修，尽管补读摘要已给出真元与寿储分账的解释；在原章纲统一核准前，疗程回报、南渡资本与代价闭环不能宣布完全通过。"
+    },
+    {
+      "stageId": "synthesis-32",
+      "criterion": "growth",
+      "explanation": "主角已有明确的近期路径：伤后把目标落到辨伤与引气，支付3元载进入凝元，经历御物和导刃的授业、失控赔偿、复测及有限实战；远期玄府也设有数月训练、诊察、十元载支付与局部护罡实测。可是疗程带来的可支配寿储回报仍随第25—29章双账返修而未获得一致复核，削弱南渡阶段成长回报与代价的闭环；不能因其余成长路径成立而删除该历史返修。"
+    },
+    {
+      "stageId": "synthesis-33",
+      "criterion": "causality",
+      "explanation": "救援、疗程、分路、南渡、港口脱控、北行、返乡、训练与晋阶的宏观依赖顺序明确，且计划要求健康、实物、款项和能力条件依次成立。但前置报告持续保留第25—29章双账衔接返修：第25章战后“六成”与第27—28章疗程入账之间，尚未在统一章纲中明确分别属于何种账户，以及这些余额如何支撑第29—32章合同、护货资格和行动许可。另有北境返宗回执链的具体未核缺口，不能以工作流状态或后续宏观安排代替闭合。"
+    },
+    {
+      "stageId": "synthesis-33",
+      "criterion": "timeline",
+      "explanation": "已展开部分的188日古境行动、190—209日疗程、214—216日实体海程及后续修船/脱控，在出发、抵达和行动间隔上基本可排，未见界门瞬移或同人同时处于不相容地点。但资源状态是行动许可的一部分；第25—29章双账未统一，导致199、209日复诊后的余额以及211—216日出航条件仍未完全可核。后段300—318日返宗链还缺少对实际承运、签收、缺单追查、担保终止和返岗/交阅知情边界的完整核验。"
+    },
+    {
+      "stageId": "synthesis-33",
+      "criterion": "payoff",
+      "explanation": "父案、样箱、失箱、仓火、吴卢去留、陆的有限承认、第二片取舍及百章阶段性收束均保留了证据边界，没有把局部线索提前写成全案终局。泉液也有验源、有效剂数、两次十日疗程、复诊后入账和救援代价。但核心兑现链仍受第25—28章账面返修影响：第25章真元余额尚未与第27—28章各增加5元载的寿储回报、自然流逝及后续南渡支付在同一原章纲中统一核准，故疗程的回报、代价和行动资本不能宣布完全闭合。"
+    },
+    {
+      "stageId": "synthesis-33",
+      "criterion": "growth",
+      "explanation": "主角近期成长路径本身清楚：伤后主动确认引气条件，支付3元载晋入凝元，经历木块御物、剑诀授业、失控赔偿、定向与收势训练、复测和有限实战；随后以疗程等待、有限护货、拒绝转嫁缺额、接受同伴留守和让吴卢自行选择体现职业与关系判断。远期玄府也设置数月训练、诊察、十元载支付和实测门槛。然而疗程所得寿储与第25章真元余额的账口仍被前置综合保留为返修，削弱“完成疗程后获得可支配行动资本”这一阶段回报及其对南渡选择的支撑。"
+    }
+  ],
+  "productionReads": 0,
+  "observedAt": "2026-10-15T22:00:32.583Z",
+  "scope": {
+    "worldPackRevision": 33,
+    "storyBibleRevision": 63,
+    "planRevisionId": "plan_6fa43ac6419c44f1b64fbe3390eff759",
+    "planRevision": 63
+  },
+  "inputHash": "7a49ebc0415c36a0c9a92c1180e0ecddfc29466dc3f6221fa5c10881df1e02f0",
+  "runtimeCommit": "6c505a3d6afae5bb275f8cd509e2455a48753857",
+  "scheduleVersion": 23,
+  "area": {
+    "area": "story",
+    "status": "needs_revision",
+    "runId": "design_run_a1ae5a57-f9bf-4af3-8093-550e3d3ded22",
+    "reportId": "design_review_e90850d1-566f-4d43-b117-a3b70be53780",
+    "completedStages": 67,
+    "totalStages": 67,
+    "retainedFailures": 1,
+    "verification": "verified",
+    "runSha256": "2cf6fc6c43f0045164a2d08334ebe2f9ec6a5bb7626cdd993dd4079d25510212",
+    "reportSha256": "fa1d60d4fa130bd3e21a7178f5585dec5ab8597d20aff313882b7c80497bd811",
+    "sourceEnvelopeSha256": "1976d8bb9f59e485ad0849fd5a5e08ba83b401f9b26569f13c05cfd986f6bf8f",
+    "checks": [
+      {
+        "criterion": "causality",
+        "verdict": "revise"
+      },
+      {
+        "criterion": "timeline",
+        "verdict": "revise"
+      },
+      {
+        "criterion": "payoff",
+        "verdict": "revise"
+      },
+      {
+        "criterion": "opening",
+        "verdict": "pass"
+      },
+      {
+        "criterion": "pacing",
+        "verdict": "pass"
+      },
+      {
+        "criterion": "genre",
+        "verdict": "pass"
+      },
+      {
+        "criterion": "growth",
+        "verdict": "revise"
+      }
+    ],
+    "resolvedDeferrals": [
+      {
+        "checkId": "batch-1/causality",
+        "resolvedByStageId": "followup-batch-1/causality"
+      },
+      {
+        "checkId": "batch-1/timeline",
+        "resolvedByStageId": "followup-batch-1/timeline"
+      },
+      {
+        "checkId": "batch-1/payoff",
+        "resolvedByStageId": "followup-batch-1/payoff"
+      },
+      {
+        "checkId": "batch-1/opening",
+        "resolvedByStageId": "followup-batch-1/opening"
+      },
+      {
+        "checkId": "batch-1/pacing",
+        "resolvedByStageId": "followup-batch-1/pacing"
+      },
+      {
+        "checkId": "batch-1/growth",
+        "resolvedByStageId": "cross-1-3"
+      },
+      {
+        "checkId": "batch-2/causality",
+        "resolvedByStageId": "followup-batch-2/causality"
+      },
+      {
+        "checkId": "batch-2/timeline",
+        "resolvedByStageId": "followup-batch-2/timeline"
+      },
+      {
+        "checkId": "batch-2/payoff",
+        "resolvedByStageId": "followup-batch-2/payoff"
+      },
+      {
+        "checkId": "batch-2/opening",
+        "resolvedByStageId": "followup-batch-2/opening"
+      },
+      {
+        "checkId": "batch-2/pacing",
+        "resolvedByStageId": "followup-batch-2/pacing"
+      },
+      {
+        "checkId": "batch-2/growth",
+        "resolvedByStageId": "cross-2-5"
+      },
+      {
+        "checkId": "batch-3/payoff",
+        "resolvedByStageId": "cross-3-4"
+      },
+      {
+        "checkId": "cross-1-3/payoff",
+        "resolvedByStageId": "followup-cross-1-3/payoff"
+      },
+      {
+        "checkId": "cross-1-4/causality",
+        "resolvedByStageId": "followup-cross-1-4/causality"
+      },
+      {
+        "checkId": "cross-1-4/timeline",
+        "resolvedByStageId": "followup-cross-1-4/timeline"
+      },
+      {
+        "checkId": "cross-1-4/payoff",
+        "resolvedByStageId": "followup-cross-1-4/payoff"
+      },
+      {
+        "checkId": "cross-2-3/payoff",
+        "resolvedByStageId": "followup-cross-2-3/payoff"
+      },
+      {
+        "checkId": "cross-2-4/causality",
+        "resolvedByStageId": "followup-cross-2-4/causality"
+      },
+      {
+        "checkId": "cross-2-4/growth",
+        "resolvedByStageId": "followup-cross-2-4/growth"
+      },
+      {
+        "checkId": "cross-4-5/causality",
+        "resolvedByStageId": "followup-cross-4-5/causality"
+      },
+      {
+        "checkId": "cross-4-5/growth",
+        "resolvedByStageId": "followup-cross-4-5/growth"
+      }
+    ]
+  },
+  "records": [
+    {
+      "stageId": "batch-1",
+      "inputSha256": "f6f1061bbf26ff79cae7a00e7d808a5f966190fa28ec74be7d7fc15af2f8a265",
+      "stageSha256": "950c7337fa6ac31540b4449aaf208479a5fa0263cd81fc0e475953bf460864a9",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "insufficient"
+        }
+      ]
+    },
+    {
+      "stageId": "batch-2",
+      "inputSha256": "2854ddd2f31f05b79e14224d0f214cef1f778266a7dcc227a9f8629069d12a88",
+      "stageSha256": "ae1724b7e17309ad9c7fefa8fe2b09cdf135c3123bde6c1e7143d00e05845e2d",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "insufficient"
+        }
+      ]
+    },
+    {
+      "stageId": "batch-3",
+      "inputSha256": "03ee6f98d6ee17d95fa4193ba8962bf61f2038ddc473e68c561e3e6548b52f73",
+      "stageSha256": "7522f221cd69413df81e9f10623a2a11b62bc69799f555c4be9d77ee72f2cffb",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "batch-4",
+      "inputSha256": "e42f7db8eabac52b834cf0b4ae21d5b92908eb019101cde1cebf8caa3a4caaa6",
+      "stageSha256": "7adbcc13dc78198afe5057d1af8d5242bf2d67b5b92e69e0a47f1c58abd5267a",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "revise"
+        }
+      ]
+    },
+    {
+      "stageId": "batch-5",
+      "inputSha256": "1bc114c3b35940b42abffe1494f5dd0fea90331c9a5322e5098b7300766027bc",
+      "stageSha256": "6a81fd3375778d522454e548a7eaffeb98f9b592038e834ad07b5ba261816b41",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "cross-1-2",
+      "inputSha256": "607bb8e250d89604df6a1b4a18846dd8b9059820cf4f8015202a925315dc92ef",
+      "stageSha256": "3e233aaa1ecd7be2e9bd494646a2ae2fd2740d11d24a7cd7988e6949e04b0fc0",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "cross-1-3",
+      "inputSha256": "5cc9ff7b16756e3072f349a3accdfddb46129fe23e6aca82ca89406af8ac9748",
+      "stageSha256": "82b1d8e0b9890d4fa9ac0e2c8add3596547a9dbc021bdcf4541362dadc19c691",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "cross-1-4",
+      "inputSha256": "67577dbae84065708cd105a286025adef77c69a474fbdc194f868a5f594c3678",
+      "stageSha256": "54177b63e2c1c0fffd6f0ccf163b9c1063e2f3aab7867c2588c8d51f5c8a1992",
+      "replayedResponses": 2,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "cross-1-5",
+      "inputSha256": "c7e91ad7490502e9c24f5f56d999eaf732b35f1f198fbf019557135f5754194f",
+      "stageSha256": "6a62e99ce61e7fb8b7be29534cf61c86999429337047619f46aef12e9ff85731",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "cross-2-3",
+      "inputSha256": "39cff723bf7afeb4f1c0dbb05fb2187c4e9148e6f8c6dc52c5e60517aee7391e",
+      "stageSha256": "e48c0087956ef7f4530c1750c85d06b1d74fbec6d491d9e198c0209d4f690e60",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "cross-2-4",
+      "inputSha256": "fca60a112d7c39fb48d746d8624db238d77faf3d8a43075464c92b0205568a96",
+      "stageSha256": "5b0e9e465e4488866cf8d8be31b1dd23b2865c7a2b1421d58bf2783bbc5b9f4b",
+      "replayedResponses": 2,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "insufficient"
+        }
+      ]
+    },
+    {
+      "stageId": "cross-2-5",
+      "inputSha256": "f810ff2edbddfd1130307b29a44471be754582136a5dae384e650a1cf962a2da",
+      "stageSha256": "87e640de818e136b39d3fdd9cb0006f85341926aa76fd589c9783f82e83349e7",
+      "replayedResponses": 2,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "cross-3-4",
+      "inputSha256": "5ae13105c27449e81d82063e896ccf282432d35919ad4e6dd120bcb556a6a680",
+      "stageSha256": "64b8fde78d2088887f6551b0c1c8f9bd2967212dafe0991715db79f902d5a635",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "cross-3-5",
+      "inputSha256": "19868220c2a6aac1b3ba3c0d0349db6c2e5e1c69f09fe06d3e13f21e31db1a80",
+      "stageSha256": "8bdd01a3be8c201ad560e6af3c2eab3c6ae9640eaf89879e235e7c08b2876a33",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "cross-4-5",
+      "inputSha256": "7a8b01d5997e8057e979abc67b389eb715a4e27e56ec6287be215b10b480dd79",
+      "stageSha256": "3ae888798efbd3328bda54c58a2fd75cacece5d5a9f2f044eb93dfe93fcf9618",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "insufficient"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-batch-1/causality",
+      "inputSha256": "c2eddb4ffa2002aad082d04ec2e36310f91473f352d65e2338e509e41916b61e",
+      "stageSha256": "047c380a053a075f599c99242ca7baf18a38fd155b97cf541a5c5cbf5519630a",
+      "replayedResponses": 2,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-batch-1/timeline",
+      "inputSha256": "ef5e7ab628a5895283a98217c913a1214aea6ea5ce0e38bf7c6acee7fcb7c71a",
+      "stageSha256": "eecdd115d25460d47ff4437212f73020524d63e087d13cae89a8d061aea7b3a8",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "timeline",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-batch-1/payoff",
+      "inputSha256": "eee447a229e3db080daa61e5c450d15a6e4440a3ffface4028e576e96823d018",
+      "stageSha256": "7950c5b91a3abc0b93aa7845940b5f6211797d77f9154e51047ebc05b5c42b33",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-batch-1/opening",
+      "inputSha256": "3ea0c323f5c119ef3e95d7007f8b0df5ba1392203d3c663314a19b75bce83a81",
+      "stageSha256": "df377878f362fdad4aadabb4602c938d27be3c2626ede70fab868c713f738406",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-batch-1/pacing",
+      "inputSha256": "47a13c4a4fdd7f6a29b28bce91aaae3f7654e68f1acfd528ed0b357ae2110d93",
+      "stageSha256": "89032f890ebeece50c42a9b7b81bba7e6eacd7945d4d72d2317dcc7e8ba66b07",
+      "replayedResponses": 2,
+      "checks": [
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-batch-2/causality",
+      "inputSha256": "ecb7fa18209c80ee452dcdabc3798b9313a2f657d720488ffb8f4d8535a0fa1d",
+      "stageSha256": "4e256ba27c3f82c205896e7f7c00546a93244bcef309b859034e3656ae9a89b7",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-batch-2/timeline",
+      "inputSha256": "47f429ab0f1bd86a43e01a646c1c0b6604ca6e83107c40b7d6b8f9083b77234c",
+      "stageSha256": "190e688cb23af979f9f60bcd5a2b1ac48925dd74f2e5ec774d709f6d9e64fd7a",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "timeline",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-batch-2/payoff",
+      "inputSha256": "d59bb776a8bd8d481056019f5c6ca5b81724d32f6c12d21913155a70303b41a8",
+      "stageSha256": "a0033e8f55ba3752e60c1d46c1a95034b3bc1a8930d39e38fc8cbcfe5c75bd07",
+      "replayedResponses": 2,
+      "checks": [
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-batch-2/opening",
+      "inputSha256": "db37b04915612f748345831baa43ca8af51b698adc79ece83387809c8cb1eab4",
+      "stageSha256": "a44bcadef6396a7d03fc7b687f390fd52cd735f337dc8e303712b8fde8d14ce4",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-batch-2/pacing",
+      "inputSha256": "eef0b56c981035be21a046bee366324ffe04498549b6c0ac9e6e8e108d8cbe1e",
+      "stageSha256": "e0e19d34ed27124714df61df26145bc1f0f079330778a178b3c058dd826307d5",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-1-3/payoff",
+      "inputSha256": "3ab615271089451906f35dab4f8dd5f38d623806fe8c6887d83358708372cce4",
+      "stageSha256": "408942868a4cdaee461f9566fe8bbdd473a2c172d9ee4a5d944f1409c4ce70e5",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-1-4/causality",
+      "inputSha256": "a8202566bf1064da6cdbc641320e48ba6916f7f5471560bfdde83ee39db23375",
+      "stageSha256": "8e08a99e784abe53836c104912fed4c0d239ae80a1a5db4418752374bc90bfdc",
+      "replayedResponses": 2,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-1-4/timeline",
+      "inputSha256": "7e072ebf20f27e805990d3114e227b1c40bd391c278960690ee56075291f0fcb",
+      "stageSha256": "4710e40080fc7ac302da0ff8e0ee364a0f60e9989bb1ba468fa979b2f5856104",
+      "replayedResponses": 2,
+      "checks": [
+        {
+          "criterion": "timeline",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-1-4/payoff",
+      "inputSha256": "22027313d67de9a59cb6b73f6da928a5e7b0026d246c4a988498ad0a748b0a11",
+      "stageSha256": "84730fd7b4f93d3d5679de2c3a73069e3df3977e9d5fdf5c7f7da9f9a52ce89f",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-2-3/payoff",
+      "inputSha256": "d797da79f4a879189f1c5b7079bc0bdd772e49203116e6c5f7faf64832b0cbd3",
+      "stageSha256": "ed5079e0a11ded0ac488f3e376696d00b44b41847fcb9b8d0c7a984df3fdb95a",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-2-4/causality",
+      "inputSha256": "9d922868564563473a50a367fa5885c7d6fc8d6438dc682b93b64816bec1e327",
+      "stageSha256": "f26931e192dbdf24a8324c1ae5e44b8644e996386d26327d2056bc8915ebdbef",
+      "replayedResponses": 2,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-2-4/growth",
+      "inputSha256": "eb6a31fed7bfbd0b76f8fa66fe7ea485a2d9859615a8138da709cd47c35af62a",
+      "stageSha256": "c459f376569f3bc30a2cfd870095825a18cb861658a49cf751d74cc58e598a01",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "growth",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-4-5/causality",
+      "inputSha256": "dbf6ae12ed26739c9120073ea5817d6955850b9d1323902e33f26c2ba37b910a",
+      "stageSha256": "884e1082ee9cc3dd3b3454cede94677b81c2dbad1ea2e472af8df1e2f05a517e",
+      "replayedResponses": 2,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-4-5/growth",
+      "inputSha256": "c1d02cd90adf9cb5dc04d10b4686fe6f14c53f1ac5345aabff73941acd3344e8",
+      "stageSha256": "604eb96097f0b9f5c600b2409bbc10ec4db21cbaf9933f144872e4b705936246",
+      "replayedResponses": 2,
+      "checks": [
+        {
+          "criterion": "growth",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-1",
+      "inputSha256": "6825df70beefb78bca09c700fa82a087e7ec9555258568d0d5724957997981b7",
+      "stageSha256": "962c69fe55410ef7a03fc7af1efb147507efcf11abf271a4ecaf4966c2e3c06f",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-2",
+      "inputSha256": "15937956ac62ce91aaeaf9412b6495ec38f7f94f40cc3b9459f0666d79040099",
+      "stageSha256": "9e288b26aeb07427513f17b1f1c3194e129059f7de86a7912b8a26fc2f6f4683",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "revise"
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-3",
+      "inputSha256": "1300a9e6e1e988d53a7f6263a06d2288c1eeed83d7db45ea6cc4bc5042c7cfcb",
+      "stageSha256": "2f35b831012c2a17de5b1e687a3d46fbacdeaaed0cd7a29b46a8058302c103a3",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-4",
+      "inputSha256": "1c04af2663da202127ff2181e5f831a4c3e19c46592166e55b2866bbffebe832",
+      "stageSha256": "e88eb388882ae85b9bfabff147fe3d542325f56fffefa19e152fccfeef7b108a",
+      "replayedResponses": 2,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-5",
+      "inputSha256": "7664ae14ce664acf1b7fc28bce6fa372844d11289b795855527f33940360b03c",
+      "stageSha256": "613d5cd0277ccc01153153f8d40e666a04ea60e5d75a324d779514faf1fdcf42",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-6",
+      "inputSha256": "400e8a95858908c138d6fdfe24c36491912145cfa807ef00ba335764adb958fa",
+      "stageSha256": "c366712676c652143f121f615489cfd8d612865fb0d3ffab1a3223123c61609f",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-7",
+      "inputSha256": "a666003182d822ed848e4a8b0c9638abce34ac21f6f255aa612bf77e689bbfee",
+      "stageSha256": "163ab6bb75b7f46de44e4b5c4581247e5c866c8f2a39945df8584c8269d87d7b",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-8",
+      "inputSha256": "5f6f526c1730c09f875e61936868d5dc581313b9130d952a0a8357c9cbe5ae34",
+      "stageSha256": "e4ef9e16bb3ff42278bd7da9275d98d1f8115c69796fb2e58b64296cd53c0ce5",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-9",
+      "inputSha256": "8f737cb7e6887aebbacb3dce3af4d85a7a71407078b62978ff6cb8534782398a",
+      "stageSha256": "31343cc6304c30f5aab5eeb2c84135e6757a8d0082994ecbeabe9b2098965470",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "timeline",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-10",
+      "inputSha256": "5a63d840f58243c92d8e11c82b1653803038019f620def4560a18ec04dd3f20c",
+      "stageSha256": "e717f80ba1f3320b8d17c75e881fcf811ea89200ea84b04bca505da98b73defb",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-11",
+      "inputSha256": "a08c72bd470c48b9c194fc63f200c1c4d3d6e52065821e0e93d3cfb211ea0a2f",
+      "stageSha256": "68d5415998a45e00761154b49651162787ff687439cd2cf8838cd4dca66e0ebb",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-12",
+      "inputSha256": "41bd3667cf7d5d8694523d74f8faeb1957c9be9ebf934207d9a68448e989eca9",
+      "stageSha256": "2b46423b2b590162c30ab24b12ba7cfb1a3f515f0eb77a99c33e282b2189000e",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-13",
+      "inputSha256": "22489e86f794db02b6d27bc95b6a33595b0126d28df1c29c55eea7a0abf02c1b",
+      "stageSha256": "313688bf523da4e0011e663ac4ebb717fa5214bd516f68182384f87dc9f6c6c8",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-14",
+      "inputSha256": "2c2d5f0b49c068e4d3b4226078d817f60a1f70657c12c39e1ea5e351af3e5314",
+      "stageSha256": "882dae6083d80955ccf3e66712f0f687219f5130d86fb2ac055c033dcce98597",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-15",
+      "inputSha256": "aaff92eb1d6af8625ff2b890ce26c16218e115de3f84917d5a7f5d312dc60705",
+      "stageSha256": "1e6f6b65be5d204aeb38950f7e14bb3ae9dbc4458ee4b5d970bae3b9f50f1609",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-16",
+      "inputSha256": "d2bfed578f64e148cbc5ba540c4f4be3fa59e8167f8278ea27a22f9ec9e5e9c9",
+      "stageSha256": "024a5541350e5f2146aa0c631e9b2cbeb1d296866e939cc286a9ba69baff09f7",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-17",
+      "inputSha256": "4a84790bf288ea5c50739a4cc9546d1afd12f1f5c83cada794df6d8b528e67ed",
+      "stageSha256": "be6ca31628324c87767997ef449a67fae40b9e3bb47364e32204487b42465173",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-18",
+      "inputSha256": "89190c6c03323287a0ec0a86c3f1137da46823359dc8d5dee7ac3587a785b073",
+      "stageSha256": "378a4043d9862027a16a3941bd346f84f87a4a9ab7c6f148f3fa34ebd6913cbd",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "revise"
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-19",
+      "inputSha256": "52c08236913217e1b795d5bdb518d71dce33a027c2be1eb85c8e4922d01343b7",
+      "stageSha256": "e8bdada39da4aae4d7ae0eade27ebc14e2b31c3c692a2c9a0137ea87f6ae2e14",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-20",
+      "inputSha256": "fbfcc07482370c24db65c00e80c05cd19e640db5c80790c0749e97d7e74d3925",
+      "stageSha256": "1b367f0da5f971d6b9f8b51fc1d21a08fd08a73d0f029e031c13e4fc15f46590",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-21",
+      "inputSha256": "8e2278e512dd1b6a8cb33de71fdea6fcbd55496828639f902fa32697ea9dbd87",
+      "stageSha256": "231356ca225d0bb05cdc0eb7f0e62c41136a092b17d4cce479ccb5693aa4260c",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-22",
+      "inputSha256": "36b79fc933189d53e76f194560783b85c6910444ea15e96e608bc645494d4da9",
+      "stageSha256": "f49c892954ab0607928aa6ed3671b34b321d059461d011b894b680bcddaa43af",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "timeline",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-23",
+      "inputSha256": "4e8dc9943aa4cdc8a685d48cb3b6b738f9a317548e557f6cf422a3db85353ef4",
+      "stageSha256": "f083d5e12b43cfff4736e46f95d15965b09b4ac70544854191ca573e0366553b",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-24",
+      "inputSha256": "4cde4c5eaa24fa3fefb49b92f16bc87e9ff3cd102ac1d79e84b575a23ba0a69e",
+      "stageSha256": "c21a0b5464c473005bdf3b05f13a28347a1bc62688c98508fe68e8301ce8ae98",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-25",
+      "inputSha256": "6ad3b3a1d1ea384f218d1534d6ea8a6ee4195f6041d9a35ca20bf5f9d381a433",
+      "stageSha256": "3e199af4979b6ec30aa8bbff5e17f6729b57faf1cd9ef8798cb5527d61d62d96",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-26",
+      "inputSha256": "d9272f83b8495f7fce0c1254410ad3c27e36beec2980df152358f4055dc4c52c",
+      "stageSha256": "1524f38686a7e83989b9aa00d669fb9050f70e271e06c23e1390d896dd1293d3",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "revise"
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-27",
+      "inputSha256": "8a0825ff02a61e02d6f9fa0531715b1d34251159a013c6467ede9f81d37c4a4e",
+      "stageSha256": "026295a9d7c4775d18822a9cc72a174880c33e504054a29fa3ef6dffe3c8a498",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-28",
+      "inputSha256": "e2c87b21f0ef89b77df1d4ee1ad77163871123150be80b168675ecb1fdf6bf77",
+      "stageSha256": "f513a7a472d5fd8959ef4ced55547f0450b2a5c3e13bf87bf9ff7d968e06fbbf",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-29",
+      "inputSha256": "794c9f7ace1f75039d7981a3ff3fb6f928f96142d4dde26183d6bc26c4f6b860",
+      "stageSha256": "ddae784e31494712568ad5446363516eb8e1dac32b14dea0a6429746e3de8233",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-30",
+      "inputSha256": "febfb3df5cfb092a9c9f0cef163de39897d6d5059493f63c99bfedc088d87fe7",
+      "stageSha256": "6f1c7d230052767cd43cfee335983b273d5f9a680a88aa63dcd696191674fd77",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "revise"
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-31",
+      "inputSha256": "c22c53ffd79b101223a2d7c5a6102b77f5ae30ce54c27ebb5ae823387bb89cf7",
+      "stageSha256": "01bc0ab72172fa7f7eb82caa6a4e2ad3b0b63465d4a4b86ec762de1fbb8e53ac",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "insufficient"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "pass"
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-32",
+      "inputSha256": "9b6b612dad86101983d7e4cbc14269ec05c67ad4224ffca6b28dca5759b8f166",
+      "stageSha256": "e5d7615302cf64f2b2bb27237ae3562bd3d63d443956b89f4ae1d44f3bd803c2",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "revise"
+        }
+      ]
+    },
+    {
+      "stageId": "synthesis-33",
+      "inputSha256": "3188fea912345355512c0b26ae58a3695eb78a9f01d5c2a6507b07f4e7d61f49",
+      "stageSha256": "bf73c816151c4133c044fc2a19ea7d220c8be8ccc1e87a52adba8790f074570a",
+      "replayedResponses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "revise"
+        }
+      ]
+    }
+  ],
+  "rawResponsesReplayed": 79,
+  "reportSummary": "全部批次已完成，但仍有返修或材料不足项；详见逐项结论。",
+  "reportChecks": [
+    {
+      "criterion": "causality",
+      "verdict": "revise",
+      "explanation": "救援、疗程、分路、南渡、港口脱控、北行、返乡、训练与晋阶的宏观依赖顺序明确，且计划要求健康、实物、款项和能力条件依次成立。但前置报告持续保留第25—29章双账衔接返修：第25章战后“六成”与第27—28章疗程入账之间，尚未在统一章纲中明确分别属于何种账户，以及这些余额如何支撑第29—32章合同、护货资格和行动许可。另有北境返宗回执链的具体未核缺口，不能以工作流状态或后续宏观安排代替闭合。",
+      "revisionAdvice": "在第25—29章逐项分栏列出真元、寿储、伤后可用上限、自然流逝、两次疗程复诊入账与每次支付；明确第25章六成是否仅为真元，并用同一口径复核第29—32章南渡合同、护货资格和费用。另逐段补齐北境返宗的承运、签收、缺单追查、担保责任终点及311/318日知情变化。"
+    },
+    {
+      "criterion": "timeline",
+      "verdict": "revise",
+      "explanation": "已展开部分的188日古境行动、190—209日疗程、214—216日实体海程及后续修船/脱控，在出发、抵达和行动间隔上基本可排，未见界门瞬移或同人同时处于不相容地点。但资源状态是行动许可的一部分；第25—29章双账未统一，导致199、209日复诊后的余额以及211—216日出航条件仍未完全可核。后段300—318日返宗链还缺少对实际承运、签收、缺单追查、担保终止和返岗/交阅知情边界的完整核验。",
+      "revisionAdvice": "以188、199、209、211、214、216日为节点分别核明真元与寿储余额、扣减及许可依据；对300—318日逐段写清出发/抵达、承运和签收、18枚寄递费、缺单追查、担保责任终点及311返岗与318实际交阅前后的认知状态。"
+    },
+    {
+      "criterion": "payoff",
+      "verdict": "revise",
+      "explanation": "父案、样箱、失箱、仓火、吴卢去留、陆的有限承认、第二片取舍及百章阶段性收束均保留了证据边界，没有把局部线索提前写成全案终局。泉液也有验源、有效剂数、两次十日疗程、复诊后入账和救援代价。但核心兑现链仍受第25—28章账面返修影响：第25章真元余额尚未与第27—28章各增加5元载的寿储回报、自然流逝及后续南渡支付在同一原章纲中统一核准，故疗程的回报、代价和行动资本不能宣布完全闭合。",
+      "revisionAdvice": "将泉液验源、有效六滴、两剂各三滴、190—199日及200—209日疗程、两次复诊各增加5元载的寿储账，与第25章真元消耗及第29—32章真元支付并列；明确灵泉不治腿伤、不恢复持剑资格、不扩大凝元能力，并防止两账户重复消费。"
+    },
+    {
+      "criterion": "opening",
+      "verdict": "pass",
+      "explanation": "前50章的冲突和选择逐步换挡：矿难灭口与有限取证，进入训练和救囚，再转为疗程分路、失箱仓火、潮路实测、追船救援、安置分歧和吴卢自主脱控。救援对象、权限、危机性质与代价均有变化，未提前清算父案、九鼎、第二片或后续高阶路线；51—100属于已明确的宏观规划层，不因尚未逐章展开构成当前缺陷。",
+      "revisionAdvice": ""
+    },
+    {
+      "criterion": "pacing",
+      "verdict": "pass",
+      "explanation": "已有细纲中相邻段落持续改变戏剧目标和后果，而非重复核账或同构救援：33—39章处理失箱、证词与仓火取舍；40—44章转为潮路实测、追船、断索和船损；45—47章处理安置、修船与同伴分歧；48—50章转为自主选择、有限路径和门前脱控。51—100尚未展开逐章细纲，属于后续验收范围，不构成现阶段设计缺陷。",
+      "revisionAdvice": ""
+    },
+    {
+      "criterion": "genre",
+      "verdict": "pass",
+      "explanation": "玄幻机制实际改变行动：凝元御物受可见性、距离、重量、训练和真元支付限制；剑诀、玄府护罡和真光均有境界、训练、供能、冷却与伤情门槛；避火符、实体海程、港务规则和地域环境改变路线与风险。第50章依靠巡员权限、普通门闩和当事人亲口选择完成脱控，没有用万能法宝、免费晋阶或高阶术法抹平代价。",
+      "revisionAdvice": ""
+    },
+    {
+      "criterion": "growth",
+      "verdict": "revise",
+      "explanation": "主角近期成长路径本身清楚：伤后主动确认引气条件，支付3元载晋入凝元，经历木块御物、剑诀授业、失控赔偿、定向与收势训练、复测和有限实战；随后以疗程等待、有限护货、拒绝转嫁缺额、接受同伴留守和让吴卢自行选择体现职业与关系判断。远期玄府也设置数月训练、诊察、十元载支付和实测门槛。然而疗程所得寿储与第25章真元余额的账口仍被前置综合保留为返修，削弱“完成疗程后获得可支配行动资本”这一阶段回报及其对南渡选择的支撑。",
+      "revisionAdvice": "保留现有主动选择—训练—失败—支付—实测回报链；另在原章纲中明确首剂、二剂何时及以何种复诊条件增加寿储、自然流逝如何扣减，并与第25章真元、伤后能力上限及第29—32章行动资本统一分账。灵泉不得替代治伤、恢复持剑或自动扩大术式能力。"
+    }
+  ],
+  "sourceFilesVerified": 130,
+  "protectedHistoryUnchanged": true,
+  "oldRunsVerified": 57,
+  "oldReportsVerified": 63,
+  "realModelCalls": 0,
+  "productionWrites": 0,
+  "overallStatus": "not_accepted",
+  "limitation": "Replays all story-area responses and verifies the report against the protected isolated design snapshot with checkpoint overlay. Formal negatives and manual findings remain; not semantic acceptance, plan approval, blocker resolution or prose acceptance."
+}

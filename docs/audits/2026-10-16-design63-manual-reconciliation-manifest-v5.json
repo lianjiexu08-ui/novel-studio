@@ -1,0 +1,116 @@
+{
+  "kind": "manual_findings_required_for_final_reconciliation",
+  "inputHash": "7a49ebc0415c36a0c9a92c1180e0ecddfc29466dc3f6221fa5c10881df1e02f0",
+  "findings": [
+    {
+      "path": "docs/audits/2026-10-15-design63-spring-quantity-finding.json",
+      "sha256": "956d11c510f24ebab8c84a9e6359c7e52c136ccf345aae381cbd784fd77ab9cd",
+      "inputHash": "7a49ebc0415c36a0c9a92c1180e0ecddfc29466dc3f6221fa5c10881df1e02f0",
+      "runId": "design_run_5f1d3886-b45e-4009-9d97-a24b8c8ce1af",
+      "stageId": "batch-2",
+      "stageSha256": null,
+      "observation": "灵泉追回量、洁净量与林实际分配量需分开；原负面保留。",
+      "status": "requires_final_reconciliation"
+    },
+    {
+      "path": "docs/audits/2026-10-16-design63-story-lifespan-finding.json",
+      "sha256": "ad1916062d2c20ed3a6bd2b55ca4e003a09d1104cc77a77c5a4ca94e722e14bd",
+      "inputHash": "7a49ebc0415c36a0c9a92c1180e0ecddfc29466dc3f6221fa5c10881df1e02f0",
+      "runId": "design_run_a1ae5a57-f9bf-4af3-8093-550e3d3ded22",
+      "stageId": "batch-4",
+      "stageSha256": "7adbcc13dc78198afe5057d1af8d5242bf2d67b5b92e69e0a47f1c58abd5267a",
+      "observation": "林真元、顾寿储与条件性延寿不可混账；原四项返修保留。",
+      "status": "requires_final_reconciliation"
+    },
+    {
+      "path": "docs/audits/2026-10-16-design63-custody-summary-finding.json",
+      "sha256": "20c1ac76fa28d7121d71c0cdf46bcbf1c4c8f53fd1d087549f4bd8127fcc2124",
+      "inputHash": "7a49ebc0415c36a0c9a92c1180e0ecddfc29466dc3f6221fa5c10881df1e02f0",
+      "runId": "design_run_a1ae5a57-f9bf-4af3-8093-550e3d3ded22",
+      "stageId": "followup-batch-2/payoff",
+      "stageSha256": "a0033e8f55ba3752e60c1d46c1a95034b3bc1a8930d39e38fc8cbcfe5c75bd07",
+      "observation": "50章脱控的是吴伍、卢小满；陆仍受看护。",
+      "status": "requires_final_reconciliation"
+    },
+    {
+      "path": "docs/audits/2026-10-16-design64-account-and-date-v3.json",
+      "sha256": "3ad69d5dfcc16ec59f4ea481b9807c7f6278f3858e735115abe35b7c6b4bc955",
+      "inputHash": "7a49ebc0415c36a0c9a92c1180e0ecddfc29466dc3f6221fa5c10881df1e02f0",
+      "runId": null,
+      "stageId": null,
+      "stageSha256": null,
+      "observation": "29章诊察210日、交接211日的矛盾只在未应用v3候选修订。",
+      "status": "requires_final_reconciliation"
+    },
+    {
+      "path": "docs/audits/2026-10-16-design63-entry-chapter-summary-finding.json",
+      "sha256": "2aadf39bd28c5a191e2c7b72f43bfe35f33d140a28e892393228a84087f81adb",
+      "inputHash": "7a49ebc0415c36a0c9a92c1180e0ecddfc29466dc3f6221fa5c10881df1e02f0",
+      "runId": "design_run_4ce361d8-d17c-41d8-b1b4-bbdbee7f0baa",
+      "stageId": "followup-batch-2/geography",
+      "stageSha256": "8d5f23212543f4c0cd37930b7625568783345436486aa0fea85bb96742c0a57b",
+      "observation": "18章资格核验与19章实体入境不可混写。",
+      "status": "requires_final_reconciliation"
+    },
+    {
+      "path": "docs/audits/2026-10-16-design63-return-route-finding.json",
+      "sha256": "e94ee5f94b41048a8ee29e679c99abf2d44a6fadfe2e9b4dbbf4d1b963041eb1",
+      "inputHash": "7a49ebc0415c36a0c9a92c1180e0ecddfc29466dc3f6221fa5c10881df1e02f0",
+      "runId": "design_run_4ce361d8-d17c-41d8-b1b4-bbdbee7f0baa",
+      "stageId": "synthesis-6",
+      "stageSha256": "77ea3634fee6357399dbb2dbba045f0db7c6dbd2f3bf403bf05622d61603075c",
+      "observation": "综合6混淆林的212—214日护货行程与苏随押解队213—216日返宗；第30章不在该综合材料中，两项revise保留。",
+      "status": "requires_final_reconciliation"
+    },
+    {
+      "path": "docs/audits/2026-10-16-design63-rescue-boundary-finding.json",
+      "sha256": "5ef0ae0c5d6236c493aebf6ab9f1b25973d1d553ba8cc06df4ade81eee6a45e4",
+      "inputHash": "7a49ebc0415c36a0c9a92c1180e0ecddfc29466dc3f6221fa5c10881df1e02f0",
+      "runId": null,
+      "stageId": null,
+      "stageSha256": null,
+      "observation": "第44章场景已拉起，章末仍待拉起，第45章开场再次拉起；动作完成边界不一致。",
+      "status": "requires_final_reconciliation"
+    },
+    {
+      "path": "docs/audits/2026-10-16-design63-power-synthesis21-finding.json",
+      "sha256": "4eb502d23e1b8211d85b89487175874e80ec2860ca0e0d8dcdee34f565db099e",
+      "inputHash": "7a49ebc0415c36a0c9a92c1180e0ecddfc29466dc3f6221fa5c10881df1e02f0",
+      "runId": "design_run_5f1d3886-b45e-4009-9d97-a24b8c8ce1af",
+      "stageId": "synthesis-21",
+      "stageSha256": "4293ef5c1a323df8deb09f1313d432177eebaf804aa4daa9bc684c73e26e1e0b",
+      "observation": "力量综合21认为18至32章寿储跳增；原27/28章分别给出199/209日两剂各5元载，216日13.460274可闭合。顾25章0.25支出不可转扣林；该综合未携带两段入账原文，正式revise保留。",
+      "status": "requires_final_reconciliation"
+    },
+    {
+      "path": "docs/audits/2026-10-16-design63-return-receipt-followup.json",
+      "sha256": "c50c0cc88f8cb7e189ab9d26286f0c9a3fd1f9c971555fb33634eb6655ab0152",
+      "inputHash": "7a49ebc0415c36a0c9a92c1180e0ecddfc29466dc3f6221fa5c10881df1e02f0",
+      "runId": "design_run_a1ae5a57-f9bf-4af3-8093-550e3d3ded22",
+      "stageId": "synthesis-33",
+      "stageSha256": "bf73c816151c4133c044fc2a19ea7d220c8be8ccc1e87a52adba8790f074570a",
+      "observation": "最终故事综合另保留300—318日返宗回执链核验不足。原文有承运、付款、签收、缺件追查及知情安排，仍需专项原文复核，不由寿储反证一并解除。",
+      "status": "requires_source_review"
+    }
+  ],
+  "formalVerdictsOverridden": false,
+  "questionsResolved": 0,
+  "designApproved": false,
+  "previousManifest": {
+    "path": "docs/audits/2026-10-16-design63-manual-reconciliation-manifest-v4.json",
+    "sha256": "5feb3bbffd9e4dacdb5ff8a693aea6c036d0eb224e491252554b32d41407e90d"
+  },
+  "latestCandidate": {
+    "proofPath": "docs/audits/2026-10-16-design64-execution-and-rescue-v6.json",
+    "proofSha256": "8ff8bad5a49cd60e6e30f4b9c300c69add9be9538073aed5a42d1ee959374350",
+    "path": "data/design-candidates/design64-execution-and-rescue-draft-v6.json",
+    "sha256": "7dfb01857374359923766086b18cb0ea58c1b306b009b68bfc0cf23993d25920",
+    "status": "unapplied_draft"
+  },
+  "completedFormalAudit": {
+    "path": "docs/audits/2026-10-16-design63-four-areas-audit.json",
+    "sha256": "7c21a80db4c074b96ab6354d3ac952f1161cc90ac650973729e5c973d82d420c",
+    "boundManifestVersion": 4,
+    "note": "This v5 supplement is for subsequent reconciliation. It does not replace the v4 manifest used by the completed formal integrity audit."
+  }
+}
