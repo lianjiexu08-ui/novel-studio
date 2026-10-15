@@ -30,6 +30,14 @@ const localPowerCriteria: Record<string, string> = {
   counters: '逐项审查本批已给能力的对象、范围、上限、打断、撤退和反制，以及本批越阶或同阶胜利的实际条件；公共高阶规则也不能跳过。若已读能力明确援引另一个未读术式来证明反制或上限，应说明具体关系并补读相应原文；不要把未使用、未关联的全部功法法宝和后续章节都当成本批待核材料。已给规则自身的万能能力、无代价越阶或明确冲突仍须返修，整体反制体系由全量覆盖后的综合检查。',
 };
 
+// v25 scopes character checks to the supplied arrangements. Final synthesis
+// still evaluates the unchanged whole-book character rubric after full coverage.
+const localCharacterCriteria: Record<string, string> = {
+  agency: '核验本批实际提供的人物目标、利益冲突、关键选择、失败代价和对情节的影响：角色是否因自身利益采取行动，配角是否有拒绝、退出或改变条件的选择，行动后果是否改变本批局面。只有口头目标、被动工具人、无动机转变或取消代价等已给设计问题仍须具体返修。判断某个已读选择确实依赖未读的前置或后果时，指出该选择与待核事实，请求全部必要来源；不能仅因本批没有连续包含前50章或全书全部人物兑现，就把其余章纲整体列成本批缺料。全书人物能动性与连续影响留给完整覆盖后的综合验收。',
+  relationships: '核对本批实际出现的关系初始状态、促成变化的行动与付出、生效时点及保留边界，并比较本批可见的关系档案与章纲。终局标签不能代替过程，救援不自动产生信任、服从或免责，同一时点的关系冲突与重复消费代价必须返修。已读变化确实依赖未提供的关系原档、前一阶段或另一处安排时，指出具体关系、时点和待核事实，请求全部必要来源；不能只因本批尚未完成前50章或全书全部关系验收，就要求补读所有其他关系或连续章纲。整体关系链仍须在完整覆盖后按原标准综合验收。',
+  knowledge: '核验本批人物知道、相信或误解什么，从谁、何时、通过什么实际来源获得，以及这些认知如何影响选择和弧光。区分读者视角、拟定阶段与角色当时已知；已给的提前知情、消息未到却已知、无来源推断或认知转变断裂必须返修。某项已读认知确实依赖未读秘密原档、消息节点或此前知情阶段时，指出人物、命题、时点与待核事实，请求全部必要来源；不能仅因为本批未覆盖前50章或全书全部揭露过程，就笼统索要其余连续章纲。全书秘密、误解和人物弧光的连续性仍由完整覆盖后的综合验收。',
+};
+
 export function localDesignReviewRubric(input: DesignReviewInput, scheduleVersion = 7): Record<string, string> {
   if (input.purpose === 'chapter_review') return Object.fromEntries(Object.entries(input.rubric).map(([criterion, description]) => [criterion,
     `本项评审的是共享 draft 正文。${description} 本批只对照实际携带的设定、计划、历史与正文；pass只表示本批没有发现该维度问题，整体结论由全量原文、跨批检查及综合决定。不要把未读的无关后续计划当作本章必须兑现的任务，也不要要求本批独自证明全书一致。只有具体判断依赖目录中确实存在但未读的来源时，用insufficient和awaitingSources列全必要来源并说明问题；不要凭未读资料补完正文。已发现的正文矛盾、缺乏动机或质量问题必须revise，不能用等待掩盖。`,
@@ -37,7 +45,8 @@ export function localDesignReviewRubric(input: DesignReviewInput, scheduleVersio
   return Object.fromEntries(Object.entries(input.rubric).map(([criterion, description]) => [criterion,
     `本项是局部原文检查，pass仅表示本批可检验的安排成立，不代表整个领域通过。${scheduleVersion >= 24 && input.area === 'world' && criterion === 'capacity' && description === designReviewRubrics.world.capacity ? localWorldCapacityCriterion
       : input.area === 'story' && description === designReviewRubrics.story[criterion] ? (scheduleVersion >= 23 && criterion === 'growth' ? localGrowthCriterion : localStoryCriteria[criterion] ?? description)
-      : scheduleVersion >= 20 && input.area === 'power' && description === designReviewRubrics.power[criterion] ? localPowerCriteria[criterion] ?? description : description}`
+      : scheduleVersion >= 20 && input.area === 'power' && description === designReviewRubrics.power[criterion] ? localPowerCriteria[criterion] ?? description
+      : scheduleVersion >= 25 && input.area === 'characters' && description === designReviewRubrics.characters[criterion] ? localCharacterCriteria[criterion] ?? description : description}`
     + (input.area === 'power' ? '本批完整提供的各等级境界、功法、法宝和资源规则本身也是待审对象，包含尚未在章纲中使用的高阶规则；公共来源不只是背景。必须检查其自身约束，再核具体角色行动，不能只核低阶行动账而跳过已经给出的高阶能力缺口。' : '')
     + '逐一核验实际提供的规则和行动；本批自身缺少关键约束、预算不闭合或出现矛盾仍须返修。'
     + (scheduleVersion >= 8 ? '分卷、里程碑和圣经章概要不是完整的逐章执行账；摘要未列某项费用、余量或时机，本身不能证明细纲缺失。先查来源目录中对应的plan/chapters/章节号：如尚未读到，针对该动作以insufficient和awaitingSources请求对应细纲，不能直接判revise；已完整读到仍无必要规则或支出，或原文彼此冲突，必须保留revise。不能凭目录存在就假定细纲会补齐，更不能把摘要缺项自动判pass。规则自身缺陷仍须独立检查，不依赖章纲补救。' : '')

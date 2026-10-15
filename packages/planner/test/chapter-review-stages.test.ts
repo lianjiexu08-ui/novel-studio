@@ -58,7 +58,7 @@ test('large chapter review keeps full draft in each raw batch and resumes withou
 
 test('chapter checkpoints pin their original schedule across later defaults and reject unknown versions before model dispatch', async () => {
   const input = await largeInput();
-  assert.equal(restoreChapterReviewRun(input).scheduleVersion, 24);
+  assert.equal(restoreChapterReviewRun(input).scheduleVersion, 25);
   const legacy: ChapterReviewStageProof = { inputHash: input.inputHash, createdAt: '2026-10-14T00:00:00.000Z', stages: [] };
   assert.equal(restoreChapterReviewRun(input, legacy).scheduleVersion, 21);
   let calls = 0;

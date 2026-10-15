@@ -75,7 +75,7 @@ test('chapter-only power batches also receive complete tier and technique rules'
   ];
   input.sources = [...rules, ...input.sources];
   const run = createDesignReviewRun(input);
-  assert.equal(run.scheduleVersion, 24);
+  assert.equal(run.scheduleVersion, 25);
   for (const stage of run.stages) {
     const staged = designReviewStageInput(run, stage);
     assert.ok(JSON.stringify(staged.sources).length <= 240_000);
@@ -797,6 +797,53 @@ test('v24 scopes world capacity locally without changing v23 evidence, final sta
   const custom = createDesignReviewRun({ ...input, rubric: { capacity: '作者指定：必须核对所有地域的差异' } });
   assert.match(designReviewStageInput(custom, custom.stages[0]).rubric.capacity, /作者指定：必须核对所有地域的差异/);
   assert.doesNotMatch(designReviewStageInput(custom, custom.stages[0]).rubric.capacity, /本批实际提供的世界差异/);
+});
+
+test('v25 scopes characters locally while preserving evidence, global standards and every negative criterion', () => {
+  const input: DesignReviewInput = { ...largeInput(), area: 'characters', rubric: { ...designReviewRubrics.characters } };
+  const old = createDesignReviewRun(input, '2026-10-15T00:00:00Z', 24);
+  const markers = { agency: /核验本批实际提供的人物目标/, relationships: /核对本批实际出现的关系初始状态/, knowledge: /核验本批人物知道、相信或误解什么/ };
+  for (const verdict of ['revise', 'insufficient'] as const) {
+    const previous = structuredClone(old), current = createDesignReviewRun(input, old.createdAt, 25);
+    assert.deepEqual(current.units, previous.units);
+    assert.deepEqual(current.stages, previous.stages, 'every raw partition and cross pair is retained');
+    for (const stage of current.stages) {
+      const oldStage = previous.stages.find(s => s.id === stage.id)!;
+      const before = designReviewStageInput(previous, oldStage), after = designReviewStageInput(current, stage);
+      const { rubric, ...rest } = after, { rubric: oldRubric, ...oldRest } = before;
+      assert.deepEqual(rest, oldRest, 'sources, citation rules, capacities and pending findings stay identical');
+      if (after.stage!.coverage!.mode === 'local_sources') {
+        for (const [criterion, marker] of Object.entries(markers)) {
+          assert.match(rubric[criterion], marker);
+          assert.doesNotMatch(oldRubric[criterion], marker, 'explicit v24 remains reproducible');
+          assert.ok(oldRubric[criterion].includes(input.rubric[criterion]));
+          assert.match(rubric[criterion], /请求全部必要来源/);
+          assert.match(rubric[criterion], /返修/);
+        }
+        assert.deepEqual(Object.keys(rubric), Object.keys(input.rubric));
+      } else assert.deepEqual(rubric, input.rubric, 'synthesis still judges the complete character design');
+      const result = stagePass(after);
+      if (stage.id === 'batch-1') for (const check of result.checks) Object.assign(check, {
+        verdict, explanation: '人物无动机改变态度且提前知道秘密', revisionAdvice: '补足选择、关系转变与知情来源',
+        ...(verdict === 'insufficient' ? { insufficiencyReason: 'missing_design' } : {}),
+      });
+      acceptDesignReviewStage(current, stage, result);
+      acceptDesignReviewStage(previous, oldStage, structuredClone(result));
+    }
+    for (const run of [JSON.parse(JSON.stringify(current)), previous]) {
+      const completed = completeDesignReviewRun(run);
+      assert.deepEqual(completed.input.rubric, input.rubric);
+      assert.deepEqual(completed.result.checks.map(c => c.verdict), Object.keys(input.rubric).map(() => verdict));
+    }
+  }
+  const whole = createDesignReviewRun({ ...input, sources: [{ id: 'all', text: '完整人物材料' }] });
+  assert.deepEqual(designReviewStageInput(whole, whole.stages[0]).rubric, input.rubric);
+  const customInput = { ...input, rubric: Object.fromEntries(Object.keys(markers).map(key => [key, `作者自定义人物标准：${key}`])) };
+  const chapterInput: DesignReviewInput = { ...input, purpose: 'chapter_review' };
+  for (const unchanged of [customInput, chapterInput]) {
+    const previous = createDesignReviewRun(unchanged, old.createdAt, 24), current = createDesignReviewRun(unchanged, old.createdAt, 25);
+    assert.deepEqual(designReviewStageInput(current, current.stages[0]), designReviewStageInput(previous, previous.stages[0]));
+  }
 });
 
 test('v8 changes only local summary guidance and preserves v7 replay and real revision blockers', () => {
