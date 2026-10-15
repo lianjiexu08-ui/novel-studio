@@ -28,6 +28,25 @@ assert.ok(suffixLiteral);
 const suffix = JSON.parse('"' + suffixLiteral.replace(/"/g, '\\"') + '"');
 const execute = process.argv.includes('--execute');
 const rehearsal = process.argv.includes('--rehearse-failure');
+const attemptArg = process.argv.find(arg => arg.startsWith('--attempt='));
+const attempt = attemptArg ? Number(attemptArg.slice('--attempt='.length)) : 1;
+assert.ok(Number.isSafeInteger(attempt) && attempt >= 1 && attempt <= 100);
+// A zero-dispatch failure can be retried without rebinding the original model
+// checkpoint. Any actual progress or model usage requires a new bound recovery.
+const previousAttempts = [];
+for (let n = 1; n < attempt; n++) {
+  const path = root + `/data/audit-runtimes/design62-control/resume-${n}-result.json`;
+  const bytes = fs.readFileSync(path, 'utf8');
+  const saved = JSON.parse(bytes);
+  assert.equal(saved.status, 'stopped_after_failure');
+  assert.equal(saved.rehearsal, false);
+  assert.equal(saved.runtimeCommit, runtime.commit);
+  assert.equal(saved.priorCheckpointSha256, hash(priorBytes));
+  assert.equal(saved.resumeUsage.calls, 0, 'Model usage requires a new recovery binding');
+  assert.equal(saved.stepsStarted.length, 0, 'Dispatched work requires a new recovery binding');
+  assert.equal(hash(saved.runs), hash(prior.runs), 'Persisted progress requires a new recovery binding');
+  previousAttempts.push({ path, sha256: hash(bytes) });
+}
 assert.ok(!(execute && rehearsal));
 if (execute) assert.equal(process.env.DATABASE_URL, 'file:' + root + '/data/novel-studio.db');
 if (rehearsal) {
@@ -68,7 +87,7 @@ try {
   if (!execute && !rehearsal) {
     console.log(JSON.stringify({ status: 'preflight_passed', runtimeCommit: runtime.commit, priorCheckpointSha256: hash(priorBytes), targets, completedResultsPreserved: proof.runs.reduce((n, r) => n + r.completed, 0), remainingCalls, modelCalls: 0, databaseWrites: false }));
   } else {
-    const out = root + '/data/audit-runtimes/design62-control/' + (rehearsal ? 'resume-rehearsal-result.json' : 'resume-1-result.json');
+    const out = root + '/data/audit-runtimes/design62-control/' + (rehearsal ? `resume-rehearsal-${attempt}-result.json` : `resume-${attempt}-result.json`);
     assert.ok(!fs.existsSync(out), 'Output exists; inspect this attempt instead of restarting');
     let reviewProvider, ledger, redact = message => String(message);
     if (execute) {
@@ -87,7 +106,7 @@ try {
       reviewProvider = { reviewDesignContent: async () => { throw new Error('REHEARSAL: simulated provider quota failure; no network call'); } };
     }
     const workflow = new ChapterWorkflow(repo, { generateChapter: () => { throw new Error('Resume must not generate prose'); } }, reviewProvider);
-    const state = { status: 'running', startedAt: new Date().toISOString(), rehearsal, runtimeCommit: runtime.commit, priorCheckpointSha256: hash(priorBytes), scope: prior.scope, areas: prior.areas, priorUsage: prior.usage, maxCalls: prior.maxCalls, errors: [], stepsStarted: [], suffixSha256: hash(suffix) };
+    const state = { status: 'running', startedAt: new Date().toISOString(), rehearsal, attempt, previousAttempts, workers: 1, runtimeCommit: runtime.commit, priorCheckpointSha256: hash(priorBytes), scope: prior.scope, areas: prior.areas, priorUsage: prior.usage, maxCalls: prior.maxCalls, errors: [], stepsStarted: [], suffixSha256: hash(suffix) };
     fs.writeFileSync(out, JSON.stringify(state, null, 2) + '\n', { flag: 'wx' });
     const queue = [...targets]; let stopped = false, checkpointQueue = Promise.resolve();
     const checkpoint = () => {
@@ -120,10 +139,10 @@ try {
         }
       }
     }
-    // A failed first request stops dispatch to other areas. A second worker
-    // already inside a request may finish and save; it will start no next step.
-    const workers = await Promise.allSettled(Array.from({ length: rehearsal ? 1 : 2 }, worker));
-    for (const result of workers) if (result.status === 'rejected') throw result.reason;
+    // Prisma batches simultaneous findUnique reads. With this project's large
+    // preserved review history, paired reads reproduce a Rust-to-NAPI string
+    // conversion failure; sequential reads pass. Keep history and serialize.
+    await worker();
     state.status = state.errors.length ? 'stopped_after_failure' : 'completed';
     state.finishedAt = new Date().toISOString(); await checkpoint(); await checkpointQueue;
     if (rehearsal) { assert.equal(state.stepsStarted.length, 1); assert.equal(state.resumeUsage.calls, 0); assert.equal(state.errors.length, 1); }

@@ -1,0 +1,54 @@
+{
+  "observedAt": "2026-10-15T06:13:12.600428+00:00",
+  "failure": {
+    "status": "stopped_after_failure",
+    "stepsStarted": 0,
+    "modelCalls": 0,
+    "error": "Prisma project.findUnique: Failed to convert rust String into napi string",
+    "pairedReadReproduced": true,
+    "sequentialReadCount": 3,
+    "sequentialReadsPassed": true,
+    "checkpointSha256": "84d8fbfce69bbc0c7c8904e34efe3c0178e51d4f4fe93cb49306d38791113451"
+  },
+  "fix": {
+    "workers": 1,
+    "retryOnlyAfterZeroDispatchAndZeroUsage": true,
+    "requireExactPriorRuns": true,
+    "previousAttemptFilePreserved": true,
+    "frozenReviewerUnchanged": true
+  },
+  "rehearsal": {
+    "separateSQLiteBackup": true,
+    "networkCalls": 0,
+    "status": "stopped_after_failure",
+    "stepsStarted": 1,
+    "completedResultsPreserved": 69,
+    "protectedHistoryUnchanged": true,
+    "onlyChangedStage": "synthesis-15",
+    "failedStageAttempts": [
+      1,
+      2
+    ],
+    "failuresPreserved": true,
+    "checkpointSha256": "bde33b81ed791cd1a66a57983cc2960f6782075cffb1b99e02b8979a96aa49c1"
+  },
+  "retryGuards": [
+    {
+      "case": "usage",
+      "rejected": true
+    },
+    {
+      "case": "dispatch",
+      "rejected": true
+    },
+    {
+      "case": "progress",
+      "rejected": true
+    }
+  ],
+  "acceptance": {
+    "designApproved": false,
+    "proseGenerated": false,
+    "formalReportsCompleted": false
+  }
+}
