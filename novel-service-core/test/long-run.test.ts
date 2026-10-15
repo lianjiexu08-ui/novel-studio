@@ -8,6 +8,7 @@ import { createDesignReviewRun } from '../src/design-review-run.ts';
 import type { EventDraft, Work } from '../src/core.ts';
 import { createPlanRevision, planContentHash } from '../src/planning.ts';
 import type { StoryBible, WorldPack } from '../src/world.ts';
+import { qualityAuditDtoSchema } from '../../packages/contracts/src/api.ts';
 
 const provider = {
   generateChapter: ({ chapterNumber }: { chapterNumber: number }) => {
@@ -383,4 +384,43 @@ test('audit checks actual volume ranges and keeps deferred questions visible', (
   assert.equal(audit.narrativeQuality, 'not_assessed');
   work.worldPack!.unresolvedQuestions[0].blocking = true;
   assert.ok(qualityAuditFor(work).findings.some((finding) => finding.id === 'world-question-later' && finding.severity === 'error'));
+});
+
+test('quality audit includes latest proposal questions without merging equal IDs or clearing deferred blockers', () => {
+  const design = lockedDesign(), service = new NovelService(provider), work = service.createWork('当前设计问题');
+  service.setWorldPack(work.id, design.world); service.setStoryBible(work.id, design.bible);
+  const shared = { id: 'same-id', question: '原文问题\n下一行', blocking: true, status: 'deferred' as const };
+  work.worldPack!.unresolvedQuestions = [structuredClone(shared)];
+  work.storyBible!.unresolvedQuestions = [structuredClone(shared)];
+  const approved = createPlanRevision(work, minimalPlan(), { source: 'author' });
+  approved.status = 'approved'; work.activePlanId = approved.id;
+  const next = minimalPlan(); next.openQuestions = [structuredClone(shared), { id: 'done', question: '已有结论', blocking: true, status: 'resolved' },
+    { id: 'optional', question: '后续再展开', blocking: false, status: 'open' }];
+  const latest = createPlanRevision(work, next, { source: 'author', baseRevisionId: approved.id });
+  const before = structuredClone(work), audit = qualityAuditFor(work);
+  assert.equal(audit.scope.latestPlanRevision, latest.revision);
+  assert.equal(audit.scope.activePlanRevision, approved.revision);
+  assert.equal(audit.questions.length, 5);
+  assert.equal(new Set(audit.questions.map(q => q.id)).size, 5);
+  const copies = audit.questions.filter(q => q.questionId === shared.id);
+  assert.deepEqual(copies.map(q => q.source), ['world', 'story', 'plan']);
+  assert.ok(copies.every(q => q.question === shared.question && q.status === 'deferred' && q.blocking));
+  assert.ok(audit.findings.some(f => f.id === 'plan-question-same-id' && f.severity === 'error'));
+  assert.ok(!audit.findings.some(f => f.id === 'plan-question-done' || f.id === 'plan-question-optional'));
+  assert.deepEqual(qualityAuditDtoSchema.parse(audit).questions, audit.questions, 'API contract must retain all question records');
+  assert.deepEqual(structuredClone(work), before, 'audit must not resolve, approve or otherwise mutate the work');
+});
+
+test('quality audit retains approved-plan blockers and supports an unapproved plan without a world', () => {
+  const service = new NovelService(provider), work = service.createWork('尚无设定的计划');
+  const first = minimalPlan(); first.openQuestions = [{ id: 'old', question: '批准版仍有问题', blocking: true, status: 'open' }];
+  const active = createPlanRevision(work, first, { source: 'author' });
+  assert.ok(qualityAuditFor(work).findings.some(f => f.id === 'plan-question-old'), 'proposal questions must not require an active plan');
+  active.status = 'approved'; work.activePlanId = active.id;
+  const next = minimalPlan(); next.openQuestions = [{ id: 'new', question: '新稿待核', blocking: true, status: 'open' }];
+  createPlanRevision(work, next, { source: 'author', baseRevisionId: active.id });
+  const audit = qualityAuditFor(work);
+  assert.deepEqual(audit.questions.map(q => q.questionId), ['new'], 'current list must not replace the latest proposal with the approved plan');
+  assert.ok(audit.findings.some(f => f.id === 'active-plan-question-old' && f.evidence?.includes('批准计划 v1')));
+  assert.ok(audit.findings.some(f => f.id === 'plan-question-new'));
 });

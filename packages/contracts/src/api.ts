@@ -184,12 +184,18 @@ export const qualityAuditDtoSchema = z.object({
     currentWorldPackRevision: z.number().int().optional(),
     currentStoryBibleRevision: z.number().int().optional(),
     activePlanRevision: z.number().int().optional(),
+    latestPlanRevision: z.number().int().optional(),
     activePlanStoryBibleRevision: z.number().int().optional(),
     activePlanTargetChapterCount: z.number().int().optional(),
     storyBibleTargetChapterCount: z.number().int().optional(),
     manuscriptStoryBibleRevision: z.number().int().optional(),
   }),
   counts: z.record(z.string(), z.number().int().nonnegative()),
+  // Absent on older servers; absence is not an empty, fully resolved list.
+  questions: z.array(z.object({
+    id: z.string(), source: z.enum(['world', 'story', 'plan']), revision: z.number().int(),
+    questionId: z.string(), question: z.string(), blocking: z.boolean(), status: z.enum(['open', 'resolved', 'deferred']),
+  })).optional(),
   findings: z.array(z.object({
     id: z.string(),
     area: z.enum(['world', 'power', 'timeline', 'characters', 'relationships', 'story', 'plan', 'manuscript']),

@@ -5,7 +5,7 @@ import { createHash, randomUUID } from 'node:crypto';
 import { isDeepStrictEqual } from 'node:util';
 import { chapterGenerationGate, validateStoryBible, validateWorldPack } from './world.ts';
 import type { StoryBible, WorldPack } from './world.ts';
-import { activePlan, effectiveBrief, planBlockers, planContentHash, planDesignIssues } from './planning.ts';
+import { activePlan, latestPlan, effectiveBrief, planBlockers, planContentHash, planDesignIssues } from './planning.ts';
 import type { ChapterBrief, PlanRevision } from './planning.ts';
 
 const id = (prefix: string) => `${prefix}_${randomUUID().replaceAll('-', '')}`;
@@ -479,12 +479,17 @@ export interface QualityAudit {
     currentWorldPackRevision?: number;
     currentStoryBibleRevision?: number;
     activePlanRevision?: number;
+    latestPlanRevision?: number;
     activePlanStoryBibleRevision?: number;
     activePlanTargetChapterCount?: number;
     storyBibleTargetChapterCount?: number;
     manuscriptStoryBibleRevision?: number;
   };
   counts: Record<string, number>;
+  questions: Array<{
+    id: string; source: 'world' | 'story' | 'plan'; revision: number;
+    questionId: string; question: string; blocking: boolean; status: 'open' | 'resolved' | 'deferred';
+  }>;
   findings: QualityAuditFinding[];
 }
 
@@ -1250,6 +1255,32 @@ export function qualityAuditFor(work: Work): QualityAudit {
   const world = work.worldPack;
   const bible = work.storyBible;
   const plan = activePlan(work);
+  const latest = latestPlan(work);
+  // Keep each document's record, including equal IDs, resolved entries and
+  // deferred blockers. The latest proposal is distinct from the writing plan.
+  const questions: QualityAudit['questions'] = [];
+  for (const [source, revision, records] of [
+    ['world', world?.revision, world?.unresolvedQuestions],
+    ['story', bible?.revision, bible?.unresolvedQuestions],
+    ['plan', latest?.revision, latest?.plan.openQuestions],
+  ] as const) {
+    if (revision === undefined) continue;
+    for (const [index, question] of (records ?? []).entries()) questions.push({
+      id: JSON.stringify([source, revision, index, question.id]), source, revision,
+      questionId: question.id, question: question.question, blocking: question.blocking, status: question.status,
+    });
+  }
+  for (const question of questions.filter(q => q.blocking && q.status !== 'resolved')) add({
+    id: `${question.source}-question-${question.questionId}`, area: question.source,
+    severity: 'error', message: question.question,
+    evidence: `${{ world: '世界包', story: '故事圣经', plan: '最新计划' }[question.source]} v${question.revision} · ${question.status === 'deferred' ? '已延期，仍阻塞' : '未解决'}`,
+  });
+  if (plan && latest?.id !== plan.id) {
+    for (const question of plan.plan.openQuestions.filter(q => q.blocking && q.status !== 'resolved')) add({
+      id: `active-plan-question-${question.id}`, area: 'plan', severity: 'error', message: question.question,
+      evidence: `批准计划 v${plan.revision}（不是最新提案）；写作仍受此问题约束。`,
+    });
+  }
   const manuscript = [...work.manuscripts.values()]
     .filter((item) => item.status === 'final')
     .sort((a, b) => b.revision - a.revision)[0];
@@ -1263,7 +1294,6 @@ export function qualityAuditFor(work: Work): QualityAudit {
 
   if (world) {
     if (world.status !== 'locked') add({ id: 'world-not-approved', area: 'world', severity: 'warning', message: '世界包修订尚未锁定，结构检查不代表创作审核通过。' });
-    for (const question of world.unresolvedQuestions.filter((item) => item.blocking && item.status !== 'resolved')) add({ id: `world-question-${question.id}`, area: 'world', severity: 'error', message: question.question });
     const result = validateWorldPack(world);
     for (const [index, message] of result.errors.entries()) add({ id: `world-validator-${index}`, area: 'world', severity: 'error', message, recommendation: '修正引用或重新生成对应世界设定。' });
     for (const [index, message] of result.warnings.entries()) add({ id: `world-warning-${index}`, area: 'world', severity: 'warning', message });
@@ -1293,7 +1323,6 @@ export function qualityAuditFor(work: Work): QualityAudit {
   if (world && bible) {
     if (bible.status !== 'locked') add({ id: 'story-not-approved', area: 'story', severity: 'warning', message: '故事圣经修订尚未锁定，人物与情节仍待审核。' });
     if (bible.worldPackId !== world.id || bible.worldPackRevision !== world.revision) add({ id: 'story-world-revision-drift', area: 'story', severity: 'error', message: '故事圣经引用的世界包版本与当前世界包不一致。' });
-    for (const question of bible.unresolvedQuestions.filter((item) => item.blocking && item.status !== 'resolved')) add({ id: `story-question-${question.id}`, area: 'story', severity: 'error', message: question.question });
     const result = validateStoryBible(bible, world);
     for (const [index, message] of result.errors.entries()) add({ id: `bible-validator-${index}`, area: 'story', severity: 'error', message, recommendation: '修正故事圣经中的人物、地点、势力、弧线和章纲引用。' });
     for (const [index, message] of result.warnings.entries()) add({ id: `bible-warning-${index}`, area: 'story', severity: 'warning', message });
@@ -1360,6 +1389,7 @@ export function qualityAuditFor(work: Work): QualityAudit {
       currentWorldPackRevision: world?.revision,
       currentStoryBibleRevision: bible?.revision,
       activePlanRevision: plan?.revision,
+      latestPlanRevision: latest?.revision,
       activePlanStoryBibleRevision: plan?.storyBibleRevision,
       activePlanTargetChapterCount: planTarget || undefined,
       storyBibleTargetChapterCount: bibleTarget || undefined,
@@ -1380,6 +1410,7 @@ export function qualityAuditFor(work: Work): QualityAudit {
       volumes: bible?.volumes.length ?? 0,
       openingChapterPlans: bible?.chapterPlans?.length ?? 0,
     },
+    questions,
     findings,
   };
 }
