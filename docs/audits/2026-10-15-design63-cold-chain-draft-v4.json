@@ -1,0 +1,35 @@
+{
+  "observedAt": "2026-10-15T01:50:43.260939+00:00",
+  "status": "local_question_clarification_pending_full_content_review",
+  "candidateFile": "data/design-candidates/design63-cold-chain-draft-v4.json",
+  "candidateSha256": "75bdc33cbc84c2edf9a1ce6eb02fff33ff8c38b938ce6beb5dceb2c8c09a2e14",
+  "baseCandidateSha256": "886dbaccce053f70493d0e2935ca58ae7eabfaa7e4b7afd9e339027da2ac7168",
+  "changes": [
+    {
+      "sourceId": "plan/overview/openQuestions/north-coast-exit-permit",
+      "before": {
+        "id": "north-coast-exit-permit",
+        "question": "设计59草案补充301—304日苍冥限程离境担保、逐站验籍与候船交接，回程购票改为303日实到通天后；需核权责、时间、费用及旧稿差异，未经复评不能把草案许可视为既有事实。 专项复核另发现rel_05把301出发写成返岗；v4同步为301午出发、311午实到交接后返岗，须独立复核，不倒改原负面记录。 后续独立局部复核已对照当前rel_05与返航里程碑，确认301午离开、311午实到交接的日期一致；原专项负面记录保留。该复核另指出离境回执传递与未到件责任仍不完整，62候选补提303付邮、305—308与308—318实体转送、318当面查阅及缺单待核分支；这仍是待审新提案，尚须复核费用、角色认知和原始负面，不视作已采纳事实或正式四领域通过。",
+        "blocking": true,
+        "status": "open"
+      },
+      "after": {
+        "id": "north-coast-exit-permit",
+        "question": "当前待审设计的离境许可与回执链须复核：ms_v3_return 已拟定300签限程担保、301—304逐站验籍、303实付两段寄递费18、304实际登船后制副本、305晨交车、308晨原巡队收件及午间换车、318午驻地收件；ms_v3_training 与 rel_05 区分311返岗和318实际交阅后知情。请逐项核对原文中的承运、签收、费用、缺单追查、担保持续责任及角色认知，不凭此问题摘要判断执行链。历史59草案及此前局部复核曾指出返岗日期和回执链缺口，原负面保留；上述安排是后续候选补写，尚待正式四领域复核及逐章落实，并非已采用正文事实。此项保持阻断，不能因补写或局部通过自动结清。",
+        "blocking": true,
+        "status": "open"
+      }
+    }
+  ],
+  "unchanged": [
+    "all world and story entities",
+    "all milestones including receipt handovers and rescue ledger",
+    "chapters and volumes",
+    "all blocker ids, status and blocking fields",
+    "approved plan and historical prose"
+  ],
+  "reason": "synthesis-6/history treats a historical unresolved-chain description as a current contradiction; clarify chronology and direct review to complete current sources without claiming the negative is resolved.",
+  "formalAcceptance": false,
+  "productionWrites": false,
+  "modelCallsAdded": 0
+}
