@@ -1,0 +1,265 @@
+{
+  "observedAt": "2026-10-15T08:30:21.153Z",
+  "candidatePath": "data/design-candidates/design63-cold-chain-draft-v5.json",
+  "candidateSha256": "c463fa39fd3160fc75495f39ea3ccb05cd059191abc97f39aa3b599152777266",
+  "previousCandidateSha256": "75bdc33cbc84c2edf9a1ce6eb02fff33ff8c38b938ce6beb5dceb2c8c09a2e14",
+  "changes": [
+    {
+      "path": "plan.chapters[chapterNumber=18].cost",
+      "before": "凝元支付3元载，至第180日保守下界为7−3−161/365≈3.5589，仍保留至少1元载；训练风刃每次支付二成真元，斩铁剑须停手散热。林辰的劳务收入扣除木架赔款，苏没有再次支付一份已让出的优先位。 稳定实测后林在凝元三重的健康真元上限按十成记；训练按一式二成结算，御物另扣，休整时按公共恢复上限复测，余量不够或剑未冷就延期。 终段训练于176日结束后，保守余量按零重新起算，不预支此前未核的恢复；177–179日每晚从修缮库当期劳务结算的基础饭食份额领取并实际吃完正常晚餐、饮水，再在温和灵气环境中连续静息八小时且无施术；饭食已经扣在当期劳务结算内，不再次动用第16章已抵粮的第二枚灵石，也不新增药石或现金，复测分别只记三成、再三成、再四成，179日晚达到健康十成，均未超过每夜四成的恢复上限。180日实测只额外御一次轻物扣半成，180日晚同样实际用餐饮水后连续静息两小时，复测仅补回半成；181–183日按普通步行、乘车和宿营，不御物或施剑。184日行前再核十成，后续从这个明确余额起算。训练期每次施术前均须复测足以付费，余量不足即延期，不把多次训练视作免费。",
+      "after": "凝元支付3元载，至第180日保守下界为7−3−161/365≈3.5589，仍保留至少1元载；训练风刃每次支付二成真元，斩铁剑须停手散热。林辰的劳务收入扣除木架赔款，苏没有再次支付一份已让出的优先位。 稳定实测后林在凝元三重的健康真元上限按十成记；训练按一式二成结算，御物另扣，休整时按公共恢复上限复测，余量不够或剑未冷就延期。 终段训练于176日结束后，保守余量按零重新起算，不预支此前未核的恢复；177–179日每晚从修缮库当期劳务结算的基础饭食份额领取并实际吃完正常晚餐、饮水，再在温和灵气环境中连续静息八小时且无施术；饭食已经扣在当期劳务结算内，不再次动用第16章已抵粮的第二枚灵石，也不新增药石或现金，复测分别只记三成、再三成、再四成，179日晚达到健康十成，均未超过每夜四成的恢复上限。180日实测只额外御一次轻物扣半成，180日晚同样实际用餐饮水后连续静息两小时，复测仅补回半成，180日晚累计余额仍为十成。“补回半成”是本次恢复增量，不是剩余余额：176日零起点加177日三成、178日三成、179日四成，即0+3+3+4=10；180日御物后10−0.5=9.5，晚间实测补回0.5后为10。181–183日按普通步行、乘车和宿营，不御物或施剑，不另计恢复收入。184日行前再核十成，后续从这个明确余额起算。训练期每次施术前均须复测足以付费，余量不足即延期，不把多次训练视作免费。"
+    }
+  ],
+  "onlyOneFieldChanged": true,
+  "unchangedEconomics": {
+    "initial": 0,
+    "recoveries": [
+      3,
+      3,
+      4
+    ],
+    "day180Spend": 0.5,
+    "day180Recovery": 0.5,
+    "closing": 10
+  },
+  "structuralPreflight": {
+    "valid": true,
+    "issues": [],
+    "warnings": [
+      {
+        "path": "worldPack",
+        "message": "blocking unresolved questions remain"
+      },
+      {
+        "path": "storyBible",
+        "message": "blocking unresolved story questions remain"
+      }
+    ],
+    "blockers": [
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-power-opening",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-resource-definitions",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-travel-rules",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-tier-exceptions",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-resource-usage",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-first-volume-foundation",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-volume-timeline",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-artifact-continuity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-ending-cost",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-relationship-stages",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-knowledge-reveal-order",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-opening-growth",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-opening-quality",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-resource-growth-budget",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first-volume-blueprint",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-v1-outline-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-v23-macro",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-guard-return-chain",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-barge-inspection",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-second-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first50-narrative",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-message-arrivals",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-review-capacity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "baseline-content-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "opening-growth-repair",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "opening-quality-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "resource-growth-budget",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first-volume-blueprint",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "v1-outline-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "v23-macro",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "guard-return-chain",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "barge-inspection",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "second-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first50-narrative",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "message-arrivals",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "review-capacity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "convoy-custody-causality",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "north-coast-exit-permit",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "chapter25-claw-sequence",
+        "code": "BLOCKING_QUESTION"
+      }
+    ],
+    "formalAcceptance": false,
+    "productionWrites": false,
+    "limitation": "Checks API contracts and structural references only. Open blockers remain; this does not approve a plan, accept content quality, or certify an atomic save."
+  },
+  "supplementalDiagnostic": {
+    "status": "failed",
+    "calls": 1,
+    "error": "openai-compatible request failed (stream): Our servers are currently overloaded. Please try again later.",
+    "completedReviews": 0,
+    "recordSha256": "ffda7e7f262f13eaea6588131ee270101e63f5c4663284e91b132d36c2a700bf"
+  },
+  "databaseWrites": false,
+  "formalAcceptance": false,
+  "atomicRehearsal": {
+    "status": "passed",
+    "proof": "2026-10-15-design63-v5-atomic-rehearsal.json",
+    "candidateSha256": "c463fa39fd3160fc75495f39ea3ccb05cd059191abc97f39aa3b599152777266",
+    "productionWrites": false
+  },
+  "limitation": "Unapplied wording clarification. No new recovery, resource, skill or accepted prose; formal design62 input and negative batch remain unchanged."
+}
