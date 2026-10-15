@@ -1,0 +1,80 @@
+{
+  "observedAt": "2026-10-15T00:56:27.389653+00:00",
+  "runtimeCommit": "9df915493be44a310c910610b44ef2b65cb153e6",
+  "runtimeRoot": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design62-9df9154",
+  "manifestSha256": "d1891439b41f2e5a75c686172ddfb27832a984b755d1f24b81b5ea27df745333",
+  "preparedManifestSha256": "199e96fc349dc2ea800b9ea18ecfb5fa8081cdf2c783636aab594d8f4bfde5e5",
+  "sourceFileCount": 125,
+  "dependencies": {
+    "source": "isolated_validation_workspace",
+    "entryCount": 40575,
+    "treeSha256": "3c868a6ed3cc488f987f33d91d69305740c859716be340cd26df8aa571bc566d",
+    "allSymlinksStayWithinRuntime": true,
+    "generatedClientCopiedWithoutGeneration": true
+  },
+  "webBuild": {
+    "passed": true,
+    "files": {
+      "apps/web/dist/index.html": "665d5ad5c608922bd1871a0b98f0440f2b574b2a686cb77f8cd4b4312a9e118f",
+      "apps/web/dist/assets/index-CJ7YV8mp.css": "0d87cb9f4f422081c5d5562a7ca412f8913dc879586c3c419bfefd52d39da789",
+      "apps/web/dist/assets/index-BwwTqUmW.js": "1996110a4cc4a4d600b6b80a786af28b2da40e3a92657973caf744c06e601fa5"
+    },
+    "sourceAndDependenciesUnchanged": true
+  },
+  "rubricVersion": 16,
+  "scheduleVersion": 22,
+  "persistenceTransactionTimeoutMs": 120000,
+  "candidateBinding": {
+    "candidateFileSha256": "9667339be4be5b18d277e688340e719dadd00ddefcc635ab629ebd23b3959134",
+    "planId": "plan_d50cad0b6d0142c9b79ab0cad2eabc9b",
+    "inputHash": "80b5930d47111b420c22ae16ecfc355d0dd5d47f8098bad104f8fa08543e1c24",
+    "revisions": {
+      "world": 32,
+      "bible": 62,
+      "plan": 62,
+      "approvedPlan": 10
+    },
+    "persistedReadbackVerified": true
+  },
+  "runnerSha256": "4343e30547195068345ca59211dfb876826a02750906676f8437ca1a63d51083",
+  "apiRunnerSha256": "c7dfca714342db81aeb7516b4e788920ca50c76a71f861e4f39d58b0def74978",
+  "writerPid": 65602,
+  "writerAliveAtObservation": true,
+  "apiPid": 65376,
+  "apiPort": 8787,
+  "webPort": 5180,
+  "corsOrigin": "http://127.0.0.1:5180",
+  "model": "gpt-5.6-luna",
+  "modelTimeoutMs": 600000,
+  "fallback": false,
+  "batchWritingEnabled": false,
+  "protectedOldRuns": 53,
+  "protectedOldReports": 59,
+  "formalStatus": "running",
+  "startedAreas": [
+    {
+      "area": "world",
+      "runId": "design_run_a5e0559b-7302-46a1-b7b1-621552c4bd1f",
+      "completed": 0,
+      "totalAtObservation": 29
+    },
+    {
+      "area": "power",
+      "runId": "design_run_0ed1c9bd-b5fa-499f-bbbd-2175726f3017",
+      "completed": 0,
+      "totalAtObservation": 29
+    }
+  ],
+  "formalAcceptance": false,
+  "uiVerified": {
+    "worldRevision": 32,
+    "bibleRevision": 62,
+    "planRevision": 62,
+    "proposalStatus": true,
+    "designRevisionEntryVisible": true,
+    "productionWritingBlocked": true,
+    "screenshot": "data/audit-ui/design62/deployed-design.png",
+    "screenshotSha256": "754896239753f0b20f380aaa80aa651981a5906eb9a1d967b482859b5087e09f"
+  },
+  "limitation": "Formal model review is running, not accepted. Counts and conclusions can change as followups are added; never restart based only on a stale checkpoint or observation timeout."
+}

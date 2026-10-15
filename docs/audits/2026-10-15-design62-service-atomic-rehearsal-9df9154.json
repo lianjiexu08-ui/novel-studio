@@ -1,0 +1,26 @@
+{
+  "observedAt": "2026-10-15T00:51:38.474Z",
+  "method": "ChapterWorkflow.saveDesignCandidate",
+  "candidateFileSha256": "9667339be4be5b18d277e688340e719dadd00ddefcc635ab629ebd23b3959134",
+  "productionWrites": false,
+  "modelCalls": 0,
+  "injectedPlanInsertFailureRolledBackWholeWork": true,
+  "querySteps": [
+    "update_project",
+    "insert_plan",
+    "rollback"
+  ],
+  "successfulReadback": {
+    "world": 32,
+    "bible": 62,
+    "plan": 62,
+    "approvedPlan": 10,
+    "blockers": 41,
+    "allProposed": true,
+    "reviewReady": false
+  },
+  "oldHistoryAndProsePreserved": true,
+  "oldRuns": 53,
+  "oldReports": 59,
+  "limitation": "Isolated production-sized database copy only. Does not apply the candidate or accept its quality."
+}
