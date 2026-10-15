@@ -9,7 +9,11 @@ const hash = v => createHash('sha256').update(typeof v === 'string' ? v : JSON.s
 const runtime = read(root + '/data/audit-runtimes/design62-runtime-bound.json');
 const baseline = read(root + '/data/audit-runtimes/design62-control/baseline.json');
 const afterTransportFailure = process.argv.includes('--after-transport-failure');
-const recoveryBinding = afterTransportFailure
+const afterSecondTransportFailure = process.argv.includes('--after-second-transport-failure');
+assert.ok(!(afterTransportFailure && afterSecondTransportFailure), 'Choose one recovery checkpoint');
+const recoveryBinding = afterSecondTransportFailure
+  ? { file: 'followup-after-transport-1-result.json', sha256: '48e43fc2bd9e49c58e8318ecff6cca31e5a16df3473d52f4224d1dc841b6d52c', outputPrefix: 'followup-after-second-transport' }
+  : afterTransportFailure
   ? { file: 'followup-1-result.json', sha256: '45a8a91dcc1c4c9d8871227b5f47332dd5856f2400acce436852d86f034c330d', outputPrefix: 'followup-after-transport' }
   : { file: 'resume-2-result.json', sha256: '0f859c7316719fc9d043484a650f5176ebbb21688472713fc34ad52676e820cd', outputPrefix: 'followup' };
 const priorPath = root + '/data/audit-runtimes/design62-control/' + recoveryBinding.file;
