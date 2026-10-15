@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { canonConsistencyChecker, passChecker, ReadinessError, SettingConflictError, StaleCandidateError } from '../../../novel-service-core/src/core.ts';
 import type { ModelProvider } from '../../../novel-service-core/src/core.ts';
 import { addCharacter, addSettingRelationship, unifiedCharacters, updateSettingRelationship } from '../../../novel-service-core/src/bible.ts';
-import { effectiveBrief, PlanConflictError, PlanGateError, planRealization } from '../../../novel-service-core/src/planning.ts';
+import { effectiveBrief, milestonePrerequisites, PlanConflictError, PlanGateError, planRealization } from '../../../novel-service-core/src/planning.ts';
 import type { BookPlan, ChapterOutline } from '../../../novel-service-core/src/planning.ts';
 import { ChapterWorkflow, InMemoryWorkRepository, type PlanProvider } from '../src/index.ts';
 import { approveMinimalPlan, chapterBody, createReadyWork, lockMinimalDesign, minimalOutline, minimalPlan, readyCovenant } from './fixtures.ts';
@@ -181,6 +181,48 @@ test('realization separates insufficient, realized, overdue and not-yet-due, and
   assert.equal(nodes.get('turn-1')?.overdue, true);
   assert.equal(nodes.get('climax-1')?.due, false);
   assert.equal(nodes.get('climax-1')?.overdue, false);
+});
+
+test('a milestone crossing the rolling outline window cannot complete or unlock dependencies from its outlined prefix', async () => {
+  const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), scriptedProvider(chapterNumber => [
+    { eventType: 'plot_progress', subjectId: `chapter-${chapterNumber}`, predicate: 'status', value: { status: 'realized' }, evidence: `第${chapterNumber}章任务已落实` },
+  ]));
+  const work = await workflow.createWork('跨窗口节点', readyCovenant());
+  await lockMinimalDesign(workflow, work.id);
+  await workflow.saveStoryBible(work.id, { ...work.storyBible!, volumes: work.storyBible!.volumes.map(volume => ({ ...volume, plannedChapterCount: 60 })) });
+  await workflow.reviewStoryBible(work.id);
+  await workflow.lockStoryBible(work.id);
+  const plan = minimalPlan(60, { outlined: 50 });
+  plan.milestones = [
+    { id: 'window-climax', title: '跨窗口救援', kind: 'climax', startChapter: 47, endChapter: 53, setup: ['救援准备'], cost: '伤势与工食', outcome: '撤离并完成安置' },
+    { id: 'after-rescue', title: '安置后出航', kind: 'turn', startChapter: 54, endChapter: 55, setup: ['已安置'], cost: '船票', outcome: '出航' },
+  ];
+  plan.dependencies = [{ id: 'needs-whole-rescue', sourceId: 'window-climax', targetId: 'after-rescue', requiredness: 'must', description: '撤离和安置均须完成' }];
+  let revision = await approveMinimalPlan(workflow, work.id, plan);
+  for (let chapter = 1; chapter <= 50; chapter += 1) await writeChapter(workflow, work.id, chapter, work.stateRevision);
+  const node = () => planRealization(work, revision).nodes.find(item => item.nodeId === 'window-climax')!;
+  assert.equal(node().status, 'unrealized');
+  assert.equal(node().due, true);
+  assert.equal(node().overdue, false);
+  assert.equal(node().evidence.length, 4, 'keep evidence for the completed prefix without claiming the whole milestone');
+  assert.equal(milestonePrerequisites(work, revision, 'after-rescue')[0].satisfied, false);
+
+  const expanded = structuredClone(revision.plan);
+  expanded.chapters.push(...[51, 52, 53].map(chapter => minimalOutline(chapter)));
+  revision = await approveMinimalPlan(workflow, work.id, expanded);
+  assert.equal(node().status, 'unrealized', 'outlining the remainder is not prose completion');
+  for (let chapter = 51; chapter <= 53; chapter += 1) {
+    await writeChapter(workflow, work.id, chapter, work.stateRevision);
+    assert.equal(node().status, chapter === 53 ? 'realized' : 'unrealized');
+  }
+  assert.equal(milestonePrerequisites(work, revision, 'after-rescue')[0].satisfied, true);
+  for (const duplicate of [false, true]) {
+    const incomplete = structuredClone(revision);
+    incomplete.plan.chapters = incomplete.plan.chapters.filter(outline => outline.chapterNumber !== 49);
+    if (duplicate) incomplete.plan.chapters.push({ ...incomplete.plan.chapters.find(outline => outline.chapterNumber === 48)! });
+    assert.equal(planRealization(work, incomplete).nodes.find(item => item.nodeId === 'window-climax')!.status, 'unrealized', 'a hole or duplicate cannot prove full range coverage');
+    assert.equal(milestonePrerequisites(work, incomplete, 'after-rescue')[0].satisfied, false);
+  }
 });
 
 test('plans are generated in outline groups that see earlier groups; regenerating a range leaves other outlines unchanged', async () => {
