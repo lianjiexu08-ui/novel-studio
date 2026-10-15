@@ -5,6 +5,7 @@ import { useNavigate, useOutletContext } from 'react-router-dom';
 import { api, ApiRequestError, type NextChapterDto } from '../api';
 import { EditorModal } from './EditorModal';
 import { covenantReady } from '../covenant';
+import { canAdoptChapter } from '../chapter-adoption';
 import type { CandidateDto, ChapterReadinessDto, OutboxEventDto } from 'novel-studio-contracts';
 import type { WorkspaceContext } from './Workspace';
 
@@ -90,7 +91,8 @@ export function WritePage() {
   const [chapterNumber, setChapterNumber] = useState(1);
   const [candidate, setCandidate] = useState<CandidateDto | null>(null);
   const [outbox, setOutbox] = useState<OutboxEventDto[]>([]);
-  const [readiness, setReadiness] = useState<ChapterReadinessDto | null>(null);
+  const [readinessResult, setReadinessResult] = useState<{ key: string; value: ChapterReadinessDto | null } | null>(null);
+  const [readinessRefresh, setReadinessRefresh] = useState(0);
   const [manuscriptId, setManuscriptId] = useState<string | null>(null);
   const [busy, setBusy] = useState<string | null>(null);
   const [next, setNext] = useState<NextChapterDto | null>(null);
@@ -114,11 +116,18 @@ export function WritePage() {
     api.outbox(work.id).then((result) => setOutbox(result.events)).catch(() => {});
   }, [work.id, work.stateRevision]);
 
-  const loadReadiness = useCallback(() => {
-    api.readiness(work.id, chapterNumber).then(setReadiness).catch(() => setReadiness(null));
-  }, [work.id, chapterNumber]);
+  const readinessKey = JSON.stringify([work.id, chapterNumber, work.stateRevision, work.constraintRevision, readinessRefresh]);
+  const readiness = readinessResult?.key === readinessKey ? readinessResult.value : null;
+  const readinessFailed = readinessResult?.key === readinessKey && readinessResult.value === null;
+  const loadReadiness = useCallback(() => setReadinessRefresh(value => value + 1), []);
 
-  useEffect(() => { loadReadiness(); }, [loadReadiness, work.stateRevision, work.constraintRevision]);
+  useEffect(() => {
+    let cancelled = false;
+    api.readiness(work.id, chapterNumber)
+      .then(value => { if (!cancelled) setReadinessResult({ key: readinessKey, value }); })
+      .catch(() => { if (!cancelled) setReadinessResult({ key: readinessKey, value: null }); });
+    return () => { cancelled = true; };
+  }, [work.id, chapterNumber, readinessKey]);
 
   async function run(step: string, action: () => Promise<void>, success?: string) {
     setBusy(step);
@@ -136,7 +145,7 @@ export function WritePage() {
   const candidateChecked = !!candidate?.checks.length;
   const candidatePassed = candidateChecked && candidate!.checks.every((c) => c.status === 'passed');
   const missingChecks = candidate && readiness ? readiness.requiredChecks.filter((name) => !candidate.checks.some((c) => c.checker === name)) : [];
-  const adoptable = !!candidate && candidate.origin === 'model' && !candidate.stale && candidatePassed && missingChecks.length === 0;
+  const adoptable = canAdoptChapter(candidate, readiness, { workId: work.id, chapterNumber, stateRevision: work.stateRevision, constraintRevision: work.constraintRevision });
   const activeStep = !candidate ? 1 : candidatePassed ? 3 : 2;
   const formalReady = readiness?.ready ?? false;
 
@@ -175,6 +184,7 @@ export function WritePage() {
           </div>
         </div>
 
+        {!readiness && <p className="panel-note">{readinessFailed ? <>准备状态读取失败，暂不能正式生成或采用。<Button size="small" onClick={loadReadiness}>重新读取</Button></> : '正在核对本章准备状态…'}</p>}
         {readiness && !readiness.ready && (
           <div className="setting-list" style={{ marginBottom: 12 }}>
             {readiness.blockers.map((blocker) => (
@@ -206,7 +216,7 @@ export function WritePage() {
               const result = await api.check(work.id, candidate!.id);
               setCandidate(result.candidate ?? null);
             })}>运行检查</Button>
-          <Button type="primary" ghost icon={<RocketOutlined />} disabled={!adoptable} loading={busy === 'adopt'}
+          <Button type="primary" ghost icon={<RocketOutlined />} disabled={!adoptable || busy !== null} loading={busy === 'adopt'}
             onClick={() => run('adopt', async () => {
               await api.adopt(work.id, candidate!.id, work.stateRevision);
               setCandidate(null);
