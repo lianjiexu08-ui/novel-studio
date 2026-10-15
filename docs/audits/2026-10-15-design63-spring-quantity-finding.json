@@ -1,0 +1,110 @@
+{
+  "status": "independent_source_comparison_pending_formal_disposition",
+  "runId": "design_run_5f1d3886-b45e-4009-9d97-a24b8c8ce1af",
+  "stageId": "batch-2",
+  "inputHash": "7a49ebc0415c36a0c9a92c1180e0ecddfc29466dc3f6221fa5c10881df1e02f0",
+  "originalFinding": {
+    "criterion": "costs",
+    "verdict": "revise",
+    "explanation": "寿储规则要求资源剂量、疗程和收入逐笔核算且不得重复记入（e14-e15）。但第一卷结果写“两剂共6滴灵泉”，同时另一处写林让出完整三滴后“自己封存六滴”，按字面形成至少9滴的库存口径，与两剂共6滴不闭合；该矛盾不能靠后续细纲补账。另有第25章真光消耗0.25元载和三成元罡的明确成本，规则与beat记录一致，但仍需在对应章确认余量与恢复未被重复使用。",
+    "evidence": [
+      {
+        "sourceId": "review-unit/11",
+        "quote": "{\n  \"id\": \"ax_09\",\n  \"title\": \"自然寿源只在完成疗程后入账\",\n  \"content\": \"任何自然形成的延寿资源必须同时满足来源验真、配额登记、适格境界、伤情诊察、完整疗程和复诊确认，方可增加未来可用寿储。采收上限、市场价格、持有凭证、传闻库存和未完成疗程不得预支寿元。该收入不返还已燃寿元、已付晋阶成本、自然衰老、道伤、神魂本源或术法冷却。 下列新成熟日是候选世界自然周期的相位设定，不是前百章已知消息、现有库存或给主角的承诺。成熟窗表示生态合格时可形成的上限，现场测得产量不足或审批未通过时条件账分支中止。\",\n  \"scope\": \"全域命寿资源与医疗\",\n  \"precedence\": 9,\n  \"status\": \"proposed\"\n}"
+      },
+      {
+        "sourceId": "review-unit/12",
+        "quote": "{\n  \"id\": \"ax_10\",\n  \"title\": \"自然寿源配额不得跨账或跨周期预支\",\n  \"content\": \"自然寿源的形成周期、保护配额和个人终生上限分别记账。保育额、公共医疗额、应急额和未来周期产量不得转为当前个人库存；不同资源之间不得按品阶、货币、法力或灵石自动兑换。运输、保存、污染和疗程失败造成的损失不可由下一周期自动补发。 新寿储可以逐笔支付未来成本；“不返还过去”不等于禁止支付未来。禁止重复记入同一疗程。res_09规则及已用两剂保持不变。\",\n  \"scope\": \"资源供给、势力权限与寿储核算\",\n  \"precedence\": 10,\n  \"status\": \"proposed\"\n}"
+      },
+      {
+        "sourceId": "review-unit/135",
+        "quote": "{\n  \"id\": \"arc_01\",\n  \"title\": \"青玄求生与有限争泉\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_03\",\n    \"char_04\",\n    \"char_07\",\n    \"char_08\",\n    \"char_09\",\n    \"char_10\",\n    \"char_11\",\n    \"char_12\",\n    \"char_13\",\n    \"char_17\",\n    \"char_18\"\n  ],\n  \"goal\": \"在伤势与短寿限制下真正修成凝元，进入有门槛的古境，联合同伴击破墨幽屠本次掳人夺泉行动，取得有限泉液并付出分离代价南渡；卷末凝元三重，不使用逆命真解。\",\n  \"stakes\": \"短寿与伤势限制修行；盲目入境或追击玄府敌人会送命，救人和抢泉不能同时获得所有好处。\",\n  \"plannedOutcome\": \"第32章第216日暮抵达赤霄天宝外港。林辰凝元三重，两剂共6滴灵泉均已按十日疗程和复诊完成，保守预算约13.460274元载；这是有前提的规划下界，伤病须复评。墨负伤被羁押、林辰个人分得的泉液余量为零；苏留宗照看证人与押解，主角没有燃寿白发。\"\n}"
+      },
+      {
+        "sourceId": "review-unit/154",
+        "quote": "{\n  \"id\": \"v1-gu-counter\",\n  \"arcId\": \"arc_01\",\n  \"characterId\": \"char_10\",\n  \"kind\": \"cost\",\n  \"plannedChapter\": 25,\n  \"expectedChange\": \"顾亲至后承受同阶正面战，一次太乙真光消耗三成元罡和0.25元载、肩伤；随行两名护卫一死一伤。\"\n}"
+      },
+      {
+        "sourceId": "review-unit/157",
+        "quote": "{\n  \"id\": \"v1-lin-share\",\n  \"arcId\": \"arc_01\",\n  \"characterId\": \"char_01\",\n  \"kind\": \"choice\",\n  \"plannedChapter\": 26,\n  \"expectedChange\": \"林辰让出完整三滴给寿储告急者，自己封存六滴，明确不将三滴拆作两人的有效疗程。\"\n}"
+      },
+      {
+        "sourceId": "review-unit/34",
+        "quote": "{\n  \"id\": \"tech_06\",\n  \"name\": \"太清太乙真光\",\n  \"kind\": \"technique\",\n  \"tier\": \"地阶\",\n  \"allowedRealmIds\": [\n    \"realm_03\",\n    \"realm_04\"\n  ],\n  \"effect\": \"以本人当境纯阳法力凝成太乙真光：玄府用元罡，神海用本境法力，均按ax_07从唯一当境账户支出；同一人不另开低境元罡余额。真光克制外放的阴煞血爪，可灼散其表层煞气、破坏出爪节奏；不自动消除对手的玄府元罡、境界或行动能力。克制后仍须同阶实战制伏，不能把属性相克当成永久封禁。\",\n  \"cost\": \"每次完成法印支付三成本人当境健康稳定法力上限（玄府为元罡，神海为本境法力）与0.25元载寿储；旧称“三个月寿元”按命寿核算律固定为四分之一元载，不另用历法月长计费。\",\n  \"limitations\": [\n    \"阴煞死渊深处光芒威能被大幅压制\",\n    \"蓄势施展需三个呼吸间隔\",\n    \"每次完成法印即支付三成本人当境健康稳定法力上限与0.25元载，放空也不返还；法印未成即受近身打断时需散去蓄势，至少损本人当境法力一成（实际损耗按实测，不足不得起印），不能把未付寿元当成已完成施术。\",\n"
+      }
+    ],
+    "revisionAdvice": "统一第一卷灵泉总量、分配量、实际疗程用量和剩余库存：明确“6滴”究竟是总产出、林自留量还是两剂疗程用量，并删除或改写“让出3滴、自己封存6滴”的冲突数字；同时在第25章和相关战斗账中逐项列出真元/元罡、寿储、冷却及伤后可用上限。"
+  },
+  "sourceEvidence": [
+    {
+      "sourceId": "story/arcs/arc_01",
+      "sourceSha256": "16da006266fc0902a72a5c7c9686d927c5f9a268d65e6a8785819ae16951c719",
+      "providedRangesInFailedBatch": [
+        {
+          "start": 0,
+          "end": 553
+        }
+      ],
+      "fields": {
+        "plannedOutcome": "第32章第216日暮抵达赤霄天宝外港。林辰凝元三重，两剂共6滴灵泉均已按十日疗程和复诊完成，保守预算约13.460274元载；这是有前提的规划下界，伤病须复评。墨负伤被羁押、林辰个人分得的泉液余量为零；苏留宗照看证人与押解，主角没有燃寿白发。"
+      }
+    },
+    {
+      "sourceId": "story/arcBeats/v1-lin-share",
+      "sourceSha256": "f01bf069c2ce781044016c5d80d7e86acab42239f951d5f7b938403042e16f15",
+      "providedRangesInFailedBatch": [
+        {
+          "start": 0,
+          "end": 181
+        }
+      ],
+      "fields": {
+        "expectedChange": "林辰让出完整三滴给寿储告急者，自己封存六滴，明确不将三滴拆作两人的有效疗程。"
+      }
+    },
+    {
+      "sourceId": "plan/chapters/26",
+      "sourceSha256": "67a3d56dff121b31813814834652ca9928006e7025688d15fcd749c5624ba4dc",
+      "providedRangesInFailedBatch": [],
+      "fields": {
+        "endState": "第189日，墨已于188日午正由顾交乔、酉初由乔交邵，夜班未空置；杜/褚守入口、乔/邵看押，07–19日班与19–次日07夜班各12小时，顾休养不占班额。九滴洁净泉液已按原批个人可分额正式登记三滴给告急者、六滴由林封存；污染管三滴单独登记扣原批损失，不补额；林只登记领药、既用有效剂数仍零，未提前增加寿储；幕后网络仍未揭开。",
+        "scenes": [
+          "白榆在来源核对之外逐管独立验毒验煞：三支原封管共九滴可用，破损管三滴污染单独封存待处置；没有把污染管重新算进可用量。入口书吏将追回12、洁净9、污染损失3接回182日同一批，追回不另开12滴配额。白榆复查同批申请：一名采集者寿储告急，林寿储仍低且此前未用过灵泉，另一伤者只需常规外伤治疗；顾苏撤回本批个人申请，不据救援功劳优先分药。",
+          "白榆建议先救急，书吏说明林原申请九滴与告急者三滴相冲突，若坚持原申请须暂缓本批个人分配交三方复核；申请不是已经归林的药。林主动撤去一剂申请，同意告急者先领3滴，不索回报。入口配额台据双方签认、诊察与本批余量核准另6滴两支封管给林，净分9不超过原批可分量；林不动污染管、不预借下期份额。原批登记、各人领用页、林既用有效剂数零及拟用两剂分栏记，林与告急者各自签收；189日只有原液出入账，林药程190日才开始，两剂未来10元载不能先花。另一伤者常规治疗另走既有药账，泉液不治伤。"
+        ]
+      }
+    },
+    {
+      "sourceId": "plan/milestones/ms_vol1_climax",
+      "sourceSha256": "fe6d4c5af910697aa511fb5bf21e9c29f7100acefc4b9a4cff535b7f46efc91e",
+      "providedRangesInFailedBatch": [],
+      "fields": {
+        "outcome": "本次掳人营地停止运作，墨活着被羁押；9滴洁净泉液中林辰得6滴，3滴给寿储告急者，3滴污染样本隔离。林辰腿伤、顾肩伤、苏剑损；没有斩王器或晋入神海。"
+      }
+    },
+    {
+      "sourceId": "plan/milestones/ms_growth_v1_aftermath",
+      "sourceSha256": "c663b5f11e76335c99d7f4467e4227281c53bf11d4c44c84ce1b77566281048e",
+      "providedRangesInFailedBatch": [],
+      "fields": {
+        "outcome": "第190–211日；境界：realm_02第三重。按此蓝图分批补章纲，条件未实现不得提前进入下一阶段。",
+        "setup": [
+          "189日先按182日联名采封原联、入口对照页和获救采封人的亲历核四支各3滴原管；三支原封相合、独立验毒后共9滴洁净，破损污染3滴在原批扣损，不重复记追回配额。原批属尚未指名的本期个人申请可分额，林将183日原三剂申请自愿下调两剂，联名授权入口配额台据协商签认与诊察先分告急者3滴，余6滴批准林两剂并记领管号、既用有效剂数0；不占公共医疗、应急、保育或他人已指名量。190、200各启一支，199、209复诊后才各记5元载，有效剂数到2、个人原液到0。"
+        ]
+      }
+    }
+  ],
+  "quantityComparison": {
+    "recovered": 12,
+    "contaminated": 3,
+    "usable": 9,
+    "emergencyRecipient": 3,
+    "protagonistAllocated": 6,
+    "protagonistDoses": 2,
+    "dropsPerDose": 3,
+    "protagonistRemainingAfterCourses": 0
+  },
+  "interpretation": "The cited six drops describe the protagonist’s completed two courses, not the total recovered or usable quantity. Detailed chapter and milestone sources explicitly distinguish allocation, consumption, contamination and remaining inventory. No basis found here to change nine usable drops to six or invent extra supply. The short choice beat also compresses withdrawal of an application into letting another person receive the dose; a later clarification may distinguish application from ownership.",
+  "formalVerdictOverridden": false,
+  "productionDesignChanged": false
+}
