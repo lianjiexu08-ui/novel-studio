@@ -1,0 +1,59 @@
+{
+  "kind": "manual_findings_required_for_final_reconciliation",
+  "inputHash": "7a49ebc0415c36a0c9a92c1180e0ecddfc29466dc3f6221fa5c10881df1e02f0",
+  "findings": [
+    {
+      "path": "docs/audits/2026-10-15-design63-spring-quantity-finding.json",
+      "sha256": "956d11c510f24ebab8c84a9e6359c7e52c136ccf345aae381cbd784fd77ab9cd",
+      "inputHash": "7a49ebc0415c36a0c9a92c1180e0ecddfc29466dc3f6221fa5c10881df1e02f0",
+      "runId": "design_run_5f1d3886-b45e-4009-9d97-a24b8c8ce1af",
+      "stageId": "batch-2",
+      "stageSha256": null,
+      "observation": "灵泉追回量、洁净量与林实际分配量需分开；原负面保留。",
+      "status": "requires_final_reconciliation"
+    },
+    {
+      "path": "docs/audits/2026-10-16-design63-story-lifespan-finding.json",
+      "sha256": "ad1916062d2c20ed3a6bd2b55ca4e003a09d1104cc77a77c5a4ca94e722e14bd",
+      "inputHash": "7a49ebc0415c36a0c9a92c1180e0ecddfc29466dc3f6221fa5c10881df1e02f0",
+      "runId": "design_run_a1ae5a57-f9bf-4af3-8093-550e3d3ded22",
+      "stageId": "batch-4",
+      "stageSha256": "7adbcc13dc78198afe5057d1af8d5242bf2d67b5b92e69e0a47f1c58abd5267a",
+      "observation": "林真元、顾寿储与条件性延寿不可混账；原四项返修保留。",
+      "status": "requires_final_reconciliation"
+    },
+    {
+      "path": "docs/audits/2026-10-16-design63-custody-summary-finding.json",
+      "sha256": "20c1ac76fa28d7121d71c0cdf46bcbf1c4c8f53fd1d087549f4bd8127fcc2124",
+      "inputHash": "7a49ebc0415c36a0c9a92c1180e0ecddfc29466dc3f6221fa5c10881df1e02f0",
+      "runId": "design_run_a1ae5a57-f9bf-4af3-8093-550e3d3ded22",
+      "stageId": "followup-batch-2/payoff",
+      "stageSha256": "a0033e8f55ba3752e60c1d46c1a95034b3bc1a8930d39e38fc8cbcfe5c75bd07",
+      "observation": "50章脱控的是吴伍、卢小满；陆仍受看护。",
+      "status": "requires_final_reconciliation"
+    },
+    {
+      "path": "docs/audits/2026-10-16-design64-account-and-date-v3.json",
+      "sha256": "3ad69d5dfcc16ec59f4ea481b9807c7f6278f3858e735115abe35b7c6b4bc955",
+      "inputHash": "7a49ebc0415c36a0c9a92c1180e0ecddfc29466dc3f6221fa5c10881df1e02f0",
+      "runId": null,
+      "stageId": null,
+      "stageSha256": null,
+      "observation": "29章诊察210日、交接211日的矛盾只在未应用v3候选修订。",
+      "status": "requires_final_reconciliation"
+    },
+    {
+      "path": "docs/audits/2026-10-16-design63-entry-chapter-summary-finding.json",
+      "sha256": "2aadf39bd28c5a191e2c7b72f43bfe35f33d140a28e892393228a84087f81adb",
+      "inputHash": "7a49ebc0415c36a0c9a92c1180e0ecddfc29466dc3f6221fa5c10881df1e02f0",
+      "runId": "design_run_4ce361d8-d17c-41d8-b1b4-bbdbee7f0baa",
+      "stageId": "followup-batch-2/geography",
+      "stageSha256": "8d5f23212543f4c0cd37930b7625568783345436486aa0fea85bb96742c0a57b",
+      "observation": "18章资格核验与19章实体入境不可混写。",
+      "status": "requires_final_reconciliation"
+    }
+  ],
+  "formalVerdictsOverridden": false,
+  "questionsResolved": 0,
+  "designApproved": false
+}
