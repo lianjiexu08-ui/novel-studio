@@ -1,0 +1,70 @@
+{
+  "observedAt": "2026-10-15T13:54:09.707760+00:00",
+  "status": "formal_review_running_not_accepted",
+  "runtimeCommit": "6c505a3d6afae5bb275f8cd509e2455a48753857",
+  "runtimeRoot": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design63-6c505a3",
+  "manifestSha256": "e10f2dc72be52de76f3580199633eb6f1825a3f54e7a09897033b4ab982d6e7c",
+  "sourceFilesVerified": 130,
+  "frontendCommit": "c9907d982464bbb10a080376d1b7a0706eee5176",
+  "frontendOutputDirectory": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-ui/design63/c9907d9",
+  "candidateBinding": {
+    "candidateFileSha256": "7ed5646fcf4aaca63f16e055c43d20dd694fddc1e95cd85c37d6d9ff25a839ff",
+    "planId": "plan_6fa43ac6419c44f1b64fbe3390eff759",
+    "inputHash": "7a49ebc0415c36a0c9a92c1180e0ecddfc29466dc3f6221fa5c10881df1e02f0",
+    "revisions": {
+      "world": 33,
+      "bible": 63,
+      "plan": 63,
+      "approvedPlan": 10
+    },
+    "persistedReadbackVerified": true
+  },
+  "rubricVersion": 16,
+  "scheduleVersion": 23,
+  "runnerSha256": "ead4aac36270e1f5c1c667f137f9e74d044cb393edb3a1bc30140ed6135643f4",
+  "apiRunnerSha256": "d0d94b8ae3ebcecedf2e370f7c2752b483f400899e3f3d9bfd6e80cad689ef28",
+  "reviewPid": 73456,
+  "apiPid": 72634,
+  "webPid": 72642,
+  "apiPort": 8787,
+  "webPort": 5180,
+  "model": "gpt-5.6-luna",
+  "timeoutMs": 600000,
+  "fallback": false,
+  "concurrency": 1,
+  "maxCalls": 400,
+  "reviewQueue": [
+    "world",
+    "power",
+    "characters",
+    "story"
+  ],
+  "startedAreas": [
+    {
+      "area": "world",
+      "runId": "design_run_4ce361d8-d17c-41d8-b1b4-bbdbee7f0baa",
+      "completed": 0,
+      "totalAtObservation": 29
+    }
+  ],
+  "protectedRuns": 57,
+  "protectedReports": 63,
+  "protectedHistoryUnchanged": true,
+  "batchWritingEnabled": false,
+  "proseGenerated": false,
+  "designApproved": false,
+  "retainedBlockers": 41,
+  "uiVerified": {
+    "worldRevision": 33,
+    "bibleRevision": 63,
+    "selectedPlanRevision": 63,
+    "selectedPlanStatus": "proposed",
+    "productionWritingBlocked": true,
+    "oldReportsOutdated": true,
+    "screenshot": "data/audit-ui/design63/deployed/design.png",
+    "screenshotSha256": "5f31a7d72d87721e17f74bb36fd163c88c7894cfe3df5be2f28830fbe22254e7",
+    "text": "data/audit-ui/design63/deployed/design.txt",
+    "textSha256": "4186e5b9e926d176880bead08e6df111a9ff06c15fdd73cbf48eb13904bd41d2"
+  },
+  "limitation": "Review is active; observations are not completion or acceptance. Do not duplicate the live worker or approve the proposal based on partial results."
+}

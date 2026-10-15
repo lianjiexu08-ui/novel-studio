@@ -1,0 +1,58 @@
+{
+  "observedAt": "2026-10-15T13:49:10.525Z",
+  "status": "production_saved_proposed_not_accepted",
+  "method": "ChapterWorkflow.saveDesignCandidate",
+  "candidateFileSha256": "7ed5646fcf4aaca63f16e055c43d20dd694fddc1e95cd85c37d6d9ff25a839ff",
+  "changedRecords": 10,
+  "planId": "plan_6fa43ac6419c44f1b64fbe3390eff759",
+  "revisions": {
+    "world": 33,
+    "bible": 63,
+    "plan": 63,
+    "approvedPlan": 10
+  },
+  "statuses": [
+    "proposed",
+    "proposed",
+    "proposed"
+  ],
+  "retainedBlockers": 41,
+  "oldHistorySha256": "b1e7be774c7b59e997b1928d9b3792b791aa8c0fbb7fdeda61e17ff4141805e2",
+  "allOldHistoryPreserved": true,
+  "oldRuns": 57,
+  "oldReports": 63,
+  "contentReview": {
+    "ready": false,
+    "areas": [
+      {
+        "area": "world",
+        "status": "outdated",
+        "reportId": "design_review_356f219a-a43c-4cde-adf1-418c1cb3b540"
+      },
+      {
+        "area": "power",
+        "status": "outdated",
+        "reportId": "design_review_fb87c8f7-e986-4b28-a394-67da6c1149b4"
+      },
+      {
+        "area": "characters",
+        "status": "outdated",
+        "reportId": "design_review_df24b5ef-fa42-4a27-80a8-eabeb8760460"
+      },
+      {
+        "area": "story",
+        "status": "outdated",
+        "reportId": "design_review_4ffad6e9-8ec8-4cad-9aca-91e601038595"
+      }
+    ]
+  },
+  "backup": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-backups/2026-10-15-before-design63.db",
+  "modelCalls": 0,
+  "proseGenerated": false,
+  "persistedReadbackVerified": true,
+  "counts": {
+    "versions": 101,
+    "events": 383,
+    "manuscripts": 1
+  }
+}
