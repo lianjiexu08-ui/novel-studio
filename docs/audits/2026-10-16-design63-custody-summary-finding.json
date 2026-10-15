@@ -1,0 +1,59 @@
+{
+  "observedAt": "2026-10-15T17:32:44.212Z",
+  "kind": "manual_source_comparison_of_review_summary",
+  "runtimeCommit": "6c505a3d6afae5bb275f8cd509e2455a48753857",
+  "inputHash": "7a49ebc0415c36a0c9a92c1180e0ecddfc29466dc3f6221fa5c10881df1e02f0",
+  "runId": "design_run_a1ae5a57-f9bf-4af3-8093-550e3d3ded22",
+  "stageId": "followup-batch-2/payoff",
+  "stageSha256": "a0033e8f55ba3752e60c1d46c1a95034b3bc1a8930d39e38fc8cbcfe5c75bd07",
+  "stageInputSha256": "d59bb776a8bd8d481056019f5c6ca5b81724d32f6c12d21913155a70303b41a8",
+  "originalCheckSha256": "0d1172741decbeed4478f386e13e8b8730ebe8af21c1dd6d4009a9f63f8873c7",
+  "originalCheck": {
+    "criterion": "payoff",
+    "verdict": "pass",
+    "explanation": "原问题要求核对第一、第二残片、陆的签认副本、北境封签、撤人令及赵的正式质询是否分别在实际送达和见证后改变相关人物认知，并排除重复消费或遗漏。本次补读已实际提供并核验原问题片段、既有关系/秘密/弧线/消息依据，以及 plan/chapters/33–50 全部逐章细纲和 ms_v2_loss、ms_v2_barge、ms_v2_fire、ms_v2_voyage、ms_v2_boundary、ms_v3_return、ms_v3_training、ms_v3_advancement、ms_v3_convoy、ms_v3_payoff 各里程碑。第一残片继续由林持有，第二片由程转交赵府后保持林未知；陆在第50章脱控、第53章拟以亲历范围签认自述，但原账和原条仍未被替代；苏信、程报、赵回令、北境封签、撤人令及正式质询均设置了分开的实体送达、签收或当面核验节点。第61–66章以救七人而放弃追第二片、夜守撤离路，第67–72章以限程返乡与交证，第73–87章以父案局部互证和玄府成长，第88–95章以撤押、交械、救八人，第96–100章以安置与有限问责收束，均保留了选择、资源/伤情代价及未完全解决的后果。宏观中的51–100章虽仍非全部逐章细纲，但其阶段目标、因果顺序与已补读的33–50章承接一致，未发现同一兑现被重复消费或被另一处取消。故本次明确解决 pending check batch-2/payoff；这只表示所审设计提案可行，不表示正文已经实现。",
+    "revisionAdvice": "",
+    "resolves": [
+      "batch-2/payoff"
+    ],
+    "evidenceCount": 92,
+    "evidenceSha256": "b212c1fb4e7e1c0717afde5e5d061be355114dacb100636f7a41d8cc5c99b3ff"
+  },
+  "source": {
+    "id": "plan/chapters/50",
+    "sha256": "badd08c21875113802c156610339e1b26b1ecd969cbcfef410787f67871b0752",
+    "includedRanges": [
+      {
+        "id": "review-unit/365",
+        "sourceId": "plan/chapters/50",
+        "start": 0,
+        "end": 2120
+      }
+    ],
+    "summary": "254晨，陆带巡查到北三门。看守称吴伍、卢小满是自愿留下候工，贺在门外喊名，两人却要求出去。看守急着合门，吴卢从内侧顶住，旧押运头目陆被喊来帮忙压门。林原已握住剑柄，见门缝里露出两人的手，松开剑，让巡员走到能听清回答的位置，要求当面问他们是否愿留。陆伸向木闩的手停住，转而向外拉；一名巡员夺闩控制持闩者，另一名截住想退向后巷的看守。吴卢自己推开门走进外院。吴指认陆曾把他们点交到这里，陆当着巡员承认，不再用认路掩盖押送。贺说船修好便能接他们回去，吴却说回不回船要由他们自己定，卢也不愿立即上船。贺让开去船坞的方向，先陪两人去安全落脚。五名雇工至此全部脱控；被谁雇用、为谁作证，仍由他们自己回答。",
+    "endState": "254晨，吴伍、卢小满自己走出北三门到安全外院，和244获救的唐许冯合计五人脱控；两名未入境普通看守均被巡员控制。陆当面承认本次点交押送，继续受看护，尚未写出完整改签自述。林未施术，保守余量三成半，旧伤许可不变；程不在现场，林不知道其位置或第二片封匣状态。吴卢拒绝立即承诺回贺船，贺接受先安置、再分别谈去留。"
+  },
+  "citationsToChapter50": [
+    {
+      "sourceId": "review-unit/365",
+      "quote": "{\n  \"id\": \"chapter-50\",\n  \"chapterNumber\": 50,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"门闩交给谁\",\n  \"summary\": \"254晨，陆带巡查到北三门。看守称吴伍、卢小满是自愿留下候工，贺在门外喊名，两人却要求出去。看守急着合门，吴卢从内侧顶住，旧押运头目陆被喊来帮忙压门。林原已握住剑柄，见门缝里露出两人的手，松开剑，让巡员走到能听清回答的位置，要求当面问他们是否愿留。陆伸向木闩的手停住，转而向外拉；一名巡员夺闩控制持闩者，另一名截住想退向后巷的看守。吴卢自己推开门走进外院。吴指认陆曾把他们点交到这里，陆当着巡员承认，不再用认路掩盖押送。贺说船修好便能接他们回去，吴却说回不回船要由他们自己定，卢也不愿立即上船。贺让开去船坞的方向，先陪两人去安全落脚。五名雇工至此全部脱控；被谁雇用、为谁作证，仍由他们自己回答。\",\n  \"characterGoals\": \"吴卢要走出门并决定自己的去处；贺想救回原班雇工，却须接受他们未必再上自己的船；陆想把自己限定为带路人，旧手下和吴的当面指认迫使他决定是否继续参与扣人；林要让工人的亲口选择被现场听见，巡员要核实是否自愿并制止实际拦阻。\",\n"
+    }
+  ],
+  "observations": [
+    "The model explanation assigns chapter50 release to Lu.",
+    "The outline identifies Wu Wu and Lu Xiaoman as the released workers; three workers were rescued earlier.",
+    "Lu admits the handover/escort and remains under supervision. His planned chapter53 statement is not release or immunity.",
+    "The complete chapter50 source was available; the cited summary itself identifies the workers who leave."
+  ],
+  "disposition": "Review-summary attribution error to reconcile before overall acceptance; not a reason to alter the outline or grant Lu freedom.",
+  "originalFormalVerdictPreserved": true,
+  "questionResolutionAutomaticallyOverridden": false,
+  "designModified": false,
+  "proseGenerated": false,
+  "sourceFilesVerified": 130,
+  "replayedResponses": 2,
+  "modelCalls": 0,
+  "productionReads": 0,
+  "productionWrites": 0,
+  "limitation": "Replay proves saved output and citation-format integrity, not semantic truth. This source comparison identifies one unsupported attribution; it does not certify or overturn every other payoff judgment."
+}
