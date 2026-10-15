@@ -1,0 +1,361 @@
+{
+  "kind": "proposed_cost_word_order_clarification",
+  "observedAt": "2026-10-15T23:36:43.284Z",
+  "sourcePath": "data/design-candidates/design64-opening-budget-checks-draft-v9.json",
+  "sourceSha256": "b59b6d84abaab658b8d6152c2ebe4242dfe2ed15cbd3a3d1f29f514db8dfd5a4",
+  "candidatePath": "data/design-candidates/design64-cost-wording-draft-v10.json",
+  "candidateSha256": "0ae66cd4c90a9d02de50cc5cbc9d8be518b111538822bdbe8a09f94edba8d5b9",
+  "inputHash": "32f6ca9f61bbb70b8b56a0a7908ca086a0ce1b6ff4554ff3bafdf7428f05465f",
+  "runId": "design_run_5bd0da20-d492-4f62-8378-60f728b3bb87",
+  "stageId": "cross-1-2",
+  "resultSha256": "0ba61886231b47e1d7b6b9e73da1230c03aa5a49493f5f8662cf4e57f4a40bb0",
+  "modelResponsesSha256": "b1b7d6e6f7793f88a589baa9311d2d0563763f02d6a384f6e08a4f93b731f136",
+  "originalFindings": [
+    {
+      "criterion": "tiers",
+      "verdict": "revise",
+      "explanation": "境界阶梯、功法/法宝/资源品阶与境界承载原则总体相容，且明确“不等于自动掌握”。但太清太乙真光的成本原文写作“支付三成本人当境健康稳定法力上限”，与后文“每次……支付三成”不一致，无法把它作为可执行的正式成本；该歧义还会影响顾峤第25章及后续真光使用资格核验。应统一为明确的“三成”，并保留玄府/神海分别从唯一当境法力账户扣除的规则。",
+      "evidence": [
+        {
+          "sourceId": "review-unit/8",
+          "quote": "{\n  \"id\": \"ax_06\",\n  \"title\": \"境界承载与实际施术\",\n  \"content\": \"境界能力栏描述该层能够修习和承载的能力方向，不是一份自动掌握、免费发动的万能招式清单。晋阶费用、术法发动费与持续消耗分别记账；晋阶不等于预付后续法术。实际施术须有已掌握的功法、法宝或明确基础操作规则，逐项满足其对象、范围、供能、时机和中断后果；境界名称不能绕过这些条件。已由ax_05定义的凝元轻物御动等基础操作仍按原规则执行，普通步行、说话、握持不因此加收术法费。尚未展开的高阶术式可以保留为未来能力方向，但首次安排它解决剧情之前必须先完成具体规则与可取得资源的设计、复核；不得以读者未见的万能本能补齐现有行动缺口。\",\n  \"scope\": \"全部境界、功法、法宝及后续能力扩展\",\n  \"precedence\": 6,\n  \"status\": \"proposed\"\n}"
+        },
+        {
+          "sourceId": "review-unit/17",
+          "quote": "{\n  \"id\": \"ladder_realm\",\n  \"kind\": \"realm\",\n  \"name\": \"境界阶梯\",\n  \"levels\": [\n    \"淬体\",\n    \"凝元\",\n    \"玄府\",\n    \"神海\",\n    \"归一\",\n    \"破虚\",\n    \"通天\",\n    \"主宰\"\n  ],\n  \"rule\": \"境界表示修士本体常态能力与承载上限，不是无条件的胜负判定。低阶不得靠意志抵消高阶法则；借阵法、法宝或环境只能攻击明确暴露的薄弱环节，须列出外部能量、可作用的最高对象、限制和不可逆代价，且不改变本人境界。任何跨境对抗仍须说明可作用对象与真实代价，不能凭本规则自动视为合法。\",\n  \"status\": \"proposed\"\n}"
+        },
+        {
+          "sourceId": "review-unit/18",
+          "quote": "{\n  \"id\": \"ladder_technique\",\n  \"kind\": \"technique\",\n  \"name\": \"功法阶梯\",\n  \"levels\": [\n    \"黄阶\",\n    \"玄阶\",\n    \"地阶\",\n    \"天阶\",\n    \"王阶\",\n    \"神阶\"\n  ],\n  \"rule\": \"品阶表示功法潜力、复杂度与能量利用上限；实际威力受境界、适配、熟练度与资源限制。高品阶不能跳过允许境界、单次消耗、冷却或反制；低品阶不会仅因对手品阶高就自动失效。\",\n  \"status\": \"proposed\"\n}"
+        },
+        {
+          "sourceId": "review-unit/19",
+          "quote": "{\n  \"id\": \"ladder_artifact\",\n  \"kind\": \"artifact\",\n  \"name\": \"法宝阶梯\",\n  \"levels\": [\n    \"凡器\",\n    \"法器\",\n    \"灵器\",\n    \"宝器\",\n    \"王器\",\n    \"圣器\"\n  ],\n  \"rule\": \"品阶表示充分供能、正确操纵下的器具承载与作用上限。高阶法宝仍需支付代价和满足条件；实际攻击超出承载且反制无效时低阶器具才会损毁，不能隔空无消耗令一切低阶法宝破碎。\",\n  \"status\": \"proposed\"\n}"
+        },
+        {
+          "sourceId": "review-unit/34",
+          "quote": "{\n  \"id\": \"tech_06\",\n  \"name\": \"太清太乙真光\",\n  \"kind\": \"technique\",\n  \"tier\": \"地阶\",\n  \"allowedRealmIds\": [\n    \"realm_03\",\n    \"realm_04\"\n  ],\n  \"effect\": \"以本人当境纯阳法力凝成太乙真光：玄府用元罡，神海用本境法力，均按ax_07从唯一当境账户支出；同一人不另开低境元罡余额。真光克制外放的阴煞血爪，可灼散其表层煞气、破坏出爪节奏；不自动消除对手的玄府元罡、境界或行动能力。克制后仍须同阶实战制伏，不能把属性相克当成永久封禁。\",\n  \"cost\": \"每次完成法印支付三成本人当境健康稳定法力上限（玄府为元罡，神海为本境法力）与0.25元载寿储；旧称“三个月寿元”按命寿核算律固定为四分之一元载，不另用历法月长计费。\",\n  \"limitations\": [\n    \"阴煞死渊深处光芒威能被大幅压制\",\n    \"蓄势施展需三个呼吸间隔\",\n    \"每次完成法印即支付三成本人当境健康稳定法力上限与0.25元载，放空也不返还；法印未成即受近身打断时需散去蓄势，至少损本人当境法力一成（实际损耗按实测，不足不得起印），不能把未付寿元当成已完成施术。\",\n"
+        },
+        {
+          "sourceId": "review-unit/97",
+          "quote": "  \"identity\": \"太清玄府剑修、古境当值护送执事；已修成玄府可用剑诀、元罡护体与地阶太清太乙真光。真光须三息结印、每次付三成元罡和0.25元载，同场只准一印，受伤与冷却仍按功法限制执行；玄府身份本身不等于自动掌握宗门所有术法。他没有王器、跨境瞬移和无限元罡。 作者开篇前技能设定：顾已由宗门师长指导完成玄府纯阳供能、三息凝印与主动收势的受控训练和实测，经脉复诊合格；这是既有修习背景，不代表后续伤情、余量或冷却自动满足，亦不把未来神海训练计为已完成。 开篇前另已完成ax_12局部护罡的低负荷实测，以及ax_13贴身运罡的推劲、定腕训练和受控摔解实测；只在实际接触、站位和伤情允许时使用，不把未具名“玄府剑诀”当作本场额外攻击。 上述开篇前两项基础操作另有各自资格记录：同一宗门已掌握者实际指导顾完成局部掌大聚罡、主动收束，并用轻木棍及普通铁刃作受控低负荷擦击实测；事后由宗门医修复诊，确认测试处与运罡气路稳定，才准将ax_12列入已掌握操作。贴身运罡另完成握持、立足、单侧导罡和主动停术训练，在轮轴完好、平地无锁止的普通滑车上实测一次推移一步，个人本次已测总重只记三百斤；再由自愿配合者完成低负荷推压、脱手和定腕测试，医修随后确认双侧使用肢体气路稳定。三百斤不是托举能力，也不把世界规则六百斤上限当作本人实测，更不等于可强制摔倒同阶敌人。上述均在开篇前完成，未挪用188日交战期间练习、"
+        }
+      ],
+      "revisionAdvice": "修正tech_06的成本字段和所有引用，使其明确为当境法力健康稳定上限的三成；同时在顾峤实际使用时分别核对三息结印、余量、伤情、同场一次限制与复诊条件。"
+    },
+    {
+      "criterion": "costs",
+      "verdict": "revise",
+      "explanation": "寿储、当境法力、可用神识、本源、资源实物和冷却原则已经分账，灵泉及高阶寿源也明确不得预支、不得返还旧支出；但tech_06的“支付三成”与“支付三成本人”冲突，导致真光一式的法力扣款无法唯一核算。成本规则不能依靠上下文猜测，必须在提案层消除该歧义后，才能与顾峤的0.25元载寿储、元罡支出及其他战斗消耗合账。",
+      "evidence": [
+        {
+          "sourceId": "review-unit/7",
+          "quote": "{\n  \"id\": \"ax_05\",\n  \"title\": \"真元与元罡的消耗、恢复边界\",\n  \"content\": \"真元、元罡与寿储分别记账；元载只计寿储，不能拿真元恢复充作延寿。某修士的一成，指他在当前大境界及修习阶段经稳定实测的健康可用上限的十分之一，不是剩余量的十分之一，不随一场战斗中余量下降而缩小。凝元真元和玄府元罡的成数不能跨人、跨境界直接等量兑换。伤势会降低可用上限，但不使同一术法的成本打折。没有特殊资源且环境灵气温和时，恢复上限按一次连续有效时段的实际小时数h比例核算：凝元静息进食最多h/2成、专注温和吐纳最多h成；玄府静息最多h/4成、专注吐纳最多h/2成。此处成数仍以对应境界与修习阶段的健康稳定实测上限为基准。例如凝元八小时连续静息的理论上限为四成，两小时专注吐纳的理论上限为两成；实际只恢复三成或一成半均可，但须复测确认，不能按理论上限自动记满。两种恢复不能在同一时段叠加，累计不得超过当时伤势允许的上限；搏斗、疾跑、御物或警戒施术期间不算连续恢复时段，岔气、经脉伤及污染灵气须停下复测，不能按时长自动判满。恢复来源是饮食和环境灵气，不凭空回补，灵石供能另按实际库存扣除。普通步行和肉身握持不凭空附加施术；一次短时御动轻索、小钩或木楔按半成真元作保守支出，重物、活人和持续远控不在这个用量内。每场行动须给出足以覆盖已用与下一步术法的保守余量，不要求把账目写成正文对话"
+        },
+        {
+          "sourceId": "review-unit/9",
+          "quote": "{\n  \"id\": \"ax_07\",\n  \"title\": \"高阶法力、可用神识与本源分账\",\n  \"content\": \"当境法力是当前境界日常施术储备的统称：凝元记真元，玄府记元罡，神海及以上记本境法力；同一人不能另开一份低境真元或元罡余额重复支出。高境功法沿用“元罡”名称时，仍须在其允许境界和供能属性内从唯一当境法力账扣款，不能据此兼容只承载低境真元的旧器。可用神识是维持锁定、控术的可恢复储备，与法力及永久神魂/神识本源分别记账。\\n法力与可用神识各自以本人当前境界、修习阶段未受本次伤损时稳定实测的健康上限为十成；一成固定为该基准十分之一，不随余量或伤后上限缩减术费，不跨人、跨境等额换算。须确认当前余量，足付本次及已承诺的持续费用才可发动；任一项不足即停术，不能用另一账补齐。\\n神海及以上普通恢复须有实际饮食、饮水和合适环境。按连续有效小时数h，静息进食恢复法力至多h/4成，专注温和吐纳至多h/2成，两模式同一时段不叠加。来源是实际营养和温和环境灵气；污染、绝灵、经脉伤痛或中断使对应恢复不成立。资源助恢复另按已定义效用、库存和剂量，不能直接用资源品级换算成数。可用神识仅在无警戒、无控术的安稳睡眠中至多恢复h/4成，来源是营养和睡眠支持下自身神魂的正常调息；清醒吐纳、等冷却或法力回满不自动补神识。正常睡眠可同时计入静息法力恢复，两个账户分别复测，不把同一法力产出再记入吐纳模式。"
+        },
+        {
+          "sourceId": "review-unit/12",
+          "quote": "{\n  \"id\": \"ax_10\",\n  \"title\": \"自然寿源配额不得跨账或跨周期预支\",\n  \"content\": \"自然寿源的形成周期、保护配额和个人终生上限分别记账。保育额、公共医疗额、应急额和未来周期产量不得转为当前个人库存；不同资源之间不得按品阶、货币、法力或灵石自动兑换。运输、保存、污染和疗程失败造成的损失不可由下一周期自动补发。 新寿储可以逐笔支付未来成本；“不返还过去”不等于禁止支付未来。禁止重复记入同一疗程。res_09规则及已用两剂保持不变。\",\n  \"scope\": \"资源供给、势力权限与寿储核算\",\n  \"precedence\": 10,\n  \"status\": \"proposed\"\n}"
+        },
+        {
+          "sourceId": "review-unit/13",
+          "quote": "{\n  \"id\": \"ax_11\",\n  \"title\": \"有限寿源的高阶成长条件见证\",\n  \"content\": \"世界容量例取与百章末相同的玄府2.775342元载下界，起算第466日；这个起点来自第19日诊断7元载，扣447/365自然流逝、凝元3、玄府10，加历史两剂灵泉10。诊断不是收入。以下只是一个候选的全部资格、资源竞争、实体行程、医护支付、修习和伤情均满足时的寿储见证，不自动授予林辰、任意角色或一个军团这些资源与境界。每笔实际发生前复核；失败、战争、伤病和额外施术发生时须重新算账，不能沿用示例。\\n第554日：距上笔88日，res_17一剂入账8，无晋阶或燃寿支出，扣自然流逝后余10.534247元载，采收540日、疗程540至554日。\\n第936日：距上笔382日，res_18一剂入账60，无晋阶或燃寿支出，扣自然流逝后余69.487671元载，采收900日、疗程906至936日。\\n第1000日：距上笔64日，无寿源收入，晋阶付30，扣自然流逝后余39.312329元载。\\n第3856日：距上笔2856日，res_18一剂入账60，无晋阶或燃寿支出，扣自然流逝后余91.487671元载，采收3820日、疗程3826至3856日。\\n第4000日：距上笔144日，无寿源收入，晋阶付60，扣自然流逝后余31.093151元载。\\n第4255日：距上笔255日，"
+        },
+        {
+          "sourceId": "review-unit/34",
+          "quote": "{\n  \"id\": \"tech_06\",\n  \"name\": \"太清太乙真光\",\n  \"kind\": \"technique\",\n  \"tier\": \"地阶\",\n  \"allowedRealmIds\": [\n    \"realm_03\",\n    \"realm_04\"\n  ],\n  \"effect\": \"以本人当境纯阳法力凝成太乙真光：玄府用元罡，神海用本境法力，均按ax_07从唯一当境账户支出；同一人不另开低境元罡余额。真光克制外放的阴煞血爪，可灼散其表层煞气、破坏出爪节奏；不自动消除对手的玄府元罡、境界或行动能力。克制后仍须同阶实战制伏，不能把属性相克当成永久封禁。\",\n  \"cost\": \"每次完成法印支付三成本人当境健康稳定法力上限（玄府为元罡，神海为本境法力）与0.25元载寿储；旧称“三个月寿元”按命寿核算律固定为四分之一元载，不另用历法月长计费。\",\n  \"limitations\": [\n    \"阴煞死渊深处光芒威能被大幅压制\",\n    \"蓄势施展需三个呼吸间隔\",\n    \"每次完成法印即支付三成本人当境健康稳定法力上限与0.25元载，放空也不返还；法印未成即受近身打断时需散去蓄势，至少损本人当境法力一成（实际损耗按实测，不足不得起印），不能把未付寿元当成已完成施术。\",\n"
+        },
+        {
+          "sourceId": "review-unit/97",
+          "quote": "  \"identity\": \"太清玄府剑修、古境当值护送执事；已修成玄府可用剑诀、元罡护体与地阶太清太乙真光。真光须三息结印、每次付三成元罡和0.25元载，同场只准一印，受伤与冷却仍按功法限制执行；玄府身份本身不等于自动掌握宗门所有术法。他没有王器、跨境瞬移和无限元罡。 作者开篇前技能设定：顾已由宗门师长指导完成玄府纯阳供能、三息凝印与主动收势的受控训练和实测，经脉复诊合格；这是既有修习背景，不代表后续伤情、余量或冷却自动满足，亦不把未来神海训练计为已完成。 开篇前另已完成ax_12局部护罡的低负荷实测，以及ax_13贴身运罡的推劲、定腕训练和受控摔解实测；只在实际接触、站位和伤情允许时使用，不把未具名“玄府剑诀”当作本场额外攻击。 上述开篇前两项基础操作另有各自资格记录：同一宗门已掌握者实际指导顾完成局部掌大聚罡、主动收束，并用轻木棍及普通铁刃作受控低负荷擦击实测；事后由宗门医修复诊，确认测试处与运罡气路稳定，才准将ax_12列入已掌握操作。贴身运罡另完成握持、立足、单侧导罡和主动停术训练，在轮轴完好、平地无锁止的普通滑车上实测一次推移一步，个人本次已测总重只记三百斤；再由自愿配合者完成低负荷推压、脱手和定腕测试，医修随后确认双侧使用肢体气路稳定。三百斤不是托举能力，也不把世界规则六百斤上限当作本人实测，更不等于可强制摔倒同阶敌人。上述均在开篇前完成，未挪用188日交战期间练习、"
+        },
+        {
+          "sourceId": "review-unit/138",
+          "quote": "{\n  \"id\": \"arc_04\",\n  \"title\": \"十年寿元换玄府与押运截停\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_03\",\n    \"char_07\",\n    \"char_08\",\n    \"char_09\",\n    \"char_10\",\n    \"char_14\",\n    \"char_15\"\n  ],\n  \"goal\": \"携证回乡，和苏、梁九、韩叙、顾分别承担调查、证人保护和修行；救出本次押送工友，确认父亲守门参与与本地掩案责任，切断已验证的三地转运链。\",\n  \"stakes\": \"晋阶永久减寿，逼供会伤害同伴，追凶与救人不能兼得。\",\n  \"plannedOutcome\": \"第466日三十日回访：本批人安全、该链断运、父亲参与守门与外山掩案可核。林玄府初期，条件寿储约2.775342元载，有肩伤但无凭空燃寿白发。赵仍玄府并受本次军需行动问责，程仍在逃，九鼎和界门总危机留待全书后续。\"\n}"
+        }
+      ],
+      "revisionAdvice": "统一tech_06成本表述，并在对应章纲中按人物、账户、基准上限、实际余量、恢复与冷却逐项记账；不得把规则示例或未来寿源当作百章角色现有库存。"
+    }
+  ],
+  "changes": [
+    {
+      "path": [
+        "worldPack",
+        "techniques",
+        5,
+        "cost"
+      ],
+      "sourceId": "world/techniques/tech_06",
+      "before": "支付三成本人当境健康稳定法力上限",
+      "after": "支付本人当境健康稳定法力上限的三成",
+      "originalField": "每次完成法印支付三成本人当境健康稳定法力上限（玄府为元罡，神海为本境法力）与0.25元载寿储；旧称“三个月寿元”按命寿核算律固定为四分之一元载，不另用历法月长计费。",
+      "proposedField": "每次完成法印支付本人当境健康稳定法力上限的三成（玄府为元罡，神海为本境法力）与0.25元载寿储；旧称“三个月寿元”按命寿核算律固定为四分之一元载，不另用历法月长计费。"
+    },
+    {
+      "path": [
+        "worldPack",
+        "techniques",
+        5,
+        "limitations",
+        2
+      ],
+      "sourceId": "world/techniques/tech_06",
+      "before": "支付三成本人当境健康稳定法力上限",
+      "after": "支付本人当境健康稳定法力上限的三成",
+      "originalField": "每次完成法印即支付三成本人当境健康稳定法力上限与0.25元载，放空也不返还；法印未成即受近身打断时需散去蓄势，至少损本人当境法力一成（实际损耗按实测，不足不得起印），不能把未付寿元当成已完成施术。",
+      "proposedField": "每次完成法印即支付本人当境健康稳定法力上限的三成与0.25元载，放空也不返还；法印未成即受近身打断时需散去蓄势，至少损本人当境法力一成（实际损耗按实测，不足不得起印），不能把未付寿元当成已完成施术。"
+    },
+    {
+      "path": [
+        "worldPack",
+        "axioms",
+        11,
+        "content"
+      ],
+      "sourceId": "world/axioms/ax_12",
+      "before": "预付一成本人当境健康稳定元罡上限",
+      "after": "预付本人当境健康稳定元罡上限的一成",
+      "originalField": "元罡护体是能力方向；本条只定义其中最基础的局部护罡，其他全身护持仍须另有术式。施术者须已入玄府，经有经验者指导，将元罡在本人一处掌大范围皮肤外稳定聚合，并通过轻木棍、普通铁刃的受控低负荷实测及复诊。完成晋阶不自动获得此操作。\n每次聚罡先用一息并预付一成本人当境健康稳定元罡上限；只护同一选定部位，至多维持随后两息，不远控、不护他人、不同时覆盖全身。若承受一次实际接触，另预留并即时扣一成，随后该层即散；开启前须至少有两成获准可用余量。即使落空、提前收束或被打断，聚罡一成不退；未受击则不虚扣受击费。每次散后至少三息重新定息，间隙没有护罡。连续最多三次，此后至少休整一刻并复测，伤痛、麻木或气路不稳立即停用；控术和战斗期间不计恢复。此基础操作只用自身元罡，无额外神识、寿储或外物账户，不提供力量、速度、飞行或恢复。\n效果只是在接触部位分散普通拳棍或无附灵铁刃一次擦击/斜击的表层冲击，需要站位退让与卸力；不保证挡住同阶全力正击、重刃、尖刺、多次连续攻势或已付费的攻杀术，不保证免伤。对方可换落点、抓聚罡一息、在三息空档进攻或持续压制。击穿时仍扣本次受击费，余力实际伤及该处，不把破罡化作无害光效；肩、腕或经脉受损即停术撤离，不能因还有余额续顶。一次付款不能抵三次来招，也不能将健康基准当作当前伤后可用量。",
+      "proposedField": "元罡护体是能力方向；本条只定义其中最基础的局部护罡，其他全身护持仍须另有术式。施术者须已入玄府，经有经验者指导，将元罡在本人一处掌大范围皮肤外稳定聚合，并通过轻木棍、普通铁刃的受控低负荷实测及复诊。完成晋阶不自动获得此操作。\n每次聚罡先用一息并预付本人当境健康稳定元罡上限的一成；只护同一选定部位，至多维持随后两息，不远控、不护他人、不同时覆盖全身。若承受一次实际接触，另预留并即时扣一成，随后该层即散；开启前须至少有两成获准可用余量。即使落空、提前收束或被打断，聚罡一成不退；未受击则不虚扣受击费。每次散后至少三息重新定息，间隙没有护罡。连续最多三次，此后至少休整一刻并复测，伤痛、麻木或气路不稳立即停用；控术和战斗期间不计恢复。此基础操作只用自身元罡，无额外神识、寿储或外物账户，不提供力量、速度、飞行或恢复。\n效果只是在接触部位分散普通拳棍或无附灵铁刃一次擦击/斜击的表层冲击，需要站位退让与卸力；不保证挡住同阶全力正击、重刃、尖刺、多次连续攻势或已付费的攻杀术，不保证免伤。对方可换落点、抓聚罡一息、在三息空档进攻或持续压制。击穿时仍扣本次受击费，余力实际伤及该处，不把破罡化作无害光效；肩、腕或经脉受损即停术撤离，不能因还有余额续顶。一次付款不能抵三次来招，也不能将健康基准当作当前伤后可用量。"
+    }
+  ],
+  "validation": {
+    "valid": true,
+    "issues": [],
+    "warnings": [
+      {
+        "path": "worldPack",
+        "message": "blocking unresolved questions remain"
+      },
+      {
+        "path": "storyBible",
+        "message": "blocking unresolved story questions remain"
+      }
+    ],
+    "blockers": [
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-power-opening",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-resource-definitions",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-travel-rules",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-tier-exceptions",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-resource-usage",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-first-volume-foundation",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-volume-timeline",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-artifact-continuity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-ending-cost",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-relationship-stages",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-knowledge-reveal-order",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-opening-growth",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-opening-quality",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-resource-growth-budget",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first-volume-blueprint",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-v1-outline-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-v23-macro",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-guard-return-chain",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-barge-inspection",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-second-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first50-narrative",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-message-arrivals",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-review-capacity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "baseline-content-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "opening-growth-repair",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "opening-quality-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "resource-growth-budget",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first-volume-blueprint",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "v1-outline-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "v23-macro",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "guard-return-chain",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "barge-inspection",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "second-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first50-narrative",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "message-arrivals",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "review-capacity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "convoy-custody-causality",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "north-coast-exit-permit",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "chapter25-claw-sequence",
+        "code": "BLOCKING_QUESTION"
+      }
+    ],
+    "formalAcceptance": false,
+    "productionWrites": false,
+    "limitation": "Checks API contracts and structural references only. Open blockers remain; this does not approve a plan, accept content quality, or certify an atomic save."
+  },
+  "assessment": "三成＋本人在原句连写为“三成本人”，并非与“三成”不同的数值。本草案调整语序消除误断句；同类的一成元罡上限同步澄清，不改比例、计费基准、账户、施术时点、寿储、伤损或恢复规则。原返修记录保留。",
+  "preservedExecutionChecks": 40,
+  "unresolvedBlockers": 41,
+  "planAndBibleUnchanged": true,
+  "productionWrites": 0,
+  "modelCalls": 0,
+  "applied": false,
+  "formalVerdictsOverridden": false,
+  "questionsResolved": 0,
+  "designApproved": false,
+  "proseGenerated": false,
+  "limitation": "结构校验与精确字段差异不等于语义通过。四领域评审结束后与其他发现合并，再应用并重新评审；不要在正式评审期间替换输入。"
+}
