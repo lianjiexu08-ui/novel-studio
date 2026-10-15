@@ -1,0 +1,371 @@
+{
+  "kind": "proposed_execution_link_reconciliation",
+  "observedAt": "2026-10-15T22:44:19.981Z",
+  "sourcePath": "data/design-candidates/design64-receipt-exception-draft-v7.json",
+  "sourceSha256": "3af9d36cdf13ec5c1164386ba210334406f9c97149dfd0a957bf9a690ad9322a",
+  "appliedBaseline": "docs/audits/2026-10-16-design64-applied.json",
+  "sourceInputHash": "32f6ca9f61bbb70b8b56a0a7908ca086a0ce1b6ff4554ff3bafdf7428f05465f",
+  "candidatePath": "data/design-candidates/design64-execution-links-draft-v8.json",
+  "candidateSha256": "a6ccd3bf890dbe065fa37ca3077de5d17ab1b235648cfaac3a429ee4897b19de",
+  "patches": [
+    {
+      "op": "remove",
+      "path": "/plan/chapters/0/executionChecks/1/sourceQuestion",
+      "chapterNumber": 1,
+      "checkId": "opening-knowledge-boundary",
+      "before": {
+        "document": "story",
+        "questionId": "audit-knowledge-reveal-order"
+      },
+      "question": {
+        "id": "audit-knowledge-reveal-order",
+        "question": "报令锚点和赵认知分期已修订，林苏只在95章实得撤押原令，第一报、北境面报不共享；318抵押只属异地提案。原有父案材料递进与旧稿认知待逐章复核。51–100未有完整章纲，规划锚点不是已采纳事实，不得倒填历史。",
+        "blocking": true,
+        "status": "open"
+      },
+      "requirement": "林辰只辨认缺氧、毒烟、掌击和薄板破裂；尚不知道暗桩完整身份、训练经历、准确余额，不能把毒烟写成已确认的抽寿。",
+      "reason": "当前问题明确要求报令、赵认知、95章撤押原令、北境面报、318日抵押与父案材料递进；此项只核第1章暗桩身份及矿烟的现场认知，不能直接证明这些特定消息链。"
+    },
+    {
+      "op": "remove",
+      "path": "/plan/chapters/29/executionChecks/0/sourceQuestion",
+      "chapterNumber": 30,
+      "checkId": "road-and-contract-cost",
+      "before": {
+        "document": "world",
+        "questionId": "audit-travel-rules"
+      },
+      "question": {
+        "id": "audit-travel-rules",
+        "question": "新宏观采用北航五日、返航六日、14,000枚专项款及有时限的外港担保，尚待逐章落地。旧稿打点、火晶换舱和第55章信物均不作为新版实际支付或准入依据；历史保留待对照。",
+        "blocking": true,
+        "status": "open"
+      },
+      "requirement": "212日从入口外营出发，山路与驿车送六箱至213日晚港外驿站，尚未登船。林拒绝把受潮封签写完好，保留复验记录并失去加急酬金，疑似相同收货号不等于认定犯罪。",
+      "reason": "第212—213日入口外营至南渡港的六箱货运，不是问题指定的北航五日、返航六日、14,000枚专项款和外港担保。"
+    },
+    {
+      "op": "remove",
+      "path": "/plan/chapters/30/executionChecks/0/sourceQuestion",
+      "chapterNumber": 31,
+      "checkId": "inspection-and-payment",
+      "before": {
+        "document": "world",
+        "questionId": "audit-travel-rules"
+      },
+      "question": {
+        "id": "audit-travel-rules",
+        "question": "新宏观采用北航五日、返航六日、14,000枚专项款及有时限的外港担保，尚待逐章落地。旧稿打点、火晶换舱和第55章信物均不作为新版实际支付或准入依据；历史保留待对照。",
+        "blocking": true,
+        "status": "open"
+      },
+      "requirement": "214日验籍、六箱复验与双方签认后，按合同扣验货费并保留受潮历史；护货劳务抵舱费，不再让苏重复付款。程记药栈和程砚只作为运输关联，尚无犯罪结论。",
+      "reason": "第214日南渡劳务抵舱与六箱验货，不是问题指定的后续北航专项款支付。"
+    },
+    {
+      "op": "remove",
+      "path": "/plan/chapters/30/executionChecks/1/sourceQuestion",
+      "chapterNumber": 31,
+      "checkId": "finite-port-protection",
+      "before": {
+        "document": "world",
+        "questionId": "audit-resource-definitions"
+      },
+      "question": {
+        "id": "audit-resource-definitions",
+        "question": "已补充绝命死息 res_15、诸天通宝 res_16 的资源提案并修正势力引用；新增品阶、材质、发行与保存规则尚需对照正文核验，不能视为已确立事实。",
+        "blocking": true,
+        "status": "open"
+      },
+      "requirement": "一件普通避火衣与一张有限余量的借符须实际领用入附单，214日申时登船、日暮出航启符；衣不防明火浓烟，符至少72小时而非永续。约定217晨分别归还，抵港还须当日许可，本章不提前写作已归还或已获抵港放行。",
+      "reason": "此项核避火衣与借符，问题对象却是绝命死息res_15和诸天通宝res_16的品阶、材质、发行及保存规则，对象不一致。"
+    },
+    {
+      "op": "remove",
+      "path": "/plan/chapters/31/executionChecks/1/sourceQuestion",
+      "chapterNumber": 32,
+      "checkId": "loss-and-witness-boundary",
+      "before": {
+        "document": "story",
+        "questionId": "audit-knowledge-reveal-order"
+      },
+      "question": {
+        "id": "audit-knowledge-reveal-order",
+        "question": "报令锚点和赵认知分期已修订，林苏只在95章实得撤押原令，第一报、北境面报不共享；318抵押只属异地提案。原有父案材料递进与旧稿认知待逐章复核。51–100未有完整章纲，规划锚点不是已采纳事实，不得倒填历史。",
+        "blocking": true,
+        "status": "open"
+      },
+      "requirement": "救人使林失去盯箱窗口，风暴后仅五箱且一箱进水，六号箱失踪、奖金取消；区分亲见搬移和未见最后移箱者，不能提前认定程或全商盟有罪，赔偿另据事实复核。",
+      "reason": "此项核六号箱失踪与现场见闻，未核问题指定的报令、赵认知、撤押原令、北境面报、抵押或父案材料递进；通用认知边界不能替代特定消息链。"
+    },
+    {
+      "op": "remove",
+      "path": "/plan/chapters/31/executionChecks/2/sourceQuestion",
+      "chapterNumber": 32,
+      "checkId": "arrival-permit",
+      "before": {
+        "document": "world",
+        "questionId": "audit-travel-rules"
+      },
+      "question": {
+        "id": "audit-travel-rules",
+        "question": "新宏观采用北航五日、返航六日、14,000枚专项款及有时限的外港担保，尚待逐章落地。旧稿打点、火晶换舱和第55章信物均不作为新版实际支付或准入依据；历史保留待对照。",
+        "blocking": true,
+        "status": "open"
+      },
+      "requirement": "215日风暴至216日暮抵天宝外港保持实体海程；以216日当日旗号和港务复核准入泊，不用214日通告或217日才租的符倒填许可。借衣借符仍留至次晨交割后分别归还。",
+      "reason": "第215—216日南渡抵赤霄的实体航程与许可，不是问题指定的后续北航五日和返航六日。"
+    },
+    {
+      "op": "remove",
+      "path": "/plan/chapters/36/executionChecks/2/sourceQuestion",
+      "chapterNumber": 37,
+      "checkId": "private-message-boundary",
+      "before": {
+        "document": "story",
+        "questionId": "audit-knowledge-reveal-order"
+      },
+      "question": {
+        "id": "audit-knowledge-reveal-order",
+        "question": "报令锚点和赵认知分期已修订，林苏只在95章实得撤押原令，第一报、北境面报不共享；318抵押只属异地提案。原有父案材料递进与旧稿认知待逐章复核。51–100未有完整章纲，规划锚点不是已采纳事实，不得倒填历史。",
+        "blocking": true,
+        "status": "open"
+      },
+      "requirement": "226日陆在医棚请登记员联络哥哥时林回船换药，林不知送条过程；陆自报姓名仍待核证，不能因救命自动信任、索取供词或把陆计入五名被扣雇工。",
+      "reason": "此项核陆弟请登记员联络哥哥及林离场不知送条，未核问题指定的赵方报令、撤押原令、北境面报或父案资料链。"
+    }
+  ],
+  "validation": {
+    "valid": true,
+    "issues": [],
+    "warnings": [
+      {
+        "path": "worldPack",
+        "message": "blocking unresolved questions remain"
+      },
+      {
+        "path": "storyBible",
+        "message": "blocking unresolved story questions remain"
+      }
+    ],
+    "blockers": [
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-power-opening",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-resource-definitions",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-travel-rules",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-tier-exceptions",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-resource-usage",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-first-volume-foundation",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-volume-timeline",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-artifact-continuity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-ending-cost",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-relationship-stages",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-knowledge-reveal-order",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-opening-growth",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-opening-quality",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-resource-growth-budget",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first-volume-blueprint",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-v1-outline-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-v23-macro",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-guard-return-chain",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-barge-inspection",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-second-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first50-narrative",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-message-arrivals",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-review-capacity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "baseline-content-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "opening-growth-repair",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "opening-quality-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "resource-growth-budget",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first-volume-blueprint",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "v1-outline-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "v23-macro",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "guard-return-chain",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "barge-inspection",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "second-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first50-narrative",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "message-arrivals",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "review-capacity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "convoy-custody-causality",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "north-coast-exit-permit",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "chapter25-claw-sequence",
+        "code": "BLOCKING_QUESTION"
+      }
+    ],
+    "formalAcceptance": false,
+    "productionWrites": false,
+    "limitation": "Checks API contracts and structural references only. Open blockers remain; this does not approve a plan, accept content quality, or certify an atomic save."
+  },
+  "requirementsPreserved": 27,
+  "remainingQuestionReferences": 20,
+  "sourceQuestionObjectsUnchanged": true,
+  "storyTextUnchanged": true,
+  "productionWrites": 0,
+  "modelCalls": 0,
+  "formalAcceptance": false,
+  "applied": false,
+  "limitation": "Manual semantic-scope correction. Removing a misleading link preserves the chapter requirement and all blockers; it does not validate remaining links as exhaustive coverage or accept any design/prose."
+}

@@ -1,0 +1,31 @@
+{
+  "kind": "manual_findings_required_for_final_reconciliation",
+  "observedAt": "2026-10-15T22:46:22.442527+00:00",
+  "inputHash": "32f6ca9f61bbb70b8b56a0a7908ca086a0ce1b6ff4554ff3bafdf7428f05465f",
+  "planId": "plan_f2a3d700d38940ca89155b13e076fdb6",
+  "findings": [
+    {
+      "path": "docs/audits/2026-10-16-design64-execution-link-repair.json",
+      "sha256": "9ad88568fe0d0ed720087a82ba26aa15aacab146d9da92a7833f9f89d761dc48",
+      "inputHash": "32f6ca9f61bbb70b8b56a0a7908ca086a0ce1b6ff4554ff3bafdf7428f05465f",
+      "status": "requires_final_reconciliation",
+      "observation": "七条章节验收关联的语义范围不匹配；修正草案保留全部要求和阻塞，尚未应用。"
+    },
+    {
+      "path": "docs/audits/2026-10-16-design64-execution-link-save-rehearsal.json",
+      "sha256": "2fe8f3fbbf09f4a9c332ce5e1695d4b4f75e74207830af11c76c66755ed281cd",
+      "inputHash": "32f6ca9f61bbb70b8b56a0a7908ca086a0ce1b6ff4554ff3bafdf7428f05465f",
+      "status": "requires_final_reconciliation",
+      "observation": "七条章节验收关联的语义范围不匹配；修正草案保留全部要求和阻塞，尚未应用。"
+    }
+  ],
+  "candidate": {
+    "path": "data/design-candidates/design64-execution-links-draft-v8.json",
+    "sha256": "a6ccd3bf890dbe065fa37ca3077de5d17ab1b235648cfaac3a429ee4897b19de",
+    "applied": false
+  },
+  "formalVerdictsOverridden": false,
+  "questionsResolved": 0,
+  "designApproved": false,
+  "proseGenerated": false
+}
