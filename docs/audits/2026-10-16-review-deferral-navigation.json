@@ -1,0 +1,24 @@
+{
+  "verification": "isolated UI fixture, not formal novel acceptance",
+  "frontendFile": "apps/web/src/pages/DesignContentReviewCard.tsx",
+  "sourceSha256": "d37ad6ca41ac863c8a89e9e0508adc30a05ea9b2174f15076423361bf8eef2a6",
+  "buildLog": "/tmp/novel-deferral-navigation-build.log",
+  "buildPassed": true,
+  "scenarios": [
+    "original-question navigation",
+    "nested follow-up ID containing slash",
+    "resolution-stage navigation",
+    "immediate loading feedback",
+    "HTTP 503 followed by successful retry",
+    "closed slow request does not replace later selected stage"
+  ],
+  "fixtureRoot": "/var/folders/tr/8vt224595gdfg6w6kh6tkpt00000gn/T/novel-chapter-validation-o9hldenn/apps/web",
+  "screenshots": [
+    "data/audit-ui/design63/deferral-navigation/links.png",
+    "data/audit-ui/design63/deferral-navigation/resolved-stage.png"
+  ],
+  "frozenRuntimeSourceFilesVerified": 130,
+  "productionWrites": false,
+  "modelCallsFromUiVerification": 0,
+  "deployed": false
+}

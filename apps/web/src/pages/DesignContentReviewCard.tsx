@@ -48,7 +48,9 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
   const [refreshedAt, setRefreshedAt] = useState<string>();
   const stopReview = useRef(false);
   const [stopRequested, setStopRequested] = useState(false);
-  const [stageDetail, setStageDetail] = useState<DesignReviewStageDetail | null>(null);
+  const [stageView, setStageView] = useState<{ runId: string; stageId: string; detail?: DesignReviewStageDetail; error?: string } | null>(null);
+  const stageRequest = useRef(0);
+  const stageDetail = stageView?.detail;
   const activeWork = useRef(workId);
   activeWork.current = workId;
   const load = useCallback(async (reset = false, background = false) => {
@@ -83,7 +85,7 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
       document.removeEventListener('visibilitychange', refreshVisible);
     };
   }, [load, revision]);
-  useEffect(() => { activeWork.current = workId; setBusy(null); setSource(null); setStageDetail(null); setPlanId(undefined); return () => { activeWork.current = ''; stopReview.current = true; }; }, [workId]);
+  useEffect(() => { activeWork.current = workId; setBusy(null); setSource(null); stageRequest.current++; setStageView(null); setPlanId(undefined); return () => { activeWork.current = ''; stageRequest.current++; stopReview.current = true; }; }, [workId]);
   async function review(area: DesignReviewAreaDto) {
     setBusy(area); stopReview.current = false; setStopRequested(false);
     try {
@@ -104,16 +106,40 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
     } finally { if (activeWork.current === workId) setBusy(null); }
   }
   async function showStage(runId: string, stageId: string) {
-    try { const detail = await api.designReviewStage(workId, runId, stageId); if (activeWork.current === workId) setStageDetail(detail); }
-    catch (cause) { message.error(cause instanceof Error ? cause.message : String(cause)); }
+    const current = ++stageRequest.current;
+    setSource(null); setStageView({ runId, stageId });
+    try {
+      const detail = await api.designReviewStage(workId, runId, stageId);
+      if (activeWork.current === workId && current === stageRequest.current) setStageView({ runId, stageId, detail });
+    } catch (cause) {
+      if (activeWork.current === workId && current === stageRequest.current) setStageView({ runId, stageId, error: cause instanceof Error ? cause.message : String(cause) });
+    }
   }
-  function details(report: Pick<DesignContentReviewDto, 'summary' | 'checks' | 'sources' | 'scope' | 'resolvedDeferrals'> & { createdAt?: string }) {
+  function details(report: Pick<DesignContentReviewDto, 'summary' | 'checks' | 'sources' | 'scope' | 'resolvedDeferrals'> & { id?: string; runId?: string; createdAt?: string }) {
+    const reportRun = data?.runs.find(run => report.runId ? run.id === report.runId : report.id !== undefined && run.reportId === report.id);
     return <Space direction="vertical" style={{ width: '100%' }}>
       <Typography.Text type="secondary">世界 v{report.scope.worldPackRevision} · 圣经 v{report.scope.storyBibleRevision} · 计划 v{report.scope.planRevision} {report.createdAt ? ` · ${new Date(report.createdAt).toLocaleString()}` : ''}</Typography.Text>
       <Typography.Paragraph>{report.summary}</Typography.Paragraph>
       {report.resolvedDeferrals?.length ? <Collapse size="small" style={{ width: '100%' }} items={[{
         key: 'deferrals', label: `补读复核记录（${report.resolvedDeferrals.length} 项）`,
-        children: <Typography.Paragraph>已完成的补读复核：{report.resolvedDeferrals.map(item => `${item.checkId} → ${item.resolvedByStageId}`).join('；')}。原问题与引用仍保留在批次记录中。</Typography.Paragraph>,
+        children: <Space direction="vertical" style={{ width: '100%' }}>
+          <Typography.Text type="secondary">查看原先缺少什么材料，以及后续如何依据原文完成复核。原批次结论与引用仍然保留。</Typography.Text>
+          {report.resolvedDeferrals.map(item => {
+            // Follow-up stage IDs also contain slashes; resolve against the saved
+            // run rather than assuming the first slash separates the criterion.
+            const original = reportRun?.stages.filter(stage => item.checkId.startsWith(`${stage.id}/`)).sort((a, b) => b.id.length - a.id.length)[0];
+            const resolution = reportRun?.stages.find(stage => stage.id === item.resolvedByStageId);
+            const criterion = original ? item.checkId.slice(original.id.length + 1) : item.checkId;
+            return <div key={item.checkId} style={{ width: '100%', overflowWrap: 'anywhere' }}>
+              <Typography.Text>{original ? `${original.label} · ${criteria[criterion] ?? criterion}` : item.checkId}</Typography.Text>
+              <Space wrap>
+                {reportRun && original && <Button type="link" size="small" onClick={() => void showStage(reportRun.id, original.id)}>查看原补读问题</Button>}
+                {reportRun && resolution ? <Button type="link" size="small" onClick={() => void showStage(reportRun.id, resolution.id)}>查看解决依据：{resolution.label}</Button>
+                  : <Typography.Text type="secondary">解决批次：{item.resolvedByStageId}（批次详情暂不可用）</Typography.Text>}
+              </Space>
+            </div>;
+          })}
+        </Space>,
       }]} /> : null}
       {report.checks.map((check) => <Card size="small" key={check.criterion} title={<Space><Tag color={check.verdict === 'pass' ? 'success' : 'warning'}>{check.awaitingSources ? '等待跨批补读' : verdicts[check.verdict]}</Tag>{criteria[check.criterion] ?? check.criterion}</Space>}>
         <Typography.Paragraph>{check.explanation}</Typography.Paragraph>
@@ -180,7 +206,10 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
         <Collapse items={[{ key: 'history', label: `历史评审记录（${data.reports.length}）`, children: <Collapse items={[...data.reports].reverse().map((report) => ({ key: report.id, label: `${labels[report.area]} · ${statuses[report.status]} · ${new Date(report.createdAt).toLocaleString()}${report.inputHash !== data.inputHash ? '（已过期）' : ''}`, children: reportDetails(report) }))} /> }]} />
       </> : !error && <Typography.Text>正在加载评审记录…</Typography.Text>}
     </Space>
-    <Modal open={stageDetail !== null} title={stageDetail ? `${stageDetail.stage.label} · 计划 v${stageDetail.input.scope.planRevision}` : '批次详情'} footer={null} onCancel={() => setStageDetail(null)} width={900}>
+    <Modal open={stageView !== null} title={stageDetail ? `${stageDetail.stage.label} · 计划 v${stageDetail.input.scope.planRevision}` : '批次详情'} footer={null} onCancel={() => { stageRequest.current++; setStageView(null); }} width={900}>
+      {stageView && !stageDetail && (stageView.error
+        ? <Alert type="error" message="批次详情加载失败" description={stageView.error} action={<Button onClick={() => void showStage(stageView.runId, stageView.stageId)}>重试</Button>} />
+        : <Typography.Text>正在加载所选批次的原文与结果…</Typography.Text>)}
       {stageDetail && <Space direction="vertical" style={{ width: '100%' }}>
         {stageDetail.input.inputHash !== data?.inputHash && <Alert type="warning" showIcon message="此批次对应的设计或计划与当前所选版本不同，仅供历史核查。" />}
         {!stageDetail.stage.result && <Typography.Text type="secondary">世界 v{stageDetail.input.scope.worldPackRevision} · 圣经 v{stageDetail.input.scope.storyBibleRevision} · 计划 v{stageDetail.input.scope.planRevision}</Typography.Text>}
