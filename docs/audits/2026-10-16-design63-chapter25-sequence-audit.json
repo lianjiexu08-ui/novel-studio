@@ -1,0 +1,335 @@
+{
+  "observedAt": "2026-10-15T18:47:58.314Z",
+  "kind": "bounded_manual_source_comparison_not_design_acceptance",
+  "scope": {
+    "worldPackRevision": 33,
+    "storyBibleRevision": 63,
+    "planRevisionId": "plan_6fa43ac6419c44f1b64fbe3390eff759",
+    "planRevision": 63
+  },
+  "inputHash": "7a49ebc0415c36a0c9a92c1180e0ecddfc29466dc3f6221fa5c10881df1e02f0",
+  "sourceRunId": "design_run_a1ae5a57-f9bf-4af3-8093-550e3d3ded22",
+  "sourceInputSha256": "528f9b82c31b29686f6f02c8e7394354340c39040008bf040fe67d27a6acca4b",
+  "frozenSourceFilesVerified": 130,
+  "checks": [
+    {
+      "id": "prior-training-and-arrival",
+      "observation": "顾的真光、护罡和接触操作分别有开篇前训练记录；24章实体交岗与行程到08:45，25章等到亲见手势才行动。资格不免除当场检查。",
+      "evidence": [
+        {
+          "sourceId": "story/characters/char_10",
+          "start": 689,
+          "end": 738,
+          "quote": "上述均在开篇前完成，未挪用188日交战期间练习、恢复或诊察；真光仍按原独立凝印实测和经脉复诊记录。"
+        },
+        {
+          "sourceId": "world/techniques/tech_06",
+          "start": 671,
+          "end": 722,
+          "quote": "两境均须先完成本境纯阳供能与凝印训练、三息起式及收势的受控实测、经脉复诊，晋入神海不自动完成这些条件。"
+        },
+        {
+          "sourceId": "plan/chapters/24",
+          "start": 1523,
+          "end": 1599,
+          "quote": "顾一行沿四里路谨慎核岔，于08:15到营外，再用半小时避开装车区视线接近侧廊。辰末08:45顾到位，本章只呈现其视角；林苏看到手势的下一瞬由25章接续。"
+        },
+        {
+          "sourceId": "plan/chapters/25",
+          "start": 1826,
+          "end": 1888,
+          "quote": "188日08:45，林苏在营地后方亲见顾进入侧廊并发出手势，才越出隐蔽处；秦已离开去求援，其他主营被扣者到本次行动才被解救。"
+        }
+      ]
+    },
+    {
+      "id": "distinct-cutting-and-cover-windows",
+      "observation": "开笼的风刃先消散、结构确认后才能解扣；更晚的废料斗另行触发三息窗口。八两轻销解除机械锁止，不用半成真元托起满斗。",
+      "evidence": [
+        {
+          "sourceId": "world/techniques/tech_04",
+          "start": 1350,
+          "end": 1416,
+          "quote": "已有风刃离体时，失锁只停止继续凝刃、放刃和主动导向；各道已离体风刃沿失锁前最后确定的方向前行，不能收回、临时瞬灭或替路径内的人挡伤。"
+        },
+        {
+          "sourceId": "plan/chapters/25",
+          "start": 3883,
+          "end": 3939,
+          "quote": "实际绳断后林保持原稳姿观察唯一刃影至两丈边界散尽，苏在刃路外实际检查门板、滑槽和门框稳定，再依前述顺序解扣推门。"
+        },
+        {
+          "sourceId": "plan/chapters/25",
+          "start": 4026,
+          "end": 4091,
+          "quote": "此等待包含在08:45—09:15的原交锋和解囚时段内；后续三息真光窗口仍由更晚的废料斗动作另行触发，不提前把余刃等待挤进那三息。"
+        },
+        {
+          "sourceId": "plan/chapters/23",
+          "start": 2184,
+          "end": 2242,
+          "quote": "可拨的小销约八两，只锁空载拨片，满斗重量由支轴和闸钩承受；拨片释放既有机械闸钩，落料靠重力，不把满斗载荷藏进御物费。"
+        },
+        {
+          "sourceId": "plan/chapters/25",
+          "start": 2418,
+          "end": 2489,
+          "quote": "林辰在两丈内直视第23章核过的八两小销，御动一息拨销，预付半成真元；小销只锁空载拨片，承重的支轴与闸钩由原有机械关系释放，倒料靠重力形成遮挡。"
+        }
+      ]
+    },
+    {
+      "id": "three-breath-two-claw-order",
+      "observation": "顾第1息起印；第2息墨预付第1息血爪；顾第3息开始时墨预付第2息，顾完成第3息才付费出光，接触实际爪煞。墨停爪后不重启。",
+      "evidence": [
+        {
+          "sourceId": "world/techniques/tech_05",
+          "start": 281,
+          "end": 370,
+          "quote": "每开始一息先付一成自身真元或元罡，该息内维持双手骨爪及抓击共用此费；中断、落空或收爪不退款。连续最多三息，收爪后至少六息才可重启，停术期间不能维持爪势；每次使用都会积累指骨尸毒。"
+        },
+        {
+          "sourceId": "world/techniques/tech_06",
+          "start": 433,
+          "end": 444,
+          "quote": "蓄势施展需三个呼吸间隔"
+        },
+        {
+          "sourceId": "plan/chapters/25",
+          "start": 2516,
+          "end": 2684,
+          "quote": "按同一交锋的呼吸顺序：顾起印第一息借倒料和货柱隔开直扑，开始纯阳凝印；第二息墨从遮挡侧缘绕到可见近身处，为抓回样箱先付一成元罡开启血爪第一息，顾侧步护住箱位，没有提前放光。顾起印第三息开始时，墨为连续抓击再先付一成，血爪进入第二息；顾完成第三息凝印后才支付三成元罡和0.25元载，向眼前实际外放的爪煞施真光并在这次近身交锋中接触灼散它。"
+        },
+        {
+          "sourceId": "plan/chapters/25",
+          "start": 2684,
+          "end": 2724,
+          "quote": "墨立即停爪，未再开启第三息；两息各自已付的成本不退，六息重启间隔从此刻停爪起算。"
+        }
+      ]
+    },
+    {
+      "id": "contact-and-counterplay",
+      "observation": "真光不封境；后续推劲另有接触、立足、聚劲与关节方向。墨因抢箱错过抽腿或打断机会，废木卡足共同造成失衡，不能把付费视为必中。",
+      "evidence": [
+        {
+          "sourceId": "world/techniques/tech_06",
+          "start": 240,
+          "end": 287,
+          "quote": "不自动消除对手的玄府元罡、境界或行动能力。克制后仍须同阶实战制伏，不能把属性相克当成永久封禁。"
+        },
+        {
+          "sourceId": "world/axioms/ax_13",
+          "start": 360,
+          "end": 428,
+          "quote": "用于人体须先实际接到暴露部位并取得立足和关节方向优势，能否跌倒或受伤依双方站位、卸力与伤情，不因付款保证折骨、破同阶完整护罡或压制高境。"
+        },
+        {
+          "sourceId": "plan/chapters/25",
+          "start": 2787,
+          "end": 2927,
+          "quote": "顾退半步让开直扑，在货台角处扣住墨外露前膝侧，双足站稳。墨把重心继续压向前脚、右手绕货柱去抓箱，错过抽腿或用左手打断聚劲的机会；顾这才用ax_13聚劲一息、预付二成，下一息沿膝侧向内推转。墨的前脚正卡在自己跨过的普通废木垫边，顺势扭膝失衡倒地，腿受伤；并非推劲付费就必能击倒同阶。"
+        }
+      ]
+    },
+    {
+      "id": "accounts-and-damage-cap",
+      "observation": "三个角色各记本人的法力，顾另付寿储。顾伤后六成上限不是六成余额；墨至少三成余额仍受裂伤与积毒限制，不能以余额归零解释被擒。",
+      "evidence": [
+        {
+          "sourceId": "world/axioms/ax_05",
+          "start": 61,
+          "end": 93,
+          "quote": "真元、元罡与寿储分别记账；元载只计寿储，不能拿真元恢复充作延寿。"
+        },
+        {
+          "sourceId": "plan/chapters/25",
+          "start": 1186,
+          "end": 1274,
+          "quote": "顾到场前元罡十成，左前臂局部护罡聚合一成、承受一次斜擦一成，共二成；真光三成后余五成，贴身推劲再预付二成后余三成。右肩伤发生于推劲结束时，随后可用上限下修至六成，实际仍只有三成"
+        },
+        {
+          "sourceId": "plan/chapters/25",
+          "start": 1322,
+          "end": 1394,
+          "quote": "本章承接第21章动作后的8.5成：8.5−2−0.5=6成；第21章的半成已在8.5起点中扣过，本章半成对应新的废料斗插销，两个动作各只付一次。"
+        },
+        {
+          "sourceId": "plan/chapters/23",
+          "start": 1922,
+          "end": 1985,
+          "quote": "本次出爪前墨实际可用余量至少八成，出爪一息预付一成后至少七成；推劲另预付二成后至少五成，两种操作不同时维持，聚劲失手也不退费。"
+        },
+        {
+          "sourceId": "plan/chapters/25",
+          "start": 3425,
+          "end": 3466,
+          "quote": "真光未消除这份余量；随后的裂口流血、腿伤及运罡失稳令其停术，不以余额归零解释被擒。"
+        }
+      ]
+    },
+    {
+      "id": "injury-custody-and-handoff",
+      "observation": "伤后停止重推及第二印；左手只在实检稳定时有限定腕。26章两次各半成后余二成，保留墨恢复施术则停运呼援的失败分支；顾12:00交押后疗伤，不抬车或补夜岗。",
+      "evidence": [
+        {
+          "sourceId": "world/axioms/ax_13",
+          "start": 800,
+          "end": 860,
+          "quote": "伤后仅可用实检仍稳定的另一侧完成定腕轻操作，不得以换手绕过全身气路失稳；伤后上限和余额按ax_05复核，剩余不足先停术。"
+        },
+        {
+          "sourceId": "plan/chapters/25",
+          "start": 3205,
+          "end": 3218,
+          "quote": "顾持续近身看墨，不兼抬车。"
+        },
+        {
+          "sourceId": "plan/chapters/26",
+          "start": 1025,
+          "end": 1097,
+          "quote": "至午正交押前仅两次按ax_13定腕压下墨未施术的普通转腕：每次先握住一只手腕，聚罡一息、预付半成、纠姿至多一息，间隔至少三息；合计一成后余二成。"
+        },
+        {
+          "sourceId": "plan/chapters/26",
+          "start": 1185,
+          "end": 1218,
+          "quote": "若左臂气路也不稳或墨恢复术法，必须停运呼援，不能靠原计划继续硬押。"
+        },
+        {
+          "sourceId": "plan/chapters/26",
+          "start": 2123,
+          "end": 2171,
+          "quote": "顾全程近身看墨，12:00抵外营面交乔，杜仍守入口。顾随后交白榆止血固定肩伤并休息，不先去核物。"
+        }
+      ]
+    }
+  ],
+  "arithmetic": [
+    {
+      "account": "林真元",
+      "expression": "8.5 - 2 - 0.5",
+      "value": 6,
+      "expected": 6,
+      "unit": "成本人健康实测上限"
+    },
+    {
+      "account": "顾元罡战末",
+      "expression": "10 - 1 - 1 - 3 - 2",
+      "value": 3,
+      "expected": 3,
+      "unit": "成本人健康实测上限"
+    },
+    {
+      "account": "顾元罡26章交押前",
+      "expression": "3 - 0.5 - 0.5",
+      "value": 2,
+      "expected": 2,
+      "unit": "成本人健康实测上限"
+    },
+    {
+      "account": "墨187日元罡下界",
+      "expression": "8 - 1 - 2",
+      "value": 5,
+      "expected": 5,
+      "unit": "成本人健康实测上限"
+    },
+    {
+      "account": "墨188日停爪元罡下界",
+      "expression": "5 - 1 - 1",
+      "value": 3,
+      "expected": 3,
+      "unit": "成本人健康实测上限"
+    },
+    {
+      "account": "战斗与解囚总窗口",
+      "expression": "(9*60+15) - (8*60+45)",
+      "value": 30,
+      "expected": 30,
+      "unit": "分钟，非持续施术"
+    },
+    {
+      "account": "止血和撤离准备",
+      "expression": "(10*60+45) - (9*60+15)",
+      "value": 90,
+      "expected": 90,
+      "unit": "分钟"
+    },
+    {
+      "account": "带伤返程",
+      "expression": "12*60 - (10*60+45)",
+      "value": 75,
+      "expected": 75,
+      "unit": "分钟"
+    }
+  ],
+  "bibleAndPlanActionSequenceAgrees": true,
+  "candidatePath": "data/design-candidates/design64-account-and-date-draft-v3.json",
+  "candidateSha256": "c9233b2cd92d437764cb90b2cfe93d421fcd53529f7743a10176010b8dd3ad3a",
+  "candidateActionSequenceUnchanged": true,
+  "questions": [
+    {
+      "document": "plan",
+      "id": "chapter25-claw-sequence",
+      "question": "设计59草案明确25章顾起印第二、第三息对应墨两息付费血爪，真光第三息完成后才接触已外放爪煞，并补引顾既有训练资格；须对照两套章纲、功法限制和动作账复评，旧正文与负面报告仍保留。",
+      "blocking": true,
+      "status": "open"
+    }
+  ],
+  "sources": [
+    {
+      "id": "story/characters/char_10",
+      "textSha256": "728c48169654c91d23217351487954ec4b301207fc6685bb2ca85654f5105c01"
+    },
+    {
+      "id": "world/techniques/tech_06",
+      "textSha256": "4250df9c7dcb2151c63ebc80221fd6b7d0ea1231384998038c25fb979a81a558"
+    },
+    {
+      "id": "plan/chapters/24",
+      "textSha256": "4dd029609df76acf64dfa1a4fbb5cee604860e8dbf0011eb5420ee5fcac32c0b"
+    },
+    {
+      "id": "plan/chapters/25",
+      "textSha256": "ee1c5e684adac672a24f44e6c2ad09989d3fe857eeb3c4990f74c8705beeea7b"
+    },
+    {
+      "id": "world/techniques/tech_04",
+      "textSha256": "c769a1343b1e4c2ba4fb9b336985095524d368eb59175243b7459f7b87ea3d56"
+    },
+    {
+      "id": "plan/chapters/23",
+      "textSha256": "43c7d8f504637f0cc3615de61a3653a24447de23fbe21861974261a514f257ae"
+    },
+    {
+      "id": "world/techniques/tech_05",
+      "textSha256": "6cb16a5b9f210991daae7f20795f79b9a9463c68eaf7224de5f05fdc11c468ce"
+    },
+    {
+      "id": "world/axioms/ax_13",
+      "textSha256": "6b5e5698dea923a314789e3d92237a88cb47264865f38b0012f4bfa54af85c61"
+    },
+    {
+      "id": "world/axioms/ax_05",
+      "textSha256": "81f0c43a0365496907a72b0dc70757f0836180eb86d73244853ccba8d2b39b8b"
+    },
+    {
+      "id": "plan/chapters/26",
+      "textSha256": "67a3d56dff121b31813814834652ca9928006e7025688d15fcd749c5624ba4dc"
+    }
+  ],
+  "conclusion": "在上述限定的资格、时序、付款、伤情和交接链对照中未发现新冲突；不代表真实动作已发生、叙事表现合格或四领域验收完成。",
+  "remaining": [
+    "正式力量及故事线评审仍未完成，原负面与待补读结论保留。",
+    "顾的寿储只核本次0.25元载归属与成本，未在此重建其终生寿储；墨余额是原文保守下界而非精确余额。",
+    "站位、遮挡、相对动作、敌人选择与伤损必须在后续细写中可信呈现，数字相容不保证战斗可读。",
+    "所有实际支付、受伤、持有及交押须由新正文及采纳事件落实；不能引用旧稿为此提案背书。",
+    "chapter25-claw-sequence继续保持blocking/open，不借本核查解除。"
+  ],
+  "modelCalls": 0,
+  "productionReads": 0,
+  "productionWrites": 0,
+  "questionsResolved": 0,
+  "formalAcceptance": false,
+  "proseGenerated": false
+}
