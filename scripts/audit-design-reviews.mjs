@@ -3,7 +3,7 @@ import { writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual, parseArgs } from 'node:util';
-import { completeDesignReviewRun } from '../novel-service-core/src/design-review-run.ts';
+import { acceptDesignReviewStage, completeDesignReviewRun, createDesignReviewRun } from '../novel-service-core/src/design-review-run.ts';
 import { designReviewInput, designReviewOverview } from '../novel-service-core/src/design-review.ts';
 
 const hash = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
@@ -11,6 +11,37 @@ const hash = value => createHash('sha256').update(JSON.stringify(value)).digest(
 const canonical = value => JSON.parse(JSON.stringify(value));
 function same(actual, expected, message) {
   if (!isDeepStrictEqual(canonical(actual), canonical(expected))) throw new Error(message);
+}
+
+/** Validate saved progress against independently supplied design materials.
+ * A valid prefix is not a final report. Failed responses and pending stages
+ * remain history; only accepted results participate in the reconstructed prefix. */
+export function auditDesignReviewPrefix(run, expectedInput) {
+  same(run.input, expectedInput, 'Run materials or rubric differ from the selected design');
+  if (run.scheduleVersion !== undefined && (!Number.isInteger(run.scheduleVersion) || run.scheduleVersion < 2)) {
+    throw new Error('Unknown persisted review schedule version');
+  }
+  const before = hash(run);
+  const rebuilt = createDesignReviewRun(expectedInput, run.createdAt, run.scheduleVersion ?? 1);
+  same(run.units, rebuilt.units, 'Saved progress has different original byte ranges');
+  const stagePlan = ({ id, kind, unitIds, children, followupFor }) => ({ id, kind, unitIds, children, ...(followupFor ? { followupFor } : {}) });
+  let pending = false, completedStages = 0;
+  for (const [index, stored] of run.stages.entries()) {
+    if (!stored.result) { pending = true; continue; }
+    if (pending) throw new Error('Saved progress skips an unfinished stage');
+    const expected = rebuilt.stages[index];
+    if (!expected) throw new Error('Saved progress contains an unexpected completed stage');
+    same(stagePlan(stored), stagePlan(expected), 'Saved progress differs from the canonical review schedule');
+    acceptDesignReviewStage(rebuilt, expected, stored.result);
+    completedStages++;
+  }
+  // Accepting the final raw batch may add required followups and rebuild the
+  // synthesis tree. Compare that derived tail too, even before it is executed.
+  same(run.stages.map(stagePlan), rebuilt.stages.map(stagePlan), 'Saved pending stages differ from the reconstructed review schedule');
+  if (hash(run) !== before) throw new Error('Progress reconstruction changed the original run');
+  return { verification: 'verified', completedStages, totalStages: run.stages.length,
+    runSha256: before, formalAcceptance: false,
+    limitation: 'Validates saved stage results, citations and pending schedule against the supplied input; does not replay raw model responses or approve incomplete work.' };
 }
 
 /** Read-only integrity audit, not a second model opinion or approval action.
@@ -29,7 +60,13 @@ export function auditDesignReviews(work, planId) {
       totalStages: run?.stages.length ?? 0,
       retainedFailures: run?.stages.reduce((sum, stage) => sum + (stage.failures?.length ?? 0), 0) ?? 0,
     };
-    if (run && run.status !== 'completed') return { ...row, verification: 'not_completed' };
+    if (run && run.status !== 'completed') {
+      try {
+        return { ...row, verification: 'not_completed', progress: auditDesignReviewPrefix(run, designReviewInput(work, area.area, planId)) };
+      } catch (error) {
+        return { ...row, verification: 'invalid', error: error instanceof Error ? error.message : String(error) };
+      }
+    }
     if (!report || report.inputHash !== overview.inputHash) return { ...row, verification: 'missing' };
     if (!run) return { ...row, verification: 'unverifiable', error: 'No completed batch run; a report label alone is insufficient' };
     try {

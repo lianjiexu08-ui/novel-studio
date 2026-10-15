@@ -5,7 +5,7 @@ import { createPlanRevision } from '../novel-service-core/src/planning.ts';
 import { createDesignReviewRun, acceptDesignReviewStage, designReviewStageInput, completeDesignReviewRun } from '../novel-service-core/src/design-review-run.ts';
 import { designReviewAreas, designReviewInput, recordDesignReview } from '../novel-service-core/src/design-review.ts';
 import { minimalWorldPack, minimalStoryBible, minimalPlan, fixtureDesignReview } from '../packages/application/test/fixtures.ts';
-import { auditDesignReviews } from './audit-design-reviews.mjs';
+import { auditDesignReviews, auditDesignReviewPrefix } from './audit-design-reviews.mjs';
 
 function finish(work, planId, area, verdict = 'pass') {
   const run = createDesignReviewRun(designReviewInput(work, area, planId));
@@ -49,6 +49,77 @@ test('does not accept old passes while a newer review is incomplete', () => {
   assert.equal(result.status, 'not_accepted');
   assert.equal(result.areas[0].verification, 'not_completed');
   assert.equal(result.areas[0].status, 'interrupted');
+  assert.equal(result.areas[0].progress.verification, 'verified');
+  assert.equal(result.areas[0].progress.formalAcceptance, false);
+});
+
+function partialFixture() {
+  const f = fixture();
+  const input = designReviewInput(f.work, 'story', f.planId);
+  input.sources.push(...['a', 'b', 'c'].map(id => ({ id: `test/${id}`, text: `${id}原文依据`.repeat(18_000) })));
+  const run = createDesignReviewRun(input);
+  assert.ok(run.stages.length > 1);
+  const first = run.stages[0];
+  acceptDesignReviewStage(run, first, fixtureDesignReview(designReviewStageInput(run, first)));
+  run.stages[1].failures = [{ at: '2026-10-16T00:00:00Z', error: 'interrupted response', modelResponses: ['not valid JSON'] }];
+  run.status = 'failed';
+  return { run, input };
+}
+
+test('validates a partial accepted prefix while preserving failed responses and pending work', () => {
+  const { run, input } = partialFixture(), before = JSON.stringify(run);
+  const result = auditDesignReviewPrefix(run, input);
+  assert.equal(result.verification, 'verified');
+  assert.equal(result.completedStages, 1);
+  assert.equal(result.formalAcceptance, false);
+  assert.equal(JSON.stringify(run), before);
+});
+
+for (const [name, corrupt] of [
+  ['fabricated accepted citation', run => { run.stages[0].result.checks[0].evidence[0].quote = '并不存在的引文XYZ'; }],
+  ['skipped unfinished step', run => { run.stages[2].result = structuredClone(run.stages[0].result); }],
+  ['altered source range', run => { run.units[0].end--; }],
+  ['deleted pending stage', run => { run.stages.pop(); }],
+  ['altered pending stage', run => { run.stages.at(-1).children = []; }],
+  ['substituted input', run => { run.input.sources[0].text += '改写'; }],
+  ['explicit legacy version', run => { run.scheduleVersion = 1; }],
+  ['null schedule version', run => { run.scheduleVersion = null; }],
+  ['unsupported schedule version', run => { run.scheduleVersion = 999; }],
+]) {
+  test(`partial progress rejects ${name} without modifying evidence`, () => {
+    const { run, input } = partialFixture(); corrupt(run);
+    const before = JSON.stringify(run);
+    assert.throws(() => auditDesignReviewPrefix(run, input));
+    assert.equal(JSON.stringify(run), before);
+  });
+}
+
+test('reconstructs dynamically required followups before validating the pending tail', () => {
+  const { input } = partialFixture(), run = createDesignReviewRun(input);
+  const first = run.stages[0], request = designReviewStageInput(run, first);
+  const missing = input.sources.find(s => !request.stage.sourceMap.some(m => m.sourceId === s.id));
+  assert.ok(missing);
+  const result = fixtureDesignReview(request);
+  result.checks[0] = { ...result.checks[0], verdict: 'insufficient', revisionAdvice: '核对待补原文与已给安排', awaitingSources: [missing.id] };
+  acceptDesignReviewStage(run, first, result);
+  for (const stage of [...run.stages].filter(s => s.kind !== 'synthesis' && !s.result)) {
+    acceptDesignReviewStage(run, stage, fixtureDesignReview(designReviewStageInput(run, stage)));
+  }
+  assert.ok(run.stages.some(s => s.followupFor));
+  assert.equal(auditDesignReviewPrefix(run, input).verification, 'verified');
+  const modified = structuredClone(run);
+  modified.stages = modified.stages.filter(s => !s.followupFor);
+  assert.throws(() => auditDesignReviewPrefix(modified, input), /pending stages/);
+});
+
+test('a running label cannot conceal corrupt saved evidence from the overall audit', () => {
+  const f = fixture(), { run } = f.reviews.world;
+  run.status = 'running';
+  run.stages[0].result.checks[0].evidence[0].quote = '不存在的原文证据XYZ';
+  const before = snapshot(f.work), result = audit(f);
+  assert.equal(result.status, 'invalid');
+  assert.equal(result.areas[0].verification, 'invalid');
+  assert.equal(snapshot(f.work), before);
 });
 
 test('a verified negative report is evidence of needed revision, not acceptance', () => {
