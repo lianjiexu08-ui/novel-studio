@@ -1,0 +1,115 @@
+{
+  "observedAt": "2026-10-15T08:47:37.762Z",
+  "frozenRuntimeCommit": "9df915493be44a310c910610b44ef2b65cb153e6",
+  "newScheduleVersion": 23,
+  "formalInputHash": "80b5930d47111b420c22ae16ecfc355d0dd5d47f8098bad104f8fa08543e1c24",
+  "rows": [
+    {
+      "area": "world",
+      "runId": "design_run_a5e0559b-7302-46a1-b7b1-621552c4bd1f",
+      "scheduleVersion": 22,
+      "completedInputsCompared": 51,
+      "allIdentical": true,
+      "runUnchanged": true
+    },
+    {
+      "area": "power",
+      "runId": "design_run_0ed1c9bd-b5fa-499f-bbbd-2175726f3017",
+      "scheduleVersion": 22,
+      "completedInputsCompared": 29,
+      "allIdentical": true,
+      "runUnchanged": true
+    },
+    {
+      "area": "characters",
+      "runId": "design_run_c1c34b4f-4f80-48de-99c4-a4b8b5bfaec2",
+      "scheduleVersion": 22,
+      "completedInputsCompared": 31,
+      "allIdentical": true,
+      "runUnchanged": true
+    },
+    {
+      "area": "story",
+      "runId": "design_run_922f05fd-ed33-41da-927a-5b909f71c2f1",
+      "scheduleVersion": 22,
+      "completedInputsCompared": 9,
+      "allIdentical": true,
+      "runUnchanged": true
+    }
+  ],
+  "modelCalls": 0,
+  "databaseWrites": false,
+  "limitation": "Compatibility of saved v22 stage inputs only; not quality acceptance or a migration of the active run.",
+  "trigger": {
+    "stageId": "cross-1-4",
+    "stageSha256": "1389895d826d29b39400206c2311bb69c5c4fedf9c4739821e1533792cfa3ff3",
+    "growthCheck": {
+      "criterion": "growth",
+      "verdict": "insufficient",
+      "explanation": "本批能确认林辰获得的是受伤状态下的有限执行能力与判断成长：他完成灵泉疗程但不能用其治伤，按医嘱改做轻役；在护货、火场和追船中主动接受边界并作出先救人、如实记账、尊重他人选择等可观察变化。可是本项要求结合开篇及阶段计划确认近期成长目标、前置训练、实际训练与后续回报；本次未提供第1—23章细纲，也未提供第47—50章细纲，且玄府晋阶位于第81—87章的宏观后段。仅凭本批不能完整判断这些成长是否承接、是否兑现或是否存在重复训练。",
+      "evidence": [
+        {
+          "sourceId": "review-unit/292",
+          "quote": "  \"mainConflict\": \"先天短寿的林辰由矿务逃生追查跨陆扣工与非法货运，在寿储、境界与各方利益限制下同伙伴救人、查清父亲守门及外山掩案责任。百章只切断已实证的一条三地运输链；九鼎全貌、三残片与最终界门危机仍是约450章全书必须收束的主线。 人员口径：赤霄获救承运雇工是唐、许、冯、吴、卢五人；陆弟单列，陆本人是受看护的押送责任人，不算五工。北境黑舱七人是另一批来自青玄的矿工，至300日仍由北境港口救济所安置，不随林贺返青玄。435–436日青玄两车八人是开篇两名旧工友加430日后新扣六人，与赤霄五工、北境七人均不重合；梁九为自由领车救援者，不在被救八人内。三地名单不能互相改写为人数增长，首卷救过而再被移交的两名旧工友只算两位不同人，不因再次获救重复加人。\",\n  \"theme\": \"活命与查真相不能以牺牲无辜者代价换取；信任来自共同选择和承担自己一方的责任。\",\n  \"protagonistArc\": \"从负伤矿工到能接受伙伴自主选择的凝元修士，再经数月修习、实测丹府与支付十元载成为玄府初期；力量增加时可用寿储反而减少。百章不发动逆命真解，不越阶斩高境，不把神兵持有当作启动权限。\",\n"
+        },
+        {
+          "sourceId": "review-unit/292",
+          "quote": "  \"endingDirection\": \"百章有救人、断运、部分父案澄清和玄府成长的可核结局。1–100是450章的阶段验收；接下来的有限寿源、高阶反派、钥匙余片与九鼎机制必须另建经审查的来源和行动链，不将450章全书结局撤销。 没有返寿、燃寿白发、道伤凭空痊愈或三大陆永久太平。此卷不清算全部九鼎，公开传播仍限实到地点。\",\n  \"keyTurns\": [\n    \"第10–12章：伤重林辰与曾撤供的梁九分工救人，只改变普通输送位置；苏保留封样及己方不利证词，争得有限复核，众人仍负伤、欠债和受限。\",\n    \"第23–29章：主角为救人暴露自己，创造顾峤同阶制敌的窗口，取得并分配有限泉液；完成两次十日疗程后南行，苏选择留宗。卷末凝元三重，不能沿用神海及二十年燃寿。\",\n    \"第44/50–53章：44林救落水对手而不追陆与原账，贺付船损；50林不施术而让工人自己回答，陆协助夺闩、两名看守被控，吴卢实际脱控并拒绝立即回船。51–53拟各自选择生计，陆新写改签自述，副本仍待独立核验。\",\n    \"第61–66章：付费北航后在受限外港救出七名矿工，夜真身守撤离路，林放弃第二片，不入界渊。\",\n    \"第83章：数月努力与诊察后，实际付十元载晋玄府；不能再用旧法器承载元罡。\",\n"
+        },
+        {
+          "sourceId": "review-unit/339",
+          "quote": "{\n  \"id\": \"chapter-25\",\n  \"chapterNumber\": 25,\n  \"volumeId\": \"vol_01\",\n  \"title\": \"废料斗下的三息\",\n  \"summary\": \"第188日辰末08:45，墨幽屠准备把俘虏和泉瓶装车转走。林辰与苏仍伏在营地，直到亲眼看见顾峤进入侧廊并收到手势，才按计划拉开囚棚闸门。林辰以一次乾元御风剑诀、二成真元只放一道风刃切断普通吊索，亲见余刃散尽并由苏核门框滑槽稳定后，才解扣推门；苏随后格开凝元看守的铁棍后剑茎被震松，停剑护送俘虏、放弃追击逃走的看守，顾在低顶主巷与墨正面交锋。墨本可弃货退入支洞，却因要夺回遗物和泉液扑向林辰。林辰抱着从货台取走的样箱和泉瓶转入检修侧廊，在两丈内直视第23章核过的八两无负载小销，以一次一息御物拨开空载拨片的锁销，倒料遮断直扑路线，顾借三息间隔蓄势，支付三成元罡与0.25元载施展太清太乙真光，在第三息完成时克制墨已连续付费开启的第二息血爪，墨停爪后只用肉身抢箱；顾另有独立站位条件，另付二成以已学贴身推劲、实际接膝与废木卡足使墨失衡受伤，随后贴身看押。林辰被落石割伤腿，无法再追击。本次开战在08:45亲见顾手势之后，解囚与同阶交锋至巳初后09:15结束，随后止血、收押并安排伤者转移，10:45才沿支洞出发。\",\n"
+        },
+        {
+          "sourceId": "review-unit/343",
+          "quote": "{\n  \"id\": \"chapter-29\",\n  \"chapterNumber\": 29,\n  \"volumeId\": \"vol_01\",\n  \"title\": \"分路的约定\",\n  \"summary\": \"第210日白榆复诊，允许林辰短距步行、坐车旅行和轻物点数，禁止搬药箱、疾跑与持剑久战。灵泉两剂均已生效，腿伤仍未痊愈。林辰想邀苏一起追查天宝外港收货人，苏却选择随押解队回宗保护证人，不愿让获得延寿的人把所有留守代价交给别人。两人争执后分配副本与递信责任；押解队约定212日核清本批全员退出后销班，213–216日用伤者慢车返外门，乔邵昼夜近身看墨、杜褚护路，顾坐医车，林辰第一次承认同行不是她必须付的第三次代价。第211日，经苏先前商盟引荐、由过营承运人当面验明身份，林辰签下六箱低阶药材的本航次护货换普通舱合同：他负责轻物清点、封签和途中值看，搬运由车夫水手承担；天灾减奖金，主观失职另查，返程不担保。签约和复诊都在古境入口外营完成，尚未凭空回到外门院。\",\n  \"characterGoals\": \"林辰要取得合法南渡机会并追查收货人；苏要留下保护证人与监督押解；白榆要完成药后复评；顾峤要确认伤势与交接责任；乔岑要让合同和货单不被冒领。\",\n"
+        },
+        {
+          "sourceId": "review-unit/351",
+          "quote": "{\n  \"id\": \"chapter-37\",\n  \"chapterNumber\": 37,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"火仓留人\",\n  \"summary\": \"225夜，林贺为核册上领货人到木仓外公共交接处，两人在门外等了片刻，见一名交割伙计在外桌核纸页，侧窗内正有人往外挪退包装。灯架在一阵拖拉声后歪倒，带油火线沿纸绳窜起；撞落还是固定处松脱，林没看清。外桌伙计抱页跑向侧巷，边门同时传出求救。林先向侧巷迈了半步，听到第二声求救才停住：边门尚未烧着，对方还能应声挪动，若此时追人，门上窜起的火会先断掉出口。林仍不知是谁，转身让贺叫水手汲水，用湿毡裹手、短木杆从门板破口钩开轻闩，留在外侧上风处撑门约十息，叫对方自行爬过倒架。人被拉到门外时林掌心被热铁包角烫伤，腿伤也不许他再进仓。获救伙计自报陆沉川，林只记姓名待核。火势压住后，贺和搬运工在安全的后架取回12包原批签药和破口外板。林识出六号箱刻号，但救人已使携页者逃出视线，所携纸页内容和火因都未知。 226日陆在医棚请人联络哥哥，林正回原船换药，尚不知这次联络。\",\n"
+        },
+        {
+          "sourceId": "review-unit/360",
+          "quote": "{\n  \"id\": \"chapter-46\",\n  \"chapterNumber\": 46,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"向北的帆\",\n  \"summary\": \"248日，三日临住结束，唐想让许陪自己等吴卢，许说想找能按时下工的活，不再随别人追船。贺把三张原空床交给他们，却把下一张远航用工单收回：床可以住，留不留、跟不跟船要另问。林陪她到既有受护修帆棚谈轻工，从敞口看见远处商路飞舟离泊：定位阵沿实体航线逐点亮起，舟罩把热潮隔在外面，巨帆下装的是普通人也要吃的粮药。林第一次对尚未见过的苍冥生出不是追凶的向往；贺却拉开自己的修船图，说她想养的是这条能让自己选去处的小船，不是再替谁抵一次命。林没有把剩下一枚灵石当作买她承诺的钱。唐许最终各自同意有限坐姿拣索换三人到255的饭食，冯养伤，谁也没签下一趟远航。249查车回告只确认旧岸仓承运时段；250贺在坞里收到撤证换补偿的信，留原件而拒签，船依旧未修好。她和林只约好继续在陆上找人，各自保留下一步的决定。\",\n  \"characterGoals\": \"许要重新掌握自己的工作和离开时间；唐希望五人团聚但须接受同伴不再听自己安排；贺要保住独立经营与选航线的权利；林开始区分自己想见世界与把别人拖进父案。\",\n"
+        }
+      ],
+      "revisionAdvice": "补读并核对前置与后续成长链：第1—23章需确认凝元三重、轻物御动、伤情和灵泉前置；第47—50章需确认本批港口选择如何接入下一阶段；同时核对第81—87章玄府晋阶前的训练、资源、诊察和十元载支付是否由前段实际取得。",
+      "awaitingSources": [
+        "plan/chapters/1",
+        "plan/chapters/2",
+        "plan/chapters/3",
+        "plan/chapters/4",
+        "plan/chapters/5",
+        "plan/chapters/6",
+        "plan/chapters/7",
+        "plan/chapters/8",
+        "plan/chapters/9",
+        "plan/chapters/10",
+        "plan/chapters/11",
+        "plan/chapters/12",
+        "plan/chapters/13",
+        "plan/chapters/14",
+        "plan/chapters/15",
+        "plan/chapters/16",
+        "plan/chapters/17",
+        "plan/chapters/18",
+        "plan/chapters/19",
+        "plan/chapters/20",
+        "plan/chapters/21",
+        "plan/chapters/22",
+        "plan/chapters/23",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50"
+      ]
+    },
+    "interpretation": "The growth criterion alone retained whole-book wording in local partitions. Its repeated full-opening request motivates scope clarification, not automatic rejection of any requested source or alteration of this stored check."
+  },
+  "validation": {
+    "coreTypes": "passed",
+    "tests": 384,
+    "failures": 0,
+    "log": "/tmp/novel-growth-local-full.log"
+  }
+}

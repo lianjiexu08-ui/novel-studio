@@ -12,6 +12,10 @@ const localStoryCriteria: Record<string, string> = {
   genre: '根据本批作者偏好、世界与实际场景，检查奇异环境、修炼和探索是否改变人物选择、风险或回报，还是只作术语装饰。有限能力与有代价的胜利可以成立；不要借此要求免费升级、越阶或新增万能法宝，也不能仅因本批没有高阶战斗判缺乏玄幻感。需要跨段对照时定位具体已存在来源。',
 };
 
+// v23 scopes the growth criterion added after the other local story criteria.
+// Older runs retain the original question so their saved inputs still replay.
+const localGrowthCriterion = '核验本批实际提供的主角成长安排：人物为何主动选择、想学会或改变什么、获得了哪些学习条件、实际训练或选择、可观察的阶段回报，以及支付与后果是否相连。分清目标、资格、训练和已取得能力；仅说明境界规则或远期愿望不能替代实际行动，本批已给成长缺口或矛盾仍须具体返修。只为本批明确依赖而尚未读到的前置或回报，指出待核事实并请求全部必要来源；不能只因尚未完成全书成长验收便笼统索要全部开篇或后续章纲。允许有意义的知识、判断、关系或职业成长，不强求本批升级，不放宽伤势、训练、资源和寿储限制。全书近期成长承诺及跨阶段兑现仍由完整覆盖后的综合按原标准判断。';
+
 // v20 gives power partitions the same local/global distinction as story
 // partitions. A local reviewer must still inspect every supplied high-tier
 // rule, but need not independently re-read the entire unseen inventory.
@@ -26,7 +30,7 @@ export function localDesignReviewRubric(input: DesignReviewInput, scheduleVersio
     `本项评审的是共享 draft 正文。${description} 本批只对照实际携带的设定、计划、历史与正文；pass只表示本批没有发现该维度问题，整体结论由全量原文、跨批检查及综合决定。不要把未读的无关后续计划当作本章必须兑现的任务，也不要要求本批独自证明全书一致。只有具体判断依赖目录中确实存在但未读的来源时，用insufficient和awaitingSources列全必要来源并说明问题；不要凭未读资料补完正文。已发现的正文矛盾、缺乏动机或质量问题必须revise，不能用等待掩盖。`,
   ]));
   return Object.fromEntries(Object.entries(input.rubric).map(([criterion, description]) => [criterion,
-    `本项是局部原文检查，pass仅表示本批可检验的安排成立，不代表整个领域通过。${input.area === 'story' && description === designReviewRubrics.story[criterion] ? localStoryCriteria[criterion] ?? description
+    `本项是局部原文检查，pass仅表示本批可检验的安排成立，不代表整个领域通过。${input.area === 'story' && description === designReviewRubrics.story[criterion] ? (scheduleVersion >= 23 && criterion === 'growth' ? localGrowthCriterion : localStoryCriteria[criterion] ?? description)
       : scheduleVersion >= 20 && input.area === 'power' && description === designReviewRubrics.power[criterion] ? localPowerCriteria[criterion] ?? description : description}`
     + (input.area === 'power' ? '本批完整提供的各等级境界、功法、法宝和资源规则本身也是待审对象，包含尚未在章纲中使用的高阶规则；公共来源不只是背景。必须检查其自身约束，再核具体角色行动，不能只核低阶行动账而跳过已经给出的高阶能力缺口。' : '')
     + '逐一核验实际提供的规则和行动；本批自身缺少关键约束、预算不闭合或出现矛盾仍须返修。'
