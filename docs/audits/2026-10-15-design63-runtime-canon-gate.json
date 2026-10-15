@@ -1,0 +1,51 @@
+{
+  "status": "prepared_not_deployed_unbound_to_design",
+  "observedAt": "2026-10-15T08:38:15.177226+00:00",
+  "root": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design63-95bf5df",
+  "commit": "95bf5dfd585fddd8b5c9b96295590d7b77fc7a77",
+  "rubricVersion": 16,
+  "scheduleVersion": 22,
+  "model": "gpt-5.6-luna",
+  "timeoutMs": 600000,
+  "fallback": false,
+  "candidateBinding": null,
+  "dependenciesCopiedFrom": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design63-dc24715/node_modules",
+  "allSymlinksStayWithinRuntime": true,
+  "generatedClientCopiedWithoutGeneration": true,
+  "modelCalls": 0,
+  "productionRestarted": false,
+  "frozenDesign62SourcesUnchanged": true,
+  "supersedesPreparedRuntime": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design63-dc24715",
+  "dependencies": {
+    "entryCount": 40575,
+    "manifest": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design63-95bf5df/dependency-hashes.json",
+    "sha256": "bb45d2b8805fa2e37438701e2962729fd6592cd841bc0f249e15717215d0f3cc"
+  },
+  "validation": {
+    "coreTypes": "passed",
+    "canonAdoptionRegressionTests": 1,
+    "imports": [
+      "core",
+      "planner",
+      "persistence",
+      "application",
+      "api"
+    ],
+    "importsPassed": true,
+    "defaultSchedule": 22,
+    "databaseConnected": false,
+    "serverStarted": false,
+    "modelCalls": 0,
+    "priorFullSuite": {
+      "codeCommit": "95bf5df",
+      "tests": 383,
+      "failures": 0,
+      "log": "/tmp/novel-canon-adoption-full.log",
+      "scope": "Isolated workspace before snapshot preparation; not rerun on snapshot"
+    }
+  },
+  "codeFiles": 130,
+  "runtimeManifestSha256": "d41f4c6d571f3245a05483a40ca29dc1ff5643c88588077ce2112d8b3cbb0e2b",
+  "coreSha256": "3c5fad9e8270aafd58abe39bee04af8dd6273db97fd77e1b812df4379d81b406",
+  "limitation": "Prepared only. Formal62 runtime, design inputs and saved review results remain unchanged; this runtime is not yet bound to the final candidate."
+}
