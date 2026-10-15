@@ -1,0 +1,63 @@
+{
+  "observedAt": "2026-10-15T05:51:50.829211+00:00",
+  "status": "resume_preflight_and_offline_failure_rehearsal_passed",
+  "runnerFile": "scripts/resume-design62-review.mjs",
+  "runnerSha256": "3d6468c4a67f0d6539d3fe6716dd1dd15b57956c781923e7ef6957def6e46193",
+  "preflight": {
+    "status": "preflight_passed",
+    "runtimeCommit": "9df915493be44a310c910610b44ef2b65cb153e6",
+    "priorCheckpointSha256": "6e5690d2920db470351d2ce4c570defda371b4cb38ad48a56693dae343c99269",
+    "targets": [
+      {
+        "area": "world",
+        "runId": "design_run_a5e0559b-7302-46a1-b7b1-621552c4bd1f",
+        "nextStageId": "synthesis-15"
+      },
+      {
+        "area": "power",
+        "runId": "design_run_0ed1c9bd-b5fa-499f-bbbd-2175726f3017",
+        "nextStageId": "followup-cross-2-3/tiers"
+      },
+      {
+        "area": "characters",
+        "runId": "design_run_c1c34b4f-4f80-48de-99c4-a4b8b5bfaec2",
+        "nextStageId": "batch-1"
+      },
+      {
+        "area": "story",
+        "runId": "design_run_922f05fd-ed33-41da-927a-5b909f71c2f1",
+        "nextStageId": "batch-1"
+      }
+    ],
+    "completedResultsPreserved": 69,
+    "remainingCalls": 219,
+    "modelCalls": 0,
+    "databaseWrites": false
+  },
+  "rehearsal": {
+    "database": "isolated SQLite backup; production database rejected by rehearsal guard",
+    "status": "stopped_after_failure",
+    "stepsStarted": [
+      {
+        "area": "world",
+        "runId": "design_run_a5e0559b-7302-46a1-b7b1-621552c4bd1f",
+        "stageId": "synthesis-15",
+        "at": "2026-10-15T05:49:36.048Z"
+      }
+    ],
+    "completedResultsUnchanged": 69,
+    "allPriorFailureEntriesPreserved": true,
+    "otherThreeRunsExactlyUnchanged": true,
+    "modelCalls": 0,
+    "protectedHistoryUnchanged": true,
+    "resultFile": "data/audit-runtimes/design62-control/resume-rehearsal-result.json",
+    "resultSha256": "70047165e11ac0ad4fb509392df77d8bb4b413205c8b7048224c6983566f13e9",
+    "initialHarnessFile": "data/audit-runtimes/design62-control/resume.mjs",
+    "initialHarnessSha256": "6d4644b8139d700a835a46132e1efe3d1f8b916737abb224d1ac9fa97f4026e2",
+    "sourceDifference": "Tracked runner resolves root from cwd; otherwise identical recovery logic."
+  },
+  "productionModelCalls": 0,
+  "productionWrites": false,
+  "formalAcceptance": false,
+  "executionPending": "provider quota restored or explicit selection of another authorized connection"
+}
