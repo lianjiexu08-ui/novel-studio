@@ -117,9 +117,19 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
   }
   function details(report: Pick<DesignContentReviewDto, 'summary' | 'checks' | 'sources' | 'scope' | 'resolvedDeferrals'> & { id?: string; runId?: string; createdAt?: string }) {
     const reportRun = data?.runs.find(run => report.runId ? run.id === report.runId : report.id !== undefined && run.reportId === report.id);
+    const revisionStages = reportRun?.stages.filter(stage => stage.verdict === 'needs_revision');
     return <Space direction="vertical" style={{ width: '100%' }}>
       <Typography.Text type="secondary">世界 v{report.scope.worldPackRevision} · 圣经 v{report.scope.storyBibleRevision} · 计划 v{report.scope.planRevision} {report.createdAt ? ` · ${new Date(report.createdAt).toLocaleString()}` : ''}</Typography.Text>
       <Typography.Paragraph>{report.summary}</Typography.Paragraph>
+      {revisionStages?.length ? <Collapse size="small" style={{ width: '100%' }} items={[{
+        key: 'retained-revisions', label: `查看全部返修批次（${revisionStages.length} 条记录，非独立问题数）`,
+        children: <Space direction="vertical" style={{ width: '100%' }}>
+          <Typography.Text type="secondary">最终结论按评审维度概括，可能没有重述早期批次的每个问题。请核对以下全部原始意见；同一问题可能在多个汇总步骤重复出现，记录数量不等于独立缺陷数量。</Typography.Text>
+          {revisionStages.map(stage => <Button key={stage.id} type="link" size="small" style={{ height: 'auto', whiteSpace: 'normal', textAlign: 'left' }} onClick={() => void showStage(reportRun!.id, stage.id)}>
+            {stage.kind === 'synthesis' ? '汇总意见' : '原文核查'} · {stage.label} · 查看问题与证据
+          </Button>)}
+        </Space>,
+      }]} /> : report.id && !reportRun ? <Typography.Text type="secondary">此报告没有可用的批次索引，请继续核对逐项证据；不能据此认为没有历史返修。</Typography.Text> : null}
       {report.resolvedDeferrals?.length ? <Collapse size="small" style={{ width: '100%' }} items={[{
         key: 'deferrals', label: `补读复核记录（${report.resolvedDeferrals.length} 项）`,
         children: <Space direction="vertical" style={{ width: '100%' }}>
