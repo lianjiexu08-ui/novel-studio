@@ -27,6 +27,13 @@ export interface VolumePlan {
   carryOver: string;
 }
 
+export interface ChapterExecutionCheck {
+  id: string;
+  requirement: string;
+  /** A trace to the design question; this never resolves that question. */
+  sourceQuestion?: { document: 'world' | 'story' | 'plan'; questionId: string };
+}
+
 export interface ChapterOutline {
   id: string;
   chapterNumber: number;
@@ -43,6 +50,7 @@ export interface ChapterOutline {
   location?: string;
   storyTime?: string;
   scenes: string[];
+  executionChecks?: ChapterExecutionCheck[];
   source: 'model' | 'author';
 }
 
@@ -102,7 +110,7 @@ export type PlanIssueCode =
   | 'OUTLINE_MISSING' | 'OUTLINE_INCOMPLETE' | 'OUTLINE_DUPLICATE' | 'OUTLINE_VOLUME_MISMATCH' | 'OUTLINE_OUT_OF_RANGE'
   | 'MILESTONE_RANGE' | 'DEPENDENCY_DANGLING' | 'DEPENDENCY_INVALID' | 'DEPENDENCY_CYCLE' | 'DEPENDENCY_ORDER'
   | 'REFERENCE_UNKNOWN' | 'BLOCKING_QUESTION' | 'DESIGN_OUTDATED' | 'DESIGN_MISMATCH' | 'DUPLICATE_ID' | 'COVENANT_MISMATCH'
-  | 'VOLUME_WITHOUT_CLIMAX' | 'MILESTONE_WITHOUT_SETUP' | 'REPEATED_CONFLICT';
+  | 'VOLUME_WITHOUT_CLIMAX' | 'MILESTONE_WITHOUT_SETUP' | 'REPEATED_CONFLICT' | 'EXECUTION_CHECK_INVALID';
 
 export interface PlanIssue {
   code: PlanIssueCode;
@@ -219,6 +227,14 @@ export function reviewBookPlan(plan: BookPlan, refs: { characterIds: Set<string>
   const volumeById = new Map(volumes.map((volume) => [volume.id, volume]));
   const byNumber = new Map<number, ChapterOutline>();
   for (const outline of plan.chapters) {
+    const checkIds = new Set<string>();
+    for (const check of outline.executionChecks ?? []) {
+      if (!/^[a-zA-Z0-9_-]{1,80}$/.test(check.id) || !check.requirement.trim() || check.requirement.length > 1000 || checkIds.has(check.id)) {
+        error({ code: 'EXECUTION_CHECK_INVALID', message: `第 ${outline.chapterNumber} 章验收项须有唯一 ID 和明确要求`, chapterNumber: outline.chapterNumber });
+      }
+      checkIds.add(check.id);
+    }
+    if ((outline.executionChecks?.length ?? 0) > 24) error({ code: 'EXECUTION_CHECK_INVALID', message: `第 ${outline.chapterNumber} 章最多 24 项独立验收要求`, chapterNumber: outline.chapterNumber });
     if (byNumber.has(outline.chapterNumber)) error({ code: 'OUTLINE_DUPLICATE', message: `第 ${outline.chapterNumber} 章有多条章纲`, chapterNumber: outline.chapterNumber });
     byNumber.set(outline.chapterNumber, outline);
     if (outline.chapterNumber < 1 || outline.chapterNumber > target) error({ code: 'OUTLINE_OUT_OF_RANGE', message: `第 ${outline.chapterNumber} 章超出全书目标 ${target} 章`, chapterNumber: outline.chapterNumber });
@@ -350,6 +366,13 @@ function designOutdated(work: Work, plan: PlanRevision): boolean {
 /** Matching revision numbers cannot hide different volume boundaries. */
 export function planDesignIssues(work: Work, plan: BookPlan): PlanIssue[] {
   const issues: PlanIssue[] = [];
+  const questions = { world: work.worldPack?.unresolvedQuestions, story: work.storyBible?.unresolvedQuestions, plan: plan.openQuestions };
+  for (const outline of plan.chapters) for (const check of outline.executionChecks ?? []) {
+    const source = check.sourceQuestion;
+    if (source && !questions[source.document]?.some(question => question.id === source.questionId)) {
+      issues.push({ code: 'REFERENCE_UNKNOWN', severity: 'error', message: `第 ${outline.chapterNumber} 章验收项 ${check.id} 引用了不存在的设计问题`, chapterNumber: outline.chapterNumber, nodeId: check.id });
+    }
+  }
   for (const document of [work.worldPack, work.storyBible]) {
     for (const question of document?.unresolvedQuestions ?? []) {
       if (question.blocking && question.status !== 'resolved') issues.push({ code: 'BLOCKING_QUESTION', severity: 'error', message: `设计仍有阻塞问题：${question.question}`, nodeId: question.id });
@@ -436,6 +459,7 @@ export interface ChapterBrief {
   storyTime: string;
   scenes: string[];
   mustDo: string[];
+  executionChecks?: ChapterExecutionCheck[];
   mustNotHappen: string[];
   endState: string;
   dependsOn: BriefDependency[];
@@ -527,6 +551,7 @@ export function deriveBrief(work: Work, revision: PlanRevision, chapterNumber: n
     status: 'derived', pov: protagonistName(work), characters: outline.characterIds.map((characterId) => characterName(work, characterId)),
     location: outline.location ?? '', storyTime: outline.storyTime ?? '', scenes: [...outline.scenes],
     mustDo: [outline.summary, `人物目标：${outline.characterGoals}`, `冲突：${outline.conflict}`, `关键选择：${outline.choice}`, `代价：${outline.cost}`].filter((item) => item.trim()),
+    ...(outline.executionChecks ? { executionChecks: structuredClone(outline.executionChecks) } : {}),
     mustNotHappen: [
       ...later.map((item) => `第 ${item.chapterNumber} 章才发生：${item.title || item.summary}`),
       ...upcomingMilestones.slice(0, 3).map((milestone) => `第 ${milestone.startChapter} 章起的${milestone.kind === 'climax' ? '高潮' : '节点'}「${milestone.title}」不得提前`),
@@ -545,7 +570,7 @@ export function effectiveBrief(work: Work, chapterNumber: number): EffectiveBrie
     .filter((brief) => brief.chapterNumber === chapterNumber && brief.planRevisionId === revision.id)
     .sort((a, b) => a.createdAt.localeCompare(b.createdAt)).at(-1);
   if (!confirmed) return { brief: derived, needsConfirmation: false, derived };
-  return { brief: { ...confirmed, dependsOn: derived.dependsOn }, needsConfirmation: confirmed.basisFingerprint !== derived.basisFingerprint, derived };
+  return { brief: { ...confirmed, dependsOn: derived.dependsOn, executionChecks: derived.executionChecks }, needsConfirmation: confirmed.basisFingerprint !== derived.basisFingerprint, derived };
 }
 
 /** Author confirms (and optionally edits) the brief; prerequisite status always comes from the ledger. */
@@ -555,7 +580,7 @@ export function confirmBrief(work: Work, chapterNumber: number, edits: BriefEdit
   const derived = deriveBrief(work, revision, chapterNumber);
   if (!derived) throw new PlanGateError(`chapter ${chapterNumber} has no outline in the approved plan`);
   const defined = Object.fromEntries(Object.entries(edits).filter(([, value]) => value !== undefined)) as BriefEdits;
-  const brief: ChapterBrief = { ...derived, ...defined, id: id('brief'), status: 'author_confirmed', dependsOn: derived.dependsOn, createdAt: now() };
+  const brief: ChapterBrief = { ...derived, ...defined, id: id('brief'), status: 'author_confirmed', dependsOn: derived.dependsOn, executionChecks: derived.executionChecks, createdAt: now() };
   work.briefs.set(brief.id, brief);
   return brief;
 }

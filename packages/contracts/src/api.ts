@@ -259,7 +259,7 @@ export const checkResultDtoSchema = z.object({
       inputHash: z.string(), summary: z.string(),
       stageProof: z.object({ inputHash: z.string(), createdAt: z.string(), scheduleVersion: z.number().int().min(2).optional(), stages: z.array(z.unknown()) }).optional(),
       checks: z.array(z.object({
-        criterion: z.enum(['causality', 'characters', 'power', 'continuity', 'obligations', 'prose']),
+        criterion: z.union([z.enum(['causality', 'characters', 'power', 'continuity', 'obligations', 'prose']), z.string().regex(/^execution\/[a-zA-Z0-9_-]{1,80}$/)]),
         verdict: z.enum(['pass', 'revise', 'insufficient']), explanation: z.string(), revisionAdvice: z.string(),
         evidence: z.array(z.object({ sourceId: z.string(), quote: z.string() })),
       })),

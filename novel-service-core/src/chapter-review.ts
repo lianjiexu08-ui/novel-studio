@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto';
 import type { ChapterCandidate, CheckStatus, RunUsage, Work } from './core.ts';
 import type { DesignReviewInput } from './design-review.ts';
+import type { BookPlan } from './planning.ts';
 import { acceptDesignReviewStage, completeDesignReviewRun, createDesignReviewRun, designReviewStageInput, type DesignReviewRun, type DesignReviewStage } from './design-review-run.ts';
 
 export const chapterReviewChecker = 'chapter_content_review';
@@ -12,7 +13,27 @@ export const chapterReviewRubric = {
   obligations: '正文实际完成本章任务卡的 mustDo 与 endState；遵守 mustNotHappen、前置及伏笔揭示时机。',
   prose: '冲突与人物行动写成具体场景，节奏、转折、信息密度和结尾有阅读价值；无重复灌水或提纲式总结。',
 } as const;
-export type ChapterReviewCriterion = keyof typeof chapterReviewRubric;
+export type ChapterReviewCriterion = keyof typeof chapterReviewRubric | `execution/${string}`;
+
+export function chapterReviewRubricForPlan(plan: BookPlan | undefined, chapterNumber: number): Record<string, string> {
+  const rubric: Record<string, string> = { ...chapterReviewRubric };
+  for (const check of plan?.chapters?.find(chapter => chapter.chapterNumber === chapterNumber)?.executionChecks ?? []) {
+    rubric[`execution/${check.id}`] = `独立核查本章验收项：${check.requirement}。必须依据本章实际正文逐项判断，不以任务卡、事件声明或设计已通过作为兑现证据；通过必须同时引用 draft 和 brief。`;
+  }
+  return rubric;
+}
+
+export function executionReviewRequired(work: Work, chapterNumber: number): boolean {
+  return Boolean(work.plans.get(work.activePlanId ?? '')?.plan.chapters.find(chapter => chapter.chapterNumber === chapterNumber)?.executionChecks?.length);
+}
+
+function validateInputRubric(input: ChapterReviewInput): void {
+  let plan: { plan?: BookPlan } | null;
+  try { plan = JSON.parse(input.sources.find(source => source.id === 'plan')?.text ?? 'null'); }
+  catch { throw new ChapterReviewError('正文评审计划材料格式无效'); }
+  const expected = chapterReviewRubricForPlan(plan?.plan, input.chapterNumber);
+  if (JSON.stringify(input.rubric) !== JSON.stringify(expected)) throw new ChapterReviewError('正文评审标准须完整包含当前计划的逐章验收项');
+}
 export interface ChapterReviewResult {
   inputHash: string;
   summary: string;
@@ -44,7 +65,7 @@ export interface ChapterReviewInput {
   inputHash: string;
   candidateId: string;
   chapterNumber: number;
-  rubric: typeof chapterReviewRubric;
+  rubric: Record<string, string>;
   sources: Array<{ id: string; text: string }>;
 }
 export function chapterReviewInputHash(input: Omit<ChapterReviewInput, 'inputHash'>, binding: {
@@ -83,6 +104,7 @@ export function chapterReviewDesignInput(input: ChapterReviewInput): DesignRevie
 
 /** Restore only valid completed stages on the canonically rebuilt schedule. */
 export function restoreChapterReviewRun(input: ChapterReviewInput, proof?: ChapterReviewStageProof) {
+  validateInputRubric(input);
   if (proof && (proof.inputHash !== input.inputHash || !Array.isArray(proof.stages) || typeof proof.createdAt !== 'string')) {
     throw new ChapterReviewError('正文评审检查点不属于当前材料');
   }
@@ -121,9 +143,14 @@ export function validateChapterReviewStage(run: ReturnType<typeof createDesignRe
 export function validateChapterStageEvidence(local: DesignReviewInput, result: NonNullable<DesignReviewStage['result']>) {
   if (local.stage?.kind === 'synthesis') return;
   const draftIds = local.stage!.sourceMap.filter(s => s.sourceId === 'draft').map(s => s.id);
+  const briefIds = local.stage!.sourceMap.filter(s => s.sourceId === 'brief').map(s => s.id);
   for (const check of result.checks) if (check.verdict !== 'insufficient'
     && !check.evidence.some(e => draftIds.includes(e.sourceId))) {
     throw new ChapterReviewError('正文原文批次通过或返修必须引用共享 draft，不能只评设定');
+  }
+  for (const check of result.checks) if (check.criterion.startsWith('execution/') && check.verdict === 'pass'
+    && !check.evidence.some(e => briefIds.includes(e.sourceId))) {
+    throw new ChapterReviewError('逐章验收项通过必须同时引用本章正文与任务卡');
   }
 }
 
@@ -162,7 +189,8 @@ export function chapterReviewInput(work: Work, candidate: ChapterCandidate): Cha
     { id: 'observed_events', text: json(candidate.observedEvents) },
     ...prior.map(v => ({ id: `chapter:${v.id}`, text: v.content })),
   ];
-  const input = { candidateId: candidate.id, chapterNumber: candidate.chapterNumber, sources, rubric: chapterReviewRubric };
+  const input = { candidateId: candidate.id, chapterNumber: candidate.chapterNumber, sources,
+    rubric: chapterReviewRubricForPlan(work.plans.get(work.activePlanId ?? '')?.plan, candidate.chapterNumber) };
   return { ...input, inputHash: chapterReviewInputHash(input, {
     stateRevision: work.stateRevision, constraintRevision: work.constraintRevision, planId: work.activePlanId,
     candidatePlanId: candidate.planRevisionId,
@@ -170,6 +198,7 @@ export function chapterReviewInput(work: Work, candidate: ChapterCandidate): Cha
 }
 
 export function validateChapterReview(value: unknown, input: ChapterReviewInput): ChapterReviewResult {
+  validateInputRubric(input);
   const record = value as ChapterReviewResult | null;
   if (record?.stageProof) {
     const verified = completedChapterReview(input, record.stageProof);
@@ -182,9 +211,9 @@ export function validateChapterReview(value: unknown, input: ChapterReviewInput)
   if (!record || record.inputHash !== input.inputHash || !text(record.summary) || !Array.isArray(record.checks)) {
     throw new ChapterReviewError('正文评审缺少正确 inputHash、summary 或 checks');
   }
-  const expected = Object.keys(chapterReviewRubric);
+  const expected = Object.keys(input.rubric);
   if (record.checks.length !== expected.length || new Set(record.checks.map(c => c?.criterion)).size !== expected.length) {
-    throw new ChapterReviewError('正文评审必须完整且不重复地检查六个维度');
+    throw new ChapterReviewError('正文评审必须完整且不重复地检查六个维度及本章每项验收要求');
   }
   for (const check of record.checks) {
     if (!check || !expected.includes(check.criterion) || !['pass', 'revise', 'insufficient'].includes(check.verdict)
@@ -205,6 +234,7 @@ export function validateChapterReview(value: unknown, input: ChapterReviewInput)
       characters: ['bible'], power: ['world'], obligations: ['brief'],
       continuity: ['facts', 'bible', ...input.sources.filter(s => s.id.startsWith('chapter:')).map(s => s.id)],
     };
+    if (check.criterion.startsWith('execution/')) requiredSources[check.criterion] = ['brief'];
     if (check.verdict === 'pass' && requiredSources[check.criterion]
       && !check.evidence.some(e => requiredSources[check.criterion]!.includes(e.sourceId)
         && !['null', '[]', '{}'].includes(input.sources.find(s => s.id === e.sourceId)!.text))) {

@@ -19,6 +19,13 @@ export const volumePlanSchema = z.object({
   carryOver: text(),
 });
 
+export const chapterExecutionCheckSchema = z.object({
+  id: z.string().regex(/^[a-zA-Z0-9_-]{1,80}$/),
+  requirement: z.string().trim().min(1).max(1000),
+  sourceQuestion: z.object({ document: z.enum(['world', 'story', 'plan']), questionId: z.string().trim().min(1).max(100) }).optional(),
+});
+const executionChecksSchema = z.array(chapterExecutionCheckSchema).max(24).optional();
+
 export const chapterOutlineSchema = z.object({
   id: z.string().trim().max(100).default(''),
   chapterNumber: z.number().int().min(1),
@@ -35,6 +42,7 @@ export const chapterOutlineSchema = z.object({
   location: z.string().trim().max(200).optional(),
   storyTime: z.string().trim().max(200).optional(),
   scenes: textList,
+  executionChecks: executionChecksSchema,
   source: z.enum(['model', 'author']).default('author'),
 });
 
@@ -179,6 +187,7 @@ export const chapterBriefDtoSchema = z.object({
   storyTime: z.string(),
   scenes: z.array(z.string()),
   mustDo: z.array(z.string()),
+  executionChecks: executionChecksSchema,
   mustNotHappen: z.array(z.string()),
   endState: z.string(),
   dependsOn: z.array(briefDependencyDtoSchema),

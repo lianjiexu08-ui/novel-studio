@@ -1,0 +1,227 @@
+{
+  "observedAt": "2026-10-15T20:20:28.228Z",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "planId": "plan_6fa43ac6419c44f1b64fbe3390eff759",
+  "planRevision": 63,
+  "inputHash": "7a49ebc0415c36a0c9a92c1180e0ecddfc29466dc3f6221fa5c10881df1e02f0",
+  "status": "not_accepted",
+  "limitation": "Verified saved accepted prefixes and pending schedules against the protected isolated design snapshot. Completed area reports also reconstructed. No raw model response replay in this tool; unfinished areas do not receive acceptance and formal revisions remain.",
+  "areas": [
+    {
+      "area": "world",
+      "status": "needs_revision",
+      "runId": "design_run_4ce361d8-d17c-41d8-b1b4-bbdbee7f0baa",
+      "reportId": "design_review_34421554-f394-4fc5-b1c2-8df208a42414",
+      "completedStages": 65,
+      "totalStages": 65,
+      "retainedFailures": 2,
+      "verification": "verified",
+      "runSha256": "541d56f2d5714c66cf38ec5ce34a42db506d2fa0bcaae315700e94d679f26251",
+      "reportSha256": "63ae6fea421d6302fe1accb1f5fe56fdc371891de246da328874df6c709702c6",
+      "sourceEnvelopeSha256": "f69db443c99497293208e85b8bc8465e0504c2774bf9b61c8e65af216f8d8c0c",
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "history",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "capacity",
+          "verdict": "pass"
+        }
+      ],
+      "resolvedDeferrals": [
+        {
+          "checkId": "batch-1/geography",
+          "resolvedByStageId": "followup-batch-1/geography"
+        },
+        {
+          "checkId": "batch-2/geography",
+          "resolvedByStageId": "followup-batch-2/geography"
+        },
+        {
+          "checkId": "batch-2/history",
+          "resolvedByStageId": "followup-batch-2/history"
+        },
+        {
+          "checkId": "batch-3/geography",
+          "resolvedByStageId": "followup-batch-3/geography"
+        },
+        {
+          "checkId": "batch-5/history",
+          "resolvedByStageId": "followup-batch-5/history"
+        },
+        {
+          "checkId": "cross-1-2/geography",
+          "resolvedByStageId": "followup-cross-1-2/geography"
+        },
+        {
+          "checkId": "cross-1-3/geography",
+          "resolvedByStageId": "followup-cross-1-3/geography"
+        },
+        {
+          "checkId": "cross-1-3/capacity",
+          "resolvedByStageId": "followup-cross-1-3/capacity"
+        },
+        {
+          "checkId": "cross-1-4/geography",
+          "resolvedByStageId": "followup-cross-1-4/geography"
+        },
+        {
+          "checkId": "cross-1-4/history",
+          "resolvedByStageId": "followup-cross-1-4/history"
+        },
+        {
+          "checkId": "cross-2-3/geography",
+          "resolvedByStageId": "followup-cross-2-3/geography"
+        },
+        {
+          "checkId": "cross-2-3/history",
+          "resolvedByStageId": "followup-cross-2-3/history"
+        },
+        {
+          "checkId": "cross-2-4/geography",
+          "resolvedByStageId": "followup-cross-2-4/geography"
+        },
+        {
+          "checkId": "cross-2-4/history",
+          "resolvedByStageId": "followup-cross-2-4/history"
+        },
+        {
+          "checkId": "cross-2-4/capacity",
+          "resolvedByStageId": "followup-cross-2-4/capacity"
+        },
+        {
+          "checkId": "cross-3-4/geography",
+          "resolvedByStageId": "followup-cross-3-4/geography"
+        },
+        {
+          "checkId": "cross-3-4/history",
+          "resolvedByStageId": "followup-cross-3-4/history"
+        },
+        {
+          "checkId": "cross-3-5/history",
+          "resolvedByStageId": "followup-cross-3-5/history"
+        }
+      ]
+    },
+    {
+      "area": "power",
+      "status": "interrupted",
+      "runId": "design_run_5f1d3886-b45e-4009-9d97-a24b8c8ce1af",
+      "completedStages": 26,
+      "totalStages": 85,
+      "retainedFailures": 2,
+      "verification": "not_completed",
+      "progress": {
+        "verification": "verified",
+        "completedStages": 26,
+        "totalStages": 85,
+        "runSha256": "c0031894606f2975d6ce72f6f0927e93b1e680e95b58a8f3c34c412d3d44e05d",
+        "formalAcceptance": false,
+        "limitation": "Validates saved stage results, citations and pending schedule against the supplied input; does not replay raw model responses or approve incomplete work."
+      }
+    },
+    {
+      "area": "characters",
+      "status": "passed",
+      "runId": "design_run_33f64511-bef4-4abf-bb57-8cd1a0e21cf5",
+      "reportId": "design_review_216eb9a6-c067-4662-9233-2c6c87c41964",
+      "completedStages": 33,
+      "totalStages": 33,
+      "retainedFailures": 0,
+      "verification": "verified",
+      "runSha256": "7c8e1d92dceaf3d73c42953908480e121b8b3395a02f85c54e86c60d7aa56d87",
+      "reportSha256": "3f35de5e691a778e7ef4f2c21a4b70a1b951bc97df53011ad999585cf8d787b6",
+      "sourceEnvelopeSha256": "a7538aa94c272b28ab66268772889f1332a3d5fcb611d61c00fb07848dde1204",
+      "checks": [
+        {
+          "criterion": "agency",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "relationships",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "knowledge",
+          "verdict": "pass"
+        }
+      ],
+      "resolvedDeferrals": [
+        {
+          "checkId": "batch-2/relationships",
+          "resolvedByStageId": "cross-1-2"
+        },
+        {
+          "checkId": "batch-2/knowledge",
+          "resolvedByStageId": "cross-1-2"
+        },
+        {
+          "checkId": "batch-3/relationships",
+          "resolvedByStageId": "cross-1-3"
+        },
+        {
+          "checkId": "batch-3/knowledge",
+          "resolvedByStageId": "followup-batch-3/knowledge"
+        },
+        {
+          "checkId": "cross-2-3/agency",
+          "resolvedByStageId": "followup-cross-2-3/agency"
+        },
+        {
+          "checkId": "cross-2-3/relationships",
+          "resolvedByStageId": "followup-cross-2-3/relationships"
+        },
+        {
+          "checkId": "cross-2-3/knowledge",
+          "resolvedByStageId": "followup-cross-2-3/knowledge"
+        },
+        {
+          "checkId": "cross-2-4/agency",
+          "resolvedByStageId": "followup-cross-2-4/agency"
+        },
+        {
+          "checkId": "cross-2-4/relationships",
+          "resolvedByStageId": "followup-cross-2-4/relationships"
+        },
+        {
+          "checkId": "cross-2-4/knowledge",
+          "resolvedByStageId": "followup-cross-2-4/knowledge"
+        }
+      ]
+    },
+    {
+      "area": "story",
+      "status": "interrupted",
+      "runId": "design_run_a1ae5a57-f9bf-4af3-8093-550e3d3ded22",
+      "completedStages": 52,
+      "totalStages": 67,
+      "retainedFailures": 1,
+      "verification": "not_completed",
+      "progress": {
+        "verification": "verified",
+        "completedStages": 52,
+        "totalStages": 67,
+        "runSha256": "89f35509799e8a8eb5beee19c5513d39000451ec7fe4905b23703926b378cbc9",
+        "formalAcceptance": false,
+        "limitation": "Validates saved stage results, citations and pending schedule against the supplied input; does not replay raw model responses or approve incomplete work."
+      }
+    }
+  ],
+  "auditorFileSha256": "cec032c429417b96ada3a22655277589c4cc17a547d1c9cb47084bed6766e109",
+  "checkpointSource": "data/audit-runtimes/design63-control/execution-checks-milestone-progress.json",
+  "checkpointSha256": "82fff9ad8c522a9eccc4c2096046f03e4b21996ad0caeef2252fff96718b58f1",
+  "checkpointStatus": "running",
+  "snapshot": "/var/folders/tr/8vt224595gdfg6w6kh6tkpt00000gn/T/novel64-clarification-ni38m4eo/snapshot.db",
+  "designProtectedHash": "70b0b6e134dab1fbe2e91b8b67d579b6eef4e8fada0759002a4a8f74eeb7e902",
+  "sourceFilesVerified": 130,
+  "reviewRecordsUnchanged": true,
+  "modelCalls": 0,
+  "productionDatabaseReads": 0,
+  "productionDatabaseWrites": 0,
+  "formalRuntimeChanged": false
+}

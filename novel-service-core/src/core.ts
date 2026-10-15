@@ -1,5 +1,5 @@
 import type { DesignReviewRun } from './design-review-run.ts';
-import { chapterReviewChecker, chapterReviewInput, chapterReviewInputHash, chapterReviewStatus, validateChapterReview, type ChapterReviewInput, type ChapterReviewOptions, type ChapterReviewResult, type ChapterReviewRecord } from './chapter-review.ts';
+import { chapterReviewChecker, chapterReviewRubricForPlan, executionReviewRequired, chapterReviewInput, chapterReviewInputHash, chapterReviewStatus, validateChapterReview, type ChapterReviewInput, type ChapterReviewOptions, type ChapterReviewResult, type ChapterReviewRecord } from './chapter-review.ts';
 import { designReviewOverview, requiresDesignContentReview, type DesignContentReview } from './design-review.ts';
 import { createHash, randomUUID } from 'node:crypto';
 import { isDeepStrictEqual } from 'node:util';
@@ -801,7 +801,7 @@ export class NovelService {
           && plan.contentHash === planContentHash(plan.plan) && source.contentHash === planContentHash(currentProjection));
       }
       if (!compatiblePlans.get(source.id)) reject('来源章纲或全书蓝图与当前计划不兼容');
-      if (this.checkPolicy?.required.includes(chapterReviewChecker)) {
+      if (this.checkPolicy?.required.includes(chapterReviewChecker) || executionReviewRequired(work, version.chapterNumber)) {
         const check = candidate.checks.find(item => item.checker === chapterReviewChecker);
         const report = check?.chapterReview, input = report?.input;
         try {
@@ -812,6 +812,7 @@ export class NovelService {
             || !check.inputs || !report || report.error || report.superseded || !input || !report.result
             || input.candidateId !== candidate.id || input.chapterNumber !== version.chapterNumber
             || input.inputHash !== report.inputHash
+            || !isDeepStrictEqual(input.rubric, chapterReviewRubricForPlan(source.plan, version.chapterNumber))
             || input.sources.find(item => item.id === 'draft')?.text !== version.content
             || chapterReviewStatus(validateChapterReview(report.result, input)) !== 'passed') {
             throw new Error('missing or invalid chapter review evidence');
@@ -1133,7 +1134,7 @@ export class NovelService {
     const current = candidate.checks.filter((result) => !result.contentHash || result.contentHash === candidate.contentHash);
     const missing = (this.checkPolicy?.required ?? []).filter((name) => !current.some((result) => result.checker === name));
     if (missing.length) throw new QualityGateError(`quality gate blocked: required checks missing: ${missing.join(', ')}`);
-    if (this.checkPolicy?.required.includes(chapterReviewChecker)) {
+    if (this.checkPolicy?.required.includes(chapterReviewChecker) || executionReviewRequired(work, candidate.chapterNumber)) {
       const report = current.find(c => c.checker === chapterReviewChecker)?.chapterReview;
       const input = chapterReviewInput(work, candidate);
       try {

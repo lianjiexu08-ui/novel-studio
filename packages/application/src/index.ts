@@ -3,7 +3,7 @@ export { validateDesignCandidate, DesignCandidateValidationError } from './desig
 import { createDesignReviewRun, designReviewStageInput, acceptDesignReviewStage, completeDesignReviewRun, type DesignReviewRun } from '../../../novel-service-core/src/design-review-run.ts';
 import { designReviewHash, designReviewOverview, requiresDesignContentReview, designReviewInput, recordDesignReview, DesignReviewError, type DesignReviewInput, type DesignReviewResult, type DesignReviewArea, type DesignContentReview } from '../../../novel-service-core/src/design-review.ts';
 import { randomUUID } from 'node:crypto';
-import { chapterReviewChecker, chapterReviewInput, chapterReviewStatus, validateChapterReview, type ChapterReviewRecord } from '../../../novel-service-core/src/chapter-review.ts';
+import { chapterReviewChecker, executionReviewRequired, chapterReviewInput, chapterReviewStatus, validateChapterReview, type ChapterReviewRecord } from '../../../novel-service-core/src/chapter-review.ts';
 import { addUsage, AdoptionBlocked, generationReadiness, NovelService, ReadinessError, StaleCandidateError, usageOfError, Work } from '../../../novel-service-core/src/core.ts';
 import type {
   CandidateChecker, ChapterCandidate, ChapterVersion, CheckPolicy, CheckRuling, Checkpoint, ContextManifest, CreativeCovenant, GeneratedChapter, ManuscriptRevision, ModelProvider, ReadinessBlocker, RunUsage,
@@ -908,13 +908,12 @@ export class ChapterWorkflow {
       if (lease) this.holdLease(work, lease.runId, lease.token);
       else if (this.liveLeaseHolder(work)) throw new RunInProgressError('请先暂停自动运行，再手动复查候选');
     };
-    const requiresReview = this.checkPolicy?.required.includes(chapterReviewChecker);
     const prepared = await this.repository.transaction(workId, ({ work }) => {
       guard(work);
       this.service.works.set(work.id, work);
       this.service.runChecks(workId, candidateId, checkers.filter(c => c.name !== chapterReviewChecker));
-      if (!requiresReview) return undefined;
       const candidate = work.candidates.get(candidateId)!;
+      if (!this.checkPolicy?.required.includes(chapterReviewChecker) && !executionReviewRequired(work, candidate.chapterNumber)) return undefined;
       const input = chapterReviewInput(work, candidate);
       const records = candidate.checkRuns.flatMap(check => check.chapterReview?.inputHash === input.inputHash && !check.chapterReview.superseded && check.chapterReview.stage && check.chapterReview.progress
         ? [check.chapterReview] : []);

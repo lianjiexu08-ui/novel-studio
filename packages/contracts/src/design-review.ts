@@ -16,14 +16,14 @@ export const designReviewResultSchema = z.object({
     awaitingSources: z.array(z.string().min(1)).min(1).max(maxDesignReviewAwaitingSources).optional(),
     insufficiencyReason: z.enum(['missing_design', 'unlocatable_sources', 'capacity_limit']).optional(),
     resolves: z.array(z.string().min(1)).min(1).max(64).optional(),
-  })).min(1).max(10),
+  })).min(1).max(32),
 });
 /** Model transport only. Stored reports continue to contain exact source quotations. */
 export const anchoredDesignReviewResultSchema = designReviewResultSchema.extend({
   requestId: z.string().min(1),
   checks: z.array(designReviewResultSchema.shape.checks.element.extend({
     evidence: z.array(z.object({ fragmentId: z.string().min(1) }).strict()).max(maxDesignReviewEvidence),
-  })).min(1).max(10),
+  })).min(1).max(32),
 });
 export const designContentReviewSchema = designReviewResultSchema.extend({
   resolvedDeferrals: z.array(z.object({ checkId: z.string(), resolvedByStageId: z.string() })).optional(),

@@ -246,6 +246,7 @@ export function PlanPage() {
                             {row.scenes.length
                               ? <ol>{row.scenes.map((scene, index) => <li key={index} style={{ marginBottom: 8, whiteSpace: 'pre-wrap' }}>{scene}</li>)}</ol>
                               : <p className="panel-note">尚未安排具体场景。</p>}
+                            {!!row.executionChecks?.length && <><strong>逐章验收要求</strong><ul>{row.executionChecks.map(check => <li key={check.id}>{check.requirement}{check.sourceQuestion && <div className="toc-meta">来源问题：{check.sourceQuestion.questionId}</div>}</li>)}</ul></>}
                           </section>
                         ),
                       }}
@@ -412,6 +413,10 @@ export function PlanPage() {
           onCancel={() => setEditingOutline(null)}
           onSubmit={async ({ scenesText, ...values }) => {
             const outline: Outline = { ...editingOutline, ...values, scenes: lines(scenesText), source: 'author' };
+            if (outline.executionChecks) outline.executionChecks = outline.executionChecks.map(check => {
+              const sourceQuestion = editingOutline.executionChecks?.find(previous => previous.id === check.id)?.sourceQuestion;
+              return sourceQuestion ? { ...check, sourceQuestion } : check;
+            });
             const others = plan.chapters.filter((item) => item.chapterNumber !== editingOutline.chapterNumber);
             const ok = await save({ ...plan, chapters: [...others, outline] }, `编辑第 ${editingOutline.chapterNumber} 章章纲`);
             if (ok) setEditingOutline(null);
@@ -429,6 +434,19 @@ export function PlanPage() {
             <Form.Item name="storyTime" label="故事时间" style={{ flex: 1 }}><Input maxLength={200} /></Form.Item>
           </div>
           <Form.Item name="scenesText" label="场景（每行一个）"><TextArea rows={3} /></Form.Item>
+          <p className="panel-note">逐章验收要求会进入写作任务卡，并逐项检查正文证据。添加验收项不会解决原设计问题；保存后须重新审核、批准计划。</p>
+          <Form.List name="executionChecks">
+            {(fields, { add, remove }) => <>
+              {fields.map(field => <div key={field.key}>
+                <Form.Item name={[field.name, 'id']} hidden><Input /></Form.Item>
+                <Form.Item name={[field.name, 'requirement']} label={`验收要求 ${field.name + 1}`} rules={[{ required: true, whitespace: true, message: '写明正文必须呈现的行动、代价或边界' }]}>
+                  <TextArea rows={2} maxLength={1000} />
+                </Form.Item>
+                <Button size="small" onClick={() => remove(field.name)}>移除此项</Button>
+              </div>)}
+              <Button style={{ marginTop: 12 }} disabled={fields.length >= 24} onClick={() => add({ id: `check_${crypto.randomUUID().replaceAll('-', '')}`, requirement: '' })}>添加逐章验收要求</Button>
+            </>}
+          </Form.List>
         </EditorModal>
       )}
     </section>

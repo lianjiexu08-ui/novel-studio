@@ -115,7 +115,7 @@ export function QualityPage() {
           <Alert type={chapterReview.status === 'passed' ? 'success' : chapterReview.status === 'failed' ? 'error' : 'warning'} showIcon
             message={chapterReview.status === 'passed' ? '正文评审通过' : chapterReview.status === 'failed' ? '正文评审需要返修' : chapterReview.status === 'inconclusive' ? '评审材料不足，暂不能采纳' : '评审未完成或已失效，暂不能采纳'} description={chapterReview.message} />
           <Table size="small" pagination={false} rowKey="criterion" dataSource={chapterReview.chapterReview?.result?.checks ?? []} columns={[
-            { title: '维度', dataIndex: 'criterion', render: (value: keyof typeof reviewLabels) => reviewLabels[value] },
+            { title: '维度', dataIndex: 'criterion', render: (value: string) => reviewLabels[value as keyof typeof reviewLabels] ?? (value.startsWith('execution/') ? <Space direction="vertical" size={0} style={{ overflowWrap: 'anywhere' }}><Text>逐章验收 · {value.slice('execution/'.length)}</Text>{chapterReview.chapterReview?.inputAvailable && <Button type="link" size="small" onClick={() => void showReviewSource('brief')}>查看本次验收要求</Button>}</Space> : value) },
             { title: '结论', dataIndex: 'verdict', render: (value: string) => <Tag color={value === 'pass' ? 'success' : value === 'revise' ? 'error' : 'warning'}>{value === 'pass' ? '通过' : value === 'revise' ? '返修' : '材料不足'}</Tag> },
             { title: '理由', dataIndex: 'explanation' }, { title: '修改要求', dataIndex: 'revisionAdvice' },
           ]} expandable={{ expandedRowRender: row => <Space direction="vertical">{row.evidence.map((item, index) => <div key={index}>
@@ -130,7 +130,7 @@ export function QualityPage() {
               { title: '记录', render: (_, row) => <Space direction="vertical" size={0}><Text>{row.checkedAt}</Text>{row.superseded && <Tag>迟到结果，仅供复查</Tag>}</Space> },
               { title: '结果', render: (_, row) => row.error || row.result?.summary || '尚未完成' },
             ]} expandable={{ expandedRowRender: row => <Space direction="vertical">{row.result?.checks.map(check => <div key={check.criterion}>
-              <Text strong>{reviewLabels[check.criterion as keyof typeof reviewLabels] ?? check.criterion} · {check.verdict === 'pass' ? '本批通过' : check.verdict === 'revise' ? '返修' : '材料不足'}</Text>
+              <Text strong>{reviewLabels[check.criterion as keyof typeof reviewLabels] ?? (check.criterion.startsWith('execution/') ? `逐章验收 · ${check.criterion.slice('execution/'.length)}` : check.criterion)} · {check.verdict === 'pass' ? '本批通过' : check.verdict === 'revise' ? '返修' : '材料不足'}</Text>
               <p>{check.explanation} {check.revisionAdvice}</p>{check.evidence.map((item, index) => <p key={index}>[{item.sourceId}] {item.quote}</p>)}
             </div>)}</Space> }} />
           </details>}

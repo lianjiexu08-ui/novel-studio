@@ -60,6 +60,7 @@ function NextChapterPanel({ next, onConfirm }: { next: NextChapterDto; onConfirm
           <div className="check-row"><span className="toc-meta">视角 / 人物</span><span>{current.pov || '—'}{current.characters.length > 0 && ` ｜ ${current.characters.join('、')}`}</span></div>
           {(current.location || current.storyTime) && <div className="check-row"><span className="toc-meta">地点 / 时间</span><span>{current.location || '—'} ｜ {current.storyTime || '—'}</span></div>}
           <div className="check-row"><span className="toc-meta">本章必须</span><span>{current.mustDo.map((item) => <div key={item}>{item}</div>)}</span></div>
+          {!!current.executionChecks?.length && <div className="check-row"><span className="toc-meta">逐章验收</span><div>{current.executionChecks.map(check => <p key={check.id}>{check.requirement}</p>)}<span className="toc-meta">每项须有独立正文评审和原文证据。修改任务卡不会移除章纲中的验收项。</span></div></div>}
           {current.mustNotHappen.length > 0 && <div className="check-row"><span className="toc-meta">不能发生</span><span>{current.mustNotHappen.map((item) => <div key={item}>{item}</div>)}</span></div>}
           <div className="check-row"><span className="toc-meta">结束状态</span><span>{current.endState}</span></div>
           {current.dependsOn.map((dependency) => (
