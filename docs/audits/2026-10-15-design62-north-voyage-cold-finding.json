@@ -1,0 +1,89 @@
+{
+  "observedAt": "2026-10-15T01:21:21.928325+00:00",
+  "status": "partial_review_finding_pending_final_synthesis",
+  "inputHash": "80b5930d47111b420c22ae16ecfc355d0dd5d47f8098bad104f8fa08543e1c24",
+  "scope": {
+    "worldPackRevision": 32,
+    "storyBibleRevision": 62,
+    "planRevisionId": "plan_d50cad0b6d0142c9b79ab0cad2eabc9b",
+    "planRevision": 62
+  },
+  "runId": "design_run_a5e0559b-7302-46a1-b7b1-621552c4bd1f",
+  "stageId": "cross-3-5",
+  "stageResultSha256": "7b650de96e1795acc399fcb2ac9ddd602436067e022ba3654155048a83ee0e29",
+  "finding": {
+    "criterion": "geography",
+    "verdict": "revise",
+    "explanation": "赤霄至苍冥是五昼夜实体海程，苍冥规则明确凝元以下须有保温舟舱或护身寒符，且修为不替代通行条件。第54—60章宏观却只安排林、贺购买两张“普通舱票”北航；贺为淬体，未写暖舱、寒符或其他合规防寒来源。后段返航已专门把暖舱、燃料和验舱列为前置，反衬北航不能以普通舱名称默认满足门槛。",
+    "evidence": [
+      {
+        "sourceId": "review-unit/68",
+        "quote": "{\n  \"id\": \"loc_02\",\n  \"name\": \"苍冥大陆\",\n  \"kind\": \"continent\",\n  \"entryConditions\": [\n    \"大陆环境寒冷；凝元境以下需保温舟舱或护身寒符。修为不是政治通行权。\",\n    \"沿岸官港验引渡令；无令者可由巡界使验明身份后具名担保，担保者承担监护和越界责任。例外仅到指定会合地，不自动授予进入界渊的权利。\",\n    \"具体到访须区分受监管码头候查、沿岸入境担保和界渊准入；担保须由实际到场者具名承担，只在约定范围与期限生效。\"\n  ],\n  \"status\": \"proposed\"\n}"
+      },
+      {
+        "sourceId": "review-unit/87",
+        "quote": "{\n  \"id\": \"loc_21\",\n  \"name\": \"无尽虚海商路\",\n  \"kind\": \"region\",\n  \"entryConditions\": [\n    \"同一天地内的虚海航网，不穿越太古界门；普通修士依赖护罩与定位阵飞舟，持钥匙不能免费或瞬移过海。\",\n    \"青玄云梦天港至赤霄天宝外港为约两昼夜实体海程；内陆抵港时间另算。船票、劳务换舱、担保与额外打点须分别说明，商盟信物不自动代付。新第一卷拟第214日暮出航、第216日暮到港，旧第17–19日章纲不再适用。\",\n    \"赤霄极焱天港至苍冥葬骨玄冰原外港为约五昼夜实体海程。常规客舱旧报价五千枚下品灵石，上等舱三品火灵晶百两；具体货物换舱须核实品种、数量与双方同意，不凭品级推定兑换率。后续新章纲须重新安排日期和可用支付来源，旧第27–32日航历不是约束新提案的日期。\",\n    \"苍冥通天渡口至青玄沧溟古港约六日实体海程；紧急征用也须明确船舶、燃料、具名供给者与担保责任，不能当作免费瞬移。回师日期须随前卷训练、休养和航程顺延。\",\n    \"万象商盟管船舶、泊位、货单与运费；大乾、神炎及苍冥沿岸守军各管本方港口，巡界使处理空间污染和紧急引渡。商业信物不能豁免扣船、搜舱或追缴。\",\n"
+      },
+      {
+        "sourceId": "review-unit/363",
+        "quote": "{\n  \"id\": \"ms_v2_voyage\",\n  \"title\": \"有限航款与五日北行\",\n  \"kind\": \"turn\",\n  \"startChapter\": 54,\n  \"endChapter\": 60,\n  \"setup\": [\n    \"第271日商盟港务理事会为追缴被挪货与避免北境封港，从本案追偿周转款实拨14000枚下品灵石给具名领款的贺青梧；这是有账有追偿风险的商盟垫款，不是几天劳务值一万。用途限两人北航查货、回青玄交证及沿途食宿医药。\",\n    \"第271–274日乘普通车沿每日复核开放的既有沿岸驿道从天宝外港到极焱天港；271日出发前贺从已拨1000杂费额度中实付12购两张满额普通避火符（各6枚，计入后来核销780而非另加支出），两人核余纹后佩戴新符；旧符不得续算有效，不进太微城、神炎内地、魔谷或天坑。陆与弟弟留赤霄接受传唤，不能无交通随队到北境。\",\n    \"林延续252及254回访的短走、坐车许可，仍不负重，拒绝接受程记以撤供换赔偿的口信。第275日贺按原报价5000/人实付10000，买两张普通舱票；276日暮离港、281日暮抵葬骨外港，五昼夜完整航程。海上林守证、轮值和练稳定真元，航路威胁依舟罩处置，无夜的投影或赵的隔岸现身。抵港时先留受监管码头，不凭商业票进境。\",\n"
+      },
+      {
+        "sourceId": "review-unit/365",
+        "quote": "    \"夜在301日午交清具名名单和责任后，沿既有陆路走满十昼夜，311日午实际抵驻地；与在岗巡队当面交接后才返岗补巡，301—311在途中，不随林回青玄，也不在301日虚写已抵岗。限程担保的越界责任并不因本人出发而取消，林贺是否按期离境须以后续实体纸单送达得知，不能由311日返岗自动推定。林贺本次各站验籍通过，301–303日坐暖车到通天；若任一关未放行或304夜前未完成登船，停在最近受监管驿站/候船区，申请重审并改签，后续抵达、训练及费用必须重排，不允许沿用315日返乡日期。\",\n    \"商盟在第303日两人已在通天渡口受监管候船区，实际航司在当地柜台报价确认本案两席设有隔火暖炉、通风烟道的密闭保温舟舱各1500（普通货船的实有暖舱，不是仅加一件保温衣），贺用此前封存3000实付；船方具名舱单注明两席六昼夜保温舟舱、暖炉燃料与当班船员添料看火均包含在这3000中，按loc_02满足凝元以下乘客的舱内防寒要求，不另虚开免费护身符。304日登船前林贺与港务当面核对实际舱位、炉道完好和六日燃料配载，贺全程住该暖舱；第304日暮出航、第310日暮沧溟古港抵达，六昼夜。第310日暮到港后先在沧溟古港受监管泊区办理下述入港核验，不把到港当成已获准上岸；实际核验放行后，第311–314日才沿大乾普通驿路返外山，各站验本次入港签注、名册和现有路引，费用按同一杂费账据实结算。\",\n"
+      }
+    ],
+    "revisionAdvice": "修订第54—60章北航安排：明确贺的保温舟舱或经实检的护身寒符、取得和支付来源、登船前核验及失效/延期处理；若普通舱本身为保温舱，也须在该航次写明其设施、供能和对两人的适用性。"
+  },
+  "verifiedCitationAnchors": [
+    {
+      "unitId": "review-unit/68",
+      "sourceId": "world/locations/loc_02",
+      "start": 0,
+      "end": 285,
+      "quoteVerified": true
+    },
+    {
+      "unitId": "review-unit/87",
+      "sourceId": "world/locations/loc_21",
+      "start": 0,
+      "end": 640,
+      "quoteVerified": true
+    },
+    {
+      "unitId": "review-unit/363",
+      "sourceId": "plan/milestones/ms_v2_voyage",
+      "start": 0,
+      "end": 1632,
+      "quoteVerified": true
+    },
+    {
+      "unitId": "review-unit/365",
+      "sourceId": "plan/milestones/ms_v3_return",
+      "start": 0,
+      "end": 4440,
+      "quoteVerified": true
+    }
+  ],
+  "fullSourceQualification": {
+    "sourceId": "plan/milestones/ms_v2_voyage",
+    "field": "cost",
+    "quote": "专项款共14000；275日北航票实付10000，且271日符费12已经扣除后，现金上限3988，其中回程3000仍封存预留，不能挪用，预留不是已买回程票。原1000杂费额度未用部分上限988，沿途车费、食宿、医疗与保暖衣的实际支出继续从中扣；3988不是本段结束时未经核验的现金余额，已发生的其他杂费不能漏记。两张新符12属于后续累计核销780的一部分，315日不可再扣一次。避火符交船库保管，极寒阶段购买两件普通保温衣并靠暖舱御寒，淬体贺不能露宿冰原。261–270食宿拟由260棚主已付客舍的1枚与林十日有限坐姿轻役交换结清，作业在原受护住处；这项前提须在53实际落实，不挪用本次航款补旧账。",
+    "note": "The complete source does mention a warm cabin. The remaining question is how that general statement binds to this northern voyage, its facilities, energy supply, paid fare and inspection. Preserve the original negative finding."
+  },
+  "followupQuestions": [
+    {
+      "status": "manual_followup_not_formal_verdict",
+      "scope": "Northern stay and transfer, days 281-304",
+      "question": "Does protection cover waiting, cargo inspection, rescue on day 291 and transfer to Tongtian? Ordinary clothing does not automatically satisfy loc_02; art_17 requires a realm above He."
+    },
+    {
+      "status": "manual_followup_not_formal_verdict",
+      "scope": "Rescue and shelter handover on day 291",
+      "question": "Check actual cold protection and handover for the seven miners; do not assume their realm or immunity."
+    }
+  ],
+  "nextAction": "Merge all four final findings before revising a new candidate; keep frozen review input unchanged.",
+  "designOrProseChanged": false,
+  "modelCallsAdded": 0
+}
