@@ -1,0 +1,208 @@
+{
+  "observedAt": "2026-10-15T05:44:37.231Z",
+  "status": "interrupted_by_provider_quota",
+  "runtimeCommit": "9df915493be44a310c910610b44ef2b65cb153e6",
+  "rubricVersion": 16,
+  "scheduleVersion": 22,
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "originalCheckpoint": "data/audit-runtimes/design62-control/result.json",
+  "originalCheckpointSha256": "6e5690d2920db470351d2ce4c570defda371b4cb38ad48a56693dae343c99269",
+  "runnerEndedAt": "2026-10-15T01:57:01.559Z",
+  "persistedRunsMatchCheckpoint": true,
+  "protectedHistoryUnchanged": true,
+  "protectedHash": "3ec27569302311c0cdaf6b8c9a02596d60258f4d74d6da75c132628f496cb101",
+  "oldRunsPreserved": 53,
+  "oldReportsPreserved": 59,
+  "runs": [
+    {
+      "area": "world",
+      "runId": "design_run_a5e0559b-7302-46a1-b7b1-621552c4bd1f",
+      "inputHash": "80b5930d47111b420c22ae16ecfc355d0dd5d47f8098bad104f8fa08543e1c24",
+      "scope": {
+        "worldPackRevision": 32,
+        "storyBibleRevision": 62,
+        "planRevisionId": "plan_d50cad0b6d0142c9b79ab0cad2eabc9b",
+        "planRevision": 62
+      },
+      "status": "failed",
+      "completed": 40,
+      "scheduled": 51,
+      "nextStageId": "synthesis-15",
+      "nextStageAttempts": 1,
+      "completedResultHashes": {
+        "batch-1": "c586e0a1333a0865a41845b0d2adac86f24a457a489e9d31e109670290720098",
+        "batch-2": "0dfb5eea6ba479459800c0ff7500b0ab4729818abf99ea25559e273b37dd4961",
+        "batch-3": "cf949816f3d611ccef6d248ad93a25e50926c26cb3f258058d3e01ae8ddf0c6c",
+        "batch-4": "0621f9ebdf80fc8d7159b6c2b3ff5bb344b9a99e4d97b151fac61c78d135d6a7",
+        "batch-5": "d8721a7064701035e9bfd051b3ad477ac365f52eb26cb782f25f691590a15641",
+        "cross-1-2": "53bb5ff38f1818ba6d8af4eeebd5c0930fa863666f5320e04122f0e70d2313c0",
+        "cross-1-3": "d7043a8efaea97ae4993539a0ecdbd00d75c2409e2adf7638969f4975a31a9b4",
+        "cross-1-4": "4e54f59a5a9e4fedf4624b117bd590500c5925d9280d90cebb293ba763a056e0",
+        "cross-1-5": "238c24c904fa3401d13e776cf5421052882d9ee62f6bf7d2a0474f13ec86f73e",
+        "cross-2-3": "27470d0de0714193918e2b06aa3040decb4ebe3a8e59f658cef0fb858f8b4737",
+        "cross-2-4": "0196129d48edd9d02d02108fd2d680198fb2a6a84f1fc2a02807cd61b1f6398a",
+        "cross-2-5": "51d8d64275da0eb18a41f304be3a5e4249caca8e6aae627ff037d0172eb872db",
+        "cross-3-4": "659bbfd7356729dfc2255658cd25d0b9ae1488336c51dad7782c5939462c074b",
+        "cross-3-5": "7b650de96e1795acc399fcb2ac9ddd602436067e022ba3654155048a83ee0e29",
+        "cross-4-5": "6d1871d8b0f2a7416a5172facdea442a388881f306e9ec22a89ef0efe47cf468",
+        "followup-batch-1/geography": "731ac481c13f8be0ad65782059e75ed3d950121392cd382f34584032778fa5c6",
+        "followup-batch-2/geography": "5d8e54194bfd5f54ba3dc39c104e0d86f7a91f3f8cc45546f72cc8e36f65f267",
+        "followup-batch-2/history": "2f544a388ae61f3c64384dddd68102b1202f6f91c52f6b8e733aabe392281d33",
+        "followup-batch-3/geography": "2c34ddbc65e3c35dcec185558d7a5ab4f90d795ce94ece2fd1da12ece6d69897",
+        "followup-batch-3/history": "55cf7efdaaec882713786ee020e327178093c93fb2bf7bcb00f56a4825708aaf",
+        "followup-batch-3/capacity": "58042a5292470dde059f3d15c4dc9fffef817a88fb247b0312e5fe703bf06431",
+        "followup-cross-1-2/geography": "4aac46349d9e3c2da516ff869c33967b7d5f875b918d59566cb08cf93cf94fe1",
+        "followup-cross-1-3/geography": "ecc445c54ee9d6c4dc3dd73bae451b0f975e2d34e72cd7f5d94e0d4222bd21b7",
+        "followup-cross-1-5/geography": "9e81ca6daeb32aa758c813afcd2c89e44cbcf3535dc7d1e533ebd02860f6e1de",
+        "followup-cross-2-3/geography": "39e7ecdfabf7041f7173753c9c0f2786cc8b0b6e01268866bed5fdef0ae2cf9a",
+        "followup-cross-2-4/geography": "6a425a9041e314e183f14c72fe59b1e6fb2b82ad37354abb1085d0ae66b30045",
+        "synthesis-1": "a10c2b3a270220c52571f03e1f13b02599a0b56b0f410580069bfcb4cdb49c4b",
+        "synthesis-2": "287c0cb9a15380ea3ef2f220d7a720b53db986ee0e2a5c46d5e58a0aa6fb7018",
+        "synthesis-3": "c468cfae9059f912191a21aa9ea25c733f7c9003f69123df95e9c3572ad518fc",
+        "synthesis-4": "b3271d01655e820eed3be2abeed4cd46058a74fa3f23fe0bed1692b53d7a3980",
+        "synthesis-5": "ae0d8bf3f649fc37e5c4f2bfc2570a87a5c364be98ea278b388a53a58b6139df",
+        "synthesis-6": "e5a4e8d86647a59f86de5835c1a447c5965f69196e337c2cce1b1f9624a2b6f5",
+        "synthesis-7": "87eeb740f6030d9982b7a3a2b8c27f4f33be7a84a7f25ab50cdd73724c9fb86e",
+        "synthesis-8": "1a92f4d0227282c9ffd7d5f9082423212fac9069a2bfa77cd169f6b42377bc73",
+        "synthesis-9": "00a7679ef740fc87423d4883b76aadfd0f7d9905f30f3827aa7749be3965f25a",
+        "synthesis-10": "72bb5e4d4949c3da9e1f5a84c9db119f8c86148a5b16fb73481f8bbd9d433b0f",
+        "synthesis-11": "8fd16ec4d3c4529d950e74f236499cbb0eab60e67c0c91156ce8b3df9ca18e15",
+        "synthesis-12": "06aabd95fad73b83f0ac0b23ac95ef02e877824613b55e7f13546564002ce574",
+        "synthesis-13": "f3e9f7ce4a55a7544eea4c86d3c377b9ac64af77b17bbbad828812a632b6d07f",
+        "synthesis-14": "9aac1bd14360b9e49772116cfc220b873f604378ff532b0df13d927080856d72"
+      },
+      "failure": {
+        "httpStatus": 403,
+        "reason": "provider quota insufficient",
+        "retainedInOriginalCheckpoint": true
+      }
+    },
+    {
+      "area": "power",
+      "runId": "design_run_0ed1c9bd-b5fa-499f-bbbd-2175726f3017",
+      "inputHash": "80b5930d47111b420c22ae16ecfc355d0dd5d47f8098bad104f8fa08543e1c24",
+      "scope": {
+        "worldPackRevision": 32,
+        "storyBibleRevision": 62,
+        "planRevisionId": "plan_d50cad0b6d0142c9b79ab0cad2eabc9b",
+        "planRevision": 62
+      },
+      "status": "failed",
+      "completed": 29,
+      "scheduled": 93,
+      "nextStageId": "followup-cross-2-3/tiers",
+      "nextStageAttempts": 1,
+      "completedResultHashes": {
+        "batch-1": "2ecd7b2ab609bd5487ccf76198f94fd666ef63728991799b40a5ee5c50ee2131",
+        "batch-2": "c5ea9412182a296a004439d06f0a9cdb58542039118505e74e8d40ba8e5ec194",
+        "batch-3": "0b57dd5c289079ec2699a3644172c57f9879378a2632256e03e8a5083b2acfa6",
+        "batch-4": "3b771a2919fee82ab83507b071f9cd1757b80ced8d6825ce87ce1304884137c5",
+        "batch-5": "0a2673ce6863f4b70aed154adba64914a04269292fa4ad241308a205456b55f0",
+        "cross-1-2": "17c43b37d625bdc63637a6c061b1952b1efe4e9f1f92ac48d86029eeb777d0dd",
+        "cross-1-3": "5ace41144244f11af41952000d7091da01e1e3734f1cf0355d48317a13293533",
+        "cross-1-4": "a27849ab9fcd31ec4226f9ef97ef83fa768f2b3482d7771535912f9ea091c6de",
+        "cross-1-5": "e9d4df59726f3001a568ebaee683e373896e513426c96d0821c09abca8fe6a90",
+        "cross-2-3": "c9054466464deb3c74e851172cb5aa761c245f73f503cccaeabd96206882dec2",
+        "cross-2-4": "33a38631df5a2b8ddd90a887c2e46d4f7d45a1bba8771e3bd21e75aeae4b8702",
+        "cross-2-5": "6c2afa39e3906f2d2a1cfe7aa3d58d83c3b659de32ee242f227bb0525d3c1d1d",
+        "cross-3-4": "5e9bab34c98d581275533dd811310bef47ed2c905013a3d2853321989d957546",
+        "cross-3-5": "9618464e2a340ee1658f3ca1f89662149f582ebe3db11d48991469f1c919f7d8",
+        "cross-4-5": "8b42a8c2e88457738ca5877c0ad770f2dd54a4812fb17d7daafa877356da2959",
+        "followup-batch-1/tiers": "15044267f10f72d2956123cad7dd8f3ed93236869f66949d41e456aac21bd9bc",
+        "followup-batch-1/costs": "2c1d5f90449f76ba3778318108e0b919b64d45ff1d91d1ea9e682db3155a58a3",
+        "followup-batch-1/counters": "55ad7638fe8785617ca973bb6c8e9c5fe02260ec99f9fcbacdd54a4a9c721df5",
+        "followup-batch-2/tiers": "70bf8496e3d010e19ad42ca97437cca71f7d4c79ad7c68a77e5d2b2d0f111294",
+        "followup-batch-2/costs": "908b53544ff42273e7c272f6c5ff1c27ac9e3e831c5fe712d31316900864cb8e",
+        "followup-batch-2/counters": "7df10e433950ef1ff2dff648f413e4d18268a96a5717fa5999d0ebb0e2432876",
+        "followup-batch-4/tiers": "a4cc58d7fd4d9fee1ac053569406462c794a54268b9b773b5508a264059d7781",
+        "followup-batch-4/costs": "4dfab5058a248509c677806deb30281f959939d098e987d2f301d781f6a52601",
+        "followup-batch-5/tiers": "dc08f3f60ac015e1dcda6031fe0bd63615da5cc9d857504d2919f5259155782b",
+        "followup-batch-5/costs": "639a732a6dcc73942150deb7163234cd75f00549b87a50063791256b13bda832",
+        "followup-batch-5/counters": "bb8af33d78cc1a434e2b14cb5df5166b444adfe1b843a4acbd50351f201cb407",
+        "followup-cross-1-2/tiers": "f82e1c2529fbae236d025ecc2fe85beb1412438263f7f4c9c800d42b3c6da331",
+        "followup-cross-1-2/costs": "ef61e828bee0d2bcd78141f106d4991c23ab7892be25088e97820c9d3d9184cb",
+        "followup-cross-1-2/counters": "4244c22129ac83734bae3bc52bfc87ced699f9746f98ca91bf3a6d4f131b0f82"
+      },
+      "failure": {
+        "httpStatus": 403,
+        "reason": "provider quota insufficient",
+        "retainedInOriginalCheckpoint": true
+      }
+    },
+    {
+      "area": "characters",
+      "runId": "design_run_c1c34b4f-4f80-48de-99c4-a4b8b5bfaec2",
+      "inputHash": "80b5930d47111b420c22ae16ecfc355d0dd5d47f8098bad104f8fa08543e1c24",
+      "scope": {
+        "worldPackRevision": 32,
+        "storyBibleRevision": 62,
+        "planRevisionId": "plan_d50cad0b6d0142c9b79ab0cad2eabc9b",
+        "planRevision": 62
+      },
+      "status": "failed",
+      "completed": 0,
+      "scheduled": 19,
+      "nextStageId": "batch-1",
+      "nextStageAttempts": 1,
+      "completedResultHashes": {},
+      "failure": {
+        "httpStatus": 403,
+        "reason": "provider quota insufficient",
+        "retainedInOriginalCheckpoint": true
+      }
+    },
+    {
+      "area": "story",
+      "runId": "design_run_922f05fd-ed33-41da-927a-5b909f71c2f1",
+      "inputHash": "80b5930d47111b420c22ae16ecfc355d0dd5d47f8098bad104f8fa08543e1c24",
+      "scope": {
+        "worldPackRevision": 32,
+        "storyBibleRevision": 62,
+        "planRevisionId": "plan_d50cad0b6d0142c9b79ab0cad2eabc9b",
+        "planRevision": 62
+      },
+      "status": "failed",
+      "completed": 0,
+      "scheduled": 29,
+      "nextStageId": "batch-1",
+      "nextStageAttempts": 1,
+      "completedResultHashes": {},
+      "failure": {
+        "httpStatus": 403,
+        "reason": "provider quota insufficient",
+        "retainedInOriginalCheckpoint": true
+      }
+    }
+  ],
+  "usage": {
+    "calls": 81,
+    "failedCalls": 4,
+    "inputTokens": 9172304,
+    "outputTokens": 118291,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 81,
+        "failedCalls": 4,
+        "outputTokens": 118291,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 300
+    }
+  },
+  "resume": {
+    "mode": "existing_runs_only",
+    "operation": "ChapterWorkflow.stepDesignReview(workId, runId)",
+    "newRunsRequired": false,
+    "modelCallsRemainingUnderOriginalCap": 219,
+    "prerequisite": "provider quota restored or user-selected authorized connection; keep model, no-fallback and frozen reviewer binding",
+    "doNotReplayCompletedStages": true
+  },
+  "formalAcceptance": false,
+  "productionDesignOrProseWrites": false
+}
