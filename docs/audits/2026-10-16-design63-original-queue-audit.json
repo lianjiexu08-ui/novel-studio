@@ -1,0 +1,143 @@
+{
+  "observedAt": "2026-10-15T18:25:43.958Z",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "planId": "plan_6fa43ac6419c44f1b64fbe3390eff759",
+  "planRevision": 63,
+  "inputHash": "7a49ebc0415c36a0c9a92c1180e0ecddfc29466dc3f6221fa5c10881df1e02f0",
+  "status": "not_accepted",
+  "limitation": "Verified saved accepted prefixes and pending schedules against the protected isolated design snapshot. Characters final report also reconstructed. No raw model response replay in this tool; no acceptance of the three incomplete areas.",
+  "areas": [
+    {
+      "area": "world",
+      "status": "interrupted",
+      "runId": "design_run_4ce361d8-d17c-41d8-b1b4-bbdbee7f0baa",
+      "completedStages": 10,
+      "totalStages": 29,
+      "retainedFailures": 1,
+      "verification": "not_completed",
+      "progress": {
+        "verification": "verified",
+        "completedStages": 10,
+        "totalStages": 29,
+        "runSha256": "61c40dce61129ed3bf04bd0ed0047c32b4c7fcd41abce662c705a2c2bef31fdd",
+        "formalAcceptance": false,
+        "limitation": "Validates saved stage results, citations and pending schedule against the supplied input; does not replay raw model responses or approve incomplete work."
+      }
+    },
+    {
+      "area": "power",
+      "status": "interrupted",
+      "runId": "design_run_5f1d3886-b45e-4009-9d97-a24b8c8ce1af",
+      "completedStages": 13,
+      "totalStages": 29,
+      "retainedFailures": 1,
+      "verification": "not_completed",
+      "progress": {
+        "verification": "verified",
+        "completedStages": 13,
+        "totalStages": 29,
+        "runSha256": "b64891b8f0b4dfc07d7c9943b280cd02a9d6076b7b041695282eaf7df799c707",
+        "formalAcceptance": false,
+        "limitation": "Validates saved stage results, citations and pending schedule against the supplied input; does not replay raw model responses or approve incomplete work."
+      }
+    },
+    {
+      "area": "characters",
+      "status": "passed",
+      "runId": "design_run_33f64511-bef4-4abf-bb57-8cd1a0e21cf5",
+      "reportId": "design_review_216eb9a6-c067-4662-9233-2c6c87c41964",
+      "completedStages": 33,
+      "totalStages": 33,
+      "retainedFailures": 0,
+      "verification": "verified",
+      "runSha256": "7c8e1d92dceaf3d73c42953908480e121b8b3395a02f85c54e86c60d7aa56d87",
+      "reportSha256": "3f35de5e691a778e7ef4f2c21a4b70a1b951bc97df53011ad999585cf8d787b6",
+      "sourceEnvelopeSha256": "a7538aa94c272b28ab66268772889f1332a3d5fcb611d61c00fb07848dde1204",
+      "checks": [
+        {
+          "criterion": "agency",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "relationships",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "knowledge",
+          "verdict": "pass"
+        }
+      ],
+      "resolvedDeferrals": [
+        {
+          "checkId": "batch-2/relationships",
+          "resolvedByStageId": "cross-1-2"
+        },
+        {
+          "checkId": "batch-2/knowledge",
+          "resolvedByStageId": "cross-1-2"
+        },
+        {
+          "checkId": "batch-3/relationships",
+          "resolvedByStageId": "cross-1-3"
+        },
+        {
+          "checkId": "batch-3/knowledge",
+          "resolvedByStageId": "followup-batch-3/knowledge"
+        },
+        {
+          "checkId": "cross-2-3/agency",
+          "resolvedByStageId": "followup-cross-2-3/agency"
+        },
+        {
+          "checkId": "cross-2-3/relationships",
+          "resolvedByStageId": "followup-cross-2-3/relationships"
+        },
+        {
+          "checkId": "cross-2-3/knowledge",
+          "resolvedByStageId": "followup-cross-2-3/knowledge"
+        },
+        {
+          "checkId": "cross-2-4/agency",
+          "resolvedByStageId": "followup-cross-2-4/agency"
+        },
+        {
+          "checkId": "cross-2-4/relationships",
+          "resolvedByStageId": "followup-cross-2-4/relationships"
+        },
+        {
+          "checkId": "cross-2-4/knowledge",
+          "resolvedByStageId": "followup-cross-2-4/knowledge"
+        }
+      ]
+    },
+    {
+      "area": "story",
+      "status": "interrupted",
+      "runId": "design_run_a1ae5a57-f9bf-4af3-8093-550e3d3ded22",
+      "completedStages": 52,
+      "totalStages": 67,
+      "retainedFailures": 1,
+      "verification": "not_completed",
+      "progress": {
+        "verification": "verified",
+        "completedStages": 52,
+        "totalStages": 67,
+        "runSha256": "89f35509799e8a8eb5beee19c5513d39000451ec7fe4905b23703926b378cbc9",
+        "formalAcceptance": false,
+        "limitation": "Validates saved stage results, citations and pending schedule against the supplied input; does not replay raw model responses or approve incomplete work."
+      }
+    }
+  ],
+  "auditorFileSha256": "cec032c429417b96ada3a22655277589c4cc17a547d1c9cb47084bed6766e109",
+  "checkpointSource": "data/audit-runtimes/design63-control/result.json",
+  "checkpointSha256": "002d0b8ae14660717cb64bb133fed5ceeed2639ea587bd7dbd9286479066dbce",
+  "checkpointStatus": "completed_with_failures",
+  "snapshot": "/var/folders/tr/8vt224595gdfg6w6kh6tkpt00000gn/T/novel64-clarification-ni38m4eo/snapshot.db",
+  "designProtectedHash": "70b0b6e134dab1fbe2e91b8b67d579b6eef4e8fada0759002a4a8f74eeb7e902",
+  "sourceFilesVerified": 130,
+  "reviewRecordsUnchanged": true,
+  "modelCalls": 0,
+  "productionDatabaseReads": 0,
+  "productionDatabaseWrites": 0,
+  "formalRuntimeChanged": false
+}
