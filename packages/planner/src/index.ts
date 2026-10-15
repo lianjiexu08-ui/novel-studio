@@ -117,7 +117,7 @@ pass 也必须有支撑证据；明确矛盾或设计缺陷用 revise；材料�
   }
 
   async generateStoryBible(input: { title: string; covenant: CreativeCovenant; worldPack: WorldPack; chapterTarget?: number; previousStoryBible?: StoryBible }): Promise<StoryBible> {
-    const chapterTarget = input.chapterTarget ?? this.targetChapters;
+    const chapterTarget = input.chapterTarget ?? input.covenant.targetChapterCount ?? this.targetChapters;
     const next = await completeValidated(this.client, {
       system: storyBibleSystem + storyBibleShape,
       user: JSON.stringify({ task: 'generate_story_bible', title: input.title, covenant: input.covenant, chapterTarget, worldPack: input.worldPack, previousStoryBible: input.previousStoryBible }, null, 2),
