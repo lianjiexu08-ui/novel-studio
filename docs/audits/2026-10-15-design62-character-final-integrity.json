@@ -1,0 +1,74 @@
+{
+  "observedAt": "2026-10-15T08:09:37.431Z",
+  "runtimeCommit": "9df915493be44a310c910610b44ef2b65cb153e6",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "runId": "design_run_c1c34b4f-4f80-48de-99c4-a4b8b5bfaec2",
+  "reportId": "design_review_df24b5ef-fa42-4a27-80a8-eabeb8760460",
+  "inputHash": "80b5930d47111b420c22ae16ecfc355d0dd5d47f8098bad104f8fa08543e1c24",
+  "scope": {
+    "worldPackRevision": 32,
+    "storyBibleRevision": 62,
+    "planRevisionId": "plan_d50cad0b6d0142c9b79ab0cad2eabc9b",
+    "planRevision": 62
+  },
+  "status": "passed",
+  "completedStages": 31,
+  "allStagesAndCitationsRebuilt": true,
+  "persistedRunAndReportVerified": true,
+  "reportMatchesReconstruction": true,
+  "runUnchanged": true,
+  "runSha256": "b45ad04536f099adcf44e205595d6702fe6467ffb64d935c64214811a41442a4",
+  "reportSha256": "c58a7884e1e1c7ee76a9daf7b4d71c64c90cbd724b792b8bc2aef20222a45cad",
+  "sourceEnvelopeSha256": "38209315548d20249c903d88f2a3274938e3b54d68ad67fe6db145065a713d39",
+  "retainedFailures": 2,
+  "checks": [
+    {
+      "criterion": "agency",
+      "verdict": "pass",
+      "explanation": "林辰的求生、查案与救人目标持续受伤势、境界、资源和责任限制，并在救人优先、放弃追查窗口、让吴卢自行决定等节点承担明确损失。贺青梧、陆沉舟、吴伍、卢小满等也有彼此冲突的利益与拒绝空间，选择会改变船务、救援、证词和后续追查。后段的先救谁、延期复仇、放弃追凶及支付寿源晋阶均被安排为带代价的拟定选择，而非用未来能力倒填当前行动。"
+    },
+    {
+      "criterion": "relationships",
+      "verdict": "pass",
+      "explanation": "关系安排没有用终局标签替代过程：林苏从受程序约束的临时庇护与试探，经过保留分歧的有限同盟、分路和实体消息逐步变化；林贺与雇工的合作受救援、船损及去留选择推动，救命不兑换服从；林与陆的关系也因押送责任和现场选择发生改变。第48章吴卢先解决彼此代答问题，第50章才通过当面回答和实际脱控生效；贺随后接受二人不立即回船，保留后续安置与合作选择。第51—53章的生计、签认和核验仍明确属于待落实的拟定条件。"
+    },
+    {
+      "criterion": "knowledge",
+      "verdict": "pass",
+      "explanation": "秘密和误解按亲见、实体消息、文书交接、签收与当面核证逐步生效，没有因独立视角或读者已知信息而让角色全知。第48章吴卢的门内谈话不直接传给林贺，第50章林只能依据现场听答、拦阻和陆对本次押送的有限承认更新认知；第53章陆自述仍须独立核验。林辰与苏凌霜对父案、九鼎、残片和界门的认识也保持局部证据边界，人物选择因此由实际获得的信息和相应代价推动，未见同一时点知情冲突或提前揭示。"
+    }
+  ],
+  "resolvedDeferrals": [
+    {
+      "checkId": "batch-3/relationships",
+      "resolvedByStageId": "cross-1-3"
+    },
+    {
+      "checkId": "batch-3/knowledge",
+      "resolvedByStageId": "followup-batch-3/knowledge"
+    },
+    {
+      "checkId": "cross-2-3/agency",
+      "resolvedByStageId": "followup-cross-2-3/agency"
+    },
+    {
+      "checkId": "cross-2-3/relationships",
+      "resolvedByStageId": "followup-cross-2-3/relationships"
+    },
+    {
+      "checkId": "cross-2-3/knowledge",
+      "resolvedByStageId": "followup-cross-2-3/knowledge"
+    },
+    {
+      "checkId": "cross-2-4/relationships",
+      "resolvedByStageId": "followup-cross-2-4/relationships"
+    },
+    {
+      "checkId": "cross-2-4/knowledge",
+      "resolvedByStageId": "followup-cross-2-4/knowledge"
+    }
+  ],
+  "modelCalls": 0,
+  "databaseWrites": false,
+  "limitation": "Integrity of saved character design review; not prose acceptance or whole-design approval."
+}
