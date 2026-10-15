@@ -1,0 +1,54 @@
+{
+  "status": "prepared_not_deployed_unbound_to_design",
+  "observedAt": "2026-10-15T08:57:04.891725+00:00",
+  "root": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design63-6c505a3",
+  "commit": "6c505a3d6afae5bb275f8cd509e2455a48753857",
+  "rubricVersion": 16,
+  "scheduleVersion": 23,
+  "model": "gpt-5.6-luna",
+  "timeoutMs": 600000,
+  "fallback": false,
+  "candidateBinding": null,
+  "dependenciesCopiedFrom": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design63-95bf5df/node_modules",
+  "allSymlinksStayWithinRuntime": true,
+  "generatedClientCopiedWithoutGeneration": true,
+  "modelCalls": 0,
+  "productionRestarted": false,
+  "frozenDesign62SourcesUnchanged": true,
+  "supersedesPreparedRuntime": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design63-95bf5df",
+  "dependencies": {
+    "entryCount": 40575,
+    "manifest": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design63-6c505a3/dependency-hashes.json",
+    "sha256": "bb45d2b8805fa2e37438701e2962729fd6592cd841bc0f249e15717215d0f3cc"
+  },
+  "validation": {
+    "coreTypes": "passed",
+    "localGrowthRegressionTests": 1,
+    "imports": [
+      "core",
+      "planner",
+      "persistence",
+      "application",
+      "api"
+    ],
+    "importsPassed": true,
+    "defaultSchedule": 23,
+    "databaseConnected": false,
+    "serverStarted": false,
+    "modelCalls": 0,
+    "priorFullSuite": {
+      "codeCommit": "6c505a3",
+      "tests": 384,
+      "failures": 0,
+      "log": "/tmp/novel-growth-local-full.log",
+      "scope": "Isolated workspace before snapshot preparation; not rerun on snapshot"
+    },
+    "initialImportProbe": {
+      "status": "failed",
+      "reason": "Probe referenced nonexistent packages/persistence/src/index.ts; corrected to actual prisma-repository.ts entry point; no runtime source change"
+    }
+  },
+  "codeFiles": 130,
+  "runtimeManifestSha256": "79daef5273d9a03aec7d3bb64309ada84f08940e0c85a72150278b91f5ceb5ed",
+  "limitation": "Prepared only; frozen formal62 sources, saved results and design bindings unchanged. Candidate acceptance and production deployment remain pending."
+}
