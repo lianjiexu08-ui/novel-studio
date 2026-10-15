@@ -1,0 +1,565 @@
+{
+  "kind": "proposed_opening_budget_acceptance_requirements",
+  "observedAt": "2026-10-15T23:08:44.262Z",
+  "sourcePath": "data/design-candidates/design64-execution-links-draft-v8.json",
+  "sourceSha256": "a6ccd3bf890dbe065fa37ca3077de5d17ab1b235648cfaac3a429ee4897b19de",
+  "sourceInputHash": "32f6ca9f61bbb70b8b56a0a7908ca086a0ce1b6ff4554ff3bafdf7428f05465f",
+  "candidatePath": "data/design-candidates/design64-opening-budget-checks-draft-v9.json",
+  "candidateSha256": "b59b6d84abaab658b8d6152c2ebe4242dfe2ed15cbd3a3d1f29f514db8dfd5a4",
+  "patches": [
+    {
+      "op": "append_execution_check",
+      "path": "/plan/chapters/12/executionChecks",
+      "chapterNumber": 13,
+      "check": {
+        "id": "diagnosis-is-not-income",
+        "requirement": "第19日经白榆连续诊察才得至少7元载的条件性保守下界，留至少1元载安全余量；此后扣自然流逝，伤变复评。诊断不是寿储收入或预知死期，林仍淬体、未燃寿、未突破，旧稿燃寿与新账不得混算。",
+        "sourceQuestion": {
+          "document": "story",
+          "questionId": "audit-ending-cost"
+        }
+      },
+      "basis": {
+        "sourceId": "plan/chapters/chapter-13",
+        "quote": "第19日可支配下界至少7元载、须扣自然流逝、至少留1元载、伤变即复评"
+      },
+      "question": {
+        "id": "audit-ending-cost",
+        "question": "新宏观采用第19日诊察下界7、120日扣3、199/209日各加5、415日扣10并扣自然流逝；466日约2.775342仅为健康条件成立时的提案预算。旧稿不足两年/三年数字保留历史，不混入新账。须通过实际新章节与复诊才能认定余额。",
+        "blocking": true,
+        "status": "open"
+      },
+      "coverage": "此章具体执行义务；不覆盖该问题其余章节、设计复核或历史替换义务。"
+    },
+    {
+      "op": "append_execution_check",
+      "path": "/plan/chapters/12/executionChecks",
+      "chapterNumber": 13,
+      "check": {
+        "id": "injury-and-livelihood-choice",
+        "requirement": "林因夹板和胸腹、左臂旧伤不能负重、握笔或修习真元；选择坐席口述矿路、由韩叙誊写按页换基础粮药，并实际放弃本期内门选拔。劳务不增加寿储或古境资格，梁九保有先处理家人生计的选择。",
+        "sourceQuestion": {
+          "document": "story",
+          "questionId": "audit-opening-growth"
+        }
+      },
+      "basis": {
+        "sourceId": "plan/chapters/chapter-13",
+        "quote": "林辰放弃本期内门选拔和立即追档的冲动，接受分阶段复评，选择坐席口述矿路、由韩叙誊写的劳务方式换取基本粮药。"
+      },
+      "question": {
+        "id": "audit-opening-growth",
+        "question": "第1–32章成长提案仍须对照各章动作、伤情与晋阶前置复核；33–50已补，前50章已齐但整体质量尚待复核。旧稿高阶成就不能充作新方案前置。",
+        "blocking": true,
+        "status": "open"
+      },
+      "coverage": "此章具体执行义务；不覆盖该问题其余章节、设计复核或历史替换义务。"
+    },
+    {
+      "op": "append_execution_check",
+      "path": "/plan/chapters/17/executionChecks",
+      "chapterNumber": 18,
+      "check": {
+        "id": "advancement-paid-once",
+        "requirement": "第120日先复诊确认无新增耗损，以第19日下界7扣101/365得约6.7233元载；林主动完成凝元晋阶只付一次3元载，余额约3.7233且留安全余量，再复诊才练习。至180日同账扣161/365约余3.5589，不赠寿、不重复扣晋阶费，也不使用未领灵泉的未来收入。",
+        "sourceQuestion": {
+          "document": "story",
+          "questionId": "audit-ending-cost"
+        }
+      },
+      "basis": {
+        "sourceId": "plan/chapters/chapter-18",
+        "quote": "凝元支付3元载，至第180日保守下界为7−3−161/365≈3.5589，仍保留至少1元载"
+      },
+      "question": {
+        "id": "audit-ending-cost",
+        "question": "新宏观采用第19日诊察下界7、120日扣3、199/209日各加5、415日扣10并扣自然流逝；466日约2.775342仅为健康条件成立时的提案预算。旧稿不足两年/三年数字保留历史，不混入新账。须通过实际新章节与复诊才能认定余额。",
+        "blocking": true,
+        "status": "open"
+      },
+      "coverage": "此章具体执行义务；不覆盖该问题其余章节、设计复核或历史替换义务。"
+    },
+    {
+      "op": "append_execution_check",
+      "path": "/plan/chapters/17/executionChecks",
+      "chapterNumber": 18,
+      "check": {
+        "id": "trained-skill-and-equipment-limit",
+        "requirement": "132日顾按候补授业借授凝元导刃章并领用仅承载凝元真元的剑；林失控打坏木架须停练赔款，176日复测只证明两丈内可见目标导刃和主动停式。一式二成、御物另扣，停剑散热且余额不足延期；不能因读到功法就掌握玄府式、百丈感知或高阶法宝使用。",
+        "sourceQuestion": {
+          "document": "world",
+          "questionId": "audit-tier-exceptions"
+        }
+      },
+      "basis": {
+        "sourceId": "plan/chapters/chapter-18",
+        "quote": "两丈是这次实际训练达到的范围，不把功法百丈上限当作本人已具备百丈感知或熟练度。"
+      },
+      "question": {
+        "id": "audit-tier-exceptions",
+        "question": "旧稿越阶施术与神器使用仍待替换正文修复。新版百章玄府、赵仍玄府，不采用破虚杀主宰或通天禁术反噬的旧结局；原世界各阶门槛与成本完全保留，后续450章高阶成长仍需有来源。",
+        "blocking": true,
+        "status": "open"
+      },
+      "coverage": "此章具体执行义务；不覆盖该问题其余章节、设计复核或历史替换义务。"
+    },
+    {
+      "op": "append_execution_check",
+      "path": "/plan/chapters/17/executionChecks",
+      "chapterNumber": 18,
+      "check": {
+        "id": "measured-recovery-before-departure",
+        "requirement": "176日终段训练后真元按零起算；177—179日实际领取并吃用劳务已结饭食、饮水，温和灵气中各连续静息八小时，复测只增3、3、4成。180日御物先扣半成，晚间用餐与两小时静息后仅补半成，余额10成；不得重复花早期已抵粮灵石，条件被打断则复测延期，181—183普通行路不另虚记恢复。",
+        "sourceQuestion": {
+          "document": "story",
+          "questionId": "audit-opening-growth"
+        }
+      },
+      "basis": {
+        "sourceId": "plan/chapters/chapter-18",
+        "quote": "180日御物后10−0.5=9.5，晚间实测补回0.5后为10"
+      },
+      "question": {
+        "id": "audit-opening-growth",
+        "question": "第1–32章成长提案仍须对照各章动作、伤情与晋阶前置复核；33–50已补，前50章已齐但整体质量尚待复核。旧稿高阶成就不能充作新方案前置。",
+        "blocking": true,
+        "status": "open"
+      },
+      "coverage": "此章具体执行义务；不覆盖该问题其余章节、设计复核或历史替换义务。"
+    },
+    {
+      "op": "append_execution_check",
+      "path": "/plan/chapters/25/executionChecks",
+      "chapterNumber": 26,
+      "check": {
+        "id": "arrival-and-two-post-handover",
+        "requirement": "188日10:45伤者队沿已核四里路线用75分钟到12:00，顾持续近身看墨、不兼抬车，亲交休足的乔后才疗伤，杜仍守入口。褚邵白昼补眠并实际暮抵，19时分别接入口与墨岗；189日07时由休足的杜乔接回，顾不充夜班后备，当班乔不离墨去核物，缺员或超额反抗须暂停呼援。",
+        "sourceQuestion": {
+          "document": "story",
+          "questionId": "audit-guard-return-chain"
+        }
+      },
+      "basis": {
+        "sourceId": "plan/chapters/chapter-26",
+        "quote": "12:00抵外营面交乔，杜仍守入口。顾随后交白榆止血固定肩伤并休息，不先去核物。"
+      },
+      "question": {
+        "id": "audit-guard-return-chain",
+        "question": "世界19/圣经31/计划30的值守专项已在正确的提案评审阶段通过；当前轮班没有修改。该结论不是正文已实现或整体设计通过，仍须按实际章节核对交接、休息、伤情和返宗。",
+        "blocking": true,
+        "status": "open"
+      },
+      "coverage": "此章具体执行义务；不覆盖该问题其余章节、设计复核或历史替换义务。"
+    },
+    {
+      "op": "append_execution_check",
+      "path": "/plan/chapters/25/executionChecks",
+      "chapterNumber": 26,
+      "check": {
+        "id": "spring-provenance-and-finite-share",
+        "requirement": "189日追回四支各三滴须与182日原采封人亲历、原联、入口对照页及管号封签相合，验真与白榆验毒验煞分开。12滴接回原批，9滴洁净、3滴污染记损失；只分本期未指名个人可分额，不占公共、应急、他人或未来份额，追回不另生配额，墨口供不能单独证明来源。",
+        "sourceQuestion": {
+          "document": "world",
+          "questionId": "audit-resource-usage"
+        }
+      },
+      "basis": {
+        "sourceId": "plan/chapters/chapter-26",
+        "quote": "追回不另开12滴配额。"
+      },
+      "question": {
+        "id": "audit-resource-usage",
+        "question": "资源使用规则为新提案，必须内容复核并重算各章收入/支出。灵泉终生上限30年不能支撑旧第28章神海突破及早期燃寿；历史正文未改，不得倒填已经饮用或凭未来库存先花寿元。",
+        "blocking": true,
+        "status": "open"
+      },
+      "coverage": "此章具体执行义务；不覆盖该问题其余章节、设计复核或历史替换义务。"
+    },
+    {
+      "op": "append_execution_check",
+      "path": "/plan/chapters/25/executionChecks",
+      "chapterNumber": 26,
+      "check": {
+        "id": "share-before-ownership",
+        "requirement": "林主动将原三剂申请减为两剂，让告急者先签领3滴，顾苏撤回申请；配额台按诊察和余量批准林6滴封存。救援功劳与申请都不等于所有权，林189日有效剂数仍零、寿储尚无收入；另一伤者走常规治疗，不能拿灵泉治伤或预花拟用两剂的10元载。",
+        "sourceQuestion": {
+          "document": "world",
+          "questionId": "audit-resource-usage"
+        }
+      },
+      "basis": {
+        "sourceId": "plan/chapters/chapter-26",
+        "quote": "林主动撤去一剂申请，同意告急者先领3滴，不索回报。"
+      },
+      "question": {
+        "id": "audit-resource-usage",
+        "question": "资源使用规则为新提案，必须内容复核并重算各章收入/支出。灵泉终生上限30年不能支撑旧第28章神海突破及早期燃寿；历史正文未改，不得倒填已经饮用或凭未来库存先花寿元。",
+        "blocking": true,
+        "status": "open"
+      },
+      "coverage": "此章具体执行义务；不覆盖该问题其余章节、设计复核或历史替换义务。"
+    },
+    {
+      "op": "append_execution_check",
+      "path": "/plan/chapters/26/executionChecks",
+      "chapterNumber": 27,
+      "check": {
+        "id": "first-course-completion-and-inventory",
+        "requirement": "第一支个人获配管按190—192日每日一滴实际服用，193—199日静养，另一支仍封存；199日复诊确认完整药程有效后才新增5元载，有效剂数0到1、原液6到3。林因腿伤继续常规换药并放弃195日商队，不能提前入账、重叠下一剂或把服泉当伤愈、晋阶。",
+        "sourceQuestion": {
+          "document": "world",
+          "questionId": "audit-resource-usage"
+        }
+      },
+      "basis": {
+        "sourceId": "plan/chapters/chapter-27",
+        "quote": "199日复诊确认本剂完整炼化有效，才登记寿储新增5元载、有效剂数由0到1，个人封存原液由6滴减至3滴"
+      },
+      "question": {
+        "id": "audit-resource-usage",
+        "question": "资源使用规则为新提案，必须内容复核并重算各章收入/支出。灵泉终生上限30年不能支撑旧第28章神海突破及早期燃寿；历史正文未改，不得倒填已经饮用或凭未来库存先花寿元。",
+        "blocking": true,
+        "status": "open"
+      },
+      "coverage": "此章具体执行义务；不覆盖该问题其余章节、设计复核或历史替换义务。"
+    },
+    {
+      "op": "append_execution_check",
+      "path": "/plan/chapters/26/executionChecks",
+      "chapterNumber": 27,
+      "check": {
+        "id": "first-course-lifespan-ledger",
+        "requirement": "199日沿第19日诊断起点核算7−3+5−180/365≈8.506849元载，180天已含188至199日，不能另扣或从25章重置。顾的0.25元载与林真元另账；新增伤损须复评重算下界，药程有效不能抵销伤损。",
+        "sourceQuestion": {
+          "document": "story",
+          "questionId": "audit-ending-cost"
+        }
+      },
+      "basis": {
+        "sourceId": "plan/chapters/chapter-27",
+        "quote": "199−19=180天已包括188至199日的11天，不从第25章重新起算，也不再重复扣这11天。"
+      },
+      "question": {
+        "id": "audit-ending-cost",
+        "question": "新宏观采用第19日诊察下界7、120日扣3、199/209日各加5、415日扣10并扣自然流逝；466日约2.775342仅为健康条件成立时的提案预算。旧稿不足两年/三年数字保留历史，不混入新账。须通过实际新章节与复诊才能认定余额。",
+        "blocking": true,
+        "status": "open"
+      },
+      "coverage": "此章具体执行义务；不覆盖该问题其余章节、设计复核或历史替换义务。"
+    },
+    {
+      "op": "append_execution_check",
+      "path": "/plan/chapters/27/executionChecks",
+      "chapterNumber": 28,
+      "check": {
+        "id": "second-course-completion-no-third-dose",
+        "requirement": "第二支获配管按200—202日每日一滴，203—209日静养；209日复诊确认有效才新增第二笔5元载，有效剂数1到2、原液3到0，不领新剂。告急者的3滴不计入林的用药；累计10元载不等于本章再增10，延寿不治腿伤或补真元。",
+        "sourceQuestion": {
+          "document": "world",
+          "questionId": "audit-resource-usage"
+        }
+      },
+      "basis": {
+        "sourceId": "plan/chapters/chapter-28",
+        "quote": "209日复诊确认有效才登记新增5元载，有效剂数从1到2、原液库存从3到0"
+      },
+      "question": {
+        "id": "audit-resource-usage",
+        "question": "资源使用规则为新提案，必须内容复核并重算各章收入/支出。灵泉终生上限30年不能支撑旧第28章神海突破及早期燃寿；历史正文未改，不得倒填已经饮用或凭未来库存先花寿元。",
+        "blocking": true,
+        "status": "open"
+      },
+      "coverage": "此章具体执行义务；不覆盖该问题其余章节、设计复核或历史替换义务。"
+    },
+    {
+      "op": "append_execution_check",
+      "path": "/plan/chapters/27/executionChecks",
+      "chapterNumber": 28,
+      "check": {
+        "id": "second-course-lifespan-ledger",
+        "requirement": "209日下界沿原账为7−3+10−190/365≈13.479452元载，也等于199日未四舍五入余额减10/365再加5；自然流逝、晋阶支出、两剂收入各记一次。伤变仍须复评，不能把预算当无条件存活保证或把库存归零后的泉水继续使用。",
+        "sourceQuestion": {
+          "document": "story",
+          "questionId": "audit-ending-cost"
+        }
+      },
+      "basis": {
+        "sourceId": "plan/chapters/chapter-28",
+        "quote": "等于199日第一剂后的未四舍五入余额再扣10/365并加第二剂5元载"
+      },
+      "question": {
+        "id": "audit-ending-cost",
+        "question": "新宏观采用第19日诊察下界7、120日扣3、199/209日各加5、415日扣10并扣自然流逝；466日约2.775342仅为健康条件成立时的提案预算。旧稿不足两年/三年数字保留历史，不混入新账。须通过实际新章节与复诊才能认定余额。",
+        "blocking": true,
+        "status": "open"
+      },
+      "coverage": "此章具体执行义务；不覆盖该问题其余章节、设计复核或历史替换义务。"
+    },
+    {
+      "op": "append_execution_check",
+      "path": "/plan/chapters/27/executionChecks",
+      "chapterNumber": 28,
+      "check": {
+        "id": "limited-return-to-duty",
+        "requirement": "203日顾复诊只准每日最多2小时入口轻值，须与杜当面交接，到时杜接回；乔邵看押班不依赖顾。墨用收货人别名换松押被乔拒绝，原话留证不当已核事实，不能将短班扩大成整夜、恢复擒敌能力或给林私下探视特权。",
+        "sourceQuestion": {
+          "document": "story",
+          "questionId": "audit-guard-return-chain"
+        }
+      },
+      "basis": {
+        "sourceId": "plan/chapters/chapter-28",
+        "quote": "乔邵的看押轮班不依赖顾复岗；需全力擒敌的任务仍不许顾承担。"
+      },
+      "question": {
+        "id": "audit-guard-return-chain",
+        "question": "世界19/圣经31/计划30的值守专项已在正确的提案评审阶段通过；当前轮班没有修改。该结论不是正文已实现或整体设计通过，仍须按实际章节核对交接、休息、伤情和返宗。",
+        "blocking": true,
+        "status": "open"
+      },
+      "coverage": "此章具体执行义务；不覆盖该问题其余章节、设计复核或历史替换义务。"
+    }
+  ],
+  "validation": {
+    "valid": true,
+    "issues": [],
+    "warnings": [
+      {
+        "path": "worldPack",
+        "message": "blocking unresolved questions remain"
+      },
+      {
+        "path": "storyBible",
+        "message": "blocking unresolved story questions remain"
+      }
+    ],
+    "blockers": [
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-power-opening",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-resource-definitions",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-travel-rules",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-tier-exceptions",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-resource-usage",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-first-volume-foundation",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-volume-timeline",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-artifact-continuity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-ending-cost",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-relationship-stages",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-knowledge-reveal-order",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-opening-growth",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-opening-quality",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-resource-growth-budget",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first-volume-blueprint",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-v1-outline-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-v23-macro",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-guard-return-chain",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-barge-inspection",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-second-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first50-narrative",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-message-arrivals",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-review-capacity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "baseline-content-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "opening-growth-repair",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "opening-quality-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "resource-growth-budget",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first-volume-blueprint",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "v1-outline-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "v23-macro",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "guard-return-chain",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "barge-inspection",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "second-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first50-narrative",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "message-arrivals",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "review-capacity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "convoy-custody-causality",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "north-coast-exit-permit",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "chapter25-claw-sequence",
+        "code": "BLOCKING_QUESTION"
+      }
+    ],
+    "formalAcceptance": false,
+    "productionWrites": false,
+    "limitation": "Checks API contracts and structural references only. Open blockers remain; this does not approve a plan, accept content quality, or certify an atomic save."
+  },
+  "oldRequirementsPreserved": 27,
+  "newRequirements": 13,
+  "totalRequirements": 40,
+  "chaptersChanged": [
+    13,
+    18,
+    26,
+    27,
+    28
+  ],
+  "worldAndBibleUnchanged": true,
+  "storyTextUnchanged": true,
+  "questionsUnchanged": true,
+  "productionWrites": 0,
+  "modelCalls": 0,
+  "formalAcceptance": false,
+  "applied": false,
+  "limitation": "Explicit first-volume execution criteria, not semantic acceptance or exhaustive question coverage. Keep all 41 blockers until design findings and remaining execution/history obligations are individually reconciled. Never require the prose to recite a ledger; evidence may be natural action, consequences and chapter review citations."
+}
