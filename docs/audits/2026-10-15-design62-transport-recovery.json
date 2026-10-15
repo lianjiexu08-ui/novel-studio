@@ -1,0 +1,30 @@
+{
+  "observedAt": "2026-10-15T07:51:18.686560+00:00",
+  "interruptedRunStatus": "stopped_after_failure",
+  "error": "terminated",
+  "failedStage": "characters/synthesis-8",
+  "modelResponsesForFailedStage": 0,
+  "priorCheckpointSha256": "45a8a91dcc1c4c9d8871227b5f47332dd5856f2400acce436852d86f034c330d",
+  "completedStagesPreserved": 103,
+  "totalCalls": 119,
+  "remainingCalls": 181,
+  "productionPreflightPassed": true,
+  "rehearsal": {
+    "isolatedDatabase": true,
+    "onlyChangedStage": [
+      "characters",
+      "synthesis-8",
+      1,
+      2,
+      1,
+      2
+    ],
+    "networkCalls": 0,
+    "protectedHistoryUnchanged": true,
+    "worldReportUnchanged": true,
+    "rehearsalOnProductionRejected": true
+  },
+  "frozenRuntimeCommit": "9df915493be44a310c910610b44ef2b65cb153e6",
+  "proseGenerated": false,
+  "formalAcceptance": false
+}

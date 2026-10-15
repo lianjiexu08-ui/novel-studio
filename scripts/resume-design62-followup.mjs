@@ -8,12 +8,16 @@ const read = p => JSON.parse(fs.readFileSync(p, 'utf8'));
 const hash = v => createHash('sha256').update(typeof v === 'string' ? v : JSON.stringify(v)).digest('hex');
 const runtime = read(root + '/data/audit-runtimes/design62-runtime-bound.json');
 const baseline = read(root + '/data/audit-runtimes/design62-control/baseline.json');
-const priorPath = root + '/data/audit-runtimes/design62-control/resume-2-result.json';
+const afterTransportFailure = process.argv.includes('--after-transport-failure');
+const recoveryBinding = afterTransportFailure
+  ? { file: 'followup-1-result.json', sha256: '45a8a91dcc1c4c9d8871227b5f47332dd5856f2400acce436852d86f034c330d', outputPrefix: 'followup-after-transport' }
+  : { file: 'resume-2-result.json', sha256: '0f859c7316719fc9d043484a650f5176ebbb21688472713fc34ad52676e820cd', outputPrefix: 'followup' };
+const priorPath = root + '/data/audit-runtimes/design62-control/' + recoveryBinding.file;
 const priorBytes = fs.readFileSync(priorPath, 'utf8');
 const prior = JSON.parse(priorBytes);
 const originalRunner = fs.readFileSync(root + '/data/audit-runtimes/design62-control/run.mjs', 'utf8');
 assert.equal(hash(originalRunner), runtime.runnerSha256);
-assert.equal(hash(priorBytes), '0f859c7316719fc9d043484a650f5176ebbb21688472713fc34ad52676e820cd');
+assert.equal(hash(priorBytes), recoveryBinding.sha256);
 assert.equal(prior.status, 'stopped_after_failure');
 assert.equal(runtime.commit, prior.runtimeCommit);
 assert.equal(runtime.rubricVersion, read(root + '/data/audit-runtimes/design62-control/result.json').rubricVersion);
@@ -34,7 +38,7 @@ assert.ok(Number.isSafeInteger(attempt) && attempt >= 1 && attempt <= 100);
 // checkpoint. Any actual progress or model usage requires a new bound recovery.
 const previousAttempts = [];
 for (let n = 1; n < attempt; n++) {
-  const path = root + `/data/audit-runtimes/design62-control/followup-${n}-result.json`;
+  const path = root + `/data/audit-runtimes/design62-control/${recoveryBinding.outputPrefix}-${n}-result.json`;
   const bytes = fs.readFileSync(path, 'utf8');
   const saved = JSON.parse(bytes);
   assert.equal(saved.status, 'stopped_after_failure');
@@ -89,7 +93,7 @@ try {
   if (!execute && !rehearsal) {
     console.log(JSON.stringify({ status: 'preflight_passed', runtimeCommit: runtime.commit, priorCheckpointSha256: hash(priorBytes), targets, completedResultsPreserved: prior.runs.reduce((n, r) => n + r.stages.filter(s => s.result).length, 0), remainingCalls, modelCalls: 0, databaseWrites: false }));
   } else {
-    const out = root + '/data/audit-runtimes/design62-control/' + (rehearsal ? `followup-rehearsal-${attempt}-result.json` : `followup-${attempt}-result.json`);
+    const out = root + '/data/audit-runtimes/design62-control/' + (rehearsal ? `${recoveryBinding.outputPrefix}-rehearsal-${attempt}-result.json` : `${recoveryBinding.outputPrefix}-${attempt}-result.json`);
     assert.ok(!fs.existsSync(out), 'Output exists; inspect this attempt instead of restarting');
     let reviewProvider, ledger, redact = message => String(message);
     if (execute) {
