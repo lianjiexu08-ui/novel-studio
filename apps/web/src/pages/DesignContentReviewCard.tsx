@@ -133,11 +133,19 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
     </Space>;
   }
   function runDetails(run: ReviewRun, historical = false) {
+    const revisions = run.stages.filter(stage => stage.verdict === 'needs_revision');
+    const incomplete = run.stages.filter(stage => stage.verdict === 'inconclusive').length;
     return <Space direction="vertical" style={{ width: '100%' }}>
       <Typography.Text type="secondary">世界 v{run.scope.worldPackRevision} · 圣经 v{run.scope.storyBibleRevision} · 计划 v{run.scope.planRevision} · {new Date(run.createdAt).toLocaleString()}</Typography.Text>
       <Typography.Paragraph type="secondary">原文 {run.totalSources} 项 · {run.totalCharacters.toLocaleString()} 字符。{historical
         ? run.reportId ? '已形成最终报告，具体结论可在历史评审记录中查看。' : '尚未形成最终报告，已保存的批次和失败记录仍可查阅。'
         : run.status === 'completed' ? '所有批次已完成，结论见上方。' : run.status === 'running' ? '一批正在执行；断线后需等执行结束或租约到期再继续。' : '未完成，不计为本项通过；继续时保留已完成批次。'}</Typography.Paragraph>
+      {!historical && run.status !== 'completed' && <Typography.Text type="secondary">补读可能增加总步数。已完成的批次不等于本项设计通过，最终结论须等全部核验完成。</Typography.Text>}
+      {!historical && revisions.length > 0 && <Alert type="warning" showIcon message={`已有 ${revisions.length} 个批次提出返修`} description={<Space direction="vertical">
+        <Typography.Text>这是已保存的批次意见，需对照原文核实；后续结论和修订不会抹去这些记录。</Typography.Text>
+        {revisions.map(stage => <Button key={stage.id} type="link" size="small" style={{ height: 'auto', whiteSpace: 'normal', textAlign: 'left' }} onClick={() => void showStage(run.id, stage.id)}>查看返修证据：{stage.label}</Button>)}
+      </Space>} />}
+      {!historical && incomplete > 0 && <Typography.Text type="secondary">另有 {incomplete} 个批次曾标记材料不足，补读及处理结果见批次与最终报告；不计为通过，也不直接等同于已确认的设定错误。</Typography.Text>}
       <Collapse style={{ width: '100%' }} items={[{ key: 'stages', label: '查看批次、证据与失败记录', children: <Space direction="vertical" style={{ width: '100%' }}>{run.stages.map(stage => <div key={stage.id}>
         <Tag color={stage.verdict === 'passed' ? 'success' : stage.verdict ? 'warning' : stage.error ? 'error' : 'default'}>{stage.verdict ? stage.verdict === 'passed' ? '本批通过' : statuses[stage.verdict] : stage.error ? historical ? '有失败记录' : '失败可重试' : '待审'}</Tag>{stage.label}
         {(stage.completed || stage.error || stage.attempts > 0) && <Button type="link" size="small" onClick={() => void showStage(run.id, stage.id)}>原文与结果</Button>}
@@ -161,7 +169,8 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
       {data ? <>
         <Collapse items={data.areas.map((area) => {
           const report = data.reports.find((item) => item.id === area.reportId);
-          return { key: area.area, label: <Space wrap>{labels[area.area]}<Tag color={area.status === 'passed' ? 'success' : 'warning'}>{statuses[area.status]}</Tag></Space>, extra: <Button size="small" loading={busy === area.area} disabled={busy !== null || !data.inputHash} onClick={(event) => { event.stopPropagation(); void review(area.area); }}>{['reviewing', 'interrupted'].includes(area.status) ? '继续本项' : '评审本项'}</Button>, children: report ? reportDetails(report) : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="尚无评审。先准备设计及计划提案，再评审本项。" /> };
+          const run = currentRuns.find(item => item.area === area.area);
+          return { key: area.area, label: <Space wrap>{labels[area.area]}<Tag color={area.status === 'passed' ? 'success' : 'warning'}>{statuses[area.status]}</Tag></Space>, extra: <Button size="small" loading={busy === area.area} disabled={busy !== null || !data.inputHash} onClick={(event) => { event.stopPropagation(); void review(area.area); }}>{['reviewing', 'interrupted'].includes(area.status) ? '继续本项' : '评审本项'}</Button>, children: report ? reportDetails(report) : run ? <Alert type="info" showIcon message={`已保存 ${run.stages.filter(stage => stage.completed).length}/${run.stages.length} 步，尚未形成最终报告`} description="请在下方当前任务中查看批次结论、返修证据及失败记录。本项仍未通过内容验收。" /> : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="尚无当前设计的评审任务。先准备设计及计划提案，再评审本项。" /> };
         })} />
         {currentRuns.map(run => <Card size="small" key={run.id} title={`${labels[run.area]} · ${run.stages.filter(stage => stage.completed).length}/${run.stages.length} 步`}>{runDetails(run)}</Card>)}
         {historicalRuns.length > 0 && <Collapse items={[{ key: 'run-history', label: `历史评审任务与批次（${historicalRuns.length}）`, children: <Space direction="vertical" style={{ width: '100%' }}>
