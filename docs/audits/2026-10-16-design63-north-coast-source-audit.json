@@ -1,0 +1,404 @@
+{
+  "observedAt": "2026-10-15T18:07:34.781Z",
+  "kind": "manual_source_comparison_with_conditional_arithmetic",
+  "runtimeCommit": "6c505a3d6afae5bb275f8cd509e2455a48753857",
+  "inputHash": "7a49ebc0415c36a0c9a92c1180e0ecddfc29466dc3f6221fa5c10881df1e02f0",
+  "runId": "design_run_a1ae5a57-f9bf-4af3-8093-550e3d3ded22",
+  "scope": {
+    "worldPackRevision": 33,
+    "storyBibleRevision": 63,
+    "planRevisionId": "plan_6fa43ac6419c44f1b64fbe3390eff759",
+    "planRevision": 63
+  },
+  "formalInputSha256": "528f9b82c31b29686f6f02c8e7394354340c39040008bf040fe67d27a6acca4b",
+  "sourceFilesVerified": 130,
+  "blockerMapPath": "docs/audits/2026-10-16-design63-blocker-map.json",
+  "blockerMapSha256": "0018c7d7d696f1622615b8dd00ca2cad68cbd2fb9e1f831ab11ccff1c189ff5c",
+  "question": {
+    "id": "north-coast-exit-permit",
+    "question": "当前待审设计的离境许可与回执链须复核：ms_v3_return 已拟定300签限程担保、301—304逐站验籍、303实付两段寄递费18、304实际登船后制副本、305晨交车、308晨原巡队收件及午间换车、318午驻地收件；ms_v3_training 与 rel_05 区分311返岗和318实际交阅后知情。请逐项核对原文中的承运、签收、费用、缺单追查、担保持续责任及角色认知，不凭此问题摘要判断执行链。历史59草案及此前局部复核曾指出返岗日期和回执链缺口，原负面保留；上述安排是后续候选补写，尚待正式四领域复核及逐章落实，并非已采用正文事实。此项保持阻断，不能因补写或局部通过自动结清。",
+    "blocking": true,
+    "status": "open"
+  },
+  "checks": [
+    {
+      "id": "limited-authority",
+      "observation": "Existing rules permit named, bounded supervision; the new departure undertaking records its route, duration and responsible officials. A commercial ticket does not grant political entry.",
+      "evidence": [
+        {
+          "sourceId": "world/locations/loc_02",
+          "start": 228,
+          "end": 254,
+          "quote": "担保须由实际到场者具名承担，只在约定范围与期限生效。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "start": 127,
+          "end": 154,
+          "quote": "第300日，夜的原外港查货担保仍只到当日，不自动延长。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "start": 244,
+          "end": 287,
+          "quote": "许可仅301日晨至304日夜有效，沿已勘验的葬骨外港—海岸公共驿路—通天渡口路线坐暖车"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "start": 317,
+          "end": 344,
+          "quote": "原巡队在301日出港时复核名单并交当班驿车的纸质限程单"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "start": 371,
+          "end": 419,
+          "quote": "终站港务于303日实际到达后验原单接收候船监管，304日只在原单、名册和船票相符后办理登船离境。"
+        }
+      ]
+    },
+    {
+      "id": "paid-physical-delivery",
+      "observation": "The proposed 303 payment covers two confirmed physical carriage legs and named handovers. It does not send the receipt before boarding.",
+      "evidence": [
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "start": 2338,
+          "end": 2381,
+          "quote": "确认305日晨通天至葬骨的实有返程驿车与308日午葬骨至巡界驻地的实有公文驿车两段车次"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "start": 2477,
+          "end": 2522,
+          "quote": "贺从原1000杂费现金实付18，收据与航票分开保存，未核实实际车次或未付款就不得记已寄出。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "start": 2573,
+          "end": 2585,
+          "quote": "304日暮实际验人登船后"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "start": 2723,
+          "end": 2747,
+          "quote": "305日晨将封袋实交承运联上的本班车正并互签收件"
+        }
+      ]
+    },
+    {
+      "id": "documents-and-handover",
+      "observation": "The passengers retain originals for arrival inspection; verified copies travel to the original patrol and then the station. Custody and decision authority are distinguished.",
+      "evidence": [
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "start": 2652,
+          "end": 2698,
+          "quote": "林贺仍带本人原名册、路引与离境签注原件赴青玄供310日入港核验；寄递的是经文书核对封签的副本"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "start": 2762,
+          "end": 2804,
+          "quote": "308日晨到葬骨，由原巡队当班案牍岗验封、对本轮留存名单与出港单、签名登记本次到件。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "start": 2834,
+          "end": 2855,
+          "quote": "308日午交已在承运联列明的下一班公文驿车"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "start": 2872,
+          "end": 2892,
+          "quote": "318日午才交驻地当班值守文书验封签收。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "start": 2892,
+          "end": 2923,
+          "quote": "两段承运者只负责实体保管交接，不能代签港务放行或代替巡队核案。"
+        }
+      ]
+    },
+    {
+      "id": "return-is-not-knowledge",
+      "observation": "The relationship and subsequent milestone agree: 311 physical return precedes 318 receipt and in-person reading. The message proves departure only, not later safety or the father-case outcome.",
+      "evidence": [
+        {
+          "sourceId": "story/relationships/rel_05",
+          "start": 515,
+          "end": 540,
+          "quote": "311日午实际抵驻地、完成当面值守交接后才返岗补巡"
+        },
+        {
+          "sourceId": "story/relationships/rel_05",
+          "start": 637,
+          "end": 660,
+          "quote": "311交岗时向值守文书登记回执未到、担保仍待核"
+        },
+        {
+          "sourceId": "story/relationships/rel_05",
+          "start": 661,
+          "end": 693,
+          "quote": "318午实到封袋经文书核对并当面交阅后，她才知道304已按期离境"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_training",
+          "start": 792,
+          "end": 825,
+          "quote": "将原巡队308日核验说明和通天304日登船回执当面交夜查阅并签收。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_training",
+          "start": 882,
+          "end": 918,
+          "quote": "她不能据此知道310日青玄入港、315日林苏会面、父案结果或青玄后的行动"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "start": 2961,
+          "end": 2984,
+          "quote": "林贺也不能在青玄凭作者执行账知道邮车实到情况。"
+        }
+      ]
+    },
+    {
+      "id": "continuing-responsibility-and-failure",
+      "observation": "Expiration, travel, missing mail and normal settlement do not erase liability. Failed transport changes the plan rather than granting automatic knowledge or unlimited funds.",
+      "evidence": [
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "start": 3027,
+          "end": 3063,
+          "quote": "301—304的限程许可到期不自动延长通行权，也不等于免除既有担保责任。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "start": 3325,
+          "end": 3359,
+          "quote": "原巡队当班案牍岗在308日暮查收登记后将缺单交本轮当班巡队负责人立项"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "start": 3384,
+          "end": 3404,
+          "quote": "先查件与行踪、不凭缺单直接断定两人逃逸。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "start": 3431,
+          "end": 3461,
+          "quote": "318未到驻地同样保持待核并由驻地文书向原巡队发起实体查件。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "start": 3461,
+          "end": 3519,
+          "quote": "任何查件、重寄、重新批准都须另核实际人手、行程与费用，不能自动复用18邮资、3000船票、220封存款或追加免费交通"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_training",
+          "start": 868,
+          "end": 882,
+          "quote": "既有违规若后来证实仍可追责。"
+        }
+      ]
+    },
+    {
+      "id": "budget-not-double-spent",
+      "observation": "The postage and arrival tax are subdivisions of the existing 780 expense plan, with 220 held for return. Planned totals remain conditional on future itemized payments.",
+      "evidence": [
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "start": 4051,
+          "end": 4085,
+          "quote": "本次明确回执两段寄递费18，归入原杂费而非新增收入或另加在780外。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "start": 4113,
+          "end": 4196,
+          "quote": "310日验籍前已付杂费累计700（含271两符12、290诊费1、303两段回执寄递18，275护寒符36、保温衣8，以及此前实际车费、医药、食宿、供暖与查验625）"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "start": 4210,
+          "end": 4268,
+          "quote": "当场付24后累计724、余276，310夜港内客舍与311–314返程车路住食查验再实付56，累计780、余220。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "start": 4268,
+          "end": 4317,
+          "quote": "700和56是本次候选对原未拆明杂费的规划分配，须后续对应章节逐笔实现；不能当作既有正文付款证据。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "start": 4671,
+          "end": 4696,
+          "quote": "14000−10000−3000−780=220。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "start": 4749,
+          "end": 4775,
+          "quote": "315结算时第二段在途，尚不能记夜已签收或担保已结清"
+        }
+      ]
+    },
+    {
+      "id": "travel-and-thermal-constraints",
+      "observation": "Six-day return and continued cold protection have world-rule support, actual equipment checks and delay branches. This establishes a conditional plan, not verified future weather, inventory or medical permission.",
+      "evidence": [
+        {
+          "sourceId": "world/locations/loc_21",
+          "start": 383,
+          "end": 403,
+          "quote": "苍冥通天渡口至青玄沧溟古港约六日实体海程"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "start": 947,
+          "end": 973,
+          "quote": "第304日暮出航、第310日暮沧溟古港抵达，六昼夜。"
+        },
+        {
+          "sourceId": "world/locations/loc_02",
+          "start": 364,
+          "end": 390,
+          "quote": "离开温暖内部进入寒候，凝元以下仍须实际可用的护身寒符"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "start": 3626,
+          "end": 3665,
+          "quote": "林贺继续佩戴各自297晨启用的第三张护寒符，验籍、换车和进出暖房时亦逐次核余纹"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "start": 3779,
+          "end": 3803,
+          "quote": "两人第三张符在304暮实入已核返航保温舱后才摘封"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "start": 1364,
+          "end": 1390,
+          "quote": "若304日实际暖舱、燃料配载或炉道核验不合格，不登船"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "start": 1501,
+          "end": 1518,
+          "quote": "任何延误均重排到港、返乡与训练日期"
+        }
+      ]
+    }
+  ],
+  "arithmetic": [
+    {
+      "label": "First mail leg, morning to morning",
+      "expression": "308 - 305",
+      "computed": 3,
+      "expected": 3,
+      "unit": "days"
+    },
+    {
+      "label": "Second mail leg, noon to noon",
+      "expression": "318 - 308",
+      "computed": 10,
+      "expected": 10,
+      "unit": "days"
+    },
+    {
+      "label": "Personal return, noon to noon",
+      "expression": "311 - 301",
+      "computed": 10,
+      "expected": 10,
+      "unit": "days"
+    },
+    {
+      "label": "Receipt follows personal return",
+      "expression": "318 - 311",
+      "computed": 7,
+      "expected": 7,
+      "unit": "days"
+    },
+    {
+      "label": "Return voyage, dusk to dusk",
+      "expression": "310 - 304",
+      "computed": 6,
+      "expected": 6,
+      "unit": "days"
+    },
+    {
+      "label": "Planned expenses before arrival tax",
+      "expression": "12 + 1 + 18 + 36 + 8 + 625",
+      "computed": 700,
+      "expected": 700,
+      "unit": "lower-grade stones"
+    },
+    {
+      "label": "Planned total incidental expenses",
+      "expression": "700 + 24 + 56",
+      "computed": 780,
+      "expected": 780,
+      "unit": "lower-grade stones"
+    },
+    {
+      "label": "Funds held for later return",
+      "expression": "14000 - 10000 - 3000 - 780",
+      "computed": 220,
+      "expected": 220,
+      "unit": "lower-grade stones"
+    }
+  ],
+  "sources": [
+    {
+      "id": "world/locations/loc_02",
+      "textSha256": "fb8c059a5edda80a4f541de381c41e1658ddbdf54d3d3676d237373ee294b0f9",
+      "length": 479
+    },
+    {
+      "id": "plan/milestones/ms_v3_return",
+      "textSha256": "d26dbc264fe1abba6cd26639f918d59c5e45ba4fb54ad326367daedf07fd7002",
+      "length": 4798
+    },
+    {
+      "id": "story/relationships/rel_05",
+      "textSha256": "8f83f16a989ab61daecdbdecc74b0e384cc40bde70d4946c70d6ce7557699df7",
+      "length": 1015
+    },
+    {
+      "id": "plan/milestones/ms_v3_training",
+      "textSha256": "6cb8565309ec52dd1b90ef620698ee665e6bf890105f1df2fe44dc6b2fed43f1",
+      "length": 1225
+    },
+    {
+      "id": "world/locations/loc_21",
+      "textSha256": "cf644923b058c2750b6554012c5ac628498b7fde94b6131e7fe5d7b36d212354",
+      "length": 640
+    }
+  ],
+  "candidatePath": "data/design-candidates/design64-account-and-date-draft-v3.json",
+  "candidateSha256": "c9233b2cd92d437764cb90b2cfe93d421fcd53529f7743a10176010b8dd3ad3a",
+  "auditedCandidateSourcesUnchanged": true,
+  "conclusion": "No contradiction found in this bounded route, delivery, responsibility and cash-plan comparison. It does not establish all-area design acceptance or execution.",
+  "remaining": [
+    "World and story formal reviews are incomplete; do not reuse a local pass as overall approval.",
+    "Chapters 67–80 currently have macro material; the relevant detailed outlines must be generated and reviewed before writing.",
+    "Actual checks, boarding, physical custody, payments, arrival and in-person reading require separately adopted chapter evidence.",
+    "Delay, injury, supply or transport changes require recalculating both schedule and money; normal-path arithmetic does not prove those conditions occur.",
+    "The question remains blocking and open; no enforceable design-resolution/execution-obligation split has been applied."
+  ],
+  "modelCalls": 0,
+  "productionReads": 0,
+  "productionWrites": 0,
+  "designModified": false,
+  "formalAcceptance": false,
+  "questionsResolved": 0,
+  "proseGenerated": false
+}
