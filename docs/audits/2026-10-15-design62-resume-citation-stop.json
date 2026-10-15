@@ -1,0 +1,69 @@
+{
+  "observedAt": "2026-10-15T06:54:00.542425+00:00",
+  "status": "stopped_after_failure",
+  "checkpointSha256": "0f859c7316719fc9d043484a650f5176ebbb21688472713fc34ad52676e820cd",
+  "totalCalls": 94,
+  "remainingCalls": 206,
+  "resumeUsage": {
+    "calls": 13,
+    "failedCalls": 0,
+    "inputTokens": 730773,
+    "outputTokens": 14588,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 13,
+        "failedCalls": 0,
+        "outputTokens": 14588,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 219
+    }
+  },
+  "protectedHistoryUnchanged": true,
+  "completedStages": 80,
+  "worldReport": {
+    "id": "design_review_356f219a-a43c-4cde-adf1-418c1cb3b540",
+    "status": "needs_revision",
+    "checks": [
+      {
+        "criterion": "geography",
+        "verdict": "revise"
+      },
+      {
+        "criterion": "history",
+        "verdict": "revise"
+      },
+      {
+        "criterion": "capacity",
+        "verdict": "pass"
+      }
+    ]
+  },
+  "powerFailure": {
+    "runId": "design_run_0ed1c9bd-b5fa-499f-bbbd-2175726f3017",
+    "stage": "followup-cross-2-3/tiers",
+    "errorsReplayedOffline": [
+      "解决待补读项必须引用原问题、原批材料及每个新增来源：cross-2-3/tiers；缺少：原问题 review-question/cross-2-3/tiers。按本次来源目录选择真实支持片段，不得自动补引文或只删除resolves来掩盖未核验问题。",
+      "专门补读必须引用原问题所依据的每个原始来源：cross-2-3/tiers；缺少来源：story/chapterPlans/chapter-plan-18、world/realms/realm_06、world/realms/realm_07、world/realms/realm_08、plan/overview。请按sourceMap对应本次来源选择支持判断的片段，不需穷举其全部片段。"
+    ],
+    "modelCallsForReplay": 0,
+    "responsesPreserved": true
+  },
+  "continuation": {
+    "order": [
+      "characters",
+      "story",
+      "power"
+    ],
+    "frozenReviewerUnchanged": true,
+    "worldReportPreserved": true,
+    "sourceInputUnchanged": true,
+    "noDesignApproval": true,
+    "noProseGeneration": true
+  }
+}
