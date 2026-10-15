@@ -1,0 +1,478 @@
+{
+  "status": "offline_raw_schedule_preflight_passed",
+  "candidateFile": "data/design-candidates/design64-execution-and-rescue-draft-v6.json",
+  "candidateFileSha256": "7dfb01857374359923766086b18cb0ea58c1b306b009b68bfc0cf23993d25920",
+  "sourceCommit": "3d638cfc7cb2a952dff1da4d6848e31cca1c6192",
+  "formalRuntimeCommit": "6c505a3d6afae5bb275f8cd509e2455a48753857",
+  "proposedScheduleVersion": 25,
+  "frozenSourceFilesVerified": 130,
+  "scope": "Existing formal source envelopes with candidate v6 object replacements, including explicit chapter requirements and rescue boundary correction; scope revision metadata remains the original base and is not a proposed saved revision.",
+  "areas": [
+    {
+      "area": "world",
+      "originalFormalInputHash": "7a49ebc0415c36a0c9a92c1180e0ecddfc29466dc3f6221fa5c10881df1e02f0",
+      "previewSourceHash": "cf09ecc4446b84e71c6e5e84c0be26ea4195c3c7a09372ba66c3bf7cf598c646",
+      "changedSourceIds": [
+        "story/arcs/arc_01",
+        "story/arcBeats/v1-lin-share",
+        "story/promises/prom_01",
+        "story/volumes/vol_01",
+        "story/chapterPlans/chapter-plan-29",
+        "story/chapterPlans/bible-chapter-44",
+        "plan/volumes/vol_01",
+        "plan/milestones/ms_growth_v1_crossing",
+        "plan/chapters/1",
+        "plan/chapters/19",
+        "plan/chapters/25",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/29",
+        "plan/chapters/30",
+        "plan/chapters/31",
+        "plan/chapters/32",
+        "plan/chapters/37",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/50"
+      ],
+      "sources": 417,
+      "units": 420,
+      "batches": 5,
+      "crossChecks": 10,
+      "initialTotalStages": 29,
+      "rawSourceCoverageExact": true,
+      "everyBatchPairCovered": true,
+      "oldV23FirstBatchReplayMatched": true,
+      "maxRawSourceEnvelope": 217568,
+      "maxRawMetadata": 23973,
+      "envelopes": [
+        {
+          "stageId": "batch-1",
+          "sourceCharacters": 128780,
+          "metadataCharacters": 23973
+        },
+        {
+          "stageId": "batch-2",
+          "sourceCharacters": 127433,
+          "metadataCharacters": 23973
+        },
+        {
+          "stageId": "batch-3",
+          "sourceCharacters": 125900,
+          "metadataCharacters": 23973
+        },
+        {
+          "stageId": "batch-4",
+          "sourceCharacters": 128508,
+          "metadataCharacters": 23973
+        },
+        {
+          "stageId": "batch-5",
+          "sourceCharacters": 126356,
+          "metadataCharacters": 23973
+        },
+        {
+          "stageId": "cross-1-2",
+          "sourceCharacters": 216493,
+          "metadataCharacters": 23973
+        },
+        {
+          "stageId": "cross-1-3",
+          "sourceCharacters": 214960,
+          "metadataCharacters": 23973
+        },
+        {
+          "stageId": "cross-1-4",
+          "sourceCharacters": 217568,
+          "metadataCharacters": 23973
+        },
+        {
+          "stageId": "cross-1-5",
+          "sourceCharacters": 215416,
+          "metadataCharacters": 23973
+        },
+        {
+          "stageId": "cross-2-3",
+          "sourceCharacters": 213613,
+          "metadataCharacters": 23973
+        },
+        {
+          "stageId": "cross-2-4",
+          "sourceCharacters": 216221,
+          "metadataCharacters": 23973
+        },
+        {
+          "stageId": "cross-2-5",
+          "sourceCharacters": 214069,
+          "metadataCharacters": 23973
+        },
+        {
+          "stageId": "cross-3-4",
+          "sourceCharacters": 214688,
+          "metadataCharacters": 23973
+        },
+        {
+          "stageId": "cross-3-5",
+          "sourceCharacters": 212536,
+          "metadataCharacters": 23973
+        },
+        {
+          "stageId": "cross-4-5",
+          "sourceCharacters": 215144,
+          "metadataCharacters": 23973
+        }
+      ]
+    },
+    {
+      "area": "power",
+      "originalFormalInputHash": "7a49ebc0415c36a0c9a92c1180e0ecddfc29466dc3f6221fa5c10881df1e02f0",
+      "previewSourceHash": "dd029473ebcd4605ad0917548984248edb3962f4a5db75672241a37884414067",
+      "changedSourceIds": [
+        "story/arcs/arc_01",
+        "story/arcBeats/v1-lin-share",
+        "story/promises/prom_01",
+        "story/volumes/vol_01",
+        "story/chapterPlans/chapter-plan-29",
+        "story/chapterPlans/bible-chapter-44",
+        "plan/volumes/vol_01",
+        "plan/milestones/ms_growth_v1_crossing",
+        "plan/chapters/1",
+        "plan/chapters/19",
+        "plan/chapters/25",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/29",
+        "plan/chapters/30",
+        "plan/chapters/31",
+        "plan/chapters/32",
+        "plan/chapters/37",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/50"
+      ],
+      "sources": 337,
+      "units": 340,
+      "batches": 5,
+      "crossChecks": 10,
+      "initialTotalStages": 29,
+      "rawSourceCoverageExact": true,
+      "everyBatchPairCovered": true,
+      "oldV23FirstBatchReplayMatched": true,
+      "maxRawSourceEnvelope": 218665,
+      "maxRawMetadata": 19355,
+      "envelopes": [
+        {
+          "stageId": "batch-1",
+          "sourceCharacters": 128746,
+          "metadataCharacters": 19355
+        },
+        {
+          "stageId": "batch-2",
+          "sourceCharacters": 129885,
+          "metadataCharacters": 19355
+        },
+        {
+          "stageId": "batch-3",
+          "sourceCharacters": 124710,
+          "metadataCharacters": 19355
+        },
+        {
+          "stageId": "batch-4",
+          "sourceCharacters": 127695,
+          "metadataCharacters": 19355
+        },
+        {
+          "stageId": "batch-5",
+          "sourceCharacters": 99504,
+          "metadataCharacters": 19355
+        },
+        {
+          "stageId": "cross-1-2",
+          "sourceCharacters": 218665,
+          "metadataCharacters": 19355
+        },
+        {
+          "stageId": "cross-1-3",
+          "sourceCharacters": 213490,
+          "metadataCharacters": 19355
+        },
+        {
+          "stageId": "cross-1-4",
+          "sourceCharacters": 216475,
+          "metadataCharacters": 19355
+        },
+        {
+          "stageId": "cross-1-5",
+          "sourceCharacters": 188284,
+          "metadataCharacters": 19355
+        },
+        {
+          "stageId": "cross-2-3",
+          "sourceCharacters": 214629,
+          "metadataCharacters": 19355
+        },
+        {
+          "stageId": "cross-2-4",
+          "sourceCharacters": 217614,
+          "metadataCharacters": 19355
+        },
+        {
+          "stageId": "cross-2-5",
+          "sourceCharacters": 189423,
+          "metadataCharacters": 19355
+        },
+        {
+          "stageId": "cross-3-4",
+          "sourceCharacters": 212439,
+          "metadataCharacters": 19355
+        },
+        {
+          "stageId": "cross-3-5",
+          "sourceCharacters": 184248,
+          "metadataCharacters": 19355
+        },
+        {
+          "stageId": "cross-4-5",
+          "sourceCharacters": 187233,
+          "metadataCharacters": 19355
+        }
+      ]
+    },
+    {
+      "area": "characters",
+      "originalFormalInputHash": "7a49ebc0415c36a0c9a92c1180e0ecddfc29466dc3f6221fa5c10881df1e02f0",
+      "previewSourceHash": "a63e8bbdc3cba0cef72882df8c11d763713edaaea2100e2357abda47311bc6db",
+      "changedSourceIds": [
+        "story/arcs/arc_01",
+        "story/arcBeats/v1-lin-share",
+        "story/promises/prom_01",
+        "story/volumes/vol_01",
+        "story/chapterPlans/chapter-plan-29",
+        "story/chapterPlans/bible-chapter-44",
+        "plan/volumes/vol_01",
+        "plan/milestones/ms_growth_v1_crossing",
+        "plan/chapters/1",
+        "plan/chapters/19",
+        "plan/chapters/25",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/29",
+        "plan/chapters/30",
+        "plan/chapters/31",
+        "plan/chapters/32",
+        "plan/chapters/37",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/50"
+      ],
+      "sources": 286,
+      "units": 289,
+      "batches": 5,
+      "crossChecks": 10,
+      "initialTotalStages": 29,
+      "rawSourceCoverageExact": true,
+      "everyBatchPairCovered": true,
+      "oldV23FirstBatchReplayMatched": true,
+      "maxRawSourceEnvelope": 213053,
+      "maxRawMetadata": 13494,
+      "envelopes": [
+        {
+          "stageId": "batch-1",
+          "sourceCharacters": 120525,
+          "metadataCharacters": 13494
+        },
+        {
+          "stageId": "batch-2",
+          "sourceCharacters": 126504,
+          "metadataCharacters": 13494
+        },
+        {
+          "stageId": "batch-3",
+          "sourceCharacters": 126180,
+          "metadataCharacters": 13494
+        },
+        {
+          "stageId": "batch-4",
+          "sourceCharacters": 126281,
+          "metadataCharacters": 13494
+        },
+        {
+          "stageId": "batch-5",
+          "sourceCharacters": 52675,
+          "metadataCharacters": 13494
+        },
+        {
+          "stageId": "cross-1-2",
+          "sourceCharacters": 207297,
+          "metadataCharacters": 13494
+        },
+        {
+          "stageId": "cross-1-3",
+          "sourceCharacters": 206973,
+          "metadataCharacters": 13494
+        },
+        {
+          "stageId": "cross-1-4",
+          "sourceCharacters": 207074,
+          "metadataCharacters": 13494
+        },
+        {
+          "stageId": "cross-1-5",
+          "sourceCharacters": 133468,
+          "metadataCharacters": 13494
+        },
+        {
+          "stageId": "cross-2-3",
+          "sourceCharacters": 212952,
+          "metadataCharacters": 13494
+        },
+        {
+          "stageId": "cross-2-4",
+          "sourceCharacters": 213053,
+          "metadataCharacters": 13494
+        },
+        {
+          "stageId": "cross-2-5",
+          "sourceCharacters": 139447,
+          "metadataCharacters": 13494
+        },
+        {
+          "stageId": "cross-3-4",
+          "sourceCharacters": 212729,
+          "metadataCharacters": 13494
+        },
+        {
+          "stageId": "cross-3-5",
+          "sourceCharacters": 139123,
+          "metadataCharacters": 13494
+        },
+        {
+          "stageId": "cross-4-5",
+          "sourceCharacters": 139224,
+          "metadataCharacters": 13494
+        }
+      ]
+    },
+    {
+      "area": "story",
+      "originalFormalInputHash": "7a49ebc0415c36a0c9a92c1180e0ecddfc29466dc3f6221fa5c10881df1e02f0",
+      "previewSourceHash": "55388842ceb21cd59d19878bd350db0b397b0fc1979079a16e79a8e2b7198469",
+      "changedSourceIds": [
+        "story/arcs/arc_01",
+        "story/arcBeats/v1-lin-share",
+        "story/promises/prom_01",
+        "story/volumes/vol_01",
+        "story/chapterPlans/chapter-plan-29",
+        "story/chapterPlans/bible-chapter-44",
+        "plan/volumes/vol_01",
+        "plan/milestones/ms_growth_v1_crossing",
+        "plan/chapters/1",
+        "plan/chapters/19",
+        "plan/chapters/25",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/29",
+        "plan/chapters/30",
+        "plan/chapters/31",
+        "plan/chapters/32",
+        "plan/chapters/37",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/50"
+      ],
+      "sources": 362,
+      "units": 365,
+      "batches": 5,
+      "crossChecks": 10,
+      "initialTotalStages": 29,
+      "rawSourceCoverageExact": true,
+      "everyBatchPairCovered": true,
+      "oldV23FirstBatchReplayMatched": true,
+      "maxRawSourceEnvelope": 216598,
+      "maxRawMetadata": 20814,
+      "envelopes": [
+        {
+          "stageId": "batch-1",
+          "sourceCharacters": 128909,
+          "metadataCharacters": 20814
+        },
+        {
+          "stageId": "batch-2",
+          "sourceCharacters": 127409,
+          "metadataCharacters": 20814
+        },
+        {
+          "stageId": "batch-3",
+          "sourceCharacters": 125425,
+          "metadataCharacters": 20814
+        },
+        {
+          "stageId": "batch-4",
+          "sourceCharacters": 126704,
+          "metadataCharacters": 20814
+        },
+        {
+          "stageId": "batch-5",
+          "sourceCharacters": 108341,
+          "metadataCharacters": 20814
+        },
+        {
+          "stageId": "cross-1-2",
+          "sourceCharacters": 216598,
+          "metadataCharacters": 20814
+        },
+        {
+          "stageId": "cross-1-3",
+          "sourceCharacters": 214614,
+          "metadataCharacters": 20814
+        },
+        {
+          "stageId": "cross-1-4",
+          "sourceCharacters": 215893,
+          "metadataCharacters": 20814
+        },
+        {
+          "stageId": "cross-1-5",
+          "sourceCharacters": 197530,
+          "metadataCharacters": 20814
+        },
+        {
+          "stageId": "cross-2-3",
+          "sourceCharacters": 213114,
+          "metadataCharacters": 20814
+        },
+        {
+          "stageId": "cross-2-4",
+          "sourceCharacters": 214393,
+          "metadataCharacters": 20814
+        },
+        {
+          "stageId": "cross-2-5",
+          "sourceCharacters": 196030,
+          "metadataCharacters": 20814
+        },
+        {
+          "stageId": "cross-3-4",
+          "sourceCharacters": 212409,
+          "metadataCharacters": 20814
+        },
+        {
+          "stageId": "cross-3-5",
+          "sourceCharacters": 194046,
+          "metadataCharacters": 20814
+        },
+        {
+          "stageId": "cross-4-5",
+          "sourceCharacters": 195325,
+          "metadataCharacters": 20814
+        }
+      ]
+    }
+  ],
+  "modelCalls": 0,
+  "productionReads": 0,
+  "productionWrites": 0,
+  "runtimeDeployed": false,
+  "formalAcceptance": false,
+  "limitation": "Tests original text coverage and initial raw/cross request capacity only. Real responses may add followups; synthesis envelopes and content quality still require actual review. No saved design or report is created."
+}
