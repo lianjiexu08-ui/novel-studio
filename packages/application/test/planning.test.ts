@@ -568,3 +568,26 @@ test('plan approval rechecks blocking design questions added after review', asyn
   await assert.rejects(() => workflow.approvePlan(work.id, saved.id), /冷却矛盾/);
   assert.equal((await workflow.reviewPlan(work.id, saved.id)).passed, false);
 });
+
+test('same-chapter plan progress uses narrative completion and refuses unproven order', async () => {
+  const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), scriptedProvider(() => [
+    { eventType: 'plot_progress', subjectId: 'chapter-1', predicate: 'status', value: { status: 'partial' }, evidence: '先递交申请' },
+    { eventType: 'plot_progress', subjectId: 'chapter-1', predicate: 'status', value: { status: 'realized' }, evidence: '随后实际取得文书' },
+  ]));
+  const work = await createReadyWork(workflow, '同章先申请再领文书');
+  await writeChapter(workflow, work.id, 1, work.stateRevision);
+  const plan = minimalPlan();
+  plan.dependencies = [{ id: 'need-permit', targetId: 'chapter-2', sourceId: 'chapter-1', requiredness: 'must', description: '已取得文书' }];
+  const revision = await approveMinimalPlan(workflow, work.id, plan);
+  const records = [...work.events.values()];
+  records[0].id = 'z-partial'; records[1].id = 'a-realized';
+  work.events.clear();
+  records.reverse().forEach(event => work.events.set(event.id, event));
+  const node = () => planRealization(work, revision).nodes.find(node => node.nodeId === 'chapter-1')!;
+  assert.equal(node().status, 'realized');
+  assert.equal(node().evidence[0].text, '随后实际取得文书');
+  assert.equal(effectiveBrief(work, 2)!.brief.dependsOn[0].satisfied, true);
+  delete work.currentVersion(1)!.sourceCandidateId;
+  assert.equal(node().status, 'insufficient');
+  assert.equal(effectiveBrief(work, 2)!.brief.dependsOn[0].satisfied, false);
+});

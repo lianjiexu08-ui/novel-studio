@@ -1122,3 +1122,24 @@ test('chapter quality can inspect rewrite and historical candidates without proj
     assert.equal(historical.characterStates.find(s => s.characterId === 'hero' && s.field === 'power').value, 2);
   } finally { await app.close(); }
 });
+
+test('state API exposes adoption order and makes legacy same-chapter uncertainty visible', async () => {
+  const { eventOrderFixture } = await import('../../../novel-service-core/test/event-order-fixture.ts');
+  const { work, version, drafts } = eventOrderFixture();
+  const repository = new InMemoryWorkRepository();
+  await repository.save(work);
+  const { app } = createApiServer({ repository, provider: writer });
+  try {
+    const response = await app.inject({ method: 'GET', url: `/works/${work.id}/state/1` });
+    assert.equal(response.statusCode, 200);
+    const state = response.json();
+    assert.deepEqual(state.events.map((event: { value: unknown }) => event.value), drafts.map(event => event.value));
+    assert.deepEqual(state.eventOrderIssues, []);
+    assert.equal(state.characterStates.length, 0, 'unconfigured character labels are not invented');
+    delete version.sourceCandidateId;
+    await repository.save(work);
+    const legacy = await app.inject({ method: 'GET', url: `/works/${work.id}/state/1` });
+    assert.equal(legacy.statusCode, 200);
+    assert.ok(legacy.json().eventOrderIssues.some((issue: string) => issue.includes('同章多次变化')));
+  } finally { await app.close(); }
+});

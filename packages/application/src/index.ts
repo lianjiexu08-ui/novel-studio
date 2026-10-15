@@ -1,3 +1,4 @@
+import { resolveStoryEventOrder } from '../../../novel-service-core/src/event-order.ts';
 import { validateDesignCandidate, DesignCandidateValidationError, type DesignCandidate } from './design-candidate.ts';
 export { validateDesignCandidate, DesignCandidateValidationError } from './design-candidate.ts';
 import { createDesignReviewRun, designReviewStageInput, acceptDesignReviewStage, completeDesignReviewRun, type DesignReviewRun } from '../../../novel-service-core/src/design-review-run.ts';
@@ -240,12 +241,14 @@ export class ChapterWorkflow {
   }
 
   private adoptedFacts(work: Work): AdoptedFacts {
+    const ordered = resolveStoryEventOrder(work, [...work.events.values()].filter(event => event.active));
+    if (ordered.issues.length) throw new AdoptionBlocked(ordered.issues.join('; '));
     const revision = activePlan(work);
     const reached = revision ? planRealization(work, revision).reachedChapter : work.adoptedVersions().length;
     return {
       reachedChapter: reached,
       recentChapters: work.adoptedVersions().slice(-10).map((version) => ({ chapterNumber: version.chapterNumber, excerpt: version.content.slice(0, 400) })),
-      events: [...work.events.values()].filter((event) => event.active).sort((a, b) => a.chapterNumber - b.chapterNumber).slice(-200)
+      events: ordered.events.slice(-200)
         .map((event) => ({ chapterNumber: event.chapterNumber, eventType: event.eventType, subjectId: event.subjectId, predicate: event.predicate, value: event.value, evidence: event.evidence })),
       realization: revision ? planRealization(work, revision).nodes.filter((node) => node.due || node.evidence.length) : [],
     };

@@ -34,6 +34,7 @@ export interface ContextManifestContract {
   includedEventIds: string[];
   requiredMaterialStatus: 'complete' | 'needs_split' | 'blocked';
   omittedOptionalMaterial: string[];
+  eventOrderIssues?: string[];
   estimatedTokens?: number;
   contextBudget?: number;
   canonHash?: string;
@@ -122,6 +123,7 @@ export function parseContextManifest(input: unknown): ContextManifestContract {
   if (!isStringArray(input.includedEventIds)) issues.push({ path: '$.includedEventIds', message: 'must be a string array' });
   if (!['complete', 'needs_split', 'blocked'].includes(String(input.requiredMaterialStatus))) issues.push({ path: '$.requiredMaterialStatus', message: 'has an invalid status' });
   if (!isStringArray(input.omittedOptionalMaterial)) issues.push({ path: '$.omittedOptionalMaterial', message: 'must be a string array' });
+  if (input.eventOrderIssues !== undefined && !isStringArray(input.eventOrderIssues)) issues.push({ path: '$.eventOrderIssues', message: 'must be a string array' });
   if (issues.length) throw new ContractValidationError(issues);
   return input as unknown as ContextManifestContract;
 }

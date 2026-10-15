@@ -3,7 +3,7 @@ import type { DesignContentReview } from '../../../novel-service-core/src/design
 import { randomUUID } from 'node:crypto';
 import { mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
 import { dirname } from 'node:path';
-import { contentHashOf, parseCovenant, Work } from '../../../novel-service-core/src/core.ts';
+import { contentHashOf, parseCovenant, rebuildCharacterStates, Work } from '../../../novel-service-core/src/core.ts';
 import type { CreativeCovenant } from '../../../novel-service-core/src/core.ts';
 import type {
   ChapterCandidate, ChapterVersion, Character, CharacterState, CovenantRevision, DesignRevision, ImpactRecord, ManuscriptRevision, PlotNode, Relationship, StoryEvent, WorldRule,
@@ -218,6 +218,7 @@ function deserializeWork(value: PersistedWork): Work {
   for (const plan of value.plans ?? []) work.plans.set(plan.id, plan);
   work.activePlanId = value.activePlanId;
   for (const brief of value.briefs ?? []) work.briefs.set(brief.id, brief);
+  rebuildCharacterStates(work);
   return work;
 }
 

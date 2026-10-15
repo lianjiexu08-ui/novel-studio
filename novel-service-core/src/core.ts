@@ -1,3 +1,4 @@
+import { eventChangesAgree, orderedStoryEvents, resolveStoryEventOrder } from './event-order.ts';
 import type { DesignReviewRun } from './design-review-run.ts';
 import { executionEvidenceResolver, type ExecutionEvidence } from './execution-evidence.ts';
 import { chapterReviewChecker, chapterReviewRubricForPlan, executionReviewRequired, chapterReviewInput, chapterReviewInputHash, chapterReviewStatus, validateChapterReview, type ChapterReviewInput, type ChapterReviewOptions, type ChapterReviewResult, type ChapterReviewRecord } from './chapter-review.ts';
@@ -185,6 +186,8 @@ export interface ContextManifest {
   includedEventIds: string[];
   requiredMaterialStatus: 'complete' | 'needs_split' | 'blocked';
   omittedOptionalMaterial: string[];
+  /** Unproven chronology blocks further generation until reconciled. */
+  eventOrderIssues?: string[];
   estimatedTokens: number;
   contextBudget: number;
   canonHash: string;
@@ -976,6 +979,8 @@ export class NovelService {
     const candidate = this.getCandidate(work, candidateId);
     if (candidate.status === 'adopted' && candidate.adoptedVersionId) return work.versions.get(candidate.adoptedVersionId)!;
     if (candidate.origin === 'demo') throw new DemoCandidateError('demo candidates cannot be adopted into the formal story');
+    const orderIssues = resolveStoryEventOrder(work, [...work.events.values()].filter(event => event.active && event.chapterNumber < candidate.chapterNumber)).issues;
+    if (orderIssues.length) throw new ReadinessError([{ code: 'CONTEXT_INCOMPLETE', message: orderIssues.join('; '), nextAction: '复核前章事件顺序后重新检查候选' }]);
     this.assertCanonReady(work);
     if (requiresDesignContentReview(work) && !designReviewOverview(work).ready) throw new ReadinessError([{ code: 'DESIGN_REVIEW_REQUIRED', message: '当前设计的内容评审未通过，不能采纳正文候选', nextAction: '完成分项内容评审后重新生成或复查候选' }]);
     if (candidate.contentHash !== contentHashOf(candidate.content)) throw new AdoptionBlocked('candidate content does not match its recorded hash');
@@ -1043,8 +1048,9 @@ export class NovelService {
     // A content-only edit must preserve the old fact ledger until a dedicated
     // extractor supplies a replacement. Otherwise the edit silently erases
     // power, relationship, item and plot changes from the story state.
-    const inheritedEvents: EventDraft[] = [...work.events.values()]
-      .filter((event) => event.active && event.chapterVersionId === previous.id)
+    const inherited = resolveStoryEventOrder(work, [...work.events.values()].filter(event => event.active && event.chapterVersionId === previous.id));
+    if (inherited.issues.length) throw new AdoptionBlocked(inherited.issues.join('; '));
+    const inheritedEvents: EventDraft[] = inherited.events
       .map((event) => ({
         eventType: event.eventType, subjectId: event.subjectId, predicate: event.predicate,
         value: event.value, storyTime: event.storyTime, evidence: event.evidence,
@@ -1121,9 +1127,7 @@ export class NovelService {
 
   private verifyChanges(candidate: ChapterCandidate): void {
     if (!candidate.observedEvents) return;
-    const proposed = new Set(candidate.proposedEvents.map(eventKey));
-    const observed = new Set(candidate.observedEvents.map(eventKey));
-    if (proposed.size !== observed.size || [...proposed].some((item) => !observed.has(item))) throw new AdoptionBlocked('declared and observed changes do not match');
+    if (!eventChangesAgree(candidate.proposedEvents, candidate.observedEvents)) throw new AdoptionBlocked('declared and observed change sequences do not match');
   }
 
   private verifyLockedRelationships(work: Work, candidate: ChapterCandidate): void {
@@ -1213,10 +1217,11 @@ export function closureCoverageFor(work: Work, chapterNumber: number, options: {
   const errors: string[] = [];
   if (!bible) errors.push('story bible snapshot is missing; closure cannot be verified');
   const versionIds = options.chapterVersionIds ? new Set(options.chapterVersionIds) : undefined;
-  const active = [...work.events.values()].filter((event) => (versionIds ? versionIds.has(event.chapterVersionId) : event.active) && event.chapterNumber <= chapterNumber);
+  const ordered = resolveStoryEventOrder(work, [...work.events.values()].filter((event) => (versionIds ? versionIds.has(event.chapterVersionId) : event.active) && event.chapterNumber <= chapterNumber));
+  errors.push(...ordered.issues);
+  const active = ordered.events;
   const finalValue = (eventType: string, subjectId: string) => active
     .filter((event) => event.eventType === eventType && event.subjectId === subjectId)
-    .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id))
     .at(-1)?.value;
   const statusOf = (value: unknown) => value && typeof value === 'object' && 'status' in value ? String((value as { status?: unknown }).status) : '';
   let volumes = 0;
@@ -1449,9 +1454,9 @@ export function contextManifestFor(work: Work, chapterNumber: number, policy: Co
   const contextBudget = policy.contextBudget ?? 120_000;
   const allVersions = work.adoptedVersions().filter((version) => version.workId === work.id && version.chapterNumber < chapterNumber);
   const versions = allVersions.slice(-maxVersions);
-  const allEvents = [...work.events.values()]
-    .filter((event) => event.workId === work.id && event.active && event.chapterNumber < chapterNumber)
-    .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id));
+  const ordered = resolveStoryEventOrder(work, [...work.events.values()]
+    .filter((event) => event.workId === work.id && event.active && event.chapterNumber < chapterNumber));
+  const allEvents = ordered.events;
   const latestByState = new Map<string, StoryEvent>();
   for (const event of allEvents) {
     // Resource ownership, spent promises and relationship changes remain
@@ -1462,11 +1467,11 @@ export function contextManifestFor(work: Work, chapterNumber: number, policy: Co
   }
   const selected = new Map<string, StoryEvent>();
   for (const event of [...latestByState.values()].sort((a, b) => a.chapterNumber - b.chapterNumber)) selected.set(event.id, event);
-  for (const event of allEvents.slice().sort((a, b) => b.chapterNumber - a.chapterNumber || b.id.localeCompare(a.id))) {
+  for (const event of allEvents.slice().reverse()) {
     if (selected.size >= maxEvents) break;
     selected.set(event.id, event);
   }
-  const events = [...selected.values()].sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id));
+  const events = allEvents.filter(event => selected.has(event.id));
   const omittedOptionalMaterial: string[] = [];
   if (allVersions.length > versions.length) omittedOptionalMaterial.push(`older chapter versions omitted: ${allVersions.length - versions.length}`);
   if (allEvents.length > events.length) omittedOptionalMaterial.push(`older events omitted: ${allEvents.length - events.length}`);
@@ -1484,7 +1489,8 @@ export function contextManifestFor(work: Work, chapterNumber: number, policy: Co
     brief: effectiveBrief(work, chapterNumber)?.brief,
     adoptedVersionIds: versions.map((version) => version.id),
     includedEventIds: events.map((event) => event.id),
-    requiredMaterialStatus: estimatedTokens > contextBudget ? 'needs_split' : 'complete',
+    requiredMaterialStatus: ordered.issues.length ? 'blocked' : estimatedTokens > contextBudget ? 'needs_split' : 'complete',
+    ...(ordered.issues.length ? { eventOrderIssues: ordered.issues } : {}),
     omittedOptionalMaterial,
     estimatedTokens,
     contextBudget,
@@ -1497,7 +1503,7 @@ export function contextManifestFor(work: Work, chapterNumber: number, policy: Co
 /** Rebuilds the character-state projection from active events. Used by repositories after loading a work aggregate. */
 export function rebuildCharacterStates(work: Work): void {
   work.states.clear();
-  for (const event of [...work.events.values()].filter((item) => item.active).sort((a, b) => a.chapterNumber - b.chapterNumber)) {
+  for (const event of orderedStoryEvents(work).filter((item) => item.active)) {
     if (event.eventType === 'character_state') work.states.set(`${event.subjectId}|${event.predicate}`, {
       characterId: event.subjectId, field: event.predicate, value: event.value,
       sourceEventId: event.id, sourceChapterVersionId: event.chapterVersionId, storyTime: event.storyTime,
@@ -1507,9 +1513,8 @@ export function rebuildCharacterStates(work: Work): void {
 
 /** Returns the latest active character fact visible at the requested story chapter. */
 export function characterStateAt(work: Work, characterId: string, field: string, chapterNumber: number): CharacterState | undefined {
-  const event = [...work.events.values()]
-    .filter((item) => item.active && item.eventType === 'character_state' && item.subjectId === characterId && item.predicate === field && item.chapterNumber <= chapterNumber)
-    .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id))
+  const event = orderedStoryEvents(work, [...work.events.values()]
+    .filter((item) => item.active && item.eventType === 'character_state' && item.subjectId === characterId && item.predicate === field && item.chapterNumber <= chapterNumber))
     .at(-1);
   if (!event) return undefined;
   return {
@@ -1520,9 +1525,8 @@ export function characterStateAt(work: Work, characterId: string, field: string,
 
 /** Returns what a character believed about a proposition at a story chapter. */
 export function knowledgeAt(work: Work, characterId: string, proposition: string, chapterNumber: number): CharacterKnowledge | undefined {
-  const event = [...work.events.values()]
-    .filter((item) => item.active && item.eventType === 'knowledge_belief' && item.subjectId === characterId && item.predicate === proposition && item.chapterNumber <= chapterNumber)
-    .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id))
+  const event = orderedStoryEvents(work, [...work.events.values()]
+    .filter((item) => item.active && item.eventType === 'knowledge_belief' && item.subjectId === characterId && item.predicate === proposition && item.chapterNumber <= chapterNumber))
     .at(-1);
   if (!event) return undefined;
   const raw = event.value && typeof event.value === 'object' ? event.value as Record<string, unknown> : {};
@@ -1535,9 +1539,8 @@ export function knowledgeAt(work: Work, characterId: string, proposition: string
 
 /** Reconstructs a planned character arc from adopted arc_progress events. */
 export function storyArcAt(work: Work, arcId: string, chapterNumber: number): StoryArcState | undefined {
-  const event = [...work.events.values()]
-    .filter((item) => item.active && item.eventType === 'arc_progress' && item.subjectId === arcId && item.chapterNumber <= chapterNumber)
-    .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id))
+  const event = orderedStoryEvents(work, [...work.events.values()]
+    .filter((item) => item.active && item.eventType === 'arc_progress' && item.subjectId === arcId && item.chapterNumber <= chapterNumber))
     .at(-1);
   if (!event) return undefined;
   const value = event.value && typeof event.value === 'object' ? event.value as Record<string, unknown> : {};
@@ -1548,18 +1551,16 @@ export function storyArcAt(work: Work, arcId: string, chapterNumber: number): St
 
 /** Reconstructs whether a secret was revealed by the requested chapter. */
 export function storySecretAt(work: Work, secretId: string, chapterNumber: number): StorySecretState | undefined {
-  const event = [...work.events.values()]
-    .filter((item) => item.active && item.eventType === 'secret_reveal' && item.subjectId === secretId && item.chapterNumber <= chapterNumber)
-    .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id))
+  const event = orderedStoryEvents(work, [...work.events.values()]
+    .filter((item) => item.active && item.eventType === 'secret_reveal' && item.subjectId === secretId && item.chapterNumber <= chapterNumber))
     .at(-1);
   if (!event) return undefined;
   return { secretId, revealed: true, value: event.value, sourceEventId: event.id, sourceChapterVersionId: event.chapterVersionId, storyTime: event.storyTime };
 }
 
 export function storyPromiseAt(work: Work, promiseId: string, chapterNumber: number): StoryPromiseState | undefined {
-  const event = [...work.events.values()]
-    .filter((item) => item.active && item.eventType === 'promise_payoff' && item.subjectId === promiseId && item.chapterNumber <= chapterNumber)
-    .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id)).at(-1);
+  const event = orderedStoryEvents(work, [...work.events.values()]
+    .filter((item) => item.active && item.eventType === 'promise_payoff' && item.subjectId === promiseId && item.chapterNumber <= chapterNumber)).at(-1);
   if (!event) return undefined;
   const raw = event.value && typeof event.value === 'object' ? event.value as Record<string, unknown> : {};
   const status: StoryPromiseState['status'] = raw.status === 'broken' ? 'broken' : raw.status === 'open' ? 'open' : 'paid';
@@ -1567,9 +1568,8 @@ export function storyPromiseAt(work: Work, promiseId: string, chapterNumber: num
 }
 
 export function storyThreadAt(work: Work, threadId: string, chapterNumber: number): StoryThreadState | undefined {
-  const event = [...work.events.values()]
-    .filter((item) => item.active && item.eventType === 'thread_resolution' && item.subjectId === threadId && item.chapterNumber <= chapterNumber)
-    .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id)).at(-1);
+  const event = orderedStoryEvents(work, [...work.events.values()]
+    .filter((item) => item.active && item.eventType === 'thread_resolution' && item.subjectId === threadId && item.chapterNumber <= chapterNumber)).at(-1);
   if (!event) return undefined;
   const raw = event.value && typeof event.value === 'object' ? event.value as Record<string, unknown> : {};
   const status: StoryThreadState['status'] = raw.status === 'deferred' ? 'deferred' : raw.status === 'open' ? 'open' : 'resolved';
@@ -1578,9 +1578,8 @@ export function storyThreadAt(work: Work, threadId: string, chapterNumber: numbe
 
 /** Reconstructs whether a volume's planned end state has been evidenced. */
 export function storyVolumeAt(work: Work, volumeId: string, chapterNumber: number): StoryVolumeState | undefined {
-  const event = [...work.events.values()]
-    .filter((item) => item.active && item.eventType === 'volume_progress' && item.subjectId === volumeId && item.chapterNumber <= chapterNumber)
-    .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id)).at(-1);
+  const event = orderedStoryEvents(work, [...work.events.values()]
+    .filter((item) => item.active && item.eventType === 'volume_progress' && item.subjectId === volumeId && item.chapterNumber <= chapterNumber)).at(-1);
   if (!event) return undefined;
   const raw = event.value && typeof event.value === 'object' ? event.value as Record<string, unknown> : {};
   const rawStatus = raw.status;
@@ -1589,9 +1588,8 @@ export function storyVolumeAt(work: Work, volumeId: string, chapterNumber: numbe
 }
 
 function valueStateAt(work: Work, eventType: string, subjectId: string, field: string, chapterNumber: number): StoryValueState | undefined {
-  const event = [...work.events.values()]
-    .filter((item) => item.active && item.eventType === eventType && item.subjectId === subjectId && item.predicate === field && item.chapterNumber <= chapterNumber)
-    .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id)).at(-1);
+  const event = orderedStoryEvents(work, [...work.events.values()]
+    .filter((item) => item.active && item.eventType === eventType && item.subjectId === subjectId && item.predicate === field && item.chapterNumber <= chapterNumber)).at(-1);
   if (!event) return undefined;
   return { subjectId, field, value: event.value, sourceEventId: event.id, sourceChapterVersionId: event.chapterVersionId, storyTime: event.storyTime };
 }
@@ -1615,9 +1613,8 @@ export function relationshipAt(work: Work, relationshipId: string, chapterNumber
     layer: seed.kind === 'belief' ? 'belief' : 'objective', sinceChapter: seed.sinceChapter,
   } : undefined);
   if (!base) return undefined;
-  const change = [...work.events.values()]
-    .filter((item) => item.workId === work.id && item.active && item.eventType === 'relationship_change' && item.subjectId === relationshipId && item.chapterNumber <= chapterNumber)
-    .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id))
+  const change = orderedStoryEvents(work, [...work.events.values()]
+    .filter((item) => item.workId === work.id && item.active && item.eventType === 'relationship_change' && item.subjectId === relationshipId && item.chapterNumber <= chapterNumber))
     .at(-1);
   if (!change) {
     if (base.sinceChapter !== undefined && base.sinceChapter > chapterNumber) return undefined;
@@ -1663,10 +1660,6 @@ function nextChapterAfterAdopted(work: Work): number {
   return next;
 }
 
-function eventKey(event: EventDraft): string {
-  return JSON.stringify([event.eventType, event.subjectId, event.predicate, event.value]);
-}
-
 export const passChecker: CandidateChecker = {
   name: 'deterministic_rules',
   check: ({ candidate }) => ({ checker: 'deterministic_rules', status: candidate.content.trim() ? 'passed' : 'failed', message: candidate.content.trim() ? 'ok' : 'empty chapter', candidateId: candidate.id, checkedAt: now() }),
@@ -1678,10 +1671,8 @@ export const observedEventsChecker: CandidateChecker = {
   name: 'observed_events',
   check: ({ candidate }) => {
     if (!candidate.observedEvents) return { checker: 'observed_events', status: 'unavailable', message: 'observed event extraction was not returned', candidateId: candidate.id, checkedAt: now() };
-    const proposed = new Set(candidate.proposedEvents.map(eventKey));
-    const observed = new Set(candidate.observedEvents.map(eventKey));
-    const passed = proposed.size === observed.size && [...proposed].every((item) => observed.has(item));
-    return { checker: 'observed_events', status: passed ? 'passed' : 'failed', message: passed ? 'declared and observed changes match' : 'declared and observed changes differ', candidateId: candidate.id, checkedAt: now() };
+    const passed = eventChangesAgree(candidate.proposedEvents, candidate.observedEvents);
+    return { checker: 'observed_events', status: passed ? 'passed' : 'failed', message: passed ? 'declared and observed change sequences match' : 'declared and observed change sequences differ', candidateId: candidate.id, checkedAt: now() };
   },
 };
 

@@ -143,6 +143,7 @@ export function QualityPage() {
           { key: 'selection', name: '上下文选入', value: `${history.quality.contextManifest.adoptedVersionIds.length} 个章节版本，${history.quality.contextManifest.includedEventIds.length} 条事件` },
           { key: 'budget', name: '估算用量', value: `${history.quality.contextManifest.estimatedTokens} / ${history.quality.contextManifest.contextBudget} tokens` },
           { key: 'omitted', name: '省略说明', value: history.quality.contextManifest.omittedOptionalMaterial.join('；') || '无' },
+          { key: 'event-order', name: '事件顺序', value: [...new Set([...(history.eventOrderIssues ?? []), ...(history.quality.contextManifest.eventOrderIssues ?? [])])].join('；') || '无顺序冲突' },
         ]} columns={[{ title: '项目', dataIndex: 'name', width: 100 }, { title: '值', dataIndex: 'value' }]} /></Card></Col>
         <Col xs={24} md={12}><Card title="检查覆盖"><Table size="small" pagination={false} dataSource={history.quality.candidate?.checks ?? []} rowKey="checker" locale={{ emptyText: <Empty description="本章还没有候选检查记录" /> }} columns={[{ title: '检查器', dataIndex: 'checker' }, { title: '状态', dataIndex: 'status', render: (status: string) => <Tag color={status === 'passed' ? 'success' : status === 'failed' ? 'error' : 'warning'}>{status}</Tag> }, { title: '说明', dataIndex: 'message' }]} /></Card></Col>
       </Row>

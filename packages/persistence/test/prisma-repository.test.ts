@@ -779,3 +779,35 @@ test('whole-design save rolls back world and bible when plan insertion fails, th
   assert.equal(saved.validation.blockers.length, 1);
   assert.equal(saved.contentReview.ready, false);
 });
+
+test('SQLite restart and early replacement preserve same-chapter transition order and all old events', async t => {
+  const { eventOrderFixture, assertEventOrderStates } = await import('../../../novel-service-core/test/event-order-fixture.ts');
+  const { NovelService, passChecker } = await import('../../../novel-service-core/src/core.ts');
+  const { resolveStoryEventOrder } = await import('../../../novel-service-core/src/event-order.ts');
+  const databaseUrl = createDatabase();
+  process.env.DATABASE_URL = databaseUrl;
+  const { PrismaWorkRepository } = await import('../src/prisma-repository.ts');
+  const first = new PrismaWorkRepository();
+  const second = new PrismaWorkRepository();
+  t.after(async () => { await first.disconnect(); await second.disconnect(); rmSync(databaseUrl.slice(5), { force: true }); });
+  const { work, drafts } = eventOrderFixture();
+  const oldIds = [...work.events.keys()];
+  await first.save(work);
+  const reloaded = (await second.get(work.id))!;
+  assert.equal(reloaded.states.get('hero|power')?.value, 8);
+  assertEventOrderStates(reloaded);
+  const service = new NovelService({ generateChapter: () => ({ content: '后章', proposedEvents: drafts, observedEvents: drafts }) });
+  service.works.set(reloaded.id, reloaded);
+  const candidate = service.generateCandidate(reloaded.id, 2, 'after-restart');
+  service.runChecks(reloaded.id, candidate.id, [passChecker]);
+  const downstream = service.adoptCandidate(reloaded.id, candidate.id);
+  await second.save(reloaded);
+  service.editAdoptedChapter(reloaded.id, 1, '改字后仍然收到十枚，花掉两枚。', [passChecker]);
+  await second.save(reloaded);
+  const restored = (await first.get(work.id))!;
+  assertEventOrderStates(restored);
+  assert.equal(restored.versions.get(downstream.id)?.stale, true);
+  for (const id of oldIds) assert.equal(restored.events.get(id)?.active, false);
+  assert.equal(restored.events.size, work.events.size * 3);
+  assert.deepEqual(resolveStoryEventOrder(restored, [...restored.events.values()].filter(event => event.active)).issues, []);
+});

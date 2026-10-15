@@ -1,3 +1,4 @@
+import { orderedStoryEvents, resolveStoryEventOrder } from './event-order.ts';
 import { createHash, randomUUID } from 'node:crypto';
 import { isDeepStrictEqual } from 'node:util';
 import type { ReadinessBlocker, RealizationStatus, StoryEvent, Work } from './core.ts';
@@ -516,9 +517,8 @@ function evaluateDependency(work: Work, plan: BookPlan, dependency: PlanDependen
   // chapter, including when a later chapter within that range is rewritten.
   const beforeChapter = Math.min(chapterNumber, plan.milestones.find(item => item.id === dependency.targetId)?.startChapter ?? chapterNumber);
   if (dependency.fact) {
-    const match = [...work.events.values()]
-      .filter((event) => event.active && event.chapterNumber < beforeChapter && matchesFact(event, dependency.fact!))
-      .sort((a, b) => a.chapterNumber - b.chapterNumber).at(-1);
+    const match = orderedStoryEvents(work)
+      .filter((event) => event.active && event.chapterNumber < beforeChapter && matchesFact(event, dependency.fact!)).at(-1);
     if (!match) return result;
     return { ...result, satisfied: true, evidence: `第 ${match.chapterNumber} 章：${match.evidence || JSON.stringify(match.value)}` };
   }
@@ -634,14 +634,14 @@ function lastContiguousAdopted(work: Work): number {
 }
 
 function progressEvidence(work: Work, nodeId: string, beforeChapter = Number.POSITIVE_INFINITY): { status?: RealizationStatus; evidence: RealizationEvidence[] } {
-  const events = [...work.events.values()]
-    .filter((event) => event.active && event.chapterNumber < beforeChapter && event.eventType === 'plot_progress' && event.subjectId === nodeId)
-    .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id));
+  const ordered = resolveStoryEventOrder(work, [...work.events.values()]
+    .filter((event) => event.active && event.chapterNumber < beforeChapter && event.eventType === 'plot_progress' && event.subjectId === nodeId));
+  const events = ordered.events;
   if (!events.length) return { evidence: [] };
   const latest = events.at(-1)!;
   const raw = latest.value && typeof latest.value === 'object' ? (latest.value as { status?: unknown }).status : undefined;
   // Legacy or malformed events remain visible, but cannot prove completion.
-  const status = typeof raw === 'string' && REALIZATION_VALUES.has(raw as RealizationStatus) ? raw as RealizationStatus : 'insufficient';
+  const status = !ordered.issues.length && typeof raw === 'string' && REALIZATION_VALUES.has(raw as RealizationStatus) ? raw as RealizationStatus : 'insufficient';
   // The first citation must explain the current status, not an earlier attempt.
   return { status, evidence: events.reverse().map((event) => ({ chapterNumber: event.chapterNumber, versionId: event.chapterVersionId, eventId: event.id, text: event.evidence })) };
 }

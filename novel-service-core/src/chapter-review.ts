@@ -1,3 +1,4 @@
+import { resolveStoryEventOrder } from './event-order.ts';
 import { createHash } from 'node:crypto';
 import type { ChapterCandidate, CheckStatus, RunUsage, Work } from './core.ts';
 import type { DesignReviewInput } from './design-review.ts';
@@ -175,8 +176,9 @@ export function chapterReviewInput(work: Work, candidate: ChapterCandidate): Cha
   const json = (value: unknown) => JSON.stringify(value ?? null);
   const prior = work.adoptedVersions().filter(v => !v.stale && v.chapterNumber < candidate.chapterNumber)
     .sort((a, b) => a.chapterNumber - b.chapterNumber).slice(-8);
-  const facts = [...work.events.values()].filter(e => e.active && e.chapterNumber < candidate.chapterNumber)
-    .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id));
+  const ordered = resolveStoryEventOrder(work, [...work.events.values()].filter(e => e.active && e.chapterNumber < candidate.chapterNumber));
+  if (ordered.issues.length) throw new Error(`前章事件顺序待确认：${ordered.issues.join('; ')}`);
+  const facts = ordered.events;
   const sources = [
     { id: 'draft', text: candidate.content },
     { id: 'covenant', text: json(work.covenant) },

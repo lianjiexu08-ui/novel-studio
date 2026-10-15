@@ -1,3 +1,4 @@
+import { orderedStoryEvents, resolveStoryEventOrder } from '../../../novel-service-core/src/event-order.ts';
 import { completeDesignReviewRun, designReviewStageInput } from '../../../novel-service-core/src/design-review-run.ts';
 import { restoreChapterReviewRun } from '../../../novel-service-core/src/chapter-review.ts';
 import { designReviewAreaSchema } from 'novel-studio-contracts';
@@ -722,9 +723,8 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
       .reverse().sort((a, b) => b.createdAt.localeCompare(a.createdAt));
     const selectedCandidate = candidateId ? chapterCandidates.find(item => item.id === candidateId) : undefined;
     if (candidateId && !selectedCandidate) throw new NotFoundError('candidate does not belong to this work and chapter');
-    const events = [...work.events.values()]
-      .filter((event) => event.active && event.chapterNumber <= chapterNumber)
-      .sort((a, b) => a.chapterNumber - b.chapterNumber || a.id.localeCompare(b.id));
+    const events = orderedStoryEvents(work)
+      .filter((event) => event.active && event.chapterNumber <= chapterNumber);
     const characterIds = new Set([
       ...work.characters.keys(),
       ...(work.storyBible?.characters.map((character) => character.id) ?? []),
@@ -769,6 +769,7 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
         ...[...work.characters.values()].map(character => [character.id, character.name]),
       ]),
       events,
+      eventOrderIssues: resolveStoryEventOrder(work, events).issues,
       characterStates,
       knowledgeStates,
       relationships: [...relationshipIds].map((relationshipId) => relationshipAt(work, relationshipId, chapterNumber)).filter((relationship): relationship is NonNullable<typeof relationship> => Boolean(relationship)),

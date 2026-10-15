@@ -95,3 +95,19 @@ test('JSON restart resumes a review with exact sources and failed diagnostics in
     assert.equal(final.versions.size, 0);
   } finally { rmSync(directory, { recursive: true, force: true }); }
 });
+
+test('JSON restart rebuilds same-chapter state from adoption order, not cached projection or event insertion', async () => {
+  const { eventOrderFixture, assertEventOrderStates } = await import('../../../novel-service-core/test/event-order-fixture.ts');
+  const { work } = eventOrderFixture();
+  const directory = mkdtempSync(join(tmpdir(), 'novel-event-order-'));
+  const file = join(directory, 'state.json');
+  try {
+    work.states.get('hero|power')!.value = 999;
+    new JsonWorkRepository(file).save(work);
+    const reloaded = (await new JsonWorkRepository(file).get(work.id))!;
+    assert.equal(reloaded.states.get('hero|power')?.value, 8, 'load repairs the disposable projection');
+    assertEventOrderStates(reloaded);
+    assert.equal(JSON.stringify([...reloaded.events.values()]), JSON.stringify([...work.events.values()]));
+    assert.equal(JSON.stringify([...reloaded.candidates.values()]), JSON.stringify([...work.candidates.values()]));
+  } finally { rmSync(directory, { recursive: true, force: true }); }
+});

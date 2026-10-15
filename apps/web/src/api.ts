@@ -55,6 +55,7 @@ export interface DesignReviewStageDetail {
 }
 
 export interface ChapterHistoryDto {
+  eventOrderIssues?: string[];
   chapterNumber: number;
   /** Current design labels for the author; older APIs may omit these. */
   characterNames?: Record<string, string>;
@@ -71,7 +72,7 @@ export interface ChapterHistoryDto {
   threadStates: Array<{ threadId: string; status: string; value: unknown; sourceEventId: string; sourceChapterVersionId: string; storyTime?: number }>;
   volumeStates: Array<{ volumeId: string; status: string; value: unknown; sourceEventId: string; sourceChapterVersionId: string; storyTime?: number }>;
   quality: {
-    contextManifest: { chapterNumber: number; stateRevision: number; constraintRevision: number; worldPackRevision?: number; storyBibleRevision?: number; adoptedVersionIds: string[]; includedEventIds: string[]; requiredMaterialStatus: string; omittedOptionalMaterial: string[]; estimatedTokens: number; contextBudget: number; canonHash: string; stateHash: string; createdAt: string };
+    contextManifest: { chapterNumber: number; stateRevision: number; constraintRevision: number; worldPackRevision?: number; storyBibleRevision?: number; adoptedVersionIds: string[]; includedEventIds: string[]; requiredMaterialStatus: string; omittedOptionalMaterial: string[]; eventOrderIssues?: string[]; estimatedTokens: number; contextBudget: number; canonHash: string; stateHash: string; createdAt: string };
     version?: { id: string; revision: number; status: string; stale: boolean; sourceCandidateId?: string };
     candidate?: { id: string; status: string; content?: string; createdAt?: string; proposedEvents: Array<{ eventType: string; subjectId: string; predicate: string; value: unknown; evidence?: string; plotNodeId?: string }>; observedEvents?: Array<{ eventType: string; subjectId: string; predicate: string; value: unknown; evidence?: string; plotNodeId?: string }>; checks: import('novel-studio-contracts').CheckResultDto[]; checkHistory?: import('novel-studio-contracts').CheckResultDto[] };
     reviewCandidates?: Array<{ id: string; status: CandidateDto['status']; origin: CandidateDto['origin']; createdAt: string; isCurrentVersion: boolean; stale: boolean }>;
