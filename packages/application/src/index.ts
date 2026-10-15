@@ -918,14 +918,17 @@ export class ChapterWorkflow {
       const input = chapterReviewInput(work, candidate);
       const records = candidate.checkRuns.flatMap(check => check.chapterReview?.inputHash === input.inputHash && !check.chapterReview.superseded && check.chapterReview.stage && check.chapterReview.progress
         ? [check.chapterReview] : []);
-      const createdAt = records.at(-1)?.progress?.createdAt;
-      const stages = new Map(records.filter(r => r.progress!.createdAt === createdAt).map(r => [r.stage!.id, r.stage!]));
+      const latestProgress = records.at(-1)?.progress;
+      const createdAt = latestProgress?.createdAt;
+      const scheduleVersion = latestProgress?.scheduleVersion ?? 21;
+      const stages = new Map(records.filter(r => r.progress!.createdAt === createdAt
+        && (r.progress!.scheduleVersion ?? 21) === scheduleVersion).map(r => [r.stage!.id, r.stage!]));
       this.service.runChecks(workId, candidateId, [{ name: chapterReviewChecker, check: () => ({
         checker: chapterReviewChecker, status: 'unavailable', candidateId, checkedAt: new Date().toISOString(),
         message: '独立正文评审正在进行，尚不能采纳', chapterReview: { inputHash: input.inputHash },
       }) }]);
       return { input, pendingId: candidate.checks.find(c => c.checker === chapterReviewChecker)!.id,
-        resume: createdAt ? { inputHash: input.inputHash, createdAt, stages: [...stages.values()] } : undefined };
+        resume: createdAt ? { inputHash: input.inputHash, createdAt, scheduleVersion, stages: [...stages.values()] } : undefined };
     });
     if (!prepared) return;
     let record: ChapterReviewRecord = { inputHash: prepared.input.inputHash, input: prepared.input };

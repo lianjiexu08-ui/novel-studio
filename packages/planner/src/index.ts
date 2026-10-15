@@ -428,7 +428,7 @@ async function reviewChapterInStages(client: PlanningClient, input: ChapterRevie
     throw new ChapterReviewError('本章正文超过共享审读容量，不能截断后评审');
   }
   const save = async (stage: typeof run.stages[number]) => options.onStage?.(structuredClone(stage), {
-    createdAt: run.createdAt, completed: run.stages.filter(s => s.result).length, total: run.stages.length,
+    createdAt: run.createdAt, scheduleVersion: run.scheduleVersion, completed: run.stages.filter(s => s.result).length, total: run.stages.length,
   });
   while (run.stages.some(s => !s.result)) {
     const stage = run.stages.find(s => !s.result)!;
@@ -450,7 +450,7 @@ async function reviewChapterInStages(client: PlanningClient, input: ChapterRevie
     }
     await save(stage);
   }
-  return completedChapterReview(input, { inputHash: input.inputHash, createdAt: run.createdAt, stages: run.stages });
+  return completedChapterReview(input, { inputHash: input.inputHash, createdAt: run.createdAt, scheduleVersion: run.scheduleVersion, stages: run.stages });
 }
 
 async function reviewChapterStage(client: PlanningClient, input: DesignReviewInput): Promise<DesignReviewResult> {

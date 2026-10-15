@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto';
 import type { ChapterCandidate, CheckStatus, RunUsage, Work } from './core.ts';
 import type { DesignReviewInput } from './design-review.ts';
-import { acceptDesignReviewStage, completeDesignReviewRun, createDesignReviewRun, designReviewStageInput, type DesignReviewStage } from './design-review-run.ts';
+import { acceptDesignReviewStage, completeDesignReviewRun, createDesignReviewRun, designReviewStageInput, type DesignReviewRun, type DesignReviewStage } from './design-review-run.ts';
 
 export const chapterReviewChecker = 'chapter_content_review';
 export const chapterReviewRubric = {
@@ -21,9 +21,16 @@ export interface ChapterReviewResult {
   usage?: RunUsage;
   stageProof?: ChapterReviewStageProof;
 }
-export interface ChapterReviewStageProof { inputHash: string; createdAt: string; stages: DesignReviewStage[] }
+export interface ChapterReviewStageProof {
+  inputHash: string;
+  createdAt: string;
+  /** Absent only on old chapter checkpoints; those use the original v21 chapter schedule. */
+  scheduleVersion?: DesignReviewRun['scheduleVersion'];
+  stages: DesignReviewStage[];
+}
 export interface ChapterReviewProgress {
   createdAt: string;
+  scheduleVersion?: DesignReviewRun['scheduleVersion'];
   completed: number;
   total: number;
   /** Cumulative usage in this provider invocation only; resumes start at zero. */
@@ -79,7 +86,14 @@ export function restoreChapterReviewRun(input: ChapterReviewInput, proof?: Chapt
   if (proof && (proof.inputHash !== input.inputHash || !Array.isArray(proof.stages) || typeof proof.createdAt !== 'string')) {
     throw new ChapterReviewError('正文评审检查点不属于当前材料');
   }
-  const run = createDesignReviewRun(chapterReviewDesignInput(input), proof?.createdAt);
+  if (proof?.scheduleVersion !== undefined && proof.scheduleVersion < 21) throw new ChapterReviewError('未知正文评审调度版本');
+  // Chapter staging began at v21. The v22 character-profile and v23 growth
+  // changes apply to design sources/rubrics, not the chapter-review envelope.
+  // Pin unversioned history to that original schedule rather than silently
+  // interpreting it under whichever default a later release selects.
+  const run = proof
+    ? createDesignReviewRun(chapterReviewDesignInput(input), proof.createdAt, proof.scheduleVersion === undefined ? 21 : proof.scheduleVersion)
+    : createDesignReviewRun(chapterReviewDesignInput(input));
   const seen = new Set<string>();
   for (const stored of proof?.stages ?? []) {
     if (seen.has(stored.id)) throw new ChapterReviewError('正文评审检查点包含重复步骤');

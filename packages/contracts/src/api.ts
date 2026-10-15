@@ -245,12 +245,13 @@ export const checkResultDtoSchema = z.object({
       error: z.string().optional(), result: designReviewResultSchema.optional(),
     }).passthrough().optional(),
     progress: z.object({ createdAt: z.string(), completed: z.number().int(), total: z.number().int(),
+      scheduleVersion: z.number().int().min(2).optional(),
       usage: z.object({ calls: z.number(), failedCalls: z.number(), inputTokens: z.number(), outputTokens: z.number(), costUsd: z.number(), costKnown: z.boolean() }).optional(),
     }).optional(),
     usage: z.object({ calls: z.number(), failedCalls: z.number(), inputTokens: z.number(), outputTokens: z.number(), costUsd: z.number(), costKnown: z.boolean() }).optional(),
     result: z.object({
       inputHash: z.string(), summary: z.string(),
-      stageProof: z.object({ inputHash: z.string(), createdAt: z.string(), stages: z.array(z.unknown()) }).optional(),
+      stageProof: z.object({ inputHash: z.string(), createdAt: z.string(), scheduleVersion: z.number().int().min(2).optional(), stages: z.array(z.unknown()) }).optional(),
       checks: z.array(z.object({
         criterion: z.enum(['causality', 'characters', 'power', 'continuity', 'obligations', 'prose']),
         verdict: z.enum(['pass', 'revise', 'insufficient']), explanation: z.string(), revisionAdvice: z.string(),
