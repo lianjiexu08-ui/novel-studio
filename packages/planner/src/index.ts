@@ -1,15 +1,16 @@
+import { DesignQuestionConflictError, retainDesignQuestions } from '../../../novel-service-core/src/design-questions.ts';
 import { designReviewEvidenceLimit, DesignReviewAwaitingSourceError, DesignReviewCitationError, DesignReviewCriteriaError, DesignReviewError, DesignReviewResolutionEvidenceError, type DesignReviewInput, type DesignReviewResult } from '../../../novel-service-core/src/design-review.ts';
 import { ChapterReviewError, completedChapterReview, restoreChapterReviewRun, validateChapterReview, validateChapterStageEvidence, type ChapterReviewInput, type ChapterReviewOptions, type ChapterReviewResult } from '../../../novel-service-core/src/chapter-review.ts';
 import { acceptDesignReviewStage, designReviewStageInput } from '../../../novel-service-core/src/design-review-run.ts';
 import { DesignReviewEvidenceError, DesignReviewInsufficiencyError, DesignReviewReportBudgetError, prepareDesignReviewEvidence } from './design-review-evidence.ts';
 import { isRetryableModelError, ModelGateway, OpenAICompatibleAdapter, UsageLedger, type ModelRole } from '../../model-gateway/src/index.ts';
-import { maxDesignReviewAwaitingSources, parseChapterOutlines, parseGenerateChapterResponse, parsePlanSkeleton, parseStoryBible, parseWorldPack, resourceDefinitionSchema } from 'novel-studio-contracts';
+import { maxDesignReviewAwaitingSources, parseChapterOutlines, parseGenerateChapterResponse, parsePlanSkeleton, parseStoryBible, parseWorldPack, resourceDefinitionSchema, unresolvedQuestionSchema } from 'novel-studio-contracts';
 import type { ChapterOutlineContract, PlanSkeletonContract } from 'novel-studio-contracts';
 import { addUsage, emptyUsage } from '../../../novel-service-core/src/core.ts';
 import type { ContextManifest, CreativeCovenant, GeneratedChapter, ModelProvider, RunUsage, Work } from '../../../novel-service-core/src/core.ts';
 import { hasResourceUsage, normalizeFactionResources, plannedKnowledgeAt, validateWorldPack } from '../../../novel-service-core/src/world.ts';
 import { retainExecutionChecks } from '../../../novel-service-core/src/planning.ts';
-import type { StoryBible, WorldPack } from '../../../novel-service-core/src/world.ts';
+import type { StoryBible, WorldPack, UnresolvedQuestion } from '../../../novel-service-core/src/world.ts';
 
 export interface PlanningClient {
   complete(input: { system: string; user: string; maxOutputTokens: number; role?: ModelRole }): Promise<string>;
@@ -18,8 +19,8 @@ export interface PlanningClient {
 export class PlanningParseError extends Error {}
 
 export interface DesignPlanner {
-  generateWorldPack(input: { title: string; covenant: CreativeCovenant; chapterTarget?: number }): Promise<WorldPack>;
-  generateStoryBible(input: { title: string; covenant: CreativeCovenant; worldPack: WorldPack; chapterTarget?: number; previousStoryBible?: StoryBible }): Promise<StoryBible>;
+  generateWorldPack(input: { title: string; covenant: CreativeCovenant; chapterTarget?: number; retainedQuestions?: UnresolvedQuestion[] }): Promise<WorldPack>;
+  generateStoryBible(input: { title: string; covenant: CreativeCovenant; worldPack: WorldPack; chapterTarget?: number; previousStoryBible?: StoryBible; retainedQuestions?: UnresolvedQuestion[] }): Promise<StoryBible>;
 }
 
 export class JsonDesignPlanner implements DesignPlanner {
@@ -77,17 +78,17 @@ pass 也必须有支撑证据；明确矛盾或设计缺陷用 revise；材料�
     } catch (error) { throw Object.assign(error instanceof Error ? error : new Error(String(error)), { modelResponses }); }
   }
 
-  async generateWorldPack(input: { title: string; covenant: CreativeCovenant; chapterTarget?: number }): Promise<WorldPack> {
+  async generateWorldPack(input: { title: string; covenant: CreativeCovenant; chapterTarget?: number; retainedQuestions?: UnresolvedQuestion[] }): Promise<WorldPack> {
     const targetChapters = input.chapterTarget ?? input.covenant.targetChapterCount ?? this.targetChapters;
     // Keep each response small enough to reason about.  The first call is
     // deliberately allowed to return a complete legacy pack so saved prompts
     // and offline fixtures remain compatible; production prompts ask for the
     // skeleton only and then continue through four dependent stages.
     const skeleton = await completeWorldStage(this.client, {
-      system: worldSkeletonSystem + worldProposalGuidance + worldSkeletonShape,
-      user: JSON.stringify({ task: 'generate_world_skeleton', title: input.title, covenant: input.covenant, targetChapters }, null, 2),
+      system: worldSkeletonSystem + questionRetentionGuidance + worldProposalGuidance + worldSkeletonShape,
+      user: JSON.stringify({ task: 'generate_world_skeleton', title: input.title, covenant: input.covenant, targetChapters, retainedQuestions: input.retainedQuestions }, null, 2),
       maxOutputTokens: 10_000,
-    }, 'skeleton');
+    }, 'skeleton', input.retainedQuestions);
     const parsedComplete = tryParseWorldPack(skeleton);
     const complete = parsedComplete ? normalizeFactionResources(parsedComplete) : undefined;
     if (complete) {
@@ -97,20 +98,20 @@ pass 也必须有支撑证据；明确矛盾或设计缺陷用 revise；材料�
       return complete;
     }
     const geography = await completeWorldStage(this.client, {
-      system: worldGeographySystem + worldProposalGuidance + worldGeographyShape,
+      system: worldGeographySystem + questionRetentionGuidance + worldProposalGuidance + worldGeographyShape,
       user: JSON.stringify({ task: 'generate_world_geography_and_factions', title: input.title, covenant: input.covenant, targetChapters, skeleton }, null, 2),
       maxOutputTokens: 10_000,
-    }, 'geography');
+    }, 'geography', skeleton.unresolvedQuestions as UnresolvedQuestion[]);
     const power = await completeWorldStage(this.client, {
-      system: worldPowerSystem + worldProposalGuidance + worldPowerShape,
+      system: worldPowerSystem + questionRetentionGuidance + worldProposalGuidance + worldPowerShape,
       user: JSON.stringify({ task: 'generate_world_power_and_assets', title: input.title, covenant: input.covenant, targetChapters, skeleton, geography }, null, 2),
       maxOutputTokens: 10_000,
-    }, 'power');
+    }, 'power', geography.unresolvedQuestions as UnresolvedQuestion[]);
     const history = await completeWorldStage(this.client, {
-      system: worldHistorySystem + worldProposalGuidance + worldHistoryShape,
+      system: worldHistorySystem + questionRetentionGuidance + worldProposalGuidance + worldHistoryShape,
       user: JSON.stringify({ task: 'generate_world_history', title: input.title, covenant: input.covenant, targetChapters, skeleton, geography, power }, null, 2),
       maxOutputTokens: targetChapters >= 450 ? 20_000 : 8_000,
-    }, 'history');
+    }, 'history', power.unresolvedQuestions as UnresolvedQuestion[]);
     const merged = mergeWorldStages(input.title, skeleton, geography, power, history);
     const result = normalizeFactionResources(parseWorldPack(merged) as WorldPack);
     const structural = validateWorldPack(result);
@@ -119,17 +120,18 @@ pass 也必须有支撑证据；明确矛盾或设计缺陷用 revise；材料�
     return result;
   }
 
-  async generateStoryBible(input: { title: string; covenant: CreativeCovenant; worldPack: WorldPack; chapterTarget?: number; previousStoryBible?: StoryBible }): Promise<StoryBible> {
+  async generateStoryBible(input: { title: string; covenant: CreativeCovenant; worldPack: WorldPack; chapterTarget?: number; previousStoryBible?: StoryBible; retainedQuestions?: UnresolvedQuestion[] }): Promise<StoryBible> {
     const chapterTarget = input.chapterTarget ?? input.covenant.targetChapterCount ?? this.targetChapters;
     const next = await completeValidated(this.client, {
-      system: storyBibleSystem + storyBibleShape,
-      user: JSON.stringify({ task: 'generate_story_bible', title: input.title, covenant: input.covenant, chapterTarget, worldPack: input.worldPack, previousStoryBible: input.previousStoryBible }, null, 2),
+      system: storyBibleSystem + questionRetentionGuidance + storyBibleShape,
+      user: JSON.stringify({ task: 'generate_story_bible', title: input.title, covenant: input.covenant, chapterTarget, worldPack: input.worldPack, previousStoryBible: input.previousStoryBible, retainedQuestions: input.retainedQuestions }, null, 2),
       // A 450-chapter expansion carries a much larger arc/beat and volume
       // schedule than the first 100 chapters. Reserve enough room for the
       // complete JSON envelope instead of letting the model truncate midway.
       maxOutputTokens: chapterTarget >= 450 ? 32_000 : 12_000,
     }, (value) => {
       const parsed = parseStoryBible(value) as StoryBible;
+      parsed.unresolvedQuestions = retainDesignQuestions(input.retainedQuestions ?? input.previousStoryBible?.unresolvedQuestions, parsed.unresolvedQuestions);
       assertStoryBibleScale(parsed, chapterTarget);
       if (input.previousStoryBible) {
         const continuous = mergeExpandedStoryBible(input.previousStoryBible, parsed);
@@ -154,6 +156,8 @@ interface BookPlanningInput {
   authorRequest?: string;
 }
 
+const questionRetentionGuidance = `\nretainedQuestions 是服务端保留的问题记录，必须原样保留 id、question、blocking、status；可以追加新编号问题，不可删除、改写、降级或标为已解决。分阶段生成时，同样保留前阶段的问题。若已有问题看来已修复，请在设计内容中给出依据，由后续明确修订与评审处置原记录；本次模型生成不具有关闭问题的权限。\n`;
+
 const narrativePlanningGuidance = `
 设计约束须落实为故事中的选择和后果，不要把质量检查清单直接写成每章的情节。依据作者题材和偏好，为相邻章节安排不同的叙事任务：一次取舍之后应推进其后果、对手反应或关系变化，不能反复劝服主角作同一个决定。角色可有低潮与相处场景，不必每章加战斗或制造新灾难。
 必要的核账、交接、查证和等待应保留因果与信息来源，但可以压缩为过渡；除非其本身产生新的利益冲突和局面变化，不要连续用取得下一份材料、等待下一次问询作为章节终点。配角须有自己的行动、利益和拒绝权，不只是提供线索或提醒规则。
@@ -169,18 +173,19 @@ export class JsonBookPlanner {
 
   constructor(client: PlanningClient) { this.client = client; }
 
-  async generatePlanSkeleton(input: BookPlanningInput & { targetChapterCount: number; volumeCount: number; previousPlan?: unknown }): Promise<PlanSkeletonContract> {
+  async generatePlanSkeleton(input: BookPlanningInput & { targetChapterCount: number; volumeCount: number; previousPlan?: unknown; retainedQuestions?: UnresolvedQuestion[] }): Promise<PlanSkeletonContract> {
     return completeValidated(this.client, {
-      system: planSkeletonSystem + narrativePlanningGuidance + (input.targetChapterCount >= 450
+      system: planSkeletonSystem + questionRetentionGuidance + narrativePlanningGuidance + (input.targetChapterCount >= 450
         ? '\n这是450章扩展的紧凑骨架：每个卷的 goal/opposition/climax/endState/carryOver 各不超过40字，setup最多2条且每条不超过30字；milestones保持紧凑但每卷至少保留一个高潮，每项 setup 最多2条且每条不超过25字；dependencies保留关键因果；openQuestions如实保留尚未解决的阻塞，不得为压缩篇幅返回假空数组；不要生成任何chapter outlines。'
         : ''),
       user: JSON.stringify({
         task: 'generate_book_plan', title: input.title, covenant: input.covenant, targetChapterCount: input.targetChapterCount, volumeCount: input.volumeCount,
-        authorRequest: input.authorRequest, worldPack: input.worldPack, storyBible: input.storyBible, previousPlan: input.previousPlan, adoptedFacts: input.adoptedFacts,
+        authorRequest: input.authorRequest, worldPack: input.worldPack, storyBible: input.storyBible, previousPlan: input.previousPlan, retainedQuestions: input.retainedQuestions, adoptedFacts: input.adoptedFacts,
       }, null, 2),
       maxOutputTokens: 8_000,
     }, (value) => {
       const skeleton = parsePlanSkeleton(value);
+      skeleton.openQuestions = retainDesignQuestions(input.retainedQuestions ?? (input.previousPlan as { openQuestions?: UnresolvedQuestion[] } | undefined)?.openQuestions, skeleton.openQuestions);
       if (skeleton.targetChapterCount !== input.targetChapterCount || skeleton.volumes.length !== input.volumeCount) {
         throw new PlanningParseError(`plan must cover exactly ${input.targetChapterCount} chapters in ${input.volumeCount} volumes (got ${skeleton.targetChapterCount} / ${skeleton.volumes.length})`);
       }
@@ -708,10 +713,15 @@ async function completeValidated<T>(client: PlanningClient, request: CompletionI
   }
 }
 
-async function completeWorldStage(client: PlanningClient, request: CompletionInput, stage: 'skeleton' | 'geography' | 'power' | 'history'): Promise<WorldStage> {
+async function completeWorldStage(client: PlanningClient, request: CompletionInput, stage: 'skeleton' | 'geography' | 'power' | 'history', retainedQuestions: UnresolvedQuestion[] = []): Promise<WorldStage> {
+  const parse = (text: string) => {
+    const record = parseWorldStage(stage)(readJson(text));
+    const questions = record.unresolvedQuestions === undefined ? [] : unresolvedQuestionSchema.array().parse(record.unresolvedQuestions);
+    return { ...record, unresolvedQuestions: retainDesignQuestions(retainedQuestions, questions) };
+  };
   const first = await client.complete(request);
   try {
-    return parseWorldStage(stage)(readJson(first));
+    return parse(first);
   } catch (error) {
     const problems = describeOutputProblems(error) ?? (error instanceof Error ? error.message : String(error));
     // Do not echo a potentially huge/truncated full-world answer back to the
@@ -723,7 +733,7 @@ async function completeWorldStage(client: PlanningClient, request: CompletionInp
       maxOutputTokens: request.maxOutputTokens,
       role: request.role,
     });
-    return parseWorldStage(stage)(readJson(repaired));
+    return parse(repaired);
   }
 }
 
@@ -793,7 +803,7 @@ const storyBibleShape = shapeIntro + [
 ].join('\n');
 
 function describeOutputProblems(error: unknown): string | undefined {
-  if (error instanceof PlanningParseError || error instanceof DesignReviewError || error instanceof ChapterReviewError) return error.message;
+  if (error instanceof PlanningParseError || error instanceof DesignReviewError || error instanceof ChapterReviewError || error instanceof DesignQuestionConflictError) return error.message;
   const issues = (error as { name?: unknown; issues?: unknown }).name === 'ZodError' ? (error as { issues: Array<{ path: Array<string | number>; message: string }> }).issues : undefined;
   if (!issues) return undefined;
   const shown = issues.slice(0, 40).map((issue) => `${issue.path.join('.') || '$'}: ${issue.message}`);

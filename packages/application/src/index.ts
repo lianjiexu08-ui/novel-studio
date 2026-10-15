@@ -1,3 +1,4 @@
+import { retainDesignQuestions } from '../../../novel-service-core/src/design-questions.ts';
 import { resolveStoryEventOrder } from '../../../novel-service-core/src/event-order.ts';
 import { validateDesignCandidate, DesignCandidateValidationError, type DesignCandidate } from './design-candidate.ts';
 export { validateDesignCandidate, DesignCandidateValidationError } from './design-candidate.ts';
@@ -10,7 +11,7 @@ import type {
   CandidateChecker, ChapterCandidate, ChapterVersion, CheckPolicy, CheckRuling, Checkpoint, ContextManifest, CreativeCovenant, GeneratedChapter, ManuscriptRevision, ModelProvider, ReadinessBlocker, RunUsage,
 } from '../../../novel-service-core/src/core.ts';
 import { lockStoryBible, lockWorldPack, reviewStoryBible, reviewWorldPack } from '../../../novel-service-core/src/world.ts';
-import type { StoryBible, WorldPack } from '../../../novel-service-core/src/world.ts';
+import type { StoryBible, WorldPack, UnresolvedQuestion } from '../../../novel-service-core/src/world.ts';
 import {
   activePlan, approvePlanRevision, confirmBrief, createPlanRevision, effectiveBrief, latestPlan, milestonePrerequisites, outlineWindow, PlanConflictError, PlanGateError, planRealization, retainExecutionChecks, reviewPlanRevision,
 } from '../../../novel-service-core/src/planning.ts';
@@ -20,8 +21,8 @@ import type {
 
 export interface DesignProvider {
   reviewDesignContent?(input: DesignReviewInput): Promise<DesignReviewResult>;
-  generateWorldPack(input: { title: string; covenant: CreativeCovenant; chapterTarget?: number }): Promise<WorldPack>;
-  generateStoryBible(input: { title: string; covenant: CreativeCovenant; worldPack: WorldPack; chapterTarget?: number; previousStoryBible?: StoryBible }): Promise<StoryBible>;
+  generateWorldPack(input: { title: string; covenant: CreativeCovenant; chapterTarget?: number; retainedQuestions?: UnresolvedQuestion[] }): Promise<WorldPack>;
+  generateStoryBible(input: { title: string; covenant: CreativeCovenant; worldPack: WorldPack; chapterTarget?: number; previousStoryBible?: StoryBible; retainedQuestions?: UnresolvedQuestion[] }): Promise<StoryBible>;
 }
 
 /** What has actually been written, so plan expansion builds on adopted text instead of the old blueprint alone. */
@@ -45,7 +46,7 @@ export interface PlanningInput {
 
 /** Model-backed planner. Its output only ever becomes a proposed plan revision. */
 export interface PlanProvider {
-  generatePlanSkeleton(input: PlanningInput & { targetChapterCount: number; volumeCount: number; previousPlan?: BookPlan }): Promise<PlanSkeleton>;
+  generatePlanSkeleton(input: PlanningInput & { targetChapterCount: number; volumeCount: number; previousPlan?: BookPlan; retainedQuestions?: UnresolvedQuestion[] }): Promise<PlanSkeleton>;
   generateChapterOutlines(input: PlanningInput & { skeleton: PlanSkeleton; from: number; to: number; before: ChapterOutline[]; after: ChapterOutline[]; replacing?: ChapterOutline[] }): Promise<ChapterOutline[]>;
 }
 
@@ -279,7 +280,7 @@ export class ChapterWorkflow {
       const before = [...existing.filter((item) => item.chapterNumber < from), ...written].sort((a, b) => a.chapterNumber - b.chapterNumber).slice(-10);
       const after = existing.filter((item) => item.chapterNumber > to).sort((a, b) => a.chapterNumber - b.chapterNumber).slice(0, 5);
       const replacing = existing.filter(item => item.chapterNumber >= start && item.chapterNumber <= end);
-      const batch = await this.planProvider!.generateChapterOutlines({ ...input, skeleton, from: start, to: end, before, after, replacing: structuredClone(replacing) });
+      const batch = await this.planProvider!.generateChapterOutlines(structuredClone({ ...input, skeleton, from: start, to: end, before, after, replacing }));
       await assertCurrent();
       written.push(...normalizeOutlineBatch(batch, skeleton, start, end).map(outline => {
         const executionChecks = retainExecutionChecks(replacing.find(item => item.chapterNumber === outline.chapterNumber)?.executionChecks, outline.executionChecks, outline.chapterNumber);
@@ -300,9 +301,11 @@ export class ChapterWorkflow {
     const snapshot = await this.snapshot(workId);
     const base = latestPlan(snapshot);
     const previousPlan = structuredClone(activePlan(snapshot)?.plan);
+    const retainedQuestions = structuredClone(base?.plan.openQuestions ?? []);
     const assertCurrent = this.planningGuard(snapshot);
     const planning = this.planningInput(snapshot, input.authorRequest);
-    const skeleton = await this.planProvider.generatePlanSkeleton({ ...planning, targetChapterCount: input.targetChapterCount, volumeCount: input.volumeCount, previousPlan });
+    const generated = await this.planProvider.generatePlanSkeleton({ ...structuredClone(planning), targetChapterCount: input.targetChapterCount, volumeCount: input.volumeCount, previousPlan: structuredClone(previousPlan), retainedQuestions: structuredClone(retainedQuestions) });
+    const skeleton = { ...generated, openQuestions: retainDesignQuestions(retainedQuestions, generated.openQuestions) };
     const kept = (previousPlan?.chapters ?? []).filter((outline) => outline.chapterNumber <= planning.adoptedFacts.reachedChapter && outline.chapterNumber <= skeleton.targetChapterCount);
     const from = kept.length ? Math.max(...kept.map((item) => item.chapterNumber)) + 1 : 1;
     const to = Math.min(skeleton.targetChapterCount, Math.max(outlineWindow(skeleton.targetChapterCount), planning.adoptedFacts.reachedChapter + 10));
@@ -535,7 +538,9 @@ export class ChapterWorkflow {
     const snapshot = await this.repository.get(workId);
     if (!snapshot) throw new Error(`unknown work ${workId}`);
     const constraintRevision = snapshot.constraintRevision;
-    const worldPack = await this.designProvider.generateWorldPack({ title: snapshot.title, covenant: snapshot.covenant, chapterTarget });
+    const retainedQuestions = structuredClone(snapshot.worldPack?.unresolvedQuestions ?? []);
+    const generated = await this.designProvider.generateWorldPack(structuredClone({ title: snapshot.title, covenant: snapshot.covenant, chapterTarget, retainedQuestions }));
+    const worldPack = { ...generated, unresolvedQuestions: retainDesignQuestions(retainedQuestions, generated.unresolvedQuestions) };
     return this.commitDesign(workId, 'world_pack', constraintRevision, worldPack, (work, document) => {
       work.worldPack = withServerRevision(work, 'world_pack', { ...document, status: 'proposed', lockedAt: undefined });
       return work.worldPack;
@@ -577,7 +582,9 @@ export class ChapterWorkflow {
     if (!snapshot) throw new Error(`unknown work ${workId}`);
     if (!snapshot.worldPack) throw new Error('world pack has not been generated');
     const constraintRevision = snapshot.constraintRevision;
-    const storyBible = await this.designProvider.generateStoryBible({ title: snapshot.title, covenant: snapshot.covenant, worldPack: snapshot.worldPack, chapterTarget, previousStoryBible });
+    const retainedQuestions = structuredClone(snapshot.storyBible?.unresolvedQuestions ?? previousStoryBible?.unresolvedQuestions ?? []);
+    const generated = await this.designProvider.generateStoryBible(structuredClone({ title: snapshot.title, covenant: snapshot.covenant, worldPack: snapshot.worldPack, chapterTarget, previousStoryBible, retainedQuestions }));
+    const storyBible = { ...generated, unresolvedQuestions: retainDesignQuestions(retainedQuestions, generated.unresolvedQuestions) };
     return this.commitDesign(workId, 'story_bible', constraintRevision, storyBible, (work, document) => {
       work.storyBible = withServerRevision(work, 'story_bible', {
         ...document, status: 'proposed', lockedAt: undefined,

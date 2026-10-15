@@ -76,3 +76,18 @@ test('a shorter model response cannot silently replace an author-requested long-
     error => error instanceof PlanningParseError && /exactly 450 chapters/.test(error.message));
   assert.equal(calls, 2, 'one repair attempt is allowed, but a repeated wrong total must fail');
 });
+
+test('story generation repairs model closure and retains the question when the repair omits it', async () => {
+  const retained = [{ id: 'old-injury', question: '伤势与后续行动待核实', blocking: true, status: 'deferred' as const }];
+  let calls = 0;
+  const planner = new JsonDesignPlanner({ complete: async request => {
+    const input = JSON.parse(request.user), result = blueprint(100);
+    if (++calls === 1) {
+      assert.deepEqual(input.retainedQuestions, retained);
+      result.unresolvedQuestions = [{ ...retained[0], status: 'resolved', blocking: false }];
+    } else { assert.equal(input.task, 'repair_previous_output'); assert.match(input.problems, /old-injury/); }
+    return JSON.stringify(result);
+  } });
+  const result = await planner.generateStoryBible({ title: '记录保留', covenant: readyCovenant(), worldPack: world, chapterTarget: 100, retainedQuestions: retained });
+  assert.equal(calls, 2); assert.deepEqual(result.unresolvedQuestions, retained);
+});

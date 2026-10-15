@@ -1,3 +1,4 @@
+import { DesignQuestionConflictError } from '../../../novel-service-core/src/design-questions.ts';
 import { orderedStoryEvents, resolveStoryEventOrder } from '../../../novel-service-core/src/event-order.ts';
 import { completeDesignReviewRun, designReviewStageInput } from '../../../novel-service-core/src/design-review-run.ts';
 import { restoreChapterReviewRun } from '../../../novel-service-core/src/chapter-review.ts';
@@ -972,6 +973,7 @@ function mapError(error: unknown): { status: number; body: ApiError } {
   if (error instanceof AdoptionBlocked) return { status: 409, body: apiError('ADOPTION_BLOCKED', error.message) };
   if (error instanceof SettingConflictError) return { status: 409, body: apiError('CONFLICT', error.message) };
   if (error instanceof DesignReviewError) return { status: 409, body: apiError('DESIGN_REVIEW_REQUIRED', error.message) };
+  if (error instanceof DesignQuestionConflictError) return { status: 409, body: apiError('CONFLICT', error.message) };
   if (error instanceof CanonGateError) return { status: 409, body: apiError('CONFLICT', error.message) };
   if (error instanceof PlanConflictError) return { status: 409, body: apiError('PLAN_CONFLICT', error.message) };
   if (error instanceof PlanGateError) return { status: 409, body: apiError('PLAN_GATE', error.message) };

@@ -77,3 +77,34 @@ test('allowing pending world questions does not admit incomplete scale or broken
       error => error instanceof PlanningParseError && expected.test(error.message));
   }
 });
+
+test('staged generation retains existing and earlier-stage questions and repairs a later downgrade', async () => {
+  const world = worldProposal();
+  const retained = [{ id: 'retained', question: '旧版本药程问题尚未解决', blocking: true, status: 'open' as const }];
+  const { techniques, artifacts, resources, locations, factions, historicalEvents, unresolvedQuestions, ...skeleton } = world;
+  const responses = [
+    { ...skeleton, unresolvedQuestions: [unresolvedQuestions[0]] },
+    { locations, factions, unresolvedQuestions: [] },
+    { techniques, artifacts, resources, unresolvedQuestions: [unresolvedQuestions[1]] },
+    { historicalEvents, unresolvedQuestions: [{ ...retained[0], blocking: false, status: 'resolved' }] },
+    { historicalEvents, unresolvedQuestions: [] },
+  ];
+  let calls = 0;
+  const planner = new JsonDesignPlanner({ complete: async request => {
+    const input = JSON.parse(request.user);
+    if (calls === 0) assert.deepEqual(input.retainedQuestions, retained);
+    if (calls === 2) assert.deepEqual(input.geography.unresolvedQuestions, [retained[0], unresolvedQuestions[0]]);
+    if (calls === 4) { assert.equal(input.task, 'repair_previous_output'); assert.match(input.problems, /retained/); }
+    assert.match(request.system, /不具有关闭问题的权限/);
+    return JSON.stringify(responses[calls++]);
+  } });
+  const generated = await planner.generateWorldPack({ title: '不遗忘的问题', covenant: readyCovenant(), chapterTarget: 100, retainedQuestions: retained });
+  assert.equal(calls, 5); assert.deepEqual(generated.unresolvedQuestions, [...retained, ...unresolvedQuestions]);
+});
+
+test('complete world generation also preserves omitted retained questions', async () => {
+  const world = worldProposal(), retained = [{ id: 'old', question: '保留旧问题', blocking: true, status: 'deferred' as const }];
+  const planner = new JsonDesignPlanner({ complete: async () => JSON.stringify(world) });
+  const result = await planner.generateWorldPack({ title: '完整格式兼容', covenant: readyCovenant(), chapterTarget: 100, retainedQuestions: retained });
+  assert.deepEqual(result.unresolvedQuestions, [...retained, ...world.unresolvedQuestions]);
+});

@@ -458,3 +458,18 @@ test('outline generation repairs omitted reference IDs and rejects duplicate IDs
   await assert.rejects(() => duplicate.generateChapterOutlines(input), /修正一次后.*duplicate IDs/);
   assert.equal(calls, 2, 'a second malformed response must not be accepted');
 });
+
+test('plan skeleton question rewrites receive one repair and omission retains the original ledger', async () => {
+  const retained = [{ id: 'old-budget', question: '需要先核实本次航款', blocking: true, status: 'open' as const }];
+  let calls = 0;
+  const planner = new JsonBookPlanner({ complete: async request => {
+    const input = JSON.parse(request.user), { chapters, ...skeleton } = minimalPlan();
+    if (++calls === 1) {
+      assert.deepEqual(input.retainedQuestions, retained);
+      skeleton.openQuestions = [{ ...retained[0], question: '问题已不重要', blocking: false }];
+    } else { assert.equal(input.task, 'repair_previous_output'); assert.match(input.problems, /old-budget/); }
+    return JSON.stringify(skeleton);
+  } });
+  const result = await planner.generatePlanSkeleton({ title: '旧问题', covenant, targetChapterCount: 10, volumeCount: 1, adoptedFacts: {}, retainedQuestions: retained });
+  assert.equal(calls, 2); assert.deepEqual(result.openQuestions, retained);
+});
