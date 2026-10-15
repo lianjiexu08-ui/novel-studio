@@ -289,7 +289,9 @@ export function PlanPage() {
                       <div className="setting-list" style={{ marginTop: 12 }}>
                         {plan!.openQuestions.map((question) => (
                           <div key={question.id} className="check-row">
-                            <span className={`tag ${question.blocking && question.status === 'open' ? 'tag-bad' : 'tag-mute'}`}>{question.blocking ? '阻断' : '待定'}</span>
+                            <span className={`tag ${question.blocking && question.status !== 'resolved' ? 'tag-bad' : question.status === 'resolved' ? 'tag-ok' : 'tag-mute'}`}>
+                              {question.status === 'resolved' ? '已解决' : question.blocking ? question.status === 'deferred' ? '已延期 · 仍阻断' : '阻断' : question.status === 'deferred' ? '已延期' : '待解决'}
+                            </span>
                             <span>{question.question}</span>
                           </div>
                         ))}
