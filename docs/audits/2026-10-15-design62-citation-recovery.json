@@ -73,5 +73,30 @@
     "actualRequestGuidanceRoutingVerified": true,
     "modelCalls": 0,
     "databaseWrites": false
+  },
+  "successfulRetry": {
+    "observedAt": "2026-10-15T12:02:10.292Z",
+    "stageId": "followup-cross-2-3/tiers",
+    "stageSha256": "01b1e469a66fe841481091454f4ec8568d5babc655d08666192f369f84c646eb",
+    "requestId": "review_76a84a25a257730480d6c203",
+    "verdict": "pass",
+    "resolves": [
+      "cross-2-3/tiers"
+    ],
+    "requiredSources": 55,
+    "missingSources": [],
+    "rawResponseRevalidated": true,
+    "retainedFailures": 3,
+    "priorCompletedStagesUnchanged": 190,
+    "priorFinalReportsUnchanged": 3,
+    "protectedHistoryUnchanged": true,
+    "powerProgress": {
+      "completed": 31,
+      "total": 93
+    },
+    "totalCalls": 225,
+    "modelCallsForVerification": 0,
+    "databaseWritesForVerification": false,
+    "wholePowerAcceptance": false
   }
 }
