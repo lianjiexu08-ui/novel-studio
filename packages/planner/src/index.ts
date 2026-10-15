@@ -1,4 +1,4 @@
-import { designReviewEvidenceLimit, DesignReviewAwaitingSourceError, DesignReviewCitationError, DesignReviewError, DesignReviewResolutionEvidenceError, type DesignReviewInput, type DesignReviewResult } from '../../../novel-service-core/src/design-review.ts';
+import { designReviewEvidenceLimit, DesignReviewAwaitingSourceError, DesignReviewCitationError, DesignReviewCriteriaError, DesignReviewError, DesignReviewResolutionEvidenceError, type DesignReviewInput, type DesignReviewResult } from '../../../novel-service-core/src/design-review.ts';
 import { ChapterReviewError, completedChapterReview, restoreChapterReviewRun, validateChapterReview, validateChapterStageEvidence, type ChapterReviewInput, type ChapterReviewOptions, type ChapterReviewResult } from '../../../novel-service-core/src/chapter-review.ts';
 import { acceptDesignReviewStage, designReviewStageInput } from '../../../novel-service-core/src/design-review-run.ts';
 import { DesignReviewEvidenceError, DesignReviewInsufficiencyError, DesignReviewReportBudgetError, prepareDesignReviewEvidence } from './design-review-evidence.ts';
@@ -671,6 +671,8 @@ async function completeValidated<T>(client: PlanningClient, request: CompletionI
       system: request.system,
       user: JSON.stringify({ task: 'repair_previous_output', instruction: JSON.parse(request.user).task === 'review_chapter_stage'
         ? '修正本次正文批次评审。证据格式仍然只能是 {"fragmentId":"本请求真实编号"}，严禁增加 quote 或 sourceId 字段。根据 problems 重新从 originalRequest.sources.fragments 选择原文至少四字、直接支持判断的片段；空数组等短来源可读取但不可作为引文。逐字保留本次 requestId，不复用其他请求编号。按 citationRequirements/pendingCitationRequirements 补齐必引依据，不得为修格式把返修或不足改为通过；缺材料需如实说明。返回完整且符合原结构的评审 JSON。'
+        : error instanceof DesignReviewCriteriaError
+        ? '上一次遗漏、重复或新增了评审标准。按 originalRequest.rubric 的全部键逐项重读本次原文，每个键恰好返回一项；problems 列出预期、实际、缺少、重复和未知项。返回完整 checks，不要只返回补丁或再次只答第一项。缺项必须独立核验，不能复制其他项的结论、自动补 pass 或为齐全隐瞒返修与材料不足；保留已有实质问题。仍只用本请求真实 fragmentId 选择证据，逐字保留 requestId，返回完整评审 JSON。'
         : error instanceof DesignReviewResolutionEvidenceError
         ? '本次 problems 同时列出各待解决问题缺少的原问题、原批依据和新增来源。按 originalRequest 的 citationRequirements/pendingCitationRequirements 与 sources 逐项重读，选择真正支持判断的片段，只返回本请求的 fragmentId，保留 requestId。不得自动补引文、机械枚举全部片段或只删除 resolves 掩盖未核验问题。不能证明原问题已经解决时如实返回 insufficient 或 revise 并说明原因，不得维持无证据的通过。返回完整评审 JSON。'
         : error instanceof DesignReviewAwaitingSourceError

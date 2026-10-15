@@ -97,6 +97,24 @@ export interface DesignContentReview extends DesignReviewResult {
   runId?: string;
 }
 export class DesignReviewError extends Error {}
+export class DesignReviewCriteriaError extends DesignReviewError {
+  readonly expectedCriteria: string[];
+  readonly receivedCriteria: string[];
+  readonly missingCriteria: string[];
+  readonly duplicateCriteria: string[];
+  readonly unexpectedCriteria: string[];
+  constructor(expectedCriteria: string[], receivedCriteria: string[]) {
+    const missing = expectedCriteria.filter(key => !receivedCriteria.includes(key));
+    const duplicates = [...new Set(receivedCriteria.filter((key, index) => receivedCriteria.indexOf(key) !== index))];
+    const unexpected = [...new Set(receivedCriteria.filter(key => !expectedCriteria.includes(key)))];
+    super(`内容评审必须逐项覆盖全部标准；预期：${expectedCriteria.join('、')}；实际：${receivedCriteria.join('、') || '无'}；缺少：${missing.join('、') || '无'}；重复：${duplicates.join('、') || '无'}；未知：${unexpected.join('、') || '无'}`);
+    this.expectedCriteria = [...expectedCriteria];
+    this.receivedCriteria = [...receivedCriteria];
+    this.missingCriteria = missing;
+    this.duplicateCriteria = duplicates;
+    this.unexpectedCriteria = unexpected;
+  }
+}
 export class DesignReviewResolutionEvidenceError extends DesignReviewError {
   readonly problems: string[];
   constructor(problems: string[]) { super(problems.join('\n')); this.problems = problems; }
@@ -200,7 +218,9 @@ export function validateDesignReview(input: DesignReviewInput, result: DesignRev
   const criteria = Object.keys(input.rubric);
   const citationProblems: DesignReviewCitationProblem[] = [];
   const resolutionProblems: string[] = [];
-  if (!result.summary?.trim() || !Array.isArray(result.checks) || result.checks.length !== criteria.length || new Set(result.checks.map((check) => check.criterion)).size !== criteria.length) throw new DesignReviewError('内容评审必须逐项覆盖全部标准');
+  if (!result.summary?.trim()) throw new DesignReviewError('内容评审必须提供结论摘要');
+  const received = Array.isArray(result.checks) ? result.checks.map(check => check.criterion) : [];
+  if (!Array.isArray(result.checks) || received.length !== criteria.length || new Set(received).size !== criteria.length || received.some(key => !criteria.includes(key))) throw new DesignReviewCriteriaError(criteria, received);
   for (const check of result.checks) {
     if (!criteria.includes(check.criterion) || !['pass', 'revise', 'insufficient'].includes(check.verdict) || !check.explanation?.trim() || !Array.isArray(check.evidence)) throw new DesignReviewError('内容评审结果不完整');
     if (check.evidence.length > designReviewEvidenceLimit(input)) throw new DesignReviewError(`本批每项证据不得超过${designReviewEvidenceLimit(input)}条，不能省略必引来源来凑数`);

@@ -1,0 +1,51 @@
+{
+  "status": "offline_replay_verified",
+  "area": "world",
+  "runId": "design_run_4ce361d8-d17c-41d8-b1b4-bbdbee7f0baa",
+  "stageId": "cross-2-4",
+  "inputHash": "7a49ebc0415c36a0c9a92c1180e0ecddfc29466dc3f6221fa5c10881df1e02f0",
+  "requestId": "review_641624d3427a03086f0e8b0c",
+  "frozenCommit": "6c505a3d6afae5bb275f8cd509e2455a48753857",
+  "scheduleVersion": 23,
+  "diagnostics": [
+    {
+      "version": "frozen",
+      "responseSha256": "b0e760f91e0811b0f81c52dbb5897ff657c398b2f5ccb7a380b63e401268b428",
+      "receivedCriteria": [
+        "geography"
+      ],
+      "error": "内容评审必须逐项覆盖全部标准"
+    },
+    {
+      "version": "updated",
+      "responseSha256": "b0e760f91e0811b0f81c52dbb5897ff657c398b2f5ccb7a380b63e401268b428",
+      "receivedCriteria": [
+        "geography"
+      ],
+      "error": "内容评审必须逐项覆盖全部标准；预期：geography、history、capacity；实际：geography；缺少：history、capacity；重复：无；未知：无"
+    },
+    {
+      "version": "frozen",
+      "responseSha256": "3fb1925a2a92dc859187bb2affad1534fdecf89908ba92fae91e9b571a689603",
+      "receivedCriteria": [
+        "geography"
+      ],
+      "error": "内容评审必须逐项覆盖全部标准"
+    },
+    {
+      "version": "updated",
+      "responseSha256": "3fb1925a2a92dc859187bb2affad1534fdecf89908ba92fae91e9b571a689603",
+      "receivedCriteria": [
+        "geography"
+      ],
+      "error": "内容评审必须逐项覆盖全部标准；预期：geography、history、capacity；实际：geography；缺少：history、capacity；重复：无；未知：无"
+    }
+  ],
+  "originalSourcesUnchanged": true,
+  "originalResponsesUnchanged": true,
+  "frozenFilesVerified": 130,
+  "repairNamesMissingCriteria": true,
+  "stillRejectsIncompleteRepair": true,
+  "realModelCalls": 0,
+  "productionDatabaseWrites": 0
+}

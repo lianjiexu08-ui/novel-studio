@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { JsonDesignPlanner, PlanningParseError } from '../src/index.ts';
 import { DesignReviewReportBudgetError, prepareDesignReviewEvidence } from '../src/design-review-evidence.ts';
-import { DesignReviewCitationError, designReviewInput, validateDesignReview } from '../../../novel-service-core/src/design-review.ts';
+import { DesignReviewCitationError, DesignReviewCriteriaError, designReviewInput, validateDesignReview } from '../../../novel-service-core/src/design-review.ts';
 import { ChapterWorkflow, InMemoryWorkRepository } from '../../application/src/index.ts';
 import { createReadyWork, fixtureDesignReview } from '../../application/test/fixtures.ts';
 
@@ -17,6 +17,59 @@ function anchored(request: Awaited<ReturnType<typeof input>>) {
     evidence: check.evidence.map((item) => ({ fragmentId: sources.find((s) => s.id === item.sourceId)!.fragments[0].id })),
   })) };
 }
+
+for (const repairCompletes of [true, false]) {
+  test(`omitted criteria receive explicit repair guidance and remain rejected until complete: ${repairCompletes}`, async () => {
+    const request = await input(), before = structuredClone(request);
+    const complete = anchored(request);
+    Object.assign(complete.checks[0], { verdict: 'revise', explanation: '实际使用与门槛存在冲突', revisionAdvice: '修正使用前置' });
+    const omitted = { ...complete, checks: complete.checks.slice(0, 1) };
+    let calls = 0;
+    const planner = new JsonDesignPlanner({ complete: async call => {
+      calls += 1;
+      if (calls === 1) return JSON.stringify(omitted);
+      const repair = JSON.parse(call.user);
+      assert.match(repair.problems, /缺少：costs、counters/);
+      assert.match(repair.instruction, /不要只返回补丁/);
+      assert.match(repair.instruction, /不能复制其他项的结论、自动补 pass/);
+      assert.deepEqual(repair.originalRequest.sources, prepareDesignReviewEvidence(request).sources);
+      assert.deepEqual(repair.originalRequest.rubric, request.rubric);
+      assert.equal(repair.previousOutput, JSON.stringify(omitted));
+      return JSON.stringify(repairCompletes ? complete : omitted);
+    } });
+    if (repairCompletes) {
+      const result = await planner.reviewDesignContent(request);
+      assert.equal(result.checks[0].verdict, 'revise');
+      assert.deepEqual(result.checks.map(check => check.criterion), Object.keys(request.rubric));
+      assert.deepEqual(result.modelResponses, [JSON.stringify(omitted), JSON.stringify(complete)]);
+    } else {
+      await assert.rejects(planner.reviewDesignContent(request), (error: PlanningParseError & { modelResponses?: string[] }) => {
+        assert.match(error.message, /修正一次后仍不符合格式.*缺少：costs、counters/);
+        assert.deepEqual(error.modelResponses, [JSON.stringify(omitted), JSON.stringify(omitted)]);
+        return true;
+      });
+    }
+    assert.equal(calls, 2);
+    assert.deepEqual(request, before);
+  });
+}
+
+test('criterion diagnostics identify equal-length substitutions and duplicates, including custom rubrics', async () => {
+  const request = await input();
+  request.rubric = { custom_a: '自定义检查甲', custom_b: '自定义检查乙' };
+  for (const received of [['custom_a', 'custom_a'], ['custom_a', 'invented']]) {
+    const result = fixtureDesignReview(request);
+    result.checks = received.map(criterion => ({ ...result.checks[0], criterion }));
+    assert.throws(() => validateDesignReview(request, result), (error: DesignReviewCriteriaError) => {
+      assert.ok(error instanceof DesignReviewCriteriaError);
+      assert.deepEqual(error.expectedCriteria, ['custom_a', 'custom_b']);
+      assert.deepEqual(error.missingCriteria, ['custom_b']);
+      assert.deepEqual(error.duplicateCriteria, received[1] === 'custom_a' ? ['custom_a'] : []);
+      assert.deepEqual(error.unexpectedCriteria, received[1] === 'invented' ? ['invented'] : []);
+      return true;
+    });
+  }
+});
 
 test('content reviewer selects exact request-bound fragments using the reviewing role', async () => {
   const request = await input();
