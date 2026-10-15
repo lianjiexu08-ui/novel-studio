@@ -1,4 +1,5 @@
 import type { DesignReviewRun } from './design-review-run.ts';
+import { executionEvidenceResolver, type ExecutionEvidence } from './execution-evidence.ts';
 import { chapterReviewChecker, chapterReviewRubricForPlan, executionReviewRequired, chapterReviewInput, chapterReviewInputHash, chapterReviewStatus, validateChapterReview, type ChapterReviewInput, type ChapterReviewOptions, type ChapterReviewResult, type ChapterReviewRecord } from './chapter-review.ts';
 import { designReviewOverview, requiresDesignContentReview, type DesignContentReview } from './design-review.ts';
 import { createHash, randomUUID } from 'node:crypto';
@@ -492,6 +493,7 @@ export interface QualityAudit {
     executionChecks: Array<{
       planId: string; planRevision: number; planStatus: PlanRevision['status'];
       isLatest: boolean; isActive: boolean; chapterNumber: number; checkId: string; requirement: string;
+      executionEvidence: ExecutionEvidence;
     }>;
   }>;
   findings: QualityAuditFinding[];
@@ -1279,6 +1281,7 @@ export function qualityAuditFor(work: Work): QualityAudit {
   // References are scoped to the plan's bound design revision. Equal question
   // IDs in a newer world/bible must not inherit an old plan's obligations.
   const linkedPlans = [...new Map([latest, plan].filter((p): p is PlanRevision => !!p).map(p => [p.id, p])).values()];
+  const evidenceFor = executionEvidenceResolver(work);
   for (const question of questions) for (const linkedPlan of linkedPlans) {
     const boundRevision = question.source === 'world' ? linkedPlan.worldPackRevision
       : question.source === 'story' ? linkedPlan.storyBibleRevision : linkedPlan.revision;
@@ -1289,6 +1292,7 @@ export function qualityAuditFor(work: Work): QualityAudit {
         planId: linkedPlan.id, planRevision: linkedPlan.revision, planStatus: linkedPlan.status,
         isLatest: linkedPlan.id === latest?.id, isActive: linkedPlan.id === plan?.id,
         chapterNumber: outline.chapterNumber, checkId: check.id, requirement: check.requirement,
+        executionEvidence: evidenceFor(linkedPlan, outline.chapterNumber, check.id),
       });
     }
   }

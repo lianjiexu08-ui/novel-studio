@@ -199,6 +199,11 @@ export const qualityAuditDtoSchema = z.object({
     executionChecks: z.array(z.object({
       planId: z.string(), planRevision: z.number().int(), planStatus: z.enum(['proposed', 'reviewed', 'approved', 'superseded']),
       isLatest: z.boolean(), isActive: z.boolean(), chapterNumber: z.number().int().positive(), checkId: z.string(), requirement: z.string(),
+      executionEvidence: z.object({
+        status: z.enum(['not_written', 'other_plan', 'stale', 'unverified', 'verified']), message: z.string(),
+        versionId: z.string().optional(), candidateId: z.string().optional(), reviewInputHash: z.string().optional(), explanation: z.string().optional(),
+        citations: z.array(z.object({ sourceId: z.string(), quote: z.string() })),
+      }).optional(),
     })).optional(),
   })).optional(),
   findings: z.array(z.object({

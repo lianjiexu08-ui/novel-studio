@@ -4,6 +4,7 @@ import type { QualityAuditDto } from 'novel-studio-contracts';
 type Question = NonNullable<QualityAuditDto['questions']>[number];
 const sources = { world: '世界包', story: '人物与故事设定', plan: '最新大纲' };
 const planStatuses = { proposed: '待审核', reviewed: '已审阅', approved: '已批准', superseded: '已替代' };
+const evidenceStatuses = { not_written: '尚无已采纳正文', other_plan: '大纲版本不匹配', stale: '正文已失效', unverified: '尚无法验收', verified: '已有正文通过证据' };
 const blocking = (question: Question) => question.blocking && question.status !== 'resolved';
 const category = (question: Question) => blocking(question) ? 'blocking' : question.status;
 const priority = (question: Question) => blocking(question) ? 0 : question.status === 'resolved' ? 2 : 1;
@@ -40,6 +41,20 @@ export function DesignQuestions({ questions }: { questions: QualityAuditDto['que
                     <Typography.Text strong>第 {check.chapterNumber} 章 · {check.checkId}</Typography.Text><br />
                     <Typography.Text type="secondary">大纲 v{check.planRevision} · {planStatuses[check.planStatus]}{check.isLatest ? ' · 最新版本' : ''}{check.isActive ? ' · 当前写作计划' : ''}</Typography.Text><br />
                     <Typography.Text style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{check.requirement}</Typography.Text>
+                    <div style={{ marginTop: 6 }}>
+                      {check.executionEvidence ? <>
+                        <Tag color={check.executionEvidence.status === 'verified' ? 'success' : 'default'}>{evidenceStatuses[check.executionEvidence.status]}</Tag>
+                        <Typography.Text type="secondary">{check.executionEvidence.message}</Typography.Text>
+                        {check.executionEvidence.status === 'verified' && <details style={{ marginTop: 6 }}>
+                          <summary>查看正文与任务卡引文</summary>
+                          <Typography.Paragraph>{check.executionEvidence.explanation}</Typography.Paragraph>
+                          {check.executionEvidence.citations.map((citation, i) => <blockquote key={i} style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>
+                            <strong>{citation.sourceId === 'draft' ? '已采纳正文' : '原任务卡'}：</strong>{citation.quote}
+                          </blockquote>)}
+                          <Typography.Text type="secondary" style={{ overflowWrap: 'anywhere' }}>正文版本：{check.executionEvidence.versionId}<br />候选稿：{check.executionEvidence.candidateId}<br />评审材料编号：{check.executionEvidence.reviewInputHash}</Typography.Text>
+                        </details>}
+                      </> : <Typography.Text type="secondary">当前服务未提供正文验收证据</Typography.Text>}
+                    </div>
                   </div>)}
                 </Space>
               </details>}

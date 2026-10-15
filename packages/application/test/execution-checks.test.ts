@@ -6,10 +6,10 @@ import { join } from 'node:path';
 import { ChapterWorkflow, InMemoryWorkRepository } from '../src/index.ts';
 import { JsonWorkRepository } from '../../persistence/src/json-repository.ts';
 import { ChapterReviewError, chapterReviewChecker, chapterReviewInput, validateChapterReview } from '../../../novel-service-core/src/chapter-review.ts';
-import { emptyUsage, passChecker, QualityGateError, type ModelProvider } from '../../../novel-service-core/src/core.ts';
+import { emptyUsage, passChecker, qualityAuditFor, QualityGateError, type ModelProvider, type Work } from '../../../novel-service-core/src/core.ts';
 import { effectiveBrief, planContentHash, reviewBookPlan } from '../../../novel-service-core/src/planning.ts';
 import { bookPlanSchema, chapterBriefDtoSchema } from '../../contracts/src/planning.ts';
-import { checkResultDtoSchema } from '../../contracts/src/api.ts';
+import { checkResultDtoSchema, qualityAuditDtoSchema } from '../../contracts/src/api.ts';
 import { OpenAICompatibleChapterProvider } from '../../planner/src/index.ts';
 import { passingStageOutput } from '../../planner/test/chapter-review-fixture.ts';
 import { approveMinimalPlan, createReadyWork, fixtureChapterReview, minimalPlan } from './fixtures.ts';
@@ -23,6 +23,75 @@ function checkedPlan() {
     { id: 'injury-limit', requirement: '腿伤仍限制行动，搬箱由同伴承担，不因停术自动痊愈。' },
   ];
   return plan;
+}
+
+const evidenceFor = (work: Work) => qualityAuditFor(work).questions.find(q => q.questionId === 'spell-cost')!.executionChecks[0].executionEvidence;
+
+test('question execution evidence requires adoption, survives later chapters and restart, and never closes the question', async t => {
+  const dir = mkdtempSync(join(tmpdir(), 'novel-execution-evidence-')); t.after(() => rmSync(dir, { recursive: true, force: true }));
+  const path = join(dir, 'work.json'), provider = { ...writer, reviewChapterAsync: fixtureChapterReview };
+  const workflow = new ChapterWorkflow(new JsonWorkRepository(path), provider);
+  const work = await createReadyWork(workflow, '已采纳原文证据', checkedPlan());
+  const candidate = await workflow.generate(work.id, 1, 'evidence');
+  await workflow.check(work.id, candidate.id, [passChecker]);
+  assert.equal(evidenceFor(await workflow.snapshot(work.id)).status, 'not_written', 'a passing draft is not adopted evidence');
+  await workflow.adopt(work.id, candidate.id, 0);
+  const adopted = await workflow.snapshot(work.id), proof = evidenceFor(adopted);
+  assert.equal(proof.status, 'verified');
+  assert.equal(proof.candidateId, candidate.id);
+  assert.deepEqual(proof.citations.map(c => c.sourceId), ['draft', 'brief']);
+  assert.ok(proof.citations.every(c => c.quote.length >= 4));
+  const second = await workflow.generate(work.id, 2, 'later');
+  await workflow.check(work.id, second.id, [passChecker]);
+  await workflow.adopt(work.id, second.id, 1);
+  const restored = await new ChapterWorkflow(new JsonWorkRepository(path), provider).snapshot(work.id);
+  assert.deepEqual(evidenceFor(restored), proof, 'later state revisions must not invalidate retained original review inputs');
+  const before = structuredClone(restored), audit = qualityAuditFor(restored);
+  assert.deepEqual(qualityAuditDtoSchema.parse(audit).questions, audit.questions);
+  assert.equal(audit.questions.find(q => q.questionId === 'spell-cost')!.status, 'open');
+  assert.deepEqual(structuredClone(restored), before, 'audit is read-only');
+  restored.currentVersion(1)!.stale = true;
+  assert.equal(evidenceFor(restored).status, 'stale');
+});
+
+test('a newer plan with the same requirement ID cannot inherit adopted evidence from an older plan', async () => {
+  const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), { ...writer, reviewChapterAsync: fixtureChapterReview });
+  const work = await createReadyWork(workflow, '版本隔离', checkedPlan());
+  const candidate = await workflow.generate(work.id, 1, 'old');
+  await workflow.check(work.id, candidate.id, [passChecker]);
+  await workflow.adopt(work.id, candidate.id, 0);
+  assert.equal(evidenceFor(work).status, 'verified');
+  const next = checkedPlan(); next.chapters[0].executionChecks![0].requirement += '须呈现剩余八成。';
+  await workflow.savePlan(work.id, { plan: next, baseRevisionId: work.activePlanId });
+  assert.equal(evidenceFor(work).status, 'other_plan');
+  assert.deepEqual(evidenceFor(work).citations, []);
+});
+
+for (const tamper of ['draft', 'brief', 'plan', 'hash', 'missing', 'superseded', 'citation', 'identity', 'failed-other-item', 'duplicate-source'] as const) {
+  test(`question execution proof rejects damaged retained evidence: ${tamper}`, async () => {
+    const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), { ...writer, reviewChapterAsync: fixtureChapterReview });
+    const work = await createReadyWork(workflow, tamper, checkedPlan());
+    const generated = await workflow.generate(work.id, 1, tamper);
+    await workflow.check(work.id, generated.id, [passChecker]);
+    await workflow.adopt(work.id, generated.id, 0);
+    assert.equal(evidenceFor(work).status, 'verified');
+    const candidate = work.candidates.get(generated.id)!, check = candidate.checks.find(c => c.checker === chapterReviewChecker)!;
+    const report = check.chapterReview!, input = report.input!;
+    if (tamper === 'draft') work.currentVersion(1)!.content += '改稿';
+    if (tamper === 'brief') candidate.brief!.executionChecks = [];
+    if (tamper === 'plan') work.plans.get(work.activePlanId!)!.plan.chapters[0].executionChecks![0].requirement += '变更';
+    if (tamper === 'hash') input.sources.find(s => s.id === 'facts')!.text = '["改动"]';
+    if (tamper === 'missing') delete report.input;
+    if (tamper === 'superseded') report.superseded = true;
+    if (tamper === 'citation') report.result!.checks.find(c => c.criterion.startsWith('execution/'))!.evidence[0].quote = '不存在于正文的引文';
+    if (tamper === 'identity') candidate.adoptedVersionId = 'another-version';
+    if (tamper === 'failed-other-item') Object.assign(report.result!.checks.find(c => c.criterion === 'execution/injury-limit')!, { verdict: 'revise', revisionAdvice: '伤势未兑现' });
+    if (tamper === 'duplicate-source') input.sources.push({ ...input.sources[0] });
+    const proof = evidenceFor(work);
+    assert.equal(proof.status, 'unverified');
+    assert.deepEqual(proof.citations, []);
+    assert.equal(proof.reviewInputHash, undefined);
+  });
 }
 
 test('execution requirements survive contracts and immutable plan storage without changing legacy hashes', async () => {
@@ -148,6 +217,7 @@ test('staged chapter reviews retain every execution item across interrupted raw 
   assert.equal(check.chapterReview?.result?.checks.filter(check => check.criterion.startsWith('execution/')).length, 2);
   await workflow.adopt(work.id, candidate.id, 0);
   assert.equal(work.versions.size, 1);
+  assert.equal(evidenceFor(work).status, 'verified', 'staged proofs must replay successfully before showing execution evidence');
 });
 
 test('manuscript finalization requires intact per-item review evidence without a global policy', async () => {
