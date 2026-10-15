@@ -167,6 +167,57 @@ test('a later reversal cannot retroactively invalidate an earlier satisfied prer
   assert.deepEqual(await workflow.readiness(work.id, 4), []);
 });
 
+for (const value of [null, {}, { status: 'planned' }, 'realized']) {
+  test(`unrecognized historical plan progress ${JSON.stringify(value)} cannot unlock a chapter`, async () => {
+    const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), scriptedProvider(chapter => chapter <= 2
+      ? [{ eventType: 'plot_progress', subjectId: `chapter-${chapter}`, predicate: 'status', value, evidence: '仅描述尝试，未确认完成' }] : []));
+    const plan = minimalPlan();
+    plan.milestones = [{ id: 'setup', title: '取得文书', kind: 'turn', startChapter: 1, endChapter: 2, setup: ['申请'], cost: '押金', outcome: '获准通行' }];
+    const work = await createReadyWork(workflow, '不得默认兑现', plan);
+    // Simulate already-adopted legacy data, bypassing semantic checks only here.
+    for (let chapter = 1; chapter <= 2; chapter++) await writeChapter(workflow, work.id, chapter, work.stateRevision);
+    const before = JSON.stringify([...work.events]);
+    plan.dependencies = ['chapter-2', 'setup'].map((sourceId, index) => ({ id: `need-${index}`, targetId: 'chapter-3', sourceId, requiredness: 'must', description: `需要 ${sourceId} 明确完成` }));
+    const revision = await approveMinimalPlan(workflow, work.id, plan);
+    const nodes = planRealization(work, revision).nodes;
+    assert.equal(nodes.find(node => node.nodeId === 'chapter-2')?.status, 'insufficient');
+    assert.notEqual(nodes.find(node => node.nodeId === 'setup')?.status, 'realized');
+    assert.ok(effectiveBrief(work, 3)!.brief.dependsOn.every(dependency => !dependency.satisfied));
+    await assert.rejects(() => workflow.generate(work.id, 3, 'invalid-progress'),
+      (error: unknown) => error instanceof ReadinessError && error.code === 'PLAN_PREREQUISITE_UNMET');
+    assert.equal(JSON.stringify([...work.events]), before, 'keep original historical events for repair');
+  });
+}
+
+test('new plan progress must declare a recognized status before adoption', async () => {
+  for (const value of [null, {}, { status: 'planned' }, 'realized', { status: 'partial' }, { status: 'diverged' }, { status: 'realized' }]) {
+    const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), scriptedProvider(() => [
+      { eventType: 'plot_progress', subjectId: 'chapter-1', predicate: 'status', value, evidence: '本章的实际推进' },
+    ]));
+    const work = await createReadyWork(workflow, '推进状态必须明确');
+    const candidate = await workflow.generate(work.id, 1, 'progress-status');
+    await workflow.check(work.id, candidate.id, [canonConsistencyChecker]);
+    const checks = work.candidates.get(candidate.id)!.checks;
+    const valid = typeof value === 'object' && value !== null && 'status' in value && ['partial', 'diverged', 'realized'].includes(value.status);
+    assert.equal(checks.find(check => check.checker === 'canon_consistency')?.status, valid ? 'passed' : 'failed', JSON.stringify(value));
+    if (!valid) await assert.rejects(() => workflow.adopt(work.id, candidate.id, work.stateRevision));
+  }
+});
+
+test('a completed prerequisite cites its completion rather than its earlier partial attempt', async () => {
+  const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), scriptedProvider(chapter => chapter <= 2
+    ? [{ eventType: 'plot_progress', subjectId: 'chapter-1', predicate: 'status', value: { status: chapter === 1 ? 'partial' : 'realized' }, evidence: chapter === 1 ? '仅递交申请，尚未取得文书' : '第二章实际取得文书' }] : []));
+  const plan = minimalPlan();
+  const work = await createReadyWork(workflow, '前置证据指向完成');
+  for (let chapter = 1; chapter <= 2; chapter++) await writeChapter(workflow, work.id, chapter, work.stateRevision);
+  plan.dependencies = [{ id: 'need-permit', targetId: 'chapter-3', sourceId: 'chapter-1', requiredness: 'must', description: '已取得文书' }];
+  const revision = await approveMinimalPlan(workflow, work.id, plan);
+  const prerequisite = effectiveBrief(work, 3)!.brief.dependsOn[0];
+  assert.equal(prerequisite.satisfied, true);
+  assert.equal(prerequisite.evidence, '第二章实际取得文书');
+  assert.equal(planRealization(work, revision).nodes.find(node => node.nodeId === 'chapter-1')?.evidence.length, 2, 'retain both attempts');
+});
+
 test('AT-09/24 approving a new plan makes an open candidate stale and leaves adopted text untouched', async () => {
   const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), scriptedProvider());
   const work = await createReadyWork(workflow, '计划变更');

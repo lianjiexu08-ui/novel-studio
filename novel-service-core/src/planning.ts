@@ -596,8 +596,10 @@ function progressEvidence(work: Work, nodeId: string, beforeChapter = Number.POS
   if (!events.length) return { evidence: [] };
   const latest = events.at(-1)!;
   const raw = latest.value && typeof latest.value === 'object' ? (latest.value as { status?: unknown }).status : undefined;
-  const status = typeof raw === 'string' && REALIZATION_VALUES.has(raw as RealizationStatus) ? raw as RealizationStatus : 'realized';
-  return { status, evidence: events.map((event) => ({ chapterNumber: event.chapterNumber, versionId: event.chapterVersionId, eventId: event.id, text: event.evidence })) };
+  // Legacy or malformed events remain visible, but cannot prove completion.
+  const status = typeof raw === 'string' && REALIZATION_VALUES.has(raw as RealizationStatus) ? raw as RealizationStatus : 'insufficient';
+  // The first citation must explain the current status, not an earlier attempt.
+  return { status, evidence: events.reverse().map((event) => ({ chapterNumber: event.chapterNumber, versionId: event.chapterVersionId, eventId: event.id, text: event.evidence })) };
 }
 
 function nodeRealization(work: Work, plan: BookPlan, nodeId: string, beforeChapter = Number.POSITIVE_INFINITY): NodeRealization | undefined {

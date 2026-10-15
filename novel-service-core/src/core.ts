@@ -1700,6 +1700,8 @@ export const canonConsistencyChecker: CandidateChecker = {
       if (event.eventType === 'promise_payoff' && work.storyBible && !(work.storyBible.promises ?? []).some((promise) => promise.id === event.subjectId)) errors.push(`unknown story promise ${event.subjectId}`);
       if (event.eventType === 'thread_resolution' && work.storyBible && !(work.storyBible.openThreads ?? []).some((thread) => thread.id === event.subjectId)) errors.push(`unknown story thread ${event.subjectId}`);
       const value = event.value && typeof event.value === 'object' ? event.value as Record<string, unknown> : undefined;
+      if (event.eventType === 'plot_progress' && planNodeIds.has(event.subjectId)
+        && (!value || !['partial', 'realized', 'diverged'].includes(String(value.status)))) errors.push(`invalid plan progress status for ${event.subjectId}`);
       const referencedValueId = typeof event.value === 'string'
         ? event.value
         : value && typeof value.id === 'string'
