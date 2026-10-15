@@ -137,6 +137,41 @@ test('a new design review blocks direct adoption and chapter replacement while p
   assert.equal(JSON.stringify({ versions: [...work.versions], events: [...work.events], state: work.stateRevision }), before);
 });
 
+test('passing design reviews do not allow chapter replacement before canon is locked and consistent', () => {
+  const changes: Array<[string, (work: Work) => void]> = [
+    ['proposed world', work => { work.worldPack!.status = 'proposed'; }],
+    ['proposed bible', work => { work.storyBible!.status = 'proposed'; }],
+    ['mismatched binding', work => { work.storyBible!.worldPackRevision -= 1; }],
+    ['open world blocker', work => { work.worldPack!.unresolvedQuestions.push({ id: 'unresolved', question: '力量代价尚未确定', blocking: true, status: 'open' }); }],
+    ['open story blocker', work => { work.storyBible!.unresolvedQuestions.push({ id: 'unresolved', question: '人物关系尚未确定', blocking: true, status: 'open' }); }],
+  ];
+  for (const [label, change] of changes) {
+    const service = new NovelService(provider);
+    const work = service.createWork(label);
+    const design = lockedDesign();
+    service.setWorldPack(work.id, design.world); service.setStoryBible(work.id, design.bible);
+    reviewedPlan(work);
+    service.runUntil(work.id, 2, [passChecker], `initial-${label}`);
+    const first = work.currentVersion(1)!;
+    const candidate = work.candidates.get(first.sourceCandidateId!)!;
+    change(work);
+    // Model review and author locking are distinct. These are explicit test
+    // doubles for passing content reviews of the still-unready design.
+    for (const area of designReviewAreas) {
+      const input = designReviewInput(work, area);
+      recordDesignReview(work, input, fixtureDesignReview(input));
+    }
+    const history = structuredClone({ versions: [...work.versions], events: [...work.events],
+      impacts: work.impacts, checkpoints: [...work.checkpoints], stateRevision: work.stateRevision });
+    assert.throws(() => service.editAdoptedChapter(work.id, 1, '修改后的第一章', [passChecker]),
+      /chapter generation gate blocked/, label);
+    assert.deepEqual({ versions: [...work.versions], events: [...work.events],
+      impacts: work.impacts, checkpoints: [...work.checkpoints], stateRevision: work.stateRevision }, history, label);
+    assert.equal(service.adoptCandidate(work.id, candidate.id).id, first.id,
+      'retrying an already-adopted candidate stays idempotent even while canon is being revised');
+  }
+});
+
 test('the first long-form milestone runs three volumes and freezes a 100-chapter manuscript', () => {
   const design = lockedDesign();
   const service = new NovelService(provider);
