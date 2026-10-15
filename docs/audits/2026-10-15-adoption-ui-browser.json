@@ -1,0 +1,50 @@
+{
+  "observedAt": "2026-10-15T10:43:11.370144+00:00",
+  "sourceCommit": "c9907d982464bbb10a080376d1b7a0706eee5176",
+  "scope": "Isolated browser UI fixture; not production design or prose acceptance",
+  "testBuild": "data/audit-ui/design63/adoption-qa",
+  "preparedProductionBuildUnchanged": "data/audit-ui/design63/c9907d9",
+  "apiEndpoint": "http://127.0.0.1:59370",
+  "apiToken": "empty",
+  "cases": {
+    "readinessFailureDisablesFormalActions": true,
+    "retryRestoresReadyState": true,
+    "reviewedFixtureEnablesAdoption": true,
+    "chapterChangeClearsCandidateAndDisablesPendingActions": true,
+    "lateChapter2ResponseDoesNotOverrideChapter3": true
+  },
+  "lateResponseOrder": [
+    {
+      "response": "readiness",
+      "chapter": 3,
+      "at": "2026-10-15T10:40:39.547Z"
+    },
+    {
+      "response": "readiness",
+      "chapter": 2,
+      "at": "2026-10-15T10:40:44.358Z"
+    }
+  ],
+  "adoptionRequests": 0,
+  "modelCalls": 0,
+  "databaseWrites": false,
+  "productionServicesRestarted": false,
+  "temporaryServerStopped": true,
+  "temporaryBrowserTabClosed": true,
+  "proofFiles": {
+    "data/audit-ui/design63/adoption-qa-proof/chapter-2-loading.txt": "d38eaf134b25649008db0f8531df99bf373a7247b69374bcbdf98ecf069bbce1",
+    "data/audit-ui/design63/adoption-qa-proof/chapter-3-after-late-response.png": "dcd108a5268b41b9b58d54affaf9464f227d36c7f07b2ffe4eb2e451d8440cfc",
+    "data/audit-ui/design63/adoption-qa-proof/chapter-3-after-late-response.txt": "0cede6e614ca89290e28d763cc1e8b66e1288c3013338550702cee445c985bf4",
+    "data/audit-ui/design63/adoption-qa-proof/readiness-failed.png": "b1dda68eed949850d4550580a29b05268248e06cdd157a90f73ffbd0e2982034",
+    "data/audit-ui/design63/adoption-qa-proof/readiness-failed.txt": "3cae76e7de7bfc6b61858eccccd4d0697322d283539e83c1e605a42278a1e526",
+    "data/audit-ui/design63/adoption-qa-proof/requests.json": "0a85f77e01ffdba6226b42704b50c58ad52223bee617f98856145d200a14afc1",
+    "data/audit-ui/design63/adoption-qa-proof/reviewed-candidate.txt": "e34aa84b44925e2700411031daa9ac8c673e560e412619512eec27a05168a388",
+    "data/audit-ui/design63/adoption-qa-proof/server.mjs": "c25213674fb3ac7a9805fd5d0e1a3f056f9dbb48d75aba1c221af272548e1bf7"
+  },
+  "limitations": [
+    "Fixture API supplies placeholder candidate and review; no actual model quality claim.",
+    "Browser verification covers failure/retry and chapter request ordering. Other adoption gates use the four regression tests.",
+    "Initial failure and candidate text captures contain accessibility no-change diffs only. Failure state is evidenced by initial tool observation and saved screenshot; late-response capture explicitly requests the full tree."
+  ],
+  "proofCaptureCorrection": "First audit assertion expected a full failure tree in a diff-only file. Retained the file; verified the failure screenshot and used the full final tree for request-order assertions."
+}
