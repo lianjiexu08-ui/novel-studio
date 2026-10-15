@@ -1,0 +1,520 @@
+{
+  "observedAt": "2026-10-15T13:46:23.653Z",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "planId": "plan_d50cad0b6d0142c9b79ab0cad2eabc9b",
+  "planRevision": 62,
+  "inputHash": "80b5930d47111b420c22ae16ecfc355d0dd5d47f8098bad104f8fa08543e1c24",
+  "status": "not_accepted",
+  "limitation": "Verifies saved evidence and report integrity only; does not approve the plan, resolve blockers, or validate prose quality.",
+  "areas": [
+    {
+      "area": "world",
+      "status": "needs_revision",
+      "runId": "design_run_a5e0559b-7302-46a1-b7b1-621552c4bd1f",
+      "reportId": "design_review_356f219a-a43c-4cde-adf1-418c1cb3b540",
+      "completedStages": 51,
+      "totalStages": 51,
+      "retainedFailures": 1,
+      "verification": "verified",
+      "runSha256": "a1c7e363b5deba20905478084768a80ccd9318f99521876b9df1147bb0c06f32",
+      "reportSha256": "d030e88c5b2770cd751737769a21af35af7a5fe22a3c78cf1b9dc08f07ca6502",
+      "sourceEnvelopeSha256": "2d0db232ae66468291a40b913270717daaec25e6e5d88d5dcd868824c8c5b212",
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "history",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "capacity",
+          "verdict": "pass"
+        }
+      ],
+      "resolvedDeferrals": [
+        {
+          "checkId": "batch-1/geography",
+          "resolvedByStageId": "followup-batch-1/geography"
+        },
+        {
+          "checkId": "batch-2/geography",
+          "resolvedByStageId": "followup-batch-2/geography"
+        },
+        {
+          "checkId": "batch-2/history",
+          "resolvedByStageId": "followup-batch-2/history"
+        },
+        {
+          "checkId": "batch-3/geography",
+          "resolvedByStageId": "followup-batch-3/geography"
+        },
+        {
+          "checkId": "batch-3/history",
+          "resolvedByStageId": "followup-batch-3/history"
+        },
+        {
+          "checkId": "batch-3/capacity",
+          "resolvedByStageId": "followup-batch-3/capacity"
+        },
+        {
+          "checkId": "cross-1-2/geography",
+          "resolvedByStageId": "followup-cross-1-2/geography"
+        },
+        {
+          "checkId": "cross-1-3/geography",
+          "resolvedByStageId": "followup-cross-1-3/geography"
+        },
+        {
+          "checkId": "cross-1-5/geography",
+          "resolvedByStageId": "followup-cross-1-5/geography"
+        },
+        {
+          "checkId": "cross-2-3/geography",
+          "resolvedByStageId": "followup-cross-2-3/geography"
+        },
+        {
+          "checkId": "cross-2-4/geography",
+          "resolvedByStageId": "followup-cross-2-4/geography"
+        }
+      ]
+    },
+    {
+      "area": "power",
+      "status": "needs_revision",
+      "runId": "design_run_0ed1c9bd-b5fa-499f-bbbd-2175726f3017",
+      "reportId": "design_review_fb87c8f7-e986-4b28-a394-67da6c1149b4",
+      "completedStages": 93,
+      "totalStages": 93,
+      "retainedFailures": 3,
+      "verification": "verified",
+      "runSha256": "f3b134be96cb4272fcfb8f1aa2b3bdaa0c57e9bf436b22797ec55718b5f8ef66",
+      "reportSha256": "1d16aefc88f64a53887b03104189b57e64f7069b762fdad594eab641418a49c5",
+      "sourceEnvelopeSha256": "3807c360dfb000f60defdb5bcdce6562198e2d6be49ed8eff3eac4c2e876fa6a",
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "costs",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "counters",
+          "verdict": "pass"
+        }
+      ],
+      "resolvedDeferrals": [
+        {
+          "checkId": "batch-1/tiers",
+          "resolvedByStageId": "followup-batch-1/tiers"
+        },
+        {
+          "checkId": "batch-1/costs",
+          "resolvedByStageId": "followup-batch-1/costs"
+        },
+        {
+          "checkId": "batch-1/counters",
+          "resolvedByStageId": "followup-batch-1/counters"
+        },
+        {
+          "checkId": "batch-2/tiers",
+          "resolvedByStageId": "followup-batch-2/tiers"
+        },
+        {
+          "checkId": "batch-2/costs",
+          "resolvedByStageId": "followup-batch-2/costs"
+        },
+        {
+          "checkId": "batch-2/counters",
+          "resolvedByStageId": "followup-batch-2/counters"
+        },
+        {
+          "checkId": "batch-3/tiers",
+          "resolvedByStageId": "cross-1-3"
+        },
+        {
+          "checkId": "batch-3/costs",
+          "resolvedByStageId": "cross-1-3"
+        },
+        {
+          "checkId": "batch-3/counters",
+          "resolvedByStageId": "cross-1-3"
+        },
+        {
+          "checkId": "batch-4/tiers",
+          "resolvedByStageId": "followup-batch-4/tiers"
+        },
+        {
+          "checkId": "batch-4/costs",
+          "resolvedByStageId": "followup-batch-4/costs"
+        },
+        {
+          "checkId": "batch-4/counters",
+          "resolvedByStageId": "cross-1-4"
+        },
+        {
+          "checkId": "batch-5/tiers",
+          "resolvedByStageId": "followup-batch-5/tiers"
+        },
+        {
+          "checkId": "batch-5/costs",
+          "resolvedByStageId": "followup-batch-5/costs"
+        },
+        {
+          "checkId": "batch-5/counters",
+          "resolvedByStageId": "followup-batch-5/counters"
+        },
+        {
+          "checkId": "cross-1-2/tiers",
+          "resolvedByStageId": "followup-cross-1-2/tiers"
+        },
+        {
+          "checkId": "cross-1-2/costs",
+          "resolvedByStageId": "followup-cross-1-2/costs"
+        },
+        {
+          "checkId": "cross-1-2/counters",
+          "resolvedByStageId": "followup-cross-1-2/counters"
+        },
+        {
+          "checkId": "cross-2-3/tiers",
+          "resolvedByStageId": "followup-cross-2-3/tiers"
+        },
+        {
+          "checkId": "cross-2-3/costs",
+          "resolvedByStageId": "followup-cross-2-3/costs"
+        },
+        {
+          "checkId": "cross-2-3/counters",
+          "resolvedByStageId": "followup-cross-2-3/counters"
+        },
+        {
+          "checkId": "cross-2-4/tiers",
+          "resolvedByStageId": "followup-cross-2-4/tiers"
+        },
+        {
+          "checkId": "cross-2-4/counters",
+          "resolvedByStageId": "followup-cross-2-4/counters"
+        },
+        {
+          "checkId": "cross-2-5/tiers",
+          "resolvedByStageId": "followup-cross-2-5/tiers"
+        },
+        {
+          "checkId": "cross-2-5/costs",
+          "resolvedByStageId": "followup-cross-2-5/costs"
+        },
+        {
+          "checkId": "cross-2-5/counters",
+          "resolvedByStageId": "followup-cross-2-5/counters"
+        },
+        {
+          "checkId": "cross-3-4/tiers",
+          "resolvedByStageId": "followup-cross-3-4/tiers"
+        },
+        {
+          "checkId": "cross-3-4/costs",
+          "resolvedByStageId": "followup-cross-3-4/costs"
+        },
+        {
+          "checkId": "cross-3-4/counters",
+          "resolvedByStageId": "followup-cross-3-4/counters"
+        },
+        {
+          "checkId": "cross-3-5/tiers",
+          "resolvedByStageId": "followup-cross-3-5/tiers"
+        },
+        {
+          "checkId": "cross-3-5/costs",
+          "resolvedByStageId": "followup-cross-3-5/costs"
+        },
+        {
+          "checkId": "cross-3-5/counters",
+          "resolvedByStageId": "followup-cross-3-5/counters"
+        },
+        {
+          "checkId": "cross-4-5/tiers",
+          "resolvedByStageId": "followup-cross-4-5/tiers"
+        },
+        {
+          "checkId": "cross-4-5/costs",
+          "resolvedByStageId": "followup-cross-4-5/costs"
+        },
+        {
+          "checkId": "cross-4-5/counters",
+          "resolvedByStageId": "followup-cross-4-5/counters"
+        }
+      ]
+    },
+    {
+      "area": "characters",
+      "status": "passed",
+      "runId": "design_run_c1c34b4f-4f80-48de-99c4-a4b8b5bfaec2",
+      "reportId": "design_review_df24b5ef-fa42-4a27-80a8-eabeb8760460",
+      "completedStages": 31,
+      "totalStages": 31,
+      "retainedFailures": 2,
+      "verification": "verified",
+      "runSha256": "b45ad04536f099adcf44e205595d6702fe6467ffb64d935c64214811a41442a4",
+      "reportSha256": "c58a7884e1e1c7ee76a9daf7b4d71c64c90cbd724b792b8bc2aef20222a45cad",
+      "sourceEnvelopeSha256": "38209315548d20249c903d88f2a3274938e3b54d68ad67fe6db145065a713d39",
+      "checks": [
+        {
+          "criterion": "agency",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "relationships",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "knowledge",
+          "verdict": "pass"
+        }
+      ],
+      "resolvedDeferrals": [
+        {
+          "checkId": "batch-3/relationships",
+          "resolvedByStageId": "cross-1-3"
+        },
+        {
+          "checkId": "batch-3/knowledge",
+          "resolvedByStageId": "followup-batch-3/knowledge"
+        },
+        {
+          "checkId": "cross-2-3/agency",
+          "resolvedByStageId": "followup-cross-2-3/agency"
+        },
+        {
+          "checkId": "cross-2-3/relationships",
+          "resolvedByStageId": "followup-cross-2-3/relationships"
+        },
+        {
+          "checkId": "cross-2-3/knowledge",
+          "resolvedByStageId": "followup-cross-2-3/knowledge"
+        },
+        {
+          "checkId": "cross-2-4/relationships",
+          "resolvedByStageId": "followup-cross-2-4/relationships"
+        },
+        {
+          "checkId": "cross-2-4/knowledge",
+          "resolvedByStageId": "followup-cross-2-4/knowledge"
+        }
+      ]
+    },
+    {
+      "area": "story",
+      "status": "needs_revision",
+      "runId": "design_run_922f05fd-ed33-41da-927a-5b909f71c2f1",
+      "reportId": "design_review_4ffad6e9-8ec8-4cad-9aca-91e601038595",
+      "completedStages": 79,
+      "totalStages": 79,
+      "retainedFailures": 2,
+      "verification": "verified",
+      "runSha256": "2e2e6d8d37be0544175aca17a50cee7919a35828a593b1ba88f064d5d82b31b5",
+      "reportSha256": "d9d1aa586ac6f6aafc0cbb7a753d7f2bfbdeb58f6b51315fc0dd93e2c5ffb035",
+      "sourceEnvelopeSha256": "14a1c8af1540c4c69dfaa665348e48cb4cc53923ace8fce839d63a6cd4ff15c2",
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "revise"
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "growth",
+          "verdict": "revise"
+        }
+      ],
+      "resolvedDeferrals": [
+        {
+          "checkId": "batch-1/causality",
+          "resolvedByStageId": "followup-batch-1/causality"
+        },
+        {
+          "checkId": "batch-1/timeline",
+          "resolvedByStageId": "followup-batch-1/timeline"
+        },
+        {
+          "checkId": "batch-1/payoff",
+          "resolvedByStageId": "followup-batch-1/payoff"
+        },
+        {
+          "checkId": "batch-1/opening",
+          "resolvedByStageId": "followup-batch-1/opening"
+        },
+        {
+          "checkId": "batch-1/pacing",
+          "resolvedByStageId": "followup-batch-1/pacing"
+        },
+        {
+          "checkId": "batch-1/growth",
+          "resolvedByStageId": "followup-batch-1/growth"
+        },
+        {
+          "checkId": "batch-2/causality",
+          "resolvedByStageId": "followup-batch-2/causality"
+        },
+        {
+          "checkId": "batch-2/timeline",
+          "resolvedByStageId": "followup-batch-2/timeline"
+        },
+        {
+          "checkId": "batch-2/opening",
+          "resolvedByStageId": "followup-batch-2/opening"
+        },
+        {
+          "checkId": "batch-2/pacing",
+          "resolvedByStageId": "followup-batch-2/pacing"
+        },
+        {
+          "checkId": "batch-3/payoff",
+          "resolvedByStageId": "cross-3-4"
+        },
+        {
+          "checkId": "batch-4/causality",
+          "resolvedByStageId": "followup-batch-4/causality"
+        },
+        {
+          "checkId": "cross-1-2/causality",
+          "resolvedByStageId": "followup-cross-1-2/causality"
+        },
+        {
+          "checkId": "cross-1-2/timeline",
+          "resolvedByStageId": "followup-cross-1-2/timeline"
+        },
+        {
+          "checkId": "cross-1-2/opening",
+          "resolvedByStageId": "followup-cross-1-2/opening"
+        },
+        {
+          "checkId": "cross-1-2/pacing",
+          "resolvedByStageId": "followup-cross-1-2/pacing"
+        },
+        {
+          "checkId": "cross-1-3/payoff",
+          "resolvedByStageId": "followup-cross-1-3/payoff"
+        },
+        {
+          "checkId": "cross-1-4/growth",
+          "resolvedByStageId": "followup-cross-1-4/growth"
+        },
+        {
+          "checkId": "cross-1-5/causality",
+          "resolvedByStageId": "followup-cross-1-5/causality"
+        },
+        {
+          "checkId": "cross-1-5/timeline",
+          "resolvedByStageId": "followup-cross-1-5/timeline"
+        },
+        {
+          "checkId": "cross-2-3/causality",
+          "resolvedByStageId": "followup-cross-2-3/causality"
+        },
+        {
+          "checkId": "cross-2-3/timeline",
+          "resolvedByStageId": "followup-cross-2-3/timeline"
+        },
+        {
+          "checkId": "cross-2-3/payoff",
+          "resolvedByStageId": "followup-cross-2-3/payoff"
+        },
+        {
+          "checkId": "cross-2-4/causality",
+          "resolvedByStageId": "followup-cross-2-4/causality"
+        },
+        {
+          "checkId": "cross-2-4/timeline",
+          "resolvedByStageId": "followup-cross-2-4/timeline"
+        },
+        {
+          "checkId": "cross-3-5/payoff",
+          "resolvedByStageId": "followup-cross-3-5/payoff"
+        }
+      ]
+    }
+  ],
+  "runtimeCommit": "9df915493be44a310c910610b44ef2b65cb153e6",
+  "checkpointSha256": "5cb3865ced75bb9ab7d6a468d32fd5f2aba4bff27dd3941f78ea2481b4d367b4",
+  "totalFormalModelCalls": 291,
+  "verificationModelCalls": 0,
+  "databaseWrites": false,
+  "oldHistoryPreserved": true,
+  "preservedOldRuns": 53,
+  "preservedOldReports": 59,
+  "preservedEarlierFinalReports": 3,
+  "allPowerRawStagesUnchanged": 47,
+  "powerCostFindingPropagation": [
+    {
+      "stageId": "followup-cross-2-4/costs",
+      "stageSha256": "7fa57f139061d4466d7b21028c28aee3344a5a10a66fed8e239ebf47c738f7ff",
+      "verdict": "revise",
+      "explanation": "补读材料已覆盖原问题所要求的后段功法、寿储、疗程、航款、晋阶、训练、施术与看押账。第25—32章的术法、疗伤与两剂灵泉账能够闭合：剑诀、御物、护罡、真光、推劲分别扣账，污染泉液不入账，两剂均在完整疗程和复诊后各增加5元载；后段也明确了自然流逝、两剂历史收入、第83章支付10元载及第88—100章不重复使用顾第25章的0.25元载。唯第88—95章的成本字段写成“林肩伤、顾前臂划伤和一次局部护罡共二成元罡成本”，但同一里程碑的执行账明确林连续三次局部护罡，每次聚合一成并承受一次接触再付一成，实际为林共支出六成、8成降至2成；顾另有一次聚合一成和一次受击一成。该汇总若按字面理解会少记林四成，也未清楚区分林与顾的账户。虽然后续逐项账给出了8→6→4→2及顾8→6，成本栏仍构成内部不一致，必须统一为逐角色、逐次动作的支出表，并核对伤后可用上限与后续停术条件。原问题中关于“第51—100章缺少完整收入、自然流逝、晋阶与施术账”的材料缺口已由本次补读解决，但该新发现的硬性账目冲突阻止通过。"
+    },
+    {
+      "stageId": "synthesis-17",
+      "stageSha256": "e30170e2277d3b95a7ee7c1e48768355033c13936810e9d103223314a08bb8c8",
+      "verdict": "revise",
+      "explanation": "同一第88—95章里程碑的执行账规定：林以八成可用元罡连续三次局部护罡，每次聚罡一成、实际接触再扣一成，明确由八成降至二成，即林共支出六成；顾另一次护罡由八成降至六成，即支出二成。可是该里程碑成本栏却写成“林肩伤、顾前臂划伤和一次局部护罡共二成元罡成本”，既少记林四成，也把两人的独立账户混为一项。元罡成数按个人健康稳定上限计、不得跨人兑换，故此非单纯措辞差异，而是预算冲突。"
+    },
+    {
+      "stageId": "synthesis-32",
+      "stageSha256": "9c16a2d23cee2df48d84e21b2d347f54794c0a70e64dee1d595d890f33c64b27",
+      "verdict": "revise",
+      "explanation": "第88—95章执行账明确林辰三次局部护罡均发生实际接触，按每次聚罡一成加受击一成，元罡由八成降至二成，合计支出六成；顾峤另一次护罡由八成降至六成，独立支出二成。但同一里程碑成本栏写“林肩伤、顾前臂划伤和一次局部护罡共二成元罡成本”，少记林辰四成且混同两人的独立账户。元罡成数不得跨人兑换，故属于预算硬冲突，而非叙述简略。"
+    },
+    {
+      "stageId": "synthesis-40",
+      "stageSha256": "f8880a87ac933fa3ea519abb3793eb0fb079370fdb4f35f2e2b5aa3f08303d8d",
+      "verdict": "revise",
+      "explanation": "力量账户本身已有较完整的分账、恢复、晋阶和不可逆代价规则，且第83章晋阶没有预支未来寿源；但同一第88—95章里程碑的成本字段与执行账硬冲突。执行账明确林辰三次局部护罡各支付聚罡一成并因实际接触再支付一成，八成降至二成，即林共支出六成；顾峤另一次护罡由八成降至六成，共支出二成。成本字段却写成“林肩伤、顾前臂划伤和一次局部护罡共二成元罡成本”，既少记林四成，也混同两人的独立账户。前置报告中将整体成本判为通过，不能消除该具体字段冲突。"
+    },
+    {
+      "stageId": "synthesis-44",
+      "stageSha256": "0045aa11f444b04295e8f872fc307c2b96a4f090437b009cf42dabfa2661c796",
+      "verdict": "revise",
+      "explanation": "力量账户的分账、恢复、疗程、晋阶和不可逆代价规则总体能够闭合，且第83章晋阶没有预支未来寿源；但第88—95章同一里程碑内部存在硬冲突。执行账明确林辰三次局部护罡，每次聚罡一成并因实际接触再支付一成，元罡由八成降至二成，林共支出六成；顾峤另一次护罡由八成降至六成，独立支出二成。成本字段却写成“林肩伤、顾前臂划伤和一次局部护罡共二成元罡成本”，既少记林辰四成，也混同两人的独立账户。前置报告虽有将成本判为通过的结论，但另一份前置报告及逐项账均指出该冲突，必须保留返修。"
+    },
+    {
+      "stageId": "synthesis-46",
+      "stageSha256": "31168a4ee2276e2d044b88df6adb7b60b75d5848466d600336b93259dc72acfb",
+      "verdict": "revise",
+      "explanation": "寿储、真元、元罡的分账及晋阶、疗程、恢复的总体规则能够成立，但第88—95章同一里程碑的成本字段与执行账不能并存：执行账明确林辰三次护罡均支付一成聚罡与一成受击费，八成降至二成，即林独立支出六成；顾峤另一次护罡独立支出二成。成本字段却将“林肩伤、顾前臂划伤和一次局部护罡”概括为共二成元罡成本，既少记林辰四成，也混同两人的账户。此前通过结论不能覆盖这项明确的内部账目冲突。"
+    }
+  ],
+  "revisions": {
+    "world": 32,
+    "bible": 62,
+    "plan": 62,
+    "approvedPlan": 10
+  },
+  "historicalCounts": {
+    "versions": 101,
+    "events": 383,
+    "manuscripts": 1
+  },
+  "designApproved": false,
+  "proseGenerated": false
+}
