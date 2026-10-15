@@ -6,6 +6,7 @@ import { api } from '../api';
 import { OUTBOX_LABELS } from '../labels';
 import type { ChapterVersionDto, OutboxEventDto } from 'novel-studio-contracts';
 import type { WorkspaceContext } from './Workspace';
+import { AdoptedChapterReader } from './AdoptedChapterReader';
 
 const { Text, Title } = Typography;
 
@@ -14,11 +15,16 @@ export function OverviewPage() {
   const navigate = useNavigate();
   const [chapters, setChapters] = useState<ChapterVersionDto[] | null>(null);
   const [outbox, setOutbox] = useState<OutboxEventDto[]>([]);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
 
   useEffect(() => {
     setChapters(null);
-    api.listChapters(work.id).then((result) => setChapters(result.chapters)).catch(() => setChapters([]));
-    api.outbox(work.id).then((result) => setOutbox(result.events)).catch(() => setOutbox([]));
+    setOutbox([]);
+    setSelectedId(null);
+    let active = true;
+    api.listChapters(work.id).then((result) => { if (active) setChapters(result.chapters); }).catch(() => { if (active) setChapters([]); });
+    api.outbox(work.id).then((result) => { if (active) setOutbox(result.events); }).catch(() => { if (active) setOutbox([]); });
+    return () => { active = false; };
   }, [work.id, work.stateRevision]);
 
   if (chapters === null) {
@@ -27,6 +33,13 @@ export function OverviewPage() {
 
   const nextChapter = chapters.reduce((max, chapter) => Math.max(max, chapter.chapterNumber), 0) + 1;
   const pending = outbox.filter((event) => !event.publishedAt).length;
+  const taskCounts = new Map<string, { kind: string; completed: boolean; count: number }>();
+  for (const event of outbox) {
+    const completed = Boolean(event.publishedAt), key = `${event.kind}/${completed}`;
+    const group = taskCounts.get(key) ?? { kind: event.kind, completed, count: 0 };
+    group.count += 1;
+    taskCounts.set(key, group);
+  }
 
   return (
     <Space direction="vertical" size={20} style={{ width: '100%' }}>
@@ -55,12 +68,12 @@ export function OverviewPage() {
             size="middle"
             rowKey="id"
             dataSource={[...chapters].sort((a, b) => b.chapterNumber - a.chapterNumber)}
-            pagination={false}
-            onRow={(row) => ({ onClick: () => navigate(`/works/${work.id}/write?chapter=${row.chapterNumber}`), style: { cursor: 'pointer' } })}
+            pagination={{ defaultPageSize: 10, showSizeChanger: false, showTotal: total => `共 ${total} 章` }}
+            onRow={(row) => ({ onClick: () => setSelectedId(row.id), style: { cursor: 'pointer' } })}
             columns={[
-              { title: '章节', dataIndex: 'chapterNumber', width: 100, render: (n: number) => <Text strong>第 {n} 章</Text> },
+              { title: '章节', dataIndex: 'chapterNumber', width: 110, render: (n: number, row: ChapterVersionDto) => <Button type="link" onClick={event => { event.stopPropagation(); setSelectedId(row.id); }}>第 {n} 章</Button> },
               { title: '版本', dataIndex: 'revision', width: 90, render: (r: number) => <Tag>rev {r}</Tag> },
-              { title: '正文', dataIndex: 'content', ellipsis: true, render: (content: string) => content },
+              { title: '正文摘录', dataIndex: 'content', ellipsis: { showTitle: false }, render: (content: string) => content.length > 120 ? `${content.slice(0, 120)}…` : content },
               { title: '采用时间', dataIndex: 'createdAt', width: 180, render: (v: string) => new Date(v).toLocaleString() },
             ]}
           />
@@ -72,14 +85,16 @@ export function OverviewPage() {
           <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="采用一章之后，投影、索引和导出会出现在这里" />
         ) : (
           <Space size={8} wrap>
-            {outbox.map((event) => (
-              <Tag key={event.id} color={event.publishedAt ? 'success' : 'warning'}>
-                {OUTBOX_LABELS[event.kind] ?? event.kind} · {event.publishedAt ? '已完成' : '待处理'}
+            {[...taskCounts].map(([key, group]) => (
+              <Tag key={key} color={group.completed ? 'success' : 'warning'}>
+                {OUTBOX_LABELS[group.kind] ?? group.kind} · {group.completed ? '已完成' : '待处理'} {group.count} 项
               </Tag>
             ))}
+            <Button type="link" onClick={() => navigate('/tasks')}>查看任务详情</Button>
           </Space>
         )}
       </Card>
+      <AdoptedChapterReader chapters={chapters} selectedId={selectedId} onSelect={setSelectedId} onClose={() => setSelectedId(null)} />
     </Space>
   );
 }

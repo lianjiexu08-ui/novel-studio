@@ -6,6 +6,7 @@ import { api } from '../api';
 import { covenantReady } from '../covenant';
 import type { ChapterVersionDto, ManuscriptExportWorkDto, ManuscriptRevisionDto } from 'novel-studio-contracts';
 import type { WorkspaceContext } from './Workspace';
+import { AdoptedChapterReader } from './AdoptedChapterReader';
 
 const { Paragraph, Text, Title } = Typography;
 type ExportedChapter = Pick<ChapterVersionDto, 'id' | 'chapterNumber' | 'content' | 'revision'>;
@@ -23,13 +24,19 @@ export function ChaptersPage() {
   const [manuscripts, setManuscripts] = useState<ManuscriptRevisionDto[]>([]);
   const [reader, setReader] = useState<ReaderState | null>(null);
   const [selectedChapter, setSelectedChapter] = useState(1);
+  const [adoptedId, setAdoptedId] = useState<string | null>(null);
 
   useEffect(() => {
     setChapters(null);
+    setAdoptedId(null);
+    setReader(null);
+    let active = true;
     Promise.all([api.listChapters(work.id), api.manuscripts(work.id)]).then(([chapterResult, manuscriptResult]) => {
+      if (!active) return;
       setChapters(chapterResult.chapters);
       setManuscripts(manuscriptResult.manuscripts);
-    }).catch(() => { setChapters([]); setManuscripts([]); });
+    }).catch(() => { if (active) { setChapters([]); setManuscripts([]); } });
+    return () => { active = false; };
   }, [work.id, work.stateRevision]);
 
   async function openManuscript(manuscript: ManuscriptRevisionDto) {
@@ -84,7 +91,9 @@ export function ChaptersPage() {
 
     {manuscripts.length > 0 && <Card title="最终书稿快照" style={{ marginBottom: 20 }}><Space direction="vertical" style={{ width: '100%' }}>{manuscripts.map((manuscript) => <Card.Grid key={manuscript.id} style={{ width: '100%', padding: 16 }}><Space wrap><Tag color={manuscript.status === 'final' ? 'success' : 'default'}>{manuscript.status === 'final' ? '当前最终版' : '历史版本'}</Tag><Text strong>修订 {manuscript.revision}</Text><Text type="secondary">{manuscript.chapterCount} 章 · {formatAdoptedAt(manuscript.createdAt)}</Text><Text type="secondary">{manuscript.wordCount.toLocaleString()} / {manuscript.targetWordCount.toLocaleString()} 字（{Math.round(manuscript.lengthCoverage * 100)}%）</Text><Button size="small" icon={<ReadOutlined />} onClick={() => void openManuscript(manuscript)}>查看冻结书稿</Button><Button size="small" icon={<DownloadOutlined />} onClick={() => void downloadManuscript(manuscript)}>下载完整 JSON</Button><Button size="small" icon={<FileTextOutlined />} onClick={() => void downloadManuscriptMarkdown(manuscript)}>下载可读 Markdown</Button></Space><div style={{ marginTop: 8 }}><Text type="secondary">内容哈希：{manuscript.contentHash}</Text></div></Card.Grid>)}</Space></Card>}
 
-    {chapters.length === 0 ? <div className="panel empty-panel"><Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="还没有章节"><Button type="primary" icon={<FileAddOutlined />} onClick={() => navigate(next)}>{ready ? '创建章节，进入章节创作' : '先写约定'}</Button></Empty></div> : <div className="panel"><div className="toc">{chapters.map((chapter) => <button key={chapter.id} type="button" className="toc-row" onClick={() => navigate('/works/' + work.id + '/write')}><span className="toc-num">第 {chapter.chapterNumber} 章</span><span className="tag tag-gold">rev {chapter.revision}</span><span className="toc-meta">已采用 · {formatAdoptedAt(chapter.createdAt)}</span><span className="toc-go">继续创作</span></button>)}</div></div>}
+    {chapters.length === 0 ? <div className="panel empty-panel"><Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="还没有章节"><Button type="primary" icon={<FileAddOutlined />} onClick={() => navigate(next)}>{ready ? '创建章节，进入章节创作' : '先写约定'}</Button></Empty></div> : <div className="panel"><div className="toc">{[...chapters].sort((a, b) => a.chapterNumber - b.chapterNumber).map((chapter) => <button key={chapter.id} type="button" className="toc-row" onClick={() => setAdoptedId(chapter.id)}><span className="toc-num">第 {chapter.chapterNumber} 章</span><span className="tag tag-gold">rev {chapter.revision}</span><span className="toc-meta">已采用 · {formatAdoptedAt(chapter.createdAt)}</span><span className="toc-go">阅读正文</span></button>)}</div></div>}
+
+    <AdoptedChapterReader chapters={chapters} selectedId={adoptedId} onSelect={setAdoptedId} onClose={() => setAdoptedId(null)} />
 
     <Modal open={!!reader} title={reader ? '冻结书稿 · 修订 ' + reader.manuscript.revision : '冻结书稿'} width={900} footer={null} onCancel={() => setReader(null)}>{reader && <Space direction="vertical" style={{ width: '100%' }}><Space wrap><Text type="secondary">内容哈希：{reader.manuscript.contentHash}</Text><Select value={selectedChapter} style={{ width: 180 }} onChange={setSelectedChapter} options={reader.chapters.map((chapter) => ({ value: chapter.chapterNumber, label: '第 ' + chapter.chapterNumber + ' 章 · rev ' + chapter.revision }))} /></Space>{current ? <div><Title level={4}>第 {current.chapterNumber} 章</Title><Paragraph style={{ whiteSpace: 'pre-wrap', maxHeight: '60vh', overflow: 'auto' }}>{current.content}</Paragraph></div> : <Empty description="书稿没有章节内容" />}</Space>}</Modal>
   </section>;
