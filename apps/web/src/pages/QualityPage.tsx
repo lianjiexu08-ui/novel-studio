@@ -101,9 +101,10 @@ export function QualityPage() {
           {!!history.quality.reviewCandidates?.length && <><Text strong>选择评审稿</Text><Select aria-label="选择评审稿" style={{ width: '100%' }} disabled={loading}
             value={history.quality.candidate?.id} onChange={value => void load(history.chapterNumber, value)}
             options={history.quality.reviewCandidates.map((item, index, rows) => ({ value: item.id,
-              label: `${item.isCurrentVersion ? '当前采纳稿' : item.status === 'adopted' ? '历史采纳稿' : item.origin === 'demo' ? '试写稿' : item.status === 'rejected' ? '已驳回候选' : '待采纳候选'} · 第 ${rows.length - index} 稿 · ${new Date(item.createdAt).toLocaleString('zh-CN', { hour12: false })}${item.stale ? '（已过期）' : ''}`,
+              label: `${item.isCurrentVersion ? '当前采纳稿' : item.status === 'adopted' ? '历史采纳稿' : item.origin === 'demo' ? '试写稿' : item.status === 'rejected' ? '已驳回候选' : '待采纳候选'} · 候选序号 ${rows.length - index}${item.isCurrentVersion && history.quality.version ? ` · 采纳修订 ${history.quality.version.revision}` : ''} · ${new Date(item.createdAt).toLocaleString('zh-CN', { hour12: false })}${item.stale ? '（已过期）' : ''}`,
             }))} /></>}
-          <Text type="secondary">{history.quality.version ? `事实与人物状态仍依据当前采纳稿（版本 ${history.quality.version.revision}）重建；选择其他评审稿不会将其内容变成已发生事实。` : '本章尚无采纳稿；候选内容与评审意见不计入本章事实。'}</Text>
+          {!!history.quality.reviewCandidates?.length && <Text type="secondary">候选序号包含未采用的草稿；采纳修订号只对应正式采用的版本。</Text>}
+          <Text type="secondary">{history.quality.version ? `事实与人物状态仍依据当前采纳稿（采纳修订 ${history.quality.version.revision}）重建；选择其他评审稿不会将其内容变成已发生事实。` : '本章尚无采纳稿；候选内容与评审意见不计入本章事实。'}</Text>
           {history.quality.candidate?.content && <details key={history.quality.candidate.id}><summary>查看所选评审稿正文</summary><p style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{history.quality.candidate.content}</p></details>}
           {reviewRecords.length > 1 && <><Text strong>选择评审记录</Text><Select aria-label="选择评审记录" style={{ width: '100%' }} value={chapterReview?.id}
             onChange={value => { setSelectedCheckId(value); closeReviewSource(); }} options={[...reviewRecords].reverse().map(check => ({ value: check.id,
