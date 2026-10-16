@@ -1,0 +1,85 @@
+{
+  "kind": "followup_explicit_rule_context",
+  "observedAt": "2026-10-16T12:28:16.584Z",
+  "snapshotPath": "data/audit-runtimes/design68-review/power-completed.json",
+  "snapshotSha256": "5eb028258186610c1ca03f4664f23553ffb48d7ddb948ae851ee36894210c139",
+  "frozenSourceFilesVerified": 153,
+  "legacy": [
+    {
+      "area": "world",
+      "requests": 75,
+      "completedReportUnchanged": true
+    },
+    {
+      "area": "power",
+      "requests": 77,
+      "completedReportUnchanged": true
+    }
+  ],
+  "v27RequestsUnchanged": 39,
+  "v27ImplementationPath": "/var/folders/tr/8vt224595gdfg6w6kh6tkpt00000gn/T/novel-stale-ancestry-validation-nwg39s3b",
+  "reproduction": {
+    "stageId": "followup-cross-2-3/costs",
+    "oldMaterialLength": 124232,
+    "newMaterialLength": 140012,
+    "newMetadataLength": 24842,
+    "mandatorySourcesComplete": 35,
+    "definitions": [
+      {
+        "id": "world/resources/res_09",
+        "sha256": "cdee78c9d8626db39e93fe9d730da267477be4dc0fd1ae7bd388301ec879745b",
+        "completeInNewRequest": true,
+        "absentInOldRequest": true
+      },
+      {
+        "id": "world/artifacts/art_16",
+        "sha256": "8202de560b5742380dc0b65521cb3200b65987c2a4b6a666af2cb83502eeea8f",
+        "completeInNewRequest": true,
+        "absentInOldRequest": true
+      }
+    ],
+    "relatedContext": {
+      "includedSourceIds": [
+        "story/characters/char_01",
+        "story/characters/char_02",
+        "story/characters/char_04",
+        "story/characters/char_08",
+        "story/characters/char_09",
+        "story/characters/char_10",
+        "story/characters/char_11",
+        "story/characters/char_12",
+        "story/characters/char_13",
+        "story/characters/char_14",
+        "story/characters/char_15",
+        "story/characters/char_16",
+        "story/characters/char_17",
+        "story/characters/char_18",
+        "story/characters/char_19",
+        "story/characters/char_20",
+        "story/characters/char_21",
+        "story/characters/char_22",
+        "story/characters/char_24",
+        "story/characters/char_25",
+        "world/techniques/tech_13",
+        "world/techniques/tech_15",
+        "world/techniques/tech_16",
+        "world/artifacts/art_15",
+        "world/artifacts/art_16",
+        "world/resources/res_09",
+        "world/resources/res_10",
+        "world/resources/res_12",
+        "world/resources/res_17",
+        "world/resources/res_18",
+        "world/resources/res_19"
+      ],
+      "omittedSourceIds": []
+    },
+    "requestSha256": "70e8111c6feaf56bb5361d0078c0f1a110dadfb8b73287c0664e9230d095fd3c",
+    "reloadRequestUnchanged": true
+  },
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "frozenRuntimeChanged": false,
+  "findingsResolved": 0,
+  "limitation": "Material coverage only, not semantic acceptance. Optional rule context is one-hop and exact-name/ID based; aliases are not inferred. Over-capacity optional sets remain explicitly omitted. Existing v26 live run and negative results are unchanged."
+}

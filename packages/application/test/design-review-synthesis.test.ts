@@ -16,7 +16,7 @@ const pass = (request: DesignReviewInput): DesignReviewResult => ({ summary: 'æ£
 })) });
 
 for (const resolve of [false, true]) test(`v27 keeps ordinary negatives while a source deferral is ${resolve ? 'explicitly resolved' : 'still unresolved'}`, () => {
-  const run = createDesignReviewRun(input());
+  const run = createDesignReviewRun(input(), undefined, 27);
   assert.equal(run.scheduleVersion, 27);
   for (const stage of [...run.stages.filter(stage => stage.kind !== 'synthesis')]) {
     const request = designReviewStageInput(run, stage), result = pass(request);

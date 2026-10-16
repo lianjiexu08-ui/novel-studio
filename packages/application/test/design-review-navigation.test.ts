@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { designReviewEntityMentions, designReviewPlanCharacters, designReviewPlanNeighbors, designReviewSourceRelationships } from '../../../novel-service-core/src/design-review-scope.ts';
+import { designReviewReferencedRules, designReviewEntityMentions, designReviewPlanCharacters, designReviewPlanNeighbors, designReviewSourceRelationships } from '../../../novel-service-core/src/design-review-scope.ts';
 import { createDesignReviewRun, designReviewStageInput, acceptDesignReviewStage } from '../../../novel-service-core/src/design-review-run.ts';
 import { validateDesignReview, type DesignReviewInput } from '../../../novel-service-core/src/design-review.ts';
 
@@ -359,6 +359,76 @@ test('v22 omits oversized optional biographies whole and retains mandatory sourc
   assert.ok(!staged.stage!.sourceMap.some(u => u.sourceId === 'story/characters/gu'));
   assert.ok(staged.stage!.coverage!.relatedSourceContext!.omittedSourceIds.includes('story/characters/gu'));
   for (const id of ['plan/chapters/80', 'plan/milestones/training', 'plan/chapters/83']) {
+    const units = staged.stage!.sourceMap.filter(u => u.sourceId === id);
+    assert.equal(units.map(u => staged.sources.find(s => s.id === u.id)!.text).join(''), input.sources.find(s => s.id === id)!.text);
+  }
+  assert.ok(staged.sources.some(s => s.id === 'review-question/batch-1/counters'));
+  assert.equal(followup.result, undefined);
+});
+
+
+test('v28 rule navigation uses unique exact names or bounded IDs, without aliases or transitive expansion', () => {
+  const input = request();
+  input.sources.push(
+    source('world/axioms/shared', { content: 'res_09规则及已用两剂保持不变。' }),
+    source('world/resources/next', { id: 'next', name: '后续材料' }),
+    source('world/artifacts/duplicate', { id: 'duplicate', name: '赤霞斩铁剑' }),
+    source('world/resources/tech_04', { id: 'tech_04', name: '重号材料' }),
+  );
+  input.sources.find(s => s.id === 'world/resources/res_09')!.text = JSON.stringify({ id: 'res_09', name: '延寿灵泉', reference: 'next' });
+  const before = structuredClone(input);
+  assert.deepEqual(designReviewReferencedRules(input, ['world/axioms/shared']), ['world/resources/res_09']);
+  assert.deepEqual(designReviewReferencedRules(input, ['plan/chapters/19']), []);
+  assert.deepEqual(designReviewReferencedRules(input, ['plan/chapters/20', 'review-result/old']), []);
+  assert.deepEqual(designReviewReferencedRules(input, ['story/chapterPlans/chapter-plan-18']), []);
+  assert.deepEqual(designReviewReferencedRules(input, ['plan/milestones/training']), ['world/techniques/tech_04', 'world/resources/res_09']);
+  assert.deepEqual(input, before);
+});
+
+function ruleFollowup(version: 27 | 28, oversized = false) {
+  const input = dependencyInput();
+  input.sources.find(s => s.id === 'world/axioms/shared')!.text = JSON.stringify({ content: 'res_09规则不变。' + '规则。'.repeat(11000) });
+  input.sources.find(s => s.id === 'plan/chapters/80')!.text = JSON.stringify({ chapterNumber: 80, summary: '拟用护命符，尚需核查训练。' });
+  input.sources.find(s => s.id === 'plan/milestones/training')!.text = JSON.stringify({ id: 'training', notes: '本次训练使用玄铁短剑。' });
+  input.sources.push(
+    source('world/resources/res_09', { id: 'res_09', name: '延寿灵泉', rule: '终生最多六剂。' + (oversized ? '规则不得截断。'.repeat(40000) : '完整规则。'.repeat(1800)) }),
+    source('world/artifacts/art_16', { id: 'art_16', name: '护命符', rule: '满符720小时；封存才停止损耗。' + '完整规则。'.repeat(1800) }),
+    source('world/artifacts/art_03', { id: 'art_03', name: '玄铁短剑', rule: '检查也需付费。' + '完整规则。'.repeat(1800) }),
+    source('world/resources/unrelated', { id: 'unrelated', name: '无关资源', rule: '完整规则。'.repeat(1800) }),
+  );
+  const run = createDesignReviewRun(input, undefined, version);
+  for (const stage of [...run.stages.filter(s => s.kind !== 'synthesis')]) {
+    const staged = designReviewStageInput(run, stage);
+    const unit = staged.stage!.sourceMap.find(u => u.sourceId === 'plan/chapters/80');
+    const cited = unit ? staged.sources.find(s => s.id === unit.id)! : staged.sources[0];
+    acceptDesignReviewStage(run, stage, { summary: '局部核验', checks: [{ criterion: 'counters', verdict: stage.id === 'batch-1' ? 'insufficient' : 'pass', explanation: '需核对训练', revisionAdvice: '补读原文', evidence: [{ sourceId: cited.id, quote: cited.text.slice(0, 40) }], ...(stage.id === 'batch-1' ? { awaitingSources: ['plan/milestones/training'] } : {}) }] });
+  }
+  const followup = run.stages.find(s => s.followupFor === 'batch-1/counters')!;
+  return { run, input, followup, staged: designReviewStageInput(run, followup) };
+}
+
+test('v28 co-reads complete rules referenced by shared, cited and requested sources without resolving the question', () => {
+  const current = ruleFollowup(28), old = ruleFollowup(27);
+  for (const id of ['world/resources/res_09', 'world/artifacts/art_16', 'world/artifacts/art_03']) {
+    assert.ok(!old.staged.stage!.sourceMap.some(u => u.sourceId === id));
+    const units = current.staged.stage!.sourceMap.filter(u => u.sourceId === id);
+    assert.equal(units.map(u => current.staged.sources.find(s => s.id === u.id)!.text).join(''), current.input.sources.find(s => s.id === id)!.text);
+    assert.ok(current.staged.stage!.coverage!.relatedSourceContext!.includedSourceIds.includes(id));
+  }
+  assert.ok(!current.staged.stage!.sourceMap.some(u => u.sourceId === 'world/resources/unrelated'));
+  assert.equal(current.followup.result, undefined);
+  assert.deepEqual(current.staged.stage!.coverage!.pendingChecks![0].requiredSourceIds, ['plan/milestones/training']);
+  assert.deepEqual(current.run.units, old.run.units);
+  assert.deepEqual(current.run.stages.filter(s => !s.followupFor && s.kind !== 'synthesis'), old.run.stages.filter(s => !s.followupFor && s.kind !== 'synthesis'));
+  for (const sample of [old, current]) assert.deepEqual(designReviewStageInput(JSON.parse(JSON.stringify(sample.run)), sample.followup), sample.staged);
+});
+
+test('v28 oversized optional rules are omitted whole while mandatory evidence and the question remain', () => {
+  const { staged, input, followup } = ruleFollowup(28, true);
+  assert.ok(JSON.stringify(staged.sources).length <= 240000);
+  assert.ok(!staged.stage!.sourceMap.some(u => u.sourceId === 'world/resources/res_09'));
+  assert.ok(staged.stage!.coverage!.relatedSourceContext!.omittedSourceIds.includes('world/resources/res_09'));
+  for (const id of ['plan/chapters/80', 'plan/milestones/training']) {
     const units = staged.stage!.sourceMap.filter(u => u.sourceId === id);
     assert.equal(units.map(u => staged.sources.find(s => s.id === u.id)!.text).join(''), input.sources.find(s => s.id === id)!.text);
   }

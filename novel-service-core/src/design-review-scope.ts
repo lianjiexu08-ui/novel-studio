@@ -196,3 +196,33 @@ export function designReviewEntityMentions(input: DesignReviewInput, includeChar
     return mentions.length ? [[source.id, mentions]] : [];
   }));
 }
+
+/** Locate directly named power rules in actual source records. This is only
+ * navigation: negative mentions do not establish ownership or mastery. No
+ * aliases, ambiguous identifiers, reports or transitive dependencies are used. */
+export function designReviewReferencedRules(input: DesignReviewInput, sourceIds: string[]): string[] {
+  const strings = (value: unknown): string[] => typeof value === 'string' ? [value]
+    : Array.isArray(value) ? value.flatMap(strings)
+      : value && typeof value === 'object' ? Object.values(value).flatMap(strings) : [];
+  const seeds = new Set(sourceIds);
+  const texts = input.sources.flatMap(source => {
+    if (!seeds.has(source.id) || !['world/', 'story/', 'settings/', 'plan/'].some(prefix => source.id.startsWith(prefix))) return [];
+    try { return strings(JSON.parse(source.text)); } catch { return []; }
+  });
+  const tokens = new Set(texts.flatMap(text => text.match(/[A-Za-z0-9_-]+/g) ?? []));
+  const rules = input.sources.flatMap(source => {
+    if (!['world/realms/', 'world/powerSystems/', 'world/tierLadders/', 'world/techniques/', 'world/artifacts/', 'world/resources/'].some(prefix => source.id.startsWith(prefix))) return [];
+    try {
+      const value: unknown = JSON.parse(source.text);
+      if (!value || typeof value !== 'object' || Array.isArray(value)) return [];
+      const { id, name } = value as Record<string, unknown>;
+      return [{ sourceId: source.id,
+        id: typeof id === 'string' && id && source.id.endsWith(`/${id}`) ? id : undefined,
+        name: typeof name === 'string' && name.trim().length >= 2 ? name : undefined }];
+    } catch { return []; }
+  });
+  return rules.filter(rule => !seeds.has(rule.sourceId) && (
+    rule.id && rules.filter(other => other.id === rule.id).length === 1 && (tokens.has(rule.id) || texts.includes(rule.id))
+    || rule.name && rules.filter(other => other.name === rule.name).length === 1 && texts.some(text => text.includes(rule.name!))
+  )).map(rule => rule.sourceId);
+}

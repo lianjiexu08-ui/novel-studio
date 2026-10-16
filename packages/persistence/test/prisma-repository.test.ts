@@ -100,7 +100,7 @@ test('large chapter review checkpoints resume after SQLite restart without losin
   const interrupted = (await first.get(work.id))!.candidates.get(candidate.id)!;
   assert.equal(calls, 2);
   assert.ok(interrupted.checkRuns.some(c => c.chapterReview?.stage?.result));
-  assert.equal(interrupted.checkRuns.find(c => c.chapterReview?.stage?.result)?.chapterReview?.progress?.scheduleVersion, 27);
+  assert.equal(interrupted.checkRuns.find(c => c.chapterReview?.stage?.result)?.chapterReview?.progress?.scheduleVersion, 28);
   assert.ok(interrupted.checkRuns.some(c => c.chapterReview?.stage?.failures?.[0]?.error === '第二批网络中断'));
   await first.disconnect();
   const restored = new ChapterWorkflow(second, provider, undefined, { checkPolicy: policy });
@@ -109,7 +109,7 @@ test('large chapter review checkpoints resume after SQLite restart without losin
   const saved = (await second.get(work.id))!.candidates.get(candidate.id)!;
   assert.equal(saved.checks.find(c => c.checker === chapterReviewChecker)?.status, 'passed');
   const proof = saved.checks.find(c => c.checker === chapterReviewChecker)!.chapterReview!.result!.stageProof!;
-  assert.equal(proof.scheduleVersion, 27, 'SQLite resume must retain the persisted schedule instead of treating the run as legacy');
+  assert.equal(proof.scheduleVersion, 28, 'SQLite resume must retain the persisted schedule instead of treating the run as legacy');
   assert.ok(proof.stages.some(s => s.attempts === 2 && s.failures?.[0]?.error === '第二批网络中断'));
   assert.equal((await restored.adopt(work.id, candidate.id, 0)).version.chapterNumber, 1);
 });
