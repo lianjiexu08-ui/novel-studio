@@ -1,0 +1,177 @@
+{
+  "kind": "design68_power_synthesis_disputed_claim_propagation",
+  "observedAt": "2026-10-16T11:28:36.020Z",
+  "inputHash": "3274d4710800ad02565040a341a05177b4bd7cab363e169219b562a4a0f62d01",
+  "runId": "design_run_1a9589a8-f222-4b9b-861c-99adc2d45c80",
+  "snapshotPath": "data/audit-runtimes/design68-review/power-synthesis-disputes.json",
+  "snapshotSha256": "fd6e00515f16889166d4ea0dbd7786c6ffcfb57d949634f26ab049ef0fd38dcc",
+  "frozenSourceFilesVerified": 153,
+  "stages": [
+    {
+      "id": "synthesis-5",
+      "children": [
+        "cross-1-5",
+        "cross-2-3"
+      ],
+      "requestSha256": "06b18f840556ed86522165a42b671e52440410a32d41fcc7f4dada53f867df76",
+      "stageSha256": "6a853c8570fc23187923e525e7a060a73840887b60cbe79c397ef52afe6a6a7c",
+      "savedResponsesReplayed": 1,
+      "originalSummary": "本次仅综合已纳入的cross-1-5与cross-2-3报告。已由原文补读解决的cross-2-3等待项不再传播；但cross-1-5所确认的第25章轻物御动资格缺口及后段专项款账本冲突仍未解决，且前者同时使该场同阶制敌的反制路径未完全闭合。",
+      "originalChecks": [
+        {
+          "criterion": "tiers",
+          "verdict": "revise",
+          "explanation": "规则明确凝元轻物御动须经训练实测，且小插销必须三丈内直接可见、两斤以内、未锁死、未受重物牵拉，不能把整套机构载荷隐藏在半成真元费用中。第23—26章只称林辰以御物“拉掉普通废料斗插销”并倒料遮视，未给出插销重量、距离、锁止及受力状态；该动作是制造战术窗口的关键，不能仅以“普通”推定符合基础操作资格。已解决的25—50章补读等待不改变这一项已被前置报告明确指出的具体缺口。",
+          "revisionAdvice": "在第23—26章细纲明确插销的可见距离、重量、是否锁死、是否受料斗或牵引结构载荷、徒手轻拨阻力，以及倒料机构各自的真实承力。若无法满足轻物御动门槛，改为林可用的自由销或绳扣，或改用另一项已训练并合规的动作；不得以境界名称补足操作资格。",
+          "evidenceCount": 3,
+          "evidenceSha256": "45202c1972c5095b6384df10156253cbcfd66728e57ceaecb1639f107b80e01c"
+        },
+        {
+          "criterion": "costs",
+          "verdict": "revise",
+          "explanation": "14000枚专项款的主账可按北航10000、回航3000、杂费780、结余220闭合，但同一返程里程碑对杂费拆分给出互斥数字：一处列两符12、诊费1、回执18、护寒符36、保温衣8及“其余”625，合计700，随后加港税24与后续56达到780；另一处却把同样杂费写为上述固定项加“其余”689，同时仍称税前700、税后724、最终780。固定项共75，配625才为700，配689则为764，无法并存。因此不能确认港税、回执、保暖物资及后续车宿查验是否被重复或遗漏记账。",
+          "revisionAdvice": "统一ms_v3_return及关联航程里程碑的唯一杂费分类账：逐笔列明日期、用途、金额、付款账户与累计额，确定“其余”究竟为625还是689，并使税前累计、港税24、后续56、杂费780和结余220使用同一算式。保留10000北航票、3000回航票与杂费账户的分离，且注明12枚避火符和18枚回执费只扣一次。",
+          "evidenceCount": 3,
+          "evidenceSha256": "e4b748ae38feb4f274fc58a450f6a5dff1e17b82f4b34b9d09903d7f3ffa1e4b"
+        },
+        {
+          "criterion": "counters",
+          "verdict": "revise",
+          "explanation": "反制规则本身具备有效边界：境界不自动授术，局部护罡有聚罡、受击、空档与伤后停术限制；第25章也把顾的制胜写为同阶正面承压、真光仅扰乱外放爪煞、接触推劲与墨卡足共同形成的失衡，而非低阶直接封禁玄府。然而该反制链的前提正是林以御物释放废料斗、建立顾三息蓄势所需遮挡；插销是否为合规轻小自由物未被设计确认。若该销承受料斗或锁止载荷，则林不能合法制造该窗口，顾的蓄势与墨可如何打断的场面路径便无从成立。故不能以“普通结构”替代规则要求的实际承力与操作条件。",
+          "revisionAdvice": "在修复插销资格时，同时写清倒料遮挡从何时开始、墨在林操作和顾三息蓄势期间可采取的打断路径、为何当时未能有效打断，以及遮挡仅遮视而不构成对玄府的封禁。若无法建立这条场面链，应重设顾取得蓄势窗口的合规环境条件与失败后果。",
+          "evidenceCount": 4,
+          "evidenceSha256": "224276f060b76fbfed261b64c74ff4a2664eb82b535cdb7b81fa3eda1dd21805"
+        }
+      ]
+    },
+    {
+      "id": "synthesis-8",
+      "children": [
+        "cross-4-5",
+        "followup-batch-1/tiers"
+      ],
+      "requestSha256": "8c918e805405b5d470ff85b7ed81bad73b3ff9531ead67a3b778e9be631217ba",
+      "stageSha256": "9854fceafac3786402707c07812465ab983736fe0b1b2512311421cff44068eb",
+      "savedResponsesReplayed": 1,
+      "originalSummary": "力量体系整体规则、消耗与反制安排基本闭合，但境界/功法/使用门槛仍有一处具体硬冲突：第23章墨幽屠推动滑车的重量只写为“不足六百斤”，而其个人既有推劲实测上限为三百斤，不能以通用六百斤上限替代个人门槛。",
+      "originalChecks": [
+        {
+          "criterion": "tiers",
+          "verdict": "revise",
+          "explanation": "境界、功法、法宝与基础操作已区分承载资格和实际掌握，林辰、苏凌霜、墨幽屠、顾峤的训练、实测与多数使用前置也有安排；第25章及后续轻物御动、剑诀、护罡和推劲基本遵守对象、负荷、距离与中断条件。但第23章的推劲负荷未闭合：墨幽屠开篇前个人实测总重为三百斤，世界规则中的六百斤只是通用上限；章纲仅写滑车与散装料“不到六百斤”，无法证明不超过三百斤，因此该次动作可能越过角色实际承载门槛。",
+          "revisionAdvice": "修正第23章及承接执行账，明确滑车连车身、散装料的实际总重不超过墨幽屠三百斤个人实测上限，并保留轮轴完好、无锁止、平地、稳定立足和一息推劲等条件；若实际重量超过三百斤，则删除该次推劲或改为普通机械、多人协力等已具备依据的行动。同步统一现场观察、角色认知和后续账目中的重量口径，不能继续以“不足六百斤”证明个人资格。",
+          "evidenceCount": 4,
+          "evidenceSha256": "fe334204e18a28394356d81db725cce28637e4146c9bc0f2adc8f359f035c058"
+        },
+        {
+          "criterion": "costs",
+          "verdict": "pass",
+          "explanation": "所给前置报告中的力量账基本按人物、账户和资源类型分开：真元、元罡、寿储、可用神识不互相折算；术法、晋阶和恢复分别记账。第25章顾峤的真光寿储与元罡支出未扣入林辰账户，疗伤和灵泉疗程也没有被直接写成延寿收入；轻物御动、剑诀、局部护罡及后续航款、符具和救济款均有剂量、支付时点、库存或实物归属限制。未见本批报告之间对这些分账安排的具体否定。",
+          "revisionAdvice": "",
+          "evidenceCount": 6,
+          "evidenceSha256": "0c9ffdf84ce13ee350326e9eb89686dddd684fc398136ed06c6fa41cedcc4b8e"
+        },
+        {
+          "criterion": "counters",
+          "verdict": "pass",
+          "explanation": "能力上限与反制条件具体且能落到行动：轻物御动限定为可见、轻小、未受力目标，不能承担整车或受力绳索；局部护罡有部位、持续时间、间隔、受击费用和被换落点或连续攻势反制；推劲要求真实接触、立足和个人实测负荷，不能隔空、越阶或保证击倒；剑诀与血爪分别受锁定、距离、冷却、伤势和积毒限制。第25章同阶制敌依赖真光克制外放血爪、三息蓄势、接触站位和推劲时机，并保留墨受伤停术而非被属性相克直接降境；第43—44章也没有把轻钩或断索写成持续御船。",
+          "revisionAdvice": "",
+          "evidenceCount": 8,
+          "evidenceSha256": "fd35bbdcc26d2231504e1c6d5896c44e28bdfef7fa7345c5b9942543aa4e5763"
+        }
+      ]
+    }
+  ],
+  "adjudication": [
+    {
+      "stages": [
+        "cross-1-5",
+        "synthesis-5"
+      ],
+      "criteria": [
+        "tiers",
+        "counters"
+      ],
+      "status": "missing_specification_claim_refuted_by_frozen_chapters",
+      "explanation": "The synthesis repeats the short milestone omission as an omission from the design, and extends that premise to counters. Chapters23/25 already specify mass, visible distance, unloaded plate, separate mechanical load-bearing and half-unit payment. The inherited negative is preserved, but repetition does not independently corroborate its premise.",
+      "evidence": [
+        {
+          "id": "plan/chapters/23",
+          "sha256": "43c7d8f504637f0cc3615de61a3653a24447de23fbe21861974261a514f257ae",
+          "quote": "林沿已核外侧观察口对照旧图，确认低顶侧廊、废料斗轻小插销和朝侧廊落料的方向。秦的旧细绳只用于比划已见距离；不提前拔销，也没有穿过巡守内线去实开机关。林指出普通落料能挡直扑视线，挡不住玄府破开，须由顾实际迎敌才有用。 他同时核清：可拨的小销约八两，只锁空载拨片，满斗重量由支轴和闸钩承受；拨片释放既有机械闸钩，落料靠重力，不把满斗载荷藏进御物费。实际出手仍须进入三丈内直视范围。"
+        },
+        {
+          "id": "plan/chapters/25",
+          "sha256": "3d80bc32c48a57da2cfabc0edf942628eb583ea0577a76c94e3f359b44d35c80",
+          "quote": "林辰在两丈内直视第23章核过的八两小销，御动一息拨销，预付半成真元；小销只锁空载拨片，承重的支轴与闸钩由原有机械关系释放，倒料靠重力形成遮挡。落石割伤他的腿；不以御物托斗或搬矿料。"
+        }
+      ],
+      "limitation": "This refutes the asserted absent specification; it is not a blanket approval of the combat, machinery or future prose."
+    },
+    {
+      "stages": [
+        "cross-1-5",
+        "synthesis-5"
+      ],
+      "criteria": [
+        "costs"
+      ],
+      "status": "category_and_period_mismatch",
+      "explanation": "The second account includes clothing8 inside the residual689, whereas the earlier625 excludes it and precedes the later56. Synthesis5 incorrectly keeps clothing8 outside both residuals and treats the later cumulative residual as a competing earlier subtotal.",
+      "evidence": [
+        {
+          "id": "plan/milestones/ms_v3_return",
+          "sha256": "81422021762f5767ae22e2903495a7e04619a27cb68a9ffb08e899fd7e2c3069",
+          "cost": "苏失去本期真传外派机会，贺的往返垫款需验收结算；林没有夺到第二片，不能拿钥匙解决封锁。 新限程单占用原巡队本轮一次出港核验及纸单回收追查责任，原队因此缩减一处例行沿岸巡查，夜也不因先离港而免除具名责任。沿岸车费、驿站食宿和验籍仍在原1000杂费额度内据实列支，归入同一累计780，不挪封存3000、不把许可当作免费车船票；本次明确回执两段寄递费18，归入原杂费而非新增收入或另加在780外。 本次入港24从既有杂费额度内细分，非在780之外另收：310日验籍前已付杂费累计700（含271两符12、290诊费1、303两段回执寄递18，275护寒符36、保温衣8，以及此前实际车费、医药、食宿、供暖与查验625），原1000额度尚余300；当场付24后累计724、余276，310夜港内客舍与311–314返程车路住食查验再实付56，累计780、余220。700和56是本次候选对原未拆明杂费的规划分配，须后续对应章节逐笔实现；不能当作既有正文付款证据。上述数字不包含已单独结清的10000北航与3000回航票，不挪用或重复记账。",
+          "outcome": "第301–315日。苏林的分路变为有分歧的协作。315日结算的是271日起同一笔14000专项垫款的累计账：275日赤霄极焱至北境葬骨两席北航票共10000已在前段实付，不是本返乡段的新支出；303日北境通天至青玄沧溟两席回航票各1500、共3000在本段实付。两航段分开，不重扣10000，也不把封存3000再记成收入。杂费累计780，包括271两符12、290诊费1、303两段回执寄递18、310入青玄港税费24、275护寒符36及其余车费、保温衣、医药、食宿、供暖、查验689；310税前累计700、付税后724，310夜至314实付56后才达到780，港税已在原768中细分，不重复加收；14000−10000−3000−780=220。结余220由贺另袋封存，待实际返赤霄交回商盟，不记已经交款或转成林的寿药钱。 回执两段18已于303实付，315结算时第二段在途，尚不能记夜已签收或担保已结清；正常318实体到件仅在后续里程碑入账。"
+        }
+      ],
+      "equations": [
+        "12+1+18+36+8+625=700",
+        "700+24=724",
+        "724+56=780",
+        "8+625+56=689",
+        "12+1+18+24+36+689=780",
+        "14000-10000-3000-780=220"
+      ],
+      "limitation": "Checks planned arithmetic only. Future chapters must still establish the actual payments."
+    },
+    {
+      "stages": [
+        "followup-batch-1/tiers",
+        "synthesis-8"
+      ],
+      "criteria": [
+        "tiers"
+      ],
+      "status": "character_attribution_refuted_with_residual_load_ambiguity",
+      "explanation": "Three hundred jin belongs to Gu, not Mo. Mo has tested a cart no heavier than600, but the source does not identify that measured load or establish that the chapter23 load is within it. Keep this actual ambiguity; neither assign Gu’s300 to Mo nor infer that Mo measured600.",
+      "evidence": [
+        {
+          "id": "story/characters/char_04",
+          "sha256": "1ce5574a4294abbed63e716b16812f65cd4d9df0c8d3dd306f33e0348135eb35",
+          "name": "墨幽屠",
+          "identity": "幽罗殿枉死黑窟少主、古境掳人行动组织者，现为玄府境；交接封存货物不等于能启封神海门槛的死息，也未炼成自己的万鬼幡。 作者开篇前技能设定：墨已从枉死黑窟教习处取得并修习幽冥噬血爪，完成以本境元罡聚爪、近身落点、一息主动收爪、连续最多三息及停六息后重新起爪的受控训练与实测；门内医修曾检查指骨和经脉并告知积毒、麻木、失准和流血不止的停术界限。此处只确立已学前史，不保证187、188日的伤情或余量合格；两次实际出爪仍按章纲逐息付费和现场症状限制，不靠身份免除代价。 同一开篇前修习中已由门内教习指导完成ax_13短促推劲的立足、接触一息聚罡与主动停劲，曾将不超过六百斤的无锁普通滑车沿平地滚开一步并经医修复核；未获得隔空移车、轻物御动搬重物或受伤后自动合格的资格。"
+        },
+        {
+          "id": "story/characters/char_10",
+          "sha256": "728c48169654c91d23217351487954ec4b301207fc6685bb2ca85654f5105c01",
+          "name": "顾峤",
+          "identity": "太清玄府剑修、古境当值护送执事；已修成玄府可用剑诀、元罡护体与地阶太清太乙真光。真光须三息结印、每次付三成元罡和0.25元载，同场只准一印，受伤与冷却仍按功法限制执行；玄府身份本身不等于自动掌握宗门所有术法。他没有王器、跨境瞬移和无限元罡。 作者开篇前技能设定：顾已由宗门师长指导完成玄府纯阳供能、三息凝印与主动收势的受控训练和实测，经脉复诊合格；这是既有修习背景，不代表后续伤情、余量或冷却自动满足，亦不把未来神海训练计为已完成。 开篇前另已完成ax_12局部护罡的低负荷实测，以及ax_13贴身运罡的推劲、定腕训练和受控摔解实测；只在实际接触、站位和伤情允许时使用，不把未具名“玄府剑诀”当作本场额外攻击。 上述开篇前两项基础操作另有各自资格记录：同一宗门已掌握者实际指导顾完成局部掌大聚罡、主动收束，并用轻木棍及普通铁刃作受控低负荷擦击实测；事后由宗门医修复诊，确认测试处与运罡气路稳定，才准将ax_12列入已掌握操作。贴身运罡另完成握持、立足、单侧导罡和主动停术训练，在轮轴完好、平地无锁止的普通滑车上实测一次推移一步，个人本次已测总重只记三百斤；再由自愿配合者完成低负荷推压、脱手和定腕测试，医修随后确认双侧使用肢体气路稳定。三百斤不是托举能力，也不把世界规则六百斤上限当作本人实测，更不等于可强制摔倒同阶敌人。上述均在开篇前完成，未挪用188日交战期间练习、恢复或诊察；真光仍按原独立凝印实测和经脉复诊记录。25章前无新增伤情，使用时仍核当场余量、接触、立足、冷却；25章右肩受伤即停止推劲及该侧施术，不因旧资格合格而恢复。26章如用左手有限定腕，必须按原实检左侧及全身气路仍稳、余额和对象允许才施，任一失稳即停。此为作者可核的既有背景，不赋予林苏尚未获知的精确训练经历。"
+        }
+      ],
+      "chapterEvidence": {
+        "id": "plan/chapters/23",
+        "sha256": "43c7d8f504637f0cc3615de61a3653a24447de23fbe21861974261a514f257ae",
+        "quote": "众人隔木缝见墨以肉身近前扣住一名失误看守的手腕，再以噬血爪擦伤其裸露前臂；该看守当时未施护体术，不涉及破开凝元自动护体；只施一息即收，指骨黑纹加深。墨割指放血后以随身布压住浅口，待至少六息、出血已止，确认双掌仍能稳定握持、无麻木或失准，再双掌贴车架按ax_13聚罡一息、推劲一息，将挡路滑车沿平地滚开一步。车身与散装料合重不到六百斤，轮轴可转、闸块已经由原装车看守取下，不是整辆囚笼重车；若闸未解就不得按本操作硬推。林看见其手脚仍稳，放弃趁放血偷袭的念头。编辑执行账：本次出爪前墨实际可用余量至少八成，出爪一息预付一成后至少七成；推劲另预付二成后至少五成，两种操作不同时维持，聚劲失手也不退费。这是墨本人的保守实检下界，旁观三人只见动作、黑纹、止血和推车，不知道余额。放血仅缓解表层胀痛，黑纹仍留，不返还法力；后续麻木、失准或再出血时必须停术就医。"
+      },
+      "candidateStatus": "Unapplied candidatev16 proposes Mo measured500/cart480 as new authored values, not recovered historical facts. It remains subject to four-area reconciliation and fresh review."
+    }
+  ],
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "originalVerdictsChanged": false,
+  "questionsClosed": 0,
+  "formalAcceptance": false,
+  "nextStep": "Trace these claims into the complete power report. Re-review with complete relevant primary sources; do not alter correct facts merely to satisfy repeated negatives. Schedule27 protects unresolved negative verdicts but does not adjudicate whether their semantic claims are true."
+}
