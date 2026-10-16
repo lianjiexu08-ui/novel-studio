@@ -1,0 +1,196 @@
+{
+  "kind": "design68_story_false_unresolved_deferral_claim",
+  "observedAt": "2026-10-16T15:18:14.065Z",
+  "inputHash": "3274d4710800ad02565040a341a05177b4bd7cab363e169219b562a4a0f62d01",
+  "runId": "design_run_f5e8db99-b684-444d-b04e-50630e3cf3b4",
+  "snapshotPath": "data/audit-runtimes/design68-review/story-resolution-dispute.json",
+  "snapshotSha256": "51e01ed0587e96c17ee1b47c3360dcc508cf8107abf431d266df2ad119536f71",
+  "frozenSourceFilesVerified": 153,
+  "records": [
+    {
+      "stageId": "cross-4-5",
+      "stageSha256": "0c48ae0c0c16445f062a6d222e099f72d59cafdad64716cb73e723363031feb8",
+      "requestSha256": "4e8e154819316f9624505f70862635c86f70cbcd8814ebfd913f979ee7f866a0",
+      "originalCheck": {
+        "criterion": "timeline",
+        "verdict": "pass",
+        "explanation": "第43章与第44章均定位在244日戌初：第43章停于钩索绷直、林握剑待施术；第44章从同一瞬间切索，随后在同一短窗口内完成护桩卡船、验板、三人过板和递浮圈，且把落水者实际拉上低舷留到第45章开场。第45—50章日期继续推进至247、250、251、252、253和254日，船修至255午、伤情与余额限制均连续保留，未发现时间跳跃或重复兑现。",
+        "revisionAdvice": "",
+        "resolves": [
+          "batch-5/timeline"
+        ]
+      },
+      "evidenceSha256": "e42caeea97ae23c43d091687233e0d28b074108f226c806430f7ed893f9e817c",
+      "evidenceCount": 6,
+      "responsesReplayed": 1
+    },
+    {
+      "stageId": "followup-cross-3-5/timeline",
+      "stageSha256": "5f30d78adb6820e0751de62b5508225c454ae29ae2061b8a3700e2c22426168a",
+      "requestSha256": "e811463280506606a2d6b0109942868627619c8c42bac9c8982259ff8d6082a2",
+      "originalCheck": {
+        "criterion": "timeline",
+        "verdict": "pass",
+        "explanation": "第43章明确发生在244日戌初：林先敲岸钟，随后登船跟近，凝元伙计以一次轻物御动挂住拖环后立即停术；第44章明确紧接该钩索拖偏瞬间，从切索开始，未重复报警、登船或挂钩。切索、驳艉摆动、护桩顶船、贺船搁浅、唐验板并依次过船均被安排在同一十余息窗口内；第44章末只完成唐许冯到贺船及落水者抓住浮圈，第45章才承接拉上低舷和巡艇分趟接人，没有重复消费救援动作。第1、18、19章的开篇伤情、凝元与181—183日行程，及第50章254日结局，也未与该段发生不相容的时空重叠。",
+        "revisionAdvice": "",
+        "resolves": [
+          "cross-3-5/timeline"
+        ]
+      },
+      "evidenceSha256": "3fafefbf8489f06612f1b9317359004e1648fe10fe031c7d49e630d2992364b2",
+      "evidenceCount": 8,
+      "responsesReplayed": 1
+    },
+    {
+      "stageId": "synthesis-22",
+      "stageSha256": "c99ef789c123d784cf1f027d0b1991af6732c865cff39f0377e70ab2681d4009",
+      "requestSha256": "0f855fe4eaa57057477dfe10e962cc0970653d8bf61686170d41de8201e3d509",
+      "originalCheck": {
+        "criterion": "timeline",
+        "verdict": "insufficient",
+        "explanation": "已纳入的日期链大体连续：第43章为244日戌初，第44章从同一钩索拖偏瞬间接续，第45—50章推进至247—254日，并保留255日船坞交检。可是前置综合报告仍将“第43章末时点、报警、两船位置与第44章十余息窗口”的正式核对列为未解决等待项；本次综合没有对应的 resolvedDeferrals 记录，不能仅凭同批附带的第43章片段把该等待视为已完成复核。因此无法把全项时间验收判为通过，也不应把这一工作流缺口误写成已证实的故事冲突。",
+        "revisionAdvice": "完成并登记针对第43章与第44章衔接的正式补读复核：核对244日戌初的报警时刻、登船和钩索拖偏是否确实停在第44章切索前，以及相关施术消耗和救援窗口是否未重复计算；若核对无误，再关闭该等待项。"
+      },
+      "evidenceSha256": "d13fb49cca1317c3ae596b36b7e440274ceabce58f420f10c924688f7293a4fe",
+      "evidenceCount": 5,
+      "responsesReplayed": 1
+    }
+  ],
+  "responsesReplayed": 3,
+  "deliveredResolvedDeferrals": [
+    {
+      "checkId": "batch-1/causality",
+      "resolvedByStageId": "followup-batch-1/causality"
+    },
+    {
+      "checkId": "batch-1/timeline",
+      "resolvedByStageId": "followup-batch-1/timeline"
+    },
+    {
+      "checkId": "batch-1/payoff",
+      "resolvedByStageId": "followup-batch-1/payoff"
+    },
+    {
+      "checkId": "batch-1/opening",
+      "resolvedByStageId": "followup-batch-1/opening"
+    },
+    {
+      "checkId": "batch-1/pacing",
+      "resolvedByStageId": "followup-batch-1/pacing"
+    },
+    {
+      "checkId": "batch-1/growth",
+      "resolvedByStageId": "followup-batch-1/growth"
+    },
+    {
+      "checkId": "batch-4/causality",
+      "resolvedByStageId": "followup-batch-4/causality"
+    },
+    {
+      "checkId": "batch-4/growth",
+      "resolvedByStageId": "followup-batch-4/growth"
+    },
+    {
+      "checkId": "batch-5/causality",
+      "resolvedByStageId": "cross-4-5"
+    },
+    {
+      "checkId": "batch-5/timeline",
+      "resolvedByStageId": "cross-4-5"
+    },
+    {
+      "checkId": "cross-1-2/causality",
+      "resolvedByStageId": "followup-cross-1-2/causality"
+    },
+    {
+      "checkId": "cross-1-2/timeline",
+      "resolvedByStageId": "followup-cross-1-2/timeline"
+    },
+    {
+      "checkId": "cross-1-2/growth",
+      "resolvedByStageId": "followup-cross-1-2/growth"
+    },
+    {
+      "checkId": "cross-2-3/causality",
+      "resolvedByStageId": "followup-cross-2-3/causality"
+    },
+    {
+      "checkId": "cross-2-3/timeline",
+      "resolvedByStageId": "followup-cross-2-3/timeline"
+    },
+    {
+      "checkId": "cross-2-3/payoff",
+      "resolvedByStageId": "followup-cross-2-3/payoff"
+    },
+    {
+      "checkId": "cross-2-3/genre",
+      "resolvedByStageId": "followup-cross-2-3/genre"
+    },
+    {
+      "checkId": "cross-2-3/growth",
+      "resolvedByStageId": "followup-cross-2-3/growth"
+    },
+    {
+      "checkId": "cross-2-4/causality",
+      "resolvedByStageId": "followup-cross-2-4/causality"
+    },
+    {
+      "checkId": "cross-2-5/causality",
+      "resolvedByStageId": "followup-cross-2-5/causality"
+    },
+    {
+      "checkId": "cross-2-5/timeline",
+      "resolvedByStageId": "followup-cross-2-5/timeline"
+    },
+    {
+      "checkId": "cross-3-5/causality",
+      "resolvedByStageId": "followup-cross-3-5/causality"
+    },
+    {
+      "checkId": "cross-3-5/timeline",
+      "resolvedByStageId": "followup-cross-3-5/timeline"
+    }
+  ],
+  "childTimelineChecks": [
+    {
+      "stageId": "synthesis-7",
+      "check": {
+        "criterion": "timeline",
+        "verdict": "pass",
+        "explanation": "已展开部分的日期、出发与抵达安排能够区分并行队伍和交接时点：第181—183日抵达古境，第184—188日完成侦察、送信、救援与交押，第212—216日经陆路及实体航线抵港；第43—45章的244日夜间救援窗口也按报警、登船、切索、过板和后续接人分段承接。51—100章采用卷段和里程碑安排，章节范围连续覆盖至100章，未出现宏观边界重叠或先抵达后出发的明示冲突。",
+        "revisionAdvice": ""
+      },
+      "evidenceSha256": "bf9c84f6d4be2c33fbc892ee659991e2e1f71b42fa859e19e86cb646b35ce75c"
+    },
+    {
+      "stageId": "synthesis-8",
+      "check": {
+        "criterion": "timeline",
+        "verdict": "pass",
+        "explanation": "已补读的43章把行动定在244日戌初，且停在林尚未施剑、钩索已拖偏的瞬间；44章明确从同一瞬切索，不重报岸钟、不重登船。其后救援与接应被分置：44章只完成过板和固定浮圈，45章才由巡艇分趟接人。前置报告所核45—50章继续推进至254日，并保留255午船坞交检的时间条件，未显示同一人物不相容的地点重叠或抵达早于前置行动。",
+        "revisionAdvice": ""
+      },
+      "evidenceSha256": "f7d52c95021e1c1198322fbf05d7747a6dfbfcda3aafc28f29a74c20fcd52493"
+    }
+  ],
+  "disputes": [
+    {
+      "id": "resolved_timeline_reopened",
+      "stageId": "synthesis-22",
+      "criterion": "timeline",
+      "parentPath": [
+        "synthesis-22",
+        "synthesis-29",
+        "synthesis-32",
+        "synthesis-34",
+        "synthesis-35"
+      ],
+      "correction": "综合22的实际请求已携带全部23项有效解决记录；其引用的batch-5/timeline由cross-4-5解决，同类cross-3-5/timeline也已由定向补读解决。两个直接子报告时间判断均通过。报告声称没有resolvedDeferrals，与实际请求不符，不能据此修改正确章纲或重复关闭同一问题。"
+    }
+  ],
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "originalVerdictsChanged": false,
+  "designApproved": false,
+  "limitation": "This verifies the delivered validated resolution metadata and preserves the new formal insufficient judgment. It does not silently downgrade that judgment or guarantee a later synthesis will retract it; trace the actual final aggregation separately."
+}
