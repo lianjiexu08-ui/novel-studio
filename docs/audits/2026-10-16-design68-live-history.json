@@ -1,0 +1,40 @@
+{
+  "kind": "design68_independent_live_repository_history_read",
+  "startedAt": "2026-10-16T10:44:20.400Z",
+  "completedAt": "2026-10-16T10:44:22.940Z",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "planId": "plan_762f53fa91014e14a248b74d750d6a6c",
+  "inputHash": "3274d4710800ad02565040a341a05177b4bd7cab363e169219b562a4a0f62d01",
+  "protectedHash": "b3aa7277292c1e74a5b411926af4c3aab28d0b69ff67a2a0603cd4165184d47d",
+  "equalsPreparedBaseline": true,
+  "baselineSha256": "fbaba8953d2a720329febddde80aa66b43f28ace3460513ac7b8880338ea7b37",
+  "frozenSourceFilesVerified": 153,
+  "counts": {
+    "chapterVersions": 101,
+    "events": 383,
+    "manuscripts": 1,
+    "candidates": 116,
+    "plans": 68,
+    "retainedOldReviewRuns": 65,
+    "retainedOldReports": 71
+  },
+  "revisions": {
+    "world": 34,
+    "bible": 65,
+    "proposalPlan": 68,
+    "approvedPlan": 10,
+    "detailedOutlines": 50
+  },
+  "worker": {
+    "pid": 45384,
+    "liveBeforeAndAfterRead": true,
+    "segment": 2,
+    "beforeCalls": 130,
+    "afterCalls": 130
+  },
+  "method": "A separate process loaded the current production aggregate with the frozen PrismaWorkRepository.get, recomputed the same protected-content hash as preparation, and compared every baseline old review run/report hash. No reliance on worker protectedHistoryUnchanged.",
+  "productionWrites": 0,
+  "modelCalls": 0,
+  "formalAcceptance": false,
+  "limitation": "The repository performs several reads rather than a single atomic database snapshot. Protected content and old reviews match their preparation baseline; new in-flight review records are intentionally not compared for checkpoint equality. This does not prove content quality, future preservation, or the completeness of the final manuscript."
+}
