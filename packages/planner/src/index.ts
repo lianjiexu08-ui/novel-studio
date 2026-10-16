@@ -163,6 +163,8 @@ const narrativePlanningGuidance = `
 必要的核账、交接、查证和等待应保留因果与信息来源，但可以压缩为过渡；除非其本身产生新的利益冲突和局面变化，不要连续用取得下一份材料、等待下一次问询作为章节终点。配角须有自己的行动、利益和拒绝权，不只是提供线索或提醒规则。
 境界差距、功法代价、地形和当地环境应改变角色可采取的行动及结果，而不只是换名背景。不得为增强戏剧性新增未定义能力、豁免伤势或凭空安排资源。summary/scenes 重点写具体动作、感知和局面转变；将必要的预算与限制集中在 cost/endState 等对应字段，避免每场反复解释同一规则。`;
 
+const planningFactsGuidance = `\nadoptedFacts.events 按章节和章内实际采纳顺序提供全部仍有效的已存事实事件，不只最近几章；id、chapterVersionId 和 storyTime 用于核对事件来源与故事时间，不得按随机ID或绝对日期重新排序。先核早期收入、历次支出、物品流转及已经兑现的承诺，再安排后续行动；一次动作、增减额和余额须按原字段区分，不能重复领取或重置。recentChapters 只是最近正文的开头摘录，excerptTruncated 为 true 表示还有未提供的正文，不能据摘录断言某事未发生。全量已存事件也不证明事件抽取穷尽了正文，缺少必要依据时明确保留问题，不编造来源。reachedChapter 仅表示从第一章起连续采纳的进度；提案、新版设定和尚未采纳的改写不能把历史事件变成新版事实。\n`;
+
 /**
  * Model-backed book planner: a skeleton (volumes, climaxes, dependencies), then
  * chapter outlines one group at a time. Output is only ever a proposal; the
@@ -175,7 +177,7 @@ export class JsonBookPlanner {
 
   async generatePlanSkeleton(input: BookPlanningInput & { targetChapterCount: number; volumeCount: number; previousPlan?: unknown; retainedQuestions?: UnresolvedQuestion[] }): Promise<PlanSkeletonContract> {
     return completeValidated(this.client, {
-      system: planSkeletonSystem + questionRetentionGuidance + narrativePlanningGuidance + (input.targetChapterCount >= 450
+      system: planSkeletonSystem + questionRetentionGuidance + narrativePlanningGuidance + planningFactsGuidance + (input.targetChapterCount >= 450
         ? '\n这是450章扩展的紧凑骨架：每个卷的 goal/opposition/climax/endState/carryOver 各不超过40字，setup最多2条且每条不超过30字；milestones保持紧凑但每卷至少保留一个高潮，每项 setup 最多2条且每条不超过25字；dependencies保留关键因果；openQuestions如实保留尚未解决的阻塞，不得为压缩篇幅返回假空数组；不要生成任何chapter outlines。'
         : ''),
       user: JSON.stringify({
@@ -201,7 +203,7 @@ export class JsonBookPlanner {
       chapterPlans: input.storyBible.chapterPlans?.filter((chapter) => chapter.chapterNumber >= input.from && chapter.chapterNumber <= input.to),
     } : undefined;
     return completeValidated(this.client, {
-      system: chapterOutlineSystem + narrativePlanningGuidance + '\nscenes 字段必须是字符串数组，每个元素是一句场景描述，不得返回对象。\nreplacingOutlines 是本批被替换的原章纲；可重构场面，但其 executionChecks 的 id、requirement、sourceQuestion 必须原样保留，不能因重生成删除或改写验收要求。可追加本章确需的独立要求，每章合计最多24项。每项格式为 {id,requirement,sourceQuestion?}；requirement须说明正文可验证的行动、代价或认知边界。sourceQuestion 仅在该要求直接回答 worldPack.unresolvedQuestions、storyBible.unresolvedQuestions 或 plan.openQuestions 中的具体问题时填写 {document:"world|story|plan",questionId}，须匹配对象、人物、时段和因果链；不能只因同属旅行、资源或认知主题就关联。没有准确对应问题时省略 sourceQuestion，不要编造问题，也不把关联当作问题已解决。',
+      system: chapterOutlineSystem + narrativePlanningGuidance + planningFactsGuidance + '\nscenes 字段必须是字符串数组，每个元素是一句场景描述，不得返回对象。\nreplacingOutlines 是本批被替换的原章纲；可重构场面，但其 executionChecks 的 id、requirement、sourceQuestion 必须原样保留，不能因重生成删除或改写验收要求。可追加本章确需的独立要求，每章合计最多24项。每项格式为 {id,requirement,sourceQuestion?}；requirement须说明正文可验证的行动、代价或认知边界。sourceQuestion 仅在该要求直接回答 worldPack.unresolvedQuestions、storyBible.unresolvedQuestions 或 plan.openQuestions 中的具体问题时填写 {document:"world|story|plan",questionId}，须匹配对象、人物、时段和因果链；不能只因同属旅行、资源或认知主题就关联。没有准确对应问题时省略 sourceQuestion，不要编造问题，也不把关联当作问题已解决。',
       user: JSON.stringify({
         task: 'generate_chapter_outlines', from: input.from, to: input.to, title: input.title, covenant: input.covenant, authorRequest: input.authorRequest,
         plan: input.skeleton, previousOutlines: input.before, followingOutlines: input.after, replacingOutlines: input.replacing ?? [], worldPack: input.worldPack, storyBible, adoptedFacts: input.adoptedFacts,

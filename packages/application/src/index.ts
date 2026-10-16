@@ -28,8 +28,10 @@ export interface DesignProvider {
 /** What has actually been written, so plan expansion builds on adopted text instead of the old blueprint alone. */
 export interface AdoptedFacts {
   reachedChapter: number;
-  recentChapters: Array<{ chapterNumber: number; excerpt: string }>;
-  events: Array<{ chapterNumber: number; eventType: string; subjectId: string; predicate: string; value: unknown; evidence: string }>;
+  recentChapters: Array<{ chapterNumber: number; versionId: string; excerpt: string; excerptTruncated: boolean }>;
+  /** All active stored events, not a recent tail or a complete prose transcript. */
+  eventSelection: 'all_active_events';
+  events: Array<{ id: string; chapterVersionId: string; chapterNumber: number; storyTime?: number; eventType: string; subjectId: string; predicate: string; value: unknown; evidence: string }>;
   realization: NodeRealization[];
 }
 
@@ -245,12 +247,17 @@ export class ChapterWorkflow {
     const ordered = resolveStoryEventOrder(work, [...work.events.values()].filter(event => event.active));
     if (ordered.issues.length) throw new AdoptionBlocked(ordered.issues.join('; '));
     const revision = activePlan(work);
-    const reached = revision ? planRealization(work, revision).reachedChapter : work.adoptedVersions().length;
+    let reached = 0;
+    while (work.currentVersion(reached + 1)) reached += 1;
     return {
       reachedChapter: reached,
-      recentChapters: work.adoptedVersions().slice(-10).map((version) => ({ chapterNumber: version.chapterNumber, excerpt: version.content.slice(0, 400) })),
-      events: ordered.events.slice(-200)
-        .map((event) => ({ chapterNumber: event.chapterNumber, eventType: event.eventType, subjectId: event.subjectId, predicate: event.predicate, value: event.value, evidence: event.evidence })),
+      recentChapters: work.adoptedVersions().slice(-10).map((version) => ({ chapterNumber: version.chapterNumber, versionId: version.id, excerpt: version.content.slice(0, 400), excerptTruncated: version.content.length > 400 })),
+      // Early income, spent resources and paid promises remain constraints even
+      // after hundreds of later events. Never silently replace this ledger with
+      // a recent window; provider capacity errors must leave the proposal unsaved.
+      eventSelection: 'all_active_events',
+      events: ordered.events
+        .map((event) => ({ id: event.id, chapterVersionId: event.chapterVersionId, chapterNumber: event.chapterNumber, storyTime: event.storyTime, eventType: event.eventType, subjectId: event.subjectId, predicate: event.predicate, value: event.value, evidence: event.evidence })),
       realization: revision ? planRealization(work, revision).nodes.filter((node) => node.due || node.evidence.length) : [],
     };
   }
