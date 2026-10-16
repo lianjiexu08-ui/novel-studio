@@ -8,7 +8,8 @@ const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const hash = value => sha(JSON.stringify(value));
 const fileHash = file => sha(fs.readFileSync(file));
 const control = 'data/audit-runtimes/design70-review';
-const checkpointPath = `${control}/result.json`, state = read(checkpointPath), baseline = read(`${control}/baseline.json`);
+const liveCheckpointPath = `${control}/result.json`, checkpointBytes = fs.readFileSync(liveCheckpointPath);
+const state = JSON.parse(checkpointBytes), baseline = read(`${control}/baseline.json`);
 const binding = read('data/audit-runtimes/design70-runtime-bound.json');
 assert.ok(['completed', 'stopped_after_failure', 'stopped_after_budget', 'stopped_by_signal'].includes(state.status));
 let alive = false; try { process.kill(state.pid, 0); alive = true; } catch (error) { assert.equal(error.code, 'ESRCH'); }
@@ -72,12 +73,17 @@ try {
 const previous = read('docs/audits/2026-10-17-design69-review30-result.json');
 assert.equal(fileHash(previous.checkpointPath), previous.checkpointSha256);
 if (state.status === 'completed') assert.deepEqual(state.runs.map(run => run.input.area).sort(), baseline.areas.map(area => area.area).sort());
+assert.equal(fileHash(liveCheckpointPath), sha(checkpointBytes), 'Checkpoint changed during verification');
+const checkpointPath = `${control}/terminal-segment-${state.segment}.json`;
+if (fs.existsSync(checkpointPath)) assert.equal(fileHash(checkpointPath), sha(checkpointBytes));
+else fs.writeFileSync(checkpointPath, checkpointBytes, { flag: 'wx' });
 const proof = { observedAt: new Date().toISOString(), status: state.status, workerPid: state.pid, workerAbsent: true,
   checkpointPath, checkpointSha256: fileHash(checkpointPath), runtimePath: binding.runtimePath,
   sourceCommit: binding.sourceCommit, totalCalls: state.totalCalls, errors: state.errors, replays, preserved,
   reports: state.reports.map(({ id, area, status, summary }) => ({ id, area, status, summary })),
   verificationModelCalls: 0, productionWrites: 0, formalAcceptance: false, proseGenerated: false };
-const proofPath = 'docs/audits/2026-10-17-design70-review-result.json';
+const proofPath = state.status === 'completed' ? 'docs/audits/2026-10-17-design70-review-result.json'
+  : `docs/audits/2026-10-17-design70-review-stopped-segment-${state.segment}.json`;
 assert.ok(!fs.existsSync(proofPath), 'Keep earlier verification evidence');
 fs.writeFileSync(proofPath, JSON.stringify(proof, null, 2) + '\n', { flag: 'wx' });
 console.log(JSON.stringify({ status: proof.status, totalCalls: proof.totalCalls,
