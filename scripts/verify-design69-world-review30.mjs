@@ -67,7 +67,7 @@ try {
     return { protectedHash, oldRunsUnchanged: baseline.oldRuns.length, oldReportsUnchanged: baseline.oldReports.length,
       runs: work.designReviewRuns.size, reports: work.designContentReviews.size, plans: work.plans.size,
       versions: work.versions.size, events: work.events.size, approvedPlanRevision: work.plans.get(work.activePlanId).revision };
-  });
+  }, { maxWait: 30_000, timeout: 120_000 });
 } finally { await prisma.$disconnect(); }
 const stopped = read('docs/audits/2026-10-17-design69-review-stopped.json');
 assert.equal(fileHash('data/audit-runtimes/design69-review/result.json'), stopped.checkpointSha256);
