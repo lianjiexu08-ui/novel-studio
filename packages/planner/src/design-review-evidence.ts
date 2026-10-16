@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 import { anchoredDesignReviewResultSchema, designReviewResultSchema } from 'novel-studio-contracts';
-import { DesignReviewError, validateDesignReview, type DesignReviewInput } from '../../../novel-service-core/src/design-review.ts';
+import { DesignReviewError, validateDesignReview, validateDesignReviewInsufficiencyFields, type DesignReviewInput } from '../../../novel-service-core/src/design-review.ts';
 import { designReviewHorizon } from './design-review-horizon.ts';
 import { designReviewReportEnvelopeSize } from '../../../novel-service-core/src/design-review-report.ts';
 
@@ -82,6 +82,7 @@ export function prepareDesignReviewEvidence(input: DesignReviewInput) {
     citationRequirements,
     pendingCitationRequirements,
     resolve(value: unknown) {
+      validateDesignReviewInsufficiencyFields(value);
       const parsed = anchoredDesignReviewResultSchema.parse(value);
       if (parsed.requestId !== requestId) throw new DesignReviewEvidenceError(`评审请求编号不属于本次材料：必须重新核对本次 requestId 与全部原文片段，不能沿用旧请求编号 ${parsed.requestId}`);
       const problems: string[] = [];

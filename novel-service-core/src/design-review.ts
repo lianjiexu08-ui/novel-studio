@@ -97,6 +97,39 @@ export interface DesignContentReview extends DesignReviewResult {
   runId?: string;
 }
 export class DesignReviewError extends Error {}
+export interface DesignReviewInsufficiencyFieldProblem {
+  criterion: string;
+  checkIndex: number;
+  issues: Array<'non_insufficient_verdict' | 'conflicts_with_awaiting_sources' | 'invalid_reason'>;
+}
+export class DesignReviewInsufficiencyFieldsError extends DesignReviewError {
+  readonly fieldProblems: DesignReviewInsufficiencyFieldProblem[];
+  constructor(problems: DesignReviewInsufficiencyFieldProblem[]) {
+    const labels = {
+      non_insufficient_verdict: '普通不足原因只用于 insufficient，不能用于通过或返修',
+      conflicts_with_awaiting_sources: '普通不足原因 insufficiencyReason 与 awaitingSources 不能同时出现',
+      invalid_reason: '普通不足原因只接受 missing_design、unlocatable_sources、capacity_limit；解释文字应放在 explanation',
+    };
+    super(problems.map(p => `checks[${p.checkIndex}]（${p.criterion}）：${p.issues.map(issue => labels[issue]).join('；')}`).join('\n'));
+    this.fieldProblems = structuredClone(problems);
+  }
+}
+/** Diagnose optional-field conflicts before schema parsing, without repairing
+ * or accepting the response. The full schema and evidence checks still run. */
+export function validateDesignReviewInsufficiencyFields(value: unknown): void {
+  if (!value || typeof value !== 'object' || !('checks' in value) || !Array.isArray(value.checks)) return;
+  const fieldProblems: DesignReviewInsufficiencyFieldProblem[] = [];
+  for (const [checkIndex, check] of value.checks.entries()) {
+    if (!check || typeof check !== 'object' || typeof check.criterion !== 'string'
+      || !['pass', 'revise', 'insufficient'].includes(check.verdict) || check.insufficiencyReason === undefined) continue;
+    const issues: DesignReviewInsufficiencyFieldProblem['issues'] = [];
+    if (check.verdict !== 'insufficient') issues.push('non_insufficient_verdict');
+    if (check.awaitingSources !== undefined) issues.push('conflicts_with_awaiting_sources');
+    if (!['missing_design', 'unlocatable_sources', 'capacity_limit'].includes(check.insufficiencyReason)) issues.push('invalid_reason');
+    if (issues.length) fieldProblems.push({ criterion: check.criterion, checkIndex, issues });
+  }
+  if (fieldProblems.length) throw new DesignReviewInsufficiencyFieldsError(fieldProblems);
+}
 export class DesignReviewCriteriaError extends DesignReviewError {
   readonly expectedCriteria: string[];
   readonly receivedCriteria: string[];
@@ -221,12 +254,12 @@ export function validateDesignReview(input: DesignReviewInput, result: DesignRev
   if (!result.summary?.trim()) throw new DesignReviewError('内容评审必须提供结论摘要');
   const received = Array.isArray(result.checks) ? result.checks.map(check => check.criterion) : [];
   if (!Array.isArray(result.checks) || received.length !== criteria.length || new Set(received).size !== criteria.length || received.some(key => !criteria.includes(key))) throw new DesignReviewCriteriaError(criteria, received);
+  validateDesignReviewInsufficiencyFields(result);
   for (const check of result.checks) {
     if (!criteria.includes(check.criterion) || !['pass', 'revise', 'insufficient'].includes(check.verdict) || !check.explanation?.trim() || !Array.isArray(check.evidence)) throw new DesignReviewError('内容评审结果不完整');
     if (check.evidence.length > designReviewEvidenceLimit(input)) throw new DesignReviewError(`本批每项证据不得超过${designReviewEvidenceLimit(input)}条，不能省略必引来源来凑数`);
     if (check.verdict !== 'insufficient' && check.evidence.length === 0) throw new DesignReviewError('通过或返修结论必须提供原文证据');
     if (check.verdict !== 'pass' && !check.revisionAdvice?.trim()) throw new DesignReviewError('未通过项目必须给出补充或返修要求');
-    if (check.insufficiencyReason !== undefined && (check.verdict !== 'insufficient' || check.awaitingSources !== undefined || !['missing_design', 'unlocatable_sources', 'capacity_limit'].includes(check.insufficiencyReason))) throw new DesignReviewError('普通不足原因只用于未建立补读等待的 insufficient，不能用于通过、返修或与 awaitingSources 同时出现');
     if (check.awaitingSources !== undefined) {
       if (input.stage?.followupFor) throw new DesignReviewError('专门补读不得递归建立等待；仍缺必要材料时保留普通材料不足');
       const coverage = input.stage?.coverage;

@@ -1,0 +1,44 @@
+{
+  "kind": "saved_response_field_diagnostic",
+  "observedAt": "2026-10-16T00:08:03.669Z",
+  "runId": "design_run_c212091d-deec-4ef3-9b9a-f1b1a7aac5fb",
+  "stageId": "batch-5",
+  "inputHash": "32f6ca9f61bbb70b8b56a0a7908ca086a0ce1b6ff4554ff3bafdf7428f05465f",
+  "diagnostics": [
+    {
+      "responseIndex": 0,
+      "responseSha256": "714df8ac0a5577b0024a6d084b36370902231841851c3d3706b1376d273b5eed",
+      "diagnostic": [
+        {
+          "criterion": "knowledge",
+          "checkIndex": 2,
+          "issues": [
+            "conflicts_with_awaiting_sources",
+            "invalid_reason"
+          ]
+        }
+      ],
+      "rejected": true
+    },
+    {
+      "responseIndex": 1,
+      "responseSha256": "c6a56f22e7c1d8c85705a3a28c853a4736e44b9e4cfb784b17fea81fa2c6a015",
+      "diagnostic": [
+        {
+          "criterion": "knowledge",
+          "checkIndex": 2,
+          "issues": [
+            "conflicts_with_awaiting_sources"
+          ]
+        }
+      ],
+      "rejected": true
+    }
+  ],
+  "originalResponsesUnchanged": true,
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalVerdictsOverridden": false,
+  "frozenSourceFilesVerified": 138,
+  "limitation": "Only verifies precise error diagnostics against both saved failed responses; no corrected model response or formal acceptance is claimed."
+}

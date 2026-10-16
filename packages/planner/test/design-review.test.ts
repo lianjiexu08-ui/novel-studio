@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { JsonDesignPlanner, PlanningParseError } from '../src/index.ts';
 import { DesignReviewReportBudgetError, prepareDesignReviewEvidence } from '../src/design-review-evidence.ts';
-import { DesignReviewCitationError, DesignReviewCriteriaError, designReviewInput, validateDesignReview } from '../../../novel-service-core/src/design-review.ts';
+import { DesignReviewCitationError, DesignReviewCriteriaError, DesignReviewInsufficiencyFieldsError, designReviewInput, validateDesignReview } from '../../../novel-service-core/src/design-review.ts';
 import { ChapterWorkflow, InMemoryWorkRepository } from '../../application/src/index.ts';
 import { createReadyWork, fixtureDesignReview } from '../../application/test/fixtures.ts';
 
@@ -17,6 +17,83 @@ function anchored(request: Awaited<ReturnType<typeof input>>) {
     evidence: check.evidence.map((item) => ({ fragmentId: sources.find((s) => s.id === item.sourceId)!.fragments[0].id })),
   })) };
 }
+
+for (const corrected of [true, false]) {
+  test(`conflicting insufficiency fields get a targeted repair without dropping findings: ${corrected}`, async () => {
+    const request = await input();
+    request.stage = { kind: 'batch', label: '局部原文', totalBatches: 2, requireInsufficiencyReason: true,
+      sourceMap: [], coverage: { mode: 'local_sources', sourceLengths: {
+        ...Object.fromEntries(request.sources.map(s => [s.id, s.text.length])), 'story/secrets/sec_01': 200,
+      } } };
+    const base = anchored(request);
+    const first = { ...base, checks: [
+      { ...base.checks[0], verdict: 'revise', explanation: '本批存在明确门槛冲突', revisionAdvice: '修订实际使用前置' },
+      { ...base.checks[1], verdict: 'insufficient', explanation: '无法定位成本来源', revisionAdvice: '明确成本依据', insufficiencyReason: 'unlocatable_sources' },
+      { ...base.checks[2], verdict: 'insufficient', explanation: '需核对未读秘密原档', revisionAdvice: '补读秘密原档',
+        awaitingSources: ['story/secrets/sec_01'], insufficiencyReason: '现有材料尚未完整读到，需补读秘密原档。' },
+    ] };
+    const before = structuredClone({ request, first });
+    const repaired = { ...first, checks: [first.checks[0], first.checks[1], {
+      ...first.checks[2], insufficiencyReason: corrected ? undefined : 'unlocatable_sources',
+    }] };
+    let calls = 0;
+    const planner = new JsonDesignPlanner({ complete: async call => {
+      if (++calls === 1) return JSON.stringify(first);
+      const body = JSON.parse(call.user);
+      assert.deepEqual(body.fieldProblems, [{ criterion: 'counters', checkIndex: 2,
+        issues: ['conflicts_with_awaiting_sources', 'invalid_reason'] }]);
+      assert.match(body.problems, /checks\[2\].*counters/);
+      assert.match(body.instruction, /保留完整 awaitingSources，省略 insufficiencyReason/);
+      assert.match(body.instruction, /系统不会替你删除字段或选择处置/);
+      assert.match(body.instruction, /不得为了修格式改成 pass\/revise/);
+      assert.deepEqual(body.originalRequest.sources, prepareDesignReviewEvidence(request).sources);
+      assert.equal(body.previousOutput, JSON.stringify(first));
+      return JSON.stringify(repaired);
+    } });
+    if (corrected) {
+      const result = await planner.reviewDesignContent(request);
+      assert.deepEqual(result.checks.map(c => c.verdict), ['revise', 'insufficient', 'insufficient']);
+      assert.equal(result.checks[1].insufficiencyReason, 'unlocatable_sources');
+      assert.deepEqual(result.checks[2].awaitingSources, ['story/secrets/sec_01']);
+      assert.equal(result.checks[2].insufficiencyReason, undefined);
+      assert.deepEqual(result.modelResponses, [JSON.stringify(first), JSON.stringify(repaired)]);
+      validateDesignReview(request, result);
+    } else {
+      await assert.rejects(planner.reviewDesignContent(request), (error: PlanningParseError & { modelResponses?: string[] }) => {
+        assert.match(error.message, /修正一次后仍不符合格式.*checks\[2\]/);
+        assert.deepEqual(error.modelResponses, [JSON.stringify(first), JSON.stringify(repaired)]);
+        return true;
+      });
+    }
+    assert.equal(calls, 2);
+    assert.deepEqual({ request, first }, before);
+  });
+}
+
+test('insufficiency diagnostics identify every conflicting check and reject null placeholders', async () => {
+  const request = await input(), result = fixtureDesignReview(request);
+  Object.assign(result.checks[0], { insufficiencyReason: 'capacity_limit' });
+  Object.assign(result.checks[1], { verdict: 'insufficient', revisionAdvice: '补读', awaitingSources: [], insufficiencyReason: 'missing_design' });
+  Object.assign(result.checks[2], { verdict: 'insufficient', revisionAdvice: '补充', insufficiencyReason: null });
+  const before = structuredClone(result);
+  assert.throws(() => validateDesignReview(request, result), (error: DesignReviewInsufficiencyFieldsError) => {
+    assert.ok(error instanceof DesignReviewInsufficiencyFieldsError);
+    assert.deepEqual(error.fieldProblems, [
+      { criterion: 'tiers', checkIndex: 0, issues: ['non_insufficient_verdict'] },
+      { criterion: 'costs', checkIndex: 1, issues: ['conflicts_with_awaiting_sources'] },
+      { criterion: 'counters', checkIndex: 2, issues: ['invalid_reason'] },
+    ]);
+    return true;
+  });
+  assert.deepEqual(result, before);
+});
+
+test('field diagnostics cannot bypass request identity or the complete response schema', async () => {
+  const request = await input(), prepared = prepareDesignReviewEvidence(request), valid = anchored(request);
+  assert.throws(() => prepared.resolve({ ...valid, requestId: 'another-request' }), /请求编号不属于/);
+  assert.throws(() => prepared.resolve({ ...valid, summary: undefined }));
+  for (const value of [null, {}, { checks: null }, { checks: [null] }]) assert.throws(() => prepared.resolve(value));
+});
 
 for (const repairCompletes of [true, false]) {
   test(`omitted criteria receive explicit repair guidance and remain rejected until complete: ${repairCompletes}`, async () => {
