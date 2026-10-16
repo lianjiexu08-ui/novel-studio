@@ -83,6 +83,27 @@ export async function replayDesignReviewPrefix(run, expectedInput, runtime = rev
     limitation: 'Replays saved responses, repairs, citations and conclusions against independently supplied materials. Pending work, semantic quality, blocker disposition and prose acceptance remain separate.' };
 }
 
+/** Check one persisted task against independent original materials and its
+ * complete report, including provenance and status. Never infer acceptance
+ * from a report label or a caller-supplied input hash alone. */
+export async function replayDesignReviewRecord(run, expectedInput, report, runtime = { ...reviewRuntime, completeDesignReviewRun }) {
+  const prefix = await replayDesignReviewPrefix(run, expectedInput, runtime);
+  if (run.status !== 'completed') {
+    if (report || run.reportId) throw new Error('Incomplete review must not have a final report');
+    return { ...prefix, reportVerification: 'not_completed' };
+  }
+  if (!report || run.reportId !== report.id || report.runId !== run.id) throw new Error('Report and completed run are not mutually linked');
+  const rebuilt = runtime.completeDesignReviewRun(run);
+  const { id, area, inputHash, scope, sources, status, createdAt, runId, ...result } = report;
+  same({ area, inputHash, scope }, { area: expectedInput.area, inputHash: expectedInput.inputHash, scope: expectedInput.scope }, 'Report design binding differs from original materials');
+  same(sources, rebuilt.input.sources, 'Report source envelope differs from reconstructed evidence');
+  same(result, rebuilt.result, 'Report conclusions differ from reconstructed batch findings');
+  const expectedStatus = rebuilt.result.checks.some(check => check.verdict === 'revise') ? 'needs_revision'
+    : rebuilt.result.checks.some(check => check.verdict === 'insufficient') ? 'inconclusive' : 'passed';
+  if (status !== expectedStatus) throw new Error('Report status contradicts reconstructed findings');
+  return { ...prefix, reportVerification: 'verified', reportSha256: hash(report), reportStatus: status };
+}
+
 /** Read-only integrity audit, not a second model opinion or approval action.
  * Only the latest review for each area of the explicitly selected plan counts.
  * Rebuild every completed batch and citation before trusting its final report. */

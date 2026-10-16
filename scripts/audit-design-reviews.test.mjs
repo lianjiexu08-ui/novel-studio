@@ -5,7 +5,7 @@ import { createPlanRevision } from '../novel-service-core/src/planning.ts';
 import { createDesignReviewRun, acceptDesignReviewStage, designReviewStageInput, completeDesignReviewRun } from '../novel-service-core/src/design-review-run.ts';
 import { designReviewAreas, designReviewInput, recordDesignReview } from '../novel-service-core/src/design-review.ts';
 import { minimalWorldPack, minimalStoryBible, minimalPlan, fixtureDesignReview } from '../packages/application/test/fixtures.ts';
-import { auditDesignReviews, auditDesignReviewPrefix, replayDesignReviewPrefix } from './audit-design-reviews.mjs';
+import { auditDesignReviews, auditDesignReviewPrefix, replayDesignReviewPrefix, replayDesignReviewRecord } from './audit-design-reviews.mjs';
 import { prepareDesignReviewEvidence } from '../packages/planner/src/design-review-evidence.ts';
 import { JsonDesignPlanner } from '../packages/planner/src/index.ts';
 
@@ -101,6 +101,55 @@ test('offline replay retains repairs, negative verdicts and pending failures wit
   assert.equal(result.modelCalls, 0);
   assert.equal(result.formalAcceptance, false);
   assert.equal(JSON.stringify(run), before);
+});
+
+async function completedResponseFixture() {
+  const { work, planId } = fixture();
+  const input = designReviewInput(work, 'world', planId), run = createDesignReviewRun(input);
+  assert.equal(run.stages.length, 1);
+  const stage = run.stages[0], request = designReviewStageInput(run, stage);
+  const prepared = prepareDesignReviewEvidence(request), output = { ...fixtureDesignReview(request), requestId: prepared.requestId };
+  output.checks = output.checks.map(check => ({ ...check, evidence: [{ fragmentId: prepared.sources[0].fragments[0].id }] }));
+  Object.assign(output.checks[0], { verdict: 'revise', revisionAdvice: '保留返修结论，不能改成通过标签' });
+  const { modelResponses, ...result } = await new JsonDesignPlanner({ complete: async () => JSON.stringify(output) }).reviewDesignContent(request);
+  acceptDesignReviewStage(run, stage, result); stage.modelResponses = modelResponses;
+  const rebuilt = completeDesignReviewRun(run), report = recordDesignReview(work, rebuilt.input, rebuilt.result);
+  report.runId = run.id; run.reportId = report.id; run.status = 'completed';
+  return { input, run, report };
+}
+
+test('record replay validates a full negative report without approving or changing it', async () => {
+  const f = await completedResponseFixture(), before = JSON.stringify(f);
+  const result = await replayDesignReviewRecord(f.run, f.input, f.report);
+  assert.equal(result.reportVerification, 'verified');
+  assert.equal(result.reportStatus, 'needs_revision');
+  assert.equal(result.formalAcceptance, false);
+  assert.equal(result.modelCalls, 0);
+  assert.equal(JSON.stringify(f), before);
+});
+
+for (const [name, corrupt, message] of [
+  ['substituted source with unchanged hash', f => { f.run.input.sources[0].text += '替换的原文'; }, /materials or rubric/],
+  ['changed scope', f => { f.report.scope.planRevision++; }, /binding/],
+  ['changed input hash', f => { f.report.inputHash = 'foreign'; }, /binding/],
+  ['false pass label', f => { f.report.status = 'passed'; }, /status contradicts/],
+  ['foreign run link', f => { f.report.runId = 'foreign'; }, /mutually linked/],
+  ['changed resolution metadata', f => { f.report.resolvedDeferrals = [{ checkId: 'fake', resolvedByStageId: 'fake' }]; }, /conclusions/],
+  ['unexpected report property', f => { f.report.unverifiedApproval = true; }, /conclusions/],
+  ['unused extra response', f => { f.run.stages[0].modelResponses.push('{}'); }, /Unused saved responses/],
+]) test(`record replay rejects ${name} without rewriting evidence`, async () => {
+  const f = await completedResponseFixture(); corrupt(f);
+  const before = JSON.stringify(f);
+  await assert.rejects(() => replayDesignReviewRecord(f.run, f.input, f.report), message);
+  assert.equal(JSON.stringify(f), before);
+});
+
+test('record replay keeps partial work incomplete and rejects an attached final report', async () => {
+  const { run, input } = await responseFixture();
+  assert.equal((await replayDesignReviewRecord(run, input)).reportVerification, 'not_completed');
+  await assert.rejects(() => replayDesignReviewRecord(run, input, { id: 'unexpected' }), /Incomplete review/);
+  run.reportId = 'unexpected';
+  await assert.rejects(() => replayDesignReviewRecord(run, input), /Incomplete review/);
 });
 
 for (const [name, corrupt] of [

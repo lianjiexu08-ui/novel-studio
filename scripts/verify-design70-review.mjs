@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { PrismaClient } from '@prisma/client';
+import { replayDesignReviewRecord } from './audit-design-reviews.mjs';
 const read = file => JSON.parse(fs.readFileSync(file));
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const hash = value => sha(JSON.stringify(value));
@@ -17,34 +18,30 @@ assert.equal(alive, false, 'Wait for the worker to exit; do not restart it');
 assert.equal(fileHash('scripts/run-design70-review.mjs'), baseline.runnerSha256);
 assert.equal(fileHash('data/audit-runtimes/design70-runtime-bound.json'), baseline.runtimeBindingSha256);
 for (const [name, expected] of Object.entries(binding.sourceHashes)) assert.equal(fileHash(`${binding.runtimePath}/${name}`), expected);
-const { designReviewStageInput, completeDesignReviewRun } = await import(`${binding.runtimePath}/novel-service-core/src/design-review-run.ts`);
+assert.equal(fileHash(`${control}/inputs.json`), baseline.inputsSha256);
+const expectedInputs = read(`${control}/inputs.json`);
+assert.deepEqual(Object.keys(expectedInputs).sort(), baseline.areas.map(area => area.area).sort());
+assert.equal(state.inputHash, baseline.inputHash);
+assert.equal(new Set(state.runs.map(run => run.id)).size, state.runs.length);
+assert.equal(new Set(state.runs.map(run => run.input.area)).size, state.runs.length);
+assert.equal(new Set(state.reports.map(report => report.id)).size, state.reports.length);
+assert.equal(state.reports.length, state.runs.filter(run => run.status === 'completed').length);
+assert.deepEqual(state.areas, state.runs.map(run => ({ area: run.input.area, runId: run.id })));
+if (state.status === 'completed') assert.ok(state.runs.every(run => run.status === 'completed'));
+for (const area of baseline.areas) assert.equal(hash(expectedInputs[area.area]), area.sourceEnvelopeSha256);
+const runtime = await import(`${binding.runtimePath}/novel-service-core/src/design-review-run.ts`);
 const { JsonDesignPlanner } = await import(`${binding.runtimePath}/packages/planner/src/index.ts`);
 const replays = [];
 for (const run of state.runs) {
   assert.equal(run.scheduleVersion, 31);
   assert.equal(run.input.inputHash, baseline.inputHash);
-  let responses = 0;
-  for (const stage of run.stages.filter(stage => stage.result)) {
-    let index = 0;
-    const planner = new JsonDesignPlanner({ complete: async () => {
-      assert.ok(index < stage.modelResponses.length, `No saved response for ${stage.id}`);
-      return stage.modelResponses[index++];
-    } });
-    const { modelResponses, ...result } = await planner.reviewDesignContent(designReviewStageInput(run, stage));
-    assert.deepEqual(result, stage.result);
-    assert.deepEqual(modelResponses, stage.modelResponses);
-    responses += index;
-  }
-  if (run.status === 'completed') {
-    const completed = completeDesignReviewRun(run);
-    const report = state.reports.find(report => report.id === run.reportId);
-    assert.ok(report);
-    assert.deepEqual(report.checks, completed.result.checks);
-    assert.deepEqual(report.sources, completed.input.sources);
-    assert.equal(report.summary, completed.result.summary);
-  }
+  const expectedInput = expectedInputs[run.input.area];
+  assert.ok(expectedInput, 'Unexpected review area');
+  const replay = await replayDesignReviewRecord(run, expectedInput,
+    state.reports.find(report => report.id === run.reportId), { ...runtime, JsonDesignPlanner });
   replays.push({ area: run.input.area, runId: run.id, completedStages: run.stages.filter(stage => stage.result).length,
-    totalStages: run.stages.length, responsesReplayed: responses,
+    totalStages: run.stages.length, responsesReplayed: replay.responsesReplayed,
+    independentInputVerified: true, canonicalScheduleVerified: true, reportVerification: replay.reportVerification,
     retainedNonPassChecks: run.stages.filter(stage => stage.result).flatMap(stage => stage.result.checks
       .filter(check => check.verdict !== 'pass').map(check => ({ stageId: stage.id, ...check }))),
     note: 'Retained non-pass records include earlier deferrals that later stages may resolve; not a count of current independent defects.' });
@@ -79,7 +76,8 @@ if (fs.existsSync(checkpointPath)) assert.equal(fileHash(checkpointPath), sha(ch
 else fs.writeFileSync(checkpointPath, checkpointBytes, { flag: 'wx' });
 const proof = { observedAt: new Date().toISOString(), status: state.status, workerPid: state.pid, workerAbsent: true,
   checkpointPath, checkpointSha256: fileHash(checkpointPath), runtimePath: binding.runtimePath,
-  sourceCommit: binding.sourceCommit, totalCalls: state.totalCalls, errors: state.errors, replays, preserved,
+  sourceCommit: binding.sourceCommit, inputsSha256: baseline.inputsSha256,
+  totalCalls: state.totalCalls, errors: state.errors, replays, preserved,
   reports: state.reports.map(({ id, area, status, summary }) => ({ id, area, status, summary })),
   verificationModelCalls: 0, productionWrites: 0, formalAcceptance: false, proseGenerated: false };
 const proofPath = state.status === 'completed' ? 'docs/audits/2026-10-17-design70-review-result.json'
