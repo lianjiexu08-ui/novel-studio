@@ -210,18 +210,21 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
   const currentRuns = data?.runs.filter((run, index, runs) => run.inputHash === data.inputHash && !runs.slice(index + 1).some(next => next.inputHash === data.inputHash && next.area === run.area)) ?? [];
   const currentRunIds = new Set(currentRuns.map(run => run.id));
   const historicalRuns = data?.runs.filter(run => !currentRunIds.has(run.id)).reverse() ?? [];
+  const liveRuns = currentRuns.filter(run => run.status === 'running' && Date.parse(run.leaseExpiresAt ?? '') > Date.now());
   return <Card title="分项内容评审" extra={<Button onClick={() => void load()}>刷新记录</Button>}>
     <Space direction="vertical" size={12} style={{ width: '100%' }}>
       <Typography.Text type="secondary">页面可见时自动刷新评审记录，切回页面时立即刷新。{refreshedAt ? `最近检查：${refreshedAt}。` : ''}刷新只读取进度，不会启动或继续评审。</Typography.Text>
       <Alert type={data?.ready ? 'info' : 'warning'} showIcon message={data?.ready ? '所选计划的设计评审通过，写作仍需锁定和批准'  : '长篇写作前，先完成四项内容评审'} description="使用规划模型逐项审查内容，保存原文证据和返修建议。大材料先逐批审原文、对照各批之间的冲突，再综合结论；进度自动保存，刷新或失败后可继续。可以先评审待批准提案，评审不会批准计划；修改创作约定、设定或计划会使旧结论过期。模型建议尚未采纳，不会自动成为故事事实；设计通过也不代表已验收正文。" />
       {data?.plans?.length ? <Space wrap><Typography.Text>本次评审计划</Typography.Text><Select aria-label="本次评审计划" style={{ minWidth: 260 }} disabled={busy !== null} value={data.selectedPlan?.id} onChange={(value) => setPlanId(value)} options={data.plans.map((plan) => ({ value: plan.id, label: `计划 v${plan.revision} · ${{ proposed: '待批准提案', reviewed: '结构已审', approved: '当前批准版', superseded: '已替代' }[plan.status]}` }))} /><Typography.Text type="secondary">默认最新提案；写作仅使用批准版的评审。</Typography.Text></Space> : null}
       {busy && <Alert type="info" message={stopRequested ? '本批结束后停止，已完成进度会保留。' : `正在评审${labels[busy]}，每批可能需要几分钟。`} action={<Button disabled={stopRequested} onClick={() => { stopReview.current = true; setStopRequested(true); }}>本批后停止</Button>} />}
+      {!busy && liveRuns.length > 0 && <Alert type="info" showIcon message={`后台正在评审：${liveRuns.map(run => labels[run.area]).join('、')}`} description="当前批次仍在执行，进度会自动刷新，无需重复启动。已完成批次与原文证据可在下方查看。" />}
       {error && <Alert type="error" message={data ? '评审记录刷新失败，以下仍为上次成功读取的记录' : '评审记录加载失败'} description={error} />}
       {data ? <>
         <Collapse items={data.areas.map((area) => {
           const report = data.reports.find((item) => item.id === area.reportId);
           const run = currentRuns.find(item => item.area === area.area);
-          return { key: area.area, label: <Space wrap>{labels[area.area]}<Tag color={area.status === 'passed' ? 'success' : 'warning'}>{statuses[area.status]}</Tag></Space>, extra: <Button size="small" loading={busy === area.area} disabled={busy !== null || !data.inputHash} onClick={(event) => { event.stopPropagation(); void review(area.area); }}>{['reviewing', 'interrupted'].includes(area.status) ? '继续本项' : '评审本项'}</Button>, children: report ? reportDetails(report) : run ? <Alert type="info" showIcon message={`已保存 ${run.stages.filter(stage => stage.completed).length}/${run.stages.length} 步，尚未形成最终报告`} description="请在下方当前任务中查看批次结论、返修证据及失败记录。本项仍未通过内容验收。" /> : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="尚无当前设计的评审任务。先准备设计及计划提案，再评审本项。" /> };
+          const running = liveRuns.some(item => item.id === run?.id);
+          return { key: area.area, label: <Space wrap>{labels[area.area]}<Tag color={area.status === 'passed' ? 'success' : 'warning'}>{statuses[area.status]}</Tag></Space>, extra: <Button size="small" loading={busy === area.area} disabled={busy !== null || !data.inputHash || running} onClick={(event) => { event.stopPropagation(); void review(area.area); }}>{running ? '本批评审中' : ['reviewing', 'interrupted'].includes(area.status) ? '继续本项' : '评审本项'}</Button>, children: report ? reportDetails(report) : run ? <Alert type="info" showIcon message={`已保存 ${run.stages.filter(stage => stage.completed).length}/${run.stages.length} 步，尚未形成最终报告`} description="请在下方当前任务中查看批次结论、返修证据及失败记录。本项仍未通过内容验收。" /> : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="尚无当前设计的评审任务。先准备设计及计划提案，再评审本项。" /> };
         })} />
         {currentRuns.map(run => <Card size="small" key={run.id} title={`${labels[run.area]} · ${run.stages.filter(stage => stage.completed).length}/${run.stages.length} 步`}>{runDetails(run)}</Card>)}
         {historicalRuns.length > 0 && <Collapse items={[{ key: 'run-history', label: `历史评审任务与批次（${historicalRuns.length}）`, children: <Space direction="vertical" style={{ width: '100%' }}>

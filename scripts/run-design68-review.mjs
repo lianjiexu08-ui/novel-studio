@@ -1,0 +1,162 @@
+// Plan68 review runner. Preparation is read-only; execution writes only review
+// records through ChapterWorkflow. A live worker is never replaced on timeout.
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
+const root = process.cwd();
+const read = p => JSON.parse(fs.readFileSync(p, 'utf8'));
+const hash = v => createHash('sha256').update(JSON.stringify(v)).digest('hex');
+const fileHash = p => createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+const control = path.join(root, 'data/audit-runtimes/design68-review');
+const binding = read(path.join(root, 'data/audit-runtimes/design68-runtime-bound.json'));
+const applied = read(path.join(root, 'docs/audits/2026-10-16-design68-applied.json'));
+const prepare = process.argv.includes('--prepare');
+const execute = process.argv.includes('--execute');
+assert.notEqual(prepare, execute, 'Choose --prepare or --execute');
+assert.equal(process.env.DATABASE_URL, 'file:' + path.join(root, 'data/novel-studio.db'));
+for (const [name, expected] of Object.entries(binding.sourceHashes)) assert.equal(fileHash(path.join(binding.runtimePath, name)), expected, name);
+const { PrismaWorkRepository } = await import(binding.runtimePath + '/packages/persistence/src/prisma-repository.ts');
+const { ChapterWorkflow } = await import(binding.runtimePath + '/packages/application/src/index.ts');
+const { designReviewInput, designReviewHash } = await import(binding.runtimePath + '/novel-service-core/src/design-review.ts');
+const { createDesignReviewRun, designReviewStageInput, designReviewCapacity } = await import(binding.runtimePath + '/novel-service-core/src/design-review-run.ts');
+const workId = 'work_8b6c9133e13d404083ca33acc63f4f61', planId = applied.appliedPlanId;
+const areas = ['world', 'power', 'characters', 'story'];
+const protectedHash = w => hash({ world: w.worldPack, bible: w.storyBible, plans: [...w.plans], activePlanId: w.activePlanId,
+  versions: [...w.versions], events: [...w.events], manuscripts: [...w.manuscripts], candidates: [...w.candidates] });
+const repo = new PrismaWorkRepository();
+const suffix = '\n响应requestId必须逐字使用当前请求中的值，不复用旧编号；证据只引本次sources。请精确区分不同人物、账户、日期、局部综合与全局验收。只依据本步骤实际材料作判断；材料不足应说明缺失来源，不能为了通过而省略冲突。解释与引文保持必要长度，不复制整章，不隐去仍未解决的问题。';
+const baselinePath = path.join(control, 'baseline.json');
+const outputPath = path.join(control, 'result.json');
+try {
+  const work = await repo.get(workId);
+  assert.ok(work);
+  assert.equal(designReviewHash(work, planId), applied.inputHash);
+  assert.equal(work.worldPack.revision, 34);
+  assert.equal(work.storyBible.revision, 65);
+  assert.equal(work.plans.get(planId).revision, 68);
+  assert.equal(work.plans.get(planId).plan.chapters.length, 50);
+  assert.equal(work.plans.get(work.activePlanId).revision, 10);
+  if (prepare) {
+    assert.ok(!fs.existsSync(baselinePath), 'Existing preparation must be inspected, not overwritten');
+    assert.ok(![...work.designReviewRuns.values()].some(r => r.input.inputHash === applied.inputHash), 'Existing run: resume it');
+    const inputs = {}, preflight = [];
+    for (const area of areas) {
+      const input = designReviewInput(work, area, planId);
+      const run = createDesignReviewRun(input);
+      assert.equal(run.scheduleVersion, 26);
+      for (const source of input.sources) {
+        const units = run.units.filter(u => u.sourceId === source.id).sort((a,b) => a.start-b.start);
+        assert.equal(units[0].start, 0);
+        assert.equal(units.at(-1).end, source.text.length);
+        units.slice(1).forEach((unit,i) => assert.equal(unit.start, units[i].end));
+        assert.ok(units.every(unit => run.stages.some(s => s.kind === 'batch' && s.unitIds.includes(unit.id))));
+      }
+      const raw = run.stages.filter(s => s.kind !== 'synthesis').map(stage => {
+        const request = designReviewStageInput(run, stage);
+        const sourceCharacters = JSON.stringify(request.sources).length;
+        const coverageCharacters = JSON.stringify(request.stage.coverage).length;
+        assert.ok(sourceCharacters <= designReviewCapacity);
+        assert.ok(coverageCharacters <= 40000);
+        return { stageId: stage.id, sourceCharacters, coverageCharacters };
+      });
+      inputs[area] = input;
+      preflight.push({ area, inputHash: input.inputHash, sourceEnvelopeSha256: hash(input), sources: input.sources.length,
+        units: run.units.length, initialStages: run.stages.length, batchCount: run.stages.filter(s=>s.kind==='batch').length,
+        rawSourceCoverageExact: true, initialRequestsWithinCapacity: true, requests: raw });
+    }
+    fs.mkdirSync(control, { recursive: true });
+    fs.writeFileSync(path.join(control, 'inputs.json'), JSON.stringify(inputs), {flag:'wx'});
+    const baseline = { workId, planId, inputHash: applied.inputHash, protectedHash: protectedHash(work),
+      oldRuns: [...work.designReviewRuns].map(([id,r])=>[id,hash(r)]), oldReports: [...work.designContentReviews].map(([id,r])=>[id,hash(r)]),
+      runtimePath: binding.runtimePath, runtimeBindingSha256: fileHash(path.join(root,'data/audit-runtimes/design68-runtime-bound.json')),
+      runnerSha256: fileHash(process.argv[1]), suffixSha256: hash(suffix), inputsSha256: fileHash(path.join(control,'inputs.json')),
+      candidateSha256: applied.candidateSha256, createdAt:new Date().toISOString(), maxCalls:400, areas:preflight };
+    fs.writeFileSync(baselinePath, JSON.stringify(baseline,null,2)+'\n', {flag:'wx'});
+    const audit = { kind:'design68_raw_review_preflight', observedAt:baseline.createdAt, planId,inputHash:applied.inputHash,
+      worldRevision:34,bibleRevision:65,planRevision:68,scheduleVersion:26,rubricVersion:16,
+      runnerSha256:baseline.runnerSha256,baselineSha256:fileHash(baselinePath),areas:preflight,
+      modelCalls:0,productionWrites:0,formalAcceptance:false,limitation:'Checks exact source coverage and initial request capacity only; dynamic followups and content quality are unproven.' };
+    fs.writeFileSync(path.join(root,'docs/audits/2026-10-16-design68-review-preflight.json'),JSON.stringify(audit,null,2)+'\n',{flag:'wx'});
+    console.log(JSON.stringify({status:'prepared',areas:preflight.map(({area,sources,initialStages})=>({area,sources,initialStages})),modelCalls:0}));
+  } else {
+    const baseline = read(baselinePath);
+    assert.equal(fileHash(process.argv[1]), baseline.runnerSha256, 'Runner changed; do not mix review semantics');
+    assert.equal(hash(suffix), baseline.suffixSha256);
+    assert.equal(fileHash(path.join(root,'data/audit-runtimes/design68-runtime-bound.json')), baseline.runtimeBindingSha256);
+    const verify = w => {
+      assert.equal(protectedHash(w), baseline.protectedHash, 'Design, prose or plan history changed');
+      for (const [id,h] of baseline.oldRuns) assert.equal(hash(w.designReviewRuns.get(id)),h,'Old review run changed');
+      for (const [id,h] of baseline.oldReports) assert.equal(hash(w.designContentReviews.get(id)),h,'Old report changed');
+    };
+    verify(work);
+    const resumeHash = process.argv.find(a=>a.startsWith('--resume-sha256='))?.slice('--resume-sha256='.length);
+    let prior, segment = 0;
+    if (resumeHash) {
+      assert.equal(fileHash(outputPath),resumeHash,'Checkpoint changed; inspect the current worker');
+      prior = read(outputPath);
+      let alive=false; try { process.kill(prior.pid,0);alive=true; } catch(e) { if(e.code!=='ESRCH') throw e; }
+      assert.equal(alive,false,'Prior worker is live; wait rather than resubmit');
+      assert.ok(['stopped_after_failure','stopped_after_budget','stopped_by_signal'].includes(prior.status));
+      for(const old of prior.runs) assert.equal(hash(work.designReviewRuns.get(old.id)),hash(old),'Persisted run differs from checkpoint');
+      segment=prior.segment+1;
+      fs.copyFileSync(outputPath,path.join(control,`segment-${prior.segment}.json`),fs.constants.COPYFILE_EXCL);
+    } else assert.ok(!fs.existsSync(outputPath),'Existing checkpoint: inspect it and resume explicitly');
+    assert.ok(![...work.designReviewRuns.values()].some(r=>r.leaseToken && Date.parse(r.leaseExpiresAt??'')>Date.now()),'A review lease is live');
+    const { loadModelStore,activeChannel,connectionOf } = await import(binding.runtimePath+'/apps/api/src/model-settings.ts');
+    const { UsageLedger,redactSecrets,ModelGateway,OpenAICompatibleAdapter } = await import(binding.runtimePath+'/packages/model-gateway/src/index.ts');
+    const { JsonDesignPlanner } = await import(binding.runtimePath+'/packages/planner/src/index.ts');
+    const settingsPath=path.join(root,'data/model-settings.json');
+    const store=loadModelStore(settingsPath),conn=connectionOf(activeChannel(store),store.source);
+    assert.equal(conn.planningModel,'gpt-5.6-luna');assert.equal(conn.writingModel,'gpt-5.6-luna');
+    assert.equal(conn.timeoutMs,600000);assert.ok(store.channels.every(c=>!c.fallback));
+    const previousCalls=prior?.totalCalls??0, remainingCalls=baseline.maxCalls-previousCalls;
+    assert.ok(remainingCalls>0,'Review call budget exhausted; inspect findings before extending');
+    const ledger=new UsageLedger(Infinity,undefined,{maxCalls:remainingCalls});
+    const gateway=new ModelGateway(new Map([['openai-compatible',new OpenAICompatibleAdapter(fetch,conn.timeoutMs,true)]]),ledger);
+    const endpoint=conn.endpoint.replace(/\/$/,'').replace(/(?:\/v1)?$/,'/v1');
+    const planner=new JsonDesignPlanner({complete:async req=>(await gateway.complete({role:req.role??'reviewing',model:conn.planningModel,system:req.system+suffix,user:req.user,maxOutputTokens:req.maxOutputTokens,responseFormat:'json',temperature:0.2},'openai-compatible',{endpoint,apiKey:conn.apiKey})).text});
+    const workflow=new ChapterWorkflow(repo,{generateChapter(){throw new Error('Design review cannot write prose');}},planner);
+    const state={status:'running',pid:process.pid,segment,startedAt:new Date().toISOString(),scope:{workId,planId,world:34,bible:65,plan:68},
+      inputHash:applied.inputHash,runtimeRoot:binding.runtimePath,runnerSha256:baseline.runnerSha256,scheduleVersion:26,rubricVersion:16,
+      model:conn.planningModel,fallback:false,concurrency:1,maxCalls:baseline.maxCalls,previousCalls,totalCalls:previousCalls,
+      settingsSha256:fileHash(settingsPath),priorCheckpointSha256:resumeHash,areas:prior?.areas??[],errors:[],stepsStarted:[],usage:{calls:0},runs:[],reports:[]};
+    if(!prior) fs.writeFileSync(outputPath,JSON.stringify(state,null,2)+'\n',{flag:'wx'});
+    let stop=false;
+    const requestStop=()=>{stop=true;};process.once('SIGTERM',requestStop);process.once('SIGINT',requestStop);
+    async function checkpoint() {
+      const w=await repo.get(workId);verify(w);
+      state.runs=state.areas.map(a=>w.designReviewRuns.get(a.runId));
+      state.reports=state.runs.filter(r=>r.reportId).map(r=>w.designContentReviews.get(r.reportId));
+      state.usage=ledger.summary();state.totalCalls=previousCalls+state.usage.calls;
+      state.protectedHistoryUnchanged=true;state.updatedAt=new Date().toISOString();
+      fs.writeFileSync(outputPath+'.pending',JSON.stringify(state,null,2)+'\n');fs.renameSync(outputPath+'.pending',outputPath);
+    }
+    try {
+      for(const area of areas) {
+        if(stop) break;
+        const existing=state.areas.find(a=>a.area===area);
+        let run=existing?(await repo.get(workId)).designReviewRuns.get(existing.runId):await workflow.startDesignReview(workId,area,planId);
+        assert.equal(run.input.inputHash,baseline.inputHash);assert.equal(run.scheduleVersion,26);
+        if(!existing) state.areas.push({area,runId:run.id});
+        await checkpoint();
+        while(run.status!=='completed' && !stop) {
+          if(ledger.summary().calls>=remainingCalls) {state.status='stopped_after_budget';stop=true;break;}
+          const stage=run.stages.find(s=>!s.result);assert.ok(stage);
+          state.activeStep={area,runId:run.id,stageId:stage.id,startedAt:new Date().toISOString()};
+          state.stepsStarted.push(state.activeStep);await checkpoint();console.log(JSON.stringify({starting:state.activeStep}));
+          run=await workflow.stepDesignReview(workId,run.id);await checkpoint();
+          console.log(JSON.stringify({area,finished:stage.id,completed:run.stages.filter(s=>s.result).length,total:run.stages.length,calls:state.totalCalls}));
+        }
+      }
+      if(state.status==='running') state.status=stop?'stopped_by_signal':'completed';
+    } catch(error) {
+      state.status='stopped_after_failure';state.errors.push({step:state.activeStep,error:String(redactSecrets(error.message))});
+      process.exitCode=1;
+    } finally {
+      state.finishedAt=new Date().toISOString();await checkpoint();
+      process.removeListener('SIGTERM',requestStop);process.removeListener('SIGINT',requestStop);
+      console.log(JSON.stringify({status:state.status,usage:state.usage,totalCalls:state.totalCalls,errors:state.errors}));
+    }
+  }
+} finally { await repo.disconnect(); }

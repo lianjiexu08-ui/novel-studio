@@ -1,0 +1,199 @@
+{
+  "kind": "design68_saved_review_prefix_verified",
+  "observedAt": "2026-10-16T07:12:05.077Z",
+  "planId": "plan_762f53fa91014e14a248b74d750d6a6c",
+  "inputHash": "3274d4710800ad02565040a341a05177b4bd7cab363e169219b562a4a0f62d01",
+  "checkpointPath": "data/audit-runtimes/design68-review/first-prefix.json",
+  "checkpointSha256": "a906f9f54fbea0c5802faeb81b588fc7bbe2a76a89c6b568a3fccd72e832bfe2",
+  "runtimePath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design68-quality-gate",
+  "sourceFilesVerified": 153,
+  "areas": [
+    {
+      "area": "world",
+      "runId": "design_run_6352f29c-bbd3-4a5c-878f-8d6d31ee6887",
+      "completed": 2,
+      "total": 41,
+      "replay": {
+        "verification": "verified",
+        "completedStages": 2,
+        "totalStages": 41,
+        "runSha256": "45cf5c964cbcd5adb431d71d215c92f4ccac1c07bbc02a4054bb6d402048d548",
+        "formalAcceptance": false,
+        "limitation": "Replays saved responses, repairs, citations and conclusions against independently supplied materials. Pending work, semantic quality, blocker disposition and prose acceptance remain separate.",
+        "responseReplay": "verified",
+        "responsesReplayed": 4,
+        "records": [
+          {
+            "stageId": "batch-1",
+            "kind": "batch",
+            "stageSha256": "b2bf98a6318781c3d06f9fed08060bdd4c33b4eafa343c6856d940cdb53bbb14",
+            "inputSha256": "b0dc8758453035c19013389dc62eeda68c6a6979a8760f648331762489603af1",
+            "responsesReplayed": 2,
+            "checks": [
+              {
+                "criterion": "geography",
+                "verdict": "insufficient",
+                "awaitingSources": [
+                  "plan/chapters/30",
+                  "plan/chapters/31",
+                  "plan/chapters/32",
+                  "plan/volumes/vol_02",
+                  "plan/volumes/vol_03",
+                  "plan/milestones/ms_growth_v1_crossing",
+                  "plan/milestones/ms_v2_voyage",
+                  "plan/milestones/ms_v2_boundary",
+                  "plan/milestones/ms_v3_return"
+                ]
+              },
+              {
+                "criterion": "history",
+                "verdict": "insufficient",
+                "awaitingSources": [
+                  "plan/volumes/vol_02",
+                  "plan/volumes/vol_03",
+                  "plan/milestones/ms_v2_loss",
+                  "plan/milestones/ms_v2_barge",
+                  "plan/milestones/ms_v2_fire",
+                  "plan/milestones/ms_v2_voyage",
+                  "plan/milestones/ms_v2_boundary",
+                  "plan/milestones/ms_v3_return",
+                  "plan/milestones/ms_v3_training",
+                  "plan/milestones/ms_v3_advancement",
+                  "plan/milestones/ms_v3_convoy",
+                  "plan/milestones/ms_v3_payoff"
+                ]
+              },
+              {
+                "criterion": "capacity",
+                "verdict": "pass"
+              }
+            ]
+          },
+          {
+            "stageId": "batch-2",
+            "kind": "batch",
+            "stageSha256": "782bf7ef1d1fd0f062cee0d6edf11f1d60c2486a69a9c01e9187d42cd3d4526d",
+            "inputSha256": "74e238ce882d4565ce7d31066c78d8444e74df19d785949b525d2ac93c77b466",
+            "responsesReplayed": 2,
+            "checks": [
+              {
+                "criterion": "geography",
+                "verdict": "insufficient",
+                "awaitingSources": [
+                  "plan/chapters/29",
+                  "plan/chapters/30",
+                  "plan/chapters/31",
+                  "plan/chapters/32",
+                  "plan/volumes/vol_02",
+                  "plan/volumes/vol_03",
+                  "plan/milestones/ms_v2_voyage",
+                  "plan/milestones/ms_v2_boundary",
+                  "plan/milestones/ms_v3_return"
+                ]
+              },
+              {
+                "criterion": "history",
+                "verdict": "pass"
+              },
+              {
+                "criterion": "capacity",
+                "verdict": "pass"
+              }
+            ]
+          }
+        ],
+        "failures": [],
+        "modelCalls": 0
+      },
+      "checks": [
+        {
+          "stageId": "batch-1",
+          "criterion": "geography",
+          "verdict": "insufficient",
+          "awaitingSources": [
+            "plan/chapters/30",
+            "plan/chapters/31",
+            "plan/chapters/32",
+            "plan/volumes/vol_02",
+            "plan/volumes/vol_03",
+            "plan/milestones/ms_growth_v1_crossing",
+            "plan/milestones/ms_v2_voyage",
+            "plan/milestones/ms_v2_boundary",
+            "plan/milestones/ms_v3_return"
+          ],
+          "explanation": "已读规则明确三大陆同属同一天地，日常跨陆只能走实体虚海航线；青玄—赤霄约两昼夜、赤霄—苍冥约五日、苍冥—青玄约六日，且每航次仍须处理验籍、支付或代付、港务查验及相应的寒热防护。计划总览仅说明30—32章南渡、61—66章付费北航与受限外港救援、67—72章返乡，未提供这些安排实际采用的船舶、日期、航款来源、担保/验籍及防护执行。前50章可补读对应细纲；51—100章无逐章细纲，必须读取实际存在的分卷及里程碑，而不能虚构第54章来源。",
+          "revisionAdvice": "补读所列现有来源后，逐次核对南渡、北航、北境外港行动及返航的起止地、实体交通、航程日期、票款或具名代付、验籍/担保持续范围、封航应对与寒热防护；未读宏观不得以章节号替代。"
+        },
+        {
+          "stageId": "batch-1",
+          "criterion": "history",
+          "verdict": "insufficient",
+          "awaitingSources": [
+            "plan/volumes/vol_02",
+            "plan/volumes/vol_03",
+            "plan/milestones/ms_v2_loss",
+            "plan/milestones/ms_v2_barge",
+            "plan/milestones/ms_v2_fire",
+            "plan/milestones/ms_v2_voyage",
+            "plan/milestones/ms_v2_boundary",
+            "plan/milestones/ms_v3_return",
+            "plan/milestones/ms_v3_training",
+            "plan/milestones/ms_v3_advancement",
+            "plan/milestones/ms_v3_convoy",
+            "plan/milestones/ms_v3_payoff"
+          ],
+          "explanation": "已读历史已给出可用因果：界门封禁并未取消三大陆实体商路；灵虚界约将寿源置于验真、当期配额与权属争夺之下；赵府私运旧约又明确各方仅有有限物流与账目责任，货损、扣货、欠款和消息送达会分别推动程、赵及炎煞外围代理的选择。总览则拟定以断运、港口救援、有限取舍和返乡归证推进百章。但本批未读第二、三卷的实际宏观原文，无法判断这些历史压力在各节点是否转化为可执行的势力行动、信息时限、责任后果及人物选择，也无法确认是否与第一卷承接一致。",
+          "revisionAdvice": "补读所列后段分卷与里程碑，核对私运旧约的签号、货损、欠款及报信如何实际影响各方决定；同时核对北境救援、返乡归证、训练与押运是否保留资源竞争、权限限制和独立势力反应，而非把历史背景当作自动驱动。"
+        },
+        {
+          "stageId": "batch-1",
+          "criterion": "capacity",
+          "verdict": "pass",
+          "awaitingSources": [],
+          "explanation": "就本批已读世界提案而言，地域并非单纯换名：青玄的矿务、宗门与灵泉配额，赤霄的地火风险、封航和港务查验，苍冥的寒候、担保入境、巡界限制及寿材医疗，均会改变可走路线、人员资格、资源竞争和失败代价。商盟控制实体航线但不能豁免扣船、搜舱或各地政治查验；极冰与巡界使对寿材配额和人手也有相互冲突的安排。因此本批可见的世界容量足以承载矿务逃生、跨海追查、港口救援和北境限制等不同阶段。该通过只限已读世界结构，不表示未读后段宏观或正文已经落实。",
+          "revisionAdvice": ""
+        },
+        {
+          "stageId": "batch-2",
+          "criterion": "geography",
+          "verdict": "insufficient",
+          "awaitingSources": [
+            "plan/chapters/29",
+            "plan/chapters/30",
+            "plan/chapters/31",
+            "plan/chapters/32",
+            "plan/volumes/vol_02",
+            "plan/volumes/vol_03",
+            "plan/milestones/ms_v2_voyage",
+            "plan/milestones/ms_v2_boundary",
+            "plan/milestones/ms_v3_return"
+          ],
+          "explanation": "已读规则明确三大陆日常往来必须走实体虚海航程，青玄—赤霄约两昼夜、赤霄—苍冥约五昼夜、苍冥—青玄约六昼夜；票款、劳务换舱、验籍、沿岸政治查验和北境担保均须分别落实，不能由商盟信物、钥匙或境界替代。现有计划摘要和关系阶段拟定了林辰南渡、以专项航款北行、北港救人后返青玄，并明确保留回程款及实体航程，方向上没有与界门封禁律或各大陆准入规则直接冲突。但第29—32章的实际南渡细纲未读；第54—66章北航、北港受限仓区活动与第67—72章返程只有关系阶段和概要转述，尚不能核实每段实际采用的船舶/舱位、付款账户、验籍、防护、具名担保及到离港时间是否闭合。",
+          "revisionAdvice": "补读后逐段以细纲或里程碑核对：南渡的劳务换舱与验籍责任；北航专项款的账户、实际支出和苍冥防寒/担保；返航六日实体航程、回程票款、离境许可与回执链。不得以宏观标题、预留款或关系阶段替代实际准入和支付。"
+        },
+        {
+          "stageId": "batch-2",
+          "criterion": "history",
+          "verdict": "pass",
+          "awaitingSources": [],
+          "explanation": "本批可核的历史—现状因果并非把跨陆冲突写成单纯换图：赵玄极与炎煞外围代理的旧互供框架限定为货款、普通物资、仓运与程记自负违约，且明确炎煞未取得后续程—赵报令；赵的策略变化分别以实际寄报、签收回令、北境面报和本地押报为触发。林辰一方则只能按亲见、实体送达或当面取得的材料行动，未将作者视角或未到消息倒灌为角色知情。港口、北境、返乡三段均保留救人优先、货损/停牌、担保责任、异地信息迟延与本地重整等后果，足以支撑本批可见的势力独立行动。此结论只评估提案因果可行性，不表示这些事件已经写入正文。",
+          "revisionAdvice": ""
+        },
+        {
+          "stageId": "batch-2",
+          "criterion": "capacity",
+          "verdict": "pass",
+          "awaitingSources": [],
+          "explanation": "本批展示的地域差异已实际改变阶段选择与代价：赤霄外港的港务、船损、扣工与货运追链构成第二卷冲突；苍冥的严寒、验引渡令/担保、受限港区和界渊准入将第三段限制为北港救援而非进入界渊；回到青玄后，证据、押运与本地掩案转为修行、证人保护和有限截运。各卷目标分别是有限争泉、追船救工、北港受限合作和返乡问责，且百章仅切断一条已验证运输链，保留九鼎、界门与高阶成长给后续主线，未依赖免费跨界或无代价万能能力扩容。因此就本批可见规划而言，世界差异能够承载递进而非重复同一种打斗。",
+          "revisionAdvice": ""
+        }
+      ],
+      "retainedResponses": 4
+    }
+  ],
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "questionsResolved": 0,
+  "limitation": "Offline replay verifies the saved prefix and citation/source binding, not final content quality or review completion."
+}
