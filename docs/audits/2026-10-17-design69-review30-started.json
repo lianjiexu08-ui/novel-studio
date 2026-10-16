@@ -1,0 +1,109 @@
+{
+  "observedAt": "2026-10-16T16:56:03.822Z",
+  "workerPid": 72699,
+  "workerObservedAlive": true,
+  "snapshotPath": "data/audit-runtimes/design69-review30/started-checkpoint.json",
+  "snapshotSha256": "4bb4cbe5e8ca98c750c94e581f412dd756137988f0d8ccefcbcebfbf7fd8b536",
+  "runId": "design_run_c2341839-f484-41de-92bf-59729f3ce857",
+  "restartedFromRunId": "design_run_eccc73d9-8373-422d-b5cc-57770f66242e",
+  "inputHash": "10ba6d25b130be24ac27543056be1dad7242e75c9fba5200853f08eb2680c92f",
+  "sourceCommit": "10a85cc9980527419ce268bdb12421ecd84e584d",
+  "scheduleVersion": 30,
+  "completedStages": 3,
+  "totalStages": 41,
+  "callsAtCheckpoint": 4,
+  "responsesReplayed": 4,
+  "production": {
+    "protectedHash": "ec74891c6a102d6b496a35a189f7708dfd805d6eedbcebe6aafef84117151658",
+    "oldRunsUnchanged": 70,
+    "oldReportsUnchanged": 75,
+    "currentRunId": "design_run_c2341839-f484-41de-92bf-59729f3ce857",
+    "currentStatus": "running",
+    "currentCompleted": 3,
+    "approvedPlanRevision": 10
+  },
+  "checks": [
+    {
+      "stageId": "batch-1",
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "insufficient",
+          "explanation": "已读宏观安排本身与规则相容：青玄—赤霄为两昼夜实体海程，林辰以六箱药材劳务换舱，并在入港时验籍、使用受护外港适配的避火防护；后续赤霄—苍冥五日北航、苍冥—青玄六日返航均明确采用实体暖舱、实付票款、港口候查/担保和失败时停行改签，而非界门、瞬移或商盟信物免检。北境外港的具名担保也限定范围、期限和路线，能够支撑第二、三卷的地域转换及风险差异。但第31—32章属于已具细纲范围，且本批未提供其实际护货、风暴、验籍与入港动作；宏观摘要不能替代对该次已展开跨海行动的核验。须补读对应细纲后，才能确认其没有以未获授权的御物、未列防护或省略实体行程抵消宏观约束。",
+          "awaitingSources": [
+            "plan/chapters/31",
+            "plan/chapters/32"
+          ]
+        },
+        {
+          "criterion": "history",
+          "verdict": "pass",
+          "explanation": "已读历史不是孤立年表：界门落锁保留三大陆之间受航程、风暴、验籍和担保制约的实体商路；灵虚界约把采收、封管、份额和追回物的权属限制为可核流程；赵府私运旧约则明确仅为有限物流与资金交换，不赋予赵玄极、程砚或炎煞跨港口、跨消息时限的万能权限。当前三卷提案将失箱、扣工、改签、残片和父案线索分别限制在可核的运输链和证据边界内，并保留首仓火因、完整旧约与九鼎全貌未明，因此势力仍有独立的追偿、停垫、扣货与自保动机，而非由主角发现线索后被动配合。作为设计提案，其前置、选择和后果链可执行。"
+        },
+        {
+          "criterion": "capacity",
+          "verdict": "pass",
+          "explanation": "本批可见容量并非仅靠新增地名：青玄的宗门—皇权争泉与矿务掩案、赤霄的港务火候和商路扣工、苍冥的寒候、巡界、担保与有限救济，分别改变角色的进入资格、支付、停留方式和可作选择。自然寿源须验真、配额、疗程与复诊后才入账，高阶成长示例也明定为世界容量见证而非角色现有资产；这防止资源或境界成为跨卷万能解法。极冰、巡界和商盟对寿材、巡防人手及履约的相互竞争，进一步让北境救援、担保离境和返乡证据链具有持续代价。百章只断一条已证运输链、把界门和高阶成长留给后续逐层设计，也与100章阶段范围相称。"
+        }
+      ]
+    },
+    {
+      "stageId": "batch-2",
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "insufficient",
+          "explanation": "本批已给出的宏观移动链条基本能对应世界规则：三大陆由实体虚海航程连接，不借界门或瞬移；赤霄日常热区、苍冥寒候、北境外港查验与指定暖舱均有不同门槛，且计划写明了航程、票款、验籍、担保、供暖和失败分支。例如赤霄至苍冥为五昼夜实体航程，林辰与贺青梧先付两席航款并在葬骨外港受监管候查；北境七名矿工也被安排在同一实体航程和实暖货舱中，而非凭港口或符箓跳过寒候。可是本批没有携带art_15、art_16、art_18、art_21的完整规则，无法核定计划中避火衣、避火符、护身寒符和虚空破障梭的实际效力、余量、启动与失效条件是否支撑这些跨域动作。尤其计划把art_16用于七名被扣矿工的赤霄出港、又在苍冥换用art_21；这在地点规则上方向正确，但尚不能据未读法宝原档验收。后半段虽未逐章展开，不因缺少51–100章逐章细纲而判缺料；当前不足仅限已写宏观行动所需的未读规则。",
+          "awaitingSources": [
+            "world/artifacts/art_15",
+            "world/artifacts/art_16",
+            "world/artifacts/art_18",
+            "world/artifacts/art_21"
+          ]
+        },
+        {
+          "criterion": "history",
+          "verdict": "insufficient",
+          "explanation": "本批的历史后果链在已携带的提案中有连续安排：父亲参与守门与外山掩案被限定为逐份记录交叉核实，不能直接推出赵玄极十年前投毒；赵在收到程砚的第一报、回令、北境面报和押运报告后分阶段行动，炎煞尊者一方没有被自动写成同步知情；第95章的撤运失败则通过祁嵩保留原令、交械受监管来产生有限后果，而非被普通人或未定义术法强行封禁。这些安排支持历史因果与势力独立行动的方向。问题是计划明确把赵—炎煞的旧互供框架归因于event_14，并涉及赵府军需、炎煞代理、万象商盟和苍冥巡界使的权限与责任；本批没有携带world/historicalEvents/event_14及相关势力原档，无法核验该历史原因、授权边界和后续独立行动是否真的有来源支撑。工作流中的openQuestions和“尚待复核”本身不另成缺陷，但这里存在具体未读的历史依据，故不能把局部提案判为完整通过。",
+          "awaitingSources": [
+            "world/historicalEvents/event_14",
+            "world/factions/fac_02",
+            "world/factions/fac_07",
+            "world/factions/fac_08",
+            "world/factions/fac_12"
+          ]
+        },
+        {
+          "criterion": "capacity",
+          "verdict": "pass",
+          "explanation": "就本批可检验的世界容量而言，地域并非只换名称重复冲突：青玄承担矿务、宗门与调查，赤霄承担港口、药材转运、火候与扣工，苍冥承担寒候、巡界、实体航路和受监管救济；资源也按各自形成周期、配额、运输、疗程和失败损失分账。计划没有用界门、商业信物或境界名称跳过跨域限制，而是把航款、避护、验籍、担保、暖舱、救济和普通交通分别列出。三卷在百章范围内的承载作用也有明确递进：第一卷完成凝元与灵虚古境门槛，第二卷转向赤霄港口和北境黑舱，第三卷回到青玄处理车队、证据与玄府成长；同时明确百章只是约450章全书的阶段，不要求本轮一次闭合后续高阶资源与界门总危机。以当前local_sources范围看，地域制度、资源差异和容量边界足以支撑本阶段设计。该通过不替代未读法宝、历史、势力原档及后续跨批核验。"
+        }
+      ]
+    },
+    {
+      "stageId": "batch-3",
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "pass",
+          "explanation": "三大陆并非仅换名地图：青玄—赤霄、赤霄—苍冥、苍冥—青玄均明确采用实体航程，分别受验籍、火候/避火、寒候/暖舱、担保和港口监管约束。计划没有把商路、担保或商盟身份写成瞬移或免检：北行前逐日核放行旗与避火符，五昼夜保温舱抵北境后仍候查；返青玄则另有苍冥限程担保、逐站签注、六昼夜暖舱、沧溟古港验籍和实际缴税。北境救援也限定在获担保的外港仓区，明确不进入界渊、神宫或妖域。地域条件实际改变了路线、可行动范围、支付和失败分支，能够支撑三卷推进。"
+        },
+        {
+          "criterion": "history",
+          "verdict": "pass",
+          "explanation": "本批提案把既有矿务、扣工、私挪与跨陆转运拆为可追溯但不自动等同全案定罪的链条。第六箱通过搬运、领货便条、火毁和售用记录逐步闭合，首仓火因仍明确保留待查；赤霄扣工脱控后，陆的新写自述仅作为待独立核验线索。赵的反应也受实体消息限制：第一报、回令、北境面报、押报、撤令和正式质询都有不同到达时点与有限知情，未把读者视角或下属场景越级写成其即时知情。北境港口对七人扣留设置了具体漏查、开舱救援和后续交叉核验，避免把港口准入或单一口供直接洗成合法拘禁或全链破案；势力的自保、追责与救援选择均有可执行的因果和代价。"
+        },
+        {
+          "criterion": "capacity",
+          "verdict": "pass",
+          "explanation": "本批可见的世界容量来自规则差异对剧情选择的持续作用，而非条目堆叠。赤霄的日常热区、封航旗与避火符限制了港口调查和北行准备；苍冥的寒候、暖房、具名担保与受监管码头限制了救援、候查、返乡和人员安置；虚海商路要求实体航程、舱位、燃料、船员与分账支付。三卷分别以古境准入和有限寿源、港口扣工及跨海监管、返乡训练和本地押运链为核心冲突，且后段玄府成长、护罡训练、救援转运和看押均保留实测、支付、伤情及同阶限制，不以地域或境界名称免费解决问题。百章结局同时保留九鼎、残片与界门主线的后续空间，未把当前阶段胜果误作全书闭合。"
+        }
+      ]
+    }
+  ],
+  "verificationModelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "proseGenerated": false,
+  "limitation": "A snapshot of an ongoing task, not a final report. Later progress may exceed this checkpoint. Pending source reads are not approvals or proven design defects."
+}
