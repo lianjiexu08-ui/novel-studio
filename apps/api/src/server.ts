@@ -586,6 +586,12 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     const run = await workflow.stepDesignReview(workId, runId);
     return { runId: run.id, status: run.status, completed: run.stages.filter(s => s.result).length, total: run.stages.length, reportId: run.reportId };
   });
+  app.post('/works/:workId/design/review-runs/:runId/restart', async (request) => {
+    const { workId, runId } = z.object({ workId: z.string().min(1), runId: z.string().min(1) }).parse(request.params);
+    const { expectedInputHash } = z.object({ expectedInputHash: z.string().regex(/^[a-f0-9]{64}$/) }).strict().parse(request.body);
+    const run = await workflow.restartDesignReview(workId, runId, expectedInputHash);
+    return { runId: run.id };
+  });
   app.get('/works/:workId/design/review-runs/:runId/stages/:stageId', async (request) => {
     const { workId, runId, stageId } = z.object({ workId: z.string(), runId: z.string(), stageId: z.string() }).parse(request.params);
     const work = await repository.get(workId);

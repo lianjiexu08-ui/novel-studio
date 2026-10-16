@@ -88,10 +88,12 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
     };
   }, [load, revision]);
   useEffect(() => { activeWork.current = workId; setBusy(null); setSource(null); stageRequest.current++; setStageView(null); setPlanId(undefined); return () => { activeWork.current = ''; stageRequest.current++; stopReview.current = true; }; }, [workId]);
-  async function review(area: DesignReviewAreaDto) {
+  async function review(area: DesignReviewAreaDto, restart?: ReviewRun) {
     setBusy(area); stopReview.current = false; setStopRequested(false);
     try {
-      const { runId } = await api.startDesignReview(workId, area, data?.selectedPlan?.id);
+      const { runId } = restart
+        ? await api.restartDesignReview(workId, restart.id, restart.inputHash)
+        : await api.startDesignReview(workId, area, data?.selectedPlan?.id);
       if (activeWork.current !== workId) return;
       await load();
       while (!stopReview.current && activeWork.current === workId) {
@@ -186,6 +188,11 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
     const partialIndex = run.stages.some(stage => stage.completed && stage.insufficientCriteria === undefined);
     return <Space direction="vertical" style={{ width: '100%' }}>
       <Typography.Text type="secondary">世界 v{run.scope.worldPackRevision} · 圣经 v{run.scope.storyBibleRevision} · 计划 v{run.scope.planRevision} · {new Date(run.createdAt).toLocaleString()}</Typography.Text>
+      {run.restartedFromRunId && <Typography.Text type="secondary">本次从首批重新评审；原任务的批次、判断和响应保留在历史评审任务中。</Typography.Text>}
+      {!historical && run.canRestart && <Space wrap>
+        <Button disabled={busy !== null} onClick={() => void review(run.area, run)}>保留记录，重新评审</Button>
+        <Typography.Text type="secondary">从首批重新调用模型。仅需接着已保存进度执行时，请用上方“继续本项”。</Typography.Text>
+      </Space>}
       <Typography.Paragraph type="secondary">原文 {run.totalSources} 项 · {run.totalCharacters.toLocaleString()} 字符。{historical
         ? run.reportId ? '已形成最终报告，具体结论可在历史评审记录中查看。' : '尚未形成最终报告，已保存的批次和失败记录仍可查阅。'
         : run.status === 'completed' ? '所有批次已完成，结论见上方。' : run.status === 'running' ? '一批正在执行；断线后需等执行结束或租约到期再继续。' : '未完成，不计为本项通过；继续时保留已完成批次。'}</Typography.Paragraph>

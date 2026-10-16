@@ -145,6 +145,7 @@ export const api = {
   },
   designContentReview: (workId: string, reportId: string) => call<{ report: DesignContentReviewDto }>(`/works/${encodeURIComponent(workId)}/design/content-reviews/${encodeURIComponent(reportId)}`),
   startDesignReview: (workId: string, area: DesignReviewAreaDto, planId?: string) => call<{ runId: string }>(`/works/${workId}/design/review-runs`, { method: 'POST', body: { area, planId } }),
+  restartDesignReview: (workId: string, runId: string, expectedInputHash: string) => call<{ runId: string }>(`/works/${workId}/design/review-runs/${runId}/restart`, { method: 'POST', body: { expectedInputHash } }),
   stepDesignReview: (workId: string, runId: string) => call<{ runId: string; status: string; completed: number; total: number; reportId?: string }>(`/works/${workId}/design/review-runs/${runId}/step`, { method: 'POST', body: {} }),
   designReviewStage: (workId: string, runId: string, stageId: string) => call<DesignReviewStageDetail>(`/works/${workId}/design/review-runs/${runId}/stages/${encodeURIComponent(stageId)}`),
   reviewDesignContent: (workId: string, area: DesignReviewAreaDto, planId?: string) => call<{ report: DesignContentReviewDto }>(`/works/${workId}/design/content-reviews`, { method: 'POST', body: { area, planId } }),

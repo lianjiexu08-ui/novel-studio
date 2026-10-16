@@ -39,6 +39,7 @@ export const designReviewRunOverviewSchema = z.object({
   status: z.enum(['ready', 'running', 'failed', 'completed', 'outdated']),
   createdAt: z.string(), updatedAt: z.string(), reportId: z.string().optional(), leaseExpiresAt: z.string().optional(),
   totalSources: z.number(), totalCharacters: z.number(),
+  restartedFromRunId: z.string().optional(), canRestart: z.boolean().optional(),
   stages: z.array(z.object({ id: z.string(), kind: z.enum(['batch', 'cross', 'synthesis']), label: z.string(), completed: z.boolean(), verdict: z.enum(['passed', 'needs_revision', 'inconclusive']).optional(), insufficientCriteria: z.array(z.string()).optional(), attempts: z.number(), error: z.string().optional() })),
 });
 export type DesignReviewRunOverviewDto = z.infer<typeof designReviewRunOverviewSchema>;

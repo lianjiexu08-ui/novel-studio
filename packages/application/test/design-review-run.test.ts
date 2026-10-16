@@ -308,6 +308,62 @@ test('failed stages resume in a new workflow without repeating completed batches
   assert.equal(work.versions.size, 0);
 });
 
+test('explicit restart retains legacy findings, is idempotent and never resumes a replaced task', async () => {
+  const repository = new InMemoryWorkRepository();
+  const workflow = new ChapterWorkflow(repository, writer, provider);
+  const work = await createReadyWork(workflow, '保留历史重新评审');
+  work.plans.get(work.activePlanId!)!.plan.chapters[0].summary = '长篇材料'.repeat(70000);
+  const legacy = createDesignReviewRun(designReviewInput(work, 'story', work.activePlanId), undefined, 29);
+  work.designReviewRuns.set(legacy.id, legacy);
+  await workflow.stepDesignReview(work.id, legacy.id);
+  const before = JSON.stringify(work.designReviewRuns.get(legacy.id));
+  assert.equal((await workflow.startDesignReview(work.id, 'story')).id, legacy.id, 'normal resume keeps v29');
+  const [replacement, retried] = await Promise.all([
+    workflow.restartDesignReview(work.id, legacy.id, legacy.input.inputHash),
+    workflow.restartDesignReview(work.id, legacy.id, legacy.input.inputHash),
+  ]);
+  assert.equal(replacement.id, retried.id);
+  assert.equal(replacement.restartedFromRunId, legacy.id);
+  assert.equal(replacement.scheduleVersion, 30);
+  assert.ok(replacement.stages.every(stage => !stage.result && stage.attempts === 0));
+  assert.equal(work.designReviewRuns.size, 2);
+  assert.equal(work.designContentReviews.size, 0);
+  assert.equal(designReviewOverview(work).ready, false);
+  assert.equal((await workflow.startDesignReview(work.id, 'story')).id, replacement.id);
+  await assert.rejects(() => workflow.stepDesignReview(work.id, legacy.id), /历史记录/);
+  let progress = replacement;
+  while (progress.status !== 'completed') progress = await workflow.stepDesignReview(work.id, progress.id);
+  assert.equal((await workflow.restartDesignReview(work.id, legacy.id, legacy.input.inputHash)).id, replacement.id, 'retry after completion must not start another review');
+  const newer = await workflow.startDesignReview(work.id, 'story');
+  assert.notEqual(newer.id, legacy.id, 'a completed replacement must not resurrect an older unfinished task');
+  assert.notEqual(newer.id, replacement.id);
+  assert.equal(JSON.stringify(work.designReviewRuns.get(legacy.id)), before);
+  assert.equal(work.versions.size, 0);
+});
+
+test('restart refuses stale hashes, stale tasks and active or expired leases without writing', async () => {
+  const repository = new InMemoryWorkRepository();
+  const workflow = new ChapterWorkflow(repository, writer, provider);
+  const work = await createReadyWork(workflow, '重评前置条件');
+  const run = await workflow.startDesignReview(work.id, 'world');
+  const stored = work.designReviewRuns.get(run.id)!;
+  await assert.rejects(() => workflow.restartDesignReview(work.id, run.id, '0'.repeat(64)), /已变化/);
+  for (const expiry of ['2000-01-01T00:00:00.000Z', '2099-01-01T00:00:00.000Z']) {
+    stored.leaseToken = 'worker'; stored.leaseExpiresAt = expiry;
+    const before = JSON.stringify(stored);
+    await assert.rejects(() => workflow.restartDesignReview(work.id, run.id, run.input.inputHash), /执行权/);
+    assert.equal(JSON.stringify(stored), before);
+  }
+  delete stored.leaseToken; delete stored.leaseExpiresAt;
+  const other = createDesignReviewRun(run.input);
+  work.designReviewRuns.set(other.id, other);
+  await assert.rejects(() => workflow.restartDesignReview(work.id, run.id, run.input.inputHash), /较新/);
+  assert.equal(work.designReviewRuns.size, 2);
+  work.worldPack!.summary += '变化';
+  await assert.rejects(() => workflow.restartDesignReview(work.id, other.id, other.input.inputHash), /已变化/);
+  assert.equal(work.designReviewRuns.size, 2);
+});
+
 test('lease takeover fences a delayed worker, and changed versions cannot resume old progress', async () => {
   const repository = new InMemoryWorkRepository();
   let time = 0, started!: () => void, finish!: () => void;

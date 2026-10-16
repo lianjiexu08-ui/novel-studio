@@ -604,6 +604,15 @@ test('SQLite review checkpoints survive repository restart and resume without re
   assert.equal(final.designReviewRuns.get(run.id)!.stages[0].attempts, 1);
   assert.equal(final.designContentReviews.get(progress.reportId!)!.runId, run.id);
   assert.equal(final.versions.size, 0);
+  const stopped = await resumed.startDesignReview(work.id, 'story');
+  const fresh = await resumed.restartDesignReview(work.id, stopped.id, stopped.input.inputHash);
+  const reloaded = (await first.get(work.id))!;
+  assert.deepEqual(reloaded.designReviewRuns.get(stopped.id), stopped);
+  assert.equal(reloaded.designReviewRuns.get(fresh.id)!.restartedFromRunId, stopped.id);
+  const restoredWorkflow = new ChapterWorkflow(first, provider, reviewer);
+  assert.equal((await restoredWorkflow.startDesignReview(work.id, 'story')).id, fresh.id);
+  assert.equal((await restoredWorkflow.restartDesignReview(work.id, stopped.id, stopped.input.inputHash)).id, fresh.id);
+  await assert.rejects(() => restoredWorkflow.stepDesignReview(work.id, stopped.id), /历史记录/);
 });
 
 test('parallel detail reads keep separate response envelopes and bookshelf reads omit full histories', async t => {

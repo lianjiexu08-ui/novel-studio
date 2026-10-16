@@ -668,9 +668,33 @@ export class ChapterWorkflow {
     if (!this.designProvider?.reviewDesignContent) throw new DesignReviewError('尚未配置内容评审模型，请在系统设置配置规划模型');
     return this.repository.transaction(workId, ({ work }) => {
       const input = designReviewInput(work, area, planId ?? latestPlan(work)?.id);
-      const existing = [...work.designReviewRuns.values()].findLast(run => run.input.area === area && run.input.inputHash === input.inputHash && run.status !== 'completed' && run.status !== 'outdated');
-      if (existing) return structuredClone(existing);
+      const existing = [...work.designReviewRuns.values()].findLast(run => run.input.area === area && run.input.inputHash === input.inputHash);
+      if (existing && existing.status !== 'completed' && existing.status !== 'outdated') return structuredClone(existing);
       const run = createDesignReviewRun(input, new Date(this.now()).toISOString());
+      work.designReviewRuns.set(run.id, run);
+      work.constraintRevision += 1;
+      return structuredClone(run);
+    });
+  }
+
+  /** Restart only a stopped assessment, retaining all original stages and responses.
+   * The prior run id is also the idempotency key for a retried restart request. */
+  async restartDesignReview(workId: string, runId: string, expectedInputHash: string): Promise<DesignReviewRun> {
+    if (!this.designProvider?.reviewDesignContent) throw new DesignReviewError('尚未配置内容评审模型');
+    return this.repository.transaction(workId, ({ work }) => {
+      const prior = work.designReviewRuns.get(runId);
+      if (!prior) throw new DesignReviewError('评审任务不存在');
+      const input = designReviewInput(work, prior.input.area, prior.input.scope.planRevisionId);
+      if (input.inputHash !== expectedInputHash || input.inputHash !== prior.input.inputHash) throw new DesignReviewError('设计或计划已变化，请刷新后评审当前版本');
+      const replacement = [...work.designReviewRuns.values()].find(run => run.restartedFromRunId === runId);
+      if (replacement) return structuredClone(replacement);
+      const latest = [...work.designReviewRuns.values()].findLast(run => run.input.area === input.area && run.input.inputHash === input.inputHash);
+      if (latest?.id !== runId) throw new DesignReviewError('已有较新的评审任务，请刷新后继续');
+      // Even an expired lease can still have a delayed worker. Recover that
+      // step through the normal fencing path before starting a new assessment.
+      if (prior.leaseToken || !['ready', 'failed'].includes(prior.status)) throw new DesignReviewError('仅可重新评审已停止且未完成的任务；仍有执行权时请先恢复原任务');
+      const run = createDesignReviewRun(input, new Date(this.now()).toISOString());
+      run.restartedFromRunId = prior.id;
       work.designReviewRuns.set(run.id, run);
       work.constraintRevision += 1;
       return structuredClone(run);
@@ -685,6 +709,7 @@ export class ChapterWorkflow {
     const claimed = await this.repository.transaction(workId, ({ work }) => {
       const run = work.designReviewRuns.get(runId);
       if (!run) throw new DesignReviewError('评审任务不存在');
+      if ([...work.designReviewRuns.values()].some(next => next.restartedFromRunId === runId)) throw new DesignReviewError('本任务已保留为历史记录，请继续新的评审任务');
       if (designReviewHash(work, run.input.scope.planRevisionId) !== run.input.inputHash) throw new DesignReviewError('评审期间设计或计划已变化，请针对当前版本重新评审');
       if (run.status === 'completed') return { run: structuredClone(run), stageId: undefined };
       if (run.leaseToken && Date.parse(run.leaseExpiresAt ?? '') > this.now()) throw new DesignReviewError('本项内容评审正在进行，请等待结果');

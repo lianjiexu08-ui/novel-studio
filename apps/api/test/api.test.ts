@@ -945,6 +945,44 @@ test('review summaries retain insufficiencies masked by a stronger revise verdic
   } finally { await app.close(); }
 });
 
+test('review restart API creates one independent assessment while preserving old evidence', async () => {
+  const repository = new InMemoryWorkRepository();
+  const design = milestoneDesign();
+  let calls = 0;
+  const { app } = createApiServer({ repository, provider: writer, designProvider: {
+    generateWorldPack: async () => design.world, generateStoryBible: async () => design.bible,
+    reviewDesignContent: async input => { calls++; return fixtureDesignReview(input); },
+  } });
+  try {
+    const work = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('独立重评') })).json();
+    await lockDesign(repository, work.id);
+    const current = (await repository.get(work.id))!;
+    current.plans.get(current.activePlanId!)!.plan.chapters[0].summary = '长篇材料'.repeat(70000);
+    const base = `/works/${work.id}/design`;
+    const { runId } = (await app.inject({ method: 'POST', url: `${base}/review-runs`, payload: { area: 'story' } })).json();
+    assert.equal((await app.inject({ method: 'POST', url: `${base}/review-runs/${runId}/step` })).statusCode, 200);
+    const oldDetail = (await app.inject({ method: 'GET', url: `${base}/review-runs/${runId}/stages/batch-1` })).body;
+    const expectedInputHash = current.designReviewRuns.get(runId)!.input.inputHash;
+    const restart = (payload: unknown) => app.inject({ method: 'POST', url: `${base}/review-runs/${runId}/restart`, payload });
+    assert.equal((await restart({})).statusCode, 400);
+    assert.equal((await restart({ expectedInputHash: '0'.repeat(64) })).statusCode, 409);
+    const fresh = await restart({ expectedInputHash });
+    assert.equal(fresh.statusCode, 200, fresh.body);
+    assert.notEqual(fresh.json().runId, runId);
+    assert.deepEqual((await restart({ expectedInputHash })).json(), fresh.json());
+    assert.equal(current.designReviewRuns.size, 2);
+    assert.equal((await app.inject({ method: 'POST', url: `${base}/review-runs/${runId}/step` })).statusCode, 409);
+    assert.equal((await app.inject({ method: 'GET', url: `${base}/review-runs/${runId}/stages/batch-1` })).body, oldDetail);
+    const overview = designReviewOverviewSchema.parse((await app.inject({ method: 'GET', url: `${base}/content-reviews` })).json());
+    assert.equal(overview.runs.find(run => run.id === fresh.json().runId)!.restartedFromRunId, runId);
+    assert.equal(overview.runs.find(run => run.id === runId)!.canRestart, false);
+    assert.equal(overview.ready, false);
+    assert.equal(overview.reports.length, 0);
+    assert.equal(calls, 1, 'creating or retrying a restart must not invoke the model');
+    assert.equal(current.versions.size, 0);
+  } finally { await app.close(); }
+});
+
 test('staged design review API preserves progress and cannot release partial reviews', async () => {
   const repository = new InMemoryWorkRepository();
   const design = milestoneDesign();
