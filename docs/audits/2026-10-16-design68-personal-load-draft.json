@@ -1,0 +1,34 @@
+{
+  "kind": "unapplied_personal_load_author_clarification",
+  "basePath": "data/design-candidates/design68-sword-inspection-draft-v13.json",
+  "baseSha256": "f5b1f122eb830605e54a4eb7217d5f90be85c93f9f4d8751cc71793686718ae9",
+  "candidatePath": "data/design-candidates/design68-personal-load-draft-v14.json",
+  "candidateSha256": "d90070e88c59d7eb615eea8f648de36d20b78db42166f65553654a02431116de",
+  "reason": "The review wrongly attributes Gu’s300 to Mo. Separately, the original two ranges under600 do not identify a single measured personal load and actual cart load. This proposal clarifies that narrower issue without treating the attribution error as true.",
+  "changedPaths": [
+    "storyBible.characters[char_04].identity",
+    "storyBible.chapterPlans[chapter-plan-23].purpose",
+    "storyBible.chapterPlans[chapter-plan-23].requiredEvents[2]",
+    "plan.chapters[chapter-23].summary",
+    "plan.chapters[chapter-23].scenes[2]"
+  ],
+  "newAuthorValues": {
+    "worldCeilingUnchanged": 600,
+    "moMeasured": 500,
+    "cart": 480,
+    "guMeasuredUnchanged": 300
+  },
+  "proposedActorIdentity": "幽罗殿枉死黑窟少主、古境掳人行动组织者，现为玄府境；交接封存货物不等于能启封神海门槛的死息，也未炼成自己的万鬼幡。 作者开篇前技能设定：墨已从枉死黑窟教习处取得并修习幽冥噬血爪，完成以本境元罡聚爪、近身落点、一息主动收爪、连续最多三息及停六息后重新起爪的受控训练与实测；门内医修曾检查指骨和经脉并告知积毒、麻木、失准和流血不止的停术界限。此处只确立已学前史，不保证187、188日的伤情或余量合格；两次实际出爪仍按章纲逐息付费和现场症状限制，不靠身份免除代价。 同一开篇前修习中已由门内教习指导完成ax_13短促推劲的立足、接触一息聚罡与主动停劲，个人本次已测总重明确为五百斤：原训练场将无锁普通滑车连同配重实称五百斤，他按既有聚罡一息、推劲一息及二成预付规则沿平地滚开一步，随后经医修复核；此为墨自己的已测负荷，不把世界六百斤上限或顾峤三百斤实测记为墨的能力，也不是托举五百斤；未获得隔空移车、轻物御动搬重物或受伤后自动合格的资格。",
+  "proposedScene": "众人隔木缝见墨以肉身近前扣住一名失误看守的手腕，再以噬血爪擦伤其裸露前臂；该看守当时未施护体术，不涉及破开凝元自动护体；只施一息即收，指骨黑纹加深。墨割指放血后以随身布压住浅口，待至少六息、出血已止，确认双掌仍能稳定握持、无麻木或失准，再双掌贴车架按ax_13聚罡一息、推劲一息，将挡路滑车沿平地滚开一步。作者执行重量：本次车身与散装料总重明确为四百八十斤，低于墨开篇前已实际测过的五百斤，也低于ax_13的六百斤通用上限；这些是拟定动作的作者依据，旁观林苏秦不能仅凭看见推车就知道准确斤数或墨的训练记录。轮轴可转、闸块已经由原装车看守取下，不是整辆囚笼重车；若实际载荷超过墨的已测负荷、闸未解、地面不平或伤情复核不稳，就不得按本操作硬推，须卸料、解闸或停手，不因余额足够就保证成功。林看见其手脚仍稳，放弃趁放血偷袭的念头。编辑执行账：本次出爪前墨实际可用余量至少八成，出爪一息预付一成后至少七成；推劲另预付二成后至少五成，两种操作不同时维持，聚劲失手也不退费。这是墨本人的保守实检下界，旁观三人只见动作、黑纹、止血和推车，不知道余额。放血仅缓解表层胀痛，黑纹仍留，不返还法力；后续麻木、失准或再出血时必须停术就医。",
+  "preservedAllOtherFieldsExactly": true,
+  "mirroredChapterFieldsEqual": true,
+  "inheritedUnacceptedDrafts": [
+    "v12 captive cold protection",
+    "v13 sword inspection"
+  ],
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "questionsClosed": 0,
+  "formalAcceptance": false,
+  "limitation": "Only edit-scope and numeric-bound checks. Exact500/480 are new fiction awaiting semantic review, not facts recovered from frozen Plan68. No claim that character knowledge, physical execution, or the complete design has been accepted."
+}
