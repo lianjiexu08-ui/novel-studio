@@ -904,6 +904,47 @@ test('model settings are stored on this machine, take effect immediately, and th
 });
 
 
+test('review summaries retain insufficiencies masked by a stronger revise verdict without changing stored results', async () => {
+  const repository = new InMemoryWorkRepository();
+  let calls = 0;
+  const { app } = createApiServer({ repository, provider: writer, designProvider: {
+    reviewDesignContent: async input => {
+      calls++;
+      const result = fixtureDesignReview(input);
+      result.checks[0] = { ...result.checks[0], verdict: 'revise', revisionAdvice: '核对门槛' };
+      result.checks[1] = { ...result.checks[1], verdict: 'insufficient', insufficiencyReason: 'missing_design', revisionAdvice: '补全消耗依据' };
+      return result;
+    },
+  } });
+  try {
+    const work = (await app.inject({ method: 'POST', url: '/works', payload: createPayload('保留全部不足') })).json();
+    await lockDesign(repository, work.id);
+    const base = `/works/${work.id}/design`;
+    const start = await app.inject({ method: 'POST', url: `${base}/review-runs`, payload: { area: 'power' } });
+    const { runId } = start.json();
+    const response = await app.inject({ method: 'POST', url: `${base}/review-runs/${runId}/step` });
+    assert.equal(response.statusCode, 200, response.body);
+    assert.equal(response.json().status, 'completed');
+    const current = (await repository.get(work.id))!, before = JSON.stringify([...current.designReviewRuns]);
+    for (const view of ['full', 'summary']) {
+      const response = await app.inject({ method: 'GET', url: `${base}/content-reviews?view=${view}` });
+      const overview = designReviewSummarySchema.parse(response.json());
+      const stage = overview.runs.find(r => r.id === runId)!.stages[0];
+      assert.equal(stage.verdict, 'needs_revision');
+      assert.deepEqual(stage.insufficientCriteria, ['costs']);
+      assert.equal(overview.ready, false);
+      assert.equal(overview.areas.find(a => a.area === 'power')!.status, 'needs_revision');
+      const legacy = structuredClone(response.json());
+      delete legacy.runs[0].stages[0].insufficientCriteria;
+      assert.equal(designReviewSummarySchema.parse(legacy).runs[0].stages[0].insufficientCriteria, undefined, 'missing old index is unknown, not an empty verified index');
+      assert.deepEqual((await app.inject({ method: 'GET', url: `${base}/content-reviews?view=${view}&since=${response.json().revisionToken}` })).json(), { unchanged: true, revisionToken: response.json().revisionToken });
+    }
+    assert.equal(JSON.stringify([...current.designReviewRuns]), before);
+    assert.equal(calls, 1, 'reading indexes does not rerun reviews');
+    assert.equal(current.versions.size, 0);
+  } finally { await app.close(); }
+});
+
 test('staged design review API preserves progress and cannot release partial reviews', async () => {
   const repository = new InMemoryWorkRepository();
   const design = milestoneDesign();

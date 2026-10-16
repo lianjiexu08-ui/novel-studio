@@ -10,6 +10,7 @@ const verdicts = { pass: '通过', revise: '返修', insufficient: '材料不足
 const insufficiencyReasons = { missing_design: '设计内容缺失', unlocatable_sources: '尚无法定位所需材料', capacity_limit: '完整核验材料超出本次容量' };
 const criteria: Record<string, string> = { geography: '地理与势力', history: '历史因果', capacity: '长篇承载能力', tiers: '品阶与门槛', costs: '消耗与恢复', counters: '上限与反制', agency: '独立动机与选择', relationships: '关系变化', knowledge: '秘密与认知', causality: '情节因果', timeline: '时空与分卷', payoff: '铺垫与兑现', opening: '开篇递进', pacing: '节奏与场次', genre: '题材体验与成长', growth: '近期成长目标与回报' };
 type ReviewRun = DesignReviewSummaryDto['runs'][number];
+const insufficiencyStages = (run?: ReviewRun) => run?.stages.filter(stage => stage.insufficientCriteria?.length || stage.verdict === 'inconclusive') ?? [];
 
 function LazyReviewReport({ workId, report, render }: { workId: string; report: DesignContentReviewSummaryDto; render: (report: DesignContentReviewDto) => ReactNode }) {
   const [detail, setDetail] = useState<DesignContentReviewDto>();
@@ -131,6 +132,16 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
           </Button>)}
         </Space>,
       }]} /> : report.id && !reportRun ? <Typography.Text type="secondary">此报告没有可用的批次索引，请继续核对逐项证据；不能据此认为没有历史返修。</Typography.Text> : null}
+      {insufficiencyStages(reportRun).length > 0 && <Collapse size="small" style={{ width: '100%' }} items={[{
+        key: 'retained-insufficiencies', label: '查看曾提出材料不足的批次',
+        children: <Space direction="vertical" style={{ width: '100%' }}>
+          <Typography.Text type="secondary">同批可以同时包含返修和材料不足，以下保留两者中的不足记录。部分补读等待可能已解决，处理依据见补读复核记录；这里不把所有历史不足当作当前未解决问题。</Typography.Text>
+          {insufficiencyStages(reportRun).map(stage => <Button key={stage.id} type="link" size="small" style={{ height: 'auto', whiteSpace: 'normal', textAlign: 'left' }} onClick={() => void showStage(reportRun!.id, stage.id)}>
+            {stage.label} · {stage.insufficientCriteria?.map(key => criteria[key] ?? key).join('、') || '查看不足项与证据'}
+          </Button>)}
+        </Space>,
+      }]} />}
+      {reportRun?.stages.some(stage => stage.completed && stage.insufficientCriteria === undefined) && <Typography.Text type="secondary">此接口未提供完整的逐项不足索引，返修批次中可能另有材料不足；请打开批次原文与结果核对。</Typography.Text>}
       {report.resolvedDeferrals?.length ? <Collapse size="small" style={{ width: '100%' }} items={[{
         key: 'deferrals', label: `补读复核记录（${report.resolvedDeferrals.length} 项）`,
         children: <Space direction="vertical" style={{ width: '100%' }}>
@@ -171,7 +182,8 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
   }
   function runDetails(run: ReviewRun, historical = false) {
     const revisions = run.stages.filter(stage => stage.verdict === 'needs_revision');
-    const incomplete = run.stages.filter(stage => stage.verdict === 'inconclusive').length;
+    const incomplete = insufficiencyStages(run).length;
+    const partialIndex = run.stages.some(stage => stage.completed && stage.insufficientCriteria === undefined);
     return <Space direction="vertical" style={{ width: '100%' }}>
       <Typography.Text type="secondary">世界 v{run.scope.worldPackRevision} · 圣经 v{run.scope.storyBibleRevision} · 计划 v{run.scope.planRevision} · {new Date(run.createdAt).toLocaleString()}</Typography.Text>
       <Typography.Paragraph type="secondary">原文 {run.totalSources} 项 · {run.totalCharacters.toLocaleString()} 字符。{historical
@@ -182,9 +194,11 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
         <Typography.Text>这是已保存的批次意见，需对照原文核实；后续结论和修订不会抹去这些记录。</Typography.Text>
         {revisions.map(stage => <Button key={stage.id} type="link" size="small" style={{ height: 'auto', whiteSpace: 'normal', textAlign: 'left' }} onClick={() => void showStage(run.id, stage.id)}>查看返修证据：{stage.label}</Button>)}
       </Space>} />}
-      {!historical && incomplete > 0 && <Typography.Text type="secondary">另有 {incomplete} 个批次曾标记材料不足，补读及处理结果见批次与最终报告；不计为通过，也不直接等同于已确认的设定错误。</Typography.Text>}
+      {incomplete > 0 && <Typography.Text type="secondary">{partialIndex ? '至少' : '共有'} {incomplete} 个批次曾标记材料不足，可能与返修批次重叠，且不等于独立问题数。已解决补读仍保留历史，当前处理结果见最终报告。</Typography.Text>}
+      {partialIndex && <Typography.Text type="secondary">此接口没有完整的逐项不足索引，不能只凭批次综合标签判断是否还有其他不足。</Typography.Text>}
       <Collapse style={{ width: '100%' }} items={[{ key: 'stages', label: '查看批次、证据与失败记录', children: <Space direction="vertical" style={{ width: '100%' }}>{run.stages.map(stage => <div key={stage.id}>
         <Tag color={stage.verdict === 'passed' ? 'success' : stage.verdict ? 'warning' : stage.error ? 'error' : 'default'}>{stage.verdict ? stage.verdict === 'passed' ? '本批通过' : statuses[stage.verdict] : stage.error ? historical ? '有失败记录' : '失败可重试' : '待审'}</Tag>{stage.label}
+        {!!stage.insufficientCriteria?.length && <Typography.Text type="secondary"> · 曾有材料不足：{stage.insufficientCriteria.map(key => criteria[key] ?? key).join('、')}</Typography.Text>}
         {(stage.completed || stage.error || stage.attempts > 0) && <Button type="link" size="small" onClick={() => void showStage(run.id, stage.id)}>原文与结果</Button>}
         {stage.error && <Typography.Paragraph type="danger">{stage.error}</Typography.Paragraph>}
       </div>)}</Space> }]} />
