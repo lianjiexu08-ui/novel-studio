@@ -1,0 +1,137 @@
+{
+  "kind": "design69_schedule30_world_review_preflight",
+  "observedAt": "2026-10-16T16:46:46.894Z",
+  "planId": "plan_64fd635db40840b2b2450a6514b6f0ab",
+  "inputHash": "10ba6d25b130be24ac27543056be1dad7242e75c9fba5200853f08eb2680c92f",
+  "worldRevision": 35,
+  "bibleRevision": 66,
+  "planRevision": 69,
+  "scheduleVersion": 30,
+  "rubricVersion": 16,
+  "runnerSha256": "92f2ff0dc52adcb65632974e95f3f67aab61e1acb36aedf09ec3dd7db31aabd2",
+  "baselineSha256": "b7ffffeb5e253fc5c5b10c501069e38a3672ed634ec294542de6ea22e7747f08",
+  "areas": [
+    {
+      "area": "world",
+      "inputHash": "10ba6d25b130be24ac27543056be1dad7242e75c9fba5200853f08eb2680c92f",
+      "sourceEnvelopeSha256": "9787f3b3f495084c4ba5005a2add3677e2673a591e51b865680d22e598265ecc",
+      "sources": 417,
+      "units": 420,
+      "initialStages": 41,
+      "batchCount": 6,
+      "rawSourceCoverageExact": true,
+      "initialRequestsWithinCapacity": true,
+      "requests": [
+        {
+          "stageId": "batch-1",
+          "sourceCharacters": 149930,
+          "coverageCharacters": 27666
+        },
+        {
+          "stageId": "batch-2",
+          "sourceCharacters": 149118,
+          "coverageCharacters": 27666
+        },
+        {
+          "stageId": "batch-3",
+          "sourceCharacters": 149515,
+          "coverageCharacters": 27666
+        },
+        {
+          "stageId": "batch-4",
+          "sourceCharacters": 147529,
+          "coverageCharacters": 27666
+        },
+        {
+          "stageId": "batch-5",
+          "sourceCharacters": 149763,
+          "coverageCharacters": 27666
+        },
+        {
+          "stageId": "batch-6",
+          "sourceCharacters": 138749,
+          "coverageCharacters": 27666
+        },
+        {
+          "stageId": "cross-1-2",
+          "sourceCharacters": 219048,
+          "coverageCharacters": 27666
+        },
+        {
+          "stageId": "cross-1-3",
+          "sourceCharacters": 219445,
+          "coverageCharacters": 27666
+        },
+        {
+          "stageId": "cross-1-4",
+          "sourceCharacters": 217459,
+          "coverageCharacters": 27666
+        },
+        {
+          "stageId": "cross-1-5",
+          "sourceCharacters": 219693,
+          "coverageCharacters": 27666
+        },
+        {
+          "stageId": "cross-1-6",
+          "sourceCharacters": 208679,
+          "coverageCharacters": 27666
+        },
+        {
+          "stageId": "cross-2-3",
+          "sourceCharacters": 218633,
+          "coverageCharacters": 27666
+        },
+        {
+          "stageId": "cross-2-4",
+          "sourceCharacters": 216647,
+          "coverageCharacters": 27666
+        },
+        {
+          "stageId": "cross-2-5",
+          "sourceCharacters": 218881,
+          "coverageCharacters": 27666
+        },
+        {
+          "stageId": "cross-2-6",
+          "sourceCharacters": 207867,
+          "coverageCharacters": 27666
+        },
+        {
+          "stageId": "cross-3-4",
+          "sourceCharacters": 217044,
+          "coverageCharacters": 27666
+        },
+        {
+          "stageId": "cross-3-5",
+          "sourceCharacters": 219278,
+          "coverageCharacters": 27666
+        },
+        {
+          "stageId": "cross-3-6",
+          "sourceCharacters": 208264,
+          "coverageCharacters": 27666
+        },
+        {
+          "stageId": "cross-4-5",
+          "sourceCharacters": 217292,
+          "coverageCharacters": 27666
+        },
+        {
+          "stageId": "cross-4-6",
+          "sourceCharacters": 206278,
+          "coverageCharacters": 27666
+        },
+        {
+          "stageId": "cross-5-6",
+          "sourceCharacters": 208512,
+          "coverageCharacters": 27666
+        }
+      ]
+    }
+  ],
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Checks exact source coverage and initial request capacity only; dynamic followups and content quality are unproven."
+}
