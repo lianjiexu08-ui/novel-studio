@@ -354,6 +354,27 @@ export function normalizeFactionResources(pack: WorldPack): WorldPack {
   })) };
 }
 
+/** A glossary label cannot select different canonical names within one kind.
+ * Retired definitions remain available as history; no aliases are merged or
+ * canonical names chosen automatically. Identical names in different kinds
+ * are distinct namespaces, not evidence that the entities are the same. */
+export function worldTerminologyConflicts(pack: Pick<WorldPack, 'terminology'>): Array<{
+  kind: TerminologyDefinition['kind']; label: string; definitions: Array<{ id: string; canonical: string }>;
+}> {
+  const kinds = new Map<TerminologyDefinition['kind'], Map<string, Array<{ id: string; canonical: string }>>>();
+  for (const term of pack.terminology) {
+    if (term.status === 'deprecated') continue;
+    const labels = kinds.get(term.kind) ?? new Map<string, Array<{ id: string; canonical: string }>>();
+    kinds.set(term.kind, labels);
+    for (const label of new Set([term.canonical, ...term.aliases])) {
+      if (!label.trim()) continue;
+      labels.set(label, [...(labels.get(label) ?? []), { id: term.id, canonical: term.canonical }]);
+    }
+  }
+  return [...kinds].flatMap(([kind, labels]) => [...labels].flatMap(([label, definitions]) =>
+    new Set(definitions.map(definition => definition.canonical)).size > 1 ? [{ kind, label, definitions }] : []));
+}
+
 export function validateWorldPack(pack: WorldPack): GateResult {
   const errors: string[] = [];
   const warnings: string[] = [];
@@ -369,6 +390,7 @@ export function validateWorldPack(pack: WorldPack): GateResult {
   collectIds(pack.historicalEvents, 'historical events', errors);
   collectIds(pack.terminology, 'terminology', errors);
   collectIds(pack.unresolvedQuestions, 'world questions', errors);
+  for (const conflict of worldTerminologyConflicts(pack)) errors.push(`terminology ${conflict.kind} label ${conflict.label} maps to conflicting canonical names: ${conflict.definitions.map(term => `${term.id}=${term.canonical}`).join(', ')}`);
 
   for (const system of pack.powerSystems) {
     for (const realmId of system.realmIds) if (!realmIds.has(realmId)) errors.push(`power system ${system.id} references unknown realm ${realmId}`);

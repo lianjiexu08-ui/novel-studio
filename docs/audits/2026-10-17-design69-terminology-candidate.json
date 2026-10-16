@@ -1,0 +1,356 @@
+{
+  "observedAt": "2026-10-16T17:19:10.605Z",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "basePlanId": "plan_64fd635db40840b2b2450a6514b6f0ab",
+  "expectedInputHash": "10ba6d25b130be24ac27543056be1dad7242e75c9fba5200853f08eb2680c92f",
+  "basePath": "data/audit-runtimes/design69-terminology-candidate/base.json",
+  "baseSha256": "752c7f945b17e6c56173b92d50d5d8c064e0ff6b76cc071c77e19b523d2c2adc",
+  "candidatePath": "data/design-candidates/design69-terminology-v1.json",
+  "candidateSha256": "4e50f577ea244cc5971d8040b9acdf002b0cabd9dc462e7ba85677e349f60980",
+  "originalFinding": {
+    "runId": "design_run_c2341839-f484-41de-92bf-59729f3ce857",
+    "stageId": "cross-2-4",
+    "check": {
+      "criterion": "capacity",
+      "verdict": "revise",
+      "explanation": "三大陆通过不同气候、港务、准入和有限救济/航运账形成了可持续的行动差异，且北境救济款、林贺专项航款与押运货船预付款已明确分账。不过跨陆高额结算凭证的术语规范自相矛盾：资源条目将“诸天通宝”定为规范名，术语条目却把“万象商币”定为另一规范名并把“诸天通宝”列作其别名。后续一旦出现商盟通宝的验真、冻结、交割或余额记录，无法仅凭名称确定是哪一规范账户，破坏跨域贸易与资源账目的可核性。",
+      "evidence": [
+        {
+          "sourceId": "review-unit/139",
+          "quote": "{\n  \"id\": \"res_16\",\n  \"name\": \"诸天通宝\",\n  \"unit\": \"枚\",\n  \"source\": \"万象商盟以三大陆界门碎屑和虚空神晶铸成的跨陆结算凭证，需商盟总舵印记验真。\",\n  \"scarcity\": \"极其稀缺，商盟定量发行\",\n  \"tier\": \"五品\",\n  \"status\": \"proposed\",\n  \"usage\": {\n    \"effect\": \"作为经万象商盟总舵印记验真的跨陆高额结算凭证，用于购买、寄存、竞拍或清偿商盟认可的货物与服务；一枚只代表登记面额，不天然转化为灵气、真元、寿元、修为或任意指定灵材。\",\n    \"requirements\": [\n      \"交易前须由商盟总舵或获授权验印节点核验真伪、编号与流通状态；未验真者不得按通宝结算。\",\n      \"使用者须取得合法持有与交割资格，并遵守交易地的封禁、税契及商盟账册登记。\",\n      \"买受或承运只须合法权属与运输许可；亲自炼化、施术、启用法宝时才须满足对应境界、血脉和启动条件。持有高阶资源不代表可以使用。\"\n    ],\n    \"cost\": \"每次交割按商盟登记面额扣除相应枚数，并可能另收明示的验真、保管、运输或换兑费用；完成注销的通宝不得重复支付。印记磨损、编号冲突或账册冻结时，该枚暂停流通且不能折现。\",\n"
+        },
+        {
+          "sourceId": "review-unit/157",
+          "quote": "{\n  \"id\": \"term_res_12\",\n  \"canonical\": \"诸天通宝\",\n  \"aliases\": [\n    \"万象金母\",\n    \"天道金元\"\n  ],\n  \"kind\": \"resource\",\n  \"status\": \"proposed\"\n}"
+        },
+        {
+          "sourceId": "review-unit/160",
+          "quote": "{\n  \"id\": \"term_asset_03\",\n  \"canonical\": \"万象商币\",\n  \"aliases\": [\n    \"诸天通宝\",\n    \"万象金母\"\n  ],\n  \"kind\": \"resource\",\n  \"status\": \"proposed\"\n}"
+        },
+        {
+          "sourceId": "review-unit/365",
+          "quote": "    \"押运货船方的本航次小账独立于程的残片、林贺14000航款和港务救济240：285装船前押运货船船长从本船此前实收的普通货运预付款余额160中，当面付极焱原登记门市七张art_16共42，逐张验实物与余纹至少覆盖本次港内作业；付本港燃料行七日普通炉料14、该货船原两名值炉船工七日轮班补工28、七人七日粗食饮水17，合101，现金余59仍属船方。燃料与食品实装、工钱由两人签收，报价仅指本船这次采购，非通用物价；押运货船船长保留原货运收款联和四项支出联，收款不得重复列成程或主角的新收入。七符本次交付已完成制成和验收，供能在符内，不再给佩戴者扣一枚灵石。供暖只保障实际封闭舱内，煤料、船工或食水任何一项未兑现就不能声称六日正常度过。\",\n"
+        },
+        {
+          "sourceId": "review-unit/365",
+          "quote": "    \"291首轮医疗执行账：救济所原当班医修对本案七人的首次失温、脱水及外伤检查、普通清洁包扎与复温照料、24小时观察和292日一次复查，本次报价每人4、合28；值库人已从240实付给所方经办，收具名七人及范围的收据。该报价含本轮普通敷料、温热饮水与照料人手，不含高级丹药、寿储恢复、后续手术或无限疗程。正常拟定路径首检未见需超出本轮处置的重度失温或大出血，仍逐人记录复查与活动许可；这个诊察结果只在实际检查后成立，不能由护符或付款预先认定。\",\n    \"本案救济240的封闭账：82符衣＋20保温救助船班＋70十日住食供暖＋28首轮诊护＝200，余40由值库人单独保管，限本批必要追加处置，未花仍是救济库现金，不归林贺或矿工。医修若诊出超出28范围的伤情，先开实际项目、药材和报价，值库人仅从已到40中按足额项目实付；不足则由港务向原救济拨款岗申请另拨，并与能实际接收的医舍核床位和转运报价。新钱未到不记足额、完整疗程、治愈或已转院；先执行已付且适合伤情的稳定照料，保留病情风险、住院与延期后果，不能因缺钱强令返乡。\"\n  ],\n"
+        }
+      ],
+      "revisionAdvice": "统一“诸天通宝”与“万象商币”的规范名、别名及是否为同一凭证；若为同一物，只保留一个canonical并令另一名称为别名；若为不同账户或货币，则分别补明发行方、兑换/不可兑换关系、验真链路和计划中实际使用的名称。"
+    },
+    "sha256": "4d10f156c03cb1d886e18fc342cccda8e4ef271c12a5756ca39dc25841b79c16"
+  },
+  "conflicts": [
+    {
+      "kind": "resource",
+      "label": "诸天通宝",
+      "definitions": [
+        {
+          "id": "term_res_12",
+          "canonical": "诸天通宝"
+        },
+        {
+          "id": "term_asset_03",
+          "canonical": "万象商币"
+        }
+      ]
+    },
+    {
+      "kind": "resource",
+      "label": "万象金母",
+      "definitions": [
+        {
+          "id": "term_res_12",
+          "canonical": "诸天通宝"
+        },
+        {
+          "id": "term_asset_03",
+          "canonical": "万象商币"
+        }
+      ]
+    }
+  ],
+  "changedDefinition": {
+    "before": {
+      "id": "term_res_12",
+      "canonical": "诸天通宝",
+      "aliases": [
+        "万象金母",
+        "天道金元"
+      ],
+      "kind": "resource",
+      "status": "proposed"
+    },
+    "after": {
+      "id": "term_res_12",
+      "canonical": "诸天通宝",
+      "aliases": [
+        "万象金母",
+        "天道金元",
+        "万象商币"
+      ],
+      "kind": "resource",
+      "status": "proposed"
+    }
+  },
+  "removedDefinition": {
+    "id": "term_asset_03",
+    "canonical": "万象商币",
+    "aliases": [
+      "诸天通宝",
+      "万象金母"
+    ],
+    "kind": "resource",
+    "status": "proposed"
+  },
+  "resolutions": [
+    {
+      "name": "诸天通宝",
+      "resourceId": "res_16"
+    },
+    {
+      "name": "万象金母",
+      "resourceId": "res_16"
+    },
+    {
+      "name": "天道金元",
+      "resourceId": "res_16"
+    },
+    {
+      "name": "万象商币",
+      "resourceId": "res_16"
+    }
+  ],
+  "retainedResourceRulesIdentical": true,
+  "otherWorldFieldsIdentical": true,
+  "storyAndPlanIdentical": true,
+  "validation": {
+    "valid": true,
+    "issues": [],
+    "warnings": [
+      {
+        "path": "worldPack",
+        "message": "blocking unresolved questions remain"
+      },
+      {
+        "path": "storyBible",
+        "message": "blocking unresolved story questions remain"
+      }
+    ],
+    "blockers": [
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-power-opening",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-resource-definitions",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-travel-rules",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-tier-exceptions",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-resource-usage",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-first-volume-foundation",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-volume-timeline",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-artifact-continuity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-ending-cost",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-relationship-stages",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-knowledge-reveal-order",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-opening-growth",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-opening-quality",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-resource-growth-budget",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first-volume-blueprint",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-v1-outline-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-v23-macro",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-guard-return-chain",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-barge-inspection",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-second-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first50-narrative",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-message-arrivals",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-review-capacity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "baseline-content-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "opening-growth-repair",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "opening-quality-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "resource-growth-budget",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first-volume-blueprint",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "v1-outline-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "v23-macro",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "guard-return-chain",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "barge-inspection",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "second-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first50-narrative",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "message-arrivals",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "review-capacity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "convoy-custody-causality",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "north-coast-exit-permit",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "chapter25-claw-sequence",
+        "code": "BLOCKING_QUESTION"
+      }
+    ],
+    "formalAcceptance": false,
+    "productionWrites": false,
+    "limitation": "Checks API contracts and structural references only. Open blockers remain; this does not approve a plan, accept content quality, or certify an atomic save."
+  },
+  "blockersUnchanged": 41,
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Candidate only. Resource resolution was already unique before the change; no double payment is alleged. Removed redundant definition remains in the saved baseline and production history. Full world review is still on the original input, not this candidate."
+}

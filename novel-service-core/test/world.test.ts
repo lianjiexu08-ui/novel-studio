@@ -195,6 +195,47 @@ test('assets must use a declared tier when their ladder is present', () => {
   assert.equal(validateWorldPack(world).ready, true);
 });
 
+test('conflicting canonical and alias declarations block world review without merging definitions', async () => {
+  const { worldTerminologyConflicts, resolveWorldResource } = await import('../src/world.ts');
+  const world = reviewedWorld();
+  world.resources.push({ ...world.resources[0], id: 'currency', name: '诸天通宝' });
+  world.terminology.push(
+    { id: 'original', canonical: '诸天通宝', aliases: ['万象金母', '天道金元'], kind: 'resource', status: 'reviewed' },
+    { id: 'duplicate', canonical: '万象商币', aliases: ['诸天通宝', '万象金母'], kind: 'resource', status: 'reviewed' },
+  );
+  const before = JSON.stringify(world);
+  assert.deepEqual(worldTerminologyConflicts(world).map(conflict => conflict.label), ['诸天通宝', '万象金母']);
+  assert.equal(validateWorldPack(world).ready, false);
+  assert.throws(() => reviewWorldPack({ ...world, status: 'proposed' }), /conflicting canonical names/);
+  assert.throws(() => lockWorldPack(world), /conflicting canonical names/);
+  assert.equal(JSON.stringify(world), before);
+  // Current unique entity lookup does not imply the glossary is consistent,
+  // nor does this conflict prove an actual double payment has happened.
+  for (const name of ['诸天通宝', '万象商币', '万象金母', '天道金元']) assert.equal(resolveWorldResource(world, name)?.id, 'currency');
+  world.terminology = world.terminology.filter(term => term.id !== 'duplicate');
+  world.terminology.find(term => term.id === 'original')!.aliases.push('万象商币');
+  assert.equal(validateWorldPack(world).ready, true);
+  for (const name of ['诸天通宝', '万象商币', '万象金母', '天道金元']) assert.equal(resolveWorldResource(world, name)?.id, 'currency');
+});
+
+test('terminology conflicts respect kind, exact spelling and retained retired definitions', async () => {
+  const { worldTerminologyConflicts } = await import('../src/world.ts');
+  const world = reviewedWorld();
+  world.terminology.push(
+    { id: 'place', canonical: '青龙城', aliases: ['青龙'], kind: 'place', status: 'reviewed' },
+    { id: 'person', canonical: '青龙真人', aliases: ['青龙'], kind: 'person', status: 'reviewed' },
+    { id: 'same', canonical: '青龙城', aliases: ['青龙', '青龙城'], kind: 'place', status: 'reviewed' },
+    { id: 'retired', canonical: '旧青龙城', aliases: ['青龙'], kind: 'place', status: 'deprecated' },
+    { id: 'similar', canonical: '青龙郡', aliases: ['青龙郡城'], kind: 'place', status: 'reviewed' },
+  );
+  assert.deepEqual(worldTerminologyConflicts(world), []);
+  world.terminology.find(term => term.id === 'retired')!.status = 'proposed';
+  const conflicts = worldTerminologyConflicts(world);
+  assert.equal(conflicts.length, 1);
+  assert.equal(conflicts[0].kind, 'place'); assert.equal(conflicts[0].label, '青龙');
+  assert.deepEqual(conflicts[0].definitions.map(term => term.id), ['place', 'same', 'retired']);
+});
+
 test('long-form readiness blocks resources whose names imply undefined powers', async () => {
   const { validateLongFormWorldPack } = await import('../src/world.ts');
   const world = reviewedWorld();
