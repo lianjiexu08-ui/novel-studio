@@ -1,0 +1,1837 @@
+{
+  "kind": "design68_completed_power_raw_and_followup_evidence",
+  "observedAt": "2026-10-16T10:58:29.613Z",
+  "inputHash": "3274d4710800ad02565040a341a05177b4bd7cab363e169219b562a4a0f62d01",
+  "runId": "design_run_1a9589a8-f222-4b9b-861c-99adc2d45c80",
+  "snapshotPath": "data/audit-runtimes/design68-review/power-followups-completed.json",
+  "snapshotSha256": "15a1b47647f5e9f894a6b76a016718ac4907a9a2607a701750960f36e5c9a403",
+  "frozenSourceFilesVerified": 153,
+  "rawStages": 15,
+  "followupStages": 24,
+  "scheduledSynthesisStages": 38,
+  "replay": {
+    "verification": "verified",
+    "completedStages": 39,
+    "totalStages": 77,
+    "runSha256": "891e111d1cee8106f25cc82b73bdf1ee95e5ab1dde5965d0f8a935549a3c1444",
+    "formalAcceptance": false,
+    "limitation": "Replays saved responses, repairs, citations and conclusions against independently supplied materials. Pending work, semantic quality, blocker disposition and prose acceptance remain separate.",
+    "responseReplay": "verified",
+    "responsesReplayed": 52,
+    "records": [
+      {
+        "stageId": "batch-1",
+        "kind": "batch",
+        "stageSha256": "6d727073bafe418e9caec9d87ba329d5c2f56885a172b8b2574aba351d746783",
+        "inputSha256": "9ed9e2631a4f362a07cc38a4bfdf6dc04009c9f9e1d21eaaf7661e1d4be2962e",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/1",
+              "plan/chapters/2",
+              "plan/chapters/3",
+              "plan/chapters/4",
+              "plan/chapters/5",
+              "plan/chapters/6",
+              "plan/chapters/7",
+              "plan/chapters/8",
+              "plan/chapters/9",
+              "plan/chapters/10",
+              "plan/chapters/11",
+              "plan/chapters/12",
+              "plan/chapters/13",
+              "plan/chapters/14",
+              "plan/chapters/15",
+              "plan/chapters/16",
+              "plan/chapters/17",
+              "plan/chapters/18",
+              "plan/chapters/19",
+              "plan/chapters/20",
+              "plan/chapters/21",
+              "plan/chapters/22",
+              "plan/chapters/23",
+              "plan/chapters/24",
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/33",
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/1",
+              "plan/chapters/2",
+              "plan/chapters/3",
+              "plan/chapters/4",
+              "plan/chapters/5",
+              "plan/chapters/6",
+              "plan/chapters/7",
+              "plan/chapters/8",
+              "plan/chapters/9",
+              "plan/chapters/10",
+              "plan/chapters/11",
+              "plan/chapters/12",
+              "plan/chapters/13",
+              "plan/chapters/14",
+              "plan/chapters/15",
+              "plan/chapters/16",
+              "plan/chapters/17",
+              "plan/chapters/18",
+              "plan/chapters/19",
+              "plan/chapters/20",
+              "plan/chapters/21",
+              "plan/chapters/22",
+              "plan/chapters/23",
+              "plan/chapters/24",
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/33",
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/1",
+              "plan/chapters/2",
+              "plan/chapters/3",
+              "plan/chapters/4",
+              "plan/chapters/5",
+              "plan/chapters/6",
+              "plan/chapters/7",
+              "plan/chapters/8",
+              "plan/chapters/9",
+              "plan/chapters/10",
+              "plan/chapters/11",
+              "plan/chapters/12",
+              "plan/chapters/13",
+              "plan/chapters/14",
+              "plan/chapters/15",
+              "plan/chapters/16",
+              "plan/chapters/17",
+              "plan/chapters/18",
+              "plan/chapters/19",
+              "plan/chapters/20",
+              "plan/chapters/21",
+              "plan/chapters/22",
+              "plan/chapters/23",
+              "plan/chapters/24",
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/33",
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "batch-2",
+        "kind": "batch",
+        "stageSha256": "68aaef5e5ae22cfe23efb45203c7a1eaf1d6d4bbbf3798be03cf7ae049ce0a7e",
+        "inputSha256": "e09c6eb0e6a50fafd3a4d02c3a6843cfb19465ee1874041a18b6fb6fe9cf5c92",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/1",
+              "plan/chapters/12",
+              "plan/chapters/16",
+              "plan/chapters/18",
+              "plan/chapters/20",
+              "plan/chapters/23",
+              "plan/chapters/25",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/40",
+              "plan/chapters/44"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/12",
+              "plan/chapters/16",
+              "plan/chapters/18",
+              "plan/chapters/20",
+              "plan/chapters/23",
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/18",
+              "plan/chapters/20",
+              "plan/chapters/23",
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "batch-3",
+        "kind": "batch",
+        "stageSha256": "22e252e05a8af48e7cef1d37155d56a5cb8ff0c4f3b8206bf1e49b2241954720",
+        "inputSha256": "e475ce3e225dc309b714ea6549503775955a54821151e9d72f39a3be35fb7ed6",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "batch-4",
+        "kind": "batch",
+        "stageSha256": "24f5540ab530b1b1852aed065b8d43f669141cc2484c9a27098bbb79f6fa0d89",
+        "inputSha256": "8e33922035c89d307231d0995fe02c30fce5a26826bff7ebadb581c1c4cc5d2b",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "batch-5",
+        "kind": "batch",
+        "stageSha256": "639587e06117048d6cfd9fc96b66304a43aa9a913e43535001518ce6ced774bc",
+        "inputSha256": "c1b1f3684f7524e75a547e8563e1f69c92120b71cc6bd29c99a05ae397e2fa2f",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "costs",
+            "verdict": "revise"
+          },
+          {
+            "criterion": "counters",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-2",
+        "kind": "cross",
+        "stageSha256": "e82c6cde712a978529d7eebccf75b8673d3c5000c14d0d2d371cf6bf201636fd",
+        "inputSha256": "dc10530b3b4227f606edc440aa477ae52ba78c37276984dd18dd63404ffec10f",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/1",
+              "plan/chapters/12",
+              "plan/chapters/16",
+              "plan/chapters/18",
+              "plan/chapters/20",
+              "plan/chapters/21",
+              "plan/chapters/23",
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/33",
+              "plan/chapters/37",
+              "plan/chapters/40",
+              "plan/chapters/44",
+              "plan/chapters/50"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/1",
+              "plan/chapters/2",
+              "plan/chapters/3",
+              "plan/chapters/4",
+              "plan/chapters/5",
+              "plan/chapters/6",
+              "plan/chapters/7",
+              "plan/chapters/8",
+              "plan/chapters/9",
+              "plan/chapters/10",
+              "plan/chapters/11",
+              "plan/chapters/12",
+              "plan/chapters/13",
+              "plan/chapters/14",
+              "plan/chapters/15",
+              "plan/chapters/16",
+              "plan/chapters/17",
+              "plan/chapters/18",
+              "plan/chapters/19",
+              "plan/chapters/20",
+              "plan/chapters/21",
+              "plan/chapters/22",
+              "plan/chapters/23",
+              "plan/chapters/24",
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/33",
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/20",
+              "plan/chapters/21",
+              "plan/chapters/22",
+              "plan/chapters/23",
+              "plan/chapters/24",
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/33",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-3",
+        "kind": "cross",
+        "stageSha256": "516e5b5c97f4030a9aa3f36c6051a1cc75c3e755f4342b71f2fe60b3d8b31286",
+        "inputSha256": "9edb1da2b6452ac4e021671f95c83358d99a66af0fa88e5cce3d23a2f2ce9c34",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass",
+            "resolves": [
+              "batch-3/tiers"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "pass",
+            "resolves": [
+              "batch-3/costs"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "pass",
+            "resolves": [
+              "batch-3/counters"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-4",
+        "kind": "cross",
+        "stageSha256": "191cd57178bd0069c36eba0bc14282469e679213809667d1d546be85bd86f386",
+        "inputSha256": "3b35b028a0319503556917e9daa2a0115ef604a2480279639ffe897ce9bc2fc0",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass",
+            "resolves": [
+              "batch-4/tiers"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "pass",
+            "resolves": [
+              "batch-4/costs"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "pass",
+            "resolves": [
+              "batch-4/counters"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-5",
+        "kind": "cross",
+        "stageSha256": "252944da5de038addfd9e8625821efaa3d2b325411cc8cffe0c1802f4ae3f8c5",
+        "inputSha256": "1192aa3269d9f173b9052ca897997646747a57ab97fe31318dc18c7885d2af26",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "revise"
+          },
+          {
+            "criterion": "costs",
+            "verdict": "revise"
+          },
+          {
+            "criterion": "counters",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-2-3",
+        "kind": "cross",
+        "stageSha256": "69a8d33687832c44e3b7a5fb88a06d4f5962cb88f8b023ab2488dee0c273bc3d",
+        "inputSha256": "78896d4c57b477a862b6e1aefe129811c99e562e7c960103c50ba62653db414c",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/33",
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/33",
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/33",
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-2-4",
+        "kind": "cross",
+        "stageSha256": "068de8f26cc9072ecaf42ecc23371bfa169e38f5541eec4ba0b158c615610d40",
+        "inputSha256": "d85742b0a73c09ccb617de66fe34aacd5da900d6cecc1462caf6bbc16d178c23",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/milestones/ms_v2_fire",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/milestones/ms_v2_fire",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/milestones/ms_v2_fire",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-2-5",
+        "kind": "cross",
+        "stageSha256": "d905ab21966cadac69a369f9d29b37316db254bc2e24f330e2169ce7e52f5a32",
+        "inputSha256": "fbe0dbe33c5ea81da14bb9d4a339cfb06843ac1ed946f060ae24aefcc78a62b0",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16",
+              "world/resources/res_09",
+              "world/resources/res_17",
+              "world/resources/res_18",
+              "world/resources/res_19"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16",
+              "world/resources/res_09",
+              "world/resources/res_17",
+              "world/resources/res_18",
+              "world/resources/res_19"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-3-4",
+        "kind": "cross",
+        "stageSha256": "2dad870851bd5e468b6dd51bfb96d9cd89cb4de994ff88831c411b8fe5b2695b",
+        "inputSha256": "4e05e3bfc79cb3fb53f686545698309162c517c1b1681bc777614c5a02591a2f",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_10",
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16",
+              "world/artifacts/art_15",
+              "world/artifacts/art_16",
+              "world/artifacts/art_19",
+              "world/artifacts/art_20",
+              "world/resources/res_01",
+              "world/resources/res_09",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_10",
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16",
+              "world/artifacts/art_15",
+              "world/artifacts/art_16",
+              "world/artifacts/art_19",
+              "world/artifacts/art_20",
+              "world/resources/res_01",
+              "world/resources/res_09",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_10",
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16",
+              "world/artifacts/art_15",
+              "world/artifacts/art_16",
+              "world/artifacts/art_19",
+              "world/artifacts/art_20",
+              "world/resources/res_01",
+              "world/resources/res_09",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-3-5",
+        "kind": "cross",
+        "stageSha256": "530c44bfb554219e0d3bdf0d0f923b657cb9af06f69e1a43af1c8fa4b17ca64d",
+        "inputSha256": "49d93d2259c8156a25994a4ab602b42980088ddbdf684ac4c40cc29c18039113",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/resources/res_09",
+              "world/artifacts/art_20",
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/25",
+              "plan/chapters/26"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-4-5",
+        "kind": "cross",
+        "stageSha256": "0ec16aca8e6e4448a9a5b102bc89b3fb5a9863065300b8cfd37bb63c5d5cd313",
+        "inputSha256": "cef7318d18e46193b59afdd75d5b46ce826a8af9548db8c75f1362dfbe593441",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "costs",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "counters",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "followup-batch-1/tiers",
+        "kind": "cross",
+        "stageSha256": "a0983f56ae71834281d43d0f653f1314c12f403bd0f3ae40efaca2c9a3c76f74",
+        "inputSha256": "a6a86abec55c3281904e69d59fcfcfffa16f167d6302b7fcae2eb60278c81dd7",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "revise"
+          }
+        ]
+      },
+      {
+        "stageId": "followup-batch-1/costs",
+        "kind": "cross",
+        "stageSha256": "3ac22b4fbf3a218c0cac43fccf2fed41ea826b104ae53a279a55dbf365ce0814",
+        "inputSha256": "1d25c7a0b6883bc6cba40736937873045ad6d8441faf89101ce6b93c50ae5b16",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "costs",
+            "verdict": "pass",
+            "resolves": [
+              "batch-1/costs"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-batch-1/counters",
+        "kind": "cross",
+        "stageSha256": "d89a89052ce904294ad8840222190eb96f870745690f5ac9e8549635bbb3b59e",
+        "inputSha256": "88c4060106c48ee097532091c6c976df3702bc754f14824e02ff76ba04a23444",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "counters",
+            "verdict": "pass",
+            "resolves": [
+              "batch-1/counters"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-batch-2/tiers",
+        "kind": "cross",
+        "stageSha256": "a3c61cc3a8e60fd4f5d4338deee3444d0445193b09f274af05bdb60c289be7a4",
+        "inputSha256": "84a745a6ffd28ecb25aafc670e3d19ff7aec6add3856550279fae24adc5a0a05",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass",
+            "resolves": [
+              "batch-2/tiers"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-batch-2/costs",
+        "kind": "cross",
+        "stageSha256": "3018bf5f7c2ad995e960d469e5d0cf466a0b036b751203600525deae20433969",
+        "inputSha256": "2036233eb7c9fd43713ecbedbb3a64b65c360af13891754043cf8020c351e42b",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "costs",
+            "verdict": "pass",
+            "resolves": [
+              "batch-2/costs"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-batch-2/counters",
+        "kind": "cross",
+        "stageSha256": "8d031fb3183bace8eecf4a9cde21d210121f030174efd705e971abcb8ffdcdd6",
+        "inputSha256": "604191614714d5b2e12a2a2a631dd33958d6434fb3587cf0fdc66dac7f785389",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "counters",
+            "verdict": "pass",
+            "resolves": [
+              "batch-2/counters"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-1-2/tiers",
+        "kind": "cross",
+        "stageSha256": "c34a898536dee2c7898560a600fb517d843962c03ddaf442c94a949a00f6200a",
+        "inputSha256": "1c58c98af07bf88e1f871c3539763dd14deade94b8db2224b3e53d8f980618a3",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass",
+            "resolves": [
+              "cross-1-2/tiers"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-1-2/costs",
+        "kind": "cross",
+        "stageSha256": "90093ec0b99d8cd3b8e6cc274020b99deff279679203390e7b5060c3ac9089a7",
+        "inputSha256": "e535f64802adb9fe21161464ff540f0aaf7fb81100261dca73f7c08ee2f72cca",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "costs",
+            "verdict": "pass",
+            "resolves": [
+              "cross-1-2/costs"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-1-2/counters",
+        "kind": "cross",
+        "stageSha256": "38d93de8558178db102d9a3e4daac004c949e75cc879538ce0a76fbd2d53ba53",
+        "inputSha256": "d69ba564787a26b2a568a9a684f64a8f0d84d8666510c0a647fdf8eb15d42716",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "counters",
+            "verdict": "pass",
+            "resolves": [
+              "cross-1-2/counters"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-2-3/tiers",
+        "kind": "cross",
+        "stageSha256": "ac7b8b7e979797fb4c572e31f0dd9d01e3be7945ae7b8c4efec93373c091974e",
+        "inputSha256": "b4af849563cb17c0c0546abe4af52f53fa19505ec7ba73fd9fdb1f98147a005b",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass",
+            "resolves": [
+              "cross-2-3/tiers"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-2-3/costs",
+        "kind": "cross",
+        "stageSha256": "a1a3841afaab9a9f58d737cfb9c171be7d7d46807ce4fbc28d8ce59eb6314666",
+        "inputSha256": "7f8a5f30ce35a2e6346db5c90fbecd0035224ae8879e824e43d1d08c304775bb",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "costs",
+            "verdict": "insufficient"
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-2-3/counters",
+        "kind": "cross",
+        "stageSha256": "50898961a8c03855676f85ebe148f95903b9b2abf1c8f9c9b4b3e93c1bb2a3e7",
+        "inputSha256": "4b81f4410482446ff88db5088bc421eb3b1cf990f9b8006bbe9f5cc66ca7001d",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "counters",
+            "verdict": "pass",
+            "resolves": [
+              "cross-2-3/counters"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-2-4/tiers",
+        "kind": "cross",
+        "stageSha256": "a225611cf5d17e2a3391a909865ca6f567d4d1c73bf7d0b6a8a6af4ae96b2d19",
+        "inputSha256": "c7d321d7c1280d12f8658cc8b0945825ea85a603a38adc8e9e0a58ad7479a860",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass",
+            "resolves": [
+              "cross-2-4/tiers"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-2-4/costs",
+        "kind": "cross",
+        "stageSha256": "1c8fb3873e04f7e87745f818e90c79e51bb08d9d9fcc33f979eb9e9b4222d9d6",
+        "inputSha256": "42bc101dfb0beda5f468ee6640f8fa47a41c4cad3b8550f114cd0e047266c41f",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "costs",
+            "verdict": "pass",
+            "resolves": [
+              "cross-2-4/costs"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-2-4/counters",
+        "kind": "cross",
+        "stageSha256": "62e0ce919edafb951bdac2d78e5ecd3d36ad071429d351b98247210a4b389832",
+        "inputSha256": "314475b61ded669e8e2e981b24d3204676a436e32a79c398457ef5a419e6ed88",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "counters",
+            "verdict": "pass",
+            "resolves": [
+              "cross-2-4/counters"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-2-5/tiers",
+        "kind": "cross",
+        "stageSha256": "ba17b31244269575b086d6aa8654b9a58598ad85b78bf1d093ec86c983370daa",
+        "inputSha256": "d8acc8553e5d2fa3b02249f5d9a3291d1a69aac72f7594749eece8438b817c40",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass",
+            "resolves": [
+              "cross-2-5/tiers"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-2-5/costs",
+        "kind": "cross",
+        "stageSha256": "efdb140f09abc47bd9f4d5bf44fc9e17422162086587e2fb2975248f54bd93e6",
+        "inputSha256": "1a81d7c20029079b40a8a9de7925e67f4180089e99940f025890b1b201fc592d",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "costs",
+            "verdict": "pass",
+            "resolves": [
+              "cross-2-5/costs"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-2-5/counters",
+        "kind": "cross",
+        "stageSha256": "8153fee061c97089a9fc4bed3ca807fe33bd66618af8a5de6e560d2154677bc5",
+        "inputSha256": "7f7cd984169290f4640624057b4cfcccb8a5f4878d0a86cbc80256a3e8ba35b1",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "counters",
+            "verdict": "pass",
+            "resolves": [
+              "cross-2-5/counters"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-3-4/tiers",
+        "kind": "cross",
+        "stageSha256": "b89442c5456187e28a6c620ded5a0e8fab4bf52b28c57796bb8e721536d6b92f",
+        "inputSha256": "b20285483e8aa2b844c9a03ff8cff943fec42e75a0746563a77ccbbca65e5a72",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass",
+            "resolves": [
+              "cross-3-4/tiers"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-3-4/costs",
+        "kind": "cross",
+        "stageSha256": "0ba63add6cc0fd45ef276df4140d507ad0cf49abb13ea663f9e9fa1687f851fe",
+        "inputSha256": "8b3be35ab8c5e1d1653a6bb6ac384952e2df6dfe9293cefa5d017d018420f10c",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "costs",
+            "verdict": "pass",
+            "resolves": [
+              "cross-3-4/costs"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-3-4/counters",
+        "kind": "cross",
+        "stageSha256": "055ac2429a25a0d5ca5d2e6ac3701679799ce691166acd677b9b733ad7fe2439",
+        "inputSha256": "46a8a164c3d89bc9e7630a049e2923133a05ffdb137dcd4f594d4b7341f4abee",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "counters",
+            "verdict": "pass",
+            "resolves": [
+              "cross-3-4/counters"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-3-5/tiers",
+        "kind": "cross",
+        "stageSha256": "89f90d60176e64c160a91b79526cfbe01e4ce11be21407481825c2eaf3a42ded",
+        "inputSha256": "626d69a647dd2ec62d3d24671bba545f85cbfcee39a118bcb694cbdfcd702f96",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass",
+            "resolves": [
+              "cross-3-5/tiers"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-3-5/costs",
+        "kind": "cross",
+        "stageSha256": "a1ca3b3bff5a91f2ff6138f331f39b233d7e5caf7d21972402a789c7332a43f9",
+        "inputSha256": "a24e3f76cef8da46f2452f499655c8129f3f5a55a36e05e0b25c65924b17f55b",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "costs",
+            "verdict": "pass",
+            "resolves": [
+              "cross-3-5/costs"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-3-5/counters",
+        "kind": "cross",
+        "stageSha256": "43b556876d1920c55a39b6b844d80e2f9eaedd86011dfe311a0d60b4ecef2501",
+        "inputSha256": "72f3b38346e57a4dac8d2191e966eea528556f5eaf56abec1c54522cd6d44cd3",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "counters",
+            "verdict": "pass",
+            "resolves": [
+              "cross-3-5/counters"
+            ]
+          }
+        ]
+      }
+    ],
+    "failures": [
+      {
+        "stageId": "followup-batch-1/tiers",
+        "failureSha256": "e69f29268efdf54d5bff90136f66fc79576e13fa2c93f178d63a08b5f8133fd9"
+      },
+      {
+        "stageId": "followup-cross-1-2/counters",
+        "failureSha256": "66ebd0eac0f40cf59dcc7ddce2f6048e1f0b63a67dac70f55226c04a1b1edf69"
+      }
+    ],
+    "modelCalls": 0
+  },
+  "originalSourceDeferrals": 30,
+  "explicitResolutionsAtSynthesisStart": [
+    {
+      "checkId": "batch-1/costs",
+      "resolvedByStageId": "followup-batch-1/costs"
+    },
+    {
+      "checkId": "batch-1/counters",
+      "resolvedByStageId": "followup-batch-1/counters"
+    },
+    {
+      "checkId": "batch-2/tiers",
+      "resolvedByStageId": "followup-batch-2/tiers"
+    },
+    {
+      "checkId": "batch-2/costs",
+      "resolvedByStageId": "followup-batch-2/costs"
+    },
+    {
+      "checkId": "batch-2/counters",
+      "resolvedByStageId": "followup-batch-2/counters"
+    },
+    {
+      "checkId": "batch-3/tiers",
+      "resolvedByStageId": "cross-1-3"
+    },
+    {
+      "checkId": "batch-3/costs",
+      "resolvedByStageId": "cross-1-3"
+    },
+    {
+      "checkId": "batch-3/counters",
+      "resolvedByStageId": "cross-1-3"
+    },
+    {
+      "checkId": "batch-4/tiers",
+      "resolvedByStageId": "cross-1-4"
+    },
+    {
+      "checkId": "batch-4/costs",
+      "resolvedByStageId": "cross-1-4"
+    },
+    {
+      "checkId": "batch-4/counters",
+      "resolvedByStageId": "cross-1-4"
+    },
+    {
+      "checkId": "cross-1-2/tiers",
+      "resolvedByStageId": "followup-cross-1-2/tiers"
+    },
+    {
+      "checkId": "cross-1-2/costs",
+      "resolvedByStageId": "followup-cross-1-2/costs"
+    },
+    {
+      "checkId": "cross-1-2/counters",
+      "resolvedByStageId": "followup-cross-1-2/counters"
+    },
+    {
+      "checkId": "cross-2-3/tiers",
+      "resolvedByStageId": "followup-cross-2-3/tiers"
+    },
+    {
+      "checkId": "cross-2-3/counters",
+      "resolvedByStageId": "followup-cross-2-3/counters"
+    },
+    {
+      "checkId": "cross-2-4/tiers",
+      "resolvedByStageId": "followup-cross-2-4/tiers"
+    },
+    {
+      "checkId": "cross-2-4/costs",
+      "resolvedByStageId": "followup-cross-2-4/costs"
+    },
+    {
+      "checkId": "cross-2-4/counters",
+      "resolvedByStageId": "followup-cross-2-4/counters"
+    },
+    {
+      "checkId": "cross-2-5/tiers",
+      "resolvedByStageId": "followup-cross-2-5/tiers"
+    },
+    {
+      "checkId": "cross-2-5/costs",
+      "resolvedByStageId": "followup-cross-2-5/costs"
+    },
+    {
+      "checkId": "cross-2-5/counters",
+      "resolvedByStageId": "followup-cross-2-5/counters"
+    },
+    {
+      "checkId": "cross-3-4/tiers",
+      "resolvedByStageId": "followup-cross-3-4/tiers"
+    },
+    {
+      "checkId": "cross-3-4/costs",
+      "resolvedByStageId": "followup-cross-3-4/costs"
+    },
+    {
+      "checkId": "cross-3-4/counters",
+      "resolvedByStageId": "followup-cross-3-4/counters"
+    },
+    {
+      "checkId": "cross-3-5/tiers",
+      "resolvedByStageId": "followup-cross-3-5/tiers"
+    },
+    {
+      "checkId": "cross-3-5/costs",
+      "resolvedByStageId": "followup-cross-3-5/costs"
+    },
+    {
+      "checkId": "cross-3-5/counters",
+      "resolvedByStageId": "followup-cross-3-5/counters"
+    }
+  ],
+  "unresolvedDeferralsAtSynthesisStart": [
+    {
+      "checkId": "batch-1/tiers",
+      "criterion": "tiers",
+      "requestedSources": [
+        "plan/chapters/1",
+        "plan/chapters/2",
+        "plan/chapters/3",
+        "plan/chapters/4",
+        "plan/chapters/5",
+        "plan/chapters/6",
+        "plan/chapters/7",
+        "plan/chapters/8",
+        "plan/chapters/9",
+        "plan/chapters/10",
+        "plan/chapters/11",
+        "plan/chapters/12",
+        "plan/chapters/13",
+        "plan/chapters/14",
+        "plan/chapters/15",
+        "plan/chapters/16",
+        "plan/chapters/17",
+        "plan/chapters/18",
+        "plan/chapters/19",
+        "plan/chapters/20",
+        "plan/chapters/21",
+        "plan/chapters/22",
+        "plan/chapters/23",
+        "plan/chapters/24",
+        "plan/chapters/25",
+        "plan/chapters/26",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/29",
+        "plan/chapters/30",
+        "plan/chapters/31",
+        "plan/chapters/32",
+        "plan/chapters/33",
+        "plan/chapters/34",
+        "plan/chapters/35",
+        "plan/chapters/36",
+        "plan/chapters/37",
+        "plan/chapters/38",
+        "plan/chapters/39",
+        "plan/chapters/40",
+        "plan/chapters/41",
+        "plan/chapters/42",
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50"
+      ]
+    },
+    {
+      "checkId": "cross-2-3/costs",
+      "criterion": "costs",
+      "requestedSources": [
+        "plan/chapters/25",
+        "plan/chapters/26",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/29",
+        "plan/chapters/30",
+        "plan/chapters/31",
+        "plan/chapters/32",
+        "plan/chapters/33",
+        "plan/chapters/34",
+        "plan/chapters/35",
+        "plan/chapters/36",
+        "plan/chapters/37",
+        "plan/chapters/38",
+        "plan/chapters/39",
+        "plan/chapters/40",
+        "plan/chapters/41",
+        "plan/chapters/42",
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50"
+      ]
+    }
+  ],
+  "followupChecks": [
+    {
+      "stageId": "followup-batch-1/tiers",
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "revise"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-batch-1/costs",
+      "checks": [
+        {
+          "criterion": "costs",
+          "verdict": "pass",
+          "resolves": [
+            "batch-1/costs"
+          ]
+        }
+      ]
+    },
+    {
+      "stageId": "followup-batch-1/counters",
+      "checks": [
+        {
+          "criterion": "counters",
+          "verdict": "pass",
+          "resolves": [
+            "batch-1/counters"
+          ]
+        }
+      ]
+    },
+    {
+      "stageId": "followup-batch-2/tiers",
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "pass",
+          "resolves": [
+            "batch-2/tiers"
+          ]
+        }
+      ]
+    },
+    {
+      "stageId": "followup-batch-2/costs",
+      "checks": [
+        {
+          "criterion": "costs",
+          "verdict": "pass",
+          "resolves": [
+            "batch-2/costs"
+          ]
+        }
+      ]
+    },
+    {
+      "stageId": "followup-batch-2/counters",
+      "checks": [
+        {
+          "criterion": "counters",
+          "verdict": "pass",
+          "resolves": [
+            "batch-2/counters"
+          ]
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-1-2/tiers",
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "pass",
+          "resolves": [
+            "cross-1-2/tiers"
+          ]
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-1-2/costs",
+      "checks": [
+        {
+          "criterion": "costs",
+          "verdict": "pass",
+          "resolves": [
+            "cross-1-2/costs"
+          ]
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-1-2/counters",
+      "checks": [
+        {
+          "criterion": "counters",
+          "verdict": "pass",
+          "resolves": [
+            "cross-1-2/counters"
+          ]
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-2-3/tiers",
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "pass",
+          "resolves": [
+            "cross-2-3/tiers"
+          ]
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-2-3/costs",
+      "checks": [
+        {
+          "criterion": "costs",
+          "verdict": "insufficient"
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-2-3/counters",
+      "checks": [
+        {
+          "criterion": "counters",
+          "verdict": "pass",
+          "resolves": [
+            "cross-2-3/counters"
+          ]
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-2-4/tiers",
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "pass",
+          "resolves": [
+            "cross-2-4/tiers"
+          ]
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-2-4/costs",
+      "checks": [
+        {
+          "criterion": "costs",
+          "verdict": "pass",
+          "resolves": [
+            "cross-2-4/costs"
+          ]
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-2-4/counters",
+      "checks": [
+        {
+          "criterion": "counters",
+          "verdict": "pass",
+          "resolves": [
+            "cross-2-4/counters"
+          ]
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-2-5/tiers",
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "pass",
+          "resolves": [
+            "cross-2-5/tiers"
+          ]
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-2-5/costs",
+      "checks": [
+        {
+          "criterion": "costs",
+          "verdict": "pass",
+          "resolves": [
+            "cross-2-5/costs"
+          ]
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-2-5/counters",
+      "checks": [
+        {
+          "criterion": "counters",
+          "verdict": "pass",
+          "resolves": [
+            "cross-2-5/counters"
+          ]
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-3-4/tiers",
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "pass",
+          "resolves": [
+            "cross-3-4/tiers"
+          ]
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-3-4/costs",
+      "checks": [
+        {
+          "criterion": "costs",
+          "verdict": "pass",
+          "resolves": [
+            "cross-3-4/costs"
+          ]
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-3-4/counters",
+      "checks": [
+        {
+          "criterion": "counters",
+          "verdict": "pass",
+          "resolves": [
+            "cross-3-4/counters"
+          ]
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-3-5/tiers",
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "pass",
+          "resolves": [
+            "cross-3-5/tiers"
+          ]
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-3-5/costs",
+      "checks": [
+        {
+          "criterion": "costs",
+          "verdict": "pass",
+          "resolves": [
+            "cross-3-5/costs"
+          ]
+        }
+      ]
+    },
+    {
+      "stageId": "followup-cross-3-5/counters",
+      "checks": [
+        {
+          "criterion": "counters",
+          "verdict": "pass",
+          "resolves": [
+            "cross-3-5/counters"
+          ]
+        }
+      ]
+    }
+  ],
+  "ordinaryFindings": [
+    {
+      "stageId": "batch-5",
+      "criterion": "costs",
+      "verdict": "revise",
+      "explanation": "大部分账目闭合：凝元恢复按实际一小时吐纳计一成，随后剑器复用检查计半成，最终余三成半；第50章不施术、不额外扣费，且既有伤限继续保留。不过第48章把“低流量试注确认剑器无异响”直接计为半成真元，而法宝条目只明确普通附芒挥击每剑半成、完整御风剑诀二成，并未明确低流量试注是否属于普通附芒挥击或另有固定费用。需在法宝或剑诀规则中明确该检查的供能、费用和是否计入冷却，再保留第48章的半成扣款；否则该处不能作为已闭合的成本账。",
+      "revisionAdvice": "补明赤霞斩铁剑低流量试注的具体成本、供能属性、是否触发发热/冷却及中断后的处理，并统一第48章相关记账；若试注确按普通附芒挥击计费，应在规则中明确该归类。",
+      "evidenceCount": 6
+    },
+    {
+      "stageId": "cross-1-5",
+      "criterion": "tiers",
+      "verdict": "revise",
+      "explanation": "境界、功法、法宝和资源阶梯已明确区分承载资格、实际掌握、供能与反制，林的凝元三重、顾的玄府局部护罡及后续玄府晋阶也有训练和复诊前置。但第23—26章仍把“凝元御物拉掉普通废料斗插销”作为关键战术动作，章纲只写“普通废料斗插销”及拉销结果，没有明确该插销在起术时属于三丈内、两斤以内、可直接拨动且未受锁死或重物牵拉的轻小自由物；这与轻物御动不得硬拔承重楔、不得把机构载荷藏入半成费用的规则之间尚未闭合。若该动作实际依赖废料斗机构载荷，就不能由凝元基础御物完成。",
+      "revisionAdvice": "在第23—26章细纲中逐项写明废料斗插销的重量、可见距离、受力状态、是否锁死及真实机械承力；若不能满足轻物御动条件，应改为普通人可操作的自由销、绳扣或另有已训练且合规的动作，不能用“普通插销”笼统带过。并复核所有前50章凝元御物动作，确保没有以境界名代替操作训练。",
+      "evidenceCount": 4
+    },
+    {
+      "stageId": "cross-1-5",
+      "criterion": "costs",
+      "verdict": "revise",
+      "explanation": "寿储、真元/元罡、神识、法宝材料和自然寿源大体分账清楚，前50章的真光、剑诀、局部护罡及第83章十元载晋阶也给出了具体扣款逻辑。然而后段已给出的专项款收支在同一原文内不能同时成立：计划称310日前杂费累计700，并列出固定项12+1+18+36及其余625，合计实际为692；又称加入24枚港税后为724、再支出56达到780，但700+24=724、724+56=780这一链条与前述692和“其余689”的另一列账冲突。若采用“固定项+其余689”，税前已为756而非700，无法推出结余220。该问题属于已给预算算式冲突，不是等待正文补写即可消除。",
+      "revisionAdvice": "统一ms_v3_return的14000枚专项款账本：明确10000北航、3000回航票、杂费各项、港税24、回执18、保暖衣与符箓、后续56的实际归属和时间点，逐项给出唯一算式并使结余与220一致；同时删除或修正“其余625/689”“税前700”等互相冲突的数字。修订后重新核对不可预支、不可重复扣款及与前段已付12枚符箓的关联。",
+      "evidenceCount": 4
+    },
+    {
+      "stageId": "followup-batch-1/tiers",
+      "criterion": "tiers",
+      "verdict": "revise",
+      "explanation": "补读的第1—50章已解决原先“无法核验具体使用是否越过门槛”的材料不足：林辰第120日支付三元载后才入凝元，之后完成轻物御动、凝元剑诀的训练与两丈实测；苏凌霜开篇前已有轻物御动训练；墨幽屠开篇前已有噬血爪与贴身推劲训练；顾峤的局部护罡、贴身运罡、纯阳真光及玄府剑诀也都有独立训练、实测和伤情限制；后续各章的真元、元罡、法宝与中断条件大体相符。 但第23章仍有硬性的承载范围缺口：墨的人物档案把其贴身推劲个人实测总重限定为三百斤，世界规则的六百斤只是通用操作上限，不能替代个人实测；第23章只说明滑车“不到六百斤”，没有说明实际总重不超过三百斤，也没有给出足以证明该次推劲在个人受控负荷内的数值。因此该次动作可能超出角色已建立的能力门槛，不能仅以玄府境、既有训练或“不到六百斤”放行。",
+      "revisionAdvice": "修正第23章及其承接说明：明确墨实际推动的滑车总重（含车身与散装料）不超过其个人三百斤实测上限，并保留轮轴完好、无锁止、平地、稳定立足和一息推劲等条件；若实际重量超过三百斤，则删除“墨以ax_13推动滑车”的动作，改为普通机械操作、由多人协力或另设已完成且可核验的负荷训练。不能继续使用“不到六百斤”作为个人资格证明；同时检查第23章现场观察、后续角色认知及执行账是否统一采用修正后的实际重量。",
+      "evidenceCount": 64
+    },
+    {
+      "stageId": "followup-cross-2-3/costs",
+      "criterion": "costs",
+      "verdict": "insufficient",
+      "explanation": "已补读章纲显示主要账目大体可连续核对：第25章将林辰真元按8.5−2−0.5=6成结算，并将顾峤的元罡、寿储和林辰分账；第26章继续区分顾的定腕消耗与伤后上限；第27—29章以完整疗程和复诊后才将两剂灵泉分别计入5元载，且保留伤疗、寿储与实物库存的区别；第30—50章的御物、剑诀、恢复、避火符、修船款、诊费、食宿和船务支出也给出了逐项扣款。 但成本标准还要求核验资源剂量、效用和重复使用上限。本批没有提供world/resources/res_09（延寿灵泉）或world/artifacts/art_16（普通避火符）的原文，故无法判断“每三滴、完整疗程后+5元载、个人两剂上限”以及“72/336/720小时余量、不同符箓不得转移余量”等安排是否与专门条目一致；计划章纲自身的算式不能替代这些规则来源。此前问题明确要求补读25—50章以核对灵泉疗程、船务和恢复成本，当前章纲确实补足了大量流水账，但尚不能据此宣布该标准通过。",
+      "revisionAdvice": "补入并核对world/resources/res_09与world/artifacts/art_16的完整规则原文；逐项确认灵泉每剂的滴数、完整疗程、复诊生效时点、个人/终生重复上限及疗伤边界，并确认三滴污染损失不产生收入。另核对借符、租符、购符是否分别适用各自余量和最长使用时长。完成后沿人物分别重列林辰、苏凌霜、顾峤及看守的寿储、真元/元罡、实物资源与伤后上限，确认第25—50章没有把候选恢复、未来配额或他人账户计入当前余额。",
+      "evidenceCount": 21
+    }
+  ],
+  "allRawAndFollowupStagesReachRoot": true,
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Verifies raw-response replay, canonical scheduling, explicit source deferrals and structural paths to the synthesis root. It does not assert semantic correctness of model judgments or preservation of each negative in not-yet-written synthesis text. Disputed negatives and ordinary insufficient remain; final report reconstruction and four-area acceptance are still required."
+}
