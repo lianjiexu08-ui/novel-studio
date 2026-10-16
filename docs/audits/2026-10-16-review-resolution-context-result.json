@@ -1,0 +1,105 @@
+{
+  "kind": "isolated_quotable_resolution_context_model_probe",
+  "observedAt": "2026-10-16T15:55:57.354Z",
+  "preflightPath": "docs/audits/2026-10-16-review-resolution-context-preflight.json",
+  "inputSha256": "e1a61a4acf21484bb3a135c111eacfaa6040ae10e523df8614fc1805b3b1d9fe",
+  "resultPath": "data/audit-runtimes/design68-resolution-context-probe/result.json",
+  "resultSha256": "afa252f748b3a34559e1fee8d0d6be7ff1893207303ad8d7b11adb7c793fc4a4",
+  "model": "gpt-5.6-luna",
+  "modelCalls": 1,
+  "responsesReplayed": 1,
+  "replayModelCalls": 0,
+  "original": {
+    "stageId": "synthesis-22",
+    "criterion": "timeline",
+    "verdict": "insufficient",
+    "explanation": "已纳入的日期链大体连续：第43章为244日戌初，第44章从同一钩索拖偏瞬间接续，第45—50章推进至247—254日，并保留255日船坞交检。可是前置综合报告仍将“第43章末时点、报警、两船位置与第44章十余息窗口”的正式核对列为未解决等待项；本次综合没有对应的 resolvedDeferrals 记录，不能仅凭同批附带的第43章片段把该等待视为已完成复核。因此无法把全项时间验收判为通过，也不应把这一工作流缺口误写成已证实的故事冲突。"
+  },
+  "revisedProbe": {
+    "criterion": "timeline",
+    "verdict": "pass",
+    "explanation": "43章定于244日戌初，结束在林尚未施剑而钩索已拖偏；44章明确从同一瞬切索，45章才完成接人。后续从247日安置、251—254日调查与脱控，至255午船修交检的安排连续，伤限和施术余额亦被保留。系统记录已确认此前针对43章直接前置的等待补读得到解决。",
+    "evidence": [
+      {
+        "sourceId": "review-result/synthesis-8",
+        "quote": "    \"第83章：数月努力与诊察后，实际付十元载晋玄府；不能再用旧法器承载元罡。\",\n\nEND INDEPENDENT QUOTE 1.8\n\nCHECK 2\n{\n  \"criterion\": \"timeline\",\n  \"verdict\": \"pass\",\n  \"explanation\": \"已补读的43章把行动定在244日戌初，且停在林尚未施剑、钩索已拖偏的瞬间；44章明确从同一瞬切索，不重报岸钟、不重登船。其后救援与接应被分置：44章只完成过板和固定浮圈，45章才由巡艇分趟接人。前置报告所核45—50章继续推进至254日，并保留255午船坞交检的时间条件，未显示同一人物不相容的地点重叠或抵达早于前置行动。\",\n  \"revisionAdvice\": \"\"\n}\n\nBEGIN INDEPENDENT QUOTE 2.1\n{\"sourceId\":\"review-result/cross-4-5\",\"start\":4730,\"end\":5300,\"unique\":true}\n{\"sourceId\":\"review-question/batch-5/timeline\",\"start\":0,\"end\":432,\"unique\":true}\n{\n  \"criterion\": \"timeline\",\n"
+      },
+      {
+        "sourceId": "review-result/synthesis-8",
+        "quote": "  \"summary\": \"244戌初，比公告早一个时辰，林贺在装卸灯下认出唐、许、冯被推入低舱，唐喊不让走，舱门外扣随即搭上。林先敲岸钟，岗役回应后沿石阶跑报巡艇；驳船已转向浅沟出口，若继续停在观察位，三人会从视线里消失。贺让林扶栏正常登船坐稳，解缆跟近，主动离开测好的安全观察位置。驳上的陆沉舟看见他们，护着原账命此前做过轻钩控制训练并完成实测的凝元伙计御动轻钩挂住贺船尾拖环，索另一端事先系在驳艉桩上；御物只付半成真元送钩，挂稳便停术，随后靠驳船前行和艉桩承力拖偏小船。林听见命令，知道对方正是先前来认弟的人，却得不到一句解释。绷紧的索把船尾带偏，贺竭力控向；林坐稳握剑，只剩切索这一瞬，施术留到下一章紧接发生。\",\n  \"characterGoals\": \"林要把真实拘束和提前开船变成及时报警，并随贺保住三人的可见位置；贺要追上自己的雇工，陆要护账逃查，不让跟船者靠近。\",\n  \"conflict\": \"公告亥时不能替代眼前戌初的动作，巡艇须走实体水路；不跟就丢视线，跟近又被同阶伙计以轻钩和船桩拖偏。林的伤势不允许跳船硬夺钩，贺独驾小船难以同时控向和解索。\",\n\nEND INDEPENDENT QUOTE 2.3\n\nBEGIN INDEPENDENT QUOTE 2.4\n\nEND INDEPENDENT QUOTE 2.2\n\nBEGIN INDEPENDENT QUOTE 2.3\n"
+      },
+      {
+        "sourceId": "review-result/synthesis-8",
+        "quote": "{\"sourceId\":\"review-result/cross-4-5\",\"unique\":false}\n{\"sourceId\":\"plan/chapters/43\",\"unitId\":\"review-unit/358\",\"start\":579,\"end\":1155,\"unique\":true}\n  \"choice\": \"林先报警而后登船，贺在没有许诺冲撞的情况下根据实见拘束决定跟进；陆选择命伙计拖开来船，林不再把救弟之情当作对方会合作的保证。\",\n  \"cost\": \"贺船被钩索拖偏，已离开原可稳守观察位；巡艇尚未到场。此刻没有施剑、没有船底破损、没有人获救，林只有短时握剑许可，下一瞬必须付出已定施术成本。 凝元伙计一次送钩支出半成真元，自身保守余量五成降至四成半，钩挂稳即停术；后续拖力由船行、普通索具和艉桩承担，不收持续施术费，也不能持续遥控钩索转向。\",\n  \"threads\": [\n    \"th_03\",\n    \"sec_02\"\n  ],\n  \"endState\": \"244戌初，三人仍在驳舱，陆在驳上护原账，轻钩已挂贺船拖环、索另一端系驳艉桩。林敲钟已获岗役回应，现扶栏登船坐稳握剑，尚未施术；贺控向。44从切索同一瞬接续，不能重报一次警、重登一次船或提前给唐点货夹内容。 送钩伙计已停御物，余四成半；拖力在普通索具与船桩上，断索即失去物理拖曳，不另添术法反噬。\",\n"
+      },
+      {
+        "sourceId": "review-result/synthesis-8",
+        "quote": "  \"characterIds\": [\n    \"char_01\",\n    \"char_15\",\n\nEND INDEPENDENT QUOTE 2.3\n\nBEGIN INDEPENDENT QUOTE 2.4\n{\"sourceId\":\"review-result/cross-4-5\",\"start\":8313,\"end\":8828,\"unique\":true}\n    \"驳船继续前行，两船相对位移将索绷直，拖环、主索与驳艉桩承受牵拉，使小船尾偏转；没有人在持续御物拖船。贺双手控向，林坐稳握剑，掌未裂但不能跳船解钩。陆把原账箱挪在自己身边，准备驾驳逃查；原账内容尚不属林所得。\",\n    \"林看清近处外露的普通索，把握一次剑诀的角度；本章停在施术前，44接切索、支出二成真元和热剑停术，不把准备当已发动。\"\n  ],\n  \"source\": \"author\"\n}\nEND INDEPENDENT QUOTE 2.6\n\nCHECK 3\n{\n  \"criterion\": \"payoff\",\n  \"verdict\": \"pass\",\n"
+      },
+      {
+        "sourceId": "review-result/synthesis-8",
+        "quote": "  \"endState\": \"247暮，唐许冯安全安置，落水伙计被巡查看护治疗并接受单独询问，救命不免除拦截责任。半页交接联和旧货封由巡查编号封存，林留签认拓本和收据；246已核到苏信编号一致，只是追链线索。吴卢最后亲见在243旧岸仓，巡查查空后仍在追踪，当前地点不明。贺船修至255午，林轻役满三日后仍须受限活动。 唐与许对是否继续等人首次出现分歧，尚未替彼此决定工作或去留。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_15\",\n    \"char_22\"\n  ],\n  \"location\": \"loc_23天宝外港货院、公共码头、潮沟及船坞\",\n  \"storyTime\": \"第244日入夜的接应至第247日暮\",\n  \"scenes\": [\n    \"巡艇在244夜接到岸钟报信后绕外弯赶来，大艇吃水不能上滩，巡员用随艇小划舟靠近并分趟接人。唐许先把抓圈伙计拉上低舷，再一同候接；巡员看见贺船裂底和船上断索残端，另一残端随陆船走，不伪称已量到两端。\",\n    \"245晨医棚分诊：三工脱水擦伤，落水伙计呛水；林掌未裂但腿酸胀，三日轻役到247。港务救助账支付本次急救与245–247基础住食，具名记账待追偿；不因此限制获救工人自由离开或强迫作证。\",\n\nEND INDEPENDENT QUOTE 3.3\n\n\n"
+      },
+      {
+        "sourceId": "review-resolutions/860a5546a8b608e7f0088191a14f8deea4e39eceaba57f1fb7b598057967e402",
+        "quote": "      \"originalQuestion\": \"本批内部日期连续且大体闭合：第44章为244日，第45章延至247日，第46—47章推进至250—251日，第48—50章为252—254日；船修至255午、林的轻役和受限行动也持续保留。第44章的窗口、巡艇接应和第45章开场拉人之间有明确时点划分，没有把同一救援重复完成。但第44章的起点依赖未提供的第43章末时点“244日戌初钩索拖偏”，需要核对第43章是否在同一日期、是否已消耗或改变相关行动窗口；宏观摘要不能替代该逐章时序核验。\",\n      \"requestedSources\": [\n        \"plan/chapters/43\"\n      ],\n      \"resolutionExplanation\": \"第43章与第44章均定位在244日戌初：第43章停于钩索绷直、林握剑待施术；第44章从同一瞬间切索，随后在同一短窗口内完成护桩卡船、验板、三人过板和递浮圈，且把落水者实际拉上低舷留到第45章开场。第45—50章日期继续推进至247、250、251、252、253和254日，船修至255午、伤情与余额限制均连续保留，未发现时间跳跃或重复兑现。\",\n      \"resolutionEvidenceCount\": 6,\n"
+      }
+    ],
+    "revisionAdvice": ""
+  },
+  "checks": [
+    {
+      "criterion": "causality",
+      "verdict": "pass",
+      "explanation": "已纳入报告一致确认前50章由矿难与有限取证，经训练、古境救囚、疗程分路、南渡失箱，推进至港口扣工线；43—44章的报警、登船、钩索拖偏与切索救援直接相接，44—50章再以船损、安置、现场问答和陆的有限选择完成五工脱控。救出唐许冯与吴卢后续脱控分开，原账、完整改签及更大网络均未被提前结案。",
+      "revisionAdvice": "",
+      "evidenceCount": 7
+    },
+    {
+      "criterion": "timeline",
+      "verdict": "pass",
+      "explanation": "43章定于244日戌初，结束在林尚未施剑而钩索已拖偏；44章明确从同一瞬切索，45章才完成接人。后续从247日安置、251—254日调查与脱控，至255午船修交检的安排连续，伤限和施术余额亦被保留。系统记录已确认此前针对43章直接前置的等待补读得到解决。",
+      "revisionAdvice": "",
+      "evidenceCount": 6
+    },
+    {
+      "criterion": "payoff",
+      "verdict": "pass",
+      "explanation": "港口救援的兑现边界清楚：44章救出三人并留下夹联，却以船损和原账逃脱为代价；吴卢到50章才通过自主回答、现场拦阻和巡员处置脱控。五工脱控不等于改签、原账、第二片或首仓火因已查明；百章阶段结局也明确只处理有限运输链与部分父案。",
+      "revisionAdvice": "",
+      "evidenceCount": 6
+    },
+    {
+      "criterion": "opening",
+      "verdict": "pass",
+      "explanation": "已覆盖材料显示前50章的两段高潮并非同模重复：23—26章以实体求援、同阶牵制和有限泉液完成救囚，代价为伤势、伤亡与未解网络；33—50章则转为失箱、火场救人、船损、生计与工人去留，第50章由当事人、陆和巡员的选择而非林的术法完成转折。总体仍保留九鼎、残片和界门主线。",
+      "revisionAdvice": "",
+      "evidenceCount": 6
+    },
+    {
+      "criterion": "pacing",
+      "verdict": "pass",
+      "explanation": "所审33—50章的调查、核验与救援持续改变困境：拒绝伪证导致私查受限，公共货道互助换来查人窗口，唐的失败脱逃促成看守升级，火场迫使救人与追证二选一，船损转为贺拒绝改口的生计代价，最终进入吴卢各自作答与脱控。核账没有脱离人物选择而独立重复。",
+      "revisionAdvice": "",
+      "evidenceCount": 8
+    },
+    {
+      "criterion": "genre",
+      "verdict": "pass",
+      "explanation": "玄幻规则实际决定行动方案：轻钩的训练、可见距离、重量、时长和一次付费均明确，船只拖偏由普通索具、船行与艉桩承力；林的剑诀仅切可见外露索，并支付真元及承受热剑停术。第50章主动不用术法、交由工人与巡员完成处置，保留低阶限制与非战力选择的戏剧价值。",
+      "revisionAdvice": "",
+      "evidenceCount": 6
+    },
+    {
+      "criterion": "growth",
+      "verdict": "pass",
+      "explanation": "林辰的近期成长已具备明确目标、主动选择、训练门槛、失败成本与有限回报：从先辨伤情与引气条件，到分段引气、资源和休息取舍、岔气停练，再到复诊后支付三元载、导刃训练、失败赔偿与准入实测。后段则把回报落实为受限行动下的职业判断与关系选择，例如放弃转嫁责任、救援后先安置他人，以及在50章松剑让吴卢自行回答；未把后段玄府安排误作前50章已取得能力。",
+      "revisionAdvice": "",
+      "evidenceCount": 7
+    }
+  ],
+  "formalCheckpointUnchanged": true,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "One current-model experiment added only validated resolution context to the frozen synthesis-22 request. The reviewer cited that context and no longer reopened the historical wait in this sample. This is not a replacement formal report, full v29 run, proof against all semantic errors, or approval of the proposed design."
+}

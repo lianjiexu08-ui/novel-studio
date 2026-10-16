@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto';
 import { ChapterWorkflow, InMemoryWorkRepository, type DesignProvider, type WorkTransaction } from '../src/index.ts';
 import { createReadyWork } from './fixtures.ts';
 import { designReviewInput, designReviewOverview, designReviewRubrics, type DesignReviewInput, type DesignReviewResult } from '../../../novel-service-core/src/design-review.ts';
-import { createDesignReviewRun, designReviewStageInput, acceptDesignReviewStage, completeDesignReviewRun } from '../../../novel-service-core/src/design-review-run.ts';
+import { createDesignReviewRun, designReviewStageInput, acceptDesignReviewStage, completeDesignReviewRun, designReviewResolutionContext } from '../../../novel-service-core/src/design-review-run.ts';
 import { designReviewReportEnvelopeSize, renderDesignReviewReport } from '../../../novel-service-core/src/design-review-report.ts';
 import { designReviewResultSchema } from 'novel-studio-contracts';
 
@@ -75,7 +75,7 @@ test('chapter-only power batches also receive complete tier and technique rules'
   ];
   input.sources = [...rules, ...input.sources];
   const run = createDesignReviewRun(input);
-  assert.equal(run.scheduleVersion, 28);
+  assert.equal(run.scheduleVersion, 29);
   for (const stage of run.stages) {
     const staged = designReviewStageInput(run, stage);
     assert.ok(JSON.stringify(staged.sources).length <= 240_000);
@@ -530,7 +530,7 @@ test('v3 budgets full quotation envelopes so evidenced deferrals can fit without
   assert.throws(() => acceptDesignReviewStage(legacy, legacy.stages[0], large), /结论过长/);
 });
 
-function threePartitionRun(version: 4 | 5 | 6 | 7 | 11 | 12 | 14 | 15 = 7) {
+function threePartitionRun(version: 4 | 5 | 6 | 7 | 11 | 12 | 14 | 15 | 28 | 29 = 7) {
   const input: DesignReviewInput = { ...largeInput(), rubric: { timeline: '寄出与送达是否有实际时间', payoff: '承诺是否保持代价' }, sources: [
     { id: 'author', text: '仅检查本轮提案，不视为采纳事实。' },
     { id: 'early', text: '第9日寄出书信，送达前收信人不能知情。' + '日程说明。'.repeat(17000) },
@@ -1257,4 +1257,74 @@ test('v18 classifies new local model judgments without changing legacy raw cover
     acceptDesignReviewStage(previous, oldStage, result);
   }
   assert.deepEqual(completeDesignReviewRun(current).result, completeDesignReviewRun(previous).result);
+});
+
+
+test('v29 delivers quotable validated resolution history across branches, retains adverse findings and restores exact requests', () => {
+  const run = threePartitionRun(29);
+  finishRawWithThirdPartitionQuestion(run);
+  assert.equal(designReviewResolutionContext(run), undefined);
+  const followup = run.stages.find(stage => stage.followupFor)!;
+  const followupInput = designReviewStageInput(run, followup);
+  const result = resolvePending(followupInput);
+  const early = followupInput.stage!.sourceMap.find(unit => unit.sourceId === 'early')!;
+  result.checks[0].evidence.push({ sourceId: early.id, quote: '第9日寄出书信，送达前收信人不能知情。' });
+  result.checks[0].explanation = '原问题要求同读寄出与送达；9日寄出、12日才送达，未提前知情。';
+  acceptDesignReviewStage(run, followup, result);
+  const original = structuredClone(run.stages.find(stage => stage.id === 'cross-1-2')!.result);
+  const context = designReviewResolutionContext(run)!;
+  assert.match(context.text, /cross-1-2\/timeline/);
+  assert.ok(context.text.includes(followup.id));
+  assert.ok(context.text.includes(result.checks[0].explanation));
+  assert.ok(!context.text.includes('另有不可取消的代价缺口'), 'ordinary revisions cannot appear as resolved deferrals');
+  const branch = run.stages.find(stage => stage.kind === 'synthesis' && stage.children.includes('cross-1-2'))!;
+  assert.ok(!branch.children.includes(followup.id), 'the resolver is on a separate branch');
+  const branchInput = designReviewStageInput(run, branch);
+  assert.deepEqual(branchInput.sources.find(source => source.id === context.id), context);
+  const old = structuredClone(run); old.scheduleVersion = 28;
+  const oldInput = designReviewStageInput(old, old.stages.find(stage => stage.id === branch.id)!);
+  assert.deepEqual({ ...branchInput, sources: branchInput.sources.filter(source => source.id !== context.id) }, oldInput);
+  const restored = JSON.parse(JSON.stringify(run));
+  assert.deepEqual(designReviewStageInput(restored, restored.stages.find((stage: { id: string }) => stage.id === branch.id)), branchInput);
+  const reportSizes: Array<{ sourceId: string; expected: number }> = [];
+  for (const stage of run.stages.filter(stage => !stage.result)) {
+    const input = designReviewStageInput(run, stage), next = stagePass(input);
+    for (const finding of input.stage!.coverage!.synthesis!.requiredFindings!) {
+      Object.assign(next.checks.find(check => check.criterion === finding.criterion)!, {
+        verdict: finding.verdict, explanation: '保留子报告中的独立负面判断', revisionAdvice: '补齐独立问题',
+      });
+    }
+    next.checks.find(check => check.criterion === 'timeline')!.evidence.push({ sourceId: context.id, quote: result.checks[0].explanation });
+    acceptDesignReviewStage(run, stage, next);
+    reportSizes.push({ sourceId: `review-result/${stage.id}`, expected: designReviewReportEnvelopeSize(input, next, `review-result/${stage.id}`) });
+  }
+  const completed = completeDesignReviewRun(run);
+  assert.equal(completed.result.checks.find(check => check.criterion === 'timeline')!.verdict, 'pass');
+  assert.equal(completed.result.checks.find(check => check.criterion === 'payoff')!.verdict, 'revise');
+  assert.equal(completed.input.sources.filter(source => source.id === context.id).length, 1);
+  for (const { sourceId, expected } of reportSizes) {
+    const actual = completed.input.sources.find(source => source.id === sourceId)!;
+    assert.equal(JSON.stringify([actual]).length, expected, 'model repair budget matches the delivered report envelope');
+  }
+  assert.deepEqual(run.stages.find(stage => stage.id === 'cross-1-2')!.result, original);
+  const afterReload = JSON.parse(JSON.stringify(run));
+  assert.deepEqual(completeDesignReviewRun(afterReload), completed);
+});
+
+test('v29 cannot publish a quotable resolution when the underlying original evidence was altered', () => {
+  const run = threePartitionRun(29);
+  finishRawWithThirdPartitionQuestion(run);
+  const followup = run.stages.find(stage => stage.followupFor)!;
+  const input = designReviewStageInput(run, followup), result = resolvePending(input);
+  const early = input.stage!.sourceMap.find(unit => unit.sourceId === 'early')!;
+  result.checks[0].evidence.push({ sourceId: early.id, quote: '第9日寄出书信，送达前收信人不能知情。' });
+  acceptDesignReviewStage(run, followup, result);
+  assert.ok(designReviewResolutionContext(run));
+  const original = run.stages.find(stage => stage.id === 'cross-1-2')!;
+  const originalEvidence = structuredClone(original.result!.checks[0].evidence);
+  original.result!.checks[0].evidence = [{ sourceId: early.id, quote: '伪造的原问题依据' }];
+  assert.throws(() => designReviewResolutionContext(run), /引用不在原文|来源不存在|每个原始来源|补读/);
+  original.result!.checks[0].evidence = originalEvidence;
+  followup.result!.checks[0].evidence = [{ sourceId: early.id, quote: '伪造的知情时点' }];
+  assert.throws(() => designReviewResolutionContext(run), /引用不在原文|每个原始来源|补读/);
 });

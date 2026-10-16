@@ -1,4 +1,4 @@
-import { randomUUID } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import { maxDesignReviewEvidence } from '../../packages/contracts/src/index.ts';
 import { renderDesignReviewReport } from './design-review-report.ts';
 import { designReviewEntityMentions, designReviewPlanCharacters, designReviewPlanNeighbors, designReviewPlanRanges, designReviewSourceNames, designReviewReferencedRules, designReviewSourceRelationships, localDesignReviewRubric } from './design-review-scope.ts';
@@ -30,7 +30,7 @@ export interface DesignReviewStage {
 export interface DesignReviewRun {
   id: string;
   /** Absent on persisted legacy schedules, which must resume without reshuffling. */
-  scheduleVersion?: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28;
+  scheduleVersion?: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29;
   input: DesignReviewInput;
   units: DesignReviewUnit[];
   stages: DesignReviewStage[];
@@ -44,8 +44,8 @@ export interface DesignReviewRun {
 
 /** All raw text is retained. Cross checks co-read every pair of partitions;
  * synthesis then combines every finding without allowing a blocker to disappear. */
-export function createDesignReviewRun(input: DesignReviewInput, now = new Date().toISOString(), scheduleVersion: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 = 28): DesignReviewRun {
-  if (!Number.isInteger(scheduleVersion) || scheduleVersion < 1 || scheduleVersion > 28) throw new DesignReviewError('未知评审调度版本');
+export function createDesignReviewRun(input: DesignReviewInput, now = new Date().toISOString(), scheduleVersion: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 = 29): DesignReviewRun {
+  if (!Number.isInteger(scheduleVersion) || scheduleVersion < 1 || scheduleVersion > 29) throw new DesignReviewError('未知评审调度版本');
   if (new Set(input.sources.map(s => s.id)).size !== input.sources.length) throw new DesignReviewError('评审来源 ID 重复');
   const units: DesignReviewUnit[] = [];
   const stages: DesignReviewStage[] = [];
@@ -120,7 +120,7 @@ export function createDesignReviewRun(input: DesignReviewInput, now = new Date()
     }
     level = next;
   }
-  return { id: `design_run_${randomUUID()}`, ...(scheduleVersion >= 2 ? { scheduleVersion: scheduleVersion as 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 } : {}), input: structuredClone(input), units, stages, status: 'ready', createdAt: now, updatedAt: now };
+  return { id: `design_run_${randomUUID()}`, ...(scheduleVersion >= 2 ? { scheduleVersion: scheduleVersion as 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 } : {}), input: structuredClone(input), units, stages, status: 'ready', createdAt: now, updatedAt: now };
 }
 
 function chapterUnitGroups(sources: DesignReviewSource[], units: DesignReviewUnit[]): DesignReviewUnit[][] {
@@ -158,9 +158,10 @@ export function designReviewUnitSources(run: DesignReviewRun): DesignReviewSourc
 interface ReviewReadCache {
   reports: Map<string, DesignReviewSource>;
   followupUnits: Map<string, string[] | undefined>;
+  resolutionContexts: Map<string, DesignReviewSource>;
   entityMentions?: Record<string, string[]>;
 }
-const reviewReadCache = (): ReviewReadCache => ({ reports: new Map(), followupUnits: new Map() });
+const reviewReadCache = (): ReviewReadCache => ({ reports: new Map(), followupUnits: new Map(), resolutionContexts: new Map() });
 function entityMentions(run: DesignReviewRun, cache: ReviewReadCache) {
   return cache.entityMentions ??= designReviewEntityMentions(run.input, (run.scheduleVersion ?? 1) >= 19);
 }
@@ -184,6 +185,10 @@ function resultSource(run: DesignReviewRun, stage: DesignReviewStage, cache = re
     const index = run.stages.findIndex(s => s.id === stage.id);
     const prior = run.stages.slice(0, index).find(s => `review-result/${s.id}` === id && s.result);
     if (prior) return { sourceId: id, text: resultSource(run, prior, cache).text };
+    if ((run.scheduleVersion ?? 1) >= 29 && id.startsWith('review-resolutions/')) {
+      const context = readResolutionContext(run, index, cache);
+      if (context?.id === id) return { sourceId: id, text: context.text };
+    }
     const question = deferrals(run, index).find(p => p.question.id === id)?.question;
     return question ? { sourceId: question.id, text: question.text } : undefined;
   }, resolutions);
@@ -311,6 +316,43 @@ function resolvedDeferrals(run: DesignReviewRun, before = run.stages.length, cac
     return resolver ? [{ checkId: pending.id, resolvedByStageId: resolver.id }] : [];
   });
 }
+
+/** Quotable review history, not additional story facts or an approval override.
+ * The same validated records are available even when the resolver is on a
+ * different synthesis branch from a quoted historical insufficient judgment. */
+export function designReviewResolutionContext(run: DesignReviewRun, before = run.stages.length): DesignReviewSource | undefined {
+  if (!Number.isSafeInteger(before) || before < 0 || before > run.stages.length) throw new DesignReviewError('补读处理记录范围无效');
+  return readResolutionContext(run, before, reviewReadCache());
+}
+function readResolutionContext(run: DesignReviewRun, before: number, cache: ReviewReadCache): DesignReviewSource | undefined {
+  const resolutions = resolvedDeferrals(run, before, cache);
+  if (!resolutions.length) return undefined;
+  const key = JSON.stringify(resolutions);
+  const cached = cache.resolutionContexts.get(key);
+  if (cached) return cached;
+  const pending = deferrals(run, before);
+  const records = resolutions.map(resolution => {
+    const original = pending.find(item => item.id === resolution.checkId)!;
+    const resolver = run.stages.find(stage => stage.id === resolution.resolvedByStageId)!;
+    // Never turn an unvalidated resolves claim into authoritative context.
+    validateDesignReview(readDesignReviewStageInput(run, original.stage, cache), original.stage.result!);
+    validateDesignReview(readDesignReviewStageInput(run, resolver, cache), resolver.result!);
+    const check = resolver.result!.checks.find(check => check.criterion === original.check.criterion)!;
+    return {
+      ...resolution, criterion: original.check.criterion, disposition: 'resolved_by_raw_review',
+      originalQuestion: original.check.explanation, requestedSources: original.check.awaitingSources,
+      resolutionExplanation: check.explanation,
+      resolutionEvidenceCount: check.evidence.length,
+      resolutionEvidenceSha256: createHash('sha256').update(JSON.stringify(check.evidence)).digest('hex'),
+    };
+  });
+  const text = '已校验的补读处理记录。每项均由覆盖原问题及必要原文的后续评审明确解决，并已通过引用验证。报告中仍保留的对应旧insufficient及原问题引文是历史，不因复核位于另一综合分支就重新变成未解决。\n'
+    + '本记录只证明所列等待有有效处理；不证明全文设计通过，不取消其他返修、普通不足或新发现的冲突，也不代表正文事件已发生。新冲突仍须依据实际交付的原文或报告说明，不得凭此记录自动通过。\n'
+    + JSON.stringify({ inputHash: run.input.inputHash, resolvedDeferrals: records }, null, 2);
+  const source = { id: `review-resolutions/${createHash('sha256').update(text).digest('hex')}`, text };
+  cache.resolutionContexts.set(key, source);
+  return source;
+}
 function synthesisCoverage(run: DesignReviewRun, stage: DesignReviewStage) {
   const indexed = new Map(run.stages.map((item, index) => [item.id, { item, index }]));
   const covered = new Set<string>();
@@ -345,6 +387,10 @@ function readDesignReviewStageInput(run: DesignReviewRun, stage: DesignReviewSta
     if (!child?.result) throw new DesignReviewError('前置批次尚未完成');
     return resultSource(run, child, cache);
   }), ...rawSources] : rawSources;
+  if ((run.scheduleVersion ?? 1) >= 29 && stage.kind === 'synthesis') {
+    const context = readResolutionContext(run, stageIndex, cache);
+    if (context) sources.push(context);
+  }
   if (JSON.stringify(sources).length > designReviewCapacity) throw new DesignReviewError('本批材料超出单次评审容量；未截断原文');
   const coverage: NonNullable<DesignReviewInput['stage']>['coverage'] = (run.scheduleVersion ?? 1) >= 3 ? {
     mode: stage.kind === 'synthesis' ? 'reports_with_context' : run.units.every(u => stage.unitIds.includes(u.id)) ? 'whole_input' : 'local_sources',
@@ -432,7 +478,7 @@ export function acceptDesignReviewStage(run: DesignReviewRun, stage: DesignRevie
  * only explicitly deferred unread-source questions can be settled by a raw
  * stage covering both the original material and every requested source. */
 export function completeDesignReviewRun(run: DesignReviewRun): { input: DesignReviewInput; result: DesignReviewResult } {
-  if (run.scheduleVersion !== undefined && ![2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28].includes(run.scheduleVersion)) throw new DesignReviewError('未知评审调度版本');
+  if (run.scheduleVersion !== undefined && ![2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29].includes(run.scheduleVersion)) throw new DesignReviewError('未知评审调度版本');
   const expected = createDesignReviewRun(run.input, run.createdAt, run.scheduleVersion ?? 1);
   if ((run.scheduleVersion ?? 1) >= 5) {
     // Validate the original raw results against canonical coverage before using
@@ -464,7 +510,13 @@ export function completeDesignReviewRun(run: DesignReviewRun): { input: DesignRe
     const { awaitingSources, resolves, ...finalCheck } = structuredClone(selected);
     return finalCheck;
   });
-  const input = { ...run.input, sources: [...designReviewUnitSources(run), ...run.stages.filter(s => s.result).map(s => resultSource(run, s, cache)), ...((run.scheduleVersion ?? 1) >= 3 ? deferrals(run).map(p => p.question) : [])] };
+  const resolutionSources = (run.scheduleVersion ?? 1) >= 29 ? [...new Map(run.stages
+    .filter(stage => stage.kind === 'synthesis')
+    .flatMap(stage => {
+      const source = readResolutionContext(run, run.stages.indexOf(stage), cache);
+      return source ? [[source.id, source] as const] : [];
+    })).values()] : [];
+  const input = { ...run.input, sources: [...resolutionSources, ...designReviewUnitSources(run), ...run.stages.filter(s => s.result).map(s => resultSource(run, s, cache)), ...((run.scheduleVersion ?? 1) >= 3 ? deferrals(run).map(p => p.question) : [])] };
   const blocked = checks.some(c => c.verdict !== 'pass');
   const result = { summary: blocked ? '全部批次已完成，但仍有返修或材料不足项；详见逐项结论。' : root.summary, checks, ...(resolutions.length ? { resolvedDeferrals: resolutions } : {}) };
   validateDesignReview(input, result);

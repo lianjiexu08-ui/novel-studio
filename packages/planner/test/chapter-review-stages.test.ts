@@ -58,7 +58,7 @@ test('large chapter review keeps full draft in each raw batch and resumes withou
 
 test('chapter checkpoints pin their original schedule across later defaults and reject unknown versions before model dispatch', async () => {
   const input = await largeInput();
-  assert.equal(restoreChapterReviewRun(input).scheduleVersion, 28);
+  assert.equal(restoreChapterReviewRun(input).scheduleVersion, 29);
   const legacy: ChapterReviewStageProof = { inputHash: input.inputHash, createdAt: '2026-10-14T00:00:00.000Z', stages: [] };
   assert.equal(restoreChapterReviewRun(input, legacy).scheduleVersion, 21);
   let calls = 0;
@@ -125,7 +125,7 @@ test('v27 chapter synthesis repairs a false pass and retains the rejected respon
   } });
   const result = await provider.reviewChapterAsync(input);
   assert.equal(repairCalls, 1);
-  assert.equal(result.stageProof!.scheduleVersion, 28);
+  assert.equal(result.stageProof!.scheduleVersion, 29);
   assert.equal(result.checks.find(check => check.criterion === 'power')!.verdict, 'revise');
   assert.equal(result.stageProof!.stages.at(-1)!.result!.checks.find(check => check.criterion === 'power')!.verdict, 'revise');
   const repairedStage = result.stageProof!.stages.find(stage => stage.modelResponses?.length === 2)!;
