@@ -1,0 +1,495 @@
+{
+  "kind": "design70_characters_dynamic_followups_preflight",
+  "observedAt": "2026-10-16T21:08:23.170Z",
+  "inputHash": "f759ad2fcd6ab96802ceb198e778c8d8165f21de47b1a8619b63ca640e84622f",
+  "runId": "design_run_dc97e1a8-48f5-4150-a877-44ea579c0dfe",
+  "snapshotPath": "data/audit-runtimes/design70-review/characters-followup-prefix.json",
+  "snapshotSha256": "049bade1f663f15715c2f209e9a5451d5146860e6985eeaf48363bf95d6473eb",
+  "frozenSourceFilesVerified": 153,
+  "independentInputsSha256": "f8e784eb0be94daaecb4f5ee7d841b7bf68271f4e30286687dff39771a7dc5e0",
+  "prefixReplay": {
+    "verification": "verified",
+    "completedStages": 16,
+    "totalStages": 37,
+    "runSha256": "76838eaf209b1ad652ec48ceaeb6a66b615de1db37245690840563bc7adeac04",
+    "formalAcceptance": false,
+    "limitation": "Replays saved responses, repairs, citations and conclusions against independently supplied materials. Pending work, semantic quality, blocker disposition and prose acceptance remain separate.",
+    "responseReplay": "verified",
+    "responsesReplayed": 16,
+    "records": [
+      {
+        "stageId": "batch-1",
+        "kind": "batch",
+        "stageSha256": "ed3572b78129b78f483cd0e730b49219cf12330bdc01b5c5ca561534b010f3e9",
+        "inputSha256": "c68b1aef3e8b1e66e9a2121e6b372fd04f54d7e65ed807d31c1520ad71538e74",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "batch-2",
+        "kind": "batch",
+        "stageSha256": "c80143713e2e595d1bae95c56a4d645a813e6b13edc8d3c59a889a011fbbfcbd",
+        "inputSha256": "b4e09b66c68e4cd7c63203b9fc6b9f7fcec2a4d1d169a558a5a1b2532470b8e9",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "batch-3",
+        "kind": "batch",
+        "stageSha256": "848aa52e8263809f6fa34f418079c86f448a1463012e0633e10f8cff673d4155",
+        "inputSha256": "0b4312d75f22755e8573d958a48c4030ba1cd6782566afde154f799dd94da94c",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "story/relationships/rel_01",
+              "story/relationships/rel_10"
+            ]
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "batch-4",
+        "kind": "batch",
+        "stageSha256": "4bc21c122d8339e22392b49f67028b88eb7d1f96d9252a993a167419c4744572",
+        "inputSha256": "cb6dd20c9d60f2c2197c33bfa80b3f95518c5bddec2ff50a9a319f05b646b539",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "batch-5",
+        "kind": "batch",
+        "stageSha256": "a9048fa6f6635dc7ed4be4bc77a4b3ce9ac18683e6abb528ddf63772dfafddc6",
+        "inputSha256": "7d2f02e0c0b9ebe92e2ee266354a30dc573184768a1a00b4fc19de449d997781",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-2",
+        "kind": "cross",
+        "stageSha256": "7d47bc255a42de5d263ca3eac97ce8f43853655bfd602bfde4e389ff420d21a5",
+        "inputSha256": "ec30f1e1880ad6ce76fb7a740a979a13115e428fb7ea50782e26f477a466bcac",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-3",
+        "kind": "cross",
+        "stageSha256": "76be10faeef62c3a5a27c1dd8337651d3c152a248bf500976f1332f3c57b743b",
+        "inputSha256": "ffb4899a39d3256a564cbdf5361f5f994c7f70900829c2eb91c78bb94cb51b45",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "pass",
+            "resolves": [
+              "batch-3/relationships"
+            ]
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-4",
+        "kind": "cross",
+        "stageSha256": "a0dc2909d6e8dfdddbf46958bc67b6aefcab28b434597c99d591306962d2811a",
+        "inputSha256": "ceb383b5494d867e2faee43214de342a42b67ba8902dc6df1711187486ac527e",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-5",
+        "kind": "cross",
+        "stageSha256": "e3efddf7014993c67e1ae7f9e0b492a02fc6b3cb95edd00932db486c02487ba9",
+        "inputSha256": "9d4ca0d2d5aafa4596246d22260dca1196d082828c3f928d837b4a2a38de4b0d",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-2-3",
+        "kind": "cross",
+        "stageSha256": "aa7c333bd1c2d3e160d141c37a91861c2f1492a40db2c74d2ea47edb1379db94",
+        "inputSha256": "e58aaf0a6b2e790622f259d1fe4f647e073f26d3c8aaaba0e87765992a84938e",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "story/relationships/rel_01",
+              "story/relationships/rel_03",
+              "story/relationships/rel_04",
+              "story/relationships/rel_07",
+              "story/relationships/rel_08",
+              "story/relationships/rel_09",
+              "story/relationships/rel_10",
+              "story/relationships/rel_11"
+            ]
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "story/secrets/sec_01"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-2-4",
+        "kind": "cross",
+        "stageSha256": "2f2169d8c914ffde4479aa54c285cee4f9e430b1b086eeb84a5ceaa7ecf5119a",
+        "inputSha256": "0dfb3fc0b3cf2174aa73adaea1187a8beb363ac5db0cddcec4a45d152567cd09",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-2-5",
+        "kind": "cross",
+        "stageSha256": "1c18b0d315c952900fbe3c7599485ae8dc579fed113a92e7a5a17e0fda85a01a",
+        "inputSha256": "27c764a058bc61070e849c22ccb87307b2d5033e82fb829155575cb8af3e8c8e",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-3-4",
+        "kind": "cross",
+        "stageSha256": "a30bfacf6fa53ff6e3d91653f19b25b39db9d44e0cc5d3f8b67e4b81f7d0d206",
+        "inputSha256": "a4f38ffc5c4d18ccaca633b4784e59aaea316c190d45066d48a064807698714a",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-3-5",
+        "kind": "cross",
+        "stageSha256": "834021ead8794b6737ab3e118e161a19df8fbacf2f0c52133ca2efb85d7682b0",
+        "inputSha256": "1f16454cb3046e1f6a2f8b07565862eb3f043677ae7216899a621b2d9501cb4a",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "story/relationships/rel_01",
+              "story/relationships/rel_03",
+              "story/relationships/rel_09",
+              "story/relationships/rel_10",
+              "story/relationships/rel_12",
+              "story/relationships/rel_13",
+              "story/relationships/rel_14"
+            ]
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "story/secrets/sec_01",
+              "story/secrets/sec_02",
+              "story/secrets/sec_04"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-4-5",
+        "kind": "cross",
+        "stageSha256": "a81aaa536d8b22b213c58a3f32009eca83e087010655051d5f771f88341b540e",
+        "inputSha256": "22c178211745ae20479ba250336d30d5c66d26c9016d24082a4f3a5e695a7add",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-2-3/relationships",
+        "kind": "cross",
+        "stageSha256": "a71388102ace6b281be3d82114189601b51ae773e1bd5aa74adefdf00a4be74f",
+        "inputSha256": "95d965c145786b08fae8608f0af836641814f6c63def8e6b60bdcd1a15f17e38",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "relationships",
+            "verdict": "pass",
+            "resolves": [
+              "cross-2-3/relationships"
+            ]
+          }
+        ]
+      }
+    ],
+    "failures": [],
+    "modelCalls": 0,
+    "reportVerification": "not_completed"
+  },
+  "originalStagesCompleted": 15,
+  "pendingSourceQuestions": 5,
+  "explicitRawResolutions": [
+    "batch-3/relationships"
+  ],
+  "followups": [
+    {
+      "stageId": "followup-cross-2-3/relationships",
+      "originalCheckId": "cross-2-3/relationships",
+      "criterion": "relationships",
+      "requestedSourceIds": [
+        "story/relationships/rel_01",
+        "story/relationships/rel_03",
+        "story/relationships/rel_04",
+        "story/relationships/rel_07",
+        "story/relationships/rel_08",
+        "story/relationships/rel_09",
+        "story/relationships/rel_10",
+        "story/relationships/rel_11"
+      ],
+      "originalEvidenceSourceIds": [
+        "plan/chapters/3",
+        "plan/chapters/8",
+        "plan/chapters/17",
+        "plan/chapters/21",
+        "plan/chapters/23",
+        "plan/chapters/29"
+      ],
+      "completeRequiredSources": 14,
+      "sourceCharacters": 233424,
+      "metadataCharacters": 33283,
+      "inputSha256": "95d965c145786b08fae8608f0af836641814f6c63def8e6b60bdcd1a15f17e38"
+    },
+    {
+      "stageId": "followup-cross-2-3/knowledge",
+      "originalCheckId": "cross-2-3/knowledge",
+      "criterion": "knowledge",
+      "requestedSourceIds": [
+        "story/secrets/sec_01"
+      ],
+      "originalEvidenceSourceIds": [
+        "story/secrets/sec_02",
+        "story/secrets/sec_04",
+        "plan/chapters/1",
+        "plan/chapters/17",
+        "plan/chapters/32"
+      ],
+      "completeRequiredSources": 6,
+      "sourceCharacters": 222236,
+      "metadataCharacters": 32836,
+      "inputSha256": "4ee95ae3bd7075c940b11ecd719f0cc312cb95487a65621788b9c35e77a6726e"
+    },
+    {
+      "stageId": "followup-cross-3-5/relationships",
+      "originalCheckId": "cross-3-5/relationships",
+      "criterion": "relationships",
+      "requestedSourceIds": [
+        "story/relationships/rel_01",
+        "story/relationships/rel_03",
+        "story/relationships/rel_09",
+        "story/relationships/rel_10",
+        "story/relationships/rel_12",
+        "story/relationships/rel_13",
+        "story/relationships/rel_14"
+      ],
+      "originalEvidenceSourceIds": [
+        "story/chapterPlans/chapter-plan-17",
+        "story/chapterPlans/chapter-plan-21",
+        "story/chapterPlans/chapter-plan-25",
+        "story/chapterPlans/chapter-plan-29"
+      ],
+      "completeRequiredSources": 11,
+      "sourceCharacters": 168105,
+      "metadataCharacters": 32195,
+      "inputSha256": "81035c521873786aaed646f27e3901f775c8c422a9504e6f25e8bc31aa28cb51"
+    },
+    {
+      "stageId": "followup-cross-3-5/knowledge",
+      "originalCheckId": "cross-3-5/knowledge",
+      "criterion": "knowledge",
+      "requestedSourceIds": [
+        "story/secrets/sec_01",
+        "story/secrets/sec_02",
+        "story/secrets/sec_04"
+      ],
+      "originalEvidenceSourceIds": [
+        "story/chapterPlans/chapter-plan-23",
+        "story/chapterPlans/chapter-plan-24",
+        "story/chapterPlans/chapter-plan-25",
+        "story/chapterPlans/chapter-plan-27",
+        "story/chapterPlans/chapter-plan-28",
+        "story/chapterPlans/bible-chapter-33"
+      ],
+      "completeRequiredSources": 9,
+      "sourceCharacters": 189028,
+      "metadataCharacters": 32124,
+      "inputSha256": "51d3955918e95e5559534fb557a13cb7debd01c05339916f45ef388155b9597c"
+    }
+  ],
+  "totalScheduledStages": 37,
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "questionsResolvedByThisAudit": 0,
+  "formalAcceptance": false,
+  "limitation": "Offline replay and complete-source/request-capacity checks only. Followup responses, dynamic report synthesis, semantic quality and all four area acceptance remain unproven."
+}
