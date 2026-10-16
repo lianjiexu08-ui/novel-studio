@@ -141,6 +141,22 @@ export function designReviewChapterCast(input: DesignReviewInput): NonNullable<N
   return { chapters, characters };
 }
 
+/** Copy explicit chapter time declarations without parsing dates, sorting events,
+ * merging conflicting sources or guessing a chapter number from its path. */
+export function designReviewChapterTimes(input: DesignReviewInput): NonNullable<NonNullable<NonNullable<DesignReviewInput['stage']>['coverage']>['chapterTimes']> {
+  return input.sources.flatMap(source => {
+    if (!['plan/chapters/', 'story/chapterPlans/'].some(prefix => source.id.startsWith(prefix))) return [];
+    try {
+      const value: unknown = JSON.parse(source.text);
+      if (!value || typeof value !== 'object' || Array.isArray(value)) return [];
+      const { chapterNumber, storyTime } = value as Record<string, unknown>;
+      if (typeof chapterNumber !== 'number' || !Number.isSafeInteger(chapterNumber) || chapterNumber < 1
+        || typeof storyTime !== 'string' || !storyTime.trim()) return [];
+      return [{ sourceId: source.id, chapterNumber, storyTime }];
+    } catch { return []; }
+  });
+}
+
 /** One explicit planning edge is navigation, never evidence of feasibility.
  * Do not infer links from prose or recursively pull the entire book into a
  * follow-up. Ambiguous and dangling object IDs cannot select a source. */

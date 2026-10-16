@@ -65,6 +65,9 @@ export interface DesignReviewInput {
         characters: Record<string, { sourceId: string; name?: string }>;
       };
       chapterCastOmitted?: 'capacity';
+      /** v32: verbatim declared story times, not inferred dates or proof of events. */
+      chapterTimes?: Array<{ sourceId: string; chapterNumber: number; storyTime: string }>;
+      chapterTimesOmitted?: 'capacity';
       /** Exact name/ID mentions in plans and (v19+) profiles; never prove mastery or use. */
       entityMentions?: Record<string, string[]>;
       /** Optional navigation is omitted whole if it cannot fit; raw sources are never removed. */

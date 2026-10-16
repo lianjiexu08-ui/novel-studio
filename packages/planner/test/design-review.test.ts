@@ -92,6 +92,30 @@ test('chapter cast guidance is conditional navigation and preserves raw evidence
   assert.deepEqual(JSON.parse(calls[0].user).sources, JSON.parse(calls[1].user).sources);
 });
 
+test('chapter time navigation reaches the reviewer without changing old prompts or raw evidence', async () => {
+  const request = await input();
+  request.stage = { kind: 'batch', label: '原文', totalBatches: 1, sourceMap: [], coverage: {
+    mode: 'whole_input', sourceLengths: Object.fromEntries(request.sources.map(s => [s.id, s.text.length])),
+  } };
+  const prior = structuredClone(request);
+  request.stage.coverage!.chapterTimes = [
+    { sourceId: 'plan/chapters/39', chapterNumber: 39, storyTime: '第229日至第230日' },
+    { sourceId: 'plan/chapters/42', chapterNumber: 42, storyTime: '第239日至第243日' },
+  ];
+  const calls: Array<{ system: string; user: string }> = [];
+  for (const current of [prior, request]) {
+    const planner = new JsonDesignPlanner({ complete: async call => { calls.push(call); return JSON.stringify(anchored(current)); } });
+    await planner.reviewDesignContent(current);
+  }
+  assert.ok(!calls[0].system.includes('coverage.chapterTimes'));
+  assert.ok(calls[1].system.startsWith(calls[0].system + '\n'));
+  assert.match(calls[1].system, /章号不是故事日序/);
+  assert.match(calls[1].system, /不是可引用证据/);
+  assert.match(calls[1].system, /不能因索引存在自动通过/);
+  assert.deepEqual(JSON.parse(calls[1].user).stage.coverage.chapterTimes, request.stage.coverage!.chapterTimes);
+  assert.deepEqual(JSON.parse(calls[0].user).sources, JSON.parse(calls[1].user).sources);
+});
+
 for (const corrected of [true, false]) {
   test(`conflicting insufficiency fields get a targeted repair without dropping findings: ${corrected}`, async () => {
     const request = await input();

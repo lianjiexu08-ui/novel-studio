@@ -31,6 +31,10 @@ function chapterCastGuidance(input: DesignReviewInput): string {
 
 export class PlanningParseError extends Error {}
 
+function chapterTimeGuidance(input: DesignReviewInput): string {
+  return input.stage?.coverage?.chapterTimes ? '\ncoverage.chapterTimes逐份复制章纲明示的chapterNumber和storyTime原文，仅用于定位章节；章号不是故事日序，不同来源的冲突或插叙不得合并消除。核对某日行动前，先按该导航定位候选来源，再读对应完整章纲和前后收支；不能凭相近章号猜测复测、施术、出发或抵达发生在哪章。它不是可引用证据，不证明材料已读、事件已发生、余额正确或角色知情；日期声明也可能有误，仍须对照具体动作。未读必要原文须按补读规则请求，不能因索引存在自动通过；没有条目不等于原文没有时间信息。' : '';
+}
+
 export interface DesignPlanner {
   generateWorldPack(input: { title: string; covenant: CreativeCovenant; chapterTarget?: number; retainedQuestions?: UnresolvedQuestion[] }): Promise<WorldPack>;
   generateStoryBible(input: { title: string; covenant: CreativeCovenant; worldPack: WorldPack; chapterTarget?: number; previousStoryBible?: StoryBible; retainedQuestions?: UnresolvedQuestion[] }): Promise<StoryBible>;
@@ -83,7 +87,7 @@ pass 也必须有支撑证据；明确矛盾或设计缺陷用 revise；材料�
 缺少约束时可引用不完整条目并解释缺失。建议必须具体到需修改的设定/人物/卷，不允许用增加条目数量代替质量。
 这是设计评审，不是正文通读，不能声称正文已符合设计或完成了整书文学验收。关系 stages 是计划阶段，已采纳事件才是实际变化。不得为解释连续性漏洞而把新编的分裂、复活或转移当成已发生事实；优先修正重复兑现。
 只返回 JSON: {"requestId":"输入的requestId","summary":"本项结论","checks":[{"criterion":"rubric中的键","verdict":"pass|revise|insufficient","explanation":"判断理由","evidence":[{"fragmentId":"所选原文片段的id"}],"revisionAdvice":"返修或补充要求，通过时可为空"}]}。
-每个 rubric 键恰好一项。${input.stage?.coverage?.sourceRelationships ? "\ncoverage.sourceRelationships只复制关系原档的双方ID、明确类型及唯一人物档案中的姓名，供按人物对定位真实来源。方向按fromCharacterId到toCharacterId保留；姓名缺省不能猜测别名或编号。它不证明关系阶段、信任、知情、代价或变化已经成立，不能引用目录代替原文。根据具体待核关系选择原始来源，仍须实际补读；不得只因目录存在而通过，也不得只因目录缺项断言关系不存在。" : ""}${synthesisFindingGuidance(input)}${macroPlanGuidance(input)}${chapterCastGuidance(input)}`,
+每个 rubric 键恰好一项。${input.stage?.coverage?.sourceRelationships ? "\ncoverage.sourceRelationships只复制关系原档的双方ID、明确类型及唯一人物档案中的姓名，供按人物对定位真实来源。方向按fromCharacterId到toCharacterId保留；姓名缺省不能猜测别名或编号。它不证明关系阶段、信任、知情、代价或变化已经成立，不能引用目录代替原文。根据具体待核关系选择原始来源，仍须实际补读；不得只因目录存在而通过，也不得只因目录缺项断言关系不存在。" : ""}${synthesisFindingGuidance(input)}${macroPlanGuidance(input)}${chapterCastGuidance(input)}${chapterTimeGuidance(input)}`,
       user: JSON.stringify({ task: 'review_design_content', requestId: evidence.requestId, evaluationStage: 'design_proposal', ...(evidence.planningHorizon ? { planningHorizon: evidence.planningHorizon } : {}), scope: input.scope, area: input.area, stage: input.stage, rubric: input.rubric, ...(evidence.citationRequirements ? { citationRequirements: evidence.citationRequirements } : {}), ...(evidence.pendingCitationRequirements ? { pendingCitationRequirements: evidence.pendingCitationRequirements } : {}), sources: evidence.sources }),
       role: 'reviewing', maxOutputTokens: 8000,
     }, evidence.resolve);
