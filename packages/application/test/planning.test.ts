@@ -375,6 +375,58 @@ test('plans are generated in outline groups that see earlier groups; regeneratin
   await assert.rejects(() => workflow.generateOutlines(work.id, { baseRevisionId: regenerated.id, from: 1, to: 25 }), PlanGateError);
 });
 
+for (const source of ['world', 'bible', 'plan'] as const) for (const status of ['open', 'deferred'] as const) {
+  test(`${source} ${status} blockers stop outline expansion before model calls but allow existing chapter repair`, async () => {
+    let calls = 0;
+    const planProvider: PlanProvider = {
+      generatePlanSkeleton: async () => { calls++; const { chapters, ...skeleton } = minimalPlan(60); return skeleton; },
+      generateChapterOutlines: async ({ from, to }) => { calls++; return Array.from({ length: to - from + 1 }, (_, i) => minimalOutline(from + i)); },
+    };
+    const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), scriptedProvider(), undefined, { planProvider });
+    const work = await workflow.createWork('先核验再扩展', readyCovenant());
+    await lockMinimalDesign(workflow, work.id);
+    const base = await workflow.savePlan(work.id, { plan: minimalPlan(60, { outlined: 20 }) });
+    const questions = source === 'world' ? work.worldPack!.unresolvedQuestions
+      : source === 'bible' ? work.storyBible!.unresolvedQuestions : base.plan.openQuestions;
+    questions.push({ id: 'unverified-rescue', question: '救援前置尚未核验', blocking: true, status });
+    const before = JSON.stringify([...work.plans]);
+    for (const [from, to] of [[21, 25], [18, 22]]) {
+      await assert.rejects(() => workflow.generateOutlines(work.id, { baseRevisionId: base.id, from, to }),
+        error => error instanceof PlanGateError && error.message.includes('unverified-rescue'));
+    }
+    await assert.rejects(() => workflow.generatePlan(work.id, { targetChapterCount: 60, volumeCount: 1 }), PlanGateError);
+    assert.equal(calls, 0, 'blocked expansion must not spend model calls, including whole-plan regeneration');
+    assert.equal(JSON.stringify([...work.plans]), before, 'blocked requests preserve the entire proposal history');
+    const repaired = await workflow.generateOutlines(work.id, { baseRevisionId: base.id, from: 1, to: 5 });
+    assert.equal(calls, 1);
+    assert.equal(repaired.plan.chapters.length, 20);
+    assert.equal(questions[0].status, status, 'repair is not permission to resolve a blocker');
+    assert.deepEqual(repaired.plan.chapters.slice(5), base.plan.chapters.slice(5));
+  });
+}
+
+test('resolved blockers and nonblocking questions allow bounded expansion without approving the result', async () => {
+  let calls = 0;
+  const planProvider: PlanProvider = {
+    generatePlanSkeleton: async () => { throw new Error('not used'); },
+    generateChapterOutlines: async ({ from, to }) => { calls++; return Array.from({ length: to - from + 1 }, (_, i) => minimalOutline(from + i)); },
+  };
+  const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), scriptedProvider(), undefined, { planProvider });
+  const work = await workflow.createWork('已核验扩展', readyCovenant());
+  await lockMinimalDesign(workflow, work.id);
+  const plan = minimalPlan(60);
+  plan.openQuestions.push({ id: 'verified', question: '已核验', blocking: true, status: 'resolved' });
+  work.worldPack!.unresolvedQuestions.push({ id: 'later-world', question: '后续区域', blocking: false, status: 'open' });
+  work.storyBible!.unresolvedQuestions.push({ id: 'later-story', question: '后续伏笔', blocking: false, status: 'deferred' });
+  const base = await workflow.savePlan(work.id, { plan });
+  const expanded = await workflow.generateOutlines(work.id, { baseRevisionId: base.id, from: 51, to: 60 });
+  assert.equal(calls, 1);
+  assert.equal(expanded.plan.chapters.length, 60);
+  assert.equal(expanded.status, 'proposed');
+  assert.deepEqual(expanded.plan.chapters.slice(0, 50), base.plan.chapters);
+  assert.deepEqual(expanded.plan.openQuestions, base.plan.openQuestions);
+});
+
 for (const mode of ['plan', 'outlines'] as const) for (const change of ['world', 'bible', 'covenant', 'adoption'] as const) {
   test(`${mode} generation rejects ${change} changes made while an outline batch is pending`, async () => {
     let release!: () => void, started!: () => void;

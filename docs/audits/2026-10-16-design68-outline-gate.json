@@ -1,0 +1,35 @@
+{
+  "kind": "quality_blocker_outline_gate_live_verification",
+  "observedAt": "2026-10-16T07:00:12.989Z",
+  "planId": "plan_762f53fa91014e14a248b74d750d6a6c",
+  "inputHash": "3274d4710800ad02565040a341a05177b4bd7cab363e169219b562a4a0f62d01",
+  "outlineCount": 50,
+  "macroChapterTarget": 100,
+  "response": {
+    "status": 409,
+    "error": {
+      "code": "PLAN_GATE",
+      "message": "设计仍有 41 条未解决的阻塞问题，不能从第 50 章扩展至第 55 章；请先修订已有章纲并完成质量核验。相关问题：audit-power-opening、audit-resource-definitions、audit-travel-rules"
+    }
+  },
+  "planHistorySha256Before": "4074bbbf764f64ff89babe6cfd4f7843f6fd5aa907eee9828542b3cb4d391cae",
+  "planHistorySha256After": "4074bbbf764f64ff89babe6cfd4f7843f6fd5aa907eee9828542b3cb4d391cae",
+  "designUnchanged": true,
+  "modelSettingsUnchanged": true,
+  "sameActiveModelConnection": true,
+  "fallback": false,
+  "tests": {
+    "passed": 539,
+    "failed": 0,
+    "isolated": true
+  },
+  "buildPassed": true,
+  "applicationSourceSha256": "2eb68e3af33792f37ec518a22e27d39a774f81cbfafa8f68748c77bd546a9ff7",
+  "runtimePath": "data/audit-runtimes/design68-quality-gate",
+  "apiPid": 74769,
+  "databaseMigrations": false,
+  "dependencyInstall": false,
+  "proseGenerated": false,
+  "questionsResolved": 0,
+  "formalAcceptance": false
+}

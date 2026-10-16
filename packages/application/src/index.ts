@@ -259,6 +259,20 @@ export class ChapterWorkflow {
     return structuredClone({ title: work.title, covenant: work.covenant, worldPack: work.worldPack, storyBible: work.storyBible, adoptedFacts: this.adoptedFacts(work), authorRequest });
   }
 
+  /** Repair the existing outline window before extending an unresolved design. */
+  private assertOutlineExpansionAllowed(work: Work, through: number): void {
+    const base = latestPlan(work);
+    if (!base) return;
+    const frontier = Math.max(0, ...base.plan.chapters.map(chapter => chapter.chapterNumber));
+    if (through <= frontier) return;
+    const blockers = [
+      ...(work.worldPack?.unresolvedQuestions ?? []),
+      ...(work.storyBible?.unresolvedQuestions ?? []),
+      ...base.plan.openQuestions,
+    ].filter(question => question.blocking && question.status !== 'resolved');
+    if (blockers.length) throw new PlanGateError(`设计仍有 ${blockers.length} 条未解决的阻塞问题，不能从第 ${frontier} 章扩展至第 ${through} 章；请先修订已有章纲并完成质量核验。相关问题：${blockers.slice(0, 3).map(question => question.id).join('、')}`);
+  }
+
   /** Capture values before awaiting a provider, including for live in-memory works. */
   private planningGuard(work: Work): (current: Work) => void {
     const { stateRevision, constraintRevision, activePlanId } = work;
@@ -306,6 +320,7 @@ export class ChapterWorkflow {
     const assertCurrent = this.planningGuard(snapshot);
     const planning = this.planningInput(snapshot, input.authorRequest);
     const plannedThrough = Math.min(input.targetChapterCount, Math.max(outlineWindow(input.targetChapterCount), planning.adoptedFacts.reachedChapter + 10));
+    this.assertOutlineExpansionAllowed(snapshot, plannedThrough);
     const unretained = previousOutlines.filter(outline => outline.executionChecks?.length && outline.chapterNumber > plannedThrough);
     if (unretained.length) throw new PlanGateError(`全书重生成仅展开至第 ${plannedThrough} 章，会丢失第 ${unretained.map(c => c.chapterNumber).join('、')} 章验收要求；请改用局部章纲重生成，或先另存明确的设计修订。`);
     const generated = await this.planProvider.generatePlanSkeleton({ ...structuredClone(planning), targetChapterCount: input.targetChapterCount, volumeCount: input.volumeCount, previousPlan: structuredClone(previousPlan), retainedQuestions: structuredClone(retainedQuestions) });
@@ -313,6 +328,7 @@ export class ChapterWorkflow {
     const kept = (previousPlan?.chapters ?? []).filter((outline) => outline.chapterNumber <= planning.adoptedFacts.reachedChapter && outline.chapterNumber <= skeleton.targetChapterCount);
     const from = kept.length ? Math.max(...kept.map((item) => item.chapterNumber)) + 1 : 1;
     const to = Math.min(skeleton.targetChapterCount, Math.max(outlineWindow(skeleton.targetChapterCount), planning.adoptedFacts.reachedChapter + 10));
+    this.assertOutlineExpansionAllowed(snapshot, to);
     // The latest proposal owns the obligations, even when an older plan is
     // approved. Keep adopted prose context separately from replacement input.
     const existing = [...kept, ...previousOutlines.filter(outline => outline.chapterNumber >= from)];
@@ -348,6 +364,7 @@ export class ChapterWorkflow {
     const { chapters, ...skeleton } = base.plan;
     if (input.from < 1 || input.to < input.from || input.to > skeleton.targetChapterCount) throw new PlanGateError(`chapter range ${input.from}-${input.to} is outside the planned ${skeleton.targetChapterCount} chapters`);
     if (input.to - input.from + 1 > 20) throw new PlanGateError('regenerate at most 20 chapters at a time');
+    this.assertOutlineExpansionAllowed(snapshot, input.to);
     const outside = chapters.filter((outline) => outline.chapterNumber < input.from || outline.chapterNumber > input.to);
     const outlines = await this.outlineBatches(this.planningInput(snapshot, input.authorRequest), skeleton, input.from, input.to, chapters, async () => assertCurrent(await this.snapshot(workId)));
     return this.repository.transaction(workId, ({ work }) => {

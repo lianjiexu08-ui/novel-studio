@@ -1,0 +1,115 @@
+{
+  "kind": "plan66_quality_repair",
+  "observedAt": "2026-10-16T06:48:24.495Z",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "sourcePlanId": "plan_e015ef27a0fb4ce9810576e3d19853cb",
+  "sourceRevision": 66,
+  "sourceCandidateInputHash": "91b79a1303f0a4fb1318fd1cd503be79f774468bd22453912a5a9e8263bfdcc8",
+  "sourceCandidateSha256": "2f641424a97b00485d8d95f15e710420fcf1e934ae4eab035a1b71332e48e57f",
+  "repairedPlanSha256": "0c95e94ae21413eb4d6e7ab6c9223176a897402cf400138117d93200db7bce6d",
+  "targetChapterCount": 100,
+  "chapterCount": 90,
+  "status": "partial_repair_rejected_for_continuation",
+  "preservedHistoricalProblems": [
+    "Plan66 was retained in server plan history and is not overwritten.",
+    "No chapters 91-100 or prose were generated during this repair.",
+    "World/story revisions remain unchanged by this plan-only repair."
+  ],
+  "remainingBlockers": [
+    "41 existing design blockers remain.",
+    "Generated chapters51–90 contain unresolved contradictions; do not continue from them.",
+    "Expansion requires reconciliation and quality review of the foundation first."
+  ],
+  "savedPlanId": "plan_c1191975881b4503bfc67eabbbfec949",
+  "savedRevision": 67,
+  "correction": "The first repair was incomplete. Its proposed receipt/knowledge fix did not edit chapters 53/54, administrative permission could not replace medical clearance in 63/64, and chapter80 weakened the established day410 decision. These are not accepted fixes. Plans65–67 are archived; the next working proposal uses the audited v11 first50 and original100-chapter macro.",
+  "attemptedChanges": [
+    {
+      "chapters": [
+        51,
+        61,
+        66,
+        70,
+        71,
+        72,
+        80,
+        81
+      ],
+      "issue": "reader-facing outline text contained internal replacement/adopted-facts conflict markers",
+      "action": "removed version-control commentary while retaining unresolved story facts as ordinary open states"
+    },
+    {
+      "chapters": [
+        53,
+        54,
+        58,
+        59
+      ],
+      "issue": "return-order and knowledge boundaries were overstated",
+      "action": "kept 268 delivery to Cheng, delayed signed receipt knowledge, and removed Lin from opponent-mail knowledge"
+    },
+    {
+      "chapters": [
+        56,
+        57,
+        58
+      ],
+      "issue": "expense wording could charge the 10000-ticket twice",
+      "action": "chapter58 now records receipt verification rather than a second payment"
+    },
+    {
+      "chapters": [
+        63,
+        64
+      ],
+      "issue": "chapter63 prohibited all spell use while chapter64 used the sword technique and mislabeled the account",
+      "action": "added written-port/guard authorization and changed the cost account to凝元真元"
+    },
+    {
+      "chapters": [
+        66,
+        67
+      ],
+      "issue": "guarantee was closed before the 301-318 departure receipt chain",
+      "action": "kept guarantee active through receipt completion and recorded the 18-coin postal legs"
+    },
+    {
+      "chapters": [
+        80,
+        85,
+        88,
+        89
+      ],
+      "issue": "internal Zhao/escort timing was too early and mixed with later signed-report events",
+      "action": "chapter80 now records evaluation only; formal reports/orders remain later"
+    }
+  ],
+  "archives": [
+    {
+      "revision": 65,
+      "planId": "plan_69b21b35b2fd40b89d2ab560e52a7880",
+      "path": "data/design-candidates/design65-67-quarantine/plan-65.json",
+      "sha256": "e84c5afcb43a79419e5ee19f116176772fd82ca7444c599c950f0ef03c971968",
+      "outlineCount": 70
+    },
+    {
+      "revision": 66,
+      "planId": "plan_e015ef27a0fb4ce9810576e3d19853cb",
+      "path": "data/design-candidates/design65-67-quarantine/plan-66.json",
+      "sha256": "2e498b19f0eecd89f3918f9945e772694e8c751e81f045d8053550a87579d978",
+      "outlineCount": 90
+    },
+    {
+      "revision": 67,
+      "planId": "plan_c1191975881b4503bfc67eabbbfec949",
+      "path": "data/design-candidates/design65-67-quarantine/plan-67.json",
+      "sha256": "7c7933cb4f345d9b6a29d9fbbfd3fe2673770610277c120fd920e0c1f31bb57c",
+      "outlineCount": 90
+    }
+  ],
+  "structuralReview": {
+    "passed": false,
+    "issues": 41,
+    "contentQualityAccepted": false
+  }
+}
