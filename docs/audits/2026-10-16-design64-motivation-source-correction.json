@@ -1,0 +1,44 @@
+{
+  "kind": "source_identifier_metadata_correction",
+  "observedAt": "2026-10-16T00:36:40.237Z",
+  "originalProofPath": "docs/audits/2026-10-16-design64-motivation-wording.json",
+  "originalProofSha256": "55bc4f42fc84d33733f296502a609e34a68baf16511cfbcae0f154259159cede",
+  "inputHash": "32f6ca9f61bbb70b8b56a0a7908ca086a0ce1b6ff4554ff3bafdf7428f05465f",
+  "runId": "design_run_c212091d-deec-4ef3-9b9a-f1b1a7aac5fb",
+  "sourceTextSha256": "7ff15fdd15167c4e09d91a168fd0df93f7867349cb71bda2c3b4878a4114d57b",
+  "corrections": [
+    {
+      "path": [
+        "storyBible",
+        "chapterPlans",
+        16,
+        "purpose"
+      ],
+      "previousSourceId": "bible/chapterPlans/chapter-plan-17",
+      "sourceId": "story/chapterPlans/chapter-plan-17",
+      "originalFieldSha256": "3f07695e4c9a360db5961a46c1c1590a51faff8c03c95ee93e9a89232ab80d1f"
+    },
+    {
+      "path": [
+        "storyBible",
+        "chapterPlans",
+        16,
+        "requiredEvents",
+        1
+      ],
+      "previousSourceId": "bible/chapterPlans/chapter-plan-17",
+      "sourceId": "story/chapterPlans/chapter-plan-17",
+      "originalFieldSha256": "16e9eee15ccc6ac3854d5eb7738476feb52d9d790aa099b6383894d6077a1904"
+    }
+  ],
+  "candidatePath": "data/design-candidates/design64-motivation-wording-draft-v11.json",
+  "candidateSha256": "ec7d90cb870f6d35f9cfc9d1c95cc21169f97bf856940f8ef8bf2a70273c19be",
+  "candidateUnchanged": true,
+  "originalProofPreserved": true,
+  "productionWrites": 0,
+  "modelCalls": 0,
+  "questionsResolved": 0,
+  "formalVerdictsOverridden": false,
+  "applied": false,
+  "explanation": "Two source labels in the v11 drafting receipt used bible/ instead of the real review namespace story/. Exact original fields were compared with the frozen source, and proposed fields with the unchanged v11 candidate. The earlier receipt remains intact; this entry corrects only its navigation metadata."
+}

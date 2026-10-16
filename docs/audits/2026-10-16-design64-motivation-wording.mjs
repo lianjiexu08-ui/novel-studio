@@ -16,9 +16,9 @@ const purposeAfter = '第108日，他怕第120日凝元前复测不达标、压�
 const sceneBefore = '第108日，林辰害怕180日复核落空，仍想赶上120日计划';
 const sceneAfter = '第108日，林辰急于赶上第120日凝元前复测：他担心这次不达标会压缩此后为第180日公开复核准备的训练时间；这是他对后续进度的担忧，第120日复测并不保证第180日取得古境准入';
 const changes = [
-  { path: ['storyBible', 'chapterPlans', bibleIndex, 'purpose'], sourceId: 'bible/chapterPlans/chapter-plan-17', before: purposeBefore, after: purposeAfter },
+  { path: ['storyBible', 'chapterPlans', bibleIndex, 'purpose'], sourceId: 'story/chapterPlans/chapter-plan-17', before: purposeBefore, after: purposeAfter },
   { path: ['plan', 'chapters', planIndex, 'summary'], sourceId: 'plan/chapters/17', before: purposeBefore, after: purposeAfter },
-  { path: ['storyBible', 'chapterPlans', bibleIndex, 'requiredEvents', 1], sourceId: 'bible/chapterPlans/chapter-plan-17', before: sceneBefore, after: sceneAfter },
+  { path: ['storyBible', 'chapterPlans', bibleIndex, 'requiredEvents', 1], sourceId: 'story/chapterPlans/chapter-plan-17', before: sceneBefore, after: sceneAfter },
   { path: ['plan', 'chapters', planIndex, 'scenes', 1], sourceId: 'plan/chapters/17', before: sceneBefore, after: sceneAfter },
 ];
 for (const change of changes) {
