@@ -1,0 +1,112 @@
+{
+  "kind": "design68_power_resource_followup_coverage",
+  "observedAt": "2026-10-16T10:39:00.168Z",
+  "inputHash": "3274d4710800ad02565040a341a05177b4bd7cab363e169219b562a4a0f62d01",
+  "runId": "design_run_1a9589a8-f222-4b9b-861c-99adc2d45c80",
+  "stageId": "followup-cross-2-3/costs",
+  "snapshotPath": "data/audit-runtimes/design68-review/power-resource-coverage.json",
+  "snapshotSha256": "27cc3177478c29fa95e6ab339c78dc886c442028fd85a58434b452352289a02c",
+  "requestSha256": "7f8a5f30ce35a2e6346db5c90fbecd0035224ae8879e824e43d1d08c304775bb",
+  "stageSha256": "a1a3841afaab9a9f58d737cfb9c171be7d7d46807ce4fbc28d8ce59eb6314666",
+  "frozenSourceFilesVerified": 153,
+  "savedResponsesReplayed": 1,
+  "originalCheck": {
+    "criterion": "costs",
+    "verdict": "insufficient",
+    "explanation": "已补读章纲显示主要账目大体可连续核对：第25章将林辰真元按8.5−2−0.5=6成结算，并将顾峤的元罡、寿储和林辰分账；第26章继续区分顾的定腕消耗与伤后上限；第27—29章以完整疗程和复诊后才将两剂灵泉分别计入5元载，且保留伤疗、寿储与实物库存的区别；第30—50章的御物、剑诀、恢复、避火符、修船款、诊费、食宿和船务支出也给出了逐项扣款。 但成本标准还要求核验资源剂量、效用和重复使用上限。本批没有提供world/resources/res_09（延寿灵泉）或world/artifacts/art_16（普通避火符）的原文，故无法判断“每三滴、完整疗程后+5元载、个人两剂上限”以及“72/336/720小时余量、不同符箓不得转移余量”等安排是否与专门条目一致；计划章纲自身的算式不能替代这些规则来源。此前问题明确要求补读25—50章以核对灵泉疗程、船务和恢复成本，当前章纲确实补足了大量流水账，但尚不能据此宣布该标准通过。",
+    "revisionAdvice": "补入并核对world/resources/res_09与world/artifacts/art_16的完整规则原文；逐项确认灵泉每剂的滴数、完整疗程、复诊生效时点、个人/终生重复上限及疗伤边界，并确认三滴污染损失不产生收入。另核对借符、租符、购符是否分别适用各自余量和最长使用时长。完成后沿人物分别重列林辰、苏凌霜、顾峤及看守的寿储、真元/元罡、实物资源与伤后上限，确认第25—50章没有把候选恢复、未来配额或他人账户计入当前余额。",
+    "evidenceCount": 21
+  },
+  "coverage": [
+    {
+      "id": "world/resources/res_09",
+      "sha256": "cdee78c9d8626db39e93fe9d730da267477be4dc0fd1ae7bd388301ec879745b",
+      "presentInFrozenInputs": true,
+      "presentInThisRequest": false
+    },
+    {
+      "id": "world/artifacts/art_16",
+      "sha256": "8202de560b5742380dc0b65521cb3200b65987c2a4b6a666af2cb83502eeea8f",
+      "presentInFrozenInputs": true,
+      "presentInThisRequest": false
+    }
+  ],
+  "adjudication": {
+    "status": "review_material_not_closed",
+    "explanation": "The two requested rule objects exist in the complete frozen design but are absent from this followup request. Preserve insufficient; missing local review material does not establish missing design rules.",
+    "doseWording": "The reviewer phrase personal two-dose limit must not replace the world rule. Chapters26–28 allocate and consume two doses in this phase, while res_09 defines a lifetime maximum of six effective doses / thirty added years. This does not entitle the protagonist to obtain the remaining four.",
+    "evidence": [
+      {
+        "id": "world/resources/res_09",
+        "sha256": "cdee78c9d8626db39e93fe9d730da267477be4dc0fd1ae7bd388301ec879745b",
+        "value": {
+          "id": "res_09",
+          "name": "延寿灵泉",
+          "unit": "滴",
+          "source": "灵虚古境太古洞天中心灵眼自然凝结",
+          "scarcity": "极罕见",
+          "tier": "五品",
+          "status": "proposed",
+          "usage": {
+            "effect": "洁净原液三滴为一剂，完整炼化后增加五年未来可用寿储，不把余额设为五年或三十年；每人终生最多六个有效剂额，累计新增不超过三十年。新增储备不会恢复因燃寿造成的衰老。",
+            "requirements": [
+              "取自灵虚古境灵眼的原液须独立验毒验煞并记录瓶中滴数；传闻、兑换凭证和未取得的泉水都不能记作个人寿储。",
+              "每剂固定三滴，分三日每日一滴温和炼化；第三滴后再静养七日，整个十日期间不得开始下一剂。淬体以上也须先评估伤势，凡人须有医修指导。",
+              "一剂只有完整炼化且复诊确认有效后才可入账五年；未完成药程不能先花预计收入。",
+              "按灵虚界约，当期三方联名采收簿分别登记实采日期、灵眼采点、采封人、管号、滴数及所属份额；入口保存联名对照页。采封后至分配前的封管逐件验收，失窃追回物还须由实际采封人核对亲历、原簿和封签，来源或封管链不能相合时暂停分配，不能用“洁净”替代验真。",
+              "个人只能取得当期已采实物中获准分给自己的个人份额。入口配额书吏按当期联名授权、原簿的份额归属、同批申请及医修诊察登记分配；发现或救回原液不自动获得所有权。保育、公共医疗、应急、他人已指名份额及未来产量不得移作主角个人库存；追回物不再生成第二份采收额度，污染部分扣原批实物并记录损失，不自动补发。"
+            ],
+            "cost": "每剂消耗三滴原液和十日疗程，占用一次有效剂额；分装与稀释不增加总滴数。药物批次、病人已用剂数、实际新增寿储分开登记，不能将净增五年与终生三十年上限重复相加。",
+            "limitations": [
+              "不能返还已燃耗、被窃取并消耗或用于晋阶及法宝的既付寿元；新收入不撤销历史支出、冷却与年龄变化。",
+              "不治疗道伤、毒伤、经脉伤或神魂伤，不自动晋阶、补满真元、满足功法境界。",
+              "污染或净化失败的份额报废，误服不给予可确认的寿储收入，且有伤害风险；是否浪费剂额由复诊确认，但每人累计新增绝不超过三十年。",
+              "第六剂后再服不再延寿，灵泉不是可以无限堆叠的寿元农场。",
+              "领到个人份额只记封存原液和拟用剂额，不提前记寿储；实际服用、完成药程、已用有效剂数和复诊收入分别登记。每次分配仍须核同批申请及可分余量，历史分配不能保证未来再获份额。"
+            ]
+          }
+        }
+      },
+      {
+        "id": "world/artifacts/art_16",
+        "sha256": "8202de560b5742380dc0b65521cb3200b65987c2a4b6a666af2cb83502eeea8f",
+        "value": {
+          "id": "art_16",
+          "name": "普通避火符",
+          "tier": "法器",
+          "effect": "佩戴后以符内封存灵气隔开日常热气与日晒，仅护本人。可在外港受护街段使用；其他路段须先按loc_03核实实际危险，只有同属日常热气、无明火、硫烟或异常地火的开放段才适配。不隔绝明火、浓烟、毒气和修士火法，不给闯火场或地火带的资格；符不代替路段放行，也不替整个车队供能。",
+          "cost": "制符时封入一份已耗用的下品青灵石灵气，符上余纹显示可用量；无需佩戴者真元。佩戴即连续耗能，完好满符最多累计720小时，摘下封存才停耗；耗尽自毁，不靠佩戴者休息、补寿或付款原地复原。",
+          "limitations": [
+            "出租方交付时须核验余纹足以覆盖合同期限；收回时按实际余量验收，不能把已耗符当全新符再用。",
+            "231日新购两张均为满符，本段即便连续佩戴到254日也各未超过576小时，至少余144小时；后续必须扣减，到261日起若无重新核验或新符来源，不得再假定持续有效。",
+            "破损、浸油或接触明火会烧毁符纹；日常隔暑不支持近火救人，更不支持保护整仓药材。",
+            "仅隔日常热气与日晒，不防接触热铁产生的传导烫伤；37章手碰热铁受伤不等于符已抵挡火法或免除了伤势。"
+          ],
+          "status": "proposed"
+        }
+      },
+      {
+        "id": "plan/chapters/26",
+        "sha256": "3e6d5acf635d6f9f69ee1f3546325d23959020797a12811f65c53f8c87141346",
+        "quote": "白榆建议先救急，书吏说明林原申请九滴与告急者三滴相冲突，若坚持原申请须暂缓本批个人分配交三方复核；申请不是已经归林的药。林主动撤去一剂申请，同意告急者先领3滴，不索回报。入口配额台据双方签认、诊察与本批余量核准另6滴两支封管给林，净分9不超过原批可分量；林不动污染管、不预借下期份额。原批登记、各人领用页、林既用有效剂数零及拟用两剂分栏记，林与告急者各自签收；189日只有原液出入账，林药程190日才开始，两剂未来10元载不能先花。另一伤者常规治疗另走既有药账，泉液不治伤。"
+      },
+      {
+        "id": "plan/chapters/27",
+        "sha256": "e6afeca8a81a8be3049219f574b494249f7c9f9a579d7a6afad3b7b3971d53a2",
+        "quote": "190日白榆按189日获配的第一支管号开用药页，林每日实际服一滴，193–199日静养，不把另一支封管先启。199日复诊确认本剂完整炼化有效，才登记寿储新增5元载、有效剂数由0到1，个人封存原液由6滴减至3滴；常规换药与自然流逝另记。"
+      },
+      {
+        "id": "plan/chapters/28",
+        "sha256": "42f75a53ab18f2ff88d8c93538997c2d28f75cf99da15aa3861a12eeae907b1d",
+        "quote": "200日按第二支个人获配管号起第二用药页，200–202日每日一滴、203–209日静养。209日复诊确认有效才登记新增5元载，有效剂数从1到2、原液库存从3到0，未再从原批或下一周期领一剂；曾给告急者的3滴属于其独立药页，不算林第三剂。"
+      }
+    ]
+  },
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "originalVerdictsChanged": false,
+  "questionsClosed": 0,
+  "formalAcceptance": false,
+  "limitation": "This replay and source comparison does not semantically certify every ledger, resolve the formal insufficient check, or establish future source coverage. No supplemental model review has been performed.",
+  "nextStep": "Reconcile the completed four-area reports, then include these exact rules with their dependent chapter accounts in focused re-review; preserve the original insufficient result and all sources. Do not change the running schedule or add duplicate world entries."
+}
