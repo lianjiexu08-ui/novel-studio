@@ -1,0 +1,201 @@
+{
+  "kind": "design68_local_synthesis_unresolved_deferral_overclaim",
+  "observedAt": "2026-10-16T11:02:11.929Z",
+  "inputHash": "3274d4710800ad02565040a341a05177b4bd7cab363e169219b562a4a0f62d01",
+  "runId": "design_run_1a9589a8-f222-4b9b-861c-99adc2d45c80",
+  "stageId": "synthesis-1",
+  "snapshotPath": "data/audit-runtimes/design68-review/power-synthesis-scope.json",
+  "snapshotSha256": "676525d5d458c8b7401603ec5932e407bf9915225aff04f6fd5d8af58ea8e92e",
+  "requestSha256": "c977219195f636a31414f81521e32ba21f0f83917a0de30626290f44495f1f25",
+  "stageSha256": "29b7763f030575f15cc20c429fe676da3ca115911ccdf6325a93a7d25cbeec14",
+  "savedResponsesReplayed": 1,
+  "scope": {
+    "scope": "partial_reports",
+    "coveredStageIds": [
+      "batch-1",
+      "batch-2"
+    ],
+    "totalStages": 39
+  },
+  "originalSummary": "力量领域综合判断：境界与能力门槛、分账与不可逆代价、反制条件均已形成可执行链。前置报告所保留的1—50章历史材料不足已由系统登记的原文复核解决；51—100章仍主要按宏观提案核验，不能等同于逐章行动验收，但当前宏观晋阶与能力安排未见力量规则上的硬冲突。",
+  "originalTierCheck": {
+    "criterion": "tiers",
+    "verdict": "pass",
+    "explanation": "规则明确区分境界承载、功法掌握、法宝资格、训练实测与实际施术，境界晋阶不自动授予术式。前置复核已确认林辰由淬体进入凝元、完成凝元三重及相关训练后再推进古境行动；乾元御风剑诀、赤霞斩铁剑、墨幽屠的噬血爪、顾峤的玄府操作与真光均有对应的开篇前训练或章内训练、首次使用时点和资格限制。顾峤的真光与玄府操作也未被境界身份扩张为无限能力。宏观提案进一步把林辰的玄府晋阶放在第83章，明确要求数月修习、诊察与支付十元载，且不能继续使用不承载元罡的旧剑；这一安排与玄府的辟建丹府前置相容。当前综合材料仅对1—50章作逐章复核，51—100章的具体训练动作尚未展开，但按宏观层级检查没有新增越级安排。",
+    "evidence": [
+      {
+        "sourceId": "review-result/batch-2",
+        "quote": "  \"explanation\": \"规则层明确区分境界承载资格、实际掌握、训练实测、晋阶成本与术法成本；凝元轻物御动、玄府局部护罡和贴身运罡均不能由境界自动获得（e9、e12、e20、e22）。林辰开篇仍为淬体，凝元晋阶在第120日先经诊察并支付3元载，随后经过木块御物、剑诀定向与主动停式训练，至第176—180日才形成两丈内的凝元导刃实测，不把持剑或境界名额当作玄府式资格（e293、e297、e307、e315）。第20、25、32、44章的实际行动分别满足可见目标、距离、轻物重量、路径确认、完整术费、余量、器身散热及中断后果；普通水手、机械支点和船体承重没有被偷换进轻物御动费用（e315、e325、e339、e346）。墨幽屠与顾峤的玄府操作均有开篇前训练记录，并按伤情、接触、站位、冷却和分账限制执行；顾的真光、护罡和推劲未被写成自动全身防护或无条件越阶制敌（e66、e70、e323、e330）。凝元真元、玄府元罡和寿储保持分账，顾的0.25元载没有扣入林辰账户，林辰第25章的真元支出也承接前章余额而未重复扣款（e7、e327、e334）。第31—40章的借用防护符、避火衣及购买新符均有实际领用、归还或耗时边界，未被写成角色凭空取得永久法宝权限（e335、e338、e343、e344）。因此，原问题所要求的角色起点、晋阶支付、技能取得与首次使用时点已由补读章纲闭合。\"\n}\n"
+      },
+      {
+        "sourceId": "review-result/batch-2",
+        "quote": "  \"content\": \"境界能力栏描述该层能够修习和承载的能力方向，不是一份自动掌握、免费发动的万能招式清单。晋阶费用、术法发动费与持续消耗分别记账；晋阶不等于预付后续法术。实际施术须有已掌握的功法、法宝或明确基础操作规则，逐项满足其对象、范围、供能、时机和中断后果；境界名称不能绕过这些条件。已由ax_05定义的凝元轻物御动等基础操作仍按原规则执行，普通步行、说话、握持不因此加收术法费。尚未展开的高阶术式可以保留为未来能力方向，但首次安排它解决剧情之前必须先完成具体规则与可取得资源的设计、复核；不得以读者未见的万能本能补齐现有行动缺口。\",\n  \"scope\": \"全部境界、功法、法宝及后续能力扩展\",\n  \"precedence\": 6,\n  \"status\": \"proposed\"\n}\nEND INDEPENDENT QUOTE 1.1\n\nBEGIN INDEPENDENT QUOTE 1.2\n{\"sourceId\":\"world/axioms/ax_08\",\"unitId\":\"review-unit/10\",\"start\":0,\"end\":600,\"unique\":true}\n{\n  \"id\": \"ax_08\",\n  \"title\": \"凝元基础操作的学习、对象与支付\",\n"
+      },
+      {
+        "sourceId": "review-result/batch-2",
+        "quote": "BEGIN INDEPENDENT QUOTE 1.5\n{\"sourceId\":\"world/realms/realm_02\",\"unitId\":\"review-unit/22\",\"start\":0,\"end\":334,\"unique\":true}\n{\n  \"id\": \"realm_02\",\n  \"systemId\": \"ps_01\",\n  \"name\": \"凝元境\",\n  \"rank\": 2,\n  \"prerequisites\": [\n    \"经脉贯通\",\n    \"境内一至三重依次对应真元成流、双经稳定与三条主经循环稳定；必须逐段修习和实测，第三重才满足灵虚古境既有准入门槛。它们是凝元境内的熟练阶段，不是跳过玄府的新大境界，也不额外赠送寿元。\"\n  ],\n  \"capabilities\": [\n    \"真元外放\",\n    \"隔空御物\"\n  ],\n  \"cost\": \"损耗寿元三年\",\n  \"counters\": [\n    \"气脉闭塞\"\n  ],\n  \"status\": \"proposed\"\n}\nEND INDEPENDENT QUOTE 1.5\n\nBEGIN INDEPENDENT QUOTE 1.6\n"
+      },
+      {
+        "sourceId": "review-result/batch-2",
+        "quote": "{\"sourceId\":\"world/realms/realm_03\",\"unitId\":\"review-unit/23\",\"start\":0,\"end\":236,\"unique\":true}\n{\n  \"id\": \"realm_03\",\n  \"systemId\": \"ps_01\",\n  \"name\": \"玄府境\",\n  \"rank\": 3,\n  \"prerequisites\": [\n    \"辟建丹府\"\n  ],\n  \"capabilities\": [\n    \"元罡护体\",\n    \"凌空虚渡\"\n  ],\n  \"cost\": \"损耗寿元十年\",\n  \"counters\": [\n    \"罡气破裂\"\n  ],\n  \"status\": \"proposed\"\n}\nEND INDEPENDENT QUOTE 1.6\n\nBEGIN INDEPENDENT QUOTE 1.7\n{\"sourceId\":\"world/techniques/tech_04\",\"unitId\":\"review-unit/32\",\"start\":0,\"end\":589,\"unique\":true}\n{\n  \"id\": \"tech_04\",\n  \"name\": \"乾元御风剑诀\",\n  \"kind\": \"technique\",\n  \"tier\": \"玄阶\",\n  \"allowedRealmIds\": [\n"
+      },
+      {
+        "sourceId": "review-unit/268",
+        "quote": "{\n  \"targetChapterCount\": 100,\n  \"volumeCount\": 3,\n  \"detailedThroughChapter\": 50,\n  \"outlinedChapterNumbers\": [\n    1,\n    2,\n    3,\n    4,\n    5,\n    6,\n    7,\n    8,\n    9,\n    10,\n    11,\n    12,\n    13,\n    14,\n    15,\n    16,\n    17,\n    18,\n    19,\n    20,\n    21,\n    22,\n    23,\n    24,\n    25,\n    26,\n    27,\n    28,\n    29,\n    30,\n    31,\n    32,\n    33,\n    34,\n    35,\n    36,\n    37,\n    38,\n    39,\n    40,\n    41,\n    42,\n    43,\n    44,\n    45,\n    46,\n    47,\n    48,\n    49,\n    50\n  ],\n"
+      },
+      {
+        "sourceId": "review-unit/268",
+        "quote": "  \"mainConflict\": \"先天短寿的林辰由矿务逃生追查跨陆扣工与非法货运，在寿储、境界与各方利益限制下同伙伴救人、查清父亲守门及外山掩案责任。百章只切断已实证的一条三地运输链；九鼎全貌、三残片与最终界门危机仍是约450章全书必须收束的主线。 人员口径：赤霄获救承运雇工是唐、许、冯、吴、卢五人；陆弟单列，陆本人是受看护的押送责任人，不算五工。北境黑舱七人是另一批来自青玄的矿工，至300日仍由北境港口救济所安置，不随林贺返青玄。435–436日青玄两车八人是开篇两名旧工友加430日后新扣六人，与赤霄五工、北境七人均不重合；梁九为自由领车救援者，不在被救八人内。三地名单不能互相改写为人数增长，首卷救过而再被移交的两名旧工友只算两位不同人，不因再次获救重复加人。\",\n  \"theme\": \"活命与查真相不能以牺牲无辜者代价换取；信任来自共同选择和承担自己一方的责任。\",\n  \"protagonistArc\": \"从负伤矿工到能接受伙伴自主选择的凝元修士，再经数月修习、实测丹府与支付十元载成为玄府初期；力量增加时可用寿储反而减少。百章不发动逆命真解，不越阶斩高境，不把神兵持有当作启动权限。\",\n"
+      },
+      {
+        "sourceId": "review-unit/268",
+        "quote": "  \"endingDirection\": \"百章有救人、断运、部分父案澄清和玄府成长的可核结局。1–100是450章的阶段验收；接下来的有限寿源、高阶反派、钥匙余片与九鼎机制必须另建经审查的来源和行动链，不将450章全书结局撤销。 没有返寿、燃寿白发、道伤凭空痊愈或三大陆永久太平。此卷不清算全部九鼎，公开传播仍限实到地点。\",\n  \"keyTurns\": [\n    \"第10–12章：伤重林辰与曾撤供的梁九分工救人，只改变普通输送位置；苏保留封样及己方不利证词，争得有限复核，众人仍负伤、欠债和受限。\",\n    \"第23–29章：主角为救人暴露自己，创造顾峤同阶制敌的窗口，取得并分配有限泉液；完成两次十日疗程后南行，苏选择留宗。卷末凝元三重，不能沿用神海及二十年燃寿。\",\n    \"第44/50–53章：44林救落水对手而不追陆与原账，贺付船损；50林不施术而让工人自己回答，陆协助夺闩、两名看守被控，吴卢实际脱控并拒绝立即回船。51–53拟各自选择生计，陆新写改签自述，副本仍待独立核验。\",\n    \"第61–66章：付费北航后在受限外港救出七名矿工，夜真身守撤离路，林放弃第二片，不入界渊。\",\n    \"第83章：数月努力与诊察后，实际付十元载晋玄府；不能再用旧法器承载元罡。\",\n"
+      }
+    ],
+    "revisionAdvice": ""
+  },
+  "resolvedBatch1Checks": [
+    {
+      "checkId": "batch-1/costs",
+      "resolvedByStageId": "followup-batch-1/costs"
+    },
+    {
+      "checkId": "batch-1/counters",
+      "resolvedByStageId": "followup-batch-1/counters"
+    }
+  ],
+  "unresolvedOriginalCheck": {
+    "criterion": "tiers",
+    "verdict": "insufficient",
+    "explanation": "已给规则明确区分境界承载、功法掌握、法宝资格与实际训练，且角色初始境界和部分开篇前训练已有说明：境界不自动授予术式，新增术式须有训练、实测、对象、供能与中断条件；玄府晋阶也不自动获得局部护罡、推劲或玄府剑诀。宏观计划要求林辰先达凝元三重，再经数月修习、实测丹府并支付十元载成为玄府初期，但本批未提供1—50章具体章纲，无法核验凝元三重、两次疗程、训练与玄府晋阶的实际先后及各次使用是否越过资格门槛。需补读对应逐章细纲，而不能仅凭宏观安排视为已成立。",
+    "evidence": [
+      {
+        "sourceId": "review-unit/8",
+        "quote": "{\n  \"id\": \"ax_06\",\n  \"title\": \"境界承载与实际施术\",\n  \"content\": \"境界能力栏描述该层能够修习和承载的能力方向，不是一份自动掌握、免费发动的万能招式清单。晋阶费用、术法发动费与持续消耗分别记账；晋阶不等于预付后续法术。实际施术须有已掌握的功法、法宝或明确基础操作规则，逐项满足其对象、范围、供能、时机和中断后果；境界名称不能绕过这些条件。已由ax_05定义的凝元轻物御动等基础操作仍按原规则执行，普通步行、说话、握持不因此加收术法费。尚未展开的高阶术式可以保留为未来能力方向，但首次安排它解决剧情之前必须先完成具体规则与可取得资源的设计、复核；不得以读者未见的万能本能补齐现有行动缺口。\",\n  \"scope\": \"全部境界、功法、法宝及后续能力扩展\",\n  \"precedence\": 6,\n  \"status\": \"proposed\"\n}"
+      },
+      {
+        "sourceId": "review-unit/10",
+        "quote": "{\n  \"id\": \"ax_08\",\n  \"title\": \"凝元基础操作的学习、对象与支付\",\n  \"content\": \"凝元真元外放只是承载资格。下列基础操作须先完成相应控制练习与实测，不能靠晋阶自动掌握；不授予更高境界、感知或伤势免疫。\\n轻物御动沿ax_05每次预付半成健康稳定真元上限执行：只控制三丈内直接可见、单件至多两斤的轻小自由物，每次至多三息，早停、落空或被打断不退。一次只作用一件，移第二件另付，时间不足或目标出界即停止。轻索头、小钩、木楔和小插销均须未受重物牵拉或锁死；阻力超过同物正常徒手轻拨即不属于此操作，不能借物轻而隔空拉整车、托活人、硬拔承重楔或穿透法纹锁。操作轻小机关可释放原有机械作用，但轨道、闸片、沙挡、重力及承重部件须真实存在且各自承力，不能把整个机构的载荷藏在半成御物费里。\\n近身附掌是将真元短时集中于自己一只手掌的入门练习：须有一息聚气，聚气开始预付一成健康稳定真元上限，只支持随后一息内一次实际接触的掌击，落空或受扰均损已付款；出掌后至少一息重新收束，不能凭接触持续灌入。对未有真元防护的肉身可造成震伤，对腐朽薄木封板可辅助击裂；伤害仍取决于接触、落点与目标承受，不能隔空震脏、穿完整石壁、自动破同阶护体或使所有人一掌毙命。躲开、挡开手臂、甲胄卸力或聚气时打断均可反制；腕掌伤、气路不稳或不足一成时停用。两种基础操作的消耗、恢复及伤后上限均按ax_05"
+      },
+      {
+        "sourceId": "review-unit/13",
+        "quote": "res_19一剂入账120，无晋阶或燃寿支出，扣自然流逝后余150.394521元载，采收4200日、疗程4210至4255日。\\n第4600日：距上笔345日，无寿源收入，晋阶付100，扣自然流逝后余49.449315元载。\\n第6445日：距上笔1845日，res_19一剂入账120，无晋阶或燃寿支出，扣自然流逝后余164.394521元载，采收6390日、疗程6400至6445日。\\n第6776日：距上笔331日，res_18一剂入账60，无晋阶或燃寿支出，扣自然流逝后余223.487671元载，采收6740日、疗程6746至6776日。\\n第7000日：距上笔224日，无寿源收入，晋阶付200，扣自然流逝后余22.873973元载。\\n第9696日：距上笔2696日，res_18一剂入账60，无晋阶或燃寿支出，扣自然流逝后余75.487671元载，采收9660日、疗程9666至9696日。\\n第10825日：距上笔1129日，res_19一剂入账120，无晋阶或燃寿支出，扣自然流逝后余192.394521元载，采收10770日、疗程10780至10825日。\\n第10900日：距上笔75日，无寿源收入，tech_15付100，扣自然流逝后余92.189041元载。\\n第12616日：距上笔1716日，res_18一剂入账60，无晋阶或燃寿支出，扣自然流逝后余147.4876"
+      },
+      {
+        "sourceId": "review-unit/13",
+        "quote": "71元载，采收12580日、疗程12586至12616日。\\n第13015日：距上笔399日，res_19一剂入账120，无晋阶或燃寿支出，扣自然流逝后余266.394521元载，采收12960日、疗程12970至13015日。\\n第15536日：距上笔2521日，res_18一剂入账60，无晋阶或燃寿支出，扣自然流逝后余319.487671元载，采收15500日、疗程15506至15536日。\\n第15600日：距上笔64日，无寿源收入，tech_16付300，扣自然流逝后余19.312329元载。\\n资源相互疗程不重叠、各自终生与两次后停药仍按res_17/18/19。示例在2010日成熟窗口未取得命胶，使用的是4200日及后续实际窗口，不能漏记中间窗口给别人的配额。神印与鸿蒙典还须付各自法力、神识、本源与冷却；示例只证明寿储可付，不返还本源或历史费用。主宰仍另按realm_08支付本命神魂，无寿储替代。\\n三种未来净对外上限分别每548日两枚×8、每2920日一段×60、每2190日两匣×120；约等于10.66、7.5、40元载/365日的世界净新增上界，不是个人分红。算例跨41.46年取得1枚、6段、4匣，共848元载，需历次竞争成功；所有同类候选共用这些限额，不能复制算例给整支军团。应急与保育份额未计作该人的收入。未列出的战斗/病损支出不得默认为已覆盖，增加时须重算；算"
+      },
+      {
+        "sourceId": "review-unit/22",
+        "quote": "{\n  \"id\": \"realm_02\",\n  \"systemId\": \"ps_01\",\n  \"name\": \"凝元境\",\n  \"rank\": 2,\n  \"prerequisites\": [\n    \"经脉贯通\",\n    \"境内一至三重依次对应真元成流、双经稳定与三条主经循环稳定；必须逐段修习和实测，第三重才满足灵虚古境既有准入门槛。它们是凝元境内的熟练阶段，不是跳过玄府的新大境界，也不额外赠送寿元。\"\n  ],\n  \"capabilities\": [\n    \"真元外放\",\n    \"隔空御物\"\n  ],\n  \"cost\": \"损耗寿元三年\",\n  \"counters\": [\n    \"气脉闭塞\"\n  ],\n  \"status\": \"proposed\"\n}"
+      },
+      {
+        "sourceId": "review-unit/23",
+        "quote": "{\n  \"id\": \"realm_03\",\n  \"systemId\": \"ps_01\",\n  \"name\": \"玄府境\",\n  \"rank\": 3,\n  \"prerequisites\": [\n    \"辟建丹府\"\n  ],\n  \"capabilities\": [\n    \"元罡护体\",\n    \"凌空虚渡\"\n  ],\n  \"cost\": \"损耗寿元十年\",\n  \"counters\": [\n    \"罡气破裂\"\n  ],\n  \"status\": \"proposed\"\n}"
+      },
+      {
+        "sourceId": "review-unit/88",
+        "quote": "{\n  \"id\": \"char_01\",\n  \"name\": \"林辰\",\n  \"role\": \"protagonist\",\n  \"goal\": \"保住先天亏空的残命，查明家族受害与界门灵震的关联，寻找不以他人为薪柴的求生办法。\",\n  \"identity\": \"太清仙宗末席记名弟子，乾坤逆命真解唯一继承者。\",\n  \"locationId\": \"loc_29\",\n  \"factionId\": \"fac_01\",\n  \"startingRealmId\": \"realm_01\"\n}"
+      },
+      {
+        "sourceId": "review-unit/89",
+        "quote": "{\n  \"id\": \"char_02\",\n  \"name\": \"苏凌霜\",\n  \"role\": \"major\",\n  \"goal\": \"查清宗门太上长老暗中勾结魔道之谜，护持凌云峰道统不灭。\",\n  \"identity\": \"太清仙宗凌云峰真传大师姐，受命调查外山矿务异常；当前凝元境，太清太乙真光须到玄府后才具备施展资格。 开篇初始技能：已在凌云峰受指导完成凝元基础轻物御动的控制练习与实测，能在三丈内直视、短时移动不超过两斤的无负载轻物；每次仍先付半成健康真元基准，按伤情复测，不因真传身份免训练或免消耗。这是开篇前已有技能，不是第9章临时学会，也不授予玄府真光。\",\n  \"locationId\": \"loc_07\",\n  \"factionId\": \"fac_01\",\n  \"startingRealmId\": \"realm_02\"\n}"
+      },
+      {
+        "sourceId": "review-unit/91",
+        "quote": "{\n  \"id\": \"char_04\",\n  \"name\": \"墨幽屠\",\n  \"role\": \"supporting\",\n  \"goal\": \"炼就万鬼幽罗幡王器，以百万人牲换取幽冥界门裂隙洞开。\",\n  \"identity\": \"幽罗殿枉死黑窟少主、古境掳人行动组织者，现为玄府境；交接封存货物不等于能启封神海门槛的死息，也未炼成自己的万鬼幡。 作者开篇前技能设定：墨已从枉死黑窟教习处取得并修习幽冥噬血爪，完成以本境元罡聚爪、近身落点、一息主动收爪、连续最多三息及停六息后重新起爪的受控训练与实测；门内医修曾检查指骨和经脉并告知积毒、麻木、失准和流血不止的停术界限。此处只确立已学前史，不保证187、188日的伤情或余量合格；两次实际出爪仍按章纲逐息付费和现场症状限制，不靠身份免除代价。 同一开篇前修习中已由门内教习指导完成ax_13短促推劲的立足、接触一息聚罡与主动停劲，曾将不超过六百斤的无锁普通滑车沿平地滚开一步并经医修复核；未获得隔空移车、轻物御动搬重物或受伤后自动合格的资格。\",\n  \"locationId\": \"loc_10\",\n  \"factionId\": \"fac_03\",\n  \"startingRealmId\": \"realm_03\"\n}"
+      },
+      {
+        "sourceId": "review-unit/97",
+        "quote": "  \"identity\": \"太清玄府剑修、古境当值护送执事；已修成玄府可用剑诀、元罡护体与地阶太清太乙真光。真光须三息结印、每次付三成元罡和0.25元载，同场只准一印，受伤与冷却仍按功法限制执行；玄府身份本身不等于自动掌握宗门所有术法。他没有王器、跨境瞬移和无限元罡。 作者开篇前技能设定：顾已由宗门师长指导完成玄府纯阳供能、三息凝印与主动收势的受控训练和实测，经脉复诊合格；这是既有修习背景，不代表后续伤情、余量或冷却自动满足，亦不把未来神海训练计为已完成。 开篇前另已完成ax_12局部护罡的低负荷实测，以及ax_13贴身运罡的推劲、定腕训练和受控摔解实测；只在实际接触、站位和伤情允许时使用，不把未具名“玄府剑诀”当作本场额外攻击。 上述开篇前两项基础操作另有各自资格记录：同一宗门已掌握者实际指导顾完成局部掌大聚罡、主动收束，并用轻木棍及普通铁刃作受控低负荷擦击实测；事后由宗门医修复诊，确认测试处与运罡气路稳定，才准将ax_12列入已掌握操作。贴身运罡另完成握持、立足、单侧导罡和主动停术训练，在轮轴完好、平地无锁止的普通滑车上实测一次推移一步，个人本次已测总重只记三百斤；再由自愿配合者完成低负荷推压、脱手和定腕测试，医修随后确认双侧使用肢体气路稳定。三百斤不是托举能力，也不把世界规则六百斤上限当作本人实测，更不等于可强制摔倒同阶敌人。上述均在开篇前完成，未挪用188日交战期间练习、"
+      },
+      {
+        "sourceId": "review-unit/268",
+        "quote": "{\n  \"targetChapterCount\": 100,\n  \"volumeCount\": 3,\n  \"detailedThroughChapter\": 50,\n  \"outlinedChapterNumbers\": [\n    1,\n    2,\n    3,\n    4,\n    5,\n    6,\n    7,\n    8,\n    9,\n    10,\n    11,\n    12,\n    13,\n    14,\n    15,\n    16,\n    17,\n    18,\n    19,\n    20,\n    21,\n    22,\n    23,\n    24,\n    25,\n    26,\n    27,\n    28,\n    29,\n    30,\n    31,\n    32,\n    33,\n    34,\n    35,\n    36,\n    37,\n    38,\n    39,\n    40,\n    41,\n    42,\n    43,\n    44,\n    45,\n    46,\n    47,\n    48,\n    49,\n    50\n  ],\n"
+      },
+      {
+        "sourceId": "review-unit/268",
+        "quote": "  \"mainConflict\": \"先天短寿的林辰由矿务逃生追查跨陆扣工与非法货运，在寿储、境界与各方利益限制下同伙伴救人、查清父亲守门及外山掩案责任。百章只切断已实证的一条三地运输链；九鼎全貌、三残片与最终界门危机仍是约450章全书必须收束的主线。 人员口径：赤霄获救承运雇工是唐、许、冯、吴、卢五人；陆弟单列，陆本人是受看护的押送责任人，不算五工。北境黑舱七人是另一批来自青玄的矿工，至300日仍由北境港口救济所安置，不随林贺返青玄。435–436日青玄两车八人是开篇两名旧工友加430日后新扣六人，与赤霄五工、北境七人均不重合；梁九为自由领车救援者，不在被救八人内。三地名单不能互相改写为人数增长，首卷救过而再被移交的两名旧工友只算两位不同人，不因再次获救重复加人。\",\n  \"theme\": \"活命与查真相不能以牺牲无辜者代价换取；信任来自共同选择和承担自己一方的责任。\",\n  \"protagonistArc\": \"从负伤矿工到能接受伙伴自主选择的凝元修士，再经数月修习、实测丹府与支付十元载成为玄府初期；力量增加时可用寿储反而减少。百章不发动逆命真解，不越阶斩高境，不把神兵持有当作启动权限。\",\n"
+      },
+      {
+        "sourceId": "review-unit/268",
+        "quote": "  \"endingDirection\": \"百章有救人、断运、部分父案澄清和玄府成长的可核结局。1–100是450章的阶段验收；接下来的有限寿源、高阶反派、钥匙余片与九鼎机制必须另建经审查的来源和行动链，不将450章全书结局撤销。 没有返寿、燃寿白发、道伤凭空痊愈或三大陆永久太平。此卷不清算全部九鼎，公开传播仍限实到地点。\",\n  \"keyTurns\": [\n    \"第10–12章：伤重林辰与曾撤供的梁九分工救人，只改变普通输送位置；苏保留封样及己方不利证词，争得有限复核，众人仍负伤、欠债和受限。\",\n    \"第23–29章：主角为救人暴露自己，创造顾峤同阶制敌的窗口，取得并分配有限泉液；完成两次十日疗程后南行，苏选择留宗。卷末凝元三重，不能沿用神海及二十年燃寿。\",\n    \"第44/50–53章：44林救落水对手而不追陆与原账，贺付船损；50林不施术而让工人自己回答，陆协助夺闩、两名看守被控，吴卢实际脱控并拒绝立即回船。51–53拟各自选择生计，陆新写改签自述，副本仍待独立核验。\",\n    \"第61–66章：付费北航后在受限外港救出七名矿工，夜真身守撤离路，林放弃第二片，不入界渊。\",\n    \"第83章：数月努力与诊察后，实际付十元载晋玄府；不能再用旧法器承载元罡。\",\n"
+      },
+      {
+        "sourceId": "review-unit/268",
+        "quote": "  \"dependencies\": [\n    {\n      \"id\": \"dep_01\",\n      \"targetId\": \"ms_vol1_turn\",\n      \"fact\": {\n        \"eventType\": \"plot_progress\",\n        \"subjectId\": \"chapter-1\",\n        \"predicate\": \"status\",\n        \"equals\": {\n          \"status\": \"realized\"\n        }\n      },\n      \"requiredness\": \"must\",\n      \"description\": \"第1章须在淬体能力内救出工友并留下管件线索；第10–12章建立在伤势、搭档分工和有限证物上，不要求也不允许开篇燃寿。\"\n    },\n    {\n      \"id\": \"dep_02\",\n      \"targetId\": \"ms_vol1_climax\",\n      \"sourceId\": \"ms_growth_v1_training\",\n      \"requiredness\": \"must\",\n"
+      }
+    ],
+    "revisionAdvice": "补读第1—50章逐章细纲，逐项核对林辰凝元三重、清风引气诀与乾元御风剑诀的训练/实测、玄府晋阶前置、顾峤与墨幽屠等既有技能的伤情和余量；若任一章在训练、境界、持器或角色身份之外直接发动能力，应按具体章修正前置或动作。",
+    "awaitingSources": [
+      "plan/chapters/1",
+      "plan/chapters/2",
+      "plan/chapters/3",
+      "plan/chapters/4",
+      "plan/chapters/5",
+      "plan/chapters/6",
+      "plan/chapters/7",
+      "plan/chapters/8",
+      "plan/chapters/9",
+      "plan/chapters/10",
+      "plan/chapters/11",
+      "plan/chapters/12",
+      "plan/chapters/13",
+      "plan/chapters/14",
+      "plan/chapters/15",
+      "plan/chapters/16",
+      "plan/chapters/17",
+      "plan/chapters/18",
+      "plan/chapters/19",
+      "plan/chapters/20",
+      "plan/chapters/21",
+      "plan/chapters/22",
+      "plan/chapters/23",
+      "plan/chapters/24",
+      "plan/chapters/25",
+      "plan/chapters/26",
+      "plan/chapters/27",
+      "plan/chapters/28",
+      "plan/chapters/29",
+      "plan/chapters/30",
+      "plan/chapters/31",
+      "plan/chapters/32",
+      "plan/chapters/33",
+      "plan/chapters/34",
+      "plan/chapters/35",
+      "plan/chapters/36",
+      "plan/chapters/37",
+      "plan/chapters/38",
+      "plan/chapters/39",
+      "plan/chapters/40",
+      "plan/chapters/41",
+      "plan/chapters/42",
+      "plan/chapters/43",
+      "plan/chapters/44",
+      "plan/chapters/45",
+      "plan/chapters/46",
+      "plan/chapters/47",
+      "plan/chapters/48",
+      "plan/chapters/49",
+      "plan/chapters/50"
+    ]
+  },
+  "deliveredReportSource": {
+    "id": "review-result/batch-1",
+    "sha256": "e83d2171a66fffb9957eb24298a30cde68f0fcec6765010e9b3eefc12a6dbb2a",
+    "prefix": "前置报告。以下引文是独立摘录；同一来源的摘录可能相隔很远，不可把不同摘录里的字段拼成同一条记录。字符范围采用原始来源的UTF-16下标，右端不含。\n本报告含已由原文补读显式解决的等待项。下面保留原始摘要和判定作为历史，并在对应检查前列出当前处理说明。复核解释仍是评审结论，完整原文和引用保存在所指的复核步骤；它不是正文事实，也不代表本报告或全领域通过。其他返修和普通不足仍然有效。\n{\n  \"summary\": \"本批已给出的力量体系、成本边界与反制规则整体具备较完整的约束，未见可仅凭当前材料确认的内部硬冲突；但1—50章逐章细纲原文未随本批提供，无法核验角色实际施术、晋阶、训练、伤情、余额与反制动作是否逐项满足这些规则，三项均需补读后再定案。\"\n}\n\nCHECK 1\n{\n  \"criterion\": \"tiers\",\n  \"verdict\": \"insufficient\",\n  \"explanation\": \"已给规则明确区分境界承载、功法掌握、法宝资格与实际训练，且角色初始境界和部分开篇前训练已有说明：境界不自动授予术式，新增术式须有训练、实测、对象、供能与中断条件；玄府晋阶也不自动获得局部护罡、推劲或玄府剑诀。宏观计划要求林辰先达凝元三重，再经数月修习、实测丹府并支付十元载成为玄府初期，但本批未提供1—50章具体章纲，无法核验凝元三重、两次疗程、训练与玄府晋阶的实际先后及各次使用是否越过资格门槛。需补读对应逐章细纲，而不能仅凭宏观安排视为已成立。\",\n  \"revisionAdvice\": \"补读第1—50章逐章细纲，逐项核对林辰凝元三重、清风引气诀与乾元御风剑诀的训练/实测、玄府晋阶前置、顾峤与墨幽屠等既有技能的伤情和余量；若任一章在训练、境界、持器或角色身份之外直接发动能力，应按具体章修正前置或动作。\",\n  \"awaitingSources\": [\n    \"plan/chapters/1\",\n    \"plan/chapters/2\",\n    \"plan/chapters/3\",\n    \"plan/chapters/4\",\n    \"plan/chapters/5\",\n    \"plan/chapters/6\",\n    \"plan/chapters/7\",\n    \"plan/chapters/8\",\n    \"plan/chapters/9\",\n    \"plan/chapters/10\",\n    \"plan/chapters/11\",\n    \"plan/chapters/12\",\n    \"plan/chapters/13\",\n    \"plan/chapters/14\",\n    \"plan/chapters/15\",\n    \"plan/chapters/16\",\n    \"plan/chapters/17\",\n    \"plan/chapters/18\",\n    \"plan/chapters/19\",\n    \"plan/chapters/20\",\n    \"plan/chapters/21\",\n    \"plan/chapters/22\",\n    \"plan/chapters/23\",\n    \"plan/chapters/24\",\n    \"plan/chapters/25\",\n    \"plan/chapters/26\",\n    \"plan/chapters/27\",\n    \"plan/chapters/28\",\n    \"plan/chapters/29\",\n    \"plan/chapters/30\",\n    \"plan/chapters/31\",\n    \"plan/chapters/32\",\n    \"plan/chapters/33\",\n    \"plan/chapters/34\",\n    \"plan/chapters/35\",\n    \"plan/chapters/36\",\n    \"plan/chapters/37\",\n    \"plan/chapters/38\",\n    \"plan/chapters/39\",\n    \"plan/chapters/40\",\n    \"plan/chapters/41\",\n    \"plan/chapters/42\",\n    \"plan/chapters/43\",\n    \"plan/chapters/44\",\n    \"plan/chapters/45\",\n    \"plan/chapters/46\",\n    \"plan/chapters/47\",\n    \"plan/chapters/48\",\n    \"plan/chapters/49\",\n    \"plan/chapters/50\"\n  ]\n}\n\n"
+  },
+  "existingFollowup": {
+    "stageId": "followup-batch-1/tiers",
+    "verdict": "revise",
+    "sha256": "a0983f56ae71834281d43d0f653f1314c12f403bd0f3ae40efaca2c9a3c76f74",
+    "limitation": "The followup itself contains a disputed character-weight attribution. Its existence proves a retained negative, not the correctness of every claim in it."
+  },
+  "adjudication": "Local synthesis claims prior 1–50 source insufficiencies were resolved, although batch-1/tiers is absent from the explicit resolution ledger and its insufficient check remains in the delivered child report. Do not use the local pass as overall acceptance or as a closure event.",
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "originalVerdictsChanged": false,
+  "questionsClosed": 0,
+  "formalAcceptance": false,
+  "nextStep": "Preserve the contradiction for the complete power report reconstruction and semantic reconciliation. Verify that retained original negatives still determine the final outcome; do not infer that outcome before all synthesis stages finish."
+}
