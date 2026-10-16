@@ -18,6 +18,26 @@ function anchored(request: Awaited<ReturnType<typeof input>>) {
   })) };
 }
 
+test('relationship navigation reaches the reviewer with bounded semantics and leaves old prompts unchanged', async () => {
+  const request = await input();
+  request.stage = { kind: 'batch', label: '原文', totalBatches: 1, sourceMap: [], coverage: {
+    mode: 'whole_input', sourceLengths: Object.fromEntries(request.sources.map(s => [s.id, s.text.length])),
+  } };
+  const prior = structuredClone(request);
+  request.stage.coverage!.sourceRelationships = { 'story/relationships/r9': { fromCharacterId: 'a', toCharacterId: 'b', fromName: '林辰', toName: '苏凌霜' } };
+  const calls: Array<{ system: string; user: string }> = [];
+  for (const current of [prior, request]) {
+    const planner = new JsonDesignPlanner({ complete: async call => { calls.push(call); return JSON.stringify(anchored(current)); } });
+    await planner.reviewDesignContent(current);
+  }
+  assert.ok(!calls[0].system.includes('coverage.sourceRelationships'));
+  assert.ok(calls[1].system.startsWith(calls[0].system + '\n'));
+  assert.match(calls[1].system, /不能引用目录代替原文/);
+  assert.match(calls[1].system, /姓名缺省不能猜测别名或编号/);
+  assert.deepEqual(JSON.parse(calls[1].user).stage.coverage.sourceRelationships, request.stage.coverage!.sourceRelationships);
+  assert.deepEqual(JSON.parse(calls[0].user).sources, JSON.parse(calls[1].user).sources);
+});
+
 for (const corrected of [true, false]) {
   test(`conflicting insufficiency fields get a targeted repair without dropping findings: ${corrected}`, async () => {
     const request = await input();

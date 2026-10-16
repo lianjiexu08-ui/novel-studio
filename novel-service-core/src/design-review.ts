@@ -56,6 +56,8 @@ export interface DesignReviewInput {
       sourceLengths: Record<string, number>;
       /** Navigation only: names copied from structured sources, never evidence. */
       sourceNames?: Record<string, string>;
+      /** v26: explicit relationship endpoints for navigation, never state or evidence. */
+      sourceRelationships?: Record<string, { fromCharacterId: string; toCharacterId: string; fromName?: string; toName?: string; kind?: string }>;
       /** Exact name/ID mentions in plans and (v19+) profiles; never prove mastery or use. */
       entityMentions?: Record<string, string[]>;
       /** Optional navigation is omitted whole if it cannot fit; raw sources are never removed. */

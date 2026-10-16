@@ -1,0 +1,707 @@
+{
+  "observedAt": "2026-10-16T01:55:46.197Z",
+  "checkpointPath": "data/audit-runtimes/design64-control/power-completed-checkpoint.json",
+  "checkpointSha256": "b595c57e2ebcb2ef1a3ca8e8396a366e4e875463aa898160476230a6d9f02028",
+  "frozenCommit": "ffd28c973b398c7b12728e45ef864d1cba0217a7",
+  "frozenFilesVerified": 138,
+  "verified": [
+    {
+      "area": "world",
+      "runId": "design_run_5aa806e5-49b6-4e13-9c0a-b6f01e2597ce",
+      "stages": [
+        {
+          "stageId": "batch-1",
+          "inputSha256": "6ba6cb4cfb36f0de277c43455d7395ac54ed191c98e7e63998ddc96c3eb9170c"
+        },
+        {
+          "stageId": "batch-2",
+          "inputSha256": "f593a7ec730f8661f40a47bdfc132956751480006d2972b6e9aeed04e51cbace"
+        },
+        {
+          "stageId": "batch-3",
+          "inputSha256": "00acdfd83c42514e418b813713edaf6e28b95e0406b1ff4d0f2c2732ada6f2a0"
+        },
+        {
+          "stageId": "batch-4",
+          "inputSha256": "ae2442173abe14877c6f9727b734d2db4b481d496d97f7a924e8a6b8f8948017"
+        },
+        {
+          "stageId": "batch-5",
+          "inputSha256": "127dfae32ebe28b2d9a5cc98c78cdf654d2b1f312c0fffbe4996ff036d8a24c9"
+        },
+        {
+          "stageId": "cross-1-2",
+          "inputSha256": "f58586f86fbe030810697750625147b2b4b9b6bf282bbbbba38aaefba307440f"
+        },
+        {
+          "stageId": "cross-1-3",
+          "inputSha256": "9b5139782436807520f64a70c9d50ecd6c4f2b712d70112314afb37ed6e2f7ef"
+        },
+        {
+          "stageId": "cross-1-4",
+          "inputSha256": "e9ab5b85f92190de1a6fd06f3de245aee74345674663634b61c4ec389fc3164f"
+        },
+        {
+          "stageId": "cross-1-5",
+          "inputSha256": "dddba3b2a302db646b8838862c16083f173e93c0d5088f4475b9739589fe6e37"
+        },
+        {
+          "stageId": "cross-2-3",
+          "inputSha256": "b7189b70489daf6cd13ff5b70c039ea36f4626f104c73b4f07bcc044c2f848e7"
+        },
+        {
+          "stageId": "cross-2-4",
+          "inputSha256": "7b6bfb4888b6c300ebd90a1acf004b9954f0c1afbc9093738564e2033bd35ce7"
+        },
+        {
+          "stageId": "cross-2-5",
+          "inputSha256": "b9af86b43d92f0f629ce13e0e7fe83a8240534eeb7a7d50180c1f98ee1e368c6"
+        },
+        {
+          "stageId": "cross-3-4",
+          "inputSha256": "e2fb742e09d677db06315a092a1666994399e3ddc684e1694514d67ebc53d51e"
+        },
+        {
+          "stageId": "cross-3-5",
+          "inputSha256": "cef66df2b720b469bc22108972d701a3e85f00f83e9d04f65eb6c14e4c2426d4"
+        },
+        {
+          "stageId": "cross-4-5",
+          "inputSha256": "54e203882dacdaa518fcfa1966604f3031100c13dc893de822fb5e56add58b37"
+        },
+        {
+          "stageId": "followup-batch-2/geography",
+          "inputSha256": "bee331bad6b72ba8b424a8d38cc04a7e8448feb469117b69cb1dd83100be22d8"
+        },
+        {
+          "stageId": "followup-batch-3/geography",
+          "inputSha256": "65421282c97d5b5a6a6d7be0912988b997ec740c749347def38549ccee951633"
+        },
+        {
+          "stageId": "followup-cross-1-2/geography",
+          "inputSha256": "803d7387455297ea882bdb3bc574f19c549ac91f78420f8528da9644fb81475c"
+        },
+        {
+          "stageId": "followup-cross-1-3/geography",
+          "inputSha256": "161ba0fcdbe2d3469277f5e9bd5ebe052cb91671aa145c4df4d51ed3f0246e39"
+        },
+        {
+          "stageId": "followup-cross-2-3/geography",
+          "inputSha256": "f2dbe1f099eafcd846fe9f52a6848f8d031290f71437e6aec9cf85de82a2dd28"
+        },
+        {
+          "stageId": "followup-cross-2-3/history",
+          "inputSha256": "f0685eb5b5e96ccca03e10ca167dba81b2d2139486ebb520d62a3e197fff858f"
+        },
+        {
+          "stageId": "followup-cross-3-4/history",
+          "inputSha256": "faa45836b0d8630133fa6127d4a31b4ea6c23de6437e15851b2f6f53c75eef60"
+        },
+        {
+          "stageId": "followup-cross-3-5/history",
+          "inputSha256": "85cac8db0a5601d86a2b2e8fd4580a98e67f3362417b1ac69178164cf0d50cdd"
+        },
+        {
+          "stageId": "synthesis-1",
+          "inputSha256": "e8c7a80911b2b8d3f71501eb21b69d70a1f8101f2934688a0b2717eb816551b1"
+        },
+        {
+          "stageId": "synthesis-2",
+          "inputSha256": "76db3c0e735abe67374b7f5ff569d1e0f09f8e544194ebe3a63ac86adbeefdf9"
+        },
+        {
+          "stageId": "synthesis-3",
+          "inputSha256": "778121ce3bb13329d3f26ff6e2e96b752a1403c84c921e57b90bc14e37ff83bf"
+        },
+        {
+          "stageId": "synthesis-4",
+          "inputSha256": "ef1d0377ef4bf0c61f26bde77c73e42f836ec3be16f7bfa63790ec70a2d09706"
+        },
+        {
+          "stageId": "synthesis-5",
+          "inputSha256": "35bbca9994f6fdfd6d08b922ff5c5cb3cd0905d48b810217db15fac264ef4aca"
+        },
+        {
+          "stageId": "synthesis-6",
+          "inputSha256": "10092e806ef7b0537907e95979602845a76a8284044f614729c134e468f7e9d6"
+        },
+        {
+          "stageId": "synthesis-7",
+          "inputSha256": "20e0500d2b37c30ef3d2bd5c471f224ebec73c62d1bb70c3c4cb96266433f34c"
+        },
+        {
+          "stageId": "synthesis-8",
+          "inputSha256": "c94f0bb9128e68765eaac0f81526aab681f06c1cc3314cd59c93320bd7716244"
+        },
+        {
+          "stageId": "synthesis-9",
+          "inputSha256": "0e40dcd1435be6f1bfcc929e279004201c8036e4cc6e6e0e1f8b576fa9384074"
+        },
+        {
+          "stageId": "synthesis-10",
+          "inputSha256": "c2acb66a3dbbc6d32304e24fb13f08602b9622f9c280d6b2208d178fa5c8e341"
+        },
+        {
+          "stageId": "synthesis-11",
+          "inputSha256": "dcee6ea484022e31b153fa73fc6e3acb88d3595bbf6000a8afc44be331098d03"
+        },
+        {
+          "stageId": "synthesis-12",
+          "inputSha256": "f07e5c4894243ba79bacf365772c8d2583fe7bdbc7844dd21d2af1e837434628"
+        },
+        {
+          "stageId": "synthesis-13",
+          "inputSha256": "0bbd3efaaade6646bc88684f4847726985d24211e5f144c7bda995413423fb9e"
+        },
+        {
+          "stageId": "synthesis-14",
+          "inputSha256": "303692fa81d9fd7bc7c2cbae03c5a7903a245bda545c98aa8ec1a5eec3210cd6"
+        },
+        {
+          "stageId": "synthesis-15",
+          "inputSha256": "9e1d0e0d2d3af1ba9e91a192534b4582d7e2cacb8c06016df4f0e93731dd4680"
+        },
+        {
+          "stageId": "synthesis-16",
+          "inputSha256": "e838e07a61687112ff0b9bb80e3ef10266187d91bdd8574407b01215d04c864e"
+        },
+        {
+          "stageId": "synthesis-17",
+          "inputSha256": "50efa6ddf311c7faff3b016fa346370e1d205f1de2d999339a624fd19f86d74e"
+        },
+        {
+          "stageId": "synthesis-18",
+          "inputSha256": "629f4493bbb8ed4494f3f4ecbe6dd74af9690f99c63383b0f41f03914dc2c5ce"
+        },
+        {
+          "stageId": "synthesis-19",
+          "inputSha256": "8765254648168a7fe91e7017e58860861dd83d3ca4c90de7e4a3d216e4dc47c8"
+        },
+        {
+          "stageId": "synthesis-20",
+          "inputSha256": "d5ef36bf560a9ede0b5905436f691b47971b76d324d197ad5120d61083cb8f2c"
+        },
+        {
+          "stageId": "synthesis-21",
+          "inputSha256": "6e280906dabba12a4b8497f16067121b37bdd4b62598ae625a132173d3e72dfb"
+        },
+        {
+          "stageId": "synthesis-22",
+          "inputSha256": "bdcba895f77291c535639c8eb9b4086cd5b4648064ccb7982bba3e4108b912fe"
+        }
+      ],
+      "firstPromptUnchanged": true
+    },
+    {
+      "area": "power",
+      "runId": "design_run_5bd0da20-d492-4f62-8378-60f728b3bb87",
+      "stages": [
+        {
+          "stageId": "batch-1",
+          "inputSha256": "3f68578046243ff3bd068dc012ca11b5727bdb7a4157d0c7f98d94b117329c08"
+        },
+        {
+          "stageId": "batch-2",
+          "inputSha256": "9a43b1cc28a39d69a77a046f69691857ecd3ae1d7dbc8b133a85a149ca796da7"
+        },
+        {
+          "stageId": "batch-3",
+          "inputSha256": "7212b5b167da45ab22803ff835e7365916e2327c39d6d9e603227790524373fd"
+        },
+        {
+          "stageId": "batch-4",
+          "inputSha256": "5b990da9b531ac5e3a27d4cc8dd09cb17d01e5934f0b02025dbbbea2a5612cd0"
+        },
+        {
+          "stageId": "batch-5",
+          "inputSha256": "d087fe6dfc966630ef56a8629f9d73ea7bcdc75fd5ee7b8b6a8ffaf8af43009c"
+        },
+        {
+          "stageId": "cross-1-2",
+          "inputSha256": "e0425ca8fde2aceb7259bc3ee85f46f0d2f4aee78e151b01e8ba6d747910326a"
+        },
+        {
+          "stageId": "cross-1-3",
+          "inputSha256": "7dac1bf817a55fa66e718633abcb4ab0883a8d11ea3e5fe26a546fece24e7cad"
+        },
+        {
+          "stageId": "cross-1-4",
+          "inputSha256": "902d98e115e6eede903c0eee10b7f61eb746207bdedec4406d575ee42e3a36c1"
+        },
+        {
+          "stageId": "cross-1-5",
+          "inputSha256": "22eec90e13c2a6ed5a7d0a3950c335d95dd412780726f26da197388d5f184516"
+        },
+        {
+          "stageId": "cross-2-3",
+          "inputSha256": "0b7690fe43afc8362bd9e7244205b761914091afa900a9e64e22b4dc5d26a4fa"
+        },
+        {
+          "stageId": "cross-2-4",
+          "inputSha256": "aa3f31c8ca4fc3ff36a24894edd833e3c759bcea0c1578fcb7c73eca06f7513f"
+        },
+        {
+          "stageId": "cross-2-5",
+          "inputSha256": "1bfbe322f46bdbad8960e4a4352a5e1b67ef76df54db941e6ddcb56fe9a7bd60"
+        },
+        {
+          "stageId": "cross-3-4",
+          "inputSha256": "e8cd47cf600bb8ea14f816ef84ac6b9e1a2e79211d662fbe928419cd15280011"
+        },
+        {
+          "stageId": "cross-3-5",
+          "inputSha256": "9c3f638fcdb1d97a155acd0d4d0c77f467b7a8ea94a444fe064685e275186846"
+        },
+        {
+          "stageId": "cross-4-5",
+          "inputSha256": "4f8b4b23bcfad2b42eea5880f4d551418e1d9d269158f65a136850f17590e9db"
+        },
+        {
+          "stageId": "followup-batch-1/tiers",
+          "inputSha256": "1197a15f87888c14494f4180d8544f4219a8ab7b9e3eb37f965b20b24eb576bf"
+        },
+        {
+          "stageId": "followup-batch-1/costs",
+          "inputSha256": "9f8be8d7654a2f88ac61fc12e1597ed8bb658cffbe06de7cea0c9df152fd168e"
+        },
+        {
+          "stageId": "followup-batch-1/counters",
+          "inputSha256": "fec21f75857c355591d0dc840394a0a42e6173625ff46c6895f6b6c3559e9060"
+        },
+        {
+          "stageId": "followup-batch-2/tiers",
+          "inputSha256": "5d242740a72db8ca26e61000476c7cc57ed17de612253c885e360e55c3a171bf"
+        },
+        {
+          "stageId": "followup-batch-2/costs",
+          "inputSha256": "9d9f61544d67b47b6b0fa849fb20c3220d6d79ac473edbebf8ec158dea70d13c"
+        },
+        {
+          "stageId": "followup-batch-2/counters",
+          "inputSha256": "d542d5a1465675996bcb56396adca4f8e828def40f6bf79831ffdb4f4b6afdba"
+        },
+        {
+          "stageId": "followup-batch-4/tiers",
+          "inputSha256": "f0888cede8c9463e12f18b6e761380d69bea114bfe7dde200b215957498d4077"
+        },
+        {
+          "stageId": "followup-cross-1-2/counters",
+          "inputSha256": "16534d5b325d55c9c7eefd5762fb689b2638608529398082c230e12209634d6a"
+        },
+        {
+          "stageId": "followup-cross-1-3/tiers",
+          "inputSha256": "bf776139b129da05a015cedd5a3b8393ac17893e6f52dc32e7d5027ef7a160a2"
+        },
+        {
+          "stageId": "followup-cross-1-3/counters",
+          "inputSha256": "3efb20c040500e7b1749a5d4caed8fdc25674ea1cb276185f9e5ecd6cc598fb6"
+        },
+        {
+          "stageId": "followup-cross-2-3/tiers",
+          "inputSha256": "46aa3de1dffec2cc2bc9ad2d9697473e8343188c96be54f63eb5573cfba43c62"
+        },
+        {
+          "stageId": "followup-cross-2-3/costs",
+          "inputSha256": "3eb66abee3319afac202579a7c53fdf4dfe93247ed61657a1dcda22c9a2ea476"
+        },
+        {
+          "stageId": "followup-cross-2-3/counters",
+          "inputSha256": "f917be669cb6674fce8f44613c42ec83f83fd48c9b001bcc380400f061be18d2"
+        },
+        {
+          "stageId": "followup-cross-2-4/tiers",
+          "inputSha256": "f476338731c8be0f053ddc37419994664ba03ae25c98157a23a6045c9c46d50f"
+        },
+        {
+          "stageId": "followup-cross-2-4/costs",
+          "inputSha256": "f2a759f709543e50455ce53967833e08464515d917a595bfa241633ffdd24edc"
+        },
+        {
+          "stageId": "followup-cross-2-4/counters",
+          "inputSha256": "b23d232c6ab83a1394d8520e518552b78328aac753660740d653283be3eeaa37"
+        },
+        {
+          "stageId": "followup-cross-3-5/tiers",
+          "inputSha256": "0caafb4fb294576f999a1e151c3da031234b7ecda358351dca0271baa16f81b6"
+        },
+        {
+          "stageId": "followup-cross-3-5/costs",
+          "inputSha256": "9e9a0b3179ddbd69ee6d64d728c1fc9752badbd20ebf80f7a9c9c171ef4f5b69"
+        },
+        {
+          "stageId": "followup-cross-3-5/counters",
+          "inputSha256": "8e75e6d4f681b8c1865597ae2ebe43676c29345bbda83aebeb1cdc1e01b3979b"
+        },
+        {
+          "stageId": "followup-cross-4-5/tiers",
+          "inputSha256": "d58c1457e9ee7265afd407557394f71e77a3280c93ca9c1555d81b1270c10d82"
+        },
+        {
+          "stageId": "followup-cross-4-5/counters",
+          "inputSha256": "b6a9fa238e1f6bdcb86c6cb08dd30e1561020d3ea2791652ace11a554a0e8447"
+        },
+        {
+          "stageId": "synthesis-1",
+          "inputSha256": "3cb4d4ad9e726f5b7bd49022e565a92ea7758a7febe96ab436f3bad0b72f010e"
+        },
+        {
+          "stageId": "synthesis-2",
+          "inputSha256": "4dcd38a9e6e0bf19e1a8b3f8b3494a7c7bae64c2cf5450b5f3f978d81a62c9e8"
+        },
+        {
+          "stageId": "synthesis-3",
+          "inputSha256": "a3083854a1d3f5cfac309c1d5db0953ab715d2844a8a9ff780138fd32351d1be"
+        },
+        {
+          "stageId": "synthesis-4",
+          "inputSha256": "2f5b96382362554f8661ff4dee00b93c5ecbd85c05d3e2c79eb93899b53f6fec"
+        },
+        {
+          "stageId": "synthesis-5",
+          "inputSha256": "c785db650f6036a7da7fa1f0a5f7e17abb0a32b3e8b483c65ea773bf1cb84807"
+        },
+        {
+          "stageId": "synthesis-6",
+          "inputSha256": "f18fcc22278111bc5552b6406a5a3dd9d3da1faf98f0b890e4af80ed848cb547"
+        },
+        {
+          "stageId": "synthesis-7",
+          "inputSha256": "eac178bd256d8d5901cde0dfd28427e3e2fb556f5997085e1e4d086aa1d1087e"
+        },
+        {
+          "stageId": "synthesis-8",
+          "inputSha256": "1d129fa6003d5cb8d4d3c59aafb6be80df9b0ecdc3a1fa6f8df614995e1263b5"
+        },
+        {
+          "stageId": "synthesis-9",
+          "inputSha256": "e7dd48270849c08df4726c5a9e335e9bff916a362f89f9cefa3e657d7b868c63"
+        },
+        {
+          "stageId": "synthesis-10",
+          "inputSha256": "47f19334a4f8a233081609eb626760d466b088656f120e33fe23205a468ff6cc"
+        },
+        {
+          "stageId": "synthesis-11",
+          "inputSha256": "18f101863297095c6839f858e29e9ef717e56d4a0e71328d0b8dc745d84b5b45"
+        },
+        {
+          "stageId": "synthesis-12",
+          "inputSha256": "5c6c73f3d6a449817652f13d50a66c849bfcd508d6e87f3144da5b4fd82ae673"
+        },
+        {
+          "stageId": "synthesis-13",
+          "inputSha256": "d21b096ccd56b33ed87dcb9361bac035c8dafd9876fda81122b6bcede174aeaa"
+        },
+        {
+          "stageId": "synthesis-14",
+          "inputSha256": "53f5109f4b70e1d2d2757a77ed622aef82c1259133f760ad19929c347c9e5e16"
+        },
+        {
+          "stageId": "synthesis-15",
+          "inputSha256": "c454f79021d206c8c9d706d9e07bde812d6e0121d347ad728590de513a1c7453"
+        },
+        {
+          "stageId": "synthesis-16",
+          "inputSha256": "6e1314cdc184c80298a5335c1c702629e3b47b9df264a64b64698017a84ce059"
+        },
+        {
+          "stageId": "synthesis-17",
+          "inputSha256": "6a527eed1d4e5a79696c09a7ba765915638f5e925c3845b4d5c3f2bd19ca2c5d"
+        },
+        {
+          "stageId": "synthesis-18",
+          "inputSha256": "e66f7dbfa8c5d767093ae4ddf4cdc5cdfebade0c26fef61548530ffe8d7639a6"
+        },
+        {
+          "stageId": "synthesis-19",
+          "inputSha256": "18442b5221fffb3e4efd0e3fefc868b98593cf969e56d6980989c8a47c306a2b"
+        },
+        {
+          "stageId": "synthesis-20",
+          "inputSha256": "c35065d28385108072a635c71bd7981d8809518a9d99210182e35269c3ed0c76"
+        },
+        {
+          "stageId": "synthesis-21",
+          "inputSha256": "bf944305adbdae8ac280c72fabfb3bc33210dc52b9a28260e7008e7aa27cdb22"
+        },
+        {
+          "stageId": "synthesis-22",
+          "inputSha256": "1d726a63f3e824fdda1ce49aa5efe184a182749038b202d54c0ea6503083739d"
+        },
+        {
+          "stageId": "synthesis-23",
+          "inputSha256": "9de704b9f543134d7cd04894efaa9fd63f106b303ad2714954b782079e3e93c7"
+        },
+        {
+          "stageId": "synthesis-24",
+          "inputSha256": "c0c017c6c7b06f6666045ea43d295c73da625c0e1eee569110b8333080fe9e79"
+        },
+        {
+          "stageId": "synthesis-25",
+          "inputSha256": "ff1884c645839fdff5dde63fd2f7da5a1328e64c31a9cc9c3074ecacebdc388d"
+        },
+        {
+          "stageId": "synthesis-26",
+          "inputSha256": "7c47e14ed360d1da19e55f11545f13acae9b5e563ed64a3f8e91dee3777b3f9b"
+        },
+        {
+          "stageId": "synthesis-27",
+          "inputSha256": "9a953a36a7181fedcea540bd0ded85bacd0151d695a63e355fd47eeec8e679ca"
+        },
+        {
+          "stageId": "synthesis-28",
+          "inputSha256": "6cb59aa28938a14b2d255b69c223ac0c99af58adeec8b520aec70ca9c99e34fe"
+        },
+        {
+          "stageId": "synthesis-29",
+          "inputSha256": "3ecd638bbb333ad0b8b4c666f38951398356763e77e4a5747478849d06a2766e"
+        },
+        {
+          "stageId": "synthesis-30",
+          "inputSha256": "04a3e77ab1d78e0201ea412e6c4bc81b9d6f6e8fb7f8da3369a4c877fa051958"
+        },
+        {
+          "stageId": "synthesis-31",
+          "inputSha256": "78cc57f94d8dee2037c3f68475f307680c36549d00d1e2b2a8a05043d7dfcfa4"
+        },
+        {
+          "stageId": "synthesis-32",
+          "inputSha256": "fbe0a2c07c4eb7917fd21de8ae862fa54281903345660e2c5e96a4bcc8c3656e"
+        },
+        {
+          "stageId": "synthesis-33",
+          "inputSha256": "85620d95433d9b12edfae87172eebec52d3e625dd98919b9d62a7ae9eda4ea79"
+        },
+        {
+          "stageId": "synthesis-34",
+          "inputSha256": "2c7cc10de8ae26e657f570f6d327308e382a5057048479c46efbbcee71418bfc"
+        },
+        {
+          "stageId": "synthesis-35",
+          "inputSha256": "e5159a9a795379fe154aa4f6f70c3172081131a1f92d74492f7f9c6f651b1ffe"
+        }
+      ],
+      "firstPromptUnchanged": true
+    },
+    {
+      "area": "characters",
+      "runId": "design_run_c212091d-deec-4ef3-9b9a-f1b1a7aac5fb",
+      "stages": [
+        {
+          "stageId": "batch-1",
+          "inputSha256": "1520184e3b6acc05c1b49cbcfe2e4f2894908aeba1f1cbe0f2e8f73a1f8d14ea"
+        },
+        {
+          "stageId": "batch-2",
+          "inputSha256": "156a32e46f986a14c071edf3b2e9fec3c971ac7e963c14263126257865472f6f"
+        },
+        {
+          "stageId": "batch-3",
+          "inputSha256": "a89cb2e2f35e66ae790d85ddec965f7b1180e36aca5aa97cac67e6de3ee03149"
+        },
+        {
+          "stageId": "batch-4",
+          "inputSha256": "00d537317a10dd56f94da9eabfb49aba22ec24532bf13ece01c6f7353e3c46bd"
+        },
+        {
+          "stageId": "batch-5",
+          "inputSha256": "831f21e5f2fdcd93e9867a2f973c8ef2fcf36bc485e574bf7b362b0c7625d749"
+        }
+      ],
+      "firstPromptUnchanged": true
+    },
+    {
+      "area": "story",
+      "runId": "design_run_062a0f9e-88cf-4cee-b854-e80f97947916",
+      "stages": [
+        {
+          "stageId": "batch-1",
+          "inputSha256": "4379af19bb79000f9f950cad595a10a8e215d9bf62cb4a7c697abd8c1596a1e9"
+        },
+        {
+          "stageId": "batch-2",
+          "inputSha256": "4c2dcb57966023479640620e12b454abff22bfd7034a8623cc1264d29b82ff92"
+        },
+        {
+          "stageId": "batch-3",
+          "inputSha256": "d6577b9de5fedb64d5e6008b5c0f09aada15ab41d3a6fd23dcc0b0c1e718ca5d"
+        },
+        {
+          "stageId": "batch-4",
+          "inputSha256": "ade89a2ccc8024c7cf60017552d41e1802597efb41eea398475496b584b2e02a"
+        },
+        {
+          "stageId": "batch-5",
+          "inputSha256": "ca7a5ec61b3a6ca1bfdc7bd0522ec6a162c5cf9eb565f452f6c41742eed5db38"
+        },
+        {
+          "stageId": "cross-1-2",
+          "inputSha256": "08469069379d62b2112c134e5b5b76b1094b6f9a38a59ccf34d7f8da7cff5993"
+        }
+      ],
+      "firstPromptUnchanged": true
+    }
+  ],
+  "mappedRelationships": {
+    "story/relationships/rel_01": {
+      "fromCharacterId": "char_01",
+      "toCharacterId": "char_02",
+      "fromName": "林辰",
+      "toName": "苏凌霜",
+      "kind": "trust"
+    },
+    "story/relationships/rel_02": {
+      "fromCharacterId": "char_01",
+      "toCharacterId": "char_03",
+      "fromName": "林辰",
+      "toName": "赵玄极",
+      "kind": "belief"
+    },
+    "story/relationships/rel_03": {
+      "fromCharacterId": "char_01",
+      "toCharacterId": "char_04",
+      "fromName": "林辰",
+      "toName": "墨幽屠",
+      "kind": "allegiance"
+    },
+    "story/relationships/rel_04": {
+      "fromCharacterId": "char_02",
+      "toCharacterId": "char_03",
+      "fromName": "苏凌霜",
+      "toName": "赵玄极",
+      "kind": "private_intent"
+    },
+    "story/relationships/rel_06": {
+      "fromCharacterId": "char_03",
+      "toCharacterId": "char_06",
+      "fromName": "赵玄极",
+      "toName": "炎煞尊者",
+      "kind": "social"
+    },
+    "story/relationships/rel_07": {
+      "fromCharacterId": "char_01",
+      "toCharacterId": "char_07",
+      "fromName": "林辰",
+      "toName": "梁九",
+      "kind": "trust"
+    },
+    "story/relationships/rel_08": {
+      "fromCharacterId": "char_01",
+      "toCharacterId": "char_09",
+      "fromName": "林辰",
+      "toName": "白榆",
+      "kind": "trust"
+    },
+    "story/relationships/rel_09": {
+      "fromCharacterId": "char_01",
+      "toCharacterId": "char_10",
+      "fromName": "林辰",
+      "toName": "顾峤",
+      "kind": "trust"
+    },
+    "story/relationships/rel_10": {
+      "fromCharacterId": "char_02",
+      "toCharacterId": "char_11",
+      "fromName": "苏凌霜",
+      "toName": "秦禾",
+      "kind": "trust"
+    },
+    "story/relationships/rel_11": {
+      "fromCharacterId": "char_10",
+      "toCharacterId": "char_12",
+      "fromName": "顾峤",
+      "toName": "杜砺",
+      "kind": "social"
+    },
+    "story/relationships/rel_05": {
+      "fromCharacterId": "char_01",
+      "toCharacterId": "char_05",
+      "fromName": "林辰",
+      "toName": "夜凝霜",
+      "kind": "trust"
+    },
+    "story/relationships/rel_12": {
+      "fromCharacterId": "char_01",
+      "toCharacterId": "char_15",
+      "fromName": "林辰",
+      "toName": "贺青梧",
+      "kind": "trust"
+    },
+    "story/relationships/rel_13": {
+      "fromCharacterId": "char_01",
+      "toCharacterId": "char_16",
+      "fromName": "林辰",
+      "toName": "陆沉舟",
+      "kind": "trust"
+    },
+    "story/relationships/rel_14": {
+      "fromCharacterId": "char_01",
+      "toCharacterId": "char_14",
+      "fromName": "林辰",
+      "toName": "程砚",
+      "kind": "allegiance"
+    },
+    "story/relationships/rel_15": {
+      "fromCharacterId": "char_10",
+      "toCharacterId": "char_17",
+      "fromName": "顾峤",
+      "toName": "褚衡",
+      "kind": "trust"
+    },
+    "story/relationships/rel_16": {
+      "fromCharacterId": "char_13",
+      "toCharacterId": "char_18",
+      "fromName": "乔岑",
+      "toName": "邵闻",
+      "kind": "trust"
+    },
+    "story/relationships/rel_17": {
+      "fromCharacterId": "char_01",
+      "toCharacterId": "char_19",
+      "fromName": "林辰",
+      "toName": "严涛",
+      "kind": "trust"
+    },
+    "story/relationships/rel_18": {
+      "fromCharacterId": "char_16",
+      "toCharacterId": "char_21",
+      "fromName": "陆沉舟",
+      "toName": "陆沉川",
+      "kind": "kinship"
+    },
+    "story/relationships/rel_19": {
+      "fromCharacterId": "char_01",
+      "toCharacterId": "char_21",
+      "fromName": "林辰",
+      "toName": "陆沉川",
+      "kind": "trust"
+    },
+    "story/relationships/rel_20": {
+      "fromCharacterId": "char_01",
+      "toCharacterId": "char_20",
+      "fromName": "林辰",
+      "toName": "常钧",
+      "kind": "trust"
+    },
+    "story/relationships/rel_21": {
+      "fromCharacterId": "char_15",
+      "toCharacterId": "char_22",
+      "fromName": "贺青梧",
+      "toName": "唐顺",
+      "kind": "social"
+    },
+    "story/relationships/rel_22": {
+      "fromCharacterId": "char_24",
+      "toCharacterId": "char_25",
+      "fromName": "吴伍",
+      "toName": "卢小满",
+      "kind": "social"
+    }
+  },
+  "newScheduleVersion": 26,
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "currentRuntimeChanged": false,
+  "designApproved": false,
+  "limitation": "核验旧输入和每领域首步提示词未变、新目录忠实于原档；不证明模型会选对补读范围，不改变当前正式评审或任何内容结论。"
+}

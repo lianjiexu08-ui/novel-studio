@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { designReviewEntityMentions, designReviewPlanCharacters, designReviewPlanNeighbors } from '../../../novel-service-core/src/design-review-scope.ts';
+import { designReviewEntityMentions, designReviewPlanCharacters, designReviewPlanNeighbors, designReviewSourceRelationships } from '../../../novel-service-core/src/design-review-scope.ts';
 import { createDesignReviewRun, designReviewStageInput, acceptDesignReviewStage } from '../../../novel-service-core/src/design-review-run.ts';
 import { validateDesignReview, type DesignReviewInput } from '../../../novel-service-core/src/design-review.ts';
 
@@ -17,6 +17,54 @@ const request = (): DesignReviewInput => ({ area: 'story', inputHash: 'a'.repeat
   { id: 'plan/chapters/20', text: 'not JSON: 乾元御风剑诀' },
   source('world/techniques/invalid', ['不能把数组当条目']),
 ] });
+
+test('relationship navigation copies explicit directed endpoints and avoids ambiguous or invented names', () => {
+  const input = request();
+  input.sources = [
+    source('story/characters/a', { id: 'a', name: '林辰' }),
+    source('story/characters/b', { id: 'b', name: '苏凌霜' }),
+    source('settings/characters/duplicate', { id: 'b', name: '另一档案名' }),
+    source('story/characters/c', { id: 'c', name: '林辰' }),
+    source('story/relationships/r9', { fromCharacterId: 'a', toCharacterId: 'b', kind: 'trust', stages: [{ value: '尚未信任' }] }),
+    source('settings/relationships/r1', { fromCharacterId: 'c', toCharacterId: 'a', kind: 'alliance' }),
+    source('story/relationships/missing', { fromCharacterId: 'unknown', toCharacterId: 'a' }),
+    source('story/relationships/implicit', { title: '林辰与苏凌霜', characterIds: ['a', 'b'] }),
+    source('story/relationships/blank', { fromCharacterId: 'a', toCharacterId: ' ' }),
+    source('story/relationships/array', [{ fromCharacterId: 'a', toCharacterId: 'c' }]),
+    { id: 'story/relationships/invalid', text: '{invalid' },
+  ];
+  const before = structuredClone(input);
+  assert.deepEqual(designReviewSourceRelationships(input), {
+    'story/relationships/r9': { fromCharacterId: 'a', toCharacterId: 'b', fromName: '林辰', kind: 'trust' },
+    'settings/relationships/r1': { fromCharacterId: 'c', toCharacterId: 'a', fromName: '林辰', toName: '林辰', kind: 'alliance' },
+    'story/relationships/missing': { fromCharacterId: 'unknown', toCharacterId: 'a', toName: '林辰' },
+  });
+  assert.deepEqual(input, before);
+});
+
+test('v26 locates an unread relation without altering v25 inputs, raw partitions or evidence acceptance', () => {
+  const input = request();
+  input.sources.push(
+    { id: 'padding', text: '原文。'.repeat(100_000) },
+    source('story/characters/a', { id: 'a', name: '林辰' }),
+    source('story/characters/b', { id: 'b', name: '苏凌霜' }),
+    source('story/relationships/r9', { fromCharacterId: 'a', toCharacterId: 'b', stages: [{ value: '尚未信任' }] }),
+  );
+  const run = createDesignReviewRun(input), legacy = createDesignReviewRun(input, undefined, 25);
+  assert.deepEqual(run.units, legacy.units);
+  assert.deepEqual(run.stages, legacy.stages);
+  const staged = designReviewStageInput(run, run.stages[0]), old = designReviewStageInput(legacy, legacy.stages[0]);
+  assert.equal(old.stage!.coverage!.sourceRelationships, undefined);
+  assert.deepEqual(staged.stage!.coverage!.sourceRelationships!['story/relationships/r9'], {
+    fromCharacterId: 'a', toCharacterId: 'b', fromName: '林辰', toName: '苏凌霜',
+  });
+  const withoutNavigation = structuredClone(staged);
+  delete withoutNavigation.stage!.coverage!.sourceRelationships;
+  assert.deepEqual(withoutNavigation, old);
+  assert.deepEqual(designReviewStageInput(JSON.parse(JSON.stringify(run)), run.stages[0]), staged);
+  assert.ok(!staged.stage!.sourceMap.some(u => u.sourceId === 'story/relationships/r9'));
+  assert.throws(() => validateDesignReview(staged, { summary: '目录不是原文', checks: [{ criterion: 'causality', verdict: 'pass', explanation: '看到目录不证明已经信任', revisionAdvice: '', evidence: [{ sourceId: 'story/relationships/r9', quote: '尚未信任' }] }] }), /引用不在原文/);
+});
 
 test('entity navigation finds actual training sources and negative mentions without guessing aliases or ID prefixes', () => {
   const input = request(), before = structuredClone(input);

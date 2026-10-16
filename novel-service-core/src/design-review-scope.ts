@@ -83,6 +83,35 @@ export function designReviewSourceNames(input: DesignReviewInput): Record<string
   }));
 }
 
+/** Copy explicit endpoint IDs; names are added only for uniquely identified profiles.
+ * No relationship state, direction reversal, aliases or transitive links are inferred. */
+export function designReviewSourceRelationships(input: DesignReviewInput): NonNullable<NonNullable<DesignReviewInput['stage']>['coverage']>['sourceRelationships'] {
+  const records = input.sources.flatMap(source => {
+    if (!['story/characters/', 'settings/characters/', 'story/relationships/', 'settings/relationships/'].some(prefix => source.id.startsWith(prefix))) return [];
+    try {
+      const value: unknown = JSON.parse(source.text);
+      return value && typeof value === 'object' && !Array.isArray(value) ? [{ sourceId: source.id, value: value as Record<string, unknown> }] : [];
+    } catch { return []; }
+  });
+  const names = new Map<string, Array<unknown>>();
+  for (const { sourceId, value } of records) {
+    if (!sourceId.startsWith('story/characters/') && !sourceId.startsWith('settings/characters/')) continue;
+    if (typeof value.id === 'string' && value.id.trim()) names.set(value.id, [...(names.get(value.id) ?? []), value.name]);
+  }
+  const name = (id: string): string | undefined => {
+    const matches = names.get(id);
+    return matches?.length === 1 && typeof matches[0] === 'string' && matches[0].trim() ? matches[0] : undefined;
+  };
+  return Object.fromEntries(records.flatMap(({ sourceId, value }) => {
+    if (!sourceId.startsWith('story/relationships/') && !sourceId.startsWith('settings/relationships/')) return [];
+    const { fromCharacterId, toCharacterId, kind } = value;
+    if (typeof fromCharacterId !== 'string' || !fromCharacterId.trim() || typeof toCharacterId !== 'string' || !toCharacterId.trim()) return [];
+    const fromName = name(fromCharacterId), toName = name(toCharacterId);
+    return [[sourceId, { fromCharacterId, toCharacterId, ...(fromName ? { fromName } : {}), ...(toName ? { toName } : {}),
+      ...(typeof kind === 'string' && kind.trim() ? { kind } : {}) }]];
+  }));
+}
+
 /** One explicit planning edge is navigation, never evidence of feasibility.
  * Do not infer links from prose or recursively pull the entire book into a
  * follow-up. Ambiguous and dangling object IDs cannot select a source. */
