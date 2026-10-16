@@ -391,7 +391,14 @@ test('all 24 execution requirements survive large-material synthesis, including 
         ? origins.get(e.fragmentId)?.startsWith('review-result/')
         : origins.get(e.fragmentId) === 'draft' || origins.get(e.fragmentId) === extra);
     }
-    if (input.stage.kind === 'synthesis') synthesisCalls++;
+    if (input.stage.kind === 'synthesis') {
+      synthesisCalls++;
+      const required = input.stage.coverage.synthesis.requiredFindings;
+      assert.ok(required.every((finding: { criterion: string; verdict: string }) => finding.criterion === 'execution/limit_23' && finding.verdict === 'revise'));
+      if (required.length) Object.assign(result.checks.find((check: { criterion: string }) => check.criterion === 'execution/limit_23'), {
+        verdict: 'revise', explanation: '末项行动代价缺口仍未解决', revisionAdvice: '保留原文问题，补写实际选择与损失',
+      });
+    }
     else if (firstRaw) {
       firstRaw = false;
       Object.assign(result.checks.find((check: { criterion: string }) => check.criterion === 'execution/limit_23'), {

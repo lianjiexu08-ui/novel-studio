@@ -37,8 +37,8 @@ test('large sources retain every character and every cross-partition pair within
   assert.throws(() => completeDesignReviewRun(run), /覆盖或跨批检查未完成/);
 });
 
-test('a contradiction spanning distant partitions cannot be erased by synthesis', () => {
-  const run = createDesignReviewRun(largeInput());
+test('legacy v26: a contradiction spanning distant partitions cannot be erased by synthesis', () => {
+  const run = createDesignReviewRun(largeInput(), undefined, 26);
   let conflictFound = false;
   for (const stage of run.stages) {
     const input = designReviewStageInput(run, stage), result = stagePass(input);
@@ -75,7 +75,7 @@ test('chapter-only power batches also receive complete tier and technique rules'
   ];
   input.sources = [...rules, ...input.sources];
   const run = createDesignReviewRun(input);
-  assert.equal(run.scheduleVersion, 26);
+  assert.equal(run.scheduleVersion, 27);
   for (const stage of run.stages) {
     const staged = designReviewStageInput(run, stage);
     assert.ok(JSON.stringify(staged.sources).length <= 240_000);
@@ -139,10 +139,10 @@ test('v20 scopes power questions locally without dropping high-tier sources or c
   assert.deepEqual(completeDesignReviewRun(current).result, completeDesignReviewRun(old).result);
 });
 
-test('v20 never erases a real high-tier conflict or ordinary capacity insufficiency during synthesis', () => {
+test('legacy v26: v20 never erases a real high-tier conflict or ordinary capacity insufficiency during synthesis', () => {
   for (const verdict of ['revise', 'insufficient'] as const) {
     const input = largeInput(); input.area = 'power'; input.rubric = designReviewRubrics.power;
-    const run = createDesignReviewRun(input);
+    const run = createDesignReviewRun(input, undefined, 26);
     for (const stage of run.stages) {
       const staged = designReviewStageInput(run, stage), result = stagePass(staged);
       if (stage === run.stages[0]) result.checks[0] = { ...result.checks[0], verdict,
@@ -161,8 +161,8 @@ const chapterPairInput = (): DesignReviewInput => ({ ...largeInput(), sources: [
   { id: 'plan/chapters/50', text: JSON.stringify({ chapterNumber: 50, cost: '沿用第48章复测余额三成半，一剑二成后余一成半，停止施术。' }) },
 ] });
 
-test('chapter summaries and detailed ledgers are co-read without discarding either source', () => {
-  const input = chapterPairInput(), run = createDesignReviewRun(input);
+test('legacy v26: chapter summaries and detailed ledgers are co-read without discarding either source', () => {
+  const input = chapterPairInput(), run = createDesignReviewRun(input, undefined, 26);
   const pairedIds = run.units.filter(u => /chapterPlans|plan\/chapters/.test(u.sourceId)).map(u => u.id);
   const batches = run.stages.filter(s => s.kind === 'batch');
   assert.ok(batches.length > 1);
@@ -328,11 +328,11 @@ test('local scope inventories omitted sources without authorizing citations to u
   assert.throws(() => acceptDesignReviewStage(run, stage, inventedPass), /引用不在原文/);
 });
 
-test('synthesis receives the exact rolling horizon but cannot erase a previous insufficient verdict', () => {
+test('legacy v26: synthesis receives the exact rolling horizon but cannot erase a previous insufficient verdict', () => {
   const input = largeInput();
   const overview = { id: 'plan/overview', text: JSON.stringify({ targetChapterCount: 100, detailedThroughChapter: 50, outlinedChapterNumbers: [1, 2, 50], openQuestions: ['261–270日休养来源未定'] }) };
   input.sources.unshift(overview);
-  const run = createDesignReviewRun(input);
+  const run = createDesignReviewRun(input, undefined, 26);
   for (const [index, stage] of run.stages.entries()) {
     const staged = designReviewStageInput(run, stage), result = stagePass(staged);
     if (index === 0) result.checks[0] = { ...result.checks[0], verdict: 'insufficient', explanation: '休养缺资金来源', revisionAdvice: '补充真实来源' };
@@ -919,7 +919,7 @@ test('v9 locates existing macro sources by chapter range without granting unread
   assert.equal(completeDesignReviewRun(legacy).result.checks[0].verdict, 'insufficient');
 });
 
-test('dedicated follow-ups cannot recursively defer or omit evidence, and unresolved oversized questions remain blockers', () => {
+test('legacy v26: dedicated follow-ups cannot recursively defer or omit evidence, and unresolved oversized questions remain blockers', () => {
   const run = threePartitionRun(); finishRawWithThirdPartitionQuestion(run);
   const stage = run.stages.find(s => s.followupFor)!;
   const input = designReviewStageInput(run, stage);
@@ -940,7 +940,7 @@ test('dedicated follow-ups cannot recursively defer or omit evidence, and unreso
   }
   const hugeInput = threePartitionRun().input;
   hugeInput.sources.find(s => s.id === 'early')!.text += '不可截去的原始上下文。'.repeat(14000);
-  const huge = createDesignReviewRun(hugeInput);
+  const huge = createDesignReviewRun(hugeInput, undefined, 26);
   finishRawWithThirdPartitionQuestion(huge);
   assert.ok(!huge.stages.some(s => s.followupFor), 'a cited source too large to co-read must not be reduced to its quotation');
   for (const s of huge.stages.filter(s => !s.result)) acceptDesignReviewStage(huge, s, stagePass(designReviewStageInput(huge, s)));
@@ -969,7 +969,7 @@ test('a follow-up expands cited sources split outside the original batch even wh
   assert.ok(JSON.stringify(staged.sources).length <= 240_000);
 });
 
-test('v10 names locate the correct unread artifact without turning directory labels into evidence', () => {
+test('legacy v26: v10 names locate the correct unread artifact without turning directory labels into evidence', () => {
   const input = largeInput();
   input.area = 'power';
   input.rubric = { tiers: '核剑器承载，不可拿符佩替代' };
@@ -982,7 +982,7 @@ test('v10 names locate the correct unread artifact without turning directory lab
     { id: 'world/artifacts/invalid', text: '不是结构化名称' },
     { id: 'world/artifacts/array', text: JSON.stringify([{ name: '不能捏造条目名' }]) },
   ];
-  const run = createDesignReviewRun(input), legacy = createDesignReviewRun(input, undefined, 9);
+  const run = createDesignReviewRun(input, undefined, 26), legacy = createDesignReviewRun(input, undefined, 9);
   assert.deepEqual(run.units, legacy.units);
   assert.deepEqual(run.stages, legacy.stages);
   const first = designReviewStageInput(run, run.stages[0]);
@@ -1058,10 +1058,10 @@ test('v11 distinguishes partial report trees from complete coverage without repl
   assert.equal(completeDesignReviewRun(legacy).result.checks[0].verdict, 'pass');
 });
 
-test('partial synthesis coverage cannot erase a raw insufficiency or an intermediate contradiction', () => {
+test('legacy v26: partial synthesis coverage cannot erase a raw insufficiency or an intermediate contradiction', () => {
   const input = largeInput();
   input.rubric = { timeline: '检查日历', causality: '检查前置因果' };
-  const run = createDesignReviewRun(input);
+  const run = createDesignReviewRun(input, undefined, 26);
   for (const stage of run.stages) {
     const staged = designReviewStageInput(run, stage), result = stagePass(staged);
     if (stage.id === 'batch-1') Object.assign(result.checks[0], { verdict: 'insufficient', explanation: '本批明确缺少书信的实际寄出日期', revisionAdvice: '提供寄出日期' });

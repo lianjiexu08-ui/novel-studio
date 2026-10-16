@@ -58,7 +58,7 @@ test('large chapter review keeps full draft in each raw batch and resumes withou
 
 test('chapter checkpoints pin their original schedule across later defaults and reject unknown versions before model dispatch', async () => {
   const input = await largeInput();
-  assert.equal(restoreChapterReviewRun(input).scheduleVersion, 26);
+  assert.equal(restoreChapterReviewRun(input).scheduleVersion, 27);
   const legacy: ChapterReviewStageProof = { inputHash: input.inputHash, createdAt: '2026-10-14T00:00:00.000Z', stages: [] };
   assert.equal(restoreChapterReviewRun(input, legacy).scheduleVersion, 21);
   let calls = 0;
@@ -87,17 +87,52 @@ test('chapter checkpoints pin their original schedule across later defaults and 
   assert.equal(calls, before, 'invalid checkpoints must fail before spending a model call');
 });
 
-test('a later passing synthesis cannot erase a raw chapter finding', async () => {
+test('legacy v26: a later passing synthesis cannot erase a raw chapter finding', async () => {
   const input = await largeInput();
   let calls = 0;
   const provider = new OpenAICompatibleChapterProvider('', '', '', 10, 5000, true, { completeWithUsage: async request => ({
     text: passingStageOutput(request, ++calls === 1), usage: { ...emptyUsage(), calls: 1 },
   }) });
-  const result = await provider.reviewChapterAsync(input);
+  const result = await provider.reviewChapterAsync(input, { resume: { inputHash: input.inputHash, createdAt: '2026-10-16T00:00:00Z', scheduleVersion: 26, stages: [] } });
   assert.equal(result.checks.find(c => c.criterion === 'power')?.verdict, 'revise');
   assert.equal(result.stageProof!.stages.at(-1)!.result!.checks.find(c => c.criterion === 'power')?.verdict, 'pass');
   const forged = structuredClone(result); forged.checks.find(c => c.criterion === 'power')!.verdict = 'pass';
   assert.throws(() => validateChapterReview(forged, input), /综合结果/);
+});
+
+test('v27 chapter synthesis repairs a false pass and retains the rejected response in the stage proof', async () => {
+  const input = await largeInput();
+  let calls = 0, repairCalls = 0, rejectedOnce = false;
+  const provider = new OpenAICompatibleChapterProvider('', '', '', 10, 5000, true, { completeWithUsage: async request => {
+    calls++;
+    const body = JSON.parse(request.user);
+    const repairing = body.task === 'repair_previous_output';
+    const original = repairing ? body.originalRequest : body;
+    if (repairing) {
+      repairCalls++;
+      assert.match(body.problems, /不得弱化/);
+    }
+    const output = JSON.parse(passingStageOutput({ ...request, user: JSON.stringify(original) }, calls === 1));
+    const required = original.stage.coverage?.synthesis?.requiredFindings ?? [];
+    if (required.length) {
+      assert.match(request.system, /requiredFindings/);
+      if (!rejectedOnce) rejectedOnce = true;
+      else for (const finding of required) Object.assign(output.checks.find((check: { criterion: string }) => check.criterion === finding.criterion), {
+        verdict: finding.verdict, revisionAdvice: '保留原文返修',
+      });
+    }
+    return { text: JSON.stringify(output), usage: { ...emptyUsage(), calls: 1 } };
+  } });
+  const result = await provider.reviewChapterAsync(input);
+  assert.equal(repairCalls, 1);
+  assert.equal(result.stageProof!.scheduleVersion, 27);
+  assert.equal(result.checks.find(check => check.criterion === 'power')!.verdict, 'revise');
+  assert.equal(result.stageProof!.stages.at(-1)!.result!.checks.find(check => check.criterion === 'power')!.verdict, 'revise');
+  const repairedStage = result.stageProof!.stages.find(stage => stage.modelResponses?.length === 2)!;
+  assert.ok(repairedStage);
+  assert.equal(JSON.parse(repairedStage.modelResponses![0]).checks.find((check: { criterion: string }) => check.criterion === 'power').verdict, 'pass');
+  assert.equal(JSON.parse(repairedStage.modelResponses![1]).checks.find((check: { criterion: string }) => check.criterion === 'power').verdict, 'revise');
+  assert.equal(chapterReviewStatus(validateChapterReview(result, input)), 'failed');
 });
 
 test('staged citation repair keeps fragment-only format when the model cites an empty source', async () => {

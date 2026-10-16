@@ -1,0 +1,52 @@
+{
+  "kind": "v27_real_synthesis_regression_and_v26_compatibility",
+  "observedAt": "2026-10-16T11:19:41.114Z",
+  "inputHash": "3274d4710800ad02565040a341a05177b4bd7cab363e169219b562a4a0f62d01",
+  "snapshotPath": "data/audit-runtimes/design68-review/synthesis27-regression-snapshot.json",
+  "snapshotSha256": "6ca262fdeaa7b5576ac317c4e5ae877d64a44f8123469d60731e38ce79e7e13c",
+  "currentSourceHashes": {
+    "novel-service-core/src/design-review-run.ts": "e76470a25b9b6c1cd2027653917ab55f78269fed2ed93063140c7d484f51aa50",
+    "novel-service-core/src/design-review.ts": "06ba66124aac733a8e52ed7cf1ef6ded37c867968e6d2aedea2f7e86d184bb05",
+    "packages/planner/src/index.ts": "76f30fada53bbb52031e52f22bdcca91d8c9449ff564b512abcd563ff4b38082"
+  },
+  "frozenSourceFilesUnchanged": 153,
+  "oldScheduleRequestsExactlyMatch": true,
+  "replays": [
+    {
+      "area": "world",
+      "comparedRequests": 75,
+      "completedStages": 75,
+      "responsesReplayed": 85,
+      "retainedFailures": 0,
+      "responseReplay": "verified"
+    },
+    {
+      "area": "power",
+      "comparedRequests": 52,
+      "completedStages": 52,
+      "responsesReplayed": 65,
+      "retainedFailures": 2,
+      "responseReplay": "verified"
+    }
+  ],
+  "counterfactualProbe": {
+    "stageId": "synthesis-1",
+    "originalSchedule": 26,
+    "proposedSchedule": 27,
+    "requiredFindings": [
+      {
+        "stageId": "batch-1",
+        "criterion": "tiers",
+        "verdict": "insufficient"
+      }
+    ],
+    "sourceTextUnchanged": true,
+    "oldFalsePassRejected": true,
+    "rejection": "综合结论不得弱化尚未解决的前置判断：batch-1/tiers=insufficient。保留原问题及本次报告证据；可说明争议，但不能凭其他项通过将本项改判通过或把返修降为不足。",
+    "limitation": "A detached copy tests request generation and validation only; it is not a migrated run, new review, repair response, or accepted result."
+  },
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "The running frozen v26 worker is unchanged. This proves compatibility of the captured completed prefix and rejection of its known false local pass under v27; it does not semantically validate all reports or complete the novel."
+}

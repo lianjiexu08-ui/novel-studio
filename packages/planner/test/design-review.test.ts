@@ -18,6 +18,40 @@ function anchored(request: Awaited<ReturnType<typeof input>>) {
   })) };
 }
 
+for (const repairedCorrectly of [true, false]) test(`v27 synthesis repair preserves original responses and cannot weaken child findings: ${repairedCorrectly}`, async () => {
+  const request = await input();
+  request.stage = { kind: 'synthesis', label: '局部综合', totalBatches: 2, sourceMap: [], coverage: {
+    mode: 'reports_with_context', sourceLengths: Object.fromEntries(request.sources.map(source => [source.id, source.text.length])),
+    synthesis: { scope: 'partial_reports', coveredStageIds: ['batch-1', 'batch-2'], totalStages: 3,
+      requiredFindings: [{ stageId: 'batch-1', criterion: 'tiers', verdict: 'insufficient' }, { stageId: 'batch-2', criterion: 'costs', verdict: 'revise' }] },
+  } };
+  const incorrect = anchored(request), repaired = structuredClone(incorrect);
+  Object.assign(repaired.checks.find(check => check.criterion === 'tiers')!, { verdict: 'insufficient', revisionAdvice: '仍需补读门槛原文' });
+  Object.assign(repaired.checks.find(check => check.criterion === 'costs')!, { verdict: 'revise', revisionAdvice: '保留成本缺口，独立复核' });
+  const responses = [JSON.stringify(incorrect), JSON.stringify(repairedCorrectly ? repaired : incorrect)];
+  let calls = 0;
+  const planner = new JsonDesignPlanner({ complete: async sent => {
+    assert.match(sent.system, /requiredFindings/);
+    if (calls === 1) {
+      const body = JSON.parse(sent.user);
+      assert.match(body.problems, /batch-1\/tiers=insufficient/);
+      assert.match(body.problems, /batch-2\/costs=revise/);
+      assert.deepEqual(body.originalRequest.stage.coverage.synthesis.requiredFindings, request.stage!.coverage!.synthesis!.requiredFindings);
+    }
+    return responses[calls++];
+  } });
+  if (repairedCorrectly) {
+    const result = await planner.reviewDesignContent(request);
+    assert.deepEqual(result.modelResponses, responses);
+    assert.deepEqual(result.checks.map(check => check.verdict), ['insufficient', 'revise', 'pass']);
+  } else await assert.rejects(() => planner.reviewDesignContent(request), error => {
+    assert.match((error as Error).message, /不得弱化/);
+    assert.deepEqual((error as Error & { modelResponses: string[] }).modelResponses, responses);
+    return true;
+  });
+  assert.equal(calls, 2);
+});
+
 test('relationship navigation reaches the reviewer with bounded semantics and leaves old prompts unchanged', async () => {
   const request = await input();
   request.stage = { kind: 'batch', label: '原文', totalBatches: 1, sourceMap: [], coverage: {

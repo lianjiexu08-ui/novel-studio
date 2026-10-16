@@ -65,7 +65,11 @@ export interface DesignReviewInput {
       /** Complete raw context candidates added to a follow-up, or omitted for capacity. */
       relatedSourceContext?: { includedSourceIds: string[]; omittedSourceIds: string[] };
       /** Report-tree coverage, not proof that any design criterion passed. */
-      synthesis?: { scope: 'partial_reports' | 'complete_reports'; coveredStageIds: string[]; totalStages: number };
+      synthesis?: {
+        scope: 'partial_reports' | 'complete_reports'; coveredStageIds: string[]; totalStages: number;
+        /** v27: unresolved judgments in delivered child reports, not story facts. */
+        requiredFindings?: Array<{ stageId: string; criterion: string; verdict: 'revise' | 'insufficient' }>;
+      };
       /** Navigation only: ranges stated by existing plan sources, never evidence. */
       planRanges?: Array<{ sourceId: string; startChapter: number; endChapter: number; title?: string }>;
       pendingChecks?: Array<{ id: string; criterion: string; questionSourceId: string; requiredSourceIds: string[]; priorUnitIds: string[]; priorSourceIds?: string[] }>;
@@ -298,6 +302,12 @@ export function validateDesignReview(input: DesignReviewInput, result: DesignRev
   }
   if (resolutionProblems.length) throw new DesignReviewResolutionEvidenceError(resolutionProblems);
   if (citationProblems.length) throw new DesignReviewCitationError(citationProblems);
+  if (input.stage?.kind === 'synthesis') {
+    const rank = { pass: 0, insufficient: 1, revise: 2 };
+    const weakened = (input.stage.coverage?.synthesis?.requiredFindings ?? []).filter(finding =>
+      rank[result.checks.find(check => check.criterion === finding.criterion)!.verdict] < rank[finding.verdict]);
+    if (weakened.length) throw new DesignReviewError(`综合结论不得弱化尚未解决的前置判断：${weakened.map(finding => `${finding.stageId}/${finding.criterion}=${finding.verdict}`).join('、')}。保留原问题及本次报告证据；可说明争议，但不能凭其他项通过将本项改判通过或把返修降为不足。`);
+  }
 }
 
 export function recordDesignReview(work: Work, input: DesignReviewInput, result: DesignReviewResult): DesignContentReview {
