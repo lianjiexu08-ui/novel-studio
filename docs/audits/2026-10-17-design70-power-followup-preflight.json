@@ -1,0 +1,1952 @@
+{
+  "kind": "design70_power_dynamic_followups_preflight",
+  "observedAt": "2026-10-16T18:47:32.020Z",
+  "inputHash": "f759ad2fcd6ab96802ceb198e778c8d8165f21de47b1a8619b63ca640e84622f",
+  "runId": "design_run_3813a153-5956-458d-b482-8543c696795c",
+  "snapshotPath": "data/audit-runtimes/design70-review/power-followup-prefix.json",
+  "snapshotSha256": "e6e9de1e4e08da646bc97a131719b15eb893ba5347a6e42f95c48989036444cc",
+  "frozenSourceFilesVerified": 153,
+  "prefixReplay": {
+    "verification": "verified",
+    "completedStages": 15,
+    "totalStages": 97,
+    "runSha256": "74085ac78bfdf992000b57e53d1a8eb60f6f47b98c0a8e93d82b530b264b9e06",
+    "formalAcceptance": false,
+    "limitation": "Replays saved responses, repairs, citations and conclusions against independently supplied materials. Pending work, semantic quality, blocker disposition and prose acceptance remain separate.",
+    "responseReplay": "verified",
+    "responsesReplayed": 18,
+    "records": [
+      {
+        "stageId": "batch-1",
+        "kind": "batch",
+        "stageSha256": "e52f449de608c5326d38bddce293892052dab2d319f682166e2230ae88334ef2",
+        "inputSha256": "a794fff98d60417e790c0d3a77c8e5282938364f1f6a36e15cea59eb3065bf06",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/1",
+              "plan/chapters/2",
+              "plan/chapters/3",
+              "plan/chapters/4",
+              "plan/chapters/5",
+              "plan/chapters/6",
+              "plan/chapters/7",
+              "plan/chapters/8",
+              "plan/chapters/9",
+              "plan/chapters/10",
+              "plan/chapters/11",
+              "plan/chapters/12",
+              "plan/chapters/13",
+              "plan/chapters/14",
+              "plan/chapters/15",
+              "plan/chapters/16",
+              "plan/chapters/17",
+              "plan/chapters/18",
+              "plan/chapters/19",
+              "plan/chapters/20",
+              "plan/chapters/21",
+              "plan/chapters/22",
+              "plan/chapters/23",
+              "plan/chapters/24",
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/33",
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50",
+              "plan/milestones/ms_v2_fire",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/1",
+              "plan/chapters/2",
+              "plan/chapters/3",
+              "plan/chapters/4",
+              "plan/chapters/5",
+              "plan/chapters/6",
+              "plan/chapters/7",
+              "plan/chapters/8",
+              "plan/chapters/9",
+              "plan/chapters/10",
+              "plan/chapters/11",
+              "plan/chapters/12",
+              "plan/chapters/13",
+              "plan/chapters/14",
+              "plan/chapters/15",
+              "plan/chapters/16",
+              "plan/chapters/17",
+              "plan/chapters/18",
+              "plan/chapters/19",
+              "plan/chapters/20",
+              "plan/chapters/21",
+              "plan/chapters/22",
+              "plan/chapters/23",
+              "plan/chapters/24",
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/33",
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50",
+              "plan/milestones/ms_v2_fire",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/1",
+              "plan/chapters/2",
+              "plan/chapters/3",
+              "plan/chapters/4",
+              "plan/chapters/5",
+              "plan/chapters/6",
+              "plan/chapters/7",
+              "plan/chapters/8",
+              "plan/chapters/9",
+              "plan/chapters/10",
+              "plan/chapters/11",
+              "plan/chapters/12",
+              "plan/chapters/13",
+              "plan/chapters/14",
+              "plan/chapters/15",
+              "plan/chapters/16",
+              "plan/chapters/17",
+              "plan/chapters/18",
+              "plan/chapters/19",
+              "plan/chapters/20",
+              "plan/chapters/21",
+              "plan/chapters/22",
+              "plan/chapters/23",
+              "plan/chapters/24",
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/33",
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50",
+              "plan/milestones/ms_v2_fire",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "batch-2",
+        "kind": "batch",
+        "stageSha256": "27a98df5ad2c7b7250a6550363f16c5b143651ac62e2702124e4e9b43f859177",
+        "inputSha256": "1ec3b21675d9c38d94db601fd758e4d82b903cf220694f93c7805764e7891159",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16",
+              "story/characters/char_01",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/volumes/vol_03"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/resources/res_17",
+              "world/resources/res_18",
+              "world/resources/res_19",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16",
+              "story/characters/char_01",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/volumes/vol_03"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16",
+              "story/characters/char_01",
+              "story/characters/char_10",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff",
+              "plan/volumes/vol_03"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "batch-3",
+        "kind": "batch",
+        "stageSha256": "8116735f8a670e03305e0b472eb075f47d1f5bbf6e32d6ff7d49a64f317957fc",
+        "inputSha256": "cae918058cf87ee326d3d149df484f1174c60efa10509e5b91087b5695456464",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/artifacts/art_03",
+              "world/artifacts/art_20",
+              "world/resources/res_01"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/artifacts/art_03",
+              "world/artifacts/art_20",
+              "world/resources/res_01"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/artifacts/art_03",
+              "world/artifacts/art_20"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "batch-4",
+        "kind": "batch",
+        "stageSha256": "1df1b39ac061de798f4538ce3c3e0103eeacd9e222da6cbdd952cf3cc62ba6bd",
+        "inputSha256": "e1136687ec8147707bab3cb2b53055faa61e13d368ce4ab1e558e3a29cce22f4",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "story/characters/char_10",
+              "plan/chapters/18",
+              "plan/chapters/21",
+              "plan/chapters/23",
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "story/characters/char_10",
+              "plan/chapters/18",
+              "plan/chapters/21",
+              "plan/chapters/23",
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "story/characters/char_10",
+              "plan/chapters/18",
+              "plan/chapters/21",
+              "plan/chapters/23",
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "batch-5",
+        "kind": "batch",
+        "stageSha256": "8f06603de1eaba6304e6c59985d0658b4d6e498fddcfc27a6d6f6904a82a172a",
+        "inputSha256": "172a4222563ac98c3e7e49112fb35e425b02841514e83b3260a8f852b94ed5c3",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16",
+              "world/resources/res_17",
+              "world/resources/res_18",
+              "world/resources/res_19",
+              "story/chapterPlans/chapter-plan-25",
+              "plan/chapters/25"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_15",
+              "world/techniques/tech_16",
+              "world/resources/res_17",
+              "world/resources/res_18",
+              "world/resources/res_19",
+              "story/chapterPlans/chapter-plan-25",
+              "plan/chapters/25"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16",
+              "story/chapterPlans/chapter-plan-25",
+              "plan/chapters/25"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-2",
+        "kind": "cross",
+        "stageSha256": "aef21b818c35b6b4f6385323ddfb29e21fc300c162b09678a8574ee3c52fe555",
+        "inputSha256": "6b6d8de7ef2e8023d37fd54e1579f6aaf8a1b82543d0281b08abd236b07d489d",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "costs",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/25",
+              "story/chapterPlans/chapter-plan-25"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-3",
+        "kind": "cross",
+        "stageSha256": "c927230e9127cdcfa7287a3808d47f37798ea9512678d51bc69add70491561cf",
+        "inputSha256": "99bd13b228977c6d166a760743b234e7b4246d62994e0bd4f0c8338551f1f1a4",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass",
+            "resolves": [
+              "batch-3/tiers"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "pass",
+            "resolves": [
+              "batch-3/costs"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "pass",
+            "resolves": [
+              "batch-3/counters"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-4",
+        "kind": "cross",
+        "stageSha256": "c6164f125f3db3c9e47eaa1f7327dfe499f6da893b864dc155363134e2442fe0",
+        "inputSha256": "2c1d82fc6ce53971b5d13449f4a3ca7f18dee3c369499a30f3149b05ffeb7e40",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/18",
+              "plan/chapters/19",
+              "plan/chapters/20",
+              "plan/chapters/21",
+              "plan/chapters/22",
+              "plan/chapters/23",
+              "plan/chapters/24"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/18",
+              "plan/chapters/19",
+              "plan/chapters/20",
+              "plan/chapters/21",
+              "plan/chapters/22",
+              "plan/chapters/23",
+              "plan/chapters/24"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/18",
+              "plan/chapters/19",
+              "plan/chapters/20",
+              "plan/chapters/21",
+              "plan/chapters/22",
+              "plan/chapters/23",
+              "plan/chapters/24"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-5",
+        "kind": "cross",
+        "stageSha256": "cbf04232033eebef54e821f84244609756048ec08dd77ded41fb4cb6609c4969",
+        "inputSha256": "6a6f447fced9188f659de7f28b876cd17fabf67028f25bf50c57e7717d2408e8",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "costs",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "counters",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-2-3",
+        "kind": "cross",
+        "stageSha256": "feb47a1a43ba1e314e961c8e4a4be08774cc8dcb73d5eb83175085fe5d27c1bd",
+        "inputSha256": "32215dc6a0dbd526e4d34815220d4ae15cf363564bf02a442b6fdfcc4538d7c8",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16",
+              "world/artifacts/art_03",
+              "plan/chapters/25",
+              "plan/chapters/44",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16",
+              "world/artifacts/art_03",
+              "plan/chapters/25",
+              "plan/chapters/44",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16",
+              "world/artifacts/art_03",
+              "plan/chapters/25",
+              "plan/chapters/44",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-2-4",
+        "kind": "cross",
+        "stageSha256": "74f2879766bc137ffc9c2e8cae6133b9fe269552c4ebd077b92ca8dc61effe35",
+        "inputSha256": "e39e216d8ee376b8e95511fcfb5bb9a2c960f3801dad86d5e94ed356fe6c626b",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/18",
+              "plan/chapters/23",
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/21",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/18",
+              "plan/chapters/23",
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-2-5",
+        "kind": "cross",
+        "stageSha256": "999608c82fb9a999e77f1064e9ed15a7f56ad5b6dca58bcbc6f8067d89dcd656",
+        "inputSha256": "0eaa3268c95658f66fb1845c1968a4458a0521fe6a1a1f983d50a2479a82bfc2",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16",
+              "world/resources/res_17",
+              "world/resources/res_18",
+              "world/resources/res_19"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-3-4",
+        "kind": "cross",
+        "stageSha256": "7fea19758a24a0078f0c1cdbd10e5d7461058efbb919ecf827241f351810448d",
+        "inputSha256": "99641ba0c78aa2d6b84f8afda9423ce53f0c7642ac19d21f02a796df15a8118c",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50",
+              "plan/milestones/ms_v2_fire",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50",
+              "plan/milestones/ms_v2_fire",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50",
+              "plan/milestones/ms_v2_fire",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-3-5",
+        "kind": "cross",
+        "stageSha256": "28698c84254f4447b8ba5adf95c482aa39342980f684a9463e9097edf1cec3e9",
+        "inputSha256": "3dface61ca66cb3cb1f067b23e339735f52d0674ad7f341be1fbd734cd88261f",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_10",
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16",
+              "world/artifacts/art_03",
+              "world/artifacts/art_16",
+              "world/artifacts/art_20",
+              "world/artifacts/art_21",
+              "world/resources/res_01",
+              "world/resources/res_12",
+              "world/resources/res_17",
+              "world/resources/res_18",
+              "world/resources/res_19"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/artifacts/art_03",
+              "world/artifacts/art_16",
+              "world/artifacts/art_20",
+              "world/artifacts/art_21",
+              "world/resources/res_01",
+              "world/resources/res_12",
+              "world/resources/res_17",
+              "world/resources/res_18",
+              "world/resources/res_19",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16",
+              "world/artifacts/art_03",
+              "world/artifacts/art_16",
+              "world/artifacts/art_20",
+              "world/artifacts/art_21",
+              "world/resources/res_12"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-4-5",
+        "kind": "cross",
+        "stageSha256": "4ee57e7e4efa5b8ca6598e06c29ba65e7bd3a55323b921ffd23fd80de03fcef9",
+        "inputSha256": "327af3e075874080c5ae6981d016904ffa2de5c3e5cd17fc82573a3eb6c36d50",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16",
+              "world/resources/res_17",
+              "world/resources/res_18",
+              "world/resources/res_19"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_15",
+              "world/techniques/tech_16",
+              "world/resources/res_17",
+              "world/resources/res_18",
+              "world/resources/res_19"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16"
+            ]
+          }
+        ]
+      }
+    ],
+    "failures": [
+      {
+        "stageId": "cross-3-5",
+        "failureSha256": "572adb1d5b9f2be129dad2d09cc2539729fa38f08fe1cef1ffb8745550c97251"
+      }
+    ],
+    "modelCalls": 0
+  },
+  "originalStagesCompleted": 15,
+  "pendingSourceQuestions": 37,
+  "explicitRawResolutions": [
+    "batch-3/tiers",
+    "batch-3/costs",
+    "batch-3/counters"
+  ],
+  "followups": [
+    {
+      "stageId": "followup-batch-1/tiers",
+      "originalCheckId": "batch-1/tiers",
+      "criterion": "tiers",
+      "requestedSourceIds": [
+        "plan/chapters/1",
+        "plan/chapters/2",
+        "plan/chapters/3",
+        "plan/chapters/4",
+        "plan/chapters/5",
+        "plan/chapters/6",
+        "plan/chapters/7",
+        "plan/chapters/8",
+        "plan/chapters/9",
+        "plan/chapters/10",
+        "plan/chapters/11",
+        "plan/chapters/12",
+        "plan/chapters/13",
+        "plan/chapters/14",
+        "plan/chapters/15",
+        "plan/chapters/16",
+        "plan/chapters/17",
+        "plan/chapters/18",
+        "plan/chapters/19",
+        "plan/chapters/20",
+        "plan/chapters/21",
+        "plan/chapters/22",
+        "plan/chapters/23",
+        "plan/chapters/24",
+        "plan/chapters/25",
+        "plan/chapters/26",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/29",
+        "plan/chapters/30",
+        "plan/chapters/31",
+        "plan/chapters/32",
+        "plan/chapters/33",
+        "plan/chapters/34",
+        "plan/chapters/35",
+        "plan/chapters/36",
+        "plan/chapters/37",
+        "plan/chapters/38",
+        "plan/chapters/39",
+        "plan/chapters/40",
+        "plan/chapters/41",
+        "plan/chapters/42",
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_06",
+        "plan/overview"
+      ],
+      "completeRequiredSources": 60,
+      "sourceCharacters": 218943,
+      "metadataCharacters": 26133,
+      "inputSha256": "db8f6ec399352a5db7ed4a6a27997577ed3bd4a91fbce447ee08b7951618e8cb"
+    },
+    {
+      "stageId": "followup-batch-1/costs",
+      "originalCheckId": "batch-1/costs",
+      "criterion": "costs",
+      "requestedSourceIds": [
+        "plan/chapters/1",
+        "plan/chapters/2",
+        "plan/chapters/3",
+        "plan/chapters/4",
+        "plan/chapters/5",
+        "plan/chapters/6",
+        "plan/chapters/7",
+        "plan/chapters/8",
+        "plan/chapters/9",
+        "plan/chapters/10",
+        "plan/chapters/11",
+        "plan/chapters/12",
+        "plan/chapters/13",
+        "plan/chapters/14",
+        "plan/chapters/15",
+        "plan/chapters/16",
+        "plan/chapters/17",
+        "plan/chapters/18",
+        "plan/chapters/19",
+        "plan/chapters/20",
+        "plan/chapters/21",
+        "plan/chapters/22",
+        "plan/chapters/23",
+        "plan/chapters/24",
+        "plan/chapters/25",
+        "plan/chapters/26",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/29",
+        "plan/chapters/30",
+        "plan/chapters/31",
+        "plan/chapters/32",
+        "plan/chapters/33",
+        "plan/chapters/34",
+        "plan/chapters/35",
+        "plan/chapters/36",
+        "plan/chapters/37",
+        "plan/chapters/38",
+        "plan/chapters/39",
+        "plan/chapters/40",
+        "plan/chapters/41",
+        "plan/chapters/42",
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_02",
+        "world/axioms/ax_04",
+        "world/axioms/ax_09",
+        "world/resources/res_09",
+        "plan/overview"
+      ],
+      "completeRequiredSources": 63,
+      "sourceCharacters": 218950,
+      "metadataCharacters": 26175,
+      "inputSha256": "796de819d987df89c0e83af50ed9152bf791f5ab35c858759813ad59bd878cc8"
+    },
+    {
+      "stageId": "followup-batch-1/counters",
+      "originalCheckId": "batch-1/counters",
+      "criterion": "counters",
+      "requestedSourceIds": [
+        "plan/chapters/1",
+        "plan/chapters/2",
+        "plan/chapters/3",
+        "plan/chapters/4",
+        "plan/chapters/5",
+        "plan/chapters/6",
+        "plan/chapters/7",
+        "plan/chapters/8",
+        "plan/chapters/9",
+        "plan/chapters/10",
+        "plan/chapters/11",
+        "plan/chapters/12",
+        "plan/chapters/13",
+        "plan/chapters/14",
+        "plan/chapters/15",
+        "plan/chapters/16",
+        "plan/chapters/17",
+        "plan/chapters/18",
+        "plan/chapters/19",
+        "plan/chapters/20",
+        "plan/chapters/21",
+        "plan/chapters/22",
+        "plan/chapters/23",
+        "plan/chapters/24",
+        "plan/chapters/25",
+        "plan/chapters/26",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/29",
+        "plan/chapters/30",
+        "plan/chapters/31",
+        "plan/chapters/32",
+        "plan/chapters/33",
+        "plan/chapters/34",
+        "plan/chapters/35",
+        "plan/chapters/36",
+        "plan/chapters/37",
+        "plan/chapters/38",
+        "plan/chapters/39",
+        "plan/chapters/40",
+        "plan/chapters/41",
+        "plan/chapters/42",
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/tierLadders/ladder_realm",
+        "world/techniques/tech_04",
+        "world/axioms/ax_12",
+        "plan/overview"
+      ],
+      "completeRequiredSources": 62,
+      "sourceCharacters": 219032,
+      "metadataCharacters": 26202,
+      "inputSha256": "cc91df8f3d362947896808921ed96a892d727aee8def58d2d24de923e447decc"
+    },
+    {
+      "stageId": "followup-batch-2/tiers",
+      "originalCheckId": "batch-2/tiers",
+      "criterion": "tiers",
+      "requestedSourceIds": [
+        "world/techniques/tech_13",
+        "world/techniques/tech_15",
+        "world/techniques/tech_16",
+        "story/characters/char_01",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/volumes/vol_03"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_06",
+        "world/tierLadders/ladder_realm",
+        "world/realms/realm_06",
+        "world/realms/realm_07",
+        "world/realms/realm_08",
+        "world/axioms/ax_12",
+        "story/arcBeats/beat_v23_9",
+        "story/volumes/vol_03"
+      ],
+      "completeRequiredSources": 16,
+      "sourceCharacters": 164088,
+      "metadataCharacters": 25675,
+      "inputSha256": "81054a09f1b44a0c3d02d6c4c4d29596dba5a8c57f080cc5c012195900c144a9"
+    },
+    {
+      "stageId": "followup-batch-2/costs",
+      "originalCheckId": "batch-2/costs",
+      "criterion": "costs",
+      "requestedSourceIds": [
+        "world/resources/res_17",
+        "world/resources/res_18",
+        "world/resources/res_19",
+        "world/techniques/tech_15",
+        "world/techniques/tech_16",
+        "story/characters/char_01",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/volumes/vol_03"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_02",
+        "world/axioms/ax_04",
+        "world/axioms/ax_05",
+        "world/axioms/ax_09",
+        "world/axioms/ax_11",
+        "world/axioms/ax_12",
+        "story/arcBeats/beat_v23_9",
+        "story/arcs/arc_04"
+      ],
+      "completeRequiredSources": 18,
+      "sourceCharacters": 169092,
+      "metadataCharacters": 25778,
+      "inputSha256": "4dcf947e951ab97d3f387a497eb78bcf5f8e9c7419251ffb74036f0535ea224c"
+    },
+    {
+      "stageId": "followup-batch-2/counters",
+      "originalCheckId": "batch-2/counters",
+      "criterion": "counters",
+      "requestedSourceIds": [
+        "world/techniques/tech_13",
+        "world/techniques/tech_15",
+        "world/techniques/tech_16",
+        "story/characters/char_01",
+        "story/characters/char_10",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff",
+        "plan/volumes/vol_03"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_08",
+        "world/axioms/ax_12",
+        "world/axioms/ax_13",
+        "world/techniques/tech_04",
+        "world/techniques/tech_11",
+        "world/realms/realm_06",
+        "world/realms/realm_07",
+        "world/realms/realm_08",
+        "story/volumes/vol_03"
+      ],
+      "completeRequiredSources": 18,
+      "sourceCharacters": 160097,
+      "metadataCharacters": 25694,
+      "inputSha256": "5aca088ec7dbe45c5bd2ce76c40b65aec4b46652567ec36cb50089a040307da1"
+    },
+    {
+      "stageId": "followup-batch-4/tiers",
+      "originalCheckId": "batch-4/tiers",
+      "criterion": "tiers",
+      "requestedSourceIds": [
+        "story/characters/char_10",
+        "plan/chapters/18",
+        "plan/chapters/21",
+        "plan/chapters/23",
+        "world/techniques/tech_13",
+        "world/techniques/tech_15",
+        "world/techniques/tech_16"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_06",
+        "world/realms/realm_06",
+        "world/realms/realm_07",
+        "world/realms/realm_08",
+        "plan/chapters/25"
+      ],
+      "completeRequiredSources": 12,
+      "sourceCharacters": 160806,
+      "metadataCharacters": 24713,
+      "inputSha256": "f0f22a5c2062074d0d87ec29740651306e32627c18914f5887d4180e403d869f"
+    },
+    {
+      "stageId": "followup-batch-4/costs",
+      "originalCheckId": "batch-4/costs",
+      "criterion": "costs",
+      "requestedSourceIds": [
+        "story/characters/char_10",
+        "plan/chapters/18",
+        "plan/chapters/21",
+        "plan/chapters/23",
+        "world/techniques/tech_13",
+        "world/techniques/tech_15",
+        "world/techniques/tech_16"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_02",
+        "world/axioms/ax_04",
+        "world/axioms/ax_05",
+        "world/axioms/ax_07",
+        "world/axioms/ax_11",
+        "world/realms/realm_08",
+        "plan/chapters/25",
+        "plan/chapters/27",
+        "plan/chapters/28"
+      ],
+      "completeRequiredSources": 16,
+      "sourceCharacters": 161449,
+      "metadataCharacters": 24841,
+      "inputSha256": "22de94e33f43a5486825bfd95774bc20c9922b7849e360a7d5b82822c8d2a1ea"
+    },
+    {
+      "stageId": "followup-batch-4/counters",
+      "originalCheckId": "batch-4/counters",
+      "criterion": "counters",
+      "requestedSourceIds": [
+        "story/characters/char_10",
+        "plan/chapters/18",
+        "plan/chapters/21",
+        "plan/chapters/23",
+        "world/techniques/tech_13",
+        "world/techniques/tech_15",
+        "world/techniques/tech_16"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_08",
+        "world/axioms/ax_12",
+        "world/axioms/ax_13",
+        "world/techniques/tech_04",
+        "world/techniques/tech_06",
+        "world/techniques/tech_11",
+        "world/realms/realm_06",
+        "world/realms/realm_07",
+        "world/realms/realm_08",
+        "plan/chapters/25"
+      ],
+      "completeRequiredSources": 17,
+      "sourceCharacters": 160830,
+      "metadataCharacters": 24845,
+      "inputSha256": "0d4f1aa3b8a09ec8050d08ab93fb097cb43a057063c9652bbb0f666fed452760"
+    },
+    {
+      "stageId": "followup-batch-5/tiers",
+      "originalCheckId": "batch-5/tiers",
+      "criterion": "tiers",
+      "requestedSourceIds": [
+        "world/techniques/tech_13",
+        "world/techniques/tech_15",
+        "world/techniques/tech_16",
+        "world/resources/res_17",
+        "world/resources/res_18",
+        "world/resources/res_19",
+        "story/chapterPlans/chapter-plan-25",
+        "plan/chapters/25"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_06",
+        "world/axioms/ax_12",
+        "world/axioms/ax_13",
+        "world/realms/realm_06",
+        "world/realms/realm_07",
+        "world/realms/realm_08",
+        "world/axioms/ax_11",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_vol1_climax"
+      ],
+      "completeRequiredSources": 17,
+      "sourceCharacters": 134814,
+      "metadataCharacters": 24567,
+      "inputSha256": "b00cbf51e6a62c923308ae307e4499ccdeb4112eb04be008e4e381c40277d9ad"
+    },
+    {
+      "stageId": "followup-batch-5/costs",
+      "originalCheckId": "batch-5/costs",
+      "criterion": "costs",
+      "requestedSourceIds": [
+        "world/techniques/tech_15",
+        "world/techniques/tech_16",
+        "world/resources/res_17",
+        "world/resources/res_18",
+        "world/resources/res_19",
+        "story/chapterPlans/chapter-plan-25",
+        "plan/chapters/25"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_02",
+        "world/axioms/ax_04",
+        "world/axioms/ax_05",
+        "world/axioms/ax_09",
+        "world/axioms/ax_10",
+        "world/axioms/ax_11",
+        "world/techniques/tech_06",
+        "plan/chapters/48",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_advancement"
+      ],
+      "completeRequiredSources": 17,
+      "sourceCharacters": 137382,
+      "metadataCharacters": 24743,
+      "inputSha256": "7f7e066e9a9d36b7609123cfc7cc73dcb62a9a84c17a501c3b10b37598820600"
+    },
+    {
+      "stageId": "followup-batch-5/counters",
+      "originalCheckId": "batch-5/counters",
+      "criterion": "counters",
+      "requestedSourceIds": [
+        "world/techniques/tech_13",
+        "world/techniques/tech_15",
+        "world/techniques/tech_16",
+        "story/chapterPlans/chapter-plan-25",
+        "plan/chapters/25"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_12",
+        "world/axioms/ax_13",
+        "world/techniques/tech_04",
+        "world/realms/realm_06",
+        "world/realms/realm_07",
+        "world/realms/realm_08",
+        "world/techniques/tech_06",
+        "world/techniques/tech_08",
+        "world/techniques/tech_11",
+        "plan/chapters/50"
+      ],
+      "completeRequiredSources": 15,
+      "sourceCharacters": 131108,
+      "metadataCharacters": 24573,
+      "inputSha256": "8bc5ca92bedbede5a01e058231367f97ee47cf4f8a537870526addeb1500370e"
+    },
+    {
+      "stageId": "followup-cross-1-2/counters",
+      "originalCheckId": "cross-1-2/counters",
+      "criterion": "counters",
+      "requestedSourceIds": [
+        "plan/chapters/25",
+        "story/chapterPlans/chapter-plan-25"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/techniques/tech_05",
+        "world/techniques/tech_06",
+        "story/characters/char_04",
+        "story/characters/char_10",
+        "story/arcBeats/v1-gu-counter"
+      ],
+      "completeRequiredSources": 7,
+      "sourceCharacters": 228860,
+      "metadataCharacters": 26952,
+      "inputSha256": "12062f586fe258646a2d01676cc508e522d2ed70d4a55cc5811300aed3f85db4"
+    },
+    {
+      "stageId": "followup-cross-1-4/tiers",
+      "originalCheckId": "cross-1-4/tiers",
+      "criterion": "tiers",
+      "requestedSourceIds": [
+        "plan/chapters/18",
+        "plan/chapters/19",
+        "plan/chapters/20",
+        "plan/chapters/21",
+        "plan/chapters/22",
+        "plan/chapters/23",
+        "plan/chapters/24"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_06",
+        "world/axioms/ax_08",
+        "world/techniques/tech_04",
+        "plan/chapters/25",
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "story/characters/char_04",
+        "story/characters/char_10"
+      ],
+      "completeRequiredSources": 15,
+      "sourceCharacters": 237048,
+      "metadataCharacters": 26366,
+      "inputSha256": "7f5044020d1a7a83a24ec0b9c8413cfcb3ce912643b14b737c51af00fe47b3cf"
+    },
+    {
+      "stageId": "followup-cross-1-4/costs",
+      "originalCheckId": "cross-1-4/costs",
+      "criterion": "costs",
+      "requestedSourceIds": [
+        "plan/chapters/18",
+        "plan/chapters/19",
+        "plan/chapters/20",
+        "plan/chapters/21",
+        "plan/chapters/22",
+        "plan/chapters/23",
+        "plan/chapters/24"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_05",
+        "world/axioms/ax_09",
+        "world/axioms/ax_10",
+        "world/resources/res_09",
+        "plan/chapters/25",
+        "plan/chapters/26",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/30",
+        "plan/chapters/32",
+        "plan/chapters/42",
+        "plan/chapters/44"
+      ],
+      "completeRequiredSources": 19,
+      "sourceCharacters": 237141,
+      "metadataCharacters": 26428,
+      "inputSha256": "6e6d8b5515142f1da1b76cff7507fe0c6def4e587e7eaf225e42f30023346006"
+    },
+    {
+      "stageId": "followup-cross-1-4/counters",
+      "originalCheckId": "cross-1-4/counters",
+      "criterion": "counters",
+      "requestedSourceIds": [
+        "plan/chapters/18",
+        "plan/chapters/19",
+        "plan/chapters/20",
+        "plan/chapters/21",
+        "plan/chapters/22",
+        "plan/chapters/23",
+        "plan/chapters/24"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_08",
+        "world/techniques/tech_03",
+        "world/techniques/tech_04",
+        "world/techniques/tech_06",
+        "world/axioms/ax_13",
+        "plan/chapters/25",
+        "plan/chapters/43",
+        "plan/chapters/44"
+      ],
+      "completeRequiredSources": 15,
+      "sourceCharacters": 237118,
+      "metadataCharacters": 26375,
+      "inputSha256": "02d936a08b9f38808a9039a60ced84a4017494caa9f85ad49ab327e5952ce6d8"
+    },
+    {
+      "stageId": "followup-cross-2-3/tiers",
+      "originalCheckId": "cross-2-3/tiers",
+      "criterion": "tiers",
+      "requestedSourceIds": [
+        "world/techniques/tech_13",
+        "world/techniques/tech_15",
+        "world/techniques/tech_16",
+        "world/artifacts/art_03",
+        "plan/chapters/25",
+        "plan/chapters/44",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_06",
+        "world/realms/realm_06",
+        "world/realms/realm_07",
+        "world/realms/realm_08",
+        "world/techniques/tech_04",
+        "plan/chapters/18",
+        "plan/chapters/20",
+        "plan/chapters/21"
+      ],
+      "completeRequiredSources": 18,
+      "sourceCharacters": 97972,
+      "metadataCharacters": 24501,
+      "inputSha256": "aae0f824d4a8fe111b6a95c3de7de8ff948f7ff1714ad620620f70312b35f06e"
+    },
+    {
+      "stageId": "followup-cross-2-3/costs",
+      "originalCheckId": "cross-2-3/costs",
+      "criterion": "costs",
+      "requestedSourceIds": [
+        "world/techniques/tech_13",
+        "world/techniques/tech_15",
+        "world/techniques/tech_16",
+        "world/artifacts/art_03",
+        "plan/chapters/25",
+        "plan/chapters/44",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_02",
+        "world/axioms/ax_04",
+        "world/axioms/ax_05",
+        "world/axioms/ax_07",
+        "world/axioms/ax_11",
+        "plan/chapters/18",
+        "plan/chapters/20",
+        "plan/chapters/21",
+        "plan/chapters/23"
+      ],
+      "completeRequiredSources": 19,
+      "sourceCharacters": 100921,
+      "metadataCharacters": 24523,
+      "inputSha256": "55f1b60f1754ab2cd7be4d519198df1dad4fe65ae19a29c5b39d974dfb1b127d"
+    },
+    {
+      "stageId": "followup-cross-2-3/counters",
+      "originalCheckId": "cross-2-3/counters",
+      "criterion": "counters",
+      "requestedSourceIds": [
+        "world/techniques/tech_13",
+        "world/techniques/tech_15",
+        "world/techniques/tech_16",
+        "world/artifacts/art_03",
+        "plan/chapters/25",
+        "plan/chapters/44",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_08",
+        "world/axioms/ax_12",
+        "world/axioms/ax_13",
+        "world/techniques/tech_04",
+        "world/techniques/tech_05",
+        "world/techniques/tech_08",
+        "world/techniques/tech_11",
+        "plan/chapters/20",
+        "plan/chapters/23"
+      ],
+      "completeRequiredSources": 19,
+      "sourceCharacters": 96629,
+      "metadataCharacters": 24409,
+      "inputSha256": "edc01580167e810bd6123f638e9be7f44201680da5da6933bdd89f6529b35d6c"
+    },
+    {
+      "stageId": "followup-cross-2-4/tiers",
+      "originalCheckId": "cross-2-4/tiers",
+      "criterion": "tiers",
+      "requestedSourceIds": [
+        "plan/chapters/18",
+        "plan/chapters/23",
+        "world/techniques/tech_13",
+        "world/techniques/tech_15",
+        "world/techniques/tech_16"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_06",
+        "world/axioms/ax_08",
+        "world/axioms/ax_12",
+        "world/axioms/ax_13",
+        "world/realms/realm_06",
+        "world/realms/realm_07",
+        "world/realms/realm_08",
+        "plan/chapters/25"
+      ],
+      "completeRequiredSources": 13,
+      "sourceCharacters": 73737,
+      "metadataCharacters": 23971,
+      "inputSha256": "f5e60b0d267c61c96fbb284ed8b49b2821451403d58c98bcf968109e9f4624d2"
+    },
+    {
+      "stageId": "followup-cross-2-4/costs",
+      "originalCheckId": "cross-2-4/costs",
+      "criterion": "costs",
+      "requestedSourceIds": [
+        "plan/chapters/21",
+        "world/techniques/tech_15",
+        "world/techniques/tech_16"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_05",
+        "world/axioms/ax_07",
+        "world/axioms/ax_09",
+        "world/axioms/ax_11",
+        "plan/chapters/25",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/32"
+      ],
+      "completeRequiredSources": 11,
+      "sourceCharacters": 78192,
+      "metadataCharacters": 24043,
+      "inputSha256": "71af82ef0b898bd351ec30c76c1de3d4c2ed55e799d767a5cf98a071a0c1d635"
+    },
+    {
+      "stageId": "followup-cross-2-4/counters",
+      "originalCheckId": "cross-2-4/counters",
+      "criterion": "counters",
+      "requestedSourceIds": [
+        "plan/chapters/18",
+        "plan/chapters/23",
+        "world/techniques/tech_13",
+        "world/techniques/tech_15",
+        "world/techniques/tech_16"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_08",
+        "world/techniques/tech_04",
+        "world/techniques/tech_06",
+        "world/techniques/tech_08",
+        "world/techniques/tech_11",
+        "plan/chapters/25",
+        "plan/chapters/44"
+      ],
+      "completeRequiredSources": 12,
+      "sourceCharacters": 78015,
+      "metadataCharacters": 24071,
+      "inputSha256": "57d70559683838e0cc8f60420c091718f1577fda73bc251790b1aaf68c5c8ff7"
+    },
+    {
+      "stageId": "followup-cross-2-5/tiers",
+      "originalCheckId": "cross-2-5/tiers",
+      "criterion": "tiers",
+      "requestedSourceIds": [
+        "world/techniques/tech_13",
+        "world/techniques/tech_15",
+        "world/techniques/tech_16"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_06",
+        "world/tierLadders/ladder_realm",
+        "world/realms/realm_06",
+        "world/realms/realm_07",
+        "world/realms/realm_08"
+      ],
+      "completeRequiredSources": 8,
+      "sourceCharacters": 208101,
+      "metadataCharacters": 25927,
+      "inputSha256": "81a930c629c08e40c86d0fc4b88e456f5e6e4568b3cb4315f892ac3412085328"
+    },
+    {
+      "stageId": "followup-cross-2-5/costs",
+      "originalCheckId": "cross-2-5/costs",
+      "criterion": "costs",
+      "requestedSourceIds": [
+        "world/techniques/tech_13",
+        "world/techniques/tech_15",
+        "world/techniques/tech_16",
+        "world/resources/res_17",
+        "world/resources/res_18",
+        "world/resources/res_19"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_04",
+        "world/axioms/ax_07",
+        "world/axioms/ax_09",
+        "world/axioms/ax_10",
+        "world/axioms/ax_11",
+        "world/realms/realm_06",
+        "world/realms/realm_07",
+        "world/realms/realm_08"
+      ],
+      "completeRequiredSources": 14,
+      "sourceCharacters": 213132,
+      "metadataCharacters": 26105,
+      "inputSha256": "af89a085ba8d1cd7669751ebfdbe5384487ff80d9e2fa918802e40d78ada9d19"
+    },
+    {
+      "stageId": "followup-cross-2-5/counters",
+      "originalCheckId": "cross-2-5/counters",
+      "criterion": "counters",
+      "requestedSourceIds": [
+        "world/techniques/tech_13",
+        "world/techniques/tech_15",
+        "world/techniques/tech_16"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_12",
+        "world/techniques/tech_04",
+        "world/realms/realm_06",
+        "world/realms/realm_07",
+        "world/realms/realm_08"
+      ],
+      "completeRequiredSources": 8,
+      "sourceCharacters": 208140,
+      "metadataCharacters": 25930,
+      "inputSha256": "c5162ba0c6a1578420d54bc40323b1a78eb831779df237784db6e71d6de4f24f"
+    },
+    {
+      "stageId": "followup-cross-3-4/tiers",
+      "originalCheckId": "cross-3-4/tiers",
+      "criterion": "tiers",
+      "requestedSourceIds": [
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "originalEvidenceSourceIds": [
+        "plan/overview",
+        "plan/chapters/25"
+      ],
+      "completeRequiredSources": 15,
+      "sourceCharacters": 108476,
+      "metadataCharacters": 24252,
+      "inputSha256": "c383548a9b4769dbc96d34caa7037da6324e4fe84600be4a9dea6d89a1f687c2"
+    },
+    {
+      "stageId": "followup-cross-3-4/costs",
+      "originalCheckId": "cross-3-4/costs",
+      "criterion": "costs",
+      "requestedSourceIds": [
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "originalEvidenceSourceIds": [
+        "plan/overview",
+        "plan/chapters/25",
+        "plan/chapters/27",
+        "plan/chapters/28"
+      ],
+      "completeRequiredSources": 17,
+      "sourceCharacters": 115699,
+      "metadataCharacters": 24461,
+      "inputSha256": "87420fdba1aced4d3a8d688766157d097ca1d5e5d31f287025122ccea5d69456"
+    },
+    {
+      "stageId": "followup-cross-3-4/counters",
+      "originalCheckId": "cross-3-4/counters",
+      "criterion": "counters",
+      "requestedSourceIds": [
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "originalEvidenceSourceIds": [
+        "plan/overview",
+        "plan/chapters/25",
+        "plan/chapters/44"
+      ],
+      "completeRequiredSources": 16,
+      "sourceCharacters": 111736,
+      "metadataCharacters": 24298,
+      "inputSha256": "64ba45dd88b97f923dd974af92ff5ccdefbafb38009a8543a0a0fd24275ee799"
+    },
+    {
+      "stageId": "followup-cross-3-5/tiers",
+      "originalCheckId": "cross-3-5/tiers",
+      "criterion": "tiers",
+      "requestedSourceIds": [
+        "world/techniques/tech_10",
+        "world/techniques/tech_13",
+        "world/techniques/tech_15",
+        "world/techniques/tech_16",
+        "world/artifacts/art_03",
+        "world/artifacts/art_16",
+        "world/artifacts/art_20",
+        "world/artifacts/art_21",
+        "world/resources/res_01",
+        "world/resources/res_12",
+        "world/resources/res_17",
+        "world/resources/res_18",
+        "world/resources/res_19"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_06",
+        "world/realms/realm_06",
+        "world/realms/realm_07",
+        "world/realms/realm_08",
+        "plan/chapters/18",
+        "plan/chapters/10",
+        "plan/milestones/ms_v2_boundary"
+      ],
+      "completeRequiredSources": 20,
+      "sourceCharacters": 236593,
+      "metadataCharacters": 26435,
+      "inputSha256": "65d91b8ae091378287ad071e8615fd9fe0820a1ce165a2fc4b911f932f79260b"
+    },
+    {
+      "stageId": "followup-cross-3-5/costs",
+      "originalCheckId": "cross-3-5/costs",
+      "criterion": "costs",
+      "requestedSourceIds": [
+        "world/artifacts/art_03",
+        "world/artifacts/art_16",
+        "world/artifacts/art_20",
+        "world/artifacts/art_21",
+        "world/resources/res_01",
+        "world/resources/res_12",
+        "world/resources/res_17",
+        "world/resources/res_18",
+        "world/resources/res_19",
+        "world/techniques/tech_15",
+        "world/techniques/tech_16"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_05",
+        "world/axioms/ax_09",
+        "world/axioms/ax_11",
+        "world/techniques/tech_07",
+        "plan/chapters/18",
+        "plan/chapters/20",
+        "plan/chapters/21",
+        "plan/milestones/ms_v2_boundary"
+      ],
+      "completeRequiredSources": 19,
+      "sourceCharacters": 234227,
+      "metadataCharacters": 26314,
+      "inputSha256": "12199531f40249c315e0e281088bdb3b3d3c948b2c9ff0b8c959b366f7aa9d5b"
+    },
+    {
+      "stageId": "followup-cross-3-5/counters",
+      "originalCheckId": "cross-3-5/counters",
+      "criterion": "counters",
+      "requestedSourceIds": [
+        "world/techniques/tech_13",
+        "world/techniques/tech_15",
+        "world/techniques/tech_16",
+        "world/artifacts/art_03",
+        "world/artifacts/art_16",
+        "world/artifacts/art_20",
+        "world/artifacts/art_21",
+        "world/resources/res_12"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_08",
+        "world/techniques/tech_04",
+        "world/axioms/ax_12",
+        "world/axioms/ax_13",
+        "plan/chapters/10",
+        "plan/chapters/11",
+        "world/realms/realm_06",
+        "world/realms/realm_07",
+        "world/realms/realm_08",
+        "plan/milestones/ms_v2_boundary"
+      ],
+      "completeRequiredSources": 18,
+      "sourceCharacters": 227152,
+      "metadataCharacters": 25859,
+      "inputSha256": "8bee5437cf9ff6f870a77ff2a854836f0c3c5211b74a47d97fd9307a2de7abbc"
+    },
+    {
+      "stageId": "followup-cross-4-5/tiers",
+      "originalCheckId": "cross-4-5/tiers",
+      "criterion": "tiers",
+      "requestedSourceIds": [
+        "world/techniques/tech_13",
+        "world/techniques/tech_15",
+        "world/techniques/tech_16",
+        "world/resources/res_17",
+        "world/resources/res_18",
+        "world/resources/res_19"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_06",
+        "world/axioms/ax_08",
+        "world/axioms/ax_12",
+        "world/axioms/ax_13",
+        "world/realms/realm_06",
+        "world/realms/realm_07",
+        "world/realms/realm_08",
+        "world/axioms/ax_11",
+        "plan/milestones/ms_v3_advancement"
+      ],
+      "completeRequiredSources": 15,
+      "sourceCharacters": 212985,
+      "metadataCharacters": 25151,
+      "inputSha256": "12a474117b0a1fff14ffd107629497366d5ac55fecd65082b5742fe90e5f586e"
+    },
+    {
+      "stageId": "followup-cross-4-5/costs",
+      "originalCheckId": "cross-4-5/costs",
+      "criterion": "costs",
+      "requestedSourceIds": [
+        "world/techniques/tech_15",
+        "world/techniques/tech_16",
+        "world/resources/res_17",
+        "world/resources/res_18",
+        "world/resources/res_19"
+      ],
+      "originalEvidenceSourceIds": [
+        "plan/chapters/25",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/30",
+        "plan/chapters/32",
+        "plan/chapters/42",
+        "plan/chapters/44",
+        "plan/chapters/48",
+        "world/axioms/ax_11"
+      ],
+      "completeRequiredSources": 14,
+      "sourceCharacters": 219019,
+      "metadataCharacters": 25516,
+      "inputSha256": "bfb54b3b371fa6c9f853777a73e9a3d31e0e75d665553b3674feea18705d8f22"
+    },
+    {
+      "stageId": "followup-cross-4-5/counters",
+      "originalCheckId": "cross-4-5/counters",
+      "criterion": "counters",
+      "requestedSourceIds": [
+        "world/techniques/tech_13",
+        "world/techniques/tech_15",
+        "world/techniques/tech_16"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_08",
+        "world/techniques/tech_04",
+        "world/axioms/ax_12",
+        "world/techniques/tech_06",
+        "world/techniques/tech_11",
+        "story/chapterPlans/chapter-plan-25",
+        "plan/chapters/44",
+        "world/realms/realm_06",
+        "world/realms/realm_07",
+        "world/realms/realm_08"
+      ],
+      "completeRequiredSources": 13,
+      "sourceCharacters": 209304,
+      "metadataCharacters": 25179,
+      "inputSha256": "aae51932a749ef5c2ec2471bd73021b0cf5547596fcdc28b0beb7687fdb6d213"
+    }
+  ],
+  "totalScheduledStages": 97,
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "questionsResolvedByThisAudit": 0,
+  "formalAcceptance": false,
+  "limitation": "Offline replay and complete-source/request-capacity checks only. Followup responses, dynamic report synthesis, semantic quality and all four area acceptance remain unproven."
+}
