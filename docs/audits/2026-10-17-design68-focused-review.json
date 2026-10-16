@@ -1,0 +1,2756 @@
+{
+  "observedAt": "2026-10-16T16:05:29.342Z",
+  "candidatePath": "data/design-candidates/design68-combined-draft-v16.json",
+  "candidateSha256": "0a8d5884ae8def3e6fedf69d276b047b9ca6499f2e7d3f63841d0e52c941a51c",
+  "savedInputsPath": "/private/var/folders/tr/8vt224595gdfg6w6kh6tkpt00000gn/T/novel-design68-v16-save-q2nasujd/fresh-review-inputs.json",
+  "savedInputsSha256": "b124556fdf6eab979ca026d85008fe4f7062145fd3bc50997985cf7999f683ad",
+  "checkpointSha256": "6e3a4c6e9b2835c93f438bf9d25eb1c53e819bb3eb63408bb0111033bd0dd185",
+  "runtimePath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design68-focused-review/runtime",
+  "sourceHashes": {
+    "apps/api/README.md": "759a64515193fd9672bc78c18674dcc42e94d99e9c3b5007951f5287d6219867",
+    "apps/api/package.json": "2b1963f802f50df50d3dbeeba067f66c80b60659fb490a4fdf187ac2a07e8f26",
+    "apps/api/src/hot-topics.ts": "f4551d06ddf46e03735fd1a61fc09cf733d71b76e65c01195b09c6d21a0bad83",
+    "apps/api/src/model-settings.ts": "8378d03410b1a1fec1fd0c7eab900f6d9d96bc9190b2fe2bc7d8cea1a9063ed9",
+    "apps/api/src/server.ts": "441a1bfc5f81b914206881c30363d96e4b067c8a58a8d451477f637fe2013fc2",
+    "apps/api/src/settings-routes.ts": "9dbb0158a0dcf929afccfa8c625e429371e3d647bdc02fb938ec4a40aa68c4a2",
+    "apps/api/test/api.test.ts": "c78adaa96c77dd4095023298c1a2b90e470309d15e2917c272e90fcd9a642ef7",
+    "apps/api/test/chapter-review-source.test.ts": "081066b5585aa0a8d74d4aaf27468d1a89d8562ad70024e8b269f999d62031b9",
+    "apps/api/test/design-candidate.test.ts": "91708034bc4fe35b370eb5370d836463bacc51a28bfef59cea5165ac584dd0f2",
+    "apps/api/test/hot-topics.test.ts": "e43945c499fd9eb817463086d1cb37ab00e0b6466bae4e61eabcb08e5f3c6baf",
+    "apps/api/test/manuscript-export.test.ts": "b1f68e1901411199e4ad47c4f40305106f4353af1427ad3dbdc5feb9be3b678d",
+    "apps/api/test/relationship-provenance.test.ts": "53d5ee7b0c3d6322abc38049f5997d10774a4fadef04608ec9ab109749cfb471",
+    "apps/web/index.html": "51e33d1d36feb456277736c70829b7e43a97f3fd4f784db5ead31a419e497bdf",
+    "apps/web/package.json": "7847217b1ec3c10cd8b128fb883da5b7f3936ee943caa268a81fd72db08a3fb3",
+    "apps/web/src/App.tsx": "0c8ee125df4706249406f837a258debce15527a1aae1577a94896379d55b7190",
+    "apps/web/src/api.ts": "baf1575ba30854efc7829ce204c58bc92d54946f1bb59cdae1f5dfcccab61f2e",
+    "apps/web/src/chapter-adoption.ts": "fc0203fff3c6cd1e70c76379c7c6df64569a2221e988e0464ea007f1edb130cb",
+    "apps/web/src/covenant.ts": "6b4c277e8c775afdb886dbd463cb4fd495dc509ed7c6100220c6f60120ecf641",
+    "apps/web/src/design-review-coverage.ts": "6ee2ccc084f32f192be9a70aed6fb704c08e1061a037abb2424b5bc0dac90420",
+    "apps/web/src/design-revision.ts": "3bc308a6c0d2eea108a56053f1f1ce9e114947ddf0542596b3089b0a5389bff4",
+    "apps/web/src/genres.ts": "276ca9a54b6d492960ab80de790f0db419cb93cf98d8ba61555840ef5cbdfcd3",
+    "apps/web/src/labels.ts": "da19f2df42d44dc9c9d0668a6c6b0fe15a7e3e12bb8bbf2f2db59033203b188f",
+    "apps/web/src/main.tsx": "fe62b21169eee8f870b7ef27f8f208805356dc11bffdac0fc5df01d92f7dffe5",
+    "apps/web/src/pages/AdoptedChapterReader.tsx": "54e64ba599ac1533a09ea2c237aaa5e58f9a50fb64bd8ad5d830954a241c9e75",
+    "apps/web/src/pages/BookSettingsPage.tsx": "4760c4bd315990604c9f55364b1e4e9dd3d7ba0b621eadfed1e9e346e2474bdd",
+    "apps/web/src/pages/BookshelfPage.tsx": "1c125bdbff2cad72d2feeddc844f37771b2ac011a62589b90ec4436c1a38caa5",
+    "apps/web/src/pages/ChaptersPage.tsx": "18886918cfcbc9e93620da96e2e98165d4483fbd772cef34d9258efbf6718446",
+    "apps/web/src/pages/CovenantForm.tsx": "fe4920a365fc337b3b1fbf16bdd1393162fabd88765af9c86ff9c0ba58385a46",
+    "apps/web/src/pages/CovenantPage.tsx": "d012b1a4da65f56a59850220be6acdedee8d157fba977bc117676953415fe558",
+    "apps/web/src/pages/CreateWorkPage.tsx": "051283667bc74a9cfc6aa3f21dbc408d97773d67710fce0c67dd8bbb33048f14",
+    "apps/web/src/pages/DesignAuditCard.tsx": "46fb0f5d250a0ddfb7a9a502239b5af149725ea296e6662e81b078acf65e06a0",
+    "apps/web/src/pages/DesignContentReviewCard.tsx": "fd7829a39e3ddbd08e456caea6cb45a763c918cff131ac21cb33b739fbd289f4",
+    "apps/web/src/pages/DesignPage.tsx": "bbb25b5e22251497cf58a99070b526b49e1bc337324b89b95511d5fd1a4733c3",
+    "apps/web/src/pages/DesignQuestions.tsx": "a9c8cfa6ffaa0c1a39369132dc443fd0f4d816db4edbd6e9c92662746336dad8",
+    "apps/web/src/pages/DesignRevisionEditor.tsx": "cb5c5d4b1444c26f022bb377451eb725fc35491a8e68d72ce1fb4df2a4b11a36",
+    "apps/web/src/pages/EditorModal.tsx": "37fcd5dfeeef89532558dbb6f939ac71e178e760bc2421fe51f5db6dfb2ac278",
+    "apps/web/src/pages/KnowledgePlanView.tsx": "be0c010c28798301a5090efdb27ab3b959c851466d9df19858e2a6a1b2a5ead3",
+    "apps/web/src/pages/OutlinePage.tsx": "a06190432d413fa132f1655695708703e2565b6232a68b9f261a0e3eeb31c959",
+    "apps/web/src/pages/OverviewPage.tsx": "c157365bfe49a4675f025380333763c969113509b4dd432f69f8af548f8c5f81",
+    "apps/web/src/pages/PlaceholderPage.tsx": "2bfcbf3da6982b8f006de58c615086fc804d9bd72691829b545e241a5822aede",
+    "apps/web/src/pages/PlanPage.tsx": "80c04cbee74fae04ccffac99e09ec629a5874e5e54982df7b3be9ffbdb7a636d",
+    "apps/web/src/pages/PublishPage.tsx": "146b4b49d95c02bf3a631ee6df7d0bf58b6395729f46df673d3425ef5e8392e9",
+    "apps/web/src/pages/QualityPage.tsx": "fb29bfac6fa76f26180f4d5253f96de762848f150bc2fe0896314ee50571bb1d",
+    "apps/web/src/pages/ReviewSourceCoverage.tsx": "5af322ba3bf4b37eab03838726a447c829628f5f94d028c5a8babf30be948478",
+    "apps/web/src/pages/SystemPage.tsx": "94ab5bbd8827a4f5cba4c476ea30182d76ac5ed7aac80f23e742fa3d06f451cb",
+    "apps/web/src/pages/TasksPage.tsx": "df6f31b46afe8feb60b6ca99e779623b199e253461aff7616ff0fc1c147d83cb",
+    "apps/web/src/pages/Workspace.tsx": "e0f8a024990dd3dd6ae81d05d2c7a0582a704da37cf36a6bbf3eb72d6f378ffc",
+    "apps/web/src/pages/WritePage.tsx": "9cde681e5c7dc6287f8cb30b3505418b9473eefa321a3eaacf2fd16e16b5991d",
+    "apps/web/src/styles.css": "586745894ede27930f9f3ad6b2824cb8e43916c6378bb83177bdaca3368718bc",
+    "apps/web/src/work-chrome.tsx": "92cf5dfddb552091f9fab9aa3967d96b17986cc4c12c23e9fa5a755a08ae96aa",
+    "apps/web/test/chapter-adoption.test.ts": "7a718f0dccf8b84e5f341b7e7f5eb9667e866d5e7521a808ff30bb4ba7396ada",
+    "apps/web/test/design-review-coverage.test.ts": "fef37ae939373ceefa91e26f22d7f71dd5be75c15caee6ddddf03c0be3ada64b",
+    "apps/web/test/design-revision.test.ts": "d2a701a01d6dd0ccc27b3ae69e296a02d04104004561fe2ca9936afd8c845553",
+    "apps/web/tsconfig.json": "637141e1559170f0b5b2fc27c9c7c5aafd5af99dbed5ee482bb34a136338f1fd",
+    "apps/web/vite.config.ts": "14501439875c563028a6d28102ab04a36105e6f013b0803a9b5f62690bf45098",
+    "novel-service-core/package.json": "9c9d8131074c3be5301c3d68ce4542ea074bad65d0abbb7135602b61dbd78761",
+    "novel-service-core/src/bible.ts": "82e5465758b3a3a736a20e25688167148ef7ed6063bb0c0b4a830e0dac04c72f",
+    "novel-service-core/src/chapter-review.ts": "84394cb0460ad073d7748cbe8cd042f1a7b7fd0509ac509d194ea433e4e1452d",
+    "novel-service-core/src/core.ts": "1f11f86b0da38b62731e722c1edce33f0f4108dc21eed6893d3cfb92366b667e",
+    "novel-service-core/src/design-questions.ts": "6b19ef680d817d0df083e693fc1837e77fda757942c09805495be4c643e76d27",
+    "novel-service-core/src/design-review-report.ts": "066c23fa14185d03d33fdb55ad73fb8bfcb3604471ae78e6554e368ab047f5a7",
+    "novel-service-core/src/design-review-run.ts": "2c83189b822a834eca6114b74bec4ca1daf105249ff22ca36bbe2009a6ee08f3",
+    "novel-service-core/src/design-review-scope.ts": "248e8310255dc41062bdf25fff32c901a3966ef4ebd60e10f388b664338cc20a",
+    "novel-service-core/src/design-review.ts": "06ba66124aac733a8e52ed7cf1ef6ded37c867968e6d2aedea2f7e86d184bb05",
+    "novel-service-core/src/event-order.ts": "64b016037306d6d81eaeaac8ee7d3f770de149ccbebaa055b6dbb1ed6074e367",
+    "novel-service-core/src/execution-evidence.ts": "707aefc77dda70325aa616f2cbbdfb55cff85df5a54fc8bc635f63bb99191868",
+    "novel-service-core/src/planning.ts": "97beeb8c66508263b925c8664e91816d7e8097476e7c5d3c7a5f05fc0665ca13",
+    "novel-service-core/src/world.ts": "ec8bd0cd9915dcfa5d2e4ea0c96cc3e452f7bf34d711c80419093af33cf95d6d",
+    "novel-service-core/test/bible.test.ts": "eef41a4482938dbce6f5b333bb18bd78c1a080ff05c12064689b9ac2c78549a3",
+    "novel-service-core/test/context-memory.test.ts": "d6ebfb89a79fd724d13fb0cec1e4741c1359b1880f2448ebf5b24140c2d5cabb",
+    "novel-service-core/test/core.test.ts": "da7895bb83c2332521638bb4615d398e0dc4048fe4740e12e7d22bd06ad192b3",
+    "novel-service-core/test/event-order-fixture.ts": "9d22b0eaeace2d012f555333e923474217dbff9977ffd4de743c0dd7a23bdea2",
+    "novel-service-core/test/event-order.test.ts": "b9d23b874e38d978cc9375b1f517a3089930399f3fa0ceb67569d5bb3d7c1a75",
+    "novel-service-core/test/long-run.test.ts": "3867c360c17e34ced2c43a1906b624a8bdd355623ee3356a5c9001301f16836f",
+    "novel-service-core/test/world.test.ts": "bdb323941127c9c6be32d6e7a0849ccb393f097024a0bd2b52b0229f0bb2f2df",
+    "novel-service-core/tsconfig.json": "d5ed9fd23840c8299b48f027e0aed2c2e91e5de6debbb9823b4ee6895ff71898",
+    "package-lock.json": "98131e0290762279750216fd829929d61beac6c14d81f564883c9ebeb0117689",
+    "package.json": "fa9c11103fb4cc5a1dd27df02046a1b251d3daa51e302148e350ab0b21ebe5bf",
+    "packages/application/README.md": "a1e20bc9c88a45f9ff25f634d29dcc28cc79b8e0aaa523d2007b872e6156c7ce",
+    "packages/application/package.json": "cc45ce2724ddbab1488fcf08449585396877c8cb7d073e6b702c3f8116bfed51",
+    "packages/application/src/design-candidate.ts": "32ba57418fe483e16ae5770c2f35911236a07c2539d646036a7d9414b964e84a",
+    "packages/application/src/index.ts": "312bda75540292f8be709b0640a9fd2d5a4ec0c1c5a66de2b80f6a249752b596",
+    "packages/application/test/chapter-review.test.ts": "f827d5c2e420890f47a9fd5c8fe0db534b1dce508449d80526a2d19c4e7c32f6",
+    "packages/application/test/design-candidate.test.ts": "0fe52b9de82b722743ca7b85c6c85056a3d1ba10d4e9242511ea9115a561208e",
+    "packages/application/test/design-review-navigation.test.ts": "eb9f8f7588864c3226abfb87c29ff28e955ea5e6ffa4a35294028c0d975832af",
+    "packages/application/test/design-review-run.test.ts": "4cdabcefaaf30922d0b0a29dc3c2d526d78c436994e97878f2f9bff08ac583f9",
+    "packages/application/test/design-review.test.ts": "f7bd261aba1e991f444ac1206b1d12726e5799789d39d7d627127844885f25b3",
+    "packages/application/test/execution-checks.test.ts": "51f4c8712161ff1dc846e9dc0a5311fda2ff00b3ec54ec2a403f47eb64887fa4",
+    "packages/application/test/fixtures.ts": "1868721e82a79193e4189e86ac4229668f6489057210365bb8cc262bee89865c",
+    "packages/application/test/manuscript-review.test.ts": "965d1f1d5a46c2ed4504633c91978debc601ee0e2788fd11455c75194431c106",
+    "packages/application/test/planning.test.ts": "c638dd542d0faa97538e55032c424cbfbcfe389e4e753be383ef2279747bcc73",
+    "packages/application/test/question-retention.test.ts": "cb5a627c7aebfb80d014425eee5758e4c79d9e76e26920d8741931d169b05362",
+    "packages/application/test/workflow.test.ts": "bfc5b04739615916858ee198d8b9e30e50dde406a3f432f91ad46408b31ab18b",
+    "packages/contracts/package.json": "fff92c163f0d6424b989ab4bf71e9569f60e7e545fb8136310fee3c5cb0c12e3",
+    "packages/contracts/src/api.ts": "79da1013f05cba5b01b8823ed1f32c6a3618d0f062841741f4f3f939ac985ca7",
+    "packages/contracts/src/design-review.ts": "0a552719ed258da00aaedf3f2c3b6e39ef37f38a98ee6522590817d9f15d0f17",
+    "packages/contracts/src/index.ts": "ef961a632ab5f613bae93c28820c5f7bab97670529640f1f77e80f2ca4c066b4",
+    "packages/contracts/src/planning.ts": "a70ebc1a9dc4b0b5805cdbdfea012622acc3b544422f648d61355b61501a8166",
+    "packages/contracts/src/world.ts": "2f859722c541c132a71edcdbdb610f26971c47c07301e9098739c5a216b0818b",
+    "packages/contracts/test/contracts.test.ts": "6686e5a6b40af521e5d6b869cf0728335bc1f2214581b6b0bc9869a45ed365d4",
+    "packages/contracts/test/world.test.ts": "38728ae5d51c17a460f9c2905ec4a9b4a7039b143b15b6dfa63441d908d0c75e",
+    "packages/model-gateway/README.md": "b2d33ac953dcb89aba79777133ce5c3562217a52f5a0e4ac85006350bd2bf2eb",
+    "packages/model-gateway/package.json": "1c25059fc354d059ceac3f59db868e2c7a659069eb2962cac0536202c5387525",
+    "packages/model-gateway/src/index.ts": "384e1a1a99a03ce3d216af458683aee452a533d586dc1e1067d1a56d29040673",
+    "packages/model-gateway/test/gateway.test.ts": "a9ef2e53002fc0052d8590462bf5e2e643f6203259b043819ef3fa16ab44d064",
+    "packages/model-gateway/test/transport.test.ts": "48760ef02f60dc6ca3c04e6ca7f6040f8f8672bd563a175c9ee01bd7d7b83b57",
+    "packages/persistence/README.md": "e795d118a8eaaeec05e490f0f3f49f18b7fd13d656cdc22204d4b49241fec6e7",
+    "packages/persistence/package.json": "2fbf2b938e6ae544d5c81ac21645ebe5a353acaf1ebdd50391c81179de642372",
+    "packages/persistence/prisma/schema.postgresql.prisma": "1a57929ced4f04f43a2139d15973dd34e14036b6f0b21c918ae2c8479f396524",
+    "packages/persistence/prisma/schema.prisma": "40d57f9581057b1b6d446fe1c49db91b5f0b5d2b741013de2450a1154824f974",
+    "packages/persistence/src/json-repository.ts": "aa9bd597464d39337761c86f0c6616b079438c81a97671db5598dbec2fe5b4df",
+    "packages/persistence/src/prisma-repository.ts": "3de165e064376e5b5df271547d129b97780adc34192c878e55c796f46be447bd",
+    "packages/persistence/test/json-repository.test.ts": "1efd6cd4559be4bf650cbe4042f5fa5b0dc35a3952a6d75fff8ec0a084cae9c3",
+    "packages/persistence/test/prisma-repository.test.ts": "4a794a4b12849cfc5992d0edadf06444a8f25b03136727c01fa85e0fb091fab4",
+    "packages/planner/package.json": "74e9a9067d769424af736554543eda33fa4ff55cf4c7e150f5b5241ab1c43cb2",
+    "packages/planner/src/design-review-evidence.ts": "a6944a99834620c79ebf2a6cdc23cf44b63fa8fc60b20a7e8946776f8baf6e33",
+    "packages/planner/src/design-review-horizon.ts": "2184b067484fb2cd26363c34dba4035c1e577b7a1a363c6e253818b8966a291a",
+    "packages/planner/src/index.ts": "76f30fada53bbb52031e52f22bdcca91d8c9449ff564b512abcd563ff4b38082",
+    "packages/planner/test/chapter-memory.test.ts": "88bcd853de450c8ca8f7acb432c5a8e118d98c69d35d2f357dd8b2847eab5717",
+    "packages/planner/test/chapter-review-fixture.ts": "d97cd143ce454cce23bf89ace5a609c8f097a1cb7a04f4f1db5f168810e32bdd",
+    "packages/planner/test/chapter-review-stages.test.ts": "43874c64b4925845e0f0505e94d35c53ed804e74312ae9154c2668c43c3fd903",
+    "packages/planner/test/design-review-horizon.test.ts": "f24b325411ac153f78d2b383bf73d93ca9fd02d929d92a7f61f48c258a538b56",
+    "packages/planner/test/design-review.test.ts": "bf63d4760cd0dd793843e848268d54baff5906b44dde598fdee9ad8b4c0f2a40",
+    "packages/planner/test/design-target.test.ts": "27845782853ee9b77d2923e57f0e10a63dcb8bc226939c06a8a44532e443d704",
+    "packages/planner/test/failover.test.ts": "77f9120b8f7de2edc9ca786971f4b86129f2187722e0c0a9668317e198684c03",
+    "packages/planner/test/planner.test.ts": "b387ee74c61fc931cdb70c5652de9ca021f235aa5e53829a5a838881417fbc35",
+    "packages/planner/test/world-proposal.test.ts": "d47bfc765e73926dbcffb590c8d5c74fcb8e78f518c0475b388c335a169a8e13",
+    "packages/worker/README.md": "d58e9a19209b8eac6de15555fa6f2cd9596f6cee878613ffbf16bac4a6bd3020",
+    "packages/worker/package.json": "5636cd05ce0f4f5809af4296158fd58290fd626b0b6908d7a39a15360e70ad4d",
+    "packages/worker/src/index.ts": "70abb55097b11e14ed46200d05453eb54b05c2e1dc43bc93ffb259f220feed85",
+    "packages/worker/test/worker.test.ts": "9e84ce12ebc508bc889ca43ca5a2f778434955c289db77223964c98da94e60d8",
+    "scripts/audit-design-reviews.mjs": "5d0cc5b5b68d6ca7d3eb600ad8ecb3679ebb8187831907700a83eed9c20b28b3",
+    "scripts/audit-design-reviews.test.mjs": "00b51155383879052c5d8db1e7c0c1f2dd53b474c08832a0fa96fc2d8b7f40c3",
+    "scripts/audit-design64-final.mjs": "19535edfacad24c561b7588c234e197325c36e1599db727daed55f123dd2488b",
+    "scripts/audit-review-recovery-chain.mjs": "01088487eed9b5a6f125760eea31a5e3c71e5d1839a24ccaa8d2f7f1b47e689d",
+    "scripts/audit-review-recovery-chain.test.mjs": "79adc5fdb88532ecde91543222c1da95cb8103f8c1f084d5c6447cc0fe98389c",
+    "scripts/check-lifespan-path.mjs": "364b03d59942187ccb79e05497ad209223a92016f0da08798cf5aa53ea4262cf",
+    "scripts/check-lifespan-path.test.mjs": "94869ba7ca93c12c332ff19f8b6c60a8da3495605be3f3155d3a458dce75546e",
+    "scripts/collect-design-review-insufficiencies.mjs": "6d5649fac6188e536747ba010ddb4c6df342ce638076be40ac2838e28a5792b4",
+    "scripts/collect-design-review-insufficiencies.test.mjs": "82f491a05448657c6a1f9615025e985d953583e060fdb9c0a6f43bcf8192a83e",
+    "scripts/design62-citation-recovery.mjs": "abdb7d2e8970b6b101d2c4674a0e715d956d2264d056124903ad3b279e564473",
+    "scripts/design62-citation-recovery.test.mjs": "458b0a603dc58ad4bb841df3ffa60b0478ba82740e81c7f5d1957adb1442ec2e",
+    "scripts/migrate-design-review-runs.py": "2d1a315a30f50bf4877c0072a099621a29d7a1da6b336d15926877e875a7551e",
+    "scripts/migrate-manuscript-export-snapshot.py": "67d636158586523203c6b458f6561161c8468d79dff5c5a5f59ddd9b9ea3ba13",
+    "scripts/queue-design64-recovery.mjs": "a8b3f53ac3ab0f4f27cf6d67220d225bb33e55e1fa387379dd399d1c94a14040",
+    "scripts/resume-design62-followup.mjs": "b7e8f27e2d8b1b6b0082f794854443fb75085ef07459be137b77de49febcd658",
+    "scripts/resume-design62-review.mjs": "0b676c97c5c78b8939f237516ec28fd85aabc321d7f73b27addf30c1378d6edd",
+    "scripts/resume-design64-review-next.mjs": "79a27c7e893d03aa214ed2de174243c233520c839150dffe8685ab2946030022",
+    "scripts/resume-design64-review.mjs": "f50552b4cdadc9bf7a2dca549b1c9006762e864cc8ebe7d0630a54d25741025c",
+    "scripts/run-model-milestone.mjs": "b2524915b6196892a239e08cf3ab99bca3366ad563417f5b4bfb887c2a27c807",
+    "scripts/test-all.mjs": "44c14dbca278ddad83ff2550079ec671c1400bbc8e7b6de353050f17adddd212",
+    "scripts/validate-design-candidate.mjs": "59586378109e3d048ddc6672696b82892d93b8e845dd491e8c39973b96cbe390",
+    "scripts/validate-design-candidate.test.mjs": "da9c33be53a70ecfc7373e82eab9a351581fbdb40ab4160e71e80af0f4d3c002"
+  },
+  "requests": [
+    {
+      "area": "world",
+      "inputPath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design68-focused-review/world-input.json",
+      "inputSha256": "a3fe672bdfbf6bf65afce84753e544bc81566bdc8a1eb6ca5bc159314b27fe77",
+      "sourceCharacters": 180002,
+      "sources": [
+        {
+          "id": "author",
+          "sha256": "f442f82fa90ba8ba3f35f3487e8c04700dfab25f4309461c3c2400b026a5c565"
+        },
+        {
+          "id": "world/overview",
+          "sha256": "4bd17f827785ffc7c809baa5c2fb799873729909f5525264238cfe60079e3d1d"
+        },
+        {
+          "id": "world/axioms/ax_01",
+          "sha256": "9b4cf41d20d10341215b75c064633660e3bbdbd46db40eb73e362f1cdbb6f1ea"
+        },
+        {
+          "id": "world/axioms/ax_02",
+          "sha256": "77309954a44879de40e736ca017261fd49a3eb912853b0619b223d9f6a804a1b"
+        },
+        {
+          "id": "world/axioms/ax_03",
+          "sha256": "7374eb90c1ff2385c53e6aec4fa59b2613c6bc7b60f0f0a75ef102d95e09a8ab"
+        },
+        {
+          "id": "world/axioms/ax_04",
+          "sha256": "fd1141bcc5113668f44019f030eb375aaad5925129fd1217432959689886c899"
+        },
+        {
+          "id": "world/axioms/ax_05",
+          "sha256": "81f0c43a0365496907a72b0dc70757f0836180eb86d73244853ccba8d2b39b8b"
+        },
+        {
+          "id": "world/axioms/ax_06",
+          "sha256": "84738d52efd925e83d342f453313bb03df44073786623e1cb97384cc89d47a29"
+        },
+        {
+          "id": "world/axioms/ax_07",
+          "sha256": "df8b0b4dd073dbe00e98dfe9521a4ba4a9925866ff91359975a0c8d6e72bf55a"
+        },
+        {
+          "id": "world/axioms/ax_08",
+          "sha256": "cac7e1f1a900eb05ac144556b7f163087f8ca684710955028e0eaeac394c56a0"
+        },
+        {
+          "id": "world/axioms/ax_09",
+          "sha256": "0c261e6a9219679c2d8fdd978423cb13e152e6390eb49746efbb82ce2933e377"
+        },
+        {
+          "id": "world/axioms/ax_10",
+          "sha256": "058a29301718fceb65ad6257a359a7e5973d68a609bbfa08d8c74c023616347b"
+        },
+        {
+          "id": "world/axioms/ax_11",
+          "sha256": "f06f32be8a59059f10ca118235ef7c85462b247fe2c24b7a1dae943fc020c7a6"
+        },
+        {
+          "id": "world/axioms/ax_12",
+          "sha256": "daf4eb121c54492e4ff0b0ee5ca883756a6d329446e0324aaac00a4ba3ac793e"
+        },
+        {
+          "id": "world/axioms/ax_13",
+          "sha256": "6b5e5698dea923a314789e3d92237a88cb47264865f38b0012f4bfa54af85c61"
+        },
+        {
+          "id": "world/powerSystems/ps_01",
+          "sha256": "fe1cb51350cb9210b886ea7bb62be197a979fba55e8de99089791837f8346e6e"
+        },
+        {
+          "id": "world/tierLadders/ladder_realm",
+          "sha256": "71fa8f4da61766bb9c3aa7b8f7dfd5136d652930fd61687fedae458475b5ba5b"
+        },
+        {
+          "id": "world/tierLadders/ladder_technique",
+          "sha256": "fddca025b14267f3f7cb7c457e0a3ea53606a35cb934c01432d26d7ba2d9f0e7"
+        },
+        {
+          "id": "world/tierLadders/ladder_artifact",
+          "sha256": "fd022c8d7ab81e48de08a5226890a7cec1b0a5eb5c9f2f594a25f6f6891e1aab"
+        },
+        {
+          "id": "world/tierLadders/ladder_resource",
+          "sha256": "f4408b078fe8694fa360085c6bbdaf15679a6fb49b71d1710e57c6d3fed314fa"
+        },
+        {
+          "id": "world/realms/realm_01",
+          "sha256": "49f1521eff2c164ba952015169e99c2012227a8c18ca75e98fc28f77eb1070e1"
+        },
+        {
+          "id": "world/realms/realm_02",
+          "sha256": "73fb4db7f54e138968e57c8e0d5d1daab3f3ddc0136d862d4a332abfd389bc7a"
+        },
+        {
+          "id": "world/realms/realm_03",
+          "sha256": "c8c5842b7f10f1869e6410b8370689b33880ed2b047caba32c14218e3755f43d"
+        },
+        {
+          "id": "world/realms/realm_04",
+          "sha256": "5dec0225c873d520337b0ec0febaeb641a91b9c81b73d7bc32cb450d40b75430"
+        },
+        {
+          "id": "world/realms/realm_05",
+          "sha256": "56e916a4c0bdbc59fcbe12c445de7c096b24d98be330969ade2693d8fc8a41bc"
+        },
+        {
+          "id": "world/realms/realm_06",
+          "sha256": "af7e0581a01e2d048e13dc0240f8a1f92ef6cb1c5d390a0192667da4cbbd3095"
+        },
+        {
+          "id": "world/realms/realm_07",
+          "sha256": "638bb907a79396af21f365f0f63284142f51a89c4c0a48d583d7f26541646c41"
+        },
+        {
+          "id": "world/realms/realm_08",
+          "sha256": "a3b97b8cd0093283b5f2580407592bc61a1eecd24f894de5199d3066ceefdf92"
+        },
+        {
+          "id": "world/techniques/tech_01",
+          "sha256": "2fead3754edc1c833ee3c7266e92d83553bcd6581c9781e5d2a32bb48e517ecd"
+        },
+        {
+          "id": "world/techniques/tech_02",
+          "sha256": "051dd3abb263074b4783cd725aee5c641cc64c9887eb9ef8253e56e16cf2a9c2"
+        },
+        {
+          "id": "world/techniques/tech_03",
+          "sha256": "655a9cad9083e848c17ac4509ef7c40b05714facbb5d0562c8c12c414ecd8adc"
+        },
+        {
+          "id": "world/techniques/tech_04",
+          "sha256": "c769a1343b1e4c2ba4fb9b336985095524d368eb59175243b7459f7b87ea3d56"
+        },
+        {
+          "id": "world/techniques/tech_05",
+          "sha256": "6cb16a5b9f210991daae7f20795f79b9a9463c68eaf7224de5f05fdc11c468ce"
+        },
+        {
+          "id": "world/techniques/tech_06",
+          "sha256": "9a5d454948c772c58623d0fde6a5de5adc1d711edf0952db8d6b765384cb2492"
+        },
+        {
+          "id": "world/techniques/tech_07",
+          "sha256": "f58d5982ba724c935c087a152061eea0b3b8fa01cd71c861d6ebe907ddb10607"
+        },
+        {
+          "id": "world/techniques/tech_08",
+          "sha256": "17cd1fe428919c3321cb239bb6b39ef66c1fdae52d70005e45e0e276c9100c59"
+        },
+        {
+          "id": "world/techniques/tech_09",
+          "sha256": "1e8275f0da5b5b1e6b229298bb89c20376605c4abe4db906ff8777d351654cc6"
+        },
+        {
+          "id": "world/techniques/tech_10",
+          "sha256": "c446f0356ddfa6f77e88909fcf6d950cc19a4a72605e12071d1efb56dcd75c38"
+        },
+        {
+          "id": "world/techniques/tech_11",
+          "sha256": "34739ae017300664d2bf2ab1a69177523c9d270cebb0bff737ee81eb9adc69ca"
+        },
+        {
+          "id": "world/techniques/tech_12",
+          "sha256": "901b3875ebe536e48dd2fdd776034fd7246d403689b690fd09b1b1c4c6d520e3"
+        },
+        {
+          "id": "world/techniques/tech_13",
+          "sha256": "12681ad1181eaed0640089fcaf327fadb3293229a8ca6f6ed1e87458d1815c8e"
+        },
+        {
+          "id": "world/techniques/tech_14",
+          "sha256": "fe5e1bbfc87ebd9409d5303e2308dae1950207c73ae4942304f1c293d7e25d66"
+        },
+        {
+          "id": "world/techniques/tech_15",
+          "sha256": "d07750a246fa4bea4ed0ebcc70be0bcf96550a6e2dc5ea8a4329eff3b11cfc8d"
+        },
+        {
+          "id": "world/techniques/tech_16",
+          "sha256": "4c9553911195b8cfed8f368f1149bed4df5d38c92febbac057756db4b63aa1db"
+        },
+        {
+          "id": "world/techniques/tech_17",
+          "sha256": "6779eff3bc294418c5b467b50861db447182bcd96d73197cb71bc771cdf4b5d3"
+        },
+        {
+          "id": "world/techniques/tech_18",
+          "sha256": "e9b2bd8c61f3e8eb2c90e500f0d9d52c1577f73cb59f71ea6dfcbd41d21b368e"
+        },
+        {
+          "id": "world/artifacts/art_01",
+          "sha256": "3ee8d2119dbcb96533c3ad3aa869371adb594e375c4de051b96cec7bedb194d1"
+        },
+        {
+          "id": "world/artifacts/art_02",
+          "sha256": "8859ba63c43d2064f2ba9e2b6dbed7cc6cdfffafc8822a36b04bdbe7aa9ec537"
+        },
+        {
+          "id": "world/artifacts/art_03",
+          "sha256": "1a0060c815e1df00846151997d818e5103e08ebd2481fce0ad6209616454986f"
+        },
+        {
+          "id": "world/artifacts/art_04",
+          "sha256": "8ddaaadb75fde9238a49469205375e6a1942e566846e8f47b08a9c441efa3d10"
+        },
+        {
+          "id": "world/artifacts/art_05",
+          "sha256": "2e2d112e16dc08c622c2330f6a1b08da7fb75483681ee8c3f68abd63a9a248e5"
+        },
+        {
+          "id": "world/artifacts/art_06",
+          "sha256": "2f2539fe6186c1a4fb7f4a15766b629b6abee6e1f6acd13ca307c80f8841cf05"
+        },
+        {
+          "id": "world/artifacts/art_07",
+          "sha256": "ecf0ac2fa6456a05ae78715a8593bfa4f79b4bf832a8c0562194f3c8678ad107"
+        },
+        {
+          "id": "world/artifacts/art_08",
+          "sha256": "e1be301f4b3b76a711de085ad9eb5e2c5cf16cfa382b3fac2a780ca68e8240a2"
+        },
+        {
+          "id": "world/artifacts/art_09",
+          "sha256": "b445ee5e54e06058a0536f96fb63d2aa09d0d47110bfac8b180d1f76bf377e94"
+        },
+        {
+          "id": "world/artifacts/art_10",
+          "sha256": "4e83e8c9dcab535aa6dab08e8b6f575291f43db2c63f0245bb2044d722f4400c"
+        },
+        {
+          "id": "world/artifacts/art_11",
+          "sha256": "55ef5829db2f2db2a520cc9e3e09afe85d37ce0930f965b0ebfc83a59e61ac62"
+        },
+        {
+          "id": "world/artifacts/art_12",
+          "sha256": "f51746aca8352d9eae426537c2c9fba7b2c0992dc312c65a7a8ea736a44b58a2"
+        },
+        {
+          "id": "world/artifacts/art_13",
+          "sha256": "ef49947fce56f2cf395c07b7b6a75a7ad286797ba6ec8e0f2a53ab6b3fbe432c"
+        },
+        {
+          "id": "world/artifacts/art_14",
+          "sha256": "7f0e22b8716f8eafa61d3591120beb745267084f88721ba4c79b0047ade0c6af"
+        },
+        {
+          "id": "world/artifacts/art_15",
+          "sha256": "a9f2de9fabd25085d01aa4ffe54ef4eed208154ee875789127d02205ddfe789b"
+        },
+        {
+          "id": "world/artifacts/art_16",
+          "sha256": "8202de560b5742380dc0b65521cb3200b65987c2a4b6a666af2cb83502eeea8f"
+        },
+        {
+          "id": "world/artifacts/art_17",
+          "sha256": "3231c30efa322a2da818c8c1d5ea4e0b4fe6fb47e88bb89a916270306bbd4d79"
+        },
+        {
+          "id": "world/artifacts/art_18",
+          "sha256": "a39947378ab7a0ea6c031625eb1637a10e0588b15338d219eb467c4116662cf0"
+        },
+        {
+          "id": "world/artifacts/art_19",
+          "sha256": "0cc62755321401427df2e71dabf54990c13794028f025ce4693d6a7c79d33582"
+        },
+        {
+          "id": "world/artifacts/art_20",
+          "sha256": "64b1690cfbc8c6789be9339c62433f25af83f45cdaf217f5898edfcd117980fb"
+        },
+        {
+          "id": "world/artifacts/art_21",
+          "sha256": "5c5e3f71b869bfc7fa4b565fd7e8866728cb9495ed2f65a088797f715c00d9bb"
+        },
+        {
+          "id": "world/locations/loc_01",
+          "sha256": "51ff1b3adbec7bd445f66717e1d2ed77b78ffc2e3a91e25438df79dc8715ecec"
+        },
+        {
+          "id": "world/locations/loc_02",
+          "sha256": "fb8c059a5edda80a4f541de381c41e1658ddbdf54d3d3676d237373ee294b0f9"
+        },
+        {
+          "id": "world/locations/loc_03",
+          "sha256": "4f8c2f43b4ee34c2de7da16082afd407d124fb9620795518f48bd5d206a7f7f5"
+        },
+        {
+          "id": "world/locations/loc_04",
+          "sha256": "79eb1ca48e4072c03d7fe1cbf20257bac5b82f713ea756a4c59e1e3ba9b9b471"
+        },
+        {
+          "id": "world/locations/loc_05",
+          "sha256": "497d06f432918dd675a789b137d39cf4b2c329c1e09b16c143a9afabe3243cf6"
+        },
+        {
+          "id": "world/locations/loc_06",
+          "sha256": "69759839616ec502ddce3e416809ac6fbc490ec51d4ec05910a89b3187dc4d5a"
+        },
+        {
+          "id": "world/locations/loc_07",
+          "sha256": "f96adc6b94b87462574af37ec0dfa51b85790493cde9c540a407458bc233404d"
+        },
+        {
+          "id": "world/locations/loc_08",
+          "sha256": "34da7b45233633dab77c31b090a7b57ce0d3488513f852c4adf6339be0dcf490"
+        },
+        {
+          "id": "world/locations/loc_09",
+          "sha256": "5c374f236821c91b4cbecaa2b10c725e3b41b929e8a6405fd87d9ce3094da4c5"
+        },
+        {
+          "id": "world/locations/loc_10",
+          "sha256": "d3d664a6ff41af89bc6e7891f50614992c51a9d286071d8c3e143cf1568fb0d8"
+        },
+        {
+          "id": "world/locations/loc_11",
+          "sha256": "824f8eb52b44c722b2117d7fae3328cc24e6b6bc1320d6f148513cf7a6df5f4c"
+        },
+        {
+          "id": "world/locations/loc_12",
+          "sha256": "a3fe23f31930ee123504667bbf675efc8e6236c4a4bdbc32d0d93e05a3331817"
+        },
+        {
+          "id": "world/locations/loc_13",
+          "sha256": "1903fa4d025dd2e4df9657cdfe807c9cceb4dc7308909b3122eb9e8a224eb4f9"
+        },
+        {
+          "id": "world/locations/loc_14",
+          "sha256": "01444daa0284791e1636088339ea4d22b1cb3fe8351b363ddce489b0b5e3ed70"
+        },
+        {
+          "id": "world/locations/loc_15",
+          "sha256": "999450072fcea8770ea6e505aac8c3dedf02cbdbe0981e3c4c667ea5a2b270e6"
+        },
+        {
+          "id": "world/locations/loc_16",
+          "sha256": "4645b29a32d875345d151fbdd0037898161ae5a609fb9980a40cfa4febd387a3"
+        },
+        {
+          "id": "world/locations/loc_17",
+          "sha256": "76f48ebf694d12f89f0eb05f46478389850bd3c2095acc1fbe1da70b0ab40639"
+        },
+        {
+          "id": "world/locations/loc_18",
+          "sha256": "7300152c8c72f635465896d4407d30b52dfc3db3e5df49c702838f995d544f25"
+        },
+        {
+          "id": "world/locations/loc_19",
+          "sha256": "76216fd6c279bcce0d0e03e05f980985350358c016c9a851040898b5e08fbab5"
+        },
+        {
+          "id": "world/locations/loc_20",
+          "sha256": "567b0b157db8013724adb4fab0fc81e1cd9dd449534cd372fae777409657c0c5"
+        },
+        {
+          "id": "world/locations/loc_21",
+          "sha256": "cf644923b058c2750b6554012c5ac628498b7fde94b6131e7fe5d7b36d212354"
+        },
+        {
+          "id": "world/locations/loc_22",
+          "sha256": "df29141127928df92f213aeaf6a35658a100d63531046d86fbe2f9caf699dd67"
+        },
+        {
+          "id": "world/locations/loc_23",
+          "sha256": "d4e34749c992144c9d0594665872909fd121c46de059cefc91e342b00d95e1c5"
+        },
+        {
+          "id": "world/locations/loc_24",
+          "sha256": "f5057abac0b99a6a0290a969f0a216bded1b72fe5fa675864dbac59853ac62bb"
+        },
+        {
+          "id": "world/locations/loc_25",
+          "sha256": "2e0850000f378a5f795272e33c612add198d81790f821b063ee6eb2aa3ad9ffc"
+        },
+        {
+          "id": "world/locations/loc_26",
+          "sha256": "9a27e60cca72104b8b36246db762857ff9cb1ce649ea1fd4404e79284f767882"
+        },
+        {
+          "id": "world/locations/loc_27",
+          "sha256": "cf668406464f3adfcb59d515058e9f643f7130cb41b90ff33506ea07f210876b"
+        },
+        {
+          "id": "world/locations/loc_28",
+          "sha256": "3fe24b7d143f4cdae6af93b95bad6ba33b9f3a54a1c5a6947e0ff3d4d434d925"
+        },
+        {
+          "id": "world/locations/loc_29",
+          "sha256": "67161e8e8d372cf6b5d5d1e8b81a06a6e5d37b62c7ad8f3abb1b317c0c9447b7"
+        },
+        {
+          "id": "world/locations/loc_30",
+          "sha256": "5d1f03e028ef0ed83f39cea1d813c6696cb1c42bd36747967b68aae71fbfbe2e"
+        },
+        {
+          "id": "world/factions/fac_01",
+          "sha256": "e91602ec0b5915861c6a194f05ad4a65a9e767432fbed5b3620bd50294a4cd6a"
+        },
+        {
+          "id": "world/factions/fac_02",
+          "sha256": "481bcb1419577d5774a4f464f6221a6aa58c9920a398d61f7eaa6cebe699ecdb"
+        },
+        {
+          "id": "world/factions/fac_03",
+          "sha256": "803cc1c55937ce35cab56dadcd32a879fe624e26d5b37fe9db02002aea8f35a5"
+        },
+        {
+          "id": "world/factions/fac_04",
+          "sha256": "28fed7a5512046bb3925d3ec8cdaab501f4ed854c93326db80c9c3d9c515ef18"
+        },
+        {
+          "id": "world/factions/fac_05",
+          "sha256": "ee1522a8fd9161e2ff208e64c8bb668adef69e528a0cd42c997967029bfa51b9"
+        },
+        {
+          "id": "world/factions/fac_06",
+          "sha256": "a3b4979654c41a8a8cc2769c7d88c439ddaf60eb1830ae71bc3012d4dbd27f35"
+        },
+        {
+          "id": "world/factions/fac_07",
+          "sha256": "f8aa44859ee79ce72f9d7631084355873de00e5af0402b5df4710c9283b66d81"
+        },
+        {
+          "id": "world/factions/fac_08",
+          "sha256": "aca7bf2c589ac1792f112361cdf1041204f8cf21e471b901e5530cf04eb1ed5e"
+        },
+        {
+          "id": "world/factions/fac_09",
+          "sha256": "a1dd6a270c4f3c55523a01197fd202176be4784baad8b152e10b29fb762fec49"
+        },
+        {
+          "id": "world/factions/fac_10",
+          "sha256": "26a337eabdfc147f4dc0f4ba2b3d29e2f59ca20974a29c158d8ae7416b2fa81a"
+        },
+        {
+          "id": "world/factions/fac_11",
+          "sha256": "135f3ffb0f768d0eec90313f91e0b15b8f7efff2a34134d9d5b3bf67f9af64cf"
+        },
+        {
+          "id": "world/factions/fac_12",
+          "sha256": "b23ffb97a9549e8e601e0b58abbbe457b68002a24c7f9f14c0d94cad8bf7bbef"
+        },
+        {
+          "id": "world/historicalEvents/event_01",
+          "sha256": "8e27405e8d3ad5a41b3fe9032689c91f4be36a3fe3251b8ab263896bbcdddf1c"
+        },
+        {
+          "id": "world/historicalEvents/event_02",
+          "sha256": "66bb6a08a9bee55240b9c23b90823990bbed820d218ac7c2c843bdab6feaa012"
+        },
+        {
+          "id": "world/historicalEvents/event_03",
+          "sha256": "3d331e934af9ce6206091979289bef83870c1e4ca23fa2a19d05751b39326c74"
+        },
+        {
+          "id": "world/historicalEvents/event_04",
+          "sha256": "bc17f8d485949f704748c35dc4625ba18c54d88bebbd058d6b04772bf3db415f"
+        },
+        {
+          "id": "world/historicalEvents/event_05",
+          "sha256": "aefb6c637bda250e4b7cae2f6f94aaafd742ca47a44a32d968e6f293d283b8b2"
+        },
+        {
+          "id": "world/historicalEvents/event_06",
+          "sha256": "824816b657ebaff4e69a14e76aad052788a2ee0e634b19f5a4f5c0f5f9f0f96c"
+        },
+        {
+          "id": "world/historicalEvents/event_07",
+          "sha256": "97d7e8e81a844ebf5763a7d57b8482b1641afeb842c5ce3aac7b94f08b593226"
+        },
+        {
+          "id": "world/historicalEvents/event_08",
+          "sha256": "70d3305fcf86eae1b66b62c0cd1fca7d81ffb15b4a4381c48a00287b4da2c1d3"
+        },
+        {
+          "id": "world/historicalEvents/event_09",
+          "sha256": "85c24e556280b950b98d8b36536645b4e09cc3164e695e77a7bfd848b7d1e0c6"
+        },
+        {
+          "id": "world/historicalEvents/event_10",
+          "sha256": "34aee9c2e1bddddd60fe94db50aadf052e73c4e7631e21e58e64b1b16e339d97"
+        },
+        {
+          "id": "world/historicalEvents/event_11",
+          "sha256": "baedee8865e23bf3d41bd356aea727e763bd2f8e8c852177117fb05682d52bee"
+        },
+        {
+          "id": "world/historicalEvents/event_12",
+          "sha256": "88cf6db880045270797dee9508750aec34e2b80a35c1e8c05a4c56206a7960ab"
+        },
+        {
+          "id": "world/historicalEvents/event_13",
+          "sha256": "1f6d265f5c290d097f1737f1f33d3426d7bcc6df1bdfff0a5c55df50c207d757"
+        },
+        {
+          "id": "world/historicalEvents/event_14",
+          "sha256": "cfedaab52b4fd02f74fd322dfb9e6873afaaa7e2b6698512960026c9990455e3"
+        },
+        {
+          "id": "world/resources/res_01",
+          "sha256": "d3484faa5ceaf7d173a128eded7b1d416beab06bb38febcf8a3a2fe468a03cfb"
+        },
+        {
+          "id": "world/resources/res_02",
+          "sha256": "b1049210cce33b2de8bbaa2edc67cc81887e19c8d6e0f2d90cbccfbe8800e275"
+        },
+        {
+          "id": "world/resources/res_03",
+          "sha256": "5f12a3da70480d98a9c5e2fe8e426d29c75e0e8a45ee136c5638b52dc655c97b"
+        },
+        {
+          "id": "world/resources/res_04",
+          "sha256": "953ead1b3428492791ec4de905fd7d42b25d42a3f9950a4aa2a905694e49576e"
+        },
+        {
+          "id": "world/resources/res_05",
+          "sha256": "a804cc11b42a44147cde8ddad213724a5a6606f481abe2d4ad5f7554cd819fb2"
+        },
+        {
+          "id": "world/resources/res_06",
+          "sha256": "ca0f357335480c8ba038ced5196373b9a01c20262f3af0c26aef50684a21b5bf"
+        },
+        {
+          "id": "world/resources/res_07",
+          "sha256": "cdca727854a5e84fbfd54961ec9a0f12fcd5f2ba0498b98db1556075cc426214"
+        },
+        {
+          "id": "world/resources/res_08",
+          "sha256": "a8ac7875baf091b640a5a4851812b60d375b86b45c72a5a2e024a84e983f4c20"
+        },
+        {
+          "id": "world/resources/res_09",
+          "sha256": "cdee78c9d8626db39e93fe9d730da267477be4dc0fd1ae7bd388301ec879745b"
+        },
+        {
+          "id": "world/resources/res_10",
+          "sha256": "2ecebdaf6bd76dfe723d28abb78acf6ba09ddc6c8f17e1462920598209711a41"
+        },
+        {
+          "id": "world/resources/res_11",
+          "sha256": "0e01bcde7768add6412f69e18b4aafb4ceedd3c117497ab746c618c36d1504f5"
+        },
+        {
+          "id": "world/resources/res_12",
+          "sha256": "689283c707f3c9973b57f7857aae2c50ea6ae56a374a24ee0aa234257dcc84fe"
+        },
+        {
+          "id": "world/resources/res_13",
+          "sha256": "6b6e03cd4cb7804b7855a58a6a8f08d88c90cb5dbdfb00f31f18407a42587dee"
+        },
+        {
+          "id": "world/resources/res_14",
+          "sha256": "d7cc85e0ef249a98e9adb5468c6d45bfca76da2054c0c175a1dddedece134285"
+        },
+        {
+          "id": "world/resources/res_15",
+          "sha256": "39ea629a5b74ac0c83414fe358f82ee43cd6c652c88ce4a7ac37891e8170e0f7"
+        },
+        {
+          "id": "world/resources/res_16",
+          "sha256": "0961be523ba60245598df3a61579da3f9ea642881153c5f8ec188c70e27aa4b6"
+        },
+        {
+          "id": "world/resources/res_17",
+          "sha256": "5b85a76921d56693850ae90be4f9bd21209c6fae0abfc3e2064f27e305070bc2"
+        },
+        {
+          "id": "world/resources/res_18",
+          "sha256": "09a387bf770354ba6559aa315b3062c097c4a38ab7d974c06967ac3be4e4b6a1"
+        },
+        {
+          "id": "world/resources/res_19",
+          "sha256": "c9dd5b1a43386e7209befdc0513009243856e62a1943fb497442f0befc972b7b"
+        },
+        {
+          "id": "world/terminology/term_01",
+          "sha256": "86f34fcae89009ca4e7633fb20e5e078e6ef7e8ba3de677c18ce6c0532fe804e"
+        },
+        {
+          "id": "world/terminology/term_02",
+          "sha256": "70e687b9e3f2ec6ad12a07be4a0ad0ca68a17d4d9a97f72921c2c36d870e32d6"
+        },
+        {
+          "id": "world/terminology/term_03",
+          "sha256": "0f70c439302a782e9c653646ed69d1a109ffaf2eba73d363139cf67fb325a1a5"
+        },
+        {
+          "id": "world/terminology/term_res_01",
+          "sha256": "4bdc089a93550e11430faba2c18ae3d91713d7c68a46b5aa61ab7917d90465cb"
+        },
+        {
+          "id": "world/terminology/term_res_02",
+          "sha256": "0fafce27805134101fa8a40e9b9f50b865208c2dc2ee7463a42b8af80fdaf118"
+        },
+        {
+          "id": "world/terminology/term_res_03",
+          "sha256": "0887d8a71546eaba5ab7cfec199a8082f581a047708a5aae532f126d3521b756"
+        },
+        {
+          "id": "world/terminology/term_res_04",
+          "sha256": "9572f017d5da0b3658a2fa28e84c376db487219ac7ccf909cdb8ee9d2e8e74e1"
+        },
+        {
+          "id": "world/terminology/term_res_05",
+          "sha256": "ab7322747a4e81b5890e9e29ed59d696368b46bf3ab2e6040b84c81041c5db60"
+        },
+        {
+          "id": "world/terminology/term_res_06",
+          "sha256": "81d99d93fad3aaf2006093e0859ab5782dd535f9f584c0d6ff12b3e19902a74f"
+        },
+        {
+          "id": "world/terminology/term_res_07",
+          "sha256": "d78a984954ba6fffe50dc81727700b23265087aacc615be5de971700bd80f01b"
+        },
+        {
+          "id": "world/terminology/term_res_08",
+          "sha256": "04a14d42898e2f4cd0f88c5da1581df50600c0794c623c7635ec658750bfd3a5"
+        },
+        {
+          "id": "world/terminology/term_res_09",
+          "sha256": "b8ce4eaa05d8a0cc0b5f1135678b15f6115fe1770200718c21537ba7f50f3048"
+        },
+        {
+          "id": "world/terminology/term_res_10",
+          "sha256": "99bc1d0c894984f1324e1f447cabde89e4a8c3c27edc1708acbc9282337e4edc"
+        },
+        {
+          "id": "world/terminology/term_res_11",
+          "sha256": "acf59ee6196b78250dae6f1c72e2fa09d2f68777c6af337736b54edd92800c23"
+        },
+        {
+          "id": "world/terminology/term_res_12",
+          "sha256": "a893f14a466dde3a1b77baf38c55eb14c24ade885697663ab441c7b5fedf290a"
+        },
+        {
+          "id": "world/terminology/term_asset_01",
+          "sha256": "ea83d634fdc7a38df13bde2af84618c9e59526157e48bd608f6cb49bc6d03b94"
+        },
+        {
+          "id": "world/terminology/term_asset_02",
+          "sha256": "f676c58e333f7821242e3b36d337ef86ef5cd434e2e760826fe172ac198dacf5"
+        },
+        {
+          "id": "world/terminology/term_asset_03",
+          "sha256": "af29d3aa86116a8df46519a18dbce1b92b74929b842e9e83d92f24c2b4430a4e"
+        },
+        {
+          "id": "world/terminology/term_asset_04",
+          "sha256": "a5610f37443968a98e2739a5dae2339822eb7b6017360494ae84688f6ed39543"
+        },
+        {
+          "id": "world/terminology/term_hist_01",
+          "sha256": "b5dcd0b29044580d146bc5a0eef43e83678cd840f40b095b3f23e92a021c7e97"
+        },
+        {
+          "id": "world/terminology/term_hist_02",
+          "sha256": "c1522dae7cfa26430f2779788c17ba30e7dc1b2aaa6696d91b9fe148b99b4aef"
+        },
+        {
+          "id": "world/terminology/term_ice_school",
+          "sha256": "cd2bcd95dad7d436522fbfc458ae955029ae9ba877e3ab543b5eefeb79c83c64"
+        },
+        {
+          "id": "world/terminology/term_cold_method",
+          "sha256": "a71d55b54389df5fb3a82da7a83edac121e9aabc961c084f32dde28d7e77400f"
+        },
+        {
+          "id": "world/terminology/term_probe_shuttle",
+          "sha256": "f61ce35abaf795c8ae2a36e61a9f7b373cf7955f38b7f7acc576f4625f89a3ae"
+        },
+        {
+          "id": "story/overview",
+          "sha256": "1d6be2ef90b2d0b21b7998b4798592e81a985de2257044acd58f894e3bbbdcb5"
+        },
+        {
+          "id": "story/characters/char_01",
+          "sha256": "400a561f4cdc1d022b11629aaa9bb4282b506f82246ab24777af60e4bab17c19"
+        },
+        {
+          "id": "story/characters/char_02",
+          "sha256": "535f4a599754db95906859f962d13861be57f652858b0de039f9ab5451d57b25"
+        },
+        {
+          "id": "story/characters/char_03",
+          "sha256": "183865f074513ddcfce8247e562de263e72fa91f31e45b0f6b43665beaf6fc47"
+        },
+        {
+          "id": "story/characters/char_04",
+          "sha256": "2367fe28b87d6c2cda12cc229d09ba9f1d25f7bf246958b1a2f28dc404740117"
+        },
+        {
+          "id": "story/characters/char_05",
+          "sha256": "6b009951696a4ba22e8c073bd9f33968a2dd4b9a5cf203cb766ef80b17b96b03"
+        },
+        {
+          "id": "story/characters/char_06",
+          "sha256": "4022e826723f6842f6496d91b16d3d775827fb78c2fcb7f3fff9370a3893f359"
+        },
+        {
+          "id": "story/characters/char_07",
+          "sha256": "5ac955ca3fcbf7f67acd5057f18515ada24dd2d5ee9321437fdfa916949fbb5a"
+        },
+        {
+          "id": "story/characters/char_08",
+          "sha256": "b7f3c35ec0b165f2bfe30dc73df775c074d72b633e4e3904c10bab417a587347"
+        },
+        {
+          "id": "story/characters/char_09",
+          "sha256": "4824332bdf0c9ea541a07fde087e618baf0881298fb8971d45601aa3f6ceec51"
+        },
+        {
+          "id": "story/characters/char_10",
+          "sha256": "728c48169654c91d23217351487954ec4b301207fc6685bb2ca85654f5105c01"
+        },
+        {
+          "id": "story/characters/char_11",
+          "sha256": "f4251153f9c8413b7d02bd27f277c2bf94fb2d3f7c08ae5915e7582dcfe2fb08"
+        },
+        {
+          "id": "story/characters/char_12",
+          "sha256": "036f3e0af061afe9cacee6e9ee79204ab0b89bf8935d5bb761d46b02892bb820"
+        },
+        {
+          "id": "story/characters/char_13",
+          "sha256": "8fdecadd4996980bc9c68b525492f03606fe07173fa377894930dad739ea9a67"
+        },
+        {
+          "id": "story/characters/char_14",
+          "sha256": "837c33d559427c663ca4a54a0ff06bd2b0b1b999bf5f7088891885682c980d61"
+        },
+        {
+          "id": "story/characters/char_15",
+          "sha256": "92b4264031800c7855a191b7da0dd8c3bf066c07c2804a80c2b2dd27eccf61f8"
+        },
+        {
+          "id": "story/characters/char_16",
+          "sha256": "4e72f59e19f96b3903e7d401c07357b460beb080a6b1250a5c3661f7979d6a62"
+        },
+        {
+          "id": "story/characters/char_17",
+          "sha256": "e514c93ee189f6b5d891a26b49a6bb4680f34023dc14a80a4817502819a7e474"
+        },
+        {
+          "id": "story/characters/char_18",
+          "sha256": "7b56a1e619b737eb67a138e5ee5ffafe6cf5e1409853890a1844c3e0b31ac726"
+        },
+        {
+          "id": "story/characters/char_19",
+          "sha256": "cd913551aac15d33587289073f75e9dded94d0d052a0f1c72134198602bd6fa9"
+        },
+        {
+          "id": "story/characters/char_20",
+          "sha256": "2df9e4f81d26f3ee2d4411b138bab36bdcdf87ab86e9e1c2e3da84724fba69d2"
+        },
+        {
+          "id": "story/characters/char_21",
+          "sha256": "36a0501de15cabec61870606a14d8f8055f5958507fd7e5949418226d74a758e"
+        },
+        {
+          "id": "story/characters/char_22",
+          "sha256": "bb8122aae6c3b24af36c7ef492e16771c7fda994d6941cd4094ebbf91047aa0b"
+        },
+        {
+          "id": "story/characters/char_23",
+          "sha256": "9c8c08bf322cfed7200a72ddf1060af63b1c4fb71e5312471bf6e089cfd10ab6"
+        },
+        {
+          "id": "story/characters/char_24",
+          "sha256": "d110ed49a69852d2681a0e3a93dd3648d4253058e61ee773dc2a4be403abda34"
+        },
+        {
+          "id": "story/characters/char_25",
+          "sha256": "f4e90a3532e9a34524a509f181415adf847e08e055ad6f0aeb2cf30288ea7de8"
+        },
+        {
+          "id": "plan/overview",
+          "sha256": "dca7aa428c62df71156450ccadf1aa4933fcad0dfb8d9fa270e5afdc9356c8d4"
+        },
+        {
+          "id": "plan/volumes/vol_01",
+          "sha256": "b29bb4dfc33ec569179f9541b635831929ea83d9762234ebb3799d26802da505"
+        },
+        {
+          "id": "plan/volumes/vol_02",
+          "sha256": "fb3b7159c3283bc3a92a9ee31019b342bd58227e1a6e2df72a48b1bce18ec4e0"
+        },
+        {
+          "id": "plan/volumes/vol_03",
+          "sha256": "6c79add16205a32d0dff06fd14f07a8ba09aeaec03c03ba8fe79f367f1678695"
+        },
+        {
+          "id": "plan/milestones/ms_vol1_turn",
+          "sha256": "51f48f29fb689df0e0f8ae5e12c79eab1a8644fe41331d0c01a87e90e6ce5f6b"
+        },
+        {
+          "id": "plan/milestones/ms_growth_v1_recovery",
+          "sha256": "27759fc581dee4da4cc6bc6538e88613b752d9959618f5b54c8917086f3f41d2"
+        },
+        {
+          "id": "plan/milestones/ms_growth_v1_training",
+          "sha256": "e2266140b7da1e6acefa4dbd3478f8cb30adbb0a9f4c8d1ee994b76c10fac05a"
+        },
+        {
+          "id": "plan/milestones/ms_growth_v1_expedition",
+          "sha256": "75c0124ff4a3202f693a8ab6966f58ed1f1838200621946293471eb68cb5e4b3"
+        },
+        {
+          "id": "plan/milestones/ms_vol1_climax",
+          "sha256": "fe6d4c5af910697aa511fb5bf21e9c29f7100acefc4b9a4cff535b7f46efc91e"
+        },
+        {
+          "id": "plan/milestones/ms_growth_v1_aftermath",
+          "sha256": "c663b5f11e76335c99d7f4467e4227281c53bf11d4c44c84ce1b77566281048e"
+        },
+        {
+          "id": "plan/milestones/ms_growth_v1_crossing",
+          "sha256": "c37abeb68fd44238772faa4353ddfdab6f73309973bb28643edf4c5eab5e5c27"
+        },
+        {
+          "id": "plan/milestones/ms_bridge_return",
+          "sha256": "e507a5e7eefdfebc6dbe4047a24a98a6e485754e8c4a90dfd8a86913d2efd065"
+        },
+        {
+          "id": "plan/milestones/ms_v2_loss",
+          "sha256": "5324be1059787eda541ec2088fa6beb18c6f64555379e711f76d4b6223b6f3d0"
+        },
+        {
+          "id": "plan/milestones/ms_v2_barge",
+          "sha256": "139c0885ef3f0055b4e192c1553a79b113607826dec5153f2ec2e669a3fba276"
+        },
+        {
+          "id": "plan/milestones/ms_v2_fire",
+          "sha256": "62568574d6cbe95a059054f274d3418f4abfda8f217d9823d0784fffc01ddbd2"
+        },
+        {
+          "id": "plan/milestones/ms_v2_voyage",
+          "sha256": "b09ba3539d3706fc24bbba74d4e01f083ebade16597a2144ff1a691729852c20"
+        },
+        {
+          "id": "plan/milestones/ms_v2_boundary",
+          "sha256": "9534dab127746f185348cdeb1e77928b92cee455c48cd5ccf56ba7c202fcad55"
+        },
+        {
+          "id": "plan/milestones/ms_v3_return",
+          "sha256": "81422021762f5767ae22e2903495a7e04619a27cb68a9ffb08e899fd7e2c3069"
+        },
+        {
+          "id": "plan/milestones/ms_v3_training",
+          "sha256": "6cb8565309ec52dd1b90ef620698ee665e6bf890105f1df2fe44dc6b2fed43f1"
+        },
+        {
+          "id": "plan/milestones/ms_v3_advancement",
+          "sha256": "1c61989a441c2bbc9e81f9f23b2e83d800b8a146d32d11114d0edd6ace3de199"
+        },
+        {
+          "id": "plan/milestones/ms_v3_convoy",
+          "sha256": "a3b8a9fc8fceed59206f5881c0cc0ffe332b53c03b9c369935e2aeebdce19e52"
+        },
+        {
+          "id": "plan/milestones/ms_v3_payoff",
+          "sha256": "71af953802373e7ad35b6b9c3d491ebd76adcd642195b6552e3eb472a798f586"
+        }
+      ]
+    },
+    {
+      "area": "power",
+      "inputPath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design68-focused-review/power-input.json",
+      "inputSha256": "553a1668ef5dcd1a36ab6312825ccd67026e2fc71ec60ea0585c5a9af2e91cd7",
+      "sourceCharacters": 176460,
+      "sources": [
+        {
+          "id": "author",
+          "sha256": "f442f82fa90ba8ba3f35f3487e8c04700dfab25f4309461c3c2400b026a5c565"
+        },
+        {
+          "id": "world/overview",
+          "sha256": "4bd17f827785ffc7c809baa5c2fb799873729909f5525264238cfe60079e3d1d"
+        },
+        {
+          "id": "world/axioms/ax_01",
+          "sha256": "9b4cf41d20d10341215b75c064633660e3bbdbd46db40eb73e362f1cdbb6f1ea"
+        },
+        {
+          "id": "world/axioms/ax_02",
+          "sha256": "77309954a44879de40e736ca017261fd49a3eb912853b0619b223d9f6a804a1b"
+        },
+        {
+          "id": "world/axioms/ax_03",
+          "sha256": "7374eb90c1ff2385c53e6aec4fa59b2613c6bc7b60f0f0a75ef102d95e09a8ab"
+        },
+        {
+          "id": "world/axioms/ax_04",
+          "sha256": "fd1141bcc5113668f44019f030eb375aaad5925129fd1217432959689886c899"
+        },
+        {
+          "id": "world/axioms/ax_05",
+          "sha256": "81f0c43a0365496907a72b0dc70757f0836180eb86d73244853ccba8d2b39b8b"
+        },
+        {
+          "id": "world/axioms/ax_06",
+          "sha256": "84738d52efd925e83d342f453313bb03df44073786623e1cb97384cc89d47a29"
+        },
+        {
+          "id": "world/axioms/ax_07",
+          "sha256": "df8b0b4dd073dbe00e98dfe9521a4ba4a9925866ff91359975a0c8d6e72bf55a"
+        },
+        {
+          "id": "world/axioms/ax_08",
+          "sha256": "cac7e1f1a900eb05ac144556b7f163087f8ca684710955028e0eaeac394c56a0"
+        },
+        {
+          "id": "world/axioms/ax_09",
+          "sha256": "0c261e6a9219679c2d8fdd978423cb13e152e6390eb49746efbb82ce2933e377"
+        },
+        {
+          "id": "world/axioms/ax_10",
+          "sha256": "058a29301718fceb65ad6257a359a7e5973d68a609bbfa08d8c74c023616347b"
+        },
+        {
+          "id": "world/axioms/ax_11",
+          "sha256": "f06f32be8a59059f10ca118235ef7c85462b247fe2c24b7a1dae943fc020c7a6"
+        },
+        {
+          "id": "world/axioms/ax_12",
+          "sha256": "daf4eb121c54492e4ff0b0ee5ca883756a6d329446e0324aaac00a4ba3ac793e"
+        },
+        {
+          "id": "world/axioms/ax_13",
+          "sha256": "6b5e5698dea923a314789e3d92237a88cb47264865f38b0012f4bfa54af85c61"
+        },
+        {
+          "id": "world/powerSystems/ps_01",
+          "sha256": "fe1cb51350cb9210b886ea7bb62be197a979fba55e8de99089791837f8346e6e"
+        },
+        {
+          "id": "world/tierLadders/ladder_realm",
+          "sha256": "71fa8f4da61766bb9c3aa7b8f7dfd5136d652930fd61687fedae458475b5ba5b"
+        },
+        {
+          "id": "world/tierLadders/ladder_technique",
+          "sha256": "fddca025b14267f3f7cb7c457e0a3ea53606a35cb934c01432d26d7ba2d9f0e7"
+        },
+        {
+          "id": "world/tierLadders/ladder_artifact",
+          "sha256": "fd022c8d7ab81e48de08a5226890a7cec1b0a5eb5c9f2f594a25f6f6891e1aab"
+        },
+        {
+          "id": "world/tierLadders/ladder_resource",
+          "sha256": "f4408b078fe8694fa360085c6bbdaf15679a6fb49b71d1710e57c6d3fed314fa"
+        },
+        {
+          "id": "world/realms/realm_01",
+          "sha256": "49f1521eff2c164ba952015169e99c2012227a8c18ca75e98fc28f77eb1070e1"
+        },
+        {
+          "id": "world/realms/realm_02",
+          "sha256": "73fb4db7f54e138968e57c8e0d5d1daab3f3ddc0136d862d4a332abfd389bc7a"
+        },
+        {
+          "id": "world/realms/realm_03",
+          "sha256": "c8c5842b7f10f1869e6410b8370689b33880ed2b047caba32c14218e3755f43d"
+        },
+        {
+          "id": "world/realms/realm_04",
+          "sha256": "5dec0225c873d520337b0ec0febaeb641a91b9c81b73d7bc32cb450d40b75430"
+        },
+        {
+          "id": "world/realms/realm_05",
+          "sha256": "56e916a4c0bdbc59fcbe12c445de7c096b24d98be330969ade2693d8fc8a41bc"
+        },
+        {
+          "id": "world/realms/realm_06",
+          "sha256": "af7e0581a01e2d048e13dc0240f8a1f92ef6cb1c5d390a0192667da4cbbd3095"
+        },
+        {
+          "id": "world/realms/realm_07",
+          "sha256": "638bb907a79396af21f365f0f63284142f51a89c4c0a48d583d7f26541646c41"
+        },
+        {
+          "id": "world/realms/realm_08",
+          "sha256": "a3b97b8cd0093283b5f2580407592bc61a1eecd24f894de5199d3066ceefdf92"
+        },
+        {
+          "id": "world/techniques/tech_01",
+          "sha256": "2fead3754edc1c833ee3c7266e92d83553bcd6581c9781e5d2a32bb48e517ecd"
+        },
+        {
+          "id": "world/techniques/tech_02",
+          "sha256": "051dd3abb263074b4783cd725aee5c641cc64c9887eb9ef8253e56e16cf2a9c2"
+        },
+        {
+          "id": "world/techniques/tech_03",
+          "sha256": "655a9cad9083e848c17ac4509ef7c40b05714facbb5d0562c8c12c414ecd8adc"
+        },
+        {
+          "id": "world/techniques/tech_04",
+          "sha256": "c769a1343b1e4c2ba4fb9b336985095524d368eb59175243b7459f7b87ea3d56"
+        },
+        {
+          "id": "world/techniques/tech_05",
+          "sha256": "6cb16a5b9f210991daae7f20795f79b9a9463c68eaf7224de5f05fdc11c468ce"
+        },
+        {
+          "id": "world/techniques/tech_06",
+          "sha256": "9a5d454948c772c58623d0fde6a5de5adc1d711edf0952db8d6b765384cb2492"
+        },
+        {
+          "id": "world/techniques/tech_07",
+          "sha256": "f58d5982ba724c935c087a152061eea0b3b8fa01cd71c861d6ebe907ddb10607"
+        },
+        {
+          "id": "world/techniques/tech_08",
+          "sha256": "17cd1fe428919c3321cb239bb6b39ef66c1fdae52d70005e45e0e276c9100c59"
+        },
+        {
+          "id": "world/techniques/tech_09",
+          "sha256": "1e8275f0da5b5b1e6b229298bb89c20376605c4abe4db906ff8777d351654cc6"
+        },
+        {
+          "id": "world/techniques/tech_10",
+          "sha256": "c446f0356ddfa6f77e88909fcf6d950cc19a4a72605e12071d1efb56dcd75c38"
+        },
+        {
+          "id": "world/techniques/tech_11",
+          "sha256": "34739ae017300664d2bf2ab1a69177523c9d270cebb0bff737ee81eb9adc69ca"
+        },
+        {
+          "id": "world/techniques/tech_12",
+          "sha256": "901b3875ebe536e48dd2fdd776034fd7246d403689b690fd09b1b1c4c6d520e3"
+        },
+        {
+          "id": "world/techniques/tech_13",
+          "sha256": "12681ad1181eaed0640089fcaf327fadb3293229a8ca6f6ed1e87458d1815c8e"
+        },
+        {
+          "id": "world/techniques/tech_14",
+          "sha256": "fe5e1bbfc87ebd9409d5303e2308dae1950207c73ae4942304f1c293d7e25d66"
+        },
+        {
+          "id": "world/techniques/tech_15",
+          "sha256": "d07750a246fa4bea4ed0ebcc70be0bcf96550a6e2dc5ea8a4329eff3b11cfc8d"
+        },
+        {
+          "id": "world/techniques/tech_16",
+          "sha256": "4c9553911195b8cfed8f368f1149bed4df5d38c92febbac057756db4b63aa1db"
+        },
+        {
+          "id": "world/techniques/tech_17",
+          "sha256": "6779eff3bc294418c5b467b50861db447182bcd96d73197cb71bc771cdf4b5d3"
+        },
+        {
+          "id": "world/techniques/tech_18",
+          "sha256": "e9b2bd8c61f3e8eb2c90e500f0d9d52c1577f73cb59f71ea6dfcbd41d21b368e"
+        },
+        {
+          "id": "world/artifacts/art_01",
+          "sha256": "3ee8d2119dbcb96533c3ad3aa869371adb594e375c4de051b96cec7bedb194d1"
+        },
+        {
+          "id": "world/artifacts/art_02",
+          "sha256": "8859ba63c43d2064f2ba9e2b6dbed7cc6cdfffafc8822a36b04bdbe7aa9ec537"
+        },
+        {
+          "id": "world/artifacts/art_03",
+          "sha256": "1a0060c815e1df00846151997d818e5103e08ebd2481fce0ad6209616454986f"
+        },
+        {
+          "id": "world/artifacts/art_04",
+          "sha256": "8ddaaadb75fde9238a49469205375e6a1942e566846e8f47b08a9c441efa3d10"
+        },
+        {
+          "id": "world/artifacts/art_05",
+          "sha256": "2e2d112e16dc08c622c2330f6a1b08da7fb75483681ee8c3f68abd63a9a248e5"
+        },
+        {
+          "id": "world/artifacts/art_06",
+          "sha256": "2f2539fe6186c1a4fb7f4a15766b629b6abee6e1f6acd13ca307c80f8841cf05"
+        },
+        {
+          "id": "world/artifacts/art_07",
+          "sha256": "ecf0ac2fa6456a05ae78715a8593bfa4f79b4bf832a8c0562194f3c8678ad107"
+        },
+        {
+          "id": "world/artifacts/art_08",
+          "sha256": "e1be301f4b3b76a711de085ad9eb5e2c5cf16cfa382b3fac2a780ca68e8240a2"
+        },
+        {
+          "id": "world/artifacts/art_09",
+          "sha256": "b445ee5e54e06058a0536f96fb63d2aa09d0d47110bfac8b180d1f76bf377e94"
+        },
+        {
+          "id": "world/artifacts/art_10",
+          "sha256": "4e83e8c9dcab535aa6dab08e8b6f575291f43db2c63f0245bb2044d722f4400c"
+        },
+        {
+          "id": "world/artifacts/art_11",
+          "sha256": "55ef5829db2f2db2a520cc9e3e09afe85d37ce0930f965b0ebfc83a59e61ac62"
+        },
+        {
+          "id": "world/artifacts/art_12",
+          "sha256": "f51746aca8352d9eae426537c2c9fba7b2c0992dc312c65a7a8ea736a44b58a2"
+        },
+        {
+          "id": "world/artifacts/art_13",
+          "sha256": "ef49947fce56f2cf395c07b7b6a75a7ad286797ba6ec8e0f2a53ab6b3fbe432c"
+        },
+        {
+          "id": "world/artifacts/art_14",
+          "sha256": "7f0e22b8716f8eafa61d3591120beb745267084f88721ba4c79b0047ade0c6af"
+        },
+        {
+          "id": "world/artifacts/art_15",
+          "sha256": "a9f2de9fabd25085d01aa4ffe54ef4eed208154ee875789127d02205ddfe789b"
+        },
+        {
+          "id": "world/artifacts/art_16",
+          "sha256": "8202de560b5742380dc0b65521cb3200b65987c2a4b6a666af2cb83502eeea8f"
+        },
+        {
+          "id": "world/artifacts/art_17",
+          "sha256": "3231c30efa322a2da818c8c1d5ea4e0b4fe6fb47e88bb89a916270306bbd4d79"
+        },
+        {
+          "id": "world/artifacts/art_18",
+          "sha256": "a39947378ab7a0ea6c031625eb1637a10e0588b15338d219eb467c4116662cf0"
+        },
+        {
+          "id": "world/artifacts/art_19",
+          "sha256": "0cc62755321401427df2e71dabf54990c13794028f025ce4693d6a7c79d33582"
+        },
+        {
+          "id": "world/artifacts/art_20",
+          "sha256": "64b1690cfbc8c6789be9339c62433f25af83f45cdaf217f5898edfcd117980fb"
+        },
+        {
+          "id": "world/artifacts/art_21",
+          "sha256": "5c5e3f71b869bfc7fa4b565fd7e8866728cb9495ed2f65a088797f715c00d9bb"
+        },
+        {
+          "id": "world/resources/res_01",
+          "sha256": "d3484faa5ceaf7d173a128eded7b1d416beab06bb38febcf8a3a2fe468a03cfb"
+        },
+        {
+          "id": "world/resources/res_02",
+          "sha256": "b1049210cce33b2de8bbaa2edc67cc81887e19c8d6e0f2d90cbccfbe8800e275"
+        },
+        {
+          "id": "world/resources/res_03",
+          "sha256": "5f12a3da70480d98a9c5e2fe8e426d29c75e0e8a45ee136c5638b52dc655c97b"
+        },
+        {
+          "id": "world/resources/res_04",
+          "sha256": "953ead1b3428492791ec4de905fd7d42b25d42a3f9950a4aa2a905694e49576e"
+        },
+        {
+          "id": "world/resources/res_05",
+          "sha256": "a804cc11b42a44147cde8ddad213724a5a6606f481abe2d4ad5f7554cd819fb2"
+        },
+        {
+          "id": "world/resources/res_06",
+          "sha256": "ca0f357335480c8ba038ced5196373b9a01c20262f3af0c26aef50684a21b5bf"
+        },
+        {
+          "id": "world/resources/res_07",
+          "sha256": "cdca727854a5e84fbfd54961ec9a0f12fcd5f2ba0498b98db1556075cc426214"
+        },
+        {
+          "id": "world/resources/res_08",
+          "sha256": "a8ac7875baf091b640a5a4851812b60d375b86b45c72a5a2e024a84e983f4c20"
+        },
+        {
+          "id": "world/resources/res_09",
+          "sha256": "cdee78c9d8626db39e93fe9d730da267477be4dc0fd1ae7bd388301ec879745b"
+        },
+        {
+          "id": "world/resources/res_10",
+          "sha256": "2ecebdaf6bd76dfe723d28abb78acf6ba09ddc6c8f17e1462920598209711a41"
+        },
+        {
+          "id": "world/resources/res_11",
+          "sha256": "0e01bcde7768add6412f69e18b4aafb4ceedd3c117497ab746c618c36d1504f5"
+        },
+        {
+          "id": "world/resources/res_12",
+          "sha256": "689283c707f3c9973b57f7857aae2c50ea6ae56a374a24ee0aa234257dcc84fe"
+        },
+        {
+          "id": "world/resources/res_13",
+          "sha256": "6b6e03cd4cb7804b7855a58a6a8f08d88c90cb5dbdfb00f31f18407a42587dee"
+        },
+        {
+          "id": "world/resources/res_14",
+          "sha256": "d7cc85e0ef249a98e9adb5468c6d45bfca76da2054c0c175a1dddedece134285"
+        },
+        {
+          "id": "world/resources/res_15",
+          "sha256": "39ea629a5b74ac0c83414fe358f82ee43cd6c652c88ce4a7ac37891e8170e0f7"
+        },
+        {
+          "id": "world/resources/res_16",
+          "sha256": "0961be523ba60245598df3a61579da3f9ea642881153c5f8ec188c70e27aa4b6"
+        },
+        {
+          "id": "world/resources/res_17",
+          "sha256": "5b85a76921d56693850ae90be4f9bd21209c6fae0abfc3e2064f27e305070bc2"
+        },
+        {
+          "id": "world/resources/res_18",
+          "sha256": "09a387bf770354ba6559aa315b3062c097c4a38ab7d974c06967ac3be4e4b6a1"
+        },
+        {
+          "id": "world/resources/res_19",
+          "sha256": "c9dd5b1a43386e7209befdc0513009243856e62a1943fb497442f0befc972b7b"
+        },
+        {
+          "id": "story/characters/char_01",
+          "sha256": "400a561f4cdc1d022b11629aaa9bb4282b506f82246ab24777af60e4bab17c19"
+        },
+        {
+          "id": "story/characters/char_02",
+          "sha256": "535f4a599754db95906859f962d13861be57f652858b0de039f9ab5451d57b25"
+        },
+        {
+          "id": "story/characters/char_03",
+          "sha256": "183865f074513ddcfce8247e562de263e72fa91f31e45b0f6b43665beaf6fc47"
+        },
+        {
+          "id": "story/characters/char_04",
+          "sha256": "2367fe28b87d6c2cda12cc229d09ba9f1d25f7bf246958b1a2f28dc404740117"
+        },
+        {
+          "id": "story/characters/char_05",
+          "sha256": "6b009951696a4ba22e8c073bd9f33968a2dd4b9a5cf203cb766ef80b17b96b03"
+        },
+        {
+          "id": "story/characters/char_06",
+          "sha256": "4022e826723f6842f6496d91b16d3d775827fb78c2fcb7f3fff9370a3893f359"
+        },
+        {
+          "id": "story/characters/char_07",
+          "sha256": "5ac955ca3fcbf7f67acd5057f18515ada24dd2d5ee9321437fdfa916949fbb5a"
+        },
+        {
+          "id": "story/characters/char_08",
+          "sha256": "b7f3c35ec0b165f2bfe30dc73df775c074d72b633e4e3904c10bab417a587347"
+        },
+        {
+          "id": "story/characters/char_09",
+          "sha256": "4824332bdf0c9ea541a07fde087e618baf0881298fb8971d45601aa3f6ceec51"
+        },
+        {
+          "id": "story/characters/char_10",
+          "sha256": "728c48169654c91d23217351487954ec4b301207fc6685bb2ca85654f5105c01"
+        },
+        {
+          "id": "story/characters/char_11",
+          "sha256": "f4251153f9c8413b7d02bd27f277c2bf94fb2d3f7c08ae5915e7582dcfe2fb08"
+        },
+        {
+          "id": "story/characters/char_12",
+          "sha256": "036f3e0af061afe9cacee6e9ee79204ab0b89bf8935d5bb761d46b02892bb820"
+        },
+        {
+          "id": "story/characters/char_13",
+          "sha256": "8fdecadd4996980bc9c68b525492f03606fe07173fa377894930dad739ea9a67"
+        },
+        {
+          "id": "story/characters/char_14",
+          "sha256": "837c33d559427c663ca4a54a0ff06bd2b0b1b999bf5f7088891885682c980d61"
+        },
+        {
+          "id": "story/characters/char_15",
+          "sha256": "92b4264031800c7855a191b7da0dd8c3bf066c07c2804a80c2b2dd27eccf61f8"
+        },
+        {
+          "id": "story/characters/char_16",
+          "sha256": "4e72f59e19f96b3903e7d401c07357b460beb080a6b1250a5c3661f7979d6a62"
+        },
+        {
+          "id": "story/characters/char_17",
+          "sha256": "e514c93ee189f6b5d891a26b49a6bb4680f34023dc14a80a4817502819a7e474"
+        },
+        {
+          "id": "story/characters/char_18",
+          "sha256": "7b56a1e619b737eb67a138e5ee5ffafe6cf5e1409853890a1844c3e0b31ac726"
+        },
+        {
+          "id": "story/characters/char_19",
+          "sha256": "cd913551aac15d33587289073f75e9dded94d0d052a0f1c72134198602bd6fa9"
+        },
+        {
+          "id": "story/characters/char_20",
+          "sha256": "2df9e4f81d26f3ee2d4411b138bab36bdcdf87ab86e9e1c2e3da84724fba69d2"
+        },
+        {
+          "id": "story/characters/char_21",
+          "sha256": "36a0501de15cabec61870606a14d8f8055f5958507fd7e5949418226d74a758e"
+        },
+        {
+          "id": "story/characters/char_22",
+          "sha256": "bb8122aae6c3b24af36c7ef492e16771c7fda994d6941cd4094ebbf91047aa0b"
+        },
+        {
+          "id": "story/characters/char_23",
+          "sha256": "9c8c08bf322cfed7200a72ddf1060af63b1c4fb71e5312471bf6e089cfd10ab6"
+        },
+        {
+          "id": "story/characters/char_24",
+          "sha256": "d110ed49a69852d2681a0e3a93dd3648d4253058e61ee773dc2a4be403abda34"
+        },
+        {
+          "id": "story/characters/char_25",
+          "sha256": "f4e90a3532e9a34524a509f181415adf847e08e055ad6f0aeb2cf30288ea7de8"
+        },
+        {
+          "id": "story/chapterPlans/chapter-plan-23",
+          "sha256": "c003e5ab2fc8127bf90f8ab1484e1ab313a15b426f1f110ad81511f1b904e9ae"
+        },
+        {
+          "id": "plan/overview",
+          "sha256": "dca7aa428c62df71156450ccadf1aa4933fcad0dfb8d9fa270e5afdc9356c8d4"
+        },
+        {
+          "id": "plan/milestones/ms_vol1_turn",
+          "sha256": "51f48f29fb689df0e0f8ae5e12c79eab1a8644fe41331d0c01a87e90e6ce5f6b"
+        },
+        {
+          "id": "plan/milestones/ms_growth_v1_recovery",
+          "sha256": "27759fc581dee4da4cc6bc6538e88613b752d9959618f5b54c8917086f3f41d2"
+        },
+        {
+          "id": "plan/milestones/ms_growth_v1_training",
+          "sha256": "e2266140b7da1e6acefa4dbd3478f8cb30adbb0a9f4c8d1ee994b76c10fac05a"
+        },
+        {
+          "id": "plan/milestones/ms_growth_v1_expedition",
+          "sha256": "75c0124ff4a3202f693a8ab6966f58ed1f1838200621946293471eb68cb5e4b3"
+        },
+        {
+          "id": "plan/milestones/ms_vol1_climax",
+          "sha256": "fe6d4c5af910697aa511fb5bf21e9c29f7100acefc4b9a4cff535b7f46efc91e"
+        },
+        {
+          "id": "plan/milestones/ms_growth_v1_aftermath",
+          "sha256": "c663b5f11e76335c99d7f4467e4227281c53bf11d4c44c84ce1b77566281048e"
+        },
+        {
+          "id": "plan/milestones/ms_growth_v1_crossing",
+          "sha256": "c37abeb68fd44238772faa4353ddfdab6f73309973bb28643edf4c5eab5e5c27"
+        },
+        {
+          "id": "plan/milestones/ms_bridge_return",
+          "sha256": "e507a5e7eefdfebc6dbe4047a24a98a6e485754e8c4a90dfd8a86913d2efd065"
+        },
+        {
+          "id": "plan/milestones/ms_v2_loss",
+          "sha256": "5324be1059787eda541ec2088fa6beb18c6f64555379e711f76d4b6223b6f3d0"
+        },
+        {
+          "id": "plan/milestones/ms_v2_barge",
+          "sha256": "139c0885ef3f0055b4e192c1553a79b113607826dec5153f2ec2e669a3fba276"
+        },
+        {
+          "id": "plan/milestones/ms_v2_fire",
+          "sha256": "62568574d6cbe95a059054f274d3418f4abfda8f217d9823d0784fffc01ddbd2"
+        },
+        {
+          "id": "plan/milestones/ms_v2_voyage",
+          "sha256": "b09ba3539d3706fc24bbba74d4e01f083ebade16597a2144ff1a691729852c20"
+        },
+        {
+          "id": "plan/milestones/ms_v2_boundary",
+          "sha256": "9534dab127746f185348cdeb1e77928b92cee455c48cd5ccf56ba7c202fcad55"
+        },
+        {
+          "id": "plan/milestones/ms_v3_return",
+          "sha256": "81422021762f5767ae22e2903495a7e04619a27cb68a9ffb08e899fd7e2c3069"
+        },
+        {
+          "id": "plan/milestones/ms_v3_training",
+          "sha256": "6cb8565309ec52dd1b90ef620698ee665e6bf890105f1df2fe44dc6b2fed43f1"
+        },
+        {
+          "id": "plan/milestones/ms_v3_advancement",
+          "sha256": "1c61989a441c2bbc9e81f9f23b2e83d800b8a146d32d11114d0edd6ace3de199"
+        },
+        {
+          "id": "plan/milestones/ms_v3_convoy",
+          "sha256": "a3b8a9fc8fceed59206f5881c0cc0ffe332b53c03b9c369935e2aeebdce19e52"
+        },
+        {
+          "id": "plan/milestones/ms_v3_payoff",
+          "sha256": "71af953802373e7ad35b6b9c3d491ebd76adcd642195b6552e3eb472a798f586"
+        },
+        {
+          "id": "plan/chapters/18",
+          "sha256": "e4281f4dbb9980d018c57994c5c704855beb6699b2fca60cdd751aa09b19cf29"
+        },
+        {
+          "id": "plan/chapters/23",
+          "sha256": "b38d593f3b2f480910f542ff8309fc24b8b033081124368f9487caa3e5a0050b"
+        },
+        {
+          "id": "plan/chapters/25",
+          "sha256": "3d80bc32c48a57da2cfabc0edf942628eb583ea0577a76c94e3f359b44d35c80"
+        },
+        {
+          "id": "plan/chapters/26",
+          "sha256": "3e6d5acf635d6f9f69ee1f3546325d23959020797a12811f65c53f8c87141346"
+        },
+        {
+          "id": "plan/chapters/29",
+          "sha256": "7577dcb7577b47c1dcce7c76cedbf29c602e93ec90756ea108ea264f24aa399c"
+        },
+        {
+          "id": "plan/chapters/37",
+          "sha256": "f42cac4e1e545544c6857aaeecda25a2903db0d21e87e5112f5870381e0355f4"
+        },
+        {
+          "id": "plan/chapters/43",
+          "sha256": "6b2497e2ebbd578d337118f90393a60fc9d125e8626982715920f9bfca2f0809"
+        },
+        {
+          "id": "plan/chapters/44",
+          "sha256": "dfe7702b21590d14e968ec3d419afe18b389ce38acb50617a8add51f6437b722"
+        },
+        {
+          "id": "plan/chapters/45",
+          "sha256": "2230f7fe72e2d29c541fc201f4cf3dd480749cafa5c97f3e13fee3befa21732b"
+        }
+      ]
+    },
+    {
+      "area": "characters",
+      "inputPath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design68-focused-review/characters-input.json",
+      "inputSha256": "441d6419232b932c84ffc8627a02e31edcb96e4f4a9c159010145145d663230d",
+      "sourceCharacters": 175803,
+      "sources": [
+        {
+          "id": "author",
+          "sha256": "f442f82fa90ba8ba3f35f3487e8c04700dfab25f4309461c3c2400b026a5c565"
+        },
+        {
+          "id": "story/overview",
+          "sha256": "1d6be2ef90b2d0b21b7998b4798592e81a985de2257044acd58f894e3bbbdcb5"
+        },
+        {
+          "id": "story/characters/char_01",
+          "sha256": "400a561f4cdc1d022b11629aaa9bb4282b506f82246ab24777af60e4bab17c19"
+        },
+        {
+          "id": "story/characters/char_02",
+          "sha256": "535f4a599754db95906859f962d13861be57f652858b0de039f9ab5451d57b25"
+        },
+        {
+          "id": "story/characters/char_03",
+          "sha256": "183865f074513ddcfce8247e562de263e72fa91f31e45b0f6b43665beaf6fc47"
+        },
+        {
+          "id": "story/characters/char_04",
+          "sha256": "2367fe28b87d6c2cda12cc229d09ba9f1d25f7bf246958b1a2f28dc404740117"
+        },
+        {
+          "id": "story/characters/char_05",
+          "sha256": "6b009951696a4ba22e8c073bd9f33968a2dd4b9a5cf203cb766ef80b17b96b03"
+        },
+        {
+          "id": "story/characters/char_06",
+          "sha256": "4022e826723f6842f6496d91b16d3d775827fb78c2fcb7f3fff9370a3893f359"
+        },
+        {
+          "id": "story/characters/char_07",
+          "sha256": "5ac955ca3fcbf7f67acd5057f18515ada24dd2d5ee9321437fdfa916949fbb5a"
+        },
+        {
+          "id": "story/characters/char_08",
+          "sha256": "b7f3c35ec0b165f2bfe30dc73df775c074d72b633e4e3904c10bab417a587347"
+        },
+        {
+          "id": "story/characters/char_09",
+          "sha256": "4824332bdf0c9ea541a07fde087e618baf0881298fb8971d45601aa3f6ceec51"
+        },
+        {
+          "id": "story/characters/char_10",
+          "sha256": "728c48169654c91d23217351487954ec4b301207fc6685bb2ca85654f5105c01"
+        },
+        {
+          "id": "story/characters/char_11",
+          "sha256": "f4251153f9c8413b7d02bd27f277c2bf94fb2d3f7c08ae5915e7582dcfe2fb08"
+        },
+        {
+          "id": "story/characters/char_12",
+          "sha256": "036f3e0af061afe9cacee6e9ee79204ab0b89bf8935d5bb761d46b02892bb820"
+        },
+        {
+          "id": "story/characters/char_13",
+          "sha256": "8fdecadd4996980bc9c68b525492f03606fe07173fa377894930dad739ea9a67"
+        },
+        {
+          "id": "story/characters/char_14",
+          "sha256": "837c33d559427c663ca4a54a0ff06bd2b0b1b999bf5f7088891885682c980d61"
+        },
+        {
+          "id": "story/characters/char_15",
+          "sha256": "92b4264031800c7855a191b7da0dd8c3bf066c07c2804a80c2b2dd27eccf61f8"
+        },
+        {
+          "id": "story/characters/char_16",
+          "sha256": "4e72f59e19f96b3903e7d401c07357b460beb080a6b1250a5c3661f7979d6a62"
+        },
+        {
+          "id": "story/characters/char_17",
+          "sha256": "e514c93ee189f6b5d891a26b49a6bb4680f34023dc14a80a4817502819a7e474"
+        },
+        {
+          "id": "story/characters/char_18",
+          "sha256": "7b56a1e619b737eb67a138e5ee5ffafe6cf5e1409853890a1844c3e0b31ac726"
+        },
+        {
+          "id": "story/characters/char_19",
+          "sha256": "cd913551aac15d33587289073f75e9dded94d0d052a0f1c72134198602bd6fa9"
+        },
+        {
+          "id": "story/characters/char_20",
+          "sha256": "2df9e4f81d26f3ee2d4411b138bab36bdcdf87ab86e9e1c2e3da84724fba69d2"
+        },
+        {
+          "id": "story/characters/char_21",
+          "sha256": "36a0501de15cabec61870606a14d8f8055f5958507fd7e5949418226d74a758e"
+        },
+        {
+          "id": "story/characters/char_22",
+          "sha256": "bb8122aae6c3b24af36c7ef492e16771c7fda994d6941cd4094ebbf91047aa0b"
+        },
+        {
+          "id": "story/characters/char_23",
+          "sha256": "9c8c08bf322cfed7200a72ddf1060af63b1c4fb71e5312471bf6e089cfd10ab6"
+        },
+        {
+          "id": "story/characters/char_24",
+          "sha256": "d110ed49a69852d2681a0e3a93dd3648d4253058e61ee773dc2a4be403abda34"
+        },
+        {
+          "id": "story/characters/char_25",
+          "sha256": "f4e90a3532e9a34524a509f181415adf847e08e055ad6f0aeb2cf30288ea7de8"
+        },
+        {
+          "id": "story/relationships/rel_01",
+          "sha256": "c44cc685b93cda5fa54b0efcfec2c99f851a4a6b6438b4e9d44820d25adcdb75"
+        },
+        {
+          "id": "story/relationships/rel_02",
+          "sha256": "b29dce327cdb5ca461978086027a8f74292eff749aa0ce45bd11ba3b8826560c"
+        },
+        {
+          "id": "story/relationships/rel_03",
+          "sha256": "a3d67a738f081d77a3c0fb42b3338a313505563f89dfbe5a1e1c70577aa86f9c"
+        },
+        {
+          "id": "story/relationships/rel_04",
+          "sha256": "57ee06f38c377488d46057ff1550a19c21cba81e4e9261b6284da42ced15298c"
+        },
+        {
+          "id": "story/relationships/rel_06",
+          "sha256": "daae5b0f83d764174745ea10a105755620ba85a4a73e0368d5d8183ee5b5d291"
+        },
+        {
+          "id": "story/relationships/rel_07",
+          "sha256": "b4ee23d47f0a97a7cc1b2bed87352f58a6825017ce05fbcd47919cd9508c330d"
+        },
+        {
+          "id": "story/relationships/rel_08",
+          "sha256": "3aabaf90d9d68f7ce982e39ade12a34a2dd508756de15569400142314d7c4e72"
+        },
+        {
+          "id": "story/relationships/rel_09",
+          "sha256": "fee3ba78f98fe3e2de5cac86426872be1933911d0a29d4b1d4c66683c31739e2"
+        },
+        {
+          "id": "story/relationships/rel_10",
+          "sha256": "ee7a5eb2de51edf79211b93f27d5be6a3555507e759a1c40eee5164149947732"
+        },
+        {
+          "id": "story/relationships/rel_11",
+          "sha256": "ed3aa5e319e37f0eeb4835e39913a0a25d9dc5467bd273bed1e277b7d2f16b37"
+        },
+        {
+          "id": "story/relationships/rel_05",
+          "sha256": "8f83f16a989ab61daecdbdecc74b0e384cc40bde70d4946c70d6ce7557699df7"
+        },
+        {
+          "id": "story/relationships/rel_12",
+          "sha256": "17191d2c0d3fab8b6d676afd6131da749a02d50f566f8fa2a6953d09371c4d8c"
+        },
+        {
+          "id": "story/relationships/rel_13",
+          "sha256": "2da5ecbba7cf3a02d5dfab39be2e664a5ec13aede29f6bded030afbd59e39fba"
+        },
+        {
+          "id": "story/relationships/rel_14",
+          "sha256": "dda95a53da530ca7d3b29f145246ae0dd64b8ce94c01fa81ce94a4ebda0ca0fa"
+        },
+        {
+          "id": "story/relationships/rel_15",
+          "sha256": "d7d57c159f2c0ce07b64a3e7f2b9e4ce5f01c905e944f3b826b5f0168aec6895"
+        },
+        {
+          "id": "story/relationships/rel_16",
+          "sha256": "5f4f68478d28f87a42a85276628daeea9768c3d44c3c4bc17c6ed28db9404c82"
+        },
+        {
+          "id": "story/relationships/rel_17",
+          "sha256": "d738f3da2bd06c4fca7fc5a88ae269e7201ca2a037e28e9fdea8402ea75b7968"
+        },
+        {
+          "id": "story/relationships/rel_18",
+          "sha256": "9e9d63bfbb51c30d2c9543d5935f52018ca5dde84837a59d66f3ac6780c264b6"
+        },
+        {
+          "id": "story/relationships/rel_19",
+          "sha256": "d1cd8cce7d3c15c8dbfa2e3ff35ac5b02ff58d80a3a1ddd9faef58c96a273265"
+        },
+        {
+          "id": "story/relationships/rel_20",
+          "sha256": "d3541ef9deaa75225b46b2b55fe08b8114231c482f118b7044ed29609483b0d6"
+        },
+        {
+          "id": "story/relationships/rel_21",
+          "sha256": "aa6872c72b8570d263fa827008491ea8ba6a1bcf1600b5d40a882089d2951bb9"
+        },
+        {
+          "id": "story/relationships/rel_22",
+          "sha256": "a2ee8ba958850c0f96866892121f3472f32416143ea485a8f73063d332e99492"
+        },
+        {
+          "id": "story/arcBeats/message-dispatch",
+          "sha256": "64d489e04b36c263c7c426863c4bc8827ea294b4fafd4f5bb850bb1f33e0b2be"
+        },
+        {
+          "id": "story/arcBeats/message-first-read",
+          "sha256": "4b7789bd6f5fccb43148fcc0664b990e1047181d0f192c082e68ab5d4bb33728"
+        },
+        {
+          "id": "story/arcBeats/message-first-order",
+          "sha256": "bcef88f917c0ccab0bee017a74f76c6097e6dc3369c67736ce036c1b755657ab"
+        },
+        {
+          "id": "story/arcBeats/message-first-delivery",
+          "sha256": "b4629844c29f05ad2504ab017a424588223a0508104c16968ebaf48bf0387af9"
+        },
+        {
+          "id": "story/arcBeats/message-first-ack",
+          "sha256": "ac969d93da6a85b4504f007fa0033d165b390b872eafa1109416a39756828283"
+        },
+        {
+          "id": "story/arcBeats/message-north-report",
+          "sha256": "c592fe969ae8bbd79aacfe159c88832fdee76f4ff5df4f01b34033c30dd604fa"
+        },
+        {
+          "id": "story/arcBeats/message-local-replan",
+          "sha256": "195bbf44d0e3e16c6e63f1295ebedd34ab72b8af039a70b222d9c48620f1ea93"
+        },
+        {
+          "id": "story/arcBeats/message-custody-report",
+          "sha256": "626e57d72c3605ad3445ab9a49b484ddb538a01fe25401e496625383b14e2109"
+        },
+        {
+          "id": "story/arcBeats/message-custody-read",
+          "sha256": "d34f5fe5e5be17b23464b63a1f93f4588f36b10d7edfd78e07483e72b8c3582d"
+        },
+        {
+          "id": "story/arcBeats/message-withdraw-order",
+          "sha256": "bfae2a63afd07da861f0888a1d8def4257c2b418ec21db1994a4030a3a978793"
+        },
+        {
+          "id": "story/arcBeats/message-cheng-local-mission",
+          "sha256": "44c197704c026cb20f93b9fed802b3f456f7676ef4f961407f801c565f76657a"
+        },
+        {
+          "id": "story/arcBeats/message-withdraw-delivery",
+          "sha256": "5f73c11daf5895afc44fc267d90304ae999b8debfe9028cc0cf4e49249685498"
+        },
+        {
+          "id": "story/arcBeats/message-withdraw-seized",
+          "sha256": "54d2e1f4f4d58432ae548e10fa68375efed4e4c4ae127e2260f179b937732198"
+        },
+        {
+          "id": "story/arcBeats/message-defeat-report",
+          "sha256": "a7d9c73d3653f18d81673987d0b75128f70b83cbca8dfc9ea558f47fd94fa6e3"
+        },
+        {
+          "id": "story/arcBeats/message-formal-inquiry",
+          "sha256": "3c191ff23bf5edd41b4e9de8d0598dde7334b24a15a1b464ddc37563020c159c"
+        },
+        {
+          "id": "story/secrets/sec_01",
+          "sha256": "75558a49a376a0ab0251fbc4a2cde01b5c3bd26a7157460ba6e0897ebc6ce18e"
+        },
+        {
+          "id": "story/secrets/sec_02",
+          "sha256": "1744142a6d45ce1cbd0ff274f288a4cba71c4b8058081972f0385ccd0706137b"
+        },
+        {
+          "id": "story/secrets/sec_03",
+          "sha256": "8361e4d897604c6f2c24f1db4555bf5558c7dac9f0290d3ed8cee22d2931242c"
+        },
+        {
+          "id": "story/secrets/sec_04",
+          "sha256": "164a0c99c92307303cae64b0f0fea4f496a716e1ed5659536cf7e632029d2459"
+        },
+        {
+          "id": "plan/overview",
+          "sha256": "dca7aa428c62df71156450ccadf1aa4933fcad0dfb8d9fa270e5afdc9356c8d4"
+        },
+        {
+          "id": "plan/milestones/ms_vol1_turn",
+          "sha256": "51f48f29fb689df0e0f8ae5e12c79eab1a8644fe41331d0c01a87e90e6ce5f6b"
+        },
+        {
+          "id": "plan/milestones/ms_growth_v1_recovery",
+          "sha256": "27759fc581dee4da4cc6bc6538e88613b752d9959618f5b54c8917086f3f41d2"
+        },
+        {
+          "id": "plan/milestones/ms_growth_v1_training",
+          "sha256": "e2266140b7da1e6acefa4dbd3478f8cb30adbb0a9f4c8d1ee994b76c10fac05a"
+        },
+        {
+          "id": "plan/milestones/ms_growth_v1_expedition",
+          "sha256": "75c0124ff4a3202f693a8ab6966f58ed1f1838200621946293471eb68cb5e4b3"
+        },
+        {
+          "id": "plan/milestones/ms_vol1_climax",
+          "sha256": "fe6d4c5af910697aa511fb5bf21e9c29f7100acefc4b9a4cff535b7f46efc91e"
+        },
+        {
+          "id": "plan/milestones/ms_growth_v1_aftermath",
+          "sha256": "c663b5f11e76335c99d7f4467e4227281c53bf11d4c44c84ce1b77566281048e"
+        },
+        {
+          "id": "plan/milestones/ms_growth_v1_crossing",
+          "sha256": "c37abeb68fd44238772faa4353ddfdab6f73309973bb28643edf4c5eab5e5c27"
+        },
+        {
+          "id": "plan/milestones/ms_bridge_return",
+          "sha256": "e507a5e7eefdfebc6dbe4047a24a98a6e485754e8c4a90dfd8a86913d2efd065"
+        },
+        {
+          "id": "plan/milestones/ms_v2_loss",
+          "sha256": "5324be1059787eda541ec2088fa6beb18c6f64555379e711f76d4b6223b6f3d0"
+        },
+        {
+          "id": "plan/milestones/ms_v2_barge",
+          "sha256": "139c0885ef3f0055b4e192c1553a79b113607826dec5153f2ec2e669a3fba276"
+        },
+        {
+          "id": "plan/milestones/ms_v2_fire",
+          "sha256": "62568574d6cbe95a059054f274d3418f4abfda8f217d9823d0784fffc01ddbd2"
+        },
+        {
+          "id": "plan/milestones/ms_v2_voyage",
+          "sha256": "b09ba3539d3706fc24bbba74d4e01f083ebade16597a2144ff1a691729852c20"
+        },
+        {
+          "id": "plan/milestones/ms_v2_boundary",
+          "sha256": "9534dab127746f185348cdeb1e77928b92cee455c48cd5ccf56ba7c202fcad55"
+        },
+        {
+          "id": "plan/milestones/ms_v3_return",
+          "sha256": "81422021762f5767ae22e2903495a7e04619a27cb68a9ffb08e899fd7e2c3069"
+        },
+        {
+          "id": "plan/milestones/ms_v3_training",
+          "sha256": "6cb8565309ec52dd1b90ef620698ee665e6bf890105f1df2fe44dc6b2fed43f1"
+        },
+        {
+          "id": "plan/milestones/ms_v3_advancement",
+          "sha256": "1c61989a441c2bbc9e81f9f23b2e83d800b8a146d32d11114d0edd6ace3de199"
+        },
+        {
+          "id": "plan/milestones/ms_v3_convoy",
+          "sha256": "a3b8a9fc8fceed59206f5881c0cc0ffe332b53c03b9c369935e2aeebdce19e52"
+        },
+        {
+          "id": "plan/milestones/ms_v3_payoff",
+          "sha256": "71af953802373e7ad35b6b9c3d491ebd76adcd642195b6552e3eb472a798f586"
+        },
+        {
+          "id": "plan/chapters/18",
+          "sha256": "e4281f4dbb9980d018c57994c5c704855beb6699b2fca60cdd751aa09b19cf29"
+        },
+        {
+          "id": "plan/chapters/37",
+          "sha256": "f42cac4e1e545544c6857aaeecda25a2903db0d21e87e5112f5870381e0355f4"
+        },
+        {
+          "id": "plan/chapters/44",
+          "sha256": "dfe7702b21590d14e968ec3d419afe18b389ce38acb50617a8add51f6437b722"
+        },
+        {
+          "id": "plan/chapters/49",
+          "sha256": "f51e3d8cca23ff94282a41bc64a1542087c82417ee31cdec904b9b23b46f2cc9"
+        },
+        {
+          "id": "plan/chapters/50",
+          "sha256": "09df44bf9581c30280f0075c09c8d602d8d80c20a630b3181b2920a366485f47"
+        }
+      ]
+    },
+    {
+      "area": "story",
+      "inputPath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design68-focused-review/story-input.json",
+      "inputSha256": "0ed229a34a653c06d30f9ca7ab15b719b8c8ba86bb81b0691b77aa8ff93d104a",
+      "sourceCharacters": 119709,
+      "sources": [
+        {
+          "id": "author",
+          "sha256": "f442f82fa90ba8ba3f35f3487e8c04700dfab25f4309461c3c2400b026a5c565"
+        },
+        {
+          "id": "story/overview",
+          "sha256": "1d6be2ef90b2d0b21b7998b4798592e81a985de2257044acd58f894e3bbbdcb5"
+        },
+        {
+          "id": "story/characters/char_01",
+          "sha256": "400a561f4cdc1d022b11629aaa9bb4282b506f82246ab24777af60e4bab17c19"
+        },
+        {
+          "id": "story/characters/char_02",
+          "sha256": "535f4a599754db95906859f962d13861be57f652858b0de039f9ab5451d57b25"
+        },
+        {
+          "id": "story/characters/char_03",
+          "sha256": "183865f074513ddcfce8247e562de263e72fa91f31e45b0f6b43665beaf6fc47"
+        },
+        {
+          "id": "story/characters/char_04",
+          "sha256": "2367fe28b87d6c2cda12cc229d09ba9f1d25f7bf246958b1a2f28dc404740117"
+        },
+        {
+          "id": "story/characters/char_05",
+          "sha256": "6b009951696a4ba22e8c073bd9f33968a2dd4b9a5cf203cb766ef80b17b96b03"
+        },
+        {
+          "id": "story/characters/char_06",
+          "sha256": "4022e826723f6842f6496d91b16d3d775827fb78c2fcb7f3fff9370a3893f359"
+        },
+        {
+          "id": "story/characters/char_07",
+          "sha256": "5ac955ca3fcbf7f67acd5057f18515ada24dd2d5ee9321437fdfa916949fbb5a"
+        },
+        {
+          "id": "story/characters/char_08",
+          "sha256": "b7f3c35ec0b165f2bfe30dc73df775c074d72b633e4e3904c10bab417a587347"
+        },
+        {
+          "id": "story/characters/char_09",
+          "sha256": "4824332bdf0c9ea541a07fde087e618baf0881298fb8971d45601aa3f6ceec51"
+        },
+        {
+          "id": "story/characters/char_10",
+          "sha256": "728c48169654c91d23217351487954ec4b301207fc6685bb2ca85654f5105c01"
+        },
+        {
+          "id": "story/characters/char_11",
+          "sha256": "f4251153f9c8413b7d02bd27f277c2bf94fb2d3f7c08ae5915e7582dcfe2fb08"
+        },
+        {
+          "id": "story/characters/char_12",
+          "sha256": "036f3e0af061afe9cacee6e9ee79204ab0b89bf8935d5bb761d46b02892bb820"
+        },
+        {
+          "id": "story/characters/char_13",
+          "sha256": "8fdecadd4996980bc9c68b525492f03606fe07173fa377894930dad739ea9a67"
+        },
+        {
+          "id": "story/characters/char_14",
+          "sha256": "837c33d559427c663ca4a54a0ff06bd2b0b1b999bf5f7088891885682c980d61"
+        },
+        {
+          "id": "story/characters/char_15",
+          "sha256": "92b4264031800c7855a191b7da0dd8c3bf066c07c2804a80c2b2dd27eccf61f8"
+        },
+        {
+          "id": "story/characters/char_16",
+          "sha256": "4e72f59e19f96b3903e7d401c07357b460beb080a6b1250a5c3661f7979d6a62"
+        },
+        {
+          "id": "story/characters/char_17",
+          "sha256": "e514c93ee189f6b5d891a26b49a6bb4680f34023dc14a80a4817502819a7e474"
+        },
+        {
+          "id": "story/characters/char_18",
+          "sha256": "7b56a1e619b737eb67a138e5ee5ffafe6cf5e1409853890a1844c3e0b31ac726"
+        },
+        {
+          "id": "story/characters/char_19",
+          "sha256": "cd913551aac15d33587289073f75e9dded94d0d052a0f1c72134198602bd6fa9"
+        },
+        {
+          "id": "story/characters/char_20",
+          "sha256": "2df9e4f81d26f3ee2d4411b138bab36bdcdf87ab86e9e1c2e3da84724fba69d2"
+        },
+        {
+          "id": "story/characters/char_21",
+          "sha256": "36a0501de15cabec61870606a14d8f8055f5958507fd7e5949418226d74a758e"
+        },
+        {
+          "id": "story/characters/char_22",
+          "sha256": "bb8122aae6c3b24af36c7ef492e16771c7fda994d6941cd4094ebbf91047aa0b"
+        },
+        {
+          "id": "story/characters/char_23",
+          "sha256": "9c8c08bf322cfed7200a72ddf1060af63b1c4fb71e5312471bf6e089cfd10ab6"
+        },
+        {
+          "id": "story/characters/char_24",
+          "sha256": "d110ed49a69852d2681a0e3a93dd3648d4253058e61ee773dc2a4be403abda34"
+        },
+        {
+          "id": "story/characters/char_25",
+          "sha256": "f4e90a3532e9a34524a509f181415adf847e08e055ad6f0aeb2cf30288ea7de8"
+        },
+        {
+          "id": "story/relationships/rel_13",
+          "sha256": "2da5ecbba7cf3a02d5dfab39be2e664a5ec13aede29f6bded030afbd59e39fba"
+        },
+        {
+          "id": "story/relationships/rel_19",
+          "sha256": "d1cd8cce7d3c15c8dbfa2e3ff35ac5b02ff58d80a3a1ddd9faef58c96a273265"
+        },
+        {
+          "id": "story/chapterPlans/bible-chapter-33",
+          "sha256": "f47a915d0dd436ead7235d93ab0801ddecfd240c2bd4972b1086992657ab70c2"
+        },
+        {
+          "id": "story/chapterPlans/bible-chapter-34",
+          "sha256": "8748e3325745893a408327d0b9ea7f34a1872b8f1f2423274f5ca294d9f56855"
+        },
+        {
+          "id": "story/chapterPlans/bible-chapter-35",
+          "sha256": "175d85e850f98e3fae461f4a38c320f86a8a561a075659ad4c07fb01c05c3f6a"
+        },
+        {
+          "id": "story/chapterPlans/bible-chapter-36",
+          "sha256": "19f990634a6b5e83a0ef2d16faee4df91931f5bb92d26fb654b40fd9197fdbf7"
+        },
+        {
+          "id": "story/chapterPlans/bible-chapter-37",
+          "sha256": "2d9a5ccff83b03d5da36de7388db2e09c6dabe5a6f050f6d1baff167b76743ca"
+        },
+        {
+          "id": "story/chapterPlans/bible-chapter-38",
+          "sha256": "eaa9f77bbdd1077c009060a43dad1983879adff552531a9a395a8f0e6fb8fefe"
+        },
+        {
+          "id": "story/chapterPlans/bible-chapter-39",
+          "sha256": "508b7900c51658fb36bc1e710fe9b6bd6d5551e60e9932c4af7d680150a087dc"
+        },
+        {
+          "id": "story/chapterPlans/bible-chapter-40",
+          "sha256": "cb02d763a4ccae42cdced0f274e1f5cbcaed2cd6f1a61e447b829665623a1654"
+        },
+        {
+          "id": "story/chapterPlans/bible-chapter-41",
+          "sha256": "e69045013b708e0f9a9d4f718b787204e3b298393f02102ca591690c8ae5d918"
+        },
+        {
+          "id": "story/chapterPlans/bible-chapter-42",
+          "sha256": "f5fe6560bcd7491abe8384117ef05e4d91ed0d179d39a68005850bfdc6dc8317"
+        },
+        {
+          "id": "story/chapterPlans/bible-chapter-43",
+          "sha256": "ffb214a6301099cf1c17c99b7cc672f9f46ac94ab514d103b01e890970aff7f0"
+        },
+        {
+          "id": "story/chapterPlans/bible-chapter-44",
+          "sha256": "c35b5ccb589b888a48c817f074869b756be8f5ffe0784bc2dc7461a3190c5623"
+        },
+        {
+          "id": "story/chapterPlans/bible-chapter-45",
+          "sha256": "41bebc5345b3100ffa59dee5f1b109d025f802957ce81b135f4acd1371da3c11"
+        },
+        {
+          "id": "story/chapterPlans/bible-chapter-46",
+          "sha256": "a31d562ca36e3a4b81a7a8d623c6699eb5f1353ca52fa79c1a7ab545e3cf3b7f"
+        },
+        {
+          "id": "story/chapterPlans/bible-chapter-47",
+          "sha256": "37316a738559e57e5ac1bfabcbc10bd8b82e3c48cfb66b8b65af883bffe96e67"
+        },
+        {
+          "id": "story/chapterPlans/bible-chapter-48",
+          "sha256": "8926dd2d8ef1eeba44700c6b7f6c506bdefe9e554731141e2467d82d7949cd6c"
+        },
+        {
+          "id": "story/chapterPlans/bible-chapter-49",
+          "sha256": "e2c1b88accd25fcd2e30a97ce6b28a8cab0a1729733a49cc6a5bf64ae464f623"
+        },
+        {
+          "id": "story/chapterPlans/bible-chapter-50",
+          "sha256": "b06e45378f54f7169e1c7431be61da2d04ffe952716b87af69327ab2f96f3681"
+        },
+        {
+          "id": "plan/overview",
+          "sha256": "dca7aa428c62df71156450ccadf1aa4933fcad0dfb8d9fa270e5afdc9356c8d4"
+        },
+        {
+          "id": "plan/milestones/ms_v2_loss",
+          "sha256": "5324be1059787eda541ec2088fa6beb18c6f64555379e711f76d4b6223b6f3d0"
+        },
+        {
+          "id": "plan/milestones/ms_v2_barge",
+          "sha256": "139c0885ef3f0055b4e192c1553a79b113607826dec5153f2ec2e669a3fba276"
+        },
+        {
+          "id": "plan/milestones/ms_v2_fire",
+          "sha256": "62568574d6cbe95a059054f274d3418f4abfda8f217d9823d0784fffc01ddbd2"
+        },
+        {
+          "id": "plan/milestones/ms_v2_voyage",
+          "sha256": "b09ba3539d3706fc24bbba74d4e01f083ebade16597a2144ff1a691729852c20"
+        },
+        {
+          "id": "plan/milestones/ms_v2_boundary",
+          "sha256": "9534dab127746f185348cdeb1e77928b92cee455c48cd5ccf56ba7c202fcad55"
+        },
+        {
+          "id": "plan/chapters/33",
+          "sha256": "47e6534dad17ae97b5a30703491d730e6a7e716741680d407e44e944eaf66474"
+        },
+        {
+          "id": "plan/chapters/34",
+          "sha256": "622215e182b54e9dacef2ac66cb45fad089e98e3d034c2a8208f63d1c9151b81"
+        },
+        {
+          "id": "plan/chapters/35",
+          "sha256": "b2f4482a143ff29aa049781e909212324b045b716fa6f26b9159d19240de7c54"
+        },
+        {
+          "id": "plan/chapters/36",
+          "sha256": "4329bae82e0c927cc9f37ade8f8602c7f5c2ee3e17109c466bdd9576333f745a"
+        },
+        {
+          "id": "plan/chapters/37",
+          "sha256": "f42cac4e1e545544c6857aaeecda25a2903db0d21e87e5112f5870381e0355f4"
+        },
+        {
+          "id": "plan/chapters/38",
+          "sha256": "4daecea5c45eea59b9f171ba425fb81d33cd3eb09dc4e04f58483b099c3d2fa2"
+        },
+        {
+          "id": "plan/chapters/39",
+          "sha256": "4155a2d1d3b7c3069dd074453e78f4a2bfd2c38fcd7acc9ee3686da03bc7eca2"
+        },
+        {
+          "id": "plan/chapters/40",
+          "sha256": "64b36b60aad79eab14a394c69351525540b64542dc69ffece088bf4537542676"
+        },
+        {
+          "id": "plan/chapters/41",
+          "sha256": "60208dc2ae0addb4cbb0efc5423a7d5d4004c8277f99247a547108a6810fe358"
+        },
+        {
+          "id": "plan/chapters/42",
+          "sha256": "03250c900742e9a4a71e9af35eb7bd50ca27f537df45d7b1bd4a0c618f2da6c7"
+        },
+        {
+          "id": "plan/chapters/43",
+          "sha256": "6b2497e2ebbd578d337118f90393a60fc9d125e8626982715920f9bfca2f0809"
+        },
+        {
+          "id": "plan/chapters/44",
+          "sha256": "dfe7702b21590d14e968ec3d419afe18b389ce38acb50617a8add51f6437b722"
+        },
+        {
+          "id": "plan/chapters/45",
+          "sha256": "2230f7fe72e2d29c541fc201f4cf3dd480749cafa5c97f3e13fee3befa21732b"
+        },
+        {
+          "id": "plan/chapters/46",
+          "sha256": "31583fa0cc920b95b2c131a02ddf43b438167d049c50b4af08ebd38a7fbf7855"
+        },
+        {
+          "id": "plan/chapters/47",
+          "sha256": "3c586dfb38696b9f82304f3ff65897232993d60a7bf0145491f53f2c25214019"
+        },
+        {
+          "id": "plan/chapters/48",
+          "sha256": "3f31f4c4d6b0a8b2237ff99ef43bdedce300c2cfeed7e24e43f03be4f2547a94"
+        },
+        {
+          "id": "plan/chapters/49",
+          "sha256": "f51e3d8cca23ff94282a41bc64a1542087c82417ee31cdec904b9b23b46f2cc9"
+        },
+        {
+          "id": "plan/chapters/50",
+          "sha256": "09df44bf9581c30280f0075c09c8d602d8d80c20a630b3181b2920a366485f47"
+        }
+      ]
+    }
+  ],
+  "protectedBefore": {
+    "protectedHash": "b3aa7277292c1e74a5b411926af4c3aab28d0b69ff67a2a0603cd4165184d47d",
+    "plans": 68,
+    "chapterVersions": 101,
+    "events": 383,
+    "manuscripts": 1,
+    "candidates": 116,
+    "approvedPlan": 10
+  },
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Four targeted content checks against unchanged sources from an isolated candidate save. Not complete four-domain review, not a new production proposal, not a replacement formal report.",
+  "verifiedAt": "2026-10-16T16:09:09.897Z",
+  "manifestPath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design68-focused-review/manifest.json",
+  "manifestSha256": "c90c58f5ecc7e988198118cb60ff849bb3ea72a882452277ccebdca812460294",
+  "results": [
+    {
+      "area": "world",
+      "inputSha256": "a3fe672bdfbf6bf65afce84753e544bc81566bdc8a1eb6ca5bc159314b27fe77",
+      "output": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design68-focused-review/world-result.json",
+      "outputSha256": "da78e721388c0508026782c5c1fc122b6f325c8521cca965c07a83069a22b775",
+      "modelCalls": 1,
+      "responsesReplayed": 1,
+      "result": {
+        "summary": "pass：285日至291日七名北境矿工的生存、供给与救援衔接成立。货船与救援舟、押运货船方与港务救济库的资金和人员账目已分开；暖舱、炉道通风、燃料、口粮、值炉人员及六日航程能够覆盖到291日开舱。非法扣押的漏查也有具体机制：290日靠港未逐人私下问询，外锁和船方代答遮蔽了强迫扣留，直到求救、外绑绳和近舱报告触发开舱核验。",
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "pass",
+            "explanation": "时间链闭合：七人285日晨随目标货船出发，290日晨抵葬骨受监管泊区，291日才实施开舱救援；约六日受扣期由货船七日燃料、粗食和饮水余量覆盖。保暖条件不是泛称：货舱有隔风舱壁、固定隔火炉和通舱外烟道，船方安排原有两名值炉船工轮班并持续添料；装船前核验炉道、通风、燃料和供给，靠港后仍使用船方余料，没有把泊港误算成免费岸上热源。七人离开赤霄热区后收回的是货船配发的普通避火符，进入暖舱依靠实物炉火，后续救援另发七套干衣和护寒符，未混淆防火与防寒。人员衔接也可执行：救助舟与押运货船是不同船只、不同经营方和不同两人船工；救助舟按每次最多两名矿工、最多四趟、每趟约半小时的限制，可在两小时待命窗口内转运七人。资金分账明确：押运货船从自身160枚预付款中支出101枚（七符、燃料、值炉工补工、粗食饮水），余款仍属船方；港务救济库另有实际入库的240枚，分别支付救助舟20、七人十日暖房住食70、符衣82和首轮诊护28，余40留存，不计作林贺航款、程经费或角色收入。非法扣押的漏查并非无理由放过：290日港卫未逐人私询，外锁与船方代答遮蔽了强迫扣留；291日前原巡检港卫听到求救并看到外绑绳后报告，港务才按救助需求先备包、开舱后逐人核实，随后将口供与航簿、炉料、轮班及支出联交叉核对，保留伪造单据或口供不一致的待查部分。",
+            "evidence": [
+              {
+                "sourceId": "plan/milestones/ms_v2_boundary",
+                "quote": "{\n  \"id\": \"ms_v2_boundary\",\n  \"title\": \"黑舱截留与残片取舍\",\n  \"kind\": \"climax\",\n  \"startChapter\": 61,\n  \"endChapter\": 66,\n  \"setup\": [\n    \"第285日夜在外港真身会见，对照北境原封签存根、45章交接残联与旧封的签认拓本、53章拟取得的陆新写改签自述签认副本；这些是货运线索，不是第二片图样，不能凭同封号认定匣内物。她具名担保林贺仅在外港指定仓区查货至300日；归一实力不赋予林准入界渊的能力。\",\n    \"程272从极焱另船出发277到北境，订291转运，不是海上追逐。第一报258寄、262赵阅及263回令、268程收均归53章前后锚点，不在61章才首次发生；第一报不含291北境失货。赵至318程亲自面报才听到北境失败。\",\n    \"获救前押运的新增作者提案，尚须整体验收：七名青玄籍矿工本次随原目标货船于285日晨从赤霄极焱天港出发，走loc_21既有五昼夜实体航线，290日晨到葬骨受监管泊区，原定291日转运。与程272日另船出发、277日到北境的行程分开，不写成同船追逐。本段从285装船至291开舱约六日连续在同一舱受扣，不把七人在更早时期的全部遭遇写成已经查清。极焱装船只走当班港务实核开放、无异常地火的普通货道，七人各佩押运货船方当面配发并核余纹的art_16；离开赤霄日常热区、转入经实测温暖的舱内后，由值班船工摘封收回七符并逐张记余量，不把避火符当防寒符。\",\n    \"该普通货舱靠现成隔风舱壁、固定隔火炉与通到舱外的烟道保温，没有法术结界；押运货船方为把活劳力交付换取运费而维持最低食宿，并非善意释放。285出港前押运货船船长与当班货船船工实查炉道通畅、舱内通风、该货船原两名值炉船工轮班和七日燃料、粗食饮水实际装载；从海路转寒前到291救援接管期间持续添料，夜班也不空岗。燃料分日领用，剩余仍是押运货船方库存，烧过的不再入账。七人留在同一实暖舱内，不在冷甲板轮换、不靠凡衣或不明境界耐寒；290泊港后仍用本船余料供暖，不能把靠港当成有免费岸上热源。近舱港卫开门时实际核热源、烟道和呼吸状况，在舱内逐人换穿救助干衣、扣新寒符，确认后才过板；押运货船方已收回的避火符不抵救济寒符数。暖炉不能替代饮水、治疗伤口或证明七人无病，首检和292复查仍按原安排逐人进行。若此前炉道堵塞、燃料断供或人已出现重度失温，必须据实改变伤情和救助预算，不能继续套用正常路径的轻症结果。\",\n"
+              },
+              {
+                "sourceId": "plan/milestones/ms_v2_boundary",
+                "quote": "    \"押运货船方的本航次小账独立于程的残片、林贺14000航款和港务救济240：285装船前押运货船船长从本船此前实收的普通货运预付款余额160中，当面付极焱原登记门市七张art_16共42，逐张验实物与余纹至少覆盖本次港内作业；付本港燃料行七日普通炉料14、该货船原两名值炉船工七日轮班补工28、七人七日粗食饮水17，合101，现金余59仍属船方。燃料与食品实装、工钱由两人签收，报价仅指本船这次采购，非通用物价；押运货船船长保留原货运收款联和四项支出联，收款不得重复列成程或主角的新收入。七符本次交付已完成制成和验收，供能在符内，不再给佩戴者扣一枚灵石。供暖只保障实际封闭舱内，煤料、船工或食水任何一项未兑现就不能声称六日正常度过。\",\n    \"监管与知情的新增提案：押运货船方把七人列作随船劳役，对两港均隐瞒强迫扣留；本航次实际舱单、到港签注只能证明这艘船获准到指定受监管泊区，不能证明七人自愿或拘禁合法。290到港岗未逐人私下问询，并被外锁和押运货船方代答遮蔽扣人事实，此为本案具体漏查，不能写成全港默认准许扣工。291行动前，原巡检港卫在外锁舱口听到“七个人被扣住”的求救，见外绑绳后回近处值岗当面报告；港务据此先按七人实备原定救助包，口头报数此时只是救助需求，待开舱才逐人核实。夜与原两名港卫到位控制侧巷，近舱港卫按既定开扣顺序接人，不先把呼救当作全链定罪。救援后逐人分开问询，将七人的亲历与押运货船原航簿、炉料领用、轮班和收支联交叉核对；林只亲见现场，未读到的航程或账目不自动成为他的知识。押运货船方单据可伪造，七人口供也各有范围；不相符部分保留待查，不因此追认入境自愿或全链已经破案。相关原件由当地港务封存，林贺既有随行见证副本只记录本次救助与已核部分，不凭本草案新增全知货运证据。\",\n    \"第64章的实际转运在第291日，285日只是夜抵港会面，不把两日混为同一场。夜要先封存污染货并救出七名被扣在普通货舱的青玄矿工；林在仍可追程的小艇与先开囚舱之间选择救人。贺依现场舷号确认目标货舱，林沿港卫先验过的短板扶栏走到既有码头装卸浮台的近舱侧，不跳跃、不负重。舱口外露普通插扣被另加的一根未附灵麻绳绕耳绑紧，港卫从码头正面被舷板遮住，浮台近侧才看得见绳段；林在此施一次已掌握的凝元剑诀，实际只放一道风刃切断绑门麻绳一处，亲见唯一余刃在两丈界内散尽、港卫核舱门与短板仍稳后，再以肉身拨开失去束缚的轻插扣。夜守侧巷与栈桥，港卫和贺实际接应矿工；林不靠风刃托举浮台或隔空搬人。程从另一侧已离泊小艇进入密集客船航道，夜看见去向，却选择守住撤人的栈桥，拒绝扩大封港或攻击载客航道，令港卫记录船号。归一强者没有被低阶障碍困住，她留下逃犯是为保撤离通道，不是突然失去感知。\",\n"
+              },
+              {
+                "sourceId": "plan/milestones/ms_v2_boundary",
+                "quote": "    \"选择：林将第一片继续留在可复核封袋中，放弃夺第二片的机会救人；夜接受先救普通人而非强追残片，限制封港范围以免所有商路停摆。\",\n    \"认知：夜只据其守界经历告知界壁外的寂灭风险，林相信证言但没有亲见死海。父亲在苍冥存档的署名检修副本由夜带来的巡查档案核对，只证明其参与守门；不证明投毒真凶。\",\n    \"第279日海程中，林在本次已核验供暖的普通保温客舱轮值结束后、贺接手守证时，完成一小时不受扰温和吐纳，从50章沿用的保守三成半只计回一成至四成半，不因整月间隔算满，也不提高原五成伤后上限。254–278及280–289未另施剑诀或御物，所谓稳定真元练习只作温和调息，不另记恢复收益。290日港内当值医修复核旧掌腿：无新渗痛，许可扶栏短走、有限坐姿凝元式导刃，不准跳台、负重、追跑或反复施术；右肩此时尚未受291的新伤。贺从本案原1000杂费额度实付1枚诊费，归入后来累计780中的医药，不从封存3000取款、也不另加到780之外。诊察本身不增加寿储或真元。\",\n    \"290日复诊许可后林在普通检验席坐稳，触验自252后未再施术的赤霞剑脊与柄均已冷却，以低流量试注确认器身无异响、握剑不痛，实付半成；四成半减半成余四成，不用检验替代施术费用。291入场前再确认清醒、目标辨识和专注稳定，没有其他支出或恢复，沿用四成及旧五成上限；只施一式二成后余二成，剑热立即收起，之后不御物、不追击，肉身只解轻插扣和扶栏退到岸侧。若诊察、握剑或专注不合格则林不登台施术，夜与港卫先控场再用实体工具开舱，承担程先走及矿工继续受困的时间代价，不能让医嘱失效仍照原动作写。\",\n    \"291动手前，贺在港卫陪同下看清此根绑门麻绳：粗麻纤维、无附灵纹与金属内芯，由外耳绕普通插扣，只束缚舱门，不连接浮台系泊或货物吊具；其性质由现场查验确认，未知材质不先套用普通索规则。林在浮台近舱侧靠固定栏杆坐稳，绳段距本人一丈，处于18已实测的两丈内；舷板侧缝至绳段无遮挡，港卫先喊舱内人员退离门边，林实际听见退开回答、看清刃路无人后锁定起式。本次剑气切中、唯一余刃已散且门体与短板复核稳定，才进入开扣步骤；船摆遮挡、失锁或有人进入路径即中止、已付二成不退，贺喊停转移，港卫控制近舱守卫后以普通刀具开扣，林不再发第二式。\",\n"
+              },
+              {
+                "sourceId": "plan/milestones/ms_v2_boundary",
+                "quote": "    \"本批七名矿工的境界不明，不据身份推定耐寒。291行动前，葬骨港务救济库已从上月港税实际入库款划出本案240枚下品灵石，由本轮值库人验现金签收，不把尚未到账的拨款通知当钱。值库人先实付82给本港登记门市：九张逐张验收尚余至少220小时的art_21各6、计54，七套干燥保温衣各4、计28。九符中两张交原两名港卫，七张随七套衣装入救助包，逐件登记批号；港卫原有干衣亦当场核验。这82从本案240扣，余158，不取林贺14000航款、不把原救济库存再次记成新增款。\",\n    \"近舱港卫推开舱门后先在门内发救助包，逐人协助穿干衣、扣符并验温热与余纹，再按原顺序接过短板；林贺自己的符不轮借给七人。失温、麻木或不能自行走者先由港卫送入原救助划舟已核保温舱，再交医修，不因贴符就算痊愈或能行。行动前港内救助舟承运方已按本案实收20的船班单备好船、本舟原两名船工、隔火炉烟道及本班燃料；该费从240扣，另见下述配载与承运范围，不混入买符衣82。无实有暖舱或超出配载就停止这条转运路径，先组织符合条件的救助，不把敞舟当保温舱。 此处救助舟承运方及其原两名救助船工，与扣工押运货船方及其原两名值炉船工分别归属不同船只、不是同一经营方或同两个人；救助舟的20只支付本次港内船班，不能计为押运货船方的新收入，也不抵其160款下的101支出。\",\n    \"原港口救济所接人时，登记七人姓名、原工籍、衣符编号、伤情及交接港卫，安置在实际隔风、有隔火炉烟道及当班添料的暖房。值库人从本案240另实付70，按所方本批七人291–300十日普通床位、住食与供暖的合计报价结算；这是本批合同，不是全书通用单价，也不包括无限医疗或回乡票。首轮诊治另实付28，覆盖范围与40留存应急款见本段执行账；不得把本案240、82、70或28各自当作新增收入。\",\n    \"这七人的符入暖房后由照料者逐人摘下干封、登记余纹，只有实际再出门时依各自状况核符重启，不让一张符在多人之间抵数。300日后是否继续留所、续住或返乡须由港务与本人依实际健康、床位和已确认新款办理，不能从这70推定无限食宿或凭作者计划瞬间回乡。林肩伤仍按原291撞伤、停术、297不自动痊愈和后续复诊执行；符和暖房不抵消任何伤势。\",\n    \"291救助执行账的船班：港务值库人事前在原港内救助舟承运方柜台按本批实报20支付，救助舟承运方签明从开舱起两个时辰内在本案浮台—救济所既有靠泊点短程待命及分趟转运，含本舟两名船工、炉具燃料和操作，不因未用满趟数退款。该舟本次实验配载上限为本舟两名船工、两名矿工和一名陪护港卫，七人不得挤成一船；必要时最多四趟，单程至多一刻、含装卸交接每趟往返至多半个时辰，现场港况实测可行才承接。实际超时、超载或天气封停要重排，不沿用包价无限开船。\",\n"
+              },
+              {
+                "sourceId": "plan/milestones/ms_v2_boundary",
+                "quote": "    \"291首轮医疗执行账：救济所原当班医修对本案七人的首次失温、脱水及外伤检查、普通清洁包扎与复温照料、24小时观察和292日一次复查，本次报价每人4、合28；值库人已从240实付给所方经办，收具名七人及范围的收据。该报价含本轮普通敷料、温热饮水与照料人手，不含高级丹药、寿储恢复、后续手术或无限疗程。正常拟定路径首检未见需超出本轮处置的重度失温或大出血，仍逐人记录复查与活动许可；这个诊察结果只在实际检查后成立，不能由护符或付款预先认定。\",\n    \"本案救济240的封闭账：82符衣＋20保温救助船班＋70十日住食供暖＋28首轮诊护＝200，余40由值库人单独保管，限本批必要追加处置，未花仍是救济库现金，不归林贺或矿工。医修若诊出超出28范围的伤情，先开实际项目、药材和报价，值库人仅从已到40中按足额项目实付；不足则由港务向原救济拨款岗申请另拨，并与能实际接收的医舍核床位和转运报价。新钱未到不记足额、完整疗程、治愈或已转院；先执行已付且适合伤情的稳定照料，保留病情风险、住院与延期后果，不能因缺钱强令返乡。\"\n  ],\n  \"cost\": \"浮台外缘木板被尾浪推偏的护舷木撞裂，林右肩在实际接人中撞伤，291–297随访且不因七日期满视作治愈；伤后停握剑和全部术法，不再消耗剩余二成。贺失去本次追货奖金，该奖金未领取，不能算既有现金损失或预支收入。279温和吐纳只回一成、290验剑付半成、291剑诀付二成：3.5+1−0.5−2=2成；不返寿、不借普通动作免术费。290诊费及291后普通医药在原专项杂费中据实列支并归入累计780，未增免费医疗或新寿源。夜耽误三日原返程、巡队缩减一处例行勘查，回去补巡；救人不等于无代价全胜。 北境本批救济另有港税入库款实划240，事前实付符衣82、船班20、十日住食70与首轮诊护28，合200，未用40留库；与林贺航款、林肩伤原杂费医疗及程的商号经费均分账，不当作角色收入。 获救前供给另由押运货船方普通货运预付款160承担本次101支出、余59；实物余料及已用符余纹另存，不挪救济240或林贺14000。此为新增待审作者提案，非从旧正文确认的账目。\",\n  \"outcome\": \"第285–300日。7名矿工上岸、与5名已在赤霄获救的雇工名单分开；程在逃，第二片仍在程手，第一片仍林持有。污染货只封存不由低阶启封。夜为矿工安排港口原有救济所，贺与林则准备携证回青玄。本批转运暂停，不代表九鼎全阵停转。 北境七人与赤霄五工、留在青玄的开篇两名旧工友及430日后新扣六人均为不同人；在本段拟由港卫和救济所逐人核姓名、原工籍、舱位及安置去向形成该批名单，不能凭同乡认作同一批。该名单原件留当地，随既有见证副本交付可核的签认名单副本，不转移人员或增加林贺船票。\"\n}"
+              }
+            ],
+            "revisionAdvice": ""
+          }
+        ],
+        "modelResponses": [
+          "{\"requestId\":\"review_a3fe672bdfbf6bf65afce847\",\"summary\":\"pass：285日至291日七名北境矿工的生存、供给与救援衔接成立。货船与救援舟、押运货船方与港务救济库的资金和人员账目已分开；暖舱、炉道通风、燃料、口粮、值炉人员及六日航程能够覆盖到291日开舱。非法扣押的漏查也有具体机制：290日靠港未逐人私下问询，外锁和船方代答遮蔽了强迫扣留，直到求救、外绑绳和近舱报告触发开舱核验。\",\"checks\":[{\"criterion\":\"geography\",\"verdict\":\"pass\",\"explanation\":\"时间链闭合：七人285日晨随目标货船出发，290日晨抵葬骨受监管泊区，291日才实施开舱救援；约六日受扣期由货船七日燃料、粗食和饮水余量覆盖。保暖条件不是泛称：货舱有隔风舱壁、固定隔火炉和通舱外烟道，船方安排原有两名值炉船工轮班并持续添料；装船前核验炉道、通风、燃料和供给，靠港后仍使用船方余料，没有把泊港误算成免费岸上热源。七人离开赤霄热区后收回的是货船配发的普通避火符，进入暖舱依靠实物炉火，后续救援另发七套干衣和护寒符，未混淆防火与防寒。人员衔接也可执行：救助舟与押运货船是不同船只、不同经营方和不同两人船工；救助舟按每次最多两名矿工、最多四趟、每趟约半小时的限制，可在两小时待命窗口内转运七人。资金分账明确：押运货船从自身160枚预付款中支出101枚（七符、燃料、值炉工补工、粗食饮水），余款仍属船方；港务救济库另有实际入库的240枚，分别支付救助舟20、七人十日暖房住食70、符衣82和首轮诊护28，余40留存，不计作林贺航款、程经费或角色收入。非法扣押的漏查并非无理由放过：290日港卫未逐人私询，外锁与船方代答遮蔽了强迫扣留；291日前原巡检港卫听到求救并看到外绑绳后报告，港务才按救助需求先备包、开舱后逐人核实，随后将口供与航簿、炉料、轮班及支出联交叉核对，保留伪造单据或口供不一致的待查部分。\",\"evidence\":[{\"fragmentId\":\"e247\"},{\"fragmentId\":\"e248\"},{\"fragmentId\":\"e249\"},{\"fragmentId\":\"e251\"},{\"fragmentId\":\"e252\"}],\"revisionAdvice\":\"\"}]}"
+        ]
+      }
+    },
+    {
+      "area": "power",
+      "inputSha256": "553a1668ef5dcd1a36ab6312825ccd67026e2fc71ec60ea0585c5a9af2e91cd7",
+      "output": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design68-focused-review/power-result.json",
+      "outputSha256": "6da64c6c1da668ca966048a668ff04613f90ae3fc549e8c487e7d883562316a1",
+      "modelCalls": 1,
+      "responsesReplayed": 1,
+      "result": {
+        "summary": "本批力量设计在赤霞斩铁剑的训练资格、低流量试注与第23章墨幽屠推车负荷方面可执行，未发现越过既定承载、个人实测或分账规则的硬冲突。",
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass",
+            "explanation": "赤霞斩铁剑的凝元注剑、收注与冷却检查被明确列为需授业、训练和实测的前置，持剑或晋阶不自动获得资格；第18章又限定林辰实际只完成凝元式两丈内可见目标导刃，不继承玄府式或百丈上限。第23章墨幽屠的个人推劲实测为五百斤，实际车身与散料总重四百八十斤，且车轮可转、闸块已解除、动作是沿平地滚移一步而非托举，低于个人实测和规则六百斤上限，负荷对应成立。墨的推劲还受旧有贴身接触、立足、伤情复核和停术条件约束。",
+            "evidence": [
+              {
+                "sourceId": "world/artifacts/art_03",
+                "quote": "{\n  \"id\": \"art_03\",\n  \"name\": \"赤霞斩铁剑\",\n  \"tier\": \"法器\",\n  \"effect\": \"剑身铭刻炽火法阵，灌注真元即可喷薄尺长赤火剑芒，斩金碎石。\",\n  \"cost\": \"普通附芒挥击每剑耗凝元修士小半成真元，连击会发热；完整乾元御风剑诀按该功法一式二成总费用结算，其中已含本剑这一式的供能，不重复扣普通挥击费。 冷却后的低流量试注是单独的器身复用检查，每次预付本人凝元健康稳定真元上限的半成，另于挥击、剑诀和御物计费；中断、异常或检查失败均不退，不以流量低免单，也不把这半成作为下一式已付款。\",\n  \"limitations\": [\n    \"不耐极寒阴罡长久浸润\",\n    \"无法承载玄府罡气强行灌注\",\n    \"以凝元真元施放一整式御风剑诀后立即停止灌注，自然散热至少一刻钟，待剑脊与剑柄均不再灼热、低流量试注无异响后才可再用；猛浸冷水不能跳过检查。器身降温不回补真元或治愈持剑人的伤，伤者仍须满足自己的握剑许可。\",\n    \"低流量试注只供已在授业中练成凝元注剑、收注与冷却检查者执行，不能由持剑或晋阶自动取得；第18章既有顾峤指导与176日“剑冷后再用”实测包含此检查，训练中逐次先扣半成，仍须余量足够才练，均在176日终段余额按零重新起算之前，不挪用177日以后的恢复。试注前须已停止实战灌注、自然散热至少一刻钟，确认剑脊与柄不再灼热，并符合本人握剑伤限；只在身边无人、剑锋不指人的安全位置，以本人凝元真元缓慢注入后主动收注，不形成外放剑芒或风刃，不挥击、不御剑、不切物。一次最多三息，半成是整次上限和固定支出，不因延长或多试免费；听到异响、剑柄灼热、掌痛或导气不稳即停注，已付不退，剑停用待检修和复验，不靠反复灌注把异常压下去。正常检查虽可轻微温升，不达到实战灌注的热负荷；收注后须再触验剑脊与柄仍不灼热，才算检查通过，不另循环要求再做一次同样试注。若实际升至灼热则本次失败，依异常停用处理。检查不启动攻击、不修复损坏、不回补真元、不消除旧伤，也不改变完整剑诀后的原冷却要求；玄府元罡仍不得灌入本剑。\"\n  ],\n  \"status\": \"proposed\"\n}"
+              },
+              {
+                "sourceId": "story/chapterPlans/chapter-plan-23",
+                "quote": "{\n  \"id\": \"chapter-plan-23\",\n  \"chapterNumber\": 23,\n  \"title\": \"黑纹下的元罡\",\n  \"purpose\": \"第187日，秦禾从归路侧安全岔口沿22章核过的短支路返回装车区外壁后与林辰、苏凌霜会合，补齐点检哨、铃绳和主营装车区的见闻。三人亲听巡守称营地主事为“墨少主”，秦禾说明自己被扣时见过名牌全名“墨幽屠”，林苏至此才核定敌首身份。隔货棚木缝，众人看见墨幽屠以幽冥噬血爪惩戒一名失误看守：只短施一息即收爪，看守当时未施任何护体术，前臂裸露；墨近身扣住其手腕后才让爪煞擦过该处，令其出血，不涉及破开未定义的凝元护体；墨的指骨黑纹随之加深，后自行割指放血并压住浅口止血，但玄府元罡未散，反噬不能当作其失去战力。林见放血后的墨仍以已学贴身运罡把已解闸、作者执行总重四百八十斤的滑车沿平地推开一步，放弃趁放血近身偷袭的短暂念头，把眼光转到低顶侧廊与废料斗，提出让同阶的顾迎住墨、自己用倒料遮断直扑视线的方案，并只核实轻小插销与落料方向。苏质疑遮挡如何救囚，提出自己引开凝元看守，三人遂把战法改为林开普通囚棚与制造遮挡、苏接人并牵制看守、顾若实际到场则获三息蓄势窗口。独立视角中，墨因秦逃脱暴露风险又收到上层实体催交，决定188日辰末转运货物与囚者，命两名封路看守在188日卯初05:00撤回束笼绑货、检车押运。两名封路看守本是笼车护送搭档，重笼车过窄坡必须一人前方控向、一人后方勒住溜车，余下看守正分守囚棚和货台。墨可以延后起运或分批运送来留一人守哨，却因逃人暴露与实体催交决定整批赶运，拒绝这两个选项；他自恃玄府在营，宁肯暂失归路预警也不丢囚货。林苏只从现场撤哨口令得知可能出现通路，不能知道催令内容。\",\n  \"conflict\": \"墨幽屠仍有玄府元罡及已实际使用的噬血爪与贴身推劲，凝元御物与普通闸门无法封禁他；林苏若没有顾的实际到场，任何诱敌方案都会把囚者和自己暴露给玄府强敌。\",\n  \"turningPoint\": \"林苏依亲见的元罡与地形共同设计分工：顾若实际到场承担正面对抗，林开笼、以普通落料遮视，苏接人并隔开凝元看守。秦携新图去盯路口，撤哨口令必须以现场实际撤走为准。\",\n  \"endHook\": \"墨定下188日辰末转运，并下令封路岗哨于卯初05:00撤回集中装车；林苏只听到现场撤哨口令，尚不知上层催令。秦禾携更新标图回到已知路口，必须等188日卯初亲见岗哨撤回、铃绳解除后才可再次送信。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_04\",\n    \"char_11\"\n  ],\n  \"locationIds\": [\n    \"loc_05\"\n  ],\n  \"arcBeatIds\": [\n"
+              },
+              {
+                "sourceId": "story/chapterPlans/chapter-plan-23",
+                "quote": "    \"v1-su-tactical-share\"\n  ],\n  \"requiredEvents\": [\n    \"187日秦从归路侧安全岔口沿已核短支路回来，在装车区外壁后与林苏会合。他先说点检哨仍在，三人转到同一外壁的木缝观察装车棚，没有回到失去的泉货台近观察点。\",\n    \"巡守称呼“墨少主”，秦禾说明扣押时见过名牌上的全名墨幽屠，林苏据此才核定主营指挥者身份。\",\n    \"众人隔木缝见墨以肉身近前扣住一名失误看守的手腕，再以噬血爪擦伤其裸露前臂；该看守当时未施护体术，不涉及破开凝元自动护体；只施一息即收，指骨黑纹加深。墨割指放血后以随身布压住浅口，待至少六息、出血已止，确认双掌仍能稳定握持、无麻木或失准，再双掌贴车架按ax_13聚罡一息、推劲一息，将挡路滑车沿平地滚开一步。作者账：车身与散料共四百八十斤，低于墨开篇前已实际测过的五百斤，也低于ax_13的六百斤通用上限；这些是拟定动作的作者依据，旁观林苏秦不能仅凭看见推车就知道准确斤数或墨的训练记录。轮轴可转、闸块已经由原装车看守取下，不是整辆囚笼重车；若实际载荷超过墨的已测负荷、闸未解、地面不平或伤情复核不稳，就不得按本操作硬推，须卸料、解闸或停手，不因余额足够就保证成功。林看见其手脚仍稳，放弃趁放血偷袭的念头。编辑执行账：本次出爪前墨实际可用余量至少八成，出爪一息预付一成后至少七成；推劲另预付二成后至少五成，两种操作不同时维持，聚劲失手也不退费。这是墨本人的保守实检下界，旁观三人只见动作、黑纹、止血和推车，不知道余额。放血仅缓解表层胀痛，黑纹仍留，不返还法力；后续麻木、失准或再出血时必须停术就医。\",\n    \"林沿已核外侧观察口对照旧图，确认低顶侧廊、废料斗轻小插销和朝侧廊落料的方向。秦的旧细绳只用于比划已见距离；不提前拔销，也没有穿过巡守内线去实开机关。林指出普通落料能挡直扑视线，挡不住玄府破开，须由顾实际迎敌才有用。 他同时核清：可拨的小销约八两，只锁空载拨片，满斗重量由支轴和闸钩承受；拨片释放既有机械闸钩，落料靠重力，不把满斗载荷藏进御物费。实际出手仍须进入三丈内直视范围。\",\n    \"苏凌霜追问遮挡怎样让囚者活着撤出，提出自己引开凝元看守；二人据此定下林开笼造遮挡、苏接人牵制、顾到场才可得三息蓄势的分工。\",\n    \"切墨独立视角：两名封路看守本是笼车护送搭档，重笼车过窄坡必须一人前方控向、一人后方勒住溜车，余下看守正分守囚棚和货台。墨可以延后起运或分批运送来留一人守哨，却因逃人暴露与实体催交决定整批赶运，拒绝这两个选项；他自恃玄府在营，宁肯暂失归路预警也不丢囚货。他命两名看守188日卯初05:00解除铃绳回装车区，复检绳轴、束笼绑货后就位前后车把，辰末起运，不再回封路岗。林苏秦隔外壁只听到两人撤哨和集车口令，不知催令内容；秦带更新图沿同一短支路回归路岔口守候实况。\"\n  ]\n}"
+              },
+              {
+                "sourceId": "plan/chapters/25",
+                "quote": "{\n  \"id\": \"chapter-25\",\n  \"chapterNumber\": 25,\n  \"volumeId\": \"vol_01\",\n  \"title\": \"废料斗下的三息\",\n  \"summary\": \"第188日辰末08:45，墨幽屠准备把俘虏和泉瓶装车转走。林辰与苏仍伏在营地，直到亲眼看见顾峤进入侧廊并收到手势，才按计划拉开囚棚闸门。林辰以一次乾元御风剑诀、二成真元只放一道风刃切断普通吊索，亲见余刃散尽并由苏核门框滑槽稳定后，才解扣推门；苏随后格开凝元看守的铁棍后剑茎被震松，停剑护送俘虏、放弃追击逃走的看守，顾在低顶主巷与墨正面交锋。墨本可弃货退入支洞，却因要夺回遗物和泉液扑向林辰。林辰抱着从货台取走的样箱和泉瓶转入检修侧廊，在两丈内直视第23章核过的八两无负载小销，以一次一息御物拨开空载拨片的锁销，倒料遮断直扑路线，顾借三息间隔蓄势，支付三成元罡与0.25元载施展太清太乙真光，在第三息完成时克制墨已连续付费开启的第二息血爪，墨停爪后只用肉身抢箱；顾另有独立站位条件，另付二成以已学贴身推劲、实际接膝与废木卡足使墨失衡受伤，随后贴身看押。林辰被落石割伤腿，无法再追击。本次开战在08:45亲见顾手势之后，解囚与同阶交锋至巳初后09:15结束，随后止血、收押并安排伤者转移，10:45才沿支洞出发。\",\n  \"characterGoals\": \"林辰要先打开囚笼并以普通结构牵制墨，为顾创造正面窗口；苏要带俘虏撤离并隔开凝元看守；顾峤要在不弃守责任的前提下制伏玄府境墨；墨要夺回上交遗物和泉液。\",\n  \"conflict\": \"墨拥有玄府元罡和已学近身术法，普通闸门和废料斗无法封禁他；顾的真光需三个呼吸蓄势并支付三成元罡、0.25元载寿储（按原三个月成本核算），若无遮挡或信号便不能发动。 本章调用char_10已列的开篇前资格：顾经宗门师长指导完成玄府纯阳供能、三息凝印及主动收势实测，经脉复诊合格；这不是188日临场新增训练。入场仍按25章前无新增伤情、十成元罡、当日未施真光核验；右肩受伤后停重推及该侧施术，不因旧资格合格忽略当场限制。\",\n  \"choice\": \"林辰等到顾峤亲自发出手势才开闸，主动暴露自己并拉动废料斗；顾放弃追求无伤制敌，支付既定寿元施术；墨为夺货放弃最佳撤退路线。\",\n"
+              }
+            ],
+            "revisionAdvice": ""
+          },
+          {
+            "criterion": "costs",
+            "verdict": "pass",
+            "explanation": "低流量试注被单列为器身复用检查，每次预付半成且异常、中断、失败均不退；普通附芒挥击另按每剑小半成，乾元御风剑诀按一式二成且凝元配剑时已含剑身供能，未重复加收普通挥击费。试注不被充作下一式已付款，也不替代剑诀或御物费用。第18章把终段训练后余额明确按零重新起算，177—180日的恢复有实际饮食、静息、时长和复测边界，没有挪用后续恢复；第25章又将剑诀二成与轻小插销御物半成分开核算。剑诀后的自然散热、至少一刻钟冷却和低流量无异响复验仍保留，未出现免费检查或循环验剑。",
+            "evidence": [
+              {
+                "sourceId": "world/artifacts/art_03",
+                "quote": "{\n  \"id\": \"art_03\",\n  \"name\": \"赤霞斩铁剑\",\n  \"tier\": \"法器\",\n  \"effect\": \"剑身铭刻炽火法阵，灌注真元即可喷薄尺长赤火剑芒，斩金碎石。\",\n  \"cost\": \"普通附芒挥击每剑耗凝元修士小半成真元，连击会发热；完整乾元御风剑诀按该功法一式二成总费用结算，其中已含本剑这一式的供能，不重复扣普通挥击费。 冷却后的低流量试注是单独的器身复用检查，每次预付本人凝元健康稳定真元上限的半成，另于挥击、剑诀和御物计费；中断、异常或检查失败均不退，不以流量低免单，也不把这半成作为下一式已付款。\",\n  \"limitations\": [\n    \"不耐极寒阴罡长久浸润\",\n    \"无法承载玄府罡气强行灌注\",\n    \"以凝元真元施放一整式御风剑诀后立即停止灌注，自然散热至少一刻钟，待剑脊与剑柄均不再灼热、低流量试注无异响后才可再用；猛浸冷水不能跳过检查。器身降温不回补真元或治愈持剑人的伤，伤者仍须满足自己的握剑许可。\",\n    \"低流量试注只供已在授业中练成凝元注剑、收注与冷却检查者执行，不能由持剑或晋阶自动取得；第18章既有顾峤指导与176日“剑冷后再用”实测包含此检查，训练中逐次先扣半成，仍须余量足够才练，均在176日终段余额按零重新起算之前，不挪用177日以后的恢复。试注前须已停止实战灌注、自然散热至少一刻钟，确认剑脊与柄不再灼热，并符合本人握剑伤限；只在身边无人、剑锋不指人的安全位置，以本人凝元真元缓慢注入后主动收注，不形成外放剑芒或风刃，不挥击、不御剑、不切物。一次最多三息，半成是整次上限和固定支出，不因延长或多试免费；听到异响、剑柄灼热、掌痛或导气不稳即停注，已付不退，剑停用待检修和复验，不靠反复灌注把异常压下去。正常检查虽可轻微温升，不达到实战灌注的热负荷；收注后须再触验剑脊与柄仍不灼热，才算检查通过，不另循环要求再做一次同样试注。若实际升至灼热则本次失败，依异常停用处理。检查不启动攻击、不修复损坏、不回补真元、不消除旧伤，也不改变完整剑诀后的原冷却要求；玄府元罡仍不得灌入本剑。\"\n  ],\n  \"status\": \"proposed\"\n}"
+              },
+              {
+                "sourceId": "world/techniques/tech_04",
+                "quote": "{\n  \"id\": \"tech_04\",\n  \"name\": \"乾元御风剑诀\",\n  \"kind\": \"technique\",\n  \"tier\": \"玄阶\",\n  \"allowedRealmIds\": [\n    \"realm_02\",\n    \"realm_03\"\n  ],\n  \"effect\": \"以本人已熟习的凝元真元或玄府元罡凝成至多三十六道风刃剑气，沿已锁定的可见方向劈斩敌手或普通实体目标，包括未附灵、无护甲包覆的普通绳索；可徒手导刃，不以持有某把法剑作为自动掌握的凭据。\",\n  \"cost\": \"完整施展一次耗本人当境法力二成（凝元真元或玄府元罡）及少量心神，以健康稳定上限为基准；少放几道风刃不按比例免成本。仅凝元真元配合赤霞斩铁剑时，该二成已经包含这一式的器身引火与御剑供能，不另加一次普通挥击费；另作普通附芒挥击或另行御物仍分别计费。 心神负担指维持定向和导刃的注意力疲劳，不是本命神魂永久扣减，也不折算寿储或另设可花费的数值池；真元余量不能替代清醒与稳定专注。\",\n  \"limitations\": [\n    \"凝元式以肉眼看清实际目标、已训练的真元定向和导刃维持锁定，不要求未定义的神念外探。有效距离取本人同式实测稳定导刃距离与百丈总上限中较小者；百丈不是入门即有的能力。凝元式须分别练成起式、定向和主动停式并由教习实测，晋阶或持剑不能替代。\",\n    \"面对厚重元罡穿透力减半\",\n    \"施式须清醒、能辨认并稳定锁定实际目标，不可同时另行御物或维持另一功法；受到惊扰而失去导刃控制时中止，已支出的二成当境法力不退。\",\n    \"每次施式前后须确认定向与专注是否稳定。眩晕、目标错认、注意力不能维持或神识受创时立即停用；不能凭真元尚有余量强行连发。普通疲劳须安静休息至症状消退、定向恢复后再判断，固定时长不保证恢复；神识伤另须医修确认，吐纳回真元或普通疗伤不自动恢复受伤心神。\",\n    \"玄府式须另经稳定元罡导刃的修习与实测，晋阶不自动视为熟练。元罡式以自身导刃，不灌入赤霞斩铁剑，不把元罡降名为凝元真元绕过器身承载；凝元式旧剑的冷却与合并费用不适用于元罡式。现有第416–424日仅练基础元罡的主角不因此获得已练成剑诀玄府式的事实。\",\n    \"切普通绳索时须实际看见目标绳段并保持锁定，距离仍受本人本式实测稳定导刃范围与百丈总上限双重限制，路径被遮挡、目标脱离锁定或施术受扰则按原中断规则处理，不因付费保证命中。一次完整剑诀切断一处可见普通绳段仍付二成，不按绳轻免费；附灵绳、金属链、完整护罡或未知材质不能按普通绳保证切断。绳断后的落物、船摆与伤人风险依实际结构、受力和站位发生，剑诀不托举被悬挂的重物、不控制倒塌方向或自动保护旁人，不能将切索偷换为免费御动整车整船。\",\n"
+              },
+              {
+                "sourceId": "plan/chapters/18",
+                "quote": "{\n  \"id\": \"chapter-18\",\n  \"chapterNumber\": 18,\n  \"volumeId\": \"vol_01\",\n  \"title\": \"三年换一缕真元\",\n  \"summary\": \"第120日清晨，白榆复查旧伤、经脉与寿储，确认未有新增耗损，下界为7−101/365≈6.7233元载。林辰在屋里以清风引气诀收束气流，按既定晋阶法门主动付出3元载，真元初成而寿储下界降至约3.7233；白榆复诊后才允许继续修习。此后两月，他先用普通木块练御物，第132日，顾以护送候补的授业职责，向已凝元并获准练习的林辰借授宗门乾元御风剑诀的凝元导刃章，当面讲解定向、收势和赤霞斩铁剑的承载限制；这次基础授业随候补训练安排，不另收学费，也不授予古境名额或玄府式。林辰按登记领剑，从短距导刃开始，第一次失控打翻架子，停练并偿付损坏的木架。苏检验他的三经循环，也直言两人尚不能正面抗玄府。第179日，顾签发本次限时调阅单，韩叙交接父亲署名的旧检修图与撤离记录；林苏核看之后只确认父亲参与守门。第180日，顾逐一实测二人的凝元三重，核查双方联名符牌；苏取得仅限本次任务路线的外出解除文书。林辰收起木架赔账与练习记录，第一次凭达标而非人情拿到出发位置。 褚衡与邵闻在外门核对186日出发的换班牌与行粮，只承诺按期护送，不接受林辰提前同行探古境的试探。 换班牌提前规定188日白昼在山路歇脚棚补眠、暮抵后接夜班；186–187日按日程行路和宿营，187日20时至188日05时睡足9小时，188日05–09时走前段，10–16时睡6小时，16–18时走最后一段，19时才接班。歇脚棚在外营以前的普通山路，不赋予古境准入或瞬移。\",\n  \"characterGoals\": \"林辰要支付得起且稳住凝元三重，取得古境准入；顾峤要核验真实能力与队伍权限；苏要用放弃配额换来的复核机会查旧图；韩叙要完成交接并保留经手责任。\",\n  \"conflict\": \"凝元支付后寿储下降，真元操控仍需实测，失败会推迟古境；父亲署名近在眼前，却只能证明参与守门，不能补出父案全貌。\",\n  \"choice\": \"林辰突破后不急于报名，主动反复测试御物和三经循环；苏按权限共同核图，不让残玉替代证据。\",\n"
+              },
+              {
+                "sourceId": "plan/chapters/18",
+                "quote": "  \"cost\": \"凝元支付3元载，至第180日保守下界为7−3−161/365≈3.5589，仍保留至少1元载；训练风刃每次支付二成真元，斩铁剑须停手散热。林辰的劳务收入扣除木架赔款，苏没有再次支付一份已让出的优先位。 稳定实测后林在凝元三重的健康真元上限按十成记；训练按一式二成结算，御物另扣，休整时按公共恢复上限复测，余量不够或剑未冷就延期。 终段训练于176日结束后，保守余量按零重新起算，不预支此前未核的恢复；177–179日每晚从修缮库当期劳务结算的基础饭食份额领取并实际吃完正常晚餐、饮水，再在温和灵气环境中连续静息八小时且无施术；饭食已经扣在当期劳务结算内，不再次动用第16章已抵粮的第二枚灵石，也不新增药石或现金，复测分别只记三成、再三成、再四成，179日晚达到健康十成，均未超过每夜四成的恢复上限。180日实测只额外御一次轻物扣半成，180日晚同样实际用餐饮水后连续静息两小时，复测仅补回半成，180日晚累计余额仍为十成。“补回半成”是本次恢复增量，不是剩余余额：176日零起点加177日三成、178日三成、179日四成，即0+3+3+4=10；180日御物后10−0.5=9.5，晚间实测补回0.5后为10。181–183日按普通步行、乘车和宿营，不御物或施剑，不另计恢复收入。184日行前再核十成，后续从这个明确余额起算。训练期每次施术前均须复测足以付费，余量不足即延期，不把多次训练视作免费。\",\n  \"threads\": [\n    \"th_01\",\n    \"sec_01\",\n    \"sec_02\",\n    \"rel_01\"\n  ],\n  \"endState\": \"第180日林辰与苏均实测达凝元三重，持本次有效联名符牌；苏出行仅限登记路线。二人见到父亲署名的检修图及撤离记录，只确认守门工作，不知道投毒过程。林辰持领用剑及一份公开路线抄图，尚未入古境。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_08\",\n    \"char_09\",\n    \"char_10\",\n    \"char_17\",\n    \"char_18\"\n  ],\n  \"location\": \"loc_29太清外门药舍、loc_28太清外山修缮库\",\n  \"storyTime\": \"第120日至第180日；第120日突破，第180日核验\",\n  \"scenes\": [\n    \"第120日白榆复查经脉与伤势，林辰在纸上算出6.7233的条件下界，确认付三年后仍能留下安全余量，才决定突破。\",\n    \"屋内林辰依清风引气诀收束气流，完成凝元晋阶的寿储支付；凝成的真元推倒茶盏，白榆把过度练习的尝试压住并复诊。\",\n"
+              },
+              {
+                "sourceId": "plan/chapters/18",
+                "quote": "      \"requirement\": \"132日顾按候补授业借授凝元导刃章并领用仅承载凝元真元的剑；林失控打坏木架须停练赔款，176日复测只证明两丈内可见目标导刃和主动停式。一式二成、御物另扣，停剑散热且余额不足延期；不能因读到功法就掌握玄府式、百丈感知或高阶法宝使用。\",\n      \"sourceQuestion\": {\n        \"document\": \"world\",\n        \"questionId\": \"audit-tier-exceptions\"\n      }\n    },\n    {\n      \"id\": \"measured-recovery-before-departure\",\n      \"requirement\": \"176日终段训练后真元按零起算；177—179日实际领取并吃用劳务已结饭食、饮水，温和灵气中各连续静息八小时，复测只增3、3、4成。180日御物先扣半成，晚间用餐与两小时静息后仅补半成，余额10成；不得重复花早期已抵粮灵石，条件被打断则复测延期，181—183普通行路不另虚记恢复。\",\n      \"sourceQuestion\": {\n        \"document\": \"story\",\n        \"questionId\": \"audit-opening-growth\"\n      }\n    }\n  ]\n}"
+              },
+              {
+                "sourceId": "plan/chapters/25",
+                "quote": "{\n  \"id\": \"chapter-25\",\n  \"chapterNumber\": 25,\n  \"volumeId\": \"vol_01\",\n  \"title\": \"废料斗下的三息\",\n  \"summary\": \"第188日辰末08:45，墨幽屠准备把俘虏和泉瓶装车转走。林辰与苏仍伏在营地，直到亲眼看见顾峤进入侧廊并收到手势，才按计划拉开囚棚闸门。林辰以一次乾元御风剑诀、二成真元只放一道风刃切断普通吊索，亲见余刃散尽并由苏核门框滑槽稳定后，才解扣推门；苏随后格开凝元看守的铁棍后剑茎被震松，停剑护送俘虏、放弃追击逃走的看守，顾在低顶主巷与墨正面交锋。墨本可弃货退入支洞，却因要夺回遗物和泉液扑向林辰。林辰抱着从货台取走的样箱和泉瓶转入检修侧廊，在两丈内直视第23章核过的八两无负载小销，以一次一息御物拨开空载拨片的锁销，倒料遮断直扑路线，顾借三息间隔蓄势，支付三成元罡与0.25元载施展太清太乙真光，在第三息完成时克制墨已连续付费开启的第二息血爪，墨停爪后只用肉身抢箱；顾另有独立站位条件，另付二成以已学贴身推劲、实际接膝与废木卡足使墨失衡受伤，随后贴身看押。林辰被落石割伤腿，无法再追击。本次开战在08:45亲见顾手势之后，解囚与同阶交锋至巳初后09:15结束，随后止血、收押并安排伤者转移，10:45才沿支洞出发。\",\n  \"characterGoals\": \"林辰要先打开囚笼并以普通结构牵制墨，为顾创造正面窗口；苏要带俘虏撤离并隔开凝元看守；顾峤要在不弃守责任的前提下制伏玄府境墨；墨要夺回上交遗物和泉液。\",\n  \"conflict\": \"墨拥有玄府元罡和已学近身术法，普通闸门和废料斗无法封禁他；顾的真光需三个呼吸蓄势并支付三成元罡、0.25元载寿储（按原三个月成本核算），若无遮挡或信号便不能发动。 本章调用char_10已列的开篇前资格：顾经宗门师长指导完成玄府纯阳供能、三息凝印及主动收势实测，经脉复诊合格；这不是188日临场新增训练。入场仍按25章前无新增伤情、十成元罡、当日未施真光核验；右肩受伤后停重推及该侧施术，不因旧资格合格忽略当场限制。\",\n  \"choice\": \"林辰等到顾峤亲自发出手势才开闸，主动暴露自己并拉动废料斗；顾放弃追求无伤制敌，支付既定寿元施术；墨为夺货放弃最佳撤退路线。\",\n"
+              }
+            ],
+            "revisionAdvice": ""
+          },
+          {
+            "criterion": "counters",
+            "verdict": "pass",
+            "explanation": "修订没有把赤霞斩铁剑改成可承载玄府元罡的旧剑：条目明确禁止玄府罡气灌注，且乾元御风剑诀的玄府式另需训练，不能从凝元式资格自动继承。第23章没有把墨的五百斤个人实测扩大成六百斤通用上限，也没有把推车写成隔空御物、托举重物或无条件制服玄府。第25章的剑诀只切可见普通吊索，实际距离沿用两丈实测，余刃散尽后才解扣；倒料仅靠既有机械结构和重力，不能替换成万能御物或自动控制落料。代价、余量、伤情和中止条件均仍生效。",
+            "evidence": [
+              {
+                "sourceId": "world/artifacts/art_03",
+                "quote": "{\n  \"id\": \"art_03\",\n  \"name\": \"赤霞斩铁剑\",\n  \"tier\": \"法器\",\n  \"effect\": \"剑身铭刻炽火法阵，灌注真元即可喷薄尺长赤火剑芒，斩金碎石。\",\n  \"cost\": \"普通附芒挥击每剑耗凝元修士小半成真元，连击会发热；完整乾元御风剑诀按该功法一式二成总费用结算，其中已含本剑这一式的供能，不重复扣普通挥击费。 冷却后的低流量试注是单独的器身复用检查，每次预付本人凝元健康稳定真元上限的半成，另于挥击、剑诀和御物计费；中断、异常或检查失败均不退，不以流量低免单，也不把这半成作为下一式已付款。\",\n  \"limitations\": [\n    \"不耐极寒阴罡长久浸润\",\n    \"无法承载玄府罡气强行灌注\",\n    \"以凝元真元施放一整式御风剑诀后立即停止灌注，自然散热至少一刻钟，待剑脊与剑柄均不再灼热、低流量试注无异响后才可再用；猛浸冷水不能跳过检查。器身降温不回补真元或治愈持剑人的伤，伤者仍须满足自己的握剑许可。\",\n    \"低流量试注只供已在授业中练成凝元注剑、收注与冷却检查者执行，不能由持剑或晋阶自动取得；第18章既有顾峤指导与176日“剑冷后再用”实测包含此检查，训练中逐次先扣半成，仍须余量足够才练，均在176日终段余额按零重新起算之前，不挪用177日以后的恢复。试注前须已停止实战灌注、自然散热至少一刻钟，确认剑脊与柄不再灼热，并符合本人握剑伤限；只在身边无人、剑锋不指人的安全位置，以本人凝元真元缓慢注入后主动收注，不形成外放剑芒或风刃，不挥击、不御剑、不切物。一次最多三息，半成是整次上限和固定支出，不因延长或多试免费；听到异响、剑柄灼热、掌痛或导气不稳即停注，已付不退，剑停用待检修和复验，不靠反复灌注把异常压下去。正常检查虽可轻微温升，不达到实战灌注的热负荷；收注后须再触验剑脊与柄仍不灼热，才算检查通过，不另循环要求再做一次同样试注。若实际升至灼热则本次失败，依异常停用处理。检查不启动攻击、不修复损坏、不回补真元、不消除旧伤，也不改变完整剑诀后的原冷却要求；玄府元罡仍不得灌入本剑。\"\n  ],\n  \"status\": \"proposed\"\n}"
+              },
+              {
+                "sourceId": "world/techniques/tech_04",
+                "quote": "{\n  \"id\": \"tech_04\",\n  \"name\": \"乾元御风剑诀\",\n  \"kind\": \"technique\",\n  \"tier\": \"玄阶\",\n  \"allowedRealmIds\": [\n    \"realm_02\",\n    \"realm_03\"\n  ],\n  \"effect\": \"以本人已熟习的凝元真元或玄府元罡凝成至多三十六道风刃剑气，沿已锁定的可见方向劈斩敌手或普通实体目标，包括未附灵、无护甲包覆的普通绳索；可徒手导刃，不以持有某把法剑作为自动掌握的凭据。\",\n  \"cost\": \"完整施展一次耗本人当境法力二成（凝元真元或玄府元罡）及少量心神，以健康稳定上限为基准；少放几道风刃不按比例免成本。仅凝元真元配合赤霞斩铁剑时，该二成已经包含这一式的器身引火与御剑供能，不另加一次普通挥击费；另作普通附芒挥击或另行御物仍分别计费。 心神负担指维持定向和导刃的注意力疲劳，不是本命神魂永久扣减，也不折算寿储或另设可花费的数值池；真元余量不能替代清醒与稳定专注。\",\n  \"limitations\": [\n    \"凝元式以肉眼看清实际目标、已训练的真元定向和导刃维持锁定，不要求未定义的神念外探。有效距离取本人同式实测稳定导刃距离与百丈总上限中较小者；百丈不是入门即有的能力。凝元式须分别练成起式、定向和主动停式并由教习实测，晋阶或持剑不能替代。\",\n    \"面对厚重元罡穿透力减半\",\n    \"施式须清醒、能辨认并稳定锁定实际目标，不可同时另行御物或维持另一功法；受到惊扰而失去导刃控制时中止，已支出的二成当境法力不退。\",\n    \"每次施式前后须确认定向与专注是否稳定。眩晕、目标错认、注意力不能维持或神识受创时立即停用；不能凭真元尚有余量强行连发。普通疲劳须安静休息至症状消退、定向恢复后再判断，固定时长不保证恢复；神识伤另须医修确认，吐纳回真元或普通疗伤不自动恢复受伤心神。\",\n    \"玄府式须另经稳定元罡导刃的修习与实测，晋阶不自动视为熟练。元罡式以自身导刃，不灌入赤霞斩铁剑，不把元罡降名为凝元真元绕过器身承载；凝元式旧剑的冷却与合并费用不适用于元罡式。现有第416–424日仅练基础元罡的主角不因此获得已练成剑诀玄府式的事实。\",\n    \"切普通绳索时须实际看见目标绳段并保持锁定，距离仍受本人本式实测稳定导刃范围与百丈总上限双重限制，路径被遮挡、目标脱离锁定或施术受扰则按原中断规则处理，不因付费保证命中。一次完整剑诀切断一处可见普通绳段仍付二成，不按绳轻免费；附灵绳、金属链、完整护罡或未知材质不能按普通绳保证切断。绳断后的落物、船摆与伤人风险依实际结构、受力和站位发生，剑诀不托举被悬挂的重物、不控制倒塌方向或自动保护旁人，不能将切索偷换为免费御动整车整船。\",\n"
+              },
+              {
+                "sourceId": "story/chapterPlans/chapter-plan-23",
+                "quote": "{\n  \"id\": \"chapter-plan-23\",\n  \"chapterNumber\": 23,\n  \"title\": \"黑纹下的元罡\",\n  \"purpose\": \"第187日，秦禾从归路侧安全岔口沿22章核过的短支路返回装车区外壁后与林辰、苏凌霜会合，补齐点检哨、铃绳和主营装车区的见闻。三人亲听巡守称营地主事为“墨少主”，秦禾说明自己被扣时见过名牌全名“墨幽屠”，林苏至此才核定敌首身份。隔货棚木缝，众人看见墨幽屠以幽冥噬血爪惩戒一名失误看守：只短施一息即收爪，看守当时未施任何护体术，前臂裸露；墨近身扣住其手腕后才让爪煞擦过该处，令其出血，不涉及破开未定义的凝元护体；墨的指骨黑纹随之加深，后自行割指放血并压住浅口止血，但玄府元罡未散，反噬不能当作其失去战力。林见放血后的墨仍以已学贴身运罡把已解闸、作者执行总重四百八十斤的滑车沿平地推开一步，放弃趁放血近身偷袭的短暂念头，把眼光转到低顶侧廊与废料斗，提出让同阶的顾迎住墨、自己用倒料遮断直扑视线的方案，并只核实轻小插销与落料方向。苏质疑遮挡如何救囚，提出自己引开凝元看守，三人遂把战法改为林开普通囚棚与制造遮挡、苏接人并牵制看守、顾若实际到场则获三息蓄势窗口。独立视角中，墨因秦逃脱暴露风险又收到上层实体催交，决定188日辰末转运货物与囚者，命两名封路看守在188日卯初05:00撤回束笼绑货、检车押运。两名封路看守本是笼车护送搭档，重笼车过窄坡必须一人前方控向、一人后方勒住溜车，余下看守正分守囚棚和货台。墨可以延后起运或分批运送来留一人守哨，却因逃人暴露与实体催交决定整批赶运，拒绝这两个选项；他自恃玄府在营，宁肯暂失归路预警也不丢囚货。林苏只从现场撤哨口令得知可能出现通路，不能知道催令内容。\",\n  \"conflict\": \"墨幽屠仍有玄府元罡及已实际使用的噬血爪与贴身推劲，凝元御物与普通闸门无法封禁他；林苏若没有顾的实际到场，任何诱敌方案都会把囚者和自己暴露给玄府强敌。\",\n  \"turningPoint\": \"林苏依亲见的元罡与地形共同设计分工：顾若实际到场承担正面对抗，林开笼、以普通落料遮视，苏接人并隔开凝元看守。秦携新图去盯路口，撤哨口令必须以现场实际撤走为准。\",\n  \"endHook\": \"墨定下188日辰末转运，并下令封路岗哨于卯初05:00撤回集中装车；林苏只听到现场撤哨口令，尚不知上层催令。秦禾携更新标图回到已知路口，必须等188日卯初亲见岗哨撤回、铃绳解除后才可再次送信。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_04\",\n    \"char_11\"\n  ],\n  \"locationIds\": [\n    \"loc_05\"\n  ],\n  \"arcBeatIds\": [\n"
+              },
+              {
+                "sourceId": "story/chapterPlans/chapter-plan-23",
+                "quote": "    \"v1-su-tactical-share\"\n  ],\n  \"requiredEvents\": [\n    \"187日秦从归路侧安全岔口沿已核短支路回来，在装车区外壁后与林苏会合。他先说点检哨仍在，三人转到同一外壁的木缝观察装车棚，没有回到失去的泉货台近观察点。\",\n    \"巡守称呼“墨少主”，秦禾说明扣押时见过名牌上的全名墨幽屠，林苏据此才核定主营指挥者身份。\",\n    \"众人隔木缝见墨以肉身近前扣住一名失误看守的手腕，再以噬血爪擦伤其裸露前臂；该看守当时未施护体术，不涉及破开凝元自动护体；只施一息即收，指骨黑纹加深。墨割指放血后以随身布压住浅口，待至少六息、出血已止，确认双掌仍能稳定握持、无麻木或失准，再双掌贴车架按ax_13聚罡一息、推劲一息，将挡路滑车沿平地滚开一步。作者账：车身与散料共四百八十斤，低于墨开篇前已实际测过的五百斤，也低于ax_13的六百斤通用上限；这些是拟定动作的作者依据，旁观林苏秦不能仅凭看见推车就知道准确斤数或墨的训练记录。轮轴可转、闸块已经由原装车看守取下，不是整辆囚笼重车；若实际载荷超过墨的已测负荷、闸未解、地面不平或伤情复核不稳，就不得按本操作硬推，须卸料、解闸或停手，不因余额足够就保证成功。林看见其手脚仍稳，放弃趁放血偷袭的念头。编辑执行账：本次出爪前墨实际可用余量至少八成，出爪一息预付一成后至少七成；推劲另预付二成后至少五成，两种操作不同时维持，聚劲失手也不退费。这是墨本人的保守实检下界，旁观三人只见动作、黑纹、止血和推车，不知道余额。放血仅缓解表层胀痛，黑纹仍留，不返还法力；后续麻木、失准或再出血时必须停术就医。\",\n    \"林沿已核外侧观察口对照旧图，确认低顶侧廊、废料斗轻小插销和朝侧廊落料的方向。秦的旧细绳只用于比划已见距离；不提前拔销，也没有穿过巡守内线去实开机关。林指出普通落料能挡直扑视线，挡不住玄府破开，须由顾实际迎敌才有用。 他同时核清：可拨的小销约八两，只锁空载拨片，满斗重量由支轴和闸钩承受；拨片释放既有机械闸钩，落料靠重力，不把满斗载荷藏进御物费。实际出手仍须进入三丈内直视范围。\",\n    \"苏凌霜追问遮挡怎样让囚者活着撤出，提出自己引开凝元看守；二人据此定下林开笼造遮挡、苏接人牵制、顾到场才可得三息蓄势的分工。\",\n    \"切墨独立视角：两名封路看守本是笼车护送搭档，重笼车过窄坡必须一人前方控向、一人后方勒住溜车，余下看守正分守囚棚和货台。墨可以延后起运或分批运送来留一人守哨，却因逃人暴露与实体催交决定整批赶运，拒绝这两个选项；他自恃玄府在营，宁肯暂失归路预警也不丢囚货。他命两名看守188日卯初05:00解除铃绳回装车区，复检绳轴、束笼绑货后就位前后车把，辰末起运，不再回封路岗。林苏秦隔外壁只听到两人撤哨和集车口令，不知催令内容；秦带更新图沿同一短支路回归路岔口守候实况。\"\n  ]\n}"
+              },
+              {
+                "sourceId": "plan/chapters/25",
+                "quote": "    \"林辰移到囚棚门外，施展一次乾元御风剑诀，支付二成真元切断束住门闩的普通吊索，先确认唯一余刃已散、棚门仍受原门框和滑槽支承，再用肉身解轻扣，由苏推开棚门。本式结束即停止灌注、收起热剑，之后拨插销用的是御物，不再以发热剑体施术。\",\n    \"苏用随身普通铁剑格开凝元看守手中的普通铁棍，让俘虏先过侧门；她只以肉身握剑偏架，未用未定义的剑光或真元护刃。铁棍砸弯护手并震松剑茎，她再握时剑刃明显晃动，立即停用，退到囚棚转角护送俘虏，不再追这名看守。看守沿另一支道逃脱，不能把苏引走看守写成已将其制伏。顾在低顶主巷先以普通脚步卡住墨借货台上跃的落点，两人以肉身闪让和普通拳棍试探，不把本次上跃写成持续飞行。顾看到墨手中短木棍斜扫，在退让中按ax_12先聚左前臂掌大局部护罡一息并付一成，承受一次斜擦另付一成后该层散去；后续以货柱隔开追击，至少三息重新定息，不连续开全身护体。到这段拳棍试探结束，墨尚未施噬血爪，也未发动其他术法；其后短施两息的起止见下文，不把试探段的停术延伸到整场。护罡不是顾的额外攻杀招。\",\n    \"林辰先开转运笼，再从货台抱走样箱与封瓶；箱角松开露出残片刻痕，墨看见本次必须交货的物件被带走，舍弃撤离机会扑向他。\",\n    \"林辰在两丈内直视第23章核过的八两小销，御动一息拨销，预付半成真元；小销只锁空载拨片，承重的支轴与闸钩由原有机械关系释放，倒料靠重力形成遮挡。落石割伤他的腿；不以御物托斗或搬矿料。\",\n    \"按同一交锋的呼吸顺序：顾起印第一息借倒料和货柱隔开直扑，开始纯阳凝印；第二息墨从遮挡侧缘绕到可见近身处，为抓回样箱先付一成元罡开启血爪第一息，顾侧步护住箱位，没有提前放光。顾起印第三息开始时，墨为连续抓击再先付一成，血爪进入第二息；顾完成第三息凝印后才支付三成元罡和0.25元载，向眼前实际外放的爪煞施真光并在这次近身交锋中接触灼散它。墨立即停爪，未再开启第三息；两息各自已付的成本不退，六息重启间隔从此刻停爪起算。真光结束顾即停术，墨仍有至少三成玄府元罡，不因属性受克自动失去行动。停爪后墨本可侧退，却不再施术，以普通手臂伸抢顾身后的样箱；顾退半步让开直扑，在货台角处扣住墨外露前膝侧，双足站稳。墨把重心继续压向前脚、右手绕货柱去抓箱，错过抽腿或用左手打断聚劲的机会；顾这才用ax_13聚劲一息、预付二成，下一息沿膝侧向内推转。墨的前脚正卡在自己跨过的普通废木垫边，顺势扭膝失衡倒地，腿受伤；并非推劲付费就必能击倒同阶。墨在散劲时收回的右手普通抓击伤顾右肩，双方都不能把此伤当作未发生。\",\n"
+              },
+              {
+                "sourceId": "plan/chapters/25",
+                "quote": "    \"顾立即停重推，只以尚稳的左手、膝与地面配合压住墨的前臂，苏把现场普通绑货绳递来约束姿势。墨前一场爪毒仍在，两息再开爪后指骨已刺痛、反抓时指口重裂、双腿不能稳撑，此刻强聚罡会使指口流血不止，须停爪及推劲就医；不是被真光降境或凭绳封经。顾仍须近身看押，若墨稳定重新施术，普通绳并不能阻止。战斗至09:15结束；随后原两名普通护卫一死一伤，苏与能行动的获救采集者收拢伤者。以随行救护布料暂止血、取现场原运人小推车安置伤护卫和包裹死者，另用既有担架接林；到10:45才完成出发准备。顾持续近身看墨，不兼抬车。\",\n    \"编辑执行账：本场三十分钟包括交锋、走位与解囚，不是持续施爪。墨由187日动作后至少五成余量承接，期间不计任何未写出的恢复，188日开战前检查指口闭合、手指无麻木失准、保守可用仍至少五成；普通拳棍与步行不另算术费。仅在顾起印第二、第三息短施连续两息血爪，两息各预付一成后至少三成；顾第三息完成后真光接触已外放爪煞，墨当即停爪。停爪后的扑抢和伤顾肩部均为普通肉身动作，不在六息间隔内重启，不再扣第三息；真光未消除这份余量；随后的裂口流血、腿伤及运罡失稳令其停术，不以余额归零解释被擒。前日积毒未清，本次两息使指骨刺痛加重；未靠吸血或割指回补。这个保守账只供执行校验，林苏不知墨的确切余量。\",\n    \"林在囚棚外侧先核普通吊索用途：它绕在横闩外耳，拉住向侧面滑开的普通棚门，不悬挂人或重物，也不是废料斗承重索。索段在距林一丈的外耳处外露，门后人员已应苏的喊话退离门缝；林从侧前方看清空隙，按18章两丈内实测锁定、路径无人遮挡才起式。本次切中后横闩失去拉力，林亲见本次唯一余刃在两丈界内耗散，苏在刃路外检查门板仍嵌原滑槽、门框未动，才由林用另一只手解开原普通插扣，苏以肉身推门引人；剑诀不抬闸门。若绳段被遮或无法锁定则停止起式，苏先挡住侧口、由顾实际压制后再开门，不让囚者站进风刃路径。\",\n    \"本场剑诀只放一道，完整二成不减。出手前林在原侧前方看清外耳绳段后一丈至本人两丈边界的延长线：沿棚门外侧空地掠过，不穿囚棚内部、门框、苏与顾墨交锋的主巷；苏先让门边俘虏退到门洞内侧两旁并听见回应，自己退出这条外侧直线。实际绳断后林保持原稳姿观察唯一刃影至两丈边界散尽，苏在刃路外实际检查门板、滑槽和门框稳定，再依前述顺序解扣推门。发刃后若失锁、有人闯入或余刃被遮，停发示警，不立即拨扣或放人；待余刃全部可确认消散且门体稳定后才继续，无法确认就守侧口等顾控住现场，再绕开刃路以普通工具处理，不多施一式补救。此等待包含在08:45—09:15的原交锋和解囚时段内；后续三息真光窗口仍由更晚的废料斗动作另行触发，不提前把余刃等待挤进那三息。\"\n  ],\n  \"source\": \"author\",\n  \"executionChecks\": [\n    {\n"
+              }
+            ],
+            "revisionAdvice": ""
+          }
+        ],
+        "modelResponses": [
+          "{\"requestId\":\"review_553a1668ef5dcd1a36ab6312\",\"summary\":\"本批力量设计在赤霞斩铁剑的训练资格、低流量试注与第23章墨幽屠推车负荷方面可执行，未发现越过既定承载、个人实测或分账规则的硬冲突。\",\"checks\":[{\"criterion\":\"tiers\",\"verdict\":\"pass\",\"explanation\":\"赤霞斩铁剑的凝元注剑、收注与冷却检查被明确列为需授业、训练和实测的前置，持剑或晋阶不自动获得资格；第18章又限定林辰实际只完成凝元式两丈内可见目标导刃，不继承玄府式或百丈上限。第23章墨幽屠的个人推劲实测为五百斤，实际车身与散料总重四百八十斤，且车轮可转、闸块已解除、动作是沿平地滚移一步而非托举，低于个人实测和规则六百斤上限，负荷对应成立。墨的推劲还受旧有贴身接触、立足、伤情复核和停术条件约束。\",\"evidence\":[{\"fragmentId\":\"e58\"},{\"fragmentId\":\"e128\"},{\"fragmentId\":\"e129\"},{\"fragmentId\":\"e186\"}],\"revisionAdvice\":\"\"},{\"criterion\":\"costs\",\"verdict\":\"pass\",\"explanation\":\"低流量试注被单列为器身复用检查，每次预付半成且异常、中断、失败均不退；普通附芒挥击另按每剑小半成，乾元御风剑诀按一式二成且凝元配剑时已含剑身供能，未重复加收普通挥击费。试注不被充作下一式已付款，也不替代剑诀或御物费用。第18章把终段训练后余额明确按零重新起算，177—180日的恢复有实际饮食、静息、时长和复测边界，没有挪用后续恢复；第25章又将剑诀二成与轻小插销御物半成分开核算。剑诀后的自然散热、至少一刻钟冷却和低流量无异响复验仍保留，未出现免费检查或循环验剑。\",\"evidence\":[{\"fragmentId\":\"e58\"},{\"fragmentId\":\"e35\"},{\"fragmentId\":\"e179\"},{\"fragmentId\":\"e180\"},{\"fragmentId\":\"e182\"},{\"fragmentId\":\"e186\"}],\"revisionAdvice\":\"\"},{\"criterion\":\"counters\",\"verdict\":\"pass\",\"explanation\":\"修订没有把赤霞斩铁剑改成可承载玄府元罡的旧剑：条目明确禁止玄府罡气灌注，且乾元御风剑诀的玄府式另需训练，不能从凝元式资格自动继承。第23章没有把墨的五百斤个人实测扩大成六百斤通用上限，也没有把推车写成隔空御物、托举重物或无条件制服玄府。第25章的剑诀只切可见普通吊索，实际距离沿用两丈实测，余刃散尽后才解扣；倒料仅靠既有机械结构和重力，不能替换成万能御物或自动控制落料。代价、余量、伤情和中止条件均仍生效。\",\"evidence\":[{\"fragmentId\":\"e58\"},{\"fragmentId\":\"e35\"},{\"fragmentId\":\"e128\"},{\"fragmentId\":\"e129\"},{\"fragmentId\":\"e188\"},{\"fragmentId\":\"e189\"}],\"revisionAdvice\":\"\"}]}"
+        ]
+      }
+    },
+    {
+      "area": "characters",
+      "inputSha256": "441d6419232b932c84ffc8627a02e31edcb96e4f4a9c159010145145d663230d",
+      "output": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design68-focused-review/characters-result.json",
+      "outputSha256": "090bcd65e4bd7415c7a0261651eae31d5f4718bf2bf4c7d833336d2936224389",
+      "modelCalls": 1,
+      "responsesReplayed": 1,
+      "result": {
+        "summary": "两项人物设计均能以明确人物编号、章节安排和证据边界闭合；后段均为待实施提案，未被误作已采纳正文事实。",
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass",
+            "explanation": "陆沉舟明确为char_16、凝元押运头目，陆沉川明确为char_21、无修为的药栈伙计，兄弟端点也由rel_18固定，未靠近似姓名混同。第37章的关键选择归陆沉川：他在火场自行爬出，随后主动请人联络兄长；林的代价是放弃追携页者救人。第50章的关键选择归陆沉舟：旧手下要求其压门时，他停手并外拉木闩，协助巡员制止扣人，随后承认本次点交押送并继续受看护；吴、卢则各自顶门、出门并决定不立即回船。该安排与两兄弟关系中“救弟不免责、弟拒替兄遮掩”的递进一致。第53章陆沉舟拟写不利自述，仍保留为需签认和独立核验的后续义务，没有提前兑现为事实。",
+            "evidence": [
+              {
+                "sourceId": "story/characters/char_16",
+                "quote": "{\n  \"id\": \"char_16\",\n  \"name\": \"陆沉舟\",\n  \"role\": \"stage\",\n  \"goal\": \"保护已获救的弟弟免受程记报复，同时害怕承认自己的改签会失去自由；在保账自保与如实供述之间反复。\",\n  \"identity\": \"程记药栈凝元押运头目，曾任大乾军需船校尉；亲自参与过改签，弟弟亦为押货伙计。\",\n  \"locationId\": \"loc_24\",\n  \"factionId\": \"fac_02\",\n  \"startingRealmId\": \"realm_02\"\n}"
+              },
+              {
+                "sourceId": "story/characters/char_21",
+                "quote": "{\n  \"id\": \"char_21\",\n  \"name\": \"陆沉川\",\n  \"role\": \"stage\",\n  \"goal\": \"保住药栈差事并隐瞒自己领走假报空箱的责任；获救后在自保、哥哥和如实交证之间选择，不能用救命之恩换免罪。\",\n  \"identity\": \"陆沉舟的弟弟，程记普通药栈伙计，无修行能力；217日从船侧门领六号箱，218日分架与送医铺。第35章林只知册上姓名，38章当面对质才知兄弟关系。\",\n  \"locationId\": \"loc_23\",\n  \"factionId\": \"fac_08\"\n}"
+              },
+              {
+                "sourceId": "story/relationships/rel_13",
+                "quote": "{\n  \"stages\": [\n    {\n      \"sinceChapter\": 38,\n      \"untilChapter\": 42,\n      \"value\": \"陆欠救弟之情，仍回避其他货批的责任。\",\n      \"cause\": \"227实际认弟后参与本箱核对；林尚未见陆在别批拦船，也不知道其改签全貌。\",\n      \"cost\": \"本箱核清不等于互相信任。\"\n    },\n    {\n      \"sinceChapter\": 43,\n      \"untilChapter\": 43,\n      \"value\": \"救弟之情不能阻止陆亲自命令拦船，合作信任破裂。\",\n      \"cause\": \"43林亲听陆命挂钩、亲见钩索拖偏贺船，尚未发生切索落水。\",\n      \"cost\": \"只能确认当场拦截，未获改签自认或原账内容。\"\n    },\n    {\n      \"sinceChapter\": 44,\n      \"untilChapter\": 46,\n      \"value\": \"亲见拦船后失去合作信任，但林仍救落水伙计。\",\n      \"cause\": \"陆护原账命伙计挂钩拦船，逃走时选择保账而非回救落水者。\",\n      \"cost\": \"林只知陆实际拦截，不能提前取得53的改签自认。\"\n    },\n    {\n      \"sinceChapter\": 47,\n      \"untilChapter\": 48,\n      \"value\": \"拦截后的不信任仍在，陆尚未到案。\",\n      \"cause\": \"44亲见陆护账拦船，暂无新面对面解释。\",\n      \"cost\": \"林未得原账和自认，不得先把陆当合作证人。\"\n    },\n    {\n      \"sinceChapter\": 49,\n      \"untilChapter\": 49,\n      \"value\": \"有限指路不等于洗清拦截责任。\",\n      \"cause\": \"陆选择进岗、承认收钱签条但未说条内改签，接受看护并带巡查辨门。\",\n      \"cost\": \"陆不能自由离开，林不以弟去留交换；完整自认未得。\"\n    },\n    {\n      \"sinceChapter\": 50,\n      \"untilChapter\": 50,\n      \"value\": \"陆的协助已从指路变为阻止旧同伙继续扣人，却同时暴露自己的押送责任，林不以协助换免罪。\",\n      \"cause\": \"50陆协助巡员阻止旧同伙落闩，两名普通看守均被控制；吴卢自行出门，吴指认陆本次押送，陆承认并继续受看护。\",\n      \"cost\": \"陆仍受看护，旧同伙已见其协助巡查，不能再只以认路解释；完整改签自述仍须53实际书写签认。\"\n"
+              },
+              {
+                "sourceId": "story/relationships/rel_13",
+                "quote": "    },\n    {\n      \"sinceChapter\": 51,\n      \"untilChapter\": 52,\n      \"value\": \"后续拟保持受看护的有限合作，救援不替代陆承担押送和改签责任。\",\n      \"cause\": \"51承接50吴卢已脱控、陆已承认本次押送的拟定结果，分别照护和问询；不再以林救陆换信任。陆不能替工人选择去处。\",\n      \"cost\": \"陆仍受看护，未取得免罪或离港资格；53的自述须实际写出签认，不能预支原账或第二片。\"\n    },\n    {\n      \"sinceChapter\": 53,\n      \"untilChapter\": 53,\n      \"value\": \"接受有限且对自身不利的供述，不据此恢复无条件信任。\",\n      \"cause\": \"53章拟在到案复核中，弟只重申220夜亲见收钱签字并拒绝替兄担保条内内容。陆面对自己拦船、50当面承认押送与弟拒绝遮掩的连续后果，选择停止以正常押运搪塞，在巡员和贺面前新写亲历改签自述，逐项标明亲见与记忆不清处并签认；林只接经核对的签认副本。\",\n      \"cost\": \"陆接受继续看护和追究自己拦截、改签的责任，不以供述或救弟之情交换免罪；原账和220夜原签条仍未取得，供述可能被独立材料推翻。\"\n    },\n    {\n      \"sinceChapter\": 54,\n      \"untilChapter\": 100,\n      \"value\": \"陆留赤霄为自己做过的事作证。\",\n      \"cause\": \"他与弟弟未搭北航船，供述须经副本实体传播。\",\n      \"cost\": \"不得为林提供未经历的北境与父案真相。\"\n    }\n  ],\n  \"id\": \"rel_13\",\n  \"fromCharacterId\": \"char_01\",\n  \"toCharacterId\": \"char_16\",\n  \"kind\": \"trust\",\n  \"value\": \"救下亲人并不等于免除押运者自己的责任。\",\n  \"locked\": false,\n  \"lockPolicy\": \"evolvable\",\n  \"sinceChapter\": 38\n}"
+              },
+              {
+                "sourceId": "story/relationships/rel_18",
+                "quote": "{\n  \"stages\": [\n    {\n      \"sinceChapter\": 33,\n      \"untilChapter\": 33,\n      \"value\": \"兄弟依赖同一商号饭碗，弟愿领箱赚差事。\",\n      \"cause\": \"217日弟按商号便条领箱，两人仍各在同一商号谋生。\",\n      \"cost\": \"各自对实际领货或改签的责任不能互相替代。\"\n    },\n    {\n      \"sinceChapter\": 34,\n      \"untilChapter\": 36,\n      \"value\": \"哥哥见过218分架页，兄弟仍各靠商号饭碗。\",\n      \"cause\": \"218弟分架后让兄核看原页，未发生当面拒随兄走的选择。\",\n      \"cost\": \"共同接触本箱记录，不等于知道海上私挪全过程。\"\n    },\n    {\n      \"sinceChapter\": 37,\n      \"untilChapter\": 37,\n      \"value\": \"弟获救后主动请人联络哥哥，等待其来；未把亲缘变成免责。\",\n      \"cause\": \"226弟请医棚登记员写条，脚夫送北泊，兄当晚收到获救与问讯安排，做完当夜核货后准备翌晨来。\",\n      \"cost\": \"兄只知伤者稳定和问讯地点，不因亲缘掌握海上私挪或首仓火因。\"\n    },\n    {\n      \"sinceChapter\": 38,\n      \"untilChapter\": 38,\n      \"value\": \"弟从火中获救后不肯再让哥哥替自己说话。\",\n      \"cause\": \"226弟请医棚联络，条由脚夫送到北泊；兄做完当夜核货227赴原船岗要带人，弟自己留下交便条。\",\n      \"cost\": \"兄弟发生公开争执，哥哥的亲缘不能换弟免责。\"\n    },\n    {\n      \"sinceChapter\": 39,\n      \"untilChapter\": 48,\n      \"value\": \"本箱责任已核，哥哥仍隐瞒另一批改签。\",\n      \"cause\": \"共同分架记录被实物和医铺页互证，兄长并非完全可信。\",\n      \"cost\": \"弟仍留赤霄接受复核，救命不能解除传唤。\"\n    },\n    {\n      \"sinceChapter\": 49,\n      \"untilChapter\": 52,\n      \"value\": \"弟拒离港，愿说亲见却不替哥哥推断条内内容。\",\n      \"cause\": \"253兄来接弟，弟说220夜见收钱签条；兄仅承认动作、未完整自认改签。\",\n      \"cost\": \"亲情不能代替自主决定，陆接受到案看护，弟留港复核。\"\n    },\n"
+              },
+              {
+                "sourceId": "story/relationships/rel_18",
+                "quote": "    {\n      \"sinceChapter\": 53,\n      \"untilChapter\": 100,\n      \"value\": \"弟拒绝为未见内容作保，哥哥开始自己承认改签，亲情保留而信任待修复。\",\n      \"cause\": \"53章拟弟当面坚持只说220夜亲见收钱签字，拒替兄遮掩或替他承担责任；哥哥自行写出对自身不利的亲历自述并签认。弟听到的是哥哥此时的供述，不因此成为220夜条内内容的目击证人。\",\n      \"cost\": \"兄继续受看护、弟留港配合自身领货复核；不立即和好，不获得免罚，不以亲缘证明供述真伪。\"\n    }\n  ],\n  \"id\": \"rel_18\",\n  \"fromCharacterId\": \"char_16\",\n  \"toCharacterId\": \"char_21\",\n  \"kind\": \"kinship\",\n  \"value\": \"哥哥替弟弟安排差事，也习惯替他决定何时闭口。\",\n  \"locked\": false,\n  \"lockPolicy\": \"evolvable\",\n  \"sinceChapter\": 33\n}"
+              },
+              {
+                "sourceId": "plan/chapters/37",
+                "quote": "{\n  \"id\": \"chapter-37\",\n  \"chapterNumber\": 37,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"火仓留人\",\n  \"summary\": \"225夜，林贺为核册上领货人到木仓外公共交接处，两人在门外等了片刻，见一名交割伙计在外桌核纸页，侧窗内正有人往外挪退包装。灯架在一阵拖拉声后歪倒，带油火线沿纸绳窜起；撞落还是固定处松脱，林没看清。外桌伙计抱页跑向侧巷，边门同时传出求救。林先向侧巷迈了半步，听到第二声求救才停住：边门尚未烧着，对方还能应声挪动，若此时追人，门上窜起的火会先断掉出口。林仍不知是谁，转身让贺叫水手汲水，用湿毡裹手、短木杆从门板破口钩开轻闩，留在外侧上风处撑门约十息，叫对方自行爬过倒架。人被拉到门外时林掌心被热铁包角烫伤，腿伤也不许他再进仓。获救伙计自报陆沉川，林只记姓名待核。火势压住后，贺和搬运工在安全的后架取回12包原批签药和破口外板。林识出六号箱刻号，但救人已使携页者逃出视线，所携纸页内容和火因都未知。 226日陆在医棚请人联络哥哥，林正回原船换药，尚不知这次联络。\",\n  \"characterGoals\": \"林原要核人追箱，却必须在眼前活人与可疑携页者之间选择；贺要组织水手从外侧救人并保住还能取出的药；陆沉川要活着出来，害怕身份一经核实便丢掉差事。携页者身份与目的未确认，不能预设就是程的灭证手下。\",\n  \"conflict\": \"普通木仓的热、浓烟和倒架堵住边门，凝元三重和避火符不能保证火场安全；林只能在外侧短时协助、不能托墙或搬整箱。携页者与求救处方向相反，未知身份的活人使追证机会正在消失。 此处只存普通草药、木架与纸包，不是地肺毒焰区。边门向外开，门板下侧破口可伸入短木杆钩到内侧轻闩拉环；倒架停在门内半步外，低处仍可爬过。烟正从另一侧主门涌出，边门上沿暂未着火；林留在门外上风侧，只用湿毡裹持门的手减热，不能靠湿毡滤毒或进入烟层。\",\n  \"choice\": \"林在不知道求救者身份时先救人，留在外侧拨闩顶门，靠被困者自行爬出与贺组织水手接应，不进入浓烟追账。安全确认后才由贺和普通搬运工取物，林不因修为自认可以搬重物。\",\n  \"cost\": \"林掌心烫伤，225夜起停练观察至230夜，满五日复诊后仅准吐纳，握剑须239日另测，期间不攀绳搬货；船主从船医药包实际付普通敷伤药折1枚，记轻役总酬待230结算。携页者逃脱，身份、纸页内容与火因仍未知；湿毡焦损由贺承担，不凭此新增林债。 腿伤与掌伤分开记录，225–230均只做坐姿轻役和平路短走，不能追跑、攀跳或搬重物；230结束的只是掌伤五日停练观察期，不等于腿伤全好。\",\n  \"threads\": [\n    \"th_03\",\n    \"th_05\",\n    \"sec_04\"\n  ],\n"
+              },
+              {
+                "sourceId": "plan/chapters/37",
+                "quote": "  \"endState\": \"226日，获救伙计自报陆沉川，正式身份和领箱行为待38章当面核证；六号箱外板、12包原批签药已取回并登记暂存，林确认箱到过程记。林手伤须复诊，火因及其余12包去向未知，陆沉川不计入贺那5名被扣雇工。 现场保留倾倒的普通油灯架与通向纸绳堆的燃迹，支持从该处起火的调查方向；倾倒动作、挪包者和携页者身份仍待核，不把观察到起火点等同确认人为纵火。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_15\",\n    \"char_21\"\n  ],\n  \"location\": \"loc_23天宝外港程记普通木仓外公共货道与临时火场救护点\",\n  \"storyTime\": \"第225日至第226日\",\n  \"scenes\": [\n    \"225夜林贺到公共交割处，等候时见一名伙计在外桌核纸页，侧窗内有人挪退包装，正与35章所述流程相符。拖拉声后普通灯架倾倒，油火沿邻近纸绳堆烧起，烟从主门涌出；林未见造成倾倒的那一步，不能认定故意。外桌伙计随即抱页沿侧巷逃离，林未看清纸页内容与人名。\",\n    \"林先向携页者迈半步，第二声求救使他停下；他喊对方能否挪动，听到肯定应答，见边门上沿暂未着火，判断只余短时窗口。此处只存普通草药、木架与纸包，不是地肺毒焰区。边门向外开，门板下侧破口可伸入短木杆钩到内侧轻闩拉环；倒架停在门内半步外，低处仍可爬过。烟正从另一侧主门涌出，边门上沿暂未着火；林留在门外上风侧，只用湿毡裹持门的手减热，不能靠湿毡滤毒或进入烟层。 林用短杆钩开轻闩，在外撑门约十息；腿不能发力蹬门，贺叫来的水手在门外接人。 贺向码头敲警锣并叫附近当班水手取水；当班灭火工赶来接管排人和压火，林只照看边门求救者。\",\n    \"陆沉川爬到门外，水手接住；林掌心碰到门边热铁包角烫伤，随即退开。伙计自报姓名，林只记待核，不以救命要求立即招供。 林回头时侧巷已空，亲眼确认错过唯一能跟上携页者的窗口；他发怒攥拳牵到掌伤，随后接受自己不知道丢掉了什么纸页。\",\n    \"码头当班灭火工带水手压住火、查看后架承重与余火，明确只许从已清出的后门短道取物；贺和两名普通搬运工按其指示取12包原签药和破口外板，由现场港务登记员当面登记暂存。另将倾倒灯架、油迹附近焦纸绳与前柜残物分处标记保存，记录挪退包者和外桌携页伙计仍待查的身份。林留在门外辨外板，不指挥灭火或搬重物。\",\n"
+              },
+              {
+                "sourceId": "plan/chapters/50",
+                "quote": "{\n  \"id\": \"chapter-50\",\n  \"chapterNumber\": 50,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"门闩交给谁\",\n  \"summary\": \"254晨，陆带巡查到北三门。看守称吴伍、卢小满是自愿留下候工，贺在门外喊名，两人却要求出去。看守急着合门，吴卢从内侧顶住，旧押运头目陆被喊来帮忙压门。林原已握住剑柄，见门缝里露出两人的手，松开剑，让巡员走到能听清回答的位置，要求当面问他们是否愿留。陆伸向木闩的手停住，转而向外拉；一名巡员夺闩控制持闩者，另一名截住想退向后巷的看守。吴卢自己推开门走进外院。吴指认陆曾把他们点交到这里，陆当着巡员承认，不再用认路掩盖押送。贺说船修好便能接他们回去，吴却说回不回船要由他们自己定，卢也不愿立即上船。贺让开去船坞的方向，先陪两人去安全落脚。五名雇工至此全部脱控；被谁雇用、为谁作证，仍由他们自己回答。\",\n  \"characterGoals\": \"吴卢要走出门并决定自己的去处；贺想救回原班雇工，却须接受他们未必再上自己的船；陆想把自己限定为带路人，旧手下和吴的当面指认迫使他决定是否继续参与扣人；林要让工人的亲口选择被现场听见，巡员要核实是否自愿并制止实际拦阻。\",\n  \"conflict\": \"看守以自愿候工掩饰扣人，试图在巡员听到工人回答前合门；陆若顺着旧同伙压门，还能维持正常押运的说辞。开门不需要一场越阶胜负，真正改变局面的是吴卢当面拒绝、陆拒绝继续扣人及巡员亲见拦阻。贺接回人后还要面对他们拒绝立即回船。\",\n  \"choice\": \"林松开剑柄，把门前位置让给能现场处置的巡员，请其直接问吴卢，而不替他们宣布愿意去哪。吴卢自己顶门、要求离开；陆改为外拉木闩，协助控制旧手下，承认本次点交押送并接受继续看护。贺接受二人不立刻回船的回答，先安排安全落脚，不以救命索取服从。\",\n  \"cost\": \"林只短走和肉身握持，未施剑诀或御物，沿用252复用检查后保守余量三成半；不因数日间隔算满，也不放宽旧掌腿的短走、受限握剑和不负重限制。陆公开站到旧手下的对面并承认本次押送，不能再只以认识路解释到场，协助不换免罪。贺现金仍0、船至255午才交检，即使救齐五人也不能承诺恢复原班营运。两名普通看守和陆的本次行为已有现场见证，完整改签与原账则仍待另查，不以这次控人替代全案证明。\",\n  \"threads\": [\n    \"th_03\",\n    \"sec_02\",\n    \"th_02\"\n  ],\n"
+              },
+              {
+                "sourceId": "plan/chapters/50",
+                "quote": "  \"endState\": \"254晨，吴伍、卢小满自己走出北三门到安全外院，和244获救的唐许冯合计五人脱控；两名未入境普通看守均被巡员控制。陆当面承认本次点交押送，继续受看护，尚未写出完整改签自述。林未施术，保守余量三成半，旧伤许可不变；程不在现场，林不知道其位置或第二片封匣状态。吴卢拒绝立即承诺回贺船，贺接受先安置、再分别谈去留。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_15\",\n    \"char_16\",\n    \"char_24\",\n    \"char_25\"\n  ],\n  \"location\": \"loc_23天宝外港北三水台无牌附棚门口与外院\",\n  \"storyTime\": \"第254日清晨\",\n  \"scenes\": [\n    \"254晨，陆随两名原有巡员从废砖甬道到北三门，林贺在外院等认人。门内是普通转运附棚，两名未入境看守守着吴伍、卢小满。看守见陆，先说人自愿留下候工，今天正等陆头安排下一趟。贺喊两人名字，吴在门后回应说要出去，卢也出声；巡员能听见双方回答。\",\n    \"看守试图合上向外开的门，一人压门、一人抱外侧木闩准备落托。吴卢从里面合力顶住半开的门。林手握剑柄，见门缝里两只手仍抓着门边，松开剑，退开让巡员贴近门口，要求当面问两人是否愿意留下；他不施术，也不拿自己的判断代替回答。巡员明确要求门内的人自行出来说话。\",\n    \"持闩看守喊陆头来帮忙压门。陆伸手后停了一瞬，改握闩外端向外拽，第一名巡员同时扣住持闩手腕、夺闩并把人带离门扇。另一看守想退向后巷，第二名巡员已经站住那条普通窄路，扣腕转身将其控制。两名看守都无修为，未用法阵或高阶器物；陆只用肉身协助一根木闩，随即仍留在两名巡员可见的院墙边。\",\n    \"吴卢把门推开，自行跨过平整门槛到外院，贺在门外接应。吴看清陆，指出就是他把这一趟人点交进棚；陆当着巡员承认。巡员先安顿两工和两名看守，不在门口延长讯问；陆不争辩、不要求二人替自己作保，也没有借混乱离开。所承认的仅是本次押送，220夜改签仍须另行核实。\",\n    \"贺告诉吴卢，船明日交检，修好后可以接他们回去。吴说回不回船要自己定，卢明确说暂时不再上船。贺原要带他们往船坞方向走，停下后转向港务救助处，只问两人愿不愿先找地方休息。他们点头，跟着自己选的路离开。林收好入口图，留两名巡员记录亲见的拦阻和回答；本章以工人真正脱控及第一次去留分歧结束。\"\n  ],\n  \"source\": \"author\",\n  \"executionChecks\": [\n    {\n      \"id\": \"workers-choice\",\n"
+              },
+              {
+                "sourceId": "plan/chapters/50",
+                "quote": "      \"requirement\": \"254晨吴伍、卢小满当面要求离开并自己顶门，林松剑让巡员直接听答；陆改为外拉闩，巡员实际控制两看守，吴卢自行走到安全外院，不写成林施术强攻。\",\n      \"sourceQuestion\": {\n        \"document\": \"story\",\n        \"questionId\": \"audit-second-warehouse-fire\"\n      }\n    },\n    {\n      \"id\": \"custody-is-not-release\",\n      \"requirement\": \"吴卢脱控与陆受看护必须分清；陆只承认本次点交押送，不借协助脱身、不获免罪，220夜改签和完整自述留待后续独立核实。程不在场，林不知道其位置或第二片封匣状态。\",\n      \"sourceQuestion\": {\n        \"document\": \"story\",\n        \"questionId\": \"audit-barge-inspection\"\n      }\n    },\n    {\n      \"id\": \"no-rescue-debt\",\n      \"requirement\": \"五名工人脱控不等于答应回船或作证；吴卢拒绝立即回船，贺接受各自去留，先陪去安全落脚。不提前把第51—53章后续救助、交检与签认写成本章已完成。\",\n      \"sourceQuestion\": {\n        \"document\": \"story\",\n        \"questionId\": \"audit-relationship-stages\"\n      }\n    }\n  ]\n}"
+              }
+            ],
+            "revisionAdvice": ""
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass",
+            "explanation": "父案知情链分层明确：第18章由顾的限时调阅单、韩叙交接的检修图与撤离记录，使林苏仅确认父亲参与守门；第66章夜提供署名巡查副本，仍只增加守门参与的互证；第72章林将北境副本当面交苏；第85章再以外山原始移交存根与前两份材料对照，确认守门参与及外山掩案责任。各阶段均明确投毒和十年前完整因果仍未证实。第95章撤押原令是另一条本次押运链：祁在撤运失败后，为保留申辩材料而交出赵亲签原令，苏与林现场核看；它只支持追究本次撤人、毁页命令，不证明父案投毒全貌。第99章正式质询也维持同一边界。上述均是后段规划锚点，评价的是提案中的知情限制与发生条件，而非宣称正文已完成。",
+            "evidence": [
+              {
+                "sourceId": "plan/chapters/18",
+                "quote": "{\n  \"id\": \"chapter-18\",\n  \"chapterNumber\": 18,\n  \"volumeId\": \"vol_01\",\n  \"title\": \"三年换一缕真元\",\n  \"summary\": \"第120日清晨，白榆复查旧伤、经脉与寿储，确认未有新增耗损，下界为7−101/365≈6.7233元载。林辰在屋里以清风引气诀收束气流，按既定晋阶法门主动付出3元载，真元初成而寿储下界降至约3.7233；白榆复诊后才允许继续修习。此后两月，他先用普通木块练御物，第132日，顾以护送候补的授业职责，向已凝元并获准练习的林辰借授宗门乾元御风剑诀的凝元导刃章，当面讲解定向、收势和赤霞斩铁剑的承载限制；这次基础授业随候补训练安排，不另收学费，也不授予古境名额或玄府式。林辰按登记领剑，从短距导刃开始，第一次失控打翻架子，停练并偿付损坏的木架。苏检验他的三经循环，也直言两人尚不能正面抗玄府。第179日，顾签发本次限时调阅单，韩叙交接父亲署名的旧检修图与撤离记录；林苏核看之后只确认父亲参与守门。第180日，顾逐一实测二人的凝元三重，核查双方联名符牌；苏取得仅限本次任务路线的外出解除文书。林辰收起木架赔账与练习记录，第一次凭达标而非人情拿到出发位置。 褚衡与邵闻在外门核对186日出发的换班牌与行粮，只承诺按期护送，不接受林辰提前同行探古境的试探。 换班牌提前规定188日白昼在山路歇脚棚补眠、暮抵后接夜班；186–187日按日程行路和宿营，187日20时至188日05时睡足9小时，188日05–09时走前段，10–16时睡6小时，16–18时走最后一段，19时才接班。歇脚棚在外营以前的普通山路，不赋予古境准入或瞬移。\",\n  \"characterGoals\": \"林辰要支付得起且稳住凝元三重，取得古境准入；顾峤要核验真实能力与队伍权限；苏要用放弃配额换来的复核机会查旧图；韩叙要完成交接并保留经手责任。\",\n  \"conflict\": \"凝元支付后寿储下降，真元操控仍需实测，失败会推迟古境；父亲署名近在眼前，却只能证明参与守门，不能补出父案全貌。\",\n  \"choice\": \"林辰突破后不急于报名，主动反复测试御物和三经循环；苏按权限共同核图，不让残玉替代证据。\",\n"
+              },
+              {
+                "sourceId": "plan/chapters/18",
+                "quote": "  \"cost\": \"凝元支付3元载，至第180日保守下界为7−3−161/365≈3.5589，仍保留至少1元载；训练风刃每次支付二成真元，斩铁剑须停手散热。林辰的劳务收入扣除木架赔款，苏没有再次支付一份已让出的优先位。 稳定实测后林在凝元三重的健康真元上限按十成记；训练按一式二成结算，御物另扣，休整时按公共恢复上限复测，余量不够或剑未冷就延期。 终段训练于176日结束后，保守余量按零重新起算，不预支此前未核的恢复；177–179日每晚从修缮库当期劳务结算的基础饭食份额领取并实际吃完正常晚餐、饮水，再在温和灵气环境中连续静息八小时且无施术；饭食已经扣在当期劳务结算内，不再次动用第16章已抵粮的第二枚灵石，也不新增药石或现金，复测分别只记三成、再三成、再四成，179日晚达到健康十成，均未超过每夜四成的恢复上限。180日实测只额外御一次轻物扣半成，180日晚同样实际用餐饮水后连续静息两小时，复测仅补回半成，180日晚累计余额仍为十成。“补回半成”是本次恢复增量，不是剩余余额：176日零起点加177日三成、178日三成、179日四成，即0+3+3+4=10；180日御物后10−0.5=9.5，晚间实测补回0.5后为10。181–183日按普通步行、乘车和宿营，不御物或施剑，不另计恢复收入。184日行前再核十成，后续从这个明确余额起算。训练期每次施术前均须复测足以付费，余量不足即延期，不把多次训练视作免费。\",\n  \"threads\": [\n    \"th_01\",\n    \"sec_01\",\n    \"sec_02\",\n    \"rel_01\"\n  ],\n  \"endState\": \"第180日林辰与苏均实测达凝元三重，持本次有效联名符牌；苏出行仅限登记路线。二人见到父亲署名的检修图及撤离记录，只确认守门工作，不知道投毒过程。林辰持领用剑及一份公开路线抄图，尚未入古境。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_08\",\n    \"char_09\",\n    \"char_10\",\n    \"char_17\",\n    \"char_18\"\n  ],\n  \"location\": \"loc_29太清外门药舍、loc_28太清外山修缮库\",\n  \"storyTime\": \"第120日至第180日；第120日突破，第180日核验\",\n  \"scenes\": [\n    \"第120日白榆复查经脉与伤势，林辰在纸上算出6.7233的条件下界，确认付三年后仍能留下安全余量，才决定突破。\",\n    \"屋内林辰依清风引气诀收束气流，完成凝元晋阶的寿储支付；凝成的真元推倒茶盏，白榆把过度练习的尝试压住并复诊。\",\n"
+              },
+              {
+                "sourceId": "story/secrets/sec_01",
+                "quote": "{\n  \"knowledgeStages\": [\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 1,\n      \"untilChapter\": 12,\n      \"certainty\": \"suspects\",\n      \"belief\": \"知道残玉与生父有关，追查家仇；尚不掌握护界牺牲的完整经过。\",\n      \"trigger\": \"身世记忆与早期案卷线索。\",\n      \"consequence\": \"追索血晶去向与古境遗迹。\",\n      \"forbiddenInferences\": [\n        \"不能叙述尚未看见的投毒场面\",\n        \"不能因此知道九鼎全套阵图\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 13,\n      \"untilChapter\": 17,\n      \"certainty\": \"suspects\",\n      \"belief\": \"只有家传笔记和残玉与父亲有关，未确认守门或投毒经过。\",\n      \"trigger\": \"13章已有家传物及双方此前明确交接的有限信息；没有父亲守门或投毒的新证据。\",\n      \"consequence\": \"据亲见与明确交接继续调查，分别记录知情范围，不把读者独立视角变成角色情报。\",\n      \"forbiddenInferences\": [\n        \"不知九鼎全阵、父案投毒全貌或门外死渊\",\n        \"不得预支后章证据、用残玉搜魂或从胜利推断寿元可逆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 18,\n      \"untilChapter\": 26,\n      \"certainty\": \"suspects\",\n      \"belief\": \"父亲曾参与守门工作的证据来自署名图纸和撤离记录；尚不知父案全貌。\",\n      \"trigger\": \"第18章179日，凭顾新签的限时调阅单，林苏共同核对韩叙交接的实物记录。\",\n      \"consequence\": \"据亲见与明确交接继续调查，分别记录知情范围，不把读者独立视角变成角色情报。\",\n      \"forbiddenInferences\": [\n        \"不知九鼎全阵、父案投毒全貌或门外死渊\",\n        \"不得预支后章证据、用残玉搜魂或从胜利推断寿元可逆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n"
+              },
+              {
+                "sourceId": "story/secrets/sec_01",
+                "quote": "      \"sinceChapter\": 27,\n      \"untilChapter\": 32,\n      \"certainty\": \"suspects\",\n      \"belief\": \"残片刻痕可与旧图对应，为追查收货链提供线索，未得到过去的完整影像。\",\n      \"trigger\": \"第27章对照实际取到的样箱、残片与图纸；不能从共鸣或触摸得到全知。\",\n      \"consequence\": \"据亲见与明确交接继续调查，分别记录知情范围，不把读者独立视角变成角色情报。\",\n      \"forbiddenInferences\": [\n        \"不知九鼎全阵、父案投毒全貌或门外死渊\",\n        \"不得预支后章证据、用残玉搜魂或从胜利推断寿元可逆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 33,\n      \"untilChapter\": 65,\n      \"certainty\": \"suspects\",\n      \"belief\": \"残片刻痕可与旧图对应，为追查收货链提供线索，未得到过去的完整影像。\",\n      \"trigger\": \"延续先前已实际取得的材料；本段没有提前获得后段新信息。\",\n      \"consequence\": \"按已有信息行动，等待实际证据或消息。\",\n      \"forbiddenInferences\": [\n        \"不知九鼎全阵、父案投毒全貌或门外死渊\",\n        \"不得预支后章证据、用残玉搜魂或从胜利推断寿元可逆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 66,\n      \"untilChapter\": 84,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"夜带来父亲署名巡查副本，与已有旧图相符，仅证实参与守门。\",\n      \"trigger\": \"66章亲看副本并记录来源，不是宝鉴留影。\",\n      \"consequence\": \"返乡找原始移交存根互证。\",\n      \"forbiddenInferences\": [\n        \"不能从局部证据推知九鼎全阵、父案全部凶手或未在场者所知。\",\n        \"不能以残片感应、圣器留影、神念全知替代实际消息和证据。\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 85,\n"
+              },
+              {
+                "sourceId": "story/secrets/sec_01",
+                "quote": "      \"untilChapter\": 100,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"三份原始记录支持父亲守门参与与外山掩案责任；投毒与十年前完整因果仍未证实。\",\n      \"trigger\": \"85章外山仓取存根，与第18章旧图及北境副本对照。\",\n      \"consequence\": \"拒绝把梁九的未见之事写成指控。\",\n      \"forbiddenInferences\": [\n        \"不能从局部证据推知九鼎全阵、父案全部凶手或未在场者所知。\",\n        \"不能以残片感应、圣器留影、神念全知替代实际消息和证据。\"\n      ]\n    },\n    {\n      \"characterId\": \"char_02\",\n      \"sinceChapter\": 3,\n      \"untilChapter\": 12,\n      \"certainty\": \"unaware\",\n      \"belief\": \"掌握当代魔门渗透线索，但没有父辈遇害全貌。\",\n      \"trigger\": \"追查暗桩、护持同门。\",\n      \"consequence\": \"先依实物证据阻止宗门清算。\",\n      \"forbiddenInferences\": [\n        \"不得以作者真相直接指控投毒细节\"\n      ]\n    },\n    {\n      \"characterId\": \"char_02\",\n      \"sinceChapter\": 13,\n      \"untilChapter\": 17,\n      \"certainty\": \"suspects\",\n      \"belief\": \"只有家传笔记和残玉与父亲有关，未确认守门或投毒经过。\",\n      \"trigger\": \"13章已有家传物及双方此前明确交接的有限信息；没有父亲守门或投毒的新证据。\",\n      \"consequence\": \"据亲见与明确交接继续调查，分别记录知情范围，不把读者独立视角变成角色情报。\",\n      \"forbiddenInferences\": [\n        \"不知九鼎全阵、父案投毒全貌或门外死渊\",\n        \"不得预支后章证据、用残玉搜魂或从胜利推断寿元可逆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_02\",\n      \"sinceChapter\": 18,\n      \"untilChapter\": 26,\n      \"certainty\": \"suspects\",\n      \"belief\": \"父亲曾参与守门工作的证据来自署名图纸和撤离记录；尚不知父案全貌。\",\n"
+              },
+              {
+                "sourceId": "story/secrets/sec_01",
+                "quote": "      \"trigger\": \"72章归乡当面交接，苏没见过所谓完整留影。\",\n      \"consequence\": \"继续调外山原档。\",\n      \"forbiddenInferences\": [\n        \"不能从局部证据推知九鼎全阵、父案全部凶手或未在场者所知。\",\n        \"不能以残片感应、圣器留影、神念全知替代实际消息和证据。\"\n      ]\n    },\n    {\n      \"characterId\": \"char_02\",\n      \"sinceChapter\": 85,\n      \"untilChapter\": 100,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"与林共同核对守门参与和外山掩案记录。\",\n      \"trigger\": \"85章在场核对原件。\",\n      \"consequence\": \"提交己方不利记录仍保留凶手证据缺口。\",\n      \"forbiddenInferences\": [\n        \"不能从局部证据推知九鼎全阵、父案全部凶手或未在场者所知。\",\n        \"不能以残片感应、圣器留影、神念全知替代实际消息和证据。\"\n      ]\n    },\n    {\n      \"characterId\": \"char_03\",\n      \"sinceChapter\": 1,\n      \"untilChapter\": 32,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"知道自己亲自实施的父辈案行为；所知不等于林辰见过的记忆范围或每个守界细节。\",\n      \"trigger\": \"赵因十年前自己实施的投毒、谋害与嫁祸形成自身记忆；不以旧稿92章留影或未来揭示作为本阶段认知来源，新提案不采用完整父辈留影。\",\n      \"consequence\": \"通过追查残玉持有者及毁碑保护统治。\",\n      \"forbiddenInferences\": [\n        \"不能无场景得知林辰何时看到哪段记忆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_03\",\n      \"sinceChapter\": 33,\n      \"untilChapter\": 100,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"知道自己亲自实施的父辈案行为；所知不等于林辰见过的记忆范围或每个守界细节。\",\n"
+              },
+              {
+                "sourceId": "story/secrets/sec_01",
+                "quote": "      \"trigger\": \"延续赵亲自实施十年前行为的自身记忆；本秘密没有收到林苏父案原件的新渠道。港口、北境及本次押运报令另按sec_02的53/73/88/90/98/99章阶段核对。\",\n      \"consequence\": \"保护自己旧行为的秘密；不能从这份自身记忆推知林苏当前找到哪些副本，也不否定其他事项中后来实际收到的新消息。\",\n      \"forbiddenInferences\": [\n        \"不能无场景得知林辰何时看到哪段记忆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_05\",\n      \"sinceChapter\": 61,\n      \"untilChapter\": 100,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"巡查档案有林苍玄署名，但不知青玄投毒始末。\",\n      \"trigger\": \"既有巡档资料，本次285日带至外港，66章供林核对。\",\n      \"consequence\": \"有限交证，不替林证明全案。\",\n      \"forbiddenInferences\": [\n        \"不能从局部证据推知九鼎全阵、父案全部凶手或未在场者所知。\",\n        \"不能以残片感应、圣器留影、神念全知替代实际消息和证据。\"\n      ]\n    }\n  ],\n  \"id\": \"sec_01\",\n  \"ownerCharacterId\": \"char_01\",\n  \"title\": \"乾坤逆命真解渊源\",\n  \"truth\": \"残卷系十年前青玄极天界门灵震中其生父以百年阳寿护界陨落后所留遗蜕古玉。\",\n  \"revealCondition\": \"18/27章旧图与刻痕为起点；66章巡档副本、72章当面交苏、85章外山原存根互证父亲守门参与与掩案。十年前投毒与完整守门牺牲的证据保留给后续450章主线，不以留影或残片共鸣补齐。\",\n  \"status\": \"proposed\"\n}"
+              },
+              {
+                "sourceId": "story/arcBeats/message-withdraw-seized",
+                "quote": "{\n  \"id\": \"message-withdraw-seized\",\n  \"arcId\": \"arc_04\",\n  \"characterId\": \"char_02\",\n  \"kind\": \"consequence\",\n  \"plannedChapter\": 95,\n  \"expectedChange\": \"规划锚点（非采纳事实）：第95章第436日。顾与祁交锋牵制，林救人放过程；前车四人下地、林伤退后，祁为保住赵亲签原令及自己的申辩机会命押卫停斗，随后交械、令后车放人，亲手把随身撤押一号交苏在见证员面前收存；此后梁才分两趟将八人送药棚，原令交接不以尚未完成的两趟送医作为前提。顾不承诺免罪，祁仍须回答本人具名接押与毁页责任。苏与林当面核看，原令和己方改账页分别保全。林顾对的仍是原两名玄府，祁带伤接受顾监管，不新增第三名，不用真光或普通绳索封禁境界。\"\n}"
+              },
+              {
+                "sourceId": "story/arcBeats/message-formal-inquiry",
+                "quote": "{\n  \"id\": \"message-formal-inquiry\",\n  \"arcId\": \"arc_04\",\n  \"characterId\": \"char_03\",\n  \"kind\": \"consequence\",\n  \"plannedChapter\": 99,\n  \"expectedChange\": \"规划锚点（非采纳事实）：第99章第442–446日。442本地监督复核点将有原令编号、封存副本及见证签名的本案摘要寄乾都军需复核署，444签收，445赵阅正式质询副本、446答询且停本批私下授权。来件只证明本次命令，不能包办父案与九鼎。\"\n}"
+              },
+              {
+                "sourceId": "story/secrets/sec_02",
+                "quote": "      \"untilChapter\": 100,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"本次押运及赵撤人令有原件与在场证人；九鼎全貌仍未知。\",\n      \"trigger\": \"95章苏保住实际交到护卫手里的命令并与林核看。\",\n      \"consequence\": \"救人断运，推动可复核问责而非全国定罪。\",\n      \"forbiddenInferences\": [\n        \"不能从局部证据推知九鼎全阵、父案全部凶手或未在场者所知。\",\n        \"不能以残片感应、圣器留影、神念全知替代实际消息和证据。\"\n      ]\n    },\n    {\n      \"characterId\": \"char_02\",\n      \"sinceChapter\": 7,\n      \"untilChapter\": 7,\n      \"certainty\": \"suspects\",\n      \"belief\": \"已发现公开运输数量与矿车批号有缺口，并持有合法抄出的公开摘录；仅怀疑矿务账目有问题，不知道九鼎和具体窃寿子阵的关系。\",\n      \"trigger\": \"第7章当场核对运输公示、货签和既有矿车批号，苏要求留下公开摘录。\",\n      \"consequence\": \"追问原始验收记录和经手人；不能提前拿到第8章底联或韩叙改账陈述。\",\n      \"forbiddenInferences\": [\n        \"不得直接知道九鼎全阵\",\n        \"不因信任林辰而自动掌握父案真相\"\n      ]\n    },\n    {\n      \"characterId\": \"char_02\",\n      \"sinceChapter\": 8,\n      \"untilChapter\": 9,\n      \"certainty\": \"suspects\",\n      \"belief\": \"在第7章已知数量缺口上，又取得缺页底联和韩叙承认改记损耗的陈述，怀疑多环节利益关联；九鼎机制仍不明。\",\n      \"trigger\": \"第8章韩叙亲自出示第4章留下的底联并承认改账；这是新增证言，不是再次发现第7章的数量缺口。\",\n      \"consequence\": \"争取交割现场说明权，准备核对异常批次。\",\n      \"forbiddenInferences\": [\n        \"不得直接知道九鼎全阵\",\n        \"不因信任林辰而自动掌握父案真相\"\n      ]\n    },\n    {\n      \"characterId\": \"char_02\",\n      \"sinceChapter\": 10,\n"
+              },
+              {
+                "sourceId": "story/secrets/sec_02",
+                "quote": "      \"trigger\": \"99章442监督点寄案摘要，444到乾都复核署，445转给赵阅，446答询；不是436同日得知全案。\",\n      \"consequence\": \"仅对该批撤人和销页命令承担可核责任，不扩张为九鼎全部秘密曝光。\",\n      \"forbiddenInferences\": [\n        \"不得由读者独立视角获得林苏尚未交出的材料、第一片去向、真解全文或林的寿储。\",\n        \"程的利己口供不等于所有过程均已证实，也不能代表炎煞真身知情。\",\n        \"质询材料没有证明十年前投毒全貌；林苏不因赵答询就同步读到他的回答。\"\n      ]\n    }\n  ],\n  \"id\": \"sec_02\",\n  \"ownerCharacterId\": \"char_03\",\n  \"title\": \"九鼎窃寿阵图秘卷\",\n  \"truth\": \"大乾皇权延续至今的九鼎龙脉实为六道转轮偷命策之变体，长年抽割三州流民命数充抵龙气。\",\n  \"revealCondition\": \"44章半页与实体书信、53章陆新写自述签认副本（内容待独立核验）、66章北境封签、72章回乡交接、95章实得撤人令，百章只证一条三地链；神阶禁术操作者、寿源去向和九鼎全机制须后续逐层取证。\",\n  \"status\": \"proposed\"\n}"
+              },
+              {
+                "sourceId": "plan/milestones/ms_v3_advancement",
+                "quote": "{\n  \"id\": \"ms_v3_advancement\",\n  \"title\": \"十年换玄府与旧案的缺口\",\n  \"kind\": \"turn\",\n  \"startChapter\": 81,\n  \"endChapter\": 87,\n  \"setup\": [\n    \"第415日白榆连续复诊确认健康与可支付下界，顾观察辟建丹府实测；若条件不成立则停止，不能靠豪言突破。实际拟写支付10元载后余7-(415-19)/365-3+10-10=2.915068，保留至少1。 此式从第19日的7元载初始下界累计记账：-3是第120日凝元晋阶，+10仅指第199、209日已完成两剂各+5的历史收入，最后-10才是第415日玄府晋阶；不是在第415日再入账一笔10，也没有第二批泉液。等价地，从第209日余额13.479452继续扣206日自然流逝和玄府10元载，所得仍约2.915068；泉液库存持续为零。\",\n    \"玄府初成需第416–424日稳定元罡。原赤霞斩铁剑不得灌玄府罡气，归还领用库并核对损耗；主角本段只练自身元罡与普通木柄，不临时得神兵。 顾按ax_12教局部护罡：416–419日只练聚散，420–424日才以轻木棍和普通铁刃做低负荷接触、间隔与散罡实测，每日训练前后核余量与肩伤，未过关就不安排该术参与截车。拟定424日林通过实测并经白榆准许有限负荷；不表示学成全身护体或自动获得顾的真光。\",\n    \"第83章林在顾监督下完成突破并实际支付。第85章苏与韩在旧外山修缮仓找到父亲署名的移交存根，与林第18章旧图和夜带来的副本逐项对照，确认父亲护送撤离者、掩案者改写伤亡。第87章梁九拒绝指认自己未见的投毒者，却指出本批证人将被塞进同一种运料车；赵的玄府亲卫接管该批押送。\",\n    \"选择：林没有逼梁九把推测写成弑父指控，先计划救仍活着的人；苏坚持己方改账页也公开，双方合作不以互相遮丑为代价。\",\n    \"认知：三份可核原始记录证明守门参与与外山掩案责任；不借宝鉴、残片、感应或记忆影像确认赵十年前投毒。\",\n    \"425祁与另一名现有玄府护卫随皇使从乾都走普通驿路，两日到外山；427凭复核移交令强迁休养棚两名旧工友。苏凝元不能强挡，保存移交号、韩记普通押运仓去向。87章429祁寄押报一号，含当时仓册页号和两名名单，431赵收到才可据此行动；430又有矿工失联，此时人数未明。\"\n  ],\n  \"cost\": \"十元载永久支出让林后续不能继续赌命；父案一部分能核验，凶手和十年前完整机制仍有缺口。苏在宗门内部失去保守派支持。\",\n  \"outcome\": \"第411–430日。林玄府初期，苏仍凝元，顾玄府。明确将要拦的是普通车队和同阶护卫，不是攻击九鼎阵眼；赵仍玄府且居乾都，以实际文书指挥。\"\n}"
+              },
+              {
+                "sourceId": "plan/milestones/ms_v3_convoy",
+                "quote": "{\n  \"id\": \"ms_v3_convoy\",\n  \"title\": \"押运截停与放弃追凶\",\n  \"kind\": \"climax\",\n  \"startChapter\": 88,\n  \"endChapter\": 95,\n  \"setup\": [\n    \"第431日苏把现场案卷送监督复核点，不能一日传播三大陆；护送执事顾仅能调一队外山见证与救护人员，玄府护卫数量与运人笼位置由实际跟车确认。\",\n    \"88章431赵阅祁429具名接押报告，不是苏同日送当地监督点的案卷。90章433赵据旧清册和此报签撤押一号，骑使沿普通驿路92章435交祁。两车八人在432已装载并被梁看见，435令触发撤走而非首次装车。程318已抵押原物，410才本地重整；433赵以核回程记货账后才考虑减债为条件派程携旧货签清册随骑使，二日435到外山押运仓核货签。程想减债赎匣、无权指挥玄府，第二片仍赵府封存。不再写三个月已重整或省略程离都行程。\",\n    \"第435日跟车确认撤运路线与救护接应，第436日两车撤移时才发生这次短暂交锋。林与顾分别牵制一名既有玄府护卫，顾对应统领祁嵩，苏对付凝元押车者，梁九带获救矿工驾驶普通车撤人。林以424日实测学成的局部护罡配合车角、退步，短时牵制一名同阶押卫，仅争取前车开门与四人下车退至侧道待接点的机会，不支撑往返药棚。该押卫本段用已在手的普通短铁刀截人，不临时获得未定义的破罡术；他要守囚车，林也无力正面取胜。双方并非约好三招：押卫借车侧转角改变落点，前囚车在行动开始时已由押车者拉下普通车闸停在原位，救人后仍保持制动，梁九用于送人的自由雇工货车是另一辆，此时空车候在侧道，不进入林的交锋区；林用空囚车车架遮断直线，退到下一车角才有重新聚罡的间隙；并非护罡本身使敌人停攻。拟定前两次实接为退让中的斜擦，每次另付受击费；第三次也须支付受击费，但对手改刺肩侧、护罡被穿，林肩部实际受伤，立即停术沿空车道撤走。若落点、遮挡或三息间隔在逐章展开时不能成立，就改写撤退，不准靠付费自动抵住同阶攻击；三次是此段安排的上限，不是必能活过三击的保证。他未击杀这名老练玄府，不灌旧剑、不瞬移。\",\n"
+              },
+              {
+                "sourceId": "plan/milestones/ms_v3_convoy",
+                "quote": "    \"本段不安排太乙真光：祁没有已定义的外放阴煞目标，顾不能拿该术自动消除同阶元罡。第436日顾以普通铁剑与祁的普通短铁刀交锋，双方只用肉身握持和退步，不向普通兵刃灌注未具名剑诀。顾左前臂仅开一次已学的ax_12掌大护罡：聚合一息付一成，退让中接到一次刀背斜擦再付一成，随即散去；此后靠原地停住的囚车角与普通步法隔开连续进攻，不把护罡视为整段无伤。后续短兵交锋中双方各有前臂划伤，祁未失去稳定施术资格或行动能力，顾没有免费定身或必胜推劲；两人形成互相不能安全脱离的牵制，顾不追杀。此时林肩部受伤仍选择拉开压住伤者的普通车门、撤护同伴，放走退回赵府的程；第二片仍在赵府，不回到车上。\",\n    \"选择：林伤后本有沿侧路追程的机会，却回身拉开夹住救护人员手臂的普通铰接车门，让伤者先脱身。顾听见林停术撤开的提醒，不追杀祁，带着前臂伤在车角与祁拉开交锋距离，要求停手先救人。此刻只有前车四人下车退到侧道待接点，后车四人仍在车内，梁的货车尚未开始往返。祁仍有短刀、元罡与另一名玄府押卫可用，不能把他写成已无反抗能力；但他亲见程离开、己方接押身份已被见证员认明，前车失守且现场有人被门夹伤。继续灭证无法消除自己已寄出的具名押报。他权衡后选择当场保全赵亲签原令与受押者，保留日后逐级申辩的机会，而不只给自己留下具名押报和新的伤亡。祁先命另一名玄府及押车者停斗，顾同时停止进逼；双方保持可见距离，林退到待接点止血，不再支撑谈判或转运期间的术法防线。顾只提出停斗、放人、原令当众封存和具名移交，不许诺免罪、保俸职或替皇庭裁决。祁随即放下短刀，令后车开门、将随身原令亲交苏在见证员面前收存，接受顾监管；他仍否认超出本批的指控。另一玄府按统领当面停斗令退出接人侧道，在八人完成现场清点后退去，不等于被击倒或自动认罪。停斗与放人是实际发生的选择，不能先拿尚未成立的八人安全转运来倒推祁已交械。\",\n    \"认知：实际撤人令和亲历者支持追究赵本次行动，不能证明所有皇族、九鼎全阵或十年前的全部杀人细节。\",\n    \"89章第432日梁九按自己熟悉的领车路线跟车，见到两名旧工友及新扣的6名矿工，记录两辆各装4人的普通囚车；90章433日当面交给苏与顾。林此时才得知完整人数与位置。\",\n    \"救援分为现场脱困与停斗后转运。第435日梁与原见证救护队实地核过侧道待接点和现有药棚，普通地面路线约三百步、无需出城；一辆雇工货车最多安全承载四名伤者，不能一次装八人。\",\n"
+              }
+            ],
+            "revisionAdvice": ""
+          }
+        ],
+        "modelResponses": [
+          "{\"requestId\":\"review_441d6419232b932c84ffc862\",\"summary\":\"两项人物设计均能以明确人物编号、章节安排和证据边界闭合；后段均为待实施提案，未被误作已采纳正文事实。\",\"checks\":[{\"criterion\":\"agency\",\"verdict\":\"pass\",\"explanation\":\"陆沉舟明确为char_16、凝元押运头目，陆沉川明确为char_21、无修为的药栈伙计，兄弟端点也由rel_18固定，未靠近似姓名混同。第37章的关键选择归陆沉川：他在火场自行爬出，随后主动请人联络兄长；林的代价是放弃追携页者救人。第50章的关键选择归陆沉舟：旧手下要求其压门时，他停手并外拉木闩，协助巡员制止扣人，随后承认本次点交押送并继续受看护；吴、卢则各自顶门、出门并决定不立即回船。该安排与两兄弟关系中“救弟不免责、弟拒替兄遮掩”的递进一致。第53章陆沉舟拟写不利自述，仍保留为需签认和独立核验的后续义务，没有提前兑现为事实。\",\"evidence\":[{\"fragmentId\":\"e22\"},{\"fragmentId\":\"e27\"},{\"fragmentId\":\"e61\"},{\"fragmentId\":\"e62\"},{\"fragmentId\":\"e68\"},{\"fragmentId\":\"e69\"},{\"fragmentId\":\"e178\"},{\"fragmentId\":\"e179\"},{\"fragmentId\":\"e186\"},{\"fragmentId\":\"e187\"},{\"fragmentId\":\"e188\"}],\"revisionAdvice\":\"\"},{\"criterion\":\"knowledge\",\"verdict\":\"pass\",\"explanation\":\"父案知情链分层明确：第18章由顾的限时调阅单、韩叙交接的检修图与撤离记录，使林苏仅确认父亲参与守门；第66章夜提供署名巡查副本，仍只增加守门参与的互证；第72章林将北境副本当面交苏；第85章再以外山原始移交存根与前两份材料对照，确认守门参与及外山掩案责任。各阶段均明确投毒和十年前完整因果仍未证实。第95章撤押原令是另一条本次押运链：祁在撤运失败后，为保留申辩材料而交出赵亲签原令，苏与林现场核看；它只支持追究本次撤人、毁页命令，不证明父案投毒全貌。第99章正式质询也维持同一边界。上述均是后段规划锚点，评价的是提案中的知情限制与发生条件，而非宣称正文已完成。\",\"evidence\":[{\"fragmentId\":\"e174\"},{\"fragmentId\":\"e175\"},{\"fragmentId\":\"e90\"},{\"fragmentId\":\"e91\"},{\"fragmentId\":\"e92\"},{\"fragmentId\":\"e94\"},{\"fragmentId\":\"e95\"},{\"fragmentId\":\"e87\"},{\"fragmentId\":\"e89\"},{\"fragmentId\":\"e104\"},{\"fragmentId\":\"e118\"},{\"fragmentId\":\"e168\"},{\"fragmentId\":\"e169\"},{\"fragmentId\":\"e170\"}],\"revisionAdvice\":\"\"}]}"
+        ]
+      }
+    },
+    {
+      "area": "story",
+      "inputSha256": "0ed229a34a653c06d30f9ca7ab15b719b8c8ba86bb81b0691b77aa8ff93d104a",
+      "output": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design68-focused-review/story-result.json",
+      "outputSha256": "070334d7f8bf91edb6fced23783993f8ae4aacdad6d58901c53b285bc6e25d11",
+      "modelCalls": 1,
+      "responsesReplayed": 1,
+      "result": {
+        "summary": "两场救援在提案中对象、触发、选择、行动与后果均已区分；第43→44→45章的报警、切索、转移与后续接人衔接明确。33—50章还将个人救援、三人转移和吴卢自主脱控递进为不同层级的困境与选择，未重复消费同一救援。",
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass",
+            "explanation": "第37章拟发生的是林、贺在核查领货人时遭遇木仓起火：林先看见携页者逃向侧巷，因未知身份者求救而放弃追页，在仓外钩闩、撑门，由陆沉川自行爬出、水手接应；代价是掌伤、携页者与火因仍未明。第44章不是重做该火场救援：其前置是第43章亲见唐、许、冯被推入低舱，林先报警、贺为不失视线而跟船，陆命人以轻钩和船桩拖偏贺船。第44章紧接同一瞬间切索，利用护桩造成的短窗口，由贺搁浅承板、唐先放许冯过板；林放弃追带原账逃离的陆，改救落水伙计。第45章只完成第44章末明确尚未完成的“唐许拉落水者上低舷、巡艇分趟接人”，没有再报警、再切索或重置救援窗口。陆在37章被救、44章主动护账拦船、49—50章才在受看护下指路并承认本次押送，责任没有被转移或因获救而豁免。",
+            "evidence": [
+              {
+                "sourceId": "plan/chapters/37",
+                "quote": "{\n  \"id\": \"chapter-37\",\n  \"chapterNumber\": 37,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"火仓留人\",\n  \"summary\": \"225夜，林贺为核册上领货人到木仓外公共交接处，两人在门外等了片刻，见一名交割伙计在外桌核纸页，侧窗内正有人往外挪退包装。灯架在一阵拖拉声后歪倒，带油火线沿纸绳窜起；撞落还是固定处松脱，林没看清。外桌伙计抱页跑向侧巷，边门同时传出求救。林先向侧巷迈了半步，听到第二声求救才停住：边门尚未烧着，对方还能应声挪动，若此时追人，门上窜起的火会先断掉出口。林仍不知是谁，转身让贺叫水手汲水，用湿毡裹手、短木杆从门板破口钩开轻闩，留在外侧上风处撑门约十息，叫对方自行爬过倒架。人被拉到门外时林掌心被热铁包角烫伤，腿伤也不许他再进仓。获救伙计自报陆沉川，林只记姓名待核。火势压住后，贺和搬运工在安全的后架取回12包原批签药和破口外板。林识出六号箱刻号，但救人已使携页者逃出视线，所携纸页内容和火因都未知。 226日陆在医棚请人联络哥哥，林正回原船换药，尚不知这次联络。\",\n  \"characterGoals\": \"林原要核人追箱，却必须在眼前活人与可疑携页者之间选择；贺要组织水手从外侧救人并保住还能取出的药；陆沉川要活着出来，害怕身份一经核实便丢掉差事。携页者身份与目的未确认，不能预设就是程的灭证手下。\",\n  \"conflict\": \"普通木仓的热、浓烟和倒架堵住边门，凝元三重和避火符不能保证火场安全；林只能在外侧短时协助、不能托墙或搬整箱。携页者与求救处方向相反，未知身份的活人使追证机会正在消失。 此处只存普通草药、木架与纸包，不是地肺毒焰区。边门向外开，门板下侧破口可伸入短木杆钩到内侧轻闩拉环；倒架停在门内半步外，低处仍可爬过。烟正从另一侧主门涌出，边门上沿暂未着火；林留在门外上风侧，只用湿毡裹持门的手减热，不能靠湿毡滤毒或进入烟层。\",\n  \"choice\": \"林在不知道求救者身份时先救人，留在外侧拨闩顶门，靠被困者自行爬出与贺组织水手接应，不进入浓烟追账。安全确认后才由贺和普通搬运工取物，林不因修为自认可以搬重物。\",\n  \"cost\": \"林掌心烫伤，225夜起停练观察至230夜，满五日复诊后仅准吐纳，握剑须239日另测，期间不攀绳搬货；船主从船医药包实际付普通敷伤药折1枚，记轻役总酬待230结算。携页者逃脱，身份、纸页内容与火因仍未知；湿毡焦损由贺承担，不凭此新增林债。 腿伤与掌伤分开记录，225–230均只做坐姿轻役和平路短走，不能追跑、攀跳或搬重物；230结束的只是掌伤五日停练观察期，不等于腿伤全好。\",\n  \"threads\": [\n    \"th_03\",\n    \"th_05\",\n    \"sec_04\"\n  ],\n"
+              },
+              {
+                "sourceId": "plan/chapters/37",
+                "quote": "  \"endState\": \"226日，获救伙计自报陆沉川，正式身份和领箱行为待38章当面核证；六号箱外板、12包原批签药已取回并登记暂存，林确认箱到过程记。林手伤须复诊，火因及其余12包去向未知，陆沉川不计入贺那5名被扣雇工。 现场保留倾倒的普通油灯架与通向纸绳堆的燃迹，支持从该处起火的调查方向；倾倒动作、挪包者和携页者身份仍待核，不把观察到起火点等同确认人为纵火。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_15\",\n    \"char_21\"\n  ],\n  \"location\": \"loc_23天宝外港程记普通木仓外公共货道与临时火场救护点\",\n  \"storyTime\": \"第225日至第226日\",\n  \"scenes\": [\n    \"225夜林贺到公共交割处，等候时见一名伙计在外桌核纸页，侧窗内有人挪退包装，正与35章所述流程相符。拖拉声后普通灯架倾倒，油火沿邻近纸绳堆烧起，烟从主门涌出；林未见造成倾倒的那一步，不能认定故意。外桌伙计随即抱页沿侧巷逃离，林未看清纸页内容与人名。\",\n    \"林先向携页者迈半步，第二声求救使他停下；他喊对方能否挪动，听到肯定应答，见边门上沿暂未着火，判断只余短时窗口。此处只存普通草药、木架与纸包，不是地肺毒焰区。边门向外开，门板下侧破口可伸入短木杆钩到内侧轻闩拉环；倒架停在门内半步外，低处仍可爬过。烟正从另一侧主门涌出，边门上沿暂未着火；林留在门外上风侧，只用湿毡裹持门的手减热，不能靠湿毡滤毒或进入烟层。 林用短杆钩开轻闩，在外撑门约十息；腿不能发力蹬门，贺叫来的水手在门外接人。 贺向码头敲警锣并叫附近当班水手取水；当班灭火工赶来接管排人和压火，林只照看边门求救者。\",\n    \"陆沉川爬到门外，水手接住；林掌心碰到门边热铁包角烫伤，随即退开。伙计自报姓名，林只记待核，不以救命要求立即招供。 林回头时侧巷已空，亲眼确认错过唯一能跟上携页者的窗口；他发怒攥拳牵到掌伤，随后接受自己不知道丢掉了什么纸页。\",\n    \"码头当班灭火工带水手压住火、查看后架承重与余火，明确只许从已清出的后门短道取物；贺和两名普通搬运工按其指示取12包原签药和破口外板，由现场港务登记员当面登记暂存。另将倾倒灯架、油迹附近焦纸绳与前柜残物分处标记保存，记录挪退包者和外桌携页伙计仍待查的身份。林留在门外辨外板，不指挥灭火或搬重物。\",\n"
+              },
+              {
+                "sourceId": "plan/chapters/43",
+                "quote": "{\n  \"id\": \"chapter-43\",\n  \"chapterNumber\": 43,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"先响的岸钟\",\n  \"summary\": \"244戌初，比公告早一个时辰，林贺在装卸灯下认出唐、许、冯被推入低舱，唐喊不让走，舱门外扣随即搭上。林先敲岸钟，岗役回应后沿石阶跑报巡艇；驳船已转向浅沟出口，若继续停在观察位，三人会从视线里消失。贺让林扶栏正常登船坐稳，解缆跟近，主动离开测好的安全观察位置。驳上的陆沉舟看见他们，护着原账命此前做过轻钩控制训练并完成实测的凝元伙计御动轻钩挂住贺船尾拖环，索另一端事先系在驳艉桩上；御物只付半成真元送钩，挂稳便停术，随后靠驳船前行和艉桩承力拖偏小船。林听见命令，知道对方正是先前来认弟的人，却得不到一句解释。绷紧的索把船尾带偏，贺竭力控向；林坐稳握剑，只剩切索这一瞬，施术留到下一章紧接发生。\",\n  \"characterGoals\": \"林要把真实拘束和提前开船变成及时报警，并随贺保住三人的可见位置；贺要追上自己的雇工，陆要护账逃查，不让跟船者靠近。\",\n  \"conflict\": \"公告亥时不能替代眼前戌初的动作，巡艇须走实体水路；不跟就丢视线，跟近又被同阶伙计以轻钩和船桩拖偏。林的伤势不允许跳船硬夺钩，贺独驾小船难以同时控向和解索。\",\n  \"choice\": \"林先报警而后登船，贺在没有许诺冲撞的情况下根据实见拘束决定跟进；陆选择命伙计拖开来船，林不再把救弟之情当作对方会合作的保证。\",\n  \"cost\": \"贺船被钩索拖偏，已离开原可稳守观察位；巡艇尚未到场。此刻没有施剑、没有船底破损、没有人获救，林只有短时握剑许可，下一瞬必须付出已定施术成本。 凝元伙计一次送钩支出半成真元，自身保守余量五成降至四成半，钩挂稳即停术；后续拖力由船行、普通索具和艉桩承担，不收持续施术费，也不能持续遥控钩索转向。\",\n  \"threads\": [\n    \"th_03\",\n    \"sec_02\"\n  ],\n  \"endState\": \"244戌初，三人仍在驳舱，陆在驳上护原账，轻钩已挂贺船拖环、索另一端系驳艉桩。林敲钟已获岗役回应，现扶栏登船坐稳握剑，尚未施术；贺控向。44从切索同一瞬接续，不能重报一次警、重登一次船或提前给唐点货夹内容。 送钩伙计已停御物，余四成半；拖力在普通索具与船桩上，断索即失去物理拖曳，不另添术法反噬。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_15\",\n    \"char_16\",\n    \"char_22\"\n  ],\n  \"location\": \"loc_23天宝外港公共岸钟、近岸船位与浅沟小出口\",\n  \"storyTime\": \"第244日戌初；从实见三人被推舱至钩索拖偏贺船\",\n"
+              },
+              {
+                "sourceId": "plan/chapters/43",
+                "quote": "  \"scenes\": [\n    \"244戌初，林贺在潮口两三丈外借装卸灯认出唐许冯；三人被推入低舱，唐喊不让走，看守搭上外扣。林不等公告亥时，沿已走过的短路敲岸钟，岗役回应并跑报巡艇。\",\n    \"驳转浅沟小出口。贺将小船靠稳公共岸边，林按239许可扶栏登船坐到固定座位；她解缆跟近，只求别失去三人视线，不承诺撞船或越阶夺人。\",\n    \"陆在驳上认出林贺，命一凝元伙计送轻钩挂小船尾拖环。该伙计此前在普通码头卸索差事中，已按ax_08用这一类未受力钩索头练习起动、落钩与停术，实际测过两丈内可见目标、三息内单件不足两斤的控制；试挂失败便停术，不靠凝元身份自动获得技巧。两船相隔不足两丈，本次轻钩与随动的松索头作为一件未受力钩索头合重不足两斤，一次两息内越过短距；同一根普通拖索另一端已系牢驳艉桩，不能把拖力压在御物上。伙计行动前可用真元按自身实测基准保守计五成，只做一次短时御动小钩，支出半成后余四成半；钩落入拖环便停止御物；若视线被挡、相隔超过三丈或松索提前受拉，必须停术，已付半成不退，不能续施御物强拖船。此次钩在范围内挂稳，伙计停术，随后用手收拢身边松余索。另一伙计守舱。林亲耳听令、亲见钩索才确认陆实际拦船，伙计的余元是作者计划账，林没有感知他人精确余额。\",\n    \"驳船继续前行，两船相对位移将索绷直，拖环、主索与驳艉桩承受牵拉，使小船尾偏转；没有人在持续御物拖船。贺双手控向，林坐稳握剑，掌未裂但不能跳船解钩。陆把原账箱挪在自己身边，准备驾驳逃查；原账内容尚不属林所得。\",\n    \"林看清近处外露的普通索，把握一次剑诀的角度；本章停在施术前，44接切索、支出二成真元和热剑停术，不把准备当已发动。\"\n  ],\n  \"source\": \"author\"\n}"
+              },
+              {
+                "sourceId": "plan/chapters/44",
+                "quote": "{\n  \"id\": \"chapter-44\",\n  \"chapterNumber\": 44,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"浅滩一剑\",\n  \"summary\": \"紧接43章244日戌初钩索拖偏的瞬间，林坐稳只用一次剑诀切断外露索，付二成真元、剑热停术。舷边收余索的伙计因驳艉骤摆、脚下湿滑失足跌水，陆驳转向时艉部被旧护桩顶住，陆和另一伙计忙撑篙脱困。林亲见本次唯一余刃在两丈界内散尽；唐趁看守离开推开未锁死的舱门外搭扣，先扣住短跳板验板身和搭点。贺宁可撞裂自船底也把船头搁在沙舌，实际停到板端下面；唐见船位和护桩仍稳才放板。林看见陆提原账箱向船头去，却在余刃已散后先递固定浮圈给刃路外、正抓舷侧垂索的落水者。许、冯、唐依次趴板过船，唐带出自己挂着的点货夹。陆见巡艇灯接近，取舍保原账，撑开驳船逃向深槽。\",\n  \"characterGoals\": \"林要保住工人和落水者，不以腿伤硬拼；贺要给三人提供可踩住的逃生落点；唐要带两名同伴出舱并保住自己经手的点货夹；陆要保住原账、躲过巡查，不愿为困住贺船把自己留在浅沟。\",\n  \"conflict\": \"驳船提前离开原定过闸路线，巡艇要绕外弯赶到。陆与两名伙计均凝元，正面久战林贺无胜算；断索和护桩只提供十余息转移窗口，贺若怕损船，跳板下就没有稳定落点。\",\n  \"choice\": \"林看见可追原账的方向，仍先把固定救生浮圈递给落水对手，不追陆；贺主动搁浅接板，唐先放许冯过船再带点货夹离开，救人分步不代表放弃另两人。\",\n  \"cost\": \"林一次剑诀支出二成真元，剑体热而停用；贺船底碰裂，三人暂上船但不能出海追击。原账随陆逃走，半页来源仍须核对；林不跳船不提整个人，腿因晃动酸胀，需再复查。 出剑前沿用239日复测的保守余量五成，一式二成后余三成；二成已含剑的供能，之后不再御物，浮圈用手递。剑独立散热，不能借散热把真元账重置。 送钩伙计承接43章四成半真元，44章没有再施术；断索、船摆和失足属于普通受力与站位后果，不扣寿储、不凭空封住其修为。\",\n  \"threads\": [\n    \"th_03\",\n    \"sec_02\"\n  ],\n  \"endState\": \"244夜，唐、许、冯到贺船，唐留着点货夹；落水伙计抓浮圈在船侧，待已到船上的唐与许协力拉上来。陆和另一伙计带原账驶离，巡艇灯已转过外弯。另两名工人不在林视野，不能认定在逃船上。林剑热、真元已减，贺船搁浅破底，不能续追；点货夹尚未启读和比对。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_15\",\n    \"char_16\",\n    \"char_22\"\n  ],\n  \"location\": \"loc_23天宝外港货院、公共码头、潮沟及船坞\",\n"
+              },
+              {
+                "sourceId": "plan/chapters/44",
+                "quote": "  \"storyTime\": \"第244日戌初至入夜；承接43章已报警登船和钩索拖偏，直接从切索开始\",\n  \"scenes\": [\n    \"两船暂近，林坐稳以一次乾元御风剑诀只放一道风刃切外露普通索，支出二成真元，收热剑不再施术；普通索骤断后驳艉随原转向横摆，正在舷边收松余索的伙计脚下湿滑失足跌水；他先前已停御物，落水不是术法反噬。驳转深槽时艉部抵住旧护桩，陆和另一伙计离舱口用长篙顶开，争的是保账脱困，不能继续腾手压住小船。\",\n    \"唐从低舱门板上沿缺口伸手掀开只搭未锁的外扣，让许先出去；三人放下靠滩舷用于装卸的短板。贺将小船头推上沙舌撞停，板端落在小船头舷内，两船靠滩侧相隔不足一臂。船底在硬石上裂开，她仍守舵稳住接人的落点，板只支撑这十余息窗口。\",\n    \"林看见陆正把原账箱提向船头，没再追钩箱，转而递出系在艉桩上的浮圈；落水伙计抓住圈，受力落在船桩，林不悬提人。许冯先趴板过去，唐最后把装卸时领到、挂在腰间的油布点货夹带走，越板后收腿让板脱开。\",\n    \"船尾脱离护桩，巡艇灯从外弯出现；陆看见夹被唐带走，仍选择带原账先逃，另一伙计掌篙顺深槽撤走，没有留场追杀。林停止握剑，唐与许留在贺船低舷准备协力拉人，抓圈者仍在船侧靠固定浮圈保持头部出水；贺船进浅水，靠备用缆固定等待巡查。实际拉上低舷承接在第45章开场，本章不重复完成。\",\n    \"林坐在原船中段扶栏处，先确认送钩伙计已收回手，钩索外露段在两船间距自己不足一丈、视线与导刃路径未被舷板或人遮住。绳为贺先前亲见的普通装卸索，本次林在18章已实测两丈内稳定锁定，才施凝元式；实际命中一处绳段，没有沿索追击人体。船摆使视线失去或有人进入刃路即停式不重发，贺先退向浅水等待巡艇，不能拿二成费用担保必断。\",\n    \"本次只凝一道风刃、仍付完整二成。林借43章仍照到此处的岸边装卸灯，从原坐位看清不足一丈处索段及其背后至本人两丈边界的斜下直线路径：在两船外侧的开阔水面上，不穿陆驳的舷边、低舱、收索伙计或己方船体。灯影、船摆或人员使这条全程路径不再可见，就不放刃；放刃后失锁只停发示警，不令余刃消失。本次一道实际切中，余刃沿原斜下方向在两丈界内散尽，林亲见刃影消散后才递浮圈。断索引起的艉摆、伙计失足和护桩顶船仍先发生，不因等待撤销；落水者落在原刃路外的船侧水面，自行抓住船舷外原垂索维持头部出水，林不另施御物托人。\",\n"
+              },
+              {
+                "sourceId": "plan/chapters/44",
+                "quote": "    \"十余息窗口仍从驳艉抵住护桩那一刻起算，包含确认与搁浅时间，不在检验后重新计时。本次前两息林亲见余刃散尽，贺同时把己船船头搁到原沙舌并观察船头不再横移，船底照原安排碰裂；唐先解舱门外搭扣但扣住短板，摸验原板身和驳侧搭点未裂，见贺船头停在板端下且护桩仍抵驳艉才放板。随后约十息，林在己方固定座位向刃路外的落水者递固定浮圈，许冯唐依次趴板过船，递圈与首人过板可由不同人在分离位置同时做。贺持续看板端和船位，林不站起负重；唐最后离板后陆才撑开驳艉逃向深槽。若余刃未明、板端滑脱或护桩先松，立即停过板，贺先稳住已到船上的人，唐让未过者退回舱侧等巡艇，不声称仍能在原窗口救出三人。\"\n  ],\n  \"source\": \"author\",\n  \"executionChecks\": [\n    {\n      \"id\": \"rescue-window\",\n      \"requirement\": \"切索后驳艉摆动、伙计失足、护桩顶驳先发生；林确认唯一余刃消散，贺撞停裂底且唐验板和搭点后才放板。确认与搁浅算在同一个十余息窗口内，不能重新计时；不稳则停过板。\",\n      \"sourceQuestion\": {\n        \"document\": \"story\",\n        \"questionId\": \"audit-barge-inspection\"\n      }\n    },\n    {\n      \"id\": \"rescue-cost-and-agency\",\n      \"requirement\": \"林一式二成后余三成、热剑停用，不再御物提人；手递固定浮圈、船桩承重，唐许冯自行依序趴板。44章末唐许只到位准备拉人，落水者仍抓圈在船侧；实际拉上低舷留到45章开场。贺承担破底无法追击，陆带原账逃走，点货夹尚未读明。\",\n      \"sourceQuestion\": {\n        \"document\": \"story\",\n        \"questionId\": \"audit-first50-narrative\"\n      }\n    }\n  ]\n}"
+              },
+              {
+                "sourceId": "plan/chapters/45",
+                "quote": "{\n  \"id\": \"chapter-45\",\n  \"chapterNumber\": 45,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"船底向着天空\",\n  \"summary\": \"244夜巡艇分趟接人，贺最后离开自己的裂底船。245晨，唐在医棚清点到第三个名字就停下，吴卢没人应声；林接过他自愿交出的破夹，发现救到人的那只手也没能带回整本账。贺没有责怪唐，午后到船坞看人把船拖上架，付尽最后48枚；船底向着天空，她第一次从这面看见自己多年补过的木板。林拿着追案草稿想开口，贺问三个人今晚睡哪里，他把草稿折回去。246比号及旧岸仓查空作为同一封回告到达：残联批号与苏信相同，仍不能证明军需真伪，两人也不在旧仓。林留签认拓本、原物交巡查，收起父亲路线抄图，随贺先给三人留住处。章末唐仍按习惯铺了五个人的位置，空着的两处使救援的胜利第一次显出缺口。\",\n  \"characterGoals\": \"贺要面对船损并接住已救者的生活；唐想找齐五人，许想摆脱这趟危险；林必须决定是将新线索转成自己的追案机会，还是留下承担救人之后的责任。\",\n  \"conflict\": \"船能修，分散的五个人却不能靠付款立刻重聚；林得到父案关联，贺和工人得到的首先是失去营生与空位。\",\n  \"choice\": \"林收回追案草稿，把新同号线索交巡查继续核实，先与贺安置三人；贺付尽修船款，仍不要求工人用口供补偿自己。唐留下两处空位，许明确提出自己不愿一直等待。\",\n  \"cost\": \"贺245午实付48修船款，60储备在先前买符12后全部用尽；修补含拖船进坞，255午才满十日。林三日轻役至247，不再练剑，个人余1枚、食宿已付至250；没有新寿源。夹联撕缺、原账未取，追查两人受阻。 作者执行依据（过程在场间完成，正文按人物当场选择展开）：唐主动交油布点货夹，指明244装货陆让他持交接联清点，许把旧箱封取下交他夹存；夹边在离舱时被门刮裂，只剩半联。巡员先逐件记形状与发现经过，许另述摘封，林不把这份说法当作独立军需验印。 245午船坞把贺的裂底船拖进坞，报价48含拖移、底板和拖环修理；贺当场付清余48，工单写245午开工、255午满十日交检，修好须验水，不能250提前出船。 246林带苏信原件到记录室，唐许在场，核残联仍完整的批号、旧货封号和苏信摘录一致；其余缺页、验印和是否套号待追查。原物由巡查封存，林与贺取当场签认拓本和收据，没有拿走完整原账。\",\n  \"threads\": [\n    \"th_03\",\n    \"sec_02\"\n  ],\n"
+              },
+              {
+                "sourceId": "plan/chapters/45",
+                "quote": "  \"endState\": \"247暮，唐许冯安全安置，落水伙计被巡查看护治疗并接受单独询问，救命不免除拦截责任。半页交接联和旧货封由巡查编号封存，林留签认拓本和收据；246已核到苏信编号一致，只是追链线索。吴卢最后亲见在243旧岸仓，巡查查空后仍在追踪，当前地点不明。贺船修至255午，林轻役满三日后仍须受限活动。 唐与许对是否继续等人首次出现分歧，尚未替彼此决定工作或去留。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_15\",\n    \"char_22\"\n  ],\n  \"location\": \"loc_23天宝外港货院、公共码头、潮沟及船坞\",\n  \"storyTime\": \"第244日入夜的接应至第247日暮\",\n  \"scenes\": [\n    \"巡艇在244夜接到岸钟报信后绕外弯赶来，大艇吃水不能上滩，巡员用随艇小划舟靠近并分趟接人。唐许先把抓圈伙计拉上低舷，再一同候接；巡员看见贺船裂底和船上断索残端，另一残端随陆船走，不伪称已量到两端。\",\n    \"245晨医棚分诊：三工脱水擦伤，落水伙计呛水；林掌未裂但腿酸胀，三日轻役到247。港务救助账支付本次急救与245–247基础住食，具名记账待追偿；不因此限制获救工人自由离开或强迫作证。\",\n    \"245晨唐报到第三个名字就停住。许先问失散者有没有上另一趟巡艇；巡员核实际接人名单，吴卢不在。唐自愿把破夹交出、许独立说明旧封，均不被要求用更多证词换救助。林接夹后先听他们说最后见到同伴的地方，没追问残联另一半。\",\n    \"245午，贺在坞外看人把自己的船拖上架，船底露出历年补板。她付清48，工单到255午交检。林把追父案的草稿递了一半，贺问先把三个人安置在哪里；他收回纸，承认先前以为找到线索就能接着走。\",\n    \"246比号与巡查查空旧岸仓的结果短递到医棚，来源和范围照执行依据，不再开第二场核验。贺先商量临住结束后的落脚；唐坚持还要留两人的位置，许却说自己没有答应继续等下去。以同伴第一次分歧结束，不在本章再次查门。\"\n  ],\n  \"source\": \"author\",\n  \"executionChecks\": [\n    {\n      \"id\": \"rescue-completed-once\",\n      \"requirement\": \"承接44章末尚在船侧抓圈者，45章开场由唐许实际拉上低舷，再候巡艇小划舟分趟接人；只能完成这一次，不重置落水或再造救人窗口。治疗与单独询问不免除拦截责任，救助不强迫工人作证。\",\n      \"sourceQuestion\": {\n        \"document\": \"story\",\n        \"questionId\": \"audit-barge-inspection\"\n      }\n"
+              },
+              {
+                "sourceId": "plan/chapters/49",
+                "quote": "{\n  \"id\": \"chapter-49\",\n  \"chapterNumber\": 49,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"弟弟留下\",\n  \"summary\": \"253日陆经原船岗旁茶摊送条，要弟弟见面后随他离港。沉川将纸条交给巡查，自己留在复核岗等；林贺来向巡查交接北三公共入口排查范围。陆到门前看见巡员仍走入，劝弟赶在天黑前走。沉川把哥哥递来的手推开，说要留港对217领箱负责，并说出220夜送饭时见兄长收钱签条。陆承认动作，却对那张条的内容闭口。弟弟坐回登记桌前，陆终于停止催走，接受到案看护与随身财物登记。他望见北三水台的查找记录，画出自己走过的废砖甬道和无牌附棚入口，提出次晨随巡查辨门。林接过图，巡查当夜查外围出口；兄弟一人留岗配合、一人受看护，各自面对自己的责任。\",\n  \"characterGoals\": \"陆想把弟带离程的势力范围，也想避开自己签条的追问；沉川要留下说明自己领箱的经过；林贺要从陆亲走的路线找到两名工人。\",\n  \"conflict\": \"陆把带弟离港当成补救，弟却认为再次逃走会让自己的选择继续被哥哥代替。弟只看见收钱签条；陆若开口说内容，就得直面自己参与的另一批货。\",\n  \"choice\": \"沉川主动交条、当面拒绝离港并说出亲见；陆走入有巡员的岗房，接受看护，再把亲走入口交出。他仍隐瞒条内内容，兄弟关系未因指路而和好。\",\n  \"cost\": \"陆丧失自由回避问询的空间，2枚随身钱仅登记仍属本人，原账未找回；弟承担与兄争执、继续复核的压力。林现金仍0，贺资格暂停，完整改签自认和原页尚未取得。\",\n  \"threads\": [\n    \"th_03\",\n    \"sec_02\",\n    \"th_01\"\n  ],\n  \"endState\": \"253夜，陆在巡查看护下已到案，愿254晨随队从废砖甬道辨无牌附棚；弟自愿留港复核，没有被林拘禁。林知道陆承认收钱签条、指过入口，但不知条内改签全貌，也未取得原账或第二片。吴卢具体位置仍须现场见人。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_15\",\n    \"char_16\",\n    \"char_21\"\n  ],\n  \"location\": \"loc_23天宝外港商盟、原船复核岗与普通转运仓区\",\n  \"storyTime\": \"第253日午后至夜间\",\n  \"scenes\": [\n    \"253茶摊送来哥哥约见后离港的纸条。沉川读完，把纸条交给当班巡员，搬凳子坐在原船复核岗等人。林贺来交接北三公共入口的排查范围，看见的是他自己选下的等候位置。\",\n"
+              },
+              {
+                "sourceId": "plan/chapters/50",
+                "quote": "{\n  \"id\": \"chapter-50\",\n  \"chapterNumber\": 50,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"门闩交给谁\",\n  \"summary\": \"254晨，陆带巡查到北三门。看守称吴伍、卢小满是自愿留下候工，贺在门外喊名，两人却要求出去。看守急着合门，吴卢从内侧顶住，旧押运头目陆被喊来帮忙压门。林原已握住剑柄，见门缝里露出两人的手，松开剑，让巡员走到能听清回答的位置，要求当面问他们是否愿留。陆伸向木闩的手停住，转而向外拉；一名巡员夺闩控制持闩者，另一名截住想退向后巷的看守。吴卢自己推开门走进外院。吴指认陆曾把他们点交到这里，陆当着巡员承认，不再用认路掩盖押送。贺说船修好便能接他们回去，吴却说回不回船要由他们自己定，卢也不愿立即上船。贺让开去船坞的方向，先陪两人去安全落脚。五名雇工至此全部脱控；被谁雇用、为谁作证，仍由他们自己回答。\",\n  \"characterGoals\": \"吴卢要走出门并决定自己的去处；贺想救回原班雇工，却须接受他们未必再上自己的船；陆想把自己限定为带路人，旧手下和吴的当面指认迫使他决定是否继续参与扣人；林要让工人的亲口选择被现场听见，巡员要核实是否自愿并制止实际拦阻。\",\n  \"conflict\": \"看守以自愿候工掩饰扣人，试图在巡员听到工人回答前合门；陆若顺着旧同伙压门，还能维持正常押运的说辞。开门不需要一场越阶胜负，真正改变局面的是吴卢当面拒绝、陆拒绝继续扣人及巡员亲见拦阻。贺接回人后还要面对他们拒绝立即回船。\",\n  \"choice\": \"林松开剑柄，把门前位置让给能现场处置的巡员，请其直接问吴卢，而不替他们宣布愿意去哪。吴卢自己顶门、要求离开；陆改为外拉木闩，协助控制旧手下，承认本次点交押送并接受继续看护。贺接受二人不立刻回船的回答，先安排安全落脚，不以救命索取服从。\",\n  \"cost\": \"林只短走和肉身握持，未施剑诀或御物，沿用252复用检查后保守余量三成半；不因数日间隔算满，也不放宽旧掌腿的短走、受限握剑和不负重限制。陆公开站到旧手下的对面并承认本次押送，不能再只以认识路解释到场，协助不换免罪。贺现金仍0、船至255午才交检，即使救齐五人也不能承诺恢复原班营运。两名普通看守和陆的本次行为已有现场见证，完整改签与原账则仍待另查，不以这次控人替代全案证明。\",\n  \"threads\": [\n    \"th_03\",\n    \"sec_02\",\n    \"th_02\"\n  ],\n"
+              },
+              {
+                "sourceId": "plan/chapters/50",
+                "quote": "      \"requirement\": \"254晨吴伍、卢小满当面要求离开并自己顶门，林松剑让巡员直接听答；陆改为外拉闩，巡员实际控制两看守，吴卢自行走到安全外院，不写成林施术强攻。\",\n      \"sourceQuestion\": {\n        \"document\": \"story\",\n        \"questionId\": \"audit-second-warehouse-fire\"\n      }\n    },\n    {\n      \"id\": \"custody-is-not-release\",\n      \"requirement\": \"吴卢脱控与陆受看护必须分清；陆只承认本次点交押送，不借协助脱身、不获免罪，220夜改签和完整自述留待后续独立核实。程不在场，林不知道其位置或第二片封匣状态。\",\n      \"sourceQuestion\": {\n        \"document\": \"story\",\n        \"questionId\": \"audit-barge-inspection\"\n      }\n    },\n    {\n      \"id\": \"no-rescue-debt\",\n      \"requirement\": \"五名工人脱控不等于答应回船或作证；吴卢拒绝立即回船，贺接受各自去留，先陪去安全落脚。不提前把第51—53章后续救助、交检与签认写成本章已完成。\",\n      \"sourceQuestion\": {\n        \"document\": \"story\",\n        \"questionId\": \"audit-relationship-stages\"\n      }\n    }\n  ]\n}"
+              }
+            ],
+            "revisionAdvice": ""
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass",
+            "explanation": "33—37章先以失箱调查和唐带五人失败脱身建立“人仍被控制、外线不知道位置”的困境；37章救出的是单列的陆沉川，且林为未知者放弃追证，五工并未因此获救。40—45章将目标转为贺的五名雇工：贺撤缆失单、唐在受理现场实际被拦、林贺以测深和退路准备而非强闯，43—45章才以报警、船损和原账逃失换回唐许冯。47—50章没有把三人获救当五人结案：外线排查失败后转入吴卢在附棚中拒绝互相代答的独立选择，50章由两人亲口要求离开、林让巡员现场听答、陆停止协助扣人，二人自行出门；贺又接受他们不立即回船。故两场救援分别呈现未知者与证据的取舍、有限水上转移的损失，以及当事人自主脱控与去留，困境、人物选择、损失和后续行动均递进。",
+            "evidence": [
+              {
+                "sourceId": "plan/chapters/36",
+                "quote": "{\n  \"id\": \"chapter-36\",\n  \"chapterNumber\": 36,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"门楔另一边\",\n  \"summary\": \"独立唐顺视角。225午后，他与许、冯、吴、卢被看守带去程记后货院分拣退包，五人仍不能自由离开。唐看见通公共外桌的边门在换车时会敞开，决定用地上普通废木片楔住门，让许先把空筐推到门口，自己领另外三人跟上。他想利用搬货队伍一起走出去，不肯只丢下两个年轻同伴。许的筐刚到门槛，门侧那名上岗前已练习并实测轻物御动的凝元看守看到木片，在半丈内付半成真元抽走未楔紧的小片，另一看守合门截车；唐的凡人脚步抢不过对方，五人都被拦回。他不把主意推给许。程随后亲到后货院，撤掉五人的外口退包活，让原药栈伙计接手，将他们转入同院后排有看守的工棚。唐失去接触外来搬工的路，只能记住走过的门向和缆位；这些见闻尚未传给贺林。\",\n  \"characterGoals\": \"普通领工唐顺要带五人一起脱身，不愿只保自己；看守要保持程记对劳工的控制；程要在外来问人已经出现时堵住工人借货流离开的口子。\",\n  \"conflict\": \"边门换车短开是普通工人唯一可见的脱身机会，但已经练习并实测的门侧看守能在半丈视线内付费拨走未受载的轻木片，凡人合力推筐也无法抢过关门和看守。唐若独自钻空隙或抛下两人，便违背带全员回去的承诺。\",\n  \"choice\": \"唐选择用普通木楔和空筐给五人造同一条路，失败后承认是自己安排，不让许替他顶责。程撤去五人的外口活并加看，将人力调到后排工棚，宁肯让原伙计补退包缺口。\",\n  \"cost\": \"五人失去借公共退包工序接触外来码工的机会，被集中到后排工棚；没有获救、没有传出暗信，也没有新增伤亡。程要用原药栈伙计填外口工作，林贺今晚看到的核页与挪包人不是这五名雇工。 门侧看守一次轻物御动支付半成真元，从保守可用五成降到四成半；本章不追加恢复或第二次施术。\",\n  \"threads\": [\n    \"th_03\"\n  ],\n  \"endState\": \"225日傍晚五人仍在程记后货院控制下，唐的第一次脱身尝试失败，外口作业路径被撤。贺林未见、未收消息，仍按35所得去当夜公共交割处找陆沉川；他们不知五人具体所在。首仓火原因和发生时刻并非唐的预知或安排。\",\n  \"characterIds\": [\n    \"char_14\",\n    \"char_22\"\n  ],\n  \"location\": \"loc_23天宝外港程记后货院、通公共交割口的边门与后排工棚\",\n  \"storyTime\": \"第225日午后；与当夜木仓火灾分开\",\n  \"scenes\": [\n"
+              },
+              {
+                "sourceId": "plan/chapters/36",
+                "quote": "    \"唐顺独立视角，225午后五人被带到后货院分拣退包，看守跟在通外口的边门旁。唐看见空筐车通过时门会敞开，招许把空筐留到末车。\",\n    \"唐用随手可得的普通废木片垫住门脚，自己把吴卢和冯叫在同一队，叫许先推空筐。他没有武力，只打算趁搬工交接把五人都带过门槛。 这扇侧开木门由自身铰链承重，木片只在门脚侧轻挡回摆，没有楔紧或托住门板；空筐车尚未压上它，普通手指即可横拨，门重和筐重不落在御物目标上。\",\n    \"门侧这名凝元看守在来程记任门岗前，已按ax_08反复以卸载的小门销、废木片练习直接可见轻物的启停，并实测半丈距离、一息内可拨动不足两斤的自由木片；不是凭凝元境自动掌握。本场他臂掌完好、气路稳定，行动前可用真元保守按健康实测基准五成计。看见未楔紧、未受门板或车筐载荷的小片后，他预付半成，半丈内仅御动这一片一息，横拨离门脚便停，余额四成半；另一看守用手合门截筐。唐来不及赶到门前，五人都被拦回；没有隔墙控人或凭空封阵。若木片被车压住、楔紧或视线被挡，这项轻物操作不能强拔，必须停术改用徒手处理，已付真元不退。训练及余元是作者依据，唐只能看见小片移动与门被合上，不因此知晓看守的具体真元数。\",\n    \"程听看守当面报告后到后货院，唐承认主意是自己的，拒把责任推给许。程撤五人的外口退包活，让原药栈伙计补上，把五人转到同院后排工棚分拣旧索，由看守守门。\",\n    \"唐在工棚重新点齐四个同伴，记住刚走过的门向、缆位，仍不知道如何送出消息。林贺不在现场，不能由这一独立视角知道他们的位置；五人也未预知当夜木仓火。\"\n  ],\n  \"source\": \"author\"\n}"
+              },
+              {
+                "sourceId": "plan/chapters/37",
+                "quote": "{\n  \"id\": \"chapter-37\",\n  \"chapterNumber\": 37,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"火仓留人\",\n  \"summary\": \"225夜，林贺为核册上领货人到木仓外公共交接处，两人在门外等了片刻，见一名交割伙计在外桌核纸页，侧窗内正有人往外挪退包装。灯架在一阵拖拉声后歪倒，带油火线沿纸绳窜起；撞落还是固定处松脱，林没看清。外桌伙计抱页跑向侧巷，边门同时传出求救。林先向侧巷迈了半步，听到第二声求救才停住：边门尚未烧着，对方还能应声挪动，若此时追人，门上窜起的火会先断掉出口。林仍不知是谁，转身让贺叫水手汲水，用湿毡裹手、短木杆从门板破口钩开轻闩，留在外侧上风处撑门约十息，叫对方自行爬过倒架。人被拉到门外时林掌心被热铁包角烫伤，腿伤也不许他再进仓。获救伙计自报陆沉川，林只记姓名待核。火势压住后，贺和搬运工在安全的后架取回12包原批签药和破口外板。林识出六号箱刻号，但救人已使携页者逃出视线，所携纸页内容和火因都未知。 226日陆在医棚请人联络哥哥，林正回原船换药，尚不知这次联络。\",\n  \"characterGoals\": \"林原要核人追箱，却必须在眼前活人与可疑携页者之间选择；贺要组织水手从外侧救人并保住还能取出的药；陆沉川要活着出来，害怕身份一经核实便丢掉差事。携页者身份与目的未确认，不能预设就是程的灭证手下。\",\n  \"conflict\": \"普通木仓的热、浓烟和倒架堵住边门，凝元三重和避火符不能保证火场安全；林只能在外侧短时协助、不能托墙或搬整箱。携页者与求救处方向相反，未知身份的活人使追证机会正在消失。 此处只存普通草药、木架与纸包，不是地肺毒焰区。边门向外开，门板下侧破口可伸入短木杆钩到内侧轻闩拉环；倒架停在门内半步外，低处仍可爬过。烟正从另一侧主门涌出，边门上沿暂未着火；林留在门外上风侧，只用湿毡裹持门的手减热，不能靠湿毡滤毒或进入烟层。\",\n  \"choice\": \"林在不知道求救者身份时先救人，留在外侧拨闩顶门，靠被困者自行爬出与贺组织水手接应，不进入浓烟追账。安全确认后才由贺和普通搬运工取物，林不因修为自认可以搬重物。\",\n  \"cost\": \"林掌心烫伤，225夜起停练观察至230夜，满五日复诊后仅准吐纳，握剑须239日另测，期间不攀绳搬货；船主从船医药包实际付普通敷伤药折1枚，记轻役总酬待230结算。携页者逃脱，身份、纸页内容与火因仍未知；湿毡焦损由贺承担，不凭此新增林债。 腿伤与掌伤分开记录，225–230均只做坐姿轻役和平路短走，不能追跑、攀跳或搬重物；230结束的只是掌伤五日停练观察期，不等于腿伤全好。\",\n  \"threads\": [\n    \"th_03\",\n    \"th_05\",\n    \"sec_04\"\n  ],\n"
+              },
+              {
+                "sourceId": "plan/chapters/40",
+                "quote": "{\n  \"id\": \"chapter-40\",\n  \"chapterNumber\": 40,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"撤回的缆绳\",\n  \"summary\": \"231日贺从60枚修船储备付12买两符，一张给林，余48留作修船。她到装货口时，自家备用缆仍盘在车上，临时替工等她发话；程要求先把缺口填上，再拿船押认赔才肯谈五人的下落。贺叫人把缆车掉头，向本船未涉案人员说明今天回坞保养，不替程补工。程指着装不出去的货说下一单可以给别人，她仍带队离开。林原想借混乱跟接货伙计查遗物，见贺逐一点齐退回人员，便留下帮她叫名；五个无人应声的名字把问题从货箱拉回活人。232正式受理与238见工安排简短落定，贺将五人的出工单留在船员名册里，没有提前替谁销名。\",\n  \"characterGoals\": \"贺要确认五名雇工的生死与行动自由，并守住自己仍可维持的船务；林要支持救人而不把父案追查压过船员安危；程要借补工、认赔和拒见拖住外部核查。\",\n  \"conflict\": \"程既要贺补足装货缺口，又用见人资格诱她押船认赔；贺若继续供人供物，程记可维持装运，若撤回自有资源则失去订单关系并可能加重对五人的控制。港务受理只能排定复核，不能立刻进院搜人。\",\n  \"choice\": \"贺亲自叫自有缆车掉头、带未涉案船员回坞，拒押船换见人；林留下帮她点齐眼前队伍，不借撤工混乱把她的人抛给程继续追货。\",\n  \"cost\": \"程记装货出现可见停顿，贺却没有获得收入，还失去与程继续周旋的余地；12枚已花，修船储备只余48枚。五人仍未见到，238日前没有人身安全保证；林仍只可吐纳和平路短走，不能以伤势或病历争取搜查权。 231日贺用12枚买入的两张符，是与33章所租、39章230日酉时已退还之符不同的两件实物；一张交林、一张由贺佩戴，均经余纹核验为满符，各按art_16最多累计隔暑720小时。两张购入符各自从231日实际佩戴起计耗，不能把217日起的旧租用时段扣在它们名下，也不能把退还租符的余量转入新符。佩戴即耗符内灵气，无需林贺真元；不隔火烟。231至254即便按整日佩戴也只计至多576小时，各至少余144小时，后续不能默认永续。\",\n  \"threads\": [\n    \"th_03\",\n    \"sec_02\"\n  ],\n  \"endState\": \"232日，港务已收五人名册、返船期限和拒见经过，238日将赴货院正式见工；程记的自愿加班说法仍未核实。贺的未交付缆具和替工已撤回，程记装货受阻但未停牌；贺余48枚修船款，林个人3枚未动，双方仍需等待现场证据。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_14\",\n    \"char_15\"\n  ],\n"
+              },
+              {
+                "sourceId": "plan/chapters/41",
+                "quote": "{\n  \"id\": \"chapter-41\",\n  \"chapterNumber\": 41,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"等不来的人\",\n  \"summary\": \"233林收到苏226寄、228经外港转递的信，只知返宗证词和编号。她留宗护证，林把未寄责问压回书底，向贺分享相关父图、货单和信；听她说五人的岗位后，接受潮路由她判断。236常只肯正式作证，237程又取消贺下一单，两笔失去的支持都不能靠林催促补回。238受理员到货院，只见唐、许、冯。唐交还个人出工标记，真的迈向门外，却被看守拦回；贺向前接人，程仍催三人回去搬货。受理员当场要求放行并派岗役报巡查，三人未获释。唐用贺认识的旧缆结手势指向北泊补舷低驳；贺实看船牌和当日泊位后，拿到了一条要亲自追的船路，吴卢位置仍空着。\",\n  \"characterGoals\": \"林要接受苏留宗、常只正式配合的自主选择；贺要带回五人；唐要利用终于面对船主和外人的机会真实要求退场；程要用部分露面压低外部追问。\",\n  \"conflict\": \"实体来信不等于伙伴能即刻到场，丢单又削弱贺的生计；受理员看见三人不代表人已能走，唐迈出的那一步被看守挡住。两人必须从问询转向跟进实际船路，仍不能无权硬闯。\",\n  \"choice\": \"林共享有限原件、放下召来伙伴的期待；贺不以只见三人结清五人请求，唐选择当众交标记并迈步离院，遭阻仍冒险给有限船线索。\",\n  \"cost\": \"贺237失去下一单确定收入，48枚修船款仍在；五人未自由，唐当面抗争被继续看守。林239复测前仍不能握剑登船，苏未知其掌伤和未寄责问。\",\n  \"threads\": [\n    \"sec_02\",\n    \"th_01\",\n    \"th_03\"\n  ],\n  \"endState\": \"238日暮，港务记录下只见三人、吴卢缺席、唐称不能自由离院及其要求退场被阻的经过，并已转报近巡查。贺确认一艘北泊补舷板低驳的外观、船牌和当日泊位，林未获搜船资格；五人均未脱离控制，239复测前林仍不能登船。 林已实际收到苏信并展示相关原件，但未获同批军需封条；常只正式配合。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_14\",\n    \"char_15\",\n    \"char_20\",\n    \"char_22\"\n  ],\n  \"location\": \"loc_23天宝外港受护住处、原船岗、程记货院门口与北泊公共步道\",\n  \"storyTime\": \"第233日至第238日\",\n  \"scenes\": [\n"
+              },
+              {
+                "sourceId": "plan/chapters/42",
+                "quote": "{\n  \"id\": \"chapter-42\",\n  \"chapterNumber\": 42,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"退得出来的船位\",\n  \"summary\": \"239林经握轻柄、扶栏一级台阶和平走实测才获准短时握剑、普通登船，付诊费1与231–250食宿1后余1。医修准其受限握剑后，林验冷却剑体并低流量试注，耗半成；试船前另回住处完成一小时不受扰吐纳，复测只回半成至五成。同日巡查查程的无签认放工条，休工棚为空，继续分路追人。贺先系船测水，再收杆解缆沿公共近岸试行，林坐船尾放漂木；旧潮簿预计能停的第一位置实测水浅，漂木又被回流推向窄处。贺立即掉头，放弃正对待查驳船的视线。林想让她再靠近一点，贺把回旋木片指给他看：现在能进去，不等于接到人后能出来。两人改靠堤第二位置，重新测深确认退路，才练系桩浮圈和岸钟路线。241公告预计244亥时过闸，243实见低驳移潮口；林接受少看一段水面以保住真正可撤的位置。\",\n  \"characterGoals\": \"林要在受伤限制内帮助找到五人，证明自己不是只能被照料；贺要以可撤离的近岸观察判断驳船动向，不再拿船与人盲赌；巡查要核实程的放工说法并追踪失联工人。\",\n  \"conflict\": \"旧潮簿不能保证今天的水深和回流，最直观的盯船位置既被堤角堆栈遮出口，又不利接人后退回。林想贴近查舱，但伤势不能支撑跳船负重，贺也不拿尚未救到的人赌一条没有退路的船位。\",\n  \"choice\": \"贺用实测水深和漂木流向否定原观察位，及时退船；林放弃靠近偷登，接受较差正面视野换取可撤路线，承担坐姿浮圈与岸钟报警准备。\",\n  \"cost\": \"林付掉最后三枚中的两枚，仅余1枚，食宿只结至250日；实测许可不等于恢复追跑、负重或跳船能力。巡查查到空棚后只能分路继续追人，吴卢和三名已见工人的实际位置仍未确定；贺的船未受损，48枚修船款也未动。 239日复测确认掌腿允许的真元可用上限为五成，沿用215日行动后保守余量五成；诊察没有增加真元或寿储，也没有授予跳船负重许可。上次25章完整剑诀后一直未再灌注，239日医修先准受限握剑；林触验剑脊与柄均已冷却，以低流量试注确认无异响，此次缓慢试注共耗半成，余四成半。试船之前另在原住处完成一小时不受扰温和吐纳，复测只记回半成至伤后上限五成，再赴码头；此后至244出剑前未再施术。\",\n  \"threads\": [\n    \"th_03\",\n    \"sec_02\"\n  ],\n"
+              },
+              {
+                "sourceId": "plan/chapters/43",
+                "quote": "{\n  \"id\": \"chapter-43\",\n  \"chapterNumber\": 43,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"先响的岸钟\",\n  \"summary\": \"244戌初，比公告早一个时辰，林贺在装卸灯下认出唐、许、冯被推入低舱，唐喊不让走，舱门外扣随即搭上。林先敲岸钟，岗役回应后沿石阶跑报巡艇；驳船已转向浅沟出口，若继续停在观察位，三人会从视线里消失。贺让林扶栏正常登船坐稳，解缆跟近，主动离开测好的安全观察位置。驳上的陆沉舟看见他们，护着原账命此前做过轻钩控制训练并完成实测的凝元伙计御动轻钩挂住贺船尾拖环，索另一端事先系在驳艉桩上；御物只付半成真元送钩，挂稳便停术，随后靠驳船前行和艉桩承力拖偏小船。林听见命令，知道对方正是先前来认弟的人，却得不到一句解释。绷紧的索把船尾带偏，贺竭力控向；林坐稳握剑，只剩切索这一瞬，施术留到下一章紧接发生。\",\n  \"characterGoals\": \"林要把真实拘束和提前开船变成及时报警，并随贺保住三人的可见位置；贺要追上自己的雇工，陆要护账逃查，不让跟船者靠近。\",\n  \"conflict\": \"公告亥时不能替代眼前戌初的动作，巡艇须走实体水路；不跟就丢视线，跟近又被同阶伙计以轻钩和船桩拖偏。林的伤势不允许跳船硬夺钩，贺独驾小船难以同时控向和解索。\",\n  \"choice\": \"林先报警而后登船，贺在没有许诺冲撞的情况下根据实见拘束决定跟进；陆选择命伙计拖开来船，林不再把救弟之情当作对方会合作的保证。\",\n  \"cost\": \"贺船被钩索拖偏，已离开原可稳守观察位；巡艇尚未到场。此刻没有施剑、没有船底破损、没有人获救，林只有短时握剑许可，下一瞬必须付出已定施术成本。 凝元伙计一次送钩支出半成真元，自身保守余量五成降至四成半，钩挂稳即停术；后续拖力由船行、普通索具和艉桩承担，不收持续施术费，也不能持续遥控钩索转向。\",\n  \"threads\": [\n    \"th_03\",\n    \"sec_02\"\n  ],\n  \"endState\": \"244戌初，三人仍在驳舱，陆在驳上护原账，轻钩已挂贺船拖环、索另一端系驳艉桩。林敲钟已获岗役回应，现扶栏登船坐稳握剑，尚未施术；贺控向。44从切索同一瞬接续，不能重报一次警、重登一次船或提前给唐点货夹内容。 送钩伙计已停御物，余四成半；拖力在普通索具与船桩上，断索即失去物理拖曳，不另添术法反噬。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_15\",\n    \"char_16\",\n    \"char_22\"\n  ],\n  \"location\": \"loc_23天宝外港公共岸钟、近岸船位与浅沟小出口\",\n  \"storyTime\": \"第244日戌初；从实见三人被推舱至钩索拖偏贺船\",\n"
+              },
+              {
+                "sourceId": "plan/chapters/44",
+                "quote": "{\n  \"id\": \"chapter-44\",\n  \"chapterNumber\": 44,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"浅滩一剑\",\n  \"summary\": \"紧接43章244日戌初钩索拖偏的瞬间，林坐稳只用一次剑诀切断外露索，付二成真元、剑热停术。舷边收余索的伙计因驳艉骤摆、脚下湿滑失足跌水，陆驳转向时艉部被旧护桩顶住，陆和另一伙计忙撑篙脱困。林亲见本次唯一余刃在两丈界内散尽；唐趁看守离开推开未锁死的舱门外搭扣，先扣住短跳板验板身和搭点。贺宁可撞裂自船底也把船头搁在沙舌，实际停到板端下面；唐见船位和护桩仍稳才放板。林看见陆提原账箱向船头去，却在余刃已散后先递固定浮圈给刃路外、正抓舷侧垂索的落水者。许、冯、唐依次趴板过船，唐带出自己挂着的点货夹。陆见巡艇灯接近，取舍保原账，撑开驳船逃向深槽。\",\n  \"characterGoals\": \"林要保住工人和落水者，不以腿伤硬拼；贺要给三人提供可踩住的逃生落点；唐要带两名同伴出舱并保住自己经手的点货夹；陆要保住原账、躲过巡查，不愿为困住贺船把自己留在浅沟。\",\n  \"conflict\": \"驳船提前离开原定过闸路线，巡艇要绕外弯赶到。陆与两名伙计均凝元，正面久战林贺无胜算；断索和护桩只提供十余息转移窗口，贺若怕损船，跳板下就没有稳定落点。\",\n  \"choice\": \"林看见可追原账的方向，仍先把固定救生浮圈递给落水对手，不追陆；贺主动搁浅接板，唐先放许冯过船再带点货夹离开，救人分步不代表放弃另两人。\",\n  \"cost\": \"林一次剑诀支出二成真元，剑体热而停用；贺船底碰裂，三人暂上船但不能出海追击。原账随陆逃走，半页来源仍须核对；林不跳船不提整个人，腿因晃动酸胀，需再复查。 出剑前沿用239日复测的保守余量五成，一式二成后余三成；二成已含剑的供能，之后不再御物，浮圈用手递。剑独立散热，不能借散热把真元账重置。 送钩伙计承接43章四成半真元，44章没有再施术；断索、船摆和失足属于普通受力与站位后果，不扣寿储、不凭空封住其修为。\",\n  \"threads\": [\n    \"th_03\",\n    \"sec_02\"\n  ],\n  \"endState\": \"244夜，唐、许、冯到贺船，唐留着点货夹；落水伙计抓浮圈在船侧，待已到船上的唐与许协力拉上来。陆和另一伙计带原账驶离，巡艇灯已转过外弯。另两名工人不在林视野，不能认定在逃船上。林剑热、真元已减，贺船搁浅破底，不能续追；点货夹尚未启读和比对。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_15\",\n    \"char_16\",\n    \"char_22\"\n  ],\n  \"location\": \"loc_23天宝外港货院、公共码头、潮沟及船坞\",\n"
+              },
+              {
+                "sourceId": "plan/chapters/45",
+                "quote": "{\n  \"id\": \"chapter-45\",\n  \"chapterNumber\": 45,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"船底向着天空\",\n  \"summary\": \"244夜巡艇分趟接人，贺最后离开自己的裂底船。245晨，唐在医棚清点到第三个名字就停下，吴卢没人应声；林接过他自愿交出的破夹，发现救到人的那只手也没能带回整本账。贺没有责怪唐，午后到船坞看人把船拖上架，付尽最后48枚；船底向着天空，她第一次从这面看见自己多年补过的木板。林拿着追案草稿想开口，贺问三个人今晚睡哪里，他把草稿折回去。246比号及旧岸仓查空作为同一封回告到达：残联批号与苏信相同，仍不能证明军需真伪，两人也不在旧仓。林留签认拓本、原物交巡查，收起父亲路线抄图，随贺先给三人留住处。章末唐仍按习惯铺了五个人的位置，空着的两处使救援的胜利第一次显出缺口。\",\n  \"characterGoals\": \"贺要面对船损并接住已救者的生活；唐想找齐五人，许想摆脱这趟危险；林必须决定是将新线索转成自己的追案机会，还是留下承担救人之后的责任。\",\n  \"conflict\": \"船能修，分散的五个人却不能靠付款立刻重聚；林得到父案关联，贺和工人得到的首先是失去营生与空位。\",\n  \"choice\": \"林收回追案草稿，把新同号线索交巡查继续核实，先与贺安置三人；贺付尽修船款，仍不要求工人用口供补偿自己。唐留下两处空位，许明确提出自己不愿一直等待。\",\n  \"cost\": \"贺245午实付48修船款，60储备在先前买符12后全部用尽；修补含拖船进坞，255午才满十日。林三日轻役至247，不再练剑，个人余1枚、食宿已付至250；没有新寿源。夹联撕缺、原账未取，追查两人受阻。 作者执行依据（过程在场间完成，正文按人物当场选择展开）：唐主动交油布点货夹，指明244装货陆让他持交接联清点，许把旧箱封取下交他夹存；夹边在离舱时被门刮裂，只剩半联。巡员先逐件记形状与发现经过，许另述摘封，林不把这份说法当作独立军需验印。 245午船坞把贺的裂底船拖进坞，报价48含拖移、底板和拖环修理；贺当场付清余48，工单写245午开工、255午满十日交检，修好须验水，不能250提前出船。 246林带苏信原件到记录室，唐许在场，核残联仍完整的批号、旧货封号和苏信摘录一致；其余缺页、验印和是否套号待追查。原物由巡查封存，林与贺取当场签认拓本和收据，没有拿走完整原账。\",\n  \"threads\": [\n    \"th_03\",\n    \"sec_02\"\n  ],\n"
+              },
+              {
+                "sourceId": "plan/chapters/47",
+                "quote": "{\n  \"id\": \"chapter-47\",\n  \"chapterNumber\": 47,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"换一条船\",\n  \"summary\": \"251日，停接新单使贺的货主当面改找别船。程亲自来到公共装货口，以陆船真实刮损继续指她先冲船，又说愿安排一条替船接下这批货，只要她先把扣工陈述改成误会；他没有出示两人的下落，只把空运单推过来。贺不是不动心：自己船还在架上，下一顿和下一单都要重来。林脱口说由自己赔，摸到最后一枚又住口。贺看向正在争货序的接手船管，转身把自己排好的装货次序交过去，让原货主的粮药按期走；回来将未签的空单放回程面前，说船可以不是自己的，人也不能替他改成自愿留下。程收走空单，保留反诉，不再给她这个条件。林已经付尽最后一枚食宿钱，无法兑现方才的包赔。贺和他留在装货棚，看着本该由自己承运的货离开；次日程序沿原安排进行，拒绝的代价先落在眼前这条离港的船上。\",\n  \"characterGoals\": \"程要以真实船损和替船生意迫使贺撤回扣工陈述，不想承认下落；贺要保住客户信用，却须决定是否用工人的说法换复业机会；林必须放弃包赔姿态，承担自己能做到的实际工作。\",\n  \"conflict\": \"程递来的不是虚幻奖赏，而是贺失去的眼前生意；同意就可能把尚未找到的两人重新说成自愿。林无法替她补偿这次拒绝。\",\n  \"choice\": \"贺把装货次序交给接手船管保住货主行期，将程的空单退回并拒改陈述；林收回包赔空话，找齐原始钟报与救助记录，支持她接受失单后果。\",\n  \"cost\": \"贺的48修船款已付、船未到255交检日，资格又暂停，新运单撤回。林将余1付251–260食宿后现金为0，无新寿源，无未来航款可挪用。 程只是提出替船安排，没有实际租到或交付船、付赔款；贺未签，不能记作曾获得新船又归还。会面在既有受护公共装货口，双方均沿原港内许可活动，未施法。 场间续接约束：钟报与245救助记录送核作为场间安排，252事故与扣工分开核证。唐自愿作证，许只答应一次后补工，冯休养。林付完251–260食宿，和贺站在受护装货棚里看货离开；没有再进行一轮逐项对账。\",\n  \"threads\": [\n    \"th_03\",\n    \"sec_02\",\n    \"th_01\"\n  ],\n  \"endState\": \"251暮，商盟仅暂缓贺新接运单而未定罪；252安排事故与扣工分别核证。吴卢仍未找到，陆尚未到案，原账未取。林现金0、基础食宿已付至260，贺船仍在坞，冯没有被迫出庭。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_14\",\n    \"char_15\",\n    \"char_22\"\n  ],\n"
+              },
+              {
+                "sourceId": "plan/chapters/48",
+                "quote": "{\n  \"id\": \"chapter-48\",\n  \"chapterNumber\": 48,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"门内的两个人\",\n  \"summary\": \"252日林贺随车夫到北三水台：返单指得出公共卸货口，却指不出哪扇门；林按伤限坐在路口，巡查接手公开入口排查，外线到此收束。主体转入吴伍、卢小满的独立视角。两人已在无牌附棚，不知道外面有人查到附近。看守让他们分开报下一趟是否继续做工，许诺答应就先让一人到门口透气，却始终不把门打开；吴怕先拒的人被独留，替卢说愿意。卢当面打断他：自己要出去，也不想再上船。吴第一次听见同伴和自己不是同一个答案。两人争过后商定，愿不愿跟谁走都各自说，不能再让另一个人代答。傍晚看守再问，吴撤回替卢的承诺，也要求出门；看守把外闩落下，明说等陆头来再谈。卢没有再求吴带他走，只把自己的外衣系好，坐到门边。读者确认两人仍在扣押，林贺尚不知道位置和这些谈话；下一次有人到门前，两人将自己回答。\",\n  \"characterGoals\": \"吴想和同伴一起脱身，起初以为先替两人答应能换开门；卢要自己决定是否回船，拒绝再次被同伴或雇主代答。外线林贺只把范围交给巡查，不用未知内情强闯。\",\n  \"conflict\": \"看守把暂开门的许诺与同意继续做工捆在一起，却不真正放人；吴的保护心也可能抹掉卢自己的选择。两人只有普通人力量，无法凭争执就穿过外闩。\",\n  \"choice\": \"卢公开拒绝吴替自己答应下一趟，吴最终撤回代答、同样要求离开。二人决定到门前时各自说，不再接受一个人先走、替另一个人许诺的条件；林贺在外线止于已核公开范围。\",\n"
+              },
+              {
+                "sourceId": "plan/chapters/48",
+                "quote": "    \"252外线仅用一个未找到人的结果转场：车夫指到公共卸货口便认不出门，林按复诊限制坐下，贺将范围交给巡查。事故核证及回访按cost已发生，停牌仍在，不开庭审或试注场。随后切入读者独有的门内视角，外线人物没有得到精确位置。\",\n    \"转吴卢独立视角：普通附棚内，吴在门边看地上光线，卢靠墙收好自己的外衣。两人没有修为，也不知道林贺正在外面找。原看守隔门要求逐人说是否愿意继续干下一趟，声称同意可先让一人到门口透气，但门始终未开。\",\n    \"吴抢先替两人答应，怕卢被单独留下。卢从墙边站起来打断，说自己要出去、出去后也不想再上船。吴问不跟船怎么活，卢答没有想好，但这不该由吴替他决定。二人第一次争的不是怎么一起逃，而是离开以后能否各选一条路。\",\n    \"吴沉默后撤回替卢的答应，隔门说自己的要求也是离开；不再用卢的未来换一个开门许诺。看守落外闩，说等陆头来再安排，门没有打开。卢把外衣系好坐到门边，吴坐在另一侧，约好若有人来问，每个人说自己的话。以未获救但已作出选择收尾，外线没有因此得到声音、纸条或定位。\"\n  ],\n  \"source\": \"author\"\n}"
+              },
+              {
+                "sourceId": "plan/chapters/50",
+                "quote": "{\n  \"id\": \"chapter-50\",\n  \"chapterNumber\": 50,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"门闩交给谁\",\n  \"summary\": \"254晨，陆带巡查到北三门。看守称吴伍、卢小满是自愿留下候工，贺在门外喊名，两人却要求出去。看守急着合门，吴卢从内侧顶住，旧押运头目陆被喊来帮忙压门。林原已握住剑柄，见门缝里露出两人的手，松开剑，让巡员走到能听清回答的位置，要求当面问他们是否愿留。陆伸向木闩的手停住，转而向外拉；一名巡员夺闩控制持闩者，另一名截住想退向后巷的看守。吴卢自己推开门走进外院。吴指认陆曾把他们点交到这里，陆当着巡员承认，不再用认路掩盖押送。贺说船修好便能接他们回去，吴却说回不回船要由他们自己定，卢也不愿立即上船。贺让开去船坞的方向，先陪两人去安全落脚。五名雇工至此全部脱控；被谁雇用、为谁作证，仍由他们自己回答。\",\n  \"characterGoals\": \"吴卢要走出门并决定自己的去处；贺想救回原班雇工，却须接受他们未必再上自己的船；陆想把自己限定为带路人，旧手下和吴的当面指认迫使他决定是否继续参与扣人；林要让工人的亲口选择被现场听见，巡员要核实是否自愿并制止实际拦阻。\",\n  \"conflict\": \"看守以自愿候工掩饰扣人，试图在巡员听到工人回答前合门；陆若顺着旧同伙压门，还能维持正常押运的说辞。开门不需要一场越阶胜负，真正改变局面的是吴卢当面拒绝、陆拒绝继续扣人及巡员亲见拦阻。贺接回人后还要面对他们拒绝立即回船。\",\n  \"choice\": \"林松开剑柄，把门前位置让给能现场处置的巡员，请其直接问吴卢，而不替他们宣布愿意去哪。吴卢自己顶门、要求离开；陆改为外拉木闩，协助控制旧手下，承认本次点交押送并接受继续看护。贺接受二人不立刻回船的回答，先安排安全落脚，不以救命索取服从。\",\n  \"cost\": \"林只短走和肉身握持，未施剑诀或御物，沿用252复用检查后保守余量三成半；不因数日间隔算满，也不放宽旧掌腿的短走、受限握剑和不负重限制。陆公开站到旧手下的对面并承认本次押送，不能再只以认识路解释到场，协助不换免罪。贺现金仍0、船至255午才交检，即使救齐五人也不能承诺恢复原班营运。两名普通看守和陆的本次行为已有现场见证，完整改签与原账则仍待另查，不以这次控人替代全案证明。\",\n  \"threads\": [\n    \"th_03\",\n    \"sec_02\",\n    \"th_02\"\n  ],\n"
+              },
+              {
+                "sourceId": "plan/chapters/50",
+                "quote": "  \"endState\": \"254晨，吴伍、卢小满自己走出北三门到安全外院，和244获救的唐许冯合计五人脱控；两名未入境普通看守均被巡员控制。陆当面承认本次点交押送，继续受看护，尚未写出完整改签自述。林未施术，保守余量三成半，旧伤许可不变；程不在现场，林不知道其位置或第二片封匣状态。吴卢拒绝立即承诺回贺船，贺接受先安置、再分别谈去留。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_15\",\n    \"char_16\",\n    \"char_24\",\n    \"char_25\"\n  ],\n  \"location\": \"loc_23天宝外港北三水台无牌附棚门口与外院\",\n  \"storyTime\": \"第254日清晨\",\n  \"scenes\": [\n    \"254晨，陆随两名原有巡员从废砖甬道到北三门，林贺在外院等认人。门内是普通转运附棚，两名未入境看守守着吴伍、卢小满。看守见陆，先说人自愿留下候工，今天正等陆头安排下一趟。贺喊两人名字，吴在门后回应说要出去，卢也出声；巡员能听见双方回答。\",\n    \"看守试图合上向外开的门，一人压门、一人抱外侧木闩准备落托。吴卢从里面合力顶住半开的门。林手握剑柄，见门缝里两只手仍抓着门边，松开剑，退开让巡员贴近门口，要求当面问两人是否愿意留下；他不施术，也不拿自己的判断代替回答。巡员明确要求门内的人自行出来说话。\",\n    \"持闩看守喊陆头来帮忙压门。陆伸手后停了一瞬，改握闩外端向外拽，第一名巡员同时扣住持闩手腕、夺闩并把人带离门扇。另一看守想退向后巷，第二名巡员已经站住那条普通窄路，扣腕转身将其控制。两名看守都无修为，未用法阵或高阶器物；陆只用肉身协助一根木闩，随即仍留在两名巡员可见的院墙边。\",\n    \"吴卢把门推开，自行跨过平整门槛到外院，贺在门外接应。吴看清陆，指出就是他把这一趟人点交进棚；陆当着巡员承认。巡员先安顿两工和两名看守，不在门口延长讯问；陆不争辩、不要求二人替自己作保，也没有借混乱离开。所承认的仅是本次押送，220夜改签仍须另行核实。\",\n    \"贺告诉吴卢，船明日交检，修好后可以接他们回去。吴说回不回船要自己定，卢明确说暂时不再上船。贺原要带他们往船坞方向走，停下后转向港务救助处，只问两人愿不愿先找地方休息。他们点头，跟着自己选的路离开。林收好入口图，留两名巡员记录亲见的拦阻和回答；本章以工人真正脱控及第一次去留分歧结束。\"\n  ],\n  \"source\": \"author\",\n  \"executionChecks\": [\n    {\n      \"id\": \"workers-choice\",\n"
+              }
+            ],
+            "revisionAdvice": ""
+          }
+        ],
+        "modelResponses": [
+          "{\"requestId\":\"review_0ed229a34a653c06d30f9ca7\",\"summary\":\"两场救援在提案中对象、触发、选择、行动与后果均已区分；第43→44→45章的报警、切索、转移与后续接人衔接明确。33—50章还将个人救援、三人转移和吴卢自主脱控递进为不同层级的困境与选择，未重复消费同一救援。\",\"checks\":[{\"criterion\":\"causality\",\"verdict\":\"pass\",\"explanation\":\"第37章拟发生的是林、贺在核查领货人时遭遇木仓起火：林先看见携页者逃向侧巷，因未知身份者求救而放弃追页，在仓外钩闩、撑门，由陆沉川自行爬出、水手接应；代价是掌伤、携页者与火因仍未明。第44章不是重做该火场救援：其前置是第43章亲见唐、许、冯被推入低舱，林先报警、贺为不失视线而跟船，陆命人以轻钩和船桩拖偏贺船。第44章紧接同一瞬间切索，利用护桩造成的短窗口，由贺搁浅承板、唐先放许冯过板；林放弃追带原账逃离的陆，改救落水伙计。第45章只完成第44章末明确尚未完成的“唐许拉落水者上低舷、巡艇分趟接人”，没有再报警、再切索或重置救援窗口。陆在37章被救、44章主动护账拦船、49—50章才在受看护下指路并承认本次押送，责任没有被转移或因获救而豁免。\",\"evidence\":[{\"fragmentId\":\"e107\"},{\"fragmentId\":\"e108\"},{\"fragmentId\":\"e120\"},{\"fragmentId\":\"e121\"},{\"fragmentId\":\"e122\"},{\"fragmentId\":\"e123\"},{\"fragmentId\":\"e124\"},{\"fragmentId\":\"e125\"},{\"fragmentId\":\"e126\"},{\"fragmentId\":\"e135\"},{\"fragmentId\":\"e137\"},{\"fragmentId\":\"e139\"}],\"revisionAdvice\":\"\"},{\"criterion\":\"opening\",\"verdict\":\"pass\",\"explanation\":\"33—37章先以失箱调查和唐带五人失败脱身建立“人仍被控制、外线不知道位置”的困境；37章救出的是单列的陆沉川，且林为未知者放弃追证，五工并未因此获救。40—45章将目标转为贺的五名雇工：贺撤缆失单、唐在受理现场实际被拦、林贺以测深和退路准备而非强闯，43—45章才以报警、船损和原账逃失换回唐许冯。47—50章没有把三人获救当五人结案：外线排查失败后转入吴卢在附棚中拒绝互相代答的独立选择，50章由两人亲口要求离开、林让巡员现场听答、陆停止协助扣人，二人自行出门；贺又接受他们不立即回船。故两场救援分别呈现未知者与证据的取舍、有限水上转移的损失，以及当事人自主脱控与去留，困境、人物选择、损失和后续行动均递进。\",\"evidence\":[{\"fragmentId\":\"e105\"},{\"fragmentId\":\"e106\"},{\"fragmentId\":\"e107\"},{\"fragmentId\":\"e114\"},{\"fragmentId\":\"e116\"},{\"fragmentId\":\"e118\"},{\"fragmentId\":\"e120\"},{\"fragmentId\":\"e122\"},{\"fragmentId\":\"e125\"},{\"fragmentId\":\"e130\"},{\"fragmentId\":\"e132\"},{\"fragmentId\":\"e134\"},{\"fragmentId\":\"e137\"},{\"fragmentId\":\"e138\"}],\"revisionAdvice\":\"\"}]}"
+        ]
+      }
+    }
+  ],
+  "changedSources": [
+    {
+      "id": "world/artifacts/art_03",
+      "sha256": "1a0060c815e1df00846151997d818e5103e08ebd2481fce0ad6209616454986f",
+      "reviewedIn": [
+        "world",
+        "power"
+      ]
+    },
+    {
+      "id": "story/characters/char_04",
+      "sha256": "2367fe28b87d6c2cda12cc229d09ba9f1d25f7bf246958b1a2f28dc404740117",
+      "reviewedIn": [
+        "world",
+        "power",
+        "characters",
+        "story"
+      ]
+    },
+    {
+      "id": "story/chapterPlans/chapter-plan-23",
+      "sha256": "c003e5ab2fc8127bf90f8ab1484e1ab313a15b426f1f110ad81511f1b904e9ae",
+      "reviewedIn": [
+        "power"
+      ]
+    },
+    {
+      "id": "plan/milestones/ms_v2_boundary",
+      "sha256": "9534dab127746f185348cdeb1e77928b92cee455c48cd5ccf56ba7c202fcad55",
+      "reviewedIn": [
+        "world",
+        "power",
+        "characters",
+        "story"
+      ]
+    },
+    {
+      "id": "plan/chapters/23",
+      "sha256": "b38d593f3b2f480910f542ff8309fc24b8b033081124368f9487caa3e5a0050b",
+      "reviewedIn": [
+        "power"
+      ]
+    }
+  ],
+  "protectedAfter": {
+    "protectedHash": "b3aa7277292c1e74a5b411926af4c3aab28d0b69ff67a2a0603cd4165184d47d",
+    "plans": 68,
+    "chapterVersions": 101,
+    "events": 383,
+    "manuscripts": 1,
+    "candidates": 116,
+    "approvedPlan": 10
+  },
+  "originalSourcesUnchanged": true,
+  "allResponsesReplayed": true,
+  "modelCalls": 4,
+  "replayModelCalls": 0
+}
