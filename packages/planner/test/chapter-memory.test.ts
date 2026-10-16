@@ -50,6 +50,31 @@ test('a replacement writer never receives current, future, invalidated or foreig
   assert.deepEqual(f.sent().adoptedKnowledge, []);
 });
 
+test('writing context preserves separate resource uses and intermediate artifact transfers beyond the recent-event window', async () => {
+  const f = fixture();
+  const additions: StoryEvent[] = [
+    ...[3, 4].map(chapterNumber => ({ ...f.facts[0], id: `dose-${chapterNumber}`, chapterNumber, chapterVersionId: `v${chapterNumber}`,
+      predicate: 'dose_used', value: { amount: 1, recipient: 'hero' }, storyTime: chapterNumber,
+      evidence: `第${chapterNumber}章完成一剂疗程` })),
+    ...[[10, 'hero'], [12, 'rival'], [15, 'hero']].map(([chapter, holder]) => ({
+      ...f.facts[1], id: `sword-${chapter}`, chapterNumber: Number(chapter), chapterVersionId: `v${chapter}`,
+      value: holder, storyTime: Number(chapter), evidence: `第${chapter}章宝剑实际转交给${holder}`,
+    })),
+  ];
+  additions.forEach(e => f.work.events.set(e.id, e));
+  const before = structuredClone(f.work);
+  const context = contextManifestFor(f.work, 31, { maxEvents: 1, maxVersions: 1 });
+  assert.equal(context.requiredMaterialStatus, 'complete');
+  await f.provider.generateChapterAsync({ work: f.work, chapterNumber: 31, context });
+  const facts: StoryEvent[] = f.sent().adoptedFacts;
+  assert.deepEqual(facts.filter(e => e.predicate === 'dose_used').map(e => e.id), ['dose-3', 'dose-4'], 'two identical doses are two paid uses');
+  assert.deepEqual(facts.filter(e => e.eventType === 'artifact_change').map(e => e.value), ['rival', 'hero', 'rival', 'hero'], 'final ownership cannot replace custody history');
+  const limited = contextManifestFor(f.work, 31, { maxEvents: 1, maxVersions: 1, contextBudget: 1 });
+  assert.equal(limited.requiredMaterialStatus, 'needs_split');
+  assert.deepEqual(limited.includedEventIds, context.includedEventIds, 'capacity pressure must not silently discard required history');
+  assert.deepEqual(structuredClone(f.work), before);
+});
+
 for (const maxEvents of [240, 1]) test(`writer preserves verified same-chapter transitions in the selected ${maxEvents}-event context`, async () => {
   const { work } = eventOrderFixture();
   const context = contextManifestFor(work, 2, { maxEvents });

@@ -1467,6 +1467,11 @@ export function contextManifestFor(work: Work, chapterNumber: number, policy: Co
   }
   const selected = new Map<string, StoryEvent>();
   for (const event of [...latestByState.values()].sort((a, b) => a.chapterNumber - b.chapterNumber)) selected.set(event.id, event);
+  // Resource records may be individual receipts/uses rather than balances.
+  // Lifetime quotas, repeated costs and an artifact's custody chain cannot be
+  // reconstructed from the last value alone. Keep their complete active history;
+  // the context budget below must report overflow instead of cutting this tail.
+  for (const event of allEvents) if (event.eventType === 'resource_change' || event.eventType === 'artifact_change') selected.set(event.id, event);
   for (const event of allEvents.slice().reverse()) {
     if (selected.size >= maxEvents) break;
     selected.set(event.id, event);

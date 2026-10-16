@@ -48,5 +48,8 @@ export function assertEventOrderStates(work: Work) {
   const context = contextManifestFor(work, 2, { maxEvents: 1 });
   assert.equal(context.requiredMaterialStatus, 'complete');
   assert.ok(context.includedEventIds.includes(resourceStateAt(work, 'stone', 'balance', 1)!.sourceEventId));
-  assert.equal(context.includedEventIds.length, 11);
+  assert.equal(context.includedEventIds.length, 15);
+  for (const event of work.events.values()) if (event.active && ['resource_change', 'artifact_change'].includes(event.eventType)) {
+    assert.ok(context.includedEventIds.includes(event.id), 'limited context retains usage occurrences and custody history');
+  }
 }
