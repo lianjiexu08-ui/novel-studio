@@ -6,6 +6,7 @@ export interface ReviewSourceInput {
       mode: 'whole_input' | 'local_sources' | 'reports_with_context';
       sourceLengths: Record<string, number>;
       sourceNames?: Record<string, string>;
+      sourceRelationships?: Record<string, { fromCharacterId: string; toCharacterId: string; fromName?: string; toName?: string; kind?: string }>;
       planRanges?: Array<{ sourceId: string; startChapter: number; endChapter: number; title?: string }>;
       synthesis?: { scope: 'partial_reports' | 'complete_reports'; coveredStageIds: string[]; totalStages: number };
     };
@@ -49,7 +50,10 @@ export function reviewSourceCoverage(input: ReviewSourceInput): SourceCoverage[]
     }
     const status = invalid ? 'unknown' : !fragments.length ? 'absent' : contiguous && end === length ? 'complete' : 'partial';
     const chapter = /^plan\/chapters\/(\d+)$/.exec(id);
-    const name = coverage.sourceNames?.[id] ?? coverage.planRanges?.find(range => range.sourceId === id)?.title
+    const relationship = coverage.sourceRelationships?.[id];
+    const endpoint = (id: string, name?: string) => name ? `${name}（${id}）` : id;
+    const relationshipName = relationship ? `${endpoint(relationship.fromCharacterId, relationship.fromName)} → ${endpoint(relationship.toCharacterId, relationship.toName)}` : undefined;
+    const name = relationshipName ?? coverage.sourceNames?.[id] ?? coverage.planRanges?.find(range => range.sourceId === id)?.title
       ?? (chapter ? `第${chapter[1]}章章纲` : id === 'plan/overview' ? '全书计划概要' : undefined);
     return { id, name, length, status, fragments };
   });

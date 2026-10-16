@@ -51,3 +51,17 @@ test('navigation labels use saved range titles and chapter numbers without imply
   assert.deepEqual(rows.map(row => row.name), ['第18章章纲', '付费北航']);
   assert.ok(rows.every(row => row.status === 'absent'));
 });
+
+test('relationship labels retain direction and distinct IDs without implying that unread material was supplied', () => {
+  const input: ReviewSourceInput = { sources: [], stage: { sourceMap: [], coverage: { mode: 'local_sources',
+    sourceLengths: { 'story/relationships/r1': 100, 'story/relationships/r2': 90, 'story/relationships/legacy': 40 },
+    sourceRelationships: {
+      'story/relationships/r1': { fromCharacterId: 'a', toCharacterId: 'b', fromName: '林辰', toName: '林辰', kind: 'trust' },
+      'story/relationships/r2': { fromCharacterId: 'b', toCharacterId: 'unknown', fromName: '林辰' },
+    },
+  } } };
+  const before = structuredClone(input), rows = reviewSourceCoverage(input)!;
+  assert.deepEqual(rows.map(row => row.name), ['林辰（a） → 林辰（b）', '林辰（b） → unknown', undefined]);
+  assert.ok(rows.every(row => row.status === 'absent' && row.fragments.length === 0));
+  assert.deepEqual(input, before);
+});
