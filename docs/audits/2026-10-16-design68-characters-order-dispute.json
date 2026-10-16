@@ -1,0 +1,66 @@
+{
+  "kind": "design68_character_synthesis_evidence_chain_conflation",
+  "observedAt": "2026-10-16T12:58:29.980Z",
+  "inputHash": "3274d4710800ad02565040a341a05177b4bd7cab363e169219b562a4a0f62d01",
+  "runId": "design_run_e6579c46-fdf6-4267-ae5b-4bc50a1ddb03",
+  "stageId": "synthesis-10",
+  "snapshotPath": "data/audit-runtimes/design68-review/characters-order-dispute.json",
+  "snapshotSha256": "ee8349b54a2f3a98ead7a9a27140e8ad0b64aab2722c53b12aa1290968f8f76e",
+  "requestSha256": "8a8258d3ca7312be4cae71fa6ded89a395c40885cbe635690c86395d9f84eac8",
+  "frozenSourceFilesVerified": 153,
+  "savedResponsesReplayed": 1,
+  "originalCheck": {
+    "criterion": "knowledge",
+    "verdict": "pass",
+    "explanation": "赵玄极的秘密知情阶段已按实际收报、签令、回执和当面报告拆分：33—52章未收到港口新报；53章只知程第一报中的转述与自述，不知道令是否送达；54—72章只确认旧令送达；73章通过程当面报告取得第二轮有限信息；88章才读押运报告；90章签撤人令但不知执行结果；98章只听程在逃离前的亲历；99章才通过正式质询材料承担本批命令的可核责任。各阶段都明确禁止由读者视角、他人文书或未发生结果补全认知。林辰、苏凌霜也未因赵方文书或异地事件自动获得信息，父案证据按署名图、巡档副本、当面交接和原令逐步推进。秘密真相仍限定为阶段性证据链，百章不包办九鼎全图、父案全貌或未在场者认知；因此人物选择具有信息限制和因果，而非全知推动。",
+    "revisionAdvice": "",
+    "evidenceCount": 15
+  },
+  "disputedPhrase": "父案证据按署名图、巡档副本、当面交接和原令逐步推进",
+  "suppliedChildCorrection": {
+    "stageId": "followup-cross-1-5/knowledge",
+    "quote": "父案证据仍按署名图、巡档副本、当面交接、外山存根递进"
+  },
+  "sourceEvidence": [
+    {
+      "id": "story/secrets/sec_01",
+      "sha256": "75558a49a376a0ab0251fbc4a2cde01b5c3bd26a7157460ba6e0897ebc6ce18e",
+      "quote": "18/27章旧图与刻痕为起点；66章巡档副本、72章当面交苏、85章外山原存根互证父亲守门参与与掩案。十年前投毒与完整守门牺牲的证据保留给后续450章主线，不以留影或残片共鸣补齐。",
+      "knowledgeStage": {
+        "characterId": "char_01",
+        "sinceChapter": 85,
+        "untilChapter": 100,
+        "certainty": "confirmed",
+        "belief": "三份原始记录支持父亲守门参与与外山掩案责任；投毒与十年前完整因果仍未证实。",
+        "trigger": "85章外山仓取存根，与第18章旧图及北境副本对照。",
+        "consequence": "拒绝把梁九的未见之事写成指控。",
+        "forbiddenInferences": [
+          "不能从局部证据推知九鼎全阵、父案全部凶手或未在场者所知。",
+          "不能以残片感应、圣器留影、神念全知替代实际消息和证据。"
+        ]
+      }
+    },
+    {
+      "id": "plan/milestones/ms_v3_advancement",
+      "sha256": "1c61989a441c2bbc9e81f9f23b2e83d800b8a146d32d11114d0edd6ace3de199",
+      "quote": "第83章林在顾监督下完成突破并实际支付。第85章苏与韩在旧外山修缮仓找到父亲署名的移交存根，与林第18章旧图和夜带来的副本逐项对照，确认父亲护送撤离者、掩案者改写伤亡。第87章梁九拒绝指认自己未见的投毒者，却指出本批证人将被塞进同一种运料车；赵的玄府亲卫接管该批押送。"
+    },
+    {
+      "id": "plan/milestones/ms_v3_convoy",
+      "sha256": "a3b8a9fc8fceed59206f5881c0cc0ffe332b53c03b9c369935e2aeebdce19e52",
+      "quote": "认知：实际撤人令和亲历者支持追究赵本次行动，不能证明所有皇族、九鼎全阵或十年前的全部杀人细节。"
+    },
+    {
+      "id": "story/arcBeats/message-withdraw-seized",
+      "sha256": "54d2e1f4f4d58432ae548e10fa68375efed4e4c4ae127e2260f179b937732198",
+      "quote": "规划锚点（非采纳事实）：第95章第436日。顾与祁交锋牵制，林救人放过程；前车四人下地、林伤退后，祁为保住赵亲签原令及自己的申辩机会命押卫停斗，随后交械、令后车放人，亲手把随身撤押一号交苏在见证员面前收存；此后梁才分两趟将八人送药棚，原令交接不以尚未完成的两趟送医作为前提。顾不承诺免罪，祁仍须回答本人具名接押与毁页责任。苏与林当面核看，原令和己方改账页分别保全。林顾对的仍是原两名玄府，祁带伤接受顾监管，不新增第三名，不用真光或普通绳索封禁境界。"
+    }
+  ],
+  "adjudication": "The synthesis wording replaces the father-case archive stub with the current convoy order, conflating two evidence chains. The delivered child report already distinguishes them. The frozen design uses chapter85 archive records for father participation/concealment and chapter95 withdrawal order for the current convoy action. Neither establishes the complete poisoning case or all Nine-Cauldron secrets.",
+  "correctionForReconciliation": "父案证据按署名图、巡档副本、当面交接与外山原存根递进；第95章取得撤押原令后，才据其推动本次押运命令的问责。",
+  "originalVerdictChanged": false,
+  "productionWrites": 0,
+  "modelCalls": 0,
+  "questionsClosed": 0,
+  "limitation": "This records a specific explanation error, not a new source-design defect or a formal reversal of pass. Character synthesis and story review remain unfinished. Inspect later reports for propagation and preserve the original response; do not rewrite correct novel sources to match the conflation."
+}
