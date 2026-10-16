@@ -1,0 +1,81 @@
+{
+  "kind": "design70_character_review_wording_scope",
+  "observedAt": "2026-10-16T21:22:46.617Z",
+  "runId": "design_run_dc97e1a8-48f5-4150-a877-44ea579c0dfe",
+  "inputHash": "f759ad2fcd6ab96802ceb198e778c8d8165f21de47b1a8619b63ca640e84622f",
+  "checkpointPath": "data/audit-runtimes/design70-review/characters-synthesis-dialogue-checkpoint.json",
+  "checkpointSha256": "d424163fb2ae7b1de0025ba0c523012474f55a23df960d65fb335f5f4f39e813",
+  "stageId": "synthesis-7",
+  "stageSha256": "ff1fc478716025eaa0688727962829c9bea2550a7369de7976b094339cb65473",
+  "classification": "ambiguous_summary_scope_not_proven_design_defect",
+  "originalCheck": {
+    "criterion": "knowledge",
+    "verdict": "pass",
+    "explanation": "提案持续把角色所知限制在亲见、实体传讯和当面交接范围内。古境救援中，林辰、苏凌霜在亲闻“墨少主”并由秦禾补足名牌全名后才核定墨幽屠身份；秦禾完成四里实体送图、顾峤交岗抵达并发出手势前，林苏不发动救援。港口段明确侧门领箱、吴卢内线与陆沉舟兄弟对话不自动传给林辰、贺青梧；第50章须由巡员重新当面询问吴卢。残片、货签、火案和改签也保持为局部线索或有限承认，未越级为完整父案或运输网络真相。cross-3-5 对秘密原档的历史等待已被原文复核解除，且复核结论与本批知情链相容。",
+    "evidence": [
+      {
+        "sourceId": "review-result/cross-3-4",
+        "quote": "    \"187日秦从归路侧安全岔口沿已核短支路回来，在装车区外壁后与林苏会合。他先说点检哨仍在，三人转到同一外壁的木缝观察装车棚，没有回到失去的泉货台近观察点。\",\n    \"巡守称呼“墨少主”，秦禾说明扣押时见过名牌上的全名墨幽屠，林苏据此才核定主营指挥者身份。\",\n\nEND INDEPENDENT QUOTE 3.1\n\nBEGIN INDEPENDENT QUOTE 3.2\n{\"sourceId\":\"story/chapterPlans/chapter-plan-24\",\"unitId\":\"review-unit/190\",\"start\":518,\"end\":1050,\"unique\":true}\n  \"endHook\": \"188日辰末08:45，顾带原有2名普通护卫已到主营侧廊；杜自07:00守入口，前夜休足的乔留外营，秦06:00交图后留营。林苏将在紧接的25章亲见到位手势后才发动，不能把07:00出发视作即时抵达。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_09\",\n    \"char_10\",\n    \"char_11\",\n    \"char_12\",\n    \"char_13\"\n  ],\n  \"locationIds\": [\n    \"loc_05\"\n  ],\n"
+      },
+      {
+        "sourceId": "review-result/cross-3-4",
+        "quote": "  \"arcBeatIds\": [\n    \"v1-qin-message\",\n    \"v1-du-post\"\n  ],\n  \"requiredEvents\": [\n    \"卯初05:00秦从岔口窄隙亲见两名看守解除铃绳、带走拦路杆并沿主路退回营地；待二人转过朝营的弯口，他再贴壁核实窄口无人，独自向入口轻装出发。若遇复哨先退藏的预案没有实际触发。\",\n    \"四里路约一小时，卯正06:00秦把更新图面交顾，复述墨身份、元罡与放血、囚笼和辰末转运时限。顾直接据这次到手的消息安排援救。\",\n\nEND INDEPENDENT QUOTE 3.2\n\nBEGIN INDEPENDENT QUOTE 3.3\n{\"sourceId\":\"story/chapterPlans/chapter-plan-25\",\"unitId\":\"review-unit/191\",\"start\":1145,\"end\":1714,\"unique\":true}\n    \"188日08:45，林苏在营地后方亲见顾进入侧廊并发出手势，才越出隐蔽处；秦已离开去求援，其他主营被扣者到本次行动才被解救。\",\n    \"林辰移到囚棚门外，施展一次乾元御风剑诀，支付二成真元切断束住门闩的普通吊索，再用肉身解轻扣，由苏推开棚门。本式结束即停止灌注、收起热剑，之后拨插销用的是御物，不再以发热剑体施术。\",\n"
+      },
+      {
+        "sourceId": "review-result/cross-3-4",
+        "quote": "{\"sourceId\":\"story/chapterPlans/bible-chapter-36\",\"unitId\":\"review-unit/202\",\"start\":597,\"end\":1087,\"unique\":true}\n  \"endHook\": \"225日傍晚五人仍在程记后货院控制下，唐的第一次脱身尝试失败，外口作业路径被撤。贺林未见、未收消息，仍按35所得去当夜公共交割处找陆沉川；他们不知五人具体所在。首仓火原因和发生时刻并非唐的预知或安排。\",\n  \"characterIds\": [\n    \"char_14\",\n    \"char_22\"\n  ],\n  \"locationIds\": [\n    \"loc_23\"\n  ],\n  \"arcBeatIds\": [\n    \"beat_workers_failed_exit\"\n  ],\n  \"requiredEvents\": [\n    \"唐顺独立视角，225午后五人被带到后货院分拣退包，看守跟在通外口的边门旁。唐看见空筐车通过时门会敞开，招许把空筐留到末车。\",\n"
+      },
+      {
+        "sourceId": "review-result/cross-3-4",
+        "quote": "    \"唐用随手可得的普通废木片垫住门脚，自己把吴卢和冯叫在同一队，叫许先推空筐。他没有武力，只打算趁搬工交接把五人都带过门槛。 这扇侧开木门由自身铰链承重，木片只在门脚侧轻挡回摆，没有楔紧或托住门板；空筐车尚未压上它，普通手指即可横拨，门重和筐重不落在御物目标上。\",\n\nEND INDEPENDENT QUOTE 3.5\n\nBEGIN INDEPENDENT QUOTE 3.6\n{\"sourceId\":\"story/chapterPlans/bible-chapter-37\",\"unitId\":\"review-unit/203\",\"start\":1066,\"end\":1663,\"unique\":true}\n    \"loc_23\"\n  ],\n  \"arcBeatIds\": [\n    \"beat_v23_1\"\n  ],\n  \"requiredEvents\": [\n    \"225夜林贺到公共交割处，等候时见一名伙计在外桌核纸页，侧窗内有人挪退包装，正与35章所述流程相符。拖拉声后普通灯架倾倒，油火沿邻近纸绳堆烧起，烟从主门涌出；林未见造成倾倒的那一步，不能认定故意。外桌伙计随即抱页沿侧巷逃离，林未看清纸页内容与人名。\",\n"
+      },
+      {
+        "sourceId": "review-result/cross-3-4",
+        "quote": "BEGIN INDEPENDENT QUOTE 3.8\n{\"sourceId\":\"story/chapterPlans/bible-chapter-48\",\"unitId\":\"review-unit/214\",\"start\":506,\"end\":1100,\"unique\":true}\n  \"turningPoint\": \"卢公开拒绝吴替自己答应下一趟，吴最终撤回代答、同样要求离开。二人决定到门前时各自说，不再接受一个人先走、替另一个人许诺的条件；林贺在外线止于已核公开范围。\",\n  \"endHook\": \"252暮，钟报、工人口述、拦截伙计笔录使劫船指控须继续核实，资格尚未恢复。巡查实查范围缩到北三水台周边多间转运棚，尚未认出吴卢。林掌腿可受限行动、真元经休息吐纳恢复，现金0，食宿至260。本章复诊前一小时吐纳使余量三成至四成，复用试注半成后保守余三成半，剑收起；50章门口核实时不施剑诀或御物，继续沿用三成半保守余量。 独立内线：吴卢仍在原无牌附棚，已拒绝相互代答下一趟；两看守落外闩，准备仍等陆头安排。林贺、陆及唐均未听见本章内线谈话，50须重新当面听两人回答。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_14\",\n    \"char_15\",\n    \"char_22\",\n    \"char_24\",\n    \"char_25\"\n"
+      },
+      {
+        "sourceId": "review-result/cross-3-4",
+        "quote": "  ],\n  \"locationIds\": [\n    \"loc_23\"\n  ],\n  \"arcBeatIds\": [\n    \"harbor-lu-speaks\"\n  ],\n  \"requiredEvents\": [\n    \"th_03\",\n    \"sec_02\",\n\nEND INDEPENDENT QUOTE 3.8\n\nBEGIN INDEPENDENT QUOTE 3.9\n{\"sourceId\":\"story/chapterPlans/bible-chapter-49\",\"unitId\":\"review-unit/215\",\"start\":516,\"end\":1100,\"unique\":true}\n  \"endHook\": \"253夜，陆在巡查看护下已到案，愿254晨随队从废砖甬道辨无牌附棚；弟自愿留港复核，没有被林拘禁。林知道陆承认收钱签条、指过入口，但不知条内改签全貌，也未取得原账或第二片。吴卢具体位置仍须现场见人。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_15\",\n    \"char_16\",\n    \"char_21\"\n  ],\n  \"locationIds\": [\n    \"loc_23\"\n  ],\n  \"arcBeatIds\": [],\n  \"requiredEvents\": [\n    \"th_03\",\n"
+      },
+      {
+        "sourceId": "review-result/cross-3-4",
+        "quote": "    \"sec_02\",\n    \"th_01\",\n    \"253茶摊送来哥哥约见后离港的纸条。沉川读完，把纸条交给当班巡员，搬凳子坐在原船复核岗等人。林贺来交接北三公共入口的排查范围，看见的是他自己选下的等候位置。\",\n    \"陆在岗外看见巡员，停步后仍进门，伸手要带弟走。沉川挣开，坐回登记桌，要求先说清自己217领箱的经过。陆催他趁天黑前离港，弟问220夜那笔钱和那张签条是不是也要带着躲下去。\",\n    \"弟说当夜送饭见到收钱和签字，没看清条内内容。陆先称正常押运，见弟没有起身，终于承认领钱签过条；被问写了什么时又沉默。他不再催弟出门，转身接受到案登记和看护。\",\n\nEND INDEPENDENT QUOTE 3.9\n\nBEGIN INDEPENDENT QUOTE 3.10\n{\"sourceId\":\"story/chapterPlans/bible-chapter-50\",\"unitId\":\"review-unit/216\",\"start\":1002,\"end\":1539,\"unique\":true}\n    \"254晨，陆随两名原有巡员从废砖甬道到北三门，林贺在外院等认人。门内是普通转运附棚，两名未入境看守守着吴伍、卢小满。看守见陆，先说人自愿留下候工，今天正等陆头安排下一趟。贺喊两人名字，吴在门后回应说要出去，卢也出声；巡员能听见双方回答。\",\n"
+      },
+      {
+        "sourceId": "review-result/cross-3-5",
+        "quote": "  \"disposition\": \"resolved_by_raw_review\",\n  \"checkId\": \"cross-3-5/knowledge\",\n  \"resolvedByStageId\": \"followup-cross-3-5/knowledge\",\n  \"explanation\": \"原问题要求核对墨幽屠身份、父案/残片、货运链、六号箱及苏凌霜返宗的知情时点。第23章将林辰、苏凌霜确认墨幽屠身份限定为亲闻“墨少主”并由秦禾补足名牌全名，且二人仅听到撤哨口令、不知上层催令；该安排与秘密档对两人在23—24章仅据现场见闻行动的阶段一致。第24章明确林苏未见秦禾交图、须待顾峤实际手势，符合秘密档禁止将异地过程直接变成二人消息。第25、27、28章把残片刻痕、收货号、货签和口供限制为接口或运输线索，不升级为父案影像、九鼎全图或完整网络，亦与父案秘密档的证据边界一致。第33章将六号箱侧门领取和苏凌霜返宗均置为林辰不在场的独立视角；六号箱秘密档同时规定林在32—33章尚不知去向、34章才从常钧取得有限搬运说法。因此，角色认知受亲见、当面交接和实体消息限制；林苏在救援、取证和分路中的选择也由各自实际掌握的有限证据及未知风险触发，而非仅罗列揭示节点。\"\n}\n"
+      },
+      {
+        "sourceId": "review-resolutions/dc104272ec0521e21f371116bfa6a07c9d461e5ea1ae273ed848bb2209c4b710",
+        "quote": "      \"resolutionEvidenceSha256\": \"8cd7c4eb152d72f34cbaab32597ec08a77674d7c5cdc616d9a65c70879eed895\"\n    },\n    {\n      \"checkId\": \"cross-3-5/knowledge\",\n      \"resolvedByStageId\": \"followup-cross-3-5/knowledge\",\n      \"criterion\": \"knowledge\",\n      \"disposition\": \"resolved_by_raw_review\",\n      \"originalQuestion\": \"已读章纲对局部认知链处理谨慎：林苏在第23章通过巡守称呼与秦禾见过的名牌才核定墨幽屠身份，且不知道上层催令；第24章林苏未见秦禾交图，必须等顾峤实际手势才行动；第25—28章的残片、货签与口供均限定为运输或接口线索，不能还原父案或证明完整网络；第33章又明确林辰不在场于侧门取箱，且尚不知道苏凌霜返宗。然而本批未提供秘密原档，无法核对这些拟定获得时点与秘密档案中的既有知情阶段、证据来源是否冲突，不能完成跨批知情检查。\",\n      \"requestedSources\": [\n        \"story/secrets/sec_01\",\n"
+      },
+      {
+        "sourceId": "review-resolutions/dc104272ec0521e21f371116bfa6a07c9d461e5ea1ae273ed848bb2209c4b710",
+        "quote": "        \"story/secrets/sec_02\",\n        \"story/secrets/sec_04\"\n      ],\n      \"resolutionExplanation\": \"原问题要求核对墨幽屠身份、父案/残片、货运链、六号箱及苏凌霜返宗的知情时点。第23章将林辰、苏凌霜确认墨幽屠身份限定为亲闻“墨少主”并由秦禾补足名牌全名，且二人仅听到撤哨口令、不知上层催令；该安排与秘密档对两人在23—24章仅据现场见闻行动的阶段一致。第24章明确林苏未见秦禾交图、须待顾峤实际手势，符合秘密档禁止将异地过程直接变成二人消息。第25、27、28章把残片刻痕、收货号、货签和口供限制为接口或运输线索，不升级为父案影像、九鼎全图或完整网络，亦与父案秘密档的证据边界一致。第33章将六号箱侧门领取和苏凌霜返宗均置为林辰不在场的独立视角；六号箱秘密档同时规定林在32—33章尚不知去向、34章才从常钧取得有限搬运说法。因此，角色认知受亲见、当面交接和实体消息限制；林苏在救援、取证和分路中的选择也由各自实际掌握的有限证据及未知风险触发，而非仅罗列揭示节点。\",\n      \"resolutionEvidenceCount\": 12,\n"
+      }
+    ],
+    "revisionAdvice": ""
+  },
+  "actualInputSha256": "36a5d4cad2f8a5a3ae87dab579f29cf687364e9e8df186eeeb7dcc9b83eb3d2e",
+  "actualInputWitness": {
+    "sourceId": "review-result/cross-3-4",
+    "sourceSha256": "a79fd038204a21425f4d3020174bce6e808f30b43a1a10839e64ef2718a35b3d",
+    "start": 18472,
+    "end": 18509,
+    "quote": "林知道陆承认收钱签条、指过入口，但不知条内改签全貌，也未取得原账或第二片。"
+  },
+  "originalSources": [
+    {
+      "id": "story/chapterPlans/bible-chapter-49",
+      "text": "{\n  \"id\": \"bible-chapter-49\",\n  \"chapterNumber\": 49,\n  \"title\": \"弟弟留下\",\n  \"purpose\": \"253日陆经原船岗旁茶摊送条，要弟弟见面后随他离港。沉川将纸条交给巡查，自己留在复核岗等；林贺来向巡查交接北三公共入口排查范围。陆到门前看见巡员仍走入，劝弟赶在天黑前走。沉川把哥哥递来的手推开，说要留港对217领箱负责，并说出220夜送饭时见兄长收钱签条。陆承认动作，却对那张条的内容闭口。弟弟坐回登记桌前，陆终于停止催走，接受到案看护与随身财物登记。他望见北三水台的查找记录，画出自己走过的废砖甬道和无牌附棚入口，提出次晨随巡查辨门。林接过图，巡查当夜查外围出口；兄弟一人留岗配合、一人受看护，各自面对自己的责任。\",\n  \"conflict\": \"陆把带弟离港当成补救，弟却认为再次逃走会让自己的选择继续被哥哥代替。弟只看见收钱签条；陆若开口说内容，就得直面自己参与的另一批货。\",\n  \"turningPoint\": \"沉川主动交条、当面拒绝离港并说出亲见；陆走入有巡员的岗房，接受看护，再把亲走入口交出。他仍隐瞒条内内容，兄弟关系未因指路而和好。\",\n  \"endHook\": \"253夜，陆在巡查看护下已到案，愿254晨随队从废砖甬道辨无牌附棚；弟自愿留港复核，没有被林拘禁。林知道陆承认收钱签条、指过入口，但不知条内改签全貌，也未取得原账或第二片。吴卢具体位置仍须现场见人。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_15\",\n    \"char_16\",\n    \"char_21\"\n  ],\n  \"locationIds\": [\n    \"loc_23\"\n  ],\n  \"arcBeatIds\": [],\n  \"requiredEvents\": [\n    \"th_03\",\n    \"sec_02\",\n    \"th_01\",\n    \"253茶摊送来哥哥约见后离港的纸条。沉川读完，把纸条交给当班巡员，搬凳子坐在原船复核岗等人。林贺来交接北三公共入口的排查范围，看见的是他自己选下的等候位置。\",\n    \"陆在岗外看见巡员，停步后仍进门，伸手要带弟走。沉川挣开，坐回登记桌，要求先说清自己217领箱的经过。陆催他趁天黑前离港，弟问220夜那笔钱和那张签条是不是也要带着躲下去。\",\n    \"弟说当夜送饭见到收钱和签字，没看清条内内容。陆先称正常押运，见弟没有起身，终于承认领钱签过条；被问写了什么时又沉默。他不再催弟出门，转身接受到案登记和看护。\",\n    \"巡员当面清点陆随身2枚，登记未罚没。陆说原账已交程，巡员先记下待核。林把北三水台返单与昨日公开入口记录放在桌上，陆认出地点，在空处画废砖甬道，标出自己走过的无牌附棚门。\",\n    \"陆说自己可以带到门前；弟仍留在登记桌那边，没有用跟他走换取指路。巡查安排看护陆，立即查外巷出口，定254晨两路辨门。林贺带走入口图准备认人，兄弟隔着岗房各自坐下。\"\n  ]\n}"
+    },
+    {
+      "id": "plan/chapters/49",
+      "text": "{\n  \"id\": \"chapter-49\",\n  \"chapterNumber\": 49,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"弟弟留下\",\n  \"summary\": \"253日陆经原船岗旁茶摊送条，要弟弟见面后随他离港。沉川将纸条交给巡查，自己留在复核岗等；林贺来向巡查交接北三公共入口排查范围。陆到门前看见巡员仍走入，劝弟赶在天黑前走。沉川把哥哥递来的手推开，说要留港对217领箱负责，并说出220夜送饭时见兄长收钱签条。陆承认动作，却对那张条的内容闭口。弟弟坐回登记桌前，陆终于停止催走，接受到案看护与随身财物登记。他望见北三水台的查找记录，画出自己走过的废砖甬道和无牌附棚入口，提出次晨随巡查辨门。林接过图，巡查当夜查外围出口；兄弟一人留岗配合、一人受看护，各自面对自己的责任。\",\n  \"characterGoals\": \"陆想把弟带离程的势力范围，也想避开自己签条的追问；沉川要留下说明自己领箱的经过；林贺要从陆亲走的路线找到两名工人。\",\n  \"conflict\": \"陆把带弟离港当成补救，弟却认为再次逃走会让自己的选择继续被哥哥代替。弟只看见收钱签条；陆若开口说内容，就得直面自己参与的另一批货。\",\n  \"choice\": \"沉川主动交条、当面拒绝离港并说出亲见；陆走入有巡员的岗房，接受看护，再把亲走入口交出。他仍隐瞒条内内容，兄弟关系未因指路而和好。\",\n  \"cost\": \"陆丧失自由回避问询的空间，2枚随身钱仅登记仍属本人，原账未找回；弟承担与兄争执、继续复核的压力。林现金仍0，贺资格暂停，完整改签自认和原页尚未取得。\",\n  \"threads\": [\n    \"th_03\",\n    \"sec_02\",\n    \"th_01\"\n  ],\n  \"endState\": \"253夜，陆在巡查看护下已到案，愿254晨随队从废砖甬道辨无牌附棚；弟自愿留港复核，没有被林拘禁。林知道陆承认收钱签条、指过入口，但不知条内改签全貌，也未取得原账或第二片。吴卢具体位置仍须现场见人。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_15\",\n    \"char_16\",\n    \"char_21\"\n  ],\n  \"location\": \"loc_23天宝外港商盟、原船复核岗与普通转运仓区\",\n  \"storyTime\": \"第253日午后至夜间\",\n  \"scenes\": [\n    \"253茶摊送来哥哥约见后离港的纸条。沉川读完，把纸条交给当班巡员，搬凳子坐在原船复核岗等人。林贺来交接北三公共入口的排查范围，看见的是他自己选下的等候位置。\",\n    \"陆在岗外看见巡员，停步后仍进门，伸手要带弟走。沉川挣开，坐回登记桌，要求先说清自己217领箱的经过。陆催他趁天黑前离港，弟问220夜那笔钱和那张签条是不是也要带着躲下去。\",\n    \"弟说当夜送饭见到收钱和签字，没看清条内内容。陆先称正常押运，见弟没有起身，终于承认领钱签过条；被问写了什么时又沉默。他不再催弟出门，转身接受到案登记和看护。\",\n    \"巡员当面清点陆随身2枚，登记未罚没。陆说原账已交程，巡员先记下待核。林把北三水台返单与昨日公开入口记录放在桌上，陆认出地点，在空处画废砖甬道，标出自己走过的无牌附棚门。\",\n    \"陆说自己可以带到门前；弟仍留在登记桌那边，没有用跟他走换取指路。巡查安排看护陆，立即查外巷出口，定254晨两路辨门。林贺带走入口图准备认人，兄弟隔着岗房各自坐下。\"\n  ],\n  \"source\": \"author\"\n}"
+    }
+  ],
+  "interpretation": "The summary groups the Lu brothers dialogue with independently viewed events. It does not explicitly say Lin and He never hear it, so this is not recorded as a proven design defect or an explicit denial of chapter 49 knowledge. Chapter 49 expressly places Lin and He at the station and states Lin knows Lu admitted receiving money and signing a note, while note content and original ledger remain unknown. Preserve this distinction through later synthesis.",
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false
+}
