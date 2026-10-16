@@ -1,0 +1,40 @@
+{
+  "kind": "stale_chapter_replacement_ancestry_validation",
+  "observedAt": "2026-10-16T11:39:46.405832+00:00",
+  "validationDirectory": "/private/var/folders/tr/8vt224595gdfg6w6kh6tkpt00000gn/T/novel-stale-ancestry-validation-nwg39s3b",
+  "files": {
+    "novel-service-core/src/core.ts": "1f11f86b0da38b62731e722c1edce33f0f4108dc21eed6893d3cfb92366b667e",
+    "novel-service-core/test/core.test.ts": "da7895bb83c2332521638bb4615d398e0dc4048fe4740e12e7d22bd06ad192b3",
+    "packages/application/test/execution-checks.test.ts": "51f4c8712161ff1dc846e9dc0a5311fda2ff00b3ec54ec2a403f47eb64887fa4",
+    "packages/persistence/test/prisma-repository.test.ts": "82f97fad52e442b808c20513158802503a5846f6e1e7f9d1a2a81452360f761c"
+  },
+  "tests": {
+    "tests": 557,
+    "pass": 557,
+    "fail": 0
+  },
+  "coreTypecheckPassed": true,
+  "testLogSha256": "1bd577b723862e0e9deb7dd5019229fe37db4eb4199fb8d31456e0f9934b230d",
+  "preFixReproduction": {
+    "staleVersionStatus": "adopted",
+    "replacementParentVersionId": null,
+    "adoptedRecordsForSameChapter": 2,
+    "executionEvidenceAfterRestart": "unverified"
+  },
+  "verifiedBehavior": [
+    "Supersedes stale adopted predecessors only after successful adoption",
+    "Links the regenerated chapter to its previous version",
+    "Retains old content, candidates and review history",
+    "Restores execution evidence after JSON reload without closing design questions",
+    "SQLite reload preserves ancestry, one adopted head and worker completion",
+    "Does not repeat descendant invalidation or revoke the resumed worker lease",
+    "On a later reviewed adoption, retires duplicate stale heads produced by older releases",
+    "Failed adoption leaves version heads unchanged; repeated adoption is idempotent"
+  ],
+  "frozenSourceFilesVerified": 153,
+  "runnerUnchanged": true,
+  "frozenRuntimeDeployed": false,
+  "productionWrites": 0,
+  "modelCalls": 0,
+  "limitation": "Tests use fixtures and isolated databases. No historical production record was rewritten; existing duplicate heads are retired only if a new version of that chapter is successfully adopted. This does not approve the design or manuscript."
+}

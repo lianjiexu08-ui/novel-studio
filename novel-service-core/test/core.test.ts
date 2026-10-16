@@ -190,6 +190,9 @@ test('reviewed replacement clears obsolete plot realizations and core runs do no
   service.runUntil(work.id, 3, [passChecker], 'core-run');
   assert.notEqual(work.currentVersion(3)?.id, oldThird.id);
   assert.equal(work.currentVersion(3)?.revision, 2);
+  assert.equal(work.currentVersion(3)?.parentVersionId, oldThird.id);
+  assert.equal(oldThird.status, 'superseded');
+  assert.equal([...work.versions.values()].filter(v => v.chapterNumber === 3 && v.status === 'adopted').length, 1);
   assert.equal(work.states.get('hero|power')?.value, 4, 'regenerated chapter uses only the surviving earlier event');
   assert.equal(node.realization.status, 'unrealized', 'old payoff must not reappear without new evidence');
 });
@@ -203,6 +206,38 @@ test('run checkpoint is idempotent for a completed run', () => {
   assert.equal(first.phase, 'complete');
   assert.equal(second.phase, 'complete');
   assert.deepEqual([...work.versions.values()].map((version) => version.id), ids);
+});
+
+test('adopting a regenerated chapter retires legacy stale heads without erasing their history', () => {
+  const service = new NovelService(provider);
+  const work = service.createWork('旧版本的失效分支');
+  service.runUntil(work.id, 2, [passChecker], 'legacy-run');
+  const first = work.currentVersion(2)!;
+  service.editAdoptedChapter(work.id, 1, '第一章第二版', [passChecker]);
+  service.runUntil(work.id, 2, [passChecker], 'legacy-run');
+  const second = work.currentVersion(2)!;
+  // Old releases left this stale predecessor marked adopted after regeneration.
+  first.status = 'adopted';
+  assert.equal(first.stale, true);
+  service.editAdoptedChapter(work.id, 1, '第一章第三版', [passChecker]);
+  assert.equal(second.stale, true);
+  const candidate = service.generateCandidate(work.id, 2, 'repair-legacy-heads');
+  service.runChecks(work.id, candidate.id, [{ name: passChecker.name,
+    check: context => ({ ...passChecker.check(context), status: 'unavailable', message: '暂不可用' }) }]);
+  const before = structuredClone([...work.versions]);
+  assert.throws(() => service.adoptCandidate(work.id, candidate.id), AdoptionBlocked);
+  assert.deepEqual([...work.versions], before, 'failed adoption cannot change historical heads');
+  service.runChecks(work.id, candidate.id, [passChecker]);
+  const next = service.adoptCandidate(work.id, candidate.id);
+  assert.equal(next.parentVersionId, second.id);
+  assert.equal(next.revision, 3);
+  assert.equal(first.status, 'superseded');
+  assert.equal(second.status, 'superseded');
+  assert.equal([...work.versions.values()].filter(v => v.chapterNumber === 2 && v.status === 'adopted').length, 1);
+  assert.equal(work.versions.size, 6);
+  assert.ok([first, second].every(v => work.versions.get(v.id)?.content === v.content));
+  assert.ok([...work.events.values()].filter(e => [first.id, second.id].includes(e.chapterVersionId)).every(e => !e.active));
+  assert.equal(service.adoptCandidate(work.id, candidate.id).id, next.id, 'adoption retry stays idempotent');
 });
 
 test('author constraint edits stale a generated candidate without changing story revision', () => {

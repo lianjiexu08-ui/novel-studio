@@ -271,7 +271,13 @@ test('early candidate replacement and paused-run recovery survive a database rel
   assert.equal(after.versions.size, 6);
   assert.equal([...after.events.values()].filter(e => e.active).length, 3);
   assert.equal(after.checkpoints.get('persisted-run')?.phase, 'complete');
-  for (const version of original) assert.equal(after.versions.get(version.id)?.content, version.content);
+  for (const version of original) {
+    assert.equal(after.versions.get(version.id)?.content, version.content);
+    assert.equal(after.versions.get(version.id)?.status, 'superseded');
+    assert.equal(after.currentVersion(version.chapterNumber)?.parentVersionId, version.id);
+    assert.equal([...after.versions.values()].filter(v => v.chapterNumber === version.chapterNumber && v.status === 'adopted').length, 1);
+  }
+  assert.equal(after.impacts.length, 1, 'resuming invalidated chapters does not revoke the worker lease again');
 });
 
 test('prisma repository persists a full adoption roundtrip', async (t) => {

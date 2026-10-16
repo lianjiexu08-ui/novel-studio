@@ -991,16 +991,23 @@ export class NovelService {
     this.verifyChanges(candidate);
     this.verifyLockedRelationships(work, candidate);
 
+    const sameChapter = [...work.versions.values()].filter((version) => version.chapterNumber === candidate.chapterNumber);
     const previous = work.currentVersion(candidate.chapterNumber);
+    // A stale adopted version is excluded from writing context, but remains
+    // the predecessor when that chapter is regenerated after an earlier edit.
+    const parent = previous ?? sameChapter.filter(version => version.status === 'adopted')
+      .sort((a, b) => b.revision - a.revision)[0];
     if (previous) {
-      previous.status = 'superseded';
       this.invalidateReplacementDependencies(work, previous, replacementReason);
     }
-    const sameChapter = [...work.versions.values()].filter((version) => version.chapterNumber === candidate.chapterNumber);
+    // Close all old heads, including stale heads left by earlier releases.
+    // Already stale descendants were invalidated by the original edit; doing
+    // it again would revoke the lease of the worker now regenerating them.
+    for (const version of sameChapter) if (version.status === 'adopted') version.status = 'superseded';
     const version: ChapterVersion = {
       id: id('version'), workId, chapterNumber: candidate.chapterNumber,
       revision: Math.max(0, ...sameChapter.map((item) => item.revision)) + 1,
-      content: candidate.content, status: 'adopted', parentVersionId: previous?.id,
+      content: candidate.content, status: 'adopted', parentVersionId: parent?.id,
       sourceCandidateId: candidate.id, stale: false, createdAt: now(),
     };
     work.versions.set(version.id, version);

@@ -185,6 +185,47 @@ test('a newer plan with the same requirement ID cannot inherit adopted evidence 
   assert.deepEqual(evidenceFor(work).citations, []);
 });
 
+test('rewriting invalidated chapters preserves version ancestry and restores execution evidence after restart', async t => {
+  const dir = mkdtempSync(join(tmpdir(), 'novel-replacement-evidence-'));
+  t.after(() => rmSync(dir, { recursive: true, force: true }));
+  const path = join(dir, 'work.json'), provider = { ...writer, reviewChapterAsync: fixtureChapterReview };
+  const workflow = new ChapterWorkflow(new JsonWorkRepository(path), provider);
+  const plan = checkedPlan();
+  plan.chapters[1].executionChecks = plan.chapters[0].executionChecks;
+  delete plan.chapters[0].executionChecks;
+  const work = await createReadyWork(workflow, '后章重写的验收依据', plan);
+  await workflow.runUntil(work.id, 3, [passChecker], 'original-run');
+  const original = await workflow.snapshot(work.id), versions = original.adoptedVersions();
+  assert.equal(evidenceFor(original).status, 'verified');
+  const candidate = await workflow.generate(work.id, 1, 'replace-opening');
+  await workflow.check(work.id, candidate.id, [passChecker]);
+  await workflow.adopt(work.id, candidate.id, original.stateRevision);
+  const invalidated = await workflow.snapshot(work.id);
+  assert.equal(evidenceFor(invalidated).status, 'stale');
+  assert.equal(invalidated.currentVersion(2), undefined);
+
+  const restarted = new ChapterWorkflow(new JsonWorkRepository(path), provider);
+  await restarted.runUntil(work.id, 3, [passChecker], 'original-run');
+  const restored = await new ChapterWorkflow(new JsonWorkRepository(path), provider).snapshot(work.id);
+  const proof = evidenceFor(restored);
+  assert.equal(proof.status, 'verified', 'the new review must not be rejected because its obsolete predecessor remains adopted');
+  assert.notEqual(proof.versionId, versions[1].id);
+  assert.equal(proof.versionId, restored.currentVersion(2)!.id);
+  for (const old of versions) {
+    const next = restored.currentVersion(old.chapterNumber)!;
+    assert.equal(next.parentVersionId, old.id);
+    assert.equal(next.revision, old.revision + 1);
+    assert.equal(restored.versions.get(old.id)!.status, 'superseded');
+    assert.equal(restored.versions.get(old.id)!.content, old.content);
+    assert.equal([...restored.versions.values()].filter(v => v.chapterNumber === old.chapterNumber && v.status === 'adopted').length, 1);
+    assert.equal(JSON.stringify(restored.candidates.get(old.sourceCandidateId!)!.checkRuns), JSON.stringify(original.candidates.get(old.sourceCandidateId!)!.checkRuns));
+  }
+  assert.equal(restored.versions.size, 6);
+  assert.equal(restored.checkpoints.get('original-run')!.phase, 'complete');
+  assert.equal(restored.impacts.length, 1, 'already invalidated descendants must not invalidate the resumed worker again');
+  assert.equal(qualityAuditFor(restored).questions.find(q => q.questionId === 'spell-cost')!.status, 'open');
+});
+
 for (const tamper of ['draft', 'brief', 'plan', 'hash', 'missing', 'superseded', 'citation', 'identity', 'failed-other-item', 'duplicate-source'] as const) {
   test(`question execution proof rejects damaged retained evidence: ${tamper}`, async () => {
     const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), { ...writer, reviewChapterAsync: fixtureChapterReview });
