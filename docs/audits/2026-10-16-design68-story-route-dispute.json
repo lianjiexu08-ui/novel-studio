@@ -1,0 +1,78 @@
+{
+  "kind": "design68_story_synthesis_route_dispute",
+  "observedAt": "2026-10-16T15:00:42.443Z",
+  "inputHash": "3274d4710800ad02565040a341a05177b4bd7cab363e169219b562a4a0f62d01",
+  "runId": "design_run_f5e8db99-b684-444d-b04e-50630e3cf3b4",
+  "snapshotPath": "data/audit-runtimes/design68-review/story-route-dispute.json",
+  "snapshotSha256": "23ec44605f109c6a32d2b4bc4c829b00ebae51b87580ae2e110e8f0113f71ed5",
+  "frozenSourceFilesVerified": 153,
+  "records": [
+    {
+      "stageId": "followup-cross-2-3/timeline",
+      "stageSha256": "0645f157fca12b820ba098aff00e403f71798ff2a074d572ddd52357d2fc90d4",
+      "requestSha256": "57648644c43fc346350bd0e0a6e09fa61cfbd4cab704c99e5ecc768a7cf62869",
+      "originalCheck": {
+        "criterion": "timeline",
+        "verdict": "pass",
+        "explanation": "此前问题要求核对功法、法宝及第23—29章日期。补读后，第18章的第120日晋阶、121—180日训练与第181—184日行程构成连续前置；第23章第187日会合并决定转运，第24章188日05:00送图、06:00交顾、07:00出发、08:15抵营外、08:45到位，第25章08:45—09:15解囚交战，第26章10:45出发、12:00交押并安排189日验收；第27—29章再顺接190—211日疗程、复诊、分路与护货安排。御风剑诀的训练和两丈实测、剑体散热限制与第20、25章动作相容，未出现把冷却或训练时间压缩掉的硬冲突。章节计划仍是拟定安排，本结论仅表示按该提案写作时当前时间链成立。",
+        "revisionAdvice": "",
+        "resolves": [
+          "cross-2-3/timeline"
+        ]
+      },
+      "evidenceSha256": "62717e5bd5ffab554e8d541ca1711927193aa32c5f1f6b0455b7308dfb99b077",
+      "evidenceCount": 17,
+      "responsesReplayed": 1
+    },
+    {
+      "stageId": "synthesis-14",
+      "stageSha256": "bb512ca8f77ad458b55553ca8e980bc4044c805fac52e33956b61b326a0ed218",
+      "requestSha256": "b279a5c191f5e2d43b83ae9cb3df6dcc4be24d26018432588f12e91b4f3bf8b7",
+      "originalCheck": {
+        "criterion": "timeline",
+        "verdict": "pass",
+        "explanation": "补读报告已将第120日晋阶与训练、第181—184日入境及首次战斗、第187—188日送信、接应、解囚和撤回、第190—209日两次十日疗程，以及第210—212日分路安排串为连续时间链。秦禾05:00出发、06:00面交、顾峤07:00交岗出发、08:15抵营外、08:45到位，林苏在亲见手势前不发动；战后10:45撤离、12:00交押亦有明确行程和轮值承接。剑诀实测与剑体冷却限制并未被压缩为即时重复施放，林苏的返宗慢车路线也与林辰独立赴港路线明确分开，故所覆盖范围内未见同一人物不相容的时空重叠、抵达早于出发或未送达即知情。",
+        "revisionAdvice": ""
+      },
+      "evidenceSha256": "4ff4a3a7aad71611f7bf37c97d9a5f39db2504a81f587816012329f4e778c757",
+      "evidenceCount": 11,
+      "responsesReplayed": 1
+    }
+  ],
+  "responsesReplayed": 2,
+  "disputes": [
+    {
+      "id": "lin_su_return_route",
+      "stageId": "synthesis-14",
+      "criterion": "timeline",
+      "parentPath": [
+        "synthesis-14",
+        "synthesis-25",
+        "synthesis-31",
+        "synthesis-33",
+        "synthesis-34",
+        "synthesis-35"
+      ],
+      "correction": "苏随押解队于213—216日慢车返宗；林辰不回宗，212—213日护货赴港、214日暮出航。综合报告的“林苏返宗”误把林辰加入另一条路线，不能据此修改原章纲或宣称原设计一人两地。",
+      "evidence": [
+        {
+          "sourceId": "plan/chapters/29",
+          "sourceSha256": "7577dcb7577b47c1dcce7c76cedbf29c602e93ec90756ea108ea264f24aa399c",
+          "field": "summary",
+          "quote": "第210日白榆复诊，允许林辰短距步行、坐车旅行和轻物点数，禁止搬药箱、疾跑与持剑久战。灵泉两剂均已生效，腿伤仍未痊愈。林辰想邀苏一起追查天宝外港收货人，苏却选择随押解队回宗保护证人，不愿让获得延寿的人把所有留守代价交给别人。两人争执后分配副本与递信责任；押解队约定212日核清本批全员退出后销班，213–216日用伤者慢车返外门，乔邵昼夜近身看墨、杜褚护路，顾坐医车，林辰第一次承认同行不是她必须付的第三次代价。第211日，经苏先前商盟引荐、由过营承运人当面验明身份，林辰签下六箱低阶药材的本航次护货换普通舱合同：他负责轻物清点、封签和途中值看，搬运由车夫水手承担；天灾减奖金，主观失职另查，返程不担保。签约和复诊都在古境入口外营完成，尚未凭空回到外门院。 213–216日返外门是苏随押解队的慢车行程，林辰不随该队回宗。林在第212日按第30章的独立护货行程从入口外营分路，随六箱药材经山路、驿车前往云梦天港，第213日晚到港外驿站，第214日按第31章验货登船出航。"
+        },
+        {
+          "sourceId": "plan/chapters/30",
+          "sourceSha256": "3610a36c6f2ed2eaacab32e5971bf9a500a52255170a8573f92d60d1f15de14f",
+          "field": "summary",
+          "quote": "第212日至213日，林辰随六箱药材离开古境入口外营，经山路、驿车向云梦天港去。白榆出发前只准他坐车清点和看封签，叮嘱伤口渗血就停。急弯前，他听见轮楔松动的撞声，坐在车座上，直视一丈外的半斤制动轻柄，以一次一息御物轻拨，喊车夫先停轮再收紧索具；搬箱由同行工役完成。他保住了一车药，却耽误半个时辰。夜间一枚封签被山雨浸淡，林辰没有自行重盖，而是在车夫与承运人面前点箱拍印，登记到港复验。承运人想省下验货费，逼他把封签写成完好；林辰拒绝后失去当日加急酬金，六箱仍完整抵达港外驿站。他在货单上看见与古境样箱相同的外港收货号，只能带着这个疑点继续履约。"
+        }
+      ]
+    }
+  ],
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "originalVerdictsChanged": false,
+  "designApproved": false,
+  "limitation": "The phrase is a synthesis explanation error against explicit primary sources. It does not invalidate the original source-deferral resolution or prove a design conflict. Preserve the response and trace its actual parents to the final report; omission is not explicit retraction."
+}
