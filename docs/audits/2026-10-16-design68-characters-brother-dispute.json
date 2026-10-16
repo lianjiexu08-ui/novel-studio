@@ -1,0 +1,88 @@
+{
+  "kind": "design68_character_synthesis_brother_identity_conflation",
+  "observedAt": "2026-10-16T13:07:35.740Z",
+  "inputHash": "3274d4710800ad02565040a341a05177b4bd7cab363e169219b562a4a0f62d01",
+  "runId": "design_run_e6579c46-fdf6-4267-ae5b-4bc50a1ddb03",
+  "stageId": "synthesis-16",
+  "snapshotPath": "data/audit-runtimes/design68-review/characters-brother-dispute.json",
+  "snapshotSha256": "bc7f295596da59bb92bbaa7c44840d4e11cd33bc883895303fe67bce82234876",
+  "requestSha256": "1014b5c7da4ffac648a3b1854dee41b64a1817fe99335970fb324fa6a555abf9",
+  "frozenSourceFilesVerified": 153,
+  "savedResponsesReplayed": 1,
+  "originalChecks": [
+    {
+      "criterion": "agency",
+      "verdict": "pass",
+      "explanation": "已覆盖安排将关键推进建立在不同人物的利益权衡和可见损失上，而非由林辰单向解决：唐顺坚持五人共同脱身而失去外口路径；贺青梧拒绝以船、人或陈述交换条件并承担失单、停牌和修船代价；林辰拒绝把未核缺额转嫁给常钧，并接受对方只作正式配合。第50章脱控依赖吴、卢的亲口拒绝、陆沉川停止协助扣人及巡员控制现场，林辰明确不以施术或代答取代当事人选择。后段宏观仍把“放弃第二片”“放弃追凶”等写为有边界的代价性选择，未见与这些安排相冲突的报告结论。",
+      "revisionAdvice": "",
+      "evidenceCount": 5
+    },
+    {
+      "criterion": "relationships",
+      "verdict": "pass",
+      "explanation": "关系变化具有初始边界、触发选择和生效节点，未把救援结果直接兑换为无条件信任、服从或免责。林辰—苏凌霜的有限合作由拒绝遗物背书、承认私心、重订可担保范围、救人取舍及分路责任逐步形成；林辰—顾峤仍受资格、实测与实际到场限制；林辰—墨幽屠维持敌对递进。港口线中，贺青梧保有船务与合作决定权，吴、卢先纠正彼此代答再自行表明去留，陆沉川开门只形成有限承认和继续看护。此前关系原档待补读问题已被明确列为已解决的历史等待，且两份前置结论彼此一致。",
+      "revisionAdvice": "",
+      "evidenceCount": 5
+    }
+  ],
+  "sourceEvidence": [
+    {
+      "id": "story/characters/char_16",
+      "sha256": "4e72f59e19f96b3903e7d401c07357b460beb080a6b1250a5c3661f7979d6a62",
+      "characterId": "char_16",
+      "name": "陆沉舟",
+      "identity": "程记药栈凝元押运头目，曾任大乾军需船校尉；亲自参与过改签，弟弟亦为押货伙计。"
+    },
+    {
+      "id": "story/characters/char_21",
+      "sha256": "36a0501de15cabec61870606a14d8f8055f5958507fd7e5949418226d74a758e",
+      "characterId": "char_21",
+      "name": "陆沉川",
+      "identity": "陆沉舟的弟弟，程记普通药栈伙计，无修行能力；217日从船侧门领六号箱，218日分架与送医铺。第35章林只知册上姓名，38章当面对质才知兄弟关系。"
+    },
+    {
+      "id": "story/relationships/rel_13",
+      "sha256": "2da5ecbba7cf3a02d5dfab39be2e664a5ec13aede29f6bded030afbd59e39fba",
+      "toCharacterId": "char_16",
+      "stage50": {
+        "sinceChapter": 50,
+        "untilChapter": 50,
+        "value": "陆的协助已从指路变为阻止旧同伙继续扣人，却同时暴露自己的押送责任，林不以协助换免罪。",
+        "cause": "50陆协助巡员阻止旧同伙落闩，两名普通看守均被控制；吴卢自行出门，吴指认陆本次押送，陆承认并继续受看护。",
+        "cost": "陆仍受看护，旧同伙已见其协助巡查，不能再只以认路解释；完整改签自述仍须53实际书写签认。"
+      }
+    },
+    {
+      "id": "story/relationships/rel_19",
+      "sha256": "d1cd8cce7d3c15c8dbfa2e3ff35ac5b02ff58d80a3a1ddd9faef58c96a273265",
+      "toCharacterId": "char_21",
+      "stage39": {
+        "sinceChapter": 39,
+        "untilChapter": 100,
+        "value": "各自可核事实上的合作。",
+        "cause": "原物、分架与医铺页互证，后续证言须凭亲历。",
+        "cost": "陆仍受传唤，赔付未到不写偿清，不能代供父案或北境秘密。"
+      }
+    },
+    {
+      "id": "plan/chapters/50",
+      "sha256": "09df44bf9581c30280f0075c09c8d602d8d80c20a630b3181b2920a366485f47",
+      "characterIds": [
+        "char_01",
+        "char_15",
+        "char_16",
+        "char_24",
+        "char_25"
+      ],
+      "choice": "林松开剑柄，把门前位置让给能现场处置的巡员，请其直接问吴卢，而不替他们宣布愿意去哪。吴卢自己顶门、要求离开；陆改为外拉木闩，协助控制旧手下，承认本次点交押送并接受继续看护。贺接受二人不立刻回船的回答，先安排安全落脚，不以救命索取服从。",
+      "endState": "254晨，吴伍、卢小满自己走出北三门到安全外院，和244获救的唐许冯合计五人脱控；两名未入境普通看守均被巡员控制。陆当面承认本次点交押送，继续受看护，尚未写出完整改签自述。林未施术，保守余量三成半，旧伤许可不变；程不在现场，林不知道其位置或第二片封匣状态。吴卢拒绝立即承诺回贺船，贺接受先安置、再分别谈去留。"
+    }
+  ],
+  "adjudication": "The synthesis attributes chapter50 intervention, admission and continued supervision to younger brother Lu Chenchuan (char_21). The chapter cast and relation rel_13 identify elder brother Lu Chenzhou (char_16). This is an explanation identity error; do not transfer the elder brother's conduct or responsibility to the rescued younger brother.",
+  "correctionForReconciliation": "第50章协助开门、承认本次押送并继续受看护的是哥哥陆沉舟（char_16）；弟弟陆沉川（char_21）不能被代入该现场行动。",
+  "originalVerdictsChanged": false,
+  "productionWrites": 0,
+  "modelCalls": 0,
+  "questionsClosed": 0,
+  "limitation": "This preserves a concrete explanation error without claiming a formal failed verdict or changing the correct design. Inspect synthesis20, synthesis22 and synthesis24 for propagation, then reconcile with the completed story review before any design approval or prose generation."
+}
