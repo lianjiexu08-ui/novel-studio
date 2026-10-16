@@ -1,0 +1,36 @@
+{
+  "kind": "design68_independent_final_history_read",
+  "startedAt": "2026-10-16T15:38:39.034Z",
+  "completedAt": "2026-10-16T15:38:41.952Z",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "planId": "plan_762f53fa91014e14a248b74d750d6a6c",
+  "inputHash": "3274d4710800ad02565040a341a05177b4bd7cab363e169219b562a4a0f62d01",
+  "checkpointSha256": "6e3a4c6e9b2835c93f438bf9d25eb1c53e819bb3eb63408bb0111033bd0dd185",
+  "protectedHash": "b3aa7277292c1e74a5b411926af4c3aab28d0b69ff67a2a0603cd4165184d47d",
+  "equalsPreparedBaseline": true,
+  "designAndCovenantHistorySha256": "fda4937690a2fed18af1f517fd63ac1f0967c1368d39d635b8e5d943ca78dd79",
+  "referencePath": "/var/folders/tr/8vt224595gdfg6w6kh6tkpt00000gn/T/novel68-restore-z7kOZe/after.db",
+  "counts": {
+    "chapterVersions": 101,
+    "events": 383,
+    "manuscripts": 1,
+    "candidates": 116,
+    "plans": 68,
+    "designSnapshots": 99,
+    "retainedOldReviewRuns": 65,
+    "retainedOldReports": 71,
+    "currentRunsCompared": 4,
+    "currentReportsCompared": 4
+  },
+  "revisions": {
+    "world": 34,
+    "bible": 65,
+    "proposalPlan": 68,
+    "approvedPlan": 10
+  },
+  "method": "Read the current aggregate and raw design/covenant histories in one Prisma transaction. Recompute the preparation protected-content hash, compare every old run/report and all four completed current runs/reports, and compare raw design/covenant history with the post-apply database snapshot.",
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "designApproved": false,
+  "limitation": "This proves preservation and checkpoint/database agreement at the observed read, not semantic quality, future preservation, or manuscript acceptance."
+}
