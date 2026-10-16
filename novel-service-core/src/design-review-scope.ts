@@ -112,6 +112,35 @@ export function designReviewSourceRelationships(input: DesignReviewInput): NonNu
   }));
 }
 
+/** Keep chapter cast declarations separate, even when two sources disagree.
+ * Only unique exact profile IDs can supply names. Never infer who did what,
+ * parse names from prose, merge siblings, or infer a chapter number from its id. */
+export function designReviewChapterCast(input: DesignReviewInput): NonNullable<NonNullable<NonNullable<DesignReviewInput['stage']>['coverage']>['chapterCast']> {
+  const records = input.sources.flatMap(source => {
+    if (!['plan/chapters/', 'story/chapterPlans/', 'story/characters/', 'settings/characters/'].some(prefix => source.id.startsWith(prefix))) return [];
+    try {
+      const value: unknown = JSON.parse(source.text);
+      return value && typeof value === 'object' && !Array.isArray(value) ? [{ sourceId: source.id, value: value as Record<string, unknown> }] : [];
+    } catch { return []; }
+  });
+  const chapters = records.flatMap(({ sourceId, value }) => {
+    if (!sourceId.startsWith('plan/chapters/') && !sourceId.startsWith('story/chapterPlans/')) return [];
+    const { chapterNumber, characterIds } = value;
+    if (typeof chapterNumber !== 'number' || !Number.isSafeInteger(chapterNumber) || chapterNumber < 1
+      || !Array.isArray(characterIds) || !characterIds.every(id => typeof id === 'string' && id.trim())) return [];
+    return [{ sourceId, chapterNumber, characterIds: [...characterIds] as string[] }];
+  });
+  const castIds = new Set(chapters.flatMap(chapter => chapter.characterIds));
+  const profiles = records.filter(({ sourceId }) => sourceId.startsWith('story/characters/') || sourceId.startsWith('settings/characters/'));
+  const characters = Object.fromEntries(profiles.flatMap(({ sourceId, value }) => {
+    const { id, name } = value;
+    if (typeof id !== 'string' || !castIds.has(id) || !sourceId.endsWith(`/${id}`)
+      || profiles.filter(profile => profile.value.id === id).length !== 1) return [];
+    return [[id, { sourceId, ...(typeof name === 'string' && name.trim() ? { name } : {}) }]];
+  }));
+  return { chapters, characters };
+}
+
 /** One explicit planning edge is navigation, never evidence of feasibility.
  * Do not infer links from prose or recursively pull the entire book into a
  * follow-up. Ambiguous and dangling object IDs cannot select a source. */

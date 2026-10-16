@@ -58,6 +58,13 @@ export interface DesignReviewInput {
       sourceNames?: Record<string, string>;
       /** v26: explicit relationship endpoints for navigation, never state or evidence. */
       sourceRelationships?: Record<string, { fromCharacterId: string; toCharacterId: string; fromName?: string; toName?: string; kind?: string }>;
+      /** v31: explicit chapter cast and uniquely identified profiles; navigation only.
+       * A listed character is not proof of action, knowledge or physical presence. */
+      chapterCast?: {
+        chapters: Array<{ sourceId: string; chapterNumber: number; characterIds: string[] }>;
+        characters: Record<string, { sourceId: string; name?: string }>;
+      };
+      chapterCastOmitted?: 'capacity';
       /** Exact name/ID mentions in plans and (v19+) profiles; never prove mastery or use. */
       entityMentions?: Record<string, string[]>;
       /** Optional navigation is omitted whole if it cannot fit; raw sources are never removed. */

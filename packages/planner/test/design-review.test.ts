@@ -72,6 +72,26 @@ test('relationship navigation reaches the reviewer with bounded semantics and le
   assert.deepEqual(JSON.parse(calls[0].user).sources, JSON.parse(calls[1].user).sources);
 });
 
+test('chapter cast guidance is conditional navigation and preserves raw evidence', async () => {
+  const request = await input();
+  request.stage = { kind: 'synthesis', label: '综合', totalBatches: 2, sourceMap: [], coverage: {
+    mode: 'reports_with_context', sourceLengths: Object.fromEntries(request.sources.map(s => [s.id, s.text.length])),
+  } };
+  const prior = structuredClone(request);
+  request.stage.coverage!.chapterCast = { chapters: [{ sourceId: 'plan/chapters/37', chapterNumber: 37, characterIds: ['younger'] }], characters: { younger: { sourceId: 'story/characters/younger', name: '陆沉川' } } };
+  const calls: Array<{ system: string; user: string }> = [];
+  for (const current of [prior, request]) {
+    const planner = new JsonDesignPlanner({ complete: async call => { calls.push(call); return JSON.stringify(anchored(current)); } });
+    await planner.reviewDesignContent(current);
+  }
+  assert.ok(!calls[0].system.includes('coverage.chapterCast'));
+  assert.ok(calls[1].system.startsWith(calls[0].system + '\n'));
+  assert.match(calls[1].system, /不能作引文/);
+  assert.match(calls[1].system, /解释用完整姓名/);
+  assert.deepEqual(JSON.parse(calls[1].user).stage.coverage.chapterCast, request.stage.coverage!.chapterCast);
+  assert.deepEqual(JSON.parse(calls[0].user).sources, JSON.parse(calls[1].user).sources);
+});
+
 for (const corrected of [true, false]) {
   test(`conflicting insufficiency fields get a targeted repair without dropping findings: ${corrected}`, async () => {
     const request = await input();
