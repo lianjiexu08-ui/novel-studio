@@ -1,0 +1,55 @@
+{
+  "kind": "design68_power_failed_format_recovery_and_actor_account_dispute",
+  "observedAt": "2026-10-16T10:03:37.076Z",
+  "checkpointPath": "data/audit-runtimes/design68-review/segment-0.json",
+  "checkpointSha256": "72f06a5219ebb568884d6600b18f953495ad0f952e69b0ea7dd21510cb75bcec",
+  "runId": "design_run_1a9589a8-f222-4b9b-861c-99adc2d45c80",
+  "stageId": "followup-batch-1/tiers",
+  "oldPid": 78072,
+  "resumedPid": 38752,
+  "segment": 1,
+  "previousCalls": 104,
+  "totalCallCeiling": 400,
+  "sameInputsRuntimeSettingsAndModel": true,
+  "sameRunId": true,
+  "completedStagesPreservedExactly": 15,
+  "originalFailurePreservedExactly": true,
+  "failedResponses": [
+    {
+      "sha256": "21cb5688415bd56142646adeba80abf9aeb2e19b30a1aabc274eff230951de37",
+      "evidenceCount": 191,
+      "unacceptedExplanation": "规则明确要求境界不自动等于掌握术式，实际施术须满足训练、对象、距离、供能、余量与中断条件；补读章纲总体遵守这一点：林辰第120日支付3元载入凝元，第132—176日才完成乾元御风剑诀凝元式训练并实测两丈范围，顾峤与墨幽屠的开篇前技能也有对应训练和实测，玄府局部护罡、推劲及真光没有被境界名自动替代。资源与技能边界亦大体一致，例如轻物御动不承受整车/整斗载荷，乾元御风剑诀一式固定扣二成，赤霞斩铁剑的元罡承载限制被遵守。 但第42章复测后林真元为五成；第43章送钩扣半成，明确降为四成半；第44章紧接同一时点切索，却又写“沿用239日复测的保守余量五成”，按一式二成后记为三成，漏扣第43章已发生的半成，正确连续账应从四成半扣至二成半。该矛盾直接影响后续伤情下的可用余量与行动许可，需统一第43—44章的起止余额，并检查后续是否承接修正值。"
+    },
+    {
+      "sha256": "21cb5688415bd56142646adeba80abf9aeb2e19b30a1aabc274eff230951de37",
+      "evidenceCount": 191,
+      "unacceptedExplanation": "规则明确要求境界不自动等于掌握术式，实际施术须满足训练、对象、距离、供能、余量与中断条件；补读章纲总体遵守这一点：林辰第120日支付3元载入凝元，第132—176日才完成乾元御风剑诀凝元式训练并实测两丈范围，顾峤与墨幽屠的开篇前技能也有对应训练和实测，玄府局部护罡、推劲及真光没有被境界名自动替代。资源与技能边界亦大体一致，例如轻物御动不承受整车/整斗载荷，乾元御风剑诀一式固定扣二成，赤霞斩铁剑的元罡承载限制被遵守。 但第42章复测后林真元为五成；第43章送钩扣半成，明确降为四成半；第44章紧接同一时点切索，却又写“沿用239日复测的保守余量五成”，按一式二成后记为三成，漏扣第43章已发生的半成，正确连续账应从四成半扣至二成半。该矛盾直接影响后续伤情下的可用余量与行动许可，需统一第43—44章的起止余额，并检查后续是否承接修正值。"
+    }
+  ],
+  "dispute": {
+    "status": "unaccepted_response_misattributed_crew_cost_to_protagonist",
+    "explanation": "Both invalid-format responses assign the crew member’s chapter43 half-unit expenditure to Lin. Chapter43 explicitly says Lin has not cast; chapter44 separately carries crew4.5 and Lin5−2=3. Do not change correct balances based on these unaccepted responses.",
+    "evidence": [
+      {
+        "id": "plan/chapters/43",
+        "sha256": "6b2497e2ebbd578d337118f90393a60fc9d125e8626982715920f9bfca2f0809",
+        "cost": "贺船被钩索拖偏，已离开原可稳守观察位；巡艇尚未到场。此刻没有施剑、没有船底破损、没有人获救，林只有短时握剑许可，下一瞬必须付出已定施术成本。 凝元伙计一次送钩支出半成真元，自身保守余量五成降至四成半，钩挂稳即停术；后续拖力由船行、普通索具和艉桩承担，不收持续施术费，也不能持续遥控钩索转向。"
+      },
+      {
+        "id": "plan/chapters/44",
+        "sha256": "dfe7702b21590d14e968ec3d419afe18b389ce38acb50617a8add51f6437b722",
+        "cost": "林一次剑诀支出二成真元，剑体热而停用；贺船底碰裂，三人暂上船但不能出海追击。原账随陆逃走，半页来源仍须核对；林不跳船不提整个人，腿因晃动酸胀，需再复查。 出剑前沿用239日复测的保守余量五成，一式二成后余三成；二成已含剑的供能，之后不再御物，浮圈用手递。剑独立散热，不能借散热把真元账重置。 送钩伙计承接43章四成半真元，44章没有再施术；断索、船摆和失足属于普通受力与站位后果，不扣寿储、不凭空封住其修为。"
+      }
+    ],
+    "equations": {
+      "crew": "5−0.5=4.5",
+      "protagonist": "5−2=3"
+    }
+  },
+  "modelCallsByThisAudit": 0,
+  "productionWritesByThisAudit": 0,
+  "workerHistoryAssertion": true,
+  "formalAcceptance": false,
+  "questionsClosed": 0,
+  "limitation": "Checkpoint/failure retention and actor-account counterevidence only. Worker liveness is verified separately by ps; this file does not prove completed review, design approval, or prose acceptance."
+}
