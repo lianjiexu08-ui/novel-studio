@@ -1,0 +1,357 @@
+{
+  "kind": "design68_characters_final_report_reconciled",
+  "observedAt": "2026-10-16T13:20:04.087Z",
+  "inputHash": "3274d4710800ad02565040a341a05177b4bd7cab363e169219b562a4a0f62d01",
+  "scope": {
+    "worldPackRevision": 34,
+    "storyBibleRevision": 65,
+    "planRevisionId": "plan_762f53fa91014e14a248b74d750d6a6c",
+    "planRevision": 68
+  },
+  "runId": "design_run_e6579c46-fdf6-4267-ae5b-4bc50a1ddb03",
+  "reportId": "design_review_059c4ed3-0207-4dc6-8a48-d4496a566f6f",
+  "snapshotPath": "data/audit-runtimes/design68-review/characters-completed.json",
+  "snapshotSha256": "5900f2efe0b228e0b7f2db71ae6a201a5dd16504403ea298f64b5e743b9327b0",
+  "reportSha256": "0bfa00fbce7181f1cb98d97924239a0c9ed9a6dd09ec68a2eda4102fa95923b0",
+  "frozenSourceFilesVerified": 153,
+  "stagesCompleted": 49,
+  "totalStages": 49,
+  "originalResponsesReplayed": 51,
+  "responseReplay": "verified",
+  "retainedFailures": [],
+  "finalReportMatchesReconstruction": true,
+  "reportStatus": "passed",
+  "resolvedSourceDeferrals": [
+    {
+      "checkId": "batch-2/relationships",
+      "resolvedByStageId": "cross-1-2"
+    },
+    {
+      "checkId": "batch-3/relationships",
+      "resolvedByStageId": "cross-1-3"
+    },
+    {
+      "checkId": "batch-3/knowledge",
+      "resolvedByStageId": "followup-batch-3/knowledge"
+    },
+    {
+      "checkId": "batch-5/relationships",
+      "resolvedByStageId": "cross-1-5"
+    },
+    {
+      "checkId": "batch-5/knowledge",
+      "resolvedByStageId": "followup-batch-5/knowledge"
+    },
+    {
+      "checkId": "cross-1-4/knowledge",
+      "resolvedByStageId": "followup-cross-1-4/knowledge"
+    },
+    {
+      "checkId": "cross-1-5/knowledge",
+      "resolvedByStageId": "followup-cross-1-5/knowledge"
+    },
+    {
+      "checkId": "cross-2-4/relationships",
+      "resolvedByStageId": "followup-cross-2-4/relationships"
+    },
+    {
+      "checkId": "cross-2-5/relationships",
+      "resolvedByStageId": "followup-cross-2-5/relationships"
+    },
+    {
+      "checkId": "cross-2-5/knowledge",
+      "resolvedByStageId": "followup-cross-2-5/knowledge"
+    },
+    {
+      "checkId": "cross-3-4/relationships",
+      "resolvedByStageId": "followup-cross-3-4/relationships"
+    },
+    {
+      "checkId": "cross-3-4/knowledge",
+      "resolvedByStageId": "followup-cross-3-4/knowledge"
+    },
+    {
+      "checkId": "cross-3-5/relationships",
+      "resolvedByStageId": "followup-cross-3-5/relationships"
+    }
+  ],
+  "checks": [
+    {
+      "criterion": "agency",
+      "verdict": "pass",
+      "explanation": "林辰的主线行动不是单向解决：救人、拒绝把未核缺额转嫁给常钧、让吴卢自行回答去留、放弃第二片以及救伤者时放弃追凶，均有明确利益冲突和机会成本。吴卢、陆沉川、贺青梧等配角也通过拒绝代答、停止扣人、承担船损或保留供述责任改变局势。后段宏观目标还明确力量成长伴随寿储减少，避免以无代价升级消除选择后果。已有细纲的行动与51—100章宏观安排可相互承接；后段尚未逐章展开不构成本项缺陷。",
+      "revisionAdvice": "",
+      "evidenceCount": 4
+    },
+    {
+      "criterion": "relationships",
+      "verdict": "pass",
+      "explanation": "关系没有用终局标签倒填初识。林辰—苏凌霜从程序性庇护、有限同盟，经不利证词、资助和遗物争议、共同救援及分路后的实体消息，逐步形成有边界的合作；每次变化都有具体选择与代价。林—顾的合作受境界、符牌和实测门槛限制，苏—秦是有偿带路和实体送信而非无限追随。港口线中，吴卢先纠正彼此代答，再各自决定去留；陆的开门、供述和看护也分别处理，不兑换免责或无条件信任。51—53章的生计、供述与照护被明确标为拟定后续，不与第50章脱控状态冲突。",
+      "revisionAdvice": "继续逐章落实51—100章的住食、工时、看护、供述签认、消息送达和问责条件；不得把救援直接兑换为服从、信任或免责。",
+      "evidenceCount": 8
+    },
+    {
+      "criterion": "knowledge",
+      "verdict": "pass",
+      "explanation": "认知链以实际渠道限制角色判断：前段依赖现场亲见、当面证词、实体书信和实际签收；林在第50章只确认门口亲见的吴卢、看守及陆的有限行为，53章陆的自述仍待独立核验。赵玄极的获知则按阅报、签令、回执、当面报告和正式质询分段生效，签令不等于知道执行结果，程的自述也不等于完整现场事实。父案、九鼎和残片被限制为阶段性、局部证据，不能由读者视角、未送达文书或残片感应补全。既有报告未发现同一时点的知情冲突；后段消息锚点仍属于拟定安排，须在正文中按承运、签收和核验时点实现。",
+      "revisionAdvice": "逐章展开时保持实体消息的承运、签收、阅览和独立核验节点；不得把规划锚点当作已发生知情，也不得让局部证据扩张为全案真相。",
+      "evidenceCount": 9
+    }
+  ],
+  "retainedFindings": [],
+  "weakenedIntermediateFindings": [],
+  "selectedFinalOrigins": [
+    {
+      "criterion": "agency",
+      "matchingStages": [
+        {
+          "stageId": "synthesis-24",
+          "kind": "synthesis"
+        }
+      ]
+    },
+    {
+      "criterion": "relationships",
+      "matchingStages": [
+        {
+          "stageId": "synthesis-24",
+          "kind": "synthesis"
+        }
+      ]
+    },
+    {
+      "criterion": "knowledge",
+      "matchingStages": [
+        {
+          "stageId": "synthesis-24",
+          "kind": "synthesis"
+        }
+      ]
+    }
+  ],
+  "finalVerdictsRetainRawNegativeSeverity": true,
+  "adjudicationSources": [
+    {
+      "path": "docs/audits/2026-10-16-design68-characters-order-dispute.json",
+      "sha256": "257868df13c3ba6d8958df9f83fcebf3fd13d941a6e802c7815bb3236c6220b7"
+    },
+    {
+      "path": "docs/audits/2026-10-16-design68-characters-brother-dispute.json",
+      "sha256": "30f5bc2f5fb1d8ed0c90e282eedb09d1a747fc3528c72afc9fa14fa1ba07a165"
+    }
+  ],
+  "disputedExplanationPaths": [
+    {
+      "issue": "father_archive_and_convoy_order",
+      "stages": [
+        {
+          "stageId": "synthesis-10",
+          "children": [
+            "followup-cross-1-5/knowledge",
+            "followup-cross-2-4/relationships"
+          ],
+          "stageSha256": "f2702aae71e7a5581fa9d6b5575f1dcb782ae0728a4cfb42304881755064955c",
+          "checks": [
+            {
+              "criterion": "knowledge",
+              "verdict": "pass",
+              "explanation": "赵玄极的秘密知情阶段已按实际收报、签令、回执和当面报告拆分：33—52章未收到港口新报；53章只知程第一报中的转述与自述，不知道令是否送达；54—72章只确认旧令送达；73章通过程当面报告取得第二轮有限信息；88章才读押运报告；90章签撤人令但不知执行结果；98章只听程在逃离前的亲历；99章才通过正式质询材料承担本批命令的可核责任。各阶段都明确禁止由读者视角、他人文书或未发生结果补全认知。林辰、苏凌霜也未因赵方文书或异地事件自动获得信息，父案证据按署名图、巡档副本、当面交接和原令逐步推进。秘密真相仍限定为阶段性证据链，百章不包办九鼎全图、父案全貌或未在场者认知；因此人物选择具有信息限制和因果，而非全知推动。",
+              "revisionAdvice": "",
+              "evidenceCount": 15
+            }
+          ]
+        },
+        {
+          "stageId": "synthesis-17",
+          "children": [
+            "synthesis-9",
+            "synthesis-10"
+          ],
+          "stageSha256": "bbb686f4025629a49cf356dfd19e0e0cdbf2e20ce9d15535fdab04e826755b77",
+          "checks": [
+            {
+              "criterion": "knowledge",
+              "verdict": "pass",
+              "explanation": "赵玄极的认知链按实体收报、签令、回执、当面报告与正式质询逐段生效：第53章第一报仅为转述与自述，第54章回执仅确认旧令送达，第73章才取得程的第二轮有限陈述，第88章阅押报后才据此签撤令，第90—97章仍不知执行结果，第98章的败报亦不等于完整现场结局，第99章质询副本仅足以追究本批命令。各阶段都排除由读者视角、异地文书或未送达消息补全认知；秘密揭示条件也限定为一条三地链的阶段性证据，未将父案、九鼎或未在场者认知提前揭尽。因此人物的判断与选择具备实际信息来源和边界，前置报告之间未出现知情时点冲突。",
+              "revisionAdvice": "",
+              "evidenceCount": 13
+            }
+          ]
+        },
+        {
+          "stageId": "synthesis-21",
+          "children": [
+            "synthesis-17",
+            "synthesis-18"
+          ],
+          "stageSha256": "292e99507eb15b9ada589eec2d502e6859705ad1d069b2437053f7d185f8191f",
+          "checks": [
+            {
+              "criterion": "knowledge",
+              "verdict": "pass",
+              "explanation": "已覆盖材料为角色判断设置了实际获得信息的渠道与禁知边界。前50章中，林辰、苏凌霜只能经现场亲见、当面证词或实体送信取得局部信息；吴卢在附棚内的选择直到第50章门口当面回答才进入林、贺认知。赵玄极的后段认知则按第53章阅第一报、第54章收到签收联、第73章程当面交物、第88章阅押报、第90章签令但未知执行结果、第98章仅听程的逃离见闻、第99章阅正式质询副本依次生效，禁止以读者视角、异地文书或未送达消息补全。九鼎秘卷的揭示条件也限于一条三地证据链，百章不揭尽父案、九鼎机制及未在场者认知。第90、98、99章的相关节点明确是“规划锚点（非采纳事实）”，故提案没有把未来安排误作既成正文事实。",
+              "revisionAdvice": "",
+              "evidenceCount": 14
+            }
+          ]
+        },
+        {
+          "stageId": "synthesis-23",
+          "children": [
+            "synthesis-21",
+            "followup-cross-3-5/relationships"
+          ],
+          "stageSha256": "f43523764bb894a0d7610eb54cb92957f03127d9555211d1f758a65ceaa0c2d5",
+          "checks": [
+            {
+              "criterion": "knowledge",
+              "verdict": "pass",
+              "explanation": "认知边界由实际渠道和条件控制：前段人物只能依据现场亲见、当面证词、实体书信及实际签收逐步更新判断；林、苏直到第23章亲听称呼并结合秦禾信息才确认墨幽屠身份，第25章须亲见顾峤到场手势后才能发动救援。第37—39章仍保留火因、携页者和货物链条的待核状态，第48—50章吴卢的扣押与去留也直到门口当面回答才进入林、贺认知。赵玄极后段则按阅报、签令、回执、当面报告和正式质询分段获知，签令不等于得知执行结果，程的自述也不等于全场事实。秘密揭示限定为三地证据链，不能由读者视角、残片感应或未送达文书补全九鼎全貌，因此人物判断和弧光具有因果与信息限制。",
+              "revisionAdvice": "无需就本项返修；后续章节须保持各次消息的实际送达、签收和核验时点，不能把规划锚点写成已发生知情或把局部证据扩张为全案真相。",
+              "evidenceCount": 12
+            }
+          ]
+        },
+        {
+          "stageId": "synthesis-24",
+          "children": [
+            "synthesis-22",
+            "synthesis-23"
+          ],
+          "stageSha256": "b336d50548be5b093c5aa726eda97268175f3cedb643708e3a4806543f843230",
+          "checks": [
+            {
+              "criterion": "knowledge",
+              "verdict": "pass",
+              "explanation": "认知链以实际渠道限制角色判断：前段依赖现场亲见、当面证词、实体书信和实际签收；林在第50章只确认门口亲见的吴卢、看守及陆的有限行为，53章陆的自述仍待独立核验。赵玄极的获知则按阅报、签令、回执、当面报告和正式质询分段生效，签令不等于知道执行结果，程的自述也不等于完整现场事实。父案、九鼎和残片被限制为阶段性、局部证据，不能由读者视角、未送达文书或残片感应补全。既有报告未发现同一时点的知情冲突；后段消息锚点仍属于拟定安排，须在正文中按承运、签收和核验时点实现。",
+              "revisionAdvice": "逐章展开时保持实体消息的承运、签收、阅览和独立核验节点；不得把规划锚点当作已发生知情，也不得让局部证据扩张为全案真相。",
+              "evidenceCount": 9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "issue": "lu_brother_identity",
+      "stages": [
+        {
+          "stageId": "synthesis-16",
+          "children": [
+            "synthesis-7",
+            "synthesis-8"
+          ],
+          "stageSha256": "3d1ad734164afafdee4e8663aec1d64d64eda2550d6ad2e975d0805894712740",
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass",
+              "explanation": "已覆盖安排将关键推进建立在不同人物的利益权衡和可见损失上，而非由林辰单向解决：唐顺坚持五人共同脱身而失去外口路径；贺青梧拒绝以船、人或陈述交换条件并承担失单、停牌和修船代价；林辰拒绝把未核缺额转嫁给常钧，并接受对方只作正式配合。第50章脱控依赖吴、卢的亲口拒绝、陆沉川停止协助扣人及巡员控制现场，林辰明确不以施术或代答取代当事人选择。后段宏观仍把“放弃第二片”“放弃追凶”等写为有边界的代价性选择，未见与这些安排相冲突的报告结论。",
+              "revisionAdvice": "",
+              "evidenceCount": 5
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "pass",
+              "explanation": "关系变化具有初始边界、触发选择和生效节点，未把救援结果直接兑换为无条件信任、服从或免责。林辰—苏凌霜的有限合作由拒绝遗物背书、承认私心、重订可担保范围、救人取舍及分路责任逐步形成；林辰—顾峤仍受资格、实测与实际到场限制；林辰—墨幽屠维持敌对递进。港口线中，贺青梧保有船务与合作决定权，吴、卢先纠正彼此代答再自行表明去留，陆沉川开门只形成有限承认和继续看护。此前关系原档待补读问题已被明确列为已解决的历史等待，且两份前置结论彼此一致。",
+              "revisionAdvice": "",
+              "evidenceCount": 5
+            }
+          ]
+        },
+        {
+          "stageId": "synthesis-20",
+          "children": [
+            "synthesis-15",
+            "synthesis-16"
+          ],
+          "stageSha256": "61351dd880b8989b9c746c1d5bc7e80d5c75b690d76d9c72ae186a8768d0cebd",
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass",
+              "explanation": "主要人物的推进并非由林辰单向完成，而是建立在各自目标、利益冲突和有代价的选择上。唐顺坚持带五人共同脱身，失败后失去外口工作；林辰拒绝把未核缺额转嫁给常钧，承担继续核验和失去便利的代价；贺青梧拒绝以船、人或不实陈述交换利益，承担失单、停牌和修船成本。第50章的脱控依赖吴、卢亲口拒绝、陆沉川停止协助扣人及巡员现场控制，林辰主动不施术、不代答。后段宏观还明确林辰放弃第二片、延期突破并在救伤者时放弃追程，选择会改变路线且保留机会成本。以上能够支撑人物弧光的因果链；后段尚未逐章展开不构成当前设计缺陷。",
+              "revisionAdvice": "后续展开51—100章时，须逐章兑现这些选择的触发条件、伤势与资源代价，不得把宏观规划提前写成已发生事实，也不得用救援结果抹除配角的自主选择。",
+              "evidenceCount": 5
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "pass",
+              "explanation": "关系设计区分了初始状态、促成变化的行动、代价和生效时点，没有用终局标签倒填初识。林辰—苏凌霜从第3章的有限庇护与试探，经共同承担不利记录、分路及实体消息确认，发展为仍保留独立责任的有限搭档；第95章共同救援也不自动转化为免责或无条件信任，第100章回访才检验后续关系。港口线中，贺青梧保留船务与合作决定权，吴卢先纠正彼此代答后各自表达去留，陆沉川开门只形成有限承认和继续受看护的合作，不替代供述、追责或免责。报告所列关系阶段与计划的“拟定事件”相容，未见同一时点既已脱身又无路径仍被扣押的冲突。",
+              "revisionAdvice": "后续须实际落实51—53章的生计、供述与看护条件，以及67—72、88—100章的实体回执、交械、安置和问责边界；救援不得直接兑换为服从、信任或免责。",
+              "evidenceCount": 7
+            }
+          ]
+        },
+        {
+          "stageId": "synthesis-22",
+          "children": [
+            "synthesis-19",
+            "synthesis-20"
+          ],
+          "stageSha256": "d4ed2cae01bf3300aac48639c1f3933708f18cabbc564018229cedc57a641182",
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass",
+              "explanation": "已覆盖报告将主线推进建立在不同人物各自的利益、拒绝与损失上，而非林辰单向解决：林拒绝把未核缺额转嫁给常钧，接受继续核验及失去私下协助；吴、卢、陆与巡员在第50章分别作出当面选择，才形成脱控。宏观后段还以放弃第二片、延期突破、救人时放弃追凶等选择保留机会成本。计划总纲亦明确百章只完成有限断运与部分澄清，不以成长或救援消除人物责任。",
+              "revisionAdvice": "",
+              "evidenceCount": 5
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "pass",
+              "explanation": "报告所述关系均按初始边界、触发行动、代价与生效时点拆分。林—苏的分路以实体递信和责任分担维持有限合作；港口线中吴卢先停止互相代答、再各自决定去留，陆的开门与承认仅构成受看护下的有限合作，不兑换免责或无条件信任。第51—53章的生计、供述和核验被明确标作拟定后续兑现，没有被倒写为既成关系事实；当前材料未显示同一时点的自由状态或关系阶段冲突。",
+              "revisionAdvice": "",
+              "evidenceCount": 8
+            }
+          ]
+        },
+        {
+          "stageId": "synthesis-24",
+          "children": [
+            "synthesis-22",
+            "synthesis-23"
+          ],
+          "stageSha256": "b336d50548be5b093c5aa726eda97268175f3cedb643708e3a4806543f843230",
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass",
+              "explanation": "林辰的主线行动不是单向解决：救人、拒绝把未核缺额转嫁给常钧、让吴卢自行回答去留、放弃第二片以及救伤者时放弃追凶，均有明确利益冲突和机会成本。吴卢、陆沉川、贺青梧等配角也通过拒绝代答、停止扣人、承担船损或保留供述责任改变局势。后段宏观目标还明确力量成长伴随寿储减少，避免以无代价升级消除选择后果。已有细纲的行动与51—100章宏观安排可相互承接；后段尚未逐章展开不构成本项缺陷。",
+              "revisionAdvice": "",
+              "evidenceCount": 4
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "pass",
+              "explanation": "关系没有用终局标签倒填初识。林辰—苏凌霜从程序性庇护、有限同盟，经不利证词、资助和遗物争议、共同救援及分路后的实体消息，逐步形成有边界的合作；每次变化都有具体选择与代价。林—顾的合作受境界、符牌和实测门槛限制，苏—秦是有偿带路和实体送信而非无限追随。港口线中，吴卢先纠正彼此代答，再各自决定去留；陆的开门、供述和看护也分别处理，不兑换免责或无条件信任。51—53章的生计、供述与照护被明确标为拟定后续，不与第50章脱控状态冲突。",
+              "revisionAdvice": "继续逐章落实51—100章的住食、工时、看护、供述签认、消息送达和问责条件；不得把救援直接兑换为服从、信任或免责。",
+              "evidenceCount": 8
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "workerProtectedHistoryCheck": true,
+  "otherAreas": [
+    {
+      "area": "world",
+      "status": "completed"
+    },
+    {
+      "area": "power",
+      "status": "completed"
+    },
+    {
+      "area": "story",
+      "status": "ready"
+    }
+  ],
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "questionsClosed": 0,
+  "designApproved": false,
+  "proseGenerated": false,
+  "limitation": "Replay verifies provenance, canonical requests, final report reconstruction and retained verdict severity. It does not prove the semantic correctness of passing or negative explanations, inclusion of every independent issue in a single criterion explanation, or design acceptance. Reconcile the preserved primary-source counterevidence and genuine gaps before revising. History protection is the worker assertion, not an independent database snapshot."
+}
