@@ -1,0 +1,108 @@
+{
+  "kind": "unapplied_sword_inspection_author_proposal",
+  "basePath": "data/design-candidates/design68-captive-cold-draft-v12.json",
+  "baseSha256": "b1f4f16cdadd52160d9069a95e28737a92fa132dd70497d070e1ffd5fc77c57d",
+  "candidatePath": "data/design-candidates/design68-sword-inspection-draft-v13.json",
+  "candidateSha256": "f5b1f122eb830605e54a4eb7217d5f90be85c93f9f4d8751cc71793686718ae9",
+  "baseInputHash": "3274d4710800ad02565040a341a05177b4bd7cab363e169219b562a4a0f62d01",
+  "finding": {
+    "runId": "design_run_1a9589a8-f222-4b9b-861c-99adc2d45c80",
+    "stageId": "batch-5",
+    "criterion": "costs",
+    "finalReport": false
+  },
+  "changedPaths": [
+    "worldPack.artifacts[art_03].cost",
+    "worldPack.artifacts[art_03].limitations"
+  ],
+  "proposedArtifact": {
+    "id": "art_03",
+    "name": "赤霞斩铁剑",
+    "tier": "法器",
+    "effect": "剑身铭刻炽火法阵，灌注真元即可喷薄尺长赤火剑芒，斩金碎石。",
+    "cost": "普通附芒挥击每剑耗凝元修士小半成真元，连击会发热；完整乾元御风剑诀按该功法一式二成总费用结算，其中已含本剑这一式的供能，不重复扣普通挥击费。 冷却后的低流量试注是单独的器身复用检查，每次预付本人凝元健康稳定真元上限的半成，另于挥击、剑诀和御物计费；中断、异常或检查失败均不退，不以流量低免单，也不把这半成作为下一式已付款。",
+    "limitations": [
+      "不耐极寒阴罡长久浸润",
+      "无法承载玄府罡气强行灌注",
+      "以凝元真元施放一整式御风剑诀后立即停止灌注，自然散热至少一刻钟，待剑脊与剑柄均不再灼热、低流量试注无异响后才可再用；猛浸冷水不能跳过检查。器身降温不回补真元或治愈持剑人的伤，伤者仍须满足自己的握剑许可。",
+      "低流量试注只供已在授业中练成凝元注剑、收注与冷却检查者执行，不能由持剑或晋阶自动取得；第18章既有顾峤指导与176日“剑冷后再用”实测包含此检查，训练中逐次先扣半成，仍须余量足够才练，均在176日终段余额按零重新起算之前，不挪用177日以后的恢复。试注前须已停止实战灌注、自然散热至少一刻钟，确认剑脊与柄不再灼热，并符合本人握剑伤限；只在身边无人、剑锋不指人的安全位置，以本人凝元真元缓慢注入后主动收注，不形成外放剑芒或风刃，不挥击、不御剑、不切物。一次最多三息，半成是整次上限和固定支出，不因延长或多试免费；听到异响、剑柄灼热、掌痛或导气不稳即停注，已付不退，剑停用待检修和复验，不靠反复灌注把异常压下去。正常检查虽可轻微温升，不达到实战灌注的热负荷；收注后须再触验剑脊与柄仍不灼热，才算检查通过，不另循环要求再做一次同样试注。若实际升至灼热则本次失败，依异常停用处理。检查不启动攻击、不修复损坏、不回补真元、不消除旧伤，也不改变完整剑诀后的原冷却要求；玄府元罡仍不得灌入本剑。"
+    ],
+    "status": "proposed"
+  },
+  "relatedSources": [
+    {
+      "id": "world/artifacts/art_03",
+      "sha256": "af1f6dbb1fac0c730a3474c439d059886cb4fe2ca716fb10197d42bce9b9ed04"
+    },
+    {
+      "id": "story/chapterPlans/chapter-plan-20",
+      "sha256": "afa121c317dca5d42ae6478745f8a965cd456dcbfa4ebcb1d5aa1d8f6885e42c"
+    },
+    {
+      "id": "story/chapterPlans/bible-chapter-42",
+      "sha256": "f5fe6560bcd7491abe8384117ef05e4d91ed0d179d39a68005850bfdc6dc8317"
+    },
+    {
+      "id": "story/chapterPlans/bible-chapter-48",
+      "sha256": "8926dd2d8ef1eeba44700c6b7f6c506bdefe9e554731141e2467d82d7949cd6c"
+    },
+    {
+      "id": "plan/milestones/ms_v2_boundary",
+      "sha256": "ff8faa02c9fdb145c1ea395efbb2053a8975d0ba4a0bf20fd4b5fc23ee887be1"
+    },
+    {
+      "id": "plan/chapters/20",
+      "sha256": "985f0e3f50045287452bdeab6f2b92402608300dee63698cafcd1f6822df714d"
+    },
+    {
+      "id": "plan/chapters/42",
+      "sha256": "03250c900742e9a4a71e9af35eb7bd50ca27f537df45d7b1bd4a0c618f2da6c7"
+    },
+    {
+      "id": "plan/chapters/48",
+      "sha256": "3f31f4c4d6b0a8b2237ff99ef43bdedce300c2cfeed7e24e43f03be4f2547a94"
+    },
+    {
+      "id": "plan/chapters/50",
+      "sha256": "09df44bf9581c30280f0075c09c8d602d8d80c20a630b3181b2920a366485f47"
+    }
+  ],
+  "relatedSourcesLimitation": "Literal navigation inventory, not exhaustive semantic dependency analysis.",
+  "accounts": [
+    {
+      "day": 184,
+      "before": 8,
+      "cost": 0.5,
+      "recovery": 1.5,
+      "after": 9
+    },
+    {
+      "day": 239,
+      "before": 5,
+      "cost": 0.5,
+      "recovery": 0.5,
+      "after": 5
+    },
+    {
+      "day": 252,
+      "before": 3,
+      "recovery": 1,
+      "cost": 0.5,
+      "after": 3.5
+    },
+    {
+      "day": 290,
+      "before": 4.5,
+      "cost": 0.5,
+      "recovery": 0,
+      "after": 4
+    }
+  ],
+  "preservedAllOtherFieldsExactly": true,
+  "inheritedUnreviewedProposal": "v12 pre-rescue cold protection remains unapplied and unaccepted.",
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "questionsClosed": 0,
+  "designApproved": false,
+  "validationLimit": "Arithmetic and exact edit scope only; not model acceptance, complete request-capacity validation, or a persistence rehearsal. Await all four formal reports and reconcile any additional findings before application."
+}
