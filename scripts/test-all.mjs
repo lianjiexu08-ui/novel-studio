@@ -34,6 +34,7 @@ for (const relative of packageDirs) {
 run('candidate-budget-audit', process.execPath, ['--test', 'scripts/check-lifespan-path.test.mjs'], root);
 run('design-review-audit', process.execPath, ['--experimental-strip-types', '--test', 'scripts/audit-design-reviews.test.mjs'], root);
 run('review-recovery-chain-audit', process.execPath, ['--test', 'scripts/audit-review-recovery-chain.test.mjs'], root);
+run('design-review-insufficiencies', process.execPath, ['--test', 'scripts/collect-design-review-insufficiencies.test.mjs'], root);
 run('design-candidate-preflight', process.execPath, ['--experimental-strip-types', '--test', 'scripts/validate-design-candidate.test.mjs'], root);
 
 const spike = join(root, 'novel-service-spike');

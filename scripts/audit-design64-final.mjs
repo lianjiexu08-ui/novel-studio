@@ -3,6 +3,7 @@ import path from 'node:path';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { createRequire } from 'node:module';
+import { collectDesignReviewInsufficiencies } from './collect-design-review-insufficiencies.mjs';
 
 const root = '/Users/lianjie/Documents/ChatGPT/novel';
 const control = root + '/data/audit-runtimes/design64-control';
@@ -106,6 +107,10 @@ for (const run of checkpoint.runs) for (const stage of run.stages) for (const ch
   negativeFindings.push({ area: run.input.area, stageId: stage.id, criterion: check.criterion,
     explanation: check.explanation, revisionAdvice: check.revisionAdvice });
 }
+// A stronger revise verdict must not hide independent ordinary insufficiencies.
+// Resolved source waits remain visible as history, without re-blocking them.
+const insufficiencyFindings = checkpoint.runs.flatMap(run =>
+  collectDesignReviewInsufficiencies(run, work.designContentReviews.get(run.reportId)));
 const manifestPath = root + '/docs/audits/2026-10-16-design64-manual-reconciliation-manifest.json';
 const manualReconciliation = read(manifestPath);
 assert.equal(manualReconciliation.inputHash, audit.inputHash);
@@ -130,12 +135,15 @@ const proof = { ...audit, runtimeCommit: binding.commit, scheduleVersion: 25,
   verifierSha256: fileHash(process.argv[1]), recoveryChain, replay,
   recoveryChainAuditorSha256: fileHash(root + '/scripts/audit-review-recovery-chain.mjs'),
   replayHelperSha256: fileHash(root + '/scripts/audit-design-reviews.mjs'),
+  insufficiencyCollectorSha256: fileHash(root + '/scripts/collect-design-review-insufficiencies.mjs'),
   previouslyVerifiedStagesPreserved: prefix.records.reduce((n, a) => n + a.records.length, 0),
-  negativeFindings, manualReconciliation, manualReconciliationManifestSha256: fileHash(manifestPath),
+  negativeFindings, insufficiencyFindings, manualReconciliation, manualReconciliationManifestSha256: fileHash(manifestPath),
   currentBlockingQuestions, releaseStatus: 'blocked_pending_reconciliation', manualFindingsDoNotOverrideFormalVerdicts: true,
   protectedHistoryUnchanged: true, preservedOldRuns: baseline.oldRuns.length, preservedOldReports: baseline.oldReports.length,
   verificationModelCalls: 0, databaseWrites: false, designApproved: false, proseGenerated: false };
 const output = root + '/docs/audits/2026-10-16-design64-four-areas-audit.json';
 fs.writeFileSync(output, JSON.stringify(proof, null, 2) + '\n', { flag: 'wx' });
 console.log(JSON.stringify({ status: proof.status, areas: proof.areas.map(a => ({ area: a.area, status: a.status, verification: a.verification })),
-  negativeFindings: negativeFindings.length, responsesReplayed: replay.reduce((n, a) => n + a.responsesReplayed, 0), output }));
+  negativeFindings: negativeFindings.length, unresolvedInsufficiencies: insufficiencyFindings.filter(f => f.disposition === 'unresolved').length,
+  resolvedSourceDeferrals: insufficiencyFindings.filter(f => f.disposition === 'resolved_by_raw_review').length,
+  responsesReplayed: replay.reduce((n, a) => n + a.responsesReplayed, 0), output }));
