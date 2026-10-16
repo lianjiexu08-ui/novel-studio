@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { Work, contextManifestFor, emptyUsage, type ChapterVersion, type StoryEvent } from '../../../novel-service-core/src/core.ts';
 import { OpenAICompatibleChapterProvider } from '../src/index.ts';
+import { eventOrderFixture } from '../../../novel-service-core/test/event-order-fixture.ts';
 
 function fixture() {
   const work = new Work('跨卷记忆');
@@ -47,4 +48,46 @@ test('a replacement writer never receives current, future, invalidated or foreig
   assert.deepEqual(f.sent().adoptedFacts, f.facts.slice(0, 2));
   assert.deepEqual(f.sent().recentChapters.map((chapter: any) => chapter.chapterNumber), [1, 2]);
   assert.deepEqual(f.sent().adoptedKnowledge, []);
+});
+
+for (const maxEvents of [240, 1]) test(`writer preserves verified same-chapter transitions in the selected ${maxEvents}-event context`, async () => {
+  const { work } = eventOrderFixture();
+  const context = contextManifestFor(work, 2, { maxEvents });
+  assert.equal(context.requiredMaterialStatus, 'complete');
+  const expected: StoryEvent[] = JSON.parse(JSON.stringify(context.includedEventIds.map(id => work.events.get(id)!)));
+  assert.notDeepEqual(expected.map(e => e.id), expected.map(e => e.id).sort(), 'fixture UUID order must differ from narrative order');
+  // The manifest selects records; its list order is not an alternate chronology.
+  context.includedEventIds.reverse();
+  context.includedEventIds.push(context.includedEventIds[0]);
+  const before = structuredClone(work);
+  let sent: any;
+  const provider = new OpenAICompatibleChapterProvider('', '', '', 10, 5000, false, { completeWithUsage: async request => {
+    sent = JSON.parse(request.user);
+    return { text: JSON.stringify({ content: '续章测试请求', proposedEvents: [] }), usage: emptyUsage() };
+  } });
+  await provider.generateChapterAsync({ work, chapterNumber: 2, context });
+  assert.deepEqual(sent.adoptedFacts, expected, 'recover actual adoption order without expanding the selected context');
+  assert.deepEqual(sent.adoptedKnowledge, expected.filter(e => e.eventType === 'knowledge_belief'));
+  if (maxEvents === 240) {
+    assert.deepEqual(sent.adoptedFacts.filter((e: StoryEvent) => e.subjectId === 'stone').map((e: StoryEvent) => e.value), [10, 8]);
+    assert.deepEqual(sent.adoptedKnowledge.map((e: StoryEvent) => (e.value as { belief: string }).belief), ['无辜', '有罪']);
+    assert.deepEqual(sent.adoptedFacts.filter((e: StoryEvent) => e.subjectId === 'refund').map((e: StoryEvent) => e.value), [10, 8, 10], 'repeated occurrences must survive');
+  }
+  assert.deepEqual(structuredClone(work), before, 'generation must not rewrite history to repair its order');
+});
+
+for (const corruption of ['missing-candidate', 'changed-event'] as const) test(`writer refuses ${corruption} ordering evidence before spending a model call`, async () => {
+  const { work, candidate } = eventOrderFixture();
+  const context = contextManifestFor(work, 2);
+  if (corruption === 'missing-candidate') work.candidates.delete(candidate.id);
+  else [...work.events.values()][0].value = '无依据的新余额';
+  const before = structuredClone(work);
+  let calls = 0;
+  const provider = new OpenAICompatibleChapterProvider('', '', '', 10, 5000, false, { completeWithUsage: async () => {
+    calls++;
+    return { text: JSON.stringify({ content: '不应生成', proposedEvents: [] }), usage: emptyUsage() };
+  } });
+  await assert.rejects(provider.generateChapterAsync({ work, chapterNumber: 2, context }), /事件顺序/);
+  assert.equal(calls, 0);
+  assert.deepEqual(structuredClone(work), before);
 });
