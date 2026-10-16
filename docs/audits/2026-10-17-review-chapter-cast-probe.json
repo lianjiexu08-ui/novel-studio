@@ -1,0 +1,300 @@
+{
+  "preparedAt": "2026-10-16T17:13:14.427Z",
+  "inputPath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design69-chapter-cast-probe/input.json",
+  "inputSha256": "a5ed54992e59a6884c8ac0ebac741bd14a1783eb0e859b2119950776045c2844",
+  "inputHash": "10ba6d25b130be24ac27543056be1dad7242e75c9fba5200853f08eb2680c92f",
+  "sourceCharacters": 119709,
+  "runtimePath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design69-chapter-cast-probe/runtime",
+  "sourceHashes": {
+    "apps/api/README.md": "759a64515193fd9672bc78c18674dcc42e94d99e9c3b5007951f5287d6219867",
+    "apps/api/package.json": "2b1963f802f50df50d3dbeeba067f66c80b60659fb490a4fdf187ac2a07e8f26",
+    "apps/api/src/hot-topics.ts": "f4551d06ddf46e03735fd1a61fc09cf733d71b76e65c01195b09c6d21a0bad83",
+    "apps/api/src/model-settings.ts": "8378d03410b1a1fec1fd0c7eab900f6d9d96bc9190b2fe2bc7d8cea1a9063ed9",
+    "apps/api/src/server.ts": "c4e4cab38613118894798bb42be84f401f99f8c00f12635ffb3a7aa440e9ab47",
+    "apps/api/src/settings-routes.ts": "9dbb0158a0dcf929afccfa8c625e429371e3d647bdc02fb938ec4a40aa68c4a2",
+    "apps/api/test/api.test.ts": "f19dfff2b08faf27a452f140a2256e9e7b863a5f4d4e578ed1f3b6796c87e456",
+    "apps/api/test/chapter-review-source.test.ts": "081066b5585aa0a8d74d4aaf27468d1a89d8562ad70024e8b269f999d62031b9",
+    "apps/api/test/design-candidate.test.ts": "91708034bc4fe35b370eb5370d836463bacc51a28bfef59cea5165ac584dd0f2",
+    "apps/api/test/hot-topics.test.ts": "e43945c499fd9eb817463086d1cb37ab00e0b6466bae4e61eabcb08e5f3c6baf",
+    "apps/api/test/manuscript-export.test.ts": "b1f68e1901411199e4ad47c4f40305106f4353af1427ad3dbdc5feb9be3b678d",
+    "apps/api/test/relationship-provenance.test.ts": "53d5ee7b0c3d6322abc38049f5997d10774a4fadef04608ec9ab109749cfb471",
+    "apps/web/index.html": "51e33d1d36feb456277736c70829b7e43a97f3fd4f784db5ead31a419e497bdf",
+    "apps/web/package.json": "7847217b1ec3c10cd8b128fb883da5b7f3936ee943caa268a81fd72db08a3fb3",
+    "apps/web/src/App.tsx": "0c8ee125df4706249406f837a258debce15527a1aae1577a94896379d55b7190",
+    "apps/web/src/api.ts": "ec3531ac6dc3f9dd56c899ba59240984e96d7fa22516062a8e1f95ad0ec88f62",
+    "apps/web/src/chapter-adoption.ts": "fc0203fff3c6cd1e70c76379c7c6df64569a2221e988e0464ea007f1edb130cb",
+    "apps/web/src/covenant.ts": "6b4c277e8c775afdb886dbd463cb4fd495dc509ed7c6100220c6f60120ecf641",
+    "apps/web/src/design-review-coverage.ts": "6ee2ccc084f32f192be9a70aed6fb704c08e1061a037abb2424b5bc0dac90420",
+    "apps/web/src/design-revision.ts": "3bc308a6c0d2eea108a56053f1f1ce9e114947ddf0542596b3089b0a5389bff4",
+    "apps/web/src/genres.ts": "276ca9a54b6d492960ab80de790f0db419cb93cf98d8ba61555840ef5cbdfcd3",
+    "apps/web/src/labels.ts": "da19f2df42d44dc9c9d0668a6c6b0fe15a7e3e12bb8bbf2f2db59033203b188f",
+    "apps/web/src/main.tsx": "fe62b21169eee8f870b7ef27f8f208805356dc11bffdac0fc5df01d92f7dffe5",
+    "apps/web/src/pages/AdoptedChapterReader.tsx": "54e64ba599ac1533a09ea2c237aaa5e58f9a50fb64bd8ad5d830954a241c9e75",
+    "apps/web/src/pages/BookSettingsPage.tsx": "4760c4bd315990604c9f55364b1e4e9dd3d7ba0b621eadfed1e9e346e2474bdd",
+    "apps/web/src/pages/BookshelfPage.tsx": "1c125bdbff2cad72d2feeddc844f37771b2ac011a62589b90ec4436c1a38caa5",
+    "apps/web/src/pages/ChaptersPage.tsx": "18886918cfcbc9e93620da96e2e98165d4483fbd772cef34d9258efbf6718446",
+    "apps/web/src/pages/CovenantForm.tsx": "fe4920a365fc337b3b1fbf16bdd1393162fabd88765af9c86ff9c0ba58385a46",
+    "apps/web/src/pages/CovenantPage.tsx": "d012b1a4da65f56a59850220be6acdedee8d157fba977bc117676953415fe558",
+    "apps/web/src/pages/CreateWorkPage.tsx": "051283667bc74a9cfc6aa3f21dbc408d97773d67710fce0c67dd8bbb33048f14",
+    "apps/web/src/pages/DesignAuditCard.tsx": "46fb0f5d250a0ddfb7a9a502239b5af149725ea296e6662e81b078acf65e06a0",
+    "apps/web/src/pages/DesignContentReviewCard.tsx": "870fe9b137fa5fdd64a1064650c66acb5603c5a28bd0ee98dfaf24aa6edb2329",
+    "apps/web/src/pages/DesignPage.tsx": "bbb25b5e22251497cf58a99070b526b49e1bc337324b89b95511d5fd1a4733c3",
+    "apps/web/src/pages/DesignQuestions.tsx": "a9c8cfa6ffaa0c1a39369132dc443fd0f4d816db4edbd6e9c92662746336dad8",
+    "apps/web/src/pages/DesignRevisionEditor.tsx": "cb5c5d4b1444c26f022bb377451eb725fc35491a8e68d72ce1fb4df2a4b11a36",
+    "apps/web/src/pages/EditorModal.tsx": "37fcd5dfeeef89532558dbb6f939ac71e178e760bc2421fe51f5db6dfb2ac278",
+    "apps/web/src/pages/KnowledgePlanView.tsx": "be0c010c28798301a5090efdb27ab3b959c851466d9df19858e2a6a1b2a5ead3",
+    "apps/web/src/pages/OutlinePage.tsx": "a06190432d413fa132f1655695708703e2565b6232a68b9f261a0e3eeb31c959",
+    "apps/web/src/pages/OverviewPage.tsx": "c157365bfe49a4675f025380333763c969113509b4dd432f69f8af548f8c5f81",
+    "apps/web/src/pages/PlaceholderPage.tsx": "2bfcbf3da6982b8f006de58c615086fc804d9bd72691829b545e241a5822aede",
+    "apps/web/src/pages/PlanPage.tsx": "80c04cbee74fae04ccffac99e09ec629a5874e5e54982df7b3be9ffbdb7a636d",
+    "apps/web/src/pages/PublishPage.tsx": "146b4b49d95c02bf3a631ee6df7d0bf58b6395729f46df673d3425ef5e8392e9",
+    "apps/web/src/pages/QualityPage.tsx": "fb29bfac6fa76f26180f4d5253f96de762848f150bc2fe0896314ee50571bb1d",
+    "apps/web/src/pages/ReviewSourceCoverage.tsx": "5af322ba3bf4b37eab03838726a447c829628f5f94d028c5a8babf30be948478",
+    "apps/web/src/pages/SystemPage.tsx": "94ab5bbd8827a4f5cba4c476ea30182d76ac5ed7aac80f23e742fa3d06f451cb",
+    "apps/web/src/pages/TasksPage.tsx": "df6f31b46afe8feb60b6ca99e779623b199e253461aff7616ff0fc1c147d83cb",
+    "apps/web/src/pages/Workspace.tsx": "e0f8a024990dd3dd6ae81d05d2c7a0582a704da37cf36a6bbf3eb72d6f378ffc",
+    "apps/web/src/pages/WritePage.tsx": "9cde681e5c7dc6287f8cb30b3505418b9473eefa321a3eaacf2fd16e16b5991d",
+    "apps/web/src/styles.css": "586745894ede27930f9f3ad6b2824cb8e43916c6378bb83177bdaca3368718bc",
+    "apps/web/src/work-chrome.tsx": "92cf5dfddb552091f9fab9aa3967d96b17986cc4c12c23e9fa5a755a08ae96aa",
+    "apps/web/test/chapter-adoption.test.ts": "7a718f0dccf8b84e5f341b7e7f5eb9667e866d5e7521a808ff30bb4ba7396ada",
+    "apps/web/test/design-review-coverage.test.ts": "fef37ae939373ceefa91e26f22d7f71dd5be75c15caee6ddddf03c0be3ada64b",
+    "apps/web/test/design-revision.test.ts": "d2a701a01d6dd0ccc27b3ae69e296a02d04104004561fe2ca9936afd8c845553",
+    "apps/web/tsconfig.json": "637141e1559170f0b5b2fc27c9c7c5aafd5af99dbed5ee482bb34a136338f1fd",
+    "apps/web/vite.config.ts": "14501439875c563028a6d28102ab04a36105e6f013b0803a9b5f62690bf45098",
+    "novel-service-core/package.json": "9c9d8131074c3be5301c3d68ce4542ea074bad65d0abbb7135602b61dbd78761",
+    "novel-service-core/src/bible.ts": "82e5465758b3a3a736a20e25688167148ef7ed6063bb0c0b4a830e0dac04c72f",
+    "novel-service-core/src/chapter-review.ts": "84394cb0460ad073d7748cbe8cd042f1a7b7fd0509ac509d194ea433e4e1452d",
+    "novel-service-core/src/core.ts": "1f11f86b0da38b62731e722c1edce33f0f4108dc21eed6893d3cfb92366b667e",
+    "novel-service-core/src/design-questions.ts": "6b19ef680d817d0df083e693fc1837e77fda757942c09805495be4c643e76d27",
+    "novel-service-core/src/design-review-report.ts": "066c23fa14185d03d33fdb55ad73fb8bfcb3604471ae78e6554e368ab047f5a7",
+    "novel-service-core/src/design-review-run.ts": "772ac16feb72333def838f251c3d72d7ed8bc2d36281afe9d1326ec8da9d9c17",
+    "novel-service-core/src/design-review-scope.ts": "360070bb68c3b9549271438f8c13eb8cea3bd9efa0c0bb6a4d39053a74389c81",
+    "novel-service-core/src/design-review.ts": "8612462cc35b82527684418ddb1925bd5437479d2efd060c705e6886f4e828a1",
+    "novel-service-core/src/event-order.ts": "64b016037306d6d81eaeaac8ee7d3f770de149ccbebaa055b6dbb1ed6074e367",
+    "novel-service-core/src/execution-evidence.ts": "707aefc77dda70325aa616f2cbbdfb55cff85df5a54fc8bc635f63bb99191868",
+    "novel-service-core/src/planning.ts": "97beeb8c66508263b925c8664e91816d7e8097476e7c5d3c7a5f05fc0665ca13",
+    "novel-service-core/src/world.ts": "ec8bd0cd9915dcfa5d2e4ea0c96cc3e452f7bf34d711c80419093af33cf95d6d",
+    "novel-service-core/test/bible.test.ts": "eef41a4482938dbce6f5b333bb18bd78c1a080ff05c12064689b9ac2c78549a3",
+    "novel-service-core/test/context-memory.test.ts": "d6ebfb89a79fd724d13fb0cec1e4741c1359b1880f2448ebf5b24140c2d5cabb",
+    "novel-service-core/test/core.test.ts": "da7895bb83c2332521638bb4615d398e0dc4048fe4740e12e7d22bd06ad192b3",
+    "novel-service-core/test/event-order-fixture.ts": "9d22b0eaeace2d012f555333e923474217dbff9977ffd4de743c0dd7a23bdea2",
+    "novel-service-core/test/event-order.test.ts": "b9d23b874e38d978cc9375b1f517a3089930399f3fa0ceb67569d5bb3d7c1a75",
+    "novel-service-core/test/long-run.test.ts": "3867c360c17e34ced2c43a1906b624a8bdd355623ee3356a5c9001301f16836f",
+    "novel-service-core/test/world.test.ts": "bdb323941127c9c6be32d6e7a0849ccb393f097024a0bd2b52b0229f0bb2f2df",
+    "novel-service-core/tsconfig.json": "d5ed9fd23840c8299b48f027e0aed2c2e91e5de6debbb9823b4ee6895ff71898",
+    "package-lock.json": "98131e0290762279750216fd829929d61beac6c14d81f564883c9ebeb0117689",
+    "package.json": "fa9c11103fb4cc5a1dd27df02046a1b251d3daa51e302148e350ab0b21ebe5bf",
+    "packages/application/README.md": "a1e20bc9c88a45f9ff25f634d29dcc28cc79b8e0aaa523d2007b872e6156c7ce",
+    "packages/application/package.json": "cc45ce2724ddbab1488fcf08449585396877c8cb7d073e6b702c3f8116bfed51",
+    "packages/application/src/design-candidate.ts": "32ba57418fe483e16ae5770c2f35911236a07c2539d646036a7d9414b964e84a",
+    "packages/application/src/index.ts": "963eb162fe091418194ed708cf63e8eed6a96af62d5841e62a727fb935c2990a",
+    "packages/application/test/chapter-review.test.ts": "f827d5c2e420890f47a9fd5c8fe0db534b1dce508449d80526a2d19c4e7c32f6",
+    "packages/application/test/design-candidate.test.ts": "0fe52b9de82b722743ca7b85c6c85056a3d1ba10d4e9242511ea9115a561208e",
+    "packages/application/test/design-review-navigation.test.ts": "eb9f8f7588864c3226abfb87c29ff28e955ea5e6ffa4a35294028c0d975832af",
+    "packages/application/test/design-review-run.test.ts": "7a69b5e2998a07315ad42c2846cc796e13042ca922e741814bbc813022e50da9",
+    "packages/application/test/design-review.test.ts": "f7bd261aba1e991f444ac1206b1d12726e5799789d39d7d627127844885f25b3",
+    "packages/application/test/execution-checks.test.ts": "51f4c8712161ff1dc846e9dc0a5311fda2ff00b3ec54ec2a403f47eb64887fa4",
+    "packages/application/test/fixtures.ts": "1868721e82a79193e4189e86ac4229668f6489057210365bb8cc262bee89865c",
+    "packages/application/test/manuscript-review.test.ts": "965d1f1d5a46c2ed4504633c91978debc601ee0e2788fd11455c75194431c106",
+    "packages/application/test/planning.test.ts": "c638dd542d0faa97538e55032c424cbfbcfe389e4e753be383ef2279747bcc73",
+    "packages/application/test/question-retention.test.ts": "cb5a627c7aebfb80d014425eee5758e4c79d9e76e26920d8741931d169b05362",
+    "packages/application/test/workflow.test.ts": "bfc5b04739615916858ee198d8b9e30e50dde406a3f432f91ad46408b31ab18b",
+    "packages/contracts/package.json": "fff92c163f0d6424b989ab4bf71e9569f60e7e545fb8136310fee3c5cb0c12e3",
+    "packages/contracts/src/api.ts": "79da1013f05cba5b01b8823ed1f32c6a3618d0f062841741f4f3f939ac985ca7",
+    "packages/contracts/src/design-review.ts": "fb7a4a67e2f789c0c8294b16896be3ddc40c0efd2de19c71ba537e0d1acb3ab4",
+    "packages/contracts/src/index.ts": "ef961a632ab5f613bae93c28820c5f7bab97670529640f1f77e80f2ca4c066b4",
+    "packages/contracts/src/planning.ts": "a70ebc1a9dc4b0b5805cdbdfea012622acc3b544422f648d61355b61501a8166",
+    "packages/contracts/src/world.ts": "2f859722c541c132a71edcdbdb610f26971c47c07301e9098739c5a216b0818b",
+    "packages/contracts/test/contracts.test.ts": "6686e5a6b40af521e5d6b869cf0728335bc1f2214581b6b0bc9869a45ed365d4",
+    "packages/contracts/test/world.test.ts": "38728ae5d51c17a460f9c2905ec4a9b4a7039b143b15b6dfa63441d908d0c75e",
+    "packages/model-gateway/README.md": "b2d33ac953dcb89aba79777133ce5c3562217a52f5a0e4ac85006350bd2bf2eb",
+    "packages/model-gateway/package.json": "1c25059fc354d059ceac3f59db868e2c7a659069eb2962cac0536202c5387525",
+    "packages/model-gateway/src/index.ts": "384e1a1a99a03ce3d216af458683aee452a533d586dc1e1067d1a56d29040673",
+    "packages/model-gateway/test/gateway.test.ts": "a9ef2e53002fc0052d8590462bf5e2e643f6203259b043819ef3fa16ab44d064",
+    "packages/model-gateway/test/transport.test.ts": "48760ef02f60dc6ca3c04e6ca7f6040f8f8672bd563a175c9ee01bd7d7b83b57",
+    "packages/persistence/README.md": "e795d118a8eaaeec05e490f0f3f49f18b7fd13d656cdc22204d4b49241fec6e7",
+    "packages/persistence/package.json": "2fbf2b938e6ae544d5c81ac21645ebe5a353acaf1ebdd50391c81179de642372",
+    "packages/persistence/prisma/schema.postgresql.prisma": "1a57929ced4f04f43a2139d15973dd34e14036b6f0b21c918ae2c8479f396524",
+    "packages/persistence/prisma/schema.prisma": "40d57f9581057b1b6d446fe1c49db91b5f0b5d2b741013de2450a1154824f974",
+    "packages/persistence/src/json-repository.ts": "aa9bd597464d39337761c86f0c6616b079438c81a97671db5598dbec2fe5b4df",
+    "packages/persistence/src/prisma-repository.ts": "3de165e064376e5b5df271547d129b97780adc34192c878e55c796f46be447bd",
+    "packages/persistence/test/json-repository.test.ts": "1efd6cd4559be4bf650cbe4042f5fa5b0dc35a3952a6d75fff8ec0a084cae9c3",
+    "packages/persistence/test/prisma-repository.test.ts": "913fbf72a4f801b088d95cdf2f79e50737ed5a06f5ab8149527661d8bde0a9d2",
+    "packages/planner/package.json": "74e9a9067d769424af736554543eda33fa4ff55cf4c7e150f5b5241ab1c43cb2",
+    "packages/planner/src/design-review-evidence.ts": "a6944a99834620c79ebf2a6cdc23cf44b63fa8fc60b20a7e8946776f8baf6e33",
+    "packages/planner/src/design-review-horizon.ts": "2184b067484fb2cd26363c34dba4035c1e577b7a1a363c6e253818b8966a291a",
+    "packages/planner/src/index.ts": "e5de62c145cc59d3ff3d9e30bd9840e0e6cddef174cad828469a12fa6c31ac5c",
+    "packages/planner/test/chapter-memory.test.ts": "88bcd853de450c8ca8f7acb432c5a8e118d98c69d35d2f357dd8b2847eab5717",
+    "packages/planner/test/chapter-review-fixture.ts": "d97cd143ce454cce23bf89ace5a609c8f097a1cb7a04f4f1db5f168810e32bdd",
+    "packages/planner/test/chapter-review-stages.test.ts": "174152afe3ce71acf4212760b69d473c31a84a80df75206905235795237b22f6",
+    "packages/planner/test/design-review-horizon.test.ts": "f24b325411ac153f78d2b383bf73d93ca9fd02d929d92a7f61f48c258a538b56",
+    "packages/planner/test/design-review.test.ts": "69dd9c7f688a2853c71362a5d899f5414628bb26912aadf27f77d1a6f704cbea",
+    "packages/planner/test/design-target.test.ts": "27845782853ee9b77d2923e57f0e10a63dcb8bc226939c06a8a44532e443d704",
+    "packages/planner/test/failover.test.ts": "77f9120b8f7de2edc9ca786971f4b86129f2187722e0c0a9668317e198684c03",
+    "packages/planner/test/planner.test.ts": "b387ee74c61fc931cdb70c5652de9ca021f235aa5e53829a5a838881417fbc35",
+    "packages/planner/test/world-proposal.test.ts": "d47bfc765e73926dbcffb590c8d5c74fcb8e78f518c0475b388c335a169a8e13",
+    "packages/worker/README.md": "d58e9a19209b8eac6de15555fa6f2cd9596f6cee878613ffbf16bac4a6bd3020",
+    "packages/worker/package.json": "5636cd05ce0f4f5809af4296158fd58290fd626b0b6908d7a39a15360e70ad4d",
+    "packages/worker/src/index.ts": "70abb55097b11e14ed46200d05453eb54b05c2e1dc43bc93ffb259f220feed85",
+    "packages/worker/test/worker.test.ts": "9e84ce12ebc508bc889ca43ca5a2f778434955c289db77223964c98da94e60d8",
+    "scripts/audit-design-reviews.mjs": "5d0cc5b5b68d6ca7d3eb600ad8ecb3679ebb8187831907700a83eed9c20b28b3",
+    "scripts/audit-design-reviews.test.mjs": "00b51155383879052c5d8db1e7c0c1f2dd53b474c08832a0fa96fc2d8b7f40c3",
+    "scripts/audit-design64-final.mjs": "19535edfacad24c561b7588c234e197325c36e1599db727daed55f123dd2488b",
+    "scripts/audit-review-recovery-chain.mjs": "01088487eed9b5a6f125760eea31a5e3c71e5d1839a24ccaa8d2f7f1b47e689d",
+    "scripts/audit-review-recovery-chain.test.mjs": "79adc5fdb88532ecde91543222c1da95cb8103f8c1f084d5c6447cc0fe98389c",
+    "scripts/check-lifespan-path.mjs": "364b03d59942187ccb79e05497ad209223a92016f0da08798cf5aa53ea4262cf",
+    "scripts/check-lifespan-path.test.mjs": "94869ba7ca93c12c332ff19f8b6c60a8da3495605be3f3155d3a458dce75546e",
+    "scripts/collect-design-review-insufficiencies.mjs": "6d5649fac6188e536747ba010ddb4c6df342ce638076be40ac2838e28a5792b4",
+    "scripts/collect-design-review-insufficiencies.test.mjs": "82f491a05448657c6a1f9615025e985d953583e060fdb9c0a6f43bcf8192a83e",
+    "scripts/design62-citation-recovery.mjs": "abdb7d2e8970b6b101d2c4674a0e715d956d2264d056124903ad3b279e564473",
+    "scripts/design62-citation-recovery.test.mjs": "458b0a603dc58ad4bb841df3ffa60b0478ba82740e81c7f5d1957adb1442ec2e",
+    "scripts/migrate-design-review-runs.py": "2d1a315a30f50bf4877c0072a099621a29d7a1da6b336d15926877e875a7551e",
+    "scripts/migrate-manuscript-export-snapshot.py": "67d636158586523203c6b458f6561161c8468d79dff5c5a5f59ddd9b9ea3ba13",
+    "scripts/queue-design64-recovery.mjs": "a8b3f53ac3ab0f4f27cf6d67220d225bb33e55e1fa387379dd399d1c94a14040",
+    "scripts/resume-design62-followup.mjs": "b7e8f27e2d8b1b6b0082f794854443fb75085ef07459be137b77de49febcd658",
+    "scripts/resume-design62-review.mjs": "0b676c97c5c78b8939f237516ec28fd85aabc321d7f73b27addf30c1378d6edd",
+    "scripts/resume-design64-review-next.mjs": "79a27c7e893d03aa214ed2de174243c233520c839150dffe8685ab2946030022",
+    "scripts/resume-design64-review.mjs": "f50552b4cdadc9bf7a2dca549b1c9006762e864cc8ebe7d0630a54d25741025c",
+    "scripts/run-model-milestone.mjs": "b2524915b6196892a239e08cf3ab99bca3366ad563417f5b4bfb887c2a27c807",
+    "scripts/test-all.mjs": "44c14dbca278ddad83ff2550079ec671c1400bbc8e7b6de353050f17adddd212",
+    "scripts/validate-design-candidate.mjs": "59586378109e3d048ddc6672696b82892d93b8e845dd491e8c39973b96cbe390",
+    "scripts/validate-design-candidate.test.mjs": "da9c33be53a70ecfc7373e82eab9a351581fbdb40ab4160e71e80af0f4d3c002"
+  },
+  "before": {
+    "protectedHash": "ec74891c6a102d6b496a35a189f7708dfd805d6eedbcebe6aafef84117151658",
+    "oldRunsUnchanged": 70,
+    "oldReportsUnchanged": 75,
+    "approvedPlan": 10
+  },
+  "oldInputSha256": "0ed229a34a653c06d30f9ca7ab15b719b8c8ba86bb81b0691b77aa8ff93d104a",
+  "oldResultSha256": "070334d7f8bf91edb6fced23783993f8ae4aacdad6d58901c53b285bc6e25d11",
+  "originalSourcesIdentical": true,
+  "v31VsMatchedV30OnlyCastAdded": true,
+  "maxCalls": 2,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Focused test of chapters33–50; not a formal story report. Previous observed focused request was unstaged, so comparison with its old response is not a single-variable experiment. No expected verdict or case-specific identity correction is added to the prompt.",
+  "verifiedAt": "2026-10-16T17:22:20.527Z",
+  "resultPath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design69-chapter-cast-probe/result.json",
+  "resultSha256": "e26468da1ca5bc3ba6bfa85a24576af144db540acc300c55388fd6928c9a18ed",
+  "modelCalls": 1,
+  "responsesReplayed": 1,
+  "verificationModelCalls": 0,
+  "after": {
+    "protectedHash": "ec74891c6a102d6b496a35a189f7708dfd805d6eedbcebe6aafef84117151658",
+    "oldRunsUnchanged": 70,
+    "oldReportsUnchanged": 75,
+    "approvedPlan": 10
+  },
+  "productionRead": {
+    "method": "SQLite online backup from read-only source; isolated transactional repository read",
+    "snapshotPath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design69-chapter-cast-probe/verification-pk7AEj/production.db",
+    "snapshotSha256": "b457a97ea2568496e7c361fe497c985f3bdd6ebd7dea99386bdf6041ee45a23f",
+    "snapshotStartedAt": "2026-10-16T17:22:16.620Z",
+    "snapshotCompletedAt": "2026-10-16T17:22:17.506Z",
+    "priorVerificationFailures": "Two production read transactions timed out with P1008. Saved model result was replayed without resubmitting the model call.",
+    "scope": "Protected canon and old runs/reports only; active formal world review may advance."
+  },
+  "result": {
+    "summary": "第37章仓火救援与第44章潮沟救援在起因、对象、行动链、责任归属及后果上可区分；两场均坚持“救人不以证物优先”的主题，但通过对象规模、既有背叛、行动权限与后续安置将代价升级，未构成同一救援的重复兑现。",
+    "checks": [
+      {
+        "criterion": "causality",
+        "verdict": "pass",
+        "explanation": "第37章是林辰、贺青梧为核领货人来到公共交割处，目击灯架倾倒起火及携页者逃离；林辰在身份未知的求救者与携页者之间选择前者，只在仓外开闩撑门，陆沉川自行爬出，代价是掌伤及失去追页机会。第44章则承接第43章已报警、贺船被陆沉舟命人以实体索具拖偏、唐许冯被锁在低舱的局面；林辰切索制造窗口，贺青梧搁浅破船接板，唐许冯自行过板；随后林辰放弃追随原账逃走的陆沉舟，转而以固定浮圈救落水的送钩伙计。对象、即时危险、施救方式与被放弃的目标均不同，陆沉舟的拦船和保账责任也没有被移给陆沉川或落水伙计。43→44明确规定从切索一瞬衔接，不重报报警或登船；44章只让落水者抓圈，45章才由唐、许拉其上低舷并等巡艇接应，未重复完成同一次救援。",
+        "evidence": [
+          {
+            "sourceId": "plan/chapters/37",
+            "quote": "{\n  \"id\": \"chapter-37\",\n  \"chapterNumber\": 37,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"火仓留人\",\n  \"summary\": \"225夜，林贺为核册上领货人到木仓外公共交接处，两人在门外等了片刻，见一名交割伙计在外桌核纸页，侧窗内正有人往外挪退包装。灯架在一阵拖拉声后歪倒，带油火线沿纸绳窜起；撞落还是固定处松脱，林没看清。外桌伙计抱页跑向侧巷，边门同时传出求救。林先向侧巷迈了半步，听到第二声求救才停住：边门尚未烧着，对方还能应声挪动，若此时追人，门上窜起的火会先断掉出口。林仍不知是谁，转身让贺叫水手汲水，用湿毡裹手、短木杆从门板破口钩开轻闩，留在外侧上风处撑门约十息，叫对方自行爬过倒架。人被拉到门外时林掌心被热铁包角烫伤，腿伤也不许他再进仓。获救伙计自报陆沉川，林只记姓名待核。火势压住后，贺和搬运工在安全的后架取回12包原批签药和破口外板。林识出六号箱刻号，但救人已使携页者逃出视线，所携纸页内容和火因都未知。 226日陆在医棚请人联络哥哥，林正回原船换药，尚不知这次联络。\",\n"
+          },
+          {
+            "sourceId": "plan/chapters/37",
+            "quote": "  \"scenes\": [\n    \"225夜林贺到公共交割处，等候时见一名伙计在外桌核纸页，侧窗内有人挪退包装，正与35章所述流程相符。拖拉声后普通灯架倾倒，油火沿邻近纸绳堆烧起，烟从主门涌出；林未见造成倾倒的那一步，不能认定故意。外桌伙计随即抱页沿侧巷逃离，林未看清纸页内容与人名。\",\n    \"林先向携页者迈半步，第二声求救使他停下；他喊对方能否挪动，听到肯定应答，见边门上沿暂未着火，判断只余短时窗口。此处只存普通草药、木架与纸包，不是地肺毒焰区。边门向外开，门板下侧破口可伸入短木杆钩到内侧轻闩拉环；倒架停在门内半步外，低处仍可爬过。烟正从另一侧主门涌出，边门上沿暂未着火；林留在门外上风侧，只用湿毡裹持门的手减热，不能靠湿毡滤毒或进入烟层。 林用短杆钩开轻闩，在外撑门约十息；腿不能发力蹬门，贺叫来的水手在门外接人。 贺向码头敲警锣并叫附近当班水手取水；当班灭火工赶来接管排人和压火，林只照看边门求救者。\",\n    \"陆沉川爬到门外，水手接住；林掌心碰到门边热铁包角烫伤，随即退开。伙计自报姓名，林只记待核，不以救命要求立即招供。 林回头时侧巷已空，亲眼确认错过唯一能跟上携页者的窗口；他发怒攥拳牵到掌伤，随后接受自己不知道丢掉了什么纸页。\",\n"
+          },
+          {
+            "sourceId": "plan/chapters/43",
+            "quote": "{\n  \"id\": \"chapter-43\",\n  \"chapterNumber\": 43,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"先响的岸钟\",\n  \"summary\": \"244戌初，比公告早一个时辰，林贺在装卸灯下认出唐、许、冯被推入低舱，唐喊不让走，舱门外扣随即搭上。林先敲岸钟，岗役回应后沿石阶跑报巡艇；驳船已转向浅沟出口，若继续停在观察位，三人会从视线里消失。贺让林扶栏正常登船坐稳，解缆跟近，主动离开测好的安全观察位置。驳上的陆沉舟看见他们，护着原账命此前做过轻钩控制训练并完成实测的凝元伙计御动轻钩挂住贺船尾拖环，索另一端事先系在驳艉桩上；御物只付半成真元送钩，挂稳便停术，随后靠驳船前行和艉桩承力拖偏小船。林听见命令，知道对方正是先前来认弟的人，却得不到一句解释。绷紧的索把船尾带偏，贺竭力控向；林坐稳握剑，只剩切索这一瞬，施术留到下一章紧接发生。\",\n  \"characterGoals\": \"林要把真实拘束和提前开船变成及时报警，并随贺保住三人的可见位置；贺要追上自己的雇工，陆要护账逃查，不让跟船者靠近。\",\n  \"conflict\": \"公告亥时不能替代眼前戌初的动作，巡艇须走实体水路；不跟就丢视线，跟近又被同阶伙计以轻钩和船桩拖偏。林的伤势不允许跳船硬夺钩，贺独驾小船难以同时控向和解索。\",\n"
+          },
+          {
+            "sourceId": "plan/chapters/43",
+            "quote": "  \"choice\": \"林先报警而后登船，贺在没有许诺冲撞的情况下根据实见拘束决定跟进；陆选择命伙计拖开来船，林不再把救弟之情当作对方会合作的保证。\",\n  \"cost\": \"贺船被钩索拖偏，已离开原可稳守观察位；巡艇尚未到场。此刻没有施剑、没有船底破损、没有人获救，林只有短时握剑许可，下一瞬必须付出已定施术成本。 凝元伙计一次送钩支出半成真元，自身保守余量五成降至四成半，钩挂稳即停术；后续拖力由船行、普通索具和艉桩承担，不收持续施术费，也不能持续遥控钩索转向。\",\n  \"threads\": [\n    \"th_03\",\n    \"sec_02\"\n  ],\n  \"endState\": \"244戌初，三人仍在驳舱，陆在驳上护原账，轻钩已挂贺船拖环、索另一端系驳艉桩。林敲钟已获岗役回应，现扶栏登船坐稳握剑，尚未施术；贺控向。44从切索同一瞬接续，不能重报一次警、重登一次船或提前给唐点货夹内容。 送钩伙计已停御物，余四成半；拖力在普通索具与船桩上，断索即失去物理拖曳，不另添术法反噬。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_15\",\n    \"char_16\",\n    \"char_22\"\n  ],\n  \"location\": \"loc_23天宝外港公共岸钟、近岸船位与浅沟小出口\",\n"
+          },
+          {
+            "sourceId": "plan/chapters/44",
+            "quote": "{\n  \"id\": \"chapter-44\",\n  \"chapterNumber\": 44,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"浅滩一剑\",\n  \"summary\": \"紧接43章244日戌初钩索拖偏的瞬间，林坐稳只用一次剑诀切断外露索，付二成真元、剑热停术。舷边收余索的伙计因驳艉骤摆、脚下湿滑失足跌水，陆驳转向时艉部被旧护桩顶住，陆和另一伙计忙撑篙脱困。林亲见本次唯一余刃在两丈界内散尽；唐趁看守离开推开未锁死的舱门外搭扣，先扣住短跳板验板身和搭点。贺宁可撞裂自船底也把船头搁在沙舌，实际停到板端下面；唐见船位和护桩仍稳才放板。林看见陆提原账箱向船头去，却在余刃已散后先递固定浮圈给刃路外、正抓舷侧垂索的落水者。许、冯、唐依次趴板过船，唐带出自己挂着的点货夹。陆见巡艇灯接近，取舍保原账，撑开驳船逃向深槽。\",\n  \"characterGoals\": \"林要保住工人和落水者，不以腿伤硬拼；贺要给三人提供可踩住的逃生落点；唐要带两名同伴出舱并保住自己经手的点货夹；陆要保住原账、躲过巡查，不愿为困住贺船把自己留在浅沟。\",\n  \"conflict\": \"驳船提前离开原定过闸路线，巡艇要绕外弯赶到。陆与两名伙计均凝元，正面久战林贺无胜算；断索和护桩只提供十余息转移窗口，贺若怕损船，跳板下就没有稳定落点。\",\n"
+          },
+          {
+            "sourceId": "plan/chapters/44",
+            "quote": "  \"location\": \"loc_23天宝外港货院、公共码头、潮沟及船坞\",\n  \"storyTime\": \"第244日戌初至入夜；承接43章已报警登船和钩索拖偏，直接从切索开始\",\n  \"scenes\": [\n    \"两船暂近，林坐稳以一次乾元御风剑诀只放一道风刃切外露普通索，支出二成真元，收热剑不再施术；普通索骤断后驳艉随原转向横摆，正在舷边收松余索的伙计脚下湿滑失足跌水；他先前已停御物，落水不是术法反噬。驳转深槽时艉部抵住旧护桩，陆和另一伙计离舱口用长篙顶开，争的是保账脱困，不能继续腾手压住小船。\",\n    \"唐从低舱门板上沿缺口伸手掀开只搭未锁的外扣，让许先出去；三人放下靠滩舷用于装卸的短板。贺将小船头推上沙舌撞停，板端落在小船头舷内，两船靠滩侧相隔不足一臂。船底在硬石上裂开，她仍守舵稳住接人的落点，板只支撑这十余息窗口。\",\n    \"林看见陆正把原账箱提向船头，没再追钩箱，转而递出系在艉桩上的浮圈；落水伙计抓住圈，受力落在船桩，林不悬提人。许冯先趴板过去，唐最后把装卸时领到、挂在腰间的油布点货夹带走，越板后收腿让板脱开。\",\n"
+          },
+          {
+            "sourceId": "plan/chapters/44",
+            "quote": "    \"船尾脱离护桩，巡艇灯从外弯出现；陆看见夹被唐带走，仍选择带原账先逃，另一伙计掌篙顺深槽撤走，没有留场追杀。林停止握剑，唐与许留在贺船低舷准备协力拉人，抓圈者仍在船侧靠固定浮圈保持头部出水；贺船进浅水，靠备用缆固定等待巡查。实际拉上低舷承接在第45章开场，本章不重复完成。\",\n    \"林坐在原船中段扶栏处，先确认送钩伙计已收回手，钩索外露段在两船间距自己不足一丈、视线与导刃路径未被舷板或人遮住。绳为贺先前亲见的普通装卸索，本次林在18章已实测两丈内稳定锁定，才施凝元式；实际命中一处绳段，没有沿索追击人体。船摆使视线失去或有人进入刃路即停式不重发，贺先退向浅水等待巡艇，不能拿二成费用担保必断。\",\n    \"本次只凝一道风刃、仍付完整二成。林借43章仍照到此处的岸边装卸灯，从原坐位看清不足一丈处索段及其背后至本人两丈边界的斜下直线路径：在两船外侧的开阔水面上，不穿陆驳的舷边、低舱、收索伙计或己方船体。灯影、船摆或人员使这条全程路径不再可见，就不放刃；放刃后失锁只停发示警，不令余刃消失。本次一道实际切中，余刃沿原斜下方向在两丈界内散尽，林亲见刃影消散后才递浮圈。断索引起的艉摆、伙计失足和护桩顶船仍先发生，不因等待撤销；落水者落在原刃路外的船侧水面，自行抓住船舷外原垂索维持头部出水，林不另施御物托人。\",\n"
+          },
+          {
+            "sourceId": "plan/chapters/45",
+            "quote": "  \"endState\": \"247暮，唐许冯安全安置，落水伙计被巡查看护治疗并接受单独询问，救命不免除拦截责任。半页交接联和旧货封由巡查编号封存，林留签认拓本和收据；246已核到苏信编号一致，只是追链线索。吴卢最后亲见在243旧岸仓，巡查查空后仍在追踪，当前地点不明。贺船修至255午，林轻役满三日后仍须受限活动。 唐与许对是否继续等人首次出现分歧，尚未替彼此决定工作或去留。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_15\",\n    \"char_22\"\n  ],\n  \"location\": \"loc_23天宝外港货院、公共码头、潮沟及船坞\",\n  \"storyTime\": \"第244日入夜的接应至第247日暮\",\n  \"scenes\": [\n    \"巡艇在244夜接到岸钟报信后绕外弯赶来，大艇吃水不能上滩，巡员用随艇小划舟靠近并分趟接人。唐许先把抓圈伙计拉上低舷，再一同候接；巡员看见贺船裂底和船上断索残端，另一残端随陆船走，不伪称已量到两端。\",\n    \"245晨医棚分诊：三工脱水擦伤，落水伙计呛水；林掌未裂但腿酸胀，三日轻役到247。港务救助账支付本次急救与245–247基础住食，具名记账待追偿；不因此限制获救工人自由离开或强迫作证。\",\n"
+          },
+          {
+            "sourceId": "plan/chapters/45",
+            "quote": "    \"245晨唐报到第三个名字就停住。许先问失散者有没有上另一趟巡艇；巡员核实际接人名单，吴卢不在。唐自愿把破夹交出、许独立说明旧封，均不被要求用更多证词换救助。林接夹后先听他们说最后见到同伴的地方，没追问残联另一半。\",\n    \"245午，贺在坞外看人把自己的船拖上架，船底露出历年补板。她付清48，工单到255午交检。林把追父案的草稿递了一半，贺问先把三个人安置在哪里；他收回纸，承认先前以为找到线索就能接着走。\",\n    \"246比号与巡查查空旧岸仓的结果短递到医棚，来源和范围照执行依据，不再开第二场核验。贺先商量临住结束后的落脚；唐坚持还要留两人的位置，许却说自己没有答应继续等下去。以同伴第一次分歧结束，不在本章再次查门。\"\n  ],\n  \"source\": \"author\",\n  \"executionChecks\": [\n    {\n      \"id\": \"rescue-completed-once\",\n      \"requirement\": \"承接44章末尚在船侧抓圈者，45章开场由唐许实际拉上低舷，再候巡艇小划舟分趟接人；只能完成这一次，不重置落水或再造救人窗口。治疗与单独询问不免除拦截责任，救助不强迫工人作证。\",\n      \"sourceQuestion\": {\n        \"document\": \"story\",\n"
+          }
+        ],
+        "revisionAdvice": ""
+      },
+      {
+        "criterion": "opening",
+        "verdict": "pass",
+        "explanation": "两场救援存在主题呼应，但递进充分。37章中林辰是在未知陆沉川身份时放弃追证，承担个人掌伤与火因、纸页仍不可知的损失；这建立“活人先于线索”的初始选择。43—45章将该选择置于陆沉舟已实际拦船、五名雇工被分散扣留、林辰已有伤限和贺青梧须赌上船底的条件下：三人先脱控、原账逃失、船损耗尽修船储备，吴伍与卢小满仍未找回。47—50章没有把三人获救当作五人结案，而是先让吴卢在扣押中拒绝互相代答，再由现场巡员听取其意愿、控制看守；贺最终接受二人不立即回船。因而从单个陌生人的火场脱困，推进到多人分批脱控、施救者承担经营损失、获救者保有去留权的后果链，并非仅更换火场与水面的同模板救援。",
+        "evidence": [
+          {
+            "sourceId": "plan/chapters/37",
+            "quote": "{\n  \"id\": \"chapter-37\",\n  \"chapterNumber\": 37,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"火仓留人\",\n  \"summary\": \"225夜，林贺为核册上领货人到木仓外公共交接处，两人在门外等了片刻，见一名交割伙计在外桌核纸页，侧窗内正有人往外挪退包装。灯架在一阵拖拉声后歪倒，带油火线沿纸绳窜起；撞落还是固定处松脱，林没看清。外桌伙计抱页跑向侧巷，边门同时传出求救。林先向侧巷迈了半步，听到第二声求救才停住：边门尚未烧着，对方还能应声挪动，若此时追人，门上窜起的火会先断掉出口。林仍不知是谁，转身让贺叫水手汲水，用湿毡裹手、短木杆从门板破口钩开轻闩，留在外侧上风处撑门约十息，叫对方自行爬过倒架。人被拉到门外时林掌心被热铁包角烫伤，腿伤也不许他再进仓。获救伙计自报陆沉川，林只记姓名待核。火势压住后，贺和搬运工在安全的后架取回12包原批签药和破口外板。林识出六号箱刻号，但救人已使携页者逃出视线，所携纸页内容和火因都未知。 226日陆在医棚请人联络哥哥，林正回原船换药，尚不知这次联络。\",\n"
+          },
+          {
+            "sourceId": "plan/chapters/37",
+            "quote": "  \"cost\": \"林掌心烫伤，225夜起停练观察至230夜，满五日复诊后仅准吐纳，握剑须239日另测，期间不攀绳搬货；船主从船医药包实际付普通敷伤药折1枚，记轻役总酬待230结算。携页者逃脱，身份、纸页内容与火因仍未知；湿毡焦损由贺承担，不凭此新增林债。 腿伤与掌伤分开记录，225–230均只做坐姿轻役和平路短走，不能追跑、攀跳或搬重物；230结束的只是掌伤五日停练观察期，不等于腿伤全好。\",\n  \"threads\": [\n    \"th_03\",\n    \"th_05\",\n    \"sec_04\"\n  ],\n  \"endState\": \"226日，获救伙计自报陆沉川，正式身份和领箱行为待38章当面核证；六号箱外板、12包原批签药已取回并登记暂存，林确认箱到过程记。林手伤须复诊，火因及其余12包去向未知，陆沉川不计入贺那5名被扣雇工。 现场保留倾倒的普通油灯架与通向纸绳堆的燃迹，支持从该处起火的调查方向；倾倒动作、挪包者和携页者身份仍待核，不把观察到起火点等同确认人为纵火。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_15\",\n    \"char_21\"\n  ],\n  \"location\": \"loc_23天宝外港程记普通木仓外公共货道与临时火场救护点\",\n  \"storyTime\": \"第225日至第226日\",\n"
+          },
+          {
+            "sourceId": "plan/chapters/44",
+            "quote": "{\n  \"id\": \"chapter-44\",\n  \"chapterNumber\": 44,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"浅滩一剑\",\n  \"summary\": \"紧接43章244日戌初钩索拖偏的瞬间，林坐稳只用一次剑诀切断外露索，付二成真元、剑热停术。舷边收余索的伙计因驳艉骤摆、脚下湿滑失足跌水，陆驳转向时艉部被旧护桩顶住，陆和另一伙计忙撑篙脱困。林亲见本次唯一余刃在两丈界内散尽；唐趁看守离开推开未锁死的舱门外搭扣，先扣住短跳板验板身和搭点。贺宁可撞裂自船底也把船头搁在沙舌，实际停到板端下面；唐见船位和护桩仍稳才放板。林看见陆提原账箱向船头去，却在余刃已散后先递固定浮圈给刃路外、正抓舷侧垂索的落水者。许、冯、唐依次趴板过船，唐带出自己挂着的点货夹。陆见巡艇灯接近，取舍保原账，撑开驳船逃向深槽。\",\n  \"characterGoals\": \"林要保住工人和落水者，不以腿伤硬拼；贺要给三人提供可踩住的逃生落点；唐要带两名同伴出舱并保住自己经手的点货夹；陆要保住原账、躲过巡查，不愿为困住贺船把自己留在浅沟。\",\n  \"conflict\": \"驳船提前离开原定过闸路线，巡艇要绕外弯赶到。陆与两名伙计均凝元，正面久战林贺无胜算；断索和护桩只提供十余息转移窗口，贺若怕损船，跳板下就没有稳定落点。\",\n"
+          },
+          {
+            "sourceId": "plan/chapters/44",
+            "quote": "  \"choice\": \"林看见可追原账的方向，仍先把固定救生浮圈递给落水对手，不追陆；贺主动搁浅接板，唐先放许冯过船再带点货夹离开，救人分步不代表放弃另两人。\",\n  \"cost\": \"林一次剑诀支出二成真元，剑体热而停用；贺船底碰裂，三人暂上船但不能出海追击。原账随陆逃走，半页来源仍须核对；林不跳船不提整个人，腿因晃动酸胀，需再复查。 出剑前沿用239日复测的保守余量五成，一式二成后余三成；二成已含剑的供能，之后不再御物，浮圈用手递。剑独立散热，不能借散热把真元账重置。 送钩伙计承接43章四成半真元，44章没有再施术；断索、船摆和失足属于普通受力与站位后果，不扣寿储、不凭空封住其修为。\",\n  \"threads\": [\n    \"th_03\",\n    \"sec_02\"\n  ],\n  \"endState\": \"244夜，唐、许、冯到贺船，唐留着点货夹；落水伙计抓浮圈在船侧，待已到船上的唐与许协力拉上来。陆和另一伙计带原账驶离，巡艇灯已转过外弯。另两名工人不在林视野，不能认定在逃船上。林剑热、真元已减，贺船搁浅破底，不能续追；点货夹尚未启读和比对。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_15\",\n    \"char_16\",\n    \"char_22\"\n  ],\n"
+          },
+          {
+            "sourceId": "plan/chapters/45",
+            "quote": "{\n  \"id\": \"chapter-45\",\n  \"chapterNumber\": 45,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"船底向着天空\",\n  \"summary\": \"244夜巡艇分趟接人，贺最后离开自己的裂底船。245晨，唐在医棚清点到第三个名字就停下，吴卢没人应声；林接过他自愿交出的破夹，发现救到人的那只手也没能带回整本账。贺没有责怪唐，午后到船坞看人把船拖上架，付尽最后48枚；船底向着天空，她第一次从这面看见自己多年补过的木板。林拿着追案草稿想开口，贺问三个人今晚睡哪里，他把草稿折回去。246比号及旧岸仓查空作为同一封回告到达：残联批号与苏信相同，仍不能证明军需真伪，两人也不在旧仓。林留签认拓本、原物交巡查，收起父亲路线抄图，随贺先给三人留住处。章末唐仍按习惯铺了五个人的位置，空着的两处使救援的胜利第一次显出缺口。\",\n  \"characterGoals\": \"贺要面对船损并接住已救者的生活；唐想找齐五人，许想摆脱这趟危险；林必须决定是将新线索转成自己的追案机会，还是留下承担救人之后的责任。\",\n  \"conflict\": \"船能修，分散的五个人却不能靠付款立刻重聚；林得到父案关联，贺和工人得到的首先是失去营生与空位。\",\n"
+          },
+          {
+            "sourceId": "plan/chapters/46",
+            "quote": "{\n  \"id\": \"chapter-46\",\n  \"chapterNumber\": 46,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"向北的帆\",\n  \"summary\": \"248日，三日临住结束，唐想让许陪自己等吴卢，许说想找能按时下工的活，不再随别人追船。贺把三张原空床交给他们，却把下一张远航用工单收回：床可以住，留不留、跟不跟船要另问。林陪她到既有受护修帆棚谈轻工，从敞口看见远处商路飞舟离泊：定位阵沿实体航线逐点亮起，舟罩把热潮隔在外面，巨帆下装的是普通人也要吃的粮药。林第一次对尚未见过的苍冥生出不是追凶的向往；贺却拉开自己的修船图，说她想养的是这条能让自己选去处的小船，不是再替谁抵一次命。林没有把剩下一枚灵石当作买她承诺的钱。唐许最终各自同意有限坐姿拣索换三人到255的饭食，冯养伤，谁也没签下一趟远航。249查车回告只确认旧岸仓承运时段；250贺在坞里收到撤证换补偿的信，留原件而拒签，船依旧未修好。她和林只约好继续在陆上找人，各自保留下一步的决定。\",\n  \"characterGoals\": \"许要重新掌握自己的工作和离开时间；唐希望五人团聚但须接受同伴不再听自己安排；贺要保住独立经营与选航线的权利；林开始区分自己想见世界与把别人拖进父案。\",\n"
+          },
+          {
+            "sourceId": "plan/chapters/47",
+            "quote": "{\n  \"id\": \"chapter-47\",\n  \"chapterNumber\": 47,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"换一条船\",\n  \"summary\": \"251日，停接新单使贺的货主当面改找别船。程亲自来到公共装货口，以陆船真实刮损继续指她先冲船，又说愿安排一条替船接下这批货，只要她先把扣工陈述改成误会；他没有出示两人的下落，只把空运单推过来。贺不是不动心：自己船还在架上，下一顿和下一单都要重来。林脱口说由自己赔，摸到最后一枚又住口。贺看向正在争货序的接手船管，转身把自己排好的装货次序交过去，让原货主的粮药按期走；回来将未签的空单放回程面前，说船可以不是自己的，人也不能替他改成自愿留下。程收走空单，保留反诉，不再给她这个条件。林已经付尽最后一枚食宿钱，无法兑现方才的包赔。贺和他留在装货棚，看着本该由自己承运的货离开；次日程序沿原安排进行，拒绝的代价先落在眼前这条离港的船上。\",\n  \"characterGoals\": \"程要以真实船损和替船生意迫使贺撤回扣工陈述，不想承认下落；贺要保住客户信用，却须决定是否用工人的说法换复业机会；林必须放弃包赔姿态，承担自己能做到的实际工作。\",\n  \"conflict\": \"程递来的不是虚幻奖赏，而是贺失去的眼前生意；同意就可能把尚未找到的两人重新说成自愿。林无法替她补偿这次拒绝。\",\n"
+          },
+          {
+            "sourceId": "plan/chapters/48",
+            "quote": "{\n  \"id\": \"chapter-48\",\n  \"chapterNumber\": 48,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"门内的两个人\",\n  \"summary\": \"252日林贺随车夫到北三水台：返单指得出公共卸货口，却指不出哪扇门；林按伤限坐在路口，巡查接手公开入口排查，外线到此收束。主体转入吴伍、卢小满的独立视角。两人已在无牌附棚，不知道外面有人查到附近。看守让他们分开报下一趟是否继续做工，许诺答应就先让一人到门口透气，却始终不把门打开；吴怕先拒的人被独留，替卢说愿意。卢当面打断他：自己要出去，也不想再上船。吴第一次听见同伴和自己不是同一个答案。两人争过后商定，愿不愿跟谁走都各自说，不能再让另一个人代答。傍晚看守再问，吴撤回替卢的承诺，也要求出门；看守把外闩落下，明说等陆头来再谈。卢没有再求吴带他走，只把自己的外衣系好，坐到门边。读者确认两人仍在扣押，林贺尚不知道位置和这些谈话；下一次有人到门前，两人将自己回答。\",\n  \"characterGoals\": \"吴想和同伴一起脱身，起初以为先替两人答应能换开门；卢要自己决定是否回船，拒绝再次被同伴或雇主代答。外线林贺只把范围交给巡查，不用未知内情强闯。\",\n"
+          },
+          {
+            "sourceId": "plan/chapters/50",
+            "quote": "{\n  \"id\": \"chapter-50\",\n  \"chapterNumber\": 50,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"门闩交给谁\",\n  \"summary\": \"254晨，陆带巡查到北三门。看守称吴伍、卢小满是自愿留下候工，贺在门外喊名，两人却要求出去。看守急着合门，吴卢从内侧顶住，旧押运头目陆被喊来帮忙压门。林原已握住剑柄，见门缝里露出两人的手，松开剑，让巡员走到能听清回答的位置，要求当面问他们是否愿留。陆伸向木闩的手停住，转而向外拉；一名巡员夺闩控制持闩者，另一名截住想退向后巷的看守。吴卢自己推开门走进外院。吴指认陆曾把他们点交到这里，陆当着巡员承认，不再用认路掩盖押送。贺说船修好便能接他们回去，吴却说回不回船要由他们自己定，卢也不愿立即上船。贺让开去船坞的方向，先陪两人去安全落脚。五名雇工至此全部脱控；被谁雇用、为谁作证，仍由他们自己回答。\",\n  \"characterGoals\": \"吴卢要走出门并决定自己的去处；贺想救回原班雇工，却须接受他们未必再上自己的船；陆想把自己限定为带路人，旧手下和吴的当面指认迫使他决定是否继续参与扣人；林要让工人的亲口选择被现场听见，巡员要核实是否自愿并制止实际拦阻。\",\n"
+          },
+          {
+            "sourceId": "plan/chapters/50",
+            "quote": "    \"看守试图合上向外开的门，一人压门、一人抱外侧木闩准备落托。吴卢从里面合力顶住半开的门。林手握剑柄，见门缝里两只手仍抓着门边，松开剑，退开让巡员贴近门口，要求当面问两人是否愿意留下；他不施术，也不拿自己的判断代替回答。巡员明确要求门内的人自行出来说话。\",\n    \"持闩看守喊陆头来帮忙压门。陆伸手后停了一瞬，改握闩外端向外拽，第一名巡员同时扣住持闩手腕、夺闩并把人带离门扇。另一看守想退向后巷，第二名巡员已经站住那条普通窄路，扣腕转身将其控制。两名看守都无修为，未用法阵或高阶器物；陆只用肉身协助一根木闩，随即仍留在两名巡员可见的院墙边。\",\n    \"吴卢把门推开，自行跨过平整门槛到外院，贺在门外接应。吴看清陆，指出就是他把这一趟人点交进棚；陆当着巡员承认。巡员先安顿两工和两名看守，不在门口延长讯问；陆不争辩、不要求二人替自己作保，也没有借混乱离开。所承认的仅是本次押送，220夜改签仍须另行核实。\",\n    \"贺告诉吴卢，船明日交检，修好后可以接他们回去。吴说回不回船要自己定，卢明确说暂时不再上船。贺原要带他们往船坞方向走，停下后转向港务救助处，只问两人愿不愿先找地方休息。他们点头，跟着自己选的路离开。林收好入口图，留两名巡员记录亲见的拦阻和回答；本章以工人真正脱控及第一次去留分歧结束。\"\n  ],\n  \"source\": \"author\",\n"
+          }
+        ],
+        "revisionAdvice": ""
+      }
+    ],
+    "modelResponses": [
+      "{\"requestId\":\"review_a5ed54992e59a6884c8ac0eb\",\"summary\":\"第37章仓火救援与第44章潮沟救援在起因、对象、行动链、责任归属及后果上可区分；两场均坚持“救人不以证物优先”的主题，但通过对象规模、既有背叛、行动权限与后续安置将代价升级，未构成同一救援的重复兑现。\",\"checks\":[{\"criterion\":\"causality\",\"verdict\":\"pass\",\"explanation\":\"第37章是林辰、贺青梧为核领货人来到公共交割处，目击灯架倾倒起火及携页者逃离；林辰在身份未知的求救者与携页者之间选择前者，只在仓外开闩撑门，陆沉川自行爬出，代价是掌伤及失去追页机会。第44章则承接第43章已报警、贺船被陆沉舟命人以实体索具拖偏、唐许冯被锁在低舱的局面；林辰切索制造窗口，贺青梧搁浅破船接板，唐许冯自行过板；随后林辰放弃追随原账逃走的陆沉舟，转而以固定浮圈救落水的送钩伙计。对象、即时危险、施救方式与被放弃的目标均不同，陆沉舟的拦船和保账责任也没有被移给陆沉川或落水伙计。43→44明确规定从切索一瞬衔接，不重报报警或登船；44章只让落水者抓圈，45章才由唐、许拉其上低舷并等巡艇接应，未重复完成同一次救援。\",\"evidence\":[{\"fragmentId\":\"e177\"},{\"fragmentId\":\"e180\"},{\"fragmentId\":\"e203\"},{\"fragmentId\":\"e204\"},{\"fragmentId\":\"e207\"},{\"fragmentId\":\"e209\"},{\"fragmentId\":\"e210\"},{\"fragmentId\":\"e215\"},{\"fragmentId\":\"e216\"}],\"revisionAdvice\":\"\"},{\"criterion\":\"opening\",\"verdict\":\"pass\",\"explanation\":\"两场救援存在主题呼应，但递进充分。37章中林辰是在未知陆沉川身份时放弃追证，承担个人掌伤与火因、纸页仍不可知的损失；这建立“活人先于线索”的初始选择。43—45章将该选择置于陆沉舟已实际拦船、五名雇工被分散扣留、林辰已有伤限和贺青梧须赌上船底的条件下：三人先脱控、原账逃失、船损耗尽修船储备，吴伍与卢小满仍未找回。47—50章没有把三人获救当作五人结案，而是先让吴卢在扣押中拒绝互相代答，再由现场巡员听取其意愿、控制看守；贺最终接受二人不立即回船。因而从单个陌生人的火场脱困，推进到多人分批脱控、施救者承担经营损失、获救者保有去留权的后果链，并非仅更换火场与水面的同模板救援。\",\"evidence\":[{\"fragmentId\":\"e177\"},{\"fragmentId\":\"e179\"},{\"fragmentId\":\"e207\"},{\"fragmentId\":\"e208\"},{\"fragmentId\":\"e213\"},{\"fragmentId\":\"e218\"},{\"fragmentId\":\"e221\"},{\"fragmentId\":\"e224\"},{\"fragmentId\":\"e232\"},{\"fragmentId\":\"e235\"}],\"revisionAdvice\":\"\"}]}"
+    ]
+  },
+  "allQuotesInDeliveredSources": true,
+  "semanticReview": "Requires independent reading of explanations and original passages; parser success is not semantic acceptance."
+}
