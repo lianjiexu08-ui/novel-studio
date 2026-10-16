@@ -1,0 +1,1139 @@
+{
+  "kind": "design68_world_dynamic_followups_preflight",
+  "observedAt": "2026-10-16T07:49:52.461Z",
+  "inputHash": "3274d4710800ad02565040a341a05177b4bd7cab363e169219b562a4a0f62d01",
+  "runId": "design_run_6352f29c-bbd3-4a5c-878f-8d6d31ee6887",
+  "snapshotPath": "data/audit-runtimes/design68-review/world-followup-prefix.json",
+  "snapshotSha256": "c06e3afe0ed3ddca89c69f10f618fba083ce5525c63163b6a2a0f04a2587204d",
+  "frozenSourceFilesVerified": 153,
+  "prefixReplay": {
+    "verification": "verified",
+    "completedStages": 21,
+    "totalStages": 75,
+    "runSha256": "3d713d69121f4a53ebbe79296e4296a715d0b48f90610de73e85469ff4088973",
+    "formalAcceptance": false,
+    "limitation": "Replays saved responses, repairs, citations and conclusions against independently supplied materials. Pending work, semantic quality, blocker disposition and prose acceptance remain separate.",
+    "responseReplay": "verified",
+    "responsesReplayed": 26,
+    "records": [
+      {
+        "stageId": "batch-1",
+        "kind": "batch",
+        "stageSha256": "b2bf98a6318781c3d06f9fed08060bdd4c33b4eafa343c6856d940cdb53bbb14",
+        "inputSha256": "b0dc8758453035c19013389dc62eeda68c6a6979a8760f648331762489603af1",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/volumes/vol_02",
+              "plan/volumes/vol_03",
+              "plan/milestones/ms_growth_v1_crossing",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return"
+            ]
+          },
+          {
+            "criterion": "history",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/volumes/vol_02",
+              "plan/volumes/vol_03",
+              "plan/milestones/ms_v2_loss",
+              "plan/milestones/ms_v2_barge",
+              "plan/milestones/ms_v2_fire",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "batch-2",
+        "kind": "batch",
+        "stageSha256": "782bf7ef1d1fd0f062cee0d6edf11f1d60c2486a69a9c01e9187d42cd3d4526d",
+        "inputSha256": "74e238ce882d4565ce7d31066c78d8444e74df19d785949b525d2ac93c77b466",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/volumes/vol_02",
+              "plan/volumes/vol_03",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return"
+            ]
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "batch-3",
+        "kind": "batch",
+        "stageSha256": "dc8709bced7f5fdf8e996aff43b354f575707c66d0e356f15d2eb2d73517addd",
+        "inputSha256": "bd14cc04f454509b0e3ad986a776c8324b040e9c1470d4aa96bad9d79cdd3445",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/milestones/ms_growth_v1_crossing",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return"
+            ]
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "batch-4",
+        "kind": "batch",
+        "stageSha256": "3d6a559d71079f407d1e76baf7fe630e94c58a8620f29acd38011adb825a4194",
+        "inputSha256": "a7dcf115155ebd1587d1b952e46ab58c3d72e3e1bf29da43472e67d7c0c81869",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "batch-5",
+        "kind": "batch",
+        "stageSha256": "7726c9da331dcee2b6bda5f97ff8182c63547afd1ad600baeaed982830ae237f",
+        "inputSha256": "6589f1e6e7b1ac30822a8c0fc129781f57f0cc651bf1615aa629c16408d8c0ba",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "batch-6",
+        "kind": "batch",
+        "stageSha256": "72bf79d79565502bfba8331e777195014458b3cf8f24ef483cc55d4188f103f3",
+        "inputSha256": "6945dcb1c190ad6c787b5058ba2686278d72b0d4abee31657c15fc0014af4b9c",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/44",
+              "plan/chapters/50",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return"
+            ]
+          },
+          {
+            "criterion": "history",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/historicalEvents/event_13",
+              "world/historicalEvents/event_14",
+              "story/overview",
+              "plan/milestones/ms_v2_loss",
+              "plan/milestones/ms_v2_barge",
+              "plan/milestones/ms_v2_fire",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_convoy"
+            ]
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-2",
+        "kind": "cross",
+        "stageSha256": "a13e20661a899d8a57873accf41780f30a428f5f5d8e8fe229b16337a3b7ab39",
+        "inputSha256": "927c630a194c3fc383d7142466ea6a1858759f91568131f1112756b5c327e3b1",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-3",
+        "kind": "cross",
+        "stageSha256": "35cb4939fe7c0abbd4b0c50996152b0b347b373d00bc5519bfe753d7b39222f9",
+        "inputSha256": "b77153fee3977f82f68cb854cb839b952290f3774ea9b0f7f378deebfd8df089",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/milestones/ms_growth_v1_crossing",
+              "plan/milestones/ms_bridge_return",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training"
+            ]
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-4",
+        "kind": "cross",
+        "stageSha256": "677cf5b6b30ccca7919ed6f6a4367dc5acfbb9e5418c43ab5ce6870d030ce07c",
+        "inputSha256": "de2995fb737896a5212895567597429ec9d2406b3e4e20b7ddb6fa46325c243b",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary"
+            ]
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-5",
+        "kind": "cross",
+        "stageSha256": "b053146950af027242d4e963c5e7d6f54fcc40bf0f1f58456a8d912153be4d21",
+        "inputSha256": "8452f42d7ed878494a8312c56a82bb5fdc27a57c26884b0ce7dba8f6cb5c8970",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-6",
+        "kind": "cross",
+        "stageSha256": "6f8570119e14da9999fd77e950576ac0db71da03c43787d35ed825e7f83abd0e",
+        "inputSha256": "1af86d75479dcb995c7482904d0df0aa81409a72311b2d76dfd2ede00464f749",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/23",
+              "plan/chapters/24",
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/33",
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50",
+              "plan/milestones/ms_v2_fire",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy"
+            ]
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-2-3",
+        "kind": "cross",
+        "stageSha256": "3481079327f00aee9b7e930229aeea01f97de821d39aa1aca0a7df589f963741",
+        "inputSha256": "4f86510e9846d18d245afc2f3818ddc65c91a69e4176abc693ce330c583a0861",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/milestones/ms_growth_v1_crossing",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return"
+            ]
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-2-4",
+        "kind": "cross",
+        "stageSha256": "c76878d0a0a3f4c1053b6635e70cdf5ec96eafbde66f506c746f9862ae17d4a9",
+        "inputSha256": "88c8faa522ed067ba1d7de6856542c57386034cdac38d4024f45bc40b5d84d2e",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return"
+            ]
+          },
+          {
+            "criterion": "history",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/historicalEvents/event_14"
+            ]
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-2-5",
+        "kind": "cross",
+        "stageSha256": "376a6e871556c3aadbb4d6efa1b2e306dd12b78f78ce9bf952e999c4df900bf1",
+        "inputSha256": "1e26f09547cea70de049a2a91c454a2e387645e6f33e30c96549069912e7974a",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-2-6",
+        "kind": "cross",
+        "stageSha256": "5c266b83e137290aa7cd51980bd64fb1d56d4dc94f2e35a2fdae2d9033492ed2",
+        "inputSha256": "b113d275cda9adfaf81d8990bed4cd40bb367baadaae3f592ca34a9c7390d164",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/milestones/ms_growth_v1_crossing",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return"
+            ]
+          },
+          {
+            "criterion": "history",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/historicalEvents/event_14",
+              "plan/milestones/ms_v2_fire",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training"
+            ]
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-3-4",
+        "kind": "cross",
+        "stageSha256": "cd06a08595cb18d8b90c45da2d0f34aec13974c15c72e29948e983638a3fd482",
+        "inputSha256": "68cf7c80ca72b37c4ce99eeefa1e1499b202bfc68fd1877afe2accbb40c4f904",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/milestones/ms_v2_fire",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return"
+            ]
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-3-5",
+        "kind": "cross",
+        "stageSha256": "f2cac484416889311449eed23bb68c401f02fc1ecbe083490acbfb93dea1ecac",
+        "inputSha256": "ec04862bfdfd2ad918070984e0982886f0a9cb44b954ff72f570a77569f07d69",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-3-6",
+        "kind": "cross",
+        "stageSha256": "a77f481047111708921b2fd1ed6082b52a51871b9a419aa62e3f9fb9c93fb073",
+        "inputSha256": "92cb8c4e074bcc47608befc9726837c816b6b2bfec5388573fc201795e4d980b",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-4-5",
+        "kind": "cross",
+        "stageSha256": "d2220d84e4110489e4b0c337e774cba420fac20c05dde8943b510743e8120ec7",
+        "inputSha256": "dd294436eeea160df36d5303f905c05ddc5589b1d1595dda60a454e791eefe94",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-4-6",
+        "kind": "cross",
+        "stageSha256": "232c063f89bbea6ee550de8820dd4f2a439794fdd198630ce890db5a22d0fedf",
+        "inputSha256": "da40a9a8cd10124aa548157a60733d9f7ed9b992391620f5b0fd5ee54fafbb7b",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/artifacts/art_16",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50"
+            ]
+          },
+          {
+            "criterion": "history",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/historicalEvents/event_14",
+              "world/factions/fac_03",
+              "world/factions/fac_08",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50"
+            ]
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-5-6",
+        "kind": "cross",
+        "stageSha256": "b864b72397d9c940b00926c512beaf0b2fd7856637f0e3f230a6acf09f27531d",
+        "inputSha256": "2eeb3dfedb5343659b0464d3549b85ac7388577e3469b8b3e438416775eec71f",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "revise"
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      }
+    ],
+    "failures": [],
+    "modelCalls": 0
+  },
+  "originalStagesCompleted": 21,
+  "pendingSourceQuestions": 17,
+  "explicitRawResolutions": [],
+  "followups": [
+    {
+      "stageId": "followup-batch-1/geography",
+      "originalCheckId": "batch-1/geography",
+      "criterion": "geography",
+      "requestedSourceIds": [
+        "plan/chapters/30",
+        "plan/chapters/31",
+        "plan/chapters/32",
+        "plan/volumes/vol_02",
+        "plan/volumes/vol_03",
+        "plan/milestones/ms_growth_v1_crossing",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_03",
+        "world/locations/loc_02",
+        "world/locations/loc_03",
+        "world/locations/loc_21",
+        "plan/overview"
+      ],
+      "completeRequiredSources": 14,
+      "sourceCharacters": 161910,
+      "metadataCharacters": 30781,
+      "inputSha256": "e4da6c51208b01be35deda632b3235fe74cc512d6d72908c71802fb207973a0f"
+    },
+    {
+      "stageId": "followup-batch-1/history",
+      "originalCheckId": "batch-1/history",
+      "criterion": "history",
+      "requestedSourceIds": [
+        "plan/volumes/vol_02",
+        "plan/volumes/vol_03",
+        "plan/milestones/ms_v2_loss",
+        "plan/milestones/ms_v2_barge",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/historicalEvents/event_01",
+        "world/historicalEvents/event_06",
+        "world/historicalEvents/event_13",
+        "world/historicalEvents/event_14",
+        "story/overview",
+        "plan/overview"
+      ],
+      "completeRequiredSources": 18,
+      "sourceCharacters": 162377,
+      "metadataCharacters": 30808,
+      "inputSha256": "4e812db0ef6630c96f9d68a1af0b3b496d0b6ec59d4ab4aea7fb16f8ddeea16f"
+    },
+    {
+      "stageId": "followup-batch-2/geography",
+      "originalCheckId": "batch-2/geography",
+      "criterion": "geography",
+      "requestedSourceIds": [
+        "plan/chapters/29",
+        "plan/chapters/30",
+        "plan/chapters/31",
+        "plan/chapters/32",
+        "plan/volumes/vol_02",
+        "plan/volumes/vol_03",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_03",
+        "world/locations/loc_02",
+        "world/locations/loc_03",
+        "world/locations/loc_21",
+        "story/relationships/rel_01",
+        "story/relationships/rel_12",
+        "story/relationships/rel_05",
+        "story/relationships/rel_22"
+      ],
+      "completeRequiredSources": 17,
+      "sourceCharacters": 159279,
+      "metadataCharacters": 30820,
+      "inputSha256": "655fdf3373c8ea015bcc73fdeb798d4f167d013114548b5a29149f3f5eb1519e"
+    },
+    {
+      "stageId": "followup-batch-3/geography",
+      "originalCheckId": "batch-3/geography",
+      "criterion": "geography",
+      "requestedSourceIds": [
+        "plan/chapters/30",
+        "plan/chapters/31",
+        "plan/chapters/32",
+        "plan/milestones/ms_growth_v1_crossing",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/locations/loc_01",
+        "world/locations/loc_21",
+        "story/volumes/vol_01",
+        "story/volumes/vol_02",
+        "story/volumes/vol_03",
+        "plan/overview"
+      ],
+      "completeRequiredSources": 13,
+      "sourceCharacters": 157366,
+      "metadataCharacters": 29638,
+      "inputSha256": "43ca23e5fafb32e49a803865d8c451833e4a0e69d9a9bc35af1973a8da8efc69"
+    },
+    {
+      "stageId": "followup-batch-6/geography",
+      "originalCheckId": "batch-6/geography",
+      "criterion": "geography",
+      "requestedSourceIds": [
+        "plan/chapters/30",
+        "plan/chapters/31",
+        "plan/chapters/32",
+        "plan/chapters/44",
+        "plan/chapters/50",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_03",
+        "world/locations/loc_03",
+        "world/locations/loc_21",
+        "plan/overview"
+      ],
+      "completeRequiredSources": 12,
+      "sourceCharacters": 75569,
+      "metadataCharacters": 28771,
+      "inputSha256": "09b5404aba3103cdea5a68eb4c91df3917653f3a85c1dc2af9f6cc5747083fe2"
+    },
+    {
+      "stageId": "followup-batch-6/history",
+      "originalCheckId": "batch-6/history",
+      "criterion": "history",
+      "requestedSourceIds": [
+        "world/historicalEvents/event_13",
+        "world/historicalEvents/event_14",
+        "story/overview",
+        "plan/milestones/ms_v2_loss",
+        "plan/milestones/ms_v2_barge",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_convoy"
+      ],
+      "originalEvidenceSourceIds": [
+        "plan/overview",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "completeRequiredSources": 12,
+      "sourceCharacters": 78698,
+      "metadataCharacters": 28723,
+      "inputSha256": "608000c02ea0ea1bdf0ed9419d0a189ee556c25148641dedf1b5476cc4701c89"
+    },
+    {
+      "stageId": "followup-cross-1-3/geography",
+      "originalCheckId": "cross-1-3/geography",
+      "criterion": "geography",
+      "requestedSourceIds": [
+        "plan/milestones/ms_growth_v1_crossing",
+        "plan/milestones/ms_bridge_return",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/locations/loc_21",
+        "world/locations/loc_22",
+        "world/locations/loc_25",
+        "world/locations/loc_26",
+        "plan/overview",
+        "plan/chapters/14"
+      ],
+      "completeRequiredSources": 12,
+      "sourceCharacters": 68645,
+      "metadataCharacters": 28882,
+      "inputSha256": "be78e046d2e9fa5e614037c29339616ce3cbca75247cdefe9239603b1dd7ee68"
+    },
+    {
+      "stageId": "followup-cross-1-4/geography",
+      "originalCheckId": "cross-1-4/geography",
+      "criterion": "geography",
+      "requestedSourceIds": [
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/locations/loc_21",
+        "world/locations/loc_02",
+        "world/locations/loc_03",
+        "plan/overview",
+        "plan/chapters/31",
+        "plan/chapters/32"
+      ],
+      "completeRequiredSources": 8,
+      "sourceCharacters": 235600,
+      "metadataCharacters": 31251,
+      "inputSha256": "5538cb40fe2c887cb909855c837019a46669fd7a78f7fa8613ac6a67347a8fbb"
+    },
+    {
+      "stageId": "followup-cross-1-6/geography",
+      "originalCheckId": "cross-1-6/geography",
+      "criterion": "geography",
+      "requestedSourceIds": [
+        "plan/chapters/23",
+        "plan/chapters/24",
+        "plan/chapters/25",
+        "plan/chapters/26",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/29",
+        "plan/chapters/30",
+        "plan/chapters/31",
+        "plan/chapters/32",
+        "plan/chapters/33",
+        "plan/chapters/34",
+        "plan/chapters/35",
+        "plan/chapters/36",
+        "plan/chapters/37",
+        "plan/chapters/38",
+        "plan/chapters/39",
+        "plan/chapters/40",
+        "plan/chapters/41",
+        "plan/chapters/42",
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_03",
+        "world/locations/loc_03",
+        "world/locations/loc_21",
+        "plan/overview",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "completeRequiredSources": 40,
+      "sourceCharacters": 233997,
+      "metadataCharacters": 31717,
+      "inputSha256": "1d0d2529a77d4d31e12025f2e2759a044ada615e22b03552d60730b8beb1d934"
+    },
+    {
+      "stageId": "followup-cross-2-3/geography",
+      "originalCheckId": "cross-2-3/geography",
+      "criterion": "geography",
+      "requestedSourceIds": [
+        "plan/chapters/30",
+        "plan/chapters/31",
+        "plan/chapters/32",
+        "plan/milestones/ms_growth_v1_crossing",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/locations/loc_21",
+        "world/locations/loc_28",
+        "world/locations/loc_29",
+        "plan/overview"
+      ],
+      "completeRequiredSources": 11,
+      "sourceCharacters": 70473,
+      "metadataCharacters": 28698,
+      "inputSha256": "2ef06a766e3f5cd69850a3605465b9a6d4489c9da0fd4e772d82f4f6236db09e"
+    },
+    {
+      "stageId": "followup-cross-2-4/geography",
+      "originalCheckId": "cross-2-4/geography",
+      "criterion": "geography",
+      "requestedSourceIds": [
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/locations/loc_21",
+        "world/locations/loc_02",
+        "world/locations/loc_03",
+        "plan/chapters/29",
+        "plan/chapters/31",
+        "plan/chapters/32",
+        "story/relationships/rel_12",
+        "story/relationships/rel_05"
+      ],
+      "completeRequiredSources": 11,
+      "sourceCharacters": 235646,
+      "metadataCharacters": 31402,
+      "inputSha256": "2260ab42f45d9acb95b9b46a19909413a906871b023115e29db25fd7ea1a51cf"
+    },
+    {
+      "stageId": "followup-cross-2-4/history",
+      "originalCheckId": "cross-2-4/history",
+      "criterion": "history",
+      "requestedSourceIds": [
+        "world/historicalEvents/event_14"
+      ],
+      "originalEvidenceSourceIds": [
+        "story/relationships/rel_06",
+        "story/chapterPlans/bible-chapter-37",
+        "plan/chapters/37",
+        "story/relationships/rel_14"
+      ],
+      "completeRequiredSources": 5,
+      "sourceCharacters": 217800,
+      "metadataCharacters": 31063,
+      "inputSha256": "e2d70e01e693318ae80445948b8f2afcefafcf195358651b56ab6a9967332b83"
+    },
+    {
+      "stageId": "followup-cross-2-6/geography",
+      "originalCheckId": "cross-2-6/geography",
+      "criterion": "geography",
+      "requestedSourceIds": [
+        "plan/chapters/30",
+        "plan/chapters/31",
+        "plan/chapters/32",
+        "plan/milestones/ms_growth_v1_crossing",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_03",
+        "world/locations/loc_02",
+        "world/locations/loc_03",
+        "world/locations/loc_21",
+        "world/locations/loc_26",
+        "story/relationships/rel_12",
+        "story/relationships/rel_05"
+      ],
+      "completeRequiredSources": 14,
+      "sourceCharacters": 159575,
+      "metadataCharacters": 30694,
+      "inputSha256": "0112506779d25cd1234a7379866dd260e4ffb5f7cfdf4477ce1e1c5e834a7868"
+    },
+    {
+      "stageId": "followup-cross-2-6/history",
+      "originalCheckId": "cross-2-6/history",
+      "criterion": "history",
+      "requestedSourceIds": [
+        "world/historicalEvents/event_14",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training"
+      ],
+      "originalEvidenceSourceIds": [
+        "story/relationships/rel_06",
+        "story/arcBeats/message-dispatch",
+        "story/arcBeats/message-first-order",
+        "story/arcBeats/message-first-ack",
+        "story/arcBeats/message-north-report",
+        "story/arcBeats/message-local-replan"
+      ],
+      "completeRequiredSources": 12,
+      "sourceCharacters": 152579,
+      "metadataCharacters": 30599,
+      "inputSha256": "dabd1965675f5a3257afe1af564f57b56faa07052b0874f6527d332a9a814242"
+    },
+    {
+      "stageId": "followup-cross-3-4/geography",
+      "originalCheckId": "cross-3-4/geography",
+      "criterion": "geography",
+      "requestedSourceIds": [
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/locations/loc_21",
+        "world/locations/loc_02",
+        "world/locations/loc_03",
+        "plan/chapters/19",
+        "plan/chapters/31",
+        "plan/chapters/32",
+        "plan/overview"
+      ],
+      "completeRequiredSources": 11,
+      "sourceCharacters": 237770,
+      "metadataCharacters": 30346,
+      "inputSha256": "24d73e247bbd610f760826b0d902daf45dbca02e76ca5b2a91580fe23d8e4c02"
+    },
+    {
+      "stageId": "followup-cross-4-6/geography",
+      "originalCheckId": "cross-4-6/geography",
+      "criterion": "geography",
+      "requestedSourceIds": [
+        "world/artifacts/art_16",
+        "plan/chapters/38",
+        "plan/chapters/39",
+        "plan/chapters/40",
+        "plan/chapters/41",
+        "plan/chapters/42",
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/locations/loc_05",
+        "world/locations/loc_21",
+        "story/chapterPlans/chapter-plan-31",
+        "story/chapterPlans/chapter-plan-32",
+        "plan/chapters/32",
+        "plan/chapters/33",
+        "plan/overview"
+      ],
+      "completeRequiredSources": 21,
+      "sourceCharacters": 171841,
+      "metadataCharacters": 30151,
+      "inputSha256": "f4fbb1f1cdfc970cf187fdd343ae8a8f9f3043e2c7ef72a7582a8fd4d128bd25"
+    },
+    {
+      "stageId": "followup-cross-4-6/history",
+      "originalCheckId": "cross-4-6/history",
+      "criterion": "history",
+      "requestedSourceIds": [
+        "world/historicalEvents/event_14",
+        "world/factions/fac_03",
+        "world/factions/fac_08",
+        "plan/chapters/38",
+        "plan/chapters/39",
+        "plan/chapters/40",
+        "plan/chapters/41",
+        "plan/chapters/42",
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50"
+      ],
+      "originalEvidenceSourceIds": [
+        "story/characters/char_04",
+        "plan/overview",
+        "plan/chapters/20",
+        "plan/chapters/26",
+        "plan/chapters/34",
+        "plan/chapters/37"
+      ],
+      "completeRequiredSources": 22,
+      "sourceCharacters": 167136,
+      "metadataCharacters": 29922,
+      "inputSha256": "55d60ba1393d9fb7c0872977ccc13d66a48040a282d6419faa858fa7d4396586"
+    }
+  ],
+  "totalScheduledStages": 75,
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "questionsResolvedByThisAudit": 0,
+  "formalAcceptance": false,
+  "limitation": "Offline replay and complete-source/request-capacity checks only. Followup responses, dynamic report synthesis, semantic quality and all four area acceptance remain unproven."
+}
