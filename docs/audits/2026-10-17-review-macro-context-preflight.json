@@ -1,0 +1,568 @@
+{
+  "observedAt": "2026-10-16T16:34:46.945Z",
+  "inputHash": "10ba6d25b130be24ac27543056be1dad7242e75c9fba5200853f08eb2680c92f",
+  "stoppedCheckpointSha256": "4ceca180abf76eb0b0b15c5353f644a88ba843c1415f370a4f80a0fad140ffe7",
+  "inputsPath": "data/audit-runtimes/design69-preparation/inputs.json",
+  "inputsSha256": "4f924d5cba20fcea84bd0e076a66cbc1f447e0255e07be5e324415e490688b99",
+  "comparisons": [
+    {
+      "planVersion": 68,
+      "area": "world",
+      "scheduleVersion": 26,
+      "requests": 75,
+      "requestHashesSha256": "e5a0b2623669debe712acef9de82a9859cba82a3266db3a5839f3fc5cf4efc3d"
+    },
+    {
+      "planVersion": 68,
+      "area": "power",
+      "scheduleVersion": 26,
+      "requests": 77,
+      "requestHashesSha256": "8ae3a1f0834591c94bce03db6f7d265e0714895ee4eea9f744c4b0525bb3c5e6"
+    },
+    {
+      "planVersion": 68,
+      "area": "characters",
+      "scheduleVersion": 26,
+      "requests": 49,
+      "requestHashesSha256": "3680d23e1a79b86d407ba9c9e35d570f6e0d5844a31a916ed2e54250c6a605fc"
+    },
+    {
+      "planVersion": 68,
+      "area": "story",
+      "scheduleVersion": 26,
+      "requests": 71,
+      "requestHashesSha256": "f5e718e49de43c8d9cc0231e2cdf241e296644a24dac853b57ac9bb6322339e2"
+    },
+    {
+      "planVersion": 69,
+      "area": "world",
+      "scheduleVersion": 29,
+      "requests": 3,
+      "requestHashesSha256": "42a4b7ddbd92967c935c0af2055147598ed79ba553ede743036a9a245fceea2e"
+    }
+  ],
+  "legacyRequestsCompared": 275,
+  "areas": [
+    {
+      "area": "world",
+      "batches": 6,
+      "initialStages": 41,
+      "requests": [
+        {
+          "stageId": "batch-1",
+          "sourceCharacters": 149930,
+          "requestSha256": "a19d67aaa03d31b9f29d40869415bd5f5b1ae4444361fd82b97cc43a80014fa3"
+        },
+        {
+          "stageId": "batch-2",
+          "sourceCharacters": 149118,
+          "requestSha256": "ae1bfc1edd526dbc765c43ac443ad52b19795deaeb07f7a049810069c410c40c"
+        },
+        {
+          "stageId": "batch-3",
+          "sourceCharacters": 149515,
+          "requestSha256": "47917280ddcd7decaee2420d0b2d7f0414cd776f4d5eb87c13982c66621675db"
+        },
+        {
+          "stageId": "batch-4",
+          "sourceCharacters": 147529,
+          "requestSha256": "392b49ba63a03d6c05e7b8e36beff42b612c18748e67c1c5b4907e1899d29f0d"
+        },
+        {
+          "stageId": "batch-5",
+          "sourceCharacters": 149763,
+          "requestSha256": "a9b5ecacacc2fd330e98bee9eddfe28a2b93fa33e910cb29af0b8c6099a3fde2"
+        },
+        {
+          "stageId": "batch-6",
+          "sourceCharacters": 138749,
+          "requestSha256": "a0e2010b670ac2bc2183910f7929dd80e1273d0541d0488e43bc13f91ce8b0d8"
+        },
+        {
+          "stageId": "cross-1-2",
+          "sourceCharacters": 219048,
+          "requestSha256": "e42a7f6a1bd3f749ae4174e4df5033e42bab7043b68fc4528a91b206db521919"
+        },
+        {
+          "stageId": "cross-1-3",
+          "sourceCharacters": 219445,
+          "requestSha256": "9a4f9a5b5924c312094c74be5ffd4a111910272cc0b88dd3c7d655d44079976a"
+        },
+        {
+          "stageId": "cross-1-4",
+          "sourceCharacters": 217459,
+          "requestSha256": "a3c39c27113e5830438fac76d69012f84945a887aaae4486462aa0b4256b9760"
+        },
+        {
+          "stageId": "cross-1-5",
+          "sourceCharacters": 219693,
+          "requestSha256": "64b27048f8e0bf5c2c4fe7f0ba9c9e0fa8aa6d205c4207cd50bfada2f0165513"
+        },
+        {
+          "stageId": "cross-1-6",
+          "sourceCharacters": 208679,
+          "requestSha256": "73e042d73558527a9683f45b7e2be5d408b6413a2ea1f4ea2a16ccfd95248bf1"
+        },
+        {
+          "stageId": "cross-2-3",
+          "sourceCharacters": 218633,
+          "requestSha256": "2f0b7737d65bdca1b006451deb4d2bc9a1f5c2ea6cc6a36cadcb4f1ca4329814"
+        },
+        {
+          "stageId": "cross-2-4",
+          "sourceCharacters": 216647,
+          "requestSha256": "4734172511a322f642785f2022dd0363b54fe97f3e4d0fa8aef911b862b73475"
+        },
+        {
+          "stageId": "cross-2-5",
+          "sourceCharacters": 218881,
+          "requestSha256": "a2b5b118b5a1fd2cff938f5a00d3f5bc3cfb42812161a3c235b2804eb87bfc61"
+        },
+        {
+          "stageId": "cross-2-6",
+          "sourceCharacters": 207867,
+          "requestSha256": "9f4523593869a5557c2452e20488bf9fcfb587441ad68a8e8a619d03366eb16e"
+        },
+        {
+          "stageId": "cross-3-4",
+          "sourceCharacters": 217044,
+          "requestSha256": "c445be9ae14293a2615526663daded4a990ef625ca0dd5b084cc94463def88b5"
+        },
+        {
+          "stageId": "cross-3-5",
+          "sourceCharacters": 219278,
+          "requestSha256": "0cbe84dda2aacadeac653d30e7f0ea3f880c2832ea9f7abda4d0f597547ce31a"
+        },
+        {
+          "stageId": "cross-3-6",
+          "sourceCharacters": 208264,
+          "requestSha256": "776a3282a365f6adaa94726daf5d78655a3002d58e31d836121e89da2fb8a729"
+        },
+        {
+          "stageId": "cross-4-5",
+          "sourceCharacters": 217292,
+          "requestSha256": "ad8078bbd6cd5a385b456f386dc0509c27509a10d2eb1319e6e8e035a99809f4"
+        },
+        {
+          "stageId": "cross-4-6",
+          "sourceCharacters": 206278,
+          "requestSha256": "2a184d26abbbbb948c867f94e3b2dc35887b190c6aabc84f2366a338c31e512c"
+        },
+        {
+          "stageId": "cross-5-6",
+          "sourceCharacters": 208512,
+          "requestSha256": "5f26c514073ca8d34d882fb755914f227dd7ec4e0d02d2a729829dffd5062b02"
+        }
+      ]
+    },
+    {
+      "area": "power",
+      "batches": 5,
+      "initialStages": 29,
+      "requests": [
+        {
+          "stageId": "batch-1",
+          "sourceCharacters": 129378,
+          "requestSha256": "a01ee705a140b75ca1b44fa85d3f359d7d6f787f7500db6b3d5a2261a9baa39f"
+        },
+        {
+          "stageId": "batch-2",
+          "sourceCharacters": 129847,
+          "requestSha256": "d9dc64ecede2f533112b11c952fbc7d3711591dba34bd6ece512aab773514677"
+        },
+        {
+          "stageId": "batch-3",
+          "sourceCharacters": 126697,
+          "requestSha256": "9ed684af7b7658bbc6b94dd1b65e9d754c980f6ddde8754de661cceb3d8cb5f7"
+        },
+        {
+          "stageId": "batch-4",
+          "sourceCharacters": 129660,
+          "requestSha256": "d0faa5b980269d157637f69ce2c25cdb2252bd20c809d91c2e435b8377772b25"
+        },
+        {
+          "stageId": "batch-5",
+          "sourceCharacters": 101313,
+          "requestSha256": "018e1f65d3cab2a4c30bd86739331f76589d49e16b2b4a182d041c27fc8bc223"
+        },
+        {
+          "stageId": "cross-1-2",
+          "sourceCharacters": 219297,
+          "requestSha256": "5089c95900dda85c9daaa66049db410a737759d68c7a3577b61a9fe95d36e30c"
+        },
+        {
+          "stageId": "cross-1-3",
+          "sourceCharacters": 216147,
+          "requestSha256": "bd34a9f882ae966000730c57b6c21ea5ed852d5300c3b921de5f8179613189c6"
+        },
+        {
+          "stageId": "cross-1-4",
+          "sourceCharacters": 219110,
+          "requestSha256": "edc6cb3009a4200b6653b86dd7e445bb3661592a6ca0f1b29e921e17b39419f8"
+        },
+        {
+          "stageId": "cross-1-5",
+          "sourceCharacters": 190763,
+          "requestSha256": "9029266c9d977096bcddf613ede55c883871c59e91d1cded397ca650ffc2add1"
+        },
+        {
+          "stageId": "cross-2-3",
+          "sourceCharacters": 216616,
+          "requestSha256": "f0ddba3f707e0658cd4c47fce6f7dca3edc4daca16fd5b3271201eca215edf89"
+        },
+        {
+          "stageId": "cross-2-4",
+          "sourceCharacters": 219579,
+          "requestSha256": "1d1846c5d43063b20510dd83f195295bf2d5960ec13339c7133e8a3b4078458d"
+        },
+        {
+          "stageId": "cross-2-5",
+          "sourceCharacters": 191232,
+          "requestSha256": "4a4a597a1a90e57930de8387c68d195137879f1755b5823dbd7840d4142da349"
+        },
+        {
+          "stageId": "cross-3-4",
+          "sourceCharacters": 216429,
+          "requestSha256": "9e8008b411de64d8e719985d9364f411afe34e8ef177fb5989de439b270e9f0a"
+        },
+        {
+          "stageId": "cross-3-5",
+          "sourceCharacters": 188082,
+          "requestSha256": "0fe5b5e14e784dde40b4435e215f8ee5e3c50cc3fae267d40236c77dcec10b0d"
+        },
+        {
+          "stageId": "cross-4-5",
+          "sourceCharacters": 191045,
+          "requestSha256": "ea5e0934a9b922598a52fe985658e62eae313cf8a80a3cb369483aca77f1367c"
+        }
+      ]
+    },
+    {
+      "area": "characters",
+      "batches": 5,
+      "initialStages": 29,
+      "requests": [
+        {
+          "stageId": "batch-1",
+          "sourceCharacters": 120613,
+          "requestSha256": "faf5715edc16d06e8e3f5904f4ce1fa2781d04ca05861c9b39735d55ce91fca4"
+        },
+        {
+          "stageId": "batch-2",
+          "sourceCharacters": 127093,
+          "requestSha256": "5b330591be7d4760a5ce8928272625091f64e3fc28eed6474da5e749f2770776"
+        },
+        {
+          "stageId": "batch-3",
+          "sourceCharacters": 126926,
+          "requestSha256": "f3c77f36bb7d76cc82b64d1ddf996e1ee3d2a6a15f12369db2de18a02a01711b"
+        },
+        {
+          "stageId": "batch-4",
+          "sourceCharacters": 124206,
+          "requestSha256": "b86ba1cd30b8dd918e28cd3ef5aa70b337ff982d971d77d11857a165b410afdd"
+        },
+        {
+          "stageId": "batch-5",
+          "sourceCharacters": 59642,
+          "requestSha256": "6b6ebcd33f2e0e6fed5af71a738e30fc445576d7277a04b76f9813710f7fde10"
+        },
+        {
+          "stageId": "cross-1-2",
+          "sourceCharacters": 207886,
+          "requestSha256": "4a9c805f54aaabc3cde95633e7c46093d7c51fb4c067958c1043d873253b8850"
+        },
+        {
+          "stageId": "cross-1-3",
+          "sourceCharacters": 207719,
+          "requestSha256": "b0d16cbae1243f4f9568744e7c7bd35eb2602a60915c1888a7fe8c1eab571873"
+        },
+        {
+          "stageId": "cross-1-4",
+          "sourceCharacters": 204999,
+          "requestSha256": "e248cc98a49be2d15c152201deadd51335b3c93a1db93a7815a959e9bc8aef8e"
+        },
+        {
+          "stageId": "cross-1-5",
+          "sourceCharacters": 140435,
+          "requestSha256": "752be9773b04f13e6dbb646fe015e5b47821c7aba489bff70fcf54f9af813b3c"
+        },
+        {
+          "stageId": "cross-2-3",
+          "sourceCharacters": 214199,
+          "requestSha256": "0f9d3b9a886de6f5d8494a1d27796284f06b6a5c652aa7b26e76c47f87cad509"
+        },
+        {
+          "stageId": "cross-2-4",
+          "sourceCharacters": 211479,
+          "requestSha256": "9a49baec1b322f77025d6ec85845f85745464f9c6fbd392f8a8f5511d2222091"
+        },
+        {
+          "stageId": "cross-2-5",
+          "sourceCharacters": 146915,
+          "requestSha256": "7a524b5e62ee509fc92b48732da559a5a01fe5e7405bc6c26b60c4955eb06abf"
+        },
+        {
+          "stageId": "cross-3-4",
+          "sourceCharacters": 211312,
+          "requestSha256": "1e94f22ecc795f8405b0628d5ec3568476814c94d1720d8713c46c6b9239ae4b"
+        },
+        {
+          "stageId": "cross-3-5",
+          "sourceCharacters": 146748,
+          "requestSha256": "a113a29208d300b5fc9e0a7bd09dbe9a340a7aefee87a2d177d309814aa3dbb3"
+        },
+        {
+          "stageId": "cross-4-5",
+          "sourceCharacters": 144028,
+          "requestSha256": "0f58d8bca7bac8ad2bd4e696969b949f5f9452980b65d2c2fd0785ea135b6739"
+        }
+      ]
+    },
+    {
+      "area": "story",
+      "batches": 5,
+      "initialStages": 29,
+      "requests": [
+        {
+          "stageId": "batch-1",
+          "sourceCharacters": 129541,
+          "requestSha256": "89093b9bdec6243086e085607b1ba2ea71a17e887a77b5eeb17d302db0c1d7d7"
+        },
+        {
+          "stageId": "batch-2",
+          "sourceCharacters": 127497,
+          "requestSha256": "078694c3a871a767eeb8426de793b677080e835756afdceeec95df42b1296aff"
+        },
+        {
+          "stageId": "batch-3",
+          "sourceCharacters": 127278,
+          "requestSha256": "d7be504c6a4cb939b852b1be8a35dc170845daadb955c62a61381f5e3e09533b"
+        },
+        {
+          "stageId": "batch-4",
+          "sourceCharacters": 129055,
+          "requestSha256": "27a214735a96c753ea8ba696228f952bfd61b5cf56b8c9091c39ef45df4bbbe1"
+        },
+        {
+          "stageId": "batch-5",
+          "sourceCharacters": 110276,
+          "requestSha256": "97454657b35c29534863e3a55254de1bc30426dad49c8f9c11f814d9575c539e"
+        },
+        {
+          "stageId": "cross-1-2",
+          "sourceCharacters": 217230,
+          "requestSha256": "ddadf056ab099d74a9fd943154959c8d3ea37f0f25592276ab908b29f9f2ca0e"
+        },
+        {
+          "stageId": "cross-1-3",
+          "sourceCharacters": 217011,
+          "requestSha256": "4d5b6b1f8434f833de50bf552c9d6451f45013e140498e84ed9633e3b2f15f28"
+        },
+        {
+          "stageId": "cross-1-4",
+          "sourceCharacters": 218788,
+          "requestSha256": "4f1096828a7152009aecc0c2fc5db0e85bbf5c4765c52ed7c99fccaeb90ab315"
+        },
+        {
+          "stageId": "cross-1-5",
+          "sourceCharacters": 200009,
+          "requestSha256": "ab03cc861fbe8caa77ba18904754e151c1521f2b98e24d2598020e9cbc52470a"
+        },
+        {
+          "stageId": "cross-2-3",
+          "sourceCharacters": 214967,
+          "requestSha256": "95d8aebf1e57292b8a0aae84661070073107f70e931fa22a11015ba0e7456758"
+        },
+        {
+          "stageId": "cross-2-4",
+          "sourceCharacters": 216744,
+          "requestSha256": "619008ed28f7e4dcd4cbc8a981117d59ad94798d44228c90750de145ceee9671"
+        },
+        {
+          "stageId": "cross-2-5",
+          "sourceCharacters": 197965,
+          "requestSha256": "c0490cc2db11e92cec5fc8620e0ece2c3ac4ad6a14208c3e90519a3b4192bbfd"
+        },
+        {
+          "stageId": "cross-3-4",
+          "sourceCharacters": 216525,
+          "requestSha256": "dd1acdf892b404dfd7a7eb9dc7ff55c532a64f6c1396322a6e413aae1d29dd40"
+        },
+        {
+          "stageId": "cross-3-5",
+          "sourceCharacters": 197746,
+          "requestSha256": "7c3088fe6baa67571e887ef882de65ccc0cfd134a33928011facebf6b33b7283"
+        },
+        {
+          "stageId": "cross-4-5",
+          "sourceCharacters": 199523,
+          "requestSha256": "59df3b12e4d6ea2d0df894f38505bb37174c3dd47080b3d50c149aa217c7d2cf"
+        }
+      ]
+    }
+  ],
+  "inputPath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design69-macro-context-probe/input.json",
+  "inputSha256": "a19d67aaa03d31b9f29d40869415bd5f5b1ae4444361fd82b97cc43a80014fa3",
+  "runtimePath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design69-macro-context-probe/runtime",
+  "sourceHashes": {
+    "apps/api/README.md": "759a64515193fd9672bc78c18674dcc42e94d99e9c3b5007951f5287d6219867",
+    "apps/api/package.json": "2b1963f802f50df50d3dbeeba067f66c80b60659fb490a4fdf187ac2a07e8f26",
+    "apps/api/src/hot-topics.ts": "f4551d06ddf46e03735fd1a61fc09cf733d71b76e65c01195b09c6d21a0bad83",
+    "apps/api/src/model-settings.ts": "8378d03410b1a1fec1fd0c7eab900f6d9d96bc9190b2fe2bc7d8cea1a9063ed9",
+    "apps/api/src/server.ts": "441a1bfc5f81b914206881c30363d96e4b067c8a58a8d451477f637fe2013fc2",
+    "apps/api/src/settings-routes.ts": "9dbb0158a0dcf929afccfa8c625e429371e3d647bdc02fb938ec4a40aa68c4a2",
+    "apps/api/test/api.test.ts": "c78adaa96c77dd4095023298c1a2b90e470309d15e2917c272e90fcd9a642ef7",
+    "apps/api/test/chapter-review-source.test.ts": "081066b5585aa0a8d74d4aaf27468d1a89d8562ad70024e8b269f999d62031b9",
+    "apps/api/test/design-candidate.test.ts": "91708034bc4fe35b370eb5370d836463bacc51a28bfef59cea5165ac584dd0f2",
+    "apps/api/test/hot-topics.test.ts": "e43945c499fd9eb817463086d1cb37ab00e0b6466bae4e61eabcb08e5f3c6baf",
+    "apps/api/test/manuscript-export.test.ts": "b1f68e1901411199e4ad47c4f40305106f4353af1427ad3dbdc5feb9be3b678d",
+    "apps/api/test/relationship-provenance.test.ts": "53d5ee7b0c3d6322abc38049f5997d10774a4fadef04608ec9ab109749cfb471",
+    "apps/web/index.html": "51e33d1d36feb456277736c70829b7e43a97f3fd4f784db5ead31a419e497bdf",
+    "apps/web/package.json": "7847217b1ec3c10cd8b128fb883da5b7f3936ee943caa268a81fd72db08a3fb3",
+    "apps/web/src/App.tsx": "0c8ee125df4706249406f837a258debce15527a1aae1577a94896379d55b7190",
+    "apps/web/src/api.ts": "baf1575ba30854efc7829ce204c58bc92d54946f1bb59cdae1f5dfcccab61f2e",
+    "apps/web/src/chapter-adoption.ts": "fc0203fff3c6cd1e70c76379c7c6df64569a2221e988e0464ea007f1edb130cb",
+    "apps/web/src/covenant.ts": "6b4c277e8c775afdb886dbd463cb4fd495dc509ed7c6100220c6f60120ecf641",
+    "apps/web/src/design-review-coverage.ts": "6ee2ccc084f32f192be9a70aed6fb704c08e1061a037abb2424b5bc0dac90420",
+    "apps/web/src/design-revision.ts": "3bc308a6c0d2eea108a56053f1f1ce9e114947ddf0542596b3089b0a5389bff4",
+    "apps/web/src/genres.ts": "276ca9a54b6d492960ab80de790f0db419cb93cf98d8ba61555840ef5cbdfcd3",
+    "apps/web/src/labels.ts": "da19f2df42d44dc9c9d0668a6c6b0fe15a7e3e12bb8bbf2f2db59033203b188f",
+    "apps/web/src/main.tsx": "fe62b21169eee8f870b7ef27f8f208805356dc11bffdac0fc5df01d92f7dffe5",
+    "apps/web/src/pages/AdoptedChapterReader.tsx": "54e64ba599ac1533a09ea2c237aaa5e58f9a50fb64bd8ad5d830954a241c9e75",
+    "apps/web/src/pages/BookSettingsPage.tsx": "4760c4bd315990604c9f55364b1e4e9dd3d7ba0b621eadfed1e9e346e2474bdd",
+    "apps/web/src/pages/BookshelfPage.tsx": "1c125bdbff2cad72d2feeddc844f37771b2ac011a62589b90ec4436c1a38caa5",
+    "apps/web/src/pages/ChaptersPage.tsx": "18886918cfcbc9e93620da96e2e98165d4483fbd772cef34d9258efbf6718446",
+    "apps/web/src/pages/CovenantForm.tsx": "fe4920a365fc337b3b1fbf16bdd1393162fabd88765af9c86ff9c0ba58385a46",
+    "apps/web/src/pages/CovenantPage.tsx": "d012b1a4da65f56a59850220be6acdedee8d157fba977bc117676953415fe558",
+    "apps/web/src/pages/CreateWorkPage.tsx": "051283667bc74a9cfc6aa3f21dbc408d97773d67710fce0c67dd8bbb33048f14",
+    "apps/web/src/pages/DesignAuditCard.tsx": "46fb0f5d250a0ddfb7a9a502239b5af149725ea296e6662e81b078acf65e06a0",
+    "apps/web/src/pages/DesignContentReviewCard.tsx": "fd7829a39e3ddbd08e456caea6cb45a763c918cff131ac21cb33b739fbd289f4",
+    "apps/web/src/pages/DesignPage.tsx": "bbb25b5e22251497cf58a99070b526b49e1bc337324b89b95511d5fd1a4733c3",
+    "apps/web/src/pages/DesignQuestions.tsx": "a9c8cfa6ffaa0c1a39369132dc443fd0f4d816db4edbd6e9c92662746336dad8",
+    "apps/web/src/pages/DesignRevisionEditor.tsx": "cb5c5d4b1444c26f022bb377451eb725fc35491a8e68d72ce1fb4df2a4b11a36",
+    "apps/web/src/pages/EditorModal.tsx": "37fcd5dfeeef89532558dbb6f939ac71e178e760bc2421fe51f5db6dfb2ac278",
+    "apps/web/src/pages/KnowledgePlanView.tsx": "be0c010c28798301a5090efdb27ab3b959c851466d9df19858e2a6a1b2a5ead3",
+    "apps/web/src/pages/OutlinePage.tsx": "a06190432d413fa132f1655695708703e2565b6232a68b9f261a0e3eeb31c959",
+    "apps/web/src/pages/OverviewPage.tsx": "c157365bfe49a4675f025380333763c969113509b4dd432f69f8af548f8c5f81",
+    "apps/web/src/pages/PlaceholderPage.tsx": "2bfcbf3da6982b8f006de58c615086fc804d9bd72691829b545e241a5822aede",
+    "apps/web/src/pages/PlanPage.tsx": "80c04cbee74fae04ccffac99e09ec629a5874e5e54982df7b3be9ffbdb7a636d",
+    "apps/web/src/pages/PublishPage.tsx": "146b4b49d95c02bf3a631ee6df7d0bf58b6395729f46df673d3425ef5e8392e9",
+    "apps/web/src/pages/QualityPage.tsx": "fb29bfac6fa76f26180f4d5253f96de762848f150bc2fe0896314ee50571bb1d",
+    "apps/web/src/pages/ReviewSourceCoverage.tsx": "5af322ba3bf4b37eab03838726a447c829628f5f94d028c5a8babf30be948478",
+    "apps/web/src/pages/SystemPage.tsx": "94ab5bbd8827a4f5cba4c476ea30182d76ac5ed7aac80f23e742fa3d06f451cb",
+    "apps/web/src/pages/TasksPage.tsx": "df6f31b46afe8feb60b6ca99e779623b199e253461aff7616ff0fc1c147d83cb",
+    "apps/web/src/pages/Workspace.tsx": "e0f8a024990dd3dd6ae81d05d2c7a0582a704da37cf36a6bbf3eb72d6f378ffc",
+    "apps/web/src/pages/WritePage.tsx": "9cde681e5c7dc6287f8cb30b3505418b9473eefa321a3eaacf2fd16e16b5991d",
+    "apps/web/src/styles.css": "586745894ede27930f9f3ad6b2824cb8e43916c6378bb83177bdaca3368718bc",
+    "apps/web/src/work-chrome.tsx": "92cf5dfddb552091f9fab9aa3967d96b17986cc4c12c23e9fa5a755a08ae96aa",
+    "apps/web/test/chapter-adoption.test.ts": "7a718f0dccf8b84e5f341b7e7f5eb9667e866d5e7521a808ff30bb4ba7396ada",
+    "apps/web/test/design-review-coverage.test.ts": "fef37ae939373ceefa91e26f22d7f71dd5be75c15caee6ddddf03c0be3ada64b",
+    "apps/web/test/design-revision.test.ts": "d2a701a01d6dd0ccc27b3ae69e296a02d04104004561fe2ca9936afd8c845553",
+    "apps/web/tsconfig.json": "637141e1559170f0b5b2fc27c9c7c5aafd5af99dbed5ee482bb34a136338f1fd",
+    "apps/web/vite.config.ts": "14501439875c563028a6d28102ab04a36105e6f013b0803a9b5f62690bf45098",
+    "novel-service-core/package.json": "9c9d8131074c3be5301c3d68ce4542ea074bad65d0abbb7135602b61dbd78761",
+    "novel-service-core/src/bible.ts": "82e5465758b3a3a736a20e25688167148ef7ed6063bb0c0b4a830e0dac04c72f",
+    "novel-service-core/src/chapter-review.ts": "84394cb0460ad073d7748cbe8cd042f1a7b7fd0509ac509d194ea433e4e1452d",
+    "novel-service-core/src/core.ts": "1f11f86b0da38b62731e722c1edce33f0f4108dc21eed6893d3cfb92366b667e",
+    "novel-service-core/src/design-questions.ts": "6b19ef680d817d0df083e693fc1837e77fda757942c09805495be4c643e76d27",
+    "novel-service-core/src/design-review-report.ts": "066c23fa14185d03d33fdb55ad73fb8bfcb3604471ae78e6554e368ab047f5a7",
+    "novel-service-core/src/design-review-run.ts": "d56988cdf222f32c3222e45295f7846e956d517eb78041810a442e38b8e104dc",
+    "novel-service-core/src/design-review-scope.ts": "248e8310255dc41062bdf25fff32c901a3966ef4ebd60e10f388b664338cc20a",
+    "novel-service-core/src/design-review.ts": "4ab7ed26474c6b3184b89492e9d1ad021f9ad5c4e41a092435c2014e1bb50a43",
+    "novel-service-core/src/event-order.ts": "64b016037306d6d81eaeaac8ee7d3f770de149ccbebaa055b6dbb1ed6074e367",
+    "novel-service-core/src/execution-evidence.ts": "707aefc77dda70325aa616f2cbbdfb55cff85df5a54fc8bc635f63bb99191868",
+    "novel-service-core/src/planning.ts": "97beeb8c66508263b925c8664e91816d7e8097476e7c5d3c7a5f05fc0665ca13",
+    "novel-service-core/src/world.ts": "ec8bd0cd9915dcfa5d2e4ea0c96cc3e452f7bf34d711c80419093af33cf95d6d",
+    "novel-service-core/test/bible.test.ts": "eef41a4482938dbce6f5b333bb18bd78c1a080ff05c12064689b9ac2c78549a3",
+    "novel-service-core/test/context-memory.test.ts": "d6ebfb89a79fd724d13fb0cec1e4741c1359b1880f2448ebf5b24140c2d5cabb",
+    "novel-service-core/test/core.test.ts": "da7895bb83c2332521638bb4615d398e0dc4048fe4740e12e7d22bd06ad192b3",
+    "novel-service-core/test/event-order-fixture.ts": "9d22b0eaeace2d012f555333e923474217dbff9977ffd4de743c0dd7a23bdea2",
+    "novel-service-core/test/event-order.test.ts": "b9d23b874e38d978cc9375b1f517a3089930399f3fa0ceb67569d5bb3d7c1a75",
+    "novel-service-core/test/long-run.test.ts": "3867c360c17e34ced2c43a1906b624a8bdd355623ee3356a5c9001301f16836f",
+    "novel-service-core/test/world.test.ts": "bdb323941127c9c6be32d6e7a0849ccb393f097024a0bd2b52b0229f0bb2f2df",
+    "novel-service-core/tsconfig.json": "d5ed9fd23840c8299b48f027e0aed2c2e91e5de6debbb9823b4ee6895ff71898",
+    "package-lock.json": "98131e0290762279750216fd829929d61beac6c14d81f564883c9ebeb0117689",
+    "package.json": "fa9c11103fb4cc5a1dd27df02046a1b251d3daa51e302148e350ab0b21ebe5bf",
+    "packages/application/README.md": "a1e20bc9c88a45f9ff25f634d29dcc28cc79b8e0aaa523d2007b872e6156c7ce",
+    "packages/application/package.json": "cc45ce2724ddbab1488fcf08449585396877c8cb7d073e6b702c3f8116bfed51",
+    "packages/application/src/design-candidate.ts": "32ba57418fe483e16ae5770c2f35911236a07c2539d646036a7d9414b964e84a",
+    "packages/application/src/index.ts": "312bda75540292f8be709b0640a9fd2d5a4ec0c1c5a66de2b80f6a249752b596",
+    "packages/application/test/chapter-review.test.ts": "f827d5c2e420890f47a9fd5c8fe0db534b1dce508449d80526a2d19c4e7c32f6",
+    "packages/application/test/design-candidate.test.ts": "0fe52b9de82b722743ca7b85c6c85056a3d1ba10d4e9242511ea9115a561208e",
+    "packages/application/test/design-review-navigation.test.ts": "eb9f8f7588864c3226abfb87c29ff28e955ea5e6ffa4a35294028c0d975832af",
+    "packages/application/test/design-review-run.test.ts": "f69179b3352c28ad5d5a052f524c38a2f6e1938ed9f61c6e18684d15b57e4175",
+    "packages/application/test/design-review.test.ts": "f7bd261aba1e991f444ac1206b1d12726e5799789d39d7d627127844885f25b3",
+    "packages/application/test/execution-checks.test.ts": "51f4c8712161ff1dc846e9dc0a5311fda2ff00b3ec54ec2a403f47eb64887fa4",
+    "packages/application/test/fixtures.ts": "1868721e82a79193e4189e86ac4229668f6489057210365bb8cc262bee89865c",
+    "packages/application/test/manuscript-review.test.ts": "965d1f1d5a46c2ed4504633c91978debc601ee0e2788fd11455c75194431c106",
+    "packages/application/test/planning.test.ts": "c638dd542d0faa97538e55032c424cbfbcfe389e4e753be383ef2279747bcc73",
+    "packages/application/test/question-retention.test.ts": "cb5a627c7aebfb80d014425eee5758e4c79d9e76e26920d8741931d169b05362",
+    "packages/application/test/workflow.test.ts": "bfc5b04739615916858ee198d8b9e30e50dde406a3f432f91ad46408b31ab18b",
+    "packages/contracts/package.json": "fff92c163f0d6424b989ab4bf71e9569f60e7e545fb8136310fee3c5cb0c12e3",
+    "packages/contracts/src/api.ts": "79da1013f05cba5b01b8823ed1f32c6a3618d0f062841741f4f3f939ac985ca7",
+    "packages/contracts/src/design-review.ts": "0a552719ed258da00aaedf3f2c3b6e39ef37f38a98ee6522590817d9f15d0f17",
+    "packages/contracts/src/index.ts": "ef961a632ab5f613bae93c28820c5f7bab97670529640f1f77e80f2ca4c066b4",
+    "packages/contracts/src/planning.ts": "a70ebc1a9dc4b0b5805cdbdfea012622acc3b544422f648d61355b61501a8166",
+    "packages/contracts/src/world.ts": "2f859722c541c132a71edcdbdb610f26971c47c07301e9098739c5a216b0818b",
+    "packages/contracts/test/contracts.test.ts": "6686e5a6b40af521e5d6b869cf0728335bc1f2214581b6b0bc9869a45ed365d4",
+    "packages/contracts/test/world.test.ts": "38728ae5d51c17a460f9c2905ec4a9b4a7039b143b15b6dfa63441d908d0c75e",
+    "packages/model-gateway/README.md": "b2d33ac953dcb89aba79777133ce5c3562217a52f5a0e4ac85006350bd2bf2eb",
+    "packages/model-gateway/package.json": "1c25059fc354d059ceac3f59db868e2c7a659069eb2962cac0536202c5387525",
+    "packages/model-gateway/src/index.ts": "384e1a1a99a03ce3d216af458683aee452a533d586dc1e1067d1a56d29040673",
+    "packages/model-gateway/test/gateway.test.ts": "a9ef2e53002fc0052d8590462bf5e2e643f6203259b043819ef3fa16ab44d064",
+    "packages/model-gateway/test/transport.test.ts": "48760ef02f60dc6ca3c04e6ca7f6040f8f8672bd563a175c9ee01bd7d7b83b57",
+    "packages/persistence/README.md": "e795d118a8eaaeec05e490f0f3f49f18b7fd13d656cdc22204d4b49241fec6e7",
+    "packages/persistence/package.json": "2fbf2b938e6ae544d5c81ac21645ebe5a353acaf1ebdd50391c81179de642372",
+    "packages/persistence/prisma/schema.postgresql.prisma": "1a57929ced4f04f43a2139d15973dd34e14036b6f0b21c918ae2c8479f396524",
+    "packages/persistence/prisma/schema.prisma": "40d57f9581057b1b6d446fe1c49db91b5f0b5d2b741013de2450a1154824f974",
+    "packages/persistence/src/json-repository.ts": "aa9bd597464d39337761c86f0c6616b079438c81a97671db5598dbec2fe5b4df",
+    "packages/persistence/src/prisma-repository.ts": "3de165e064376e5b5df271547d129b97780adc34192c878e55c796f46be447bd",
+    "packages/persistence/test/json-repository.test.ts": "1efd6cd4559be4bf650cbe4042f5fa5b0dc35a3952a6d75fff8ec0a084cae9c3",
+    "packages/persistence/test/prisma-repository.test.ts": "48a2bf468a9df63455cbc55c342d6bfaf291e519d7c93244e276e3fee5885882",
+    "packages/planner/package.json": "74e9a9067d769424af736554543eda33fa4ff55cf4c7e150f5b5241ab1c43cb2",
+    "packages/planner/src/design-review-evidence.ts": "a6944a99834620c79ebf2a6cdc23cf44b63fa8fc60b20a7e8946776f8baf6e33",
+    "packages/planner/src/design-review-horizon.ts": "2184b067484fb2cd26363c34dba4035c1e577b7a1a363c6e253818b8966a291a",
+    "packages/planner/src/index.ts": "352b90bbc43ae9a041cb80153065151f533177adee2165af83de9e55d34c1bda",
+    "packages/planner/test/chapter-memory.test.ts": "88bcd853de450c8ca8f7acb432c5a8e118d98c69d35d2f357dd8b2847eab5717",
+    "packages/planner/test/chapter-review-fixture.ts": "d97cd143ce454cce23bf89ace5a609c8f097a1cb7a04f4f1db5f168810e32bdd",
+    "packages/planner/test/chapter-review-stages.test.ts": "564afb48547fef9d3d814e9378ea7009f84216dacde655fb8b268d16692999bf",
+    "packages/planner/test/design-review-horizon.test.ts": "f24b325411ac153f78d2b383bf73d93ca9fd02d929d92a7f61f48c258a538b56",
+    "packages/planner/test/design-review.test.ts": "bf63d4760cd0dd793843e848268d54baff5906b44dde598fdee9ad8b4c0f2a40",
+    "packages/planner/test/design-target.test.ts": "27845782853ee9b77d2923e57f0e10a63dcb8bc226939c06a8a44532e443d704",
+    "packages/planner/test/failover.test.ts": "77f9120b8f7de2edc9ca786971f4b86129f2187722e0c0a9668317e198684c03",
+    "packages/planner/test/planner.test.ts": "b387ee74c61fc931cdb70c5652de9ca021f235aa5e53829a5a838881417fbc35",
+    "packages/planner/test/world-proposal.test.ts": "d47bfc765e73926dbcffb590c8d5c74fcb8e78f518c0475b388c335a169a8e13",
+    "packages/worker/README.md": "d58e9a19209b8eac6de15555fa6f2cd9596f6cee878613ffbf16bac4a6bd3020",
+    "packages/worker/package.json": "5636cd05ce0f4f5809af4296158fd58290fd626b0b6908d7a39a15360e70ad4d",
+    "packages/worker/src/index.ts": "70abb55097b11e14ed46200d05453eb54b05c2e1dc43bc93ffb259f220feed85",
+    "packages/worker/test/worker.test.ts": "9e84ce12ebc508bc889ca43ca5a2f778434955c289db77223964c98da94e60d8",
+    "scripts/audit-design-reviews.mjs": "5d0cc5b5b68d6ca7d3eb600ad8ecb3679ebb8187831907700a83eed9c20b28b3",
+    "scripts/audit-design-reviews.test.mjs": "00b51155383879052c5d8db1e7c0c1f2dd53b474c08832a0fa96fc2d8b7f40c3",
+    "scripts/audit-design64-final.mjs": "19535edfacad24c561b7588c234e197325c36e1599db727daed55f123dd2488b",
+    "scripts/audit-review-recovery-chain.mjs": "01088487eed9b5a6f125760eea31a5e3c71e5d1839a24ccaa8d2f7f1b47e689d",
+    "scripts/audit-review-recovery-chain.test.mjs": "79adc5fdb88532ecde91543222c1da95cb8103f8c1f084d5c6447cc0fe98389c",
+    "scripts/check-lifespan-path.mjs": "364b03d59942187ccb79e05497ad209223a92016f0da08798cf5aa53ea4262cf",
+    "scripts/check-lifespan-path.test.mjs": "94869ba7ca93c12c332ff19f8b6c60a8da3495605be3f3155d3a458dce75546e",
+    "scripts/collect-design-review-insufficiencies.mjs": "6d5649fac6188e536747ba010ddb4c6df342ce638076be40ac2838e28a5792b4",
+    "scripts/collect-design-review-insufficiencies.test.mjs": "82f491a05448657c6a1f9615025e985d953583e060fdb9c0a6f43bcf8192a83e",
+    "scripts/design62-citation-recovery.mjs": "abdb7d2e8970b6b101d2c4674a0e715d956d2264d056124903ad3b279e564473",
+    "scripts/design62-citation-recovery.test.mjs": "458b0a603dc58ad4bb841df3ffa60b0478ba82740e81c7f5d1957adb1442ec2e",
+    "scripts/migrate-design-review-runs.py": "2d1a315a30f50bf4877c0072a099621a29d7a1da6b336d15926877e875a7551e",
+    "scripts/migrate-manuscript-export-snapshot.py": "67d636158586523203c6b458f6561161c8468d79dff5c5a5f59ddd9b9ea3ba13",
+    "scripts/queue-design64-recovery.mjs": "a8b3f53ac3ab0f4f27cf6d67220d225bb33e55e1fa387379dd399d1c94a14040",
+    "scripts/resume-design62-followup.mjs": "b7e8f27e2d8b1b6b0082f794854443fb75085ef07459be137b77de49febcd658",
+    "scripts/resume-design62-review.mjs": "0b676c97c5c78b8939f237516ec28fd85aabc321d7f73b27addf30c1378d6edd",
+    "scripts/resume-design64-review-next.mjs": "79a27c7e893d03aa214ed2de174243c233520c839150dffe8685ab2946030022",
+    "scripts/resume-design64-review.mjs": "f50552b4cdadc9bf7a2dca549b1c9006762e864cc8ebe7d0630a54d25741025c",
+    "scripts/run-model-milestone.mjs": "b2524915b6196892a239e08cf3ab99bca3366ad563417f5b4bfb887c2a27c807",
+    "scripts/test-all.mjs": "44c14dbca278ddad83ff2550079ec671c1400bbc8e7b6de353050f17adddd212",
+    "scripts/validate-design-candidate.mjs": "59586378109e3d048ddc6672696b82892d93b8e845dd491e8c39973b96cbe390",
+    "scripts/validate-design-candidate.test.mjs": "da9c33be53a70ecfc7373e82eab9a351581fbdb40ab4160e71e80af0f4d3c002"
+  },
+  "suffix": "\n响应requestId必须逐字使用当前请求中的值，不复用旧编号；证据只引本次sources。请精确区分不同人物、账户、日期、局部综合与全局验收。只依据本步骤实际材料作判断；材料不足应说明缺失来源，不能为了通过而省略冲突。解释与引文保持必要长度，不复制整章，不隐去仍未解决的问题。涉及同姓、近名或亲属角色时，逐章按已读人物原文、关系端点和出场编号核对，解释使用完整姓名及编号，不把不同章节的同一简称串成同一人的经历；无法确定时明说无法确定。保留原文的时间、数量与费用单位，尤其不可把时辰直接写成小时；必须换算时写出依据与公式。提交前逐句检查解释中的主语、章号、日期、单位是否与所引原文一致。",
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Initial v30 raw requests only; dynamic follow-ups and synthesis remain unproven. Probe uses the actual newly scheduled world batch-1, not an unchanged old batch with a single addition. Old formal results remain intact."
+}

@@ -11,6 +11,13 @@ const resultCapacity = 40_000;
 // 90k reports plus at most 40k planning context stay below the 240k input cap.
 const scopedResultSourceCapacity = 90_000;
 const sharedContextCapacity = 40_000;
+const worldPlanningContextCapacity = 80_000;
+
+function worldMacroSources(input: DesignReviewInput): DesignReviewSource[] {
+  if (input.purpose === 'chapter_review' || input.area !== 'world') return [];
+  if (!input.sources.some(source => source.id === 'plan/overview') || !input.sources.some(source => source.id.startsWith('plan/milestones/'))) return [];
+  return input.sources.filter(source => source.id === 'plan/overview' || source.id.startsWith('plan/volumes/') || source.id.startsWith('plan/milestones/'));
+}
 export interface DesignReviewUnit { id: string; sourceId: string; start: number; end: number }
 export interface DesignReviewStage {
   id: string;
@@ -30,7 +37,7 @@ export interface DesignReviewStage {
 export interface DesignReviewRun {
   id: string;
   /** Absent on persisted legacy schedules, which must resume without reshuffling. */
-  scheduleVersion?: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29;
+  scheduleVersion?: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30;
   input: DesignReviewInput;
   units: DesignReviewUnit[];
   stages: DesignReviewStage[];
@@ -44,15 +51,15 @@ export interface DesignReviewRun {
 
 /** All raw text is retained. Cross checks co-read every pair of partitions;
  * synthesis then combines every finding without allowing a blocker to disappear. */
-export function createDesignReviewRun(input: DesignReviewInput, now = new Date().toISOString(), scheduleVersion: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 = 29): DesignReviewRun {
-  if (!Number.isInteger(scheduleVersion) || scheduleVersion < 1 || scheduleVersion > 29) throw new DesignReviewError('未知评审调度版本');
+export function createDesignReviewRun(input: DesignReviewInput, now = new Date().toISOString(), scheduleVersion: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 = 30): DesignReviewRun {
+  if (!Number.isInteger(scheduleVersion) || scheduleVersion < 1 || scheduleVersion > 30) throw new DesignReviewError('未知评审调度版本');
   if (new Set(input.sources.map(s => s.id)).size !== input.sources.length) throw new DesignReviewError('评审来源 ID 重复');
   const units: DesignReviewUnit[] = [];
   const stages: DesignReviewStage[] = [];
   const small = JSON.stringify(input.sources).length <= designReviewCapacity;
   // Two v3 raw batches plus shared context use at most 220k characters,
   // leaving room for the exact questions a cross check must resolve.
-  const ordinaryBatchCapacity = scheduleVersion >= 3 ? 90_000 : batchCapacity;
+  let ordinaryBatchCapacity = scheduleVersion >= 3 ? 90_000 : batchCapacity;
   for (const source of input.sources) {
     let start = 0;
     do {
@@ -67,15 +74,26 @@ export function createDesignReviewRun(input: DesignReviewInput, now = new Date()
   // bounded, complete sources; unselected sources remain in the ordinary batches.
   const shared: DesignReviewUnit[] = [];
   if (!small && scheduleVersion >= 2) {
+    // A world overview names journeys whose actual payment, transport and
+    // permits live in macro plans. Share that complete plan layer as one group;
+    // never select just the early milestones or manufacture a shorter summary.
+    // If it cannot fit, the original ordinary coverage/follow-ups remain.
+    const macroIds = new Set(scheduleVersion >= 30 ? worldMacroSources(input).map(source => source.id) : []);
+    const macroUnits = units.filter(unit => unit.sourceId === 'author' || macroIds.has(unit.sourceId));
+    const shareMacro = macroIds.size > 0 && JSON.stringify(macroUnits.map(unitSource)).length <= worldPlanningContextCapacity;
+    const sharedBudget = shareMacro ? worldPlanningContextCapacity : sharedContextCapacity;
+    if (shareMacro) shared.push(...macroUnits);
     const priorities = input.purpose === 'chapter_review' ? ['draft', 'brief', 'covenant', 'proposed_events', 'observed_events'] : input.area === 'power'
       ? ['author', 'plan/overview', 'world/axioms/', 'world/powerSystems/', 'world/tierLadders/', 'world/realms/', 'world/techniques/', 'world/artifacts/', 'world/resources/']
       : input.area === 'characters'
         ? ['author', 'plan/overview', 'world/axioms/', 'story/characters/', 'world/realms/', 'story/overview', 'world/factions/']
         : ['author', 'plan/overview', 'world/axioms/', 'world/realms/', 'world/locations/', 'story/characters/', 'world/techniques/', 'world/artifacts/'];
     for (const prefix of priorities) for (const source of input.sources.filter(s => prefix.endsWith('/') ? s.id.startsWith(prefix) : s.id === prefix)) {
+      if (shared.some(unit => unit.sourceId === source.id)) continue;
       const sourceUnits = units.filter(u => u.sourceId === source.id);
-      if (JSON.stringify([...shared, ...sourceUnits].map(unitSource)).length <= sharedContextCapacity) shared.push(...sourceUnits);
+      if (JSON.stringify([...shared, ...sourceUnits].map(unitSource)).length <= sharedBudget) shared.push(...sourceUnits);
     }
+    if (shareMacro) ordinaryBatchCapacity = Math.min(90_000, Math.floor((220_000 - JSON.stringify(shared.map(unitSource)).length) / 2));
   }
   const sharedIds = new Set(shared.map(u => u.id));
   let pending: DesignReviewUnit[] = [];
@@ -120,7 +138,7 @@ export function createDesignReviewRun(input: DesignReviewInput, now = new Date()
     }
     level = next;
   }
-  return { id: `design_run_${randomUUID()}`, ...(scheduleVersion >= 2 ? { scheduleVersion: scheduleVersion as 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 } : {}), input: structuredClone(input), units, stages, status: 'ready', createdAt: now, updatedAt: now };
+  return { id: `design_run_${randomUUID()}`, ...(scheduleVersion >= 2 ? { scheduleVersion: scheduleVersion as 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 } : {}), input: structuredClone(input), units, stages, status: 'ready', createdAt: now, updatedAt: now };
 }
 
 function chapterUnitGroups(sources: DesignReviewSource[], units: DesignReviewUnit[]): DesignReviewUnit[][] {
@@ -400,6 +418,13 @@ function readDesignReviewStageInput(run: DesignReviewRun, stage: DesignReviewSta
     ...((run.scheduleVersion ?? 1) >= 9 ? { planRanges: designReviewPlanRanges(run.input) } : {}),
   } : undefined;
   if (coverage && stage.kind !== 'synthesis') {
+    if ((run.scheduleVersion ?? 1) >= 30) {
+      const macroSources = worldMacroSources(run.input);
+      if (macroSources.length) {
+        const includedSourceIds = macroSources.filter(source => run.units.filter(unit => unit.sourceId === source.id).every(unit => stage.unitIds.includes(unit.id))).map(source => source.id);
+        coverage.macroPlanContext = { includedSourceIds, incompleteSourceIds: macroSources.filter(source => !includedSourceIds.includes(source.id)).map(source => source.id) };
+      }
+    }
     const pendingChecks: NonNullable<typeof coverage.pendingChecks> = [];
     for (const pending of deferrals(run, stageIndex)) {
       if (!coversDeferral(run, stage, pending, cache)) continue;
@@ -478,7 +503,7 @@ export function acceptDesignReviewStage(run: DesignReviewRun, stage: DesignRevie
  * only explicitly deferred unread-source questions can be settled by a raw
  * stage covering both the original material and every requested source. */
 export function completeDesignReviewRun(run: DesignReviewRun): { input: DesignReviewInput; result: DesignReviewResult } {
-  if (run.scheduleVersion !== undefined && ![2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29].includes(run.scheduleVersion)) throw new DesignReviewError('未知评审调度版本');
+  if (run.scheduleVersion !== undefined && ![2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30].includes(run.scheduleVersion)) throw new DesignReviewError('未知评审调度版本');
   const expected = createDesignReviewRun(run.input, run.createdAt, run.scheduleVersion ?? 1);
   if ((run.scheduleVersion ?? 1) >= 5) {
     // Validate the original raw results against canonical coverage before using

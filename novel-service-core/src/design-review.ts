@@ -64,6 +64,9 @@ export interface DesignReviewInput {
       entityMentionsOmitted?: 'capacity';
       /** Complete raw context candidates added to a follow-up, or omitted for capacity. */
       relatedSourceContext?: { includedSourceIds: string[]; omittedSourceIds: string[] };
+      /** v30: complete macro plan sources actually delivered to this raw step;
+       * incomplete sources still need reading, and neither list proves quality. */
+      macroPlanContext?: { includedSourceIds: string[]; incompleteSourceIds: string[] };
       /** Report-tree coverage, not proof that any design criterion passed. */
       synthesis?: {
         scope: 'partial_reports' | 'complete_reports'; coveredStageIds: string[]; totalStages: number;

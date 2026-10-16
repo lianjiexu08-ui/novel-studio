@@ -75,7 +75,7 @@ test('chapter-only power batches also receive complete tier and technique rules'
   ];
   input.sources = [...rules, ...input.sources];
   const run = createDesignReviewRun(input);
-  assert.equal(run.scheduleVersion, 29);
+  assert.equal(run.scheduleVersion, 30);
   for (const stage of run.stages) {
     const staged = designReviewStageInput(run, stage);
     assert.ok(JSON.stringify(staged.sources).length <= 240_000);
@@ -107,6 +107,77 @@ test('oversized shared candidates remain complete ordinary sources and legacy sc
   const restored = JSON.parse(JSON.stringify(legacy));
   for (const stage of restored.stages.slice(1)) acceptDesignReviewStage(restored, stage, stagePass(designReviewStageInput(restored, stage)));
   assert.equal(completeDesignReviewRun(restored).result.checks[0].verdict, 'pass');
+});
+
+const worldMacroInput = (): DesignReviewInput => ({ ...largeInput(), area: 'world', rubric: { geography: '核对世界航程与实际出入境、支付安排' }, sources: [
+  { id: 'author', text: '玄幻三卷百章阶段提案。' },
+  { id: 'plan/overview', text: JSON.stringify({ targetChapterCount: 100, keyTurns: ['北航后返乡'], detailedThroughChapter: 50 }) },
+  { id: 'world/locations/sea', text: '北航至少五昼夜，不得免费瞬移。' },
+  ...largeInput().sources,
+  { id: 'plan/volumes/north', text: JSON.stringify({ startChapter: 51, endChapter: 66, goal: '有期限的外港救援。' }) },
+  { id: 'plan/milestones/north', text: JSON.stringify({ startChapter: 54, endChapter: 60, setup: '实付船票10000，具名暖舱与燃料齐备，但276日出发277日抵港。', context: '沿途条件逐项保留。'.repeat(4000) }) },
+  { id: 'plan/milestones/return', text: JSON.stringify({ startChapter: 67, endChapter: 72, setup: '另有回程船票3000与具名限程担保，走六昼夜实体航程。' }) },
+] });
+
+test('v30 world batches co-read complete macro actions, retain real conflicts and reconstruct after restore', () => {
+  const input = worldMacroInput(), old = createDesignReviewRun(input, undefined, 29), run = createDesignReviewRun(input);
+  const macro = input.sources.filter(source => /^plan\/(overview|volumes\/|milestones\/)/.test(source.id));
+  const oldFirst = designReviewStageInput(old, old.stages[0]);
+  assert.ok(!oldFirst.stage!.sourceMap.some(unit => unit.sourceId === 'plan/milestones/north'));
+  const oldSnapshot = JSON.stringify(old);
+  for (const stage of run.stages) {
+    const request = designReviewStageInput(run, stage);
+    assert.ok(JSON.stringify(request.sources).length <= 240_000);
+    if (stage.kind !== 'synthesis') {
+      assert.deepEqual(request.stage!.coverage!.macroPlanContext, { includedSourceIds: macro.map(source => source.id), incompleteSourceIds: [] });
+      for (const source of macro) {
+        const units = request.stage!.sourceMap.filter(unit => unit.sourceId === source.id);
+        assert.equal(units.map(unit => request.sources.find(item => item.id === unit.id)!.text).join(''), source.text);
+      }
+    }
+    const restored = JSON.parse(JSON.stringify(run));
+    assert.deepEqual(designReviewStageInput(restored, restored.stages.find((item: { id: string }) => item.id === stage.id)), request);
+    const result = stagePass(request);
+    if (stage === run.stages[0]) {
+      const rule = request.sources.find(source => source.text.includes('北航至少五昼夜'))!;
+      const action = request.sources.find(source => source.text.includes('276日出发277日抵港'))!;
+      Object.assign(result.checks[0], { verdict: 'revise', explanation: '给出的航程仅一日，与五昼夜规则直接冲突，付票不消除时间冲突。', revisionAdvice: '修正实际航程',
+        evidence: [{ sourceId: rule.id, quote: '北航至少五昼夜' }, { sourceId: action.id, quote: '276日出发277日抵港' }] });
+    }
+    for (const finding of request.stage!.coverage?.synthesis?.requiredFindings ?? []) Object.assign(result.checks[0], { verdict: finding.verdict, revisionAdvice: '保留未解决的实际航程冲突' });
+    acceptDesignReviewStage(run, stage, result);
+  }
+  const completed = completeDesignReviewRun(run);
+  assert.equal(completed.result.checks[0].verdict, 'revise');
+  assert.deepEqual(completeDesignReviewRun(JSON.parse(JSON.stringify(run))), completed);
+  assert.equal(JSON.stringify(old), oldSnapshot, 'new scheduling must not mutate a persisted v29 run');
+  assert.deepEqual(designReviewStageInput(JSON.parse(oldSnapshot), old.stages[0]), oldFirst);
+  // Macro context does not narrow all-source coverage or pairwise checking.
+  const batches = run.stages.filter(stage => stage.kind === 'batch');
+  for (const unit of run.units) assert.ok(batches.some(stage => stage.unitIds.includes(unit.id)));
+  assert.equal(run.stages.filter(stage => stage.kind === 'cross').length, batches.length * (batches.length - 1) / 2);
+});
+
+test('v30 oversized macro groups retain every character and report incomplete reading without selecting only early milestones', () => {
+  const input = worldMacroInput();
+  input.sources.find(source => source.id === 'plan/milestones/north')!.text += '完整远期安排不得裁掉。'.repeat(9000);
+  const old = createDesignReviewRun(input, undefined, 29), run = createDesignReviewRun(input, old.createdAt);
+  assert.deepEqual(run.units, old.units);
+  assert.deepEqual(run.stages, old.stages, 'oversized complete macro group falls back to the original source partitioning');
+  for (const source of input.sources) {
+    const units = run.units.filter(unit => unit.sourceId === source.id);
+    assert.equal(units.map(unit => source.text.slice(unit.start, unit.end)).join(''), source.text);
+  }
+  for (const stage of run.stages.filter(stage => stage.kind !== 'synthesis')) {
+    const request = designReviewStageInput(run, stage);
+    assert.ok(JSON.stringify(request.sources).length <= 240_000);
+    for (const id of request.stage!.coverage!.macroPlanContext!.incompleteSourceIds) {
+      assert.ok(run.units.filter(unit => unit.sourceId === id).some(unit => !stage.unitIds.includes(unit.id)));
+    }
+  }
+  const first = designReviewStageInput(run, run.stages[0]);
+  assert.ok(first.stage!.coverage!.macroPlanContext!.incompleteSourceIds.includes('plan/milestones/north'));
+  assert.ok(first.stage!.coverage!.macroPlanContext!.incompleteSourceIds.includes('plan/milestones/return'));
 });
 
 test('v20 scopes power questions locally without dropping high-tier sources or changing saved v19 requests', () => {

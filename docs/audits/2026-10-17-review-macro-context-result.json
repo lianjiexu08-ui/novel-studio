@@ -1,0 +1,49 @@
+{
+  "observedAt": "2026-10-16T16:40:24.953Z",
+  "kind": "world_macro_context_bounded_probe",
+  "resultPath": "data/audit-runtimes/design69-macro-context-probe/result.json",
+  "resultSha256": "f0ec609c7b0eed5c378b664491b64c15ee23c9b6f95c4f0fe77ec7f27dfea23e",
+  "inputSha256": "a19d67aaa03d31b9f29d40869415bd5f5b1ae4444361fd82b97cc43a80014fa3",
+  "inputHash": "10ba6d25b130be24ac27543056be1dad7242e75c9fba5200853f08eb2680c92f",
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "actualModelCalls": 1,
+  "verificationModelCalls": 0,
+  "responsesReplayed": 1,
+  "allQuotesInDeliveredSources": true,
+  "checks": [
+    {
+      "criterion": "geography",
+      "verdict": "pass",
+      "explanation": "三段跨海移动均采用同一天地内的实体商路，而非界门、传送或未授权高阶能力：青玄至赤霄明确为第214日暮至216日暮两昼夜；赤霄至苍冥先经逐日核验开放的沿岸驿道，再以实付两席、暖舱和五昼夜海程北航；苍冥返青玄则以具名限程担保、逐站验籍、实付暖舱及六昼夜航程执行。北境查货被限制在外港担保仓区，救出矿工后也不进入界渊；港口防寒、护符、暖房、船舱、票款及异常时停留改签的分支均已写明。地域差异直接形成护货南渡、港口查货、有限担保与返乡交证的不同选择和代价，而非换地图重复冲突。"
+    },
+    {
+      "criterion": "history",
+      "verdict": "pass",
+      "explanation": "历史设定为当前冲突提供了可区分的因果链：界门落锁后，三大陆仍只能依虚海实体航线往来；灵虚界约把寿源变成需采封、配额和核验的竞争资源；药税与刺杀造成跨海供应链和查验关系紧张；赵府私运旧约则只提供有限物流与账务责任，不能替当批船票、库存、授权或即时调度背书。相应地，计划将程的扣工转运、港务复核、赵的延迟回令和各方自保选择作为当前行动原因，且保留火因、旧约原件、全链责任和父案凶手的证据边界，没有把历史秘密直接兑现为角色全知或全案结论。"
+    },
+    {
+      "criterion": "capacity",
+      "verdict": "pass",
+      "explanation": "本批已展示可承载百章阶段的差异化约束网络：灵气、寿储、法力和资源不可互换或预支；自然寿源须完成来源、疗程和复诊才入账；各大陆分别以火候与封航、寒候与担保、宗门—皇权—商盟查验及巡界职责改变行动方案。计划据此将主角的成长限制在凝元至玄府、两次已规划灵泉疗程与十元载晋阶支出内，并把后续高阶寿源、界门与九鼎问题留作另建来源和行动链；百章的救人、断运和局部查证也由三地不同利益方的资源、岗位和责任推动。因此本批的世界不是单纯堆叠地点或品阶，能够持续产生支付、准入、取舍和未闭合的后果。"
+    }
+  ],
+  "geographyCitedSourceIds": [
+    "world/locations/loc_21",
+    "plan/milestones/ms_growth_v1_crossing",
+    "plan/milestones/ms_v2_voyage",
+    "plan/milestones/ms_v2_boundary",
+    "plan/milestones/ms_v3_return"
+  ],
+  "production": {
+    "protectedHash": "ec74891c6a102d6b496a35a189f7708dfd805d6eedbcebe6aafef84117151658",
+    "runs": 70,
+    "reports": 75,
+    "oldRunsUnchanged": 69,
+    "oldReportsUnchanged": 75,
+    "stoppedRunsUnchanged": 1
+  },
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Actual v30 batch-1 differs in scheduling and guidance from v29; this is not a one-variable experiment. Three local criteria passing does not validate other batches, dynamic followups, synthesis, other domains, detailed outlines or prose. Original revise remains preserved."
+}

@@ -21,6 +21,10 @@ function synthesisFindingGuidance(input: DesignReviewInput): string {
   return input.stage?.coverage?.synthesis?.requiredFindings ? "\ncoverage.synthesis.requiredFindings列出本次子报告中尚未解除的判断。对应标准不能比列出的判断更宽松：revise须保留revise，insufficient不得改pass。只有resolvedDeferrals中明确解除的原等待项已被排除；其他项通过不解除本项。可指出原判疑点，但须保留问题并引用实际交付报告；该清单不是正文事实或可引用原文。" : "";
 }
 
+function macroPlanGuidance(input: DesignReviewInput): string {
+  return input.stage?.coverage?.macroPlanContext ? '\ncoverage.macroPlanContext逐项标明本批实际完整携带的宏观计划和未完整携带的来源，仅作阅读范围索引，不是可引用证据或通过结论。跨域行程、支付、担保与准入须对照本次sources内的完整plan/milestones及plan/volumes安排，不能只引用概述短句或“后续须安排”的旧状态说明就认定全提案缺失。宏观原文与世界规则的实际冲突仍须返修；未读到必要来源按既有补读机制处理，不假称已读，也不以本批没有该项推断全设计没有。宏观安排齐全不证明详细章纲、其他未读来源或未来正文已通过。' : '';
+}
+
 export class PlanningParseError extends Error {}
 
 export interface DesignPlanner {
@@ -75,7 +79,7 @@ pass 也必须有支撑证据；明确矛盾或设计缺陷用 revise；材料�
 缺少约束时可引用不完整条目并解释缺失。建议必须具体到需修改的设定/人物/卷，不允许用增加条目数量代替质量。
 这是设计评审，不是正文通读，不能声称正文已符合设计或完成了整书文学验收。关系 stages 是计划阶段，已采纳事件才是实际变化。不得为解释连续性漏洞而把新编的分裂、复活或转移当成已发生事实；优先修正重复兑现。
 只返回 JSON: {"requestId":"输入的requestId","summary":"本项结论","checks":[{"criterion":"rubric中的键","verdict":"pass|revise|insufficient","explanation":"判断理由","evidence":[{"fragmentId":"所选原文片段的id"}],"revisionAdvice":"返修或补充要求，通过时可为空"}]}。
-每个 rubric 键恰好一项。${input.stage?.coverage?.sourceRelationships ? "\ncoverage.sourceRelationships只复制关系原档的双方ID、明确类型及唯一人物档案中的姓名，供按人物对定位真实来源。方向按fromCharacterId到toCharacterId保留；姓名缺省不能猜测别名或编号。它不证明关系阶段、信任、知情、代价或变化已经成立，不能引用目录代替原文。根据具体待核关系选择原始来源，仍须实际补读；不得只因目录存在而通过，也不得只因目录缺项断言关系不存在。" : ""}${synthesisFindingGuidance(input)}`,
+每个 rubric 键恰好一项。${input.stage?.coverage?.sourceRelationships ? "\ncoverage.sourceRelationships只复制关系原档的双方ID、明确类型及唯一人物档案中的姓名，供按人物对定位真实来源。方向按fromCharacterId到toCharacterId保留；姓名缺省不能猜测别名或编号。它不证明关系阶段、信任、知情、代价或变化已经成立，不能引用目录代替原文。根据具体待核关系选择原始来源，仍须实际补读；不得只因目录存在而通过，也不得只因目录缺项断言关系不存在。" : ""}${synthesisFindingGuidance(input)}${macroPlanGuidance(input)}`,
       user: JSON.stringify({ task: 'review_design_content', requestId: evidence.requestId, evaluationStage: 'design_proposal', ...(evidence.planningHorizon ? { planningHorizon: evidence.planningHorizon } : {}), scope: input.scope, area: input.area, stage: input.stage, rubric: input.rubric, ...(evidence.citationRequirements ? { citationRequirements: evidence.citationRequirements } : {}), ...(evidence.pendingCitationRequirements ? { pendingCitationRequirements: evidence.pendingCitationRequirements } : {}), sources: evidence.sources }),
       role: 'reviewing', maxOutputTokens: 8000,
     }, evidence.resolve);
