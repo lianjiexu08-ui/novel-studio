@@ -1,0 +1,421 @@
+{
+  "kind": "design68_power_final_report_reconciled",
+  "observedAt": "2026-10-16T11:57:21.315Z",
+  "inputHash": "3274d4710800ad02565040a341a05177b4bd7cab363e169219b562a4a0f62d01",
+  "scope": {
+    "worldPackRevision": 34,
+    "storyBibleRevision": 65,
+    "planRevisionId": "plan_762f53fa91014e14a248b74d750d6a6c",
+    "planRevision": 68
+  },
+  "runId": "design_run_1a9589a8-f222-4b9b-861c-99adc2d45c80",
+  "reportId": "design_review_970955ff-b3e7-4ae2-8967-de80e6e7b1c6",
+  "snapshotPath": "data/audit-runtimes/design68-review/power-completed.json",
+  "snapshotSha256": "5eb028258186610c1ca03f4664f23553ffb48d7ddb948ae851ee36894210c139",
+  "reportSha256": "62934eef75c78c99d7741d4cf5c68dbfa3533aa2648c6df83e1bceda3e0b609f",
+  "frozenSourceFilesVerified": 153,
+  "stagesCompleted": 77,
+  "totalStages": 77,
+  "originalResponsesReplayed": 90,
+  "responseReplay": "verified",
+  "retainedFailures": [
+    {
+      "stageId": "followup-batch-1/tiers",
+      "failureSha256": "e69f29268efdf54d5bff90136f66fc79576e13fa2c93f178d63a08b5f8133fd9"
+    },
+    {
+      "stageId": "followup-cross-1-2/counters",
+      "failureSha256": "66ebd0eac0f40cf59dcc7ddce2f6048e1f0b63a67dac70f55226c04a1b1edf69"
+    }
+  ],
+  "finalReportMatchesReconstruction": true,
+  "reportStatus": "needs_revision",
+  "resolvedSourceDeferrals": [
+    {
+      "checkId": "batch-1/costs",
+      "resolvedByStageId": "followup-batch-1/costs"
+    },
+    {
+      "checkId": "batch-1/counters",
+      "resolvedByStageId": "followup-batch-1/counters"
+    },
+    {
+      "checkId": "batch-2/tiers",
+      "resolvedByStageId": "followup-batch-2/tiers"
+    },
+    {
+      "checkId": "batch-2/costs",
+      "resolvedByStageId": "followup-batch-2/costs"
+    },
+    {
+      "checkId": "batch-2/counters",
+      "resolvedByStageId": "followup-batch-2/counters"
+    },
+    {
+      "checkId": "batch-3/tiers",
+      "resolvedByStageId": "cross-1-3"
+    },
+    {
+      "checkId": "batch-3/costs",
+      "resolvedByStageId": "cross-1-3"
+    },
+    {
+      "checkId": "batch-3/counters",
+      "resolvedByStageId": "cross-1-3"
+    },
+    {
+      "checkId": "batch-4/tiers",
+      "resolvedByStageId": "cross-1-4"
+    },
+    {
+      "checkId": "batch-4/costs",
+      "resolvedByStageId": "cross-1-4"
+    },
+    {
+      "checkId": "batch-4/counters",
+      "resolvedByStageId": "cross-1-4"
+    },
+    {
+      "checkId": "cross-1-2/tiers",
+      "resolvedByStageId": "followup-cross-1-2/tiers"
+    },
+    {
+      "checkId": "cross-1-2/costs",
+      "resolvedByStageId": "followup-cross-1-2/costs"
+    },
+    {
+      "checkId": "cross-1-2/counters",
+      "resolvedByStageId": "followup-cross-1-2/counters"
+    },
+    {
+      "checkId": "cross-2-3/tiers",
+      "resolvedByStageId": "followup-cross-2-3/tiers"
+    },
+    {
+      "checkId": "cross-2-3/counters",
+      "resolvedByStageId": "followup-cross-2-3/counters"
+    },
+    {
+      "checkId": "cross-2-4/tiers",
+      "resolvedByStageId": "followup-cross-2-4/tiers"
+    },
+    {
+      "checkId": "cross-2-4/costs",
+      "resolvedByStageId": "followup-cross-2-4/costs"
+    },
+    {
+      "checkId": "cross-2-4/counters",
+      "resolvedByStageId": "followup-cross-2-4/counters"
+    },
+    {
+      "checkId": "cross-2-5/tiers",
+      "resolvedByStageId": "followup-cross-2-5/tiers"
+    },
+    {
+      "checkId": "cross-2-5/costs",
+      "resolvedByStageId": "followup-cross-2-5/costs"
+    },
+    {
+      "checkId": "cross-2-5/counters",
+      "resolvedByStageId": "followup-cross-2-5/counters"
+    },
+    {
+      "checkId": "cross-3-4/tiers",
+      "resolvedByStageId": "followup-cross-3-4/tiers"
+    },
+    {
+      "checkId": "cross-3-4/costs",
+      "resolvedByStageId": "followup-cross-3-4/costs"
+    },
+    {
+      "checkId": "cross-3-4/counters",
+      "resolvedByStageId": "followup-cross-3-4/counters"
+    },
+    {
+      "checkId": "cross-3-5/tiers",
+      "resolvedByStageId": "followup-cross-3-5/tiers"
+    },
+    {
+      "checkId": "cross-3-5/costs",
+      "resolvedByStageId": "followup-cross-3-5/costs"
+    },
+    {
+      "checkId": "cross-3-5/counters",
+      "resolvedByStageId": "followup-cross-3-5/counters"
+    }
+  ],
+  "checks": [
+    {
+      "criterion": "tiers",
+      "verdict": "revise",
+      "explanation": "计划总览把林辰后段写成“实测丹府”后成为玄府初期，但关键转折又明确为第83章支付十元载晋玄府；现有境界阶梯与前置复核均按玄府处理，未给出丹府的阶梯位置、承载能力或独立晋阶规则。部分前置报告据此判定通过，部分报告明确保留该冲突；结合计划原文，晋阶目标与后续权限仍不确定。",
+      "revisionAdvice": "统一plan/overview、主角弧光及第83章相关里程碑中的境界名称。若采用玄府，应删除或改正“实测丹府”；若保留丹府，必须补充其在境界阶梯中的位置、承载能力、与玄府的关系及独立晋阶成本，并重新核对玄府术法权限。",
+      "evidenceCount": 4
+    },
+    {
+      "criterion": "costs",
+      "verdict": "revise",
+      "explanation": "寿储、真元、元罡分账、疗程复诊后入账及晋阶不可逆代价总体成立，但前置报告之间仍保留两项具体闭合问题。第48章赤霞斩铁剑的低流量试注扣半成真元，尚未明确其费用归类、是否触发发热/冷却、失败或中断后的扣费与器物状态。专项款杂费也存在“固定75＋其余625＝税前700”与“其余689”两套互斥口径；后续报告给出候选累计账，却未明确统一并替换冲突版本，因此不能据此改判通过。",
+      "revisionAdvice": "在赤霞斩铁剑或乾元御风剑诀规则中明确低流量试注的供能账户、费用归类、冷却触发与完成判据，以及失败/中断后的扣费和剑器状态，并使第48章半成扣款逐项对应。统一专项款唯一账本，逐笔固定日期、用途、金额、付款账户与累计额，明确625与689的关系，只保留一套能闭合14000、税前700、港税24、后续56、杂费780及结余220的算式。",
+      "evidenceCount": 5
+    },
+    {
+      "criterion": "counters",
+      "verdict": "revise",
+      "explanation": "反制规则本身具备有效边界：境界不自动授术，局部护罡有聚罡、受击、空档与伤后停术限制；第25章也把顾的制胜写为同阶正面承压、真光仅扰乱外放爪煞、接触推劲与墨卡足共同形成的失衡，而非低阶直接封禁玄府。然而该反制链的前提正是林以御物释放废料斗、建立顾三息蓄势所需遮挡；插销是否为合规轻小自由物未被设计确认。若该销承受料斗或锁止载荷，则林不能合法制造该窗口，顾的蓄势与墨可如何打断的场面路径便无从成立。故不能以“普通结构”替代规则要求的实际承力与操作条件。",
+      "revisionAdvice": "在修复插销资格时，同时写清倒料遮挡从何时开始、墨在林操作和顾三息蓄势期间可采取的打断路径、为何当时未能有效打断，以及遮挡仅遮视而不构成对玄府的封禁。若无法建立这条场面链，应重设顾取得蓄势窗口的合规环境条件与失败后果。",
+      "evidenceCount": 4
+    }
+  ],
+  "retainedFindings": [
+    {
+      "stageId": "batch-1",
+      "criterion": "tiers",
+      "verdict": "insufficient",
+      "explanation": "已给规则明确区分境界承载、功法掌握、法宝资格与实际训练，且角色初始境界和部分开篇前训练已有说明：境界不自动授予术式，新增术式须有训练、实测、对象、供能与中断条件；玄府晋阶也不自动获得局部护罡、推劲或玄府剑诀。宏观计划要求林辰先达凝元三重，再经数月修习、实测丹府并支付十元载成为玄府初期，但本批未提供1—50章具体章纲，无法核验凝元三重、两次疗程、训练与玄府晋阶的实际先后及各次使用是否越过资格门槛。需补读对应逐章细纲，而不能仅凭宏观安排视为已成立。",
+      "revisionAdvice": "补读第1—50章逐章细纲，逐项核对林辰凝元三重、清风引气诀与乾元御风剑诀的训练/实测、玄府晋阶前置、顾峤与墨幽屠等既有技能的伤情和余量；若任一章在训练、境界、持器或角色身份之外直接发动能力，应按具体章修正前置或动作。",
+      "awaitingSources": [
+        "plan/chapters/1",
+        "plan/chapters/2",
+        "plan/chapters/3",
+        "plan/chapters/4",
+        "plan/chapters/5",
+        "plan/chapters/6",
+        "plan/chapters/7",
+        "plan/chapters/8",
+        "plan/chapters/9",
+        "plan/chapters/10",
+        "plan/chapters/11",
+        "plan/chapters/12",
+        "plan/chapters/13",
+        "plan/chapters/14",
+        "plan/chapters/15",
+        "plan/chapters/16",
+        "plan/chapters/17",
+        "plan/chapters/18",
+        "plan/chapters/19",
+        "plan/chapters/20",
+        "plan/chapters/21",
+        "plan/chapters/22",
+        "plan/chapters/23",
+        "plan/chapters/24",
+        "plan/chapters/25",
+        "plan/chapters/26",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/29",
+        "plan/chapters/30",
+        "plan/chapters/31",
+        "plan/chapters/32",
+        "plan/chapters/33",
+        "plan/chapters/34",
+        "plan/chapters/35",
+        "plan/chapters/36",
+        "plan/chapters/37",
+        "plan/chapters/38",
+        "plan/chapters/39",
+        "plan/chapters/40",
+        "plan/chapters/41",
+        "plan/chapters/42",
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50"
+      ],
+      "evidenceCount": 14,
+      "evidenceSha256": "d1b02133f8e5ae3bcee1b0ca84605648d251c4c20ca06b50407d8de2bd2b2253",
+      "stageSha256": "6d727073bafe418e9caec9d87ba329d5c2f56885a172b8b2574aba351d746783"
+    },
+    {
+      "stageId": "batch-5",
+      "criterion": "costs",
+      "verdict": "revise",
+      "explanation": "大部分账目闭合：凝元恢复按实际一小时吐纳计一成，随后剑器复用检查计半成，最终余三成半；第50章不施术、不额外扣费，且既有伤限继续保留。不过第48章把“低流量试注确认剑器无异响”直接计为半成真元，而法宝条目只明确普通附芒挥击每剑半成、完整御风剑诀二成，并未明确低流量试注是否属于普通附芒挥击或另有固定费用。需在法宝或剑诀规则中明确该检查的供能、费用和是否计入冷却，再保留第48章的半成扣款；否则该处不能作为已闭合的成本账。",
+      "revisionAdvice": "补明赤霞斩铁剑低流量试注的具体成本、供能属性、是否触发发热/冷却及中断后的处理，并统一第48章相关记账；若试注确按普通附芒挥击计费，应在规则中明确该归类。",
+      "evidenceCount": 6,
+      "evidenceSha256": "253dd1aceb0801001c90bdd14c5c34f2c1173494c1ca5a674240786865c43b6d",
+      "stageSha256": "639587e06117048d6cfd9fc96b66304a43aa9a913e43535001518ce6ced774bc"
+    },
+    {
+      "stageId": "cross-1-5",
+      "criterion": "tiers",
+      "verdict": "revise",
+      "explanation": "境界、功法、法宝和资源阶梯已明确区分承载资格、实际掌握、供能与反制，林的凝元三重、顾的玄府局部护罡及后续玄府晋阶也有训练和复诊前置。但第23—26章仍把“凝元御物拉掉普通废料斗插销”作为关键战术动作，章纲只写“普通废料斗插销”及拉销结果，没有明确该插销在起术时属于三丈内、两斤以内、可直接拨动且未受锁死或重物牵拉的轻小自由物；这与轻物御动不得硬拔承重楔、不得把机构载荷藏入半成费用的规则之间尚未闭合。若该动作实际依赖废料斗机构载荷，就不能由凝元基础御物完成。",
+      "revisionAdvice": "在第23—26章细纲中逐项写明废料斗插销的重量、可见距离、受力状态、是否锁死及真实机械承力；若不能满足轻物御动条件，应改为普通人可操作的自由销、绳扣或另有已训练且合规的动作，不能用“普通插销”笼统带过。并复核所有前50章凝元御物动作，确保没有以境界名代替操作训练。",
+      "evidenceCount": 4,
+      "evidenceSha256": "608ea523b5f0aa1e6596aeb430e4d6b476a94c6defc53d68b151ddf85ab105ab",
+      "stageSha256": "252944da5de038addfd9e8625821efaa3d2b325411cc8cffe0c1802f4ae3f8c5"
+    },
+    {
+      "stageId": "cross-1-5",
+      "criterion": "costs",
+      "verdict": "revise",
+      "explanation": "寿储、真元/元罡、神识、法宝材料和自然寿源大体分账清楚，前50章的真光、剑诀、局部护罡及第83章十元载晋阶也给出了具体扣款逻辑。然而后段已给出的专项款收支在同一原文内不能同时成立：计划称310日前杂费累计700，并列出固定项12+1+18+36及其余625，合计实际为692；又称加入24枚港税后为724、再支出56达到780，但700+24=724、724+56=780这一链条与前述692和“其余689”的另一列账冲突。若采用“固定项+其余689”，税前已为756而非700，无法推出结余220。该问题属于已给预算算式冲突，不是等待正文补写即可消除。",
+      "revisionAdvice": "统一ms_v3_return的14000枚专项款账本：明确10000北航、3000回航票、杂费各项、港税24、回执18、保暖衣与符箓、后续56的实际归属和时间点，逐项给出唯一算式并使结余与220一致；同时删除或修正“其余625/689”“税前700”等互相冲突的数字。修订后重新核对不可预支、不可重复扣款及与前段已付12枚符箓的关联。",
+      "evidenceCount": 4,
+      "evidenceSha256": "056ce9d460d9bd5b18b5fc9b7662573382f97435c8be2acfe020bccd014cbaf4",
+      "stageSha256": "252944da5de038addfd9e8625821efaa3d2b325411cc8cffe0c1802f4ae3f8c5"
+    },
+    {
+      "stageId": "cross-2-3",
+      "criterion": "costs",
+      "verdict": "insufficient",
+      "explanation": "已读部分的力量账本基本闭合：第1章暗桩两次附掌各付一成；第9、11章苏的轻物御动分别按半成扣除；第18章林辰先经复诊再支付三元载凝元；第20章明确按10−2−0.5＋1.5＝9成核算，并在第21章再扣半成，未把恢复当作返还既付成本。高阶规则也明确区分寿储、当境法力、可用神识、本源与实物资源。可是第25—50章是第24章救援后的直接资源与伤情承接区，当前未读其实际战斗、疗伤、泉液取得及后续消耗，不能判断余额是否连续、是否重复扣款，或是否存在免费恢复。",
+      "revisionAdvice": "补读第25—50章后按人物分别重算：林辰、苏凌霜、顾峤及其他角色的寿储、真元/元罡、资源实物和伤情上限不得混账；逐次列明术前余额、收入来源、实际支付、恢复条件、冷却和伤后复测。尤其核对第25—32章灵泉取得与疗程是否完成后才入寿储，以及第33—50章船损、修理、航款和恢复是否另有明确账户。",
+      "awaitingSources": [
+        "plan/chapters/25",
+        "plan/chapters/26",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/29",
+        "plan/chapters/30",
+        "plan/chapters/31",
+        "plan/chapters/32",
+        "plan/chapters/33",
+        "plan/chapters/34",
+        "plan/chapters/35",
+        "plan/chapters/36",
+        "plan/chapters/37",
+        "plan/chapters/38",
+        "plan/chapters/39",
+        "plan/chapters/40",
+        "plan/chapters/41",
+        "plan/chapters/42",
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50"
+      ],
+      "evidenceCount": 9,
+      "evidenceSha256": "dc03f597ba6cd9cd9c9652fee199f0dc714e64d0e4f4dbb7fa677c87d143be52",
+      "stageSha256": "69a8d33687832c44e3b7a5fb88a06d4f5962cb88f8b023ab2488dee0c273bc3d"
+    },
+    {
+      "stageId": "followup-batch-1/tiers",
+      "criterion": "tiers",
+      "verdict": "revise",
+      "explanation": "补读的第1—50章已解决原先“无法核验具体使用是否越过门槛”的材料不足：林辰第120日支付三元载后才入凝元，之后完成轻物御动、凝元剑诀的训练与两丈实测；苏凌霜开篇前已有轻物御动训练；墨幽屠开篇前已有噬血爪与贴身推劲训练；顾峤的局部护罡、贴身运罡、纯阳真光及玄府剑诀也都有独立训练、实测和伤情限制；后续各章的真元、元罡、法宝与中断条件大体相符。 但第23章仍有硬性的承载范围缺口：墨的人物档案把其贴身推劲个人实测总重限定为三百斤，世界规则的六百斤只是通用操作上限，不能替代个人实测；第23章只说明滑车“不到六百斤”，没有说明实际总重不超过三百斤，也没有给出足以证明该次推劲在个人受控负荷内的数值。因此该次动作可能超出角色已建立的能力门槛，不能仅以玄府境、既有训练或“不到六百斤”放行。",
+      "revisionAdvice": "修正第23章及其承接说明：明确墨实际推动的滑车总重（含车身与散装料）不超过其个人三百斤实测上限，并保留轮轴完好、无锁止、平地、稳定立足和一息推劲等条件；若实际重量超过三百斤，则删除“墨以ax_13推动滑车”的动作，改为普通机械操作、由多人协力或另设已完成且可核验的负荷训练。不能继续使用“不到六百斤”作为个人资格证明；同时检查第23章现场观察、后续角色认知及执行账是否统一采用修正后的实际重量。",
+      "evidenceCount": 64,
+      "evidenceSha256": "0971e710135709942088dfa1ce68a3d190b0351b14a17cb60baef76b85d484ba",
+      "stageSha256": "a0983f56ae71834281d43d0f653f1314c12f403bd0f3ae40efaca2c9a3c76f74"
+    },
+    {
+      "stageId": "followup-cross-2-3/costs",
+      "criterion": "costs",
+      "verdict": "insufficient",
+      "explanation": "已补读章纲显示主要账目大体可连续核对：第25章将林辰真元按8.5−2−0.5=6成结算，并将顾峤的元罡、寿储和林辰分账；第26章继续区分顾的定腕消耗与伤后上限；第27—29章以完整疗程和复诊后才将两剂灵泉分别计入5元载，且保留伤疗、寿储与实物库存的区别；第30—50章的御物、剑诀、恢复、避火符、修船款、诊费、食宿和船务支出也给出了逐项扣款。 但成本标准还要求核验资源剂量、效用和重复使用上限。本批没有提供world/resources/res_09（延寿灵泉）或world/artifacts/art_16（普通避火符）的原文，故无法判断“每三滴、完整疗程后+5元载、个人两剂上限”以及“72/336/720小时余量、不同符箓不得转移余量”等安排是否与专门条目一致；计划章纲自身的算式不能替代这些规则来源。此前问题明确要求补读25—50章以核对灵泉疗程、船务和恢复成本，当前章纲确实补足了大量流水账，但尚不能据此宣布该标准通过。",
+      "revisionAdvice": "补入并核对world/resources/res_09与world/artifacts/art_16的完整规则原文；逐项确认灵泉每剂的滴数、完整疗程、复诊生效时点、个人/终生重复上限及疗伤边界，并确认三滴污染损失不产生收入。另核对借符、租符、购符是否分别适用各自余量和最长使用时长。完成后沿人物分别重列林辰、苏凌霜、顾峤及看守的寿储、真元/元罡、实物资源与伤后上限，确认第25—50章没有把候选恢复、未来配额或他人账户计入当前余额。",
+      "evidenceCount": 21,
+      "evidenceSha256": "ecb37d7e6e92aa54611c351e564d5ae80eb1915c2624176fa1c0c1616b3f2d35",
+      "stageSha256": "a1a3841afaab9a9f58d737cfb9c171be7d7d46807ce4fbc28d8ce59eb6314666"
+    }
+  ],
+  "weakenedIntermediateFindings": [
+    {
+      "stageId": "synthesis-1",
+      "childId": "batch-1",
+      "criterion": "tiers",
+      "childVerdict": "insufficient",
+      "synthesisVerdict": "pass",
+      "stageSha256": "29b7763f030575f15cc20c429fe676da3ca115911ccdf6325a93a7d25cbeec14"
+    },
+    {
+      "stageId": "synthesis-22",
+      "childId": "synthesis-5",
+      "criterion": "tiers",
+      "childVerdict": "revise",
+      "synthesisVerdict": "pass",
+      "stageSha256": "08ec3fe7b88ee394edc2be3b53d6a049710006aeebae585396279faeffbe1df4"
+    },
+    {
+      "stageId": "synthesis-22",
+      "childId": "synthesis-5",
+      "criterion": "counters",
+      "childVerdict": "revise",
+      "synthesisVerdict": "pass",
+      "stageSha256": "08ec3fe7b88ee394edc2be3b53d6a049710006aeebae585396279faeffbe1df4"
+    },
+    {
+      "stageId": "synthesis-33",
+      "childId": "synthesis-26",
+      "criterion": "costs",
+      "childVerdict": "insufficient",
+      "synthesisVerdict": "pass",
+      "stageSha256": "f083f0f5177069272ed14b3983047329286d808614245f32f68404fc1c3f4564"
+    }
+  ],
+  "selectedFinalOrigins": [
+    {
+      "criterion": "tiers",
+      "matchingStages": [
+        {
+          "stageId": "synthesis-38",
+          "kind": "synthesis"
+        }
+      ]
+    },
+    {
+      "criterion": "costs",
+      "matchingStages": [
+        {
+          "stageId": "synthesis-38",
+          "kind": "synthesis"
+        }
+      ]
+    },
+    {
+      "criterion": "counters",
+      "matchingStages": [
+        {
+          "stageId": "synthesis-5",
+          "kind": "synthesis"
+        }
+      ]
+    }
+  ],
+  "finalVerdictsRetainRawNegativeSeverity": true,
+  "adjudicationSources": [
+    {
+      "path": "docs/audits/2026-10-16-design68-power-synthesis-disputes.json",
+      "sha256": "366ee74cccdc37165af0779b32541cf83d380928c120fe8e2cacd76b07be475b"
+    },
+    {
+      "path": "docs/audits/2026-10-16-design68-power-resource-coverage.json",
+      "sha256": "1a00f858d938afa6c4a95575b8c3c99f67beeeaa9d64f16f16d887bab047fa30"
+    },
+    {
+      "path": "docs/audits/2026-10-16-design68-power-danfu-dispute.json",
+      "sha256": "0e13b4d1c669cf0ac006e8c60af8886039ab711e175fc6bf4148ef9fa79aa4a7"
+    },
+    {
+      "path": "docs/audits/2026-10-16-design68-power-followups-complete.json",
+      "sha256": "e89d331ce3aa9a610066729294ecf64c0a4f2e50b6105a0fd837deb8e9b6fa80"
+    }
+  ],
+  "workerProtectedHistoryCheck": true,
+  "otherAreas": [
+    {
+      "area": "world",
+      "status": "completed"
+    },
+    {
+      "area": "characters",
+      "status": "ready"
+    }
+  ],
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "questionsClosed": 0,
+  "designApproved": false,
+  "proseGenerated": false,
+  "limitation": "Replay verifies provenance, canonical requests, final report reconstruction and retained verdict severity. It does not prove the semantic correctness of negative claims, inclusion of every independent issue in a single criterion explanation, or design acceptance. Reconcile the preserved primary-source counterevidence and genuine gaps before revising. History protection is the worker assertion, not an independent database snapshot."
+}

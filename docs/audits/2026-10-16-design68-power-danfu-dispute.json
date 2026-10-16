@@ -1,0 +1,67 @@
+{
+  "kind": "design68_power_danfu_prerequisite_misread_as_realm",
+  "observedAt": "2026-10-16T11:49:05.061Z",
+  "inputHash": "3274d4710800ad02565040a341a05177b4bd7cab363e169219b562a4a0f62d01",
+  "runId": "design_run_1a9589a8-f222-4b9b-861c-99adc2d45c80",
+  "stageId": "synthesis-32",
+  "snapshotPath": "data/audit-runtimes/design68-review/power-danfu-dispute.json",
+  "snapshotSha256": "03e7da28f518aa94a111fca4f06dd0e83a7300ded8c02d98edcb48db43b5e20e",
+  "stageSha256": "c4565aca8ba44302b4db8b7fcc5c35ac09c268de4780a1d6466f965797ed88e1",
+  "requestSha256": "c92a88a3b3c21c863bec5bd399a0e50138751ca7f1bf04eb95928e8aae379f21",
+  "savedResponsesReplayed": 1,
+  "originalCheck": {
+    "criterion": "tiers",
+    "verdict": "revise",
+    "explanation": "现有报告支持境界资格与实际掌握相分离：林辰先完成凝元、训练和实测，后段再经数月修习、诊察并支付十元载晋入玄府；旧剑也明确不能承载元罡，未把晋阶自动等同于高阶术式掌握。问题在于计划总览的主角弧光写作“实测丹府”，而关键转折写作“晋玄府”，与现有境界阶梯和同一段落的玄府安排不一致；“丹府”若非另设境界，则会造成晋阶目标和能力权限的歧义。",
+    "revisionAdvice": "统一计划总览、主角弧光和第83章相关里程碑的境界名称，明确为玄府或补充经过审查的“丹府”定义、阶梯位置、承载能力与晋阶成本；同时保留玄府晋阶不自动授予玄府功法和旧剑不能承载元罡的限制。第51—100章尚未逐章展开，后续首次使用新能力前仍需补齐训练、实测、对象和权限条件。",
+    "evidenceCount": 5,
+    "evidenceSha256": "5258c037d6b634c98c393346a1c664d6f230486ed0f6f965be123aae288a457c"
+  },
+  "evidence": [
+    {
+      "id": "world/realms/realm_03",
+      "sha256": "c8c5842b7f10f1869e6410b8370689b33880ed2b047caba32c14218e3755f43d",
+      "name": "玄府境",
+      "prerequisites": [
+        "辟建丹府"
+      ]
+    },
+    {
+      "id": "world/tierLadders/ladder_realm",
+      "sha256": "71fa8f4da61766bb9c3aa7b8f7dfd5136d652930fd61687fedae458475b5ba5b",
+      "levels": [
+        "淬体",
+        "凝元",
+        "玄府",
+        "神海",
+        "归一",
+        "破虚",
+        "通天",
+        "主宰"
+      ]
+    },
+    {
+      "id": "plan/overview",
+      "sha256": "dca7aa428c62df71156450ccadf1aa4933fcad0dfb8d9fa270e5afdc9356c8d4",
+      "protagonistArc": "从负伤矿工到能接受伙伴自主选择的凝元修士，再经数月修习、实测丹府与支付十元载成为玄府初期；力量增加时可用寿储反而减少。百章不发动逆命真解，不越阶斩高境，不把神兵持有当作启动权限。"
+    },
+    {
+      "id": "plan/milestones/ms_v3_training",
+      "sha256": "6cb8565309ec52dd1b90ef620698ee665e6bf890105f1df2fe44dc6b2fed43f1",
+      "outcome": "第316–410日。第410日林已经能稳定建立丹府雏形但尚未付十年晋阶；苏取得当前车队的普通运输路线，韩的原页与北境货号互相印证一条链，仍非九鼎全图。"
+    },
+    {
+      "id": "plan/milestones/ms_v3_advancement",
+      "sha256": "1c61989a441c2bbc9e81f9f23b2e83d800b8a146d32d11114d0edd6ace3de199",
+      "setup": "第415日白榆连续复诊确认健康与可支付下界，顾观察辟建丹府实测；若条件不成立则停止，不能靠豪言突破。实际拟写支付10元载后余7-(415-19)/365-3+10-10=2.915068，保留至少1。 此式从第19日的7元载初始下界累计记账：-3是第120日凝元晋阶，+10仅指第199、209日已完成两剂各+5的历史收入，最后-10才是第415日玄府晋阶；不是在第415日再入账一笔10，也没有第二批泉液。等价地，从第209日余额13.479452继续扣206日自然流逝和玄府10元载，所得仍约2.915068；泉液库存持续为零。"
+    }
+  ],
+  "requestContainsExactPrerequisitePhrase": false,
+  "adjudication": "The current realm definition explicitly lists building the danfu as a prerequisite for Xuanfu. The overview says testing that prerequisite and paying10 leads to Xuanfu; it does not name Danfu as a separate realm. Day410 establishes only an initial structure and day415 pays for the actual advancement. The asserted realm-name conflict is not established by these sources. Adding a new realm or renaming the prerequisite would change existing rules unnecessarily.",
+  "limitation": "This refutes the stated terminology conflict. It does not establish that every training scene, medical check, lifespan payment or later technique use is sufficient or has occurred in adopted prose.",
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "originalVerdictChanged": false,
+  "questionsClosed": 0,
+  "formalAcceptance": false
+}
