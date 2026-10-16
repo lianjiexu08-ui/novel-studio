@@ -1,0 +1,443 @@
+{
+  "observedAt": "2026-10-16T02:08:52.727Z",
+  "checkpointPath": "data/audit-runtimes/design64-control/resume-3-result.json",
+  "checkpointSha256": "2d0dc26bdc499bb2b61d72fd4913626d42f6957118d6f25b68fdaa95370fd063",
+  "runtimeCommit": "ffd28c973b398c7b12728e45ef864d1cba0217a7",
+  "inputHash": "32f6ca9f61bbb70b8b56a0a7908ca086a0ce1b6ff4554ff3bafdf7428f05465f",
+  "runId": "design_run_c212091d-deec-4ef3-9b9a-f1b1a7aac5fb",
+  "stageId": "cross-3-4",
+  "stageSha256": "4b7a067ea365344557d96e29a450874e6929ba92a763a206d89ef8056641d5f6",
+  "stageInputSha256": "5821077695e9b3c289b5e0b30db4f2fab94477e50cd9d2da8f4d1660708cc9d3",
+  "replay": {
+    "verification": "verified",
+    "completedStages": 12,
+    "totalStages": 29,
+    "runSha256": "8d2782916cc690054644b69cf3a7cdd7a62fc54351fd65b8ead1b37fadada0db",
+    "formalAcceptance": false,
+    "limitation": "Replays saved responses, repairs, citations and conclusions against independently supplied materials. Pending work, semantic quality, blocker disposition and prose acceptance remain separate.",
+    "responseReplay": "verified",
+    "responsesReplayed": 17,
+    "records": [
+      {
+        "stageId": "batch-1",
+        "kind": "batch",
+        "stageSha256": "1ac6c7ae2deee2d98b17ffbd5267c586e76484f89aaee65399b4632895fcae59",
+        "inputSha256": "1520184e3b6acc05c1b49cbcfe2e4f2894908aeba1f1cbe0f2e8f73a1f8d14ea",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "story/secrets/sec_02"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "batch-2",
+        "kind": "batch",
+        "stageSha256": "28757c647855d448eb0121b0d6d73915e7460b9ed358e9fdffcc87f9475ed85b",
+        "inputSha256": "156a32e46f986a14c071edf3b2e9fec3c971ac7e963c14263126257865472f6f",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "story/relationships/rel_01"
+            ]
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "story/secrets/sec_01"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "batch-3",
+        "kind": "batch",
+        "stageSha256": "1890d6bee12c10ad1b99dd4360cbc60ffdf02d1925f16a8ef5f78dd9f7d5cbcb",
+        "inputSha256": "a89cb2e2f35e66ae790d85ddec965f7b1180e36aca5aa97cac67e6de3ee03149",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "revise"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "revise"
+          }
+        ]
+      },
+      {
+        "stageId": "batch-4",
+        "kind": "batch",
+        "stageSha256": "ad600d51a3241c18447a8265bd64c79f6d4a72baf00ce3605b8973d3d6237a97",
+        "inputSha256": "00d537317a10dd56f94da9eabfb49aba22ec24532bf13ece01c6f7353e3c46bd",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "batch-5",
+        "kind": "batch",
+        "stageSha256": "d6df21cd477410e527bba4f4e834fad9abe9f02a19a6a2e7c1f43c316a0f11c7",
+        "inputSha256": "831f21e5f2fdcd93e9867a2f973c8ef2fcf36bc485e574bf7b362b0c7625d749",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "story/relationships/rel_01",
+              "story/relationships/rel_02",
+              "story/relationships/rel_03",
+              "story/relationships/rel_04",
+              "story/relationships/rel_05",
+              "story/relationships/rel_06",
+              "story/relationships/rel_07",
+              "story/relationships/rel_08",
+              "story/relationships/rel_09",
+              "story/relationships/rel_10",
+              "story/relationships/rel_11",
+              "story/relationships/rel_12",
+              "story/relationships/rel_13",
+              "story/relationships/rel_14",
+              "story/relationships/rel_15",
+              "story/relationships/rel_16",
+              "story/relationships/rel_17",
+              "story/relationships/rel_18",
+              "story/relationships/rel_19",
+              "story/relationships/rel_20",
+              "story/relationships/rel_21",
+              "story/relationships/rel_22"
+            ]
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-2",
+        "kind": "cross",
+        "stageSha256": "4b4b1ddb9c596b0cb0979b9b3933b6c4a50c70f5cd26e25524bfded35a320739",
+        "inputSha256": "b0806036da8e42f4fe5ace4375e5a68671e18f82c2865e7d82e53efbe603aa31",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "pass",
+            "resolves": [
+              "batch-2/relationships"
+            ]
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-3",
+        "kind": "cross",
+        "stageSha256": "08679a1dbe4c17fedfc5ce6a1a914df95a53424d6286fe902e55b0f21816dd89",
+        "inputSha256": "0c52d232a3f4b3bb4a54e83d932e78a82a23c149147a4d3a67b4e919554ab4ba",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-4",
+        "kind": "cross",
+        "stageSha256": "7eb7415f73c2bc37d6d49c754e7a33a360d4e906094d387d0aa24feea9f43e6a",
+        "inputSha256": "bc1a1fb75a7f248d4e460349c0a42f675b7eb07ba0258d75403accbde59df22e",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-5",
+        "kind": "cross",
+        "stageSha256": "1a4951216d2c3904c3fdebf62f32273e7932a8b13623560822d78adabf572932",
+        "inputSha256": "5091d116ee27352aec1df10079907e40a07f9340f3104682f1d6b83697c07795",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "pass",
+            "resolves": [
+              "batch-5/relationships"
+            ]
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-2-3",
+        "kind": "cross",
+        "stageSha256": "5fbf2f96e1ba86eacbfe5c8a574b7d1bf5ee4c317c2dbe278c0a6544a5efcf3d",
+        "inputSha256": "2339f100dc56ad5dccaf003c37d2b1a9c9220119bc8b89a94a3e014776410e44",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "story/relationships/rel_01",
+              "story/relationships/rel_03",
+              "story/relationships/rel_07",
+              "story/relationships/rel_08",
+              "story/relationships/rel_09",
+              "story/relationships/rel_10",
+              "story/relationships/rel_11"
+            ]
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "story/secrets/sec_01"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-2-4",
+        "kind": "cross",
+        "stageSha256": "722f9ba1d53806d404de451a3cc842763b9e5f3265d2a5c6c39c0429bf0660a1",
+        "inputSha256": "a42aa7709b69e814d430f22be659c9e6c18e492988db5804337017fd12e76caf",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-2-5",
+        "kind": "cross",
+        "stageSha256": "233998383312c7658f204c0d8b83917d3e05e9a1ee7d57ea5e395f9f5b97800a",
+        "inputSha256": "52b2b0dcbaadb8cf0935719f5a279a1d7a9dcce0a54d561e8a2147e41cac7318",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "story/relationships/rel_01",
+              "story/relationships/rel_03",
+              "story/relationships/rel_07",
+              "story/relationships/rel_08",
+              "story/relationships/rel_09"
+            ]
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "story/secrets/sec_01"
+            ]
+          }
+        ]
+      }
+    ],
+    "failures": [
+      {
+        "stageId": "batch-5",
+        "failureSha256": "cc26afc503b55e9b01db335051f8d2ebd2d286440734ee56d5df3c2cd90930a2"
+      },
+      {
+        "stageId": "cross-3-4",
+        "failureSha256": "2b6574c04176c8b963ee3966f89d6c8da9662af111e8908fa36dc99937d4cccf"
+      }
+    ],
+    "modelCalls": 0
+  },
+  "relationshipSources": [
+    "story/relationships/rel_01",
+    "story/relationships/rel_02",
+    "story/relationships/rel_03",
+    "story/relationships/rel_04",
+    "story/relationships/rel_06",
+    "story/relationships/rel_07",
+    "story/relationships/rel_08",
+    "story/relationships/rel_09",
+    "story/relationships/rel_10",
+    "story/relationships/rel_11",
+    "story/relationships/rel_05",
+    "story/relationships/rel_12",
+    "story/relationships/rel_13",
+    "story/relationships/rel_14",
+    "story/relationships/rel_15",
+    "story/relationships/rel_16",
+    "story/relationships/rel_17",
+    "story/relationships/rel_18",
+    "story/relationships/rel_19",
+    "story/relationships/rel_20",
+    "story/relationships/rel_21",
+    "story/relationships/rel_22"
+  ],
+  "directlySuppliedRelationshipSources": [],
+  "responses": [
+    {
+      "response": 1,
+      "sha256": "cdef340c9af4908dc7e8e51ab705170f8942768ccab3cc58b28822711dbb360c",
+      "originalCheck": {
+        "criterion": "relationships",
+        "verdict": "insufficient",
+        "explanation": "章纲本身已经给出若干关系变化的行动与边界：林苏从资源与信誉边界谈判为有限合作，秦禾获救后只承诺带路送信，林与贺在救援后接受工人不立即回船，陆沉川也拒绝由兄长代答。但本批未提供相应关系档案原文，无法核对这些变化的初始阶段、此前已支付的代价、是否重复消费旧承诺，以及与关系档案中的同一时点状态是否一致。这里只是缺少必要原文，不能据章纲摘要直接判定设计冲突。",
+        "evidence": [
+          {
+            "fragmentId": "e77"
+          },
+          {
+            "fragmentId": "e90"
+          },
+          {
+            "fragmentId": "e120"
+          },
+          {
+            "fragmentId": "e145"
+          },
+          {
+            "fragmentId": "e182"
+          },
+          {
+            "fragmentId": "e413"
+          }
+        ],
+        "revisionAdvice": "补读并核对本批实际使用的关系原档，至少包括林辰—苏凌霜、林辰—秦禾、林辰/贺青梧—五名雇工、陆沉舟—陆沉川及林辰—顾峤等关系在第15—50章的阶段、触发行动、付出与边界。"
+      },
+      "rejectionReproduced": true
+    },
+    {
+      "response": 2,
+      "sha256": "d4c9dfd4d421727b953b0af681cf849f47f2c24b6cd21d97f17a7c4bd912fc34",
+      "originalCheck": {
+        "criterion": "relationships",
+        "verdict": "insufficient",
+        "explanation": "本批章纲确实写出了若干关系变化及边界：林辰与苏凌霜通过资源、证据和信誉条件形成有限合作；秦禾获救后只承诺带路、送信而不陪战；林辰与贺青梧接受获救工人不立即回船；陆沉川拒绝由陆沉舟代答。可是本批实际提供的sources没有相应关系原档，无法核对这些变化相对于既有阶段的初始状态、已支付代价、生效时点、旧承诺是否被重复消费，以及同一时点是否与关系档案冲突。目录中已有对应原始来源，因此这是待补读材料不足，不是已确认的设计缺陷。",
+        "evidence": [
+          {
+            "fragmentId": "e77"
+          },
+          {
+            "fragmentId": "e90"
+          },
+          {
+            "fragmentId": "e120"
+          },
+          {
+            "fragmentId": "e145"
+          },
+          {
+            "fragmentId": "e182"
+          },
+          {
+            "fragmentId": "e413"
+          }
+        ],
+        "revisionAdvice": "补读并逐一对照所列关系原档：核验林辰—苏凌霜、林辰—顾峤、林辰—秦禾、林辰/贺青梧—五名雇工、陆沉舟—陆沉川及相关林辰—配角关系在第15—50章的阶段、触发行动、付出、边界和生效时点；若原档还记录这些关系此前的承诺或拒绝，需同时检查本批是否重复兑现或取消代价。"
+      },
+      "rejectionReproduced": true
+    }
+  ],
+  "originalFailure": "模型输出修正一次后仍不符合格式：局部材料不足必须说明是否需要补读：relationships。如果只因尚未读到目录中已有来源，完整填写 awaitingSources，不能只在说明中写“补读前50章”。确实缺设计、无法定位来源或完整必要材料超过容量时，使用 insufficiencyReason 的 missing_design、unlocatable_sources 或 capacity_limit，并在解释与建议中说明具体缺口。不能仅为通过校验改成 pass/revise、声称已读、缩小所需来源或把未读材料说成不存在。",
+  "disposition": "retry_same_stage_without_changing_frozen_input_or_acceptance_rules",
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "findingsOverridden": false,
+  "designApproved": false,
+  "limitation": "确认失败源于必需不足分类缺失，不证明人物设计通过，也不替模型补写来源或删除问题。当前恢复继续使用冻结运行时。"
+}
