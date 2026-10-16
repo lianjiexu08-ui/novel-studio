@@ -1,0 +1,168 @@
+{
+  "kind": "design68_world_final_report_reconciled",
+  "observedAt": "2026-10-16T09:20:33.748Z",
+  "inputHash": "3274d4710800ad02565040a341a05177b4bd7cab363e169219b562a4a0f62d01",
+  "scope": {
+    "worldPackRevision": 34,
+    "storyBibleRevision": 65,
+    "planRevisionId": "plan_762f53fa91014e14a248b74d750d6a6c",
+    "planRevision": 68
+  },
+  "runId": "design_run_6352f29c-bbd3-4a5c-878f-8d6d31ee6887",
+  "reportId": "design_review_f177a4ac-17d6-4079-a90a-c782b80e0211",
+  "snapshotPath": "data/audit-runtimes/design68-review/world-completed.json",
+  "snapshotSha256": "451aeaf9363b1780835eb20e1722fc210cde72c7f05782fa2a071b517fb0f84b",
+  "reportSha256": "6d52e7d7d9631f38fb8e7ccacd11415e8d271a3b8cec3bac9f0ee087c3721df5",
+  "frozenSourceFilesVerified": 153,
+  "sourceCount": 417,
+  "sourceCharacters": 432262,
+  "stagesCompleted": 75,
+  "totalStages": 75,
+  "originalResponsesReplayed": 85,
+  "responseReplay": "verified",
+  "finalReportMatchesReconstruction": true,
+  "reportStatus": "needs_revision",
+  "resolvedSourceDeferrals": [
+    {
+      "checkId": "batch-1/geography",
+      "resolvedByStageId": "followup-batch-1/geography"
+    },
+    {
+      "checkId": "batch-1/history",
+      "resolvedByStageId": "followup-batch-1/history"
+    },
+    {
+      "checkId": "batch-2/geography",
+      "resolvedByStageId": "followup-batch-2/geography"
+    },
+    {
+      "checkId": "batch-3/geography",
+      "resolvedByStageId": "followup-batch-3/geography"
+    },
+    {
+      "checkId": "batch-6/geography",
+      "resolvedByStageId": "followup-batch-6/geography"
+    },
+    {
+      "checkId": "batch-6/history",
+      "resolvedByStageId": "followup-batch-6/history"
+    },
+    {
+      "checkId": "cross-1-3/geography",
+      "resolvedByStageId": "followup-cross-1-3/geography"
+    },
+    {
+      "checkId": "cross-1-4/geography",
+      "resolvedByStageId": "followup-cross-1-4/geography"
+    },
+    {
+      "checkId": "cross-1-6/geography",
+      "resolvedByStageId": "followup-cross-1-6/geography"
+    },
+    {
+      "checkId": "cross-2-3/geography",
+      "resolvedByStageId": "followup-cross-2-3/geography"
+    },
+    {
+      "checkId": "cross-2-4/geography",
+      "resolvedByStageId": "followup-cross-2-4/geography"
+    },
+    {
+      "checkId": "cross-2-4/history",
+      "resolvedByStageId": "followup-cross-2-4/history"
+    },
+    {
+      "checkId": "cross-2-6/geography",
+      "resolvedByStageId": "followup-cross-2-6/geography"
+    },
+    {
+      "checkId": "cross-2-6/history",
+      "resolvedByStageId": "followup-cross-2-6/history"
+    },
+    {
+      "checkId": "cross-3-4/geography",
+      "resolvedByStageId": "followup-cross-3-4/geography"
+    },
+    {
+      "checkId": "cross-4-6/geography",
+      "resolvedByStageId": "followup-cross-4-6/geography"
+    },
+    {
+      "checkId": "cross-4-6/history",
+      "resolvedByStageId": "followup-cross-4-6/history"
+    }
+  ],
+  "checks": [
+    {
+      "criterion": "geography",
+      "verdict": "revise",
+      "explanation": "跨域航线、实体交通、票款、担保、验籍及返程链总体能够支撑三卷，且51—100尚未逐章展开不构成单独缺陷；但前置报告已明确指出一项未闭合的硬冲突：七名境界未明的矿工在第291日开舱前被扣于“普通货舱”，而苍冥寒候要求凝元以下实际具备保温舟舱或护身寒符，固定暖处还须有隔风、炉火、烟道、燃料和值守。七套干衣、七张寒符及保温救助舟均安排在开舱后或救出后，不能倒填此前扣留时段。现有材料也未闭合港务验籍、监管与扣留权限。另一综合报告虽以五日北航、具名暖舱和受监管外港判定路线成立，但其总体通过结论没有处理这段普通货舱扣留条件，不能覆盖具体返修。",
+      "revisionAdvice": "修订ms_v2_boundary及第61章前后的安排：明确七人被送入、扣留和停留期间实际使用的护寒符或合规暖舱，并逐项写明隔风围护、炉火、烟道、燃料和值守及其持续余量；同时补足港务验籍、监管和合法扣留权限。若普通货舱不能满足条件，应改为已验明的受监管暖舱，或调整扣留、开舱时间，使防寒与供能条件覆盖至第291日开舱及后续转运。不得用开舱后发放的衣符、暖舟或暖房追溯替代此前条件。",
+      "evidenceCount": 9
+    },
+    {
+      "criterion": "history",
+      "verdict": "pass",
+      "explanation": "三年前赵府军需私运与赤霄代理旧约的动机、资源边界、责任和后果能够解释当前运输冲突，同时保留各方独立行动。赵只能调用已入私库的普通额度与货签；炎煞仅经外围代理提供有限仓位、低阶物资和接驳；程砚须自行签运并承担改签、扣货、违约和遗失责任。旧约不等于当前库存、船票、合法授权或即时知情，程报、赵阅报、回令、签收、北境面报及后续本地重整均按实体传递和明确时点触发，没有把程的行为扩张为商盟或炎煞真身的自动知情，也没有赋予任何一方越权调动港务、船舶或封港的权力。",
+      "revisionAdvice": "",
+      "evidenceCount": 14
+    },
+    {
+      "criterion": "capacity",
+      "verdict": "pass",
+      "explanation": "按本轮100章阶段验收，提案的世界差异和扩展空间与容量相匹配。三卷分别使用矿务宗门、赤霄港运与扣工、苍冥寒境救援、返乡取证和训练押运等不同的资源、交通、防护、准入、消息与证据约束；阶段目标限定为救人、切断一条已实证的三地运输链、部分父案澄清和玄府成长，九鼎、残片及界门总危机明确留待后续阶段。第51—100章未逐章展开并不构成容量不足，因为宏观里程碑已列出相应路线、依赖与转折；地理项的货舱返修影响执行闭合，但不否定本阶段的容量设计。",
+      "revisionAdvice": "",
+      "evidenceCount": 12
+    }
+  ],
+  "negativePropagation": [
+    {
+      "stageId": "cross-5-6",
+      "verdict": "revise",
+      "stageSha256": "b864b72397d9c940b00926c512beaf0b2fd7856637f0e3f230a6acf09f27531d"
+    },
+    {
+      "stageId": "synthesis-11",
+      "verdict": "revise",
+      "stageSha256": "146006bb3e6129276986101c62f1a07513ef89d210e70142b347490eb20cce08"
+    },
+    {
+      "stageId": "synthesis-25",
+      "verdict": "revise",
+      "stageSha256": "1cc545f7a4b51be680a612b5adfeeb9fc01b3a50607057e2213f8d29f23d3a36"
+    },
+    {
+      "stageId": "synthesis-31",
+      "verdict": "revise",
+      "stageSha256": "c4c54c786c2b3018646a0c02c375c753387671d837f1a066b74efa88cb3c31b1"
+    },
+    {
+      "stageId": "synthesis-35",
+      "verdict": "revise",
+      "stageSha256": "1fe41efd1b92d23a78f74e8bc681ff2a2c1ff71f273e0808b5ef08e627c9e50e"
+    },
+    {
+      "stageId": "synthesis-36",
+      "verdict": "revise",
+      "stageSha256": "ca8578c23bf090d71853efbf11d84e3abfee2c9f3d26530fa8bbabcefb3b72a2"
+    },
+    {
+      "stageId": "synthesis-37",
+      "verdict": "revise",
+      "stageSha256": "527f8692306dfa6d982ce3a593c85dde01b1d6daaa85d7522ddc6db61dd2d72c"
+    }
+  ],
+  "workerProtectedHistoryCheck": true,
+  "otherAreas": [
+    {
+      "area": "power",
+      "status": "ready"
+    }
+  ],
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "questionsClosed": 0,
+  "designApproved": false,
+  "proseGenerated": false,
+  "limitation": "Verifies the completed world report and response provenance only. The report requires revision; power, characters, story, candidate validation, blocker disposition and prose acceptance remain separate. History protection is the worker checkpoint assertion, not a new independent database comparison."
+}
