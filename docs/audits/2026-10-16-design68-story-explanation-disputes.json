@@ -1,0 +1,179 @@
+{
+  "kind": "design68_story_explanation_disputes",
+  "observedAt": "2026-10-16T14:48:15.265Z",
+  "inputHash": "3274d4710800ad02565040a341a05177b4bd7cab363e169219b562a4a0f62d01",
+  "runId": "design_run_f5e8db99-b684-444d-b04e-50630e3cf3b4",
+  "snapshotPath": "data/audit-runtimes/design68-review/story-explanation-disputes.json",
+  "snapshotSha256": "bd7cebdfe47a21544ee45e3447d6e2ba09ba0e1f9fdb06dfab84f839f1a01a08",
+  "frozenSourceFilesVerified": 153,
+  "responsesReplayed": 5,
+  "disputes": [
+    {
+      "id": "growth_goal_chapter",
+      "stageId": "cross-3-5",
+      "criterion": "growth",
+      "phrase": "第21章的救人选择还把成长目标",
+      "correction": "控制一枚轻物的近期成长目标在第9章建立；第21章使用已学御物救秦禾，并在救人与取样箱之间选择。",
+      "evidence": [
+        {
+          "sourceId": "plan/chapters/9",
+          "sourceSha256": "df2055ac8fb5a6259d365b2b9516cdbcb557367fa20ede8e91d5a1ec3c1b591a",
+          "field": "scenes",
+          "quote": "苏移开木销时，林辰没有只看车停住，而是追问她为何只动这枚木销、不直接推车。苏指给他看配重与轨道的承力处，说明自己的凝元轻物控制只负责这个已卸载的小部件；林辰把近期成长目标缩到日后亲自移稳一枚无负载木块，而非一掌击败暗桩。眼下他仍靠梁九伸手拔销，不能把看懂一次当作已经会用。"
+        },
+        {
+          "sourceId": "plan/chapters/21",
+          "sourceSha256": "74f5864eaeef282817d6442f441f60623d51f02d67f4dab7558779e567a55d8e",
+          "field": "choice",
+          "quote": "林辰放弃本次接近样箱的机会，改以御物抬开无受载的小防脱钩，配合苏凌霜抽闩救秦禾；苏只支付一次青灵石补偿，不以未来灵泉许诺买断秦禾的性命。"
+        }
+      ],
+      "originalCheck": {
+        "criterion": "growth",
+        "verdict": "pass",
+        "explanation": "本批已读的主角成长链条具备目标、条件、训练、回报和代价：林辰从淬体伤者明确选择先恢复、以劳务维生，再经第60日引气许可、分段训练、失败停练、第120日诊察后支付3元载晋入凝元；之后通过顾指导、木架赔偿、导刃复测和恢复核算取得有限两丈内能力，并以凝元三重和联名符牌获得古境准入。第21章的救人选择还把成长目标从“击败暗桩”修正为有限控制小物。44—50章则体现能力之外的关系与判断成长：林在50章主动松剑，让吴卢亲自回答，不用力量替他们决定去向。后续玄府成长虽未逐章审完，但不影响本批已给成长安排的局部成立。",
+        "revisionAdvice": ""
+      },
+      "evidenceCount": 10,
+      "evidenceSha256": "22d4785c06352cafd3f82f093ca5244893b313636da1a3d9efbf8c83e4aa7e1d",
+      "requestSha256": "30a628e6f1114a3880bdebfa7ca2a52f031eaae57d1a126dc0783a81f29f2561",
+      "savedResponsesReplayed": 1,
+      "parentPath": [
+        "cross-3-5",
+        "synthesis-7",
+        "synthesis-22",
+        "synthesis-29",
+        "synthesis-32",
+        "synthesis-34",
+        "synthesis-35"
+      ]
+    },
+    {
+      "id": "original_missing_material",
+      "stageId": "followup-batch-1/payoff",
+      "criterion": "payoff",
+      "phrase": "此前缺少story/overview",
+      "correction": "原批已全文提供story/overview；原问题缺的是第1—50章细纲。本次补读确实提供了所要求的50章，不能因开头误述就否认实际补读，也不能改写原问题。",
+      "evidence": [
+        {
+          "sourceId": "review-question/batch-1/payoff",
+          "explanation": "宏观层面已经区分了可在百章兑现的范围与后续开放线：百章只切断一条三地运输链、只持第一片，第二片经抵押、第三片未取得；关系档案也明确父案、赵方认知、撤押原令和三十日回访的递进，并反复禁止把未来信息倒填为已知。可是本批未提供实际第1—50章细纲，无法核对这些伏笔是否在具体章节按条件、代价和知情顺序兑现，或是否存在同一证物、救援与消息被重复消费。",
+          "revisionAdvice": "补读第1—50章，逐项登记父案材料、六号箱、样箱、货签、消息与关系选择的首次出现、可知者、兑现和代价；确认第51—100章只使用宏观已安排的后续证据，不提前消费撤押原令、北境报告或第二片。",
+          "requestedSourceCount": 50,
+          "requestedSourceIdsSha256": "d14e8e6b958ae266ac60bc16f3b519e462d7d3b85056f252d507e9e41912c68f"
+        },
+        {
+          "sourceId": "story/overview",
+          "sourceSha256": "1d6be2ef90b2d0b21b7998b4798592e81a985de2257044acd58f894e3bbbdcb5",
+          "completeInOriginalBatch": true
+        }
+      ],
+      "originalCheck": {
+        "criterion": "payoff",
+        "verdict": "pass",
+        "explanation": "原问题指出此前缺少story/overview，无法把宏观安排与前50章细纲闭合核对。本次补读已同时核对原问题、story/overview、林辰—苏凌霜与林辰—赵玄极的关系递进，以及第1—50章逐章细纲。story/overview限定百章只切断一条已实证的三地运输链、只持第一片，并保留第二片、三残片、九鼎和最终界门危机为后续内容；关系档案进一步规定父案材料、消息送达和撤押原令的认知边界。逐章文本显示父案线由矿道异常、残账、运输批号和父亲署名，递进到样箱接口、程记收货号、残联比号；但每一步都保留“尚不能证明幕后主使或赵方知情”的证据边界。六号箱、仓火、携页者、陆氏兄弟和吴卢的救援线均有实际选择与代价，且未重复结案：林在火场放弃追携页者救人，吴卢直到第50章才在当面拒绝代答后脱控；苏信在第41章实体送达，赵方认知按第52章以后安排，撤押原令和北境报告未被前50章提前消费。成长和资源线也有明确前置与代价，包括凝元支付、训练失误、两剂完整疗程、伤势限制、现金与船务损失。第51—100章仍是宏观拟定后续，不因尚未逐章展开而判缺料；当前开放线均有待查对象、证据范围或后续触发点。",
+        "revisionAdvice": "",
+        "resolves": [
+          "batch-1/payoff"
+        ]
+      },
+      "evidenceCount": 59,
+      "evidenceSha256": "f7c74c7df9a0288f507a8ef738a5aba1d429f38be19600b79454177cf736706c",
+      "requestSha256": "fa6d874dda9e21f50e130ecb62172fc3658533f53f4a71ea9d3313ff5190598f",
+      "savedResponsesReplayed": 2,
+      "parentPath": [
+        "followup-batch-1/payoff",
+        "synthesis-9",
+        "synthesis-23",
+        "synthesis-30",
+        "synthesis-33",
+        "synthesis-34",
+        "synthesis-35"
+      ]
+    },
+    {
+      "id": "chapter_number_as_day",
+      "stageId": "synthesis-3",
+      "criterion": "timeline",
+      "phrase": "51—466日",
+      "correction": "第51章是章节号，不是第51日。该章从第254日午后开始；第100章阶段结尾为第466日。",
+      "evidence": [
+        {
+          "sourceId": "plan/milestones/ms_v2_fire",
+          "sourceSha256": "62568574d6cbe95a059054f274d3418f4abfda8f217d9823d0784fffc01ddbd2",
+          "field": "setup",
+          "quote": "51拟主写重聚后的失落，时间254午后至255午。贺先回工铺报两人脱控，唐到救助处见吴卢，原先想凑齐五人回船，却当面听卢说仍不想上船；唐停止替两人回答，把自己的等待愿望与他们的选择分开。照护按原三日救助实际安排，过程省叙。255午船坞按原工单交检验水，船终于能浮着，贺却发现甲板上没有自动归来的五个人，停接新单也未解除。章尾她独自回到自己的船主铺。修好船是实得回报，凑齐旧船队的期待落空，不再用一轮逐人生活账收尾。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_payoff",
+          "sourceSha256": "71af953802373e7ad35b6b9c3d491ebd76adcd642195b6552e3eb472a798f586",
+          "field": "outcome",
+          "quote": "第437–466日。百章有救人、断运、部分父案澄清和玄府成长的可核结局。1–100是450章的阶段验收；接下来的有限寿源、高阶反派、钥匙余片与九鼎机制必须另建经审查的来源和行动链，不将450章全书结局撤销。 本段八张床位及466日当地回访仅对应青玄押运八人；北境七人仍由北境机构安置，赤霄五工与陆弟仍按当地既有去向。未实际送达的异地近况不能当作林苏亲眼回访，百章阶段承诺按三地分别已落实的救援和安置证据核验，不凭本地八人推断三地全员近况。"
+        }
+      ],
+      "originalCheck": {
+        "criterion": "timeline",
+        "verdict": "pass",
+        "explanation": "batch-5的复核结论明确43—44章同处244日戌初的连续动作，并将44—50章推进至254日；cross-1-2的复核则列明51—466日各航段、返程、消息、训练、晋阶与回访节点，并特意区分夜的陆路返岗与林的海路返乡及延后回执知情。现有两报告的日期链相容，未见同一人物不相容的时空重叠或未送达即知情。",
+        "revisionAdvice": ""
+      },
+      "evidenceCount": 8,
+      "evidenceSha256": "46b8ee02f22667264a95b30e108c493fa78a8e066ab78335ddbb29b6a398b26c",
+      "requestSha256": "bf921f7ef255166a7bb84ae2ebd51ceda0daf660fc139d5d9f2bad8f0a264595",
+      "savedResponsesReplayed": 1,
+      "parentPath": [
+        "synthesis-3",
+        "synthesis-20",
+        "synthesis-28",
+        "synthesis-32",
+        "synthesis-34",
+        "synthesis-35"
+      ]
+    },
+    {
+      "id": "advancement_training_order",
+      "stageId": "synthesis-5",
+      "criterion": "growth",
+      "phrase": "将玄府晋阶置于复诊、十元载支付、元罡稳定及护罡实测之后",
+      "correction": "第415日经诊察和丹府前置实测后支付十元载晋入玄府；第416—424日才进行玄府元罡稳定、局部护罡训练与实测。不得倒置成先掌握玄府元罡和护罡才能晋阶。",
+      "evidence": [
+        {
+          "sourceId": "plan/milestones/ms_v3_advancement",
+          "sourceSha256": "1c61989a441c2bbc9e81f9f23b2e83d800b8a146d32d11114d0edd6ace3de199",
+          "field": "setup",
+          "quote": "第415日白榆连续复诊确认健康与可支付下界，顾观察辟建丹府实测；若条件不成立则停止，不能靠豪言突破。实际拟写支付10元载后余7-(415-19)/365-3+10-10=2.915068，保留至少1。 此式从第19日的7元载初始下界累计记账：-3是第120日凝元晋阶，+10仅指第199、209日已完成两剂各+5的历史收入，最后-10才是第415日玄府晋阶；不是在第415日再入账一笔10，也没有第二批泉液。等价地，从第209日余额13.479452继续扣206日自然流逝和玄府10元载，所得仍约2.915068；泉液库存持续为零。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_advancement",
+          "sourceSha256": "1c61989a441c2bbc9e81f9f23b2e83d800b8a146d32d11114d0edd6ace3de199",
+          "field": "setup",
+          "quote": "玄府初成需第416–424日稳定元罡。原赤霞斩铁剑不得灌玄府罡气，归还领用库并核对损耗；主角本段只练自身元罡与普通木柄，不临时得神兵。 顾按ax_12教局部护罡：416–419日只练聚散，420–424日才以轻木棍和普通铁刃做低负荷接触、间隔与散罡实测，每日训练前后核余量与肩伤，未过关就不安排该术参与截车。拟定424日林通过实测并经白榆准许有限负荷；不表示学成全身护体或自动获得顾的真光。"
+        }
+      ],
+      "originalCheck": {
+        "criterion": "growth",
+        "verdict": "pass",
+        "explanation": "主角近期路径具备主动目标、资源与健康条件、训练失败、复诊、支付和可观察回报：前段从低负荷引气、三经循环到支付三元载、导刃实测与有限使用；中段进一步表现为从追账转向尊重伙伴和被扣工人的自主选择；后续宏观又将玄府晋阶置于复诊、十元载支付、元罡稳定及护罡实测之后。报告没有将远期境界名称、持剑或未来预算误当作已自动掌握的能力。",
+        "revisionAdvice": ""
+      },
+      "evidenceCount": 8,
+      "evidenceSha256": "68551ca6456559c824904d0283f5b2418baffc640cc91a9dcf33184f935c0c8e",
+      "requestSha256": "d34ee3616425a1973f765b3d207e93835be081a5d6d9bb0172fe58da4243f9e6",
+      "savedResponsesReplayed": 1,
+      "parentPath": [
+        "synthesis-5",
+        "synthesis-21",
+        "synthesis-29",
+        "synthesis-32",
+        "synthesis-34",
+        "synthesis-35"
+      ]
+    }
+  ],
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "questionsClosed": 0,
+  "originalVerdictsChanged": false,
+  "designApproved": false,
+  "limitation": "These are explanation errors reconciled against original sources, not new defects in the correct design or automatic formal failed verdicts. Follow the actual parent paths through the completed final report before determining propagation. Original responses, requests, verdicts, source deferrals and valid resolutions remain unchanged."
+}
