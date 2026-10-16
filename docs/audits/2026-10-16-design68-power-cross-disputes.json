@@ -1,0 +1,77 @@
+{
+  "kind": "design68_power_cross_1_5_source_disputes",
+  "inputHash": "3274d4710800ad02565040a341a05177b4bd7cab363e169219b562a4a0f62d01",
+  "runId": "design_run_1a9589a8-f222-4b9b-861c-99adc2d45c80",
+  "stageId": "cross-1-5",
+  "observedAt": "2026-10-16T09:42:00.743Z",
+  "snapshotPath": "data/audit-runtimes/design68-review/power-cross-1-5-disputes.json",
+  "snapshotSha256": "0ade6b7ecfe78bd423fe82ac6c42f5b0690d5d57e70043a5237158d4ce9043b9",
+  "requestSha256": "1192aa3269d9f173b9052ca897997646747a57ab97fe31318dc18c7885d2af26",
+  "stageSha256": "252944da5de038addfd9e8625821efaa3d2b325411cc8cffe0c1802f4ae3f8c5",
+  "savedResponsesReplayed": 1,
+  "frozenSourceFilesVerified": 153,
+  "originalChecks": [
+    {
+      "criterion": "tiers",
+      "verdict": "revise",
+      "explanation": "境界、功法、法宝和资源阶梯已明确区分承载资格、实际掌握、供能与反制，林的凝元三重、顾的玄府局部护罡及后续玄府晋阶也有训练和复诊前置。但第23—26章仍把“凝元御物拉掉普通废料斗插销”作为关键战术动作，章纲只写“普通废料斗插销”及拉销结果，没有明确该插销在起术时属于三丈内、两斤以内、可直接拨动且未受锁死或重物牵拉的轻小自由物；这与轻物御动不得硬拔承重楔、不得把机构载荷藏入半成费用的规则之间尚未闭合。若该动作实际依赖废料斗机构载荷，就不能由凝元基础御物完成。",
+      "revisionAdvice": "在第23—26章细纲中逐项写明废料斗插销的重量、可见距离、受力状态、是否锁死及真实机械承力；若不能满足轻物御动条件，应改为普通人可操作的自由销、绳扣或另有已训练且合规的动作，不能用“普通插销”笼统带过。并复核所有前50章凝元御物动作，确保没有以境界名代替操作训练。",
+      "evidenceCount": 4
+    },
+    {
+      "criterion": "costs",
+      "verdict": "revise",
+      "explanation": "寿储、真元/元罡、神识、法宝材料和自然寿源大体分账清楚，前50章的真光、剑诀、局部护罡及第83章十元载晋阶也给出了具体扣款逻辑。然而后段已给出的专项款收支在同一原文内不能同时成立：计划称310日前杂费累计700，并列出固定项12+1+18+36及其余625，合计实际为692；又称加入24枚港税后为724、再支出56达到780，但700+24=724、724+56=780这一链条与前述692和“其余689”的另一列账冲突。若采用“固定项+其余689”，税前已为756而非700，无法推出结余220。该问题属于已给预算算式冲突，不是等待正文补写即可消除。",
+      "revisionAdvice": "统一ms_v3_return的14000枚专项款账本：明确10000北航、3000回航票、杂费各项、港税24、回执18、保暖衣与符箓、后续56的实际归属和时间点，逐项给出唯一算式并使结余与220一致；同时删除或修正“其余625/689”“税前700”等互相冲突的数字。修订后重新核对不可预支、不可重复扣款及与前段已付12枚符箓的关联。",
+      "evidenceCount": 4
+    }
+  ],
+  "adjudication": [
+    {
+      "criterion": "tiers",
+      "status": "disputed_against_existing_sources",
+      "explanation": "The stage read the short climax milestone but not chapters23/25. The complete frozen chapter sources already specify the pin mass, visible distance, unloaded control plate and separate mechanical load-bearing. A request to read those sources is appropriate; absence from this local batch does not establish absence from the design.",
+      "evidence": [
+        {
+          "id": "plan/chapters/23",
+          "sha256": "43c7d8f504637f0cc3615de61a3653a24447de23fbe21861974261a514f257ae",
+          "quote": "林沿已核外侧观察口对照旧图，确认低顶侧廊、废料斗轻小插销和朝侧廊落料的方向。秦的旧细绳只用于比划已见距离；不提前拔销，也没有穿过巡守内线去实开机关。林指出普通落料能挡直扑视线，挡不住玄府破开，须由顾实际迎敌才有用。 他同时核清：可拨的小销约八两，只锁空载拨片，满斗重量由支轴和闸钩承受；拨片释放既有机械闸钩，落料靠重力，不把满斗载荷藏进御物费。实际出手仍须进入三丈内直视范围。"
+        },
+        {
+          "id": "plan/chapters/25",
+          "sha256": "3d80bc32c48a57da2cfabc0edf942628eb583ea0577a76c94e3f359b44d35c80",
+          "quote": "林辰在两丈内直视第23章核过的八两小销，御动一息拨销，预付半成真元；小销只锁空载拨片，承重的支轴与闸钩由原有机械关系释放，倒料靠重力形成遮挡。落石割伤他的腿；不以御物托斗或搬矿料。"
+        }
+      ],
+      "limitation": "Refutes the stated missing-specification claim; does not independently prove every possible mechanical or prose execution issue resolved."
+    },
+    {
+      "criterion": "costs",
+      "status": "arithmetic_claim_refuted",
+      "explanation": "The 692 calculation omits the explicitly listed clothing8. The final residual689 includes clothing8, earlier625 and later56; it is not an alternative pre-tax residual. These cumulative periods are explicitly distinguished in the source.",
+      "evidence": [
+        {
+          "id": "plan/milestones/ms_v3_return",
+          "sha256": "81422021762f5767ae22e2903495a7e04619a27cb68a9ffb08e899fd7e2c3069",
+          "cost": "苏失去本期真传外派机会，贺的往返垫款需验收结算；林没有夺到第二片，不能拿钥匙解决封锁。 新限程单占用原巡队本轮一次出港核验及纸单回收追查责任，原队因此缩减一处例行沿岸巡查，夜也不因先离港而免除具名责任。沿岸车费、驿站食宿和验籍仍在原1000杂费额度内据实列支，归入同一累计780，不挪封存3000、不把许可当作免费车船票；本次明确回执两段寄递费18，归入原杂费而非新增收入或另加在780外。 本次入港24从既有杂费额度内细分，非在780之外另收：310日验籍前已付杂费累计700（含271两符12、290诊费1、303两段回执寄递18，275护寒符36、保温衣8，以及此前实际车费、医药、食宿、供暖与查验625），原1000额度尚余300；当场付24后累计724、余276，310夜港内客舍与311–314返程车路住食查验再实付56，累计780、余220。700和56是本次候选对原未拆明杂费的规划分配，须后续对应章节逐笔实现；不能当作既有正文付款证据。上述数字不包含已单独结清的10000北航与3000回航票，不挪用或重复记账。",
+          "outcome": "第301–315日。苏林的分路变为有分歧的协作。315日结算的是271日起同一笔14000专项垫款的累计账：275日赤霄极焱至北境葬骨两席北航票共10000已在前段实付，不是本返乡段的新支出；303日北境通天至青玄沧溟两席回航票各1500、共3000在本段实付。两航段分开，不重扣10000，也不把封存3000再记成收入。杂费累计780，包括271两符12、290诊费1、303两段回执寄递18、310入青玄港税费24、275护寒符36及其余车费、保温衣、医药、食宿、供暖、查验689；310税前累计700、付税后724，310夜至314实付56后才达到780，港税已在原768中细分，不重复加收；14000−10000−3000−780=220。结余220由贺另袋封存，待实际返赤霄交回商盟，不记已经交款或转成林的寿药钱。 回执两段18已于303实付，315结算时第二段在途，尚不能记夜已签收或担保已结清；正常318实体到件仅在后续里程碑入账。"
+        }
+      ],
+      "equations": [
+        "12+1+18+36+8+625=700",
+        "700+24=724",
+        "724+56=780",
+        "8+625+56=689",
+        "12+1+18+24+36+689=780",
+        "14000-10000-3000-780=220"
+      ],
+      "limitation": "Verifies the proposed arithmetic, not historical payment or future chapter implementation."
+    }
+  ],
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "originalVerdictsChanged": false,
+  "questionsClosed": 0,
+  "formalAcceptance": false,
+  "nextStep": "Preserve these counterexamples for the completed power report and combined candidate review. Do not remove original negatives or change correct accounts to satisfy this partial verdict."
+}
