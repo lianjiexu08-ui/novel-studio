@@ -1,0 +1,1419 @@
+{
+  "kind": "manual_actor_account_conflation_dispute",
+  "observedAt": "2026-10-16T00:57:08.610Z",
+  "inputHash": "32f6ca9f61bbb70b8b56a0a7908ca086a0ce1b6ff4554ff3bafdf7428f05465f",
+  "runId": "design_run_5bd0da20-d492-4f62-8378-60f728b3bb87",
+  "stageId": "followup-cross-3-5/tiers",
+  "checkpointPath": "data/audit-runtimes/design64-control/actor-account-checkpoint.json",
+  "checkpointSha256": "42f8dce5b9ba6fd705503542e111325dc413c70ffbb24486d7fe0b400a269782",
+  "runtimeCommit": "ffd28c973b398c7b12728e45ef864d1cba0217a7",
+  "replay": {
+    "verification": "verified",
+    "completedStages": 36,
+    "totalStages": 71,
+    "runSha256": "de2342d846aae63c3b97f2728246e88a46faf7c5774ec9d64867d60d07c6fa9a",
+    "formalAcceptance": false,
+    "limitation": "Replays saved responses, repairs, citations and conclusions against independently supplied materials. Pending work, semantic quality, blocker disposition and prose acceptance remain separate.",
+    "responseReplay": "verified",
+    "responsesReplayed": 45,
+    "records": [
+      {
+        "stageId": "batch-1",
+        "kind": "batch",
+        "stageSha256": "ea175a1f7b4ec29a15ab30bb8e571c06a747cdfe3fe07948087bfb0cc97c8cc3",
+        "inputSha256": "3f68578046243ff3bd068dc012ca11b5727bdb7a4157d0c7f98d94b117329c08",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/1",
+              "plan/chapters/2",
+              "plan/chapters/3",
+              "plan/chapters/4",
+              "plan/chapters/5",
+              "plan/chapters/6",
+              "plan/chapters/7",
+              "plan/chapters/8",
+              "plan/chapters/9",
+              "plan/chapters/10",
+              "plan/chapters/11",
+              "plan/chapters/12",
+              "plan/chapters/13",
+              "plan/chapters/14",
+              "plan/chapters/15",
+              "plan/chapters/16",
+              "plan/chapters/17",
+              "plan/chapters/18",
+              "plan/chapters/19",
+              "plan/chapters/20",
+              "plan/chapters/21",
+              "plan/chapters/22",
+              "plan/chapters/23",
+              "plan/chapters/24",
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/33",
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/1",
+              "plan/chapters/2",
+              "plan/chapters/3",
+              "plan/chapters/4",
+              "plan/chapters/5",
+              "plan/chapters/6",
+              "plan/chapters/7",
+              "plan/chapters/8",
+              "plan/chapters/9",
+              "plan/chapters/10",
+              "plan/chapters/11",
+              "plan/chapters/12",
+              "plan/chapters/13",
+              "plan/chapters/14",
+              "plan/chapters/15",
+              "plan/chapters/16",
+              "plan/chapters/17",
+              "plan/chapters/18",
+              "plan/chapters/19",
+              "plan/chapters/20",
+              "plan/chapters/21",
+              "plan/chapters/22",
+              "plan/chapters/23",
+              "plan/chapters/24",
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/33",
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/1",
+              "plan/chapters/2",
+              "plan/chapters/3",
+              "plan/chapters/4",
+              "plan/chapters/5",
+              "plan/chapters/6",
+              "plan/chapters/7",
+              "plan/chapters/8",
+              "plan/chapters/9",
+              "plan/chapters/10",
+              "plan/chapters/11",
+              "plan/chapters/12",
+              "plan/chapters/13",
+              "plan/chapters/14",
+              "plan/chapters/15",
+              "plan/chapters/16",
+              "plan/chapters/17",
+              "plan/chapters/18",
+              "plan/chapters/19",
+              "plan/chapters/20",
+              "plan/chapters/21",
+              "plan/chapters/22",
+              "plan/chapters/23",
+              "plan/chapters/24",
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/33",
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "batch-2",
+        "kind": "batch",
+        "stageSha256": "e7a79ea46cf023170367e2019226385d9649a048440aec8f7eccbd83adab0f31",
+        "inputSha256": "9a43b1cc28a39d69a77a046f69691857ecd3ae1d7dbc8b133a85a149ca796da7",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/18",
+              "plan/chapters/20",
+              "plan/chapters/25"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/18",
+              "plan/chapters/20",
+              "plan/chapters/25"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/18",
+              "plan/chapters/20",
+              "plan/chapters/25"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "batch-3",
+        "kind": "batch",
+        "stageSha256": "8040bbb5fa59df7e1b73bf560207cab246f81d4e7bdd7377b585c2c1e6093918",
+        "inputSha256": "7212b5b167da45ab22803ff835e7365916e2327c39d6d9e603227790524373fd",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "costs",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "counters",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "batch-4",
+        "kind": "batch",
+        "stageSha256": "8b841b0a65b5a6ea75542674b7bb8f463d4287ae5af0a37e1b9ccb60a8e1f1aa",
+        "inputSha256": "5b990da9b531ac5e3a27d4cc8dd09cb17d01e5934f0b02025dbbbea2a5612cd0",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/18",
+              "plan/chapters/21",
+              "plan/chapters/23",
+              "story/chapterPlans/chapter-plan-18",
+              "story/chapterPlans/chapter-plan-21",
+              "story/chapterPlans/chapter-plan-23",
+              "story/characters/char_10"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/13",
+              "plan/chapters/18",
+              "plan/chapters/19",
+              "plan/chapters/21",
+              "story/chapterPlans/chapter-plan-13",
+              "story/chapterPlans/chapter-plan-18",
+              "story/chapterPlans/chapter-plan-19",
+              "story/chapterPlans/chapter-plan-21"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/18",
+              "plan/chapters/21",
+              "plan/chapters/23",
+              "story/chapterPlans/chapter-plan-18",
+              "story/chapterPlans/chapter-plan-21",
+              "story/chapterPlans/chapter-plan-23"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "batch-5",
+        "kind": "batch",
+        "stageSha256": "3cb35195d3e9ed92919305ea55748400b70f17a375f6939f810788c834ebe8ce",
+        "inputSha256": "d087fe6dfc966630ef56a8629f9d73ea7bcdc75fd5ee7b8b6a8ffaf8af43009c",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "costs",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "counters",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-2",
+        "kind": "cross",
+        "stageSha256": "28623c3c5c856dd222afd86ee2cd2407de2d6426b0d661d4a023c0fe5aa2b846",
+        "inputSha256": "e0425ca8fde2aceb7259bc3ee85f46f0d2f4aee78e151b01e8ba6d747910326a",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "revise"
+          },
+          {
+            "criterion": "costs",
+            "verdict": "revise"
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/1",
+              "plan/chapters/2",
+              "plan/chapters/3",
+              "plan/chapters/4",
+              "plan/chapters/5",
+              "plan/chapters/6",
+              "plan/chapters/7",
+              "plan/chapters/8",
+              "plan/chapters/9",
+              "plan/chapters/10",
+              "plan/chapters/11",
+              "plan/chapters/12",
+              "plan/chapters/13",
+              "plan/chapters/14",
+              "plan/chapters/15",
+              "plan/chapters/16",
+              "plan/chapters/17",
+              "plan/chapters/18",
+              "plan/chapters/19",
+              "plan/chapters/20",
+              "plan/chapters/21",
+              "plan/chapters/22",
+              "plan/chapters/23",
+              "plan/chapters/24",
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/33",
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-3",
+        "kind": "cross",
+        "stageSha256": "55c38021849310c47046fdba8d732fba6df3d7bee49da314f30b34b119bea241",
+        "inputSha256": "7dac1bf817a55fa66e718633abcb4ab0883a8d11ea3e5fe26a546fece24e7cad",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/33",
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "revise"
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/33",
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-4",
+        "kind": "cross",
+        "stageSha256": "056a41b794c0c08977f46f5067f1ec0d2368aea776fcd68bf3cf2bc6db18ff5e",
+        "inputSha256": "902d98e115e6eede903c0eee10b7f61eb746207bdedec4406d575ee42e3a36c1",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "costs",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "counters",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-5",
+        "kind": "cross",
+        "stageSha256": "935e276d25e250e3151e4ea57c7edc06b8da945d138986e9cb236d9b57ceaf88",
+        "inputSha256": "22eec90e13c2a6ed5a7d0a3950c335d95dd412780726f26da197388d5f184516",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "costs",
+            "verdict": "revise"
+          },
+          {
+            "criterion": "counters",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-2-3",
+        "kind": "cross",
+        "stageSha256": "63d6cb2b76ba9c9e51a87ff40591f2cc753b89df4f7c5db08eecb949ee1ac9d0",
+        "inputSha256": "0b7690fe43afc8362bd9e7244205b761914091afa900a9e64e22b4dc5d26a4fa",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/artifacts/art_20",
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/33",
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/artifacts/art_20",
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/33",
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/artifacts/art_20",
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/33",
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-2-4",
+        "kind": "cross",
+        "stageSha256": "d1fb86695d95255f4836f844aeded690b6cd84de425724105048bb7fe29d06b9",
+        "inputSha256": "aa3f31c8ca4fc3ff36a24894edd833e3c759bcea0c1578fcb7c73eca06f7513f",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-2-5",
+        "kind": "cross",
+        "stageSha256": "8737f05d82eb6488c23a75248cffc66f9901fb1b1fb0937efb80606577224415",
+        "inputSha256": "1bfbe322f46bdbad8960e4a4352a5e1b67ef76df54db941e6ddcb56fe9a7bd60",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "costs",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "counters",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-3-4",
+        "kind": "cross",
+        "stageSha256": "aba6431331c86d423a2b0064681b22f3d1f9f954379c7aed4ec900041e542651",
+        "inputSha256": "e8cd47cf600bb8ea14f816ef84ac6b9e1a2e79211d662fbe928419cd15280011",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "costs",
+            "verdict": "pass",
+            "resolves": [
+              "batch-4/costs"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "pass",
+            "resolves": [
+              "batch-4/counters"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-3-5",
+        "kind": "cross",
+        "stageSha256": "96d431f8b9715c91cac6f374653074283b1d2e232f4e139267cf7180f967b849",
+        "inputSha256": "9c3f638fcdb1d97a155acd0d4d0c77f467b7a8ea94a444fe064685e275186846",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/44"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/44"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/44"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-4-5",
+        "kind": "cross",
+        "stageSha256": "96a8845d44b38ba3e4af1d16396db62bd3d2311f014bdf45f06da2441661f661",
+        "inputSha256": "4f8b4b23bcfad2b42eea5880f4d551418e1d9d269158f65a136850f17590e9db",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-batch-1/tiers",
+        "kind": "cross",
+        "stageSha256": "ba129ad7d3da36a2d4d0e78548817713e74dbe5c6962e05bdfde69d2771381a9",
+        "inputSha256": "1197a15f87888c14494f4180d8544f4219a8ab7b9e3eb37f965b20b24eb576bf",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass",
+            "resolves": [
+              "batch-1/tiers"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-batch-1/costs",
+        "kind": "cross",
+        "stageSha256": "d196534a5a95f7abad7c433552fe31c6d1b3ccf11823bf54121b6794aaef958a",
+        "inputSha256": "9f8be8d7654a2f88ac61fc12e1597ed8bb658cffbe06de7cea0c9df152fd168e",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "costs",
+            "verdict": "pass",
+            "resolves": [
+              "batch-1/costs"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-batch-1/counters",
+        "kind": "cross",
+        "stageSha256": "c9ff2ec0006b59bda83e9074b7b626d930b03acf0e2a8f0ce5906307d1476665",
+        "inputSha256": "fec21f75857c355591d0dc840394a0a42e6173625ff46c6895f6b6c3559e9060",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "counters",
+            "verdict": "pass",
+            "resolves": [
+              "batch-1/counters"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-batch-2/tiers",
+        "kind": "cross",
+        "stageSha256": "8f8117df4325d9e0c8957b0d929dc344a06be47ebf47df64ee4a6a2667414a11",
+        "inputSha256": "5d242740a72db8ca26e61000476c7cc57ed17de612253c885e360e55c3a171bf",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass",
+            "resolves": [
+              "batch-2/tiers"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-batch-2/costs",
+        "kind": "cross",
+        "stageSha256": "dc00f39aea16e8aff14c6c77f6043fc603375a482f9ba37cb244123bf909a8d9",
+        "inputSha256": "9d9f61544d67b47b6b0fa849fb20c3220d6d79ac473edbebf8ec158dea70d13c",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "costs",
+            "verdict": "pass",
+            "resolves": [
+              "batch-2/costs"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-batch-2/counters",
+        "kind": "cross",
+        "stageSha256": "edee9a3a06afb8cc7e22db38c056b082a673a5c75385b43c58c861dcf0c8a350",
+        "inputSha256": "d542d5a1465675996bcb56396adca4f8e828def40f6bf79831ffdb4f4b6afdba",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "counters",
+            "verdict": "pass",
+            "resolves": [
+              "batch-2/counters"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-batch-4/tiers",
+        "kind": "cross",
+        "stageSha256": "531ab82a789e076796c3a948ac204f7194e7b20c79eb53f7971e196b1f4e39ff",
+        "inputSha256": "f0888cede8c9463e12f18b6e761380d69bea114bfe7dde200b215957498d4077",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass",
+            "resolves": [
+              "batch-4/tiers"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-1-2/counters",
+        "kind": "cross",
+        "stageSha256": "025e289b92b858a5dea968bc6b75c2c0e07b416b7f63fe0e98ab6e11fe04af09",
+        "inputSha256": "16534d5b325d55c9c7eefd5762fb689b2638608529398082c230e12209634d6a",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "counters",
+            "verdict": "pass",
+            "resolves": [
+              "cross-1-2/counters"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-1-3/tiers",
+        "kind": "cross",
+        "stageSha256": "30abf719ed131b3f7be3cdedee7473547bb1473023bb21dc1dc8e4555ac52855",
+        "inputSha256": "bf776139b129da05a015cedd5a3b8393ac17893e6f52dc32e7d5027ef7a160a2",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass",
+            "resolves": [
+              "cross-1-3/tiers"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-1-3/counters",
+        "kind": "cross",
+        "stageSha256": "026c4b365da144568364ed528bdb20861358e788f49653af69589582626d5108",
+        "inputSha256": "3efb20c040500e7b1749a5d4caed8fdc25674ea1cb276185f9e5ecd6cc598fb6",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "counters",
+            "verdict": "pass",
+            "resolves": [
+              "cross-1-3/counters"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-2-3/tiers",
+        "kind": "cross",
+        "stageSha256": "3c18ef90d5481444340ab1b5af8e109f728b2ec82a7ae24969ac1a7417b3e538",
+        "inputSha256": "46aa3de1dffec2cc2bc9ad2d9697473e8343188c96be54f63eb5573cfba43c62",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass",
+            "resolves": [
+              "cross-2-3/tiers"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-2-3/costs",
+        "kind": "cross",
+        "stageSha256": "f606af6b22cdd023130bb3265d65aa12c26b06912523507135daf00aa8d87d83",
+        "inputSha256": "3eb66abee3319afac202579a7c53fdf4dfe93247ed61657a1dcda22c9a2ea476",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "costs",
+            "verdict": "pass",
+            "resolves": [
+              "cross-2-3/costs"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-2-3/counters",
+        "kind": "cross",
+        "stageSha256": "94f8a1ea77a2087ce858256e168c4ddf688640eb6b91478c59bb6043cb35c49b",
+        "inputSha256": "f917be669cb6674fce8f44613c42ec83f83fd48c9b001bcc380400f061be18d2",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "counters",
+            "verdict": "pass",
+            "resolves": [
+              "cross-2-3/counters"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-2-4/tiers",
+        "kind": "cross",
+        "stageSha256": "e1617a9f6d27d4044b6ff6ddf1cd7bf9a900db77e053ffc5d9a392c6ccf9e253",
+        "inputSha256": "f476338731c8be0f053ddc37419994664ba03ae25c98157a23a6045c9c46d50f",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass",
+            "resolves": [
+              "cross-2-4/tiers"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-2-4/costs",
+        "kind": "cross",
+        "stageSha256": "412df134f635c7779f856a4b529f206932b9b59744e639080c58a33c0f15ed32",
+        "inputSha256": "f2a759f709543e50455ce53967833e08464515d917a595bfa241633ffdd24edc",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "costs",
+            "verdict": "pass",
+            "resolves": [
+              "cross-2-4/costs"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-2-4/counters",
+        "kind": "cross",
+        "stageSha256": "d6721f0377eaf9939d4f630ac7b50a4253ff1059107e9d62239bb72e2be9828e",
+        "inputSha256": "b23d232c6ab83a1394d8520e518552b78328aac753660740d653283be3eeaa37",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "counters",
+            "verdict": "pass",
+            "resolves": [
+              "cross-2-4/counters"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-3-5/tiers",
+        "kind": "cross",
+        "stageSha256": "99735518e3662156b0197bb8b431dbd1f05ceb0ce9becdc15b52da02d0b5033a",
+        "inputSha256": "0caafb4fb294576f999a1e151c3da031234b7ecda358351dca0271baa16f81b6",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "revise"
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-3-5/costs",
+        "kind": "cross",
+        "stageSha256": "2c9899017897d0bbfbb1afb031e89e2f3fa5ec82815714708052457317328932",
+        "inputSha256": "9e9a0b3179ddbd69ee6d64d728c1fc9752badbd20ebf80f7a9c9c171ef4f5b69",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "costs",
+            "verdict": "pass",
+            "resolves": [
+              "cross-3-5/costs"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-3-5/counters",
+        "kind": "cross",
+        "stageSha256": "6be65edc9eeed7db271fd7007d8fd0ee3b08bf2b116181d9fdcc49062d30befa",
+        "inputSha256": "8e75e6d4f681b8c1865597ae2ebe43676c29345bbda83aebeb1cdc1e01b3979b",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "counters",
+            "verdict": "pass",
+            "resolves": [
+              "cross-3-5/counters"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-4-5/tiers",
+        "kind": "cross",
+        "stageSha256": "9873d9352d3f563d54b6d1cfa68e263c8e0a44b3703576428d33ee8b13c42e2c",
+        "inputSha256": "d58c1457e9ee7265afd407557394f71e77a3280c93ca9c1555d81b1270c10d82",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass",
+            "resolves": [
+              "cross-4-5/tiers"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-4-5/counters",
+        "kind": "cross",
+        "stageSha256": "cf683db56b736cf26abb0ae2682fe687e25810d7fd8bcd642538c4615d8fd7d6",
+        "inputSha256": "b6a9fa238e1f6bdcb86c6cb08dd30e1561020d3ea2791652ace11a554a0e8447",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "counters",
+            "verdict": "pass",
+            "resolves": [
+              "cross-4-5/counters"
+            ]
+          }
+        ]
+      }
+    ],
+    "failures": [
+      {
+        "stageId": "cross-3-5",
+        "failureSha256": "cf699d38d68084d2d82069964b0249d727dc0fd6ef5d754078662268dcb6682b"
+      },
+      {
+        "stageId": "followup-cross-2-3/costs",
+        "failureSha256": "0ae033875e6af2f2c68353d63aa75e4d6d0539f6604dc323f44d23e26ddb56ca"
+      },
+      {
+        "stageId": "followup-cross-2-3/costs",
+        "failureSha256": "cd03bf4fe9cfef59c527a9f2881b546cc14087177431f971bb62c892c0a8e707"
+      }
+    ],
+    "modelCalls": 0
+  },
+  "originalCheck": {
+    "criterion": "tiers",
+    "verdict": "revise",
+    "explanation": "补读材料已解决原等待项的大部分问题：境界不自动授术，顾的开篇前真光、局部护罡与贴身推劲资格明确；第25章按顾第三息完成凝印后才支付三成元罡与0.25元载，接触已外放的第二息血爪，且林的御风剑诀、御物、顾与墨的伤后限制及独立账户均有逐动作核算；第26章的定腕、看押与换班也遵守接触、间隔、余量和伤情条件。第44章则同时写明林承接第43章为“四成半真元”，又写“出剑前沿用239日复测的保守余量五成”，未说明两者之间的恢复、复测或余额变动；而本章随即按五成扣除二成并得三成。该同一角色、相邻行动的起始余额不一致，现有材料不足以判断五成是否有合法收入来源，需统一第43—44章余额或补出明确的恢复/复测依据后再验收。",
+    "evidence": [
+      {
+        "sourceId": "review-question/cross-3-5/tiers",
+        "quote": "{\n  \"criterion\": \"tiers\",\n  \"explanation\": \"已读境界阶梯明确境界不等于自动掌握，凝元、玄府及功法均要求训练、实测、供能和对象限制；第1–24章的附掌、轻物御动、御风剑诀和玄府能力观察也基本按这些门槛安排。可是宏观方案把第25–26章的玄府同阶交锋、真光、局部护罡、贴身推劲以及第44章的剑诀行动作为实际能力兑现，当前只读到里程碑摘要，未读这些章节的逐动作、资格、距离、打断和承载核对，无法确认是否与规则完全闭合。\",\n  \"revisionAdvice\": \"补读并核对plan/chapters/25、plan/chapters/26及plan/chapters/44：逐项确认顾与墨的实际境界、已训练术式、作用对象、起式与中断条件，及林在第44章使用御风剑诀时的实测距离、真元余额、冷却和法器承载；若与现有里程碑摘要不一致，统一宏观与逐章账。\",\n  \"awaitingSources\": [\n    \"plan/chapters/25\",\n    \"plan/chapters/26\",\n    \"plan/chapters/44\"\n  ]\n}"
+      },
+      {
+        "sourceId": "review-unit/8",
+        "quote": "{\n  \"id\": \"ax_06\",\n  \"title\": \"境界承载与实际施术\",\n  \"content\": \"境界能力栏描述该层能够修习和承载的能力方向，不是一份自动掌握、免费发动的万能招式清单。晋阶费用、术法发动费与持续消耗分别记账；晋阶不等于预付后续法术。实际施术须有已掌握的功法、法宝或明确基础操作规则，逐项满足其对象、范围、供能、时机和中断后果；境界名称不能绕过这些条件。已由ax_05定义的凝元轻物御动等基础操作仍按原规则执行，普通步行、说话、握持不因此加收术法费。尚未展开的高阶术式可以保留为未来能力方向，但首次安排它解决剧情之前必须先完成具体规则与可取得资源的设计、复核；不得以读者未见的万能本能补齐现有行动缺口。\",\n  \"scope\": \"全部境界、功法、法宝及后续能力扩展\",\n  \"precedence\": 6,\n  \"status\": \"proposed\"\n}"
+      },
+      {
+        "sourceId": "review-unit/10",
+        "quote": "{\n  \"id\": \"ax_08\",\n  \"title\": \"凝元基础操作的学习、对象与支付\",\n  \"content\": \"凝元真元外放只是承载资格。下列基础操作须先完成相应控制练习与实测，不能靠晋阶自动掌握；不授予更高境界、感知或伤势免疫。\\n轻物御动沿ax_05每次预付半成健康稳定真元上限执行：只控制三丈内直接可见、单件至多两斤的轻小自由物，每次至多三息，早停、落空或被打断不退。一次只作用一件，移第二件另付，时间不足或目标出界即停止。轻索头、小钩、木楔和小插销均须未受重物牵拉或锁死；阻力超过同物正常徒手轻拨即不属于此操作，不能借物轻而隔空拉整车、托活人、硬拔承重楔或穿透法纹锁。操作轻小机关可释放原有机械作用，但轨道、闸片、沙挡、重力及承重部件须真实存在且各自承力，不能把整个机构的载荷藏在半成御物费里。\\n近身附掌是将真元短时集中于自己一只手掌的入门练习：须有一息聚气，聚气开始预付一成健康稳定真元上限，只支持随后一息内一次实际接触的掌击，落空或受扰均损已付款；出掌后至少一息重新收束，不能凭接触持续灌入。对未有真元防护的肉身可造成震伤，对腐朽薄木封板可辅助击裂；伤害仍取决于接触、落点与目标承受，不能隔空震脏、穿完整石壁、自动破同阶护体或使所有人一掌毙命。躲开、挡开手臂、甲胄卸力或聚气时打断均可反制；腕掌伤、气路不稳或不足一成时停用。两种基础操作的消耗、恢复及伤后上限均按ax_05"
+      },
+      {
+        "sourceId": "review-unit/10",
+        "quote": "，不另开一份免费真元。\",\n  \"scope\": \"凝元轻物御动与近身附掌\",\n  \"precedence\": 8,\n  \"status\": \"proposed\"\n}"
+      },
+      {
+        "sourceId": "review-unit/14",
+        "quote": "{\n  \"id\": \"ax_12\",\n  \"title\": \"玄府局部护罡的训练、支付与失效\",\n  \"content\": \"元罡护体是能力方向；本条只定义其中最基础的局部护罡，其他全身护持仍须另有术式。施术者须已入玄府，经有经验者指导，将元罡在本人一处掌大范围皮肤外稳定聚合，并通过轻木棍、普通铁刃的受控低负荷实测及复诊。完成晋阶不自动获得此操作。\\n每次聚罡先用一息并预付一成本人当境健康稳定元罡上限；只护同一选定部位，至多维持随后两息，不远控、不护他人、不同时覆盖全身。若承受一次实际接触，另预留并即时扣一成，随后该层即散；开启前须至少有两成获准可用余量。即使落空、提前收束或被打断，聚罡一成不退；未受击则不虚扣受击费。每次散后至少三息重新定息，间隙没有护罡。连续最多三次，此后至少休整一刻并复测，伤痛、麻木或气路不稳立即停用；控术和战斗期间不计恢复。此基础操作只用自身元罡，无额外神识、寿储或外物账户，不提供力量、速度、飞行或恢复。\\n效果只是在接触部位分散普通拳棍或无附灵铁刃一次擦击/斜击的表层冲击，需要站位退让与卸力；不保证挡住同阶全力正击、重刃、尖刺、多次连续攻势或已付费的攻杀术，不保证免伤。对方可换落点、抓聚罡一息、在三息空档进攻或持续压制。击穿时仍扣本次受击费，余力实际伤及该处，不把破罡化作无害光效；肩、腕或经脉受损即停术撤离，不能因还有余额续顶。一次付款不能抵三次来招，也不"
+      },
+      {
+        "sourceId": "review-unit/14",
+        "quote": "能将健康基准当作当前伤后可用量。\",\n  \"scope\": \"玄府基础局部防护与本章首次训练\",\n  \"precedence\": 12,\n  \"status\": \"proposed\"\n}"
+      },
+      {
+        "sourceId": "review-unit/18",
+        "quote": "{\n  \"id\": \"ladder_technique\",\n  \"kind\": \"technique\",\n  \"name\": \"功法阶梯\",\n  \"levels\": [\n    \"黄阶\",\n    \"玄阶\",\n    \"地阶\",\n    \"天阶\",\n    \"王阶\",\n    \"神阶\"\n  ],\n  \"rule\": \"品阶表示功法潜力、复杂度与能量利用上限；实际威力受境界、适配、熟练度与资源限制。高品阶不能跳过允许境界、单次消耗、冷却或反制；低品阶不会仅因对手品阶高就自动失效。\",\n  \"status\": \"proposed\"\n}"
+      },
+      {
+        "sourceId": "review-unit/32",
+        "quote": "{\n  \"id\": \"tech_04\",\n  \"name\": \"乾元御风剑诀\",\n  \"kind\": \"technique\",\n  \"tier\": \"玄阶\",\n  \"allowedRealmIds\": [\n    \"realm_02\",\n    \"realm_03\"\n  ],\n  \"effect\": \"以本人已熟习的凝元真元或玄府元罡凝成至多三十六道风刃剑气，沿已锁定的可见方向劈斩敌手或普通实体目标，包括未附灵、无护甲包覆的普通绳索；可徒手导刃，不以持有某把法剑作为自动掌握的凭据。\",\n  \"cost\": \"完整施展一次耗本人当境法力二成（凝元真元或玄府元罡）及少量心神，以健康稳定上限为基准；少放几道风刃不按比例免成本。仅凝元真元配合赤霞斩铁剑时，该二成已经包含这一式的器身引火与御剑供能，不另加一次普通挥击费；另作普通附芒挥击或另行御物仍分别计费。 心神负担指维持定向和导刃的注意力疲劳，不是本命神魂永久扣减，也不折算寿储或另设可花费的数值池；真元余量不能替代清醒与稳定专注。\",\n  \"limitations\": [\n    \"凝元式以肉眼看清实际目标、已训练的真元定向和导刃维持锁定，不要求未定义的神念外探。有效距离取本人同式实测稳定导刃距离与百丈总上限中较小者；百丈不是入门即有的能力。凝元式须分别练成起式、定向和主动停式并由教习实测，晋阶或持剑不能替代。\",\n"
+      },
+      {
+        "sourceId": "review-unit/32",
+        "quote": "    \"面对厚重元罡穿透力减半\",\n    \"施式须清醒、能辨认并稳定锁定实际目标，不可同时另行御物或维持另一功法；受到惊扰而失去导刃控制时中止，已支出的二成当境法力不退。\",\n    \"每次施式前后须确认定向与专注是否稳定。眩晕、目标错认、注意力不能维持或神识受创时立即停用；不能凭真元尚有余量强行连发。普通疲劳须安静休息至症状消退、定向恢复后再判断，固定时长不保证恢复；神识伤另须医修确认，吐纳回真元或普通疗伤不自动恢复受伤心神。\",\n    \"玄府式须另经稳定元罡导刃的修习与实测，晋阶不自动视为熟练。元罡式以自身导刃，不灌入赤霞斩铁剑，不把元罡降名为凝元真元绕过器身承载；凝元式旧剑的冷却与合并费用不适用于元罡式。现有第416–424日仅练基础元罡的主角不因此获得已练成剑诀玄府式的事实。\",\n    \"切普通绳索时须实际看见目标绳段并保持锁定，距离仍受本人本式实测稳定导刃范围与百丈总上限双重限制，路径被遮挡、目标脱离锁定或施术受扰则按原中断规则处理，不因付费保证命中。一次完整剑诀切断一处可见普通绳段仍付二成，不按绳轻免费；附灵绳、金属链、完整护罡或未知材质不能按普通绳保证切断。绳断后的落物、船摆与伤人风险依实际结构、受力和站位发生，剑诀不托举被悬挂的重物、不控制倒塌方向或自动保护旁人，不能将切索偷换为免费御动整车整船。\",\n"
+      },
+      {
+        "sourceId": "review-unit/32",
+        "quote": "    \"直接可见不等于自动命中：目标被遮、移动出本人本式实测距离、错认、旁人进入导刃路径或注意受扰即中止，不隔障追踪、不用幻影作为可确认实体；中途失控仍按原规则保留二成费用。玄府式另按其既有训练与实测要求，不因改用元罡自动继承凝元式熟练度。第18章对林的两丈实测仅证明那次已练成的凝元式范围。\",\n    \"起式预付后、尚无风刃离体时若失锁，立即停止凝刃，本次二成费用仍不退。已有风刃离体时，失锁只停止继续凝刃、放刃和主动导向；各道已离体风刃沿失锁前最后确定的方向前行，不能收回、临时瞬灭或替路径内的人挡伤。每道最多到从出刃点量起、本次施式确认的个人同式实测范围与百丈总上限中较小的界限；碰到实际物体按本术既有材质、护罡与穿透规则发生碰撞伤害和耗散，被挡不绕行，未碰物而到射程界限即散，不借失锁惯性获得额外射程。停止后不得重新锁定以续发剩余道数，也不把未发数量、已付真元或余刃转移到下一式；另起一式须重新满足全部资格、伤情、余量、锁定与器身条件并完整付费。\",\n"
+      },
+      {
+        "sourceId": "review-unit/32",
+        "quote": "    \"锁定与中止不能保证旁人安全。起式前须实际确认刃路、目标背后至有效射程边界的可能直线路径及退让条件；不能看清或人员未退就不发刃。发刃后有人闯入、船摆或遮挡导致失锁，只能按上一条停发并示警、由在场者依实有站位避让，已撞击、割断、受伤或落物均不得因停术撤销。后续拔扣、过板、接人或改用普通工具须先确认已离体余刃全部撞散或到界消散及现场结构稳定；未确认就等待、绕开或放弃本次动作，不凭一句停式把风险清零。\",\n    \"凝元式离体风刃有可见的淡青刃影，碰撞或到达个人有效射程后随耗散而散尽；刃影只是本术的可观察征兆，不提供额外照明，不使人看穿遮挡。看不清整条必要路径或不能确认刃影消散时，不能把收剑、停式或估计过了几息当作余刃已经消失。\"\n  ],\n  \"counters\": [\n    \"玄府境元罡硬抗弹开\",\n    \"离火烈焰焚化风刃气流\"\n  ],\n  \"status\": \"proposed\"\n}"
+      },
+      {
+        "sourceId": "review-unit/277",
+        "quote": "{\n  \"id\": \"ms_vol1_climax\",\n  \"title\": \"解囚夺泉，同阶制敌\",\n  \"kind\": \"climax\",\n  \"startChapter\": 23,\n  \"endChapter\": 26,\n  \"setup\": [\n    \"23章187日秦沿已核短支路与装车区外壁后的林苏会合，亲闻墨少主称呼、秦说明被扣时名牌全名才确认墨。隔木缝见墨施爪抓伤凝元看守、黑纹加深并放血，元罡却仍可推重车。林苏因此共同设计由顾正面迎敌、林开笼用普通废料斗遮视、苏接人与隔开看守的配合，顾未实到不发动。\",\n    \"23章独立墨视角：逃秦暴露与上层实体催交使他决定188辰末转运，卯前召原封路哨回营束笼绑货、检车押运，用归路暂时无人监看的风险换按时交货。林苏秦只听现场口令，不知催令内容。24章188卯初秦亲见哨撤与铃绳解除，单独轻装沿已核四里路约一小时于卯正06:00面交更新标图给顾；图含墨身份、实见元罡/黑纹、囚笼与地形分工。顾核图、召齐2名原有普通护卫及救护用具，07:00与杜交岗后出发，08:15抵营外、08:45潜近侧廊，乔前夜休足留外营备勤，秦留外营。林苏看不到交图，只在25亲见顾到场和手势才行动。\",\n"
+      },
+      {
+        "sourceId": "review-unit/277",
+        "quote": "    \"188辰末墨准备装车。林苏留在主营后方，25辰末08:45亲见顾侧廊手势后，林才开囚棚暴露位置，以一次乾元御风剑诀二成真元切普通吊索；苏引本次主营囚者撤离。此前前哨仅秦一人获救，没有额外获救者队伍被重新转送。若顾未到或无手势，二人放弃夺货诱敌，退回已核安全岔口再寻出路并承担未能救全的后果。\",\n    \"辰末08:45顾按路线抵达低顶主巷，以普通步法和货柱限制墨借台上跃的落点；本场仅实际使用顾的局部护罡、真光、贴身推劲，以及墨的短施噬血爪，具体按23–26章和ax_12/13训练、付费、接触与伤后停术限制。顾右肩在推劲结束时受伤，战末余三成；普通闸门及落料只遮视，不是封禁玄府，墨弃货侧退的通路仍在。\",\n    \"林辰趁同阶交战进入货台，先开押人的转运笼、再夺遗迹样箱与封存泉瓶；他将样箱内的残片暴露给墨，主动把追击引向图上可卸载的检修侧廊。墨原能弃货从支洞撤退，却要取回本次给幽罗上层交差的遗物和泉液，选择扑向林辰；墨此刻只认出失去的货物，不自动知道残玉或真解秘密。\",\n"
+      },
+      {
+        "sourceId": "review-unit/277",
+        "quote": "    \"林辰凭先前核对的旧矿路坡向，以凝元御物拉掉普通废料斗插销，倒料挡住墨的直扑视线；苏隔开跟来的凝元看守，顾借已形成的遮挡完成三息蓄势，支付三成元罡和0.25元载发动一次太清太乙真光，克制墨的血煞爪，真光结束后，顾按25章已训练的ax_13贴身推劲另付二成元罡，在实际接膝、墨前脚卡住普通废木且未及时抽腿或打断的条件下使墨失衡倒地；墨散劲时普通抓击伤顾右肩。不是另加剑术或付费便自动制伏同阶。墨被擒靠顾承担正面玄府战，不是粉尘瓦砾困住玄府或低阶主角斩灭元神。林辰在拉销后腿被落石割伤，不能再追击。开战从08:45手势后开始，09:15前后同阶交锋结束；09:15–10:45止血、近身收押、用现有担架和原运人小车安置伤者与死者，10:45出发。\",\n    \"撤出时封存原样箱和12滴泉液，滴数由林、苏、顾共同点验，封瓶前不服用。第189日外营白榆把每滴分管验毒验煞，9滴合格、3滴污染仍单独封存交医修处置，不能计作收入；普通伤势另治。\",\n"
+      },
+      {
+        "sourceId": "review-unit/277",
+        "quote": "    \"依26章对同一批原封管、原采收登记及三方个人申请可分额的核验，追回12滴不新增配额；洁净9滴、污染3滴隔离。顾与苏撤回本批个人申请，不凭救援功劳取得优先分药权。林原申请9滴与告急采集者所需3滴冲突，他主动撤去一剂申请，同意先救急；三方配额台依据诊察、可分余额及双方签认，核准告急者3滴、林6滴。申请不是已归林的药，林不能自行处分他人或公共份额。另一伤者只需常规外伤治疗，不因此分寿药；189日只签收封存，林的疗程190日才开始，不提前增加寿储。\",\n    \"188日10:45沿已核四里主支洞撤离，苏与能行获救者轮替抬林担架、推载伤护卫和死者的原运人小车；顾近身看墨不兼抬车。伤者队伍行75分钟，于12:00向乔面交后顾即就医，非急迫核验留到次日。褚、邵已按15/18章预定表于188白昼补眠后暮到营，酉初实际接两处夜班：杜褚日夜轮入口、乔邵日夜轮看押，各值12小时休12小时，顾伤重不计入值班。两人未参与25章战斗，不成为迟来的斩敌帮手。\",\n    \"第189日验收顺序：先记录获救者姓名、伤情与各自亲见范围，单独保管口供；再由林苏顾共同核对封瓶编号、12滴总数与样箱刻痕，白榆分管验出9滴洁净、3滴污染并重新封存；最后按先前分配约定由各方签认6/3滴归属。伤者陈述只印证本次扣押地点与人员，不以口供代替药检或从货签直接指认九鼎全网。\"\n  ],\n"
+      },
+      {
+        "sourceId": "review-unit/277",
+        "quote": "  \"cost\": \"苏剑身受损，顾峤肩伤且护送班出现伤亡，林辰腿伤不能继续追击；他舍弃争夺全部泉液以救人，墨并未供出全部幕后网络。\",\n  \"outcome\": \"本次掳人营地停止运作，墨活着被羁押；9滴洁净泉液中林辰得6滴，3滴给寿储告急者，3滴污染样本隔离。林辰腿伤、顾肩伤、苏剑损；没有斩王器或晋入神海。\"\n}"
+      },
+      {
+        "sourceId": "review-unit/282",
+        "quote": "{\n  \"id\": \"ms_v2_barge\",\n  \"title\": \"潮沟截驳与有条件合作\",\n  \"kind\": \"turn\",\n  \"startChapter\": 40,\n  \"endChapter\": 46,\n  \"setup\": [\n    \"231贺由60修船储备付12买两普通符，48尚留修船；林230实领3，239诊费1、231–250食宿1后余1。没有新增寿源。\",\n    \"40贺拒押船认赔，撤回自有未交付的作业资源，引发装货停顿，237程取消下一单。233林实收苏信，主动共享相关图货单，贺以自有潮簿确定查证顺序。41章238见三人，唐自主要求离院被挡，贺核当天船牌；巡查239追放工说法见空棚、分路找人。\",\n    \"42章239掌腿实测才准短时握剑、扶栏登船；贺杆测浅水、见漂木回流后实际退船换观察位，林承担坐姿浮圈和岸钟路线。241公告仅244亥时计划，243亲见移潮口并补报；43章244戌初实际见三人推舱后林先敲钟，岗役报巡艇、贺跟近。\",\n    \"43陆护原账、两凝元伙计一人御轻钩挂拖环拉索、一人守舱。44紧接林一次剑诀二成真元切普通索，剑热停用；一人跌水，驳艉抵旧护桩，陆与另一伙计忙撑船，唐趁空开未锁死的搭扣放板。贺船头搁在板端下撞裂，三人趴板过船；林以固定浮圈救对手不追原账。\",\n"
+      },
+      {
+        "sourceId": "review-unit/282",
+        "quote": "    \"唐带出经手点货夹，245自愿交半联与旧封，许另述取封；246林以苏信原件比号，只得转运线索，验印、套号待查。原物巡查封存，林贺留签认拓本，不得提前算244已经比号。\",\n    \"五工唐顺许桐冯田244获救；吴伍卢小满不在可见船上，唐只知243旧岸仓最后见，246巡查查空，当前去处不明，50另救。陆227早知弟活着，44不是救弟；唐与船员有自主安置和作证选择。\",\n    \"巡艇244夜循钟报绕外弯、用小划舟上滩接人；245医棚与救助账承担急救及245–247临住，工人可自由离开。248–255贺工铺空床及唐许自愿轻工供三人饭食；冯休养。\",\n    \"45船损余波集中呈现唐许对是否等待的分歧，46通过远处商路飞舟离泊与原工铺谈工，让林承认自己也想见世界、贺与工人各保去向；核号、查空旧仓等过程只作结果回告，不连续开复核场。248–255工食原对价及245–255修船时段不变。\"\n  ],\n  \"cost\": \"陆和另一伙计带原账逃；林剑热、腿酸，245复查至247轻役。贺船裂底，245午实付余48含拖船修理，255午满十日交检，250未修好；林个人余1、食宿付至250。吴卢仍未找到，不能说已被逃船带走。\",\n"
+      },
+      {
+        "sourceId": "review-unit/282",
+        "quote": "  \"outcome\": \"231–250日。救三人并接回落水伙计，取得工人交的半联、旧封与有限同号线索。贺全部60储备用尽，拒撤证换赔款，与林只承诺继续陆上找人；47反诉、50救另两人、53陆改签自认仍待后续。\"\n}"
+      },
+      {
+        "sourceId": "review-unit/315",
+        "quote": "{\n  \"id\": \"chapter-25\",\n  \"chapterNumber\": 25,\n  \"volumeId\": \"vol_01\",\n  \"title\": \"废料斗下的三息\",\n  \"summary\": \"第188日辰末08:45，墨幽屠准备把俘虏和泉瓶装车转走。林辰与苏仍伏在营地，直到亲眼看见顾峤进入侧廊并收到手势，才按计划拉开囚棚闸门。林辰以一次乾元御风剑诀、二成真元只放一道风刃切断普通吊索，亲见余刃散尽并由苏核门框滑槽稳定后，才解扣推门；苏随后格开凝元看守的铁棍后剑茎被震松，停剑护送俘虏、放弃追击逃走的看守，顾在低顶主巷与墨正面交锋。墨本可弃货退入支洞，却因要夺回遗物和泉液扑向林辰。林辰抱着从货台取走的样箱和泉瓶转入检修侧廊，在两丈内直视第23章核过的八两无负载小销，以一次一息御物拨开空载拨片的锁销，倒料遮断直扑路线，顾借三息间隔蓄势，支付三成元罡与0.25元载施展太清太乙真光，在第三息完成时克制墨已连续付费开启的第二息血爪，墨停爪后只用肉身抢箱；顾另有独立站位条件，另付二成以已学贴身推劲、实际接膝与废木卡足使墨失衡受伤，随后贴身看押。林辰被落石割伤腿，无法再追击。本次开战在08:45亲见顾手势之后，解囚与同阶交锋至巳初后09:15结束，随后止血、收押并安排伤者转移，10:45才沿支洞出发。\",\n"
+      },
+      {
+        "sourceId": "review-unit/315",
+        "quote": "  \"characterGoals\": \"林辰要先打开囚笼并以普通结构牵制墨，为顾创造正面窗口；苏要带俘虏撤离并隔开凝元看守；顾峤要在不弃守责任的前提下制伏玄府境墨；墨要夺回上交遗物和泉液。\",\n  \"conflict\": \"墨拥有玄府元罡和已学近身术法，普通闸门和废料斗无法封禁他；顾的真光需三个呼吸蓄势并支付三成元罡、0.25元载寿储（按原三个月成本核算），若无遮挡或信号便不能发动。 本章调用char_10已列的开篇前资格：顾经宗门师长指导完成玄府纯阳供能、三息凝印及主动收势实测，经脉复诊合格；这不是188日临场新增训练。入场仍按25章前无新增伤情、十成元罡、当日未施真光核验；右肩受伤后停重推及该侧施术，不因旧资格合格忽略当场限制。\",\n  \"choice\": \"林辰等到顾峤亲自发出手势才开闸，主动暴露自己并拉动废料斗；顾放弃追求无伤制敌，支付既定寿元施术；墨为夺货放弃最佳撤退路线。\",\n"
+      },
+      {
+        "sourceId": "review-unit/315",
+        "quote": "  \"cost\": \"林辰支付一次风刃的二成真元后即停灌注、收起发热的剑，随后被落石割伤腿，苏的普通铁剑护手弯、剑茎松而停用，看守得以逃脱，顾肩部受伤且消耗0.25元载；墨负伤被擒但未死亡，随顾进来的两名普通护卫在挡开转运车与搬人时一死一伤，姓名由同行名册保留，死亡不能由泉液挽回，泉液尚未完成验收。 林由先前八成半的保守可用余量起算，不把途中休整擅自算满；本次剑诀二成、拨废料斗轻插销半成后，账面余六成，腿伤后可用上限也降至六成，停止施术。顾到场前元罡十成，左前臂局部护罡聚合一成、承受一次斜擦一成，共二成；真光三成后余五成，贴身推劲再预付二成后余三成。右肩伤发生于推劲结束时，随后可用上限下修至六成，实际仍只有三成，左侧气路实检稳定才可做ax_13定腕轻操作；不再重推、不再开护罡或第二印，不用恢复绕过伤情。 本章承接第21章动作后的8.5成：8.5−2−0.5=6成；第21章的半成已在8.5起点中扣过，本章半成对应新的废料斗插销，两个动作各只付一次。 分账标注：本段8.5成至六成只记林辰真元，不是寿储元载。顾的0.25元载属于顾本人，林本场没有发动燃寿术。林的寿储沿第13章第19日诊察的至少7元载起算，扣第18章凝元已付3元载及至188日共169天自然流逝，在无新增寿储耗损条件下约为7−3−169/365=3.536986元载；这只是原诊察基准下的条件预算，腿伤后仍须白榆复查是否另有耗"
+      },
+      {
+        "sourceId": "review-unit/315",
+        "quote": "损，不凭该算式跳过复评或增加行动许可。\",\n  \"threads\": [\n    \"th_01\",\n    \"sec_01\",\n    \"sec_02\",\n    \"rel_01\",\n    \"rel_03\",\n    \"prom_01\"\n  ],\n  \"endState\": \"被掳者离开笼车，两名随顾到场的普通护卫协助撤人时一死一伤；林辰腿被落石割伤，仍护住已取走的样箱与封瓶。墨被顾同阶制伏并持续看守，尚未完成外营交押或泉液验证，苏带担架回来接林辰。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_04\",\n    \"char_10\"\n  ],\n  \"location\": \"loc_05灵虚古境本次掳人营地主巷、普通货台与检修侧廊\",\n  \"storyTime\": \"第188日辰末08:45亲见手势后开战，至巳初后09:15结束；09:15–10:45处理伤者与准备撤离\",\n  \"scenes\": [\n    \"188日08:45，林苏在营地后方亲见顾进入侧廊并发出手势，才越出隐蔽处；秦已离开去求援，其他主营被扣者到本次行动才被解救。\",\n"
+      },
+      {
+        "sourceId": "review-unit/315",
+        "quote": "    \"林辰移到囚棚门外，施展一次乾元御风剑诀，支付二成真元切断束住门闩的普通吊索，先确认唯一余刃已散、棚门仍受原门框和滑槽支承，再用肉身解轻扣，由苏推开棚门。本式结束即停止灌注、收起热剑，之后拨插销用的是御物，不再以发热剑体施术。\",\n    \"苏用随身普通铁剑格开凝元看守手中的普通铁棍，让俘虏先过侧门；她只以肉身握剑偏架，未用未定义的剑光或真元护刃。铁棍砸弯护手并震松剑茎，她再握时剑刃明显晃动，立即停用，退到囚棚转角护送俘虏，不再追这名看守。看守沿另一支道逃脱，不能把苏引走看守写成已将其制伏。顾在低顶主巷先以普通脚步卡住墨借货台上跃的落点，两人以肉身闪让和普通拳棍试探，不把本次上跃写成持续飞行。顾看到墨手中短木棍斜扫，在退让中按ax_12先聚左前臂掌大局部护罡一息并付一成，承受一次斜擦另付一成后该层散去；后续以货柱隔开追击，至少三息重新定息，不连续开全身护体。到这段拳棍试探结束，墨尚未施噬血爪，也未发动其他术法；其后短施两息的起止见下文，不把试探段的停术延伸到整场。护罡不是顾的额外攻杀招。\",\n    \"林辰先开转运笼，再从货台抱走样箱与封瓶；箱角松开露出残片刻痕，墨看见本次必须交货的物件被带走，舍弃撤离机会扑向他。\",\n"
+      },
+      {
+        "sourceId": "review-unit/315",
+        "quote": "    \"林辰在两丈内直视第23章核过的八两小销，御动一息拨销，预付半成真元；小销只锁空载拨片，承重的支轴与闸钩由原有机械关系释放，倒料靠重力形成遮挡。落石割伤他的腿；不以御物托斗或搬矿料。\",\n    \"按同一交锋的呼吸顺序：顾起印第一息借倒料和货柱隔开直扑，开始纯阳凝印；第二息墨从遮挡侧缘绕到可见近身处，为抓回样箱先付一成元罡开启血爪第一息，顾侧步护住箱位，没有提前放光。顾起印第三息开始时，墨为连续抓击再先付一成，血爪进入第二息；顾完成第三息凝印后才支付三成元罡和0.25元载，向眼前实际外放的爪煞施真光并在这次近身交锋中接触灼散它。墨立即停爪，未再开启第三息；两息各自已付的成本不退，六息重启间隔从此刻停爪起算。真光结束顾即停术，墨仍有至少三成玄府元罡，不因属性受克自动失去行动。停爪后墨本可侧退，却不再施术，以普通手臂伸抢顾身后的样箱；顾退半步让开直扑，在货台角处扣住墨外露前膝侧，双足站稳。墨把重心继续压向前脚、右手绕货柱去抓箱，错过抽腿或用左手打断聚劲的机会；顾这才用ax_13聚劲一息、预付二成，下一息沿膝侧向内推转。墨的前脚正卡在自己跨过的普通废木垫边，顺势扭膝失衡倒地，腿受伤；并非推劲付费就必能击倒同阶。墨在散劲时收回的右手普通抓击伤顾右肩，双方都不能把此伤当作未发生。\",\n"
+      },
+      {
+        "sourceId": "review-unit/315",
+        "quote": "    \"顾立即停重推，只以尚稳的左手、膝与地面配合压住墨的前臂，苏把现场普通绑货绳递来约束姿势。墨前一场爪毒仍在，两息再开爪后指骨已刺痛、反抓时指口重裂、双腿不能稳撑，此刻强聚罡会使指口流血不止，须停爪及推劲就医；不是被真光降境或凭绳封经。顾仍须近身看押，若墨稳定重新施术，普通绳并不能阻止。战斗至09:15结束；随后原两名普通护卫一死一伤，苏与能行动的获救采集者收拢伤者。以随行救护布料暂止血、取现场原运人小推车安置伤护卫和包裹死者，另用既有担架接林；到10:45才完成出发准备。顾持续近身看墨，不兼抬车。\",\n    \"编辑执行账：本场三十分钟包括交锋、走位与解囚，不是持续施爪。墨由187日动作后至少五成余量承接，期间不计任何未写出的恢复，188日开战前检查指口闭合、手指无麻木失准、保守可用仍至少五成；普通拳棍与步行不另算术费。仅在顾起印第二、第三息短施连续两息血爪，两息各预付一成后至少三成；顾第三息完成后真光接触已外放爪煞，墨当即停爪。停爪后的扑抢和伤顾肩部均为普通肉身动作，不在六息间隔内重启，不再扣第三息；真光未消除这份余量；随后的裂口流血、腿伤及运罡失稳令其停术，不以余额归零解释被擒。前日积毒未清，本次两息使指骨刺痛加重；未靠吸血或割指回补。这个保守账只供执行校验，林苏不知墨的确切余量。\",\n"
+      },
+      {
+        "sourceId": "review-unit/315",
+        "quote": "    \"林在囚棚外侧先核普通吊索用途：它绕在横闩外耳，拉住向侧面滑开的普通棚门，不悬挂人或重物，也不是废料斗承重索。索段在距林一丈的外耳处外露，门后人员已应苏的喊话退离门缝；林从侧前方看清空隙，按18章两丈内实测锁定、路径无人遮挡才起式。本次切中后横闩失去拉力，林亲见本次唯一余刃在两丈界内耗散，苏在刃路外检查门板仍嵌原滑槽、门框未动，才由林用另一只手解开原普通插扣，苏以肉身推门引人；剑诀不抬闸门。若绳段被遮或无法锁定则停止起式，苏先挡住侧口、由顾实际压制后再开门，不让囚者站进风刃路径。\",\n    \"本场剑诀只放一道，完整二成不减。出手前林在原侧前方看清外耳绳段后一丈至本人两丈边界的延长线：沿棚门外侧空地掠过，不穿囚棚内部、门框、苏与顾墨交锋的主巷；苏先让门边俘虏退到门洞内侧两旁并听见回应，自己退出这条外侧直线。实际绳断后林保持原稳姿观察唯一刃影至两丈边界散尽，苏在刃路外实际检查门板、滑槽和门框稳定，再依前述顺序解扣推门。发刃后若失锁、有人闯入或余刃被遮，停发示警，不立即拨扣或放人；待余刃全部可确认消散且门体稳定后才继续，无法确认就守侧口等顾控住现场，再绕开刃路以普通工具处理，不多施一式补救。此等待包含在08:45—09:15的原交锋和解囚时段内；后续三息真光窗口仍由更晚的废料斗动作另行触发，不提前把余刃等待挤进那三息。\"\n  ],\n  \"source\": \"author\",\n"
+      },
+      {
+        "sourceId": "review-unit/315",
+        "quote": "  \"executionChecks\": [\n    {\n      \"id\": \"signal-blade-and-pin\",\n      \"requirement\": \"先亲见顾到场手势才开闸；林只放一道风刃且付完整二成，亲见余刃散尽、门框滑槽稳固后才解扣推门；拨废料斗空载轻销另付半成，不御物托斗搬矿料。\",\n      \"sourceQuestion\": {\n        \"document\": \"plan\",\n        \"questionId\": \"chapter25-claw-sequence\"\n      }\n    },\n    {\n      \"id\": \"light-claw-timing\",\n      \"requirement\": \"按同一交锋三息顺序：顾凝印第二、第三息分别对应墨预付的两息血爪；第三息完成后顾才付三成元罡和0.25元载，真光接触已外放爪煞；墨停爪后保留余额与六息重启限制，不能凭属性克制就失去行动。\",\n      \"sourceQuestion\": {\n        \"document\": \"plan\",\n        \"questionId\": \"chapter25-claw-sequence\"\n      }\n    },\n    {\n      \"id\": \"separate-accounts-and-injury\",\n"
+      },
+      {
+        "sourceId": "review-unit/315",
+        "quote": "      \"requirement\": \"林真元以8.5−2−0.5=6成承接，不重复扣21章成本；顾0.25元载属于顾，不记到林寿储。林腿伤后停术，顾肩伤后停重推与该侧施术；账面余额不是伤情许可，不用恢复自动解除伤限。\",\n      \"sourceQuestion\": {\n        \"document\": \"story\",\n        \"questionId\": \"audit-ending-cost\"\n      }\n    },\n    {\n      \"id\": \"custody-after-counter\",\n      \"requirement\": \"墨被制伏须有贴身推劲的站位、接膝和废木卡足等实际条件；绳子不能封经。保留普通护卫一死一伤，顾持续近身看押不兼抬车，09:15结束战斗后到10:45才完成撤离准备。\",\n      \"sourceQuestion\": {\n        \"document\": \"story\",\n        \"questionId\": \"audit-guard-return-chain\"\n      }\n    }\n  ]\n}"
+      },
+      {
+        "sourceId": "review-unit/316",
+        "quote": "{\n  \"id\": \"chapter-26\",\n  \"chapterNumber\": 26,\n  \"volumeId\": \"vol_01\",\n  \"title\": \"三滴归伤者\",\n  \"summary\": \"第188日10:45，顾带伤近身看押墨，苏与能行动的获救采集者轮替抬林的担架、推载伤护卫和包裹死者的原运人小车，绕开落料侧廊沿已核四里主支洞撤回；伤者队伍用75分钟，到12:00抵外营，由已休足的乔当面接墨，杜仍守入口。顾交押后先让白榆止血、固定肩伤，夜间休息，次日才参加核验。乔从午正守到酉初，杜从辰初守到酉初。褚、邵按预排在途中白昼补眠后暮抵，酉初分别当面接入口和墨岗，夜班到189日辰初，再由休足的杜、乔接两处日班；顾不充作夜间后备。189日众人按各自亲见范围登记获救者，核对样箱和四支各三滴的原封管，与182日采封原联、实际采封人的亲历及入口对照页逐项相合，先确认灵眼原液来源与本期个人可分额归属。白榆再独立验毒验煞，九滴洁净、三滴污染；联名授权的入口配额台核同批诊察与申请，林主动将原三剂申请减为两剂，让告急者的一剂先完成签领；配额台批准余两剂给林封存，顾、苏放弃本批分配申请。林不占污染管或未来配额，不能由救援功劳自行分药。墨只承认本次营地与货物，林腿伤仍不能追击。\",\n"
+      },
+      {
+        "sourceId": "review-unit/316",
+        "quote": "  \"characterGoals\": \"林辰要为申请的六滴洁净泉液完成来源与配额复核，并保住残片和本次证据，同时确保自己与伤者先撤；苏要优先照顾获救者并保存口供；顾要完成制伏后的责任交接；乔、杜、褚、邵要维持押解与入口守备不断班；墨要隐瞒上层与更大网络。\",\n  \"conflict\": \"十二滴中三滴污染，药物分配不能靠救援功劳决定；墨虽负伤仍是玄府境，凡绳和普通笼不能永久拘禁。看守、守口、疗伤和返程互相牵制，顾不能为凑班强行复岗，换班者若未实际到场就必须推迟后续安排。\",\n  \"choice\": \"林主动将尚未获准的三剂申请减为两剂，使告急者的一剂先获签领；不拖延复核争余量，也不以救回者身份包揽药物；顾把急于核验的事交给苏，先在188日午正亲交乔再疗伤。众人将非急迫核验留到次日，按实际到场与已休时间交岗。\",\n"
+      },
+      {
+        "sourceId": "review-unit/316",
+        "quote": "  \"cost\": \"林辰仅得六滴且腿伤需常规治疗，苏剑受损，顾肩伤并已支付0.25元载，护送队出现伤亡；三滴污染泉液报废或待处置，墨活着羁押，幕后网络仍未揭开。 顾自战末三成起算，右肩受伤不作重推，先检查未受伤左臂气路与握持仍稳，至午正交押前仅两次按ax_13定腕压下墨未施术的普通转腕：每次先握住一只手腕，聚罡一息、预付半成、纠姿至多一息，间隔至少三息；合计一成后余二成。两次后不再用此操作，保持普通左手握持与步行看押，到午正交岗疗伤，不再施真光。墨腿伤不能站稳，手指裂口尚未止血，途中两次试转腕后仍无稳定起术；本段没有用半成定腕抵挡新的玄府攻杀。若左臂气路也不稳或墨恢复术法，必须停运呼援，不能靠原计划继续硬押。健康看守每班给短时制动预留两成元罡，不整班持续开护体；遇反抗超出余量须提前叫备勤交岗、暂停转运，不能透支硬撑。每人交班后的十二小时内可安排八小时静息与四小时温和吐纳，按规则最多回四成，不依赖顾补班；伤势、灵气或休息条件破坏则重新核班。 作者开篇前技能：乔、杜、褚、邵均已由宗门教习完成ax_13定腕的接触导罡、主动松手及受控脱手实测，医修复查合格；各班预留两成最多只够四次半成动作，仍受连续两次后休整一刻的限制，不能把备用额度写成十二小时持续禁锢。\",\n  \"threads\": [\n    \"th_01\",\n    \"sec_01\",\n    \"sec_02\",\n"
+      },
+      {
+        "sourceId": "review-unit/316",
+        "quote": "    \"rel_01\",\n    \"rel_03\",\n    \"prom_01\"\n  ],\n  \"endState\": \"第189日，墨已于188日午正由顾交乔、酉初由乔交邵，夜班未空置；杜/褚守入口、乔/邵看押，07–19日班与19–次日07夜班各12小时，顾休养不占班额。九滴洁净泉液已按原批个人可分额正式登记三滴给告急者、六滴由林封存；污染管三滴单独登记扣原批损失，不补额；林只登记领药、既用有效剂数仍零，未提前增加寿储；幕后网络仍未揭开。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_04\",\n    \"char_09\",\n    \"char_10\",\n    \"char_11\",\n    \"char_12\",\n    \"char_13\",\n    \"char_17\",\n    \"char_18\"\n  ],\n  \"location\": \"loc_05灵虚古境前哨外营、入口交接处\",\n  \"storyTime\": \"第188日巳末10:45离营、午正12:00交押、酉初19:00两岗接夜班；第189日辰初07:00换日班、午后验收分配\",\n  \"scenes\": [\n"
+      },
+      {
+        "sourceId": "review-unit/316",
+        "quote": "    \"188日10:45从营地出发，苏与能行动的获救采集者轮替抬林担架、推原运人小车上的伤护卫及包裹死者，走已核主支洞避开落料侧廊。四里伤者队伍走75分钟，比秦轻装一小时更慢；顾全程近身看墨，12:00抵外营面交乔，杜仍守入口。顾随后交白榆止血固定肩伤并休息，不先去核物。\",\n    \"乔午正至酉初看墨，杜辰初至酉初守入口。褚邵按180日所核行程先在山路歇脚棚10–16时睡6小时、16–18时走末段，暮抵外营后饮食核牌；19时褚接杜的入口岗、邵接乔的墨岗，二人守至189日07时，杜乔连续休息12小时后回来。顾整夜不当值。\",\n    \"189日两处日岗由杜乔接回；苏先登记获救者亲见范围，秦禾补路线，林与已诊治休息的顾核对样箱、封瓶和十二滴总数，不让当班乔离墨去开会。 苏把第25章停用的铁剑裹刃封好，向交押队登记护手弯与剑茎松，随伤者物品带返；它仍属苏持有的损坏物，26至32章不再用于格挡、持剑威慑或施术，苏此段负责搬扶与证人照护，墨由原具名玄府看守。\",\n"
+      },
+      {
+        "sourceId": "review-unit/316",
+        "quote": "    \"189日实际获救的原采封人只就亲历作证：182日在灵眼按当期联名簿分封四支管、每管三滴，返路被劫；采收原联由入口对照页与其领管号核验。配额书吏逐件对管号、封签接缝和滴数，三支原封相合，另一支有破损须隔离；墨承认收过此批只作旁证。原簿将这十二滴列在太清本期尚未指名的个人申请可分额，不属保育、公共医疗、应急或他人已分到手的药。未经核验不因瓶里有液就确认来源。\",\n    \"白榆在来源核对之外逐管独立验毒验煞：三支原封管共九滴可用，破损管三滴污染单独封存待处置；没有把污染管重新算进可用量。入口书吏将追回12、洁净9、污染损失3接回182日同一批，追回不另开12滴配额。白榆复查同批申请：一名采集者寿储告急，林寿储仍低且此前未用过灵泉，另一伤者只需常规外伤治疗；顾苏撤回本批个人申请，不据救援功劳优先分药。\",\n"
+      },
+      {
+        "sourceId": "review-unit/316",
+        "quote": "    \"白榆建议先救急，书吏说明林原申请九滴与告急者三滴相冲突，若坚持原申请须暂缓本批个人分配交三方复核；申请不是已经归林的药。林主动撤去一剂申请，同意告急者先领3滴，不索回报。入口配额台据双方签认、诊察与本批余量核准另6滴两支封管给林，净分9不超过原批可分量；林不动污染管、不预借下期份额。原批登记、各人领用页、林既用有效剂数零及拟用两剂分栏记，林与告急者各自签收；189日只有原液出入账，林药程190日才开始，两剂未来10元载不能先花。另一伤者常规治疗另走既有药账，泉液不治伤。\",\n    \"墨只承认本营货物，林因腿伤不能追击；常规外伤先治、非急迫核验次日做，没有用整夜伤者看押换取手续提前。\"\n  ],\n  \"source\": \"author\"\n}"
+      },
+      {
+        "sourceId": "review-unit/334",
+        "quote": "{\n  \"id\": \"chapter-44\",\n  \"chapterNumber\": 44,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"浅滩一剑\",\n  \"summary\": \"紧接43章244日戌初钩索拖偏的瞬间，林坐稳只用一次剑诀切断外露索，付二成真元、剑热停术。舷边收余索的伙计因驳艉骤摆、脚下湿滑失足跌水，陆驳转向时艉部被旧护桩顶住，陆和另一伙计忙撑篙脱困。林亲见本次唯一余刃在两丈界内散尽；唐趁看守离开推开未锁死的舱门外搭扣，先扣住短跳板验板身和搭点。贺宁可撞裂自船底也把船头搁在沙舌，实际停到板端下面；唐见船位和护桩仍稳才放板。林看见陆提原账箱向船头去，却在余刃已散后先递固定浮圈给刃路外、正抓舷侧垂索的落水者。许、冯、唐依次趴板过船，唐带出自己挂着的点货夹。陆见巡艇灯接近，取舍保原账，撑开驳船逃向深槽。\",\n  \"characterGoals\": \"林要保住工人和落水者，不以腿伤硬拼；贺要给三人提供可踩住的逃生落点；唐要带两名同伴出舱并保住自己经手的点货夹；陆要保住原账、躲过巡查，不愿为困住贺船把自己留在浅沟。\",\n  \"conflict\": \"驳船提前离开原定过闸路线，巡艇要绕外弯赶到。陆与两名伙计均凝元，正面久战林贺无胜算；断索和护桩只提供十余息转移窗口，贺若怕损船，跳板下就没有稳定落点。\",\n"
+      },
+      {
+        "sourceId": "review-unit/334",
+        "quote": "  \"choice\": \"林看见可追原账的方向，仍先把固定救生浮圈递给落水对手，不追陆；贺主动搁浅接板，唐先放许冯过船再带点货夹离开，救人分步不代表放弃另两人。\",\n  \"cost\": \"林一次剑诀支出二成真元，剑体热而停用；贺船底碰裂，三人暂上船但不能出海追击。原账随陆逃走，半页来源仍须核对；林不跳船不提整个人，腿因晃动酸胀，需再复查。 出剑前沿用239日复测的保守余量五成，一式二成后余三成；二成已含剑的供能，之后不再御物，浮圈用手递。剑独立散热，不能借散热把真元账重置。 送钩伙计承接43章四成半真元，44章没有再施术；断索、船摆和失足属于普通受力与站位后果，不扣寿储、不凭空封住其修为。\",\n  \"threads\": [\n    \"th_03\",\n    \"sec_02\"\n  ],\n  \"endState\": \"244夜，唐、许、冯到贺船，唐留着点货夹；落水伙计抓浮圈在船侧，待已到船上的唐与许协力拉上来。陆和另一伙计带原账驶离，巡艇灯已转过外弯。另两名工人不在林视野，不能认定在逃船上。林剑热、真元已减，贺船搁浅破底，不能续追；点货夹尚未启读和比对。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_15\",\n    \"char_16\",\n    \"char_22\"\n  ],\n"
+      },
+      {
+        "sourceId": "review-unit/334",
+        "quote": "  \"location\": \"loc_23天宝外港货院、公共码头、潮沟及船坞\",\n  \"storyTime\": \"第244日戌初至入夜；承接43章已报警登船和钩索拖偏，直接从切索开始\",\n  \"scenes\": [\n    \"两船暂近，林坐稳以一次乾元御风剑诀只放一道风刃切外露普通索，支出二成真元，收热剑不再施术；普通索骤断后驳艉随原转向横摆，正在舷边收松余索的伙计脚下湿滑失足跌水；他先前已停御物，落水不是术法反噬。驳转深槽时艉部抵住旧护桩，陆和另一伙计离舱口用长篙顶开，争的是保账脱困，不能继续腾手压住小船。\",\n    \"唐从低舱门板上沿缺口伸手掀开只搭未锁的外扣，让许先出去；三人放下靠滩舷用于装卸的短板。贺将小船头推上沙舌撞停，板端落在小船头舷内，两船靠滩侧相隔不足一臂。船底在硬石上裂开，她仍守舵稳住接人的落点，板只支撑这十余息窗口。\",\n    \"林看见陆正把原账箱提向船头，没再追钩箱，转而递出系在艉桩上的浮圈；落水伙计抓住圈，受力落在船桩，林不悬提人。许冯先趴板过去，唐最后把装卸时领到、挂在腰间的油布点货夹带走，越板后收腿让板脱开。\",\n"
+      },
+      {
+        "sourceId": "review-unit/334",
+        "quote": "    \"船尾脱离护桩，巡艇灯从外弯出现；陆看见夹被唐带走，仍选择带原账先逃，另一伙计掌篙顺深槽撤走，没有留场追杀。林停止握剑，唐与许留在贺船低舷准备协力拉人，抓圈者仍在船侧靠固定浮圈保持头部出水；贺船进浅水，靠备用缆固定等待巡查。实际拉上低舷承接在第45章开场，本章不重复完成。\",\n    \"林坐在原船中段扶栏处，先确认送钩伙计已收回手，钩索外露段在两船间距自己不足一丈、视线与导刃路径未被舷板或人遮住。绳为贺先前亲见的普通装卸索，本次林在18章已实测两丈内稳定锁定，才施凝元式；实际命中一处绳段，没有沿索追击人体。船摆使视线失去或有人进入刃路即停式不重发，贺先退向浅水等待巡艇，不能拿二成费用担保必断。\",\n    \"本次只凝一道风刃、仍付完整二成。林借43章仍照到此处的岸边装卸灯，从原坐位看清不足一丈处索段及其背后至本人两丈边界的斜下直线路径：在两船外侧的开阔水面上，不穿陆驳的舷边、低舱、收索伙计或己方船体。灯影、船摆或人员使这条全程路径不再可见，就不放刃；放刃后失锁只停发示警，不令余刃消失。本次一道实际切中，余刃沿原斜下方向在两丈界内散尽，林亲见刃影消散后才递浮圈。断索引起的艉摆、伙计失足和护桩顶船仍先发生，不因等待撤销；落水者落在原刃路外的船侧水面，自行抓住船舷外原垂索维持头部出水，林不另施御物托人。\",\n"
+      },
+      {
+        "sourceId": "review-unit/334",
+        "quote": "    \"十余息窗口仍从驳艉抵住护桩那一刻起算，包含确认与搁浅时间，不在检验后重新计时。本次前两息林亲见余刃散尽，贺同时把己船船头搁到原沙舌并观察船头不再横移，船底照原安排碰裂；唐先解舱门外搭扣但扣住短板，摸验原板身和驳侧搭点未裂，见贺船头停在板端下且护桩仍抵驳艉才放板。随后约十息，林在己方固定座位向刃路外的落水者递固定浮圈，许冯唐依次趴板过船，递圈与首人过板可由不同人在分离位置同时做。贺持续看板端和船位，林不站起负重；唐最后离板后陆才撑开驳艉逃向深槽。若余刃未明、板端滑脱或护桩先松，立即停过板，贺先稳住已到船上的人，唐让未过者退回舱侧等巡艇，不声称仍能在原窗口救出三人。\"\n  ],\n  \"source\": \"author\",\n  \"executionChecks\": [\n    {\n      \"id\": \"rescue-window\",\n      \"requirement\": \"切索后驳艉摆动、伙计失足、护桩顶驳先发生；林确认唯一余刃消散，贺撞停裂底且唐验板和搭点后才放板。确认与搁浅算在同一个十余息窗口内，不能重新计时；不稳则停过板。\",\n      \"sourceQuestion\": {\n        \"document\": \"story\",\n        \"questionId\": \"audit-barge-inspection\"\n      }\n    },\n"
+      },
+      {
+        "sourceId": "review-unit/334",
+        "quote": "    {\n      \"id\": \"rescue-cost-and-agency\",\n      \"requirement\": \"林一式二成后余三成、热剑停用，不再御物提人；手递固定浮圈、船桩承重，唐许冯自行依序趴板。44章末唐许只到位准备拉人，落水者仍抓圈在船侧；实际拉上低舷留到45章开场。贺承担破底无法追击，陆带原账逃走，点货夹尚未读明。\",\n      \"sourceQuestion\": {\n        \"document\": \"story\",\n        \"questionId\": \"audit-first50-narrative\"\n      }\n    }\n  ]\n}"
+      }
+    ],
+    "revisionAdvice": "统一第43章结束、第44章出剑前林辰的真元起始余额：若确为四成半，说明第239日至第244日期间实际有效恢复、复测基准和上限，或将第44章算式改为四成半起算；若确为五成，补出四成半恢复至五成的连续有效时段、实际饮食/环境与复测记录。同步核对第44章二成剑诀后的三成余额、后续伤情上限与第45章承接，避免把未说明的恢复当作补账。"
+  },
+  "resultSha256": "3d54de73a3734354c886ca982bc2ae7abc5c5b7db11235ca987d4a9acd36d168",
+  "modelResponsesSha256": "a24d3d370b39446a8650d2881cee5dfcfa057edf448c633fe8d921f3062c57d2",
+  "sources": [
+    {
+      "id": "plan/chapters/42",
+      "sha256": "5574867049ffcb737a627c95aff93e9fe7115fb1f5fb5d6ecd7bfba6bee2ae8d",
+      "text": "{\n  \"id\": \"chapter-42\",\n  \"chapterNumber\": 42,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"退得出来的船位\",\n  \"summary\": \"239林经握轻柄、扶栏一级台阶和平走实测才获准短时握剑、普通登船，付诊费1与231–250食宿1后余1。医修准其受限握剑后，林验冷却剑体并低流量试注，耗半成；试船前另回住处完成一小时不受扰吐纳，复测只回半成至五成。同日巡查查程的无签认放工条，休工棚为空，继续分路追人。贺先系船测水，再收杆解缆沿公共近岸试行，林坐船尾放漂木；旧潮簿预计能停的第一位置实测水浅，漂木又被回流推向窄处。贺立即掉头，放弃正对待查驳船的视线。林想让她再靠近一点，贺把回旋木片指给他看：现在能进去，不等于接到人后能出来。两人改靠堤第二位置，重新测深确认退路，才练系桩浮圈和岸钟路线。241公告预计244亥时过闸，243实见低驳移潮口；林接受少看一段水面以保住真正可撤的位置。\",\n  \"characterGoals\": \"林要在受伤限制内帮助找到五人，证明自己不是只能被照料；贺要以可撤离的近岸观察判断驳船动向，不再拿船与人盲赌；巡查要核实程的放工说法并追踪失联工人。\",\n  \"conflict\": \"旧潮簿不能保证今天的水深和回流，最直观的盯船位置既被堤角堆栈遮出口，又不利接人后退回。林想贴近查舱，但伤势不能支撑跳船负重，贺也不拿尚未救到的人赌一条没有退路的船位。\",\n  \"choice\": \"贺用实测水深和漂木流向否定原观察位，及时退船；林放弃靠近偷登，接受较差正面视野换取可撤路线，承担坐姿浮圈与岸钟报警准备。\",\n  \"cost\": \"林付掉最后三枚中的两枚，仅余1枚，食宿只结至250日；实测许可不等于恢复追跑、负重或跳船能力。巡查查到空棚后只能分路继续追人，吴卢和三名已见工人的实际位置仍未确定；贺的船未受损，48枚修船款也未动。 239日复测确认掌腿允许的真元可用上限为五成，沿用215日行动后保守余量五成；诊察没有增加真元或寿储，也没有授予跳船负重许可。上次25章完整剑诀后一直未再灌注，239日医修先准受限握剑；林触验剑脊与柄均已冷却，以低流量试注确认无异响，此次缓慢试注共耗半成，余四成半。试船之前另在原住处完成一小时不受扰温和吐纳，复测只记回半成至伤后上限五成，再赴码头；此后至244出剑前未再施术。\",\n  \"threads\": [\n    \"th_03\",\n    \"sec_02\"\n  ],\n  \"endState\": \"243日暮，巡查已将程的放工条与空休工棚写入记录，正分查旧岸仓、外闸和院外路径；程仍未交出五人。林贺只亲见待查低驳移到潮沟口，知道241公告预定244日亥时过外闸，却不知其是否提前或改道。两人已实测靠堤观察位、撤退线、岸钟与巡查岗短路，准备继续观察而非先登船。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_14\",\n    \"char_15\"\n  ],\n  \"location\": \"loc_23天宝外港程记货院、公共近岸堤、潮沟与船坞泊位\",\n  \"storyTime\": \"第239日至第243日\",\n  \"scenes\": [\n    \"239日医修让林握轻柄、扶栏上下一级台阶并平走复查，掌无渗痛、腿负荷稳定，准短时握剑与扶栏普通登船，仍禁跳船、负重和追跑；林付1枚诊费，再付1枚结清231至250日食宿，余1枚。\",\n    \"医修准许受限握剑后，林验剑脊与柄已不灼热，低流量试注无异响，共耗半成，从五成降至四成半。赴码头前他回原住处完成一小时不受扰温和吐纳，复测只回半成到伤后上限五成；不是诊察回元，也没有在试船警戒时恢复。\",\n    \"近巡查依据238日受理记录到程记核五人，程出示没有本人签认的放工条，称唐许冯已去北泊休工棚；巡查实查空棚，留下记录后分路问旧岸仓、外闸和院外承运去向，不将纸条当作人已自由的证明。\",\n    \"贺先将自船系在公共近岸泊桩，用普通测深杆核第一观察位水深，比旧潮簿记的浅；收杆后才解缆试行。林坐稳船尾依次放漂木，木片绕回旋流、偏向窄处，水深来自杆测、流向来自木片，二者分别记录。\",\n    \"贺操篙使小船退出回流旁的窄口，不往里硬挤；船未触底或受损。林要她再近一点，贺指着旋回木片问接到人后如何出去。林收回偷登念头，承认第一位置还被堤角和堆栈挡着浅沟小出口，正对驳船也看不全。\",\n    \"贺改到靠堤第二观察位，系稳后测深，确认能沿公共水道退出。林坐着递系在船艉桩的救生浮圈，由贺拉索验受力；随后扶栏分段走到岸钟和巡查岗，中途坐歇，与岗役当面约明林敲钟、岗役跑报巡艇，林不提重物不追跑。\",\n    \"241公告写低驳预定244日亥时经外闸；243两人从公共堤边亲见其移至潮沟口，贺立刻补报实见船位。两人守在能撤离的近岸观察位，尚未看到有人被推入舱，也不知道该船会否依公告行船。\"\n  ],\n  \"source\": \"author\"\n}"
+    },
+    {
+      "id": "plan/chapters/43",
+      "sha256": "cc1e787de2754c74ae2b8a83aec9f353a74c614388b9cfd0d7ab7fcc9e387e76",
+      "text": "{\n  \"id\": \"chapter-43\",\n  \"chapterNumber\": 43,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"先响的岸钟\",\n  \"summary\": \"244戌初，比公告早一个时辰，林贺在装卸灯下认出唐、许、冯被推入低舱，唐喊不让走，舱门外扣随即搭上。林先敲岸钟，岗役回应后沿石阶跑报巡艇；驳船已转向浅沟出口，若继续停在观察位，三人会从视线里消失。贺让林扶栏正常登船坐稳，解缆跟近，主动离开测好的安全观察位置。驳上的陆沉舟看见他们，护着原账命此前做过轻钩控制训练并完成实测的凝元伙计御动轻钩挂住贺船尾拖环，索另一端事先系在驳艉桩上；御物只付半成真元送钩，挂稳便停术，随后靠驳船前行和艉桩承力拖偏小船。林听见命令，知道对方正是先前来认弟的人，却得不到一句解释。绷紧的索把船尾带偏，贺竭力控向；林坐稳握剑，只剩切索这一瞬，施术留到下一章紧接发生。\",\n  \"characterGoals\": \"林要把真实拘束和提前开船变成及时报警，并随贺保住三人的可见位置；贺要追上自己的雇工，陆要护账逃查，不让跟船者靠近。\",\n  \"conflict\": \"公告亥时不能替代眼前戌初的动作，巡艇须走实体水路；不跟就丢视线，跟近又被同阶伙计以轻钩和船桩拖偏。林的伤势不允许跳船硬夺钩，贺独驾小船难以同时控向和解索。\",\n  \"choice\": \"林先报警而后登船，贺在没有许诺冲撞的情况下根据实见拘束决定跟进；陆选择命伙计拖开来船，林不再把救弟之情当作对方会合作的保证。\",\n  \"cost\": \"贺船被钩索拖偏，已离开原可稳守观察位；巡艇尚未到场。此刻没有施剑、没有船底破损、没有人获救，林只有短时握剑许可，下一瞬必须付出已定施术成本。 凝元伙计一次送钩支出半成真元，自身保守余量五成降至四成半，钩挂稳即停术；后续拖力由船行、普通索具和艉桩承担，不收持续施术费，也不能持续遥控钩索转向。\",\n  \"threads\": [\n    \"th_03\",\n    \"sec_02\"\n  ],\n  \"endState\": \"244戌初，三人仍在驳舱，陆在驳上护原账，轻钩已挂贺船拖环、索另一端系驳艉桩。林敲钟已获岗役回应，现扶栏登船坐稳握剑，尚未施术；贺控向。44从切索同一瞬接续，不能重报一次警、重登一次船或提前给唐点货夹内容。 送钩伙计已停御物，余四成半；拖力在普通索具与船桩上，断索即失去物理拖曳，不另添术法反噬。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_15\",\n    \"char_16\",\n    \"char_22\"\n  ],\n  \"location\": \"loc_23天宝外港公共岸钟、近岸船位与浅沟小出口\",\n  \"storyTime\": \"第244日戌初；从实见三人被推舱至钩索拖偏贺船\",\n  \"scenes\": [\n    \"244戌初，林贺在潮口两三丈外借装卸灯认出唐许冯；三人被推入低舱，唐喊不让走，看守搭上外扣。林不等公告亥时，沿已走过的短路敲岸钟，岗役回应并跑报巡艇。\",\n    \"驳转浅沟小出口。贺将小船靠稳公共岸边，林按239许可扶栏登船坐到固定座位；她解缆跟近，只求别失去三人视线，不承诺撞船或越阶夺人。\",\n    \"陆在驳上认出林贺，命一凝元伙计送轻钩挂小船尾拖环。该伙计此前在普通码头卸索差事中，已按ax_08用这一类未受力钩索头练习起动、落钩与停术，实际测过两丈内可见目标、三息内单件不足两斤的控制；试挂失败便停术，不靠凝元身份自动获得技巧。两船相隔不足两丈，本次轻钩与随动的松索头作为一件未受力钩索头合重不足两斤，一次两息内越过短距；同一根普通拖索另一端已系牢驳艉桩，不能把拖力压在御物上。伙计行动前可用真元按自身实测基准保守计五成，只做一次短时御动小钩，支出半成后余四成半；钩落入拖环便停止御物；若视线被挡、相隔超过三丈或松索提前受拉，必须停术，已付半成不退，不能续施御物强拖船。此次钩在范围内挂稳，伙计停术，随后用手收拢身边松余索。另一伙计守舱。林亲耳听令、亲见钩索才确认陆实际拦船，伙计的余元是作者计划账，林没有感知他人精确余额。\",\n    \"驳船继续前行，两船相对位移将索绷直，拖环、主索与驳艉桩承受牵拉，使小船尾偏转；没有人在持续御物拖船。贺双手控向，林坐稳握剑，掌未裂但不能跳船解钩。陆把原账箱挪在自己身边，准备驾驳逃查；原账内容尚不属林所得。\",\n    \"林看清近处外露的普通索，把握一次剑诀的角度；本章停在施术前，44接切索、支出二成真元和热剑停术，不把准备当已发动。\"\n  ],\n  \"source\": \"author\"\n}"
+    },
+    {
+      "id": "plan/chapters/44",
+      "sha256": "ef8d386bdcece300d2ed7b050abaddd8640441f9dabf44518a4b2dc3daf078ca",
+      "text": "{\n  \"id\": \"chapter-44\",\n  \"chapterNumber\": 44,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"浅滩一剑\",\n  \"summary\": \"紧接43章244日戌初钩索拖偏的瞬间，林坐稳只用一次剑诀切断外露索，付二成真元、剑热停术。舷边收余索的伙计因驳艉骤摆、脚下湿滑失足跌水，陆驳转向时艉部被旧护桩顶住，陆和另一伙计忙撑篙脱困。林亲见本次唯一余刃在两丈界内散尽；唐趁看守离开推开未锁死的舱门外搭扣，先扣住短跳板验板身和搭点。贺宁可撞裂自船底也把船头搁在沙舌，实际停到板端下面；唐见船位和护桩仍稳才放板。林看见陆提原账箱向船头去，却在余刃已散后先递固定浮圈给刃路外、正抓舷侧垂索的落水者。许、冯、唐依次趴板过船，唐带出自己挂着的点货夹。陆见巡艇灯接近，取舍保原账，撑开驳船逃向深槽。\",\n  \"characterGoals\": \"林要保住工人和落水者，不以腿伤硬拼；贺要给三人提供可踩住的逃生落点；唐要带两名同伴出舱并保住自己经手的点货夹；陆要保住原账、躲过巡查，不愿为困住贺船把自己留在浅沟。\",\n  \"conflict\": \"驳船提前离开原定过闸路线，巡艇要绕外弯赶到。陆与两名伙计均凝元，正面久战林贺无胜算；断索和护桩只提供十余息转移窗口，贺若怕损船，跳板下就没有稳定落点。\",\n  \"choice\": \"林看见可追原账的方向，仍先把固定救生浮圈递给落水对手，不追陆；贺主动搁浅接板，唐先放许冯过船再带点货夹离开，救人分步不代表放弃另两人。\",\n  \"cost\": \"林一次剑诀支出二成真元，剑体热而停用；贺船底碰裂，三人暂上船但不能出海追击。原账随陆逃走，半页来源仍须核对；林不跳船不提整个人，腿因晃动酸胀，需再复查。 出剑前沿用239日复测的保守余量五成，一式二成后余三成；二成已含剑的供能，之后不再御物，浮圈用手递。剑独立散热，不能借散热把真元账重置。 送钩伙计承接43章四成半真元，44章没有再施术；断索、船摆和失足属于普通受力与站位后果，不扣寿储、不凭空封住其修为。\",\n  \"threads\": [\n    \"th_03\",\n    \"sec_02\"\n  ],\n  \"endState\": \"244夜，唐、许、冯到贺船，唐留着点货夹；落水伙计抓浮圈在船侧，待已到船上的唐与许协力拉上来。陆和另一伙计带原账驶离，巡艇灯已转过外弯。另两名工人不在林视野，不能认定在逃船上。林剑热、真元已减，贺船搁浅破底，不能续追；点货夹尚未启读和比对。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_15\",\n    \"char_16\",\n    \"char_22\"\n  ],\n  \"location\": \"loc_23天宝外港货院、公共码头、潮沟及船坞\",\n  \"storyTime\": \"第244日戌初至入夜；承接43章已报警登船和钩索拖偏，直接从切索开始\",\n  \"scenes\": [\n    \"两船暂近，林坐稳以一次乾元御风剑诀只放一道风刃切外露普通索，支出二成真元，收热剑不再施术；普通索骤断后驳艉随原转向横摆，正在舷边收松余索的伙计脚下湿滑失足跌水；他先前已停御物，落水不是术法反噬。驳转深槽时艉部抵住旧护桩，陆和另一伙计离舱口用长篙顶开，争的是保账脱困，不能继续腾手压住小船。\",\n    \"唐从低舱门板上沿缺口伸手掀开只搭未锁的外扣，让许先出去；三人放下靠滩舷用于装卸的短板。贺将小船头推上沙舌撞停，板端落在小船头舷内，两船靠滩侧相隔不足一臂。船底在硬石上裂开，她仍守舵稳住接人的落点，板只支撑这十余息窗口。\",\n    \"林看见陆正把原账箱提向船头，没再追钩箱，转而递出系在艉桩上的浮圈；落水伙计抓住圈，受力落在船桩，林不悬提人。许冯先趴板过去，唐最后把装卸时领到、挂在腰间的油布点货夹带走，越板后收腿让板脱开。\",\n    \"船尾脱离护桩，巡艇灯从外弯出现；陆看见夹被唐带走，仍选择带原账先逃，另一伙计掌篙顺深槽撤走，没有留场追杀。林停止握剑，唐与许留在贺船低舷准备协力拉人，抓圈者仍在船侧靠固定浮圈保持头部出水；贺船进浅水，靠备用缆固定等待巡查。实际拉上低舷承接在第45章开场，本章不重复完成。\",\n    \"林坐在原船中段扶栏处，先确认送钩伙计已收回手，钩索外露段在两船间距自己不足一丈、视线与导刃路径未被舷板或人遮住。绳为贺先前亲见的普通装卸索，本次林在18章已实测两丈内稳定锁定，才施凝元式；实际命中一处绳段，没有沿索追击人体。船摆使视线失去或有人进入刃路即停式不重发，贺先退向浅水等待巡艇，不能拿二成费用担保必断。\",\n    \"本次只凝一道风刃、仍付完整二成。林借43章仍照到此处的岸边装卸灯，从原坐位看清不足一丈处索段及其背后至本人两丈边界的斜下直线路径：在两船外侧的开阔水面上，不穿陆驳的舷边、低舱、收索伙计或己方船体。灯影、船摆或人员使这条全程路径不再可见，就不放刃；放刃后失锁只停发示警，不令余刃消失。本次一道实际切中，余刃沿原斜下方向在两丈界内散尽，林亲见刃影消散后才递浮圈。断索引起的艉摆、伙计失足和护桩顶船仍先发生，不因等待撤销；落水者落在原刃路外的船侧水面，自行抓住船舷外原垂索维持头部出水，林不另施御物托人。\",\n    \"十余息窗口仍从驳艉抵住护桩那一刻起算，包含确认与搁浅时间，不在检验后重新计时。本次前两息林亲见余刃散尽，贺同时把己船船头搁到原沙舌并观察船头不再横移，船底照原安排碰裂；唐先解舱门外搭扣但扣住短板，摸验原板身和驳侧搭点未裂，见贺船头停在板端下且护桩仍抵驳艉才放板。随后约十息，林在己方固定座位向刃路外的落水者递固定浮圈，许冯唐依次趴板过船，递圈与首人过板可由不同人在分离位置同时做。贺持续看板端和船位，林不站起负重；唐最后离板后陆才撑开驳艉逃向深槽。若余刃未明、板端滑脱或护桩先松，立即停过板，贺先稳住已到船上的人，唐让未过者退回舱侧等巡艇，不声称仍能在原窗口救出三人。\"\n  ],\n  \"source\": \"author\",\n  \"executionChecks\": [\n    {\n      \"id\": \"rescue-window\",\n      \"requirement\": \"切索后驳艉摆动、伙计失足、护桩顶驳先发生；林确认唯一余刃消散，贺撞停裂底且唐验板和搭点后才放板。确认与搁浅算在同一个十余息窗口内，不能重新计时；不稳则停过板。\",\n      \"sourceQuestion\": {\n        \"document\": \"story\",\n        \"questionId\": \"audit-barge-inspection\"\n      }\n    },\n    {\n      \"id\": \"rescue-cost-and-agency\",\n      \"requirement\": \"林一式二成后余三成、热剑停用，不再御物提人；手递固定浮圈、船桩承重，唐许冯自行依序趴板。44章末唐许只到位准备拉人，落水者仍抓圈在船侧；实际拉上低舷留到45章开场。贺承担破底无法追击，陆带原账逃走，点货夹尚未读明。\",\n      \"sourceQuestion\": {\n        \"document\": \"story\",\n        \"questionId\": \"audit-first50-narrative\"\n      }\n    }\n  ]\n}"
+    }
+  ],
+  "excerpts": [
+    {
+      "sourceId": "plan/chapters/42",
+      "field": "cost",
+      "quote": "此次缓慢试注共耗半成，余四成半。试船之前另在原住处完成一小时不受扰温和吐纳，复测只记回半成至伤后上限五成，再赴码头；此后至244出剑前未再施术。"
+    },
+    {
+      "sourceId": "plan/chapters/43",
+      "field": "cost",
+      "quote": "凝元伙计一次送钩支出半成真元，自身保守余量五成降至四成半，钩挂稳即停术"
+    },
+    {
+      "sourceId": "plan/chapters/43",
+      "field": "endState",
+      "quote": "林敲钟已获岗役回应，现扶栏登船坐稳握剑，尚未施术"
+    },
+    {
+      "sourceId": "plan/chapters/43",
+      "field": "endState",
+      "quote": "送钩伙计已停御物，余四成半"
+    },
+    {
+      "sourceId": "plan/chapters/44",
+      "field": "cost",
+      "quote": "出剑前沿用239日复测的保守余量五成，一式二成后余三成"
+    },
+    {
+      "sourceId": "plan/chapters/44",
+      "field": "cost",
+      "quote": "送钩伙计承接43章四成半真元，44章没有再施术"
+    }
+  ],
+  "originalEvidence": {
+    "sourceId": "review-unit/334",
+    "quote": "  \"choice\": \"林看见可追原账的方向，仍先把固定救生浮圈递给落水对手，不追陆；贺主动搁浅接板，唐先放许冯过船再带点货夹离开，救人分步不代表放弃另两人。\",\n  \"cost\": \"林一次剑诀支出二成真元，剑体热而停用；贺船底碰裂，三人暂上船但不能出海追击。原账随陆逃走，半页来源仍须核对；林不跳船不提整个人，腿因晃动酸胀，需再复查。 出剑前沿用239日复测的保守余量五成，一式二成后余三成；二成已含剑的供能，之后不再御物，浮圈用手递。剑独立散热，不能借散热把真元账重置。 送钩伙计承接43章四成半真元，44章没有再施术；断索、船摆和失足属于普通受力与站位后果，不扣寿储、不凭空封住其修为。\",\n  \"threads\": [\n    \"th_03\",\n    \"sec_02\"\n  ],\n  \"endState\": \"244夜，唐、许、冯到贺船，唐留着点货夹；落水伙计抓浮圈在船侧，待已到船上的唐与许协力拉上来。陆和另一伙计带原账驶离，巡艇灯已转过外弯。另两名工人不在林视野，不能认定在逃船上。林剑热、真元已减，贺船搁浅破底，不能续追；点货夹尚未启读和比对。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_15\",\n    \"char_16\",\n    \"char_22\"\n  ],\n"
+  },
+  "sourceUnit": {
+    "id": "review-unit/334",
+    "sourceId": "plan/chapters/44",
+    "start": 0,
+    "end": 3084
+  },
+  "accounts": [
+    {
+      "actor": "林辰",
+      "basis": "本人的健康稳定真元上限；伤后允许上限五成",
+      "chapter42": {
+        "opening": 5,
+        "swordTestDebit": 0.5,
+        "afterTest": 4.5,
+        "measuredRecovery": 0.5,
+        "closing": 5
+      },
+      "chapter43": {
+        "opening": 5,
+        "castDebit": 0,
+        "closing": 5
+      },
+      "chapter44": {
+        "opening": 5,
+        "swordDebit": 2,
+        "closing": 3
+      }
+    },
+    {
+      "actor": "送钩伙计",
+      "basis": "伙计自身的真元基准，与林辰独立",
+      "chapter43": {
+        "opening": 5,
+        "hookDebit": 0.5,
+        "closing": 4.5
+      },
+      "chapter44": {
+        "opening": 4.5,
+        "castDebit": 0,
+        "closing": 4.5
+      }
+    }
+  ],
+  "appliedCandidateSha256": "3af9d36cdf13ec5c1164386ba210334406f9c97149dfd0a957bf9a690ad9322a",
+  "latestCandidateSha256": "ec7d90cb870f6d35f9cfc9d1c95cc21169f97bf856940f8ef8bf2a70273c19be",
+  "assessment": "负面解释把送钩伙计的四成半归给林辰；模型自己的引文已明确标出送钩伙计。冻结42章也已记林辰试剑后有效吐纳复测至五成，43章未施术，44章五成扣二成余三成。两个账户分别闭合，无需追加虚构恢复或改低林辰余额。",
+  "productionWrites": 0,
+  "modelCalls": 0,
+  "formalVerdictsOverridden": false,
+  "questionsResolved": 0,
+  "designApproved": false,
+  "limitation": "仅核对42—44章两个人物真元的归属及所列收支，不证明整场救援、全书力量体系或实际正文通过；保留原负面，待四领域完成后定向复评。"
+}
