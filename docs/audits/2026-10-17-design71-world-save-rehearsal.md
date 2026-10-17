@@ -11,3 +11,5 @@
 复核分别检查因果与权限、时间动作、人物取舍和阅读作用。历史返修被明确标为模型意见，不能冒充世界事实；新增候查规则同样标为待审提案。下一次实际调用必须等待原工作进程退出并完成终态核验，使用当前 `gpt-5.6-luna`、禁用回退、保存全部响应且最多两次调用。本次尚未发出该请求。
 
 执行脚本：`scripts/rehearse-design71-world-candidate.mjs`、`scripts/prepare-design71-world-content-review.mjs`。同日期的 `design71-world-save-rehearsal.json` 与 `design71-world-content-request.json` 保存数据库、候选、完整输入、所选来源及代码指纹。生产写入0，模型调用0，正文生成0。
+
+局部复核执行器已备好：`scripts/review-design71-world-candidate.mjs --check|--execute|--verify`。`--check` 实际核对104项来源与指纹，并确认原进程仍存活、终态证明尚不存在，因此不就绪。在该状态下实际测试 `--execute`，执行器在加载连接或建立本地调用记录前拒绝，未创建结果文件、未调用模型。语法检查通过。待条件满足时，执行器最多调用当前模型两次，逐次保存原响应，失败后禁止覆盖重提；`--verify` 只使用保存响应离线重放，核对结论及引文。当前尚无真实局部响应，不能宣称该复核通过。
