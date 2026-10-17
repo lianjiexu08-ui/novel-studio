@@ -1,0 +1,891 @@
+{
+  "preparedAt": "2026-10-17T01:23:02.565Z",
+  "candidateProofPath": "docs/audits/2026-10-17-design71-world-candidate.json",
+  "candidateProofSha256": "928153c47bb2fa20a079132faae44799d618269c5ef30b29bfd7814a6e215813",
+  "candidatePath": "data/design-candidates/design71-world-clarifications-v1.json",
+  "candidateSha256": "75aea66381caff3bab5f3b21ba6fba46f7f36ea83dfaf210839b890059f4c457",
+  "rehearsalPath": "docs/audits/2026-10-17-design71-world-save-rehearsal.json",
+  "rehearsalSha256": "2dd760532077442e4257acc2e924ea48ea76a43ca393a69c67660b617cc8bea7",
+  "inputPath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design71-world-content-review/input.json",
+  "inputSha256": "a38a65f53f4b0c812df12305454d26be83da82a22b17223a2ba580111ba1872f",
+  "fullInputPath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design71-world-save-rehearsal/full-world-input.json",
+  "fullInputSha256": "d22c8ad462f3f558dad6c9e52ff846ccaf3b70e8421b359f35895ee455422fbb",
+  "inputHash": "e1b42bf19cdc4a0a636da63acff3ce373d2792ccd795f6d79497084e98e042f5",
+  "isolatedPlanId": "plan_8ac6f54ec3ac45f89b2fe10d8a3f9a79",
+  "rubric": {
+    "causality": "仅复核本次两项局部修订：北境七名矿工的港内救助候查规则、地点与交接，及南渡货索宏观动作。核对loc_02、loc_25、ms_v2_boundary是否真正界定从开舱到暖房的身份、地点、责任和期限，还是以改规则之名免除既有入境要求。新增规则与暖房位置都是待审作者提案，不能冒充旧文已证明；检查与已知担保、防寒、船班、配载、人员任务、照护及经费是否相容。身份自报、舱单、获救和付款不能自动证明入境已获准。允许按明确规则候查，不要求先确认犯罪或先取得全文正文才可评设计。指出具体冲突或必要缺口，不因条目齐全通过。",
+    "timeline": "对照完整第30—33章、跨海规则和南渡节点，独立核定货索与箱角的实际承力者、动作章号、对象、时长、费用及失箱后果。历史补读原先只读31章、没读32章；本次必须读两章后判断宏观与细纲是否相容，不能继承先前返修也不能因作者说已修就自动通过。另核七人在291日获救至300日候查的交接顺序、夜的既有担保及301日返程是否区分；未核身份、未来经费与后续返乡不能提前当作事实。",
+    "pacing": "检查局部设计是否仍支撑人物选择和后果：林先救人而失去盯箱或追程机会，夜守撤离通道并承担耽误，港务救济不抹去伤情、追查与返乡困难。评估候查新增规则是否方便得失去可信冲突，是否暗中扩大角色权限、消除成本或将救人改为无条件全胜。它是作者设计约束，不要求正文逐条宣读行政清单；指出需要通过人物行动呈现的关键节点。本项不验收全书节奏或未生成正文文笔，也不要求展开51—100全部细纲。"
+  },
+  "runtimeBindingPath": "data/audit-runtimes/design71-runtime-bound.json",
+  "runtimeBindingSha256": "364993939a727451761a1f74fcfcbe80e7362f0fccb1517b5c14e79978b0b435",
+  "runtimePath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design71-runtime",
+  "requiredSourceIds": [
+    "world/locations/loc_02",
+    "world/locations/loc_25",
+    "world/axioms/ax_08",
+    "world/artifacts/art_16",
+    "world/artifacts/art_21",
+    "story/characters/char_05",
+    "plan/chapters/30",
+    "plan/chapters/31",
+    "plan/chapters/32",
+    "plan/chapters/33",
+    "plan/milestones/ms_growth_v1_crossing",
+    "plan/milestones/ms_v2_voyage",
+    "plan/milestones/ms_v2_boundary",
+    "plan/milestones/ms_v3_return"
+  ],
+  "sourceCharacters": 145114,
+  "selectedSources": [
+    {
+      "id": "author",
+      "sha256": "f442f82fa90ba8ba3f35f3487e8c04700dfab25f4309461c3c2400b026a5c565",
+      "characters": 434
+    },
+    {
+      "id": "world/overview",
+      "sha256": "4bd17f827785ffc7c809baa5c2fb799873729909f5525264238cfe60079e3d1d",
+      "characters": 2639
+    },
+    {
+      "id": "world/axioms/ax_01",
+      "sha256": "9b4cf41d20d10341215b75c064633660e3bbdbd46db40eb73e362f1cdbb6f1ea",
+      "characters": 805
+    },
+    {
+      "id": "world/axioms/ax_02",
+      "sha256": "77309954a44879de40e736ca017261fd49a3eb912853b0619b223d9f6a804a1b",
+      "characters": 210
+    },
+    {
+      "id": "world/axioms/ax_03",
+      "sha256": "7374eb90c1ff2385c53e6aec4fa59b2613c6bc7b60f0f0a75ef102d95e09a8ab",
+      "characters": 228
+    },
+    {
+      "id": "world/axioms/ax_04",
+      "sha256": "fd1141bcc5113668f44019f030eb375aaad5925129fd1217432959689886c899",
+      "characters": 372
+    },
+    {
+      "id": "world/axioms/ax_05",
+      "sha256": "81f0c43a0365496907a72b0dc70757f0836180eb86d73244853ccba8d2b39b8b",
+      "characters": 682
+    },
+    {
+      "id": "world/axioms/ax_06",
+      "sha256": "84738d52efd925e83d342f453313bb03df44073786623e1cb97384cc89d47a29",
+      "characters": 394
+    },
+    {
+      "id": "world/axioms/ax_07",
+      "sha256": "df8b0b4dd073dbe00e98dfe9521a4ba4a9925866ff91359975a0c8d6e72bf55a",
+      "characters": 919
+    },
+    {
+      "id": "world/axioms/ax_08",
+      "sha256": "cac7e1f1a900eb05ac144556b7f163087f8ca684710955028e0eaeac394c56a0",
+      "characters": 683
+    },
+    {
+      "id": "world/axioms/ax_09",
+      "sha256": "0c261e6a9219679c2d8fdd978423cb13e152e6390eb49746efbb82ce2933e377",
+      "characters": 341
+    },
+    {
+      "id": "world/axioms/ax_10",
+      "sha256": "058a29301718fceb65ad6257a359a7e5973d68a609bbfa08d8c74c023616347b",
+      "characters": 313
+    },
+    {
+      "id": "world/axioms/ax_11",
+      "sha256": "f06f32be8a59059f10ca118235ef7c85462b247fe2c24b7a1dae943fc020c7a6",
+      "characters": 1913
+    },
+    {
+      "id": "world/axioms/ax_12",
+      "sha256": "daf4eb121c54492e4ff0b0ee5ca883756a6d329446e0324aaac00a4ba3ac793e",
+      "characters": 694
+    },
+    {
+      "id": "world/axioms/ax_13",
+      "sha256": "6b5e5698dea923a314789e3d92237a88cb47264865f38b0012f4bfa54af85c61",
+      "characters": 1010
+    },
+    {
+      "id": "world/realms/realm_01",
+      "sha256": "49f1521eff2c164ba952015169e99c2012227a8c18ca75e98fc28f77eb1070e1",
+      "characters": 788
+    },
+    {
+      "id": "world/realms/realm_02",
+      "sha256": "73fb4db7f54e138968e57c8e0d5d1daab3f3ddc0136d862d4a332abfd389bc7a",
+      "characters": 334
+    },
+    {
+      "id": "world/realms/realm_03",
+      "sha256": "c8c5842b7f10f1869e6410b8370689b33880ed2b047caba32c14218e3755f43d",
+      "characters": 236
+    },
+    {
+      "id": "world/realms/realm_04",
+      "sha256": "5dec0225c873d520337b0ec0febaeb641a91b9c81b73d7bc32cb450d40b75430",
+      "characters": 481
+    },
+    {
+      "id": "world/realms/realm_05",
+      "sha256": "56e916a4c0bdbc59fcbe12c445de7c096b24d98be330969ade2693d8fc8a41bc",
+      "characters": 558
+    },
+    {
+      "id": "world/realms/realm_06",
+      "sha256": "af7e0581a01e2d048e13dc0240f8a1f92ef6cb1c5d390a0192667da4cbbd3095",
+      "characters": 673
+    },
+    {
+      "id": "world/realms/realm_07",
+      "sha256": "638bb907a79396af21f365f0f63284142f51a89c4c0a48d583d7f26541646c41",
+      "characters": 705
+    },
+    {
+      "id": "world/realms/realm_08",
+      "sha256": "a3b97b8cd0093283b5f2580407592bc61a1eecd24f894de5199d3066ceefdf92",
+      "characters": 1092
+    },
+    {
+      "id": "world/artifacts/art_16",
+      "sha256": "8202de560b5742380dc0b65521cb3200b65987c2a4b6a666af2cb83502eeea8f",
+      "characters": 600
+    },
+    {
+      "id": "world/artifacts/art_21",
+      "sha256": "5c5e3f71b869bfc7fa4b565fd7e8866728cb9495ed2f65a088797f715c00d9bb",
+      "characters": 946
+    },
+    {
+      "id": "world/locations/loc_01",
+      "sha256": "51ff1b3adbec7bd445f66717e1d2ed77b78ffc2e3a91e25438df79dc8715ecec",
+      "characters": 210
+    },
+    {
+      "id": "world/locations/loc_02",
+      "sha256": "cc4cc67f99164c0a09c20cde042b91ad10945a85ad3bc5774b4a2139ac4d19ea",
+      "characters": 822
+    },
+    {
+      "id": "world/locations/loc_03",
+      "sha256": "4f8c2f43b4ee34c2de7da16082afd407d124fb9620795518f48bd5d206a7f7f5",
+      "characters": 379
+    },
+    {
+      "id": "world/locations/loc_04",
+      "sha256": "79eb1ca48e4072c03d7fe1cbf20257bac5b82f713ea756a4c59e1e3ba9b9b471",
+      "characters": 167
+    },
+    {
+      "id": "world/locations/loc_05",
+      "sha256": "497d06f432918dd675a789b137d39cf4b2c329c1e09b16c143a9afabe3243cf6",
+      "characters": 177
+    },
+    {
+      "id": "world/locations/loc_06",
+      "sha256": "69759839616ec502ddce3e416809ac6fbc490ec51d4ec05910a89b3187dc4d5a",
+      "characters": 262
+    },
+    {
+      "id": "world/locations/loc_07",
+      "sha256": "f96adc6b94b87462574af37ec0dfa51b85790493cde9c540a407458bc233404d",
+      "characters": 176
+    },
+    {
+      "id": "world/locations/loc_08",
+      "sha256": "34da7b45233633dab77c31b090a7b57ce0d3488513f852c4adf6339be0dcf490",
+      "characters": 168
+    },
+    {
+      "id": "world/locations/loc_09",
+      "sha256": "5c374f236821c91b4cbecaa2b10c725e3b41b929e8a6405fd87d9ce3094da4c5",
+      "characters": 173
+    },
+    {
+      "id": "world/locations/loc_10",
+      "sha256": "d3d664a6ff41af89bc6e7891f50614992c51a9d286071d8c3e143cf1568fb0d8",
+      "characters": 164
+    },
+    {
+      "id": "world/locations/loc_11",
+      "sha256": "824f8eb52b44c722b2117d7fae3328cc24e6b6bc1320d6f148513cf7a6df5f4c",
+      "characters": 177
+    },
+    {
+      "id": "world/locations/loc_12",
+      "sha256": "a3fe23f31930ee123504667bbf675efc8e6236c4a4bdbc32d0d93e05a3331817",
+      "characters": 168
+    },
+    {
+      "id": "world/locations/loc_13",
+      "sha256": "1903fa4d025dd2e4df9657cdfe807c9cceb4dc7308909b3122eb9e8a224eb4f9",
+      "characters": 226
+    },
+    {
+      "id": "world/locations/loc_14",
+      "sha256": "01444daa0284791e1636088339ea4d22b1cb3fe8351b363ddce489b0b5e3ed70",
+      "characters": 288
+    },
+    {
+      "id": "world/locations/loc_15",
+      "sha256": "999450072fcea8770ea6e505aac8c3dedf02cbdbe0981e3c4c667ea5a2b270e6",
+      "characters": 257
+    },
+    {
+      "id": "world/locations/loc_16",
+      "sha256": "4645b29a32d875345d151fbdd0037898161ae5a609fb9980a40cfa4febd387a3",
+      "characters": 163
+    },
+    {
+      "id": "world/locations/loc_17",
+      "sha256": "76f48ebf694d12f89f0eb05f46478389850bd3c2095acc1fbe1da70b0ab40639",
+      "characters": 171
+    },
+    {
+      "id": "world/locations/loc_18",
+      "sha256": "7300152c8c72f635465896d4407d30b52dfc3db3e5df49c702838f995d544f25",
+      "characters": 166
+    },
+    {
+      "id": "world/locations/loc_19",
+      "sha256": "76216fd6c279bcce0d0e03e05f980985350358c016c9a851040898b5e08fbab5",
+      "characters": 173
+    },
+    {
+      "id": "world/locations/loc_20",
+      "sha256": "567b0b157db8013724adb4fab0fc81e1cd9dd449534cd372fae777409657c0c5",
+      "characters": 166
+    },
+    {
+      "id": "world/locations/loc_21",
+      "sha256": "cf644923b058c2750b6554012c5ac628498b7fde94b6131e7fe5d7b36d212354",
+      "characters": 640
+    },
+    {
+      "id": "world/locations/loc_22",
+      "sha256": "df29141127928df92f213aeaf6a35658a100d63531046d86fbe2f9caf699dd67",
+      "characters": 181
+    },
+    {
+      "id": "world/locations/loc_23",
+      "sha256": "d4e34749c992144c9d0594665872909fd121c46de059cefc91e342b00d95e1c5",
+      "characters": 181
+    },
+    {
+      "id": "world/locations/loc_24",
+      "sha256": "f5057abac0b99a6a0290a969f0a216bded1b72fe5fa675864dbac59853ac62bb",
+      "characters": 181
+    },
+    {
+      "id": "world/locations/loc_25",
+      "sha256": "bb908be04dcc92e5fd273d49dadfdbb95b5cf2dc51983e7b6e52d059e1d0b719",
+      "characters": 357
+    },
+    {
+      "id": "world/locations/loc_26",
+      "sha256": "9a27e60cca72104b8b36246db762857ff9cb1ce649ea1fd4404e79284f767882",
+      "characters": 288
+    },
+    {
+      "id": "world/locations/loc_27",
+      "sha256": "cf668406464f3adfcb59d515058e9f643f7130cb41b90ff33506ea07f210876b",
+      "characters": 181
+    },
+    {
+      "id": "world/locations/loc_28",
+      "sha256": "3fe24b7d143f4cdae6af93b95bad6ba33b9f3a54a1c5a6947e0ff3d4d434d925",
+      "characters": 314
+    },
+    {
+      "id": "world/locations/loc_29",
+      "sha256": "67161e8e8d372cf6b5d5d1e8b81a06a6e5d37b62c7ad8f3abb1b317c0c9447b7",
+      "characters": 318
+    },
+    {
+      "id": "world/locations/loc_30",
+      "sha256": "5d1f03e028ef0ed83f39cea1d813c6696cb1c42bd36747967b68aae71fbfbe2e",
+      "characters": 229
+    },
+    {
+      "id": "world/factions/fac_12",
+      "sha256": "b23ffb97a9549e8e601e0b58abbbe457b68002a24c7f9f14c0d94cad8bf7bbef",
+      "characters": 383
+    },
+    {
+      "id": "story/overview",
+      "sha256": "1d6be2ef90b2d0b21b7998b4798592e81a985de2257044acd58f894e3bbbdcb5",
+      "characters": 5131
+    },
+    {
+      "id": "story/characters/char_01",
+      "sha256": "400a561f4cdc1d022b11629aaa9bb4282b506f82246ab24777af60e4bab17c19",
+      "characters": 241
+    },
+    {
+      "id": "story/characters/char_02",
+      "sha256": "535f4a599754db95906859f962d13861be57f652858b0de039f9ab5451d57b25",
+      "characters": 371
+    },
+    {
+      "id": "story/characters/char_03",
+      "sha256": "183865f074513ddcfce8247e562de263e72fa91f31e45b0f6b43665beaf6fc47",
+      "characters": 268
+    },
+    {
+      "id": "story/characters/char_04",
+      "sha256": "bb7468fd0e4552b86826b87f4382d54d167ffcaf23e9952f6b4d7b0303e5e592",
+      "characters": 733
+    },
+    {
+      "id": "story/characters/char_05",
+      "sha256": "6b009951696a4ba22e8c073bd9f33968a2dd4b9a5cf203cb766ef80b17b96b03",
+      "characters": 222
+    },
+    {
+      "id": "story/characters/char_06",
+      "sha256": "4022e826723f6842f6496d91b16d3d775827fb78c2fcb7f3fff9370a3893f359",
+      "characters": 220
+    },
+    {
+      "id": "story/characters/char_07",
+      "sha256": "5ac955ca3fcbf7f67acd5057f18515ada24dd2d5ee9321437fdfa916949fbb5a",
+      "characters": 219
+    },
+    {
+      "id": "story/characters/char_08",
+      "sha256": "b7f3c35ec0b165f2bfe30dc73df775c074d72b633e4e3904c10bab417a587347",
+      "characters": 215
+    },
+    {
+      "id": "story/characters/char_09",
+      "sha256": "4824332bdf0c9ea541a07fde087e618baf0881298fb8971d45601aa3f6ceec51",
+      "characters": 266
+    },
+    {
+      "id": "story/characters/char_10",
+      "sha256": "728c48169654c91d23217351487954ec4b301207fc6685bb2ca85654f5105c01",
+      "characters": 957
+    },
+    {
+      "id": "story/characters/char_11",
+      "sha256": "f4251153f9c8413b7d02bd27f277c2bf94fb2d3f7c08ae5915e7582dcfe2fb08",
+      "characters": 331
+    },
+    {
+      "id": "story/characters/char_12",
+      "sha256": "036f3e0af061afe9cacee6e9ee79204ab0b89bf8935d5bb761d46b02892bb820",
+      "characters": 244
+    },
+    {
+      "id": "story/characters/char_13",
+      "sha256": "8fdecadd4996980bc9c68b525492f03606fe07173fa377894930dad739ea9a67",
+      "characters": 249
+    },
+    {
+      "id": "story/characters/char_14",
+      "sha256": "837c33d559427c663ca4a54a0ff06bd2b0b1b999bf5f7088891885682c980d61",
+      "characters": 251
+    },
+    {
+      "id": "story/characters/char_15",
+      "sha256": "92b4264031800c7855a191b7da0dd8c3bf066c07c2804a80c2b2dd27eccf61f8",
+      "characters": 255
+    },
+    {
+      "id": "story/characters/char_16",
+      "sha256": "4e72f59e19f96b3903e7d401c07357b460beb080a6b1250a5c3661f7979d6a62",
+      "characters": 258
+    },
+    {
+      "id": "story/characters/char_17",
+      "sha256": "e514c93ee189f6b5d891a26b49a6bb4680f34023dc14a80a4817502819a7e474",
+      "characters": 271
+    },
+    {
+      "id": "story/characters/char_18",
+      "sha256": "7b56a1e619b737eb67a138e5ee5ffafe6cf5e1409853890a1844c3e0b31ac726",
+      "characters": 248
+    },
+    {
+      "id": "story/characters/char_19",
+      "sha256": "cd913551aac15d33587289073f75e9dded94d0d052a0f1c72134198602bd6fa9",
+      "characters": 217
+    },
+    {
+      "id": "story/characters/char_20",
+      "sha256": "2df9e4f81d26f3ee2d4411b138bab36bdcdf87ab86e9e1c2e3da84724fba69d2",
+      "characters": 218
+    },
+    {
+      "id": "story/characters/char_21",
+      "sha256": "36a0501de15cabec61870606a14d8f8055f5958507fd7e5949418226d74a758e",
+      "characters": 263
+    },
+    {
+      "id": "story/characters/char_22",
+      "sha256": "bb8122aae6c3b24af36c7ef492e16771c7fda994d6941cd4094ebbf91047aa0b",
+      "characters": 228
+    },
+    {
+      "id": "story/characters/char_23",
+      "sha256": "9c8c08bf322cfed7200a72ddf1060af63b1c4fb71e5312471bf6e089cfd10ab6",
+      "characters": 452
+    },
+    {
+      "id": "story/characters/char_24",
+      "sha256": "d110ed49a69852d2681a0e3a93dd3648d4253058e61ee773dc2a4be403abda34",
+      "characters": 226
+    },
+    {
+      "id": "story/characters/char_25",
+      "sha256": "f4e90a3532e9a34524a509f181415adf847e08e055ad6f0aeb2cf30288ea7de8",
+      "characters": 229
+    },
+    {
+      "id": "story/relationships/rel_05",
+      "sha256": "8f83f16a989ab61daecdbdecc74b0e384cc40bde70d4946c70d6ce7557699df7",
+      "characters": 1015
+    },
+    {
+      "id": "story/arcs/arc_02",
+      "sha256": "14cd8e790d1258e9dfc92b9a6da26f8576b1c10ebf000e9d48ae32f2520ed9d5",
+      "characters": 638
+    },
+    {
+      "id": "story/arcs/arc_03",
+      "sha256": "b95b23e8442e300787fb4fa212f0874ea6f2d4af5c8809757843e1a7f458aea6",
+      "characters": 272
+    },
+    {
+      "id": "story/volumes/vol_01",
+      "sha256": "20779d9e88f4b6263ee1ae2f467224a555445b00c16f313fa1f726f425a2099e",
+      "characters": 499
+    },
+    {
+      "id": "story/volumes/vol_02",
+      "sha256": "c0090dc1f18ed402867caa380fcc55071eeefe219608990ae24fd629e114c076",
+      "characters": 678
+    },
+    {
+      "id": "story/volumes/vol_03",
+      "sha256": "3999876a8c3f268546283bf125a9f9c4b267392c28c53337b08cad564ae28bd4",
+      "characters": 537
+    },
+    {
+      "id": "plan/overview",
+      "sha256": "dca7aa428c62df71156450ccadf1aa4933fcad0dfb8d9fa270e5afdc9356c8d4",
+      "characters": 10737
+    },
+    {
+      "id": "plan/volumes/vol_01",
+      "sha256": "b29bb4dfc33ec569179f9541b635831929ea83d9762234ebb3799d26802da505",
+      "characters": 842
+    },
+    {
+      "id": "plan/volumes/vol_02",
+      "sha256": "fb3b7159c3283bc3a92a9ee31019b342bd58227e1a6e2df72a48b1bce18ec4e0",
+      "characters": 964
+    },
+    {
+      "id": "plan/volumes/vol_03",
+      "sha256": "6c79add16205a32d0dff06fd14f07a8ba09aeaec03c03ba8fe79f367f1678695",
+      "characters": 1103
+    },
+    {
+      "id": "plan/milestones/ms_growth_v1_crossing",
+      "sha256": "031dd9da3dd13e31af9771016255faa8823e28d6e393f8d7c6b8cf883b434ce7",
+      "characters": 855
+    },
+    {
+      "id": "plan/milestones/ms_v2_voyage",
+      "sha256": "b09ba3539d3706fc24bbba74d4e01f083ebade16597a2144ff1a691729852c20",
+      "characters": 2937
+    },
+    {
+      "id": "plan/milestones/ms_v2_boundary",
+      "sha256": "4da63e3dfd8dcadd551c62e3df2fa1ef4363b689ae8f4be6fb3ace0c4769a8bb",
+      "characters": 7112
+    },
+    {
+      "id": "plan/milestones/ms_v3_return",
+      "sha256": "81422021762f5767ae22e2903495a7e04619a27cb68a9ffb08e899fd7e2c3069",
+      "characters": 4978
+    },
+    {
+      "id": "plan/milestones/ms_v3_payoff",
+      "sha256": "71af953802373e7ad35b6b9c3d491ebd76adcd642195b6552e3eb472a798f586",
+      "characters": 1200
+    },
+    {
+      "id": "plan/chapters/30",
+      "sha256": "3610a36c6f2ed2eaacab32e5971bf9a500a52255170a8573f92d60d1f15de14f",
+      "characters": 1846
+    },
+    {
+      "id": "plan/chapters/31",
+      "sha256": "ec1013a14bd0ffff45a7c7911de84f972774677751c668bcff0332b53410dd1e",
+      "characters": 1927
+    },
+    {
+      "id": "plan/chapters/32",
+      "sha256": "75cb1a3f38159e5a5fd60d0a39f4f36c251412102857bc142b5868022b92c7b8",
+      "characters": 2351
+    },
+    {
+      "id": "plan/chapters/33",
+      "sha256": "47e6534dad17ae97b5a30703491d730e6a7e716741680d407e44e944eaf66474",
+      "characters": 3448
+    },
+    {
+      "id": "review-history/cross-3-5",
+      "sha256": "36e244bcb821298a47f7972ad0ec365d6f5cc7025b265c088a5e503ca84ed1f3",
+      "characters": 17321
+    },
+    {
+      "id": "review-history/cross-2-4",
+      "sha256": "b657736379bc619fbbe846bb3605c6a4065576fd0c17f2ae88c57d4815d774f8",
+      "characters": 18821
+    },
+    {
+      "id": "review-history/followup-cross-2-4/geography",
+      "sha256": "1a5e7e37b849ab85bc76e9eb093f6e00a9a84276a631cb56b329772c3aa103b6",
+      "characters": 10278
+    }
+  ],
+  "omittedSourceIds": [
+    "world/powerSystems/ps_01",
+    "world/tierLadders/ladder_realm",
+    "world/tierLadders/ladder_technique",
+    "world/tierLadders/ladder_artifact",
+    "world/tierLadders/ladder_resource",
+    "world/techniques/tech_01",
+    "world/techniques/tech_02",
+    "world/techniques/tech_03",
+    "world/techniques/tech_04",
+    "world/techniques/tech_05",
+    "world/techniques/tech_06",
+    "world/techniques/tech_07",
+    "world/techniques/tech_08",
+    "world/techniques/tech_09",
+    "world/techniques/tech_10",
+    "world/techniques/tech_11",
+    "world/techniques/tech_12",
+    "world/techniques/tech_13",
+    "world/techniques/tech_14",
+    "world/techniques/tech_15",
+    "world/techniques/tech_16",
+    "world/techniques/tech_17",
+    "world/techniques/tech_18",
+    "world/artifacts/art_01",
+    "world/artifacts/art_02",
+    "world/artifacts/art_03",
+    "world/artifacts/art_04",
+    "world/artifacts/art_05",
+    "world/artifacts/art_06",
+    "world/artifacts/art_07",
+    "world/artifacts/art_08",
+    "world/artifacts/art_09",
+    "world/artifacts/art_10",
+    "world/artifacts/art_11",
+    "world/artifacts/art_12",
+    "world/artifacts/art_13",
+    "world/artifacts/art_14",
+    "world/artifacts/art_15",
+    "world/artifacts/art_17",
+    "world/artifacts/art_18",
+    "world/artifacts/art_19",
+    "world/artifacts/art_20",
+    "world/factions/fac_01",
+    "world/factions/fac_02",
+    "world/factions/fac_03",
+    "world/factions/fac_04",
+    "world/factions/fac_05",
+    "world/factions/fac_06",
+    "world/factions/fac_07",
+    "world/factions/fac_08",
+    "world/factions/fac_09",
+    "world/factions/fac_10",
+    "world/factions/fac_11",
+    "world/historicalEvents/event_01",
+    "world/historicalEvents/event_02",
+    "world/historicalEvents/event_03",
+    "world/historicalEvents/event_04",
+    "world/historicalEvents/event_05",
+    "world/historicalEvents/event_06",
+    "world/historicalEvents/event_07",
+    "world/historicalEvents/event_08",
+    "world/historicalEvents/event_09",
+    "world/historicalEvents/event_10",
+    "world/historicalEvents/event_11",
+    "world/historicalEvents/event_12",
+    "world/historicalEvents/event_13",
+    "world/historicalEvents/event_14",
+    "world/resources/res_01",
+    "world/resources/res_02",
+    "world/resources/res_03",
+    "world/resources/res_04",
+    "world/resources/res_05",
+    "world/resources/res_06",
+    "world/resources/res_07",
+    "world/resources/res_08",
+    "world/resources/res_09",
+    "world/resources/res_10",
+    "world/resources/res_11",
+    "world/resources/res_12",
+    "world/resources/res_13",
+    "world/resources/res_14",
+    "world/resources/res_15",
+    "world/resources/res_16",
+    "world/resources/res_17",
+    "world/resources/res_18",
+    "world/resources/res_19",
+    "world/terminology/term_01",
+    "world/terminology/term_02",
+    "world/terminology/term_03",
+    "world/terminology/term_res_01",
+    "world/terminology/term_res_02",
+    "world/terminology/term_res_03",
+    "world/terminology/term_res_04",
+    "world/terminology/term_res_05",
+    "world/terminology/term_res_06",
+    "world/terminology/term_res_07",
+    "world/terminology/term_res_08",
+    "world/terminology/term_res_09",
+    "world/terminology/term_res_10",
+    "world/terminology/term_res_11",
+    "world/terminology/term_res_12",
+    "world/terminology/term_asset_01",
+    "world/terminology/term_asset_02",
+    "world/terminology/term_asset_04",
+    "world/terminology/term_hist_01",
+    "world/terminology/term_hist_02",
+    "world/terminology/term_ice_school",
+    "world/terminology/term_cold_method",
+    "world/terminology/term_probe_shuttle",
+    "story/relationships/rel_01",
+    "story/relationships/rel_02",
+    "story/relationships/rel_03",
+    "story/relationships/rel_04",
+    "story/relationships/rel_06",
+    "story/relationships/rel_07",
+    "story/relationships/rel_08",
+    "story/relationships/rel_09",
+    "story/relationships/rel_10",
+    "story/relationships/rel_11",
+    "story/relationships/rel_12",
+    "story/relationships/rel_13",
+    "story/relationships/rel_14",
+    "story/relationships/rel_15",
+    "story/relationships/rel_16",
+    "story/relationships/rel_17",
+    "story/relationships/rel_18",
+    "story/relationships/rel_19",
+    "story/relationships/rel_20",
+    "story/relationships/rel_21",
+    "story/relationships/rel_22",
+    "story/arcs/arc_01",
+    "story/arcs/arc_04",
+    "story/arcBeats/beat_01",
+    "story/arcBeats/beat_02",
+    "story/arcBeats/beat_03",
+    "story/arcBeats/audit-su-3",
+    "story/arcBeats/audit-su-8",
+    "story/arcBeats/audit-su-12",
+    "story/arcBeats/audit-su-testimony",
+    "story/arcBeats/audit-su-stay",
+    "story/arcBeats/audit-zhao-control",
+    "story/arcBeats/audit-mo-bargain",
+    "story/arcBeats/audit-mo-last-bet",
+    "story/arcBeats/v1-white-stop",
+    "story/arcBeats/v1-lin-advance",
+    "story/arcBeats/v1-qin-bargain",
+    "story/arcBeats/v1-qin-message",
+    "story/arcBeats/v1-gu-counter",
+    "story/arcBeats/v1-du-post",
+    "story/arcBeats/v1-qiao-custody",
+    "story/arcBeats/v1-lin-share",
+    "story/arcBeats/beat_v23_1",
+    "story/arcBeats/beat_v23_2",
+    "story/arcBeats/beat_v23_3",
+    "story/arcBeats/beat_v23_4",
+    "story/arcBeats/beat_v23_5",
+    "story/arcBeats/beat_v23_6",
+    "story/arcBeats/beat_v23_7",
+    "story/arcBeats/beat_v23_8",
+    "story/arcBeats/beat_v23_9",
+    "story/arcBeats/beat_v23_10",
+    "story/arcBeats/beat_v23_11",
+    "story/arcBeats/beat_v23_12",
+    "story/arcBeats/beat_bridge_1",
+    "story/arcBeats/beat_bridge_2",
+    "story/arcBeats/beat_bridge_3",
+    "story/arcBeats/beat_bridge_4",
+    "story/arcBeats/beat_box_rescue",
+    "story/arcBeats/beat_box_correction",
+    "story/arcBeats/beat_barge_priority",
+    "story/arcBeats/message-dispatch",
+    "story/arcBeats/message-first-read",
+    "story/arcBeats/message-first-order",
+    "story/arcBeats/message-first-delivery",
+    "story/arcBeats/message-first-ack",
+    "story/arcBeats/message-north-report",
+    "story/arcBeats/message-local-replan",
+    "story/arcBeats/message-custody-report",
+    "story/arcBeats/message-custody-read",
+    "story/arcBeats/message-withdraw-order",
+    "story/arcBeats/message-cheng-local-mission",
+    "story/arcBeats/message-withdraw-delivery",
+    "story/arcBeats/message-withdraw-seized",
+    "story/arcBeats/message-defeat-report",
+    "story/arcBeats/message-formal-inquiry",
+    "story/arcBeats/v1-lin-route-failure",
+    "story/arcBeats/v1-su-tactical-share",
+    "story/arcBeats/beat_port_work_before_questions",
+    "story/arcBeats/beat_port_current_retreat",
+    "story/arcBeats/beat_workers_failed_exit",
+    "story/arcBeats/harbor-lin-horizon",
+    "story/arcBeats/harbor-he-refuses-boat",
+    "story/arcBeats/harbor-lu-speaks",
+    "story/secrets/sec_01",
+    "story/secrets/sec_02",
+    "story/secrets/sec_03",
+    "story/secrets/sec_04",
+    "story/promises/prom_01",
+    "story/promises/prom_02",
+    "story/promises/prom_03",
+    "story/promises/prom_04",
+    "story/openThreads/th_01",
+    "story/openThreads/th_02",
+    "story/openThreads/th_03",
+    "story/openThreads/th_04",
+    "story/openThreads/th_05",
+    "story/chapterPlans/chapter-plan-1",
+    "story/chapterPlans/chapter-plan-2",
+    "story/chapterPlans/chapter-plan-3",
+    "story/chapterPlans/chapter-plan-4",
+    "story/chapterPlans/chapter-plan-5",
+    "story/chapterPlans/chapter-plan-6",
+    "story/chapterPlans/chapter-plan-7",
+    "story/chapterPlans/chapter-plan-8",
+    "story/chapterPlans/chapter-plan-9",
+    "story/chapterPlans/chapter-plan-10",
+    "story/chapterPlans/chapter-plan-11",
+    "story/chapterPlans/chapter-plan-12",
+    "story/chapterPlans/chapter-plan-13",
+    "story/chapterPlans/chapter-plan-14",
+    "story/chapterPlans/chapter-plan-15",
+    "story/chapterPlans/chapter-plan-16",
+    "story/chapterPlans/chapter-plan-17",
+    "story/chapterPlans/chapter-plan-18",
+    "story/chapterPlans/chapter-plan-19",
+    "story/chapterPlans/chapter-plan-20",
+    "story/chapterPlans/chapter-plan-21",
+    "story/chapterPlans/chapter-plan-22",
+    "story/chapterPlans/chapter-plan-23",
+    "story/chapterPlans/chapter-plan-24",
+    "story/chapterPlans/chapter-plan-25",
+    "story/chapterPlans/chapter-plan-26",
+    "story/chapterPlans/chapter-plan-27",
+    "story/chapterPlans/chapter-plan-28",
+    "story/chapterPlans/chapter-plan-29",
+    "story/chapterPlans/chapter-plan-30",
+    "story/chapterPlans/chapter-plan-31",
+    "story/chapterPlans/chapter-plan-32",
+    "story/chapterPlans/bible-chapter-33",
+    "story/chapterPlans/bible-chapter-34",
+    "story/chapterPlans/bible-chapter-35",
+    "story/chapterPlans/bible-chapter-36",
+    "story/chapterPlans/bible-chapter-37",
+    "story/chapterPlans/bible-chapter-38",
+    "story/chapterPlans/bible-chapter-39",
+    "story/chapterPlans/bible-chapter-40",
+    "story/chapterPlans/bible-chapter-41",
+    "story/chapterPlans/bible-chapter-42",
+    "story/chapterPlans/bible-chapter-43",
+    "story/chapterPlans/bible-chapter-44",
+    "story/chapterPlans/bible-chapter-45",
+    "story/chapterPlans/bible-chapter-46",
+    "story/chapterPlans/bible-chapter-47",
+    "story/chapterPlans/bible-chapter-48",
+    "story/chapterPlans/bible-chapter-49",
+    "story/chapterPlans/bible-chapter-50",
+    "plan/milestones/ms_vol1_turn",
+    "plan/milestones/ms_growth_v1_recovery",
+    "plan/milestones/ms_growth_v1_training",
+    "plan/milestones/ms_growth_v1_expedition",
+    "plan/milestones/ms_vol1_climax",
+    "plan/milestones/ms_growth_v1_aftermath",
+    "plan/milestones/ms_bridge_return",
+    "plan/milestones/ms_v2_loss",
+    "plan/milestones/ms_v2_barge",
+    "plan/milestones/ms_v2_fire",
+    "plan/milestones/ms_v3_training",
+    "plan/milestones/ms_v3_advancement",
+    "plan/milestones/ms_v3_convoy",
+    "plan/chapters/1",
+    "plan/chapters/2",
+    "plan/chapters/3",
+    "plan/chapters/4",
+    "plan/chapters/5",
+    "plan/chapters/6",
+    "plan/chapters/7",
+    "plan/chapters/8",
+    "plan/chapters/9",
+    "plan/chapters/10",
+    "plan/chapters/11",
+    "plan/chapters/12",
+    "plan/chapters/13",
+    "plan/chapters/14",
+    "plan/chapters/15",
+    "plan/chapters/16",
+    "plan/chapters/17",
+    "plan/chapters/18",
+    "plan/chapters/19",
+    "plan/chapters/20",
+    "plan/chapters/21",
+    "plan/chapters/22",
+    "plan/chapters/23",
+    "plan/chapters/24",
+    "plan/chapters/25",
+    "plan/chapters/26",
+    "plan/chapters/27",
+    "plan/chapters/28",
+    "plan/chapters/29",
+    "plan/chapters/34",
+    "plan/chapters/35",
+    "plan/chapters/36",
+    "plan/chapters/37",
+    "plan/chapters/38",
+    "plan/chapters/39",
+    "plan/chapters/40",
+    "plan/chapters/41",
+    "plan/chapters/42",
+    "plan/chapters/43",
+    "plan/chapters/44",
+    "plan/chapters/45",
+    "plan/chapters/46",
+    "plan/chapters/47",
+    "plan/chapters/48",
+    "plan/chapters/49",
+    "plan/chapters/50"
+  ],
+  "historySourceIds": [
+    "review-history/cross-3-5",
+    "review-history/cross-2-4",
+    "review-history/followup-cross-2-4/geography"
+  ],
+  "originalWorkerCheckpoint": "data/audit-runtimes/design71-review/result.json",
+  "requiredTerminalProof": "docs/audits/2026-10-17-design71-review-result.json",
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "executionCondition": "Only after the original worker has exited and its full terminal proof has been verified. Use the current gpt-5.6-luna connection without fallback, preserve responses and use a bounded two-call local review. Do not save this local result as a formal complete design report.",
+  "limitation": "Prepared scoped request only. It cannot resolve production findings, establish historical facts, approve writing or replace full world, power, character and story review."
+}
