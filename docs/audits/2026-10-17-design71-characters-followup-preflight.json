@@ -1,0 +1,553 @@
+{
+  "kind": "design71_characters_dynamic_followups_preflight",
+  "area": "characters",
+  "observedAt": "2026-10-17T04:31:32.816Z",
+  "inputHash": "70235514bab787e26c05a26fdc9b297adde5a363de5c6c9f10112b7229c018de",
+  "runId": "design_run_b7c78d18-ac7e-48a1-bb0a-0aab183d503a",
+  "snapshotPath": "data/audit-runtimes/design71-review/characters-followup-prefix.json",
+  "snapshotSha256": "97259b874e7a4a47ee129272f4630eba704bcfabb2b4bafee18d302afff41059",
+  "frozenSourceFilesVerified": 153,
+  "independentInputsSha256": "77deca6c04132eebd14a14fdf518187cdb857aa1f3068477018218c0ead83a2d",
+  "prefixReplay": {
+    "verification": "verified",
+    "completedStages": 15,
+    "totalStages": 35,
+    "runSha256": "bed3b04bdef5919e6f4aa0e3435fd9f58f35584f8e9680bf66e87a792dfd477d",
+    "formalAcceptance": false,
+    "limitation": "Replays saved responses, repairs, citations and conclusions against independently supplied materials. Pending work, semantic quality, blocker disposition and prose acceptance remain separate.",
+    "responseReplay": "verified",
+    "responsesReplayed": 16,
+    "records": [
+      {
+        "stageId": "batch-1",
+        "kind": "batch",
+        "stageSha256": "4dac022263da50e2c2edad842cd7335721bbe502752413ce443969aea394870e",
+        "inputSha256": "e07de7ed3d3a51eabb0fb6d78d81556829bfd585f60a58ff225ba173c277016d",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "batch-2",
+        "kind": "batch",
+        "stageSha256": "1e9af0930932e498b2a26257e06b85e0a0f74ebb14a5bc7e248e900b0cfe20cf",
+        "inputSha256": "fc2cdf21204357a370128dea99edc964b31219aa3833fda8911abc04fb741fb0",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "batch-3",
+        "kind": "batch",
+        "stageSha256": "7ba5b736cf9674f31f4a665721706a32202c77f6bf5a36d3737607378c6f5b42",
+        "inputSha256": "766341c92eccacce7708d9071f1dbeb2f8471fc3ce9f573af7a77294bafebab2",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "story/relationships/rel_01",
+              "story/relationships/rel_03",
+              "story/relationships/rel_09",
+              "story/relationships/rel_10"
+            ]
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "story/secrets/sec_01",
+              "story/secrets/sec_02",
+              "story/secrets/sec_04"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "batch-4",
+        "kind": "batch",
+        "stageSha256": "4e744c05d70cf03c8ef19785f8929363c61f69dfb29fc05b6ffc3d739d1f2846",
+        "inputSha256": "028479d38c84517015d16b59493c0980cbf78ca2b138569db191a3b576bfa9d7",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "batch-5",
+        "kind": "batch",
+        "stageSha256": "29e114c03403a37b6b755b9476e23cf05df79cb2488d1b248dbbd199e07409d8",
+        "inputSha256": "aadd38408238dd07432abd58a3ad1aff86bdecba2d400190568d227a0e532e7b",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "story/relationships/rel_01",
+              "story/relationships/rel_05",
+              "story/relationships/rel_07",
+              "story/relationships/rel_12",
+              "story/relationships/rel_13",
+              "story/relationships/rel_14"
+            ]
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "story/secrets/sec_01",
+              "story/secrets/sec_02",
+              "story/secrets/sec_03",
+              "story/secrets/sec_04"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-2",
+        "kind": "cross",
+        "stageSha256": "6188886f5863b35aacb32abe19e425176386cc9a5b71718072b700e2fa91ea26",
+        "inputSha256": "3de4435c521a9ab641c83e1c38fca23a2f90ebb6840d56f4748c9a0259be9e37",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-3",
+        "kind": "cross",
+        "stageSha256": "c95c559b4083cac6e83b94ab987efbcb1b06a5e45896b1e7e5714af0c1dcb864",
+        "inputSha256": "366861fa5dab9c8d5faadda126d6607184b31594252c98621940cd09c0ae7170",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "pass",
+            "resolves": [
+              "batch-3/relationships"
+            ]
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-4",
+        "kind": "cross",
+        "stageSha256": "47c5f0302219fd06939990c3ef006015b7aed07976c13291c847e8f4c1c744c0",
+        "inputSha256": "de84b632a9f6a1733119ceafa5edfe748041313e47b7f18696d4261e9bea2b67",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-5",
+        "kind": "cross",
+        "stageSha256": "00284bed131a2b4a9cf9f4f6274b80b7e59c287c0420f687ca944c76d4eede85",
+        "inputSha256": "a6f15b2a0414b84bd0767fb6462585371c7852b5faacc8b7d48d2517cded648f",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "pass",
+            "resolves": [
+              "batch-5/relationships"
+            ]
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-2-3",
+        "kind": "cross",
+        "stageSha256": "e87c94c52f241d04534e03a4815161089d352e647a98175f948a37c4e8f3988e",
+        "inputSha256": "c08fa9bcdcff6f69cc00d1d3cd8b97b712bc9f76b0a14d5a98956c2dec82875d",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-2-4",
+        "kind": "cross",
+        "stageSha256": "f06169e9e22f7b24edf42cbb2f4e7c40f7bd663c549ebce8c9de3c0b9baea72a",
+        "inputSha256": "8e3895fd711ed3677494b34b721f48449e05476948480033872abee29ff1241e",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-2-5",
+        "kind": "cross",
+        "stageSha256": "27be5473ab7d6a9af8e89e2ae9c57d6bf8066521fbe2793f568a9d12150c71af",
+        "inputSha256": "2171fd8c2fe2575ef38571845052aa83e7bfead777407dc781978a594ccf8ce7",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-3-4",
+        "kind": "cross",
+        "stageSha256": "31882a086e54d44074d69fc62af10247be960a3287a337e118f9a9a30b666586",
+        "inputSha256": "dc7de4859f241f9106fa68954833397c91f074557563268b1968f0cc54a7152b",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-3-5",
+        "kind": "cross",
+        "stageSha256": "5ee89c0defaa2d4f39cb2b882e5d6b8bae8a16790595747df41109f41b35a5c5",
+        "inputSha256": "4e6962ee00f478a8d5c85f3a9c28bd1da957730059f4fa1b5466b3d3c590ea49",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "story/relationships/rel_01",
+              "story/relationships/rel_03",
+              "story/relationships/rel_09",
+              "story/relationships/rel_10"
+            ]
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-4-5",
+        "kind": "cross",
+        "stageSha256": "cd5016ba310339bd7d7ca75035c48e229d3e8dba89ee8e597de85558fa0e2cc6",
+        "inputSha256": "2b33629cb715eeb52ae8e860cdc7d0c023389a0bbf21d06cc15f9715ae2d2522",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "agency",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "relationships",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "knowledge",
+            "verdict": "pass"
+          }
+        ]
+      }
+    ],
+    "failures": [],
+    "modelCalls": 0,
+    "reportVerification": "not_completed"
+  },
+  "originalStagesCompleted": 15,
+  "pendingSourceQuestions": 5,
+  "explicitRawResolutions": [
+    {
+      "checkId": "batch-3/relationships",
+      "stageId": "cross-1-3",
+      "criterion": "relationships",
+      "explanation": "已补读关系原档后，原等待问题可解决。林辰—苏凌霜在第17章明确将合作限定为可质询矿路、程序与伤情记录，不替残玉背书；第21章先救秦禾的分歧、补偿与不陪战边界，以及第29章苏留宗、林南行的分路，都与关系档的阶段、代价和异地消息限制一致。林辰—墨幽屠仍是有交押与取证成本的敌对关系，未被擒获写成供出全网或免责；林辰—顾峤的合作仍受准入、守口与交押优先约束；苏凌霜—秦禾的合作也保留一次补偿不能买断冲营义务的边界。未见同一时点越级信任、重复消费救援代价或相互否定的安排。",
+      "evidenceSourceIds": [
+        "review-question/batch-3/relationships",
+        "plan/chapters/17",
+        "plan/chapters/21",
+        "plan/chapters/29",
+        "story/relationships/rel_01",
+        "story/relationships/rel_03",
+        "story/relationships/rel_09",
+        "story/relationships/rel_10"
+      ]
+    },
+    {
+      "checkId": "batch-5/relationships",
+      "stageId": "cross-1-5",
+      "criterion": "relationships",
+      "explanation": "此前待核的六组关系原档与后段宏观相容。林辰—苏凌霜在72—87章重聚后仍各守调查原则，88—94章只按能力准备救人，95章救援才形成共同留证；与后段“先救活人、保存撤令和己方责任”的安排一致。林辰—夜凝霜的合作明确限于外港、实体行程和送达信息；林辰—梁九维持生计与证言边界；林辰—贺青梧、陆沉舟、程砚的关系分别保留航款/安置边界、看护问责与异地信息隔离。祁嵩交械的动机、非免责性质和监管后果也由宏观明确，未将救援误写成无条件信任或原谅。",
+      "evidenceSourceIds": [
+        "review-question/batch-5/relationships",
+        "story/relationships/rel_01",
+        "story/relationships/rel_05",
+        "story/relationships/rel_07",
+        "story/relationships/rel_12",
+        "story/relationships/rel_13",
+        "story/relationships/rel_14",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ]
+    }
+  ],
+  "questionDisposition": [
+    {
+      "checkId": "batch-3/relationships",
+      "originalExplanation": "已读章纲能核到林辰、苏凌霜从第17章明确担保边界，到第21章为救秦禾发生优先次序争执，再到第29章接受分路；苏凌霜与秦禾的救援亦保留补偿和“不陪战”边界。可是这些变化须与关系原档所定义的初始阶段、已承诺代价和后续阶段逐项对照；本批未提供林辰→苏凌霜、林辰→墨幽屠、林辰→顾峤、苏凌霜→秦禾的关系原文，不能判断是否存在同一时点的阶段冲突、重复兑现或越级信任。",
+      "requestedSources": [
+        "story/relationships/rel_01",
+        "story/relationships/rel_03",
+        "story/relationships/rel_09",
+        "story/relationships/rel_10"
+      ],
+      "resolvedBy": [
+        "cross-1-3"
+      ]
+    },
+    {
+      "checkId": "batch-3/knowledge",
+      "originalExplanation": "本批自身的知情链条有明确限制：林苏在第23章仅因巡守称呼和秦禾亲见名牌而确认墨幽屠身份；第24章林苏未见求援交接，须等亲见顾峤手势才行动；林对六号箱最后去向及苏返宗均被明确限制为未知。可是这些安排涉及父案、残玉、非法运输链及港口私运等秘密的既有真相与角色知情阶段，需与对应秘密原档核对，才能判断“只知线索、不知全案”的边界是否同既定秘密揭露顺序相容。",
+      "requestedSources": [
+        "story/secrets/sec_01",
+        "story/secrets/sec_02",
+        "story/secrets/sec_04"
+      ],
+      "resolvedBy": [],
+      "followupStageId": "followup-batch-3/knowledge"
+    },
+    {
+      "checkId": "batch-5/relationships",
+      "originalExplanation": "已读宏观对关系变化给出了可写的行为与边界：林辰、苏凌霜在第315日重新协作但不互相遮丑；林辰尊重梁九不为未见之事作证；祁嵩的交械限定为保存申辩材料与接受监管，并非认同主角或获得免罪。这些安排本身未见同一时点硬冲突。但本批未提供相应关系原档，无法核对上述拟定阶段是否与既定双方关系方向、知情边界及此前已安排的代价相容，不能据目录或人物档案替代原档通过。",
+      "requestedSources": [
+        "story/relationships/rel_01",
+        "story/relationships/rel_05",
+        "story/relationships/rel_07",
+        "story/relationships/rel_12",
+        "story/relationships/rel_13",
+        "story/relationships/rel_14"
+      ],
+      "resolvedBy": [
+        "cross-1-5"
+      ]
+    },
+    {
+      "checkId": "batch-5/knowledge",
+      "originalExplanation": "本批宏观内部的消息与知情链条大体明确：夜凝霜至第318日收到实体回执才知林辰、贺青梧按期离开；赵玄极只在程砚第318日面报后得知北境失败；苏凌霜至第315日经林辰当面交接才知北境救援和第二片流转；第88—95章又区分梁九第432日实见人数、赵第431日阅押报与撤令实际到达的先后。这避免了将计划消息当作即时全知。可是父案证据、残片性质、赵玄极既有目标及人物对秘密的既定知情范围须与秘密原档交叉核验；该批没有这些原文，不能确认宏观安排没有提前揭露、越权推断或与既定误解阶段冲突。",
+      "requestedSources": [
+        "story/secrets/sec_01",
+        "story/secrets/sec_02",
+        "story/secrets/sec_03",
+        "story/secrets/sec_04"
+      ],
+      "resolvedBy": [],
+      "followupStageId": "followup-batch-5/knowledge"
+    },
+    {
+      "checkId": "cross-3-5/relationships",
+      "originalExplanation": "可见章纲已为若干关系变化安排了明确的触发和边界：林辰、苏凌霜在第17章把合作改为“可质询的重画矿路图”与有限程序担保；秦禾获救后仅接受有限带路、送信；林苏第29章就留守护证与南行分路达成副本、递信责任分配。第25章顾峤与林辰的协作也以顾实际到场手势为发动条件，并非自动信任或无条件援救。可是本批没有实际提供对应关系原档，无法核对这些拟定阶段是否与既定初始状态、知情边界、承诺或其他阶段安排相容，尤其不能确认章纲是否重复兑现既有关系代价。此为待补读缺口，不是当前章纲自身冲突。",
+      "requestedSources": [
+        "story/relationships/rel_01",
+        "story/relationships/rel_03",
+        "story/relationships/rel_09",
+        "story/relationships/rel_10"
+      ],
+      "resolvedBy": [],
+      "followupStageId": "followup-cross-3-5/relationships"
+    }
+  ],
+  "followups": [
+    {
+      "stageId": "followup-batch-3/knowledge",
+      "originalCheckId": "batch-3/knowledge",
+      "criterion": "knowledge",
+      "requestedSourceIds": [
+        "story/secrets/sec_01",
+        "story/secrets/sec_02",
+        "story/secrets/sec_04"
+      ],
+      "originalEvidenceSourceIds": [
+        "plan/chapters/19",
+        "plan/chapters/23",
+        "plan/chapters/24",
+        "plan/chapters/32",
+        "plan/chapters/33"
+      ],
+      "completeRequiredSources": 8,
+      "sourceCharacters": 169244,
+      "metadataCharacters": 36559,
+      "inputSha256": "2ae50d251abb61b81cf6405b8072eb6c565e3151c337ffbdd486ecad7932c25e"
+    },
+    {
+      "stageId": "followup-batch-5/knowledge",
+      "originalCheckId": "batch-5/knowledge",
+      "criterion": "knowledge",
+      "requestedSourceIds": [
+        "story/secrets/sec_01",
+        "story/secrets/sec_02",
+        "story/secrets/sec_03",
+        "story/secrets/sec_04"
+      ],
+      "originalEvidenceSourceIds": [
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "completeRequiredSources": 9,
+      "sourceCharacters": 103973,
+      "metadataCharacters": 35590,
+      "inputSha256": "4de361de69f5e8f975175fdccf46905b530b747b7df528afe51b61bc56a6dac7"
+    },
+    {
+      "stageId": "followup-cross-3-5/relationships",
+      "originalCheckId": "cross-3-5/relationships",
+      "criterion": "relationships",
+      "requestedSourceIds": [
+        "story/relationships/rel_01",
+        "story/relationships/rel_03",
+        "story/relationships/rel_09",
+        "story/relationships/rel_10"
+      ],
+      "originalEvidenceSourceIds": [
+        "plan/chapters/17",
+        "plan/chapters/21",
+        "plan/chapters/25",
+        "plan/chapters/29"
+      ],
+      "completeRequiredSources": 8,
+      "sourceCharacters": 159040,
+      "metadataCharacters": 36603,
+      "inputSha256": "42e64c75bfdea9baf6b3f1f24ce17bfe2d931b331b65682f9b443d8b4589d2dc"
+    }
+  ],
+  "totalScheduledStages": 35,
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "questionsResolvedByThisAudit": 0,
+  "formalAcceptance": false,
+  "limitation": "Offline replay and complete-source/request-capacity checks only. Followup responses, dynamic report synthesis, semantic quality and all four area acceptance remain unproven."
+}
