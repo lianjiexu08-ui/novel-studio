@@ -1,0 +1,902 @@
+{
+  "verifiedAt": "2026-10-17T00:58:28.415Z",
+  "kind": "design71_same_run_transport_recovery",
+  "runId": "design_run_ad438ed2-bf58-43b0-926c-df0529505268",
+  "snapshotPath": "data/audit-runtimes/design71-review/recovery-prefix.json",
+  "snapshotSha256": "3a6bcc1d488cd36def30466dc0ae3c4e62d97cb180f8422430c54d9c9dd8bf2c",
+  "inputHash": "70235514bab787e26c05a26fdc9b297adde5a363de5c6c9f10112b7229c018de",
+  "segments": [
+    {
+      "path": "data/audit-runtimes/design71-review/segment-0.json",
+      "sha256": "ff99a97f89eae70c9d3341df0c40fae18ac407e74da13eb5a07659cc003a7f1f"
+    },
+    {
+      "path": "data/audit-runtimes/design71-review/segment-1.json",
+      "sha256": "96c8adf4b539565b1d0b19a96ff9e9adf62a42a55d3420028a942a0e9a636bdd"
+    }
+  ],
+  "replays": [
+    {
+      "segment": 0,
+      "status": "stopped_after_failure",
+      "totalCalls": 3,
+      "replay": {
+        "verification": "verified",
+        "completedStages": 2,
+        "totalStages": 41,
+        "runSha256": "449d26a2bcc75c2074f01e6b4933867af2348db2e6df18068fe52a7034b5150f",
+        "formalAcceptance": false,
+        "limitation": "Replays saved responses, repairs, citations and conclusions against independently supplied materials. Pending work, semantic quality, blocker disposition and prose acceptance remain separate.",
+        "responseReplay": "verified",
+        "responsesReplayed": 2,
+        "records": [
+          {
+            "stageId": "batch-1",
+            "kind": "batch",
+            "stageSha256": "95f8e6c4e6e53503a8a069400d64452646a50c370f09fb1c165f4ae2e10ff8f2",
+            "inputSha256": "212b7a955909f09925521affd1b6f6dab0b6b25323cd9ccd229e52b261cb58da",
+            "responsesReplayed": 1,
+            "checks": [
+              {
+                "criterion": "geography",
+                "verdict": "pass"
+              },
+              {
+                "criterion": "history",
+                "verdict": "pass"
+              },
+              {
+                "criterion": "capacity",
+                "verdict": "pass"
+              }
+            ]
+          },
+          {
+            "stageId": "batch-2",
+            "kind": "batch",
+            "stageSha256": "4be2ccf9e18b1b8c9f0cda2c87b4168d0309af59ab021984413137ead58997ed",
+            "inputSha256": "b2f7911bd4a9d91fb629327483bead8b07c0286b2140e8f8ecced4be51b0ad07",
+            "responsesReplayed": 1,
+            "checks": [
+              {
+                "criterion": "geography",
+                "verdict": "pass"
+              },
+              {
+                "criterion": "history",
+                "verdict": "pass"
+              },
+              {
+                "criterion": "capacity",
+                "verdict": "pass"
+              }
+            ]
+          }
+        ],
+        "failures": [
+          {
+            "stageId": "batch-3",
+            "failureSha256": "153402e499f6d0b9986486996074de49501bc351845ad4a5f15b36d91e4ee981"
+          }
+        ],
+        "modelCalls": 0,
+        "reportVerification": "not_completed"
+      }
+    },
+    {
+      "segment": 1,
+      "status": "stopped_after_failure",
+      "totalCalls": 4,
+      "replay": {
+        "verification": "verified",
+        "completedStages": 2,
+        "totalStages": 41,
+        "runSha256": "71e671ddf3c7ed2adabd86d51d8f64e4ee1fdcad1b9202ccb9aaac5a0ffabccb",
+        "formalAcceptance": false,
+        "limitation": "Replays saved responses, repairs, citations and conclusions against independently supplied materials. Pending work, semantic quality, blocker disposition and prose acceptance remain separate.",
+        "responseReplay": "verified",
+        "responsesReplayed": 2,
+        "records": [
+          {
+            "stageId": "batch-1",
+            "kind": "batch",
+            "stageSha256": "95f8e6c4e6e53503a8a069400d64452646a50c370f09fb1c165f4ae2e10ff8f2",
+            "inputSha256": "212b7a955909f09925521affd1b6f6dab0b6b25323cd9ccd229e52b261cb58da",
+            "responsesReplayed": 1,
+            "checks": [
+              {
+                "criterion": "geography",
+                "verdict": "pass"
+              },
+              {
+                "criterion": "history",
+                "verdict": "pass"
+              },
+              {
+                "criterion": "capacity",
+                "verdict": "pass"
+              }
+            ]
+          },
+          {
+            "stageId": "batch-2",
+            "kind": "batch",
+            "stageSha256": "4be2ccf9e18b1b8c9f0cda2c87b4168d0309af59ab021984413137ead58997ed",
+            "inputSha256": "b2f7911bd4a9d91fb629327483bead8b07c0286b2140e8f8ecced4be51b0ad07",
+            "responsesReplayed": 1,
+            "checks": [
+              {
+                "criterion": "geography",
+                "verdict": "pass"
+              },
+              {
+                "criterion": "history",
+                "verdict": "pass"
+              },
+              {
+                "criterion": "capacity",
+                "verdict": "pass"
+              }
+            ]
+          }
+        ],
+        "failures": [
+          {
+            "stageId": "batch-3",
+            "failureSha256": "153402e499f6d0b9986486996074de49501bc351845ad4a5f15b36d91e4ee981"
+          },
+          {
+            "stageId": "batch-3",
+            "failureSha256": "f0fa843dab26fa9ab9337e08b5a82f397baa00fcff07f7299dad1e70d92b5839"
+          }
+        ],
+        "modelCalls": 0,
+        "reportVerification": "not_completed"
+      }
+    },
+    {
+      "segment": 2,
+      "status": "running",
+      "totalCalls": 17,
+      "replay": {
+        "verification": "verified",
+        "completedStages": 15,
+        "totalStages": 41,
+        "runSha256": "bcff6a4e62a1fc4ae29f459cb3f2c45a7a3f5f083257c594b1b18b714e1319fe",
+        "formalAcceptance": false,
+        "limitation": "Replays saved responses, repairs, citations and conclusions against independently supplied materials. Pending work, semantic quality, blocker disposition and prose acceptance remain separate.",
+        "responseReplay": "verified",
+        "responsesReplayed": 15,
+        "records": [
+          {
+            "stageId": "batch-1",
+            "kind": "batch",
+            "stageSha256": "95f8e6c4e6e53503a8a069400d64452646a50c370f09fb1c165f4ae2e10ff8f2",
+            "inputSha256": "212b7a955909f09925521affd1b6f6dab0b6b25323cd9ccd229e52b261cb58da",
+            "responsesReplayed": 1,
+            "checks": [
+              {
+                "criterion": "geography",
+                "verdict": "pass"
+              },
+              {
+                "criterion": "history",
+                "verdict": "pass"
+              },
+              {
+                "criterion": "capacity",
+                "verdict": "pass"
+              }
+            ]
+          },
+          {
+            "stageId": "batch-2",
+            "kind": "batch",
+            "stageSha256": "4be2ccf9e18b1b8c9f0cda2c87b4168d0309af59ab021984413137ead58997ed",
+            "inputSha256": "b2f7911bd4a9d91fb629327483bead8b07c0286b2140e8f8ecced4be51b0ad07",
+            "responsesReplayed": 1,
+            "checks": [
+              {
+                "criterion": "geography",
+                "verdict": "pass"
+              },
+              {
+                "criterion": "history",
+                "verdict": "pass"
+              },
+              {
+                "criterion": "capacity",
+                "verdict": "pass"
+              }
+            ]
+          },
+          {
+            "stageId": "batch-3",
+            "kind": "batch",
+            "stageSha256": "13f665b2edaeeccb10f8425835c6e1273221f5dceb2b890c59bc43bac1c0644b",
+            "inputSha256": "ab57533135cd850f3e981b66e5d7b5de08920c8ac31d1ccaa1452a2b60737495",
+            "responsesReplayed": 1,
+            "checks": [
+              {
+                "criterion": "geography",
+                "verdict": "pass"
+              },
+              {
+                "criterion": "history",
+                "verdict": "pass"
+              },
+              {
+                "criterion": "capacity",
+                "verdict": "pass"
+              }
+            ]
+          },
+          {
+            "stageId": "batch-4",
+            "kind": "batch",
+            "stageSha256": "f88bc0343ba14d752e2ad1452c14895fe352d7a74614cd4f39a424637e44098d",
+            "inputSha256": "91028036fc866cbc9663f0f888a185a84ce5c8508c7d0f56e721576dfdc9f567",
+            "responsesReplayed": 1,
+            "checks": [
+              {
+                "criterion": "geography",
+                "verdict": "insufficient",
+                "awaitingSources": [
+                  "plan/chapters/20",
+                  "plan/chapters/21",
+                  "plan/chapters/22",
+                  "plan/chapters/23",
+                  "plan/chapters/24",
+                  "plan/chapters/25",
+                  "plan/chapters/26",
+                  "plan/chapters/27",
+                  "plan/chapters/28",
+                  "plan/chapters/29",
+                  "plan/chapters/30",
+                  "plan/chapters/31",
+                  "plan/chapters/32",
+                  "plan/chapters/33",
+                  "plan/chapters/34",
+                  "plan/chapters/35",
+                  "plan/chapters/36",
+                  "plan/chapters/37",
+                  "plan/chapters/38",
+                  "plan/chapters/39",
+                  "plan/chapters/40",
+                  "plan/chapters/41",
+                  "plan/chapters/42",
+                  "plan/chapters/43",
+                  "plan/chapters/44",
+                  "plan/chapters/45",
+                  "plan/chapters/46",
+                  "plan/chapters/47",
+                  "plan/chapters/48",
+                  "plan/chapters/49",
+                  "plan/chapters/50"
+                ]
+              },
+              {
+                "criterion": "history",
+                "verdict": "pass"
+              },
+              {
+                "criterion": "capacity",
+                "verdict": "pass"
+              }
+            ]
+          },
+          {
+            "stageId": "batch-5",
+            "kind": "batch",
+            "stageSha256": "88b1840f6c1555fa2cc29dc81b97d4c087f73ebaaf7de9be392613d94de9d369",
+            "inputSha256": "83986b73104a8fd3e32219eee353bd8b2703bde17440b340432d270729364744",
+            "responsesReplayed": 1,
+            "checks": [
+              {
+                "criterion": "geography",
+                "verdict": "pass"
+              },
+              {
+                "criterion": "history",
+                "verdict": "pass"
+              },
+              {
+                "criterion": "capacity",
+                "verdict": "pass"
+              }
+            ]
+          },
+          {
+            "stageId": "batch-6",
+            "kind": "batch",
+            "stageSha256": "d01ef4dba4d20b653e168838f1f3da30b7a0d1422f96d632b37bed46f15150bd",
+            "inputSha256": "f9f6ce7457824b485d992e0cc187befd9727da5736f2b93d8b22896014bfd1a9",
+            "responsesReplayed": 1,
+            "checks": [
+              {
+                "criterion": "geography",
+                "verdict": "pass"
+              },
+              {
+                "criterion": "history",
+                "verdict": "pass"
+              },
+              {
+                "criterion": "capacity",
+                "verdict": "pass"
+              }
+            ]
+          },
+          {
+            "stageId": "cross-1-2",
+            "kind": "cross",
+            "stageSha256": "0ef52ac61c0c861ca8e9dee7a60c9cedc2c503ca7f7d0da494b57a87980fcbcd",
+            "inputSha256": "2ce7f8c124fb7009382a7e152c60fa91e52a55540d6901e985aa43aa71c46e1d",
+            "responsesReplayed": 1,
+            "checks": [
+              {
+                "criterion": "geography",
+                "verdict": "pass"
+              },
+              {
+                "criterion": "history",
+                "verdict": "pass"
+              },
+              {
+                "criterion": "capacity",
+                "verdict": "pass"
+              }
+            ]
+          },
+          {
+            "stageId": "cross-1-3",
+            "kind": "cross",
+            "stageSha256": "89349c9304c3184a714ad2e7ecd0ed0dc81c272fcc2572c7e6e93b9120c0211b",
+            "inputSha256": "2e990da5c06d56cbebcd34de161281df718abf4b9f7c0069aca9e5b6cf22d647",
+            "responsesReplayed": 1,
+            "checks": [
+              {
+                "criterion": "geography",
+                "verdict": "pass"
+              },
+              {
+                "criterion": "history",
+                "verdict": "pass"
+              },
+              {
+                "criterion": "capacity",
+                "verdict": "pass"
+              }
+            ]
+          },
+          {
+            "stageId": "cross-1-4",
+            "kind": "cross",
+            "stageSha256": "04897034e41b35389e3aafe419a1a5c2aaa06a215810e4e7f11ea716d18641df",
+            "inputSha256": "73aa4c4948538960a23b25c4a6d0c2b522340a5d386eb4d9cb0c3cf9bd158c42",
+            "responsesReplayed": 1,
+            "checks": [
+              {
+                "criterion": "geography",
+                "verdict": "pass"
+              },
+              {
+                "criterion": "history",
+                "verdict": "pass"
+              },
+              {
+                "criterion": "capacity",
+                "verdict": "pass"
+              }
+            ]
+          },
+          {
+            "stageId": "cross-1-5",
+            "kind": "cross",
+            "stageSha256": "34ac1a0d09da6c322535e7d74599a3586b0bf0929e6abe8d1d92f142519859f3",
+            "inputSha256": "4d300f04091b055059dcb7cceabc15b5e535f6776e990d3b71eb14d7e74216e7",
+            "responsesReplayed": 1,
+            "checks": [
+              {
+                "criterion": "geography",
+                "verdict": "pass"
+              },
+              {
+                "criterion": "history",
+                "verdict": "pass"
+              },
+              {
+                "criterion": "capacity",
+                "verdict": "pass"
+              }
+            ]
+          },
+          {
+            "stageId": "cross-1-6",
+            "kind": "cross",
+            "stageSha256": "225cac3aee0463fff6a559f689e5dfa931f2e58d2342730c336d5989d2210336",
+            "inputSha256": "e8f08450f2c2d33975312f2aa70dee2b5fcfc77cf425dcd435d10eeaf6ff8ee6",
+            "responsesReplayed": 1,
+            "checks": [
+              {
+                "criterion": "geography",
+                "verdict": "pass"
+              },
+              {
+                "criterion": "history",
+                "verdict": "pass"
+              },
+              {
+                "criterion": "capacity",
+                "verdict": "pass"
+              }
+            ]
+          },
+          {
+            "stageId": "cross-2-3",
+            "kind": "cross",
+            "stageSha256": "d35a2dff47e7d5b8d395c059ed075742b38a1961b2fd2620faf84e2e75e97ce6",
+            "inputSha256": "9cd98355bb5cabdb3a185ae6dea4c7367bda31a503286cb6afc69d066d80b985",
+            "responsesReplayed": 1,
+            "checks": [
+              {
+                "criterion": "geography",
+                "verdict": "pass"
+              },
+              {
+                "criterion": "history",
+                "verdict": "insufficient",
+                "awaitingSources": [
+                  "world/historicalEvents/event_14"
+                ]
+              },
+              {
+                "criterion": "capacity",
+                "verdict": "pass"
+              }
+            ]
+          },
+          {
+            "stageId": "cross-2-4",
+            "kind": "cross",
+            "stageSha256": "059732152e86d7f3f06c7608f83b8da8bc19b38162e1a05a1432d24cc95d24d4",
+            "inputSha256": "feab12406abd08e4a10282c0b8f4d214bda18cf9216933dc4f8682e230703ff9",
+            "responsesReplayed": 1,
+            "checks": [
+              {
+                "criterion": "geography",
+                "verdict": "insufficient",
+                "awaitingSources": [
+                  "plan/chapters/31"
+                ]
+              },
+              {
+                "criterion": "history",
+                "verdict": "insufficient",
+                "awaitingSources": [
+                  "world/historicalEvents/event_14"
+                ]
+              },
+              {
+                "criterion": "capacity",
+                "verdict": "pass"
+              }
+            ]
+          },
+          {
+            "stageId": "cross-2-5",
+            "kind": "cross",
+            "stageSha256": "49346e40f9fbbb8770f963efcf66910773667b8a6346fbc47ea19c699add9f03",
+            "inputSha256": "65ca50d205fbaa54b39a024730494fc47667238cad7beb003ddec6b01b731414",
+            "responsesReplayed": 1,
+            "checks": [
+              {
+                "criterion": "geography",
+                "verdict": "pass"
+              },
+              {
+                "criterion": "history",
+                "verdict": "insufficient",
+                "awaitingSources": [
+                  "world/historicalEvents/event_14"
+                ]
+              },
+              {
+                "criterion": "capacity",
+                "verdict": "pass"
+              }
+            ]
+          },
+          {
+            "stageId": "cross-2-6",
+            "kind": "cross",
+            "stageSha256": "fdc11eef58b1a05d3c9f446e5ebf92c599d8976f6ac013ceddbbda0cc29258a8",
+            "inputSha256": "daba425ce79057b6aaaa00d2fbdf46abd2269547335a7edb8441f0d8897b7442",
+            "responsesReplayed": 1,
+            "checks": [
+              {
+                "criterion": "geography",
+                "verdict": "pass"
+              },
+              {
+                "criterion": "history",
+                "verdict": "insufficient",
+                "awaitingSources": [
+                  "world/historicalEvents/event_14",
+                  "world/factions/fac_01",
+                  "world/factions/fac_02",
+                  "world/factions/fac_03",
+                  "world/factions/fac_05",
+                  "world/factions/fac_07",
+                  "world/factions/fac_08",
+                  "world/factions/fac_10",
+                  "world/factions/fac_12"
+                ]
+              },
+              {
+                "criterion": "capacity",
+                "verdict": "pass"
+              }
+            ]
+          }
+        ],
+        "failures": [
+          {
+            "stageId": "batch-3",
+            "failureSha256": "153402e499f6d0b9986486996074de49501bc351845ad4a5f15b36d91e4ee981"
+          },
+          {
+            "stageId": "batch-3",
+            "failureSha256": "f0fa843dab26fa9ab9337e08b5a82f397baa00fcff07f7299dad1e70d92b5839"
+          }
+        ],
+        "modelCalls": 0,
+        "reportVerification": "not_completed"
+      }
+    }
+  ],
+  "recoveredStep": {
+    "id": "batch-3",
+    "attempts": 3,
+    "failures": [
+      {
+        "at": "2026-10-17T00:29:38.215Z",
+        "error": "openai-compatible request failed (429): All available accounts are currently rate-limited. Please retry later.",
+        "modelResponses": []
+      },
+      {
+        "at": "2026-10-17T00:33:16.550Z",
+        "error": "openai-compatible request failed (stream): Upstream HTTP/2 stream failed",
+        "modelResponses": []
+      }
+    ],
+    "result": {
+      "summary": "本批可检验的世界设计通过：三大陆航路、港口准入、气候防护与担保责任均被纳入分卷行动；历史线索、势力行动和证据边界能支撑当前百章阶段目标；地域与制度差异持续改变选择和代价。结论仅针对本批提案，不表示正文或全领域已验收。",
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "pass",
+          "explanation": "跨域移动没有以界门或瞬移替代实体航程：青玄—赤霄按两昼夜、赤霄—苍冥按五昼夜、苍冥—青玄按六昼夜安排。赤霄段将避火符、每日热险放行与受护驿舍纳入行动；北境到港后先候查，再由夜在场具名担保限定林、贺仅在外港查货。返程另列暖舱、实体验籍、纸质限程单、港口税费与回执链，且各类供暖或许可失效均要求停留并重排，而非默认通行。地域功能也分别服务于古境救援、赤霄港口扣工链、北境受限查货与返乡举证，非单纯换地图。",
+          "evidence": [
+            {
+              "sourceId": "review-unit/5",
+              "quote": "{\n  \"id\": \"ax_03\",\n  \"title\": \"界门封禁律\",\n  \"content\": \"青玄、赤霄、苍冥是同一天地内被虚海分隔的大陆。太古界门穿越天地界壁，其完整门户非通天之力不可开启；普通跨海飞舟、沿岸定位阵与大陆内部传送不经过太古界门，也不具有穿越界壁的能力。“破界飞舟”之名仅指破开海上风暴与局部空间乱流。\",\n  \"scope\": \"界门\",\n  \"precedence\": 3,\n  \"status\": \"proposed\"\n}"
+            },
+            {
+              "sourceId": "review-unit/69",
+              "quote": "{\n  \"id\": \"loc_02\",\n  \"name\": \"苍冥大陆\",\n  \"kind\": \"continent\",\n  \"entryConditions\": [\n    \"大陆环境寒冷；凝元境以下需保温舟舱或护身寒符。修为不是政治通行权。\",\n    \"沿岸官港验引渡令；无令者可由巡界使验明身份后具名担保，担保者承担监护和越界责任。例外仅到指定会合地，不自动授予进入界渊的权利。\",\n    \"具体到访须区分受监管码头候查、沿岸入境担保和界渊准入；担保须由实际到场者具名承担，只在约定范围与期限生效。\",\n    \"上述防寒门槛针对实际暴露于寒候。普通港区和已开放公共驿路的固定暖房、暖车只有在隔风围护、隔火炉、通风烟道、燃料与值守人手均实际存在且持续供热时，才提供其内部的温暖避难处；不把整座港口或一段驿路变成免寒区。离开温暖内部进入寒候，凝元以下仍须实际可用的护身寒符；普通衣物、修为名义或商业票不替代此条件。供暖失败要停止进入或转移到另一个已核实暖处，另记真实燃料、交通与照料费用。\"\n  ],\n  \"status\": \"proposed\"\n}"
+            },
+            {
+              "sourceId": "review-unit/70",
+              "quote": "{\n  \"id\": \"loc_03\",\n  \"name\": \"赤霄大陆\",\n  \"kind\": \"continent\",\n  \"entryConditions\": [\n    \"需修持适用到访区域的抗火法门或佩戴避火灵符。天宝外港及既有受护街段在非地火喷发期的日常炙热，以已验明余量的普通避火符art_16满足；凡器避火衣art_15只作辅助，不替代此项灵符/法门门槛。离开这些受护区域前须另核当地实际危险和适配防护，普通符不授予闯明火、火法或地火的资格。\",\n    \"玄府境以下须避开地火煞气喷发期。港务依据沿岸岗哨实际见到的热裂、硫烟和异常地火记录发布封航/放行旗号，航司出航前查本航次通告、靠港前复核当日旗号；旧通告不保证未来安全，若转为封航须在许可锚地待令或返航，不能靠日常避火符硬闯。\"\n  ],\n  \"status\": \"proposed\"\n}"
+            },
+            {
+              "sourceId": "review-unit/88",
+              "quote": "{\n  \"id\": \"loc_21\",\n  \"name\": \"无尽虚海商路\",\n  \"kind\": \"region\",\n  \"entryConditions\": [\n    \"同一天地内的虚海航网，不穿越太古界门；普通修士依赖护罩与定位阵飞舟，持钥匙不能免费或瞬移过海。\",\n    \"青玄云梦天港至赤霄天宝外港为约两昼夜实体海程；内陆抵港时间另算。船票、劳务换舱、担保与额外打点须分别说明，商盟信物不自动代付。新第一卷拟第214日暮出航、第216日暮到港，旧第17–19日章纲不再适用。\",\n    \"赤霄极焱天港至苍冥葬骨玄冰原外港为约五昼夜实体海程。常规客舱旧报价五千枚下品灵石，上等舱三品火灵晶百两；具体货物换舱须核实品种、数量与双方同意，不凭品级推定兑换率。后续新章纲须重新安排日期和可用支付来源，旧第27–32日航历不是约束新提案的日期。\",\n    \"苍冥通天渡口至青玄沧溟古港约六日实体海程；紧急征用也须明确船舶、燃料、具名供给者与担保责任，不能当作免费瞬移。回师日期须随前卷训练、休养和航程顺延。\",\n    \"万象商盟管船舶、泊位、货单与运费；大乾、神炎及苍冥沿岸守军各管本方港口，巡界使处理空间污染和紧急引渡。商业信物不能豁免扣船、搜舱或追缴。\",\n"
+            },
+            {
+              "sourceId": "review-unit/358",
+              "quote": "{\n  \"id\": \"ms_growth_v1_crossing\",\n  \"title\": \"护货南渡与入港代价\",\n  \"kind\": \"turn\",\n  \"startChapter\": 30,\n  \"endChapter\": 32,\n  \"setup\": [\n    \"第212–214日按山路转驿车到云梦天港，运送六箱指定低阶药材换本航次普通舱；管货不等于可炼化物资。\",\n    \"第214日暮出航、第216日暮到天宝外港，海程两昼夜；不沿用旧第17–19日航历。\",\n    \"风暴中护船者承担外敌，林辰利用凝元御物和矿车制动经验固定货索、阻止药箱砸人，救下一名试图私藏货物的押货者；不斩神海海兽或获得免费升级。\",\n    \"入港用验籍及实际避火防护，局限于有防护的外港街区；他必须补交因护货失损的说明，收货人的真名与失踪货箱构成下一卷具体调查线索，不能潜行岩浆暗渠。\"\n  ],\n  \"cost\": \"部分药箱遭海水毁损，按合同区分天灾损失与失职，失去履约奖金而非无限债；主角需继续工作维持旅费，凝元境只能在当地低风险区域活动。\",\n"
+            },
+            {
+              "sourceId": "review-unit/363",
+              "quote": "{\n  \"id\": \"ms_v2_voyage\",\n  \"title\": \"有限航款与五日北行\",\n  \"kind\": \"turn\",\n  \"startChapter\": 54,\n  \"endChapter\": 60,\n  \"setup\": [\n    \"第271日商盟港务理事会为追缴被挪货与避免北境封港，从本案追偿周转款实拨14000枚下品灵石给具名领款的贺青梧；这是有账有追偿风险的商盟垫款，不是几天劳务值一万。用途限两人北航查货、回青玄交证及沿途食宿医药。\",\n    \"第271–274日乘普通车沿每日复核开放的既有沿岸驿道从天宝外港到极焱天港；271日出发前贺从已拨1000杂费额度中实付12购两张满额普通避火符（各6枚，计入后来核销780而非另加支出），两人核余纹后佩戴新符；旧符不得续算有效，不进太微城、神炎内地、魔谷或天坑。陆与弟弟留赤霄接受传唤，不能无交通随队到北境。\",\n    \"林延续252及254回访的短走、坐车许可，仍不负重，拒绝接受程记以撤供换赔偿的口信。第275日贺在极焱航司柜台按本航次实报5000/人支付10000，购买两张普通保温客舱票；船方在两人具名舱单上列明隔火暖炉、通风烟道、五昼夜保温舱位及燃料、当班船员添料看火均含在这10000内，普通是舱等，不是敞舱或仅发一件保温衣。276日暮离港、281日暮抵葬骨外港，五昼夜完整航程。\",\n"
+            },
+            {
+              "sourceId": "review-unit/363",
+              "quote": "    \"第271–274日乘普通车沿天宝外港至极焱天港的既有沿岸驿道行进，不穿内陆地火带。该道不是全程受护街段：本次271日出发前、272–274每日续行前，由沿岸岗哨把当日巡路所见的热裂、硫烟及异常地火结果交驿站当值车头核对；本次开放段仅有日晒与日常热气，无明火、硫烟和喷发，车头据此放行普通客车。贺逐段看当日放行牌、核两人的符纹，车夫只走已核段，夜宿既有受护驿舍；受护驿舍仅降低环境危险，不替符充能。若新见硫烟、热裂、地火或符纹不足，停在受护驿舍或沿已确认安全段回站，须等待复核，不能为赶275票期硬闯；延期就改签并重排后续日期和实际费用，不能保持原抵达日。本次逐日复核可行才按四日抵极焱，入港另验籍，不用商业款代替放行。\",\n    \"两符自271购入至276暮登船即使连续佩戴也各不超过144小时，至少余576小时，仍须以当次验纹确认；登船封存停耗。普通车费与受护驿舍住食计本款杂费实支，不从保留的回程3000中挪用。\",\n    \"北航登船核验并入本次出港场面：276日林贺、港务当班人员与实际船方共同核对具名舱位、隔火炉和通风烟道完好、五日燃料实载及船员值守安排；只在本次核验合格后登船。贺全程在该保温舱内，守证与换班也在舱内完成；林279日温和吐纳仍在已确认有供暖的同一客舱，不因暖舱增加真元恢复额或放宽伤后上限。船体航路护罩不被写成额外免费护寒术。\",\n"
+            },
+            {
+              "sourceId": "review-unit/363",
+              "quote": "    \"北航防寒失效分支：舱位或五日燃料未兑现、炉道不合格就不登船，在极焱原有获准客舍候船并办理改签；途中失暖先由船员核实备用保温舱并实际转移，无法转移则赴最近可安全抵达且允许接泊的港口补修救助，不凭普通衣物硬熬。延期要重记票款退款或补价、食宿、抵港与后续会面日期，现金不足先取得经确认的真实来源，不再花已付的10000或挪封存3000。原276—281航期仅适用于本次五日供暖实际持续的正常路径。\",\n    \"275日贺在极焱航司同街商盟登记的制符门市实购art_21普通护身寒符六张，本次报价每张6枚、共36；另购两件干燥保温衣共8。货架实物由店方出示本制式符师制成与逐张验收记录，林贺现场试扣、读取每张尚余至少220小时，再各自编号三张并干封；符师本境、工时、制符材料与耗灵记录均须可核，不把店名当现货。36从原杂费669中细分，衣费8也原在该项，剩余其他625；不增垫款、不挪回程3000、不把制符已耗石再当主角收入。\",\n    \"281日暮抵葬骨时，港务当班人员在本船暖舱门内核本次码头寒候和候查暖房是否开放。林贺先穿干衣，各启第一张护寒符、确认余纹与温热正常后才过短栈桥；只去受监管候查暖房。该房有实燃隔火炉、烟道和当班添料者，食宿供暖按本次到港登记实付并计原杂费，不由船舱免费覆盖岸上。查验与防寒分别成立，符不能替代285日才获的查货担保。\",\n"
+            },
+            {
+              "sourceId": "review-unit/364",
+              "quote": "{\n  \"id\": \"ms_v2_boundary\",\n  \"title\": \"黑舱截留与残片取舍\",\n  \"kind\": \"climax\",\n  \"startChapter\": 61,\n  \"endChapter\": 66,\n  \"setup\": [\n    \"第285日夜在外港真身会见，对照北境原封签存根、45章交接残联与旧封的签认拓本、53章拟取得的陆新写改签自述签认副本；这些是货运线索，不是第二片图样，不能凭同封号认定匣内物。她具名担保林贺仅在外港指定仓区查货至300日；归一实力不赋予林准入界渊的能力。\",\n    \"程272从极焱另船出发277到北境，订291转运，不是海上追逐。第一报258寄、262赵阅及263回令、268程收均归53章前后锚点，不在61章才首次发生；第一报不含291北境失货。赵至318程亲自面报才听到北境失败。\",\n"
+            },
+            {
+              "sourceId": "review-unit/364",
+              "quote": "    \"第64章的实际转运在第291日，285日只是夜抵港会面，不把两日混为同一场。夜要先封存污染货并救出七名被扣在普通货舱的青玄矿工；林在仍可追程的小艇与先开囚舱之间选择救人。贺依现场舷号确认目标货舱，林沿港卫先验过的短板扶栏走到既有码头装卸浮台的近舱侧，不跳跃、不负重。舱口外露普通插扣被另加的一根未附灵麻绳绕耳绑紧，港卫从码头正面被舷板遮住，浮台近侧才看得见绳段；林在此施一次已掌握的凝元剑诀，实际只放一道风刃切断绑门麻绳一处，亲见唯一余刃在两丈界内散尽、港卫核舱门与短板仍稳后，再以肉身拨开失去束缚的轻插扣。夜守侧巷与栈桥，港卫和贺实际接应矿工；林不靠风刃托举浮台或隔空搬人。程从另一侧已离泊小艇进入密集客船航道，夜看见去向，却选择守住撤人的栈桥，拒绝扩大封港或攻击载客航道，令港卫记录船号。归一强者没有被低阶障碍困住，她留下逃犯是为保撤离通道，不是突然失去感知。\",\n    \"选择：林将第一片继续留在可复核封袋中，放弃夺第二片的机会救人；夜接受先救普通人而非强追残片，限制封港范围以免所有商路停摆。\",\n    \"认知：夜只据其守界经历告知界壁外的寂灭风险，林相信证言但没有亲见死海。父亲在苍冥存档的署名检修副本由夜带来的巡查档案核对，只证明其参与守门；不证明投毒真凶。\",\n"
+            },
+            {
+              "sourceId": "review-unit/365",
+              "quote": "{\n  \"id\": \"ms_v3_return\",\n  \"title\": \"带证返乡与先救谁\",\n  \"kind\": \"turn\",\n  \"startChapter\": 67,\n  \"endChapter\": 72,\n  \"setup\": [\n    \"第300日，夜的原外港查货担保仍只到当日，不自动延长。林贺当面申请回青玄交证；夜依loc_02具名担保规则，在葬骨外港原港务和本轮当值巡队见证下另签限程离境担保，列林、贺实名、原名册及货证封袋，指定会合/交接地为通天渡口受监管候船区。许可仅301日晨至304日夜有效，沿已勘验的葬骨外港—海岸公共驿路—通天渡口路线坐暖车，夜宿所列原驿站；不准离道查货、入极冰国、妖域、神宫或界渊。原巡队在301日出港时复核名单并交当班驿车的纸质限程单，沿岸既有岗哨在车辆实际到站时逐站验籍、签注到离时点，终站港务于303日实际到达后验原单接收候船监管，304日只在原单、名册和船票相符后办理登船离境。夜仍承担这份限程担保的越界责任，原巡队承担出港核验和未按期交回签注单时的追查责任；没有远程瞬时验籍或只有商业票就能通行。\",\n"
+            },
+            {
+              "sourceId": "review-unit/365",
+              "quote": "    \"返青玄入港执行约束（并入返航到岸场面，不另开一轮办手续章节）：310日暮船靠沧溟古港受监管泊区，船方交实际到港舱单；林贺当面向大乾沿岸守军所属的当班港务验籍岗出示本人原籍凭证、原名册、现有路引及苍冥实际签注离境单，逐一核人、核航次和随身封袋。林的本土身份不替贺免除外来海路入港查验；苍冥限程单只证明此前获准离境，不能充当大乾入境许可。核验岗按loc_01、loc_21及loc_27的既有分工登记本次入港，税务经办当面核定本案两人本航次的应缴税费合计24枚下品灵石，贺从原专项杂费现金实际交清并收有日期、两人姓名、航次、金额及经办签记的收讫联；这是本次拟定实缴情节，不设通用税率、不增商盟代付或免检特权。港务在原名册及现有路引签注本次核验放行，船方只负责舱单交接，不代替守军放行；实际放行后两人当晚进入港内原有普通客舍，次晨按普通驿路离港。检查封袋只核申报、外观和封记，不启动残片，不把北境见证或父案副本当作本地已认定罪证。\",\n"
+            },
+            {
+              "sourceId": "review-unit/365",
+              "quote": "    \"正常拟定路径：304日暮实际验人登船后，通天当班港务文书将原限程单各站签注与本次离境核验、实际船名航次及两人登船时点逐项对照，按岗簿签名制作两份签注副本及一份本案登船回执。林贺仍带本人原名册、路引与离境签注原件赴青玄供310日入港核验；寄递的是经文书核对封签的副本，不能把已寄走的唯一原件再拿来验籍。港务留本登记，305日晨将封袋实交承运联上的本班车正并互签收件；驿车沿原公共路线实走三昼夜，308日晨到葬骨，由原巡队当班案牍岗验封、对本轮留存名单与出港单、签名登记本次到件。案牍岗留一份，并将另一签注副本、回执及本案核验说明重新封袋，308日午交已在承运联列明的下一班公文驿车，沿夜回驻地的同一陆路实走十昼夜；318日午才交驻地当班值守文书验封签收。两段承运者只负责实体保管交接，不能代签港务放行或代替巡队核案。315日主角返乡结算时，第二段仍在途中；夜311日返岗不等于已收到这份回执，林贺也不能在青玄凭作者执行账知道邮车实到情况。318日的实际到件与夜知情另在73–80章对应里程碑承接。\",\n"
+            },
+            {
+              "sourceId": "review-unit/365",
+              "quote": "  \"cost\": \"苏失去本期真传外派机会，贺的往返垫款需验收结算；林没有夺到第二片，不能拿钥匙解决封锁。 新限程单占用原巡队本轮一次出港核验及纸单回收追查责任，原队因此缩减一处例行沿岸巡查，夜也不因先离港而免除具名责任。沿岸车费、驿站食宿和验籍仍在原1000杂费额度内据实列支，归入同一累计780，不挪封存3000、不把许可当作免费车船票；本次明确回执两段寄递费18，归入原杂费而非新增收入或另加在780外。 本次入港24从既有杂费额度内细分，非在780之外另收：310日验籍前已付杂费累计700（含271两符12、290诊费1、303两段回执寄递18，275护寒符36、保温衣8，以及此前实际车费、医药、食宿、供暖与查验625），原1000额度尚余300；当场付24后累计724、余276，310夜港内客舍与311–314返程车路住食查验再实付56，累计780、余220。700和56是本次候选对原未拆明杂费的规划分配，须后续对应章节逐笔实现；不能当作既有正文付款证据。上述数字不包含已单独结清的10000北航与3000回航票，不挪用或重复记账。\",\n"
+            }
+          ],
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "history",
+          "verdict": "pass",
+          "explanation": "本批历史与现状之间保留了可追查的因果边界：父亲守门、外山掩案、跨陆货运和九鼎机制均只允许由限定的原件、口供、封签或实体传递逐步确认，未把残片、境界或读者视角当作全知来源。赵、墨、程及港口相关方的行动有各自可见的报告、利益和责任链；例如墨须收到矿道失败的实体回报后才调整掳人策略，赵在收到不同阶段纸质消息后才分别发令，不能反向成为早期现场行动的原因。百章结局明确只切断一条已证实链路，不将其扩张为九鼎全案或十年前父案已结。",
+          "evidence": [
+            {
+              "sourceId": "review-unit/227",
+              "quote": "{\n  \"id\": \"audit-mo-bargain\",\n  \"arcId\": \"arc_01\",\n  \"characterId\": \"char_04\",\n  \"kind\": \"choice\",\n  \"plannedChapter\": 14,\n  \"expectedChange\": \"第14章墨收到矿道行动失败的实体回报，为取得可交易泉液、炼幡原料和遗物组织掳人；只有玄府能力，万鬼幡王器尚未成形。\"\n}"
+            },
+            {
+              "sourceId": "review-unit/279",
+              "quote": "{\n  \"knowledgeStages\": [\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 1,\n      \"untilChapter\": 12,\n      \"certainty\": \"suspects\",\n      \"belief\": \"知道残玉与生父有关，追查家仇；尚不掌握护界牺牲的完整经过。\",\n      \"trigger\": \"身世记忆与早期案卷线索。\",\n      \"consequence\": \"追索血晶去向与古境遗迹。\",\n      \"forbiddenInferences\": [\n        \"不能叙述尚未看见的投毒场面\",\n        \"不能因此知道九鼎全套阵图\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 13,\n      \"untilChapter\": 17,\n      \"certainty\": \"suspects\",\n      \"belief\": \"只有家传笔记和残玉与父亲有关，未确认守门或投毒经过。\",\n      \"trigger\": \"13章已有家传物及双方此前明确交接的有限信息；没有父亲守门或投毒的新证据。\",\n"
+            },
+            {
+              "sourceId": "review-unit/279",
+              "quote": "      \"characterId\": \"char_01\",\n      \"sinceChapter\": 85,\n      \"untilChapter\": 100,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"三份原始记录支持父亲守门参与与外山掩案责任；投毒与十年前完整因果仍未证实。\",\n      \"trigger\": \"85章外山仓取存根，与第18章旧图及北境副本对照。\",\n      \"consequence\": \"拒绝把梁九的未见之事写成指控。\",\n      \"forbiddenInferences\": [\n        \"不能从局部证据推知九鼎全阵、父案全部凶手或未在场者所知。\",\n        \"不能以残片感应、圣器留影、神念全知替代实际消息和证据。\"\n      ]\n    },\n    {\n      \"characterId\": \"char_02\",\n      \"sinceChapter\": 3,\n      \"untilChapter\": 12,\n      \"certainty\": \"unaware\",\n      \"belief\": \"掌握当代魔门渗透线索，但没有父辈遇害全貌。\",\n      \"trigger\": \"追查暗桩、护持同门。\",\n"
+            },
+            {
+              "sourceId": "review-unit/279",
+              "quote": "      \"belief\": \"知道自己亲自实施的父辈案行为；所知不等于林辰见过的记忆范围或每个守界细节。\",\n      \"trigger\": \"延续赵亲自实施十年前行为的自身记忆；本秘密没有收到林苏父案原件的新渠道。港口、北境及本次押运报令另按sec_02的53/73/88/90/98/99章阶段核对。\",\n      \"consequence\": \"保护自己旧行为的秘密；不能从这份自身记忆推知林苏当前找到哪些副本，也不否定其他事项中后来实际收到的新消息。\",\n      \"forbiddenInferences\": [\n        \"不能无场景得知林辰何时看到哪段记忆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_05\",\n      \"sinceChapter\": 61,\n      \"untilChapter\": 100,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"巡查档案有林苍玄署名，但不知青玄投毒始末。\",\n      \"trigger\": \"既有巡档资料，本次285日带至外港，66章供林核对。\",\n      \"consequence\": \"有限交证，不替林证明全案。\",\n      \"forbiddenInferences\": [\n"
+            },
+            {
+              "sourceId": "review-unit/282",
+              "quote": "      \"untilChapter\": 53,\n      \"certainty\": \"believes\",\n      \"belief\": \"已读程第一报，知道程转引脚夫见到254巡查在附棚门口处置、林贺留外院、两工自行出门及两看守被控，并相信程自述封匣尚自持；这些仍是转述与自述，未由赵独立核实。确认自己263签回令，不知道是否已送达程，也不确认林贺曾进入棚内。\",\n      \"trigger\": \"53章262收发房按封袋号签收交赵，赵实际阅览；263亲签纸质回令一号并封袋交骑使。骑使经263–265陆驿、265暮–267暮邮船，268在天宝当面交程验封；程的签收联尚未回赵府，不瞬时共享。\",\n      \"consequence\": \"要求保封存物、毁自己手中可追到军需的散账；回令不得倒写为254现场拦人的起因，脚夫报告也不等于门内全部事实已被证实。\",\n      \"forbiddenInferences\": [\n        \"不得由读者独立视角获得林苏尚未交出的材料、第一片去向、真解全文或林的寿储。\",\n        \"程的利己口供不等于所有过程均已证实，也不能代表炎煞真身知情。\",\n        \"未亲见封匣内物，不凭自述鉴明碎片用途。\",\n        \"尚不知道291北境失货、夜的行动或林得到父案副本。\"\n      ]\n    },\n    {\n"
+            },
+            {
+              "sourceId": "review-unit/282",
+              "quote": "        \"不知道435令已交、436八人获救、原令被保住或林放过程，除非随后实际回报。\"\n      ]\n    },\n    {\n      \"characterId\": \"char_03\",\n      \"sinceChapter\": 98,\n      \"untilChapter\": 98,\n      \"certainty\": \"believes\",\n      \"belief\": \"听程自述436现场遭林顾等拦截、自己逃走；未确认原令流失与八人全部安置结果。\",\n      \"trigger\": \"98章439程沿普通驿路抵乾都当面报其逃离前所见；携来的只有自身见闻，不是回传全场。\",\n      \"consequence\": \"要求核清损失、想把欠账转嫁旧代理，但无炎煞接信或新协议。\",\n      \"forbiddenInferences\": [\n        \"不得由读者独立视角获得林苏尚未交出的材料、第一片去向、真解全文或林的寿储。\",\n        \"程的利己口供不等于所有过程均已证实，也不能代表炎煞真身知情。\",\n        \"程不在完整救援结束现场，不能替赵证明最终八人或封存卷的位置。\"\n      ]\n    },\n    {\n      \"characterId\": \"char_03\",\n"
+            },
+            {
+              "sourceId": "review-unit/282",
+              "quote": "  \"revealCondition\": \"44章半页与实体书信、53章陆新写自述签认副本（内容待独立核验）、66章北境封签、72章回乡交接、95章实得撤人令，百章只证一条三地链；神阶禁术操作者、寿源去向和九鼎全机制须后续逐层取证。\",\n  \"status\": \"proposed\"\n}"
+            },
+            {
+              "sourceId": "review-unit/356",
+              "quote": "{\n  \"id\": \"ms_vol1_climax\",\n  \"title\": \"解囚夺泉，同阶制敌\",\n  \"kind\": \"climax\",\n  \"startChapter\": 23,\n  \"endChapter\": 26,\n  \"setup\": [\n    \"23章187日秦沿已核短支路与装车区外壁后的林苏会合，亲闻墨少主称呼、秦说明被扣时名牌全名才确认墨。隔木缝见墨施爪抓伤凝元看守、黑纹加深并放血，元罡却仍可推重车。林苏因此共同设计由顾正面迎敌、林开笼用普通废料斗遮视、苏接人与隔开看守的配合，顾未实到不发动。\",\n    \"23章独立墨视角：逃秦暴露与上层实体催交使他决定188辰末转运，卯前召原封路哨回营束笼绑货、检车押运，用归路暂时无人监看的风险换按时交货。林苏秦只听现场口令，不知催令内容。24章188卯初秦亲见哨撤与铃绳解除，单独轻装沿已核四里路约一小时于卯正06:00面交更新标图给顾；图含墨身份、实见元罡/黑纹、囚笼与地形分工。顾核图、召齐2名原有普通护卫及救护用具，07:00与杜交岗后出发，08:15抵营外、08:45潜近侧廊，乔前夜休足留外营备勤，秦留外营。林苏看不到交图，只在25亲见顾到场和手势才行动。\",\n"
+            },
+            {
+              "sourceId": "review-unit/362",
+              "quote": "{\n  \"id\": \"ms_v2_fire\",\n  \"title\": \"北三门前与各自的去路\",\n  \"kind\": \"climax\",\n  \"startChapter\": 47,\n  \"endChapter\": 53,\n  \"setup\": [\n    \"251程提出改扣工陈述换替船接货，贺退单并将货序交接手船，客户按期走、她仍失单停牌。47结尾留在货船离岸，不以送核或结账再开一场；无船款交付，林最后1枚已用于251–260食宿，现金0。\",\n    \"252外线只以车夫认不出门、林坐下、贺交巡查接手的失败转场；停牌与伤限保持。48主体为吴卢在门内拒绝相互代答续工，门仍落闩，二人先获得各自说话的边界而未获自由。核证、半成试注及三成半余量按cost和48成本记录，不占另一场；林贺和陆均不知门内谈话。\",\n    \"253陆托茶摊送条约弟，弟主动交巡查并拒离港。弟只证明220夜见兄收钱签另条，没看内容。陆承认动作、未完整自认，选择到案接受看护，自有2枚登记未罚没；指出北三水台后甬道与无牌附棚，254随巡查辨门。林未扣弟，不拿去留换口供。\",\n    \"254晨巡查随陆到北三门，两名未入境普通看守称吴卢自愿候工，却在两人要求出去时合门、准备落外闩。吴卢合力顶门，林松开剑柄让巡员上前直接听取回答，不替当事人作答，不施术。程不在本次控人现场，没有纵火或携匣逃离镜头。\",\n"
+            },
+            {
+              "sourceId": "review-unit/362",
+              "quote": "    \"连续性执行约束（不另占独立场景）：脚夫此前做药栈码头接货差事时见过林辰与贺，故能认面貌；这是该见证者的既有接货经历，不是由门内对话得知身份。他所在公共巷口能望见院门至棚门一线，卸货人声遮住门前谈话；只报告外部位置、两工自行出门及看守被控，不能报告陆承认押送、吴卢去留回答、火因或封匣内容。程未亲见这些事，报一号须标为转述，不能改称林贺进入棚内。\",\n    \"连续性执行约束（不另占独立场景）：263日赵亲签纸质回令一号并封袋，交同一名府属骑使按普通陆驿出乾都；263–265日抵云梦天港，265日暮随实体邮船出航、267日暮到天宝，268日按落脚地址当面交程验封签收。驿马、船资和常规验籍费由赵府既有军需邮递项实付，不免检、不传送，也不从林贺航款扣款。回令原件归程；骑使只带程268日签收联，于269日启程、271日云梦转陆驿、273日交赵，签收联只证送达，不证执行。\",\n    \"连续性执行约束（不另占独立场景）：53章须在陆书写签认自述的主行动之外，以短独立视角呈现262阅、263发、268收，不把邮路写成反复跑柜台。程留原令；骑使269返程、271云梦、273乾都，54章当面交签收联，此前赵只知发令。邮资由程记、回令由赵府军需支付，均不占林贺航款。\",\n"
+            },
+            {
+              "sourceId": "review-unit/368",
+              "quote": "{\n  \"id\": \"ms_v3_convoy\",\n  \"title\": \"押运截停与放弃追凶\",\n  \"kind\": \"climax\",\n  \"startChapter\": 88,\n  \"endChapter\": 95,\n  \"setup\": [\n    \"第431日苏把现场案卷送监督复核点，不能一日传播三大陆；护送执事顾仅能调一队外山见证与救护人员，玄府护卫数量与运人笼位置由实际跟车确认。\",\n    \"88章431赵阅祁429具名接押报告，不是苏同日送当地监督点的案卷。90章433赵据旧清册和此报签撤押一号，骑使沿普通驿路92章435交祁。两车八人在432已装载并被梁看见，435令触发撤走而非首次装车。程318已抵押原物，410才本地重整；433赵以核回程记货账后才考虑减债为条件派程携旧货签清册随骑使，二日435到外山押运仓核货签。程想减债赎匣、无权指挥玄府，第二片仍赵府封存。不再写三个月已重整或省略程离都行程。\",\n"
+            },
+            {
+              "sourceId": "review-unit/369",
+              "quote": "    \"苏梁核住处、粮食与工钱申领，韩承担改账责任。林只公开父亲守门参与及当地掩案可证部分。98章439程按普通驿路到乾都面报逃前所见；99章442监督点另寄本案摘要、原令封存副本和见证签名，444到复核署，445赵读质询、446答询并停本批授权。双方不即时共享。林仅据436程当场索要工友身份的口信怀疑第二片在赵府，未亲见；第一片仍封存自持。\",\n    \"选择：林拒绝按敌方未证实的口信拿工友身份去换所谓寿药，接受短寿与尚未结案的父仇；苏接受自己阵营的责任也在卷宗中，梁九决定先带家人过日子。\",\n    \"认知：向公众说清哪些已核实、哪些仍待查；夜只在实际收到青玄船信后得知结果，不能与林同日共享终局全知。\",\n    \"白榆在两间值守房内诊疗，各当班玄府不离岗；日常无跨房/外送，不调用休班者补一时缺口。无已到岗且足休的具名替班就取消移送与提审。若拟写当班失能等突发事件，现四人双岗表不够，必须先另审人手覆盖再写，不能顺延下一班制造空岗。\"\n  ],\n  \"cost\": \"没有返寿、燃寿白发、道伤凭空痊愈或三大陆永久太平。此卷不清算全部九鼎，公开传播仍限实到地点。\",\n"
+            }
+          ],
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "capacity",
+          "verdict": "pass",
+          "explanation": "当前百章的容量不是靠无代价扩阶或堆叠地名支撑。青玄矿务—古境、赤霄港务—扣工链、苍冥外港—受监管救援、返乡后的证据与押运线分别提供不同资源、制度和冲突；航款、防护、担保、救济、伤情、疗程和寿储均持续限制角色选择。力量成长亦从凝元训练、两次完成疗程、玄府诊察与十元载支付依序发生，且高阶寿源示例明示只是候选见证、不可自动授予角色。由此足以承载本轮100章的分卷递进；全书450章后的高阶来源仍被明确保留为后续需另建的设计，而未被本提案虚假解决。",
+          "evidence": [
+            {
+              "sourceId": "review-unit/3",
+              "quote": "{\n  \"id\": \"ax_01\",\n  \"title\": \"灵气守恒律\",\n  \"content\": \"天地灵气在地脉、灵材与修士之间转移、消耗和缓慢再生，不因晋阶、胜利或更换记账名称凭空增加。同一来源的一份灵气只能入账一次；正常温和吐纳、已定义限额内的采集和按功法成本施术，分别按对应条目处理，不再追加未定义的天罚扣寿。\\n所谓“夺天地者受因果反噬”，指破坏维持资源或界壁稳定的根基来强取超额收益，并非天地按善恶判罚。资源已有成熟周期、采额或停采条件时，以该条目为界：未成熟强采、超过可采量、毁掉泉眼/根系/定界石槽或在警报后继续抽取，不能获得与合规产物相同的可用灵气或寿源；多取部分在验证前计为污染或无效实物，收益为零，不补未来配额。\\n损失有两处归属：采地承受资源条目已写明的枯竭、污染或空间裂隙扩大，采掘者损失实际投入的材料、库存和工时；人体若因仍与失稳源相连而遭灵流倒灌，则立即停术，已付术费不退，经脉灼痛、出血、定向失常等实际损伤须诊治、下修可用上限，不能以抽出更多灵气抵销。没有接触或传导路径，不能隔海凭“因果”自动伤人；附近无辜者仍可能被实际地火、塌方或裂隙波及，须按现场灾害处理。受伤不等于固定扣寿，永久本源/寿储损失只在对应术式或已诊察伤损明示时另记，不重复扣同一代价。\\n停采不使地脉即时回满，恢复须按原产地周期和复测；毁根、毁槽或界壁破裂不能靠施术者休息、善行或一剂延寿药修"
+            },
+            {
+              "sourceId": "review-unit/8",
+              "quote": "{\n  \"id\": \"ax_06\",\n  \"title\": \"境界承载与实际施术\",\n  \"content\": \"境界能力栏描述该层能够修习和承载的能力方向，不是一份自动掌握、免费发动的万能招式清单。晋阶费用、术法发动费与持续消耗分别记账；晋阶不等于预付后续法术。实际施术须有已掌握的功法、法宝或明确基础操作规则，逐项满足其对象、范围、供能、时机和中断后果；境界名称不能绕过这些条件。已由ax_05定义的凝元轻物御动等基础操作仍按原规则执行，普通步行、说话、握持不因此加收术法费。尚未展开的高阶术式可以保留为未来能力方向，但首次安排它解决剧情之前必须先完成具体规则与可取得资源的设计、复核；不得以读者未见的万能本能补齐现有行动缺口。\",\n  \"scope\": \"全部境界、功法、法宝及后续能力扩展\",\n  \"precedence\": 6,\n  \"status\": \"proposed\"\n}"
+            },
+            {
+              "sourceId": "review-unit/11",
+              "quote": "{\n  \"id\": \"ax_09\",\n  \"title\": \"自然寿源只在完成疗程后入账\",\n  \"content\": \"任何自然形成的延寿资源必须同时满足来源验真、配额登记、适格境界、伤情诊察、完整疗程和复诊确认，方可增加未来可用寿储。采收上限、市场价格、持有凭证、传闻库存和未完成疗程不得预支寿元。该收入不返还已燃寿元、已付晋阶成本、自然衰老、道伤、神魂本源或术法冷却。 下列新成熟日是候选世界自然周期的相位设定，不是前百章已知消息、现有库存或给主角的承诺。成熟窗表示生态合格时可形成的上限，现场测得产量不足或审批未通过时条件账分支中止。\",\n  \"scope\": \"全域命寿资源与医疗\",\n  \"precedence\": 9,\n  \"status\": \"proposed\"\n}"
+            },
+            {
+              "sourceId": "review-unit/13",
+              "quote": "{\n  \"id\": \"ax_11\",\n  \"title\": \"有限寿源的高阶成长条件见证\",\n  \"content\": \"世界容量例取与百章末相同的玄府2.775342元载下界，起算第466日；这个起点来自第19日诊断7元载，扣447/365自然流逝、凝元3、玄府10，加历史两剂灵泉10。诊断不是收入。以下只是一个候选的全部资格、资源竞争、实体行程、医护支付、修习和伤情均满足时的寿储见证，不自动授予林辰、任意角色或一个军团这些资源与境界。每笔实际发生前复核；失败、战争、伤病和额外施术发生时须重新算账，不能沿用示例。\\n第554日：距上笔88日，res_17一剂入账8，无晋阶或燃寿支出，扣自然流逝后余10.534247元载，采收540日、疗程540至554日。\\n第936日：距上笔382日，res_18一剂入账60，无晋阶或燃寿支出，扣自然流逝后余69.487671元载，采收900日、疗程906至936日。\\n第1000日：距上笔64日，无寿源收入，晋阶付30，扣自然流逝后余39.312329元载。\\n第3856日：距上笔2856日，res_18一剂入账60，无晋阶或燃寿支出，扣自然流逝后余91.487671元载，采收3820日、疗程3826至3856日。\\n第4000日：距上笔144日，无寿源收入，晋阶付60，扣自然流逝后余31.093151元载。\\n第4255日：距上笔255日，"
+            },
+            {
+              "sourceId": "review-unit/13",
+              "quote": "例只证明有限高阶成长和两次高耗术式在世界内可成立。\",\n  \"scope\": \"世界容量与未来成长核算，不作为角色现有资产或既定剧情\",\n  \"precedence\": 11,\n  \"status\": \"proposed\"\n}"
+            },
+            {
+              "sourceId": "review-unit/347",
+              "quote": "  \"mainConflict\": \"先天短寿的林辰由矿务逃生追查跨陆扣工与非法货运，在寿储、境界与各方利益限制下同伙伴救人、查清父亲守门及外山掩案责任。百章只切断已实证的一条三地运输链；九鼎全貌、三残片与最终界门危机仍是约450章全书必须收束的主线。 人员口径：赤霄获救承运雇工是唐、许、冯、吴、卢五人；陆弟单列，陆本人是受看护的押送责任人，不算五工。北境黑舱七人是另一批来自青玄的矿工，至300日仍由北境港口救济所安置，不随林贺返青玄。435–436日青玄两车八人是开篇两名旧工友加430日后新扣六人，与赤霄五工、北境七人均不重合；梁九为自由领车救援者，不在被救八人内。三地名单不能互相改写为人数增长，首卷救过而再被移交的两名旧工友只算两位不同人，不因再次获救重复加人。\",\n  \"theme\": \"活命与查真相不能以牺牲无辜者代价换取；信任来自共同选择和承担自己一方的责任。\",\n  \"protagonistArc\": \"从负伤矿工到能接受伙伴自主选择的凝元修士，再经数月修习、实测丹府与支付十元载成为玄府初期；力量增加时可用寿储反而减少。百章不发动逆命真解，不越阶斩高境，不把神兵持有当作启动权限。\",\n"
+            },
+            {
+              "sourceId": "review-unit/350",
+              "quote": "{\n  \"id\": \"vol_02\",\n  \"order\": 2,\n  \"title\": \"赤霄药火卷：追船与黑舱\",\n  \"startChapter\": 33,\n  \"endChapter\": 66,\n  \"goal\": \"由失箱责任追查程记扣工和跨陆转运，救出5名承运雇工、陆弟与北境7名矿工，以凝元实力和各方有限合作截停本批货；不以进入天坑或杀神海作门槛。\",\n  \"opposition\": \"程记药栈的改签、扣工与反诉，首仓火因仍待查；炎煞港口代理催货；赵的实体回令与商盟内部自保。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_03\",\n    \"char_05\",\n    \"char_14\",\n    \"char_15\",\n    \"char_16\",\n    \"char_19\",\n    \"char_20\"\n  ],\n  \"climax\": \"第61–66章北境外港截黑舱，林选择先救人，夜守撤离栈桥而未追持第二片逃跑的程。此前44章潮沟截驳付出船损；50章以吴卢亲口拒绝、陆停止协助旧同伙及两名看守被控制，固定本次扣工事实并完成脱控；51–53转入各自生计与有限供述。\",\n"
+            },
+            {
+              "sourceId": "review-unit/351",
+              "quote": "{\n  \"id\": \"vol_03\",\n  \"order\": 3,\n  \"title\": \"青玄归证卷：十年与一条活路\",\n  \"startChapter\": 67,\n  \"endChapter\": 100,\n  \"goal\": \"携证回乡，和苏、梁九、韩叙、顾分别承担调查、证人保护和修行；救出本次押送工友，确认父亲守门参与与本地掩案责任，切断已验证的三地转运链。\",\n  \"opposition\": \"赵的境内改线与撤人令、两名玄府押卫、宗门保守派的掩责；伙伴生计和林不足以继续豪赌的寿储。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_03\",\n    \"char_07\",\n    \"char_08\",\n    \"char_09\",\n    \"char_10\",\n    \"char_14\",\n    \"char_15\",\n    \"char_12\",\n    \"char_13\",\n    \"char_17\",\n    \"char_18\"\n  ],\n"
+            },
+            {
+              "sourceId": "review-unit/357",
+              "quote": "{\n  \"id\": \"ms_growth_v1_aftermath\",\n  \"title\": \"有限分药与分离\",\n  \"kind\": \"payoff\",\n  \"startChapter\": 27,\n  \"endChapter\": 29,\n  \"setup\": [\n    \"189日先按182日联名采封原联、入口对照页和获救采封人的亲历核四支各3滴原管；三支原封相合、独立验毒后共9滴洁净，破损污染3滴在原批扣损，不重复记追回配额。原批属尚未指名的本期个人申请可分额，林将183日原三剂申请自愿下调两剂，联名授权入口配额台据协商签认与诊察先分告急者3滴，余6滴批准林两剂并记领管号、既用有效剂数0；不占公共医疗、应急、保育或他人已指名量。190、200各启一支，199、209复诊后才各记5元载，有效剂数到2、个人原液到0。\",\n    \"乔/邵与杜/褚分看押、入口两岗，各12小时轮班。顾203日复诊后每日最多2小时入口轻值，只给原值守额外休息，不改变看押班。乔拒绝松押换口供，任何换班先实际面交。\",\n    \"残片作为遗物封装由林辰保管，白榆不替他施展神识融印。所带父亲检修笔记、残片刻痕与地方调令仅构成查证路径，父案私人真相仍需后续实证。\",\n"
+            },
+            {
+              "sourceId": "review-unit/364",
+              "quote": "  \"cost\": \"浮台外缘木板被尾浪推偏的护舷木撞裂，林右肩在实际接人中撞伤，291–297随访且不因七日期满视作治愈；伤后停握剑和全部术法，不再消耗剩余二成。贺失去本次追货奖金，该奖金未领取，不能算既有现金损失或预支收入。279温和吐纳只回一成、290验剑付半成、291剑诀付二成：3.5+1−0.5−2=2成；不返寿、不借普通动作免术费。290诊费及291后普通医药在原专项杂费中据实列支并归入累计780，未增免费医疗或新寿源。夜耽误三日原返程、巡队缩减一处例行勘查，回去补巡；救人不等于无代价全胜。 北境本批救济另有港税入库款实划240，事前实付符衣82、船班20、十日住食70与首轮诊护28，合200，未用40留库；与林贺航款、林肩伤原杂费医疗及程的商号经费均分账，不当作角色收入。 获救前供给另由押运货船方普通货运预付款160承担本次101支出、余59；实物余料及已用符余纹另存，不挪救济240或林贺14000。此为新增待审作者提案，非从旧正文确认的账目。\",\n"
+            },
+            {
+              "sourceId": "review-unit/367",
+              "quote": "{\n  \"id\": \"ms_v3_advancement\",\n  \"title\": \"十年换玄府与旧案的缺口\",\n  \"kind\": \"turn\",\n  \"startChapter\": 81,\n  \"endChapter\": 87,\n  \"setup\": [\n    \"第415日白榆连续复诊确认健康与可支付下界，顾观察辟建丹府实测；若条件不成立则停止，不能靠豪言突破。实际拟写支付10元载后余7-(415-19)/365-3+10-10=2.915068，保留至少1。 此式从第19日的7元载初始下界累计记账：-3是第120日凝元晋阶，+10仅指第199、209日已完成两剂各+5的历史收入，最后-10才是第415日玄府晋阶；不是在第415日再入账一笔10，也没有第二批泉液。等价地，从第209日余额13.479452继续扣206日自然流逝和玄府10元载，所得仍约2.915068；泉液库存持续为零。\",\n"
+            },
+            {
+              "sourceId": "review-unit/369",
+              "quote": "  \"outcome\": \"第437–466日。百章有救人、断运、部分父案澄清和玄府成长的可核结局。1–100是450章的阶段验收；接下来的有限寿源、高阶反派、钥匙余片与九鼎机制必须另建经审查的来源和行动链，不将450章全书结局撤销。 本段八张床位及466日当地回访仅对应青玄押运八人；北境七人仍由北境机构安置，赤霄五工与陆弟仍按当地既有去向。未实际送达的异地近况不能当作林苏亲眼回访，百章阶段承诺按三地分别已落实的救援和安置证据核验，不凭本地八人推断三地全员近况。\"\n}"
+            }
+          ],
+          "revisionAdvice": ""
+        }
+      ]
+    }
+  },
+  "originalTwoStagesPreservedExactly": true,
+  "originalFailureRecordsPreservedExactly": true,
+  "retainedNonPassChecks": [
+    {
+      "stageId": "batch-4",
+      "criterion": "geography",
+      "verdict": "insufficient",
+      "explanation": "已读安排本身存在可执行的地域约束：古境进入须凝元三重与联名符牌，且不涉及界门；青玄—赤霄航段明确为两昼夜实体海程，赤霄—苍冥航段为五昼夜并要求实际票款、保温舱、防护和港口查验。宏观还为北航、北境外港救援及返航列出实体航程、暖舱、担保、验籍和支付链，未见其与地点规则直接冲突。但本轮只读到第19章，目录中第20—50章已有完整细纲；这些章节覆盖古境行动、南渡、赤霄港口、潮沟截驳及北三门等实际行动。按实际动作优先的标准，不能用里程碑摘要代替未读细纲来确认每次进入、航行、支付与供能均已兑现。",
+      "awaitingSources": [
+        "plan/chapters/20",
+        "plan/chapters/21",
+        "plan/chapters/22",
+        "plan/chapters/23",
+        "plan/chapters/24",
+        "plan/chapters/25",
+        "plan/chapters/26",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/29",
+        "plan/chapters/30",
+        "plan/chapters/31",
+        "plan/chapters/32",
+        "plan/chapters/33",
+        "plan/chapters/34",
+        "plan/chapters/35",
+        "plan/chapters/36",
+        "plan/chapters/37",
+        "plan/chapters/38",
+        "plan/chapters/39",
+        "plan/chapters/40",
+        "plan/chapters/41",
+        "plan/chapters/42",
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50"
+      ]
+    },
+    {
+      "stageId": "cross-2-3",
+      "criterion": "history",
+      "verdict": "insufficient",
+      "explanation": "赵玄极与炎煞尊者在33—50章的隐秘互供利益，被明确设定为延续“event_14所定三年前私运框架”；这一旧约是其各自供仓位、垫款、承运与违约损失安排的历史原因，也影响第二卷的独立行动逻辑。但本批没有提供world/historicalEvents/event_14原文，故无法核对该历史事件是否确立了关系条目所称的双方权限、资源来源与既有代价，亦无法检查它同当前三地运输链是否冲突。当前宏观仅能显示赵在后段转向本地车队、没有把炎煞方自动写成已收令或同意新约，不能替代对旧框架的历史核验。",
+      "awaitingSources": [
+        "world/historicalEvents/event_14"
+      ]
+    },
+    {
+      "stageId": "cross-2-4",
+      "criterion": "geography",
+      "verdict": "insufficient",
+      "explanation": "跨大陆实体航程、港口验籍、防护与费用原则已明确，宏观北航、返航也分别给出实体交通、暖舱、防护、担保和付款安排。可是第一卷南渡安排称林辰以凝元御物“固定货索、阻止药箱砸人”；轻物御动只适用于三丈内、至多两斤且未受重物牵拉或锁死的单件轻物，不能借轻索承担重载。当前未读第31章细纲，无法判断其是否仅操作无载轻索/机关，还是实际以御物承受货箱载荷，故不能以宏观摘要直接判定相容。",
+      "awaitingSources": [
+        "plan/chapters/31"
+      ]
+    },
+    {
+      "stageId": "cross-2-4",
+      "criterion": "history",
+      "verdict": "insufficient",
+      "explanation": "本批计划将赵玄极—炎煞尊者的有限互供利益明确承接为event_14所定的三年前私运框架，并据此限制双方对港口事件的知情与责任范围；该框架会直接影响第二卷势力行动的历史因果。但本批未提供world/historicalEvents/event_14原文，无法核验该历史事件是否确实支持所述参与方、资源、权限与责任边界。不能仅凭关系条目的转述通过，也不能据此断言历史设定冲突。",
+      "awaitingSources": [
+        "world/historicalEvents/event_14"
+      ]
+    },
+    {
+      "stageId": "cross-2-5",
+      "criterion": "history",
+      "verdict": "insufficient",
+      "explanation": "本批可见的近因链条是可执行的：首卷样箱货签导向程记，赤霄段从失箱、扣工和有限证物推进，后段又把赵的命令限定为实体寄报、签收和后续实际送达，未将人物知情倒灌为即时遥控。但赵玄极与炎煞尊者的既有互供关系明确援引“event_14所定三年前私运框架”，而该历史事件原文没有随本批提供；因此无法核验该历史的既定参与方、利益安排和后果是否确能支撑此关系及三地运输链。",
+      "awaitingSources": [
+        "world/historicalEvents/event_14"
+      ]
+    },
+    {
+      "stageId": "cross-2-6",
+      "criterion": "history",
+      "verdict": "insufficient",
+      "explanation": "当前材料中的跨陆私运历史是后续港口冲突的重要因果前提：赵玄极—炎煞尊者关系明确援引event_14的三年前私运框架，第二卷也以程记改签、扣工及该链条为对立来源。但本批未提供world/historicalEvents/event_14原文，也未提供相关势力原档，无法核验该旧约究竟赋予赵方、炎煞外围代理、程记、商盟与巡界各什么既有权限、利益和责任，因而不能仅据关系条目自述判定历史原因与势力独立行动已闭合。现有宏观安排本身没有与已读地点/航程规则发生明确历史冲突。",
+      "awaitingSources": [
+        "world/historicalEvents/event_14",
+        "world/factions/fac_01",
+        "world/factions/fac_02",
+        "world/factions/fac_03",
+        "world/factions/fac_05",
+        "world/factions/fac_07",
+        "world/factions/fac_08",
+        "world/factions/fac_10",
+        "world/factions/fac_12"
+      ]
+    }
+  ],
+  "cargoScope": {
+    "originalCheck": {
+      "stageId": "cross-2-4",
+      "criterion": "geography",
+      "verdict": "insufficient",
+      "explanation": "跨大陆实体航程、港口验籍、防护与费用原则已明确，宏观北航、返航也分别给出实体交通、暖舱、防护、担保和付款安排。可是第一卷南渡安排称林辰以凝元御物“固定货索、阻止药箱砸人”；轻物御动只适用于三丈内、至多两斤且未受重物牵拉或锁死的单件轻物，不能借轻索承担重载。当前未读第31章细纲，无法判断其是否仅操作无载轻索/机关，还是实际以御物承受货箱载荷，故不能以宏观摘要直接判定相容。",
+      "evidence": [
+        {
+          "sourceId": "review-unit/10",
+          "quote": "{\n  \"id\": \"ax_08\",\n  \"title\": \"凝元基础操作的学习、对象与支付\",\n  \"content\": \"凝元真元外放只是承载资格。下列基础操作须先完成相应控制练习与实测，不能靠晋阶自动掌握；不授予更高境界、感知或伤势免疫。\\n轻物御动沿ax_05每次预付半成健康稳定真元上限执行：只控制三丈内直接可见、单件至多两斤的轻小自由物，每次至多三息，早停、落空或被打断不退。一次只作用一件，移第二件另付，时间不足或目标出界即停止。轻索头、小钩、木楔和小插销均须未受重物牵拉或锁死；阻力超过同物正常徒手轻拨即不属于此操作，不能借物轻而隔空拉整车、托活人、硬拔承重楔或穿透法纹锁。操作轻小机关可释放原有机械作用，但轨道、闸片、沙挡、重力及承重部件须真实存在且各自承力，不能把整个机构的载荷藏在半成御物费里。\\n近身附掌是将真元短时集中于自己一只手掌的入门练习：须有一息聚气，聚气开始预付一成健康稳定真元上限，只支持随后一息内一次实际接触的掌击，落空或受扰均损已付款；出掌后至少一息重新收束，不能凭接触持续灌入。对未有真元防护的肉身可造成震伤，对腐朽薄木封板可辅助击裂；伤害仍取决于接触、落点与目标承受，不能隔空震脏、穿完整石壁、自动破同阶护体或使所有人一掌毙命。躲开、挡开手臂、甲胄卸力或聚气时打断均可反制；腕掌伤、气路不稳或不足一成时停用。两种基础操作的消耗、恢复及伤后上限均按ax_05"
+        },
+        {
+          "sourceId": "review-unit/88",
+          "quote": "{\n  \"id\": \"loc_21\",\n  \"name\": \"无尽虚海商路\",\n  \"kind\": \"region\",\n  \"entryConditions\": [\n    \"同一天地内的虚海航网，不穿越太古界门；普通修士依赖护罩与定位阵飞舟，持钥匙不能免费或瞬移过海。\",\n    \"青玄云梦天港至赤霄天宝外港为约两昼夜实体海程；内陆抵港时间另算。船票、劳务换舱、担保与额外打点须分别说明，商盟信物不自动代付。新第一卷拟第214日暮出航、第216日暮到港，旧第17–19日章纲不再适用。\",\n    \"赤霄极焱天港至苍冥葬骨玄冰原外港为约五昼夜实体海程。常规客舱旧报价五千枚下品灵石，上等舱三品火灵晶百两；具体货物换舱须核实品种、数量与双方同意，不凭品级推定兑换率。后续新章纲须重新安排日期和可用支付来源，旧第27–32日航历不是约束新提案的日期。\",\n    \"苍冥通天渡口至青玄沧溟古港约六日实体海程；紧急征用也须明确船舶、燃料、具名供给者与担保责任，不能当作免费瞬移。回师日期须随前卷训练、休养和航程顺延。\",\n    \"万象商盟管船舶、泊位、货单与运费；大乾、神炎及苍冥沿岸守军各管本方港口，巡界使处理空间污染和紧急引渡。商业信物不能豁免扣船、搜舱或追缴。\",\n"
+        },
+        {
+          "sourceId": "review-unit/358",
+          "quote": "{\n  \"id\": \"ms_growth_v1_crossing\",\n  \"title\": \"护货南渡与入港代价\",\n  \"kind\": \"turn\",\n  \"startChapter\": 30,\n  \"endChapter\": 32,\n  \"setup\": [\n    \"第212–214日按山路转驿车到云梦天港，运送六箱指定低阶药材换本航次普通舱；管货不等于可炼化物资。\",\n    \"第214日暮出航、第216日暮到天宝外港，海程两昼夜；不沿用旧第17–19日航历。\",\n    \"风暴中护船者承担外敌，林辰利用凝元御物和矿车制动经验固定货索、阻止药箱砸人，救下一名试图私藏货物的押货者；不斩神海海兽或获得免费升级。\",\n    \"入港用验籍及实际避火防护，局限于有防护的外港街区；他必须补交因护货失损的说明，收货人的真名与失踪货箱构成下一卷具体调查线索，不能潜行岩浆暗渠。\"\n  ],\n  \"cost\": \"部分药箱遭海水毁损，按合同区分天灾损失与失职，失去履约奖金而非无限债；主角需继续工作维持旅费，凝元境只能在当地低风险区域活动。\",\n"
+        },
+        {
+          "sourceId": "review-unit/363",
+          "quote": "{\n  \"id\": \"ms_v2_voyage\",\n  \"title\": \"有限航款与五日北行\",\n  \"kind\": \"turn\",\n  \"startChapter\": 54,\n  \"endChapter\": 60,\n  \"setup\": [\n    \"第271日商盟港务理事会为追缴被挪货与避免北境封港，从本案追偿周转款实拨14000枚下品灵石给具名领款的贺青梧；这是有账有追偿风险的商盟垫款，不是几天劳务值一万。用途限两人北航查货、回青玄交证及沿途食宿医药。\",\n    \"第271–274日乘普通车沿每日复核开放的既有沿岸驿道从天宝外港到极焱天港；271日出发前贺从已拨1000杂费额度中实付12购两张满额普通避火符（各6枚，计入后来核销780而非另加支出），两人核余纹后佩戴新符；旧符不得续算有效，不进太微城、神炎内地、魔谷或天坑。陆与弟弟留赤霄接受传唤，不能无交通随队到北境。\",\n    \"林延续252及254回访的短走、坐车许可，仍不负重，拒绝接受程记以撤供换赔偿的口信。第275日贺在极焱航司柜台按本航次实报5000/人支付10000，购买两张普通保温客舱票；船方在两人具名舱单上列明隔火暖炉、通风烟道、五昼夜保温舱位及燃料、当班船员添料看火均含在这10000内，普通是舱等，不是敞舱或仅发一件保温衣。276日暮离港、281日暮抵葬骨外港，五昼夜完整航程。\",\n"
+        },
+        {
+          "sourceId": "review-unit/365",
+          "quote": "{\n  \"id\": \"ms_v3_return\",\n  \"title\": \"带证返乡与先救谁\",\n  \"kind\": \"turn\",\n  \"startChapter\": 67,\n  \"endChapter\": 72,\n  \"setup\": [\n    \"第300日，夜的原外港查货担保仍只到当日，不自动延长。林贺当面申请回青玄交证；夜依loc_02具名担保规则，在葬骨外港原港务和本轮当值巡队见证下另签限程离境担保，列林、贺实名、原名册及货证封袋，指定会合/交接地为通天渡口受监管候船区。许可仅301日晨至304日夜有效，沿已勘验的葬骨外港—海岸公共驿路—通天渡口路线坐暖车，夜宿所列原驿站；不准离道查货、入极冰国、妖域、神宫或界渊。原巡队在301日出港时复核名单并交当班驿车的纸质限程单，沿岸既有岗哨在车辆实际到站时逐站验籍、签注到离时点，终站港务于303日实际到达后验原单接收候船监管，304日只在原单、名册和船票相符后办理登船离境。夜仍承担这份限程担保的越界责任，原巡队承担出港核验和未按期交回签注单时的追查责任；没有远程瞬时验籍或只有商业票就能通行。\",\n"
+        }
+      ],
+      "revisionAdvice": "补读第31章，核实货索是否无载、对象重量、操作时长及实际承力者；若货索已受药箱牵拉，应改为普通人员、船具或真实承重结构完成固定，不得由半成御物承担。",
+      "awaitingSources": [
+        "plan/chapters/31"
+      ]
+    },
+    "actualActionSource": {
+      "id": "plan/chapters/32",
+      "text": "{\n  \"id\": \"chapter-32\",\n  \"chapterNumber\": 32,\n  \"volumeId\": \"vol_01\",\n  \"title\": \"潮声里的空位\",\n  \"summary\": \"第215日凌晨，飞舟在实体航线遇风暴，船上护阵者维持航向，林辰留货舱值看。索具松脱时他把自己固定在靠墙短绳上，在两丈内直视一段尚未绷紧、未系重箱的半斤索头，御动一息递给水手，指挥水手先制动再把箱子拉回；不以真元托举整箱。一个押货者试图把货箱私推到侧舱，脚被夹住。林辰选择先让水手救人，待水手用随舱普通撬杠抬稳压脚的箱角、卸去楔上载荷，再从一丈内直视八两松楔，以一次一息御物移开，失去盯住六号箱的片刻。风暴后五箱仍在，其中一箱进水，六号箱不知去向；林辰报告亲见的搬移动作却承认没看见六号箱最后被谁移走。第216日暮抵天宝外港，领航员先从海侧确认当日非喷发放行旗号，港务再核验借领避火衣、仍有余纹的普通避火符及货单，收货人程砚迟迟不来。林辰失去履约奖金，等待实际货损责任复核；他先要求验明五箱、留下失踪箱记录与可联系去处，而不是凭疑点闯入内陆追凶。\",\n  \"characterGoals\": \"林辰要让药材和人员尽量安全抵港，并保住合同与收货线索；船队要在风暴中维持航向、区分天灾和失职；港务方要按赤霄外港规则完成卸货与验籍。\",\n  \"conflict\": \"风暴、乱流和货舱失稳同时发生，凝元御物的真元与控制范围有限；救人、保货和保奖金不可兼得，飞舟不能穿越太古界门或无视实体航程。\",\n  \"choice\": \"林辰先救被撞倒的押货者，再分段固定药箱并如实记录损失，没有为保奖金而隐瞒自己的操作或擅自弃货。\",\n  \"cost\": \"一次御物松楔和拉索耗去真元，休整时按书面医嘱换药；伤腿酸痛但未擅自用新增寿储治疗或宣称复伤。五箱到港中一箱进水、六号箱失踪，奖金取消；更大赔偿须按天灾与失职事实复核，不能无限加债。 拉索头和松小楔分别是一次轻物御动，各扣半成，共一成；由六成降至五成。后续日常休整不自动记满，直到下一次复测才增加可用账面数。\",\n  \"threads\": [\n    \"th_01\",\n    \"sec_01\",\n    \"sec_02\"\n  ],\n  \"endState\": \"第216日暮靠泊天宝外港。林辰凝元三重，两剂已完成，按既定支出与自然时间计算的保守下界约13.460274元载，实际伤势仍需复诊。泉液零余量；程砚未现身、六号箱失踪、押货者的可核行为成为下一段调查入口，不能据此宣布商盟全体有罪。\",\n  \"characterIds\": [\n    \"char_01\"\n  ],\n  \"location\": \"loc_21无尽虚海商路、loc_23天宝外港\",\n  \"storyTime\": \"第214日日暮至第216日日暮；实体海程两昼夜\",\n  \"scenes\": [\n    \"第215日凌晨风暴袭来，护阵者在上层维持航向，林辰留在货舱值看，定位阵不缩短实体海程。\",\n    \"货索松脱，林辰靠短绳固定身位，直视两丈内尚未绷紧、未系重箱的半斤索头，预付半成真元御动一息递给水手，随即停术；水手再系索、用普通船桩受力、制动并搬回药箱，林不持续拉承重索。\",\n    \"押货者私推一箱进侧舱时脚被夹住，林辰先叫水手用随舱普通撬杠抬稳压脚箱角卸去楔上载荷；他从一丈内直视八两松楔，另付半成真元御动一息移开，水手抽人、落箱。撬杠与水手承重，御物不搬箱；救人期间林顾不上盯住六号箱。\",\n    \"风暴后只点到五箱，其中一箱进水，林辰把亲见搬移与未亲见失箱分别记录，不用猜测填空。\",\n    \"第216日暮，飞舟靠泊天宝外港；港务验货、验籍和避火衣借领单，要求未交割前留在受护卸货区。 航司在靠港前从海侧看见216日当日放行旗号，港务复核沿岸岗哨无本港地火喷发记录后才准入泊。215日海上风暴不被当作地火喷发，也不能用214日旧通告代替今天核验；林仍戴船方借符，不把次晨才租的新符算作此刻持有。\",\n    \"程砚没有来，林辰交验五箱并留下可联系住处与失箱记录；普通避火衣与借符按附单留到217日晨卸货交接后分别归还，下一步须另办适配防护与去处。\"\n  ],\n  \"source\": \"author\",\n  \"executionChecks\": [\n    {\n      \"id\": \"storm-light-loads\",\n      \"requirement\": \"风暴中林固定身位，只御动未承重索头与卸载后的轻楔各一息、各半成，六成降五成；实际承重救人由水手、船桩和撬杠承担，林不托箱或提人，不自动恢复记满。\",\n      \"sourceQuestion\": {\n        \"document\": \"world\",\n        \"questionId\": \"audit-tier-exceptions\"\n      }\n    },\n    {\n      \"id\": \"loss-and-witness-boundary\",\n      \"requirement\": \"救人使林失去盯箱窗口，风暴后仅五箱且一箱进水，六号箱失踪、奖金取消；区分亲见搬移和未见最后移箱者，不能提前认定程或全商盟有罪，赔偿另据事实复核。\"\n    },\n    {\n      \"id\": \"arrival-permit\",\n      \"requirement\": \"215日风暴至216日暮抵天宝外港保持实体海程；以216日当日旗号和港务复核准入泊，不用214日通告或217日才租的符倒填许可。借衣借符仍留至次晨交割后分别归还。\"\n    }\n  ]\n}"
+    },
+    "requestedSource": {
+      "id": "plan/chapters/31",
+      "text": "{\n  \"id\": \"chapter-31\",\n  \"chapterNumber\": 31,\n  \"volumeId\": \"vol_01\",\n  \"title\": \"港门验货\",\n  \"summary\": \"第214日午前，林辰在云梦天港验籍并交接六箱药材，商盟引荐只证明承运关系。受潮封签当众拆验，药材点数与清单相符，港务用新封签记下复验经过，验货费按护货合同扣当次奖金，不凭封签受潮就认定失职。承运人再要他忽略前段争执，林辰坚持保留双方签认的副本，并从实填收货栏读到赤霄天宝外港商号“程记药栈”、经手人程砚。这只是货物流向，尚不是犯罪结论。承运人按本航次护货合同从既有船员工装中，当面交林辰普通避火衣及一张普通避火符，逐件记入附单；符验明尚可连续使用至少72小时，214日暮佩戴启用，抵港先核验，217日晨卸货交接后衣符分别归还；舱费已由本次护货劳务抵扣，不再靠苏出钱。第214日申时他登船，日暮启航，六箱原货仍全部在舱中。\",\n  \"characterGoals\": \"林辰要保住登船资格并取得可追溯的收货人线索；港务与承运方要厘清缺件责任、避免承担虚报风险；商盟只负责货单和泊位，不替任何一方担保幕后真相。\",\n  \"conflict\": \"承运人想省复验费用并避免留下争执记录，林辰需要准确货单追查收货线；费用与记录的责任必须实际分清，商盟引荐不会代他承担。\",\n  \"choice\": \"林辰接受合同内明示的复验费用，保留完整交接副本，并按附单借领普通避火衣；不把收货姓名直接写成罪名。\",\n  \"cost\": \"当次奖金扣除验货费，普通客舱仍依劳务合同保留；领用避火衣抵港须归还。封签重新签认并不抹去途中曾受潮的记录。 此衣以耐热织料隔暑，无需真元，遇明火与浓烟无防护；216日暮抵港先核验，217日清晨归还；后续租符另付。 船方借出一衣一符并承担本航次符耗，林只按既有劳务约定使用；所验72小时是交付时的最低余量，不是永续防护，不另生一笔可由林支取的收入。\",\n  \"threads\": [\n    \"th_01\",\n    \"sec_01\",\n    \"sec_02\"\n  ],\n  \"endState\": \"第214日暮，林辰随六箱完整药材从云梦天港出航，舱位及短程外港防护均有实际合同与领用来源；知道程记药栈、程砚及交割号，尚未接触收货人。\",\n  \"characterIds\": [\n    \"char_01\"\n  ],\n  \"location\": \"loc_22云梦天港、loc_21无尽虚海商路港区\",\n  \"storyTime\": \"第214日午前至日暮；日暮完成验货、登船与出航\",\n  \"scenes\": [\n    \"港务验籍后当众拆验受潮封签，药材数量质量与清单吻合，六箱重新点号封存。\",\n    \"林辰按合同承担明示复验费，拒绝把此前争执从副本抹去，承运人签认后不再追加临时罚款。\",\n    \"实填收货栏出现程记药栈与程砚，林辰将姓名与古境货签的收货号对照，只得运输关联。\",\n    \"214日出航前，承运人查到本航次天宝港务的非喷发通告，但不以此保证两日后安全。借衣及符的领用号写入护货合同附单，符的有限预充能来自承运人原有已验库存，其使用损耗由本次护货劳务换舱约定覆盖，不向林另给现金。214日暮开始佩符，不把衣当灵符；抵港前还须看当日放行旗号，封航则停在许可锚地待令，不以赶交货硬闯。\",\n    \"按护货附单领到一件普通避火衣和一张有余纹的普通避火符；验符余量不少于72小时、214日暮启用，约定217日晨卸货交接后衣符分别归还，不取得所有内陆险地准入。\",\n    \"第214日申时登船、日暮出航，林辰将父亲图纸、货单副本和封存残片分别收好。\"\n  ],\n  \"source\": \"author\",\n  \"executionChecks\": [\n    {\n      \"id\": \"inspection-and-payment\",\n      \"requirement\": \"214日验籍、六箱复验与双方签认后，按合同扣验货费并保留受潮历史；护货劳务抵舱费，不再让苏重复付款。程记药栈和程砚只作为运输关联，尚无犯罪结论。\"\n    },\n    {\n      \"id\": \"finite-port-protection\",\n      \"requirement\": \"一件普通避火衣与一张有限余量的借符须实际领用入附单，214日申时登船、日暮出航启符；衣不防明火浓烟，符至少72小时而非永续。约定217晨分别归还，抵港还须当日许可，本章不提前写作已归还或已获抵港放行。\"\n    }\n  ]\n}"
+    },
+    "macroSource": {
+      "id": "plan/milestones/ms_growth_v1_crossing",
+      "text": "{\n  \"id\": \"ms_growth_v1_crossing\",\n  \"title\": \"护货南渡与入港代价\",\n  \"kind\": \"turn\",\n  \"startChapter\": 30,\n  \"endChapter\": 32,\n  \"setup\": [\n    \"第212–214日按山路转驿车到云梦天港，运送六箱指定低阶药材换本航次普通舱；管货不等于可炼化物资。\",\n    \"第214日暮出航、第216日暮到天宝外港，海程两昼夜；不沿用旧第17–19日航历。\",\n    \"风暴中护船者承担外敌，林辰利用凝元御物和矿车制动经验固定货索、阻止药箱砸人，救下一名试图私藏货物的押货者；不斩神海海兽或获得免费升级。\",\n    \"入港用验籍及实际避火防护，局限于有防护的外港街区；他必须补交因护货失损的说明，收货人的真名与失踪货箱构成下一卷具体调查线索，不能潜行岩浆暗渠。\"\n  ],\n  \"cost\": \"部分药箱遭海水毁损，按合同区分天灾损失与失职，失去履约奖金而非无限债；主角需继续工作维持旅费，凝元境只能在当地低风险区域活动。\",\n  \"outcome\": \"第212–216日；境界：realm_02第三重。第32章第216日暮抵达赤霄天宝外港。林辰凝元三重；第189日同批追回12滴，其中3滴污染隔离、9滴可用，配额台核准告急者3滴、林个人6滴。林获配的6滴已按两剂各3滴分别完成十日疗程和复诊，保守预算约13.460274元载；这是有前提的规划下界，伤病须复评。墨负伤被羁押、林辰个人分得的泉液余量为零；苏留宗照看证人与押解，主角没有燃寿白发。\"\n}"
+    },
+    "observation": "Requested chapter31 is inspection/departure; the actual storm cargo action is chapter32. Its unloaded half-jin rope end is moved briefly; sailors and ship posts take the load. Preserve the question and wait for explicit original-source followup; do not edit the correct scene to match the requested chapter number."
+  },
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Verifies only captured checkpoint prefixes, not the terminal run or production database. No question is resolved by this audit; pending source reads and their actual judgments remain necessary."
+}
