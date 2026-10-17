@@ -1,0 +1,1088 @@
+{
+  "observedAt": "2026-10-17T02:58:29.435Z",
+  "kind": "model_explanation_arithmetic_mismatch",
+  "inputHash": "70235514bab787e26c05a26fdc9b297adde5a363de5c6c9f10112b7229c018de",
+  "inputPath": "data/audit-runtimes/design71-review/inputs.json",
+  "inputsSha256": "77deca6c04132eebd14a14fdf518187cdb857aa1f3068477018218c0ead83a2d",
+  "runId": "design_run_ff3b8039-d1e0-4747-ab7d-aebec2ed506d",
+  "snapshotPath": "data/audit-runtimes/design71-review/gu-cost-reading-prefix.json",
+  "snapshotSha256": "d6fd1142e864c787eb564b859d7fbebc32a45e481656f1ba501004af60239c08",
+  "runtimeBindingSha256": "364993939a727451761a1f74fcfcbe80e7362f0fccb1517b5c14e79978b0b435",
+  "prefixReplay": {
+    "verification": "verified",
+    "completedStages": 34,
+    "totalStages": 85,
+    "runSha256": "4e9c3b7ecc2331d406d8b16e3415401ae0ca51e4606fc04f205250b4a103b57f",
+    "formalAcceptance": false,
+    "limitation": "Replays saved responses, repairs, citations and conclusions against independently supplied materials. Pending work, semantic quality, blocker disposition and prose acceptance remain separate.",
+    "responseReplay": "verified",
+    "responsesReplayed": 39,
+    "records": [
+      {
+        "stageId": "batch-1",
+        "kind": "batch",
+        "stageSha256": "ecb188b8d85630e2319a13f33d4ec615d45729b076ced1e9af7bdac74993bd9f",
+        "inputSha256": "5c7574bce9a6aaa7a0b2bb64fb95ff84473ab2cd5d9c5244a8b20fe6e153e15a",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/10",
+              "plan/chapters/11",
+              "plan/chapters/12",
+              "plan/chapters/16",
+              "plan/chapters/17",
+              "plan/chapters/18",
+              "plan/chapters/20",
+              "plan/chapters/21",
+              "plan/chapters/22",
+              "plan/chapters/23",
+              "plan/chapters/24",
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/44",
+              "plan/chapters/50",
+              "plan/milestones/ms_v2_fire",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/10",
+              "plan/chapters/11",
+              "plan/chapters/12",
+              "plan/chapters/16",
+              "plan/chapters/17",
+              "plan/chapters/18",
+              "plan/chapters/20",
+              "plan/chapters/21",
+              "plan/chapters/22",
+              "plan/chapters/23",
+              "plan/chapters/24",
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/44",
+              "plan/chapters/50",
+              "plan/milestones/ms_v2_fire",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/10",
+              "plan/chapters/11",
+              "plan/chapters/12",
+              "plan/chapters/16",
+              "plan/chapters/17",
+              "plan/chapters/18",
+              "plan/chapters/20",
+              "plan/chapters/21",
+              "plan/chapters/22",
+              "plan/chapters/23",
+              "plan/chapters/24",
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/44",
+              "plan/chapters/50",
+              "plan/milestones/ms_v2_fire",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "batch-2",
+        "kind": "batch",
+        "stageSha256": "5d9cf8c2faaee1619941f2ec95bb589aaceb9630f07261bf65ca94d7e00bd718",
+        "inputSha256": "5dc7e6712eca23820a007dfac90c774914608c7087c26655aac2995ba77d49ae",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "batch-3",
+        "kind": "batch",
+        "stageSha256": "6db816072364d233ac18e488e5edb6706b2f2bc1a6e6b568b88e1ae262aa9c11",
+        "inputSha256": "78a474e4028f8c8402a8ed17ca839d0d3ae6ac84086205b082d1bbf63b3077bd",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "story/characters/char_04",
+              "story/characters/char_10",
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16",
+              "plan/chapters/25"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/artifacts/art_03",
+              "world/artifacts/art_19",
+              "world/artifacts/art_20",
+              "world/resources/res_01",
+              "plan/chapters/25"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/artifacts/art_03",
+              "world/artifacts/art_19",
+              "world/artifacts/art_20",
+              "plan/chapters/25"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "batch-4",
+        "kind": "batch",
+        "stageSha256": "d2aded7109bf53659d3b96cb47c95d9ab3f3f5c1f13354e1c2a059c341d76afd",
+        "inputSha256": "a469c4a8b7aaf79d12559b14d09f86411fc3f9a4fdb4b63bc42563ce38c844af",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16",
+              "world/artifacts/art_16",
+              "world/resources/res_17",
+              "world/resources/res_18",
+              "world/resources/res_19"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16",
+              "world/artifacts/art_16",
+              "world/resources/res_12",
+              "world/resources/res_17",
+              "world/resources/res_18",
+              "world/resources/res_19"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16",
+              "world/artifacts/art_16"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "batch-5",
+        "kind": "batch",
+        "stageSha256": "2c2951d243320e6da15ab6576bc84b9a9a1d6f1338d5990e4e2205ae166143af",
+        "inputSha256": "e957b1d786f482c3d4337d4669efbffbcf6d655ff8d367d2ae3b28651096c914",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "revise"
+          },
+          {
+            "criterion": "costs",
+            "verdict": "revise"
+          },
+          {
+            "criterion": "counters",
+            "verdict": "revise"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-2",
+        "kind": "cross",
+        "stageSha256": "35176b98274a6ea07c9f191201110faa0cc4618acd20c60bb1224f9c5334e0ac",
+        "inputSha256": "eaf845339aba51389702c8ef655f1098c38db1723de8121709f5314dd2ce35b4",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass",
+            "resolves": [
+              "batch-2/tiers"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "pass",
+            "resolves": [
+              "batch-2/costs"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "pass",
+            "resolves": [
+              "batch-2/counters"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-3",
+        "kind": "cross",
+        "stageSha256": "4d3c50ca41de0b8e30b0c7db74efca0ebf359515efd3481ebf63afa1205e7db3",
+        "inputSha256": "eae1e95e51729f54ca4421b2a007db5a215dd6729c21a62c2e616f00b89aaba4",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-4",
+        "kind": "cross",
+        "stageSha256": "7da5f8ae2f341bafb1a2bcc74b04bd05ceb8518b48d258d07042ef9bd89a8395",
+        "inputSha256": "690e9124e6d3d5b5e20932380080f75ff5325143b10df30d7f35ce4c03f633bd",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass",
+            "resolves": [
+              "batch-4/tiers"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "pass",
+            "resolves": [
+              "batch-4/costs"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "pass",
+            "resolves": [
+              "batch-4/counters"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-5",
+        "kind": "cross",
+        "stageSha256": "849539582e26aa105da24cd016996c993d8afe1c5c49fef266533d293132e5ca",
+        "inputSha256": "5fdbc6a62ff1bab44b2494bb87ec72ba51ae1ad2edacb6d5a1f85055b414a2c7",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/25",
+              "story/chapterPlans/chapter-plan-25"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-2-3",
+        "kind": "cross",
+        "stageSha256": "213e49c803fcc6915eb14d0a66207df5d7bc446422f5fd3965f072ff063a182e",
+        "inputSha256": "e8bb742841011f9e303cc5e3a9becff178dde05d530b005227e224cd8493ad93",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/resources/res_17",
+              "world/resources/res_18",
+              "world/resources/res_19",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-2-4",
+        "kind": "cross",
+        "stageSha256": "2001948a82ddb9d7c2d736bb0095e6374b09dfcf4361d2b6a994204422834c94",
+        "inputSha256": "4e2bbc53e2f5f0a451730bd67d38e6e7d86cb426f2cbf86aee8836498b273b91",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/resources/res_12",
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-2-5",
+        "kind": "cross",
+        "stageSha256": "9ef0268d907d4f94cccb43d1690c7cda759cb53d60d28b58666fbf090e8e623a",
+        "inputSha256": "fff884ed65397721138e9dc911d5fedf7d499885812c10b82ce6fdbd26fda23c",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16",
+              "world/artifacts/art_03",
+              "story/characters/char_10",
+              "plan/chapters/25",
+              "plan/chapters/44"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16",
+              "world/artifacts/art_03",
+              "story/characters/char_10",
+              "plan/chapters/25",
+              "plan/chapters/44"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16",
+              "world/artifacts/art_03",
+              "story/characters/char_10",
+              "plan/chapters/25",
+              "plan/chapters/44"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-3-4",
+        "kind": "cross",
+        "stageSha256": "7122b66da85d3af7c698d270a198db4bc9e5128004fec5cb04ab684868430b51",
+        "inputSha256": "6e0809e611a72d0256aa5055e5090484754c7d578a341cf807ebc5e1e147c8ed",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50",
+              "plan/milestones/ms_v2_fire",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff",
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50",
+              "plan/milestones/ms_v2_fire",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff",
+              "world/resources/res_17",
+              "world/resources/res_18",
+              "world/resources/res_19",
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50",
+              "plan/milestones/ms_v2_fire",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff",
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-3-5",
+        "kind": "cross",
+        "stageSha256": "8ba7a6a5d6b499f65bdaeeeb8b7b1dc90cf18853bde79d4259fd5ee786d54549",
+        "inputSha256": "58b56c5f9edb13d9949be1e7f8400b6e9e16b305dc34182a774f53349c7cfe6a",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "story/chapterPlans/chapter-plan-25",
+              "story/chapterPlans/chapter-plan-26",
+              "story/characters/char_04",
+              "story/characters/char_10"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "story/chapterPlans/chapter-plan-25",
+              "story/chapterPlans/chapter-plan-26"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "story/chapterPlans/chapter-plan-25",
+              "story/chapterPlans/chapter-plan-26"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-4-5",
+        "kind": "cross",
+        "stageSha256": "b80ab4818e67182cbcdbe0956150d7866724f4a88b755476743841bb6929472e",
+        "inputSha256": "e677f98b63b765273381b5493847c8859463152cb55d2c7b7997569846b276b9",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16",
+              "world/resources/res_17",
+              "world/resources/res_18",
+              "world/resources/res_19"
+            ]
+          },
+          {
+            "criterion": "costs",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16",
+              "world/resources/res_17",
+              "world/resources/res_18",
+              "world/resources/res_19"
+            ]
+          },
+          {
+            "criterion": "counters",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_13",
+              "world/techniques/tech_15",
+              "world/techniques/tech_16"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-batch-1/tiers",
+        "kind": "cross",
+        "stageSha256": "9f61e0f6d863b8cc4f21a1ca6b174645e2b233c42d6d508b1f4b9681bdc53737",
+        "inputSha256": "97da2856b1655e37198365dba65586112004b072a600c5edd90462975457d8f8",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass",
+            "resolves": [
+              "batch-1/tiers"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-batch-1/costs",
+        "kind": "cross",
+        "stageSha256": "631f04c27ad5a01f5dcf35b22e3c38d4bf3fb588f36c29b42eeaf62d4bf16ce6",
+        "inputSha256": "729d439238c4c9125048dba62780dd84cfaa07f3a5c10f325d35dcd5288a7cbc",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "costs",
+            "verdict": "pass",
+            "resolves": [
+              "batch-1/costs"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-batch-1/counters",
+        "kind": "cross",
+        "stageSha256": "5cc488e7f42a93829318b6b2661ff99d052a2aecafaa5836195f85ab5d14b433",
+        "inputSha256": "8a3f9d9f62752e03380a24a4fdf18da8fc7319600bf59e5d9a8d300cb6af6e16",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "counters",
+            "verdict": "pass",
+            "resolves": [
+              "batch-1/counters"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-batch-3/tiers",
+        "kind": "cross",
+        "stageSha256": "eeaeab0f1ebcb30793aa08db633df6fc68246d812fc2f431dad3749156a60ffa",
+        "inputSha256": "497a002d95271eb9d4bc379abb620511c5d2fad0d183ab1468d88162204e67ee",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass",
+            "resolves": [
+              "batch-3/tiers"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-batch-3/costs",
+        "kind": "cross",
+        "stageSha256": "736f6613f2c7a6cd302cd24d07e3a89389234e3492c7c7908a363b8db7f0fcdd",
+        "inputSha256": "520df85890de9247741e7ade0a2ea04022cd8e0c33ccf462cda1ec03454b598c",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "costs",
+            "verdict": "pass",
+            "resolves": [
+              "batch-3/costs"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-batch-3/counters",
+        "kind": "cross",
+        "stageSha256": "44dc36780c87630f68cb5a30958fb7d68ad84e206505a7147cf7700c18eeee3c",
+        "inputSha256": "06c23dd0a19b1c1886406becac0a7b18f4f88b4d8904650ca9556c3ca5a1713f",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "counters",
+            "verdict": "pass",
+            "resolves": [
+              "batch-3/counters"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-1-3/tiers",
+        "kind": "cross",
+        "stageSha256": "41334c7266a16e0ba1ac62be4226412d34873beafda828711f9d60970a7ed9b2",
+        "inputSha256": "a3bfb589b5c99c61fad3567171f96d10a134f8ae1dc1257974a98d0b114b609d",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass",
+            "resolves": [
+              "cross-1-3/tiers"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-1-3/costs",
+        "kind": "cross",
+        "stageSha256": "554607501d159be55dbcebc892726ce4bd91f7b31c81fbd4516f41a944a45d0a",
+        "inputSha256": "4ef839bee4d4f8c08dc18cc5b0b74a1d4840970a2b053739f7b8297e09aa434c",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "costs",
+            "verdict": "pass",
+            "resolves": [
+              "cross-1-3/costs"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-1-3/counters",
+        "kind": "cross",
+        "stageSha256": "5fd0a3e3540a324e0de5431ee9c7a48a77117ef08b836cdb3c8f97df0daf26c0",
+        "inputSha256": "21d4c0a507c670016a5bf0b0c5d788c69f13490c89fd49a1d0d462ebbeff1a4f",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "counters",
+            "verdict": "pass",
+            "resolves": [
+              "cross-1-3/counters"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-1-5/costs",
+        "kind": "cross",
+        "stageSha256": "29b7ffef22a58c17ae913835d8846a5b6b9ebee10c728424001e5f0af71fef72",
+        "inputSha256": "36d311c1bc7c583136100c8464ab8b094918a4c7102aa2f6a03ab22acb40a945",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "costs",
+            "verdict": "pass",
+            "resolves": [
+              "cross-1-5/costs"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-2-3/tiers",
+        "kind": "cross",
+        "stageSha256": "1c3e8133a295a61a5399362c05762865aa6a31136b2c246e23b014e9d799f8aa",
+        "inputSha256": "a4dd68d3ea765c88fb26e47437e624cd5b578895393d4058247aebf3703c9b02",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass",
+            "resolves": [
+              "cross-2-3/tiers"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-2-3/costs",
+        "kind": "cross",
+        "stageSha256": "d0a536151950d4498505b8c5494b4143afa9cb29eb3113d7f3dd97fc51d11ad1",
+        "inputSha256": "4db3fd4ca08be245e1c3ea6e73750ee5e03bcebe815bd4b87f2499b06468ecb7",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "costs",
+            "verdict": "pass",
+            "resolves": [
+              "cross-2-3/costs"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-2-3/counters",
+        "kind": "cross",
+        "stageSha256": "9708b7d0cb8ff787fa056cd71ad21c72f377baf41c8e6309f38156e0cfe1ad9a",
+        "inputSha256": "12e3444fc29d0dbe29df0cd06087d134a166455c84969496882bae67a4ce7f22",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "counters",
+            "verdict": "pass",
+            "resolves": [
+              "cross-2-3/counters"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-2-4/tiers",
+        "kind": "cross",
+        "stageSha256": "5c62be5171e3f7146e98a6ede700f4b1d429edeb4273f2d5e954c6410c84322c",
+        "inputSha256": "cb1f97f8cb55309ad91bb169e15795d15906fd03472315412efb98a503cd377a",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass",
+            "resolves": [
+              "cross-2-4/tiers"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-2-4/costs",
+        "kind": "cross",
+        "stageSha256": "251175b4a4ab203b045472dc4ba26bcc47facf92b93f61415a57dc478e33c17c",
+        "inputSha256": "cd7805324092cf4aeca9a7692f7cb19839fd1e2cda76cbb10c5066f85967371d",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "costs",
+            "verdict": "pass",
+            "resolves": [
+              "cross-2-4/costs"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-2-4/counters",
+        "kind": "cross",
+        "stageSha256": "4c2d6ffad3b2eca2425262ed42ff9fb973646256e94014de79976a74680a8ab6",
+        "inputSha256": "8c823f3c9aab7b19082a21375feedc0426dadf19b8dfb49639a1a7c935df5e23",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "counters",
+            "verdict": "pass",
+            "resolves": [
+              "cross-2-4/counters"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-2-5/tiers",
+        "kind": "cross",
+        "stageSha256": "a704d9e514cae857c6268b964a9c89d48b8aef53ee6dc8f7a98df4a187efa41a",
+        "inputSha256": "66effe8d5e241a2d8cc243286d0821099dd9157465026b67b1cd48567fec48fd",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "tiers",
+            "verdict": "pass",
+            "resolves": [
+              "cross-2-5/tiers"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-2-5/costs",
+        "kind": "cross",
+        "stageSha256": "94c698ceab8f55b90db70fe65db4b77054d17767d76a37a9acea2958bc55c001",
+        "inputSha256": "73173ff799c1a1eabc186a3082927e2d90a1a60b15c2227d2e4b7aead2e16f72",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "costs",
+            "verdict": "pass",
+            "resolves": [
+              "cross-2-5/costs"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-2-5/counters",
+        "kind": "cross",
+        "stageSha256": "e58f0ca34e1bb276fa43c6ed18d470da08d71f13a31df1917c57f4c6f371347e",
+        "inputSha256": "49209ae4b1e39efd3a93c94a1840afa626c7f0ae6a3f2a4d25258ab4fbe3a11c",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "counters",
+            "verdict": "pass",
+            "resolves": [
+              "cross-2-5/counters"
+            ]
+          }
+        ]
+      }
+    ],
+    "failures": [],
+    "modelCalls": 0,
+    "reportVerification": "not_completed"
+  },
+  "completeOriginalSources": [
+    {
+      "id": "plan/chapters/25",
+      "text": "{\n  \"id\": \"chapter-25\",\n  \"chapterNumber\": 25,\n  \"volumeId\": \"vol_01\",\n  \"title\": \"废料斗下的三息\",\n  \"summary\": \"第188日辰末08:45，墨幽屠准备把俘虏和泉瓶装车转走。林辰与苏仍伏在营地，直到亲眼看见顾峤进入侧廊并收到手势，才按计划拉开囚棚闸门。林辰以一次乾元御风剑诀、二成真元只放一道风刃切断普通吊索，亲见余刃散尽并由苏核门框滑槽稳定后，才解扣推门；苏随后格开凝元看守的铁棍后剑茎被震松，停剑护送俘虏、放弃追击逃走的看守，顾在低顶主巷与墨正面交锋。墨本可弃货退入支洞，却因要夺回遗物和泉液扑向林辰。林辰抱着从货台取走的样箱和泉瓶转入检修侧廊，在两丈内直视第23章核过的八两无负载小销，以一次一息御物拨开空载拨片的锁销，倒料遮断直扑路线，顾借三息间隔蓄势，支付三成元罡与0.25元载施展太清太乙真光，在第三息完成时克制墨已连续付费开启的第二息血爪，墨停爪后只用肉身抢箱；顾另有独立站位条件，另付二成以已学贴身推劲、实际接膝与废木卡足使墨失衡受伤，随后贴身看押。林辰被落石割伤腿，无法再追击。本次开战在08:45亲见顾手势之后，解囚与同阶交锋至巳初后09:15结束，随后止血、收押并安排伤者转移，10:45才沿支洞出发。\",\n  \"characterGoals\": \"林辰要先打开囚笼并以普通结构牵制墨，为顾创造正面窗口；苏要带俘虏撤离并隔开凝元看守；顾峤要在不弃守责任的前提下制伏玄府境墨；墨要夺回上交遗物和泉液。\",\n  \"conflict\": \"墨拥有玄府元罡和已学近身术法，普通闸门和废料斗无法封禁他；顾的真光需三个呼吸蓄势并支付三成元罡、0.25元载寿储（按原三个月成本核算），若无遮挡或信号便不能发动。 本章调用char_10已列的开篇前资格：顾经宗门师长指导完成玄府纯阳供能、三息凝印及主动收势实测，经脉复诊合格；这不是188日临场新增训练。入场仍按25章前无新增伤情、十成元罡、当日未施真光核验；右肩受伤后停重推及该侧施术，不因旧资格合格忽略当场限制。\",\n  \"choice\": \"林辰等到顾峤亲自发出手势才开闸，主动暴露自己并拉动废料斗；顾放弃追求无伤制敌，支付既定寿元施术；墨为夺货放弃最佳撤退路线。\",\n  \"cost\": \"林辰支付一次风刃的二成真元后即停灌注、收起发热的剑，随后被落石割伤腿，苏的普通铁剑护手弯、剑茎松而停用，看守得以逃脱，顾肩部受伤且消耗0.25元载；墨负伤被擒但未死亡，随顾进来的两名普通护卫在挡开转运车与搬人时一死一伤，姓名由同行名册保留，死亡不能由泉液挽回，泉液尚未完成验收。 林由先前八成半的保守可用余量起算，不把途中休整擅自算满；本次剑诀二成、拨废料斗轻插销半成后，账面余六成，腿伤后可用上限也降至六成，停止施术。顾到场前元罡十成，左前臂局部护罡聚合一成、承受一次斜擦一成，共二成；真光三成后余五成，贴身推劲再预付二成后余三成。右肩伤发生于推劲结束时，随后可用上限下修至六成，实际仍只有三成，左侧气路实检稳定才可做ax_13定腕轻操作；不再重推、不再开护罡或第二印，不用恢复绕过伤情。 本章承接第21章动作后的8.5成：8.5−2−0.5=6成；第21章的半成已在8.5起点中扣过，本章半成对应新的废料斗插销，两个动作各只付一次。 分账标注：本段8.5成至六成只记林辰真元，不是寿储元载。顾的0.25元载属于顾本人，林本场没有发动燃寿术。林的寿储沿第13章第19日诊察的至少7元载起算，扣第18章凝元已付3元载及至188日共169天自然流逝，在无新增寿储耗损条件下约为7−3−169/365=3.536986元载；这只是原诊察基准下的条件预算，腿伤后仍须白榆复查是否另有耗损，不凭该算式跳过复评或增加行动许可。\",\n  \"threads\": [\n    \"th_01\",\n    \"sec_01\",\n    \"sec_02\",\n    \"rel_01\",\n    \"rel_03\",\n    \"prom_01\"\n  ],\n  \"endState\": \"被掳者离开笼车，两名随顾到场的普通护卫协助撤人时一死一伤；林辰腿被落石割伤，仍护住已取走的样箱与封瓶。墨被顾同阶制伏并持续看守，尚未完成外营交押或泉液验证，苏带担架回来接林辰。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_04\",\n    \"char_10\"\n  ],\n  \"location\": \"loc_05灵虚古境本次掳人营地主巷、普通货台与检修侧廊\",\n  \"storyTime\": \"第188日辰末08:45亲见手势后开战，至巳初后09:15结束；09:15–10:45处理伤者与准备撤离\",\n  \"scenes\": [\n    \"188日08:45，林苏在营地后方亲见顾进入侧廊并发出手势，才越出隐蔽处；秦已离开去求援，其他主营被扣者到本次行动才被解救。\",\n    \"林辰移到囚棚门外，施展一次乾元御风剑诀，支付二成真元切断束住门闩的普通吊索，先确认唯一余刃已散、棚门仍受原门框和滑槽支承，再用肉身解轻扣，由苏推开棚门。本式结束即停止灌注、收起热剑，之后拨插销用的是御物，不再以发热剑体施术。\",\n    \"苏用随身普通铁剑格开凝元看守手中的普通铁棍，让俘虏先过侧门；她只以肉身握剑偏架，未用未定义的剑光或真元护刃。铁棍砸弯护手并震松剑茎，她再握时剑刃明显晃动，立即停用，退到囚棚转角护送俘虏，不再追这名看守。看守沿另一支道逃脱，不能把苏引走看守写成已将其制伏。顾在低顶主巷先以普通脚步卡住墨借货台上跃的落点，两人以肉身闪让和普通拳棍试探，不把本次上跃写成持续飞行。顾看到墨手中短木棍斜扫，在退让中按ax_12先聚左前臂掌大局部护罡一息并付一成，承受一次斜擦另付一成后该层散去；后续以货柱隔开追击，至少三息重新定息，不连续开全身护体。到这段拳棍试探结束，墨尚未施噬血爪，也未发动其他术法；其后短施两息的起止见下文，不把试探段的停术延伸到整场。护罡不是顾的额外攻杀招。\",\n    \"林辰先开转运笼，再从货台抱走样箱与封瓶；箱角松开露出残片刻痕，墨看见本次必须交货的物件被带走，舍弃撤离机会扑向他。\",\n    \"林辰在两丈内直视第23章核过的八两小销，御动一息拨销，预付半成真元；小销只锁空载拨片，承重的支轴与闸钩由原有机械关系释放，倒料靠重力形成遮挡。落石割伤他的腿；不以御物托斗或搬矿料。\",\n    \"按同一交锋的呼吸顺序：顾起印第一息借倒料和货柱隔开直扑，开始纯阳凝印；第二息墨从遮挡侧缘绕到可见近身处，为抓回样箱先付一成元罡开启血爪第一息，顾侧步护住箱位，没有提前放光。顾起印第三息开始时，墨为连续抓击再先付一成，血爪进入第二息；顾完成第三息凝印后才支付三成元罡和0.25元载，向眼前实际外放的爪煞施真光并在这次近身交锋中接触灼散它。墨立即停爪，未再开启第三息；两息各自已付的成本不退，六息重启间隔从此刻停爪起算。真光结束顾即停术，墨仍有至少三成玄府元罡，不因属性受克自动失去行动。停爪后墨本可侧退，却不再施术，以普通手臂伸抢顾身后的样箱；顾退半步让开直扑，在货台角处扣住墨外露前膝侧，双足站稳。墨把重心继续压向前脚、右手绕货柱去抓箱，错过抽腿或用左手打断聚劲的机会；顾这才用ax_13聚劲一息、预付二成，下一息沿膝侧向内推转。墨的前脚正卡在自己跨过的普通废木垫边，顺势扭膝失衡倒地，腿受伤；并非推劲付费就必能击倒同阶。墨在散劲时收回的右手普通抓击伤顾右肩，双方都不能把此伤当作未发生。\",\n    \"顾立即停重推，只以尚稳的左手、膝与地面配合压住墨的前臂，苏把现场普通绑货绳递来约束姿势。墨前一场爪毒仍在，两息再开爪后指骨已刺痛、反抓时指口重裂、双腿不能稳撑，此刻强聚罡会使指口流血不止，须停爪及推劲就医；不是被真光降境或凭绳封经。顾仍须近身看押，若墨稳定重新施术，普通绳并不能阻止。战斗至09:15结束；随后原两名普通护卫一死一伤，苏与能行动的获救采集者收拢伤者。以随行救护布料暂止血、取现场原运人小推车安置伤护卫和包裹死者，另用既有担架接林；到10:45才完成出发准备。顾持续近身看墨，不兼抬车。\",\n    \"编辑执行账：本场三十分钟包括交锋、走位与解囚，不是持续施爪。墨由187日动作后至少五成余量承接，期间不计任何未写出的恢复，188日开战前检查指口闭合、手指无麻木失准、保守可用仍至少五成；普通拳棍与步行不另算术费。仅在顾起印第二、第三息短施连续两息血爪，两息各预付一成后至少三成；顾第三息完成后真光接触已外放爪煞，墨当即停爪。停爪后的扑抢和伤顾肩部均为普通肉身动作，不在六息间隔内重启，不再扣第三息；真光未消除这份余量；随后的裂口流血、腿伤及运罡失稳令其停术，不以余额归零解释被擒。前日积毒未清，本次两息使指骨刺痛加重；未靠吸血或割指回补。这个保守账只供执行校验，林苏不知墨的确切余量。\",\n    \"林在囚棚外侧先核普通吊索用途：它绕在横闩外耳，拉住向侧面滑开的普通棚门，不悬挂人或重物，也不是废料斗承重索。索段在距林一丈的外耳处外露，门后人员已应苏的喊话退离门缝；林从侧前方看清空隙，按18章两丈内实测锁定、路径无人遮挡才起式。本次切中后横闩失去拉力，林亲见本次唯一余刃在两丈界内耗散，苏在刃路外检查门板仍嵌原滑槽、门框未动，才由林用另一只手解开原普通插扣，苏以肉身推门引人；剑诀不抬闸门。若绳段被遮或无法锁定则停止起式，苏先挡住侧口、由顾实际压制后再开门，不让囚者站进风刃路径。\",\n    \"本场剑诀只放一道，完整二成不减。出手前林在原侧前方看清外耳绳段后一丈至本人两丈边界的延长线：沿棚门外侧空地掠过，不穿囚棚内部、门框、苏与顾墨交锋的主巷；苏先让门边俘虏退到门洞内侧两旁并听见回应，自己退出这条外侧直线。实际绳断后林保持原稳姿观察唯一刃影至两丈边界散尽，苏在刃路外实际检查门板、滑槽和门框稳定，再依前述顺序解扣推门。发刃后若失锁、有人闯入或余刃被遮，停发示警，不立即拨扣或放人；待余刃全部可确认消散且门体稳定后才继续，无法确认就守侧口等顾控住现场，再绕开刃路以普通工具处理，不多施一式补救。此等待包含在08:45—09:15的原交锋和解囚时段内；后续三息真光窗口仍由更晚的废料斗动作另行触发，不提前把余刃等待挤进那三息。\"\n  ],\n  \"source\": \"author\",\n  \"executionChecks\": [\n    {\n      \"id\": \"signal-blade-and-pin\",\n      \"requirement\": \"先亲见顾到场手势才开闸；林只放一道风刃且付完整二成，亲见余刃散尽、门框滑槽稳固后才解扣推门；拨废料斗空载轻销另付半成，不御物托斗搬矿料。\",\n      \"sourceQuestion\": {\n        \"document\": \"plan\",\n        \"questionId\": \"chapter25-claw-sequence\"\n      }\n    },\n    {\n      \"id\": \"light-claw-timing\",\n      \"requirement\": \"按同一交锋三息顺序：顾凝印第二、第三息分别对应墨预付的两息血爪；第三息完成后顾才付三成元罡和0.25元载，真光接触已外放爪煞；墨停爪后保留余额与六息重启限制，不能凭属性克制就失去行动。\",\n      \"sourceQuestion\": {\n        \"document\": \"plan\",\n        \"questionId\": \"chapter25-claw-sequence\"\n      }\n    },\n    {\n      \"id\": \"separate-accounts-and-injury\",\n      \"requirement\": \"林真元以8.5−2−0.5=6成承接，不重复扣21章成本；顾0.25元载属于顾，不记到林寿储。林腿伤后停术，顾肩伤后停重推与该侧施术；账面余额不是伤情许可，不用恢复自动解除伤限。\",\n      \"sourceQuestion\": {\n        \"document\": \"story\",\n        \"questionId\": \"audit-ending-cost\"\n      }\n    },\n    {\n      \"id\": \"custody-after-counter\",\n      \"requirement\": \"墨被制伏须有贴身推劲的站位、接膝和废木卡足等实际条件；绳子不能封经。保留普通护卫一死一伤，顾持续近身看押不兼抬车，09:15结束战斗后到10:45才完成撤离准备。\",\n      \"sourceQuestion\": {\n        \"document\": \"story\",\n        \"questionId\": \"audit-guard-return-chain\"\n      }\n    }\n  ]\n}"
+    },
+    {
+      "id": "story/chapterPlans/chapter-plan-25",
+      "text": "{\n  \"id\": \"chapter-plan-25\",\n  \"chapterNumber\": 25,\n  \"title\": \"废料斗下的三息\",\n  \"purpose\": \"第188日辰末08:45，墨幽屠准备把俘虏和泉瓶装车转走。林辰与苏仍伏在营地，直到亲眼看见顾峤进入侧廊并收到手势，才按计划拉开囚棚闸门。林辰以一次乾元御风剑诀、二成真元只放一道风刃切断普通吊索，亲见余刃散尽并由苏核门框滑槽稳定后，才解扣推门；苏随后格开凝元看守的铁棍后剑茎被震松，停剑护送俘虏、放弃追击逃走的看守，顾在低顶主巷与墨正面交锋。墨本可弃货退入支洞，却因要夺回遗物和泉液扑向林辰。林辰抱着从货台取走的样箱和泉瓶转入检修侧廊，在两丈内直视第23章核过的八两无负载小销，以一次一息御物拨开空载拨片的锁销，倒料遮断直扑路线，顾借三息间隔蓄势，支付三成元罡与0.25元载施展太清太乙真光，在第三息完成时克制墨已连续付费开启的第二息血爪，墨停爪后只用肉身抢箱；顾另有独立站位条件，另付二成以已学贴身推劲、实际接膝与废木卡足使墨失衡受伤，随后贴身看押。林辰被落石割伤腿，无法再追击。本次开战在08:45亲见顾手势之后，解囚与同阶交锋至巳初后09:15结束，随后止血、收押并安排伤者转移，10:45才沿支洞出发。\",\n  \"conflict\": \"墨拥有玄府元罡和已学近身术法，普通闸门和废料斗无法封禁他；顾的真光需三个呼吸蓄势并支付三成元罡、0.25元载寿储（按原三个月成本核算），若无遮挡或信号便不能发动。 本章调用char_10已列的开篇前资格：顾经宗门师长指导完成玄府纯阳供能、三息凝印及主动收势实测，经脉复诊合格；这不是188日临场新增训练。入场仍按25章前无新增伤情、十成元罡、当日未施真光核验；右肩受伤后停重推及该侧施术，不因旧资格合格忽略当场限制。\",\n  \"turningPoint\": \"林辰等到顾峤亲自发出手势才开闸，主动暴露自己并拉动废料斗；顾放弃追求无伤制敌，支付既定寿元施术；墨为夺货放弃最佳撤退路线。\",\n  \"endHook\": \"被掳者离开笼车，两名随顾到场的普通护卫协助撤人时一死一伤；林辰腿被落石割伤，仍护住已取走的样箱与封瓶。墨被顾同阶制伏并持续看守，尚未完成外营交押或泉液验证，苏带担架回来接林辰。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_04\",\n    \"char_10\"\n  ],\n  \"locationIds\": [\n    \"loc_05\"\n  ],\n  \"arcBeatIds\": [\n    \"v1-gu-counter\"\n  ],\n  \"requiredEvents\": [\n    \"188日08:45，林苏在营地后方亲见顾进入侧廊并发出手势，才越出隐蔽处；秦已离开去求援，其他主营被扣者到本次行动才被解救。\",\n    \"林辰移到囚棚门外，施展一次乾元御风剑诀，支付二成真元切断束住门闩的普通吊索，再用肉身解轻扣，由苏推开棚门。本式结束即停止灌注、收起热剑，之后拨插销用的是御物，不再以发热剑体施术。\",\n    \"苏用随身普通铁剑格开凝元看守手中的普通铁棍，让俘虏先过侧门；她只以肉身握剑偏架，未用未定义的剑光或真元护刃。铁棍砸弯护手并震松剑茎，她再握时剑刃明显晃动，立即停用，退到囚棚转角护送俘虏，不再追这名看守。看守沿另一支道逃脱，不能把苏引走看守写成已将其制伏。顾在低顶主巷先以普通脚步卡住墨借货台上跃的落点，两人以肉身闪让和普通拳棍试探，不把本次上跃写成持续飞行。顾看到墨手中短木棍斜扫，在退让中按ax_12先聚左前臂掌大局部护罡一息并付一成，承受一次斜擦另付一成后该层散去；后续以货柱隔开追击，至少三息重新定息，不连续开全身护体。到这段拳棍试探结束，墨尚未施噬血爪，也未发动其他术法；其后短施两息的起止见下文，不把试探段的停术延伸到整场。护罡不是顾的额外攻杀招。\",\n    \"林辰先开转运笼，再从货台抱走样箱与封瓶；箱角松开露出残片刻痕，墨看见本次必须交货的物件被带走，舍弃撤离机会扑向他。\",\n    \"林辰在两丈内直视第23章核过的八两小销，御动一息拨销，预付半成真元；小销只锁空载拨片，承重的支轴与闸钩由原有机械关系释放，倒料靠重力形成遮挡。落石割伤他的腿；不以御物托斗或搬矿料。\",\n    \"按同一交锋的呼吸顺序：顾起印第一息借倒料和货柱隔开直扑，开始纯阳凝印；第二息墨从遮挡侧缘绕到可见近身处，为抓回样箱先付一成元罡开启血爪第一息，顾侧步护住箱位，没有提前放光。顾起印第三息开始时，墨为连续抓击再先付一成，血爪进入第二息；顾完成第三息凝印后才支付三成元罡和0.25元载，向眼前实际外放的爪煞施真光并在这次近身交锋中接触灼散它。墨立即停爪，未再开启第三息；两息各自已付的成本不退，六息重启间隔从此刻停爪起算。真光结束顾即停术，墨仍有至少三成玄府元罡，不因属性受克自动失去行动。停爪后墨本可侧退，却不再施术，以普通手臂伸抢顾身后的样箱；顾退半步让开直扑，在货台角处扣住墨外露前膝侧，双足站稳。墨把重心继续压向前脚、右手绕货柱去抓箱，错过抽腿或用左手打断聚劲的机会；顾这才用ax_13聚劲一息、预付二成，下一息沿膝侧向内推转。墨的前脚正卡在自己跨过的普通废木垫边，顺势扭膝失衡倒地，腿受伤；并非推劲付费就必能击倒同阶。墨在散劲时收回的右手普通抓击伤顾右肩，双方都不能把此伤当作未发生。\",\n    \"顾立即停重推，只以尚稳的左手、膝与地面配合压住墨的前臂，苏把现场普通绑货绳递来约束姿势。墨前一场爪毒仍在，两息再开爪后指骨已刺痛、反抓时指口重裂、双腿不能稳撑，此刻强聚罡会使指口流血不止，须停爪及推劲就医；不是被真光降境或凭绳封经。顾仍须近身看押，若墨稳定重新施术，普通绳并不能阻止。战斗至09:15结束；随后原两名普通护卫一死一伤，苏与能行动的获救采集者收拢伤者。以随行救护布料暂止血、取现场原运人小推车安置伤护卫和包裹死者，另用既有担架接林；到10:45才完成出发准备。顾持续近身看墨，不兼抬车。\",\n    \"编辑执行账：本场三十分钟包括交锋、走位与解囚，不是持续施爪。墨由187日动作后至少五成余量承接，期间不计任何未写出的恢复，188日开战前检查指口闭合、手指无麻木失准、保守可用仍至少五成；普通拳棍与步行不另算术费。仅在顾起印第二、第三息短施连续两息血爪，两息各预付一成后至少三成；顾第三息完成后真光接触已外放爪煞，墨当即停爪。停爪后的扑抢和伤顾肩部均为普通肉身动作，不在六息间隔内重启，不再扣第三息；真光未消除这份余量；随后的裂口流血、腿伤及运罡失稳令其停术，不以余额归零解释被擒。前日积毒未清，本次两息使指骨刺痛加重；未靠吸血或割指回补。这个保守账只供执行校验，林苏不知墨的确切余量。\",\n    \"林在囚棚外侧先核普通吊索用途：它绕在横闩外耳，拉住向侧面滑开的普通棚门，不悬挂人或重物，也不是废料斗承重索。索段在距林一丈的外耳处外露，门后人员已应苏的喊话退离门缝；林从侧前方看清空隙，按18章两丈内实测锁定、路径无人遮挡才起式。本次切中后横闩失去拉力，林用另一只手解开原普通插扣，苏以肉身推门引人；剑诀不抬闸门。若绳段被遮或无法锁定则停止起式，苏先挡住侧口、由顾实际压制后再开门，不让囚者站进风刃路径。\",\n    \"本章施剑诀的执行前置与后续动作按对应plan章节最后新增的现场记录：只放一道但仍付二成，先实见目标及其背后至两丈边界的刃路，后亲见余刃消散并核相关结构，才进行解扣、撤离、过板或接人；保留原有伤损、逃敌和机会损失，不以停式撤销已发生后果。\"\n  ]\n}"
+    },
+    {
+      "id": "world/axioms/ax_12",
+      "text": "{\n  \"id\": \"ax_12\",\n  \"title\": \"玄府局部护罡的训练、支付与失效\",\n  \"content\": \"元罡护体是能力方向；本条只定义其中最基础的局部护罡，其他全身护持仍须另有术式。施术者须已入玄府，经有经验者指导，将元罡在本人一处掌大范围皮肤外稳定聚合，并通过轻木棍、普通铁刃的受控低负荷实测及复诊。完成晋阶不自动获得此操作。\\n每次聚罡先用一息并预付本人当境健康稳定元罡上限的一成；只护同一选定部位，至多维持随后两息，不远控、不护他人、不同时覆盖全身。若承受一次实际接触，另预留并即时扣一成，随后该层即散；开启前须至少有两成获准可用余量。即使落空、提前收束或被打断，聚罡一成不退；未受击则不虚扣受击费。每次散后至少三息重新定息，间隙没有护罡。连续最多三次，此后至少休整一刻并复测，伤痛、麻木或气路不稳立即停用；控术和战斗期间不计恢复。此基础操作只用自身元罡，无额外神识、寿储或外物账户，不提供力量、速度、飞行或恢复。\\n效果只是在接触部位分散普通拳棍或无附灵铁刃一次擦击/斜击的表层冲击，需要站位退让与卸力；不保证挡住同阶全力正击、重刃、尖刺、多次连续攻势或已付费的攻杀术，不保证免伤。对方可换落点、抓聚罡一息、在三息空档进攻或持续压制。击穿时仍扣本次受击费，余力实际伤及该处，不把破罡化作无害光效；肩、腕或经脉受损即停术撤离，不能因还有余额续顶。一次付款不能抵三次来招，也不能将健康基准当作当前伤后可用量。\",\n  \"scope\": \"玄府基础局部防护与本章首次训练\",\n  \"precedence\": 12,\n  \"status\": \"proposed\"\n}"
+    },
+    {
+      "id": "world/axioms/ax_13",
+      "text": "{\n  \"id\": \"ax_13\",\n  \"title\": \"玄府贴身运罡的推劲与定腕\",\n  \"content\": \"只定义玄府以本人元罡辅助已接触目标的近身操作，不由境界自动授予。须经已掌握者指导，完成握持、立足、单侧导罡与主动停术训练，在普通滑车及配合者受控低负荷的推压/脱手测试中通过复测，再由医修确认使用肢体气路稳定。上限服从个人受控实测及当前伤情，不能以本条直接推定任一玄府都有同样肉身力量。\\n短促推劲：先以手掌或前臂实际贴住目标、双足有稳定支撑，用一息聚罡并预付本人健康稳定元罡上限二成，随后至多一息沿一个方向推压或扳转，随即散劲。只加强这一次接触，不能隔空、传到器械远端、贯穿整车或同时作用多人。在个人已测负荷内，至多将轮轴完好、无锁止、平地总重六百斤以下的普通滑车滚移一步；不是托起六百斤或上坡拖车。用于人体须先实际接到暴露部位并取得立足和关节方向优势，能否跌倒或受伤依双方站位、卸力与伤情，不因付款保证折骨、破同阶完整护罡或压制高境。对方可抽身、换支点、在聚罡一息内攻击施术臂，或以实际已发动的防护与术法反抗。失去接触、立足或被打断立即散劲，二成不退。\\n定腕：先由未受伤的手实际握住对方一只手腕，用一息导罡并预付半成健康稳定元罡，随后最多一息辅助一次小幅向下或向内的姿势纠正；不能提起、拖行、封经或隔空制动。只可应对未施攻杀/强化术的普通转腕挣动，须本来就有正常握持与站位优势；对方一旦实际凝罡攻来、双足发力挣脱或另一手反击，应松开避让、呼援或按另有规则的能力应对，不能用半成抵销任意同阶反抗。接触丢失、落空和打断均不退款，不维持持续禁锢。\\n两种方式使用期间不能同时发动局部护罡、噬血爪、真光或其他控术；散劲后至少三息调息才能再用本条，同一短暂交锋连续最多两次，此后至少休整一刻并复测，战斗中不计普通恢复。使用肢体及相关气路有麻木、动作失准、疼痛加剧或创口止不住血立即停术。伤后仅可用实检仍稳定的另一侧完成定腕轻操作，不得以换手绕过全身气路失稳；伤后上限和余额按ax_05复核，剩余不足先停术。普通绳索、牢房和看守人手另行承担羁押，不能以本条宣称永久封禁。此条不提供飞行、速度、远程拳罡、治疗或寿储恢复，也不自动允许神海及以上沿用。\",\n  \"scope\": \"受训玄府的接触式短促推压与有限看押动作\",\n  \"precedence\": 13,\n  \"status\": \"proposed\"\n}"
+    },
+    {
+      "id": "world/techniques/tech_06",
+      "text": "{\n  \"id\": \"tech_06\",\n  \"name\": \"太清太乙真光\",\n  \"kind\": \"technique\",\n  \"tier\": \"地阶\",\n  \"allowedRealmIds\": [\n    \"realm_03\",\n    \"realm_04\"\n  ],\n  \"effect\": \"以本人当境纯阳法力凝成太乙真光：玄府用元罡，神海用本境法力，均按ax_07从唯一当境账户支出；同一人不另开低境元罡余额。真光克制外放的阴煞血爪，可灼散其表层煞气、破坏出爪节奏；不自动消除对手的玄府元罡、境界或行动能力。克制后仍须同阶实战制伏，不能把属性相克当成永久封禁。\",\n  \"cost\": \"每次完成法印支付本人当境健康稳定法力上限的三成（玄府为元罡，神海为本境法力）与0.25元载寿储；旧称“三个月寿元”按命寿核算律固定为四分之一元载，不另用历法月长计费。\",\n  \"limitations\": [\n    \"阴煞死渊深处光芒威能被大幅压制\",\n    \"蓄势施展需三个呼吸间隔\",\n    \"每次完成法印即支付本人当境健康稳定法力上限的三成与0.25元载，放空也不返还；法印未成即受近身打断时需散去蓄势，至少损本人当境法力一成（实际损耗按实测，不足不得起印），不能把未付寿元当成已完成施术。\",\n    \"真光只在这一次正面交锋中灼散接触到的阴煞；不能隔墙锁定、长时间保持压制或对更高境界自动生效。同一场交战只准凝印一次，至少隔一昼夜且本人当境法力余量足付、经脉复查稳定后才能再施；肩臂经脉伤未恢复者不可强开第二印。\",\n    \"两境均须先完成本境纯阳供能与凝印训练、三息起式及收势的受控实测、经脉复诊，晋入神海不自动完成这些条件。\",\n    \"玄府与神海的百分比各以本人本境健康稳定实测上限计费，不按伤后余量缩小；允许境界只表示可训练和承载，不额外授予探知、距离、持续压制或跨境破防。伤损上限、普通恢复与供能属性仍服从ax_07；真光须保持纯阳供能，不能用阴煞或其他账户代付。\"\n  ],\n  \"counters\": [\n    \"九幽死息污浊法印\",\n    \"近身快攻打断蓄力结印\"\n  ],\n  \"status\": \"proposed\"\n}"
+    }
+  ],
+  "checks": [
+    {
+      "stageId": "followup-batch-3/counters",
+      "stageSha256": "44dc36780c87630f68cb5a30958fb7d68ad84e206505a7147cf7700c18eeee3c",
+      "requestSha256": "06c23dd0a19b1c1886406becac0a7b18f4f88b4d8904650ca9556c3ca5a1713f",
+      "criterion": "counters",
+      "verdict": "pass",
+      "explanation": "原问题所指的核心反制链现可闭合：顾峤在此前已具备真光、局部护罡与贴身运罡的受训资格，但当场仍须逐项付费并受伤情限制；墨幽屠的血爪须近身、逐息支付且受纯阳真光克制，不能藉玄府身份免除反制。第25章将顾的三息凝印与墨连续两息血爪明确排为：第一息起印，第二、第三息分别为墨已付款的两息爪势，第三息完成后真光才接触已外放爪煞；墨停爪后仍留至少三成元罡，未被属性克制直接废境。顾的局部护罡、真光、推劲共扣五成元罡及0.25元载，之后右肩伤使其停止重推和该侧施术；林辰的真元则从8.5成另扣剑诀二成与废料斗插销半成，未混入顾的寿储。普通倒料只遮视线，推劲成功还以接膝、立足、废木卡足及墨放弃抽腿/打断为条件，绳索亦不被写成封经，符合既有反制边界。补读的斩铁剑条目确认剑诀供能、冷却和低流量试注均独立计费；震指符是一次性、接触触发的有限反震；引血槽只沿双路腕部接触抽少量血液、可由支轨脱接，不生成寿储或神阶命能。这些规则也与此前第20章风刃的锁定、余刃和撤离限制，以及第23章墨的实测推劲、积毒与受伤停术边界相容。上述均为按提案写作时必须兑现的安排，不表示正文已经发生。",
+      "modelResponses": [
+        "{\"requestId\":\"review_06c23dd0a19b1c1886406bec\",\"summary\":\"补读已补足反制链与器物边界；第25章的真光—血爪时序、账户和中断后果可执行，未见与绝对压制规则冲突。\",\"checks\":[{\"criterion\":\"counters\",\"verdict\":\"pass\",\"explanation\":\"原问题所指的核心反制链现可闭合：顾峤在此前已具备真光、局部护罡与贴身运罡的受训资格，但当场仍须逐项付费并受伤情限制；墨幽屠的血爪须近身、逐息支付且受纯阳真光克制，不能藉玄府身份免除反制。第25章将顾的三息凝印与墨连续两息血爪明确排为：第一息起印，第二、第三息分别为墨已付款的两息爪势，第三息完成后真光才接触已外放爪煞；墨停爪后仍留至少三成元罡，未被属性克制直接废境。顾的局部护罡、真光、推劲共扣五成元罡及0.25元载，之后右肩伤使其停止重推和该侧施术；林辰的真元则从8.5成另扣剑诀二成与废料斗插销半成，未混入顾的寿储。普通倒料只遮视线，推劲成功还以接膝、立足、废木卡足及墨放弃抽腿/打断为条件，绳索亦不被写成封经，符合既有反制边界。补读的斩铁剑条目确认剑诀供能、冷却和低流量试注均独立计费；震指符是一次性、接触触发的有限反震；引血槽只沿双路腕部接触抽少量血液、可由支轨脱接，不生成寿储或神阶命能。这些规则也与此前第20章风刃的锁定、余刃和撤离限制，以及第23章墨的实测推劲、积毒与受伤停术边界相容。上述均为按提案写作时必须兑现的安排，不表示正文已经发生。\",\"evidence\":[{\"fragmentId\":\"e326\"},{\"fragmentId\":\"e12\"},{\"fragmentId\":\"e46\"},{\"fragmentId\":\"e50\"},{\"fragmentId\":\"e52\"},{\"fragmentId\":\"e20\"},{\"fragmentId\":\"e22\"},{\"fragmentId\":\"e173\"},{\"fragmentId\":\"e185\"},{\"fragmentId\":\"e192\"},{\"fragmentId\":\"e74\"},{\"fragmentId\":\"e78\"},{\"fragmentId\":\"e80\"},{\"fragmentId\":\"e321\"},{\"fragmentId\":\"e322\"},{\"fragmentId\":\"e323\"}],\"revisionAdvice\":\"\",\"resolves\":[\"batch-3/counters\"]}]}"
+      ],
+      "fullChapter25WasProvided": true
+    },
+    {
+      "stageId": "followup-cross-2-5/costs",
+      "stageSha256": "94c698ceab8f55b90db70fe65db4b77054d17767d76a37a9acea2958bc55c001",
+      "requestSha256": "73173ff799c1a1eabc186a3082927e2d90a1a60b15c2227d2e4b7aead2e16f72",
+      "criterion": "costs",
+      "verdict": "pass",
+      "explanation": "原问题所称的分账已能由原文核实。顾峤在25章以本人十成元罡起算：局部护罡两成、真光三成及贴身推劲两成后余三成；真光另扣顾本人0.25元载，右肩伤后停止重推、护罡与第二印，未转嫁给林辰。其真光资格、三息凝印训练和“伤情、余量、冷却仍须逐场核验”的前置亦已明确。林辰在44章从239日复测的五成真元起算，一式剑诀扣二成至三成，剑热后停止灌注和后续御物；赤霞剑的剑诀供能已包含在该二成内，且须散热一刻钟并通过半成试注才可复用。高阶碎空刃、神印、鸿蒙典分别明确寿储、永久本源、当境法力、神识及冷却/道伤，且百章内没有把它们作为无成本解法；后续宏观也明确顾在436日不再施真光、不重复扣0.25元载。寿储不可返还、真元/元罡与寿储不可互换的总规则，与第25、44章和后续航款、救济账户分账相容。",
+      "modelResponses": [
+        "{\"requestId\":\"review_73173ff799c1a1eabc186a30\",\"summary\":\"针对 cross-2-5/costs 的待补读问题，新增原文已补足顾峤真光、林辰赤霞剑及三项高阶术式的原始成本规则与对应场景账目；各账户、冷却、伤后停术和不可逆代价可闭合，未见以他人账户或公款抵销施术成本的安排。\",\"checks\":[{\"criterion\":\"costs\",\"verdict\":\"pass\",\"explanation\":\"原问题所称的分账已能由原文核实。顾峤在25章以本人十成元罡起算：局部护罡两成、真光三成及贴身推劲两成后余三成；真光另扣顾本人0.25元载，右肩伤后停止重推、护罡与第二印，未转嫁给林辰。其真光资格、三息凝印训练和“伤情、余量、冷却仍须逐场核验”的前置亦已明确。林辰在44章从239日复测的五成真元起算，一式剑诀扣二成至三成，剑热后停止灌注和后续御物；赤霞剑的剑诀供能已包含在该二成内，且须散热一刻钟并通过半成试注才可复用。高阶碎空刃、神印、鸿蒙典分别明确寿储、永久本源、当境法力、神识及冷却/道伤，且百章内没有把它们作为无成本解法；后续宏观也明确顾在436日不再施真光、不重复扣0.25元载。寿储不可返还、真元/元罡与寿储不可互换的总规则，与第25、44章和后续航款、救济账户分账相容。\",\"evidence\":[{\"fragmentId\":\"e487\"},{\"fragmentId\":\"e4\"},{\"fragmentId\":\"e7\"},{\"fragmentId\":\"e10\"},{\"fragmentId\":\"e52\"},{\"fragmentId\":\"e53\"},{\"fragmentId\":\"e62\"},{\"fragmentId\":\"e63\"},{\"fragmentId\":\"e64\"},{\"fragmentId\":\"e65\"},{\"fragmentId\":\"e66\"},{\"fragmentId\":\"e67\"},{\"fragmentId\":\"e69\"},{\"fragmentId\":\"e70\"},{\"fragmentId\":\"e103\"},{\"fragmentId\":\"e104\"},{\"fragmentId\":\"e105\"},{\"fragmentId\":\"e451\"},{\"fragmentId\":\"e453\"},{\"fragmentId\":\"e456\"},{\"fragmentId\":\"e457\"},{\"fragmentId\":\"e461\"},{\"fragmentId\":\"e462\"},{\"fragmentId\":\"e464\"},{\"fragmentId\":\"e465\"},{\"fragmentId\":\"e475\"},{\"fragmentId\":\"e362\"},{\"fragmentId\":\"e364\"},{\"fragmentId\":\"e366\"},{\"fragmentId\":\"e389\"},{\"fragmentId\":\"e394\"},{\"fragmentId\":\"e401\"},{\"fragmentId\":\"e408\"},{\"fragmentId\":\"e419\"},{\"fragmentId\":\"e420\"},{\"fragmentId\":\"e434\"}],\"revisionAdvice\":\"\",\"resolves\":[\"cross-2-5/costs\"]}]}"
+      ],
+      "fullChapter25WasProvided": true
+    }
+  ],
+  "incorrectQuote": "顾的局部护罡、真光、推劲共扣五成元罡及0.25元载",
+  "sourceCostQuote": "顾到场前元罡十成，左前臂局部护罡聚合一成、承受一次斜擦一成，共二成；真光三成后余五成，贴身推劲再预付二成后余三成。",
+  "derivedAccount": {
+    "characterId": "char_10",
+    "characterName": "顾峤",
+    "chapterNumber": 25,
+    "unit": "成本人健康稳定元罡",
+    "opening": 10,
+    "payments": {
+      "guard": 2,
+      "light": 3,
+      "push": 2
+    },
+    "totalSpent": 7,
+    "remaining": 3,
+    "separateLifespanPayment": {
+      "value": 0.25,
+      "unit": "元载",
+      "owner": "char_10"
+    },
+    "injuryLimit": 6,
+    "usableBalanceStill": 3
+  },
+  "finding": "The earlier model explanation totals three payments as five instead of seven despite receiving the complete correct chapter. Both chapter plans agree on the actual payments; the later cost review states them correctly. This is a review explanation error, not evidence of a conflicting chapter design.",
+  "requiredFollowup": "Check the eventual synthesis and final report for propagation of the incorrect total. Preserve both original responses; use the actual chapter and rule sources for independent content adjudication. Do not rewrite correct plans, overwrite the original check, or treat a structurally valid pass as semantic proof.",
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "questionsResolved": 0,
+  "formalAcceptance": false
+}
