@@ -1,0 +1,2368 @@
+{
+  "kind": "design71_story_dynamic_followups_preflight",
+  "area": "story",
+  "observedAt": "2026-10-17T05:33:55.508Z",
+  "inputHash": "70235514bab787e26c05a26fdc9b297adde5a363de5c6c9f10112b7229c018de",
+  "runId": "design_run_47089baf-d597-4ab3-81d0-5a785e2a417c",
+  "snapshotPath": "data/audit-runtimes/design71-review/story-followup-prefix.json",
+  "snapshotSha256": "56a63f6db345bba15ed18242e98ba2fa10fafa24b6654e4d2c9e00a6e13f47c5",
+  "frozenSourceFilesVerified": 153,
+  "independentInputsSha256": "77deca6c04132eebd14a14fdf518187cdb857aa1f3068477018218c0ead83a2d",
+  "prefixReplay": {
+    "verification": "verified",
+    "completedStages": 15,
+    "totalStages": 85,
+    "runSha256": "edfb86931488d03a90edc86006c3498ba9c1d1b39fce26e10829498e1d2f8ed7",
+    "formalAcceptance": false,
+    "limitation": "Replays saved responses, repairs, citations and conclusions against independently supplied materials. Pending work, semantic quality, blocker disposition and prose acceptance remain separate.",
+    "responseReplay": "verified",
+    "responsesReplayed": 19,
+    "records": [
+      {
+        "stageId": "batch-1",
+        "kind": "batch",
+        "stageSha256": "0c427a69cf1e438e0ec54a011ef829305f4c9cc96de684e36d36ed191c8aa408",
+        "inputSha256": "19aef5180be06c1b84ba580235c932716258d67af6b246d18347ccbbe9f97ea4",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/10",
+              "plan/chapters/11",
+              "plan/chapters/12",
+              "plan/chapters/13",
+              "plan/chapters/14",
+              "plan/chapters/15",
+              "plan/chapters/16",
+              "plan/chapters/17",
+              "plan/chapters/18",
+              "plan/chapters/19",
+              "plan/chapters/20",
+              "plan/chapters/21",
+              "plan/chapters/22",
+              "plan/chapters/23",
+              "plan/chapters/24",
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/33",
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50",
+              "plan/milestones/ms_v2_loss",
+              "plan/milestones/ms_v2_barge",
+              "plan/milestones/ms_v2_fire",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/33",
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50",
+              "plan/milestones/ms_v2_loss",
+              "plan/milestones/ms_v2_barge",
+              "plan/milestones/ms_v2_fire",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "story/secrets/sec_01",
+              "story/secrets/sec_02",
+              "story/secrets/sec_03",
+              "story/secrets/sec_04",
+              "story/promises/prom_01",
+              "story/promises/prom_02",
+              "story/promises/prom_03",
+              "story/promises/prom_04",
+              "story/openThreads/th_01",
+              "story/openThreads/th_02",
+              "story/openThreads/th_03",
+              "story/openThreads/th_04",
+              "story/openThreads/th_05",
+              "story/relationships/rel_05",
+              "story/relationships/rel_06",
+              "story/relationships/rel_07",
+              "story/relationships/rel_08",
+              "story/relationships/rel_09",
+              "story/relationships/rel_10",
+              "story/relationships/rel_11",
+              "story/relationships/rel_12",
+              "story/relationships/rel_13",
+              "story/relationships/rel_14",
+              "story/relationships/rel_15",
+              "story/relationships/rel_16",
+              "story/relationships/rel_17",
+              "story/relationships/rel_18",
+              "story/relationships/rel_19",
+              "story/relationships/rel_20",
+              "story/relationships/rel_21",
+              "story/relationships/rel_22",
+              "plan/milestones/ms_v2_fire",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          },
+          {
+            "criterion": "opening",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/1",
+              "plan/chapters/2",
+              "plan/chapters/3",
+              "plan/chapters/4",
+              "plan/chapters/5",
+              "plan/chapters/6",
+              "plan/chapters/7",
+              "plan/chapters/8",
+              "plan/chapters/9",
+              "plan/chapters/10",
+              "plan/chapters/11",
+              "plan/chapters/12",
+              "plan/chapters/13",
+              "plan/chapters/14",
+              "plan/chapters/15",
+              "plan/chapters/16",
+              "plan/chapters/17",
+              "plan/chapters/18",
+              "plan/chapters/19",
+              "plan/chapters/20",
+              "plan/chapters/21",
+              "plan/chapters/22",
+              "plan/chapters/23",
+              "plan/chapters/24",
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/33",
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50",
+              "plan/volumes/vol_01",
+              "plan/volumes/vol_02",
+              "plan/volumes/vol_03"
+            ]
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/33",
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50",
+              "plan/milestones/ms_v2_loss",
+              "plan/milestones/ms_v2_barge",
+              "plan/milestones/ms_v2_fire"
+            ]
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/13",
+              "plan/chapters/14",
+              "plan/chapters/15",
+              "plan/chapters/16",
+              "plan/chapters/17",
+              "plan/chapters/18",
+              "plan/chapters/23",
+              "plan/chapters/24",
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/milestones/ms_growth_v1_recovery",
+              "plan/milestones/ms_growth_v1_training",
+              "plan/milestones/ms_growth_v1_expedition",
+              "plan/milestones/ms_vol1_climax",
+              "plan/milestones/ms_growth_v1_aftermath",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "batch-2",
+        "kind": "batch",
+        "stageSha256": "73851d804a4b0126baac32e8ddf54457c540fe053e8ea33067f1dc9c8c979d3a",
+        "inputSha256": "8a753689aa8d6cb49dc93bcbf312b52ede1d25dd37f1356aa2f935b201933d7c",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "batch-3",
+        "kind": "batch",
+        "stageSha256": "2b44955884781e0e28d1992107d7b6eb848a52ae2d24895bd08f02524caae0ca",
+        "inputSha256": "ecf57a7f2d3b279116927c217e736ab57d622ab58f1710516730788bfd09dcd6",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "batch-4",
+        "kind": "batch",
+        "stageSha256": "660c448d4cafb9d2719ee41e8f2e94819afee262d7979ed39f32b04c3be17ae7",
+        "inputSha256": "e632a09bbc4b82fda21d05ebb1e370a4f3d1d632c605f8987a456fc85049ab79",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/18",
+              "story/characters/char_10",
+              "world/techniques/tech_04",
+              "world/techniques/tech_05",
+              "world/techniques/tech_06"
+            ]
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/18",
+              "story/characters/char_10",
+              "world/techniques/tech_04",
+              "world/techniques/tech_06"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "batch-5",
+        "kind": "batch",
+        "stageSha256": "a64d4d7928be83ef86407f101628cd973fd0440fde8ac7f2de27298fe5d4246c",
+        "inputSha256": "973a125d3dca34a843f49a806654687160c64252c4682ceadcc1b424349e3522",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/18",
+              "plan/chapters/43",
+              "world/techniques/tech_04"
+            ]
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/18",
+              "plan/chapters/43",
+              "world/techniques/tech_04"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-2",
+        "kind": "cross",
+        "stageSha256": "e87c34ba480c43c05c5e54029de72022bb365c70cfcfdf49739fd7329500fc6e",
+        "inputSha256": "801dcafd2a2170e1157480d692fe8cf4e5b87aa39dcd87a47c3ed0413675c95b",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/volumes/vol_02",
+              "plan/volumes/vol_03",
+              "plan/milestones/ms_v2_fire",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/volumes/vol_02",
+              "plan/volumes/vol_03",
+              "plan/milestones/ms_v2_fire",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/volumes/vol_02",
+              "plan/volumes/vol_03",
+              "plan/milestones/ms_v2_fire",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          },
+          {
+            "criterion": "opening",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50"
+            ]
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50"
+            ]
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/volumes/vol_03",
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-3",
+        "kind": "cross",
+        "stageSha256": "8fecbc130971d9faa1f808ea70ce5cbb7794d66aa797d019f3135542febacb06",
+        "inputSha256": "c6e24f847d9ace32eacc963cbc7da144accebf12615fd276e45862dabbbc1a4e",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/23",
+              "plan/chapters/24",
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29"
+            ]
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-4",
+        "kind": "cross",
+        "stageSha256": "ab7dcc919299f44ad2ada977432a2ac1a26705b1a4d8c9e4920b73704ac1f590",
+        "inputSha256": "576ef7f3ad31ea2610891a100de0752b2e0e69e7f18498a357baed127adc0a43",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/18",
+              "plan/chapters/21"
+            ]
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/18",
+              "plan/chapters/21"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-5",
+        "kind": "cross",
+        "stageSha256": "53d658ed0b02cf678a224f1c71b9cbb96bc337ceb37a6880a3d5fc260578898b",
+        "inputSha256": "1a7de507af0a603906e3dad990fd5b5c1ecd6b3d79bb67cb896b14a0367ae940",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/18",
+              "plan/chapters/43"
+            ]
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/43"
+            ]
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/18"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-2-3",
+        "kind": "cross",
+        "stageSha256": "8dd684ed0f97fc493a14e15401f0bf24851071021952c3bc62473e5cbfdff198",
+        "inputSha256": "65cc931d4687ae8e859b7bd6ba9de8662482a543b13bbc300e420ad19525bb31",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_04",
+              "world/artifacts/art_03"
+            ]
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_04",
+              "world/artifacts/art_03"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-2-4",
+        "kind": "cross",
+        "stageSha256": "a040fda37c671b08bdc694855d502209b5a94698614850845f5756c5444ce352",
+        "inputSha256": "25230c302c799f56e51d5b1da10ab842fa2d4eb22b1e1dfdbbd0ea15e449d02f",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "story/characters/char_10",
+              "world/techniques/tech_04",
+              "world/techniques/tech_05",
+              "world/techniques/tech_06"
+            ]
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-2-5",
+        "kind": "cross",
+        "stageSha256": "e6e0e0c0dbdc14abfc90512a455334219685179695e75ec7aaae9bc0fcebf1f4",
+        "inputSha256": "d00e0c7c7e263abf46e1679f39c110a5858cecad93aa51870dff641d51ac1e70",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-3-4",
+        "kind": "cross",
+        "stageSha256": "bb2e4dfcf48dc6080f621f51fadeea0c0e17ce46e007dd672fb97ae33e092842",
+        "inputSha256": "b9e4cc9dac5c0585397a2e47ef497ef5529fd51ec243719a1c3d2388230f1923",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-3-5",
+        "kind": "cross",
+        "stageSha256": "5d62ade58573a9e629673ffe156d1bb815113f80d1e70b77cf6cae80be546c83",
+        "inputSha256": "097b34d3b049d89d36198af877a53af124ca6b3b38b55e91e4df85dcbfd31af1",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/43"
+            ]
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/33",
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39"
+            ]
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-4-5",
+        "kind": "cross",
+        "stageSha256": "50af0caedc646b87a012c6c670288b75c6b4e8258aebd41b76d262339c96d55d",
+        "inputSha256": "454ab3f659c82882b55492ae5f72020d08f713f99f73e7047bd09c3b7f41cc75",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/18",
+              "plan/chapters/21",
+              "story/characters/char_10",
+              "world/techniques/tech_04",
+              "world/techniques/tech_06"
+            ]
+          }
+        ]
+      }
+    ],
+    "failures": [],
+    "modelCalls": 0,
+    "reportVerification": "not_completed"
+  },
+  "originalStagesCompleted": 15,
+  "pendingSourceQuestions": 28,
+  "explicitRawResolutions": [],
+  "questionDisposition": [
+    {
+      "checkId": "batch-1/causality",
+      "originalExplanation": "总纲把第10—12章救援、23—29章古境救援与药程、44/50—53章港口救援、61—66章北航救人及83章晋阶列为连续转折，也明确50章后陆沉舟自述仍须独立核验；但本批未提供这些章节细纲或51—100里程碑原文，无法核验每次选择的直接前置、伤情/资源支付、后果及是否重复兑现。关系档中的阶段是拟定安排，不能替代相应行动章纲。",
+      "requestedSources": [
+        "plan/chapters/10",
+        "plan/chapters/11",
+        "plan/chapters/12",
+        "plan/chapters/13",
+        "plan/chapters/14",
+        "plan/chapters/15",
+        "plan/chapters/16",
+        "plan/chapters/17",
+        "plan/chapters/18",
+        "plan/chapters/19",
+        "plan/chapters/20",
+        "plan/chapters/21",
+        "plan/chapters/22",
+        "plan/chapters/23",
+        "plan/chapters/24",
+        "plan/chapters/25",
+        "plan/chapters/26",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/29",
+        "plan/chapters/30",
+        "plan/chapters/31",
+        "plan/chapters/32",
+        "plan/chapters/33",
+        "plan/chapters/34",
+        "plan/chapters/35",
+        "plan/chapters/36",
+        "plan/chapters/37",
+        "plan/chapters/38",
+        "plan/chapters/39",
+        "plan/chapters/40",
+        "plan/chapters/41",
+        "plan/chapters/42",
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50",
+        "plan/milestones/ms_v2_loss",
+        "plan/milestones/ms_v2_barge",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "resolvedBy": [],
+      "followupStageId": "followup-batch-1/causality"
+    },
+    {
+      "checkId": "batch-1/timeline",
+      "originalExplanation": "世界规则已限定青玄至赤霄约两昼夜、赤霄至苍冥约五昼夜、苍冥返青玄约六昼夜，并要求航款、担保、验籍和实际支付分列。总纲也只确认细纲连续到第50章，51—100为宏观层；当前未读任何对应章纲和里程碑，故不能核算第214—466日拟定航程、疗程、消息与晋阶之间是否满足这些约束，亦不能把导航中的章节日期当作事件证据。",
+      "requestedSources": [
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/29",
+        "plan/chapters/30",
+        "plan/chapters/31",
+        "plan/chapters/32",
+        "plan/chapters/33",
+        "plan/chapters/34",
+        "plan/chapters/35",
+        "plan/chapters/36",
+        "plan/chapters/37",
+        "plan/chapters/38",
+        "plan/chapters/39",
+        "plan/chapters/40",
+        "plan/chapters/41",
+        "plan/chapters/42",
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50",
+        "plan/milestones/ms_v2_loss",
+        "plan/milestones/ms_v2_barge",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "resolvedBy": [],
+      "followupStageId": "followup-batch-1/timeline"
+    },
+    {
+      "checkId": "batch-1/payoff",
+      "originalExplanation": "已读关系设计为林辰与苏凌霜、赵玄极、墨幽屠分别安排了信息边界、阶段性代价和百章有限归宿；总纲亦明确百章只切断一条运输链，不宣称九鼎、三残片和界门危机已结案。这些宏观边界可避免过早终局，但本批未提供秘密、承诺、开放线原档及51—100里程碑，无法逐项核验伏笔条件、知情触发、兑现对象和重复消费。",
+      "requestedSources": [
+        "story/secrets/sec_01",
+        "story/secrets/sec_02",
+        "story/secrets/sec_03",
+        "story/secrets/sec_04",
+        "story/promises/prom_01",
+        "story/promises/prom_02",
+        "story/promises/prom_03",
+        "story/promises/prom_04",
+        "story/openThreads/th_01",
+        "story/openThreads/th_02",
+        "story/openThreads/th_03",
+        "story/openThreads/th_04",
+        "story/openThreads/th_05",
+        "story/relationships/rel_05",
+        "story/relationships/rel_06",
+        "story/relationships/rel_07",
+        "story/relationships/rel_08",
+        "story/relationships/rel_09",
+        "story/relationships/rel_10",
+        "story/relationships/rel_11",
+        "story/relationships/rel_12",
+        "story/relationships/rel_13",
+        "story/relationships/rel_14",
+        "story/relationships/rel_15",
+        "story/relationships/rel_16",
+        "story/relationships/rel_17",
+        "story/relationships/rel_18",
+        "story/relationships/rel_19",
+        "story/relationships/rel_20",
+        "story/relationships/rel_21",
+        "story/relationships/rel_22",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "resolvedBy": [],
+      "followupStageId": "followup-batch-1/payoff"
+    },
+    {
+      "checkId": "batch-1/opening",
+      "originalExplanation": "总纲说明前50章已具细纲，并概述从矿务逃生、古境救援到赤霄港口救援的递进；但本批实际没有前50章的场景、冲突、选择和后果文本。因而既不能确认开篇是否用淬体能力内的有限救援建立主冲突，也不能判断调查、核账、救援场是否形成实际递进或模板重复。",
+      "requestedSources": [
+        "plan/chapters/1",
+        "plan/chapters/2",
+        "plan/chapters/3",
+        "plan/chapters/4",
+        "plan/chapters/5",
+        "plan/chapters/6",
+        "plan/chapters/7",
+        "plan/chapters/8",
+        "plan/chapters/9",
+        "plan/chapters/10",
+        "plan/chapters/11",
+        "plan/chapters/12",
+        "plan/chapters/13",
+        "plan/chapters/14",
+        "plan/chapters/15",
+        "plan/chapters/16",
+        "plan/chapters/17",
+        "plan/chapters/18",
+        "plan/chapters/19",
+        "plan/chapters/20",
+        "plan/chapters/21",
+        "plan/chapters/22",
+        "plan/chapters/23",
+        "plan/chapters/24",
+        "plan/chapters/25",
+        "plan/chapters/26",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/29",
+        "plan/chapters/30",
+        "plan/chapters/31",
+        "plan/chapters/32",
+        "plan/chapters/33",
+        "plan/chapters/34",
+        "plan/chapters/35",
+        "plan/chapters/36",
+        "plan/chapters/37",
+        "plan/chapters/38",
+        "plan/chapters/39",
+        "plan/chapters/40",
+        "plan/chapters/41",
+        "plan/chapters/42",
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50",
+        "plan/volumes/vol_01",
+        "plan/volumes/vol_02",
+        "plan/volumes/vol_03"
+      ],
+      "resolvedBy": [],
+      "followupStageId": "followup-batch-1/opening"
+    },
+    {
+      "checkId": "batch-1/pacing",
+      "originalExplanation": "总纲将34—36压缩为34—35、41—43压缩为41—42，并把43—44设置为报警追船与切索救援，显示提案有针对重复调查段的压缩意图；但这只是工作流/总览中的安排说明，未提供对应章纲，不能验证各章戏剧目标、场次转换与后果是否已形成有效节奏。",
+      "requestedSources": [
+        "plan/chapters/33",
+        "plan/chapters/34",
+        "plan/chapters/35",
+        "plan/chapters/36",
+        "plan/chapters/37",
+        "plan/chapters/38",
+        "plan/chapters/39",
+        "plan/chapters/40",
+        "plan/chapters/41",
+        "plan/chapters/42",
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50",
+        "plan/milestones/ms_v2_loss",
+        "plan/milestones/ms_v2_barge",
+        "plan/milestones/ms_v2_fire"
+      ],
+      "resolvedBy": [],
+      "followupStageId": "followup-batch-1/pacing"
+    },
+    {
+      "checkId": "batch-1/growth",
+      "originalExplanation": "总纲提出林辰从负伤矿工至凝元、再在数月修习和诊察后支付十元载晋入玄府，并明确百章不发动逆命真解；境界规则也要求晋阶与实际术法、训练和资源分账。然而本批未提供第13—18章训练、23—29章伤后疗程及73—87章丹府修习/晋阶的具体安排，无法核验林辰的学习条件、停练伤情、实测、寿储下界和十元载付款是否依次成立。",
+      "requestedSources": [
+        "plan/chapters/13",
+        "plan/chapters/14",
+        "plan/chapters/15",
+        "plan/chapters/16",
+        "plan/chapters/17",
+        "plan/chapters/18",
+        "plan/chapters/23",
+        "plan/chapters/24",
+        "plan/chapters/25",
+        "plan/chapters/26",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/29",
+        "plan/milestones/ms_growth_v1_recovery",
+        "plan/milestones/ms_growth_v1_training",
+        "plan/milestones/ms_growth_v1_expedition",
+        "plan/milestones/ms_vol1_climax",
+        "plan/milestones/ms_growth_v1_aftermath",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement"
+      ],
+      "resolvedBy": [],
+      "followupStageId": "followup-batch-1/growth"
+    },
+    {
+      "checkId": "batch-4/causality",
+      "originalExplanation": "第23—32章把撤哨、实体送信、顾峤到位、解囚、交押、验药、疗程和南渡连成明确因果；第43章也把实见拘束、报警、跟船和拖偏分开。但第25章胜负关键同时调用林辰的乾元御风剑诀、墨幽屠的噬血爪、顾峤的太清太乙真光，并以顾峤既有三息凝印资格作为前置；本批未提供三项功法原规则及顾峤人物档案，不能核实其训练、境界、供能、寿元与中断条件是否确实支持当前安排。",
+      "requestedSources": [
+        "plan/chapters/18",
+        "story/characters/char_10",
+        "world/techniques/tech_04",
+        "world/techniques/tech_05",
+        "world/techniques/tech_06"
+      ],
+      "resolvedBy": [],
+      "followupStageId": "followup-batch-4/causality"
+    },
+    {
+      "checkId": "batch-4/growth",
+      "originalExplanation": "林辰在本批有可见的非晋阶成长：两剂灵泉均按完整疗程和复诊后分别入账，腿伤限制下学习接受轻役、记录证据边界与交由贺青梧判断潮路；第239章还安排握剑、试注和吐纳复测。不过，其第25章剑诀施放被明确追溯为“第18章两丈内实测锁定”，而本批未提供第18章训练；顾峤的真光资格也只以未附的人物档案作前置。故无法局部确认关键能力不是以境界或临场叙述替代既有学习。",
+      "requestedSources": [
+        "plan/chapters/18",
+        "story/characters/char_10",
+        "world/techniques/tech_04",
+        "world/techniques/tech_06"
+      ],
+      "resolvedBy": [],
+      "followupStageId": "followup-batch-4/growth"
+    },
+    {
+      "checkId": "batch-5/causality",
+      "originalExplanation": "44—50章内部的后果链清楚：44章断索救援付出真元、热剑和船底破裂，45—47章将其转为安置、失单与停牌代价，48—50章再由外线排查、陆沉舟带路和巡员现场处置完成吴伍、卢小满脱控，且没有把陆沉舟的受看护写成免责或全案告破。可是第44章的剑诀行动明确以前章已报警、钩索拖偏及第18章的两丈锁定实测为前置；本批未提供第43、18章细纲，也未提供乾元御风剑诀规则，无法确认该次二成真元、两丈刃路和一次风刃的既有资格确能承接。",
+      "requestedSources": [
+        "plan/chapters/18",
+        "plan/chapters/43",
+        "world/techniques/tech_04"
+      ],
+      "resolvedBy": [],
+      "followupStageId": "followup-batch-5/causality"
+    },
+    {
+      "checkId": "batch-5/growth",
+      "originalExplanation": "本批的非升级成长设计成立：林辰从试图替贺青梧空口包赔，转为承认无力补偿并承担可做的查证；又在50章放下剑柄，让吴伍、卢小满自行回答。真元账面也明确从44章余三成，经252章一小时吐纳回一成、试注耗半成后保守余三成半，并持续到50章未施术。但这套成长安排仍将44章剑诀的合法掌握、18章实测和剑诀本身的规则作为能力前提；该三项原文未在本批读到，不能确认实际训练资格与本次使用完全相符。",
+      "requestedSources": [
+        "plan/chapters/18",
+        "plan/chapters/43",
+        "world/techniques/tech_04"
+      ],
+      "resolvedBy": [],
+      "followupStageId": "followup-batch-5/growth"
+    },
+    {
+      "checkId": "cross-1-2/causality",
+      "originalExplanation": "已读材料将后段行动设为条件性安排：吴伍、卢小满脱控后，51—53章才拟落实住食、短工和陆沉舟签认；北航、黑舱救援、返乡、玄府晋阶和截押运均由前段实际完成、资源可用及实体消息送达作为前提。该方向没有在已读材料中自相矛盾，但尚未读取承载51—100章实际宏观因果、权限与预算的分卷及里程碑原文，无法核实每项前置是否真的闭合。",
+      "requestedSources": [
+        "plan/volumes/vol_02",
+        "plan/volumes/vol_03",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "resolvedBy": [],
+      "followupStageId": "followup-cross-1-2/causality"
+    },
+    {
+      "checkId": "cross-1-2/timeline",
+      "originalExplanation": "已读关系与消息锚点对局部日期作了可执行区分：程砚的首报、赵玄极阅报与回令、程砚签收、骑使回执分别发生，且不把送达或签收误写成即时共享；林辰与夜凝霜返程也区分了实体海程、返岗和后续回执知情。可是后两卷核心航程、外港许可、疗程及第415—466日修习/截押运的完整时间表仍在未读宏观原文，不能核定是否存在跨日冲突或无来源压缩。",
+      "requestedSources": [
+        "plan/volumes/vol_02",
+        "plan/volumes/vol_03",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "resolvedBy": [],
+      "followupStageId": "followup-cross-1-2/timeline"
+    },
+    {
+      "checkId": "cross-1-2/payoff",
+      "originalExplanation": "本批已建立了可见的条件兑现链：港口救援不自动洗清陆沉舟责任；其第53章自述只是待独立核验的线索；百章末只以撤人原令、在场证人和三十日回访结算本批链路，不冒充揭开九鼎全貌或父案全因。该边界与秘密档案一致，但第61—100章各项证据取得、第一/第二残片去向、救援兑现及问责归宿仍需用未读里程碑核对，无法确认是否有重复消费同一证据或跳过必要取得。",
+      "requestedSources": [
+        "plan/volumes/vol_02",
+        "plan/volumes/vol_03",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "resolvedBy": [],
+      "followupStageId": "followup-cross-1-2/payoff"
+    },
+    {
+      "checkId": "cross-1-2/opening",
+      "originalExplanation": "已读节拍显示34—50章并非同一模板重复：先以港口劳务与失箱核证建立查人路径，再有唐顺带人失败、试潮撤退、实际追船救援、船损安置、附棚脱控与工人自主去留；这支持局部递进。但本批未读这些已列入细纲范围的原始章节计划，不能以关系阶段和节拍摘要替代对场次、冲突递升及后果承接的检查。",
+      "requestedSources": [
+        "plan/chapters/34",
+        "plan/chapters/35",
+        "plan/chapters/36",
+        "plan/chapters/37",
+        "plan/chapters/38",
+        "plan/chapters/39",
+        "plan/chapters/40",
+        "plan/chapters/41",
+        "plan/chapters/42",
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50"
+      ],
+      "resolvedBy": [],
+      "followupStageId": "followup-cross-1-2/opening"
+    },
+    {
+      "checkId": "cross-1-2/pacing",
+      "originalExplanation": "材料明确提出把34—36压缩为调查后转入唐顺五人失败，把41—43压缩为过渡后进入报警追船，且44章以救援、船损和未救出的两人改变后续目标；这为节奏修订提供了设计意图。不过是否在实际细纲中落实为有效场次分配，仍须读取34—50章原纲，不能仅凭复审状态说明或关系摘要判定已改善。",
+      "requestedSources": [
+        "plan/chapters/34",
+        "plan/chapters/35",
+        "plan/chapters/36",
+        "plan/chapters/37",
+        "plan/chapters/38",
+        "plan/chapters/39",
+        "plan/chapters/40",
+        "plan/chapters/41",
+        "plan/chapters/42",
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50"
+      ],
+      "resolvedBy": [],
+      "followupStageId": "followup-cross-1-2/pacing"
+    },
+    {
+      "checkId": "cross-1-2/growth",
+      "originalExplanation": "林辰的百章成长目标具备明确方向和代价：第19日诊断下界、凝元支付3元载、两剂灵泉各完成疗程后才入账、415日支付10元载晋玄府，至466日条件预算约2.775342元载；世界规则也禁止将诊断、未完成疗程或未来配额当作可花收入。但从返乡后的训练、丹府稳定、晋阶实测到伤后可用能力回报的具体安排位于未读里程碑，不能仅凭预算与关系阶段确认训练门槛、资源和伤情均已设计闭合。",
+      "requestedSources": [
+        "plan/volumes/vol_03",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "resolvedBy": [],
+      "followupStageId": "followup-cross-1-2/growth"
+    },
+    {
+      "checkId": "cross-1-3/payoff",
+      "originalExplanation": "本批已能确认前段没有把线索提前当作全案结论：古境入境时的九滴申请仅为受理，不能预支寿储；第20—22章只取得前哨、秦禾和封路信息。可是“古境解囚夺泉”承诺要求第26章解囚交押、两次十日疗程及第29章复诊后才算兑现，当前实际读取止于第22章，无法核验其后的解囚、分配、疗程与复诊是否按条件完成、是否重复记入寿储。",
+      "requestedSources": [
+        "plan/chapters/23",
+        "plan/chapters/24",
+        "plan/chapters/25",
+        "plan/chapters/26",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/29"
+      ],
+      "resolvedBy": [],
+      "followupStageId": "followup-cross-1-3/payoff"
+    },
+    {
+      "checkId": "cross-1-4/causality",
+      "originalExplanation": "第23—26章已把墨幽屠的撤哨选择、秦禾实体送信、顾峤实际到场、林辰等手势开闸、顾付费制伏及后续交押拆成连续条件；第26章亦将追回12滴、洁净9滴、污染3滴和原批配额分开处理，未把救援功劳直接换成寿储。不过第25章林辰切吊索的剑诀明确依赖“第18章两丈内实测”，其8.5成真元起点又明确承接第21章动作；当前未读这两个直接前置，无法独立确认其已学会、可用范围及余额没有被重复支出，因此本项不能通过。",
+      "requestedSources": [
+        "plan/chapters/18",
+        "plan/chapters/21"
+      ],
+      "resolvedBy": [],
+      "followupStageId": "followup-cross-1-4/causality"
+    },
+    {
+      "checkId": "cross-1-4/growth",
+      "originalExplanation": "已读部分提供了清楚的成长后果：林辰完成两剂各十日疗程且只在复诊后分别入账5元载，寿储、真元与伤势分账；他随后接受轻役医嘱、拒绝带伤搬运，并在港口将剑诀与轻物御动限制为已列对象和付费动作。可是其关键战斗成长前置仍未闭合：第25章明言剑诀锁定范围依第18章实测，且真元8.5成承接第21章；人物档案本身没有提供林辰已完成该剑诀训练的开篇前记录。未读这两章前，无法验证成长并非由境界名或章内宣称直接取得。",
+      "requestedSources": [
+        "plan/chapters/18",
+        "plan/chapters/21"
+      ],
+      "resolvedBy": [],
+      "followupStageId": "followup-cross-1-4/growth"
+    },
+    {
+      "checkId": "cross-1-5/causality",
+      "originalExplanation": "44章把切索限定为一次、二成真元、余刃消散后才进行递浮圈和过板，45章才完成对落水者的实际拉救，50章又以巡员亲见和吴伍、卢小满的自主回答完成脱控，未见本批内部重复兑现。可是44章行动明确依赖林辰第18章已完成的凝元剑诀实测，以及43章已经报警、拖偏并形成的现场态势和四成半真元起点；这两份细纲未在本批读取，不能仅以本章转述确认其关键前置实际可执行。",
+      "requestedSources": [
+        "plan/chapters/18",
+        "plan/chapters/43"
+      ],
+      "resolvedBy": [],
+      "followupStageId": "followup-cross-1-5/causality"
+    },
+    {
+      "checkId": "cross-1-5/timeline",
+      "originalExplanation": "本批内部的244夜切索—巡艇接人—245至247救助—248至250安置—251失单—252内线选择—253陆沉舟到案—254门前脱控顺序明确；44章也把确认余刃、搁浅和验板限定在同一个十余息窗口，未将检验后重新计时。但44章故事时间明确承接43章“已报警登船和钩索拖偏”，且其二成施剑后的三成余额取自43章四成半余额；未读43章无法核定该即时承接和余额起算是否与前一章相容。",
+      "requestedSources": [
+        "plan/chapters/43"
+      ],
+      "resolvedBy": [],
+      "followupStageId": "followup-cross-1-5/timeline"
+    },
+    {
+      "checkId": "cross-1-5/growth",
+      "originalExplanation": "本批对成长后的限制执行清楚：44章剑诀后二成真元支出与热剑停用，48章一小时吐纳仅回一成、低流量试注再扣半成，50章仍维持三成半且不因数日经过自动回满；后续宏观也把玄府突破放在复诊、稳定训练与实际十元载支付之后。不过44章这项能力的取得和两丈稳定锁定，均指向未读的第18章训练与实测；没有该章，不能确认本批所使用的成长回报已具备必要学习条件。",
+      "requestedSources": [
+        "plan/chapters/18"
+      ],
+      "resolvedBy": [],
+      "followupStageId": "followup-cross-1-5/growth"
+    },
+    {
+      "checkId": "cross-2-3/causality",
+      "originalExplanation": "第1—19章把伤势、诊察、3元载晋阶支付、训练、三重实测和古境准入依次列为前置；第20—22章也将风刃消耗、恢复、轻钩御物和救出秦禾的后果相连。可是第20章以乾元御风剑诀驱动赤霞斩铁剑切断悬索、并以剑体发热限制后续行动；已读公理要求实际术法与法宝逐项符合对象、供能、时机和中断条件，而本批未提供该功法及剑器原条，不能仅凭章节自述确认这些关键限制完整可用。所需原条在来源目录中存在但本批未读，故等待补读而非认定设计缺失。",
+      "requestedSources": [
+        "world/techniques/tech_04",
+        "world/artifacts/art_03"
+      ],
+      "resolvedBy": [],
+      "followupStageId": "followup-cross-2-3/causality"
+    },
+    {
+      "checkId": "cross-2-3/growth",
+      "originalExplanation": "林辰的成长动机、代价与阶段性回报已明确：先在伤后选择可持续劳务和低负荷训练，岔气后停练，120日支付3元载晋凝元，再经木块练习、授业、失控赔偿和176日实测取得两丈内导刃；第20章也没有把剑诀当作无代价连发能力。但导刃章的实际功法条件与赤霞斩铁剑的承载规则未在本批提供，故无法核实第132—176日训练是否确能授予第20章所用能力，不能只按章节摘要判定通过。所需原条在来源目录中存在但本批未读，故等待补读而非认定设计缺失。",
+      "requestedSources": [
+        "world/techniques/tech_04",
+        "world/artifacts/art_03"
+      ],
+      "resolvedBy": [],
+      "followupStageId": "followup-cross-2-3/growth"
+    },
+    {
+      "checkId": "cross-2-4/causality",
+      "originalExplanation": "第23—26章本身已把救援链拆成撤哨实见、秦禾实体送图、顾峤交岗到场、亲见手势后开闸、伤后交押和验药分配；第25章也明确墨幽屠有撤退选项却为样箱与泉瓶回扑，故人物选择和后果并非凭空跳转。不过该章以既有资格调用林辰的乾元御风剑诀、墨幽屠的噬血爪、顾峤的太清太乙真光。当前材料虽陈列了拟定的起式、目标、支出和伤后限制，却未实际提供三门功法原条目，也未提供顾峤人物档案以核对其开篇训练资格；无法在本批确认这些声明没有违反既定功法准入、对象和中断规则。",
+      "requestedSources": [
+        "story/characters/char_10",
+        "world/techniques/tech_04",
+        "world/techniques/tech_05",
+        "world/techniques/tech_06"
+      ],
+      "resolvedBy": [],
+      "followupStageId": "followup-cross-2-4/causality"
+    },
+    {
+      "checkId": "cross-3-5/causality",
+      "originalExplanation": "第44章明确承接第43章已报警、钩索拖偏的状态，并以该状态作为切索、护桩窗口、过板救援的直接前置；本批只读到第44章后的动作约束，未读第43章实际如何建立该前置，不能核定两章是否存在位置、知情或行动重复。第44章自身对切索范围、余刃确认、船损和放走原账的代价设计是闭合的。",
+      "requestedSources": [
+        "plan/chapters/43"
+      ],
+      "resolvedBy": [],
+      "followupStageId": "followup-cross-3-5/causality"
+    },
+    {
+      "checkId": "cross-3-5/payoff",
+      "originalExplanation": "第六药箱的秘密、知识边界和开放线均指定在第33—39章通过底册、火后实物、便条、批签及散卖页逐步收束，并明确不能把火因或大网络一并当作已破；这是可行的兑现条件。但本批未提供第33—39章的plan细纲，无法核对每一项证据是否实际获得、林辰的知情阶段是否与行动一致，亦无法确认没有提前或重复兑现。第44—50章则清楚避免把吴卢脱控扩张为总案结案。",
+      "requestedSources": [
+        "plan/chapters/33",
+        "plan/chapters/34",
+        "plan/chapters/35",
+        "plan/chapters/36",
+        "plan/chapters/37",
+        "plan/chapters/38",
+        "plan/chapters/39"
+      ],
+      "resolvedBy": [],
+      "followupStageId": "followup-cross-3-5/payoff"
+    },
+    {
+      "checkId": "cross-4-5/growth",
+      "originalExplanation": "已读章纲能核到林辰把寿药、伤势、真元与行动许可分账：两剂均在完整疗程和复诊后才各入5元载，真元从25章的六成经30、32、42、44、48章的实际支出、复测与上限限制递延；他在50章主动不用术法，把决定权留给吴伍、卢小满，亦构成可见的选择成长。但第25章剑诀实测、林辰此前8.5成真元起点，以及顾峤的太乙真光训练资格和具体术式规则仅被当前章纲转述；本批未提供这些前置原文，无法核准该成长与能力链本身是否满足已定规则。",
+      "requestedSources": [
+        "plan/chapters/18",
+        "plan/chapters/21",
+        "story/characters/char_10",
+        "world/techniques/tech_04",
+        "world/techniques/tech_06"
+      ],
+      "resolvedBy": [],
+      "followupStageId": "followup-cross-4-5/growth"
+    }
+  ],
+  "followups": [
+    {
+      "stageId": "followup-batch-1/causality",
+      "originalCheckId": "batch-1/causality",
+      "criterion": "causality",
+      "requestedSourceIds": [
+        "plan/chapters/10",
+        "plan/chapters/11",
+        "plan/chapters/12",
+        "plan/chapters/13",
+        "plan/chapters/14",
+        "plan/chapters/15",
+        "plan/chapters/16",
+        "plan/chapters/17",
+        "plan/chapters/18",
+        "plan/chapters/19",
+        "plan/chapters/20",
+        "plan/chapters/21",
+        "plan/chapters/22",
+        "plan/chapters/23",
+        "plan/chapters/24",
+        "plan/chapters/25",
+        "plan/chapters/26",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/29",
+        "plan/chapters/30",
+        "plan/chapters/31",
+        "plan/chapters/32",
+        "plan/chapters/33",
+        "plan/chapters/34",
+        "plan/chapters/35",
+        "plan/chapters/36",
+        "plan/chapters/37",
+        "plan/chapters/38",
+        "plan/chapters/39",
+        "plan/chapters/40",
+        "plan/chapters/41",
+        "plan/chapters/42",
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50",
+        "plan/milestones/ms_v2_loss",
+        "plan/milestones/ms_v2_barge",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "originalEvidenceSourceIds": [
+        "plan/overview",
+        "story/overview"
+      ],
+      "completeRequiredSources": 53,
+      "sourceCharacters": 222584,
+      "metadataCharacters": 39321,
+      "inputSha256": "946874f7e7011cf573e063a96c35fa6337969cc9396e473e81b5c5b52a2f8c46"
+    },
+    {
+      "stageId": "followup-batch-1/timeline",
+      "originalCheckId": "batch-1/timeline",
+      "criterion": "timeline",
+      "requestedSourceIds": [
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/29",
+        "plan/chapters/30",
+        "plan/chapters/31",
+        "plan/chapters/32",
+        "plan/chapters/33",
+        "plan/chapters/34",
+        "plan/chapters/35",
+        "plan/chapters/36",
+        "plan/chapters/37",
+        "plan/chapters/38",
+        "plan/chapters/39",
+        "plan/chapters/40",
+        "plan/chapters/41",
+        "plan/chapters/42",
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50",
+        "plan/milestones/ms_v2_loss",
+        "plan/milestones/ms_v2_barge",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/locations/loc_21",
+        "plan/overview",
+        "story/overview"
+      ],
+      "completeRequiredSources": 37,
+      "sourceCharacters": 219460,
+      "metadataCharacters": 39485,
+      "inputSha256": "b3872a4f05550661467c0b819ffc191963cc38f5805e30f8b2376838f37347ce"
+    },
+    {
+      "stageId": "followup-batch-1/payoff",
+      "originalCheckId": "batch-1/payoff",
+      "criterion": "payoff",
+      "requestedSourceIds": [
+        "story/secrets/sec_01",
+        "story/secrets/sec_02",
+        "story/secrets/sec_03",
+        "story/secrets/sec_04",
+        "story/promises/prom_01",
+        "story/promises/prom_02",
+        "story/promises/prom_03",
+        "story/promises/prom_04",
+        "story/openThreads/th_01",
+        "story/openThreads/th_02",
+        "story/openThreads/th_03",
+        "story/openThreads/th_04",
+        "story/openThreads/th_05",
+        "story/relationships/rel_05",
+        "story/relationships/rel_06",
+        "story/relationships/rel_07",
+        "story/relationships/rel_08",
+        "story/relationships/rel_09",
+        "story/relationships/rel_10",
+        "story/relationships/rel_11",
+        "story/relationships/rel_12",
+        "story/relationships/rel_13",
+        "story/relationships/rel_14",
+        "story/relationships/rel_15",
+        "story/relationships/rel_16",
+        "story/relationships/rel_17",
+        "story/relationships/rel_18",
+        "story/relationships/rel_19",
+        "story/relationships/rel_20",
+        "story/relationships/rel_21",
+        "story/relationships/rel_22",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "originalEvidenceSourceIds": [
+        "story/overview",
+        "story/relationships/rel_01",
+        "story/relationships/rel_02",
+        "story/relationships/rel_03"
+      ],
+      "completeRequiredSources": 43,
+      "sourceCharacters": 236318,
+      "metadataCharacters": 39358,
+      "inputSha256": "eecdec994a1e0943ed4c24abb6cdd9d74e9ce41e447ef0004b19e749f4b43469"
+    },
+    {
+      "stageId": "followup-batch-1/opening",
+      "originalCheckId": "batch-1/opening",
+      "criterion": "opening",
+      "requestedSourceIds": [
+        "plan/chapters/1",
+        "plan/chapters/2",
+        "plan/chapters/3",
+        "plan/chapters/4",
+        "plan/chapters/5",
+        "plan/chapters/6",
+        "plan/chapters/7",
+        "plan/chapters/8",
+        "plan/chapters/9",
+        "plan/chapters/10",
+        "plan/chapters/11",
+        "plan/chapters/12",
+        "plan/chapters/13",
+        "plan/chapters/14",
+        "plan/chapters/15",
+        "plan/chapters/16",
+        "plan/chapters/17",
+        "plan/chapters/18",
+        "plan/chapters/19",
+        "plan/chapters/20",
+        "plan/chapters/21",
+        "plan/chapters/22",
+        "plan/chapters/23",
+        "plan/chapters/24",
+        "plan/chapters/25",
+        "plan/chapters/26",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/29",
+        "plan/chapters/30",
+        "plan/chapters/31",
+        "plan/chapters/32",
+        "plan/chapters/33",
+        "plan/chapters/34",
+        "plan/chapters/35",
+        "plan/chapters/36",
+        "plan/chapters/37",
+        "plan/chapters/38",
+        "plan/chapters/39",
+        "plan/chapters/40",
+        "plan/chapters/41",
+        "plan/chapters/42",
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50",
+        "plan/volumes/vol_01",
+        "plan/volumes/vol_02",
+        "plan/volumes/vol_03"
+      ],
+      "originalEvidenceSourceIds": [
+        "plan/overview"
+      ],
+      "completeRequiredSources": 54,
+      "sourceCharacters": 203448,
+      "metadataCharacters": 39196,
+      "inputSha256": "641aa8001653fc59884b38073cd65c901bfcba997a30d5dd77fa48fe6a8ef987"
+    },
+    {
+      "stageId": "followup-batch-1/pacing",
+      "originalCheckId": "batch-1/pacing",
+      "criterion": "pacing",
+      "requestedSourceIds": [
+        "plan/chapters/33",
+        "plan/chapters/34",
+        "plan/chapters/35",
+        "plan/chapters/36",
+        "plan/chapters/37",
+        "plan/chapters/38",
+        "plan/chapters/39",
+        "plan/chapters/40",
+        "plan/chapters/41",
+        "plan/chapters/42",
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50",
+        "plan/milestones/ms_v2_loss",
+        "plan/milestones/ms_v2_barge",
+        "plan/milestones/ms_v2_fire"
+      ],
+      "originalEvidenceSourceIds": [
+        "story/overview",
+        "plan/overview"
+      ],
+      "completeRequiredSources": 23,
+      "sourceCharacters": 184024,
+      "metadataCharacters": 39095,
+      "inputSha256": "c353e3baf95c3d697799ff561b833680c0f40444d879fefc3e4ac1b9ecd6a2d3"
+    },
+    {
+      "stageId": "followup-batch-1/growth",
+      "originalCheckId": "batch-1/growth",
+      "criterion": "growth",
+      "requestedSourceIds": [
+        "plan/chapters/13",
+        "plan/chapters/14",
+        "plan/chapters/15",
+        "plan/chapters/16",
+        "plan/chapters/17",
+        "plan/chapters/18",
+        "plan/chapters/23",
+        "plan/chapters/24",
+        "plan/chapters/25",
+        "plan/chapters/26",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/29",
+        "plan/milestones/ms_growth_v1_recovery",
+        "plan/milestones/ms_growth_v1_training",
+        "plan/milestones/ms_growth_v1_expedition",
+        "plan/milestones/ms_vol1_climax",
+        "plan/milestones/ms_growth_v1_aftermath",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_06",
+        "world/axioms/ax_09",
+        "world/realms/realm_02",
+        "world/realms/realm_03",
+        "plan/overview",
+        "story/overview"
+      ],
+      "completeRequiredSources": 26,
+      "sourceCharacters": 188697,
+      "metadataCharacters": 39279,
+      "inputSha256": "bc2d08d609f1de96dac3f3a24a35951a33c09c2c8536cdc9883495160e791c30"
+    },
+    {
+      "stageId": "followup-batch-4/causality",
+      "originalCheckId": "batch-4/causality",
+      "criterion": "causality",
+      "requestedSourceIds": [
+        "plan/chapters/18",
+        "story/characters/char_10",
+        "world/techniques/tech_04",
+        "world/techniques/tech_05",
+        "world/techniques/tech_06"
+      ],
+      "originalEvidenceSourceIds": [
+        "plan/chapters/24",
+        "plan/chapters/25",
+        "plan/chapters/43"
+      ],
+      "completeRequiredSources": 8,
+      "sourceCharacters": 184194,
+      "metadataCharacters": 38375,
+      "inputSha256": "3364bea5b8255c1eca28c62a3d498e1a5334935fd2fdb8e55cab2a913cbb9ff3"
+    },
+    {
+      "stageId": "followup-batch-4/growth",
+      "originalCheckId": "batch-4/growth",
+      "criterion": "growth",
+      "requestedSourceIds": [
+        "plan/chapters/18",
+        "story/characters/char_10",
+        "world/techniques/tech_04",
+        "world/techniques/tech_06"
+      ],
+      "originalEvidenceSourceIds": [
+        "plan/chapters/25",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/42"
+      ],
+      "completeRequiredSources": 8,
+      "sourceCharacters": 183439,
+      "metadataCharacters": 38275,
+      "inputSha256": "220ec4098bc27dc5160a3007a25c5c4b3f78b1e2adb83f625786b05961549289"
+    },
+    {
+      "stageId": "followup-batch-5/causality",
+      "originalCheckId": "batch-5/causality",
+      "criterion": "causality",
+      "requestedSourceIds": [
+        "plan/chapters/18",
+        "plan/chapters/43",
+        "world/techniques/tech_04"
+      ],
+      "originalEvidenceSourceIds": [
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50"
+      ],
+      "completeRequiredSources": 9,
+      "sourceCharacters": 167628,
+      "metadataCharacters": 38202,
+      "inputSha256": "ca1a234c723d53e0dbace1a94d9a3456059c42a0c4a3433beaa97a81b90bd2f9"
+    },
+    {
+      "stageId": "followup-batch-5/growth",
+      "originalCheckId": "batch-5/growth",
+      "criterion": "growth",
+      "requestedSourceIds": [
+        "plan/chapters/18",
+        "plan/chapters/43",
+        "world/techniques/tech_04"
+      ],
+      "originalEvidenceSourceIds": [
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/50"
+      ],
+      "completeRequiredSources": 6,
+      "sourceCharacters": 167262,
+      "metadataCharacters": 38109,
+      "inputSha256": "e156775a717dba11b641582a9d06b0bb9640878ed21cefee13a482f907da0e5d"
+    },
+    {
+      "stageId": "followup-cross-1-2/causality",
+      "originalCheckId": "cross-1-2/causality",
+      "criterion": "causality",
+      "requestedSourceIds": [
+        "plan/volumes/vol_02",
+        "plan/volumes/vol_03",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "originalEvidenceSourceIds": [
+        "story/relationships/rel_12",
+        "story/relationships/rel_13",
+        "plan/overview"
+      ],
+      "completeRequiredSources": 13,
+      "sourceCharacters": 108416,
+      "metadataCharacters": 37571,
+      "inputSha256": "f650dec42cc88f410eee14acc7f473291281b884adde626f0ddbe47123a64385"
+    },
+    {
+      "stageId": "followup-cross-1-2/timeline",
+      "originalCheckId": "cross-1-2/timeline",
+      "criterion": "timeline",
+      "requestedSourceIds": [
+        "plan/volumes/vol_02",
+        "plan/volumes/vol_03",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "originalEvidenceSourceIds": [
+        "story/arcBeats/message-dispatch",
+        "story/arcBeats/message-first-order",
+        "story/arcBeats/message-first-delivery",
+        "story/arcBeats/message-first-ack",
+        "story/relationships/rel_05",
+        "plan/overview"
+      ],
+      "completeRequiredSources": 16,
+      "sourceCharacters": 104423,
+      "metadataCharacters": 37739,
+      "inputSha256": "f995afee8cf197ff44de5be80bd77b5d45c82b9389e4cb0f6d6ec0e761e7e3c5"
+    },
+    {
+      "stageId": "followup-cross-1-2/payoff",
+      "originalCheckId": "cross-1-2/payoff",
+      "criterion": "payoff",
+      "requestedSourceIds": [
+        "plan/volumes/vol_02",
+        "plan/volumes/vol_03",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "originalEvidenceSourceIds": [
+        "story/relationships/rel_13",
+        "story/secrets/sec_02",
+        "plan/overview"
+      ],
+      "completeRequiredSources": 13,
+      "sourceCharacters": 136420,
+      "metadataCharacters": 37636,
+      "inputSha256": "2fe3118bfe63cf16089bc00e9a3b373a7b4fc7cf22a82af361e5be1c6324729f"
+    },
+    {
+      "stageId": "followup-cross-1-2/opening",
+      "originalCheckId": "cross-1-2/opening",
+      "criterion": "opening",
+      "requestedSourceIds": [
+        "plan/chapters/34",
+        "plan/chapters/35",
+        "plan/chapters/36",
+        "plan/chapters/37",
+        "plan/chapters/38",
+        "plan/chapters/39",
+        "plan/chapters/40",
+        "plan/chapters/41",
+        "plan/chapters/42",
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50"
+      ],
+      "originalEvidenceSourceIds": [
+        "story/arcBeats/beat_port_work_before_questions",
+        "story/arcBeats/beat_workers_failed_exit",
+        "story/arcBeats/beat_port_current_retreat",
+        "story/relationships/rel_12"
+      ],
+      "completeRequiredSources": 21,
+      "sourceCharacters": 116197,
+      "metadataCharacters": 38076,
+      "inputSha256": "46cc8ba0ca3f4f0df742f9e8dbad44422df1fe0503d7c8ad694a7111f7b826a3"
+    },
+    {
+      "stageId": "followup-cross-1-2/pacing",
+      "originalCheckId": "cross-1-2/pacing",
+      "criterion": "pacing",
+      "requestedSourceIds": [
+        "plan/chapters/34",
+        "plan/chapters/35",
+        "plan/chapters/36",
+        "plan/chapters/37",
+        "plan/chapters/38",
+        "plan/chapters/39",
+        "plan/chapters/40",
+        "plan/chapters/41",
+        "plan/chapters/42",
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50"
+      ],
+      "originalEvidenceSourceIds": [
+        "story/overview",
+        "story/relationships/rel_21",
+        "story/arcBeats/beat_v23_2",
+        "plan/overview"
+      ],
+      "completeRequiredSources": 21,
+      "sourceCharacters": 119368,
+      "metadataCharacters": 37982,
+      "inputSha256": "b25f5dd25436c7122a0f469fbc91454f5d37b609471fdf1bf878f7793030c2a1"
+    },
+    {
+      "stageId": "followup-cross-1-2/growth",
+      "originalCheckId": "cross-1-2/growth",
+      "criterion": "growth",
+      "requestedSourceIds": [
+        "plan/volumes/vol_03",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_04",
+        "world/axioms/ax_09",
+        "world/resources/res_09",
+        "story/overview",
+        "story/arcBeats/beat_v23_9",
+        "story/arcs/arc_04"
+      ],
+      "completeRequiredSources": 12,
+      "sourceCharacters": 239051,
+      "metadataCharacters": 39985,
+      "inputSha256": "e7ff8fff9f0e6e1f4a1814dc8a5e15bf01f3d04a66a8162fd7a46980f4b6984a"
+    },
+    {
+      "stageId": "followup-cross-1-3/payoff",
+      "originalCheckId": "cross-1-3/payoff",
+      "criterion": "payoff",
+      "requestedSourceIds": [
+        "plan/chapters/23",
+        "plan/chapters/24",
+        "plan/chapters/25",
+        "plan/chapters/26",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/29"
+      ],
+      "originalEvidenceSourceIds": [
+        "story/promises/prom_01",
+        "plan/chapters/19",
+        "plan/chapters/22"
+      ],
+      "completeRequiredSources": 10,
+      "sourceCharacters": 101068,
+      "metadataCharacters": 37711,
+      "inputSha256": "3fafe05c4ade3d99fcc92d8565be88c4bbc00d11ea19063122f9e5bc532ea5bc"
+    },
+    {
+      "stageId": "followup-cross-1-4/causality",
+      "originalCheckId": "cross-1-4/causality",
+      "criterion": "causality",
+      "requestedSourceIds": [
+        "plan/chapters/18",
+        "plan/chapters/21"
+      ],
+      "originalEvidenceSourceIds": [
+        "plan/chapters/24",
+        "plan/chapters/25",
+        "plan/chapters/26",
+        "plan/chapters/27"
+      ],
+      "completeRequiredSources": 6,
+      "sourceCharacters": 225778,
+      "metadataCharacters": 39332,
+      "inputSha256": "182cb8725f9fdfce95f15e653c39ab9d32aa818b30b8da20270f79121f41e88a"
+    },
+    {
+      "stageId": "followup-cross-1-4/growth",
+      "originalCheckId": "cross-1-4/growth",
+      "criterion": "growth",
+      "requestedSourceIds": [
+        "plan/chapters/18",
+        "plan/chapters/21"
+      ],
+      "originalEvidenceSourceIds": [
+        "plan/chapters/25",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/29",
+        "plan/chapters/30",
+        "plan/chapters/32",
+        "plan/chapters/42"
+      ],
+      "completeRequiredSources": 9,
+      "sourceCharacters": 225767,
+      "metadataCharacters": 39434,
+      "inputSha256": "c0506898388fd51040e1d537da25dba93a8a5ffbfc7ef0ad2843cce4b28c1c8a"
+    },
+    {
+      "stageId": "followup-cross-1-5/causality",
+      "originalCheckId": "cross-1-5/causality",
+      "criterion": "causality",
+      "requestedSourceIds": [
+        "plan/chapters/18",
+        "plan/chapters/43"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/techniques/tech_04",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/50"
+      ],
+      "completeRequiredSources": 6,
+      "sourceCharacters": 206717,
+      "metadataCharacters": 39189,
+      "inputSha256": "f68ff8695eeed6041ae830630d326326c21cb91f7a77d177dd55d40cc37af927"
+    },
+    {
+      "stageId": "followup-cross-1-5/timeline",
+      "originalCheckId": "cross-1-5/timeline",
+      "criterion": "timeline",
+      "requestedSourceIds": [
+        "plan/chapters/43"
+      ],
+      "originalEvidenceSourceIds": [
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/48",
+        "plan/chapters/50"
+      ],
+      "completeRequiredSources": 6,
+      "sourceCharacters": 202656,
+      "metadataCharacters": 39018,
+      "inputSha256": "6dda9056f436477c6a74cd1f856fc055a57570df5a819b1b966981cdf5bae9c7"
+    },
+    {
+      "stageId": "followup-cross-1-5/growth",
+      "originalCheckId": "cross-1-5/growth",
+      "criterion": "growth",
+      "requestedSourceIds": [
+        "plan/chapters/18"
+      ],
+      "originalEvidenceSourceIds": [
+        "plan/milestones/ms_growth_v1_training",
+        "plan/chapters/44",
+        "plan/chapters/48",
+        "plan/chapters/50",
+        "plan/milestones/ms_v3_advancement"
+      ],
+      "completeRequiredSources": 6,
+      "sourceCharacters": 204604,
+      "metadataCharacters": 39264,
+      "inputSha256": "d0bbc4c36a5fc083e9cd3fc93da085f3df729c280b328ca45afc8fe225d1b625"
+    },
+    {
+      "stageId": "followup-cross-2-3/causality",
+      "originalCheckId": "cross-2-3/causality",
+      "criterion": "causality",
+      "requestedSourceIds": [
+        "world/techniques/tech_04",
+        "world/artifacts/art_03"
+      ],
+      "originalEvidenceSourceIds": [
+        "world/axioms/ax_06",
+        "plan/chapters/18",
+        "plan/chapters/20",
+        "plan/chapters/21"
+      ],
+      "completeRequiredSources": 6,
+      "sourceCharacters": 105615,
+      "metadataCharacters": 39931,
+      "inputSha256": "08f42dc2e6891a360ae2cc7188f5b1a193d74d29f73c048e7a64bbf23ea712b2"
+    },
+    {
+      "stageId": "followup-cross-2-3/growth",
+      "originalCheckId": "cross-2-3/growth",
+      "criterion": "growth",
+      "requestedSourceIds": [
+        "world/techniques/tech_04",
+        "world/artifacts/art_03"
+      ],
+      "originalEvidenceSourceIds": [
+        "story/chapterPlans/chapter-plan-13",
+        "story/chapterPlans/chapter-plan-16",
+        "story/chapterPlans/chapter-plan-17",
+        "plan/chapters/18",
+        "plan/chapters/20"
+      ],
+      "completeRequiredSources": 7,
+      "sourceCharacters": 107325,
+      "metadataCharacters": 37562,
+      "inputSha256": "8f489f9906694f71dc466408d692ae0c0bc851a9687350f7b1095e68d1a4d37e"
+    },
+    {
+      "stageId": "followup-cross-2-4/causality",
+      "originalCheckId": "cross-2-4/causality",
+      "criterion": "causality",
+      "requestedSourceIds": [
+        "story/characters/char_10",
+        "world/techniques/tech_04",
+        "world/techniques/tech_05",
+        "world/techniques/tech_06"
+      ],
+      "originalEvidenceSourceIds": [
+        "plan/chapters/24",
+        "plan/chapters/25",
+        "plan/chapters/26"
+      ],
+      "completeRequiredSources": 7,
+      "sourceCharacters": 113806,
+      "metadataCharacters": 37577,
+      "inputSha256": "d77d304ca9ea2bfa54558c2798ad9b34e57e8fe889da5162b51ec19a84abad33"
+    },
+    {
+      "stageId": "followup-cross-3-5/causality",
+      "originalCheckId": "cross-3-5/causality",
+      "criterion": "causality",
+      "requestedSourceIds": [
+        "plan/chapters/43"
+      ],
+      "originalEvidenceSourceIds": [
+        "story/chapterPlans/bible-chapter-44",
+        "plan/chapters/44"
+      ],
+      "completeRequiredSources": 3,
+      "sourceCharacters": 232463,
+      "metadataCharacters": 38536,
+      "inputSha256": "38e7fa758c0afe4a6cbe3ee62e71c9eb014746f219fe24379e7a3fa3ce66cffb"
+    },
+    {
+      "stageId": "followup-cross-3-5/payoff",
+      "originalCheckId": "cross-3-5/payoff",
+      "criterion": "payoff",
+      "requestedSourceIds": [
+        "plan/chapters/33",
+        "plan/chapters/34",
+        "plan/chapters/35",
+        "plan/chapters/36",
+        "plan/chapters/37",
+        "plan/chapters/38",
+        "plan/chapters/39"
+      ],
+      "originalEvidenceSourceIds": [
+        "story/secrets/sec_04",
+        "story/openThreads/th_05",
+        "story/chapterPlans/bible-chapter-50"
+      ],
+      "completeRequiredSources": 10,
+      "sourceCharacters": 96297,
+      "metadataCharacters": 39806,
+      "inputSha256": "88a5bd2a328145faec6a35b1dc00c440cb1ffc9e820b779117c9065308d2db18"
+    },
+    {
+      "stageId": "followup-cross-4-5/growth",
+      "originalCheckId": "cross-4-5/growth",
+      "criterion": "growth",
+      "requestedSourceIds": [
+        "plan/chapters/18",
+        "plan/chapters/21",
+        "story/characters/char_10",
+        "world/techniques/tech_04",
+        "world/techniques/tech_06"
+      ],
+      "originalEvidenceSourceIds": [
+        "plan/chapters/25",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/30",
+        "plan/chapters/42",
+        "plan/chapters/44",
+        "plan/chapters/48",
+        "plan/chapters/50"
+      ],
+      "completeRequiredSources": 13,
+      "sourceCharacters": 123440,
+      "metadataCharacters": 38012,
+      "inputSha256": "8252e4c9fe970f2cfd59113faabe1adf39d763ede5c396dd37898ee3cc44536d"
+    }
+  ],
+  "totalScheduledStages": 85,
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "questionsResolvedByThisAudit": 0,
+  "formalAcceptance": false,
+  "limitation": "Offline replay and complete-source/request-capacity checks only. Followup responses, dynamic report synthesis, semantic quality and all four area acceptance remain unproven."
+}
