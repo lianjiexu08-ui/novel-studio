@@ -9,11 +9,13 @@ import {designReviewHash,designReviewInput} from '../novel-service-core/src/desi
 const read=p=>JSON.parse(fs.readFileSync(p));
 const sha=x=>createHash('sha256').update(x).digest('hex');
 const fileHash=p=>sha(fs.readFileSync(p));
-const repair=read('docs/audits/2026-10-17-design70-entry-candidate.json');
-const saved=read('docs/audits/2026-10-17-design70-entry-save-rehearsal.json');
+assert.ok(process.argv.length===2||(process.argv.length===3&&process.argv[2]==='--v2'));
+const suffix=process.argv[2]==='--v2'?'-v2':'';
+const repair=read(`docs/audits/2026-10-17-design70-entry-candidate${suffix}.json`);
+const saved=read(`docs/audits/2026-10-17-design70-entry-save-rehearsal${suffix}.json`);
 assert.equal(fileHash(repair.candidatePath),saved.candidateSha256);
 assert.equal(saved.candidateSha256,repair.candidateSha256);
-const directory=path.resolve('data/audit-runtimes/design70-entry-content-review');
+const directory=path.resolve(`data/audit-runtimes/design70-entry-content-review${suffix}`);
 assert.ok(!fs.existsSync(directory),'Keep previous prepared review');
 assert.notEqual(fs.realpathSync(saved.databasePath),fs.realpathSync('data/novel-studio.db'));
 const repo=new PrismaWorkRepository(new PrismaClient({datasources:{db:{url:`file:${saved.databasePath}`}}}));
@@ -68,7 +70,7 @@ const proof={kind:'design70_entry_focused_content_request',preparedAt:new Date()
  modelCalls:0,productionWrites:0,formalAcceptance:false,
  executionCondition:'Wait for original design70 worker to exit and verify its final records before calling the current gpt-5.6-luna connection without fallback. Save raw responses; a focused pass cannot replace complete design acceptance.',
  limitation:'Prepared request only; the model has not reviewed this candidate. Complete selected sources do not mean complete world or book coverage.'};
-const proofPath='docs/audits/2026-10-17-design70-entry-content-request.json';
+const proofPath=`docs/audits/2026-10-17-design70-entry-content-request${suffix}.json`;
 assert.ok(!fs.existsSync(proofPath));
 fs.writeFileSync(proofPath,JSON.stringify(proof,null,2)+'\n',{flag:'wx'});
 console.log(JSON.stringify({sourceCharacters:proof.sourceCharacters,selectedSources:input.sources.length,omittedSources:proof.omittedSourceIds.length,inputSha256:proof.inputSha256,modelCalls:0,formalAcceptance:false}));

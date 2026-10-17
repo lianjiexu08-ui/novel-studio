@@ -1,0 +1,955 @@
+{
+  "kind": "design70_entry_focused_content_request",
+  "preparedAt": "2026-10-16T23:48:08.527Z",
+  "candidatePath": "data/design-candidates/design70-entry-location-v1.json",
+  "candidateSha256": "8b9b1414b0560bcb07bc135bd241a16e920aad94784559d4673e003c3e0b907d",
+  "isolatedPlanId": "plan_5d02089b8e8f45f5ac33bc00e33b2de9",
+  "inputHash": "51ecb24180d0129faf770de892f3cdb9a16b0e00c70cb7c342c502e4db0debdd",
+  "sourceDatabase": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design70-entry-save-rehearsal/isolated.db",
+  "inputPath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design70-entry-content-review/input.json",
+  "inputSha256": "69efa5fd284029041b0759c2b3d9007d01804e2421dc04fd8256e0278b41d7a5",
+  "fullInputPath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design70-entry-content-review/full-world-input.json",
+  "fullInputSha256": "a6f8e5ddbaded10127bfabfbb8745f17b8964f2319aed95d4f0d0a4d763b2177",
+  "runtimePath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design70-runtime",
+  "runtimeBindingPath": "data/audit-runtimes/design70-runtime-bound.json",
+  "runtimeBindingSha256": "4f88e95f3d5a1009c71226372eb17bcded44fac308b7f0cb4d43b24747ebf229",
+  "sourceCharacters": 123502,
+  "requiredSourceIds": [
+    "story/characters/char_04",
+    "story/chapterPlans/chapter-plan-14",
+    "plan/chapters/14",
+    "world/locations/loc_09",
+    "world/locations/loc_10",
+    "world/locations/loc_30",
+    "story/relationships/rel_03"
+  ],
+  "selectedSources": [
+    {
+      "id": "author",
+      "sha256": "f442f82fa90ba8ba3f35f3487e8c04700dfab25f4309461c3c2400b026a5c565",
+      "characters": 434
+    },
+    {
+      "id": "world/overview",
+      "sha256": "4bd17f827785ffc7c809baa5c2fb799873729909f5525264238cfe60079e3d1d",
+      "characters": 2639
+    },
+    {
+      "id": "world/axioms/ax_01",
+      "sha256": "9b4cf41d20d10341215b75c064633660e3bbdbd46db40eb73e362f1cdbb6f1ea",
+      "characters": 805
+    },
+    {
+      "id": "world/axioms/ax_02",
+      "sha256": "77309954a44879de40e736ca017261fd49a3eb912853b0619b223d9f6a804a1b",
+      "characters": 210
+    },
+    {
+      "id": "world/axioms/ax_03",
+      "sha256": "7374eb90c1ff2385c53e6aec4fa59b2613c6bc7b60f0f0a75ef102d95e09a8ab",
+      "characters": 228
+    },
+    {
+      "id": "world/axioms/ax_04",
+      "sha256": "fd1141bcc5113668f44019f030eb375aaad5925129fd1217432959689886c899",
+      "characters": 372
+    },
+    {
+      "id": "world/axioms/ax_05",
+      "sha256": "81f0c43a0365496907a72b0dc70757f0836180eb86d73244853ccba8d2b39b8b",
+      "characters": 682
+    },
+    {
+      "id": "world/axioms/ax_06",
+      "sha256": "84738d52efd925e83d342f453313bb03df44073786623e1cb97384cc89d47a29",
+      "characters": 394
+    },
+    {
+      "id": "world/axioms/ax_07",
+      "sha256": "df8b0b4dd073dbe00e98dfe9521a4ba4a9925866ff91359975a0c8d6e72bf55a",
+      "characters": 919
+    },
+    {
+      "id": "world/axioms/ax_08",
+      "sha256": "cac7e1f1a900eb05ac144556b7f163087f8ca684710955028e0eaeac394c56a0",
+      "characters": 683
+    },
+    {
+      "id": "world/axioms/ax_09",
+      "sha256": "0c261e6a9219679c2d8fdd978423cb13e152e6390eb49746efbb82ce2933e377",
+      "characters": 341
+    },
+    {
+      "id": "world/axioms/ax_10",
+      "sha256": "058a29301718fceb65ad6257a359a7e5973d68a609bbfa08d8c74c023616347b",
+      "characters": 313
+    },
+    {
+      "id": "world/axioms/ax_11",
+      "sha256": "f06f32be8a59059f10ca118235ef7c85462b247fe2c24b7a1dae943fc020c7a6",
+      "characters": 1913
+    },
+    {
+      "id": "world/axioms/ax_12",
+      "sha256": "daf4eb121c54492e4ff0b0ee5ca883756a6d329446e0324aaac00a4ba3ac793e",
+      "characters": 694
+    },
+    {
+      "id": "world/axioms/ax_13",
+      "sha256": "6b5e5698dea923a314789e3d92237a88cb47264865f38b0012f4bfa54af85c61",
+      "characters": 1010
+    },
+    {
+      "id": "world/realms/realm_01",
+      "sha256": "49f1521eff2c164ba952015169e99c2012227a8c18ca75e98fc28f77eb1070e1",
+      "characters": 788
+    },
+    {
+      "id": "world/realms/realm_02",
+      "sha256": "73fb4db7f54e138968e57c8e0d5d1daab3f3ddc0136d862d4a332abfd389bc7a",
+      "characters": 334
+    },
+    {
+      "id": "world/realms/realm_03",
+      "sha256": "c8c5842b7f10f1869e6410b8370689b33880ed2b047caba32c14218e3755f43d",
+      "characters": 236
+    },
+    {
+      "id": "world/realms/realm_04",
+      "sha256": "5dec0225c873d520337b0ec0febaeb641a91b9c81b73d7bc32cb450d40b75430",
+      "characters": 481
+    },
+    {
+      "id": "world/realms/realm_05",
+      "sha256": "56e916a4c0bdbc59fcbe12c445de7c096b24d98be330969ade2693d8fc8a41bc",
+      "characters": 558
+    },
+    {
+      "id": "world/realms/realm_06",
+      "sha256": "af7e0581a01e2d048e13dc0240f8a1f92ef6cb1c5d390a0192667da4cbbd3095",
+      "characters": 673
+    },
+    {
+      "id": "world/realms/realm_07",
+      "sha256": "638bb907a79396af21f365f0f63284142f51a89c4c0a48d583d7f26541646c41",
+      "characters": 705
+    },
+    {
+      "id": "world/realms/realm_08",
+      "sha256": "a3b97b8cd0093283b5f2580407592bc61a1eecd24f894de5199d3066ceefdf92",
+      "characters": 1092
+    },
+    {
+      "id": "world/locations/loc_01",
+      "sha256": "51ff1b3adbec7bd445f66717e1d2ed77b78ffc2e3a91e25438df79dc8715ecec",
+      "characters": 210
+    },
+    {
+      "id": "world/locations/loc_02",
+      "sha256": "fb8c059a5edda80a4f541de381c41e1658ddbdf54d3d3676d237373ee294b0f9",
+      "characters": 479
+    },
+    {
+      "id": "world/locations/loc_03",
+      "sha256": "4f8c2f43b4ee34c2de7da16082afd407d124fb9620795518f48bd5d206a7f7f5",
+      "characters": 379
+    },
+    {
+      "id": "world/locations/loc_04",
+      "sha256": "79eb1ca48e4072c03d7fe1cbf20257bac5b82f713ea756a4c59e1e3ba9b9b471",
+      "characters": 167
+    },
+    {
+      "id": "world/locations/loc_05",
+      "sha256": "497d06f432918dd675a789b137d39cf4b2c329c1e09b16c143a9afabe3243cf6",
+      "characters": 177
+    },
+    {
+      "id": "world/locations/loc_06",
+      "sha256": "69759839616ec502ddce3e416809ac6fbc490ec51d4ec05910a89b3187dc4d5a",
+      "characters": 262
+    },
+    {
+      "id": "world/locations/loc_07",
+      "sha256": "f96adc6b94b87462574af37ec0dfa51b85790493cde9c540a407458bc233404d",
+      "characters": 176
+    },
+    {
+      "id": "world/locations/loc_08",
+      "sha256": "34da7b45233633dab77c31b090a7b57ce0d3488513f852c4adf6339be0dcf490",
+      "characters": 168
+    },
+    {
+      "id": "world/locations/loc_09",
+      "sha256": "5c374f236821c91b4cbecaa2b10c725e3b41b929e8a6405fd87d9ce3094da4c5",
+      "characters": 173
+    },
+    {
+      "id": "world/locations/loc_10",
+      "sha256": "d3d664a6ff41af89bc6e7891f50614992c51a9d286071d8c3e143cf1568fb0d8",
+      "characters": 164
+    },
+    {
+      "id": "world/locations/loc_11",
+      "sha256": "824f8eb52b44c722b2117d7fae3328cc24e6b6bc1320d6f148513cf7a6df5f4c",
+      "characters": 177
+    },
+    {
+      "id": "world/locations/loc_12",
+      "sha256": "a3fe23f31930ee123504667bbf675efc8e6236c4a4bdbc32d0d93e05a3331817",
+      "characters": 168
+    },
+    {
+      "id": "world/locations/loc_13",
+      "sha256": "1903fa4d025dd2e4df9657cdfe807c9cceb4dc7308909b3122eb9e8a224eb4f9",
+      "characters": 226
+    },
+    {
+      "id": "world/locations/loc_14",
+      "sha256": "01444daa0284791e1636088339ea4d22b1cb3fe8351b363ddce489b0b5e3ed70",
+      "characters": 288
+    },
+    {
+      "id": "world/locations/loc_15",
+      "sha256": "999450072fcea8770ea6e505aac8c3dedf02cbdbe0981e3c4c667ea5a2b270e6",
+      "characters": 257
+    },
+    {
+      "id": "world/locations/loc_16",
+      "sha256": "4645b29a32d875345d151fbdd0037898161ae5a609fb9980a40cfa4febd387a3",
+      "characters": 163
+    },
+    {
+      "id": "world/locations/loc_17",
+      "sha256": "76f48ebf694d12f89f0eb05f46478389850bd3c2095acc1fbe1da70b0ab40639",
+      "characters": 171
+    },
+    {
+      "id": "world/locations/loc_18",
+      "sha256": "7300152c8c72f635465896d4407d30b52dfc3db3e5df49c702838f995d544f25",
+      "characters": 166
+    },
+    {
+      "id": "world/locations/loc_19",
+      "sha256": "76216fd6c279bcce0d0e03e05f980985350358c016c9a851040898b5e08fbab5",
+      "characters": 173
+    },
+    {
+      "id": "world/locations/loc_20",
+      "sha256": "567b0b157db8013724adb4fab0fc81e1cd9dd449534cd372fae777409657c0c5",
+      "characters": 166
+    },
+    {
+      "id": "world/locations/loc_21",
+      "sha256": "cf644923b058c2750b6554012c5ac628498b7fde94b6131e7fe5d7b36d212354",
+      "characters": 640
+    },
+    {
+      "id": "world/locations/loc_22",
+      "sha256": "df29141127928df92f213aeaf6a35658a100d63531046d86fbe2f9caf699dd67",
+      "characters": 181
+    },
+    {
+      "id": "world/locations/loc_23",
+      "sha256": "d4e34749c992144c9d0594665872909fd121c46de059cefc91e342b00d95e1c5",
+      "characters": 181
+    },
+    {
+      "id": "world/locations/loc_24",
+      "sha256": "f5057abac0b99a6a0290a969f0a216bded1b72fe5fa675864dbac59853ac62bb",
+      "characters": 181
+    },
+    {
+      "id": "world/locations/loc_25",
+      "sha256": "2e0850000f378a5f795272e33c612add198d81790f821b063ee6eb2aa3ad9ffc",
+      "characters": 184
+    },
+    {
+      "id": "world/locations/loc_26",
+      "sha256": "9a27e60cca72104b8b36246db762857ff9cb1ce649ea1fd4404e79284f767882",
+      "characters": 288
+    },
+    {
+      "id": "world/locations/loc_27",
+      "sha256": "cf668406464f3adfcb59d515058e9f643f7130cb41b90ff33506ea07f210876b",
+      "characters": 181
+    },
+    {
+      "id": "world/locations/loc_28",
+      "sha256": "3fe24b7d143f4cdae6af93b95bad6ba33b9f3a54a1c5a6947e0ff3d4d434d925",
+      "characters": 314
+    },
+    {
+      "id": "world/locations/loc_29",
+      "sha256": "67161e8e8d372cf6b5d5d1e8b81a06a6e5d37b62c7ad8f3abb1b317c0c9447b7",
+      "characters": 318
+    },
+    {
+      "id": "world/locations/loc_30",
+      "sha256": "5d1f03e028ef0ed83f39cea1d813c6696cb1c42bd36747967b68aae71fbfbe2e",
+      "characters": 229
+    },
+    {
+      "id": "world/factions/fac_01",
+      "sha256": "e91602ec0b5915861c6a194f05ad4a65a9e767432fbed5b3620bd50294a4cd6a",
+      "characters": 297
+    },
+    {
+      "id": "world/factions/fac_02",
+      "sha256": "481bcb1419577d5774a4f464f6221a6aa58c9920a398d61f7eaa6cebe699ecdb",
+      "characters": 274
+    },
+    {
+      "id": "world/factions/fac_03",
+      "sha256": "803cc1c55937ce35cab56dadcd32a879fe624e26d5b37fe9db02002aea8f35a5",
+      "characters": 271
+    },
+    {
+      "id": "story/overview",
+      "sha256": "1d6be2ef90b2d0b21b7998b4798592e81a985de2257044acd58f894e3bbbdcb5",
+      "characters": 5131
+    },
+    {
+      "id": "story/characters/char_01",
+      "sha256": "400a561f4cdc1d022b11629aaa9bb4282b506f82246ab24777af60e4bab17c19",
+      "characters": 241
+    },
+    {
+      "id": "story/characters/char_02",
+      "sha256": "535f4a599754db95906859f962d13861be57f652858b0de039f9ab5451d57b25",
+      "characters": 371
+    },
+    {
+      "id": "story/characters/char_04",
+      "sha256": "bb7468fd0e4552b86826b87f4382d54d167ffcaf23e9952f6b4d7b0303e5e592",
+      "characters": 733
+    },
+    {
+      "id": "story/characters/char_08",
+      "sha256": "b7f3c35ec0b165f2bfe30dc73df775c074d72b633e4e3904c10bab417a587347",
+      "characters": 215
+    },
+    {
+      "id": "story/characters/char_09",
+      "sha256": "4824332bdf0c9ea541a07fde087e618baf0881298fb8971d45601aa3f6ceec51",
+      "characters": 266
+    },
+    {
+      "id": "story/characters/char_10",
+      "sha256": "728c48169654c91d23217351487954ec4b301207fc6685bb2ca85654f5105c01",
+      "characters": 957
+    },
+    {
+      "id": "story/relationships/rel_03",
+      "sha256": "a3d67a738f081d77a3c0fb42b3338a313505563f89dfbe5a1e1c70577aa86f9c",
+      "characters": 2211
+    },
+    {
+      "id": "story/arcBeats/audit-mo-bargain",
+      "sha256": "c175e2e2d889a2cc526f7b63c8f8e0d481a196fd264b73e1564d8c0f32ebe6e6",
+      "characters": 204
+    },
+    {
+      "id": "story/arcBeats/audit-mo-last-bet",
+      "sha256": "23f6500f36a9d7edef6383690023261663ef785f6e591a788f7e3b0587b8cebf",
+      "characters": 210
+    },
+    {
+      "id": "story/chapterPlans/chapter-plan-14",
+      "sha256": "ba79cf1ab73f1aabcb206879244d7e6cc7b2780e3d9eb661b0881b2dbfa5f423",
+      "characters": 1626
+    },
+    {
+      "id": "plan/overview",
+      "sha256": "dca7aa428c62df71156450ccadf1aa4933fcad0dfb8d9fa270e5afdc9356c8d4",
+      "characters": 10737
+    },
+    {
+      "id": "plan/volumes/vol_01",
+      "sha256": "b29bb4dfc33ec569179f9541b635831929ea83d9762234ebb3799d26802da505",
+      "characters": 842
+    },
+    {
+      "id": "plan/milestones/ms_vol1_turn",
+      "sha256": "51f48f29fb689df0e0f8ae5e12c79eab1a8644fe41331d0c01a87e90e6ce5f6b",
+      "characters": 386
+    },
+    {
+      "id": "plan/milestones/ms_growth_v1_recovery",
+      "sha256": "27759fc581dee4da4cc6bc6538e88613b752d9959618f5b54c8917086f3f41d2",
+      "characters": 806
+    },
+    {
+      "id": "plan/milestones/ms_growth_v1_training",
+      "sha256": "e2266140b7da1e6acefa4dbd3478f8cb30adbb0a9f4c8d1ee994b76c10fac05a",
+      "characters": 753
+    },
+    {
+      "id": "plan/milestones/ms_growth_v1_expedition",
+      "sha256": "75c0124ff4a3202f693a8ab6966f58ed1f1838200621946293471eb68cb5e4b3",
+      "characters": 1082
+    },
+    {
+      "id": "plan/milestones/ms_vol1_climax",
+      "sha256": "fe6d4c5af910697aa511fb5bf21e9c29f7100acefc4b9a4cff535b7f46efc91e",
+      "characters": 2132
+    },
+    {
+      "id": "plan/milestones/ms_growth_v1_aftermath",
+      "sha256": "c663b5f11e76335c99d7f4467e4227281c53bf11d4c44c84ce1b77566281048e",
+      "characters": 919
+    },
+    {
+      "id": "plan/milestones/ms_growth_v1_crossing",
+      "sha256": "c37abeb68fd44238772faa4353ddfdab6f73309973bb28643edf4c5eab5e5c27",
+      "characters": 686
+    },
+    {
+      "id": "plan/chapters/1",
+      "sha256": "7e01115c415a8fe529721fb1b4b5ca2e8d94696362f5c0cb3c3f243e4a1b7bda",
+      "characters": 2079
+    },
+    {
+      "id": "plan/chapters/2",
+      "sha256": "5fe801d962f7daed59ef8983f436d75020732234c1ac867756a83dad5e18c0c3",
+      "characters": 1182
+    },
+    {
+      "id": "plan/chapters/3",
+      "sha256": "5bf7c2a9af314efbea0b07308d4889f6ff3e1321af919a323e6db13d7dfba1f8",
+      "characters": 1636
+    },
+    {
+      "id": "plan/chapters/4",
+      "sha256": "d4a73b1c1315f5c4d0d91b600d3b3d5761e7f25d16766a5eceb51a87ef5d22d1",
+      "characters": 1462
+    },
+    {
+      "id": "plan/chapters/5",
+      "sha256": "8f93f864adaca1bd09c0bc897ae5ce300d86945b36bae6bf757c234303014081",
+      "characters": 1281
+    },
+    {
+      "id": "plan/chapters/6",
+      "sha256": "bfead8596729577c8e688698100b25cbd2ee2b92e45a96b26205f48185c1d56d",
+      "characters": 1131
+    },
+    {
+      "id": "plan/chapters/7",
+      "sha256": "a904f88183d6e40b391d73b201df5e311d945fb2d36df618785f4ea87a656139",
+      "characters": 1778
+    },
+    {
+      "id": "plan/chapters/8",
+      "sha256": "26d5d8ec7c9f8d942c64e81cd193743a82ce3f464a33bf607e9e784171acf46b",
+      "characters": 1200
+    },
+    {
+      "id": "plan/chapters/9",
+      "sha256": "df2055ac8fb5a6259d365b2b9516cdbcb557367fa20ede8e91d5a1ec3c1b591a",
+      "characters": 1863
+    },
+    {
+      "id": "plan/chapters/10",
+      "sha256": "96e63e9545c62c26104cfc0412283e5bbb447c0ab15749e39c9090b84db19a52",
+      "characters": 1778
+    },
+    {
+      "id": "plan/chapters/11",
+      "sha256": "4e80458196922b621c15dc2a62a37ba6df88fb67d118c31122ee63e4b9152ec4",
+      "characters": 2013
+    },
+    {
+      "id": "plan/chapters/12",
+      "sha256": "463d2b2bf9790fe1e1cf9a5c614e7313dec788c2c42059bcd7efb3deb8e9100f",
+      "characters": 3068
+    },
+    {
+      "id": "plan/chapters/13",
+      "sha256": "dd5d981045707eb0b114c16afc60f3e8a2c9ebf55e8875e052397414cadc83fe",
+      "characters": 2190
+    },
+    {
+      "id": "plan/chapters/14",
+      "sha256": "fe29e7e4759df580ebf20d475ce664c00876bfe074cfe9f42d7c0a27c9594537",
+      "characters": 2142
+    },
+    {
+      "id": "plan/chapters/15",
+      "sha256": "ff405179001e0a42a46583c558b2092fc2e15bde54f5a4ce4122afb297e370d8",
+      "characters": 1934
+    },
+    {
+      "id": "plan/chapters/16",
+      "sha256": "ad3c287c283db820fefd82c181bf8d95dea8928a9bf912c61f81b003f618a54f",
+      "characters": 1635
+    },
+    {
+      "id": "plan/chapters/17",
+      "sha256": "ac6ca1fc5c9e1b0e9ece0176e2dfa381d65e596a34a64d541531a8129c348987",
+      "characters": 1858
+    },
+    {
+      "id": "plan/chapters/18",
+      "sha256": "e4281f4dbb9980d018c57994c5c704855beb6699b2fca60cdd751aa09b19cf29",
+      "characters": 3782
+    },
+    {
+      "id": "plan/chapters/19",
+      "sha256": "a1da88ca4c59b2bcba307b516bd9cd8374aefc92f77657fc084e0bf366534e43",
+      "characters": 1893
+    },
+    {
+      "id": "plan/chapters/20",
+      "sha256": "985f0e3f50045287452bdeab6f2b92402608300dee63698cafcd1f6822df714d",
+      "characters": 2006
+    },
+    {
+      "id": "plan/chapters/21",
+      "sha256": "74f5864eaeef282817d6442f441f60623d51f02d67f4dab7558779e567a55d8e",
+      "characters": 2183
+    },
+    {
+      "id": "plan/chapters/22",
+      "sha256": "fcd24bac3e3d5a761a890c7734a8ae2628444bc3ad984506f6066755f4495b41",
+      "characters": 1769
+    },
+    {
+      "id": "plan/chapters/23",
+      "sha256": "b38d593f3b2f480910f542ff8309fc24b8b033081124368f9487caa3e5a0050b",
+      "characters": 2722
+    },
+    {
+      "id": "plan/chapters/24",
+      "sha256": "4dd029609df76acf64dfa1a4fbb5cee604860e8dbf0011eb5420ee5fcac32c0b",
+      "characters": 1628
+    },
+    {
+      "id": "plan/chapters/25",
+      "sha256": "3d80bc32c48a57da2cfabc0edf942628eb583ea0577a76c94e3f359b44d35c80",
+      "characters": 5406
+    },
+    {
+      "id": "plan/chapters/26",
+      "sha256": "3e6d5acf635d6f9f69ee1f3546325d23959020797a12811f65c53f8c87141346",
+      "characters": 4126
+    }
+  ],
+  "omittedSourceIds": [
+    "world/powerSystems/ps_01",
+    "world/tierLadders/ladder_realm",
+    "world/tierLadders/ladder_technique",
+    "world/tierLadders/ladder_artifact",
+    "world/tierLadders/ladder_resource",
+    "world/techniques/tech_01",
+    "world/techniques/tech_02",
+    "world/techniques/tech_03",
+    "world/techniques/tech_04",
+    "world/techniques/tech_05",
+    "world/techniques/tech_06",
+    "world/techniques/tech_07",
+    "world/techniques/tech_08",
+    "world/techniques/tech_09",
+    "world/techniques/tech_10",
+    "world/techniques/tech_11",
+    "world/techniques/tech_12",
+    "world/techniques/tech_13",
+    "world/techniques/tech_14",
+    "world/techniques/tech_15",
+    "world/techniques/tech_16",
+    "world/techniques/tech_17",
+    "world/techniques/tech_18",
+    "world/artifacts/art_01",
+    "world/artifacts/art_02",
+    "world/artifacts/art_03",
+    "world/artifacts/art_04",
+    "world/artifacts/art_05",
+    "world/artifacts/art_06",
+    "world/artifacts/art_07",
+    "world/artifacts/art_08",
+    "world/artifacts/art_09",
+    "world/artifacts/art_10",
+    "world/artifacts/art_11",
+    "world/artifacts/art_12",
+    "world/artifacts/art_13",
+    "world/artifacts/art_14",
+    "world/artifacts/art_15",
+    "world/artifacts/art_16",
+    "world/artifacts/art_17",
+    "world/artifacts/art_18",
+    "world/artifacts/art_19",
+    "world/artifacts/art_20",
+    "world/artifacts/art_21",
+    "world/factions/fac_04",
+    "world/factions/fac_05",
+    "world/factions/fac_06",
+    "world/factions/fac_07",
+    "world/factions/fac_08",
+    "world/factions/fac_09",
+    "world/factions/fac_10",
+    "world/factions/fac_11",
+    "world/factions/fac_12",
+    "world/historicalEvents/event_01",
+    "world/historicalEvents/event_02",
+    "world/historicalEvents/event_03",
+    "world/historicalEvents/event_04",
+    "world/historicalEvents/event_05",
+    "world/historicalEvents/event_06",
+    "world/historicalEvents/event_07",
+    "world/historicalEvents/event_08",
+    "world/historicalEvents/event_09",
+    "world/historicalEvents/event_10",
+    "world/historicalEvents/event_11",
+    "world/historicalEvents/event_12",
+    "world/historicalEvents/event_13",
+    "world/historicalEvents/event_14",
+    "world/resources/res_01",
+    "world/resources/res_02",
+    "world/resources/res_03",
+    "world/resources/res_04",
+    "world/resources/res_05",
+    "world/resources/res_06",
+    "world/resources/res_07",
+    "world/resources/res_08",
+    "world/resources/res_09",
+    "world/resources/res_10",
+    "world/resources/res_11",
+    "world/resources/res_12",
+    "world/resources/res_13",
+    "world/resources/res_14",
+    "world/resources/res_15",
+    "world/resources/res_16",
+    "world/resources/res_17",
+    "world/resources/res_18",
+    "world/resources/res_19",
+    "world/terminology/term_01",
+    "world/terminology/term_02",
+    "world/terminology/term_03",
+    "world/terminology/term_res_01",
+    "world/terminology/term_res_02",
+    "world/terminology/term_res_03",
+    "world/terminology/term_res_04",
+    "world/terminology/term_res_05",
+    "world/terminology/term_res_06",
+    "world/terminology/term_res_07",
+    "world/terminology/term_res_08",
+    "world/terminology/term_res_09",
+    "world/terminology/term_res_10",
+    "world/terminology/term_res_11",
+    "world/terminology/term_res_12",
+    "world/terminology/term_asset_01",
+    "world/terminology/term_asset_02",
+    "world/terminology/term_asset_04",
+    "world/terminology/term_hist_01",
+    "world/terminology/term_hist_02",
+    "world/terminology/term_ice_school",
+    "world/terminology/term_cold_method",
+    "world/terminology/term_probe_shuttle",
+    "story/characters/char_03",
+    "story/characters/char_05",
+    "story/characters/char_06",
+    "story/characters/char_07",
+    "story/characters/char_11",
+    "story/characters/char_12",
+    "story/characters/char_13",
+    "story/characters/char_14",
+    "story/characters/char_15",
+    "story/characters/char_16",
+    "story/characters/char_17",
+    "story/characters/char_18",
+    "story/characters/char_19",
+    "story/characters/char_20",
+    "story/characters/char_21",
+    "story/characters/char_22",
+    "story/characters/char_23",
+    "story/characters/char_24",
+    "story/characters/char_25",
+    "story/relationships/rel_01",
+    "story/relationships/rel_02",
+    "story/relationships/rel_04",
+    "story/relationships/rel_06",
+    "story/relationships/rel_07",
+    "story/relationships/rel_08",
+    "story/relationships/rel_09",
+    "story/relationships/rel_10",
+    "story/relationships/rel_11",
+    "story/relationships/rel_05",
+    "story/relationships/rel_12",
+    "story/relationships/rel_13",
+    "story/relationships/rel_14",
+    "story/relationships/rel_15",
+    "story/relationships/rel_16",
+    "story/relationships/rel_17",
+    "story/relationships/rel_18",
+    "story/relationships/rel_19",
+    "story/relationships/rel_20",
+    "story/relationships/rel_21",
+    "story/relationships/rel_22",
+    "story/arcs/arc_01",
+    "story/arcs/arc_02",
+    "story/arcs/arc_03",
+    "story/arcs/arc_04",
+    "story/arcBeats/beat_01",
+    "story/arcBeats/beat_02",
+    "story/arcBeats/beat_03",
+    "story/arcBeats/audit-su-3",
+    "story/arcBeats/audit-su-8",
+    "story/arcBeats/audit-su-12",
+    "story/arcBeats/audit-su-testimony",
+    "story/arcBeats/audit-su-stay",
+    "story/arcBeats/audit-zhao-control",
+    "story/arcBeats/v1-white-stop",
+    "story/arcBeats/v1-lin-advance",
+    "story/arcBeats/v1-qin-bargain",
+    "story/arcBeats/v1-qin-message",
+    "story/arcBeats/v1-gu-counter",
+    "story/arcBeats/v1-du-post",
+    "story/arcBeats/v1-qiao-custody",
+    "story/arcBeats/v1-lin-share",
+    "story/arcBeats/beat_v23_1",
+    "story/arcBeats/beat_v23_2",
+    "story/arcBeats/beat_v23_3",
+    "story/arcBeats/beat_v23_4",
+    "story/arcBeats/beat_v23_5",
+    "story/arcBeats/beat_v23_6",
+    "story/arcBeats/beat_v23_7",
+    "story/arcBeats/beat_v23_8",
+    "story/arcBeats/beat_v23_9",
+    "story/arcBeats/beat_v23_10",
+    "story/arcBeats/beat_v23_11",
+    "story/arcBeats/beat_v23_12",
+    "story/arcBeats/beat_bridge_1",
+    "story/arcBeats/beat_bridge_2",
+    "story/arcBeats/beat_bridge_3",
+    "story/arcBeats/beat_bridge_4",
+    "story/arcBeats/beat_box_rescue",
+    "story/arcBeats/beat_box_correction",
+    "story/arcBeats/beat_barge_priority",
+    "story/arcBeats/message-dispatch",
+    "story/arcBeats/message-first-read",
+    "story/arcBeats/message-first-order",
+    "story/arcBeats/message-first-delivery",
+    "story/arcBeats/message-first-ack",
+    "story/arcBeats/message-north-report",
+    "story/arcBeats/message-local-replan",
+    "story/arcBeats/message-custody-report",
+    "story/arcBeats/message-custody-read",
+    "story/arcBeats/message-withdraw-order",
+    "story/arcBeats/message-cheng-local-mission",
+    "story/arcBeats/message-withdraw-delivery",
+    "story/arcBeats/message-withdraw-seized",
+    "story/arcBeats/message-defeat-report",
+    "story/arcBeats/message-formal-inquiry",
+    "story/arcBeats/v1-lin-route-failure",
+    "story/arcBeats/v1-su-tactical-share",
+    "story/arcBeats/beat_port_work_before_questions",
+    "story/arcBeats/beat_port_current_retreat",
+    "story/arcBeats/beat_workers_failed_exit",
+    "story/arcBeats/harbor-lin-horizon",
+    "story/arcBeats/harbor-he-refuses-boat",
+    "story/arcBeats/harbor-lu-speaks",
+    "story/secrets/sec_01",
+    "story/secrets/sec_02",
+    "story/secrets/sec_03",
+    "story/secrets/sec_04",
+    "story/promises/prom_01",
+    "story/promises/prom_02",
+    "story/promises/prom_03",
+    "story/promises/prom_04",
+    "story/openThreads/th_01",
+    "story/openThreads/th_02",
+    "story/openThreads/th_03",
+    "story/openThreads/th_04",
+    "story/openThreads/th_05",
+    "story/volumes/vol_01",
+    "story/volumes/vol_02",
+    "story/volumes/vol_03",
+    "story/chapterPlans/chapter-plan-1",
+    "story/chapterPlans/chapter-plan-2",
+    "story/chapterPlans/chapter-plan-3",
+    "story/chapterPlans/chapter-plan-4",
+    "story/chapterPlans/chapter-plan-5",
+    "story/chapterPlans/chapter-plan-6",
+    "story/chapterPlans/chapter-plan-7",
+    "story/chapterPlans/chapter-plan-8",
+    "story/chapterPlans/chapter-plan-9",
+    "story/chapterPlans/chapter-plan-10",
+    "story/chapterPlans/chapter-plan-11",
+    "story/chapterPlans/chapter-plan-12",
+    "story/chapterPlans/chapter-plan-13",
+    "story/chapterPlans/chapter-plan-15",
+    "story/chapterPlans/chapter-plan-16",
+    "story/chapterPlans/chapter-plan-17",
+    "story/chapterPlans/chapter-plan-18",
+    "story/chapterPlans/chapter-plan-19",
+    "story/chapterPlans/chapter-plan-20",
+    "story/chapterPlans/chapter-plan-21",
+    "story/chapterPlans/chapter-plan-22",
+    "story/chapterPlans/chapter-plan-23",
+    "story/chapterPlans/chapter-plan-24",
+    "story/chapterPlans/chapter-plan-25",
+    "story/chapterPlans/chapter-plan-26",
+    "story/chapterPlans/chapter-plan-27",
+    "story/chapterPlans/chapter-plan-28",
+    "story/chapterPlans/chapter-plan-29",
+    "story/chapterPlans/chapter-plan-30",
+    "story/chapterPlans/chapter-plan-31",
+    "story/chapterPlans/chapter-plan-32",
+    "story/chapterPlans/bible-chapter-33",
+    "story/chapterPlans/bible-chapter-34",
+    "story/chapterPlans/bible-chapter-35",
+    "story/chapterPlans/bible-chapter-36",
+    "story/chapterPlans/bible-chapter-37",
+    "story/chapterPlans/bible-chapter-38",
+    "story/chapterPlans/bible-chapter-39",
+    "story/chapterPlans/bible-chapter-40",
+    "story/chapterPlans/bible-chapter-41",
+    "story/chapterPlans/bible-chapter-42",
+    "story/chapterPlans/bible-chapter-43",
+    "story/chapterPlans/bible-chapter-44",
+    "story/chapterPlans/bible-chapter-45",
+    "story/chapterPlans/bible-chapter-46",
+    "story/chapterPlans/bible-chapter-47",
+    "story/chapterPlans/bible-chapter-48",
+    "story/chapterPlans/bible-chapter-49",
+    "story/chapterPlans/bible-chapter-50",
+    "plan/volumes/vol_02",
+    "plan/volumes/vol_03",
+    "plan/milestones/ms_bridge_return",
+    "plan/milestones/ms_v2_loss",
+    "plan/milestones/ms_v2_barge",
+    "plan/milestones/ms_v2_fire",
+    "plan/milestones/ms_v2_voyage",
+    "plan/milestones/ms_v2_boundary",
+    "plan/milestones/ms_v3_return",
+    "plan/milestones/ms_v3_training",
+    "plan/milestones/ms_v3_advancement",
+    "plan/milestones/ms_v3_convoy",
+    "plan/milestones/ms_v3_payoff",
+    "plan/chapters/27",
+    "plan/chapters/28",
+    "plan/chapters/29",
+    "plan/chapters/30",
+    "plan/chapters/31",
+    "plan/chapters/32",
+    "plan/chapters/33",
+    "plan/chapters/34",
+    "plan/chapters/35",
+    "plan/chapters/36",
+    "plan/chapters/37",
+    "plan/chapters/38",
+    "plan/chapters/39",
+    "plan/chapters/40",
+    "plan/chapters/41",
+    "plan/chapters/42",
+    "plan/chapters/43",
+    "plan/chapters/44",
+    "plan/chapters/45",
+    "plan/chapters/46",
+    "plan/chapters/47",
+    "plan/chapters/48",
+    "plan/chapters/49",
+    "plan/chapters/50"
+  ],
+  "rubric": {
+    "causality": "这是未应用的第14章位置修订局部复核，不是全书验收。核对墨幽屠开篇位置、人物宗门身份、青灵坊市普通后街接报、第14章圣经及计划是否相容，是否真正避免原总坛及上级死渊的未证准入条件，或仅用“普通”字样偷换门槛。检查公共坊市接报的行为、隐蔽性和地方巡查限制，勿替设定补血契、血税、法宝、前史或通行特权。保持其已学技能与现时驻地的区别，不因未叙述入坛就编造一次违规进入。",
+    "timeline": "仅核对这次位置修订相关的消息与后续衔接：墨在青灵坊市等待信使沿外山公共道路徒步到场，收到失败纸报后才改令，是否与1—26章已写时空、人物关系阶段、读者先知及林苏23章核名一致；有没有把作者设定、原初位置或独立视角偷换为主角已知。指出具体冲突或必要缺项，不能凭未给远期细纲要求补写全书。",
+    "pacing": "检查第14章反派接报与主角拒绝删图两线的因果和阅读作用，以及改到公共坊市是否产生不可信或纯为过关的场景。区分作者约束与需要在正文呈现的动作；如果场景仍像规则清单而缺少人物行动，应明确指出。不得通过虚构装备、入坛前史、免费能力或改写已经确定的关系阶段来补救。此项只评设计支撑力，不宣称正文文笔已通过。"
+  },
+  "modelCalls": 1,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "executionCondition": "Wait for original design70 worker to exit and verify its final records before calling the current gpt-5.6-luna connection without fallback. Save raw responses; a focused pass cannot replace complete design acceptance.",
+  "limitation": "One bounded content review of the isolated location candidate. Does not apply it, approve a plan, resolve production questions or replace complete design review.",
+  "verifiedAt": "2026-10-17T00:14:45.809Z",
+  "requestProofPath": "docs/audits/2026-10-17-design70-entry-content-request.json",
+  "requestProofSha256": "3bf408adf0cb4d06e6b8263eeb1f27d6eeccd34fcd3a6085c08dd08010f48d22",
+  "outputPath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design70-entry-content-review/result.json",
+  "outputSha256": "fd3711c614552b2390097b80289c6a316734b130a9bfdb7884f284c61f34bd49",
+  "terminalProofPath": "docs/audits/2026-10-17-design70-review-result.json",
+  "terminalProofSha256": "4cd5c3ea8810ef747b86ca5656e0211706d8ec584f048078a75f98efd33a5e2e",
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "responsesReplayed": 1,
+  "result": {
+    "summary": "第14章的位置修订已将墨幽屠的接报从总坛/死渊门槛中移出，且读者先知与林苏后续核名的安排相容；但公共后街接报后直接改令的隐蔽机制和对地方巡查的可执行约束仍未设计，需补足该场行为边界。",
+    "checks": [
+      {
+        "criterion": "causality",
+        "verdict": "revise",
+        "explanation": "地点设定明确青灵坊市是受大乾商税与巡查约束的普通集镇，不是黑窟外围；墨的宗门身份也不自动证明他有总坛血契、血税或死渊防护。因此，改为在公共后街接实体纸报确实避开了原总坛、死渊准入条件。可是章纲只写人流渐散、低声改令，未说明外围信使如何识别并接触墨、改令交给谁，或如何避免巡查与普通市民将这名玄府邪修及其“掳走采集者”的命令直接暴露。不能以“普通后街”替代公共场所的隐蔽与巡查限制。",
+        "evidence": [
+          {
+            "sourceId": "world/locations/loc_30",
+            "quote": "{\n  \"id\": \"loc_30\",\n  \"name\": \"青灵坊市\",\n  \"kind\": \"city\",\n  \"parentId\": \"loc_04\",\n  \"entryConditions\": [\n    \"太清外山附近的普通交易集镇，遵守大乾地方商税与巡查；不是枉死黑窟总坛的外围。\",\n    \"持矿工工牌可购买普通生活物资，不自动取得灵药、高阶法宝或违禁品；现银、赊欠和领用须区分。\"\n  ],\n  \"status\": \"proposed\"\n}"
+          },
+          {
+            "sourceId": "story/characters/char_04",
+            "quote": "{\n  \"id\": \"char_04\",\n  \"name\": \"墨幽屠\",\n  \"role\": \"supporting\",\n  \"goal\": \"炼就万鬼幽罗幡王器，以百万人牲换取幽冥界门裂隙洞开。\",\n  \"identity\": \"幽罗殿枉死黑窟少主、古境掳人行动组织者，现为玄府境；交接封存货物不等于能启封神海门槛的死息，也未炼成自己的万鬼幡。 作者开篇前技能设定：墨已从枉死黑窟教习处取得并修习幽冥噬血爪，完成以本境元罡聚爪、近身落点、一息主动收爪、连续最多三息及停六息后重新起爪的受控训练与实测；门内医修曾检查指骨和经脉并告知积毒、麻木、失准和流血不止的停术界限。此处只确立已学前史，不保证187、188日的伤情或余量合格；两次实际出爪仍按章纲逐息付费和现场症状限制，不靠身份免除代价。 同一开篇前修习中已由门内教习指导完成ax_13短促推劲的立足、接触一息聚罡与主动停劲，个人本次已测总重明确为五百斤：原训练场将无锁普通滑车连同配重实称五百斤，他按既有聚罡一息、推劲一息及二成预付规则沿平地滚开一步，随后经医修复核；此为墨自己的已测负荷，不把世界六百斤上限或顾峤三百斤实测记为墨的能力，也不是托举五百斤；未获得隔空移车、轻物御动搬重物或受伤后自动合格的资格。 作者开篇位置：本轮矿务行动期间，墨在青灵坊市普通后街接收外围信使的实体回报；第14章接报不发生于枉死黑窟总坛或幽冥死渊。其宗门称谓只说明身份，不证明具备总坛血契、血税或死渊防护条件；后续若安排进入这些地点，须另核原有门槛。\",\n  \"locationId\": \"loc_30\",\n  \"factionId\": \"fac_03\",\n  \"startingRealmId\": \"realm_03\"\n}"
+          },
+          {
+            "sourceId": "story/chapterPlans/chapter-plan-14",
+            "quote": "    \"承包方管事把结算木牌推到林辰面前，要求删掉逃生支岔、把制动木和支护料改成较低数额，承诺将省下的钱折进他的额外酬劳。\",\n    \"林辰口述坡度，由韩叙摆木块和斜板推演矿车失控后的路线，指出被删的岔路正是伤员离开主槽的唯一缓冲。\",\n    \"管事以取消后续加价图件相逼，林辰仍拒绝删改劳务图，提出先让当班工人在停运段按韩叙标出的坡度做空车、卸载与支护核验。工班带回磨痕和侧偏记录后，管事发现删岔方案无法通过交工验收，只能保留支岔、补足用料；林辰丢掉加价续单，已登记基础页款仍按原约结算。\",\n    \"苏在限定路线内比对公开承运栏，将尚缺交接册的批次圈给林辰；顾峤来核验采集名册，明确凝元三重、联名符牌和届时实测缺一不可，不替他预留位置。\",\n    \"青灵坊市人流渐散的普通后街，墨幽屠等到沿外山公共道路徒步赶来的信使，当面接过矿道行动失败的纸报。此处是集镇公共街面，双方没有进入总坛、死渊或商铺内室，也不在现场交易、施术或私斗。墨看完纸报，收起未炼成的万鬼幡图谱，低声改令手下筹备下一期可掳走的采集者与泉液去向；消息只到在场收报者，林苏不在这条街上。\"\n  ]\n}"
+          },
+          {
+            "sourceId": "plan/chapters/14",
+            "quote": "    \"char_04\",\n    \"char_08\",\n    \"char_09\",\n    \"char_10\"\n  ],\n  \"location\": \"loc_29太清外门药舍、loc_28太清外山矿务区与loc_30青灵坊市普通后街\",\n  \"storyTime\": \"第23日至第39日，劳务议价、现场复现与公开核档并行\",\n  \"scenes\": [\n    \"数次空木柄握持失败与白榆要求退回低负荷被压缩为日常记录，林辰仍坐在药舍案边口述矿路，右手始终不碰笔。\",\n    \"承包方管事把结算木牌推到林辰面前，要求删掉逃生支岔、把制动木和支护料改成较低数额，承诺将省下的钱折进他的额外酬劳。\",\n    \"林辰口述坡度，由韩叙摆木块和斜板推演矿车失控后的路线，指出被删的岔路正是伤员离开主槽的唯一缓冲。\",\n    \"管事以取消后续加价图件相逼，林辰仍拒绝删改劳务图，提出先让当班工人在停运段按韩叙标出的坡度做空车、卸载与支护核验。工班带回磨痕和侧偏记录后，管事发现删岔方案无法通过交工验收，只能保留支岔、补足用料；林辰丢掉加价续单，已登记基础页款仍按原约结算。\",\n    \"苏在限定路线内比对公开承运栏，将尚缺交接册的批次圈给林辰；顾峤来核验采集名册，明确凝元三重、联名符牌和届时实测缺一不可，不替他预留位置。\",\n    \"青灵坊市人流渐散的普通后街，墨幽屠等到沿外山公共道路徒步赶来的信使，当面接过矿道行动失败的纸报。此处是集镇公共街面，双方没有进入总坛、死渊或商铺内室，也不在现场交易、施术或私斗。墨看完纸报，收起未炼成的万鬼幡图谱，低声改令手下筹备下一期可掳走的采集者与泉液去向；消息只到在场收报者，林苏不在这条街上。\"\n  ],\n  \"source\": \"author\",\n  \"executionChecks\": [\n    {\n      \"id\": \"mo-public-message-location\",\n      \"requirement\": \"墨在青灵坊市普通公共后街等信使沿外山公共道路徒步到场，收到矿道失败纸报后才改令。该场不进入总坛或死渊，不借少主身份取得准入、防护或新增法宝；图谱仍未炼成王器，林苏不因读者看到接报而知情。\"\n    }\n  ]\n}"
+          }
+        ],
+        "revisionAdvice": "为第14章补明公共街面可执行的接头、传令和避巡查方式，以及一旦被盘问或被旁人听见时墨与信使的撤止边界；不得借此新增血契、死渊准入、法宝、通行特权或未设定前史。"
+      },
+      {
+        "criterion": "timeline",
+        "verdict": "pass",
+        "explanation": "第14章安排墨在收到矿道行动失败的实体纸报后才转向下一期掳人计划，且限定为读者独立视角。关系阶段同步规定14—18章读者知道墨组织行动、主角尚不能确定其身份；第23章才由“墨少主”称呼和秦禾核名使林苏确认墨幽屠。第23章墨方的后续催交与188日转运决定也没有倒灌为第14章主角知情，时序和认知边界可相容。",
+        "evidence": [
+          {
+            "sourceId": "story/relationships/rel_03",
+            "quote": "{\n  \"stages\": [\n    {\n      \"sinceChapter\": 5,\n      \"untilChapter\": 12,\n      \"value\": \"证人与尚未核定姓名的幕后灭口者。\",\n      \"cause\": \"袭击中保留运油车货签，尚只能联系矿务批次；暗桩逃走，没有确认墨幽屠指使的完整证据。\",\n      \"cost\": \"林失去住处与隐蔽；读者14章见墨，林苏仍须23章亲闻称呼并核名才确认营地指挥者。\"\n    },\n    {\n      \"sinceChapter\": 14,\n      \"untilChapter\": 18,\n      \"value\": \"读者知道墨组织行动，主角尚不能确定其指挥身份。\",\n      \"cause\": \"墨收实体回报并改动掳人目标，林辰只见运输迹象。\",\n      \"cost\": \"信息不对称，主角不能以读者视角伏杀墨。\"\n    },\n    {\n      \"sinceChapter\": 19,\n      \"untilChapter\": 19,\n      \"value\": \"尚未找到本次失踪者与指挥人。\",\n      \"cause\": \"19林苏只见入口逾期名牌。\",\n      \"cost\": \"14读者独立见墨，不转作主角知情。\"\n    },\n    {\n      \"sinceChapter\": 20,\n      \"untilChapter\": 20,\n      \"value\": \"遇袭后取得未知对手的前哨线索。\",\n      \"cause\": \"20采集单给出编号、被扣人数与泉液转运栏。\",\n      \"cost\": \"没有确认墨指挥本次营地。\"\n    },\n    {\n      \"sinceChapter\": 21,\n      \"untilChapter\": 21,\n      \"value\": \"救出的采集者提供主营方向。\",\n      \"cause\": \"21秦禾只说明亲历路线与被扣情况。\",\n      \"cost\": \"尚无指挥者面貌、称呼或实名核对。\"\n    },\n    {\n      \"sinceChapter\": 22,\n      \"untilChapter\": 22,\n      \"value\": \"确认主营实体位置，指挥者仍未辨清。\",\n      \"cause\": \"22沿旧图亲见货台、转运笼与样箱。\",\n      \"cost\": \"地点确认不等于已经认出墨。\"\n    },\n    {\n      \"sinceChapter\": 23,\n      \"untilChapter\": 24,\n      \"value\": \"确认墨身份，观察到强敌战法的代价。\",\n"
+          },
+          {
+            "sourceId": "story/chapterPlans/chapter-plan-14",
+            "quote": "{\n  \"id\": \"chapter-plan-14\",\n  \"chapterNumber\": 14,\n  \"title\": \"不删的岔路\",\n  \"purpose\": \"第23日至第39日，林辰将此前两次空木柄握持失败和医嘱退回低负荷的过程压入日常背景，继续以坐姿口述矿路图换取粮药。承包外山修缮的管事看中他熟悉旧矿道，愿按图结算，却要求删去逃生支岔、压低支护与制动料用量，以便把账面节余留作额外酬劳。林辰拒绝删改自己口述的新绘矿路劳务图，也不再去柜台重复申诉；他口述，由韩叙摆放桌上木块、斜板，以矿车惯性复现岔道失效后的滑行路径，指出删支岔会把普通修缮变成下一次困人事故。林辰提出由当班工人在停运段做空车与支护核验；工班带回磨痕和侧偏记录，原压料方案过不了交工验收，管事才接受保留逃生支岔、补足关键制动木与支护料的实际修缮决定，却取消林辰原可拿到的额外酬劳，已登记基础页款按原约支付，图页只以“伤者口述待核”名义归档。苏继续沿限定路线核对公开承运记录，顾峤则明确凝元三重、联名符牌与实测伤况缺一不可，绝不为林预留古境位置。另一边，墨幽屠在青灵坊市普通后街等到徒步赶来的信使，收到矿道行动失败的实体回报，将灭口失手转为筹备下一期掳人夺泉的计划；此事只为读者所知。\",\n  \"conflict\": \"承包方以额外酬劳诱使林辰压料删图，既能解决他眼前粮药困境，也会把下一批矿工置于无逃路的风险；林辰重伤且仍是淬体，无法靠武力或术法逼迫对方。古境资格也不能由劳务、同情或顾峤口头预留替代。\",\n  \"turningPoint\": \"林辰拒绝删图换额外酬劳，先口述推演，再要求工班在停运段核验磨痕与支护；以能否交工的实际压力争取保留逃生支岔，接受失去加价续单。\",\n  \"endHook\": \"外山实际保留一条逃生支岔并补做关键制动、支护工序，林辰以较低报酬维持劳务，仍未能负重或进入古境。顾峤明确无三重不准入、不留位；墨的掳人夺泉筹备开始形成，尚未进入林苏认知。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_04\",\n    \"char_08\",\n    \"char_09\",\n    \"char_10\"\n  ],\n  \"locationIds\": [\n    \"loc_29\",\n    \"loc_28\",\n    \"loc_30\"\n  ],\n  \"arcBeatIds\": [\n    \"audit-mo-bargain\"\n  ],\n  \"requiredEvents\": [\n    \"数次空木柄握持失败与白榆要求退回低负荷被压缩为日常记录，林辰仍坐在药舍案边口述矿路，右手始终不碰笔。\",\n"
+          },
+          {
+            "sourceId": "plan/chapters/14",
+            "quote": "{\n  \"id\": \"chapter-14\",\n  \"chapterNumber\": 14,\n  \"volumeId\": \"vol_01\",\n  \"title\": \"不删的岔路\",\n  \"summary\": \"第23日至第39日，林辰将此前两次空木柄握持失败和医嘱退回低负荷的过程压入日常背景，继续以坐姿口述矿路图换取粮药。承包外山修缮的管事看中他熟悉旧矿道，愿按图结算，却要求删去逃生支岔、压低支护与制动料用量，以便把账面节余留作额外酬劳。林辰拒绝删改自己口述的新绘矿路劳务图，也不再去柜台重复申诉；他口述，由韩叙摆放桌上木块、斜板，以矿车惯性复现岔道失效后的滑行路径，指出删支岔会把普通修缮变成下一次困人事故。林辰提出由当班工人在停运段做空车与支护核验；工班带回磨痕和侧偏记录，原压料方案过不了交工验收，管事才接受保留逃生支岔、补足关键制动木与支护料的实际修缮决定，却取消林辰原可拿到的额外酬劳，已登记基础页款按原约支付，图页只以“伤者口述待核”名义归档。苏继续沿限定路线核对公开承运记录，顾峤则明确凝元三重、联名符牌与实测伤况缺一不可，绝不为林预留古境位置。另一边，墨幽屠在青灵坊市普通后街等到徒步赶来的信使，收到矿道行动失败的实体回报，将灭口失手转为筹备下一期掳人夺泉的计划；此事只为读者所知。\",\n  \"characterGoals\": \"林辰要以矿工经验换取稳定生计，同时保住逃生图的真实性；苏凌霜要从公开承运链继续取证；顾峤要守住古境三重准入；墨幽屠要把失败行动转化为可交易的掳人夺泉计划。\",\n  \"conflict\": \"承包方以额外酬劳诱使林辰压料删图，既能解决他眼前粮药困境，也会把下一批矿工置于无逃路的风险；林辰重伤且仍是淬体，无法靠武力或术法逼迫对方。古境资格也不能由劳务、同情或顾峤口头预留替代。\",\n  \"choice\": \"林辰拒绝删图换额外酬劳，先口述推演，再要求工班在停运段核验磨痕与支护；以能否交工的实际压力争取保留逃生支岔，接受失去加价续单。\",\n  \"cost\": \"林辰失去额外酬劳和可提前换取的肉食份额，只保有基本粮药；他的矿路经验被登记为待核材料，不能当作父案证据或古境担保。墨已转向下一期行动，主角尚不知其身份与计划。\",\n  \"threads\": [\n    \"th_01\",\n    \"sec_01\",\n    \"sec_02\",\n    \"rel_01\",\n    \"rel_03\",\n    \"rel_09\"\n  ],\n  \"endState\": \"外山实际保留一条逃生支岔并补做关键制动、支护工序，林辰以较低报酬维持劳务，仍未能负重或进入古境。顾峤明确无三重不准入、不留位；墨的掳人夺泉筹备开始形成，尚未进入林苏认知。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n"
+          },
+          {
+            "sourceId": "plan/chapters/23",
+            "quote": "{\n  \"id\": \"chapter-23\",\n  \"chapterNumber\": 23,\n  \"volumeId\": \"vol_01\",\n  \"title\": \"黑纹下的元罡\",\n  \"summary\": \"第187日，秦禾从归路侧安全岔口沿22章核过的短支路返回装车区外壁后与林辰、苏凌霜会合，补齐点检哨、铃绳和主营装车区的见闻。三人亲听巡守称营地主事为“墨少主”，秦禾说明自己被扣时见过名牌全名“墨幽屠”，林苏至此才核定敌首身份。隔货棚木缝，众人看见墨幽屠以幽冥噬血爪惩戒一名失误看守：只短施一息即收爪，看守当时未施任何护体术，前臂裸露；墨近身扣住其手腕后才让爪煞擦过该处，令其出血，不涉及破开未定义的凝元护体；墨的指骨黑纹随之加深，后自行割指放血并压住浅口止血，但玄府元罡未散，反噬不能当作其失去战力。林见放血后的墨仍以已学贴身运罡把已解闸、作者执行总重四百八十斤的滑车沿平地推开一步，放弃趁放血近身偷袭的短暂念头，把眼光转到低顶侧廊与废料斗，提出让同阶的顾迎住墨、自己用倒料遮断直扑视线的方案，并只核实轻小插销与落料方向。苏质疑遮挡如何救囚，提出自己引开凝元看守，三人遂把战法改为林开普通囚棚与制造遮挡、苏接人并牵制看守、顾若实际到场则获三息蓄势窗口。独立视角中，墨因秦逃脱暴露风险又收到上层实体催交，决定188日辰末转运货物与囚者，命两名封路看守在188日卯初05:00撤回束笼绑货、检车押运。两名封路看守本是笼车护送搭档，重笼车过窄坡必须一人前方控向、一人后方勒住溜车，余下看守正分守囚棚和货台。墨可以延后起运或分批运送来留一人守哨，却因逃人暴露与实体催交决定整批赶运，拒绝这两个选项；他自恃玄府在营，宁肯暂失归路预警也不丢囚货。林苏只从现场撤哨口令得知可能出现通路，不能知道催令内容。\",\n  \"characterGoals\": \"林要找出自己在同阶执事对玄府战斗中能承担的动作；苏要让遮挡方案实际打开囚者撤路；秦要带新图送信并保有自保选择；墨要将有限人手集中用于辰末转运，保住上交货物。\",\n  \"conflict\": \"墨幽屠仍有玄府元罡及已实际使用的噬血爪与贴身推劲，凝元御物与普通闸门无法封禁他；林苏若没有顾的实际到场，任何诱敌方案都会把囚者和自己暴露给玄府强敌。\",\n  \"choice\": \"林苏依亲见的元罡与地形共同设计分工：顾若实际到场承担正面对抗，林开笼、以普通落料遮视，苏接人并隔开凝元看守。秦携新图去盯路口，撤哨口令必须以现场实际撤走为准。\",\n  \"cost\": \"墨收拢封路人手备转运，使营地内护货人手集中，林苏更难单独开笼；可利用的仍只是顾到场后短暂形成的遮挡。两人放弃靠泉货台的近观察位置，秦继续承担再次送信的暴露风险。\",\n  \"threads\": [\n    \"th_01\",\n    \"sec_01\",\n    \"sec_02\",\n"
+          }
+        ],
+        "revisionAdvice": ""
+      },
+      {
+        "criterion": "pacing",
+        "verdict": "revise",
+        "explanation": "林辰拒绝删图、以桌面推演和停运实测迫使管事保留逃生支岔，并承担失去加价续单的代价，构成完整的本章选择与后果。墨线也有等待信使、阅报、收图谱、改令等可呈现动作，并非纯规则说明；但其在公共后街公开改令掳人而缺少隐蔽行动逻辑，会显得位置改动只为绕过总坛门槛，削弱反派线的可信压力。",
+        "evidence": [
+          {
+            "sourceId": "story/chapterPlans/chapter-plan-14",
+            "quote": "{\n  \"id\": \"chapter-plan-14\",\n  \"chapterNumber\": 14,\n  \"title\": \"不删的岔路\",\n  \"purpose\": \"第23日至第39日，林辰将此前两次空木柄握持失败和医嘱退回低负荷的过程压入日常背景，继续以坐姿口述矿路图换取粮药。承包外山修缮的管事看中他熟悉旧矿道，愿按图结算，却要求删去逃生支岔、压低支护与制动料用量，以便把账面节余留作额外酬劳。林辰拒绝删改自己口述的新绘矿路劳务图，也不再去柜台重复申诉；他口述，由韩叙摆放桌上木块、斜板，以矿车惯性复现岔道失效后的滑行路径，指出删支岔会把普通修缮变成下一次困人事故。林辰提出由当班工人在停运段做空车与支护核验；工班带回磨痕和侧偏记录，原压料方案过不了交工验收，管事才接受保留逃生支岔、补足关键制动木与支护料的实际修缮决定，却取消林辰原可拿到的额外酬劳，已登记基础页款按原约支付，图页只以“伤者口述待核”名义归档。苏继续沿限定路线核对公开承运记录，顾峤则明确凝元三重、联名符牌与实测伤况缺一不可，绝不为林预留古境位置。另一边，墨幽屠在青灵坊市普通后街等到徒步赶来的信使，收到矿道行动失败的实体回报，将灭口失手转为筹备下一期掳人夺泉的计划；此事只为读者所知。\",\n  \"conflict\": \"承包方以额外酬劳诱使林辰压料删图，既能解决他眼前粮药困境，也会把下一批矿工置于无逃路的风险；林辰重伤且仍是淬体，无法靠武力或术法逼迫对方。古境资格也不能由劳务、同情或顾峤口头预留替代。\",\n  \"turningPoint\": \"林辰拒绝删图换额外酬劳，先口述推演，再要求工班在停运段核验磨痕与支护；以能否交工的实际压力争取保留逃生支岔，接受失去加价续单。\",\n  \"endHook\": \"外山实际保留一条逃生支岔并补做关键制动、支护工序，林辰以较低报酬维持劳务，仍未能负重或进入古境。顾峤明确无三重不准入、不留位；墨的掳人夺泉筹备开始形成，尚未进入林苏认知。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_04\",\n    \"char_08\",\n    \"char_09\",\n    \"char_10\"\n  ],\n  \"locationIds\": [\n    \"loc_29\",\n    \"loc_28\",\n    \"loc_30\"\n  ],\n  \"arcBeatIds\": [\n    \"audit-mo-bargain\"\n  ],\n  \"requiredEvents\": [\n    \"数次空木柄握持失败与白榆要求退回低负荷被压缩为日常记录，林辰仍坐在药舍案边口述矿路，右手始终不碰笔。\",\n"
+          },
+          {
+            "sourceId": "story/chapterPlans/chapter-plan-14",
+            "quote": "    \"承包方管事把结算木牌推到林辰面前，要求删掉逃生支岔、把制动木和支护料改成较低数额，承诺将省下的钱折进他的额外酬劳。\",\n    \"林辰口述坡度，由韩叙摆木块和斜板推演矿车失控后的路线，指出被删的岔路正是伤员离开主槽的唯一缓冲。\",\n    \"管事以取消后续加价图件相逼，林辰仍拒绝删改劳务图，提出先让当班工人在停运段按韩叙标出的坡度做空车、卸载与支护核验。工班带回磨痕和侧偏记录后，管事发现删岔方案无法通过交工验收，只能保留支岔、补足用料；林辰丢掉加价续单，已登记基础页款仍按原约结算。\",\n    \"苏在限定路线内比对公开承运栏，将尚缺交接册的批次圈给林辰；顾峤来核验采集名册，明确凝元三重、联名符牌和届时实测缺一不可，不替他预留位置。\",\n    \"青灵坊市人流渐散的普通后街，墨幽屠等到沿外山公共道路徒步赶来的信使，当面接过矿道行动失败的纸报。此处是集镇公共街面，双方没有进入总坛、死渊或商铺内室，也不在现场交易、施术或私斗。墨看完纸报，收起未炼成的万鬼幡图谱，低声改令手下筹备下一期可掳走的采集者与泉液去向；消息只到在场收报者，林苏不在这条街上。\"\n  ]\n}"
+          },
+          {
+            "sourceId": "plan/chapters/14",
+            "quote": "{\n  \"id\": \"chapter-14\",\n  \"chapterNumber\": 14,\n  \"volumeId\": \"vol_01\",\n  \"title\": \"不删的岔路\",\n  \"summary\": \"第23日至第39日，林辰将此前两次空木柄握持失败和医嘱退回低负荷的过程压入日常背景，继续以坐姿口述矿路图换取粮药。承包外山修缮的管事看中他熟悉旧矿道，愿按图结算，却要求删去逃生支岔、压低支护与制动料用量，以便把账面节余留作额外酬劳。林辰拒绝删改自己口述的新绘矿路劳务图，也不再去柜台重复申诉；他口述，由韩叙摆放桌上木块、斜板，以矿车惯性复现岔道失效后的滑行路径，指出删支岔会把普通修缮变成下一次困人事故。林辰提出由当班工人在停运段做空车与支护核验；工班带回磨痕和侧偏记录，原压料方案过不了交工验收，管事才接受保留逃生支岔、补足关键制动木与支护料的实际修缮决定，却取消林辰原可拿到的额外酬劳，已登记基础页款按原约支付，图页只以“伤者口述待核”名义归档。苏继续沿限定路线核对公开承运记录，顾峤则明确凝元三重、联名符牌与实测伤况缺一不可，绝不为林预留古境位置。另一边，墨幽屠在青灵坊市普通后街等到徒步赶来的信使，收到矿道行动失败的实体回报，将灭口失手转为筹备下一期掳人夺泉的计划；此事只为读者所知。\",\n  \"characterGoals\": \"林辰要以矿工经验换取稳定生计，同时保住逃生图的真实性；苏凌霜要从公开承运链继续取证；顾峤要守住古境三重准入；墨幽屠要把失败行动转化为可交易的掳人夺泉计划。\",\n  \"conflict\": \"承包方以额外酬劳诱使林辰压料删图，既能解决他眼前粮药困境，也会把下一批矿工置于无逃路的风险；林辰重伤且仍是淬体，无法靠武力或术法逼迫对方。古境资格也不能由劳务、同情或顾峤口头预留替代。\",\n  \"choice\": \"林辰拒绝删图换额外酬劳，先口述推演，再要求工班在停运段核验磨痕与支护；以能否交工的实际压力争取保留逃生支岔，接受失去加价续单。\",\n  \"cost\": \"林辰失去额外酬劳和可提前换取的肉食份额，只保有基本粮药；他的矿路经验被登记为待核材料，不能当作父案证据或古境担保。墨已转向下一期行动，主角尚不知其身份与计划。\",\n  \"threads\": [\n    \"th_01\",\n    \"sec_01\",\n    \"sec_02\",\n    \"rel_01\",\n    \"rel_03\",\n    \"rel_09\"\n  ],\n  \"endState\": \"外山实际保留一条逃生支岔并补做关键制动、支护工序，林辰以较低报酬维持劳务，仍未能负重或进入古境。顾峤明确无三重不准入、不留位；墨的掳人夺泉筹备开始形成，尚未进入林苏认知。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n"
+          },
+          {
+            "sourceId": "plan/chapters/14",
+            "quote": "    \"char_04\",\n    \"char_08\",\n    \"char_09\",\n    \"char_10\"\n  ],\n  \"location\": \"loc_29太清外门药舍、loc_28太清外山矿务区与loc_30青灵坊市普通后街\",\n  \"storyTime\": \"第23日至第39日，劳务议价、现场复现与公开核档并行\",\n  \"scenes\": [\n    \"数次空木柄握持失败与白榆要求退回低负荷被压缩为日常记录，林辰仍坐在药舍案边口述矿路，右手始终不碰笔。\",\n    \"承包方管事把结算木牌推到林辰面前，要求删掉逃生支岔、把制动木和支护料改成较低数额，承诺将省下的钱折进他的额外酬劳。\",\n    \"林辰口述坡度，由韩叙摆木块和斜板推演矿车失控后的路线，指出被删的岔路正是伤员离开主槽的唯一缓冲。\",\n    \"管事以取消后续加价图件相逼，林辰仍拒绝删改劳务图，提出先让当班工人在停运段按韩叙标出的坡度做空车、卸载与支护核验。工班带回磨痕和侧偏记录后，管事发现删岔方案无法通过交工验收，只能保留支岔、补足用料；林辰丢掉加价续单，已登记基础页款仍按原约结算。\",\n    \"苏在限定路线内比对公开承运栏，将尚缺交接册的批次圈给林辰；顾峤来核验采集名册，明确凝元三重、联名符牌和届时实测缺一不可，不替他预留位置。\",\n    \"青灵坊市人流渐散的普通后街，墨幽屠等到沿外山公共道路徒步赶来的信使，当面接过矿道行动失败的纸报。此处是集镇公共街面，双方没有进入总坛、死渊或商铺内室，也不在现场交易、施术或私斗。墨看完纸报，收起未炼成的万鬼幡图谱，低声改令手下筹备下一期可掳走的采集者与泉液去向；消息只到在场收报者，林苏不在这条街上。\"\n  ],\n  \"source\": \"author\",\n  \"executionChecks\": [\n    {\n      \"id\": \"mo-public-message-location\",\n      \"requirement\": \"墨在青灵坊市普通公共后街等信使沿外山公共道路徒步到场，收到矿道失败纸报后才改令。该场不进入总坛或死渊，不借少主身份取得准入、防护或新增法宝；图谱仍未炼成王器，林苏不因读者看到接报而知情。\"\n    }\n  ]\n}"
+          }
+        ],
+        "revisionAdvice": "保留林线现有的实测与失酬代价；将墨线的接报和改令落实为受公共环境制约的具体人物行动，使场景既能提供读者先知，也不会把公共坊市写成无人巡查的便利密室。"
+      }
+    ],
+    "modelResponses": [
+      "{\"requestId\":\"review_680dabd4bd54789938e2fcc3\",\"summary\":\"第14章的位置修订已将墨幽屠的接报从总坛/死渊门槛中移出，且读者先知与林苏后续核名的安排相容；但公共后街接报后直接改令的隐蔽机制和对地方巡查的可执行约束仍未设计，需补足该场行为边界。\",\"checks\":[{\"criterion\":\"causality\",\"verdict\":\"revise\",\"explanation\":\"地点设定明确青灵坊市是受大乾商税与巡查约束的普通集镇，不是黑窟外围；墨的宗门身份也不自动证明他有总坛血契、血税或死渊防护。因此，改为在公共后街接实体纸报确实避开了原总坛、死渊准入条件。可是章纲只写人流渐散、低声改令，未说明外围信使如何识别并接触墨、改令交给谁，或如何避免巡查与普通市民将这名玄府邪修及其“掳走采集者”的命令直接暴露。不能以“普通后街”替代公共场所的隐蔽与巡查限制。\",\"evidence\":[{\"fragmentId\":\"e56\"},{\"fragmentId\":\"e67\"},{\"fragmentId\":\"e76\"},{\"fragmentId\":\"e122\"}],\"revisionAdvice\":\"为第14章补明公共街面可执行的接头、传令和避巡查方式，以及一旦被盘问或被旁人听见时墨与信使的撤止边界；不得借此新增血契、死渊准入、法宝、通行特权或未设定前史。\"},{\"criterion\":\"timeline\",\"verdict\":\"pass\",\"explanation\":\"第14章安排墨在收到矿道行动失败的实体纸报后才转向下一期掳人计划，且限定为读者独立视角。关系阶段同步规定14—18章读者知道墨组织行动、主角尚不能确定其身份；第23章才由“墨少主”称呼和秦禾核名使林苏确认墨幽屠。第23章墨方的后续催交与188日转运决定也没有倒灌为第14章主角知情，时序和认知边界可相容。\",\"evidence\":[{\"fragmentId\":\"e71\"},{\"fragmentId\":\"e75\"},{\"fragmentId\":\"e121\"},{\"fragmentId\":\"e141\"}],\"revisionAdvice\":\"\"},{\"criterion\":\"pacing\",\"verdict\":\"revise\",\"explanation\":\"林辰拒绝删图、以桌面推演和停运实测迫使管事保留逃生支岔，并承担失去加价续单的代价，构成完整的本章选择与后果。墨线也有等待信使、阅报、收图谱、改令等可呈现动作，并非纯规则说明；但其在公共后街公开改令掳人而缺少隐蔽行动逻辑，会显得位置改动只为绕过总坛门槛，削弱反派线的可信压力。\",\"evidence\":[{\"fragmentId\":\"e75\"},{\"fragmentId\":\"e76\"},{\"fragmentId\":\"e121\"},{\"fragmentId\":\"e122\"}],\"revisionAdvice\":\"保留林线现有的实测与失酬代价；将墨线的接报和改令落实为受公共环境制约的具体人物行动，使场景既能提供读者先知，也不会把公共坊市写成无人巡查的便利密室。\"}]}"
+    ]
+  },
+  "replayModelCalls": 0
+}

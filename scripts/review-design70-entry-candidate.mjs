@@ -8,7 +8,9 @@ const sha=x=>createHash('sha256').update(x).digest('hex');
 const fileHash=p=>sha(fs.readFileSync(p));
 const mode=process.argv[2];
 assert.ok(['--check','--execute','--verify'].includes(mode));
-const requestProofPath='docs/audits/2026-10-17-design70-entry-content-request.json';
+assert.ok(process.argv.length===3||(process.argv.length===4&&process.argv[3]==='--v2'));
+const suffix=process.argv[3]==='--v2'?'-v2':'';
+const requestProofPath=`docs/audits/2026-10-17-design70-entry-content-request${suffix}.json`;
 const prepared=read(requestProofPath);
 assert.equal(fileHash(prepared.candidatePath),prepared.candidateSha256);
 assert.equal(fileHash(prepared.inputPath),prepared.inputSha256);
@@ -87,7 +89,7 @@ if(mode==='--execute'){
    model:state.model,fallback:state.fallback,modelCalls:state.usage.calls,responsesReplayed:cursor,result:state.result,
    replayModelCalls:0,productionWrites:0,formalAcceptance:false,
    limitation:'One bounded content review of the isolated location candidate. Does not apply it, approve a plan, resolve production questions or replace complete design review.'};
- const proofPath='docs/audits/2026-10-17-design70-entry-content-review.json';
+ const proofPath=`docs/audits/2026-10-17-design70-entry-content-review${suffix}.json`;
  assert.ok(!fs.existsSync(proofPath),'Preserve prior verification');
  fs.writeFileSync(proofPath,JSON.stringify(proof,null,2)+'\n',{flag:'wx'});
  console.log(JSON.stringify({verified:true,responsesReplayed:cursor,modelCalls:state.usage.calls,checks:state.result.checks.map(({criterion,verdict})=>({criterion,verdict})),formalAcceptance:false}));
