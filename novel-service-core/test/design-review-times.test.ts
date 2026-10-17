@@ -45,7 +45,7 @@ test('time navigation separates chapter numbers from days and retains conflictin
 test('v32 navigation survives full staged restoration without altering v31 coverage or accepting index citations', () => {
   const original = input();
   original.sources.push({ id: 'large', text: '其他完整原文。'.repeat(45000) });
-  const old = createDesignReviewRun(original, undefined, 31), run = createDesignReviewRun(original, old.createdAt);
+  const old = createDesignReviewRun(original, undefined, 31), run = createDesignReviewRun(original, old.createdAt, 32);
   assert.equal(run.scheduleVersion, 32);
   assert.deepEqual(run.units, old.units);
   assert.deepEqual(run.stages, old.stages);

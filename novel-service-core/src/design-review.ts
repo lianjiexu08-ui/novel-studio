@@ -43,6 +43,8 @@ export interface DesignReviewInput {
   stage?: {
     kind: 'batch' | 'cross' | 'synthesis'; label: string; totalBatches: number;
     followupFor?: string;
+    /** v33: finite source navigation after a dedicated follow-up; never approval. */
+    followupBudget?: { remainingRounds: number };
     /** v16 gives required new sources, original evidence and the question room together. */
     evidenceLimit?: 96;
     /** v17 checks the expanded report envelope during the model repair loop. */
@@ -280,7 +282,7 @@ export function validateDesignReview(input: DesignReviewInput, result: DesignRev
     if (check.verdict !== 'insufficient' && check.evidence.length === 0) throw new DesignReviewError('通过或返修结论必须提供原文证据');
     if (check.verdict !== 'pass' && !check.revisionAdvice?.trim()) throw new DesignReviewError('未通过项目必须给出补充或返修要求');
     if (check.awaitingSources !== undefined) {
-      if (input.stage?.followupFor) throw new DesignReviewError('专门补读不得递归建立等待；仍缺必要材料时保留普通材料不足');
+      if (input.stage?.followupFor && !(Number.isSafeInteger(input.stage.followupBudget?.remainingRounds) && input.stage.followupBudget!.remainingRounds > 0)) throw new DesignReviewError('专门补读不得递归建立等待；仍缺必要材料时保留普通材料不足');
       const coverage = input.stage?.coverage;
       if (check.verdict !== 'insufficient' || input.stage?.kind === 'synthesis' || coverage?.mode !== 'local_sources' || !Array.isArray(check.awaitingSources) || !check.awaitingSources.length || check.awaitingSources.length > maxDesignReviewAwaitingSources || new Set(check.awaitingSources).size !== check.awaitingSources.length) throw new DesignReviewError(`等待补读只能用于局部材料不足，并指定1至${maxDesignReviewAwaitingSources}个不同的未读来源`);
       for (const sourceId of check.awaitingSources) {

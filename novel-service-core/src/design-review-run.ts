@@ -39,7 +39,7 @@ export interface DesignReviewRun {
   /** A deliberate new assessment; the prior run and its findings stay intact. */
   restartedFromRunId?: string;
   /** Absent on persisted legacy schedules, which must resume without reshuffling. */
-  scheduleVersion?: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | 32;
+  scheduleVersion?: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | 32 | 33;
   input: DesignReviewInput;
   units: DesignReviewUnit[];
   stages: DesignReviewStage[];
@@ -53,8 +53,8 @@ export interface DesignReviewRun {
 
 /** All raw text is retained. Cross checks co-read every pair of partitions;
  * synthesis then combines every finding without allowing a blocker to disappear. */
-export function createDesignReviewRun(input: DesignReviewInput, now = new Date().toISOString(), scheduleVersion: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | 32 = input.purpose === 'chapter_review' ? 31 : 32): DesignReviewRun {
-  if (!Number.isInteger(scheduleVersion) || scheduleVersion < 1 || scheduleVersion > 32) throw new DesignReviewError('未知评审调度版本');
+export function createDesignReviewRun(input: DesignReviewInput, now = new Date().toISOString(), scheduleVersion: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | 32 | 33 = input.purpose === 'chapter_review' ? 31 : 33): DesignReviewRun {
+  if (!Number.isInteger(scheduleVersion) || scheduleVersion < 1 || scheduleVersion > 33) throw new DesignReviewError('未知评审调度版本');
   if (new Set(input.sources.map(s => s.id)).size !== input.sources.length) throw new DesignReviewError('评审来源 ID 重复');
   const units: DesignReviewUnit[] = [];
   const stages: DesignReviewStage[] = [];
@@ -140,7 +140,7 @@ export function createDesignReviewRun(input: DesignReviewInput, now = new Date()
     }
     level = next;
   }
-  return { id: `design_run_${randomUUID()}`, ...(scheduleVersion >= 2 ? { scheduleVersion: scheduleVersion as 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | 32 } : {}), input: structuredClone(input), units, stages, status: 'ready', createdAt: now, updatedAt: now };
+  return { id: `design_run_${randomUUID()}`, ...(scheduleVersion >= 2 ? { scheduleVersion: scheduleVersion as 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | 32 | 33 } : {}), input: structuredClone(input), units, stages, status: 'ready', createdAt: now, updatedAt: now };
 }
 
 function chapterUnitGroups(sources: DesignReviewSource[], units: DesignReviewUnit[]): DesignReviewUnit[][] {
@@ -217,12 +217,37 @@ function resultSource(run: DesignReviewRun, stage: DesignReviewStage, cache = re
   return source;
 }
 function deferrals(run: DesignReviewRun, before = run.stages.length) {
-  return run.stages.slice(0, before).flatMap(stage => stage.kind === 'synthesis' || stage.followupFor ? [] : (stage.result?.checks ?? []).filter(check => check.verdict === 'insufficient' && check.awaitingSources?.length).map(check => ({
+  return run.stages.slice(0, before).flatMap(stage => stage.kind === 'synthesis' || stage.followupFor && (run.scheduleVersion ?? 1) < 33 ? [] : (stage.result?.checks ?? []).filter(check => check.verdict === 'insufficient' && check.awaitingSources?.length).map(check => ({
     id: `${stage.id}/${check.criterion}`, stage, check,
     question: { id: `review-question/${stage.id}/${check.criterion}`, text: JSON.stringify({ criterion: check.criterion, explanation: check.explanation, revisionAdvice: check.revisionAdvice, awaitingSources: check.awaitingSources }, null, 2) },
   })));
 }
+// Three dedicated reads per original question. Old schedules never use this
+// chain; every original negative and every later navigation request is retained.
+const maxFollowupRounds = 3;
+function pendingChain(run: DesignReviewRun, pending: ReturnType<typeof deferrals>[number]) {
+  const all = deferrals(run), chain = [pending], seen = new Set([pending.id]);
+  let parentId = pending.stage.followupFor;
+  while (parentId) {
+    const parent = all.find(item => item.id === parentId);
+    if (!parent || seen.has(parent.id)) throw new DesignReviewError('补读来源链缺失或循环');
+    chain.push(parent); seen.add(parent.id); parentId = parent.stage.followupFor;
+  }
+  return chain;
+}
+function citedSourceIds(run: DesignReviewRun, pending: ReturnType<typeof deferrals>[number]): string[] {
+  return [...new Set(pending.check.evidence.flatMap(e => {
+    const unit = run.units.find(u => u.id === e.sourceId && pending.stage.unitIds.includes(u.id));
+    return unit ? [unit.sourceId] : [];
+  }))];
+}
 function coversDeferral(run: DesignReviewRun, stage: DesignReviewStage, pending: ReturnType<typeof deferrals>[number], cache = reviewReadCache()) {
+  if (stage.followupFor && (run.scheduleVersion ?? 1) >= 33) {
+    const direct = deferrals(run).find(item => item.id === stage.followupFor);
+    if (!direct || !pendingChain(run, direct).some(item => item.id === pending.id)) return false;
+    const required = new Set([...citedSourceIds(run, pending), ...pending.check.awaitingSources!]);
+    return run.units.filter(u => required.has(u.sourceId)).every(u => stage.unitIds.includes(u.id));
+  }
   if (stage.followupFor) return (run.scheduleVersion ?? 1) >= 5 && stage.followupFor === pending.id
     && followupUnits(run, pending, cache)?.every(id => stage.unitIds.includes(id)) === true;
   return stage.kind !== 'synthesis' && [...pending.stage.unitIds, ...run.units.filter(u => pending.check.awaitingSources!.includes(u.sourceId)).map(u => u.id)].every(id => stage.unitIds.includes(id));
@@ -237,21 +262,20 @@ function followupUnits(run: DesignReviewRun, pending: ReturnType<typeof deferral
 }
 function computeFollowupUnits(run: DesignReviewRun, pending: ReturnType<typeof deferrals>[number], cache: ReviewReadCache): string[] | undefined {
   const sources = designReviewUnitSources(run);
-  const required = run.units.filter(u => pending.check.awaitingSources!.includes(u.sourceId)).map(u => u.id);
-  const cited = new Set(pending.check.evidence.flatMap(e => {
-    const unit = run.units.find(u => u.id === e.sourceId && pending.stage.unitIds.includes(u.id));
-    return unit ? [unit.sourceId] : [];
-  }));
+  const chain = (run.scheduleVersion ?? 1) >= 33 ? pendingChain(run, pending) : [pending];
+  const requested = [...new Set(chain.flatMap(item => item.check.awaitingSources!))];
+  const required = run.units.filter(u => requested.includes(u.sourceId)).map(u => u.id);
+  const cited = new Set(chain.flatMap(item => citedSourceIds(run, item)));
   // One citation per original/requested source and one for the question must
   // be expressible without violating the result contract.
   const citationLimit = (run.scheduleVersion ?? 1) >= 16 ? maxDesignReviewEvidence : 64;
-  if (new Set([...cited, ...pending.check.awaitingSources!]).size + 1 > citationLimit) return undefined;
-  const fits = (ids: string[]) => JSON.stringify([...sources.filter(s => ids.includes(s.id)), pending.question]).length <= designReviewCapacity;
+  if (new Set([...cited, ...requested]).size + chain.length > citationLimit) return undefined;
+  const fits = (ids: string[]) => JSON.stringify([...sources.filter(s => ids.includes(s.id)), ...chain.map(item => item.question)]).length <= designReviewCapacity;
   const citedUnits = run.units.filter(u => cited.has(u.sourceId)).map(u => u.id);
   const full = [...new Set([...pending.stage.unitIds, ...citedUnits, ...required])];
   const batches = run.stages.filter(s => s.kind === 'batch');
   const common = run.units.filter(u => batches.every(b => b.unitIds.includes(u.id))).map(u => u.sourceId);
-  const sourceIds = new Set([...cited, ...common, 'plan/overview', ...pending.check.awaitingSources!]);
+  const sourceIds = new Set([...cited, ...common, 'plan/overview', ...requested]);
   const focused = run.units.filter(u => sourceIds.has(u.sourceId)).map(u => u.id);
   if ((run.scheduleVersion ?? 1) >= 14) {
     // A reviewer can ask only for a technique's rule while also questioning
@@ -304,18 +328,21 @@ function relatedFollowupSources(run: DesignReviewRun, pending: ReturnType<typeof
 function scheduleFollowups(run: DesignReviewRun): void {
   if ((run.scheduleVersion ?? 1) < 5) return;
   const raw = run.stages.filter(s => s.kind !== 'synthesis' && !s.followupFor);
-  if (raw.some(s => !s.result) || run.stages.some(s => s.followupFor || s.kind === 'synthesis' && s.result)) return;
+  const chained = (run.scheduleVersion ?? 1) >= 33;
+  const retained = chained ? run.stages.filter(s => s.kind !== 'synthesis') : raw;
+  if (retained.some(s => !s.result) || run.stages.some(s => (!chained && s.followupFor) || s.kind === 'synthesis' && s.result)) return;
   const cache = reviewReadCache();
   const resolved = new Set(resolvedDeferrals(run, run.stages.length, cache).map(r => r.checkId));
   const followups: DesignReviewStage[] = [];
   for (const pending of deferrals(run)) {
     if (resolved.has(pending.id)) continue;
+    if (chained && (run.stages.some(s => s.followupFor === pending.id) || pendingChain(run, pending).length > maxFollowupRounds)) continue;
     const unitIds = followupUnits(run, pending, cache);
     if (unitIds) followups.push({ id: `followup-${pending.id}`, kind: 'cross', label: `原文补读 ${pending.id}`, unitIds, children: [], followupFor: pending.id, attempts: 0 });
   }
   if (!followups.length) return;
   const context = run.stages.find(s => s.kind === 'synthesis')?.unitIds ?? [];
-  let level = [...raw, ...followups].map(s => s.id);
+  let level = [...retained, ...followups].map(s => s.id);
   const synthesis: DesignReviewStage[] = [];
   let sequence = 0;
   while (level.length > 1) {
@@ -328,7 +355,7 @@ function scheduleFollowups(run: DesignReviewRun): void {
     }
     level = next;
   }
-  run.stages.splice(raw.length, run.stages.length - raw.length, ...followups, ...synthesis);
+  run.stages.splice(retained.length, run.stages.length - retained.length, ...followups, ...synthesis);
 }
 function resolvedDeferrals(run: DesignReviewRun, before = run.stages.length, cache = reviewReadCache()) {
   return deferrals(run, before).flatMap(pending => {
@@ -496,6 +523,7 @@ function readDesignReviewStageInput(run: DesignReviewRun, stage: DesignReviewSta
   return { ...structuredClone(run.input), rubric, sources, stage: {
     kind: stage.kind, label: stage.label, totalBatches: run.stages.filter(s => s.kind === 'batch').length,
     ...(followup ? { followupFor: followup.id } : {}),
+    ...(followup && (run.scheduleVersion ?? 1) >= 33 ? { followupBudget: { remainingRounds: Math.max(0, maxFollowupRounds - pendingChain(run, followup).length) } } : {}),
     ...((run.scheduleVersion ?? 1) >= 16 ? { evidenceLimit: 96 as const } : {}),
     ...((run.scheduleVersion ?? 1) >= 17 ? { reportBudget: { sourceId: `review-result/${stage.id}`, maxCharacters: scopedResultSourceCapacity } } : {}),
     ...((run.scheduleVersion ?? 1) >= 18 && coverage?.mode === 'local_sources' && !followup ? { requireInsufficiencyReason: true as const } : {}),
@@ -519,9 +547,19 @@ export function acceptDesignReviewStage(run: DesignReviewRun, stage: DesignRevie
  * only explicitly deferred unread-source questions can be settled by a raw
  * stage covering both the original material and every requested source. */
 export function completeDesignReviewRun(run: DesignReviewRun): { input: DesignReviewInput; result: DesignReviewResult } {
-  if (run.scheduleVersion !== undefined && ![2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32].includes(run.scheduleVersion)) throw new DesignReviewError('未知评审调度版本');
+  if (run.scheduleVersion !== undefined && ![2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33].includes(run.scheduleVersion)) throw new DesignReviewError('未知评审调度版本');
   const expected = createDesignReviewRun(run.input, run.createdAt, run.scheduleVersion ?? 1);
-  if ((run.scheduleVersion ?? 1) >= 5) {
+  if ((run.scheduleVersion ?? 1) >= 33) {
+    // Each completed round can reveal another bounded source request. Rebuild
+    // those rounds from their actual responses before accepting the schedule.
+    let next = expected.stages.find(s => s.kind !== 'synthesis' && !s.result);
+    while (next) {
+      const result = run.stages.find(s => s.id === next!.id)?.result;
+      if (!result) throw new DesignReviewError('原文覆盖或跨批检查未完成，不得形成整体结论');
+      acceptDesignReviewStage(expected, next, result);
+      next = expected.stages.find(s => s.kind !== 'synthesis' && !s.result);
+    }
+  } else if ((run.scheduleVersion ?? 1) >= 5) {
     // Validate the original raw results against canonical coverage before using
     // their citations to derive the only allowed follow-up schedule.
     for (const stage of expected.stages.filter(s => s.kind !== 'synthesis')) {

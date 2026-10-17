@@ -64,7 +64,7 @@ export function prepareDesignReviewEvidence(input: DesignReviewInput) {
   // Ordinary cross checks can settle several deferrals at once. They need the
   // same navigation help as dedicated follow-ups, while requiring only one
   // original-batch citation unless priorSourceIds explicitly says otherwise.
-  const pendingCitationRequirements = !snapshot.stage?.followupFor && snapshot.stage?.coverage?.pendingChecks?.length
+  const pendingCitationRequirements = (!snapshot.stage?.followupFor || snapshot.stage.followupBudget) && snapshot.stage?.coverage?.pendingChecks?.length
     ? snapshot.stage.coverage.pendingChecks.map(check => ({
       checkId: check.id, criterion: check.criterion,
       requiredSources: [...new Set([check.questionSourceId, ...(check.priorSourceIds ?? []), ...check.requiredSourceIds])].map(sourceId => ({
