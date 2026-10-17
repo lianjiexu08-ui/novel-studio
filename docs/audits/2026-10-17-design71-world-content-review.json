@@ -1,0 +1,1005 @@
+{
+  "preparedAt": "2026-10-17T01:23:02.565Z",
+  "candidateProofPath": "docs/audits/2026-10-17-design71-world-candidate.json",
+  "candidateProofSha256": "928153c47bb2fa20a079132faae44799d618269c5ef30b29bfd7814a6e215813",
+  "candidatePath": "data/design-candidates/design71-world-clarifications-v1.json",
+  "candidateSha256": "75aea66381caff3bab5f3b21ba6fba46f7f36ea83dfaf210839b890059f4c457",
+  "rehearsalPath": "docs/audits/2026-10-17-design71-world-save-rehearsal.json",
+  "rehearsalSha256": "2dd760532077442e4257acc2e924ea48ea76a43ca393a69c67660b617cc8bea7",
+  "inputPath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design71-world-content-review/input.json",
+  "inputSha256": "a38a65f53f4b0c812df12305454d26be83da82a22b17223a2ba580111ba1872f",
+  "fullInputPath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design71-world-save-rehearsal/full-world-input.json",
+  "fullInputSha256": "d22c8ad462f3f558dad6c9e52ff846ccaf3b70e8421b359f35895ee455422fbb",
+  "inputHash": "e1b42bf19cdc4a0a636da63acff3ce373d2792ccd795f6d79497084e98e042f5",
+  "isolatedPlanId": "plan_8ac6f54ec3ac45f89b2fe10d8a3f9a79",
+  "rubric": {
+    "causality": "仅复核本次两项局部修订：北境七名矿工的港内救助候查规则、地点与交接，及南渡货索宏观动作。核对loc_02、loc_25、ms_v2_boundary是否真正界定从开舱到暖房的身份、地点、责任和期限，还是以改规则之名免除既有入境要求。新增规则与暖房位置都是待审作者提案，不能冒充旧文已证明；检查与已知担保、防寒、船班、配载、人员任务、照护及经费是否相容。身份自报、舱单、获救和付款不能自动证明入境已获准。允许按明确规则候查，不要求先确认犯罪或先取得全文正文才可评设计。指出具体冲突或必要缺口，不因条目齐全通过。",
+    "timeline": "对照完整第30—33章、跨海规则和南渡节点，独立核定货索与箱角的实际承力者、动作章号、对象、时长、费用及失箱后果。历史补读原先只读31章、没读32章；本次必须读两章后判断宏观与细纲是否相容，不能继承先前返修也不能因作者说已修就自动通过。另核七人在291日获救至300日候查的交接顺序、夜的既有担保及301日返程是否区分；未核身份、未来经费与后续返乡不能提前当作事实。",
+    "pacing": "检查局部设计是否仍支撑人物选择和后果：林先救人而失去盯箱或追程机会，夜守撤离通道并承担耽误，港务救济不抹去伤情、追查与返乡困难。评估候查新增规则是否方便得失去可信冲突，是否暗中扩大角色权限、消除成本或将救人改为无条件全胜。它是作者设计约束，不要求正文逐条宣读行政清单；指出需要通过人物行动呈现的关键节点。本项不验收全书节奏或未生成正文文笔，也不要求展开51—100全部细纲。"
+  },
+  "runtimeBindingPath": "data/audit-runtimes/design71-runtime-bound.json",
+  "runtimeBindingSha256": "364993939a727451761a1f74fcfcbe80e7362f0fccb1517b5c14e79978b0b435",
+  "runtimePath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design71-runtime",
+  "requiredSourceIds": [
+    "world/locations/loc_02",
+    "world/locations/loc_25",
+    "world/axioms/ax_08",
+    "world/artifacts/art_16",
+    "world/artifacts/art_21",
+    "story/characters/char_05",
+    "plan/chapters/30",
+    "plan/chapters/31",
+    "plan/chapters/32",
+    "plan/chapters/33",
+    "plan/milestones/ms_growth_v1_crossing",
+    "plan/milestones/ms_v2_voyage",
+    "plan/milestones/ms_v2_boundary",
+    "plan/milestones/ms_v3_return"
+  ],
+  "sourceCharacters": 145114,
+  "selectedSources": [
+    {
+      "id": "author",
+      "sha256": "f442f82fa90ba8ba3f35f3487e8c04700dfab25f4309461c3c2400b026a5c565",
+      "characters": 434
+    },
+    {
+      "id": "world/overview",
+      "sha256": "4bd17f827785ffc7c809baa5c2fb799873729909f5525264238cfe60079e3d1d",
+      "characters": 2639
+    },
+    {
+      "id": "world/axioms/ax_01",
+      "sha256": "9b4cf41d20d10341215b75c064633660e3bbdbd46db40eb73e362f1cdbb6f1ea",
+      "characters": 805
+    },
+    {
+      "id": "world/axioms/ax_02",
+      "sha256": "77309954a44879de40e736ca017261fd49a3eb912853b0619b223d9f6a804a1b",
+      "characters": 210
+    },
+    {
+      "id": "world/axioms/ax_03",
+      "sha256": "7374eb90c1ff2385c53e6aec4fa59b2613c6bc7b60f0f0a75ef102d95e09a8ab",
+      "characters": 228
+    },
+    {
+      "id": "world/axioms/ax_04",
+      "sha256": "fd1141bcc5113668f44019f030eb375aaad5925129fd1217432959689886c899",
+      "characters": 372
+    },
+    {
+      "id": "world/axioms/ax_05",
+      "sha256": "81f0c43a0365496907a72b0dc70757f0836180eb86d73244853ccba8d2b39b8b",
+      "characters": 682
+    },
+    {
+      "id": "world/axioms/ax_06",
+      "sha256": "84738d52efd925e83d342f453313bb03df44073786623e1cb97384cc89d47a29",
+      "characters": 394
+    },
+    {
+      "id": "world/axioms/ax_07",
+      "sha256": "df8b0b4dd073dbe00e98dfe9521a4ba4a9925866ff91359975a0c8d6e72bf55a",
+      "characters": 919
+    },
+    {
+      "id": "world/axioms/ax_08",
+      "sha256": "cac7e1f1a900eb05ac144556b7f163087f8ca684710955028e0eaeac394c56a0",
+      "characters": 683
+    },
+    {
+      "id": "world/axioms/ax_09",
+      "sha256": "0c261e6a9219679c2d8fdd978423cb13e152e6390eb49746efbb82ce2933e377",
+      "characters": 341
+    },
+    {
+      "id": "world/axioms/ax_10",
+      "sha256": "058a29301718fceb65ad6257a359a7e5973d68a609bbfa08d8c74c023616347b",
+      "characters": 313
+    },
+    {
+      "id": "world/axioms/ax_11",
+      "sha256": "f06f32be8a59059f10ca118235ef7c85462b247fe2c24b7a1dae943fc020c7a6",
+      "characters": 1913
+    },
+    {
+      "id": "world/axioms/ax_12",
+      "sha256": "daf4eb121c54492e4ff0b0ee5ca883756a6d329446e0324aaac00a4ba3ac793e",
+      "characters": 694
+    },
+    {
+      "id": "world/axioms/ax_13",
+      "sha256": "6b5e5698dea923a314789e3d92237a88cb47264865f38b0012f4bfa54af85c61",
+      "characters": 1010
+    },
+    {
+      "id": "world/realms/realm_01",
+      "sha256": "49f1521eff2c164ba952015169e99c2012227a8c18ca75e98fc28f77eb1070e1",
+      "characters": 788
+    },
+    {
+      "id": "world/realms/realm_02",
+      "sha256": "73fb4db7f54e138968e57c8e0d5d1daab3f3ddc0136d862d4a332abfd389bc7a",
+      "characters": 334
+    },
+    {
+      "id": "world/realms/realm_03",
+      "sha256": "c8c5842b7f10f1869e6410b8370689b33880ed2b047caba32c14218e3755f43d",
+      "characters": 236
+    },
+    {
+      "id": "world/realms/realm_04",
+      "sha256": "5dec0225c873d520337b0ec0febaeb641a91b9c81b73d7bc32cb450d40b75430",
+      "characters": 481
+    },
+    {
+      "id": "world/realms/realm_05",
+      "sha256": "56e916a4c0bdbc59fcbe12c445de7c096b24d98be330969ade2693d8fc8a41bc",
+      "characters": 558
+    },
+    {
+      "id": "world/realms/realm_06",
+      "sha256": "af7e0581a01e2d048e13dc0240f8a1f92ef6cb1c5d390a0192667da4cbbd3095",
+      "characters": 673
+    },
+    {
+      "id": "world/realms/realm_07",
+      "sha256": "638bb907a79396af21f365f0f63284142f51a89c4c0a48d583d7f26541646c41",
+      "characters": 705
+    },
+    {
+      "id": "world/realms/realm_08",
+      "sha256": "a3b97b8cd0093283b5f2580407592bc61a1eecd24f894de5199d3066ceefdf92",
+      "characters": 1092
+    },
+    {
+      "id": "world/artifacts/art_16",
+      "sha256": "8202de560b5742380dc0b65521cb3200b65987c2a4b6a666af2cb83502eeea8f",
+      "characters": 600
+    },
+    {
+      "id": "world/artifacts/art_21",
+      "sha256": "5c5e3f71b869bfc7fa4b565fd7e8866728cb9495ed2f65a088797f715c00d9bb",
+      "characters": 946
+    },
+    {
+      "id": "world/locations/loc_01",
+      "sha256": "51ff1b3adbec7bd445f66717e1d2ed77b78ffc2e3a91e25438df79dc8715ecec",
+      "characters": 210
+    },
+    {
+      "id": "world/locations/loc_02",
+      "sha256": "cc4cc67f99164c0a09c20cde042b91ad10945a85ad3bc5774b4a2139ac4d19ea",
+      "characters": 822
+    },
+    {
+      "id": "world/locations/loc_03",
+      "sha256": "4f8c2f43b4ee34c2de7da16082afd407d124fb9620795518f48bd5d206a7f7f5",
+      "characters": 379
+    },
+    {
+      "id": "world/locations/loc_04",
+      "sha256": "79eb1ca48e4072c03d7fe1cbf20257bac5b82f713ea756a4c59e1e3ba9b9b471",
+      "characters": 167
+    },
+    {
+      "id": "world/locations/loc_05",
+      "sha256": "497d06f432918dd675a789b137d39cf4b2c329c1e09b16c143a9afabe3243cf6",
+      "characters": 177
+    },
+    {
+      "id": "world/locations/loc_06",
+      "sha256": "69759839616ec502ddce3e416809ac6fbc490ec51d4ec05910a89b3187dc4d5a",
+      "characters": 262
+    },
+    {
+      "id": "world/locations/loc_07",
+      "sha256": "f96adc6b94b87462574af37ec0dfa51b85790493cde9c540a407458bc233404d",
+      "characters": 176
+    },
+    {
+      "id": "world/locations/loc_08",
+      "sha256": "34da7b45233633dab77c31b090a7b57ce0d3488513f852c4adf6339be0dcf490",
+      "characters": 168
+    },
+    {
+      "id": "world/locations/loc_09",
+      "sha256": "5c374f236821c91b4cbecaa2b10c725e3b41b929e8a6405fd87d9ce3094da4c5",
+      "characters": 173
+    },
+    {
+      "id": "world/locations/loc_10",
+      "sha256": "d3d664a6ff41af89bc6e7891f50614992c51a9d286071d8c3e143cf1568fb0d8",
+      "characters": 164
+    },
+    {
+      "id": "world/locations/loc_11",
+      "sha256": "824f8eb52b44c722b2117d7fae3328cc24e6b6bc1320d6f148513cf7a6df5f4c",
+      "characters": 177
+    },
+    {
+      "id": "world/locations/loc_12",
+      "sha256": "a3fe23f31930ee123504667bbf675efc8e6236c4a4bdbc32d0d93e05a3331817",
+      "characters": 168
+    },
+    {
+      "id": "world/locations/loc_13",
+      "sha256": "1903fa4d025dd2e4df9657cdfe807c9cceb4dc7308909b3122eb9e8a224eb4f9",
+      "characters": 226
+    },
+    {
+      "id": "world/locations/loc_14",
+      "sha256": "01444daa0284791e1636088339ea4d22b1cb3fe8351b363ddce489b0b5e3ed70",
+      "characters": 288
+    },
+    {
+      "id": "world/locations/loc_15",
+      "sha256": "999450072fcea8770ea6e505aac8c3dedf02cbdbe0981e3c4c667ea5a2b270e6",
+      "characters": 257
+    },
+    {
+      "id": "world/locations/loc_16",
+      "sha256": "4645b29a32d875345d151fbdd0037898161ae5a609fb9980a40cfa4febd387a3",
+      "characters": 163
+    },
+    {
+      "id": "world/locations/loc_17",
+      "sha256": "76f48ebf694d12f89f0eb05f46478389850bd3c2095acc1fbe1da70b0ab40639",
+      "characters": 171
+    },
+    {
+      "id": "world/locations/loc_18",
+      "sha256": "7300152c8c72f635465896d4407d30b52dfc3db3e5df49c702838f995d544f25",
+      "characters": 166
+    },
+    {
+      "id": "world/locations/loc_19",
+      "sha256": "76216fd6c279bcce0d0e03e05f980985350358c016c9a851040898b5e08fbab5",
+      "characters": 173
+    },
+    {
+      "id": "world/locations/loc_20",
+      "sha256": "567b0b157db8013724adb4fab0fc81e1cd9dd449534cd372fae777409657c0c5",
+      "characters": 166
+    },
+    {
+      "id": "world/locations/loc_21",
+      "sha256": "cf644923b058c2750b6554012c5ac628498b7fde94b6131e7fe5d7b36d212354",
+      "characters": 640
+    },
+    {
+      "id": "world/locations/loc_22",
+      "sha256": "df29141127928df92f213aeaf6a35658a100d63531046d86fbe2f9caf699dd67",
+      "characters": 181
+    },
+    {
+      "id": "world/locations/loc_23",
+      "sha256": "d4e34749c992144c9d0594665872909fd121c46de059cefc91e342b00d95e1c5",
+      "characters": 181
+    },
+    {
+      "id": "world/locations/loc_24",
+      "sha256": "f5057abac0b99a6a0290a969f0a216bded1b72fe5fa675864dbac59853ac62bb",
+      "characters": 181
+    },
+    {
+      "id": "world/locations/loc_25",
+      "sha256": "bb908be04dcc92e5fd273d49dadfdbb95b5cf2dc51983e7b6e52d059e1d0b719",
+      "characters": 357
+    },
+    {
+      "id": "world/locations/loc_26",
+      "sha256": "9a27e60cca72104b8b36246db762857ff9cb1ce649ea1fd4404e79284f767882",
+      "characters": 288
+    },
+    {
+      "id": "world/locations/loc_27",
+      "sha256": "cf668406464f3adfcb59d515058e9f643f7130cb41b90ff33506ea07f210876b",
+      "characters": 181
+    },
+    {
+      "id": "world/locations/loc_28",
+      "sha256": "3fe24b7d143f4cdae6af93b95bad6ba33b9f3a54a1c5a6947e0ff3d4d434d925",
+      "characters": 314
+    },
+    {
+      "id": "world/locations/loc_29",
+      "sha256": "67161e8e8d372cf6b5d5d1e8b81a06a6e5d37b62c7ad8f3abb1b317c0c9447b7",
+      "characters": 318
+    },
+    {
+      "id": "world/locations/loc_30",
+      "sha256": "5d1f03e028ef0ed83f39cea1d813c6696cb1c42bd36747967b68aae71fbfbe2e",
+      "characters": 229
+    },
+    {
+      "id": "world/factions/fac_12",
+      "sha256": "b23ffb97a9549e8e601e0b58abbbe457b68002a24c7f9f14c0d94cad8bf7bbef",
+      "characters": 383
+    },
+    {
+      "id": "story/overview",
+      "sha256": "1d6be2ef90b2d0b21b7998b4798592e81a985de2257044acd58f894e3bbbdcb5",
+      "characters": 5131
+    },
+    {
+      "id": "story/characters/char_01",
+      "sha256": "400a561f4cdc1d022b11629aaa9bb4282b506f82246ab24777af60e4bab17c19",
+      "characters": 241
+    },
+    {
+      "id": "story/characters/char_02",
+      "sha256": "535f4a599754db95906859f962d13861be57f652858b0de039f9ab5451d57b25",
+      "characters": 371
+    },
+    {
+      "id": "story/characters/char_03",
+      "sha256": "183865f074513ddcfce8247e562de263e72fa91f31e45b0f6b43665beaf6fc47",
+      "characters": 268
+    },
+    {
+      "id": "story/characters/char_04",
+      "sha256": "bb7468fd0e4552b86826b87f4382d54d167ffcaf23e9952f6b4d7b0303e5e592",
+      "characters": 733
+    },
+    {
+      "id": "story/characters/char_05",
+      "sha256": "6b009951696a4ba22e8c073bd9f33968a2dd4b9a5cf203cb766ef80b17b96b03",
+      "characters": 222
+    },
+    {
+      "id": "story/characters/char_06",
+      "sha256": "4022e826723f6842f6496d91b16d3d775827fb78c2fcb7f3fff9370a3893f359",
+      "characters": 220
+    },
+    {
+      "id": "story/characters/char_07",
+      "sha256": "5ac955ca3fcbf7f67acd5057f18515ada24dd2d5ee9321437fdfa916949fbb5a",
+      "characters": 219
+    },
+    {
+      "id": "story/characters/char_08",
+      "sha256": "b7f3c35ec0b165f2bfe30dc73df775c074d72b633e4e3904c10bab417a587347",
+      "characters": 215
+    },
+    {
+      "id": "story/characters/char_09",
+      "sha256": "4824332bdf0c9ea541a07fde087e618baf0881298fb8971d45601aa3f6ceec51",
+      "characters": 266
+    },
+    {
+      "id": "story/characters/char_10",
+      "sha256": "728c48169654c91d23217351487954ec4b301207fc6685bb2ca85654f5105c01",
+      "characters": 957
+    },
+    {
+      "id": "story/characters/char_11",
+      "sha256": "f4251153f9c8413b7d02bd27f277c2bf94fb2d3f7c08ae5915e7582dcfe2fb08",
+      "characters": 331
+    },
+    {
+      "id": "story/characters/char_12",
+      "sha256": "036f3e0af061afe9cacee6e9ee79204ab0b89bf8935d5bb761d46b02892bb820",
+      "characters": 244
+    },
+    {
+      "id": "story/characters/char_13",
+      "sha256": "8fdecadd4996980bc9c68b525492f03606fe07173fa377894930dad739ea9a67",
+      "characters": 249
+    },
+    {
+      "id": "story/characters/char_14",
+      "sha256": "837c33d559427c663ca4a54a0ff06bd2b0b1b999bf5f7088891885682c980d61",
+      "characters": 251
+    },
+    {
+      "id": "story/characters/char_15",
+      "sha256": "92b4264031800c7855a191b7da0dd8c3bf066c07c2804a80c2b2dd27eccf61f8",
+      "characters": 255
+    },
+    {
+      "id": "story/characters/char_16",
+      "sha256": "4e72f59e19f96b3903e7d401c07357b460beb080a6b1250a5c3661f7979d6a62",
+      "characters": 258
+    },
+    {
+      "id": "story/characters/char_17",
+      "sha256": "e514c93ee189f6b5d891a26b49a6bb4680f34023dc14a80a4817502819a7e474",
+      "characters": 271
+    },
+    {
+      "id": "story/characters/char_18",
+      "sha256": "7b56a1e619b737eb67a138e5ee5ffafe6cf5e1409853890a1844c3e0b31ac726",
+      "characters": 248
+    },
+    {
+      "id": "story/characters/char_19",
+      "sha256": "cd913551aac15d33587289073f75e9dded94d0d052a0f1c72134198602bd6fa9",
+      "characters": 217
+    },
+    {
+      "id": "story/characters/char_20",
+      "sha256": "2df9e4f81d26f3ee2d4411b138bab36bdcdf87ab86e9e1c2e3da84724fba69d2",
+      "characters": 218
+    },
+    {
+      "id": "story/characters/char_21",
+      "sha256": "36a0501de15cabec61870606a14d8f8055f5958507fd7e5949418226d74a758e",
+      "characters": 263
+    },
+    {
+      "id": "story/characters/char_22",
+      "sha256": "bb8122aae6c3b24af36c7ef492e16771c7fda994d6941cd4094ebbf91047aa0b",
+      "characters": 228
+    },
+    {
+      "id": "story/characters/char_23",
+      "sha256": "9c8c08bf322cfed7200a72ddf1060af63b1c4fb71e5312471bf6e089cfd10ab6",
+      "characters": 452
+    },
+    {
+      "id": "story/characters/char_24",
+      "sha256": "d110ed49a69852d2681a0e3a93dd3648d4253058e61ee773dc2a4be403abda34",
+      "characters": 226
+    },
+    {
+      "id": "story/characters/char_25",
+      "sha256": "f4e90a3532e9a34524a509f181415adf847e08e055ad6f0aeb2cf30288ea7de8",
+      "characters": 229
+    },
+    {
+      "id": "story/relationships/rel_05",
+      "sha256": "8f83f16a989ab61daecdbdecc74b0e384cc40bde70d4946c70d6ce7557699df7",
+      "characters": 1015
+    },
+    {
+      "id": "story/arcs/arc_02",
+      "sha256": "14cd8e790d1258e9dfc92b9a6da26f8576b1c10ebf000e9d48ae32f2520ed9d5",
+      "characters": 638
+    },
+    {
+      "id": "story/arcs/arc_03",
+      "sha256": "b95b23e8442e300787fb4fa212f0874ea6f2d4af5c8809757843e1a7f458aea6",
+      "characters": 272
+    },
+    {
+      "id": "story/volumes/vol_01",
+      "sha256": "20779d9e88f4b6263ee1ae2f467224a555445b00c16f313fa1f726f425a2099e",
+      "characters": 499
+    },
+    {
+      "id": "story/volumes/vol_02",
+      "sha256": "c0090dc1f18ed402867caa380fcc55071eeefe219608990ae24fd629e114c076",
+      "characters": 678
+    },
+    {
+      "id": "story/volumes/vol_03",
+      "sha256": "3999876a8c3f268546283bf125a9f9c4b267392c28c53337b08cad564ae28bd4",
+      "characters": 537
+    },
+    {
+      "id": "plan/overview",
+      "sha256": "dca7aa428c62df71156450ccadf1aa4933fcad0dfb8d9fa270e5afdc9356c8d4",
+      "characters": 10737
+    },
+    {
+      "id": "plan/volumes/vol_01",
+      "sha256": "b29bb4dfc33ec569179f9541b635831929ea83d9762234ebb3799d26802da505",
+      "characters": 842
+    },
+    {
+      "id": "plan/volumes/vol_02",
+      "sha256": "fb3b7159c3283bc3a92a9ee31019b342bd58227e1a6e2df72a48b1bce18ec4e0",
+      "characters": 964
+    },
+    {
+      "id": "plan/volumes/vol_03",
+      "sha256": "6c79add16205a32d0dff06fd14f07a8ba09aeaec03c03ba8fe79f367f1678695",
+      "characters": 1103
+    },
+    {
+      "id": "plan/milestones/ms_growth_v1_crossing",
+      "sha256": "031dd9da3dd13e31af9771016255faa8823e28d6e393f8d7c6b8cf883b434ce7",
+      "characters": 855
+    },
+    {
+      "id": "plan/milestones/ms_v2_voyage",
+      "sha256": "b09ba3539d3706fc24bbba74d4e01f083ebade16597a2144ff1a691729852c20",
+      "characters": 2937
+    },
+    {
+      "id": "plan/milestones/ms_v2_boundary",
+      "sha256": "4da63e3dfd8dcadd551c62e3df2fa1ef4363b689ae8f4be6fb3ace0c4769a8bb",
+      "characters": 7112
+    },
+    {
+      "id": "plan/milestones/ms_v3_return",
+      "sha256": "81422021762f5767ae22e2903495a7e04619a27cb68a9ffb08e899fd7e2c3069",
+      "characters": 4978
+    },
+    {
+      "id": "plan/milestones/ms_v3_payoff",
+      "sha256": "71af953802373e7ad35b6b9c3d491ebd76adcd642195b6552e3eb472a798f586",
+      "characters": 1200
+    },
+    {
+      "id": "plan/chapters/30",
+      "sha256": "3610a36c6f2ed2eaacab32e5971bf9a500a52255170a8573f92d60d1f15de14f",
+      "characters": 1846
+    },
+    {
+      "id": "plan/chapters/31",
+      "sha256": "ec1013a14bd0ffff45a7c7911de84f972774677751c668bcff0332b53410dd1e",
+      "characters": 1927
+    },
+    {
+      "id": "plan/chapters/32",
+      "sha256": "75cb1a3f38159e5a5fd60d0a39f4f36c251412102857bc142b5868022b92c7b8",
+      "characters": 2351
+    },
+    {
+      "id": "plan/chapters/33",
+      "sha256": "47e6534dad17ae97b5a30703491d730e6a7e716741680d407e44e944eaf66474",
+      "characters": 3448
+    },
+    {
+      "id": "review-history/cross-3-5",
+      "sha256": "36e244bcb821298a47f7972ad0ec365d6f5cc7025b265c088a5e503ca84ed1f3",
+      "characters": 17321
+    },
+    {
+      "id": "review-history/cross-2-4",
+      "sha256": "b657736379bc619fbbe846bb3605c6a4065576fd0c17f2ae88c57d4815d774f8",
+      "characters": 18821
+    },
+    {
+      "id": "review-history/followup-cross-2-4/geography",
+      "sha256": "1a5e7e37b849ab85bc76e9eb093f6e00a9a84276a631cb56b329772c3aa103b6",
+      "characters": 10278
+    }
+  ],
+  "omittedSourceIds": [
+    "world/powerSystems/ps_01",
+    "world/tierLadders/ladder_realm",
+    "world/tierLadders/ladder_technique",
+    "world/tierLadders/ladder_artifact",
+    "world/tierLadders/ladder_resource",
+    "world/techniques/tech_01",
+    "world/techniques/tech_02",
+    "world/techniques/tech_03",
+    "world/techniques/tech_04",
+    "world/techniques/tech_05",
+    "world/techniques/tech_06",
+    "world/techniques/tech_07",
+    "world/techniques/tech_08",
+    "world/techniques/tech_09",
+    "world/techniques/tech_10",
+    "world/techniques/tech_11",
+    "world/techniques/tech_12",
+    "world/techniques/tech_13",
+    "world/techniques/tech_14",
+    "world/techniques/tech_15",
+    "world/techniques/tech_16",
+    "world/techniques/tech_17",
+    "world/techniques/tech_18",
+    "world/artifacts/art_01",
+    "world/artifacts/art_02",
+    "world/artifacts/art_03",
+    "world/artifacts/art_04",
+    "world/artifacts/art_05",
+    "world/artifacts/art_06",
+    "world/artifacts/art_07",
+    "world/artifacts/art_08",
+    "world/artifacts/art_09",
+    "world/artifacts/art_10",
+    "world/artifacts/art_11",
+    "world/artifacts/art_12",
+    "world/artifacts/art_13",
+    "world/artifacts/art_14",
+    "world/artifacts/art_15",
+    "world/artifacts/art_17",
+    "world/artifacts/art_18",
+    "world/artifacts/art_19",
+    "world/artifacts/art_20",
+    "world/factions/fac_01",
+    "world/factions/fac_02",
+    "world/factions/fac_03",
+    "world/factions/fac_04",
+    "world/factions/fac_05",
+    "world/factions/fac_06",
+    "world/factions/fac_07",
+    "world/factions/fac_08",
+    "world/factions/fac_09",
+    "world/factions/fac_10",
+    "world/factions/fac_11",
+    "world/historicalEvents/event_01",
+    "world/historicalEvents/event_02",
+    "world/historicalEvents/event_03",
+    "world/historicalEvents/event_04",
+    "world/historicalEvents/event_05",
+    "world/historicalEvents/event_06",
+    "world/historicalEvents/event_07",
+    "world/historicalEvents/event_08",
+    "world/historicalEvents/event_09",
+    "world/historicalEvents/event_10",
+    "world/historicalEvents/event_11",
+    "world/historicalEvents/event_12",
+    "world/historicalEvents/event_13",
+    "world/historicalEvents/event_14",
+    "world/resources/res_01",
+    "world/resources/res_02",
+    "world/resources/res_03",
+    "world/resources/res_04",
+    "world/resources/res_05",
+    "world/resources/res_06",
+    "world/resources/res_07",
+    "world/resources/res_08",
+    "world/resources/res_09",
+    "world/resources/res_10",
+    "world/resources/res_11",
+    "world/resources/res_12",
+    "world/resources/res_13",
+    "world/resources/res_14",
+    "world/resources/res_15",
+    "world/resources/res_16",
+    "world/resources/res_17",
+    "world/resources/res_18",
+    "world/resources/res_19",
+    "world/terminology/term_01",
+    "world/terminology/term_02",
+    "world/terminology/term_03",
+    "world/terminology/term_res_01",
+    "world/terminology/term_res_02",
+    "world/terminology/term_res_03",
+    "world/terminology/term_res_04",
+    "world/terminology/term_res_05",
+    "world/terminology/term_res_06",
+    "world/terminology/term_res_07",
+    "world/terminology/term_res_08",
+    "world/terminology/term_res_09",
+    "world/terminology/term_res_10",
+    "world/terminology/term_res_11",
+    "world/terminology/term_res_12",
+    "world/terminology/term_asset_01",
+    "world/terminology/term_asset_02",
+    "world/terminology/term_asset_04",
+    "world/terminology/term_hist_01",
+    "world/terminology/term_hist_02",
+    "world/terminology/term_ice_school",
+    "world/terminology/term_cold_method",
+    "world/terminology/term_probe_shuttle",
+    "story/relationships/rel_01",
+    "story/relationships/rel_02",
+    "story/relationships/rel_03",
+    "story/relationships/rel_04",
+    "story/relationships/rel_06",
+    "story/relationships/rel_07",
+    "story/relationships/rel_08",
+    "story/relationships/rel_09",
+    "story/relationships/rel_10",
+    "story/relationships/rel_11",
+    "story/relationships/rel_12",
+    "story/relationships/rel_13",
+    "story/relationships/rel_14",
+    "story/relationships/rel_15",
+    "story/relationships/rel_16",
+    "story/relationships/rel_17",
+    "story/relationships/rel_18",
+    "story/relationships/rel_19",
+    "story/relationships/rel_20",
+    "story/relationships/rel_21",
+    "story/relationships/rel_22",
+    "story/arcs/arc_01",
+    "story/arcs/arc_04",
+    "story/arcBeats/beat_01",
+    "story/arcBeats/beat_02",
+    "story/arcBeats/beat_03",
+    "story/arcBeats/audit-su-3",
+    "story/arcBeats/audit-su-8",
+    "story/arcBeats/audit-su-12",
+    "story/arcBeats/audit-su-testimony",
+    "story/arcBeats/audit-su-stay",
+    "story/arcBeats/audit-zhao-control",
+    "story/arcBeats/audit-mo-bargain",
+    "story/arcBeats/audit-mo-last-bet",
+    "story/arcBeats/v1-white-stop",
+    "story/arcBeats/v1-lin-advance",
+    "story/arcBeats/v1-qin-bargain",
+    "story/arcBeats/v1-qin-message",
+    "story/arcBeats/v1-gu-counter",
+    "story/arcBeats/v1-du-post",
+    "story/arcBeats/v1-qiao-custody",
+    "story/arcBeats/v1-lin-share",
+    "story/arcBeats/beat_v23_1",
+    "story/arcBeats/beat_v23_2",
+    "story/arcBeats/beat_v23_3",
+    "story/arcBeats/beat_v23_4",
+    "story/arcBeats/beat_v23_5",
+    "story/arcBeats/beat_v23_6",
+    "story/arcBeats/beat_v23_7",
+    "story/arcBeats/beat_v23_8",
+    "story/arcBeats/beat_v23_9",
+    "story/arcBeats/beat_v23_10",
+    "story/arcBeats/beat_v23_11",
+    "story/arcBeats/beat_v23_12",
+    "story/arcBeats/beat_bridge_1",
+    "story/arcBeats/beat_bridge_2",
+    "story/arcBeats/beat_bridge_3",
+    "story/arcBeats/beat_bridge_4",
+    "story/arcBeats/beat_box_rescue",
+    "story/arcBeats/beat_box_correction",
+    "story/arcBeats/beat_barge_priority",
+    "story/arcBeats/message-dispatch",
+    "story/arcBeats/message-first-read",
+    "story/arcBeats/message-first-order",
+    "story/arcBeats/message-first-delivery",
+    "story/arcBeats/message-first-ack",
+    "story/arcBeats/message-north-report",
+    "story/arcBeats/message-local-replan",
+    "story/arcBeats/message-custody-report",
+    "story/arcBeats/message-custody-read",
+    "story/arcBeats/message-withdraw-order",
+    "story/arcBeats/message-cheng-local-mission",
+    "story/arcBeats/message-withdraw-delivery",
+    "story/arcBeats/message-withdraw-seized",
+    "story/arcBeats/message-defeat-report",
+    "story/arcBeats/message-formal-inquiry",
+    "story/arcBeats/v1-lin-route-failure",
+    "story/arcBeats/v1-su-tactical-share",
+    "story/arcBeats/beat_port_work_before_questions",
+    "story/arcBeats/beat_port_current_retreat",
+    "story/arcBeats/beat_workers_failed_exit",
+    "story/arcBeats/harbor-lin-horizon",
+    "story/arcBeats/harbor-he-refuses-boat",
+    "story/arcBeats/harbor-lu-speaks",
+    "story/secrets/sec_01",
+    "story/secrets/sec_02",
+    "story/secrets/sec_03",
+    "story/secrets/sec_04",
+    "story/promises/prom_01",
+    "story/promises/prom_02",
+    "story/promises/prom_03",
+    "story/promises/prom_04",
+    "story/openThreads/th_01",
+    "story/openThreads/th_02",
+    "story/openThreads/th_03",
+    "story/openThreads/th_04",
+    "story/openThreads/th_05",
+    "story/chapterPlans/chapter-plan-1",
+    "story/chapterPlans/chapter-plan-2",
+    "story/chapterPlans/chapter-plan-3",
+    "story/chapterPlans/chapter-plan-4",
+    "story/chapterPlans/chapter-plan-5",
+    "story/chapterPlans/chapter-plan-6",
+    "story/chapterPlans/chapter-plan-7",
+    "story/chapterPlans/chapter-plan-8",
+    "story/chapterPlans/chapter-plan-9",
+    "story/chapterPlans/chapter-plan-10",
+    "story/chapterPlans/chapter-plan-11",
+    "story/chapterPlans/chapter-plan-12",
+    "story/chapterPlans/chapter-plan-13",
+    "story/chapterPlans/chapter-plan-14",
+    "story/chapterPlans/chapter-plan-15",
+    "story/chapterPlans/chapter-plan-16",
+    "story/chapterPlans/chapter-plan-17",
+    "story/chapterPlans/chapter-plan-18",
+    "story/chapterPlans/chapter-plan-19",
+    "story/chapterPlans/chapter-plan-20",
+    "story/chapterPlans/chapter-plan-21",
+    "story/chapterPlans/chapter-plan-22",
+    "story/chapterPlans/chapter-plan-23",
+    "story/chapterPlans/chapter-plan-24",
+    "story/chapterPlans/chapter-plan-25",
+    "story/chapterPlans/chapter-plan-26",
+    "story/chapterPlans/chapter-plan-27",
+    "story/chapterPlans/chapter-plan-28",
+    "story/chapterPlans/chapter-plan-29",
+    "story/chapterPlans/chapter-plan-30",
+    "story/chapterPlans/chapter-plan-31",
+    "story/chapterPlans/chapter-plan-32",
+    "story/chapterPlans/bible-chapter-33",
+    "story/chapterPlans/bible-chapter-34",
+    "story/chapterPlans/bible-chapter-35",
+    "story/chapterPlans/bible-chapter-36",
+    "story/chapterPlans/bible-chapter-37",
+    "story/chapterPlans/bible-chapter-38",
+    "story/chapterPlans/bible-chapter-39",
+    "story/chapterPlans/bible-chapter-40",
+    "story/chapterPlans/bible-chapter-41",
+    "story/chapterPlans/bible-chapter-42",
+    "story/chapterPlans/bible-chapter-43",
+    "story/chapterPlans/bible-chapter-44",
+    "story/chapterPlans/bible-chapter-45",
+    "story/chapterPlans/bible-chapter-46",
+    "story/chapterPlans/bible-chapter-47",
+    "story/chapterPlans/bible-chapter-48",
+    "story/chapterPlans/bible-chapter-49",
+    "story/chapterPlans/bible-chapter-50",
+    "plan/milestones/ms_vol1_turn",
+    "plan/milestones/ms_growth_v1_recovery",
+    "plan/milestones/ms_growth_v1_training",
+    "plan/milestones/ms_growth_v1_expedition",
+    "plan/milestones/ms_vol1_climax",
+    "plan/milestones/ms_growth_v1_aftermath",
+    "plan/milestones/ms_bridge_return",
+    "plan/milestones/ms_v2_loss",
+    "plan/milestones/ms_v2_barge",
+    "plan/milestones/ms_v2_fire",
+    "plan/milestones/ms_v3_training",
+    "plan/milestones/ms_v3_advancement",
+    "plan/milestones/ms_v3_convoy",
+    "plan/chapters/1",
+    "plan/chapters/2",
+    "plan/chapters/3",
+    "plan/chapters/4",
+    "plan/chapters/5",
+    "plan/chapters/6",
+    "plan/chapters/7",
+    "plan/chapters/8",
+    "plan/chapters/9",
+    "plan/chapters/10",
+    "plan/chapters/11",
+    "plan/chapters/12",
+    "plan/chapters/13",
+    "plan/chapters/14",
+    "plan/chapters/15",
+    "plan/chapters/16",
+    "plan/chapters/17",
+    "plan/chapters/18",
+    "plan/chapters/19",
+    "plan/chapters/20",
+    "plan/chapters/21",
+    "plan/chapters/22",
+    "plan/chapters/23",
+    "plan/chapters/24",
+    "plan/chapters/25",
+    "plan/chapters/26",
+    "plan/chapters/27",
+    "plan/chapters/28",
+    "plan/chapters/29",
+    "plan/chapters/34",
+    "plan/chapters/35",
+    "plan/chapters/36",
+    "plan/chapters/37",
+    "plan/chapters/38",
+    "plan/chapters/39",
+    "plan/chapters/40",
+    "plan/chapters/41",
+    "plan/chapters/42",
+    "plan/chapters/43",
+    "plan/chapters/44",
+    "plan/chapters/45",
+    "plan/chapters/46",
+    "plan/chapters/47",
+    "plan/chapters/48",
+    "plan/chapters/49",
+    "plan/chapters/50"
+  ],
+  "historySourceIds": [
+    "review-history/cross-3-5",
+    "review-history/cross-2-4",
+    "review-history/followup-cross-2-4/geography"
+  ],
+  "originalWorkerCheckpoint": "data/audit-runtimes/design71-review/result.json",
+  "requiredTerminalProof": "docs/audits/2026-10-17-design71-review-result.json",
+  "modelCalls": 1,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "executionCondition": "Only after the original worker has exited and its full terminal proof has been verified. Use the current gpt-5.6-luna connection without fallback, preserve responses and use a bounded two-call local review. Do not save this local result as a formal complete design report.",
+  "limitation": "One scoped candidate content review. Preserve any rejection and the original v71 findings. It does not apply the candidate, resolve production questions, approve prose or replace full design review.",
+  "verifiedAt": "2026-10-17T07:34:37.458Z",
+  "requestProofPath": "docs/audits/2026-10-17-design71-world-content-request.json",
+  "requestProofSha256": "9f6e70b0bb1cfb823d064bfdc11647deac557352a2508346a42f3dd5a9fae5b1",
+  "outputPath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design71-world-content-review/result.json",
+  "outputSha256": "112992cb7f7eff3ba5a90dd1865612b2dc16dc73bfd6429ad5bc4ef80a74298f",
+  "terminalProofSha256": "4db1941755284b94c63f0172d33c886b35dd12ba5daf0cb2cdfcce31b816c8db",
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "responsesReplayed": 1,
+  "result": {
+    "summary": "本次两项局部修订在提案层面已能闭合：北境七人的救助、候查、暖房交接与身份权限被明确限定，南渡货索动作已由第30—32章细纲落实为轻物与实体承力分工；人物选择仍保留可见代价。",
+    "checks": [
+      {
+        "criterion": "causality",
+        "verdict": "pass",
+        "explanation": "loc_02把获救人员限定为“获救待核人员”，明确只能在受监管泊区内由港务登记、验籍岗接案、救济所负责人签收照护，不能代签入境；loc_25又把救助所限定在同一受监管泊区界内，船舱、靠泊点与暖房之间由港务登记并由港卫交接。ms_v2_boundary进一步写明七人逐人核对自报、工籍、舱单与伤情，身份不符继续待核，300日后再办理续接或合法离境，且不适用夜给林贺的指定仓区担保。由此没有把救助、舱单、付款或获救偷换成入境许可，也没有把暖房扩大为全港免寒区；防寒符、暖房、照护与救济款各自有实物、人员和账目来源。",
+        "evidence": [
+          {
+            "sourceId": "world/locations/loc_02",
+            "quote": "{\n  \"id\": \"loc_02\",\n  \"name\": \"苍冥大陆\",\n  \"kind\": \"continent\",\n  \"entryConditions\": [\n    \"大陆环境寒冷；凝元境以下需保温舟舱或护身寒符。修为不是政治通行权。\",\n    \"沿岸官港验引渡令；无令者可由巡界使验明身份后具名担保，担保者承担监护和越界责任。例外仅到指定会合地，不自动授予进入界渊的权利。\",\n    \"具体到访须区分受监管码头候查、沿岸入境担保和界渊准入；担保须由实际到场者具名承担，只在约定范围与期限生效。\",\n    \"上述防寒门槛针对实际暴露于寒候。普通港区和已开放公共驿路的固定暖房、暖车只有在隔风围护、隔火炉、通风烟道、燃料与值守人手均实际存在且持续供热时，才提供其内部的温暖避难处；不把整座港口或一段驿路变成免寒区。离开温暖内部进入寒候，凝元以下仍须实际可用的护身寒符；普通衣物、修为名义或商业票不替代此条件。供暖失败要停止进入或转移到另一个已核实暖处，另记真实燃料、交通与照料费用。\",\n    \"新增待审的港内救助候查规则：在受监管泊区发现受困或被扣人员时，港务可先登记为获救待核人员，安排港卫陪同移至同一泊区监管界内的救济候查暖房；此路径只延续码头候查，不授予沿岸入境或自由离港资格。港务验籍岗具名接案，负责逐人核对身份材料、去向及到离记录；救济所当班负责人签收人员并承担住食、照护和实际交接责任，不能代签入境。自报姓名、船方舱单、付过救济费均不等于身份已核实；不符处逐项保留。待核人员不是因获救而成为罪犯，也不能交回被指控扣人的船方。需离开监管区时，仍须取得引渡令或由实际到场的巡界使验明身份后另行具名担保，明确地点、期限与责任。候查安置须逐案确定期限、已落实的床位照护与经费，期满须复核并实际办理续接或合法离境，不能自动释放、默认为无限安置或倒填此前入境许可。\"\n  ],\n  \"status\": \"proposed\"\n}"
+          },
+          {
+            "sourceId": "world/locations/loc_25",
+            "quote": "{\n  \"id\": \"loc_25\",\n  \"name\": \"葬骨玄冰原外港\",\n  \"kind\": \"other\",\n  \"parentId\": \"loc_02\",\n  \"entryConditions\": [\n    \"按无尽虚海商路 loc_21 对应航段验籍，支付或记录代付责任；战时封锁另行处理。\",\n    \"新增待审的救济所位置限定：本港原救济所用于接收船上获救人员的候查暖房及其既有靠泊点，位于受监管泊区的同一界内。船舱、救助浮台、靠泊点与该暖房之间的本案救助转运由港务登记并由港卫实际交接，不经过对外开放的内陆街区；仍按loc_02逐人核身份、核防寒与安置责任。此位置安排不把普通港区全部变为候查区，也不授予林贺或获救者新的活动权限。\"\n  ],\n  \"status\": \"proposed\"\n}"
+          },
+          {
+            "sourceId": "plan/milestones/ms_v2_boundary",
+            "quote": "    \"本批七名矿工的境界不明，不据身份推定耐寒。291行动前，葬骨港务救济库已从上月港税实际入库款划出本案240枚下品灵石，由本轮值库人验现金签收，不把尚未到账的拨款通知当钱。值库人先实付82给本港登记门市：九张逐张验收尚余至少220小时的art_21各6、计54，七套干燥保温衣各4、计28。九符中两张交原两名港卫，七张随七套衣装入救助包，逐件登记批号；港卫原有干衣亦当场核验。这82从本案240扣，余158，不取林贺14000航款、不把原救济库存再次记成新增款。\",\n    \"近舱港卫推开舱门后先在门内发救助包，逐人协助穿干衣、扣符并验温热与余纹，再按原顺序接过短板；林贺自己的符不轮借给七人。失温、麻木或不能自行走者先由港卫送入原救助划舟已核保温舱，再交医修，不因贴符就算痊愈或能行。行动前港内救助舟承运方已按本案实收20的船班单备好船、本舟原两名船工、隔火炉烟道及本班燃料；该费从240扣，另见下述配载与承运范围，不混入买符衣82。无实有暖舱或超出配载就停止这条转运路径，先组织符合条件的救助，不把敞舟当保温舱。 此处救助舟承运方及其原两名救助船工，与扣工押运货船方及其原两名值炉船工分别归属不同船只、不是同一经营方或同两个人；救助舟的20只支付本次港内船班，不能计为押运货船方的新收入，也不抵其160款下的101支出。\",\n    \"原港口救济所接人时，登记七人姓名、原工籍、衣符编号、伤情及交接港卫，安置在实际隔风、有隔火炉烟道及当班添料的暖房。值库人从本案240另实付70，按所方本批七人291–300十日普通床位、住食与供暖的合计报价结算；这是本批合同，不是全书通用单价，也不包括无限医疗或回乡票。首轮诊治另实付28，覆盖范围与40留存应急款见本段执行账；不得把本案240、82、70或28各自当作新增收入。\",\n    \"这七人的符入暖房后由照料者逐人摘下干封、登记余纹，只有实际再出门时依各自状况核符重启，不让一张符在多人之间抵数。300日后是否继续留所、续住或返乡须由港务与本人依实际健康、床位和已确认新款办理，不能从这70推定无限食宿或凭作者计划瞬间回乡。林肩伤仍按原291撞伤、停术、297不自动痊愈和后续复诊执行；符和暖房不抵消任何伤势。\",\n    \"291救助执行账的船班：港务值库人事前在原港内救助舟承运方柜台按本批实报20支付，救助舟承运方签明从开舱起两个时辰内在本案浮台—救济所既有靠泊点短程待命及分趟转运，含本舟两名船工、炉具燃料和操作，不因未用满趟数退款。该舟本次实验配载上限为本舟两名船工、两名矿工和一名陪护港卫，七人不得挤成一船；必要时最多四趟，单程至多一刻、含装卸交接每趟往返至多半个时辰，现场港况实测可行才承接。实际超时、超载或天气封停要重排，不沿用包价无限开船。\",\n"
+          },
+          {
+            "sourceId": "plan/milestones/ms_v2_boundary",
+            "quote": "    \"291首轮医疗执行账：救济所原当班医修对本案七人的首次失温、脱水及外伤检查、普通清洁包扎与复温照料、24小时观察和292日一次复查，本次报价每人4、合28；值库人已从240实付给所方经办，收具名七人及范围的收据。该报价含本轮普通敷料、温热饮水与照料人手，不含高级丹药、寿储恢复、后续手术或无限疗程。正常拟定路径首检未见需超出本轮处置的重度失温或大出血，仍逐人记录复查与活动许可；这个诊察结果只在实际检查后成立，不能由护符或付款预先认定。\",\n    \"本案救济240的封闭账：82符衣＋20保温救助船班＋70十日住食供暖＋28首轮诊护＝200，余40由值库人单独保管，限本批必要追加处置，未花仍是救济库现金，不归林贺或矿工。医修若诊出超出28范围的伤情，先开实际项目、药材和报价，值库人仅从已到40中按足额项目实付；不足则由港务向原救济拨款岗申请另拨，并与能实际接收的医舍核床位和转运报价。新钱未到不记足额、完整疗程、治愈或已转院；先执行已付且适合伤情的稳定照料，保留病情风险、住院与延期后果，不能因缺钱强令返乡。\",\n    \"新增待审的七人身份与交接安排：291日行动前，港务原验籍岗经办在本案救助登记上签名，接下七名获救待核人员的身份核对与监管去向责任，核定使用泊区内原救济所候查暖房至300日。原所方当班负责人在已有七床、70枚十日住食供暖及28枚首轮诊护安排上签收候查照护；不发入境许可。开舱后港卫先按实际救出顺序登记，逐人与自报姓名、原工籍线索及船方舱单对应；无法立即核实的栏记待核，不因口供一致就追认自愿上船或真实籍贯。七人在原定衣符、短板和保温救助舟条件下，由原陪护港卫随实际批次交到同一监管泊区内的候查暖房，验籍岗与所方在交接单分别签明身份状态、人数、伤情和去向；从开舱至接收始终走本案候查救助路径，不借夜285日给林贺的查货担保入境。身份与案情分开核对：原航簿、各人口述和实物不相符处继续待查，先照护不等于已查清全链。正常拟定路径至300日仍有原籍材料待核，七人留所候查；300日港务逐人复核身份进展、健康、本人意愿及后续床位经费，再实际办理续接或取得合法离境条件。夜准备返驻地不带走这份港务责任；七人未取得引渡令或独立具名担保时，不得随林贺离港。70不覆盖301日后，期满不自动遣返或交回扣人船方。\"\n  ],\n"
+          }
+        ],
+        "revisionAdvice": ""
+      },
+      {
+        "criterion": "timeline",
+        "verdict": "pass",
+        "explanation": "第30—32章与南渡里程碑已统一为第214日暮出航、第216日暮抵港的两昼夜实体航程；第31章只负责验籍、验货与登船，第32章风暴中林只御动未绷紧的半斤索头和卸载后的八两松楔，各付半成，货索、箱体和救人承力由水手、船桩、撬杠承担，消除了此前“御物承受货索重载”的冲突。北境段也区分了285日出港、290日抵受监管泊区、291日开舱救助、291—300日候查安置，未把程的另船行程写成追船。301—304日为限程担保下的陆路移动，304暮至310暮为六日实体返航，310日先验籍缴费后才获准入港；夜至311日才返驻地，318日实际收到回执后才获得对应知情。费用、承运者、救助舟、暖舱和候查安置均未提前计作未来收入或权限。",
+        "evidence": [
+          {
+            "sourceId": "plan/milestones/ms_growth_v1_crossing",
+            "quote": "{\n  \"id\": \"ms_growth_v1_crossing\",\n  \"title\": \"护货南渡与入港代价\",\n  \"kind\": \"turn\",\n  \"startChapter\": 30,\n  \"endChapter\": 32,\n  \"setup\": [\n    \"第212–214日按山路转驿车到云梦天港，运送六箱指定低阶药材换本航次普通舱；管货不等于可炼化物资。\",\n    \"第214日暮出航、第216日暮到天宝外港，海程两昼夜；不沿用旧第17–19日航历。\",\n    \"第32章第215日凌晨的风暴中，护船者承担外敌；林辰只把两丈内尚未绷紧、未系重箱的半斤索头御动一息交给水手，预付半成真元后停术，由水手系索、普通船桩承力、制动并搬回药箱。他再让水手用随舱撬杠抬稳压脚箱角、卸去楔上载荷，才从一丈内另付半成御动八两松楔一息；水手抽人、落箱，林不以御物固定受载货索或托箱。救下试图私藏货物的押货者使他错过盯住六号箱的窗口。第31章只是验货登船；本节点按第32章既有动作明确实际承力者，不改变两次支出、失箱与奖金后果，不斩神海海兽或获得免费升级。\",\n    \"入港用验籍及实际避火防护，局限于有防护的外港街区；他必须补交因护货失损的说明，收货人的真名与失踪货箱构成下一卷具体调查线索，不能潜行岩浆暗渠。\"\n  ],\n  \"cost\": \"部分药箱遭海水毁损，按合同区分天灾损失与失职，失去履约奖金而非无限债；主角需继续工作维持旅费，凝元境只能在当地低风险区域活动。\",\n  \"outcome\": \"第212–216日；境界：realm_02第三重。第32章第216日暮抵达赤霄天宝外港。林辰凝元三重；第189日同批追回12滴，其中3滴污染隔离、9滴可用，配额台核准告急者3滴、林个人6滴。林获配的6滴已按两剂各3滴分别完成十日疗程和复诊，保守预算约13.460274元载；这是有前提的规划下界，伤病须复评。墨负伤被羁押、林辰个人分得的泉液余量为零；苏留宗照看证人与押解，主角没有燃寿白发。\"\n}"
+          },
+          {
+            "sourceId": "plan/chapters/32",
+            "quote": "{\n  \"id\": \"chapter-32\",\n  \"chapterNumber\": 32,\n  \"volumeId\": \"vol_01\",\n  \"title\": \"潮声里的空位\",\n  \"summary\": \"第215日凌晨，飞舟在实体航线遇风暴，船上护阵者维持航向，林辰留货舱值看。索具松脱时他把自己固定在靠墙短绳上，在两丈内直视一段尚未绷紧、未系重箱的半斤索头，御动一息递给水手，指挥水手先制动再把箱子拉回；不以真元托举整箱。一个押货者试图把货箱私推到侧舱，脚被夹住。林辰选择先让水手救人，待水手用随舱普通撬杠抬稳压脚的箱角、卸去楔上载荷，再从一丈内直视八两松楔，以一次一息御物移开，失去盯住六号箱的片刻。风暴后五箱仍在，其中一箱进水，六号箱不知去向；林辰报告亲见的搬移动作却承认没看见六号箱最后被谁移走。第216日暮抵天宝外港，领航员先从海侧确认当日非喷发放行旗号，港务再核验借领避火衣、仍有余纹的普通避火符及货单，收货人程砚迟迟不来。林辰失去履约奖金，等待实际货损责任复核；他先要求验明五箱、留下失踪箱记录与可联系去处，而不是凭疑点闯入内陆追凶。\",\n  \"characterGoals\": \"林辰要让药材和人员尽量安全抵港，并保住合同与收货线索；船队要在风暴中维持航向、区分天灾和失职；港务方要按赤霄外港规则完成卸货与验籍。\",\n  \"conflict\": \"风暴、乱流和货舱失稳同时发生，凝元御物的真元与控制范围有限；救人、保货和保奖金不可兼得，飞舟不能穿越太古界门或无视实体航程。\",\n  \"choice\": \"林辰先救被撞倒的押货者，再分段固定药箱并如实记录损失，没有为保奖金而隐瞒自己的操作或擅自弃货。\",\n  \"cost\": \"一次御物松楔和拉索耗去真元，休整时按书面医嘱换药；伤腿酸痛但未擅自用新增寿储治疗或宣称复伤。五箱到港中一箱进水、六号箱失踪，奖金取消；更大赔偿须按天灾与失职事实复核，不能无限加债。 拉索头和松小楔分别是一次轻物御动，各扣半成，共一成；由六成降至五成。后续日常休整不自动记满，直到下一次复测才增加可用账面数。\",\n  \"threads\": [\n    \"th_01\",\n    \"sec_01\",\n    \"sec_02\"\n  ],\n  \"endState\": \"第216日暮靠泊天宝外港。林辰凝元三重，两剂已完成，按既定支出与自然时间计算的保守下界约13.460274元载，实际伤势仍需复诊。泉液零余量；程砚未现身、六号箱失踪、押货者的可核行为成为下一段调查入口，不能据此宣布商盟全体有罪。\",\n  \"characterIds\": [\n    \"char_01\"\n  ],\n  \"location\": \"loc_21无尽虚海商路、loc_23天宝外港\",\n  \"storyTime\": \"第214日日暮至第216日日暮；实体海程两昼夜\",\n"
+          },
+          {
+            "sourceId": "plan/chapters/32",
+            "quote": "  \"scenes\": [\n    \"第215日凌晨风暴袭来，护阵者在上层维持航向，林辰留在货舱值看，定位阵不缩短实体海程。\",\n    \"货索松脱，林辰靠短绳固定身位，直视两丈内尚未绷紧、未系重箱的半斤索头，预付半成真元御动一息递给水手，随即停术；水手再系索、用普通船桩受力、制动并搬回药箱，林不持续拉承重索。\",\n    \"押货者私推一箱进侧舱时脚被夹住，林辰先叫水手用随舱普通撬杠抬稳压脚箱角卸去楔上载荷；他从一丈内直视八两松楔，另付半成真元御动一息移开，水手抽人、落箱。撬杠与水手承重，御物不搬箱；救人期间林顾不上盯住六号箱。\",\n    \"风暴后只点到五箱，其中一箱进水，林辰把亲见搬移与未亲见失箱分别记录，不用猜测填空。\",\n    \"第216日暮，飞舟靠泊天宝外港；港务验货、验籍和避火衣借领单，要求未交割前留在受护卸货区。 航司在靠港前从海侧看见216日当日放行旗号，港务复核沿岸岗哨无本港地火喷发记录后才准入泊。215日海上风暴不被当作地火喷发，也不能用214日旧通告代替今天核验；林仍戴船方借符，不把次晨才租的新符算作此刻持有。\",\n    \"程砚没有来，林辰交验五箱并留下可联系住处与失箱记录；普通避火衣与借符按附单留到217日晨卸货交接后分别归还，下一步须另办适配防护与去处。\"\n  ],\n  \"source\": \"author\",\n  \"executionChecks\": [\n    {\n      \"id\": \"storm-light-loads\",\n      \"requirement\": \"风暴中林固定身位，只御动未承重索头与卸载后的轻楔各一息、各半成，六成降五成；实际承重救人由水手、船桩和撬杠承担，林不托箱或提人，不自动恢复记满。\",\n      \"sourceQuestion\": {\n        \"document\": \"world\",\n        \"questionId\": \"audit-tier-exceptions\"\n      }\n    },\n    {\n      \"id\": \"loss-and-witness-boundary\",\n      \"requirement\": \"救人使林失去盯箱窗口，风暴后仅五箱且一箱进水，六号箱失踪、奖金取消；区分亲见搬移和未见最后移箱者，不能提前认定程或全商盟有罪，赔偿另据事实复核。\"\n    },\n    {\n      \"id\": \"arrival-permit\",\n      \"requirement\": \"215日风暴至216日暮抵天宝外港保持实体海程；以216日当日旗号和港务复核准入泊，不用214日通告或217日才租的符倒填许可。借衣借符仍留至次晨交割后分别归还。\"\n    }\n  ]\n}"
+          },
+          {
+            "sourceId": "plan/milestones/ms_v2_boundary",
+            "quote": "{\n  \"id\": \"ms_v2_boundary\",\n  \"title\": \"黑舱截留与残片取舍\",\n  \"kind\": \"climax\",\n  \"startChapter\": 61,\n  \"endChapter\": 66,\n  \"setup\": [\n    \"第285日夜在外港真身会见，对照北境原封签存根、45章交接残联与旧封的签认拓本、53章拟取得的陆新写改签自述签认副本；这些是货运线索，不是第二片图样，不能凭同封号认定匣内物。她具名担保林贺仅在外港指定仓区查货至300日；归一实力不赋予林准入界渊的能力。\",\n    \"程272从极焱另船出发277到北境，订291转运，不是海上追逐。第一报258寄、262赵阅及263回令、268程收均归53章前后锚点，不在61章才首次发生；第一报不含291北境失货。赵至318程亲自面报才听到北境失败。\",\n    \"获救前押运的新增作者提案，尚须整体验收：七名青玄籍矿工本次随原目标货船于285日晨从赤霄极焱天港出发，走loc_21既有五昼夜实体航线，290日晨到葬骨受监管泊区，原定291日转运。与程272日另船出发、277日到北境的行程分开，不写成同船追逐。本段从285装船至291开舱约六日连续在同一舱受扣，不把七人在更早时期的全部遭遇写成已经查清。极焱装船只走当班港务实核开放、无异常地火的普通货道，七人各佩押运货船方当面配发并核余纹的art_16；离开赤霄日常热区、转入经实测温暖的舱内后，由值班船工摘封收回七符并逐张记余量，不把避火符当防寒符。\",\n    \"该普通货舱靠现成隔风舱壁、固定隔火炉与通到舱外的烟道保温，没有法术结界；押运货船方为把活劳力交付换取运费而维持最低食宿，并非善意释放。285出港前押运货船船长与当班货船船工实查炉道通畅、舱内通风、该货船原两名值炉船工轮班和七日燃料、粗食饮水实际装载；从海路转寒前到291救援接管期间持续添料，夜班也不空岗。燃料分日领用，剩余仍是押运货船方库存，烧过的不再入账。七人留在同一实暖舱内，不在冷甲板轮换、不靠凡衣或不明境界耐寒；290泊港后仍用本船余料供暖，不能把靠港当成有免费岸上热源。近舱港卫开门时实际核热源、烟道和呼吸状况，在舱内逐人换穿救助干衣、扣新寒符，确认后才过板；押运货船方已收回的避火符不抵救济寒符数。暖炉不能替代饮水、治疗伤口或证明七人无病，首检和292复查仍按原安排逐人进行。若此前炉道堵塞、燃料断供或人已出现重度失温，必须据实改变伤情和救助预算，不能继续套用正常路径的轻症结果。\",\n"
+          },
+          {
+            "sourceId": "plan/milestones/ms_v2_boundary",
+            "quote": "  \"cost\": \"浮台外缘木板被尾浪推偏的护舷木撞裂，林右肩在实际接人中撞伤，291–297随访且不因七日期满视作治愈；伤后停握剑和全部术法，不再消耗剩余二成。贺失去本次追货奖金，该奖金未领取，不能算既有现金损失或预支收入。279温和吐纳只回一成、290验剑付半成、291剑诀付二成：3.5+1−0.5−2=2成；不返寿、不借普通动作免术费。290诊费及291后普通医药在原专项杂费中据实列支并归入累计780，未增免费医疗或新寿源。夜耽误三日原返程、巡队缩减一处例行勘查，回去补巡；救人不等于无代价全胜。 北境本批救济另有港税入库款实划240，事前实付符衣82、船班20、十日住食70与首轮诊护28，合200，未用40留库；与林贺航款、林肩伤原杂费医疗及程的商号经费均分账，不当作角色收入。 获救前供给另由押运货船方普通货运预付款160承担本次101支出、余59；实物余料及已用符余纹另存，不挪救济240或林贺14000。此为新增待审作者提案，非从旧正文确认的账目。\",\n  \"outcome\": \"第285–300日。7名矿工上岸、与5名已在赤霄获救的雇工名单分开；程在逃，第二片仍在程手，第一片仍林持有。污染货只封存不由低阶启封。夜协助港务将七人交入同一受监管泊区内原救济所候查暖房，由港务接案、所方签收照护；至300日仍为获救待核人员，未取得自由离港资格，贺与林则准备携证回青玄。本批转运暂停，不代表九鼎全阵停转。 北境七人与赤霄五工、留在青玄的开篇两名旧工友及430日后新扣六人均为不同人；在本段拟由港卫和救济所逐人核姓名、原工籍、舱位及安置去向形成该批名单，不能凭同乡认作同一批。该名单原件留当地，随既有见证副本交付可核的签认名单副本，不转移人员或增加林贺船票。\"\n}"
+          },
+          {
+            "sourceId": "plan/milestones/ms_v3_return",
+            "quote": "{\n  \"id\": \"ms_v3_return\",\n  \"title\": \"带证返乡与先救谁\",\n  \"kind\": \"turn\",\n  \"startChapter\": 67,\n  \"endChapter\": 72,\n  \"setup\": [\n    \"第300日，夜的原外港查货担保仍只到当日，不自动延长。林贺当面申请回青玄交证；夜依loc_02具名担保规则，在葬骨外港原港务和本轮当值巡队见证下另签限程离境担保，列林、贺实名、原名册及货证封袋，指定会合/交接地为通天渡口受监管候船区。许可仅301日晨至304日夜有效，沿已勘验的葬骨外港—海岸公共驿路—通天渡口路线坐暖车，夜宿所列原驿站；不准离道查货、入极冰国、妖域、神宫或界渊。原巡队在301日出港时复核名单并交当班驿车的纸质限程单，沿岸既有岗哨在车辆实际到站时逐站验籍、签注到离时点，终站港务于303日实际到达后验原单接收候船监管，304日只在原单、名册和船票相符后办理登船离境。夜仍承担这份限程担保的越界责任，原巡队承担出港核验和未按期交回签注单时的追查责任；没有远程瞬时验籍或只有商业票就能通行。\",\n    \"夜在301日午交清具名名单和责任后，沿既有陆路走满十昼夜，311日午实际抵驻地；与在岗巡队当面交接后才返岗补巡，301—311在途中，不随林回青玄，也不在301日虚写已抵岗。限程担保的越界责任并不因本人出发而取消，林贺是否按期离境须以后续实体纸单送达得知，不能由311日返岗自动推定。林贺本次各站验籍通过，301–303日坐暖车到通天；若任一关未放行或304夜前未完成登船，停在最近受监管驿站/候船区，申请重审并改签，后续抵达、训练及费用必须重排，不允许沿用315日返乡日期。\",\n    \"商盟在第303日两人已在通天渡口受监管候船区，实际航司在当地柜台报价确认本案两席设有隔火暖炉、通风烟道的密闭保温舟舱各1500（普通货船的实有暖舱，不是仅加一件保温衣），贺用此前封存3000实付；船方具名舱单注明两席六昼夜保温舟舱、暖炉燃料与当班船员添料看火均包含在这3000中，按loc_02满足凝元以下乘客的舱内防寒要求，不另虚开免费护身符。304日登船前林贺与港务当面核对实际舱位、炉道完好和六日燃料配载，贺全程住该暖舱；第304日暮出航、第310日暮沧溟古港抵达，六昼夜。第310日暮到港后先在沧溟古港受监管泊区办理下述入港核验，不把到港当成已获准上岸；实际核验放行后，第311–314日才沿大乾普通驿路返外山，各站验本次入港签注、名册和现有路引，费用按同一杂费账据实结算。\",\n"
+          },
+          {
+            "sourceId": "plan/milestones/ms_v3_return",
+            "quote": "    \"林在船上保护陆新写自述的签认副本（赤霄保存原件，220夜原条仍未取得）与北境见证副本，肩伤按普通治疗好转后才恢复轻练。苏的独立场景在第305日发现外山准备转走两名旧工友，她先将人藏入有药役见证的休养棚并承认自己保管过证物；无法靠一封未收到的北境信得知林归期。315日两人当面交换材料，梁九拒绝让林拿家人作诱饵。\",\n    \"选择：林放弃刚到家就追父案，先协助苏保障旧工友的住处；苏不交出被保护者以换自己恢复职务。\",\n    \"认知：苏首次通过林当面交接得知北境救人、夜的担保及第二片流转，只相信有来源的材料；父案凶手仍未证实。\",\n    \"返航防护失效分支：若304日实际暖舱、燃料配载或炉道核验不合格，不登船，留在通天渡口受监管的既有暖房候船区，先申请延长监管与改签；未获新许可不得继续移动。航行中若供暖故障，船员先将贺移到经实际确认仍有供暖的备用船员舱；没有可用暖舱就停靠最近可到的受监管港补修，不假定一件保温衣能抵销大陆门槛。任何延误均重排到港、返乡与训练日期，按实记录退款、补价和食宿；原封存3000已付票后不能再花一次，余款不足须另有已核付款来源才续行。正常路径本次核验合格、六日供暖持续，故仍按304暮出航、310暮抵港和315返乡结算。\",\n    \"返青玄入港执行约束（并入返航到岸场面，不另开一轮办手续章节）：310日暮船靠沧溟古港受监管泊区，船方交实际到港舱单；林贺当面向大乾沿岸守军所属的当班港务验籍岗出示本人原籍凭证、原名册、现有路引及苍冥实际签注离境单，逐一核人、核航次和随身封袋。林的本土身份不替贺免除外来海路入港查验；苍冥限程单只证明此前获准离境，不能充当大乾入境许可。核验岗按loc_01、loc_21及loc_27的既有分工登记本次入港，税务经办当面核定本案两人本航次的应缴税费合计24枚下品灵石，贺从原专项杂费现金实际交清并收有日期、两人姓名、航次、金额及经办签记的收讫联；这是本次拟定实缴情节，不设通用税率、不增商盟代付或免检特权。港务在原名册及现有路引签注本次核验放行，船方只负责舱单交接，不代替守军放行；实际放行后两人当晚进入港内原有普通客舍，次晨按普通驿路离港。检查封袋只核申报、外观和封记，不启动残片，不把北境见证或父案副本当作本地已认定罪证。\",\n    \"返航入港失败分支：籍贯或航次对不上、封袋申报存疑、遇战时封锁或税费未实缴时，港务不签放行；林贺先留港方指定的受监管候查处，由原当班港务处理核验与后续转交，贺承担本案须实付的食宿查验费，不让夜的北境担保或商业信物越境免除责任。延期重新记录现金、住处、伤情与交通，必要时向原垫款方申请经确认的追加来源，获款前不花；311离港、315返乡及其后训练日期均须重排。正常提案本次当班核验通过、24实付并获签注，才保留310暮入港、311出发和315当面交证。\",\n"
+          },
+          {
+            "sourceId": "plan/milestones/ms_v3_return",
+            "quote": "    \"离境回执作者执行账，附在既有买票、登船和返岗侧景中，不新增一串办手续章节：303日购暖舱时，贺另在通天港务的纸单寄递柜台核验本次承运联，确认305日晨通天至葬骨的实有返程驿车与308日午葬骨至巡界驻地的实有公文驿车两段车次、沿既有公共驿路行驶及三昼夜、十昼夜的实际运期。该联列本次18枚下品灵石的两段合计报价、承担转交的当班车正和港务经办岗簿姓名，包含封袋、换车交接与目的值守机关登记，不是通用邮资或全书免费驿网；贺从原1000杂费现金实付18，收据与航票分开保存，未核实实际车次或未付款就不得记已寄出。这里只寄监管回执的副本，不寄林的遗物、父案证据或可供任意调动巡队的命令。\",\n    \"正常拟定路径：304日暮实际验人登船后，通天当班港务文书将原限程单各站签注与本次离境核验、实际船名航次及两人登船时点逐项对照，按岗簿签名制作两份签注副本及一份本案登船回执。林贺仍带本人原名册、路引与离境签注原件赴青玄供310日入港核验；寄递的是经文书核对封签的副本，不能把已寄走的唯一原件再拿来验籍。港务留本登记，305日晨将封袋实交承运联上的本班车正并互签收件；驿车沿原公共路线实走三昼夜，308日晨到葬骨，由原巡队当班案牍岗验封、对本轮留存名单与出港单、签名登记本次到件。案牍岗留一份，并将另一签注副本、回执及本案核验说明重新封袋，308日午交已在承运联列明的下一班公文驿车，沿夜回驻地的同一陆路实走十昼夜；318日午才交驻地当班值守文书验封签收。两段承运者只负责实体保管交接，不能代签港务放行或代替巡队核案。315日主角返乡结算时，第二段仍在途中；夜311日返岗不等于已收到这份回执，林贺也不能在青玄凭作者执行账知道邮车实到情况。318日的实际到件与夜知情另在73–80章对应里程碑承接。\",\n    \"责任与异常：301—304的限程许可到期不自动延长通行权，也不等于免除既有担保责任。夜311日交岗时向驻地当班值守文书交自己的担保留联，登记本案回执未到、仍待原巡队核验；本人继续履行已接的本职巡务，并保留接受本案询问、说明已签担保的责任，不能把缺单当作已经免责或已经发生越界。原巡队308日收到正常回执才在自己的记录确认本次304日按期离境、沿途签注无缺项；对夜一侧的待核登记，要等318日驻地实际收到原巡队核验说明并由文书当面告知夜后才能结清本次正常监护履行，不免除日后经证据查明的既有违规责任。\",\n"
+          }
+        ],
+        "revisionAdvice": ""
+      },
+      {
+        "criterion": "pacing",
+        "verdict": "pass",
+        "explanation": "修订没有把救援改成无条件全胜：林在南渡中先救人而失去盯箱机会，承担失箱、进水、奖金取消等后果；北境救援中选择开舱救七人而非追第二片，夜选择守撤离栈桥并放弃扩大封港追程，随后承担三日巡程耽误与补巡责任，林还因浮台事故受肩伤并停术。七人虽获救，仍需防寒、复温、首诊、候查、身份核验和后续合法离境，不因港务救济抹掉伤情、拘扣事实或返乡困难。候查路径通过港务、港卫、救济所三方行动呈现即可，不要求正文机械宣读行政清单；关键节点、选择与代价已有明确可写动作。",
+        "evidence": [
+          {
+            "sourceId": "story/relationships/rel_05",
+            "quote": "{\n  \"stages\": [\n    {\n      \"sinceChapter\": 61,\n      \"untilChapter\": 63,\n      \"value\": \"真身会见但有地点与物品保管限制。\",\n      \"cause\": \"夜在285日外港巡查，按外观与存根查第一片封袋，具名担保仅到指定仓区。\",\n      \"cost\": \"不授予界渊权限，不开启圣器验心。\"\n    },\n    {\n      \"sinceChapter\": 64,\n      \"untilChapter\": 66,\n      \"value\": \"救人优先形成的有限信任。\",\n      \"cause\": \"林放弃追片救黑舱矿工，夜守撤离栈桥。\",\n      \"cost\": \"程逃、夜误三日巡程；她不能任意弃岗。\"\n    },\n    {\n      \"sinceChapter\": 67,\n      \"untilChapter\": 100,\n      \"value\": \"各自执行职责的异地同盟。\",\n      \"cause\": \"夜在301日午交清外港名单与限程担保责任后开始返驻地，沿既有陆路走满十昼夜，311日午实际抵驻地、完成当面值守交接后才返岗补巡；301—311途中不写成已在驻地执勤。林另按304暮—310暮六昼夜航程回青玄；后续只按实体船信实际送达共享信息，二人不因关系进入异地同盟就互知行程与现场结果。 本次另按回执链区分返岗与知情：311交岗时向值守文书登记回执未到、担保仍待核；318午实到封袋经文书核对并当面交阅后，她才知道304已按期离境、本次正常监护履行核清，既有违规责任不因结清而豁免。该回执不证明两人已获青玄准入或后续安全，也不提前带来父案结局；若未实际到件，继续待核而不写318已知情。\",\n      \"cost\": \"无投影护航、无同日全知、无万能援军。\"\n    }\n  ],\n  \"id\": \"rel_05\",\n  \"fromCharacterId\": \"char_01\",\n  \"toCharacterId\": \"char_05\",\n  \"kind\": \"trust\",\n  \"value\": \"外港会面后的受限合作。\",\n  \"locked\": false,\n  \"lockPolicy\": \"evolvable\",\n  \"sinceChapter\": 61\n}"
+          },
+          {
+            "sourceId": "plan/milestones/ms_v2_boundary",
+            "quote": "{\n  \"id\": \"ms_v2_boundary\",\n  \"title\": \"黑舱截留与残片取舍\",\n  \"kind\": \"climax\",\n  \"startChapter\": 61,\n  \"endChapter\": 66,\n  \"setup\": [\n    \"第285日夜在外港真身会见，对照北境原封签存根、45章交接残联与旧封的签认拓本、53章拟取得的陆新写改签自述签认副本；这些是货运线索，不是第二片图样，不能凭同封号认定匣内物。她具名担保林贺仅在外港指定仓区查货至300日；归一实力不赋予林准入界渊的能力。\",\n    \"程272从极焱另船出发277到北境，订291转运，不是海上追逐。第一报258寄、262赵阅及263回令、268程收均归53章前后锚点，不在61章才首次发生；第一报不含291北境失货。赵至318程亲自面报才听到北境失败。\",\n    \"获救前押运的新增作者提案，尚须整体验收：七名青玄籍矿工本次随原目标货船于285日晨从赤霄极焱天港出发，走loc_21既有五昼夜实体航线，290日晨到葬骨受监管泊区，原定291日转运。与程272日另船出发、277日到北境的行程分开，不写成同船追逐。本段从285装船至291开舱约六日连续在同一舱受扣，不把七人在更早时期的全部遭遇写成已经查清。极焱装船只走当班港务实核开放、无异常地火的普通货道，七人各佩押运货船方当面配发并核余纹的art_16；离开赤霄日常热区、转入经实测温暖的舱内后，由值班船工摘封收回七符并逐张记余量，不把避火符当防寒符。\",\n    \"该普通货舱靠现成隔风舱壁、固定隔火炉与通到舱外的烟道保温，没有法术结界；押运货船方为把活劳力交付换取运费而维持最低食宿，并非善意释放。285出港前押运货船船长与当班货船船工实查炉道通畅、舱内通风、该货船原两名值炉船工轮班和七日燃料、粗食饮水实际装载；从海路转寒前到291救援接管期间持续添料，夜班也不空岗。燃料分日领用，剩余仍是押运货船方库存，烧过的不再入账。七人留在同一实暖舱内，不在冷甲板轮换、不靠凡衣或不明境界耐寒；290泊港后仍用本船余料供暖，不能把靠港当成有免费岸上热源。近舱港卫开门时实际核热源、烟道和呼吸状况，在舱内逐人换穿救助干衣、扣新寒符，确认后才过板；押运货船方已收回的避火符不抵救济寒符数。暖炉不能替代饮水、治疗伤口或证明七人无病，首检和292复查仍按原安排逐人进行。若此前炉道堵塞、燃料断供或人已出现重度失温，必须据实改变伤情和救助预算，不能继续套用正常路径的轻症结果。\",\n"
+          },
+          {
+            "sourceId": "plan/milestones/ms_v2_boundary",
+            "quote": "    \"押运货船方的本航次小账独立于程的残片、林贺14000航款和港务救济240：285装船前押运货船船长从本船此前实收的普通货运预付款余额160中，当面付极焱原登记门市七张art_16共42，逐张验实物与余纹至少覆盖本次港内作业；付本港燃料行七日普通炉料14、该货船原两名值炉船工七日轮班补工28、七人七日粗食饮水17，合101，现金余59仍属船方。燃料与食品实装、工钱由两人签收，报价仅指本船这次采购，非通用物价；押运货船船长保留原货运收款联和四项支出联，收款不得重复列成程或主角的新收入。七符本次交付已完成制成和验收，供能在符内，不再给佩戴者扣一枚灵石。供暖只保障实际封闭舱内，煤料、船工或食水任何一项未兑现就不能声称六日正常度过。\",\n    \"监管与知情的新增提案：押运货船方把七人列作随船劳役，对两港均隐瞒强迫扣留；本航次实际舱单、到港签注只能证明这艘船获准到指定受监管泊区，不能证明七人自愿或拘禁合法。290到港岗未逐人私下问询，并被外锁和押运货船方代答遮蔽扣人事实，此为本案具体漏查，不能写成全港默认准许扣工。291行动前，原巡检港卫在外锁舱口听到“七个人被扣住”的求救，见外绑绳后回近处值岗当面报告；港务据此先按七人实备原定救助包，口头报数此时只是救助需求，待开舱才逐人核实。夜与原两名港卫到位控制侧巷，近舱港卫按既定开扣顺序接人，不先把呼救当作全链定罪。救援后逐人分开问询，将七人的亲历与押运货船原航簿、炉料领用、轮班和收支联交叉核对；林只亲见现场，未读到的航程或账目不自动成为他的知识。押运货船方单据可伪造，七人口供也各有范围；不相符部分保留待查，不因此追认入境自愿或全链已经破案。相关原件由当地港务封存，林贺既有随行见证副本只记录本次救助与已核部分，不凭本草案新增全知货运证据。\",\n    \"第64章的实际转运在第291日，285日只是夜抵港会面，不把两日混为同一场。夜要先封存污染货并救出七名被扣在普通货舱的青玄矿工；林在仍可追程的小艇与先开囚舱之间选择救人。贺依现场舷号确认目标货舱，林沿港卫先验过的短板扶栏走到既有码头装卸浮台的近舱侧，不跳跃、不负重。舱口外露普通插扣被另加的一根未附灵麻绳绕耳绑紧，港卫从码头正面被舷板遮住，浮台近侧才看得见绳段；林在此施一次已掌握的凝元剑诀，实际只放一道风刃切断绑门麻绳一处，亲见唯一余刃在两丈界内散尽、港卫核舱门与短板仍稳后，再以肉身拨开失去束缚的轻插扣。夜守侧巷与栈桥，港卫和贺实际接应矿工；林不靠风刃托举浮台或隔空搬人。程从另一侧已离泊小艇进入密集客船航道，夜看见去向，却选择守住撤人的栈桥，拒绝扩大封港或攻击载客航道，令港卫记录船号。归一强者没有被低阶障碍困住，她留下逃犯是为保撤离通道，不是突然失去感知。\",\n"
+          },
+          {
+            "sourceId": "plan/milestones/ms_v2_boundary",
+            "quote": "    \"选择：林将第一片继续留在可复核封袋中，放弃夺第二片的机会救人；夜接受先救普通人而非强追残片，限制封港范围以免所有商路停摆。\",\n    \"认知：夜只据其守界经历告知界壁外的寂灭风险，林相信证言但没有亲见死海。父亲在苍冥存档的署名检修副本由夜带来的巡查档案核对，只证明其参与守门；不证明投毒真凶。\",\n    \"第279日海程中，林在本次已核验供暖的普通保温客舱轮值结束后、贺接手守证时，完成一小时不受扰温和吐纳，从50章沿用的保守三成半只计回一成至四成半，不因整月间隔算满，也不提高原五成伤后上限。254–278及280–289未另施剑诀或御物，所谓稳定真元练习只作温和调息，不另记恢复收益。290日港内当值医修复核旧掌腿：无新渗痛，许可扶栏短走、有限坐姿凝元式导刃，不准跳台、负重、追跑或反复施术；右肩此时尚未受291的新伤。贺从本案原1000杂费额度实付1枚诊费，归入后来累计780中的医药，不从封存3000取款、也不另加到780之外。诊察本身不增加寿储或真元。\",\n    \"290日复诊许可后林在普通检验席坐稳，触验自252后未再施术的赤霞剑脊与柄均已冷却，以低流量试注确认器身无异响、握剑不痛，实付半成；四成半减半成余四成，不用检验替代施术费用。291入场前再确认清醒、目标辨识和专注稳定，没有其他支出或恢复，沿用四成及旧五成上限；只施一式二成后余二成，剑热立即收起，之后不御物、不追击，肉身只解轻插扣和扶栏退到岸侧。若诊察、握剑或专注不合格则林不登台施术，夜与港卫先控场再用实体工具开舱，承担程先走及矿工继续受困的时间代价，不能让医嘱失效仍照原动作写。\",\n    \"291动手前，贺在港卫陪同下看清此根绑门麻绳：粗麻纤维、无附灵纹与金属内芯，由外耳绕普通插扣，只束缚舱门，不连接浮台系泊或货物吊具；其性质由现场查验确认，未知材质不先套用普通索规则。林在浮台近舱侧靠固定栏杆坐稳，绳段距本人一丈，处于18已实测的两丈内；舷板侧缝至绳段无遮挡，港卫先喊舱内人员退离门边，林实际听见退开回答、看清刃路无人后锁定起式。本次剑气切中、唯一余刃已散且门体与短板复核稳定，才进入开扣步骤；船摆遮挡、失锁或有人进入路径即中止、已付二成不退，贺喊停转移，港卫控制近舱守卫后以普通刀具开扣，林不再发第二式。\",\n"
+          },
+          {
+            "sourceId": "plan/milestones/ms_v2_boundary",
+            "quote": "    \"浮台为码头原有装卸设施，沿四根导桩随潮升降，两根原系泊缆留在岸桩上，待切绑门绳与它们完全分开。港卫在行动前现场验导桩、缆结、短板止滑与靠岸端，贺按当时背风内湾小浪观察板端未脱位才让林扶栏短走入位；看不稳就停，不用符箓或真元稳台。两名原港卫分别守岸端短板及浮台近舱口，夜以普通脚步和实体持剑占住侧巷入口，面对欲靠近的凝元守卫先示警令停，对方见港卫到位后退回巷口；她不发动未定义术式、不将敌人自动封经。林已亲见余刃耗散、港卫在刃路外复核门体与原短板后，林开扣、近舱港卫肉身推开舱门后，矿工按本人能行动的先出、需要搀扶者由两名港卫轮流接引，贺逐人引过原短板到岸上，七人不挤在浮台或把林当担架。\",\n    \"第六人过板时，货船原有松动护舷木被另一船尾浪推偏，撞裂浮台外缘一块木板并擦撞林右肩。导桩、原系泊和短板未断，但贺立即喊停下一人，近舱港卫先扶林沿仍完整的内侧短板退岸、复核踏板后再接最后一人；没有人被剑诀自动保护或悬浮。若板端脱位就停止上板，港卫须改用港内已有救助划舟逐人接送并重记时序，不能继续踩断板。林新肩伤后立即停握剑和全部术法，291–297由原港内医修随访，七日不是自动痊愈；到301返程仍按复诊许可坐暖车，完整训练须按316及330复诊另判。\",\n    \"291日刃路后段核验：林在原浮台固定栏杆旁坐定，贺与近舱港卫从同侧实际查看，外耳绑绳突出舱外，绳段后一丈直至林两丈边界的延长线沿舱外侧掠向空水面，不进入舱内或扫过短板；舱内人员应答后已退离门边，港卫与贺也站在该直线外。本场仅发一道，固定二成不减；切中后林亲眼看见唯一淡青刃影至两丈界内散尽，近舱港卫站在侧边摸验舱门框未松、短板搭点与原系泊仍稳，才示意林手拨轻扣、自己推门并开始接人。若发刃后船摆遮住余刃或不能确认全数耗散，则停发示警，所有人暂不拨扣、过板或把普通刀具伸入该路径；实际确认余刃已散且结构稳定后才继续，无法确认就等船位恢复或改走刃路外的港内救助划舟，并重记时序。此前已切断的绳和后来撞肩的护舷木风险不因停术复原；接第六人时仍按原安排擦伤林肩、停接撤岸复核，再处理最后一人。\",\n    \"285日起查货仍限已担保仓区。291救人前，港卫核内湾当天无寒潮、外露短栈桥与浮台处于本制式日常寒候；林贺穿干衣、使用289晨已换的第二张护寒符并各自核余纹。这些符只保本人温热，不挡风刃、护舷木或冰水，也不改变林凝元剑诀的二成费用和伤后动作限制。若护符、天气或暖房撤返点不合格，二人不登浮台，交港卫组织实体救助，承担程先离开和重排救援的后果，不靠夜隔空暖场。\",\n"
+          },
+          {
+            "sourceId": "plan/milestones/ms_v2_boundary",
+            "quote": "  \"cost\": \"浮台外缘木板被尾浪推偏的护舷木撞裂，林右肩在实际接人中撞伤，291–297随访且不因七日期满视作治愈；伤后停握剑和全部术法，不再消耗剩余二成。贺失去本次追货奖金，该奖金未领取，不能算既有现金损失或预支收入。279温和吐纳只回一成、290验剑付半成、291剑诀付二成：3.5+1−0.5−2=2成；不返寿、不借普通动作免术费。290诊费及291后普通医药在原专项杂费中据实列支并归入累计780，未增免费医疗或新寿源。夜耽误三日原返程、巡队缩减一处例行勘查，回去补巡；救人不等于无代价全胜。 北境本批救济另有港税入库款实划240，事前实付符衣82、船班20、十日住食70与首轮诊护28，合200，未用40留库；与林贺航款、林肩伤原杂费医疗及程的商号经费均分账，不当作角色收入。 获救前供给另由押运货船方普通货运预付款160承担本次101支出、余59；实物余料及已用符余纹另存，不挪救济240或林贺14000。此为新增待审作者提案，非从旧正文确认的账目。\",\n  \"outcome\": \"第285–300日。7名矿工上岸、与5名已在赤霄获救的雇工名单分开；程在逃，第二片仍在程手，第一片仍林持有。污染货只封存不由低阶启封。夜协助港务将七人交入同一受监管泊区内原救济所候查暖房，由港务接案、所方签收照护；至300日仍为获救待核人员，未取得自由离港资格，贺与林则准备携证回青玄。本批转运暂停，不代表九鼎全阵停转。 北境七人与赤霄五工、留在青玄的开篇两名旧工友及430日后新扣六人均为不同人；在本段拟由港卫和救济所逐人核姓名、原工籍、舱位及安置去向形成该批名单，不能凭同乡认作同一批。该名单原件留当地，随既有见证副本交付可核的签认名单副本，不转移人员或增加林贺船票。\"\n}"
+          }
+        ],
+        "revisionAdvice": ""
+      }
+    ],
+    "modelResponses": [
+      "{\"requestId\":\"review_aefb2120289cbabf8e35e237\",\"summary\":\"本次两项局部修订在提案层面已能闭合：北境七人的救助、候查、暖房交接与身份权限被明确限定，南渡货索动作已由第30—32章细纲落实为轻物与实体承力分工；人物选择仍保留可见代价。\",\"checks\":[{\"criterion\":\"causality\",\"verdict\":\"pass\",\"explanation\":\"loc_02把获救人员限定为“获救待核人员”，明确只能在受监管泊区内由港务登记、验籍岗接案、救济所负责人签收照护，不能代签入境；loc_25又把救助所限定在同一受监管泊区界内，船舱、靠泊点与暖房之间由港务登记并由港卫交接。ms_v2_boundary进一步写明七人逐人核对自报、工籍、舱单与伤情，身份不符继续待核，300日后再办理续接或合法离境，且不适用夜给林贺的指定仓区担保。由此没有把救助、舱单、付款或获救偷换成入境许可，也没有把暖房扩大为全港免寒区；防寒符、暖房、照护与救济款各自有实物、人员和账目来源。\",\"evidence\":[{\"fragmentId\":\"e30\"},{\"fragmentId\":\"e53\"},{\"fragmentId\":\"e117\"},{\"fragmentId\":\"e118\"}],\"revisionAdvice\":\"\"},{\"criterion\":\"timeline\",\"verdict\":\"pass\",\"explanation\":\"第30—32章与南渡里程碑已统一为第214日暮出航、第216日暮抵港的两昼夜实体航程；第31章只负责验籍、验货与登船，第32章风暴中林只御动未绷紧的半斤索头和卸载后的八两松楔，各付半成，货索、箱体和救人承力由水手、船桩、撬杠承担，消除了此前“御物承受货索重载”的冲突。北境段也区分了285日出港、290日抵受监管泊区、291日开舱救助、291—300日候查安置，未把程的另船行程写成追船。301—304日为限程担保下的陆路移动，304暮至310暮为六日实体返航，310日先验籍缴费后才获准入港；夜至311日才返驻地，318日实际收到回执后才获得对应知情。费用、承运者、救助舟、暖舱和候查安置均未提前计作未来收入或权限。\",\"evidence\":[{\"fragmentId\":\"e109\"},{\"fragmentId\":\"e130\"},{\"fragmentId\":\"e131\"},{\"fragmentId\":\"e113\"},{\"fragmentId\":\"e119\"},{\"fragmentId\":\"e120\"},{\"fragmentId\":\"e121\"},{\"fragmentId\":\"e122\"}],\"revisionAdvice\":\"\"},{\"criterion\":\"pacing\",\"verdict\":\"pass\",\"explanation\":\"修订没有把救援改成无条件全胜：林在南渡中先救人而失去盯箱机会，承担失箱、进水、奖金取消等后果；北境救援中选择开舱救七人而非追第二片，夜选择守撤离栈桥并放弃扩大封港追程，随后承担三日巡程耽误与补巡责任，林还因浮台事故受肩伤并停术。七人虽获救，仍需防寒、复温、首诊、候查、身份核验和后续合法离境，不因港务救济抹掉伤情、拘扣事实或返乡困难。候查路径通过港务、港卫、救济所三方行动呈现即可，不要求正文机械宣读行政清单；关键节点、选择与代价已有明确可写动作。\",\"evidence\":[{\"fragmentId\":\"e90\"},{\"fragmentId\":\"e113\"},{\"fragmentId\":\"e114\"},{\"fragmentId\":\"e115\"},{\"fragmentId\":\"e116\"},{\"fragmentId\":\"e119\"}],\"revisionAdvice\":\"\"}]}"
+    ]
+  },
+  "replayModelCalls": 0
+}

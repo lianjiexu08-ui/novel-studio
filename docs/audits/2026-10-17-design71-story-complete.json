@@ -1,0 +1,3497 @@
+{
+  "observedAt": "2026-10-17T07:29:57.220Z",
+  "kind": "design71_completed_story_record_integrity",
+  "area": "story",
+  "runId": "design_run_47089baf-d597-4ab3-81d0-5a785e2a417c",
+  "reportId": "design_review_e66da222-544c-495b-ac90-c6509e7f99f7",
+  "inputHash": "70235514bab787e26c05a26fdc9b297adde5a363de5c6c9f10112b7229c018de",
+  "snapshotPath": "data/audit-runtimes/design71-review/story-complete-checkpoint.json",
+  "snapshotSha256": "4ee6a6737611a5ad1e9b286c04c89d94bff2694760b85f448bf1dd65288e3b51",
+  "inputsSha256": "77deca6c04132eebd14a14fdf518187cdb857aa1f3068477018218c0ead83a2d",
+  "runtimePath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design71-runtime",
+  "sourceCommit": "cbd8333577e3ebdba964f5280bfea754158965c4",
+  "databaseSnapshotPath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design71-review/story-complete-verification-gJiHWm/production.db",
+  "databaseSnapshotSha256": "84de7182a1bb77f50c227fd51d559327529ffe23ca254e9e704c8df3d3c3f2fe",
+  "productionVerification": "read_only_sqlite_backup",
+  "replay": {
+    "verification": "verified",
+    "completedStages": 85,
+    "totalStages": 85,
+    "runSha256": "a02d1860847e44c166884dceae1a110e0f247e4f8e2afb9393346875baaad434",
+    "formalAcceptance": false,
+    "limitation": "Replays saved responses, repairs, citations and conclusions against independently supplied materials. Pending work, semantic quality, blocker disposition and prose acceptance remain separate.",
+    "responseReplay": "verified",
+    "responsesReplayed": 91,
+    "records": [
+      {
+        "stageId": "batch-1",
+        "kind": "batch",
+        "stageSha256": "0c427a69cf1e438e0ec54a011ef829305f4c9cc96de684e36d36ed191c8aa408",
+        "inputSha256": "19aef5180be06c1b84ba580235c932716258d67af6b246d18347ccbbe9f97ea4",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/10",
+              "plan/chapters/11",
+              "plan/chapters/12",
+              "plan/chapters/13",
+              "plan/chapters/14",
+              "plan/chapters/15",
+              "plan/chapters/16",
+              "plan/chapters/17",
+              "plan/chapters/18",
+              "plan/chapters/19",
+              "plan/chapters/20",
+              "plan/chapters/21",
+              "plan/chapters/22",
+              "plan/chapters/23",
+              "plan/chapters/24",
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/33",
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50",
+              "plan/milestones/ms_v2_loss",
+              "plan/milestones/ms_v2_barge",
+              "plan/milestones/ms_v2_fire",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/33",
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50",
+              "plan/milestones/ms_v2_loss",
+              "plan/milestones/ms_v2_barge",
+              "plan/milestones/ms_v2_fire",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "story/secrets/sec_01",
+              "story/secrets/sec_02",
+              "story/secrets/sec_03",
+              "story/secrets/sec_04",
+              "story/promises/prom_01",
+              "story/promises/prom_02",
+              "story/promises/prom_03",
+              "story/promises/prom_04",
+              "story/openThreads/th_01",
+              "story/openThreads/th_02",
+              "story/openThreads/th_03",
+              "story/openThreads/th_04",
+              "story/openThreads/th_05",
+              "story/relationships/rel_05",
+              "story/relationships/rel_06",
+              "story/relationships/rel_07",
+              "story/relationships/rel_08",
+              "story/relationships/rel_09",
+              "story/relationships/rel_10",
+              "story/relationships/rel_11",
+              "story/relationships/rel_12",
+              "story/relationships/rel_13",
+              "story/relationships/rel_14",
+              "story/relationships/rel_15",
+              "story/relationships/rel_16",
+              "story/relationships/rel_17",
+              "story/relationships/rel_18",
+              "story/relationships/rel_19",
+              "story/relationships/rel_20",
+              "story/relationships/rel_21",
+              "story/relationships/rel_22",
+              "plan/milestones/ms_v2_fire",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          },
+          {
+            "criterion": "opening",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/1",
+              "plan/chapters/2",
+              "plan/chapters/3",
+              "plan/chapters/4",
+              "plan/chapters/5",
+              "plan/chapters/6",
+              "plan/chapters/7",
+              "plan/chapters/8",
+              "plan/chapters/9",
+              "plan/chapters/10",
+              "plan/chapters/11",
+              "plan/chapters/12",
+              "plan/chapters/13",
+              "plan/chapters/14",
+              "plan/chapters/15",
+              "plan/chapters/16",
+              "plan/chapters/17",
+              "plan/chapters/18",
+              "plan/chapters/19",
+              "plan/chapters/20",
+              "plan/chapters/21",
+              "plan/chapters/22",
+              "plan/chapters/23",
+              "plan/chapters/24",
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/chapters/30",
+              "plan/chapters/31",
+              "plan/chapters/32",
+              "plan/chapters/33",
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50",
+              "plan/volumes/vol_01",
+              "plan/volumes/vol_02",
+              "plan/volumes/vol_03"
+            ]
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/33",
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50",
+              "plan/milestones/ms_v2_loss",
+              "plan/milestones/ms_v2_barge",
+              "plan/milestones/ms_v2_fire"
+            ]
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/13",
+              "plan/chapters/14",
+              "plan/chapters/15",
+              "plan/chapters/16",
+              "plan/chapters/17",
+              "plan/chapters/18",
+              "plan/chapters/23",
+              "plan/chapters/24",
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29",
+              "plan/milestones/ms_growth_v1_recovery",
+              "plan/milestones/ms_growth_v1_training",
+              "plan/milestones/ms_growth_v1_expedition",
+              "plan/milestones/ms_vol1_climax",
+              "plan/milestones/ms_growth_v1_aftermath",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "batch-2",
+        "kind": "batch",
+        "stageSha256": "73851d804a4b0126baac32e8ddf54457c540fe053e8ea33067f1dc9c8c979d3a",
+        "inputSha256": "8a753689aa8d6cb49dc93bcbf312b52ede1d25dd37f1356aa2f935b201933d7c",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "batch-3",
+        "kind": "batch",
+        "stageSha256": "2b44955884781e0e28d1992107d7b6eb848a52ae2d24895bd08f02524caae0ca",
+        "inputSha256": "ecf57a7f2d3b279116927c217e736ab57d622ab58f1710516730788bfd09dcd6",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "batch-4",
+        "kind": "batch",
+        "stageSha256": "660c448d4cafb9d2719ee41e8f2e94819afee262d7979ed39f32b04c3be17ae7",
+        "inputSha256": "e632a09bbc4b82fda21d05ebb1e370a4f3d1d632c605f8987a456fc85049ab79",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/18",
+              "story/characters/char_10",
+              "world/techniques/tech_04",
+              "world/techniques/tech_05",
+              "world/techniques/tech_06"
+            ]
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/18",
+              "story/characters/char_10",
+              "world/techniques/tech_04",
+              "world/techniques/tech_06"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "batch-5",
+        "kind": "batch",
+        "stageSha256": "a64d4d7928be83ef86407f101628cd973fd0440fde8ac7f2de27298fe5d4246c",
+        "inputSha256": "973a125d3dca34a843f49a806654687160c64252c4682ceadcc1b424349e3522",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/18",
+              "plan/chapters/43",
+              "world/techniques/tech_04"
+            ]
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/18",
+              "plan/chapters/43",
+              "world/techniques/tech_04"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-2",
+        "kind": "cross",
+        "stageSha256": "e87c34ba480c43c05c5e54029de72022bb365c70cfcfdf49739fd7329500fc6e",
+        "inputSha256": "801dcafd2a2170e1157480d692fe8cf4e5b87aa39dcd87a47c3ed0413675c95b",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/volumes/vol_02",
+              "plan/volumes/vol_03",
+              "plan/milestones/ms_v2_fire",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/volumes/vol_02",
+              "plan/volumes/vol_03",
+              "plan/milestones/ms_v2_fire",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/volumes/vol_02",
+              "plan/volumes/vol_03",
+              "plan/milestones/ms_v2_fire",
+              "plan/milestones/ms_v2_voyage",
+              "plan/milestones/ms_v2_boundary",
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          },
+          {
+            "criterion": "opening",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50"
+            ]
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39",
+              "plan/chapters/40",
+              "plan/chapters/41",
+              "plan/chapters/42",
+              "plan/chapters/43",
+              "plan/chapters/44",
+              "plan/chapters/45",
+              "plan/chapters/46",
+              "plan/chapters/47",
+              "plan/chapters/48",
+              "plan/chapters/49",
+              "plan/chapters/50"
+            ]
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/volumes/vol_03",
+              "plan/milestones/ms_v3_return",
+              "plan/milestones/ms_v3_training",
+              "plan/milestones/ms_v3_advancement",
+              "plan/milestones/ms_v3_convoy",
+              "plan/milestones/ms_v3_payoff"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-3",
+        "kind": "cross",
+        "stageSha256": "8fecbc130971d9faa1f808ea70ce5cbb7794d66aa797d019f3135542febacb06",
+        "inputSha256": "c6e24f847d9ace32eacc963cbc7da144accebf12615fd276e45862dabbbc1a4e",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/23",
+              "plan/chapters/24",
+              "plan/chapters/25",
+              "plan/chapters/26",
+              "plan/chapters/27",
+              "plan/chapters/28",
+              "plan/chapters/29"
+            ]
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-4",
+        "kind": "cross",
+        "stageSha256": "ab7dcc919299f44ad2ada977432a2ac1a26705b1a4d8c9e4920b73704ac1f590",
+        "inputSha256": "576ef7f3ad31ea2610891a100de0752b2e0e69e7f18498a357baed127adc0a43",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/18",
+              "plan/chapters/21"
+            ]
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/18",
+              "plan/chapters/21"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-1-5",
+        "kind": "cross",
+        "stageSha256": "53d658ed0b02cf678a224f1c71b9cbb96bc337ceb37a6880a3d5fc260578898b",
+        "inputSha256": "1a7de507af0a603906e3dad990fd5b5c1ecd6b3d79bb67cb896b14a0367ae940",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/18",
+              "plan/chapters/43"
+            ]
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/43"
+            ]
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/18"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-2-3",
+        "kind": "cross",
+        "stageSha256": "8dd684ed0f97fc493a14e15401f0bf24851071021952c3bc62473e5cbfdff198",
+        "inputSha256": "65cc931d4687ae8e859b7bd6ba9de8662482a543b13bbc300e420ad19525bb31",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_04",
+              "world/artifacts/art_03"
+            ]
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "world/techniques/tech_04",
+              "world/artifacts/art_03"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "cross-2-4",
+        "kind": "cross",
+        "stageSha256": "a040fda37c671b08bdc694855d502209b5a94698614850845f5756c5444ce352",
+        "inputSha256": "25230c302c799f56e51d5b1da10ab842fa2d4eb22b1e1dfdbbd0ea15e449d02f",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "story/characters/char_10",
+              "world/techniques/tech_04",
+              "world/techniques/tech_05",
+              "world/techniques/tech_06"
+            ]
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-2-5",
+        "kind": "cross",
+        "stageSha256": "e6e0e0c0dbdc14abfc90512a455334219685179695e75ec7aaae9bc0fcebf1f4",
+        "inputSha256": "d00e0c7c7e263abf46e1679f39c110a5858cecad93aa51870dff641d51ac1e70",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-3-4",
+        "kind": "cross",
+        "stageSha256": "bb2e4dfcf48dc6080f621f51fadeea0c0e17ce46e007dd672fb97ae33e092842",
+        "inputSha256": "b9e4cc9dac5c0585397a2e47ef497ef5529fd51ec243719a1c3d2388230f1923",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-3-5",
+        "kind": "cross",
+        "stageSha256": "5d62ade58573a9e629673ffe156d1bb815113f80d1e70b77cf6cae80be546c83",
+        "inputSha256": "097b34d3b049d89d36198af877a53af124ca6b3b38b55e91e4df85dcbfd31af1",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/43"
+            ]
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/33",
+              "plan/chapters/34",
+              "plan/chapters/35",
+              "plan/chapters/36",
+              "plan/chapters/37",
+              "plan/chapters/38",
+              "plan/chapters/39"
+            ]
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "cross-4-5",
+        "kind": "cross",
+        "stageSha256": "50af0caedc646b87a012c6c670288b75c6b4e8258aebd41b76d262339c96d55d",
+        "inputSha256": "454ab3f659c82882b55492ae5f72020d08f713f99f73e7047bd09c3b7f41cc75",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "insufficient",
+            "awaitingSources": [
+              "plan/chapters/18",
+              "plan/chapters/21",
+              "story/characters/char_10",
+              "world/techniques/tech_04",
+              "world/techniques/tech_06"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-batch-1/causality",
+        "kind": "cross",
+        "stageSha256": "5eef55aec49da6d2d9e44ecc15cf3c0d631a050ff133eef2518c3ad577c569e9",
+        "inputSha256": "946874f7e7011cf573e063a96c35fa6337969cc9396e473e81b5c5b52a2f8c46",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass",
+            "resolves": [
+              "batch-1/causality"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-batch-1/timeline",
+        "kind": "cross",
+        "stageSha256": "1dedba94f01591a19aa66a51853449af777c44c9be2e00de005583f5d2b6c69d",
+        "inputSha256": "b3872a4f05550661467c0b819ffc191963cc38f5805e30f8b2376838f37347ce",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "timeline",
+            "verdict": "pass",
+            "resolves": [
+              "batch-1/timeline"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-batch-1/payoff",
+        "kind": "cross",
+        "stageSha256": "47753015ba878a454c2d96c2125051b3139109ba163c975892398422da863903",
+        "inputSha256": "eecdec994a1e0943ed4c24abb6cdd9d74e9ce41e447ef0004b19e749f4b43469",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "payoff",
+            "verdict": "pass",
+            "resolves": [
+              "batch-1/payoff"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-batch-1/opening",
+        "kind": "cross",
+        "stageSha256": "9bd5645fc6d697e7ae1242082d2c5fa3d42726cbbbf14f93c2b54ffae5b4fe62",
+        "inputSha256": "641aa8001653fc59884b38073cd65c901bfcba997a30d5dd77fa48fe6a8ef987",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "opening",
+            "verdict": "pass",
+            "resolves": [
+              "batch-1/opening"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-batch-1/pacing",
+        "kind": "cross",
+        "stageSha256": "7442223734ba411c4cdb854b77278bb0a221f74be4632d7034ec88e0ca480fb8",
+        "inputSha256": "c353e3baf95c3d697799ff561b833680c0f40444d879fefc3e4ac1b9ecd6a2d3",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "pacing",
+            "verdict": "pass",
+            "resolves": [
+              "batch-1/pacing"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-batch-1/growth",
+        "kind": "cross",
+        "stageSha256": "0efee65ae1cdb57050a656f3a9b9690a3c825082ef6393e82ea7dd22ac966508",
+        "inputSha256": "bc2d08d609f1de96dac3f3a24a35951a33c09c2c8536cdc9883495160e791c30",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "growth",
+            "verdict": "pass",
+            "resolves": [
+              "batch-1/growth"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-batch-4/causality",
+        "kind": "cross",
+        "stageSha256": "998ed88ae8fd5894f48f49f5712b112f8a65ea88c0db931822d921508f8306e8",
+        "inputSha256": "3364bea5b8255c1eca28c62a3d498e1a5334935fd2fdb8e55cab2a913cbb9ff3",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass",
+            "resolves": [
+              "batch-4/causality"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-batch-4/growth",
+        "kind": "cross",
+        "stageSha256": "ac9815a999aeaf7083473443ed1bcff72a38459dd70d5ba37b4d14b59bb6d9a5",
+        "inputSha256": "220ec4098bc27dc5160a3007a25c5c4b3f78b1e2adb83f625786b05961549289",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "growth",
+            "verdict": "pass",
+            "resolves": [
+              "batch-4/growth"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-batch-5/causality",
+        "kind": "cross",
+        "stageSha256": "2cfd994f378f29a274913cc1ab06a6e07f752f7e7070a67e21d1b43cc8e8cda5",
+        "inputSha256": "ca1a234c723d53e0dbace1a94d9a3456059c42a0c4a3433beaa97a81b90bd2f9",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass",
+            "resolves": [
+              "batch-5/causality"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-batch-5/growth",
+        "kind": "cross",
+        "stageSha256": "ddb47dd392d2b9af7d4a078b38ddf6dcd27a61efd869253cb2fc7dd00fcc905a",
+        "inputSha256": "e156775a717dba11b641582a9d06b0bb9640878ed21cefee13a482f907da0e5d",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "growth",
+            "verdict": "pass",
+            "resolves": [
+              "batch-5/growth"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-1-2/causality",
+        "kind": "cross",
+        "stageSha256": "8f8664adf919c490cd79cb2b904d40d5f9fac1fd410843689096f686f780fc49",
+        "inputSha256": "f650dec42cc88f410eee14acc7f473291281b884adde626f0ddbe47123a64385",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass",
+            "resolves": [
+              "cross-1-2/causality"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-1-2/timeline",
+        "kind": "cross",
+        "stageSha256": "978c3ed8a2d82d3943825032b1e4e63fe76262685d0dbd6d6db7edc59b6c225d",
+        "inputSha256": "f995afee8cf197ff44de5be80bd77b5d45c82b9389e4cb0f6d6ec0e761e7e3c5",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "timeline",
+            "verdict": "pass",
+            "resolves": [
+              "cross-1-2/timeline"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-1-2/payoff",
+        "kind": "cross",
+        "stageSha256": "017deb9e5da4fb6d835bb5305f948ff3139ea7b0f4eaec00bf26ca7188115411",
+        "inputSha256": "2fe3118bfe63cf16089bc00e9a3b373a7b4fc7cf22a82af361e5be1c6324729f",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "payoff",
+            "verdict": "pass",
+            "resolves": [
+              "cross-1-2/payoff"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-1-2/opening",
+        "kind": "cross",
+        "stageSha256": "309864c19a52d284697bfc238665a0205a459604ddf991ed2da757e8ec05ae9e",
+        "inputSha256": "46cc8ba0ca3f4f0df742f9e8dbad44422df1fe0503d7c8ad694a7111f7b826a3",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "opening",
+            "verdict": "pass",
+            "resolves": [
+              "cross-1-2/opening"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-1-2/pacing",
+        "kind": "cross",
+        "stageSha256": "007851fe1ebeaa611c1639910635aac3ae3bb1b031978837e4dec694117d0680",
+        "inputSha256": "b25f5dd25436c7122a0f469fbc91454f5d37b609471fdf1bf878f7793030c2a1",
+        "responsesReplayed": 2,
+        "checks": [
+          {
+            "criterion": "pacing",
+            "verdict": "pass",
+            "resolves": [
+              "cross-1-2/pacing"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-1-2/growth",
+        "kind": "cross",
+        "stageSha256": "39fe321890d786ecbd5ffcfb8f30a0721ac214c27f6cf65fb9e8bb4c18a35253",
+        "inputSha256": "e7ff8fff9f0e6e1f4a1814dc8a5e15bf01f3d04a66a8162fd7a46980f4b6984a",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "growth",
+            "verdict": "pass",
+            "resolves": [
+              "cross-1-2/growth"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-1-3/payoff",
+        "kind": "cross",
+        "stageSha256": "163ee6e204a2f4d47139364957ad8759d8a9adf215e6be39fa1ec2bcfd2c34df",
+        "inputSha256": "3fafe05c4ade3d99fcc92d8565be88c4bbc00d11ea19063122f9e5bc532ea5bc",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "payoff",
+            "verdict": "pass",
+            "resolves": [
+              "cross-1-3/payoff"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-1-4/causality",
+        "kind": "cross",
+        "stageSha256": "2af2b8de311897a64cf2e9a18d8d63bb676092cf046f53301191a50920cf55ab",
+        "inputSha256": "182cb8725f9fdfce95f15e653c39ab9d32aa818b30b8da20270f79121f41e88a",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass",
+            "resolves": [
+              "cross-1-4/causality"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-1-4/growth",
+        "kind": "cross",
+        "stageSha256": "6e81bd3ac794aaf2ae4c64dcc6e0bb0e0e1045b31090c89ffb6ceb5caa263827",
+        "inputSha256": "c0506898388fd51040e1d537da25dba93a8a5ffbfc7ef0ad2843cce4b28c1c8a",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "growth",
+            "verdict": "pass",
+            "resolves": [
+              "cross-1-4/growth"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-1-5/causality",
+        "kind": "cross",
+        "stageSha256": "5837c9d50d3b7d1076f0923424d517b01d2b1f3f42b98909398c085296d84d1f",
+        "inputSha256": "f68ff8695eeed6041ae830630d326326c21cb91f7a77d177dd55d40cc37af927",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass",
+            "resolves": [
+              "cross-1-5/causality"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-1-5/timeline",
+        "kind": "cross",
+        "stageSha256": "89d28f4f40021641ae9fbae2fdad3ba3329eedf7e6ca4501b55a0143d972cb45",
+        "inputSha256": "6dda9056f436477c6a74cd1f856fc055a57570df5a819b1b966981cdf5bae9c7",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "timeline",
+            "verdict": "pass",
+            "resolves": [
+              "cross-1-5/timeline"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-1-5/growth",
+        "kind": "cross",
+        "stageSha256": "0733bc51f78730b46b8c6a235ef1d13da1e5a03fe39e49fcaa8eecf9070a375f",
+        "inputSha256": "d0bbc4c36a5fc083e9cd3fc93da085f3df729c280b328ca45afc8fe225d1b625",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "growth",
+            "verdict": "pass",
+            "resolves": [
+              "cross-1-5/growth"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-2-3/causality",
+        "kind": "cross",
+        "stageSha256": "40d9a0d2e7979bfb9ff8bbeb0208813cb1d691eed4d2b9eb25381df4fcdc7e00",
+        "inputSha256": "08f42dc2e6891a360ae2cc7188f5b1a193d74d29f73c048e7a64bbf23ea712b2",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass",
+            "resolves": [
+              "cross-2-3/causality"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-2-3/growth",
+        "kind": "cross",
+        "stageSha256": "15d69c379673b9801ab64fe1e3fdea928622281e949f3af80f00405d06530fd5",
+        "inputSha256": "8f489f9906694f71dc466408d692ae0c0bc851a9687350f7b1095e68d1a4d37e",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "growth",
+            "verdict": "pass",
+            "resolves": [
+              "cross-2-3/growth"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-2-4/causality",
+        "kind": "cross",
+        "stageSha256": "e8cb2d3cded9558308ebcda03f6aa64c57c9ca204a347767ea1a355fa5762846",
+        "inputSha256": "d77d304ca9ea2bfa54558c2798ad9b34e57e8fe889da5162b51ec19a84abad33",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass",
+            "resolves": [
+              "cross-2-4/causality"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-3-5/causality",
+        "kind": "cross",
+        "stageSha256": "17b8bef87b8c69991ab609960b4c4dd80ac7cf0fa2e1c15f4efb95136c39658a",
+        "inputSha256": "38e7fa758c0afe4a6cbe3ee62e71c9eb014746f219fe24379e7a3fa3ce66cffb",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass",
+            "resolves": [
+              "cross-3-5/causality"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-3-5/payoff",
+        "kind": "cross",
+        "stageSha256": "4032c97f61fdf5623fa4dee1182076eafa66e2ad5d6a0fffc7caa1f352285784",
+        "inputSha256": "88a5bd2a328145faec6a35b1dc00c440cb1ffc9e820b779117c9065308d2db18",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "payoff",
+            "verdict": "pass",
+            "resolves": [
+              "cross-3-5/payoff"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "followup-cross-4-5/growth",
+        "kind": "cross",
+        "stageSha256": "f892739a8d79512e81f75042694262f497d204d4282be3fd30325f93160ca882",
+        "inputSha256": "8252e4c9fe970f2cfd59113faabe1adf39d763ede5c396dd37898ee3cc44536d",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "growth",
+            "verdict": "pass",
+            "resolves": [
+              "cross-4-5/growth"
+            ]
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-1",
+        "kind": "synthesis",
+        "stageSha256": "f7d4cb959f9c0b5d748b02234df7cecebf3cdf13f61729beac0fbb3a7a484b6b",
+        "inputSha256": "4046084e716327961d525be8dd69e2d11760b234428c8fb36418332039632573",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-2",
+        "kind": "synthesis",
+        "stageSha256": "c517312afc7fc9ff7d1628d02c38ac2c97592ad463e35e15b160f2fa1f139baa",
+        "inputSha256": "6d8091ca5292a5ddd19b0df45371a5c76fe57b6bde1854dc2e15e87bb05d0aa7",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-3",
+        "kind": "synthesis",
+        "stageSha256": "c44907e492cc15479c1911783de3d480060b3bdf7a870e041395dd67d35289b3",
+        "inputSha256": "4e152acd0f569fc5cdbc5fde28dd11ddea509a75cfbf9e2b31dfde072e5cc377",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-4",
+        "kind": "synthesis",
+        "stageSha256": "478d7820e6a5a2d6a878e3f1080883c5e5353b758fdb91abddfe73d56852d44c",
+        "inputSha256": "b209f5bd709ecf0d513a00b61f29e269706a0e26b991162daee64e0a728e317c",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-5",
+        "kind": "synthesis",
+        "stageSha256": "a444665ff5dbaa999f8d1392c50d1dacab4a2a477c20c014ca2095cf09e850aa",
+        "inputSha256": "2f0827cf56a384666be0c7a2e9fae2cfadcbcc33e5f7a301654d5f9b645ce557",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-6",
+        "kind": "synthesis",
+        "stageSha256": "385db27cf994c5c4e4342515e334bb71a099d3cf7134cdc9e61675dd55ae8038",
+        "inputSha256": "308be697b50b664086311c72ebcdc9100477e5ef87cbd81829ab5f27c990febc",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-7",
+        "kind": "synthesis",
+        "stageSha256": "6681c3ca6043ae9a6c85760d3166bb26a122ecda80e1fff575031e57e8886188",
+        "inputSha256": "23853a0ba0e8dfa72014dc87de0d482962ce173c64a1fcc142bc2e46e90e1d14",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-8",
+        "kind": "synthesis",
+        "stageSha256": "02e8d84db77d152d05e2e231f34b34c586a8b260fd6e3619aa0ec96d05c68f16",
+        "inputSha256": "1b6895760323ed10685cace06cd3365f99b3a23d502b930f0be520ddedfb4216",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-9",
+        "kind": "synthesis",
+        "stageSha256": "19ebfa58b43ccb5375d846142ee86c0c1f389fdc6605c08a6b54f6e0de6e0215",
+        "inputSha256": "388c08afefc3efc5ac6af9914f07336a901fcd0a03d46db5262b14b40dc16f59",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-10",
+        "kind": "synthesis",
+        "stageSha256": "e8fbe40477702d6e38340c53886520b3bab01ac310643df5f24b4cfc711226a5",
+        "inputSha256": "6ed9ecdda3af24875e1610a9aa4524733653bc305738729efdb1817ae6a0ad5a",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-11",
+        "kind": "synthesis",
+        "stageSha256": "ef7def4f5e20348f49840f71b923790d944d517b976b47c5cf1c3fd3bb684177",
+        "inputSha256": "584fe53d761b333f918f793deb34444807f4f7743a6f48b9652d4417a8c09adb",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-12",
+        "kind": "synthesis",
+        "stageSha256": "58225901aeced8954f00054a777986b6dc801d0127b341d7e349834aa3f754e8",
+        "inputSha256": "b1ef0a3df0eb7f221170ad2bf16fac3b6567ba3e5cb9c129e263dc5179d88dfc",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-13",
+        "kind": "synthesis",
+        "stageSha256": "0a0d7fa2bc96589274916e6076010c3368abf5527b9425878c9b40060e0a5315",
+        "inputSha256": "7571e2b63f42ce53f4ab40330f1d0c863be47a37e04f7fcc560d179f40c5a028",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-14",
+        "kind": "synthesis",
+        "stageSha256": "ef6cb84d39be6abd8710c331923554de19b9898f63f0aea71276a5d9b9a6cab4",
+        "inputSha256": "a28f8a3640895115684b172dee28d8b042950356aec5fc43d79ae095ec7e0644",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-15",
+        "kind": "synthesis",
+        "stageSha256": "ebb76ada6c2cc4f385271d60e7d026045144a1d314a3826ff9d79398039e917e",
+        "inputSha256": "894572288a101babb6ef87af0ed3e2275398315112efade0523f0fc5c20cec2c",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-16",
+        "kind": "synthesis",
+        "stageSha256": "7f594204a4598ecbc1e33c2136eead36d698ebdde158361306336ddd437fc0d5",
+        "inputSha256": "97071ec1a98dbe19212283ecd168480ec092518d4926df52b86137dd00604bc1",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-17",
+        "kind": "synthesis",
+        "stageSha256": "790b33ce7e9aaba925cae7cd82b7510cb920d1c47c45b21be4ec6734c1463acc",
+        "inputSha256": "5d37910a747a7b773ca16f8d1a5a42eb76419f9a96196390b414ab23b31dfea8",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-18",
+        "kind": "synthesis",
+        "stageSha256": "61436b1f7d473079a82997db7b67fc6139a3dd263166acaaec823b6e6fe69d08",
+        "inputSha256": "5dfc9a9a4a7fd055ead00523f8bde4e8013a4a0359499bd1d35c4511647202e1",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-19",
+        "kind": "synthesis",
+        "stageSha256": "15d88ca61e14353b00035cccbf878aca3d490d45ae6792e703b01f6cd96c757e",
+        "inputSha256": "226e2b02bdb6e510cc4c40f373a64e983148319cdf68a706bcb4e93fdc29f50a",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-20",
+        "kind": "synthesis",
+        "stageSha256": "fb80ac3d9eccf692cc0ed6a23ebc2e44e1f49263581b660c392cf39be3b61c29",
+        "inputSha256": "9d4f9942f7423834cb13e70702f8ecf16670e4596759c938d250b46346ebaeea",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-21",
+        "kind": "synthesis",
+        "stageSha256": "3abe020a41f6b6c489a2fee20d2e4fca5c275e93903372648a812cf563e51bbd",
+        "inputSha256": "2f74e000a919dc193e51ae5cd6e1ab1dc04c5cb35d9dd11f4e7c0d498a2c088f",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-22",
+        "kind": "synthesis",
+        "stageSha256": "1f6c3a2f8cf52e0e789ebb474d16c891b2ebaa03a9c6306c12376a786be82c3e",
+        "inputSha256": "ee678302d9d2984556dcaa25ae6bd53586e21bf8c8b2e76d34580f947916cefa",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-23",
+        "kind": "synthesis",
+        "stageSha256": "8ef111a0e5c0749b1660b8979f0c76188cce86c57bbd82461dbddd0eeb1e4fde",
+        "inputSha256": "52a1c3aa3b0883972becf861a31399e89643c4940ea3500103136aeffcd34beb",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-24",
+        "kind": "synthesis",
+        "stageSha256": "b2eaa2c8d611b96fd5d54d2e5ec5a9783876f15939f57a5b53c95b31ff9d069f",
+        "inputSha256": "c8d676d5e27258ec5769cb339afa10e2ff84c7623892ed55e0c2483a8e5617bf",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-25",
+        "kind": "synthesis",
+        "stageSha256": "746b09c4ae4ad7d85a628b0b47a54b6492ab09924efdfacbafb538ae37f2707e",
+        "inputSha256": "007703039619f589efc430c54833128c9999a835d2150e4ea686779fbf6a145e",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-26",
+        "kind": "synthesis",
+        "stageSha256": "dacb73270f21b5fa66f57fa5a6f75d2723963d8c4e23cf12345df533763cbc22",
+        "inputSha256": "632440e1e00ad8cc8fd7c2156f2e145c30eebd70766ac79814e9c6d262fd0727",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-27",
+        "kind": "synthesis",
+        "stageSha256": "dddee1cc1038858e686cd3c8f5607b8a9fb65f4c51c1d75429658ecb7e9d03c6",
+        "inputSha256": "6750f5361996a318819ff90daef7f3383dfbd4dca6ffdd0aeb0f372a4934e070",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-28",
+        "kind": "synthesis",
+        "stageSha256": "ea1357bfbae316a841de2d2698773c11dfd4480834700c642c3823322b468f8a",
+        "inputSha256": "65f6ffff20a40ff480fb586a44f014dd0ea86588d8b93d72b6938f6ed4044cff",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-29",
+        "kind": "synthesis",
+        "stageSha256": "3f5156f25f9d15ff9c5c7f6411dff51a1a910a3948166a6b32969acbca49d183",
+        "inputSha256": "1bbe610a0323052da1ea30c2380e2850173cd7ea673325b8d469ff691b2a8bde",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-30",
+        "kind": "synthesis",
+        "stageSha256": "9d333f1e7897ebafbd58081bd898c75e080f6bff639db79395180dbdbb01b59b",
+        "inputSha256": "22884ce6b262e66bf469e4c851d3fe67c864d9bc7ee085a71c1bb1073ba6a3b2",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-31",
+        "kind": "synthesis",
+        "stageSha256": "7da5aa97b1f0e3f7c6058ffc1cb95422ac53eeda6dff1218f40304c25d354a02",
+        "inputSha256": "f383fbb2adba1b9428d5678a6775375b67ffd1b5c3f48ba729b0b8db4c56d273",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-32",
+        "kind": "synthesis",
+        "stageSha256": "0011a3567d515a65937089e5a484995db6dd286fa6d08dc4012bd0cfac0d9e25",
+        "inputSha256": "fff377cf447a04b779b3de7d799663d7a430f87642ab0841ddeb825fdb100f1c",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-33",
+        "kind": "synthesis",
+        "stageSha256": "78869ddbde266a589e6b48c82d01d6a52f9c336b5a644ca191a4701475f33ae1",
+        "inputSha256": "884ec65dca6a7a5aaa9d7e5cf1bf361c3eba4c659c2ed85ccb4f31285ae0e1c6",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-34",
+        "kind": "synthesis",
+        "stageSha256": "03b9a9bc4269dde2c660d49a26191e7a432e7475d82d6521472d3f0f27338d26",
+        "inputSha256": "bdaa88f76295f099da885684a98b1fcd9e42020adc1abf4f95a10fd6df95541d",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-35",
+        "kind": "synthesis",
+        "stageSha256": "14a5ea2b9373bccdb6860228d246c38a9bf403b805a77e016fc2105e6fa488eb",
+        "inputSha256": "68550a2c79cd0ad3ae939e4d4e58f799a7c696798b5c5f805f6117dddc4fe7c4",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-36",
+        "kind": "synthesis",
+        "stageSha256": "253ca5264d0e0392b1a746ae7473850929d916365699564c12e5cf06a7a7b147",
+        "inputSha256": "8501ec134d9f4ae9a0017f09abf253da0e3b0cb666661e95dccadea9cbee4c70",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-37",
+        "kind": "synthesis",
+        "stageSha256": "b02163b9f7dd67ae3598d14b55d27c8687e1bdb9827d4457776ec1abefe24201",
+        "inputSha256": "2c4db9d5feba40b0a17a6fdd95d0d29e0f743a0d2d794ff4c198de8dde03d521",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-38",
+        "kind": "synthesis",
+        "stageSha256": "d7d07a48b4193deec165953aeea55c7079f6d1ef7c77c0aab3b511656283bae6",
+        "inputSha256": "ca6a0892395dd4ad6617b58601690626d0442ff451c2572d2465f1cd596b52d4",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-39",
+        "kind": "synthesis",
+        "stageSha256": "7e43b461bb1aec8142d00d37b7d04a94a4d429e7d0c050c5c5b9bc4a04c6600c",
+        "inputSha256": "d25786ea3592f568f6ebc19d72ae8aec72f86fe0bf6d6bab8a1986b2eb6a4923",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-40",
+        "kind": "synthesis",
+        "stageSha256": "6646178ce2c87790cf51a98b52ee5b57f4b6d8d73c852a8f2e724d3d28b6595b",
+        "inputSha256": "a559b0c816332fe282ffbb2e8916706e850c930bcefbb4145588e9593993f2d4",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-41",
+        "kind": "synthesis",
+        "stageSha256": "e06a9bdc1fdc0550c2fe7768e540ec22830acf8c19884e102361d302a6c63644",
+        "inputSha256": "102666269f8e22374781207ad6290534f092df6429f55d4db6b7adcc1ea95aa8",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      },
+      {
+        "stageId": "synthesis-42",
+        "kind": "synthesis",
+        "stageSha256": "0f39e992317de5bc8935410fdd3ba664055122aaa90f5e8e7c9f1fca1d9e3d94",
+        "inputSha256": "bae98d9543444d35626c2183ab7a17e7539724c96184a62be378984ca8cd3e51",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "causality",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "timeline",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "payoff",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "opening",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "pacing",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "genre",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "growth",
+            "verdict": "pass"
+          }
+        ]
+      }
+    ],
+    "failures": [],
+    "modelCalls": 0,
+    "reportVerification": "verified",
+    "reportSha256": "764e0959179ca98dac9594006f2751ee9e51ed7f2a5c99f4257a608358b0c023",
+    "reportStatus": "passed"
+  },
+  "preserved": {
+    "protectedHash": "2e98966a076858ef1ee2e7c96540145d3ee8be86ac9f5df9c2d71f0514ce11a8",
+    "oldRunsUnchanged": 75,
+    "oldReportsUnchanged": 80,
+    "plans": 71,
+    "versions": 101,
+    "events": 383,
+    "manuscripts": 1,
+    "candidates": 116,
+    "approvedPlanRevision": 10
+  },
+  "report": {
+    "id": "design_review_e66da222-544c-495b-ac90-c6509e7f99f7",
+    "area": "story",
+    "status": "passed",
+    "summary": "综合已覆盖全部43个分批、跨批与补读步骤；所有此前等待补读项均已有经校验的原文复核处理，且当前交付报告之间未见新的实质矛盾。按设计提案验收，100章阶段计划可写；第51—100章仍是待逐章实现的宏观安排，不等同正文事实，也不解除计划原文所列工作流阻塞。",
+    "scope": {
+      "worldPackRevision": 36,
+      "storyBibleRevision": 68,
+      "planRevisionId": "plan_dd83f79625bb428b98ea0b7e4ff5d177",
+      "planRevision": 71
+    },
+    "inputHash": "70235514bab787e26c05a26fdc9b297adde5a363de5c6c9f10112b7229c018de",
+    "checks": [
+      {
+        "criterion": "causality",
+        "verdict": "pass",
+        "explanation": "主线从矿务求生、有限取证与古境救援，递进至港口失箱和扣工脱控，再以安置、航款、北境救援、返乡交证、训练晋阶及有限截运承接。百章成果限定为切断一条已实证运输链；第二残片、九鼎全貌、界门危机及陆沉舟完整责任均未被提前结案。补读复核也确认后段的航款、看护、独立核验、救援取舍与转运回访均保留为条件和代价，未重复兑现证据或救援成果。",
+        "evidence": [
+          {
+            "sourceId": "review-unit/293",
+            "quote": "  \"mainConflict\": \"先天短寿的林辰由矿务逃生追查跨陆扣工与非法货运，在寿储、境界与各方利益限制下同伙伴救人、查清父亲守门及外山掩案责任。百章只切断已实证的一条三地运输链；九鼎全貌、三残片与最终界门危机仍是约450章全书必须收束的主线。 人员口径：赤霄获救承运雇工是唐、许、冯、吴、卢五人；陆弟单列，陆本人是受看护的押送责任人，不算五工。北境黑舱七人是另一批来自青玄的矿工，至300日仍由北境港口救济所安置，不随林贺返青玄。435–436日青玄两车八人是开篇两名旧工友加430日后新扣六人，与赤霄五工、北境七人均不重合；梁九为自由领车救援者，不在被救八人内。三地名单不能互相改写为人数增长，首卷救过而再被移交的两名旧工友只算两位不同人，不因再次获救重复加人。\",\n  \"theme\": \"活命与查真相不能以牺牲无辜者代价换取；信任来自共同选择和承担自己一方的责任。\",\n  \"protagonistArc\": \"从负伤矿工到能接受伙伴自主选择的凝元修士，再经数月修习、实测丹府与支付十元载成为玄府初期；力量增加时可用寿储反而减少。百章不发动逆命真解，不越阶斩高境，不把神兵持有当作启动权限。\",\n"
+          },
+          {
+            "sourceId": "review-resolutions/5ddb4324fdf39fb028c4cf483acf04b6a01b9c35cffe7f3c2a177090a66e6cf3",
+            "quote": "      ],\n      \"resolutionExplanation\": \"原问题要求核验第10—50章行动链及后两卷宏观前置。补读后可见：第10—12章先以梁九的机械制动、苏凌霜保全封样和韩叙留置记录完成有限救援，未将地下装置或上层阴谋一并解决；第13—18章再以伤后诊察、劳务、训练、凝元支付和实测取得古境资格。第19—29章将古境救人、墨幽屠被押、泉液验真分配、两次完整疗程和林辰、苏凌霜分路逐项串联，泉液只在复诊后两次入寿储，未重复入账。第30—50章由护货南渡的失箱引出程砚、扣工与港口调查；救出唐顺等三人并不提前算作吴伍、卢小满获救，后者在第50章以本人回答、陆沉舟改为协助及巡员现场控制完成脱控，陆的完整改签供述仍保留为后续独立核验事项。第51—100章虽未展开逐章细纲，但里程碑已给出从安置和有限航款、实体五日北航、受限外港救七名矿工、限程返航回执、伤后训练和十元载晋阶，到第436日截运、分批送医及第466日有限回访的因果、时间和资源门槛。三地被救者名单、第一片与第二片归属、不同人物的寿储和真元账户均明确分开；百章结局仅切断已证实运输链，不把界门总谜或历史代价提前结清。因此原等待项已由实际原文解决；这仅说明当前设计提案的因果安排可写，不意味着正文已经实现。\",\n      \"resolutionEvidenceCount\": 57,\n"
+          },
+          {
+            "sourceId": "review-resolutions/5ddb4324fdf39fb028c4cf483acf04b6a01b9c35cffe7f3c2a177090a66e6cf3",
+            "quote": "      \"resolutionExplanation\": \"原问题所缺的51—100章宏观因果现已可核。第51—53章仍明确为待落实的照护、短工与陆沉舟签认，并以第50章吴伍、卢小满脱控为条件，不提前把供述、住食或航款写成既成事实。其后由有追偿责任的14000专项款支付北航，北境救援限定于担保仓区并以救人放弃追片为选择，再以限程担保、实体航程及回执链返乡；肩伤复诊、训练和寿储支付后才进入玄府及后段截运。第88—100章又将现场脱困、停斗、两趟转运、具名交接和三十日回访分开，保留第二片、十年前真凶与全书界门危机，未重复兑现残片或总案。前置关系安排与这些条件相容：贺青梧的有限垫款和陆沉舟受看护、供述待核均在后续里程碑中保留为限制，而非被救援自动抹除。\",\n      \"resolutionEvidenceCount\": 15,\n      \"resolutionEvidenceSha256\": \"22701d30a3243b8a15b1643e52f3d552509b03a7cb26ddfc86e671e5157dec0b\"\n    },\n    {\n      \"checkId\": \"cross-1-2/timeline\",\n      \"resolvedByStageId\": \"followup-cross-1-2/timeline\",\n"
+          },
+          {
+            "sourceId": "review-resolutions/5ddb4324fdf39fb028c4cf483acf04b6a01b9c35cffe7f3c2a177090a66e6cf3",
+            "quote": "      \"resolutionExplanation\": \"原问题所待核的后段链条已具备闭环且未重复兑现同一证据：陆沉舟在第50章承认本次押送并继续受看护，第53章才自行签认亲历改签自述；该副本仅作北行查验线索，仍明确不是原账、原签条或免责交换。第61—66章以赤霄线索与北境封存材料独立互证，林辰选择救出七名矿工而放弃追夺第二片；第一片继续封存，第二片随后由程砚交至赵玄极处，未被误写为已合匙或全案答案。返乡后，父亲守门参与与外山掩案由多份原始记录核到有限范围；第88—95章则以赵亲签撤人令、在场见证和受押者救援构成针对本批行动的问责材料。第96—100章的三十日回访只核青玄八人的安置，明确不替代赤霄、北境人员的异地近况，也不宣称九鼎全貌、父案全因或第二片去向已被证明。各阶段的证据取得、知情边界、救援选择及留存代价相互一致，满足原问题要求。\",\n      \"resolutionEvidenceCount\": 23,\n      \"resolutionEvidenceSha256\": \"0bdf53f02ec7db8215cb3aa8f7a24935abc1e4e696b740c040cb37ea448eadd7\"\n    },\n    {\n      \"checkId\": \"cross-1-2/opening\",\n"
+          }
+        ],
+        "revisionAdvice": ""
+      },
+      {
+        "criterion": "timeline",
+        "verdict": "pass",
+        "explanation": "提案将林辰、贺青梧的陆路与五昼夜北航、返青玄六昼夜海程、程砚—赵玄极消息链、夜凝霜返岗与实际收到回执分开安排。316—466日训练、晋阶准备、截运和三十日回访的次序亦已列明；未见同一人物抵达早于出发、并行路线混同或把实体送达写成即时知情。",
+        "evidence": [
+          {
+            "sourceId": "review-result/synthesis-40",
+            "quote": "      \"resolutionExplanation\": \"原问题要求核对北航、返航、许可回执、训练及第466日回访。现有安排可闭合：程砚258日寄报、赵玄极262日阅报、263日发令、程268日签收、骑使273日返都，且赵只知送达，不预知北境事件。林辰、贺青梧271—274日陆赴极焱、276暮—281暮完成五昼夜北航；285—300日外港段后，301—303日按限程暖车赴通天，304暮—310暮完成六昼夜返青玄，311—314日陆返外山并于315日交证。夜凝霜301日启程、311日午抵驻地交岗，直到318日午实体回执到件才得知林贺按期离境，未被写成途中或返岗即已知情。其后316—410日训练、411—430日晋阶准备、431—436日截押运、437—466日收束依次衔接；第466日距436日高潮三十日。各处对同一消息链、航程和人物所在地的表述一致，未见抵达早于出发、将实体传递写成即时共享，或把并行的程砚路线与林贺路线混为同一队伍。\",\n      \"resolutionEvidenceCount\": 22,\n\nEND INDEPENDENT QUOTE 2.1\n\nBEGIN INDEPENDENT QUOTE 2.2\n"
+          },
+          {
+            "sourceId": "review-result/synthesis-40",
+            "quote": "      \"resolutionExplanation\": \"原问题要求核对第214—466日的实体航程、疗程、消息、担保及晋阶；补读材料已提供完整日期链。林辰第190—209日完成两次各十日疗程，212—216日由古境经云梦港南渡至天宝外港，其中214日暮至216日暮为两昼夜；217—270日港口调查、救援与安置连续推进。271—281日经四日沿岸陆路及276日暮至281日暮五昼夜北航抵葬骨外港；301—304日限程暖车到通天渡口，304日暮至310日暮六昼夜返青玄，311—315日陆路返外山。其后316—410日训练、415日晋玄府、431—436日截运、437—466日回访依次展开，未发现同一人物不相容的时空重叠、抵达早于出发或将实体海程缩短为瞬移。程砚—赵玄极的第一报、回令和签收联亦明确为262阅报、263发令、268签收、269—273回执，未被林辰、苏凌霜提前获知；夜凝霜的限程担保回执在318日才抵驻地，与其311日返岗分开。以上均为待实施的设计安排，不等同正文已发生。\",\n      \"resolutionEvidenceCount\": 38,\n      \"resolutionEvidenceSha256\": \"e62bf00cd1de6f37701d32361c6cd60ac7f55d0f9c910527787317e786d80c14\"\n    },\n\n"
+          },
+          {
+            "sourceId": "review-resolutions/5ddb4324fdf39fb028c4cf483acf04b6a01b9c35cffe7f3c2a177090a66e6cf3",
+            "quote": "      \"resolutionExplanation\": \"原问题要求核对第214—466日的实体航程、疗程、消息、担保及晋阶；补读材料已提供完整日期链。林辰第190—209日完成两次各十日疗程，212—216日由古境经云梦港南渡至天宝外港，其中214日暮至216日暮为两昼夜；217—270日港口调查、救援与安置连续推进。271—281日经四日沿岸陆路及276日暮至281日暮五昼夜北航抵葬骨外港；301—304日限程暖车到通天渡口，304日暮至310日暮六昼夜返青玄，311—315日陆路返外山。其后316—410日训练、415日晋玄府、431—436日截运、437—466日回访依次展开，未发现同一人物不相容的时空重叠、抵达早于出发或将实体海程缩短为瞬移。程砚—赵玄极的第一报、回令和签收联亦明确为262阅报、263发令、268签收、269—273回执，未被林辰、苏凌霜提前获知；夜凝霜的限程担保回执在318日才抵驻地，与其311日返岗分开。以上均为待实施的设计安排，不等同正文已发生。\",\n      \"resolutionEvidenceCount\": 38,\n      \"resolutionEvidenceSha256\": \"e62bf00cd1de6f37701d32361c6cd60ac7f55d0f9c910527787317e786d80c14\"\n    },\n"
+          },
+          {
+            "sourceId": "review-resolutions/5ddb4324fdf39fb028c4cf483acf04b6a01b9c35cffe7f3c2a177090a66e6cf3",
+            "quote": "        \"plan/milestones/ms_v3_advancement\",\n        \"plan/milestones/ms_v3_convoy\",\n        \"plan/milestones/ms_v3_payoff\"\n      ],\n      \"resolutionExplanation\": \"原问题要求核对北航、返航、许可回执、训练及第466日回访。现有安排可闭合：程砚258日寄报、赵玄极262日阅报、263日发令、程268日签收、骑使273日返都，且赵只知送达，不预知北境事件。林辰、贺青梧271—274日陆赴极焱、276暮—281暮完成五昼夜北航；285—300日外港段后，301—303日按限程暖车赴通天，304暮—310暮完成六昼夜返青玄，311—314日陆返外山并于315日交证。夜凝霜301日启程、311日午抵驻地交岗，直到318日午实体回执到件才得知林贺按期离境，未被写成途中或返岗即已知情。其后316—410日训练、411—430日晋阶准备、431—436日截押运、437—466日收束依次衔接；第466日距436日高潮三十日。各处对同一消息链、航程和人物所在地的表述一致，未见抵达早于出发、将实体传递写成即时共享，或把并行的程砚路线与林贺路线混为同一队伍。\",\n      \"resolutionEvidenceCount\": 22,\n"
+          }
+        ],
+        "revisionAdvice": ""
+      },
+      {
+        "criterion": "payoff",
+        "verdict": "pass",
+        "explanation": "伏笔采用有限、分层兑现：陆沉舟第53章的签认仅为待独立核验副本；北境救七名矿工以放弃追第二片为代价；后段问责只针对本批运输行动；百章回访只核青玄八人的安置。药箱、父案与残片均保持证据等级和未解边界，因此阶段胜果没有替代全书总案。",
+        "evidence": [
+          {
+            "sourceId": "review-unit/293",
+            "quote": "  \"mainConflict\": \"先天短寿的林辰由矿务逃生追查跨陆扣工与非法货运，在寿储、境界与各方利益限制下同伙伴救人、查清父亲守门及外山掩案责任。百章只切断已实证的一条三地运输链；九鼎全貌、三残片与最终界门危机仍是约450章全书必须收束的主线。 人员口径：赤霄获救承运雇工是唐、许、冯、吴、卢五人；陆弟单列，陆本人是受看护的押送责任人，不算五工。北境黑舱七人是另一批来自青玄的矿工，至300日仍由北境港口救济所安置，不随林贺返青玄。435–436日青玄两车八人是开篇两名旧工友加430日后新扣六人，与赤霄五工、北境七人均不重合；梁九为自由领车救援者，不在被救八人内。三地名单不能互相改写为人数增长，首卷救过而再被移交的两名旧工友只算两位不同人，不因再次获救重复加人。\",\n  \"theme\": \"活命与查真相不能以牺牲无辜者代价换取；信任来自共同选择和承担自己一方的责任。\",\n  \"protagonistArc\": \"从负伤矿工到能接受伙伴自主选择的凝元修士，再经数月修习、实测丹府与支付十元载成为玄府初期；力量增加时可用寿储反而减少。百章不发动逆命真解，不越阶斩高境，不把神兵持有当作启动权限。\",\n"
+          },
+          {
+            "sourceId": "review-result/synthesis-40",
+            "quote": "{\"sourceId\":\"review-resolutions/5ddb4324fdf39fb028c4cf483acf04b6a01b9c35cffe7f3c2a177090a66e6cf3\",\"start\":21277,\"end\":21845,\"unique\":true}\n      \"resolutionExplanation\": \"原问题所待核的后段链条已具备闭环且未重复兑现同一证据：陆沉舟在第50章承认本次押送并继续受看护，第53章才自行签认亲历改签自述；该副本仅作北行查验线索，仍明确不是原账、原签条或免责交换。第61—66章以赤霄线索与北境封存材料独立互证，林辰选择救出七名矿工而放弃追夺第二片；第一片继续封存，第二片随后由程砚交至赵玄极处，未被误写为已合匙或全案答案。返乡后，父亲守门参与与外山掩案由多份原始记录核到有限范围；第88—95章则以赵亲签撤人令、在场见证和受押者救援构成针对本批行动的问责材料。第96—100章的三十日回访只核青玄八人的安置，明确不替代赤霄、北境人员的异地近况，也不宣称九鼎全貌、父案全因或第二片去向已被证明。各阶段的证据取得、知情边界、救援选择及留存代价相互一致，满足原问题要求。\",\n      \"resolutionEvidenceCount\": 23,\n"
+          },
+          {
+            "sourceId": "review-resolutions/5ddb4324fdf39fb028c4cf483acf04b6a01b9c35cffe7f3c2a177090a66e6cf3",
+            "quote": "        \"plan/milestones/ms_v3_convoy\",\n        \"plan/milestones/ms_v3_payoff\"\n      ],\n      \"resolutionExplanation\": \"原问题要求补读秘密、承诺、开放线、关系及51—100里程碑，以核对兑现条件与避免提前结案。现有提案将百章限定为切断一条三地运输链、部分澄清父案并完成有限救援，而九鼎全貌、三残片和界门危机明确留给约450章主线，未把阶段胜果冒充总收束。父案、九鼎链、界门风险和六号箱分别规定了分段取得、可确认范围与禁止推论；四项承诺区分已完成疗程、百章有限救援、角色愿望被否定和全书终局。51—100的里程碑为赤霄安置与签认副本、北境救人但放弃追片、返乡交证与担保回执、玄府支付及存根互证、截押救人并保全原令、三十日回访，分别保留证言独立核验、伤势、航款、追责和未能追凶的代价。关系阶段也将合作、供述、亲属边界与异地知情限定在实际触发之后。上述均为拟定设计安排，仍须逐章实现，但不构成提案自身的兑现冲突。\",\n      \"resolutionEvidenceCount\": 45,\n"
+          },
+          {
+            "sourceId": "review-resolutions/5ddb4324fdf39fb028c4cf483acf04b6a01b9c35cffe7f3c2a177090a66e6cf3",
+            "quote": "      \"resolutionExplanation\": \"原问题要求核对第六药箱线是否在33—39章以实际证据逐步兑现、避免提前知情或重复结案。33章只安排严涛、常钧、陆沉川在林辰不在场时完成私挪交接，林辰仍只知失箱；34—35章将常钧的亲历指位、侧门底册和陆沉川姓名限定为查人线索，明确未知便条、箱内去向及幕后。36章五名雇工脱身失败未向林辰传讯，未越过知情边界。37章林辰选择救陆沉川而放弃追携页者，代价是掌伤与逃者、火因、纸页内容继续未知；仅取回箱板和12包原签药。38章经当面身份核验、217便条和218分架原页，才使严私挪、常搬运、陆沉川领箱可复核，24包去向仍待实物核验。39章再由返还实物、火毁材料及医铺原页/领用页合拢为12回收、6火毁、6售用，追偿未到账；首仓火因、逃者及贺青梧五名雇工仍明确保留。该安排与秘密档的逐章知情阶段、开放线的有限结案条件一致；第50章将吴伍、卢小满脱控保持为另一条扣工线的有限成果，不把它误作失箱或总案的重复兑现。\",\n      \"resolutionEvidenceCount\": 16,\n      \"resolutionEvidenceSha256\": \"2982d182bbd1c46a2fd8667373e0378752895742a05616363d249e41995cd34c\"\n    },\n    {\n"
+          }
+        ],
+        "revisionAdvice": ""
+      },
+      {
+        "criterion": "opening",
+        "verdict": "pass",
+        "explanation": "前50章已有连续细纲，冲突从矿道救人、有限复核、伤后生计和凝元训练，推进到古境解囚、疗程兑现、港口失箱、追船救援和工人自主脱控。两段救援的困境与后果不同：前段是受限解囚与药液分配，后段是劳工选择、船损、原账逃失与未救人员缺口；第50章仍保留改签、火因、原账、赔偿和去留问题，未过早收束。",
+        "evidence": [
+          {
+            "sourceId": "review-unit/293",
+            "quote": "  \"endingDirection\": \"百章有救人、断运、部分父案澄清和玄府成长的可核结局。1–100是450章的阶段验收；接下来的有限寿源、高阶反派、钥匙余片与九鼎机制必须另建经审查的来源和行动链，不将450章全书结局撤销。 没有返寿、燃寿白发、道伤凭空痊愈或三大陆永久太平。此卷不清算全部九鼎，公开传播仍限实到地点。\",\n  \"keyTurns\": [\n    \"第10–12章：伤重林辰与曾撤供的梁九分工救人，只改变普通输送位置；苏保留封样及己方不利证词，争得有限复核，众人仍负伤、欠债和受限。\",\n    \"第23–29章：主角为救人暴露自己，创造顾峤同阶制敌的窗口，取得并分配有限泉液；完成两次十日疗程后南行，苏选择留宗。卷末凝元三重，不能沿用神海及二十年燃寿。\",\n    \"第44/50–53章：44林救落水对手而不追陆与原账，贺付船损；50林不施术而让工人自己回答，陆协助夺闩、两名看守被控，吴卢实际脱控并拒绝立即回船。51–53拟各自选择生计，陆新写改签自述，副本仍待独立核验。\",\n    \"第61–66章：付费北航后在受限外港救出七名矿工，夜真身守撤离路，林放弃第二片，不入界渊。\",\n    \"第83章：数月努力与诊察后，实际付十元载晋玄府；不能再用旧法器承载元罡。\",\n"
+          },
+          {
+            "sourceId": "review-resolutions/5ddb4324fdf39fb028c4cf483acf04b6a01b9c35cffe7f3c2a177090a66e6cf3",
+            "quote": "        \"plan/chapters/48\",\n        \"plan/chapters/49\",\n        \"plan/chapters/50\",\n        \"plan/volumes/vol_01\",\n        \"plan/volumes/vol_02\",\n        \"plan/volumes/vol_03\"\n      ],\n      \"resolutionExplanation\": \"原等待项所缺的1—50章场景材料现已补齐。第1—12章由矿道救人、保全残账、有限权限核查推进至矿务装置救援与留置复核；第13—18章把短寿、伤势、生计选择转化为有诊察、训练失败和实付代价的凝元成长，随后第19—29章以古境准入、救秦、封路、实体求援和同阶制敌完成首卷高潮及有限分药。第30—50章并非复演古境：它从护货失箱、港口责任与查册切入，经扣工事实、船路追截、救三人与查找吴卢，最终以工人亲口拒绝、巡员现场处置和陆承认本次点交完成有限脱控。两段高潮虽都以救人为核心，但前者是受限古境解囚与夺回泉液，后者是港口劳工自主脱控及船损、失单、证据未全的后果；均未消灭上层链条或提前解决全书主线。第50章仍保留程在逃、改签与原账待核，和第二卷、百章阶段性终局的安排一致。\",\n      \"resolutionEvidenceCount\": 55,\n"
+          },
+          {
+            "sourceId": "review-resolutions/5ddb4324fdf39fb028c4cf483acf04b6a01b9c35cffe7f3c2a177090a66e6cf3",
+            "quote": "      \"resolutionExplanation\": \"原问题要求核实34—50章是否只是换地点重复问询。细纲显示递进链条明确：34—35章由林辰拒作伪证、常钧停班指位及林辰、贺青梧放弃无据追车，换得有限查人路径；36章唐顺带五人以木楔脱身失败，程砚随即撤掉其外口作业，使调查对象从可接触工序转为被集中扣押。37—39章仓火救出陆沉川、核清六号箱去向，但林辰为救人放弃追携页者，且拒绝把缺额转嫁常钧，保留火因、原账和追偿缺口。40—42章贺青梧撤回船、人、缆等资源，现场见工受阻后又以实际水深和回流放弃危险船位；这不是重复追问，而是以订单、观察优势和行动窗口换取可撤救援条件。43—45章从亲见三人被拘束、先报警，到切索、搁浅接人、船底破裂、原账逃失和三人安置，构成一次有物理代价且不完成全部救援的高潮。46—50章不把救回三人当结案：唐顺与许桐分歧、贺青梧拒以撤证换复业、吴伍与卢小满在附棚中拒绝相互代答，最终林辰让巡员听取其亲口选择，二人自行脱控且拒绝立即回船。该后二段的核心冲突已从“能否找到并救出”转为“救援是否会制造服从债、责任人是否接受看护”，具有不同选择和后果。前五十章也未提前结束全书：计划明确百章仅切断一条运输链，第50章后仍须处理完整改签、原账、火因、船舶交检、赔偿和各人去留。\",\n      \"resolutionEvidenceCount\": 23,\n"
+          }
+        ],
+        "revisionAdvice": ""
+      },
+      {
+        "criterion": "pacing",
+        "verdict": "pass",
+        "explanation": "34—50章不是以重复问询或核账占章：34—39章逐步改变可得证据、人物位置与责任边界；40—45章由撤回资源、实测退路升级到报警、切索、船损与未救者缺口；46—50章转为安置、生计、拒绝撤证交换、当事人亲答与现场控制。每段都带来新的行动权限、代价或人物选择。",
+        "evidence": [
+          {
+            "sourceId": "review-resolutions/5ddb4324fdf39fb028c4cf483acf04b6a01b9c35cffe7f3c2a177090a66e6cf3",
+            "quote": "      \"resolutionExplanation\": \"原问题要求核验34—50章是否真正形成节奏递进，而非仅凭“压缩”说明通过。现有章纲将33—39构成一条完整的失箱调查链：33拒签保住可验货物，34取得搬运者亲历范围，35以协助搬工换得夜间核页路径，36转入唐顺失败脱身并撤销外口机会，37在追页与救人间选择救陆沉川，38—39再以本人便条、分架页与实物核验收束本箱责任；每步改变可得信息、人物位置或代价。40—46则从撤回船务资源、受理见工受阻、测潮选退路，升级为提前报警、切索救人，并在45—46处理裂船、失散二人和获救者不同去向，行动与后果没有重置为另一轮同样调查。47—50以程砚的撤证条件、吴伍与卢小满拒绝被代答、陆沉舟到案带路、门前直接听答和有限脱控推进；50没有重复火场或潮沟救援，而是以当事人选择和巡员现场控制完成另一种救援。第51—53章的生计与自述仍是后续拟定安排，未被误算为已经发生。故本批详细章纲已实质回答原等待项，并与第二卷“失箱—截驳—北三门”三段里程碑的递进相容。\",\n      \"resolutionEvidenceCount\": 25,\n      \"resolutionEvidenceSha256\": \"804e3e65b2542c2a194e856b8f90efd4c90a2a8522f21b1901880d139286ecbe\"\n"
+          },
+          {
+            "sourceId": "review-resolutions/5ddb4324fdf39fb028c4cf483acf04b6a01b9c35cffe7f3c2a177090a66e6cf3",
+            "quote": "      \"resolutionExplanation\": \"原问题要求检验“压缩调查后转入唐顺五人脱身失败、报警追船，并让救援后果推动后段”是否实际落入34—50章。34以常钧停班指位取得有限亲历证词，35放弃无证据追车、通过协助码工取得次夜见陆沉川的工序，36随即切入唐顺带五人脱身失败且外口路径被撤，调查没有原地反复。37火仓救人使携页者逃脱并留下林辰掌伤；38核领箱链，39把数量核验、拒绝转嫁责任与离船结算收束为后果性一章。40撤缆拒押把目标转为失联五工；41见工受阻而取得船线，42实测可撤船位，43提前开船、报警和拖索升级，44切索救援、船损与原账逃脱构成高潮，且贺青梧在244—245承担48枚修船余款，符合既定代价节拍。45只承接一次落水者接应，转入安置、修船和两人未救的缺口。46—47分别处理获救者自主择工与贺青梧拒绝以扣工陈述换复业，48保留吴伍、卢小满独立选择而不把读者信息交给外线，49将陆沉舟到案与入口图转成行动路径，50以工人亲答、巡员控人及不立即回船收束脱控。关系原档亦将36—39的失联、41—43的有限线索和追船、44—50的救援后安置及自主选择分段，和章纲一致。重复出现的核验、等待、安置均实质改变证据边界、行动权限、资源处境或人物选择，故原问题已获解决。\",\n      \"resolutionEvidenceCount\": 24,\n"
+          },
+          {
+            "sourceId": "review-result/synthesis-41",
+            "quote": "END INDEPENDENT QUOTE 5.1\n\nBEGIN INDEPENDENT QUOTE 5.2\n{\"sourceId\":\"review-result/synthesis-39\",\"start\":15879,\"end\":16457,\"unique\":true}\n  \"explanation\": \"相邻段落持续改变目标、权限、证据或代价，而非把同一轮核账机械拆章：34章以常钧承认可证范围换取查人路径，35章以协助搬工换得后续核页路线，36章转入唐顺带五人脱身失败并失去外口工序；37章在追携页者与救陆沉川之间选择救人，38—39章将身份、便条、分架页和责任核验收束为后果。40章撤回缆绳和资源，41章见工受阻取得船线，42章以实测水深和回流放弃危险船位，43章才升级为提前报警、跟船和拖索，44章在同一连续窗口切索、搁浅接人并承担船损，45章转入安置、修船和两名未救者的缺口。46—47章以生计自主和拒绝撤证换复业推进，48—49章分别让扣押者形成独立选择并由陆沉舟提供入口图，50章以现场亲答和巡员控制完成有限脱控。每次喘息都带来新的责任、去向或资源限制；报告与细纲均未显示重复核验、等待或救援在没有实质变化时连续占章。\",\n  \"revisionAdvice\": \"\"\n}\n\nBEGIN INDEPENDENT QUOTE 2.1\n\n"
+          }
+        ],
+        "revisionAdvice": ""
+      },
+      {
+        "criterion": "genre",
+        "verdict": "pass",
+        "explanation": "玄幻规则并非标签：寿储支付决定晋阶窗口，剑诀、轻物御动、真光和局部护罡分别受训练、对象、范围、供能、伤势、冷却与中断约束；古境、海路、赤霄热候和北境防护实际影响路线、准入、费用与救援尺度。局部胜利依赖有限术法、普通机械和地形，并保留伤势、船损及撤退代价，未用免费升级、万能法宝或越阶斩杀替代困难。",
+        "evidence": [
+          {
+            "sourceId": "review-result/synthesis-41",
+            "quote": "END INDEPENDENT QUOTE 5.3\n\nCHECK 6\n{\n  \"criterion\": \"genre\",\n  \"verdict\": \"pass\",\n  \"explanation\": \"玄幻规则实际改变了人物行动与风险：寿储支付决定晋阶时点，凝元剑诀、轻物御动、真光和局部护罡均受训练、对象、范围、供能、冷却、伤势及中断限制；古境、海路、赤霄热候和北境防护直接影响准入、行程、费用与救援尺度。第25章和后段截运依靠有限术法、普通机械、地形及明确代价完成局部目标，没有用免费升级、万能法宝或越阶胜利替代困难。\",\n  \"revisionAdvice\": \"无需题材体验返修。后续继续让地域、修炼和法器具体改变观察、路线、风险、选择或回报，避免只增加境界、法宝或货号而不改变人物处境。\"\n}\n\nBEGIN INDEPENDENT QUOTE 6.1\n{\"sourceId\":\"review-result/synthesis-38\",\"start\":18120,\"end\":18720,\"unique\":true}\n  \"criterion\": \"genre\",\n  \"verdict\": \"pass\",\n"
+          },
+          {
+            "sourceId": "review-result/synthesis-41",
+            "quote": "BEGIN INDEPENDENT QUOTE 6.2\n{\"sourceId\":\"review-result/synthesis-38\",\"start\":18720,\"end\":19303,\"unique\":true}\n  \"criterion\": \"genre\",\n  \"verdict\": \"pass\",\n  \"explanation\": \"玄幻要素实际改变行动与风险，而非只作标签：寿储支付决定晋阶时点，凝元剑诀、轻物御动、真光和局部护罡均有训练、范围、对象、供能、冷却、伤势及中断限制；海路、古境、赤霄热候和北境防护直接影响准入、行程、费用与选择。第25章及后段截运依靠有限术法、普通机械、地形和真实代价完成局部目标，没有免费升级、万能法宝或越阶斩杀。\",\n  \"revisionAdvice\": \"\"\n}\n\nBEGIN INDEPENDENT QUOTE 6.1\n{\"sourceId\":\"review-result/synthesis-7\",\"start\":25292,\"end\":25871,\"unique\":true}\n"
+          },
+          {
+            "sourceId": "review-result/synthesis-41",
+            "quote": "  \"explanation\": \"玄幻要素确实改变了观察、选择与风险：寿储支付决定晋阶时点，境界不自动授予术法；轻物御动只能处理可见、未受载的小物，剑诀受两丈范围、二成真元和散热限制，古境、海路、赤霄热候及北境防护又影响准入、行程和费用。第25章和后段截运都依靠地形、普通机械、有限术法与明确代价，而非免费升级、万能法宝或越阶斩杀。\",\n  \"revisionAdvice\": \"\"\n}\n\n\nEND INDEPENDENT QUOTE 6.1\n\n\n\nEND INDEPENDENT QUOTE 6.2\n\nBEGIN INDEPENDENT QUOTE 6.3\n{\"sourceId\":\"review-result/synthesis-38\",\"start\":19440,\"end\":20023,\"unique\":true}\n"
+          },
+          {
+            "sourceId": "review-result/synthesis-41",
+            "quote": "    \"第435日跟车确认撤运路线与救护接应，第436日两车撤移时才发生这次短暂交锋。林与顾分别牵制一名既有玄府护卫，顾对应统领祁嵩，苏对付凝元押车者，梁九带获救矿工驾驶普通车撤人。林以424日实测学成的局部护罡配合车角、退步，短时牵制一名同阶押卫，仅争取前车开门与四人下车退至侧道待接点的机会，不支撑往返药棚。该押卫本段用已在手的普通短铁刀截人，不临时获得未定义的破罡术；他要守囚车，林也无力正面取胜。双方并非约好三招：押卫借车侧转角改变落点，前囚车在行动开始时已由押车者拉下普通车闸停在原位，救人后仍保持制动，梁九用于送人的自由雇工货车是另一辆，此时空车候在侧道，不进入林的交锋区；林用空囚车车架遮断直线，退到下一车角才有重新聚罡的间隙；并非护罡本身使敌人停攻。拟定前两次实接为退让中的斜擦，每次另付受击费；第三次也须支付受击费，但对手改刺肩侧、护罡被穿，林肩部实际受伤，立即停术沿空车道撤走。若落点、遮挡或三息间隔在逐章展开时不能成立，就改写撤退，不准靠付费自动抵住同阶攻击；三次是此段安排的上限，不是必能活过三击的保证。他未击杀这名老练玄府，不灌旧剑、不瞬移。\",\n\nEND INDEPENDENT QUOTE 7.9\n\n\nEND INDEPENDENT QUOTE 6.4\n\nCHECK 7\n{\n  \"criterion\": \"growth\",\n  \"verdict\": \"pass\",\n"
+          }
+        ],
+        "revisionAdvice": ""
+      },
+      {
+        "criterion": "growth",
+        "verdict": "pass",
+        "explanation": "林辰的近期成长具备主动动机、学习条件、失败停练、实测、支付与可观察回报。前段先以伤后劳务和低负荷训练维持生计，复诊后支付3元载，经训练、失控赔偿和实测才取得两丈内受限导刃；后段经肩伤复诊、丹府失败停练、连续诊察与实测，才于第415日支付10元载晋玄府，并另行训练、实测和获许可后有限使用局部护罡。寿储、真元、伤势与能力权限保持分账，且第50章尊重吴伍、卢小满自主回答构成判断与责任成长。",
+        "evidence": [
+          {
+            "sourceId": "review-resolutions/5ddb4324fdf39fb028c4cf483acf04b6a01b9c35cffe7f3c2a177090a66e6cf3",
+            "quote": "      \"resolutionExplanation\": \"原问题要求核验第13—18章训练、23—29章疗程及73—87章丹府修习/付款。补读后可见：林辰先在伤势、至少7元载条件下界与1元载安全余量约束中，主动放弃内门选拔，选择口述矿路换粮药；又拒绝以删改逃生支岔或交出家传原件换取短期利益，形成明确的求生与查案动机及可执行的生计路径。其后他以两枚灵石、公共导灵架、休息和劳务收入为条件修习，经历气乱停练、岔气停练及复诊，不把时间或资源名称直接换成能力；第120日经复诊后实际支付3元载，随后在顾峤指导下练习御物、凝元导刃、停式与剑体冷却，并于第180日实测凝元三重、取得限定任务路线。古境救援中的开笼、轻销御动和风刃使用均依既有训练、范围、余额及伤后停术执行；灵泉则经过来源核验、分配、十日疗程与复诊后，才在199、209日各入账5元载。远期玄府成长也非以境界名跳过：315日后先因肩伤停止负荷、复诊恢复，354日丹府分流失败即停，415日连续诊察与顾峤实测成立后才支付10元载；416—424日另行完成局部护罡聚散、低负荷接触实测和白榆许可。读者可期待的阶段回报依次是可持续生计与判断能力、凝元三重及有限调查资格、救援中受限的实际操作、寿储增加但库存清零、玄府初成及有限局部护罡；代价始终保留伤势、劳务机会、寿储支出、药程时间与能力边界。故原先因未读章节无法判断的成长路径已由实际提案补齐；"
+          },
+          {
+            "sourceId": "review-resolutions/5ddb4324fdf39fb028c4cf483acf04b6a01b9c35cffe7f3c2a177090a66e6cf3",
+            "quote": "      \"resolutionExplanation\": \"原问题所缺的73—87章成长链已明确：林辰先在316日复诊肩伤、330日才恢复完整训练，354日丹府未稳时主动停练并失去遴选机会，至415日再由白榆连续复诊和顾峤实测决定是否支付十元载晋玄府。寿储算式以第19日7元载下界、120日凝元支出3元载、两剂已完成灵泉疗程各入账5元载为前置，扣至415日自然流逝后约余2.915068元载，足以保留至少1元载安全余量；诊断本身不被当作收入，灵泉也只能在完整疗程及复诊后入账。晋阶后并非自动获得全套玄府能力：416—424日还须在顾峤指导下练聚散、以轻木棍和普通铁刃低负荷实测，通过白榆许可后，才可把局部护罡用于436日短暂救人牵制；三次使用的元罡预算、受伤停术和不能覆盖后续转运均已列明。由“保住残命且不以他人为薪柴”的既有目标，到放弃急于复仇、承受寿储下降换取可观察的有限护人能力，动机、选择、代价、生效时点和阶段回报均连贯。以上均为待写提案，不表示训练、晋阶或救援已在正文发生。\",\n      \"resolutionEvidenceCount\": 16,\n      \"resolutionEvidenceSha256\": \"28a574b880fdce9be6c73b64037bddbafa7116bd7ca5f6b35d14ed2024530ea8\"\n    },\n    {\n"
+          },
+          {
+            "sourceId": "review-resolutions/5ddb4324fdf39fb028c4cf483acf04b6a01b9c35cffe7f3c2a177090a66e6cf3",
+            "quote": "      \"resolutionExplanation\": \"原问题所缺的是第44章凝元剑诀与两丈锁定的取得前置。第18章现明确：林辰先在复诊确认寿储下界及安全余量后主动支付3元载突破凝元；随后接受顾峤针对凝元导刃的授业、领用仅能承载凝元真元的剑，因首次失控损坏木架而停练赔偿，再经反复练习、余量与散热限制下的实测，取得两丈内可见目标的定向、主动停式和凝元三重资格。故成长不是由境界名自动授予，近期回报是可受限使用的凝元剑诀、三重实测及古境任务位置。44章仅在该两丈范围内用一式切索、支付二成并热剑停用；48章只恢复一成、试注再付半成；50章仍保守保留三成半且不施术，均维持能力的代价与伤情边界。远期玄府则另设复诊、十元载支付、元罡稳定训练和低负荷实测，未拿作当前能力。\",\n      \"resolutionEvidenceCount\": 15,\n      \"resolutionEvidenceSha256\": \"c3b62c38035db1de2cdf036c678ada0a444549243876ebf5e6b38d5f3f1e7a54\"\n    },\n    {\n      \"checkId\": \"cross-2-3/causality\",\n      \"resolvedByStageId\": \"followup-cross-2-3/causality\",\n"
+          },
+          {
+            "sourceId": "review-resolutions/5ddb4324fdf39fb028c4cf483acf04b6a01b9c35cffe7f3c2a177090a66e6cf3",
+            "quote": "      ],\n      \"resolutionExplanation\": \"原问题要求核对第25章两次林辰操作、顾峤真光的既有资格及术式限制。补读显示：林辰先以诊察后的寿储主动支付凝元成本，接受从木块、失控赔偿到两丈内可见目标导刃、主动停式的训练与复测；剑诀和御物均有独立真元支付，未把凝元身份当作自动掌握。第21章以第20章实测九成余量支付半成御物后为八成半；第25章从该余额再支付剑诀二成与另一枚插销半成，分别对应普通吊索和空载拨片，并在腿伤后停术。顾峤的档案已明确其真光训练、复诊资格及当场仍须核余量和伤情；真光规则也要求玄府元罡、三息起印、三成元罡及0.25元载，故第25章的三息安排并非由境界名义补足。后续章纲把两剂灵泉限定为完成十日疗程及复诊后入账，持续区分寿储、真元和伤势许可；至第50章，林辰在仍有限制的条件下不施术，让吴伍、卢小满亲口决定去留。由“以寿换取凝元、实测可控的有限剑诀/御物”到“在救援中克制使用力量并尊重他人选择”，近期目标、主动选择、条件代价和可观察回报均已进入可执行场景。此为提案可行性判断，不表示正文已实现。\",\n      \"resolutionEvidenceCount\": 33,\n"
+          }
+        ],
+        "revisionAdvice": ""
+      }
+    ],
+    "resolvedDeferrals": [
+      {
+        "checkId": "batch-1/causality",
+        "resolvedByStageId": "followup-batch-1/causality"
+      },
+      {
+        "checkId": "batch-1/timeline",
+        "resolvedByStageId": "followup-batch-1/timeline"
+      },
+      {
+        "checkId": "batch-1/payoff",
+        "resolvedByStageId": "followup-batch-1/payoff"
+      },
+      {
+        "checkId": "batch-1/opening",
+        "resolvedByStageId": "followup-batch-1/opening"
+      },
+      {
+        "checkId": "batch-1/pacing",
+        "resolvedByStageId": "followup-batch-1/pacing"
+      },
+      {
+        "checkId": "batch-1/growth",
+        "resolvedByStageId": "followup-batch-1/growth"
+      },
+      {
+        "checkId": "batch-4/causality",
+        "resolvedByStageId": "followup-batch-4/causality"
+      },
+      {
+        "checkId": "batch-4/growth",
+        "resolvedByStageId": "followup-batch-4/growth"
+      },
+      {
+        "checkId": "batch-5/causality",
+        "resolvedByStageId": "followup-batch-5/causality"
+      },
+      {
+        "checkId": "batch-5/growth",
+        "resolvedByStageId": "followup-batch-5/growth"
+      },
+      {
+        "checkId": "cross-1-2/causality",
+        "resolvedByStageId": "followup-cross-1-2/causality"
+      },
+      {
+        "checkId": "cross-1-2/timeline",
+        "resolvedByStageId": "followup-cross-1-2/timeline"
+      },
+      {
+        "checkId": "cross-1-2/payoff",
+        "resolvedByStageId": "followup-cross-1-2/payoff"
+      },
+      {
+        "checkId": "cross-1-2/opening",
+        "resolvedByStageId": "followup-cross-1-2/opening"
+      },
+      {
+        "checkId": "cross-1-2/pacing",
+        "resolvedByStageId": "followup-cross-1-2/pacing"
+      },
+      {
+        "checkId": "cross-1-2/growth",
+        "resolvedByStageId": "followup-cross-1-2/growth"
+      },
+      {
+        "checkId": "cross-1-3/payoff",
+        "resolvedByStageId": "followup-cross-1-3/payoff"
+      },
+      {
+        "checkId": "cross-1-4/causality",
+        "resolvedByStageId": "followup-cross-1-4/causality"
+      },
+      {
+        "checkId": "cross-1-4/growth",
+        "resolvedByStageId": "followup-cross-1-4/growth"
+      },
+      {
+        "checkId": "cross-1-5/causality",
+        "resolvedByStageId": "followup-cross-1-5/causality"
+      },
+      {
+        "checkId": "cross-1-5/timeline",
+        "resolvedByStageId": "followup-cross-1-5/timeline"
+      },
+      {
+        "checkId": "cross-1-5/growth",
+        "resolvedByStageId": "followup-cross-1-5/growth"
+      },
+      {
+        "checkId": "cross-2-3/causality",
+        "resolvedByStageId": "followup-cross-2-3/causality"
+      },
+      {
+        "checkId": "cross-2-3/growth",
+        "resolvedByStageId": "followup-cross-2-3/growth"
+      },
+      {
+        "checkId": "cross-2-4/causality",
+        "resolvedByStageId": "followup-cross-2-4/causality"
+      },
+      {
+        "checkId": "cross-3-5/causality",
+        "resolvedByStageId": "followup-cross-3-5/causality"
+      },
+      {
+        "checkId": "cross-3-5/payoff",
+        "resolvedByStageId": "followup-cross-3-5/payoff"
+      },
+      {
+        "checkId": "cross-4-5/growth",
+        "resolvedByStageId": "followup-cross-4-5/growth"
+      }
+    ],
+    "sourcesSha256": "c0b8a85ab4d04eede55a58e46e206431299dab13e139302ac6a9b6d9003e4f29",
+    "sourceCount": 479,
+    "reportSha256": "764e0959179ca98dac9594006f2751ee9e51ed7f2a5c99f4257a608358b0c023"
+  },
+  "retainedNonPassChecks": [
+    {
+      "stageId": "batch-1",
+      "criterion": "causality",
+      "verdict": "insufficient",
+      "explanation": "总纲把第10—12章救援、23—29章古境救援与药程、44/50—53章港口救援、61—66章北航救人及83章晋阶列为连续转折，也明确50章后陆沉舟自述仍须独立核验；但本批未提供这些章节细纲或51—100里程碑原文，无法核验每次选择的直接前置、伤情/资源支付、后果及是否重复兑现。关系档中的阶段是拟定安排，不能替代相应行动章纲。",
+      "awaitingSources": [
+        "plan/chapters/10",
+        "plan/chapters/11",
+        "plan/chapters/12",
+        "plan/chapters/13",
+        "plan/chapters/14",
+        "plan/chapters/15",
+        "plan/chapters/16",
+        "plan/chapters/17",
+        "plan/chapters/18",
+        "plan/chapters/19",
+        "plan/chapters/20",
+        "plan/chapters/21",
+        "plan/chapters/22",
+        "plan/chapters/23",
+        "plan/chapters/24",
+        "plan/chapters/25",
+        "plan/chapters/26",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/29",
+        "plan/chapters/30",
+        "plan/chapters/31",
+        "plan/chapters/32",
+        "plan/chapters/33",
+        "plan/chapters/34",
+        "plan/chapters/35",
+        "plan/chapters/36",
+        "plan/chapters/37",
+        "plan/chapters/38",
+        "plan/chapters/39",
+        "plan/chapters/40",
+        "plan/chapters/41",
+        "plan/chapters/42",
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50",
+        "plan/milestones/ms_v2_loss",
+        "plan/milestones/ms_v2_barge",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "resolvedByStageId": "followup-batch-1/causality"
+    },
+    {
+      "stageId": "batch-1",
+      "criterion": "timeline",
+      "verdict": "insufficient",
+      "explanation": "世界规则已限定青玄至赤霄约两昼夜、赤霄至苍冥约五昼夜、苍冥返青玄约六昼夜，并要求航款、担保、验籍和实际支付分列。总纲也只确认细纲连续到第50章，51—100为宏观层；当前未读任何对应章纲和里程碑，故不能核算第214—466日拟定航程、疗程、消息与晋阶之间是否满足这些约束，亦不能把导航中的章节日期当作事件证据。",
+      "awaitingSources": [
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/29",
+        "plan/chapters/30",
+        "plan/chapters/31",
+        "plan/chapters/32",
+        "plan/chapters/33",
+        "plan/chapters/34",
+        "plan/chapters/35",
+        "plan/chapters/36",
+        "plan/chapters/37",
+        "plan/chapters/38",
+        "plan/chapters/39",
+        "plan/chapters/40",
+        "plan/chapters/41",
+        "plan/chapters/42",
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50",
+        "plan/milestones/ms_v2_loss",
+        "plan/milestones/ms_v2_barge",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "resolvedByStageId": "followup-batch-1/timeline"
+    },
+    {
+      "stageId": "batch-1",
+      "criterion": "payoff",
+      "verdict": "insufficient",
+      "explanation": "已读关系设计为林辰与苏凌霜、赵玄极、墨幽屠分别安排了信息边界、阶段性代价和百章有限归宿；总纲亦明确百章只切断一条运输链，不宣称九鼎、三残片和界门危机已结案。这些宏观边界可避免过早终局，但本批未提供秘密、承诺、开放线原档及51—100里程碑，无法逐项核验伏笔条件、知情触发、兑现对象和重复消费。",
+      "awaitingSources": [
+        "story/secrets/sec_01",
+        "story/secrets/sec_02",
+        "story/secrets/sec_03",
+        "story/secrets/sec_04",
+        "story/promises/prom_01",
+        "story/promises/prom_02",
+        "story/promises/prom_03",
+        "story/promises/prom_04",
+        "story/openThreads/th_01",
+        "story/openThreads/th_02",
+        "story/openThreads/th_03",
+        "story/openThreads/th_04",
+        "story/openThreads/th_05",
+        "story/relationships/rel_05",
+        "story/relationships/rel_06",
+        "story/relationships/rel_07",
+        "story/relationships/rel_08",
+        "story/relationships/rel_09",
+        "story/relationships/rel_10",
+        "story/relationships/rel_11",
+        "story/relationships/rel_12",
+        "story/relationships/rel_13",
+        "story/relationships/rel_14",
+        "story/relationships/rel_15",
+        "story/relationships/rel_16",
+        "story/relationships/rel_17",
+        "story/relationships/rel_18",
+        "story/relationships/rel_19",
+        "story/relationships/rel_20",
+        "story/relationships/rel_21",
+        "story/relationships/rel_22",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "resolvedByStageId": "followup-batch-1/payoff"
+    },
+    {
+      "stageId": "batch-1",
+      "criterion": "opening",
+      "verdict": "insufficient",
+      "explanation": "总纲说明前50章已具细纲，并概述从矿务逃生、古境救援到赤霄港口救援的递进；但本批实际没有前50章的场景、冲突、选择和后果文本。因而既不能确认开篇是否用淬体能力内的有限救援建立主冲突，也不能判断调查、核账、救援场是否形成实际递进或模板重复。",
+      "awaitingSources": [
+        "plan/chapters/1",
+        "plan/chapters/2",
+        "plan/chapters/3",
+        "plan/chapters/4",
+        "plan/chapters/5",
+        "plan/chapters/6",
+        "plan/chapters/7",
+        "plan/chapters/8",
+        "plan/chapters/9",
+        "plan/chapters/10",
+        "plan/chapters/11",
+        "plan/chapters/12",
+        "plan/chapters/13",
+        "plan/chapters/14",
+        "plan/chapters/15",
+        "plan/chapters/16",
+        "plan/chapters/17",
+        "plan/chapters/18",
+        "plan/chapters/19",
+        "plan/chapters/20",
+        "plan/chapters/21",
+        "plan/chapters/22",
+        "plan/chapters/23",
+        "plan/chapters/24",
+        "plan/chapters/25",
+        "plan/chapters/26",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/29",
+        "plan/chapters/30",
+        "plan/chapters/31",
+        "plan/chapters/32",
+        "plan/chapters/33",
+        "plan/chapters/34",
+        "plan/chapters/35",
+        "plan/chapters/36",
+        "plan/chapters/37",
+        "plan/chapters/38",
+        "plan/chapters/39",
+        "plan/chapters/40",
+        "plan/chapters/41",
+        "plan/chapters/42",
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50",
+        "plan/volumes/vol_01",
+        "plan/volumes/vol_02",
+        "plan/volumes/vol_03"
+      ],
+      "resolvedByStageId": "followup-batch-1/opening"
+    },
+    {
+      "stageId": "batch-1",
+      "criterion": "pacing",
+      "verdict": "insufficient",
+      "explanation": "总纲将34—36压缩为34—35、41—43压缩为41—42，并把43—44设置为报警追船与切索救援，显示提案有针对重复调查段的压缩意图；但这只是工作流/总览中的安排说明，未提供对应章纲，不能验证各章戏剧目标、场次转换与后果是否已形成有效节奏。",
+      "awaitingSources": [
+        "plan/chapters/33",
+        "plan/chapters/34",
+        "plan/chapters/35",
+        "plan/chapters/36",
+        "plan/chapters/37",
+        "plan/chapters/38",
+        "plan/chapters/39",
+        "plan/chapters/40",
+        "plan/chapters/41",
+        "plan/chapters/42",
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50",
+        "plan/milestones/ms_v2_loss",
+        "plan/milestones/ms_v2_barge",
+        "plan/milestones/ms_v2_fire"
+      ],
+      "resolvedByStageId": "followup-batch-1/pacing"
+    },
+    {
+      "stageId": "batch-1",
+      "criterion": "growth",
+      "verdict": "insufficient",
+      "explanation": "总纲提出林辰从负伤矿工至凝元、再在数月修习和诊察后支付十元载晋入玄府，并明确百章不发动逆命真解；境界规则也要求晋阶与实际术法、训练和资源分账。然而本批未提供第13—18章训练、23—29章伤后疗程及73—87章丹府修习/晋阶的具体安排，无法核验林辰的学习条件、停练伤情、实测、寿储下界和十元载付款是否依次成立。",
+      "awaitingSources": [
+        "plan/chapters/13",
+        "plan/chapters/14",
+        "plan/chapters/15",
+        "plan/chapters/16",
+        "plan/chapters/17",
+        "plan/chapters/18",
+        "plan/chapters/23",
+        "plan/chapters/24",
+        "plan/chapters/25",
+        "plan/chapters/26",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/29",
+        "plan/milestones/ms_growth_v1_recovery",
+        "plan/milestones/ms_growth_v1_training",
+        "plan/milestones/ms_growth_v1_expedition",
+        "plan/milestones/ms_vol1_climax",
+        "plan/milestones/ms_growth_v1_aftermath",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement"
+      ],
+      "resolvedByStageId": "followup-batch-1/growth"
+    },
+    {
+      "stageId": "batch-4",
+      "criterion": "causality",
+      "verdict": "insufficient",
+      "explanation": "第23—32章把撤哨、实体送信、顾峤到位、解囚、交押、验药、疗程和南渡连成明确因果；第43章也把实见拘束、报警、跟船和拖偏分开。但第25章胜负关键同时调用林辰的乾元御风剑诀、墨幽屠的噬血爪、顾峤的太清太乙真光，并以顾峤既有三息凝印资格作为前置；本批未提供三项功法原规则及顾峤人物档案，不能核实其训练、境界、供能、寿元与中断条件是否确实支持当前安排。",
+      "awaitingSources": [
+        "plan/chapters/18",
+        "story/characters/char_10",
+        "world/techniques/tech_04",
+        "world/techniques/tech_05",
+        "world/techniques/tech_06"
+      ],
+      "resolvedByStageId": "followup-batch-4/causality"
+    },
+    {
+      "stageId": "batch-4",
+      "criterion": "growth",
+      "verdict": "insufficient",
+      "explanation": "林辰在本批有可见的非晋阶成长：两剂灵泉均按完整疗程和复诊后分别入账，腿伤限制下学习接受轻役、记录证据边界与交由贺青梧判断潮路；第239章还安排握剑、试注和吐纳复测。不过，其第25章剑诀施放被明确追溯为“第18章两丈内实测锁定”，而本批未提供第18章训练；顾峤的真光资格也只以未附的人物档案作前置。故无法局部确认关键能力不是以境界或临场叙述替代既有学习。",
+      "awaitingSources": [
+        "plan/chapters/18",
+        "story/characters/char_10",
+        "world/techniques/tech_04",
+        "world/techniques/tech_06"
+      ],
+      "resolvedByStageId": "followup-batch-4/growth"
+    },
+    {
+      "stageId": "batch-5",
+      "criterion": "causality",
+      "verdict": "insufficient",
+      "explanation": "44—50章内部的后果链清楚：44章断索救援付出真元、热剑和船底破裂，45—47章将其转为安置、失单与停牌代价，48—50章再由外线排查、陆沉舟带路和巡员现场处置完成吴伍、卢小满脱控，且没有把陆沉舟的受看护写成免责或全案告破。可是第44章的剑诀行动明确以前章已报警、钩索拖偏及第18章的两丈锁定实测为前置；本批未提供第43、18章细纲，也未提供乾元御风剑诀规则，无法确认该次二成真元、两丈刃路和一次风刃的既有资格确能承接。",
+      "awaitingSources": [
+        "plan/chapters/18",
+        "plan/chapters/43",
+        "world/techniques/tech_04"
+      ],
+      "resolvedByStageId": "followup-batch-5/causality"
+    },
+    {
+      "stageId": "batch-5",
+      "criterion": "growth",
+      "verdict": "insufficient",
+      "explanation": "本批的非升级成长设计成立：林辰从试图替贺青梧空口包赔，转为承认无力补偿并承担可做的查证；又在50章放下剑柄，让吴伍、卢小满自行回答。真元账面也明确从44章余三成，经252章一小时吐纳回一成、试注耗半成后保守余三成半，并持续到50章未施术。但这套成长安排仍将44章剑诀的合法掌握、18章实测和剑诀本身的规则作为能力前提；该三项原文未在本批读到，不能确认实际训练资格与本次使用完全相符。",
+      "awaitingSources": [
+        "plan/chapters/18",
+        "plan/chapters/43",
+        "world/techniques/tech_04"
+      ],
+      "resolvedByStageId": "followup-batch-5/growth"
+    },
+    {
+      "stageId": "cross-1-2",
+      "criterion": "causality",
+      "verdict": "insufficient",
+      "explanation": "已读材料将后段行动设为条件性安排：吴伍、卢小满脱控后，51—53章才拟落实住食、短工和陆沉舟签认；北航、黑舱救援、返乡、玄府晋阶和截押运均由前段实际完成、资源可用及实体消息送达作为前提。该方向没有在已读材料中自相矛盾，但尚未读取承载51—100章实际宏观因果、权限与预算的分卷及里程碑原文，无法核实每项前置是否真的闭合。",
+      "awaitingSources": [
+        "plan/volumes/vol_02",
+        "plan/volumes/vol_03",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "resolvedByStageId": "followup-cross-1-2/causality"
+    },
+    {
+      "stageId": "cross-1-2",
+      "criterion": "timeline",
+      "verdict": "insufficient",
+      "explanation": "已读关系与消息锚点对局部日期作了可执行区分：程砚的首报、赵玄极阅报与回令、程砚签收、骑使回执分别发生，且不把送达或签收误写成即时共享；林辰与夜凝霜返程也区分了实体海程、返岗和后续回执知情。可是后两卷核心航程、外港许可、疗程及第415—466日修习/截押运的完整时间表仍在未读宏观原文，不能核定是否存在跨日冲突或无来源压缩。",
+      "awaitingSources": [
+        "plan/volumes/vol_02",
+        "plan/volumes/vol_03",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "resolvedByStageId": "followup-cross-1-2/timeline"
+    },
+    {
+      "stageId": "cross-1-2",
+      "criterion": "payoff",
+      "verdict": "insufficient",
+      "explanation": "本批已建立了可见的条件兑现链：港口救援不自动洗清陆沉舟责任；其第53章自述只是待独立核验的线索；百章末只以撤人原令、在场证人和三十日回访结算本批链路，不冒充揭开九鼎全貌或父案全因。该边界与秘密档案一致，但第61—100章各项证据取得、第一/第二残片去向、救援兑现及问责归宿仍需用未读里程碑核对，无法确认是否有重复消费同一证据或跳过必要取得。",
+      "awaitingSources": [
+        "plan/volumes/vol_02",
+        "plan/volumes/vol_03",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "resolvedByStageId": "followup-cross-1-2/payoff"
+    },
+    {
+      "stageId": "cross-1-2",
+      "criterion": "opening",
+      "verdict": "insufficient",
+      "explanation": "已读节拍显示34—50章并非同一模板重复：先以港口劳务与失箱核证建立查人路径，再有唐顺带人失败、试潮撤退、实际追船救援、船损安置、附棚脱控与工人自主去留；这支持局部递进。但本批未读这些已列入细纲范围的原始章节计划，不能以关系阶段和节拍摘要替代对场次、冲突递升及后果承接的检查。",
+      "awaitingSources": [
+        "plan/chapters/34",
+        "plan/chapters/35",
+        "plan/chapters/36",
+        "plan/chapters/37",
+        "plan/chapters/38",
+        "plan/chapters/39",
+        "plan/chapters/40",
+        "plan/chapters/41",
+        "plan/chapters/42",
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50"
+      ],
+      "resolvedByStageId": "followup-cross-1-2/opening"
+    },
+    {
+      "stageId": "cross-1-2",
+      "criterion": "pacing",
+      "verdict": "insufficient",
+      "explanation": "材料明确提出把34—36压缩为调查后转入唐顺五人失败，把41—43压缩为过渡后进入报警追船，且44章以救援、船损和未救出的两人改变后续目标；这为节奏修订提供了设计意图。不过是否在实际细纲中落实为有效场次分配，仍须读取34—50章原纲，不能仅凭复审状态说明或关系摘要判定已改善。",
+      "awaitingSources": [
+        "plan/chapters/34",
+        "plan/chapters/35",
+        "plan/chapters/36",
+        "plan/chapters/37",
+        "plan/chapters/38",
+        "plan/chapters/39",
+        "plan/chapters/40",
+        "plan/chapters/41",
+        "plan/chapters/42",
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50"
+      ],
+      "resolvedByStageId": "followup-cross-1-2/pacing"
+    },
+    {
+      "stageId": "cross-1-2",
+      "criterion": "growth",
+      "verdict": "insufficient",
+      "explanation": "林辰的百章成长目标具备明确方向和代价：第19日诊断下界、凝元支付3元载、两剂灵泉各完成疗程后才入账、415日支付10元载晋玄府，至466日条件预算约2.775342元载；世界规则也禁止将诊断、未完成疗程或未来配额当作可花收入。但从返乡后的训练、丹府稳定、晋阶实测到伤后可用能力回报的具体安排位于未读里程碑，不能仅凭预算与关系阶段确认训练门槛、资源和伤情均已设计闭合。",
+      "awaitingSources": [
+        "plan/volumes/vol_03",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff"
+      ],
+      "resolvedByStageId": "followup-cross-1-2/growth"
+    },
+    {
+      "stageId": "cross-1-3",
+      "criterion": "payoff",
+      "verdict": "insufficient",
+      "explanation": "本批已能确认前段没有把线索提前当作全案结论：古境入境时的九滴申请仅为受理，不能预支寿储；第20—22章只取得前哨、秦禾和封路信息。可是“古境解囚夺泉”承诺要求第26章解囚交押、两次十日疗程及第29章复诊后才算兑现，当前实际读取止于第22章，无法核验其后的解囚、分配、疗程与复诊是否按条件完成、是否重复记入寿储。",
+      "awaitingSources": [
+        "plan/chapters/23",
+        "plan/chapters/24",
+        "plan/chapters/25",
+        "plan/chapters/26",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/29"
+      ],
+      "resolvedByStageId": "followup-cross-1-3/payoff"
+    },
+    {
+      "stageId": "cross-1-4",
+      "criterion": "causality",
+      "verdict": "insufficient",
+      "explanation": "第23—26章已把墨幽屠的撤哨选择、秦禾实体送信、顾峤实际到场、林辰等手势开闸、顾付费制伏及后续交押拆成连续条件；第26章亦将追回12滴、洁净9滴、污染3滴和原批配额分开处理，未把救援功劳直接换成寿储。不过第25章林辰切吊索的剑诀明确依赖“第18章两丈内实测”，其8.5成真元起点又明确承接第21章动作；当前未读这两个直接前置，无法独立确认其已学会、可用范围及余额没有被重复支出，因此本项不能通过。",
+      "awaitingSources": [
+        "plan/chapters/18",
+        "plan/chapters/21"
+      ],
+      "resolvedByStageId": "followup-cross-1-4/causality"
+    },
+    {
+      "stageId": "cross-1-4",
+      "criterion": "growth",
+      "verdict": "insufficient",
+      "explanation": "已读部分提供了清楚的成长后果：林辰完成两剂各十日疗程且只在复诊后分别入账5元载，寿储、真元与伤势分账；他随后接受轻役医嘱、拒绝带伤搬运，并在港口将剑诀与轻物御动限制为已列对象和付费动作。可是其关键战斗成长前置仍未闭合：第25章明言剑诀锁定范围依第18章实测，且真元8.5成承接第21章；人物档案本身没有提供林辰已完成该剑诀训练的开篇前记录。未读这两章前，无法验证成长并非由境界名或章内宣称直接取得。",
+      "awaitingSources": [
+        "plan/chapters/18",
+        "plan/chapters/21"
+      ],
+      "resolvedByStageId": "followup-cross-1-4/growth"
+    },
+    {
+      "stageId": "cross-1-5",
+      "criterion": "causality",
+      "verdict": "insufficient",
+      "explanation": "44章把切索限定为一次、二成真元、余刃消散后才进行递浮圈和过板，45章才完成对落水者的实际拉救，50章又以巡员亲见和吴伍、卢小满的自主回答完成脱控，未见本批内部重复兑现。可是44章行动明确依赖林辰第18章已完成的凝元剑诀实测，以及43章已经报警、拖偏并形成的现场态势和四成半真元起点；这两份细纲未在本批读取，不能仅以本章转述确认其关键前置实际可执行。",
+      "awaitingSources": [
+        "plan/chapters/18",
+        "plan/chapters/43"
+      ],
+      "resolvedByStageId": "followup-cross-1-5/causality"
+    },
+    {
+      "stageId": "cross-1-5",
+      "criterion": "timeline",
+      "verdict": "insufficient",
+      "explanation": "本批内部的244夜切索—巡艇接人—245至247救助—248至250安置—251失单—252内线选择—253陆沉舟到案—254门前脱控顺序明确；44章也把确认余刃、搁浅和验板限定在同一个十余息窗口，未将检验后重新计时。但44章故事时间明确承接43章“已报警登船和钩索拖偏”，且其二成施剑后的三成余额取自43章四成半余额；未读43章无法核定该即时承接和余额起算是否与前一章相容。",
+      "awaitingSources": [
+        "plan/chapters/43"
+      ],
+      "resolvedByStageId": "followup-cross-1-5/timeline"
+    },
+    {
+      "stageId": "cross-1-5",
+      "criterion": "growth",
+      "verdict": "insufficient",
+      "explanation": "本批对成长后的限制执行清楚：44章剑诀后二成真元支出与热剑停用，48章一小时吐纳仅回一成、低流量试注再扣半成，50章仍维持三成半且不因数日经过自动回满；后续宏观也把玄府突破放在复诊、稳定训练与实际十元载支付之后。不过44章这项能力的取得和两丈稳定锁定，均指向未读的第18章训练与实测；没有该章，不能确认本批所使用的成长回报已具备必要学习条件。",
+      "awaitingSources": [
+        "plan/chapters/18"
+      ],
+      "resolvedByStageId": "followup-cross-1-5/growth"
+    },
+    {
+      "stageId": "cross-2-3",
+      "criterion": "causality",
+      "verdict": "insufficient",
+      "explanation": "第1—19章把伤势、诊察、3元载晋阶支付、训练、三重实测和古境准入依次列为前置；第20—22章也将风刃消耗、恢复、轻钩御物和救出秦禾的后果相连。可是第20章以乾元御风剑诀驱动赤霞斩铁剑切断悬索、并以剑体发热限制后续行动；已读公理要求实际术法与法宝逐项符合对象、供能、时机和中断条件，而本批未提供该功法及剑器原条，不能仅凭章节自述确认这些关键限制完整可用。所需原条在来源目录中存在但本批未读，故等待补读而非认定设计缺失。",
+      "awaitingSources": [
+        "world/techniques/tech_04",
+        "world/artifacts/art_03"
+      ],
+      "resolvedByStageId": "followup-cross-2-3/causality"
+    },
+    {
+      "stageId": "cross-2-3",
+      "criterion": "growth",
+      "verdict": "insufficient",
+      "explanation": "林辰的成长动机、代价与阶段性回报已明确：先在伤后选择可持续劳务和低负荷训练，岔气后停练，120日支付3元载晋凝元，再经木块练习、授业、失控赔偿和176日实测取得两丈内导刃；第20章也没有把剑诀当作无代价连发能力。但导刃章的实际功法条件与赤霞斩铁剑的承载规则未在本批提供，故无法核实第132—176日训练是否确能授予第20章所用能力，不能只按章节摘要判定通过。所需原条在来源目录中存在但本批未读，故等待补读而非认定设计缺失。",
+      "awaitingSources": [
+        "world/techniques/tech_04",
+        "world/artifacts/art_03"
+      ],
+      "resolvedByStageId": "followup-cross-2-3/growth"
+    },
+    {
+      "stageId": "cross-2-4",
+      "criterion": "causality",
+      "verdict": "insufficient",
+      "explanation": "第23—26章本身已把救援链拆成撤哨实见、秦禾实体送图、顾峤交岗到场、亲见手势后开闸、伤后交押和验药分配；第25章也明确墨幽屠有撤退选项却为样箱与泉瓶回扑，故人物选择和后果并非凭空跳转。不过该章以既有资格调用林辰的乾元御风剑诀、墨幽屠的噬血爪、顾峤的太清太乙真光。当前材料虽陈列了拟定的起式、目标、支出和伤后限制，却未实际提供三门功法原条目，也未提供顾峤人物档案以核对其开篇训练资格；无法在本批确认这些声明没有违反既定功法准入、对象和中断规则。",
+      "awaitingSources": [
+        "story/characters/char_10",
+        "world/techniques/tech_04",
+        "world/techniques/tech_05",
+        "world/techniques/tech_06"
+      ],
+      "resolvedByStageId": "followup-cross-2-4/causality"
+    },
+    {
+      "stageId": "cross-3-5",
+      "criterion": "causality",
+      "verdict": "insufficient",
+      "explanation": "第44章明确承接第43章已报警、钩索拖偏的状态，并以该状态作为切索、护桩窗口、过板救援的直接前置；本批只读到第44章后的动作约束，未读第43章实际如何建立该前置，不能核定两章是否存在位置、知情或行动重复。第44章自身对切索范围、余刃确认、船损和放走原账的代价设计是闭合的。",
+      "awaitingSources": [
+        "plan/chapters/43"
+      ],
+      "resolvedByStageId": "followup-cross-3-5/causality"
+    },
+    {
+      "stageId": "cross-3-5",
+      "criterion": "payoff",
+      "verdict": "insufficient",
+      "explanation": "第六药箱的秘密、知识边界和开放线均指定在第33—39章通过底册、火后实物、便条、批签及散卖页逐步收束，并明确不能把火因或大网络一并当作已破；这是可行的兑现条件。但本批未提供第33—39章的plan细纲，无法核对每一项证据是否实际获得、林辰的知情阶段是否与行动一致，亦无法确认没有提前或重复兑现。第44—50章则清楚避免把吴卢脱控扩张为总案结案。",
+      "awaitingSources": [
+        "plan/chapters/33",
+        "plan/chapters/34",
+        "plan/chapters/35",
+        "plan/chapters/36",
+        "plan/chapters/37",
+        "plan/chapters/38",
+        "plan/chapters/39"
+      ],
+      "resolvedByStageId": "followup-cross-3-5/payoff"
+    },
+    {
+      "stageId": "cross-4-5",
+      "criterion": "growth",
+      "verdict": "insufficient",
+      "explanation": "已读章纲能核到林辰把寿药、伤势、真元与行动许可分账：两剂均在完整疗程和复诊后才各入5元载，真元从25章的六成经30、32、42、44、48章的实际支出、复测与上限限制递延；他在50章主动不用术法，把决定权留给吴伍、卢小满，亦构成可见的选择成长。但第25章剑诀实测、林辰此前8.5成真元起点，以及顾峤的太乙真光训练资格和具体术式规则仅被当前章纲转述；本批未提供这些前置原文，无法核准该成长与能力链本身是否满足已定规则。",
+      "awaitingSources": [
+        "plan/chapters/18",
+        "plan/chapters/21",
+        "story/characters/char_10",
+        "world/techniques/tech_04",
+        "world/techniques/tech_06"
+      ],
+      "resolvedByStageId": "followup-cross-4-5/growth"
+    }
+  ],
+  "otherAreasAtSnapshot": [
+    {
+      "area": "world",
+      "status": "completed",
+      "completedStages": 57,
+      "totalStages": 57
+    },
+    {
+      "area": "power",
+      "status": "completed",
+      "completedStages": 85,
+      "totalStages": 85
+    },
+    {
+      "area": "characters",
+      "status": "completed",
+      "completedStages": 35,
+      "totalStages": 35
+    }
+  ],
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Verifies the selected completed record and protected history, not semantic correctness, dispute resolution, other areas, plan approval or prose acceptance."
+}
