@@ -2,6 +2,8 @@
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
+import { execFileSync } from 'node:child_process';
+import path from 'node:path';
 import { PrismaClient } from '@prisma/client';
 import { replayDesignReviewRecord } from './audit-design-reviews.mjs';
 const read = file => JSON.parse(fs.readFileSync(file));
@@ -47,7 +49,22 @@ for (const run of state.runs) {
     note: 'Retained non-pass records include earlier deferrals that later stages may resolve; not a count of current independent defects.' });
 }
 const { PrismaWorkRepository } = await import(`${binding.runtimePath}/packages/persistence/src/prisma-repository.ts`);
-const prisma = new PrismaClient({ datasources: { db: { url: `file:${process.cwd()}/data/novel-studio.db` } } });
+// Audit a consistent read-only backup. Prisma's transaction must not lock the
+// production database, even after the model worker has exited.
+const snapshotDirectory = fs.mkdtempSync(path.resolve(control, 'terminal-verification-'));
+const databaseSnapshotPath = path.join(snapshotDirectory, 'production.db');
+execFileSync('python3', ['-c', `
+import sqlite3, sys
+from pathlib import Path
+source = sqlite3.connect(Path(sys.argv[1]).as_uri() + '?mode=ro', uri=True, timeout=30)
+target = sqlite3.connect(sys.argv[2])
+try:
+    source.backup(target, pages=1000, sleep=0.05)
+finally:
+    target.close()
+    source.close()
+`, path.resolve('data/novel-studio.db'), databaseSnapshotPath], { timeout: 120_000 });
+const prisma = new PrismaClient({ datasources: { db: { url: `file:${databaseSnapshotPath}` } } });
 let preserved;
 try {
   preserved = await prisma.$transaction(async tx => {
@@ -77,6 +94,8 @@ else fs.writeFileSync(checkpointPath, checkpointBytes, { flag: 'wx' });
 const proof = { observedAt: new Date().toISOString(), status: state.status, workerPid: state.pid, workerAbsent: true,
   checkpointPath, checkpointSha256: fileHash(checkpointPath), runtimePath: binding.runtimePath,
   sourceCommit: binding.sourceCommit, inputsSha256: baseline.inputsSha256,
+  databaseSnapshotPath, databaseSnapshotSha256: fileHash(databaseSnapshotPath),
+  productionVerification: 'read_only_sqlite_backup',
   totalCalls: state.totalCalls, errors: state.errors, replays, preserved,
   reports: state.reports.map(({ id, area, status, summary }) => ({ id, area, status, summary })),
   verificationModelCalls: 0, productionWrites: 0, formalAcceptance: false, proseGenerated: false };
