@@ -3,8 +3,8 @@ import { Alert, Button, Collapse, Space, Typography } from 'antd';
 import type { DesignReviewAnnotationDto } from 'novel-studio-contracts';
 import { api } from '../api';
 
-export function ReviewAnnotations({ workId, runId, stageId, refreshKey, onSource, onStage }: {
-  workId: string; runId: string; stageId?: string; refreshKey?: string;
+export function ReviewAnnotations({ workId, runId, stageId, onSource, onStage }: {
+  workId: string; runId: string; stageId?: string;
   onSource: (source: { id: string; text: string }) => void;
   onStage: (runId: string, stageId: string) => void;
 }) {
@@ -12,17 +12,23 @@ export function ReviewAnnotations({ workId, runId, stageId, refreshKey, onSource
   const [error, setError] = useState('');
   const [sourceError, setSourceError] = useState('');
   const [attempt, setAttempt] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [checkedAt, setCheckedAt] = useState('');
   const sourceRequest = useRef(0);
   useEffect(() => {
     let cancelled = false;
+    setLoading(true);
     void api.designReviewAnnotations(workId, runId, stageId).then(result => {
-      if (!cancelled) { setNotes(result.annotations); setError(''); }
-    }).catch(cause => { if (!cancelled) setError(cause instanceof Error ? cause.message : String(cause)); });
+      if (!cancelled) { setNotes(result.annotations); setError(''); setCheckedAt(new Date().toLocaleTimeString()); }
+    }).catch(cause => { if (!cancelled) setError(cause instanceof Error ? cause.message : String(cause)); })
+      .finally(() => { if (!cancelled) setLoading(false); });
     return () => { cancelled = true; };
-  }, [workId, runId, stageId, refreshKey, attempt]);
+  // Annotations are appended separately from review progress. Reload on entry
+  // or explicit refresh, without multiplying the parent's progress polling.
+  }, [workId, runId, stageId, attempt]);
   // Do not display another run's notes while the new request is in flight.
   useEffect(() => {
-    setNotes(undefined); setError(''); setSourceError('');
+    setNotes(undefined); setError(''); setSourceError(''); setCheckedAt('');
     return () => { sourceRequest.current++; };
   }, [workId, runId, stageId]);
   async function showSource(note: DesignReviewAnnotationDto, sourceId: string) {
@@ -36,8 +42,12 @@ export function ReviewAnnotations({ workId, runId, stageId, refreshKey, onSource
     } catch (cause) { if (request === sourceRequest.current) setSourceError(cause instanceof Error ? cause.message : String(cause)); }
   }
   return <>
+    <Space wrap>
+      <Button size="small" loading={loading} onClick={() => setAttempt(value => value + 1)}>刷新核对记录</Button>
+      <Typography.Text type="secondary">核对记录打开时加载，可单独刷新。{checkedAt ? `最近读取：${checkedAt}。` : ''}{notes?.length === 0 ? '暂无独立核对记录。' : ''}</Typography.Text>
+    </Space>
     {error && <Alert type="warning" showIcon message="核对记录暂不可用" description={error}
-      action={<Button size="small" onClick={() => setAttempt(value => value + 1)}>重试</Button>} />}
+      action={<Button size="small" loading={loading} onClick={() => setAttempt(value => value + 1)}>重试</Button>} />}
     {sourceError && <Alert type="error" message="核对原文加载失败" description={sourceError} />}
     {notes?.length ? <Collapse style={{ width: '100%' }} items={[{
       key: 'annotations', label: `独立核对记录（${notes.length} 条，不改变原判定）`,

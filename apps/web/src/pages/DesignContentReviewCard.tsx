@@ -126,7 +126,7 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
     return <Space direction="vertical" style={{ width: '100%' }}>
       <Typography.Text type="secondary">世界 v{report.scope.worldPackRevision} · 圣经 v{report.scope.storyBibleRevision} · 计划 v{report.scope.planRevision} {report.createdAt ? ` · ${new Date(report.createdAt).toLocaleString()}` : ''}</Typography.Text>
       <Typography.Paragraph>{report.summary}</Typography.Paragraph>
-      {report.id && reportRun && <ReviewAnnotations key={reportRun.id} workId={workId} runId={reportRun.id} refreshKey={refreshedAt}
+      {report.id && reportRun && <ReviewAnnotations key={reportRun.id} workId={workId} runId={reportRun.id}
         onSource={setSource} onStage={(runId, stageId) => void showStage(runId, stageId)} />}
       {revisionStages?.length ? <Collapse size="small" style={{ width: '100%' }} items={[{
         key: 'retained-revisions', label: `查看全部返修批次（${revisionStages.length} 条记录，非独立问题数）`,
@@ -254,7 +254,7 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
         <Alert type="info" showIcon message={stageDetail.stage.kind === 'synthesis' ? '本步综合前置评审报告；新版流程另附计划原文。请按来源区分报告转述与原始设计。' : '本批结论只覆盖下列材料，不代表整项设计通过。'} />
         {stageDetail.stage.error && <Alert type="error" message="本批尚未完成" description={stageDetail.stage.error} />}
         {stageView && <ReviewAnnotations key={`${stageView.runId}/${stageView.stageId}`} workId={workId} runId={stageView.runId}
-          stageId={stageView.stageId} refreshKey={refreshedAt} onSource={setSource} onStage={(runId, stageId) => void showStage(runId, stageId)} />}
+          stageId={stageView.stageId} onSource={setSource} onStage={(runId, stageId) => void showStage(runId, stageId)} />}
         {stageDetail.stage.result && details({ ...stageDetail.stage.result, sources: stageDetail.input.sources, scope: stageDetail.input.scope })}
         <Collapse style={{ width: '100%' }} items={[
           { key: 'source-coverage', label: '核对本步原文范围与完整来源目录', children: <ReviewSourceCoverage key={`${stageView?.runId}/${stageView?.stageId}`} input={stageDetail.input} onSource={setSource} /> },
