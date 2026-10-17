@@ -5,9 +5,9 @@ import { createHash } from 'node:crypto';
 import { parseArgs } from 'node:util';
 import { replayDesignReviewRecord } from './audit-design-reviews.mjs';
 
-const { values } = parseArgs({ options: { area: { type: 'string' } }, strict: true });
+const { values } = parseArgs({ options: { area: { type: 'string' }, check: { type: 'boolean', default: false } }, strict: true });
 const area = values.area;
-assert.ok(['story', 'world'].includes(area), 'Usage: --area=story|world. Preserve the existing character and power proofs.');
+assert.ok(['power', 'characters', 'story', 'world'].includes(area), 'Usage: --area=power|characters|story|world [--check].');
 
 const read = path => JSON.parse(fs.readFileSync(path));
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -17,7 +17,7 @@ const binding = read(bindingPath);
 const baseline = read(`${control}/baseline.json`);
 const snapshotPath = `${control}/${area}-followup-prefix.json`;
 const proofPath = `docs/audits/2026-10-17-design71-${area}-followup-preflight.json`;
-assert.ok(!fs.existsSync(snapshotPath) && !fs.existsSync(proofPath), 'Preserve prior preflight evidence');
+if (!values.check) assert.ok(!fs.existsSync(snapshotPath) && !fs.existsSync(proofPath), 'Preserve prior preflight evidence; use --check for read-only verification');
 assert.equal(hash(fs.readFileSync(bindingPath)), baseline.runtimeBindingSha256);
 const inputBytes = fs.readFileSync(`${control}/inputs.json`);
 assert.equal(hash(inputBytes), baseline.inputsSha256);
@@ -36,8 +36,10 @@ for (const [path, expected] of Object.entries(binding.sourceHashes)) {
 const runtime = await import(`${binding.runtimePath}/novel-service-core/src/design-review-run.ts`);
 const { JsonDesignPlanner } = await import(`${binding.runtimePath}/packages/planner/src/index.ts`);
 const raw = run.stages.filter(stage => stage.kind !== 'synthesis' && !stage.followupFor);
-assert.equal(raw.length, area === 'story' ? 15 : 21);
 assert.equal(run.scheduleVersion, 32);
+const canonical = runtime.createDesignReviewRun(inputs[area], run.createdAt, run.scheduleVersion);
+const canonicalRaw = canonical.stages.filter(stage => stage.kind !== 'synthesis' && !stage.followupFor);
+assert.deepEqual(raw.map(stage => stage.id), canonicalRaw.map(stage => stage.id), 'Original schedule must match the independent frozen input');
 assert.ok(raw.every(stage => stage.result), 'Wait for all original/cross batches; do not synthesize missing results');
 const replay = await replayDesignReviewRecord(run, inputs[area], checkpoint.reports.find(report => report.id === run.reportId), { ...runtime, JsonDesignPlanner });
 const questions = raw.flatMap(stage => stage.result.checks.filter(check => check.verdict === 'insufficient' && check.awaitingSources?.length)
@@ -82,7 +84,6 @@ const rows = followups.map(stage => {
     inputSha256: hash(JSON.stringify(request)) };
 });
 
-fs.writeFileSync(snapshotPath, checkpointBytes, { flag: 'wx' });
 const proof = { kind: `design71_${area}_dynamic_followups_preflight`, area, observedAt: new Date().toISOString(),
   inputHash: checkpoint.inputHash, runId: run.id, snapshotPath, snapshotSha256: hash(checkpointBytes),
   frozenSourceFilesVerified: Object.keys(binding.sourceHashes).length,
@@ -94,8 +95,12 @@ const proof = { kind: `design71_${area}_dynamic_followups_preflight`, area, obse
     followupStageId: followups.find(stage => stage.followupFor === question.id)?.id })), followups: rows, totalScheduledStages: run.stages.length,
   modelCalls: 0, productionWrites: 0, questionsResolvedByThisAudit: 0, formalAcceptance: false,
   limitation: 'Offline replay and complete-source/request-capacity checks only. Followup responses, dynamic report synthesis, semantic quality and all four area acceptance remain unproven.' };
-fs.writeFileSync(proofPath, JSON.stringify(proof, null, 2) + '\n', { flag: 'wx' });
-console.log(JSON.stringify({ area, originalStagesCompleted: raw.length, prefixResponsesReplayed: replay.responsesReplayed,
+if (!values.check) {
+  fs.writeFileSync(snapshotPath, checkpointBytes, { flag: 'wx' });
+  fs.writeFileSync(proofPath, JSON.stringify(proof, null, 2) + '\n', { flag: 'wx' });
+}
+console.log(JSON.stringify({ area, checkOnly: values.check, evidenceFilesWritten: values.check ? 0 : 2,
+  originalStagesCompleted: raw.length, prefixResponsesReplayed: replay.responsesReplayed,
   sourceQuestions: questions.length, followups: rows.length, totalStages: run.stages.length,
   maximumSourceCharacters: Math.max(0, ...rows.map(row => row.sourceCharacters)),
   maximumMetadataCharacters: Math.max(0, ...rows.map(row => row.metadataCharacters)), formalAcceptance: false }));
