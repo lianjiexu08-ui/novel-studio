@@ -1,0 +1,1062 @@
+{
+  "kind": "design71_world_offline_candidate",
+  "preparedAt": "2026-10-17T01:16:41.288Z",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "basePlanId": "plan_dd83f79625bb428b98ea0b7e4ff5d177",
+  "expectedInputHash": "70235514bab787e26c05a26fdc9b297adde5a363de5c6c9f10112b7229c018de",
+  "sourceCandidatePath": "data/design-candidates/design70-entry-location-v2.json",
+  "sourceCandidateSha256": "ae1e8dbf41b0a194ae2d26603baf6acc6c33ddeedc030874b0475526ef7bc252",
+  "candidatePath": "data/design-candidates/design71-world-clarifications-v1.json",
+  "candidateSha256": "75aea66381caff3bab5f3b21ba6fba46f7f36ea83dfaf210839b890059f4c457",
+  "snapshotPath": "data/audit-runtimes/design71-review/world-candidate-prefix.json",
+  "snapshotSha256": "7af7715dd920c33b02b67a3e4be8aea7b71f9af6f65688f57c2ee0110d8c62aa",
+  "findings": [
+    {
+      "stageId": "cross-3-5",
+      "result": {
+        "summary": "本批地域差异、实体航程、港口查验与势力责任足以支撑三卷的行动选择，但北境七名获救矿工从受监管泊区转入救济所的苍冥准入/临时监管权限未被安排，须补齐后才可按提案执行。",
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "revise",
+            "explanation": "跨海移动本身均按实体航程、港口验籍与防护处理：青玄—赤霄两昼夜、赤霄—苍冥五昼夜，且普通商路不经界门；赤霄段另有每日放行核验、避火符与暖舱安排。问题出在北境救援后的人员准入：苍冥规则要求沿岸官港验引渡令，或由巡界使验明身份后具名担保，并且担保只在约定范围和期限生效。夜在第285日的担保只明确给林辰、贺青梧在指定仓区查货；七名矿工则是在货舱获救后，由港卫送往救济所。现有安排写了救助包、暖房和十日安置，却未写港务或夜对这七名身份尚待逐人核实者采取何种临时候查、验籍、具名担保或其他合法监管处置。不能把救援、暖房安置或货船抵达监管泊区自动等同于获得苍冥沿岸入境资格。",
+            "evidence": [
+              {
+                "sourceId": "review-unit/69",
+                "quote": "{\n  \"id\": \"loc_02\",\n  \"name\": \"苍冥大陆\",\n  \"kind\": \"continent\",\n  \"entryConditions\": [\n    \"大陆环境寒冷；凝元境以下需保温舟舱或护身寒符。修为不是政治通行权。\",\n    \"沿岸官港验引渡令；无令者可由巡界使验明身份后具名担保，担保者承担监护和越界责任。例外仅到指定会合地，不自动授予进入界渊的权利。\",\n    \"具体到访须区分受监管码头候查、沿岸入境担保和界渊准入；担保须由实际到场者具名承担，只在约定范围与期限生效。\",\n    \"上述防寒门槛针对实际暴露于寒候。普通港区和已开放公共驿路的固定暖房、暖车只有在隔风围护、隔火炉、通风烟道、燃料与值守人手均实际存在且持续供热时，才提供其内部的温暖避难处；不把整座港口或一段驿路变成免寒区。离开温暖内部进入寒候，凝元以下仍须实际可用的护身寒符；普通衣物、修为名义或商业票不替代此条件。供暖失败要停止进入或转移到另一个已核实暖处，另记真实燃料、交通与照料费用。\"\n  ],\n  \"status\": \"proposed\"\n}"
+              },
+              {
+                "sourceId": "review-unit/364",
+                "quote": "{\n  \"id\": \"ms_v2_boundary\",\n  \"title\": \"黑舱截留与残片取舍\",\n  \"kind\": \"climax\",\n  \"startChapter\": 61,\n  \"endChapter\": 66,\n  \"setup\": [\n    \"第285日夜在外港真身会见，对照北境原封签存根、45章交接残联与旧封的签认拓本、53章拟取得的陆新写改签自述签认副本；这些是货运线索，不是第二片图样，不能凭同封号认定匣内物。她具名担保林贺仅在外港指定仓区查货至300日；归一实力不赋予林准入界渊的能力。\",\n    \"程272从极焱另船出发277到北境，订291转运，不是海上追逐。第一报258寄、262赵阅及263回令、268程收均归53章前后锚点，不在61章才首次发生；第一报不含291北境失货。赵至318程亲自面报才听到北境失败。\",\n"
+              },
+              {
+                "sourceId": "review-unit/364",
+                "quote": "    \"监管与知情的新增提案：押运货船方把七人列作随船劳役，对两港均隐瞒强迫扣留；本航次实际舱单、到港签注只能证明这艘船获准到指定受监管泊区，不能证明七人自愿或拘禁合法。290到港岗未逐人私下问询，并被外锁和押运货船方代答遮蔽扣人事实，此为本案具体漏查，不能写成全港默认准许扣工。291行动前，原巡检港卫在外锁舱口听到“七个人被扣住”的求救，见外绑绳后回近处值岗当面报告；港务据此先按七人实备原定救助包，口头报数此时只是救助需求，待开舱才逐人核实。夜与原两名港卫到位控制侧巷，近舱港卫按既定开扣顺序接人，不先把呼救当作全链定罪。救援后逐人分开问询，将七人的亲历与押运货船原航簿、炉料领用、轮班和收支联交叉核对；林只亲见现场，未读到的航程或账目不自动成为他的知识。押运货船方单据可伪造，七人口供也各有范围；不相符部分保留待查，不因此追认入境自愿或全链已经破案。相关原件由当地港务封存，林贺既有随行见证副本只记录本次救助与已核部分，不凭本草案新增全知货运证据。\",\n"
+              },
+              {
+                "sourceId": "review-unit/364",
+                "quote": "    \"近舱港卫推开舱门后先在门内发救助包，逐人协助穿干衣、扣符并验温热与余纹，再按原顺序接过短板；林贺自己的符不轮借给七人。失温、麻木或不能自行走者先由港卫送入原救助划舟已核保温舱，再交医修，不因贴符就算痊愈或能行。行动前港内救助舟承运方已按本案实收20的船班单备好船、本舟原两名船工、隔火炉烟道及本班燃料；该费从240扣，另见下述配载与承运范围，不混入买符衣82。无实有暖舱或超出配载就停止这条转运路径，先组织符合条件的救助，不把敞舟当保温舱。 此处救助舟承运方及其原两名救助船工，与扣工押运货船方及其原两名值炉船工分别归属不同船只、不是同一经营方或同两个人；救助舟的20只支付本次港内船班，不能计为押运货船方的新收入，也不抵其160款下的101支出。\",\n    \"原港口救济所接人时，登记七人姓名、原工籍、衣符编号、伤情及交接港卫，安置在实际隔风、有隔火炉烟道及当班添料的暖房。值库人从本案240另实付70，按所方本批七人291–300十日普通床位、住食与供暖的合计报价结算；这是本批合同，不是全书通用单价，也不包括无限医疗或回乡票。首轮诊治另实付28，覆盖范围与40留存应急款见本段执行账；不得把本案240、82、70或28各自当作新增收入。\",\n"
+              }
+            ],
+            "revisionAdvice": "在ms_v2_boundary及对应61—66章落实前，明确七人开舱后至救济所安置期间的法定身份路径：由哪一港务/巡界人员逐人验明何种身份、是否以夜或其他到场者具名担保、担保的地点/期限/监护责任为何，以及身份或材料不符时留在何处候查。该路径须与夜对林贺的既有“指定仓区至300日”担保分开记载，不能用同一担保暗中覆盖。"
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass",
+            "explanation": "本批可检验的历史因果没有把既往灾变或秘密当成免费答案。界门历史只作为风险边界，三大陆日常航行明确不经界门；父案、九鼎与门外真相均限定为局部材料、当事人证言或后续待证事项。三卷冲突也由已发生或拟定的具体责任推进：首卷的矿务、泉液与押解后果引出赤霄货号，赤霄的失箱、扣工与实体文书链再引向北境和返乡调查，而百章终局仅处理一条可核转运链，并未冒充完成九鼎全案。",
+            "evidence": [
+              {
+                "sourceId": "review-unit/5",
+                "quote": "{\n  \"id\": \"ax_03\",\n  \"title\": \"界门封禁律\",\n  \"content\": \"青玄、赤霄、苍冥是同一天地内被虚海分隔的大陆。太古界门穿越天地界壁，其完整门户非通天之力不可开启；普通跨海飞舟、沿岸定位阵与大陆内部传送不经过太古界门，也不具有穿越界壁的能力。“破界飞舟”之名仅指破开海上风暴与局部空间乱流。\",\n  \"scope\": \"界门\",\n  \"precedence\": 3,\n  \"status\": \"proposed\"\n}"
+              },
+              {
+                "sourceId": "review-unit/347",
+                "quote": "  \"mainConflict\": \"先天短寿的林辰由矿务逃生追查跨陆扣工与非法货运，在寿储、境界与各方利益限制下同伙伴救人、查清父亲守门及外山掩案责任。百章只切断已实证的一条三地运输链；九鼎全貌、三残片与最终界门危机仍是约450章全书必须收束的主线。 人员口径：赤霄获救承运雇工是唐、许、冯、吴、卢五人；陆弟单列，陆本人是受看护的押送责任人，不算五工。北境黑舱七人是另一批来自青玄的矿工，至300日仍由北境港口救济所安置，不随林贺返青玄。435–436日青玄两车八人是开篇两名旧工友加430日后新扣六人，与赤霄五工、北境七人均不重合；梁九为自由领车救援者，不在被救八人内。三地名单不能互相改写为人数增长，首卷救过而再被移交的两名旧工友只算两位不同人，不因再次获救重复加人。\",\n  \"theme\": \"活命与查真相不能以牺牲无辜者代价换取；信任来自共同选择和承担自己一方的责任。\",\n  \"protagonistArc\": \"从负伤矿工到能接受伙伴自主选择的凝元修士，再经数月修习、实测丹府与支付十元载成为玄府初期；力量增加时可用寿储反而减少。百章不发动逆命真解，不越阶斩高境，不把神兵持有当作启动权限。\",\n"
+              },
+              {
+                "sourceId": "review-unit/350",
+                "quote": "{\n  \"id\": \"vol_02\",\n  \"order\": 2,\n  \"title\": \"赤霄药火卷：追船与黑舱\",\n  \"startChapter\": 33,\n  \"endChapter\": 66,\n  \"goal\": \"由失箱责任追查程记扣工和跨陆转运，救出5名承运雇工、陆弟与北境7名矿工，以凝元实力和各方有限合作截停本批货；不以进入天坑或杀神海作门槛。\",\n  \"opposition\": \"程记药栈的改签、扣工与反诉，首仓火因仍待查；炎煞港口代理催货；赵的实体回令与商盟内部自保。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_03\",\n    \"char_05\",\n    \"char_14\",\n    \"char_15\",\n    \"char_16\",\n    \"char_19\",\n    \"char_20\"\n  ],\n  \"climax\": \"第61–66章北境外港截黑舱，林选择先救人，夜守撤离栈桥而未追持第二片逃跑的程。此前44章潮沟截驳付出船损；50章以吴卢亲口拒绝、陆停止协助旧同伙及两名看守被控制，固定本次扣工事实并完成脱控；51–53转入各自生计与有限供述。\",\n"
+              },
+              {
+                "sourceId": "review-unit/351",
+                "quote": "{\n  \"id\": \"vol_03\",\n  \"order\": 3,\n  \"title\": \"青玄归证卷：十年与一条活路\",\n  \"startChapter\": 67,\n  \"endChapter\": 100,\n  \"goal\": \"携证回乡，和苏、梁九、韩叙、顾分别承担调查、证人保护和修行；救出本次押送工友，确认父亲守门参与与本地掩案责任，切断已验证的三地转运链。\",\n  \"opposition\": \"赵的境内改线与撤人令、两名玄府押卫、宗门保守派的掩责；伙伴生计和林不足以继续豪赌的寿储。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_03\",\n    \"char_07\",\n    \"char_08\",\n    \"char_09\",\n    \"char_10\",\n    \"char_14\",\n    \"char_15\",\n    \"char_12\",\n    \"char_13\",\n    \"char_17\",\n    \"char_18\"\n  ],\n"
+              },
+              {
+                "sourceId": "review-unit/282",
+                "quote": "  \"revealCondition\": \"44章半页与实体书信、53章陆新写自述签认副本（内容待独立核验）、66章北境封签、72章回乡交接、95章实得撤人令，百章只证一条三地链；神阶禁术操作者、寿源去向和九鼎全机制须后续逐层取证。\",\n  \"status\": \"proposed\"\n}"
+              }
+            ],
+            "revisionAdvice": ""
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass",
+            "explanation": "就本批可见设计，地域、资源、制度和势力并非换地图重复冲突：灵虚古境以准入符牌、旧矿路和有限泉液形成首卷选择；赤霄以受护港区、避火条件、商盟货单与雇工生计形成追查和救援代价；苍冥以防寒、港口监管、巡界职责和受限外港构成不能进入界渊、须先救人后追残片的限制；返乡后又转为文书传播、证人安置、玄府训练与本地押运责任。世界容量条目同时将高阶寿源列为竞争性、长期且非角色既有资产的候选见证，避免以百章内未取得资源直接跳过后续成长门槛。上述只说明本批已读安排具有分卷承载力，不替代全领域综合验收。",
+            "evidence": [
+              {
+                "sourceId": "review-unit/13",
+                "quote": "{\n  \"id\": \"ax_11\",\n  \"title\": \"有限寿源的高阶成长条件见证\",\n  \"content\": \"世界容量例取与百章末相同的玄府2.775342元载下界，起算第466日；这个起点来自第19日诊断7元载，扣447/365自然流逝、凝元3、玄府10，加历史两剂灵泉10。诊断不是收入。以下只是一个候选的全部资格、资源竞争、实体行程、医护支付、修习和伤情均满足时的寿储见证，不自动授予林辰、任意角色或一个军团这些资源与境界。每笔实际发生前复核；失败、战争、伤病和额外施术发生时须重新算账，不能沿用示例。\\n第554日：距上笔88日，res_17一剂入账8，无晋阶或燃寿支出，扣自然流逝后余10.534247元载，采收540日、疗程540至554日。\\n第936日：距上笔382日，res_18一剂入账60，无晋阶或燃寿支出，扣自然流逝后余69.487671元载，采收900日、疗程906至936日。\\n第1000日：距上笔64日，无寿源收入，晋阶付30，扣自然流逝后余39.312329元载。\\n第3856日：距上笔2856日，res_18一剂入账60，无晋阶或燃寿支出，扣自然流逝后余91.487671元载，采收3820日、疗程3826至3856日。\\n第4000日：距上笔144日，无寿源收入，晋阶付60，扣自然流逝后余31.093151元载。\\n第4255日：距上笔255日，"
+              },
+              {
+                "sourceId": "review-unit/88",
+                "quote": "{\n  \"id\": \"loc_21\",\n  \"name\": \"无尽虚海商路\",\n  \"kind\": \"region\",\n  \"entryConditions\": [\n    \"同一天地内的虚海航网，不穿越太古界门；普通修士依赖护罩与定位阵飞舟，持钥匙不能免费或瞬移过海。\",\n    \"青玄云梦天港至赤霄天宝外港为约两昼夜实体海程；内陆抵港时间另算。船票、劳务换舱、担保与额外打点须分别说明，商盟信物不自动代付。新第一卷拟第214日暮出航、第216日暮到港，旧第17–19日章纲不再适用。\",\n    \"赤霄极焱天港至苍冥葬骨玄冰原外港为约五昼夜实体海程。常规客舱旧报价五千枚下品灵石，上等舱三品火灵晶百两；具体货物换舱须核实品种、数量与双方同意，不凭品级推定兑换率。后续新章纲须重新安排日期和可用支付来源，旧第27–32日航历不是约束新提案的日期。\",\n    \"苍冥通天渡口至青玄沧溟古港约六日实体海程；紧急征用也须明确船舶、燃料、具名供给者与担保责任，不能当作免费瞬移。回师日期须随前卷训练、休养和航程顺延。\",\n    \"万象商盟管船舶、泊位、货单与运费；大乾、神炎及苍冥沿岸守军各管本方港口，巡界使处理空间污染和紧急引渡。商业信物不能豁免扣船、搜舱或追缴。\",\n"
+              },
+              {
+                "sourceId": "review-unit/349",
+                "quote": "{\n  \"id\": \"vol_01\",\n  \"order\": 1,\n  \"title\": \"青玄争泉卷：短命求生\",\n  \"startChapter\": 1,\n  \"endChapter\": 32,\n  \"goal\": \"在伤势与短寿限制下真正修成凝元，进入有门槛的古境，联合同伴击破墨幽屠本次掳人夺泉行动，取得有限泉液并付出分离代价南渡；卷末凝元三重，不使用逆命真解。\",\n  \"opposition\": \"太清仙宗戒律堂保守派、幽罗殿少主墨幽屠及其死士、大乾天朝暗中渗透的眼线。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_03\",\n    \"char_04\",\n    \"char_07\",\n    \"char_08\",\n    \"char_09\",\n    \"char_10\",\n    \"char_11\",\n    \"char_12\",\n    \"char_13\",\n    \"char_17\",\n    \"char_18\"\n  ],\n  \"climax\": \"第23–26章，林辰与苏分工释放被掳采集者、夺回样箱与有限泉液；顾峤按先前路线到场，以玄府同阶力量和一次付费太乙真光压制墨。主角破坏普通货台制造战术窗口，不越阶斩灭墨或王器。\",\n"
+              },
+              {
+                "sourceId": "review-unit/350",
+                "quote": "{\n  \"id\": \"vol_02\",\n  \"order\": 2,\n  \"title\": \"赤霄药火卷：追船与黑舱\",\n  \"startChapter\": 33,\n  \"endChapter\": 66,\n  \"goal\": \"由失箱责任追查程记扣工和跨陆转运，救出5名承运雇工、陆弟与北境7名矿工，以凝元实力和各方有限合作截停本批货；不以进入天坑或杀神海作门槛。\",\n  \"opposition\": \"程记药栈的改签、扣工与反诉，首仓火因仍待查；炎煞港口代理催货；赵的实体回令与商盟内部自保。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_03\",\n    \"char_05\",\n    \"char_14\",\n    \"char_15\",\n    \"char_16\",\n    \"char_19\",\n    \"char_20\"\n  ],\n  \"climax\": \"第61–66章北境外港截黑舱，林选择先救人，夜守撤离栈桥而未追持第二片逃跑的程。此前44章潮沟截驳付出船损；50章以吴卢亲口拒绝、陆停止协助旧同伙及两名看守被控制，固定本次扣工事实并完成脱控；51–53转入各自生计与有限供述。\",\n"
+              },
+              {
+                "sourceId": "review-unit/351",
+                "quote": "{\n  \"id\": \"vol_03\",\n  \"order\": 3,\n  \"title\": \"青玄归证卷：十年与一条活路\",\n  \"startChapter\": 67,\n  \"endChapter\": 100,\n  \"goal\": \"携证回乡，和苏、梁九、韩叙、顾分别承担调查、证人保护和修行；救出本次押送工友，确认父亲守门参与与本地掩案责任，切断已验证的三地转运链。\",\n  \"opposition\": \"赵的境内改线与撤人令、两名玄府押卫、宗门保守派的掩责；伙伴生计和林不足以继续豪赌的寿储。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_03\",\n    \"char_07\",\n    \"char_08\",\n    \"char_09\",\n    \"char_10\",\n    \"char_14\",\n    \"char_15\",\n    \"char_12\",\n    \"char_13\",\n    \"char_17\",\n    \"char_18\"\n  ],\n"
+              },
+              {
+                "sourceId": "review-unit/364",
+                "quote": "{\n  \"id\": \"ms_v2_boundary\",\n  \"title\": \"黑舱截留与残片取舍\",\n  \"kind\": \"climax\",\n  \"startChapter\": 61,\n  \"endChapter\": 66,\n  \"setup\": [\n    \"第285日夜在外港真身会见，对照北境原封签存根、45章交接残联与旧封的签认拓本、53章拟取得的陆新写改签自述签认副本；这些是货运线索，不是第二片图样，不能凭同封号认定匣内物。她具名担保林贺仅在外港指定仓区查货至300日；归一实力不赋予林准入界渊的能力。\",\n    \"程272从极焱另船出发277到北境，订291转运，不是海上追逐。第一报258寄、262赵阅及263回令、268程收均归53章前后锚点，不在61章才首次发生；第一报不含291北境失货。赵至318程亲自面报才听到北境失败。\",\n"
+              },
+              {
+                "sourceId": "review-unit/368",
+                "quote": "{\n  \"id\": \"ms_v3_convoy\",\n  \"title\": \"押运截停与放弃追凶\",\n  \"kind\": \"climax\",\n  \"startChapter\": 88,\n  \"endChapter\": 95,\n  \"setup\": [\n    \"第431日苏把现场案卷送监督复核点，不能一日传播三大陆；护送执事顾仅能调一队外山见证与救护人员，玄府护卫数量与运人笼位置由实际跟车确认。\",\n    \"88章431赵阅祁429具名接押报告，不是苏同日送当地监督点的案卷。90章433赵据旧清册和此报签撤押一号，骑使沿普通驿路92章435交祁。两车八人在432已装载并被梁看见，435令触发撤走而非首次装车。程318已抵押原物，410才本地重整；433赵以核回程记货账后才考虑减债为条件派程携旧货签清册随骑使，二日435到外山押运仓核货签。程想减债赎匣、无权指挥玄府，第二片仍赵府封存。不再写三个月已重整或省略程离都行程。\",\n"
+              }
+            ],
+            "revisionAdvice": ""
+          }
+        ]
+      },
+      "modelResponses": [
+        "{\"requestId\":\"review_f6e3ae6e6731d8316d47721d\",\"summary\":\"本批地域差异、实体航程、港口查验与势力责任足以支撑三卷的行动选择，但北境七名获救矿工从受监管泊区转入救济所的苍冥准入/临时监管权限未被安排，须补齐后才可按提案执行。\",\"checks\":[{\"criterion\":\"geography\",\"verdict\":\"revise\",\"explanation\":\"跨海移动本身均按实体航程、港口验籍与防护处理：青玄—赤霄两昼夜、赤霄—苍冥五昼夜，且普通商路不经界门；赤霄段另有每日放行核验、避火符与暖舱安排。问题出在北境救援后的人员准入：苍冥规则要求沿岸官港验引渡令，或由巡界使验明身份后具名担保，并且担保只在约定范围和期限生效。夜在第285日的担保只明确给林辰、贺青梧在指定仓区查货；七名矿工则是在货舱获救后，由港卫送往救济所。现有安排写了救助包、暖房和十日安置，却未写港务或夜对这七名身份尚待逐人核实者采取何种临时候查、验籍、具名担保或其他合法监管处置。不能把救援、暖房安置或货船抵达监管泊区自动等同于获得苍冥沿岸入境资格。\",\"evidence\":[{\"fragmentId\":\"e37\"},{\"fragmentId\":\"e347\"},{\"fragmentId\":\"e351\"},{\"fragmentId\":\"e357\"}],\"revisionAdvice\":\"在ms_v2_boundary及对应61—66章落实前，明确七人开舱后至救济所安置期间的法定身份路径：由哪一港务/巡界人员逐人验明何种身份、是否以夜或其他到场者具名担保、担保的地点/期限/监护责任为何，以及身份或材料不符时留在何处候查。该路径须与夜对林贺的既有“指定仓区至300日”担保分开记载，不能用同一担保暗中覆盖。\"},{\"criterion\":\"history\",\"verdict\":\"pass\",\"explanation\":\"本批可检验的历史因果没有把既往灾变或秘密当成免费答案。界门历史只作为风险边界，三大陆日常航行明确不经界门；父案、九鼎与门外真相均限定为局部材料、当事人证言或后续待证事项。三卷冲突也由已发生或拟定的具体责任推进：首卷的矿务、泉液与押解后果引出赤霄货号，赤霄的失箱、扣工与实体文书链再引向北境和返乡调查，而百章终局仅处理一条可核转运链，并未冒充完成九鼎全案。\",\"evidence\":[{\"fragmentId\":\"e5\"},{\"fragmentId\":\"e280\"},{\"fragmentId\":\"e302\"},{\"fragmentId\":\"e304\"},{\"fragmentId\":\"e202\"}],\"revisionAdvice\":\"\"},{\"criterion\":\"capacity\",\"verdict\":\"pass\",\"explanation\":\"就本批可见设计，地域、资源、制度和势力并非换地图重复冲突：灵虚古境以准入符牌、旧矿路和有限泉液形成首卷选择；赤霄以受护港区、避火条件、商盟货单与雇工生计形成追查和救援代价；苍冥以防寒、港口监管、巡界职责和受限外港构成不能进入界渊、须先救人后追残片的限制；返乡后又转为文书传播、证人安置、玄府训练与本地押运责任。世界容量条目同时将高阶寿源列为竞争性、长期且非角色既有资产的候选见证，避免以百章内未取得资源直接跳过后续成长门槛。上述只说明本批已读安排具有分卷承载力，不替代全领域综合验收。\",\"evidence\":[{\"fragmentId\":\"e16\"},{\"fragmentId\":\"e56\"},{\"fragmentId\":\"e300\"},{\"fragmentId\":\"e302\"},{\"fragmentId\":\"e304\"},{\"fragmentId\":\"e347\"},{\"fragmentId\":\"e379\"}],\"revisionAdvice\":\"\"}]}"
+      ],
+      "inputSha256": "f6e3ae6e6731d8316d47721dcdcf20f9abca312ae3c08bb8d458b23289de8fec",
+      "originalSourceIds": [
+        "author",
+        "world/axioms/ax_01",
+        "world/axioms/ax_02",
+        "world/axioms/ax_03",
+        "world/axioms/ax_04",
+        "world/axioms/ax_05",
+        "world/axioms/ax_06",
+        "world/axioms/ax_07",
+        "world/axioms/ax_08",
+        "world/axioms/ax_09",
+        "world/axioms/ax_10",
+        "world/axioms/ax_11",
+        "world/axioms/ax_12",
+        "world/axioms/ax_13",
+        "world/realms/realm_01",
+        "world/realms/realm_02",
+        "world/realms/realm_03",
+        "world/realms/realm_04",
+        "world/realms/realm_05",
+        "world/realms/realm_06",
+        "world/realms/realm_07",
+        "world/realms/realm_08",
+        "world/locations/loc_01",
+        "world/locations/loc_02",
+        "world/locations/loc_03",
+        "world/locations/loc_04",
+        "world/locations/loc_05",
+        "world/locations/loc_06",
+        "world/locations/loc_07",
+        "world/locations/loc_08",
+        "world/locations/loc_09",
+        "world/locations/loc_10",
+        "world/locations/loc_11",
+        "world/locations/loc_12",
+        "world/locations/loc_13",
+        "world/locations/loc_14",
+        "world/locations/loc_15",
+        "world/locations/loc_16",
+        "world/locations/loc_17",
+        "world/locations/loc_18",
+        "world/locations/loc_19",
+        "world/locations/loc_20",
+        "world/locations/loc_21",
+        "world/locations/loc_22",
+        "world/locations/loc_23",
+        "world/locations/loc_24",
+        "world/locations/loc_25",
+        "world/locations/loc_26",
+        "world/locations/loc_27",
+        "world/locations/loc_28",
+        "world/locations/loc_29",
+        "world/locations/loc_30",
+        "story/characters/char_01",
+        "story/characters/char_02",
+        "story/characters/char_08",
+        "story/relationships/rel_21",
+        "story/relationships/rel_22",
+        "story/arcs/arc_01",
+        "story/arcs/arc_02",
+        "story/arcs/arc_03",
+        "story/arcs/arc_04",
+        "story/arcBeats/beat_01",
+        "story/arcBeats/beat_02",
+        "story/arcBeats/beat_03",
+        "story/arcBeats/audit-su-3",
+        "story/arcBeats/audit-su-8",
+        "story/arcBeats/audit-su-12",
+        "story/arcBeats/audit-su-testimony",
+        "story/arcBeats/audit-su-stay",
+        "story/arcBeats/audit-zhao-control",
+        "story/arcBeats/audit-mo-bargain",
+        "story/arcBeats/audit-mo-last-bet",
+        "story/arcBeats/v1-white-stop",
+        "story/arcBeats/v1-lin-advance",
+        "story/arcBeats/v1-qin-bargain",
+        "story/arcBeats/v1-qin-message",
+        "story/arcBeats/v1-gu-counter",
+        "story/arcBeats/v1-du-post",
+        "story/arcBeats/v1-qiao-custody",
+        "story/arcBeats/v1-lin-share",
+        "story/arcBeats/beat_v23_1",
+        "story/arcBeats/beat_v23_2",
+        "story/arcBeats/beat_v23_3",
+        "story/arcBeats/beat_v23_4",
+        "story/arcBeats/beat_v23_5",
+        "story/arcBeats/beat_v23_6",
+        "story/arcBeats/beat_v23_7",
+        "story/arcBeats/beat_v23_8",
+        "story/arcBeats/beat_v23_9",
+        "story/arcBeats/beat_v23_10",
+        "story/arcBeats/beat_v23_11",
+        "story/arcBeats/beat_v23_12",
+        "story/arcBeats/beat_bridge_1",
+        "story/arcBeats/beat_bridge_2",
+        "story/arcBeats/beat_bridge_3",
+        "story/arcBeats/beat_bridge_4",
+        "story/arcBeats/beat_box_rescue",
+        "story/arcBeats/beat_box_correction",
+        "story/arcBeats/beat_barge_priority",
+        "story/arcBeats/message-dispatch",
+        "story/arcBeats/message-first-read",
+        "story/arcBeats/message-first-order",
+        "story/arcBeats/message-first-delivery",
+        "story/arcBeats/message-first-ack",
+        "story/arcBeats/message-north-report",
+        "story/arcBeats/message-local-replan",
+        "story/arcBeats/message-custody-report",
+        "story/arcBeats/message-custody-read",
+        "story/arcBeats/message-withdraw-order",
+        "story/arcBeats/message-cheng-local-mission",
+        "story/arcBeats/message-withdraw-delivery",
+        "story/arcBeats/message-withdraw-seized",
+        "story/arcBeats/message-defeat-report",
+        "story/arcBeats/message-formal-inquiry",
+        "story/arcBeats/v1-lin-route-failure",
+        "story/arcBeats/v1-su-tactical-share",
+        "story/arcBeats/beat_port_work_before_questions",
+        "story/arcBeats/beat_port_current_retreat",
+        "story/arcBeats/beat_workers_failed_exit",
+        "story/arcBeats/harbor-lin-horizon",
+        "story/arcBeats/harbor-he-refuses-boat",
+        "story/arcBeats/harbor-lu-speaks",
+        "story/secrets/sec_01",
+        "story/secrets/sec_02",
+        "story/secrets/sec_03",
+        "story/secrets/sec_04",
+        "story/promises/prom_01",
+        "story/promises/prom_02",
+        "story/promises/prom_03",
+        "story/promises/prom_04",
+        "story/openThreads/th_01",
+        "story/openThreads/th_02",
+        "story/openThreads/th_03",
+        "story/openThreads/th_04",
+        "story/openThreads/th_05",
+        "story/volumes/vol_01",
+        "story/volumes/vol_02",
+        "story/chapterPlans/chapter-plan-20",
+        "story/chapterPlans/chapter-plan-21",
+        "story/chapterPlans/chapter-plan-22",
+        "story/chapterPlans/chapter-plan-23",
+        "story/chapterPlans/chapter-plan-24",
+        "story/chapterPlans/chapter-plan-25",
+        "story/chapterPlans/chapter-plan-26",
+        "story/chapterPlans/chapter-plan-27",
+        "story/chapterPlans/chapter-plan-28",
+        "story/chapterPlans/chapter-plan-29",
+        "story/chapterPlans/chapter-plan-30",
+        "story/chapterPlans/chapter-plan-31",
+        "story/chapterPlans/chapter-plan-32",
+        "story/chapterPlans/bible-chapter-33",
+        "story/chapterPlans/bible-chapter-34",
+        "story/chapterPlans/bible-chapter-35",
+        "plan/overview",
+        "plan/volumes/vol_01",
+        "plan/volumes/vol_02",
+        "plan/volumes/vol_03",
+        "plan/milestones/ms_vol1_turn",
+        "plan/milestones/ms_growth_v1_recovery",
+        "plan/milestones/ms_growth_v1_training",
+        "plan/milestones/ms_growth_v1_expedition",
+        "plan/milestones/ms_vol1_climax",
+        "plan/milestones/ms_growth_v1_aftermath",
+        "plan/milestones/ms_growth_v1_crossing",
+        "plan/milestones/ms_bridge_return",
+        "plan/milestones/ms_v2_loss",
+        "plan/milestones/ms_v2_barge",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff",
+        "plan/chapters/20",
+        "plan/chapters/21",
+        "plan/chapters/22",
+        "plan/chapters/23",
+        "plan/chapters/24",
+        "plan/chapters/25",
+        "plan/chapters/26",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/29",
+        "plan/chapters/30",
+        "plan/chapters/31",
+        "plan/chapters/32",
+        "plan/chapters/33",
+        "plan/chapters/34",
+        "plan/chapters/35"
+      ]
+    },
+    {
+      "stageId": "cross-2-4",
+      "result": {
+        "summary": "本批已见的三大陆航路、港口准入、资源供应链和后段分卷功能具有明确差异，但第31章跨海护货的实际御物对象尚未随本批提供，且赵—炎煞旧私运框架所援引的历史事件原文未读；因此地理与历史仅能保留待补读结论。",
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "insufficient",
+            "explanation": "跨大陆实体航程、港口验籍、防护与费用原则已明确，宏观北航、返航也分别给出实体交通、暖舱、防护、担保和付款安排。可是第一卷南渡安排称林辰以凝元御物“固定货索、阻止药箱砸人”；轻物御动只适用于三丈内、至多两斤且未受重物牵拉或锁死的单件轻物，不能借轻索承担重载。当前未读第31章细纲，无法判断其是否仅操作无载轻索/机关，还是实际以御物承受货箱载荷，故不能以宏观摘要直接判定相容。",
+            "evidence": [
+              {
+                "sourceId": "review-unit/10",
+                "quote": "{\n  \"id\": \"ax_08\",\n  \"title\": \"凝元基础操作的学习、对象与支付\",\n  \"content\": \"凝元真元外放只是承载资格。下列基础操作须先完成相应控制练习与实测，不能靠晋阶自动掌握；不授予更高境界、感知或伤势免疫。\\n轻物御动沿ax_05每次预付半成健康稳定真元上限执行：只控制三丈内直接可见、单件至多两斤的轻小自由物，每次至多三息，早停、落空或被打断不退。一次只作用一件，移第二件另付，时间不足或目标出界即停止。轻索头、小钩、木楔和小插销均须未受重物牵拉或锁死；阻力超过同物正常徒手轻拨即不属于此操作，不能借物轻而隔空拉整车、托活人、硬拔承重楔或穿透法纹锁。操作轻小机关可释放原有机械作用，但轨道、闸片、沙挡、重力及承重部件须真实存在且各自承力，不能把整个机构的载荷藏在半成御物费里。\\n近身附掌是将真元短时集中于自己一只手掌的入门练习：须有一息聚气，聚气开始预付一成健康稳定真元上限，只支持随后一息内一次实际接触的掌击，落空或受扰均损已付款；出掌后至少一息重新收束，不能凭接触持续灌入。对未有真元防护的肉身可造成震伤，对腐朽薄木封板可辅助击裂；伤害仍取决于接触、落点与目标承受，不能隔空震脏、穿完整石壁、自动破同阶护体或使所有人一掌毙命。躲开、挡开手臂、甲胄卸力或聚气时打断均可反制；腕掌伤、气路不稳或不足一成时停用。两种基础操作的消耗、恢复及伤后上限均按ax_05"
+              },
+              {
+                "sourceId": "review-unit/88",
+                "quote": "{\n  \"id\": \"loc_21\",\n  \"name\": \"无尽虚海商路\",\n  \"kind\": \"region\",\n  \"entryConditions\": [\n    \"同一天地内的虚海航网，不穿越太古界门；普通修士依赖护罩与定位阵飞舟，持钥匙不能免费或瞬移过海。\",\n    \"青玄云梦天港至赤霄天宝外港为约两昼夜实体海程；内陆抵港时间另算。船票、劳务换舱、担保与额外打点须分别说明，商盟信物不自动代付。新第一卷拟第214日暮出航、第216日暮到港，旧第17–19日章纲不再适用。\",\n    \"赤霄极焱天港至苍冥葬骨玄冰原外港为约五昼夜实体海程。常规客舱旧报价五千枚下品灵石，上等舱三品火灵晶百两；具体货物换舱须核实品种、数量与双方同意，不凭品级推定兑换率。后续新章纲须重新安排日期和可用支付来源，旧第27–32日航历不是约束新提案的日期。\",\n    \"苍冥通天渡口至青玄沧溟古港约六日实体海程；紧急征用也须明确船舶、燃料、具名供给者与担保责任，不能当作免费瞬移。回师日期须随前卷训练、休养和航程顺延。\",\n    \"万象商盟管船舶、泊位、货单与运费；大乾、神炎及苍冥沿岸守军各管本方港口，巡界使处理空间污染和紧急引渡。商业信物不能豁免扣船、搜舱或追缴。\",\n"
+              },
+              {
+                "sourceId": "review-unit/358",
+                "quote": "{\n  \"id\": \"ms_growth_v1_crossing\",\n  \"title\": \"护货南渡与入港代价\",\n  \"kind\": \"turn\",\n  \"startChapter\": 30,\n  \"endChapter\": 32,\n  \"setup\": [\n    \"第212–214日按山路转驿车到云梦天港，运送六箱指定低阶药材换本航次普通舱；管货不等于可炼化物资。\",\n    \"第214日暮出航、第216日暮到天宝外港，海程两昼夜；不沿用旧第17–19日航历。\",\n    \"风暴中护船者承担外敌，林辰利用凝元御物和矿车制动经验固定货索、阻止药箱砸人，救下一名试图私藏货物的押货者；不斩神海海兽或获得免费升级。\",\n    \"入港用验籍及实际避火防护，局限于有防护的外港街区；他必须补交因护货失损的说明，收货人的真名与失踪货箱构成下一卷具体调查线索，不能潜行岩浆暗渠。\"\n  ],\n  \"cost\": \"部分药箱遭海水毁损，按合同区分天灾损失与失职，失去履约奖金而非无限债；主角需继续工作维持旅费，凝元境只能在当地低风险区域活动。\",\n"
+              },
+              {
+                "sourceId": "review-unit/363",
+                "quote": "{\n  \"id\": \"ms_v2_voyage\",\n  \"title\": \"有限航款与五日北行\",\n  \"kind\": \"turn\",\n  \"startChapter\": 54,\n  \"endChapter\": 60,\n  \"setup\": [\n    \"第271日商盟港务理事会为追缴被挪货与避免北境封港，从本案追偿周转款实拨14000枚下品灵石给具名领款的贺青梧；这是有账有追偿风险的商盟垫款，不是几天劳务值一万。用途限两人北航查货、回青玄交证及沿途食宿医药。\",\n    \"第271–274日乘普通车沿每日复核开放的既有沿岸驿道从天宝外港到极焱天港；271日出发前贺从已拨1000杂费额度中实付12购两张满额普通避火符（各6枚，计入后来核销780而非另加支出），两人核余纹后佩戴新符；旧符不得续算有效，不进太微城、神炎内地、魔谷或天坑。陆与弟弟留赤霄接受传唤，不能无交通随队到北境。\",\n    \"林延续252及254回访的短走、坐车许可，仍不负重，拒绝接受程记以撤供换赔偿的口信。第275日贺在极焱航司柜台按本航次实报5000/人支付10000，购买两张普通保温客舱票；船方在两人具名舱单上列明隔火暖炉、通风烟道、五昼夜保温舱位及燃料、当班船员添料看火均含在这10000内，普通是舱等，不是敞舱或仅发一件保温衣。276日暮离港、281日暮抵葬骨外港，五昼夜完整航程。\",\n"
+              },
+              {
+                "sourceId": "review-unit/365",
+                "quote": "{\n  \"id\": \"ms_v3_return\",\n  \"title\": \"带证返乡与先救谁\",\n  \"kind\": \"turn\",\n  \"startChapter\": 67,\n  \"endChapter\": 72,\n  \"setup\": [\n    \"第300日，夜的原外港查货担保仍只到当日，不自动延长。林贺当面申请回青玄交证；夜依loc_02具名担保规则，在葬骨外港原港务和本轮当值巡队见证下另签限程离境担保，列林、贺实名、原名册及货证封袋，指定会合/交接地为通天渡口受监管候船区。许可仅301日晨至304日夜有效，沿已勘验的葬骨外港—海岸公共驿路—通天渡口路线坐暖车，夜宿所列原驿站；不准离道查货、入极冰国、妖域、神宫或界渊。原巡队在301日出港时复核名单并交当班驿车的纸质限程单，沿岸既有岗哨在车辆实际到站时逐站验籍、签注到离时点，终站港务于303日实际到达后验原单接收候船监管，304日只在原单、名册和船票相符后办理登船离境。夜仍承担这份限程担保的越界责任，原巡队承担出港核验和未按期交回签注单时的追查责任；没有远程瞬时验籍或只有商业票就能通行。\",\n"
+              }
+            ],
+            "revisionAdvice": "补读第31章，核实货索是否无载、对象重量、操作时长及实际承力者；若货索已受药箱牵拉，应改为普通人员、船具或真实承重结构完成固定，不得由半成御物承担。",
+            "awaitingSources": [
+              "plan/chapters/31"
+            ]
+          },
+          {
+            "criterion": "history",
+            "verdict": "insufficient",
+            "explanation": "本批计划将赵玄极—炎煞尊者的有限互供利益明确承接为event_14所定的三年前私运框架，并据此限制双方对港口事件的知情与责任范围；该框架会直接影响第二卷势力行动的历史因果。但本批未提供world/historicalEvents/event_14原文，无法核验该历史事件是否确实支持所述参与方、资源、权限与责任边界。不能仅凭关系条目的转述通过，也不能据此断言历史设定冲突。",
+            "evidence": [
+              {
+                "sourceId": "review-unit/196",
+                "quote": "{\n  \"stages\": [\n    {\n      \"sinceChapter\": 32,\n      \"untilChapter\": 50,\n      \"value\": \"存在隐秘互供利益，远方执行情况尚未相互确认。\",\n      \"cause\": \"延续event_14所定三年前私运框架：赵以私库已入账额度及有限军需货签垫款，炎煞外围代理供仓位、低阶药材及接驳，程记自行签运约挣佣金并承担自身违约损失；本批尚无原约原物进入调查，36章没有取得密券。\",\n      \"cost\": \"不能把本港货损自动变成赵或炎煞真身的即时知情；268日回令尚未发生。\"\n    },\n    {\n      \"sinceChapter\": 51,\n      \"untilChapter\": 72,\n      \"value\": \"旧互供利益仍在，新增通信只进入程—赵链。\",\n      \"cause\": \"53章第一报和回令均由程与赵府经手；没有给炎煞真身的送达或阅览节点。\",\n      \"cost\": \"不能把程收令当炎煞也收令，不能认定炎煞知本港火仓和北境结果。\"\n    },\n    {\n      \"sinceChapter\": 73,\n      \"untilChapter\": 79,\n      \"value\": \"赵单方清点程的亏损，互供框架尚未重新谈定。\",\n"
+              },
+              {
+                "sourceId": "review-unit/196",
+                "quote": "      \"cause\": \"73章程携物面报，只进入赵府军需账与封存链。\",\n      \"cost\": \"炎煞方未有可核收件，不预写其承认违约或承担损失。\"\n    },\n    {\n      \"sinceChapter\": 80,\n      \"untilChapter\": 97,\n      \"value\": \"赵转向本地车队自保，旧跨陆互供关系悬而未决。\",\n      \"cause\": \"80章本地重整是赵的单方选择；95章车队被截不是67章的既成后果。\",\n      \"cost\": \"赵未收到败报前不知道结果；无双方重谈、炎煞到港或魔谷覆灭。\"\n    },\n    {\n      \"sinceChapter\": 98,\n      \"untilChapter\": 100,\n      \"value\": \"赵想向旧代理转嫁已听闻的亏损，但没有达成新协议。\",\n      \"cause\": \"98程面报与99实际质询增加赵压力，只足以形成其甩账意图。\",\n      \"cost\": \"未给炎煞新增送达节点，不写炎煞已接令、同意涨价或承诺赔付。\"\n    }\n  ],\n  \"id\": \"rel_06\",\n  \"fromCharacterId\": \"char_03\",\n  \"toCharacterId\": \"char_06\",\n  \"kind\": \"social\",\n"
+              },
+              {
+                "sourceId": "review-unit/350",
+                "quote": "{\n  \"id\": \"vol_02\",\n  \"order\": 2,\n  \"title\": \"赤霄药火卷：追船与黑舱\",\n  \"startChapter\": 33,\n  \"endChapter\": 66,\n  \"goal\": \"由失箱责任追查程记扣工和跨陆转运，救出5名承运雇工、陆弟与北境7名矿工，以凝元实力和各方有限合作截停本批货；不以进入天坑或杀神海作门槛。\",\n  \"opposition\": \"程记药栈的改签、扣工与反诉，首仓火因仍待查；炎煞港口代理催货；赵的实体回令与商盟内部自保。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_03\",\n    \"char_05\",\n    \"char_14\",\n    \"char_15\",\n    \"char_16\",\n    \"char_19\",\n    \"char_20\"\n  ],\n  \"climax\": \"第61–66章北境外港截黑舱，林选择先救人，夜守撤离栈桥而未追持第二片逃跑的程。此前44章潮沟截驳付出船损；50章以吴卢亲口拒绝、陆停止协助旧同伙及两名看守被控制，固定本次扣工事实并完成脱控；51–53转入各自生计与有限供述。\",\n"
+              }
+            ],
+            "revisionAdvice": "补读event_14，核对其是否明确建立赵方私库/军需货签、炎煞外围代理、程记承运及各方责任边界；若原事件不含其中任一关键前提，应在宏观计划中改写为待建立的独立协议，而非既有历史。",
+            "awaitingSources": [
+              "world/historicalEvents/event_14"
+            ]
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass",
+            "explanation": "就本批可见安排，地域差异确实改变路线、风险和选择：赤霄港区需避火符与封航复核，苍冥入境另有验籍、担保、防寒和暖房条件；三类高阶寿源又各自绑定不同产地、成熟周期、医疗地点、配额竞争、运输保存和失败损失。分卷也据此从青玄古境争泉、赤霄港口扣工追查，转向北境受限救援与返乡举证，而非仅换地图重复战斗。该判断仅覆盖本批已提供的宏观与世界原文，不替代未读细纲或全书容量验收。",
+            "evidence": [
+              {
+                "sourceId": "review-unit/69",
+                "quote": "{\n  \"id\": \"loc_02\",\n  \"name\": \"苍冥大陆\",\n  \"kind\": \"continent\",\n  \"entryConditions\": [\n    \"大陆环境寒冷；凝元境以下需保温舟舱或护身寒符。修为不是政治通行权。\",\n    \"沿岸官港验引渡令；无令者可由巡界使验明身份后具名担保，担保者承担监护和越界责任。例外仅到指定会合地，不自动授予进入界渊的权利。\",\n    \"具体到访须区分受监管码头候查、沿岸入境担保和界渊准入；担保须由实际到场者具名承担，只在约定范围与期限生效。\",\n    \"上述防寒门槛针对实际暴露于寒候。普通港区和已开放公共驿路的固定暖房、暖车只有在隔风围护、隔火炉、通风烟道、燃料与值守人手均实际存在且持续供热时，才提供其内部的温暖避难处；不把整座港口或一段驿路变成免寒区。离开温暖内部进入寒候，凝元以下仍须实际可用的护身寒符；普通衣物、修为名义或商业票不替代此条件。供暖失败要停止进入或转移到另一个已核实暖处，另记真实燃料、交通与照料费用。\"\n  ],\n  \"status\": \"proposed\"\n}"
+              },
+              {
+                "sourceId": "review-unit/70",
+                "quote": "{\n  \"id\": \"loc_03\",\n  \"name\": \"赤霄大陆\",\n  \"kind\": \"continent\",\n  \"entryConditions\": [\n    \"需修持适用到访区域的抗火法门或佩戴避火灵符。天宝外港及既有受护街段在非地火喷发期的日常炙热，以已验明余量的普通避火符art_16满足；凡器避火衣art_15只作辅助，不替代此项灵符/法门门槛。离开这些受护区域前须另核当地实际危险和适配防护，普通符不授予闯明火、火法或地火的资格。\",\n    \"玄府境以下须避开地火煞气喷发期。港务依据沿岸岗哨实际见到的热裂、硫烟和异常地火记录发布封航/放行旗号，航司出航前查本航次通告、靠港前复核当日旗号；旧通告不保证未来安全，若转为封航须在许可锚地待令或返航，不能靠日常避火符硬闯。\"\n  ],\n  \"status\": \"proposed\"\n}"
+              },
+              {
+                "sourceId": "review-unit/88",
+                "quote": "{\n  \"id\": \"loc_21\",\n  \"name\": \"无尽虚海商路\",\n  \"kind\": \"region\",\n  \"entryConditions\": [\n    \"同一天地内的虚海航网，不穿越太古界门；普通修士依赖护罩与定位阵飞舟，持钥匙不能免费或瞬移过海。\",\n    \"青玄云梦天港至赤霄天宝外港为约两昼夜实体海程；内陆抵港时间另算。船票、劳务换舱、担保与额外打点须分别说明，商盟信物不自动代付。新第一卷拟第214日暮出航、第216日暮到港，旧第17–19日章纲不再适用。\",\n    \"赤霄极焱天港至苍冥葬骨玄冰原外港为约五昼夜实体海程。常规客舱旧报价五千枚下品灵石，上等舱三品火灵晶百两；具体货物换舱须核实品种、数量与双方同意，不凭品级推定兑换率。后续新章纲须重新安排日期和可用支付来源，旧第27–32日航历不是约束新提案的日期。\",\n    \"苍冥通天渡口至青玄沧溟古港约六日实体海程；紧急征用也须明确船舶、燃料、具名供给者与担保责任，不能当作免费瞬移。回师日期须随前卷训练、休养和航程顺延。\",\n    \"万象商盟管船舶、泊位、货单与运费；大乾、神炎及苍冥沿岸守军各管本方港口，巡界使处理空间污染和紧急引渡。商业信物不能豁免扣船、搜舱或追缴。\",\n"
+              },
+              {
+                "sourceId": "review-unit/140",
+                "quote": "{\n  \"id\": \"res_17\",\n  \"name\": \"灵脉年轮晶\",\n  \"unit\": \"枚\",\n  \"source\": \"灵虚古境loc_05的寿枝古藤在灵眼周边季节性灵潮转换时形成的年轮结晶；其生机来自古藤自然代谢与古境灵潮回流，不由灌灵、血祭或燃寿催成。\",\n  \"scarcity\": \"极罕见\",\n  \"tier\": \"五品\",\n  \"status\": \"proposed\",\n  \"usage\": {\n    \"effect\": \"一枚经完整十四日疗程及复诊，新增八元载未来可用寿储；只计未来生存和施术储备，不逆转年龄、既付燃寿、旧伤或本源损失。\",\n    \"requirements\": [\n      \"受用者至少凝元境三重；疗程前须连续三日诊察，排除急性失血、严重煞毒、命火紊乱和正在进行的燃寿反噬。\",\n      \"疗程从开始时点起持续十四整日，前七日服药、后七日静养，终点复诊合格才一次入账八元载。\",\n      \"每人终生最多成功使用十枚；两枚疗程之间至少间隔三十日，连续两枚后须额外停用九十日。\",\n      \"灵虚圣地只认可有编号、批次和采集时点的完整结晶；碎片、仿制品、污染品和盗取后重新拼装品不得入账。\",\n"
+              },
+              {
+                "sourceId": "review-unit/141",
+                "quote": "{\n  \"id\": \"res_18\",\n  \"name\": \"寒脉伏龄根\",\n  \"unit\": \"段\",\n  \"source\": \"极冰天国loc_13北境封冻旧湖下的寒脉母根，在每八年一次的短暂地脉回温期结出子段；其生机来自封存水木灵性和寒脉缓释，不是人为种植或抽取他人寿元。\",\n  \"scarcity\": \"天地罕有\",\n  \"tier\": \"六品\",\n  \"status\": \"proposed\",\n  \"usage\": {\n    \"effect\": \"一段经完整三十日寒命调和疗程及复诊，新增六十元载未来可用寿储；属于外源新增储备，不修复寒损、命火病因或历史燃寿衰老。\",\n    \"requirements\": [\n      \"受用者至少玄府境且身体适格，无凝元特批；由极冰天国持证、玄府以上冰系医修在loc_26通天渡口获批医舍主持，不用医师境界替代患者境界。\",\n      \"疗程开始前七日及疗程期间不得发动燃寿秘术、血炼秘术或高强度火煞术；出现寒毒入髓、命火骤降或经脉冻结必须停药。\",\n      \"疗程开始后第0、7、14、21、28日各服五分之一，第30日复诊后才一次入账六十元载。\",\n      \"每人终生最多成功使用六段；任两段之间至少间隔一年，连续两段后必须停用三年并重新评估寒命承载。\"\n    ],\n"
+              },
+              {
+                "sourceId": "review-unit/142",
+                "quote": "{\n  \"id\": \"res_19\",\n  \"name\": \"界潮命胶\",\n  \"unit\": \"匣\",\n  \"source\": \"苍冥界渊虚谷loc_15内，经苍冥巡界使稳定监测的微型裂隙，在寒脉、缓慢灵潮与定界石槽共同作用下自然析出的胶质；不是虚空神晶，也不从裂隙或活体抽取寿元。\",\n  \"scarcity\": \"天地绝品\",\n  \"tier\": \"六品\",\n  \"status\": \"proposed\",\n  \"usage\": {\n    \"effect\": \"一匣经完整四十五日定相疗程及复诊，新增一百二十元载未来可用寿储；有限外源生机可用于未来扣款，不取消已付支出、衰老或损伤。\",\n    \"requirements\": [\n      \"受用者至少神海境，且须经通晓空间污染的命医和巡界使联合确认；有空间乱流伤、神识裂损、未稳定煞毒或近期强行施展空间术式者不得入疗程。\",\n      \"在fac_12与港务登记的loc_26普通获批医舍，由随匣具名命医和神海以上巡界定相员主持；前十五整日试药、中十五日定相、后十五日静养，终点复诊合格才入账一百二十元载。外部患者至少神海且神识稳固，留在普通港区，不进入界渊。\",\n      \"每人终生最多成功使用八匣；两匣之间至少间隔五年，连续两匣后须完成一次空间污染复查和至少十年停用观察。\",\n"
+              },
+              {
+                "sourceId": "review-unit/349",
+                "quote": "  \"endState\": \"第32章第216日暮抵达赤霄天宝外港。林辰凝元三重；第189日同批追回12滴，其中3滴污染隔离、9滴可用，配额台核准告急者3滴、林个人6滴。林获配的6滴已按两剂各3滴分别完成十日疗程和复诊，保守预算约13.460274元载；这是有前提的规划下界，伤病须复评。墨负伤被羁押、林辰个人分得的泉液余量为零；苏留宗照看证人与押解，主角没有燃寿白发。\",\n  \"carryOver\": \"父亲检修图、残片刻痕与收货人线索指向赤霄；从凝元三重继续，不能沿用旧第二卷的神海战力、火髓治伤或免费通行。物资护送损失和押解安全均有后果。\"\n}"
+              },
+              {
+                "sourceId": "review-unit/350",
+                "quote": "{\n  \"id\": \"vol_02\",\n  \"order\": 2,\n  \"title\": \"赤霄药火卷：追船与黑舱\",\n  \"startChapter\": 33,\n  \"endChapter\": 66,\n  \"goal\": \"由失箱责任追查程记扣工和跨陆转运，救出5名承运雇工、陆弟与北境7名矿工，以凝元实力和各方有限合作截停本批货；不以进入天坑或杀神海作门槛。\",\n  \"opposition\": \"程记药栈的改签、扣工与反诉，首仓火因仍待查；炎煞港口代理催货；赵的实体回令与商盟内部自保。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_03\",\n    \"char_05\",\n    \"char_14\",\n    \"char_15\",\n    \"char_16\",\n    \"char_19\",\n    \"char_20\"\n  ],\n  \"climax\": \"第61–66章北境外港截黑舱，林选择先救人，夜守撤离栈桥而未追持第二片逃跑的程。此前44章潮沟截驳付出船损；50章以吴卢亲口拒绝、陆停止协助旧同伙及两名看守被控制，固定本次扣工事实并完成脱控；51–53转入各自生计与有限供述。\",\n"
+              },
+              {
+                "sourceId": "review-unit/351",
+                "quote": "{\n  \"id\": \"vol_03\",\n  \"order\": 3,\n  \"title\": \"青玄归证卷：十年与一条活路\",\n  \"startChapter\": 67,\n  \"endChapter\": 100,\n  \"goal\": \"携证回乡，和苏、梁九、韩叙、顾分别承担调查、证人保护和修行；救出本次押送工友，确认父亲守门参与与本地掩案责任，切断已验证的三地转运链。\",\n  \"opposition\": \"赵的境内改线与撤人令、两名玄府押卫、宗门保守派的掩责；伙伴生计和林不足以继续豪赌的寿储。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_03\",\n    \"char_07\",\n    \"char_08\",\n    \"char_09\",\n    \"char_10\",\n    \"char_14\",\n    \"char_15\",\n    \"char_12\",\n    \"char_13\",\n    \"char_17\",\n    \"char_18\"\n  ],\n"
+              }
+            ],
+            "revisionAdvice": ""
+          }
+        ]
+      },
+      "modelResponses": [
+        "{\"requestId\":\"review_feab12406abd08e4a10282c0\",\"summary\":\"本批已见的三大陆航路、港口准入、资源供应链和后段分卷功能具有明确差异，但第31章跨海护货的实际御物对象尚未随本批提供，且赵—炎煞旧私运框架所援引的历史事件原文未读；因此地理与历史仅能保留待补读结论。\",\"checks\":[{\"criterion\":\"geography\",\"verdict\":\"insufficient\",\"explanation\":\"跨大陆实体航程、港口验籍、防护与费用原则已明确，宏观北航、返航也分别给出实体交通、暖舱、防护、担保和付款安排。可是第一卷南渡安排称林辰以凝元御物“固定货索、阻止药箱砸人”；轻物御动只适用于三丈内、至多两斤且未受重物牵拉或锁死的单件轻物，不能借轻索承担重载。当前未读第31章细纲，无法判断其是否仅操作无载轻索/机关，还是实际以御物承受货箱载荷，故不能以宏观摘要直接判定相容。\",\"evidence\":[{\"fragmentId\":\"e12\"},{\"fragmentId\":\"e56\"},{\"fragmentId\":\"e317\"},{\"fragmentId\":\"e337\"},{\"fragmentId\":\"e358\"}],\"revisionAdvice\":\"补读第31章，核实货索是否无载、对象重量、操作时长及实际承力者；若货索已受药箱牵拉，应改为普通人员、船具或真实承重结构完成固定，不得由半成御物承担。\",\"awaitingSources\":[\"plan/chapters/31\"]},{\"criterion\":\"history\",\"verdict\":\"insufficient\",\"explanation\":\"本批计划将赵玄极—炎煞尊者的有限互供利益明确承接为event_14所定的三年前私运框架，并据此限制双方对港口事件的知情与责任范围；该框架会直接影响第二卷势力行动的历史因果。但本批未提供world/historicalEvents/event_14原文，无法核验该历史事件是否确实支持所述参与方、资源、权限与责任边界。不能仅凭关系条目的转述通过，也不能据此断言历史设定冲突。\",\"evidence\":[{\"fragmentId\":\"e170\"},{\"fragmentId\":\"e171\"},{\"fragmentId\":\"e298\"}],\"revisionAdvice\":\"补读event_14，核对其是否明确建立赵方私库/军需货签、炎煞外围代理、程记承运及各方责任边界；若原事件不含其中任一关键前提，应在宏观计划中改写为待建立的独立协议，而非既有历史。\",\"awaitingSources\":[\"world/historicalEvents/event_14\"]},{\"criterion\":\"capacity\",\"verdict\":\"pass\",\"explanation\":\"就本批可见安排，地域差异确实改变路线、风险和选择：赤霄港区需避火符与封航复核，苍冥入境另有验籍、担保、防寒和暖房条件；三类高阶寿源又各自绑定不同产地、成熟周期、医疗地点、配额竞争、运输保存和失败损失。分卷也据此从青玄古境争泉、赤霄港口扣工追查，转向北境受限救援与返乡举证，而非仅换地图重复战斗。该判断仅覆盖本批已提供的宏观与世界原文，不替代未读细纲或全书容量验收。\",\"evidence\":[{\"fragmentId\":\"e37\"},{\"fragmentId\":\"e38\"},{\"fragmentId\":\"e56\"},{\"fragmentId\":\"e69\"},{\"fragmentId\":\"e73\"},{\"fragmentId\":\"e79\"},{\"fragmentId\":\"e297\"},{\"fragmentId\":\"e298\"},{\"fragmentId\":\"e300\"}],\"revisionAdvice\":\"\"}]}"
+      ],
+      "inputSha256": "feab12406abd08e4a10282c0b8f4d214bda18cf9216933dc4f8682e230703ff9",
+      "originalSourceIds": [
+        "author",
+        "world/axioms/ax_01",
+        "world/axioms/ax_02",
+        "world/axioms/ax_03",
+        "world/axioms/ax_04",
+        "world/axioms/ax_05",
+        "world/axioms/ax_06",
+        "world/axioms/ax_07",
+        "world/axioms/ax_08",
+        "world/axioms/ax_09",
+        "world/axioms/ax_10",
+        "world/axioms/ax_11",
+        "world/axioms/ax_12",
+        "world/axioms/ax_13",
+        "world/realms/realm_01",
+        "world/realms/realm_02",
+        "world/realms/realm_03",
+        "world/realms/realm_04",
+        "world/realms/realm_05",
+        "world/realms/realm_06",
+        "world/realms/realm_07",
+        "world/realms/realm_08",
+        "world/locations/loc_01",
+        "world/locations/loc_02",
+        "world/locations/loc_03",
+        "world/locations/loc_04",
+        "world/locations/loc_05",
+        "world/locations/loc_06",
+        "world/locations/loc_07",
+        "world/locations/loc_08",
+        "world/locations/loc_09",
+        "world/locations/loc_10",
+        "world/locations/loc_11",
+        "world/locations/loc_12",
+        "world/locations/loc_13",
+        "world/locations/loc_14",
+        "world/locations/loc_15",
+        "world/locations/loc_16",
+        "world/locations/loc_17",
+        "world/locations/loc_18",
+        "world/locations/loc_19",
+        "world/locations/loc_20",
+        "world/locations/loc_21",
+        "world/locations/loc_22",
+        "world/locations/loc_23",
+        "world/locations/loc_24",
+        "world/locations/loc_25",
+        "world/locations/loc_26",
+        "world/locations/loc_27",
+        "world/locations/loc_28",
+        "world/locations/loc_29",
+        "world/locations/loc_30",
+        "world/resources/res_16",
+        "world/resources/res_17",
+        "world/resources/res_18",
+        "world/resources/res_19",
+        "world/terminology/term_01",
+        "world/terminology/term_02",
+        "world/terminology/term_03",
+        "world/terminology/term_res_01",
+        "world/terminology/term_res_02",
+        "world/terminology/term_res_03",
+        "world/terminology/term_res_04",
+        "world/terminology/term_res_05",
+        "world/terminology/term_res_06",
+        "world/terminology/term_res_07",
+        "world/terminology/term_res_08",
+        "world/terminology/term_res_09",
+        "world/terminology/term_res_10",
+        "world/terminology/term_res_11",
+        "world/terminology/term_res_12",
+        "world/terminology/term_asset_01",
+        "world/terminology/term_asset_02",
+        "world/terminology/term_asset_04",
+        "world/terminology/term_hist_01",
+        "world/terminology/term_hist_02",
+        "world/terminology/term_ice_school",
+        "world/terminology/term_cold_method",
+        "world/terminology/term_probe_shuttle",
+        "story/overview",
+        "story/characters/char_01",
+        "story/characters/char_02",
+        "story/characters/char_03",
+        "story/characters/char_04",
+        "story/characters/char_05",
+        "story/characters/char_06",
+        "story/characters/char_07",
+        "story/characters/char_08",
+        "story/characters/char_09",
+        "story/characters/char_10",
+        "story/characters/char_11",
+        "story/characters/char_12",
+        "story/characters/char_13",
+        "story/characters/char_14",
+        "story/characters/char_15",
+        "story/characters/char_16",
+        "story/characters/char_17",
+        "story/characters/char_18",
+        "story/characters/char_19",
+        "story/characters/char_20",
+        "story/characters/char_21",
+        "story/characters/char_22",
+        "story/characters/char_23",
+        "story/characters/char_24",
+        "story/characters/char_25",
+        "story/relationships/rel_01",
+        "story/relationships/rel_02",
+        "story/relationships/rel_03",
+        "story/relationships/rel_04",
+        "story/relationships/rel_06",
+        "story/relationships/rel_07",
+        "story/relationships/rel_08",
+        "story/relationships/rel_09",
+        "story/relationships/rel_10",
+        "story/relationships/rel_11",
+        "story/relationships/rel_05",
+        "story/relationships/rel_12",
+        "story/relationships/rel_13",
+        "story/relationships/rel_14",
+        "story/relationships/rel_15",
+        "story/relationships/rel_16",
+        "story/relationships/rel_17",
+        "story/relationships/rel_18",
+        "story/relationships/rel_19",
+        "story/relationships/rel_20",
+        "story/volumes/vol_03",
+        "story/chapterPlans/chapter-plan-1",
+        "story/chapterPlans/chapter-plan-2",
+        "story/chapterPlans/chapter-plan-3",
+        "story/chapterPlans/chapter-plan-4",
+        "story/chapterPlans/chapter-plan-5",
+        "story/chapterPlans/chapter-plan-6",
+        "story/chapterPlans/chapter-plan-7",
+        "story/chapterPlans/chapter-plan-8",
+        "story/chapterPlans/chapter-plan-9",
+        "story/chapterPlans/chapter-plan-10",
+        "story/chapterPlans/chapter-plan-11",
+        "story/chapterPlans/chapter-plan-12",
+        "story/chapterPlans/chapter-plan-13",
+        "story/chapterPlans/chapter-plan-14",
+        "story/chapterPlans/chapter-plan-15",
+        "story/chapterPlans/chapter-plan-16",
+        "story/chapterPlans/chapter-plan-17",
+        "story/chapterPlans/chapter-plan-18",
+        "story/chapterPlans/chapter-plan-19",
+        "plan/overview",
+        "plan/volumes/vol_01",
+        "plan/volumes/vol_02",
+        "plan/volumes/vol_03",
+        "plan/milestones/ms_vol1_turn",
+        "plan/milestones/ms_growth_v1_recovery",
+        "plan/milestones/ms_growth_v1_training",
+        "plan/milestones/ms_growth_v1_expedition",
+        "plan/milestones/ms_vol1_climax",
+        "plan/milestones/ms_growth_v1_aftermath",
+        "plan/milestones/ms_growth_v1_crossing",
+        "plan/milestones/ms_bridge_return",
+        "plan/milestones/ms_v2_loss",
+        "plan/milestones/ms_v2_barge",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff",
+        "plan/chapters/1",
+        "plan/chapters/2",
+        "plan/chapters/3",
+        "plan/chapters/4",
+        "plan/chapters/5",
+        "plan/chapters/6",
+        "plan/chapters/7",
+        "plan/chapters/8",
+        "plan/chapters/9",
+        "plan/chapters/10",
+        "plan/chapters/11",
+        "plan/chapters/12",
+        "plan/chapters/13",
+        "plan/chapters/14",
+        "plan/chapters/15",
+        "plan/chapters/16",
+        "plan/chapters/17",
+        "plan/chapters/18",
+        "plan/chapters/19"
+      ]
+    },
+    {
+      "stageId": "followup-cross-2-4/geography",
+      "result": {
+        "summary": "南渡航程、港口验籍及有限防护已有可执行安排，但第30—32章的护货动作仍将凝元御物用于固定承载药箱的货索；第31章补读未把该索明确为无载轻物或交给实体承力结构，原地理/跨域行动冲突未解决。",
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "revise",
+            "explanation": "原问题所指的不是航程或票款，而是风暴中的实际承力动作。无尽虚海商路规定青玄至赤霄须走两昼夜实体海程；后续北航、返航也分别以实体交通、暖舱、防护和验籍安排，整体跨域框架可行。可是南渡里程碑明确让林辰以凝元御物“固定货索、阻止药箱砸人”。凝元轻物御动只可操作三丈内、至多两斤且未受重物牵拉或锁死的单件轻物，不能借轻索承担货箱载荷。补读第31章只落实六箱药材验货、领用有限避火衣/符、登船出航；没有把风暴中的货索界定为无载轻索，也没有指定船具、船员或其他实体承力者。因此不能以第31章的合同、防护和出航安排消除这一后续行动冲突。",
+            "evidence": [
+              {
+                "sourceId": "review-question/cross-2-4/geography",
+                "quote": "{\n  \"criterion\": \"geography\",\n  \"explanation\": \"跨大陆实体航程、港口验籍、防护与费用原则已明确，宏观北航、返航也分别给出实体交通、暖舱、防护、担保和付款安排。可是第一卷南渡安排称林辰以凝元御物“固定货索、阻止药箱砸人”；轻物御动只适用于三丈内、至多两斤且未受重物牵拉或锁死的单件轻物，不能借轻索承担重载。当前未读第31章细纲，无法判断其是否仅操作无载轻索/机关，还是实际以御物承受货箱载荷，故不能以宏观摘要直接判定相容。\",\n  \"revisionAdvice\": \"补读第31章，核实货索是否无载、对象重量、操作时长及实际承力者；若货索已受药箱牵拉，应改为普通人员、船具或真实承重结构完成固定，不得由半成御物承担。\",\n  \"awaitingSources\": [\n    \"plan/chapters/31\"\n  ]\n}"
+              },
+              {
+                "sourceId": "review-unit/10",
+                "quote": "{\n  \"id\": \"ax_08\",\n  \"title\": \"凝元基础操作的学习、对象与支付\",\n  \"content\": \"凝元真元外放只是承载资格。下列基础操作须先完成相应控制练习与实测，不能靠晋阶自动掌握；不授予更高境界、感知或伤势免疫。\\n轻物御动沿ax_05每次预付半成健康稳定真元上限执行：只控制三丈内直接可见、单件至多两斤的轻小自由物，每次至多三息，早停、落空或被打断不退。一次只作用一件，移第二件另付，时间不足或目标出界即停止。轻索头、小钩、木楔和小插销均须未受重物牵拉或锁死；阻力超过同物正常徒手轻拨即不属于此操作，不能借物轻而隔空拉整车、托活人、硬拔承重楔或穿透法纹锁。操作轻小机关可释放原有机械作用，但轨道、闸片、沙挡、重力及承重部件须真实存在且各自承力，不能把整个机构的载荷藏在半成御物费里。\\n近身附掌是将真元短时集中于自己一只手掌的入门练习：须有一息聚气，聚气开始预付一成健康稳定真元上限，只支持随后一息内一次实际接触的掌击，落空或受扰均损已付款；出掌后至少一息重新收束，不能凭接触持续灌入。对未有真元防护的肉身可造成震伤，对腐朽薄木封板可辅助击裂；伤害仍取决于接触、落点与目标承受，不能隔空震脏、穿完整石壁、自动破同阶护体或使所有人一掌毙命。躲开、挡开手臂、甲胄卸力或聚气时打断均可反制；腕掌伤、气路不稳或不足一成时停用。两种基础操作的消耗、恢复及伤后上限均按ax_05"
+              },
+              {
+                "sourceId": "review-unit/88",
+                "quote": "{\n  \"id\": \"loc_21\",\n  \"name\": \"无尽虚海商路\",\n  \"kind\": \"region\",\n  \"entryConditions\": [\n    \"同一天地内的虚海航网，不穿越太古界门；普通修士依赖护罩与定位阵飞舟，持钥匙不能免费或瞬移过海。\",\n    \"青玄云梦天港至赤霄天宝外港为约两昼夜实体海程；内陆抵港时间另算。船票、劳务换舱、担保与额外打点须分别说明，商盟信物不自动代付。新第一卷拟第214日暮出航、第216日暮到港，旧第17–19日章纲不再适用。\",\n    \"赤霄极焱天港至苍冥葬骨玄冰原外港为约五昼夜实体海程。常规客舱旧报价五千枚下品灵石，上等舱三品火灵晶百两；具体货物换舱须核实品种、数量与双方同意，不凭品级推定兑换率。后续新章纲须重新安排日期和可用支付来源，旧第27–32日航历不是约束新提案的日期。\",\n    \"苍冥通天渡口至青玄沧溟古港约六日实体海程；紧急征用也须明确船舶、燃料、具名供给者与担保责任，不能当作免费瞬移。回师日期须随前卷训练、休养和航程顺延。\",\n    \"万象商盟管船舶、泊位、货单与运费；大乾、神炎及苍冥沿岸守军各管本方港口，巡界使处理空间污染和紧急引渡。商业信物不能豁免扣船、搜舱或追缴。\",\n"
+              },
+              {
+                "sourceId": "review-unit/358",
+                "quote": "{\n  \"id\": \"ms_growth_v1_crossing\",\n  \"title\": \"护货南渡与入港代价\",\n  \"kind\": \"turn\",\n  \"startChapter\": 30,\n  \"endChapter\": 32,\n  \"setup\": [\n    \"第212–214日按山路转驿车到云梦天港，运送六箱指定低阶药材换本航次普通舱；管货不等于可炼化物资。\",\n    \"第214日暮出航、第216日暮到天宝外港，海程两昼夜；不沿用旧第17–19日航历。\",\n    \"风暴中护船者承担外敌，林辰利用凝元御物和矿车制动经验固定货索、阻止药箱砸人，救下一名试图私藏货物的押货者；不斩神海海兽或获得免费升级。\",\n    \"入港用验籍及实际避火防护，局限于有防护的外港街区；他必须补交因护货失损的说明，收货人的真名与失踪货箱构成下一卷具体调查线索，不能潜行岩浆暗渠。\"\n  ],\n  \"cost\": \"部分药箱遭海水毁损，按合同区分天灾损失与失职，失去履约奖金而非无限债；主角需继续工作维持旅费，凝元境只能在当地低风险区域活动。\",\n"
+              },
+              {
+                "sourceId": "review-unit/363",
+                "quote": "{\n  \"id\": \"ms_v2_voyage\",\n  \"title\": \"有限航款与五日北行\",\n  \"kind\": \"turn\",\n  \"startChapter\": 54,\n  \"endChapter\": 60,\n  \"setup\": [\n    \"第271日商盟港务理事会为追缴被挪货与避免北境封港，从本案追偿周转款实拨14000枚下品灵石给具名领款的贺青梧；这是有账有追偿风险的商盟垫款，不是几天劳务值一万。用途限两人北航查货、回青玄交证及沿途食宿医药。\",\n    \"第271–274日乘普通车沿每日复核开放的既有沿岸驿道从天宝外港到极焱天港；271日出发前贺从已拨1000杂费额度中实付12购两张满额普通避火符（各6枚，计入后来核销780而非另加支出），两人核余纹后佩戴新符；旧符不得续算有效，不进太微城、神炎内地、魔谷或天坑。陆与弟弟留赤霄接受传唤，不能无交通随队到北境。\",\n    \"林延续252及254回访的短走、坐车许可，仍不负重，拒绝接受程记以撤供换赔偿的口信。第275日贺在极焱航司柜台按本航次实报5000/人支付10000，购买两张普通保温客舱票；船方在两人具名舱单上列明隔火暖炉、通风烟道、五昼夜保温舱位及燃料、当班船员添料看火均含在这10000内，普通是舱等，不是敞舱或仅发一件保温衣。276日暮离港、281日暮抵葬骨外港，五昼夜完整航程。\",\n"
+              },
+              {
+                "sourceId": "review-unit/365",
+                "quote": "{\n  \"id\": \"ms_v3_return\",\n  \"title\": \"带证返乡与先救谁\",\n  \"kind\": \"turn\",\n  \"startChapter\": 67,\n  \"endChapter\": 72,\n  \"setup\": [\n    \"第300日，夜的原外港查货担保仍只到当日，不自动延长。林贺当面申请回青玄交证；夜依loc_02具名担保规则，在葬骨外港原港务和本轮当值巡队见证下另签限程离境担保，列林、贺实名、原名册及货证封袋，指定会合/交接地为通天渡口受监管候船区。许可仅301日晨至304日夜有效，沿已勘验的葬骨外港—海岸公共驿路—通天渡口路线坐暖车，夜宿所列原驿站；不准离道查货、入极冰国、妖域、神宫或界渊。原巡队在301日出港时复核名单并交当班驿车的纸质限程单，沿岸既有岗哨在车辆实际到站时逐站验籍、签注到离时点，终站港务于303日实际到达后验原单接收候船监管，304日只在原单、名册和船票相符后办理登船离境。夜仍承担这份限程担保的越界责任，原巡队承担出港核验和未按期交回签注单时的追查责任；没有远程瞬时验籍或只有商业票就能通行。\",\n"
+              },
+              {
+                "sourceId": "review-unit/400",
+                "quote": "{\n  \"id\": \"chapter-31\",\n  \"chapterNumber\": 31,\n  \"volumeId\": \"vol_01\",\n  \"title\": \"港门验货\",\n  \"summary\": \"第214日午前，林辰在云梦天港验籍并交接六箱药材，商盟引荐只证明承运关系。受潮封签当众拆验，药材点数与清单相符，港务用新封签记下复验经过，验货费按护货合同扣当次奖金，不凭封签受潮就认定失职。承运人再要他忽略前段争执，林辰坚持保留双方签认的副本，并从实填收货栏读到赤霄天宝外港商号“程记药栈”、经手人程砚。这只是货物流向，尚不是犯罪结论。承运人按本航次护货合同从既有船员工装中，当面交林辰普通避火衣及一张普通避火符，逐件记入附单；符验明尚可连续使用至少72小时，214日暮佩戴启用，抵港先核验，217日晨卸货交接后衣符分别归还；舱费已由本次护货劳务抵扣，不再靠苏出钱。第214日申时他登船，日暮启航，六箱原货仍全部在舱中。\",\n  \"characterGoals\": \"林辰要保住登船资格并取得可追溯的收货人线索；港务与承运方要厘清缺件责任、避免承担虚报风险；商盟只负责货单和泊位，不替任何一方担保幕后真相。\",\n  \"conflict\": \"承运人想省复验费用并避免留下争执记录，林辰需要准确货单追查收货线；费用与记录的责任必须实际分清，商盟引荐不会代他承担。\",\n"
+              },
+              {
+                "sourceId": "review-unit/400",
+                "quote": "  \"choice\": \"林辰接受合同内明示的复验费用，保留完整交接副本，并按附单借领普通避火衣；不把收货姓名直接写成罪名。\",\n  \"cost\": \"当次奖金扣除验货费，普通客舱仍依劳务合同保留；领用避火衣抵港须归还。封签重新签认并不抹去途中曾受潮的记录。 此衣以耐热织料隔暑，无需真元，遇明火与浓烟无防护；216日暮抵港先核验，217日清晨归还；后续租符另付。 船方借出一衣一符并承担本航次符耗，林只按既有劳务约定使用；所验72小时是交付时的最低余量，不是永续防护，不另生一笔可由林支取的收入。\",\n  \"threads\": [\n    \"th_01\",\n    \"sec_01\",\n    \"sec_02\"\n  ],\n  \"endState\": \"第214日暮，林辰随六箱完整药材从云梦天港出航，舱位及短程外港防护均有实际合同与领用来源；知道程记药栈、程砚及交割号，尚未接触收货人。\",\n  \"characterIds\": [\n    \"char_01\"\n  ],\n  \"location\": \"loc_22云梦天港、loc_21无尽虚海商路港区\",\n  \"storyTime\": \"第214日午前至日暮；日暮完成验货、登船与出航\",\n  \"scenes\": [\n    \"港务验籍后当众拆验受潮封签，药材数量质量与清单吻合，六箱重新点号封存。\",\n"
+              },
+              {
+                "sourceId": "review-unit/400",
+                "quote": "    \"林辰按合同承担明示复验费，拒绝把此前争执从副本抹去，承运人签认后不再追加临时罚款。\",\n    \"实填收货栏出现程记药栈与程砚，林辰将姓名与古境货签的收货号对照，只得运输关联。\",\n    \"214日出航前，承运人查到本航次天宝港务的非喷发通告，但不以此保证两日后安全。借衣及符的领用号写入护货合同附单，符的有限预充能来自承运人原有已验库存，其使用损耗由本次护货劳务换舱约定覆盖，不向林另给现金。214日暮开始佩符，不把衣当灵符；抵港前还须看当日放行旗号，封航则停在许可锚地待令，不以赶交货硬闯。\",\n    \"按护货附单领到一件普通避火衣和一张有余纹的普通避火符；验符余量不少于72小时、214日暮启用，约定217日晨卸货交接后衣符分别归还，不取得所有内陆险地准入。\",\n    \"第214日申时登船、日暮出航，林辰将父亲图纸、货单副本和封存残片分别收好。\"\n  ],\n  \"source\": \"author\",\n  \"executionChecks\": [\n    {\n      \"id\": \"inspection-and-payment\",\n      \"requirement\": \"214日验籍、六箱复验与双方签认后，按合同扣验货费并保留受潮历史；护货劳务抵舱费，不再让苏重复付款。程记药栈和程砚只作为运输关联，尚无犯罪结论。\"\n    },\n    {\n"
+              },
+              {
+                "sourceId": "review-unit/400",
+                "quote": "      \"id\": \"finite-port-protection\",\n      \"requirement\": \"一件普通避火衣与一张有限余量的借符须实际领用入附单，214日申时登船、日暮出航启符；衣不防明火浓烟，符至少72小时而非永续。约定217晨分别归还，抵港还须当日许可，本章不提前写作已归还或已获抵港放行。\"\n    }\n  ]\n}"
+              }
+            ],
+            "revisionAdvice": "修改ms_growth_v1_crossing及第30—32章对应场景：将药箱和受载货索的固定明确交由已存在的船具、承重楔、绞盘或船员完成，并写明其承力与操作者；林辰若使用御物，只能在三丈内、三息内操作一件至多两斤且未受载的轻小物件或释放已有机械机构，预付半成真元，且不得承担货箱重量。若仍要由他直接控制受载货索，则改为不使用该动作并重排救人/护货结果与代价。"
+          }
+        ]
+      },
+      "modelResponses": [
+        "{\"requestId\":\"review_75f963a6fe61bfc657543a75\",\"summary\":\"南渡航程、港口验籍及有限防护已有可执行安排，但第30—32章的护货动作仍将凝元御物用于固定承载药箱的货索；第31章补读未把该索明确为无载轻物或交给实体承力结构，原地理/跨域行动冲突未解决。\",\"checks\":[{\"criterion\":\"geography\",\"verdict\":\"revise\",\"explanation\":\"原问题所指的不是航程或票款，而是风暴中的实际承力动作。无尽虚海商路规定青玄至赤霄须走两昼夜实体海程；后续北航、返航也分别以实体交通、暖舱、防护和验籍安排，整体跨域框架可行。可是南渡里程碑明确让林辰以凝元御物“固定货索、阻止药箱砸人”。凝元轻物御动只可操作三丈内、至多两斤且未受重物牵拉或锁死的单件轻物，不能借轻索承担货箱载荷。补读第31章只落实六箱药材验货、领用有限避火衣/符、登船出航；没有把风暴中的货索界定为无载轻索，也没有指定船具、船员或其他实体承力者。因此不能以第31章的合同、防护和出航安排消除这一后续行动冲突。\",\"evidence\":[{\"fragmentId\":\"e243\"},{\"fragmentId\":\"e12\"},{\"fragmentId\":\"e94\"},{\"fragmentId\":\"e169\"},{\"fragmentId\":\"e189\"},{\"fragmentId\":\"e210\"},{\"fragmentId\":\"e239\"},{\"fragmentId\":\"e240\"},{\"fragmentId\":\"e241\"},{\"fragmentId\":\"e242\"}],\"revisionAdvice\":\"修改ms_growth_v1_crossing及第30—32章对应场景：将药箱和受载货索的固定明确交由已存在的船具、承重楔、绞盘或船员完成，并写明其承力与操作者；林辰若使用御物，只能在三丈内、三息内操作一件至多两斤且未受载的轻小物件或释放已有机械机构，预付半成真元，且不得承担货箱重量。若仍要由他直接控制受载货索，则改为不使用该动作并重排救人/护货结果与代价。\"}]}"
+      ],
+      "inputSha256": "75f963a6fe61bfc657543a75424b3d1a6d5d7b7d08229ff637939ae89c85b2a4",
+      "originalSourceIds": [
+        "author",
+        "world/axioms/ax_01",
+        "world/axioms/ax_02",
+        "world/axioms/ax_03",
+        "world/axioms/ax_04",
+        "world/axioms/ax_05",
+        "world/axioms/ax_06",
+        "world/axioms/ax_07",
+        "world/axioms/ax_08",
+        "world/axioms/ax_09",
+        "world/axioms/ax_10",
+        "world/axioms/ax_11",
+        "world/axioms/ax_12",
+        "world/axioms/ax_13",
+        "world/powerSystems/ps_01",
+        "world/realms/realm_01",
+        "world/realms/realm_02",
+        "world/realms/realm_03",
+        "world/realms/realm_04",
+        "world/realms/realm_05",
+        "world/realms/realm_06",
+        "world/realms/realm_07",
+        "world/realms/realm_08",
+        "world/techniques/tech_01",
+        "world/techniques/tech_04",
+        "world/techniques/tech_06",
+        "world/techniques/tech_08",
+        "world/techniques/tech_10",
+        "world/techniques/tech_11",
+        "world/techniques/tech_13",
+        "world/techniques/tech_15",
+        "world/techniques/tech_16",
+        "world/techniques/tech_18",
+        "world/artifacts/art_03",
+        "world/artifacts/art_13",
+        "world/artifacts/art_15",
+        "world/artifacts/art_16",
+        "world/artifacts/art_17",
+        "world/artifacts/art_18",
+        "world/artifacts/art_21",
+        "world/locations/loc_01",
+        "world/locations/loc_02",
+        "world/locations/loc_03",
+        "world/locations/loc_04",
+        "world/locations/loc_05",
+        "world/locations/loc_06",
+        "world/locations/loc_07",
+        "world/locations/loc_08",
+        "world/locations/loc_09",
+        "world/locations/loc_10",
+        "world/locations/loc_11",
+        "world/locations/loc_12",
+        "world/locations/loc_13",
+        "world/locations/loc_14",
+        "world/locations/loc_15",
+        "world/locations/loc_16",
+        "world/locations/loc_17",
+        "world/locations/loc_18",
+        "world/locations/loc_19",
+        "world/locations/loc_20",
+        "world/locations/loc_21",
+        "world/locations/loc_22",
+        "world/locations/loc_23",
+        "world/locations/loc_24",
+        "world/locations/loc_25",
+        "world/locations/loc_26",
+        "world/locations/loc_27",
+        "world/locations/loc_28",
+        "world/locations/loc_29",
+        "world/locations/loc_30",
+        "world/resources/res_01",
+        "world/resources/res_09",
+        "world/resources/res_17",
+        "world/resources/res_18",
+        "world/resources/res_19",
+        "story/characters/char_01",
+        "story/characters/char_02",
+        "story/characters/char_08",
+        "plan/overview",
+        "plan/volumes/vol_01",
+        "plan/volumes/vol_02",
+        "plan/volumes/vol_03",
+        "plan/milestones/ms_vol1_turn",
+        "plan/milestones/ms_growth_v1_recovery",
+        "plan/milestones/ms_growth_v1_training",
+        "plan/milestones/ms_growth_v1_expedition",
+        "plan/milestones/ms_vol1_climax",
+        "plan/milestones/ms_growth_v1_aftermath",
+        "plan/milestones/ms_growth_v1_crossing",
+        "plan/milestones/ms_bridge_return",
+        "plan/milestones/ms_v2_loss",
+        "plan/milestones/ms_v2_barge",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff",
+        "plan/chapters/31"
+      ]
+    }
+  ],
+  "originalSources": [
+    {
+      "id": "world/locations/loc_02",
+      "text": "{\n  \"id\": \"loc_02\",\n  \"name\": \"苍冥大陆\",\n  \"kind\": \"continent\",\n  \"entryConditions\": [\n    \"大陆环境寒冷；凝元境以下需保温舟舱或护身寒符。修为不是政治通行权。\",\n    \"沿岸官港验引渡令；无令者可由巡界使验明身份后具名担保，担保者承担监护和越界责任。例外仅到指定会合地，不自动授予进入界渊的权利。\",\n    \"具体到访须区分受监管码头候查、沿岸入境担保和界渊准入；担保须由实际到场者具名承担，只在约定范围与期限生效。\",\n    \"上述防寒门槛针对实际暴露于寒候。普通港区和已开放公共驿路的固定暖房、暖车只有在隔风围护、隔火炉、通风烟道、燃料与值守人手均实际存在且持续供热时，才提供其内部的温暖避难处；不把整座港口或一段驿路变成免寒区。离开温暖内部进入寒候，凝元以下仍须实际可用的护身寒符；普通衣物、修为名义或商业票不替代此条件。供暖失败要停止进入或转移到另一个已核实暖处，另记真实燃料、交通与照料费用。\"\n  ],\n  \"status\": \"proposed\"\n}"
+    },
+    {
+      "id": "world/locations/loc_25",
+      "text": "{\n  \"id\": \"loc_25\",\n  \"name\": \"葬骨玄冰原外港\",\n  \"kind\": \"other\",\n  \"parentId\": \"loc_02\",\n  \"entryConditions\": [\n    \"按无尽虚海商路 loc_21 对应航段验籍，支付或记录代付责任；战时封锁另行处理。\"\n  ],\n  \"status\": \"proposed\"\n}"
+    },
+    {
+      "id": "world/axioms/ax_08",
+      "text": "{\n  \"id\": \"ax_08\",\n  \"title\": \"凝元基础操作的学习、对象与支付\",\n  \"content\": \"凝元真元外放只是承载资格。下列基础操作须先完成相应控制练习与实测，不能靠晋阶自动掌握；不授予更高境界、感知或伤势免疫。\\n轻物御动沿ax_05每次预付半成健康稳定真元上限执行：只控制三丈内直接可见、单件至多两斤的轻小自由物，每次至多三息，早停、落空或被打断不退。一次只作用一件，移第二件另付，时间不足或目标出界即停止。轻索头、小钩、木楔和小插销均须未受重物牵拉或锁死；阻力超过同物正常徒手轻拨即不属于此操作，不能借物轻而隔空拉整车、托活人、硬拔承重楔或穿透法纹锁。操作轻小机关可释放原有机械作用，但轨道、闸片、沙挡、重力及承重部件须真实存在且各自承力，不能把整个机构的载荷藏在半成御物费里。\\n近身附掌是将真元短时集中于自己一只手掌的入门练习：须有一息聚气，聚气开始预付一成健康稳定真元上限，只支持随后一息内一次实际接触的掌击，落空或受扰均损已付款；出掌后至少一息重新收束，不能凭接触持续灌入。对未有真元防护的肉身可造成震伤，对腐朽薄木封板可辅助击裂；伤害仍取决于接触、落点与目标承受，不能隔空震脏、穿完整石壁、自动破同阶护体或使所有人一掌毙命。躲开、挡开手臂、甲胄卸力或聚气时打断均可反制；腕掌伤、气路不稳或不足一成时停用。两种基础操作的消耗、恢复及伤后上限均按ax_05，不另开一份免费真元。\",\n  \"scope\": \"凝元轻物御动与近身附掌\",\n  \"precedence\": 8,\n  \"status\": \"proposed\"\n}"
+    },
+    {
+      "id": "story/characters/char_05",
+      "text": "{\n  \"id\": \"char_05\",\n  \"name\": \"夜凝霜\",\n  \"role\": \"major\",\n  \"goal\": \"平抑界渊虚空裂痕，阻止破虚匙碎屑落入野心家之手引发界域崩毁。\",\n  \"identity\": \"苍冥巡界使执剑首领，雪魄神宫隐世传人。\",\n  \"locationId\": \"loc_15\",\n  \"factionId\": \"fac_12\",\n  \"startingRealmId\": \"realm_05\"\n}"
+    },
+    {
+      "id": "plan/chapters/31",
+      "text": "{\n  \"id\": \"chapter-31\",\n  \"chapterNumber\": 31,\n  \"volumeId\": \"vol_01\",\n  \"title\": \"港门验货\",\n  \"summary\": \"第214日午前，林辰在云梦天港验籍并交接六箱药材，商盟引荐只证明承运关系。受潮封签当众拆验，药材点数与清单相符，港务用新封签记下复验经过，验货费按护货合同扣当次奖金，不凭封签受潮就认定失职。承运人再要他忽略前段争执，林辰坚持保留双方签认的副本，并从实填收货栏读到赤霄天宝外港商号“程记药栈”、经手人程砚。这只是货物流向，尚不是犯罪结论。承运人按本航次护货合同从既有船员工装中，当面交林辰普通避火衣及一张普通避火符，逐件记入附单；符验明尚可连续使用至少72小时，214日暮佩戴启用，抵港先核验，217日晨卸货交接后衣符分别归还；舱费已由本次护货劳务抵扣，不再靠苏出钱。第214日申时他登船，日暮启航，六箱原货仍全部在舱中。\",\n  \"characterGoals\": \"林辰要保住登船资格并取得可追溯的收货人线索；港务与承运方要厘清缺件责任、避免承担虚报风险；商盟只负责货单和泊位，不替任何一方担保幕后真相。\",\n  \"conflict\": \"承运人想省复验费用并避免留下争执记录，林辰需要准确货单追查收货线；费用与记录的责任必须实际分清，商盟引荐不会代他承担。\",\n  \"choice\": \"林辰接受合同内明示的复验费用，保留完整交接副本，并按附单借领普通避火衣；不把收货姓名直接写成罪名。\",\n  \"cost\": \"当次奖金扣除验货费，普通客舱仍依劳务合同保留；领用避火衣抵港须归还。封签重新签认并不抹去途中曾受潮的记录。 此衣以耐热织料隔暑，无需真元，遇明火与浓烟无防护；216日暮抵港先核验，217日清晨归还；后续租符另付。 船方借出一衣一符并承担本航次符耗，林只按既有劳务约定使用；所验72小时是交付时的最低余量，不是永续防护，不另生一笔可由林支取的收入。\",\n  \"threads\": [\n    \"th_01\",\n    \"sec_01\",\n    \"sec_02\"\n  ],\n  \"endState\": \"第214日暮，林辰随六箱完整药材从云梦天港出航，舱位及短程外港防护均有实际合同与领用来源；知道程记药栈、程砚及交割号，尚未接触收货人。\",\n  \"characterIds\": [\n    \"char_01\"\n  ],\n  \"location\": \"loc_22云梦天港、loc_21无尽虚海商路港区\",\n  \"storyTime\": \"第214日午前至日暮；日暮完成验货、登船与出航\",\n  \"scenes\": [\n    \"港务验籍后当众拆验受潮封签，药材数量质量与清单吻合，六箱重新点号封存。\",\n    \"林辰按合同承担明示复验费，拒绝把此前争执从副本抹去，承运人签认后不再追加临时罚款。\",\n    \"实填收货栏出现程记药栈与程砚，林辰将姓名与古境货签的收货号对照，只得运输关联。\",\n    \"214日出航前，承运人查到本航次天宝港务的非喷发通告，但不以此保证两日后安全。借衣及符的领用号写入护货合同附单，符的有限预充能来自承运人原有已验库存，其使用损耗由本次护货劳务换舱约定覆盖，不向林另给现金。214日暮开始佩符，不把衣当灵符；抵港前还须看当日放行旗号，封航则停在许可锚地待令，不以赶交货硬闯。\",\n    \"按护货附单领到一件普通避火衣和一张有余纹的普通避火符；验符余量不少于72小时、214日暮启用，约定217日晨卸货交接后衣符分别归还，不取得所有内陆险地准入。\",\n    \"第214日申时登船、日暮出航，林辰将父亲图纸、货单副本和封存残片分别收好。\"\n  ],\n  \"source\": \"author\",\n  \"executionChecks\": [\n    {\n      \"id\": \"inspection-and-payment\",\n      \"requirement\": \"214日验籍、六箱复验与双方签认后，按合同扣验货费并保留受潮历史；护货劳务抵舱费，不再让苏重复付款。程记药栈和程砚只作为运输关联，尚无犯罪结论。\"\n    },\n    {\n      \"id\": \"finite-port-protection\",\n      \"requirement\": \"一件普通避火衣与一张有限余量的借符须实际领用入附单，214日申时登船、日暮出航启符；衣不防明火浓烟，符至少72小时而非永续。约定217晨分别归还，抵港还须当日许可，本章不提前写作已归还或已获抵港放行。\"\n    }\n  ]\n}"
+    },
+    {
+      "id": "plan/chapters/32",
+      "text": "{\n  \"id\": \"chapter-32\",\n  \"chapterNumber\": 32,\n  \"volumeId\": \"vol_01\",\n  \"title\": \"潮声里的空位\",\n  \"summary\": \"第215日凌晨，飞舟在实体航线遇风暴，船上护阵者维持航向，林辰留货舱值看。索具松脱时他把自己固定在靠墙短绳上，在两丈内直视一段尚未绷紧、未系重箱的半斤索头，御动一息递给水手，指挥水手先制动再把箱子拉回；不以真元托举整箱。一个押货者试图把货箱私推到侧舱，脚被夹住。林辰选择先让水手救人，待水手用随舱普通撬杠抬稳压脚的箱角、卸去楔上载荷，再从一丈内直视八两松楔，以一次一息御物移开，失去盯住六号箱的片刻。风暴后五箱仍在，其中一箱进水，六号箱不知去向；林辰报告亲见的搬移动作却承认没看见六号箱最后被谁移走。第216日暮抵天宝外港，领航员先从海侧确认当日非喷发放行旗号，港务再核验借领避火衣、仍有余纹的普通避火符及货单，收货人程砚迟迟不来。林辰失去履约奖金，等待实际货损责任复核；他先要求验明五箱、留下失踪箱记录与可联系去处，而不是凭疑点闯入内陆追凶。\",\n  \"characterGoals\": \"林辰要让药材和人员尽量安全抵港，并保住合同与收货线索；船队要在风暴中维持航向、区分天灾和失职；港务方要按赤霄外港规则完成卸货与验籍。\",\n  \"conflict\": \"风暴、乱流和货舱失稳同时发生，凝元御物的真元与控制范围有限；救人、保货和保奖金不可兼得，飞舟不能穿越太古界门或无视实体航程。\",\n  \"choice\": \"林辰先救被撞倒的押货者，再分段固定药箱并如实记录损失，没有为保奖金而隐瞒自己的操作或擅自弃货。\",\n  \"cost\": \"一次御物松楔和拉索耗去真元，休整时按书面医嘱换药；伤腿酸痛但未擅自用新增寿储治疗或宣称复伤。五箱到港中一箱进水、六号箱失踪，奖金取消；更大赔偿须按天灾与失职事实复核，不能无限加债。 拉索头和松小楔分别是一次轻物御动，各扣半成，共一成；由六成降至五成。后续日常休整不自动记满，直到下一次复测才增加可用账面数。\",\n  \"threads\": [\n    \"th_01\",\n    \"sec_01\",\n    \"sec_02\"\n  ],\n  \"endState\": \"第216日暮靠泊天宝外港。林辰凝元三重，两剂已完成，按既定支出与自然时间计算的保守下界约13.460274元载，实际伤势仍需复诊。泉液零余量；程砚未现身、六号箱失踪、押货者的可核行为成为下一段调查入口，不能据此宣布商盟全体有罪。\",\n  \"characterIds\": [\n    \"char_01\"\n  ],\n  \"location\": \"loc_21无尽虚海商路、loc_23天宝外港\",\n  \"storyTime\": \"第214日日暮至第216日日暮；实体海程两昼夜\",\n  \"scenes\": [\n    \"第215日凌晨风暴袭来，护阵者在上层维持航向，林辰留在货舱值看，定位阵不缩短实体海程。\",\n    \"货索松脱，林辰靠短绳固定身位，直视两丈内尚未绷紧、未系重箱的半斤索头，预付半成真元御动一息递给水手，随即停术；水手再系索、用普通船桩受力、制动并搬回药箱，林不持续拉承重索。\",\n    \"押货者私推一箱进侧舱时脚被夹住，林辰先叫水手用随舱普通撬杠抬稳压脚箱角卸去楔上载荷；他从一丈内直视八两松楔，另付半成真元御动一息移开，水手抽人、落箱。撬杠与水手承重，御物不搬箱；救人期间林顾不上盯住六号箱。\",\n    \"风暴后只点到五箱，其中一箱进水，林辰把亲见搬移与未亲见失箱分别记录，不用猜测填空。\",\n    \"第216日暮，飞舟靠泊天宝外港；港务验货、验籍和避火衣借领单，要求未交割前留在受护卸货区。 航司在靠港前从海侧看见216日当日放行旗号，港务复核沿岸岗哨无本港地火喷发记录后才准入泊。215日海上风暴不被当作地火喷发，也不能用214日旧通告代替今天核验；林仍戴船方借符，不把次晨才租的新符算作此刻持有。\",\n    \"程砚没有来，林辰交验五箱并留下可联系住处与失箱记录；普通避火衣与借符按附单留到217日晨卸货交接后分别归还，下一步须另办适配防护与去处。\"\n  ],\n  \"source\": \"author\",\n  \"executionChecks\": [\n    {\n      \"id\": \"storm-light-loads\",\n      \"requirement\": \"风暴中林固定身位，只御动未承重索头与卸载后的轻楔各一息、各半成，六成降五成；实际承重救人由水手、船桩和撬杠承担，林不托箱或提人，不自动恢复记满。\",\n      \"sourceQuestion\": {\n        \"document\": \"world\",\n        \"questionId\": \"audit-tier-exceptions\"\n      }\n    },\n    {\n      \"id\": \"loss-and-witness-boundary\",\n      \"requirement\": \"救人使林失去盯箱窗口，风暴后仅五箱且一箱进水，六号箱失踪、奖金取消；区分亲见搬移和未见最后移箱者，不能提前认定程或全商盟有罪，赔偿另据事实复核。\"\n    },\n    {\n      \"id\": \"arrival-permit\",\n      \"requirement\": \"215日风暴至216日暮抵天宝外港保持实体海程；以216日当日旗号和港务复核准入泊，不用214日通告或217日才租的符倒填许可。借衣借符仍留至次晨交割后分别归还。\"\n    }\n  ]\n}"
+    },
+    {
+      "id": "plan/milestones/ms_growth_v1_crossing",
+      "text": "{\n  \"id\": \"ms_growth_v1_crossing\",\n  \"title\": \"护货南渡与入港代价\",\n  \"kind\": \"turn\",\n  \"startChapter\": 30,\n  \"endChapter\": 32,\n  \"setup\": [\n    \"第212–214日按山路转驿车到云梦天港，运送六箱指定低阶药材换本航次普通舱；管货不等于可炼化物资。\",\n    \"第214日暮出航、第216日暮到天宝外港，海程两昼夜；不沿用旧第17–19日航历。\",\n    \"风暴中护船者承担外敌，林辰利用凝元御物和矿车制动经验固定货索、阻止药箱砸人，救下一名试图私藏货物的押货者；不斩神海海兽或获得免费升级。\",\n    \"入港用验籍及实际避火防护，局限于有防护的外港街区；他必须补交因护货失损的说明，收货人的真名与失踪货箱构成下一卷具体调查线索，不能潜行岩浆暗渠。\"\n  ],\n  \"cost\": \"部分药箱遭海水毁损，按合同区分天灾损失与失职，失去履约奖金而非无限债；主角需继续工作维持旅费，凝元境只能在当地低风险区域活动。\",\n  \"outcome\": \"第212–216日；境界：realm_02第三重。第32章第216日暮抵达赤霄天宝外港。林辰凝元三重；第189日同批追回12滴，其中3滴污染隔离、9滴可用，配额台核准告急者3滴、林个人6滴。林获配的6滴已按两剂各3滴分别完成十日疗程和复诊，保守预算约13.460274元载；这是有前提的规划下界，伤病须复评。墨负伤被羁押、林辰个人分得的泉液余量为零；苏留宗照看证人与押解，主角没有燃寿白发。\"\n}"
+    },
+    {
+      "id": "plan/milestones/ms_v2_boundary",
+      "text": "{\n  \"id\": \"ms_v2_boundary\",\n  \"title\": \"黑舱截留与残片取舍\",\n  \"kind\": \"climax\",\n  \"startChapter\": 61,\n  \"endChapter\": 66,\n  \"setup\": [\n    \"第285日夜在外港真身会见，对照北境原封签存根、45章交接残联与旧封的签认拓本、53章拟取得的陆新写改签自述签认副本；这些是货运线索，不是第二片图样，不能凭同封号认定匣内物。她具名担保林贺仅在外港指定仓区查货至300日；归一实力不赋予林准入界渊的能力。\",\n    \"程272从极焱另船出发277到北境，订291转运，不是海上追逐。第一报258寄、262赵阅及263回令、268程收均归53章前后锚点，不在61章才首次发生；第一报不含291北境失货。赵至318程亲自面报才听到北境失败。\",\n    \"获救前押运的新增作者提案，尚须整体验收：七名青玄籍矿工本次随原目标货船于285日晨从赤霄极焱天港出发，走loc_21既有五昼夜实体航线，290日晨到葬骨受监管泊区，原定291日转运。与程272日另船出发、277日到北境的行程分开，不写成同船追逐。本段从285装船至291开舱约六日连续在同一舱受扣，不把七人在更早时期的全部遭遇写成已经查清。极焱装船只走当班港务实核开放、无异常地火的普通货道，七人各佩押运货船方当面配发并核余纹的art_16；离开赤霄日常热区、转入经实测温暖的舱内后，由值班船工摘封收回七符并逐张记余量，不把避火符当防寒符。\",\n    \"该普通货舱靠现成隔风舱壁、固定隔火炉与通到舱外的烟道保温，没有法术结界；押运货船方为把活劳力交付换取运费而维持最低食宿，并非善意释放。285出港前押运货船船长与当班货船船工实查炉道通畅、舱内通风、该货船原两名值炉船工轮班和七日燃料、粗食饮水实际装载；从海路转寒前到291救援接管期间持续添料，夜班也不空岗。燃料分日领用，剩余仍是押运货船方库存，烧过的不再入账。七人留在同一实暖舱内，不在冷甲板轮换、不靠凡衣或不明境界耐寒；290泊港后仍用本船余料供暖，不能把靠港当成有免费岸上热源。近舱港卫开门时实际核热源、烟道和呼吸状况，在舱内逐人换穿救助干衣、扣新寒符，确认后才过板；押运货船方已收回的避火符不抵救济寒符数。暖炉不能替代饮水、治疗伤口或证明七人无病，首检和292复查仍按原安排逐人进行。若此前炉道堵塞、燃料断供或人已出现重度失温，必须据实改变伤情和救助预算，不能继续套用正常路径的轻症结果。\",\n    \"押运货船方的本航次小账独立于程的残片、林贺14000航款和港务救济240：285装船前押运货船船长从本船此前实收的普通货运预付款余额160中，当面付极焱原登记门市七张art_16共42，逐张验实物与余纹至少覆盖本次港内作业；付本港燃料行七日普通炉料14、该货船原两名值炉船工七日轮班补工28、七人七日粗食饮水17，合101，现金余59仍属船方。燃料与食品实装、工钱由两人签收，报价仅指本船这次采购，非通用物价；押运货船船长保留原货运收款联和四项支出联，收款不得重复列成程或主角的新收入。七符本次交付已完成制成和验收，供能在符内，不再给佩戴者扣一枚灵石。供暖只保障实际封闭舱内，煤料、船工或食水任何一项未兑现就不能声称六日正常度过。\",\n    \"监管与知情的新增提案：押运货船方把七人列作随船劳役，对两港均隐瞒强迫扣留；本航次实际舱单、到港签注只能证明这艘船获准到指定受监管泊区，不能证明七人自愿或拘禁合法。290到港岗未逐人私下问询，并被外锁和押运货船方代答遮蔽扣人事实，此为本案具体漏查，不能写成全港默认准许扣工。291行动前，原巡检港卫在外锁舱口听到“七个人被扣住”的求救，见外绑绳后回近处值岗当面报告；港务据此先按七人实备原定救助包，口头报数此时只是救助需求，待开舱才逐人核实。夜与原两名港卫到位控制侧巷，近舱港卫按既定开扣顺序接人，不先把呼救当作全链定罪。救援后逐人分开问询，将七人的亲历与押运货船原航簿、炉料领用、轮班和收支联交叉核对；林只亲见现场，未读到的航程或账目不自动成为他的知识。押运货船方单据可伪造，七人口供也各有范围；不相符部分保留待查，不因此追认入境自愿或全链已经破案。相关原件由当地港务封存，林贺既有随行见证副本只记录本次救助与已核部分，不凭本草案新增全知货运证据。\",\n    \"第64章的实际转运在第291日，285日只是夜抵港会面，不把两日混为同一场。夜要先封存污染货并救出七名被扣在普通货舱的青玄矿工；林在仍可追程的小艇与先开囚舱之间选择救人。贺依现场舷号确认目标货舱，林沿港卫先验过的短板扶栏走到既有码头装卸浮台的近舱侧，不跳跃、不负重。舱口外露普通插扣被另加的一根未附灵麻绳绕耳绑紧，港卫从码头正面被舷板遮住，浮台近侧才看得见绳段；林在此施一次已掌握的凝元剑诀，实际只放一道风刃切断绑门麻绳一处，亲见唯一余刃在两丈界内散尽、港卫核舱门与短板仍稳后，再以肉身拨开失去束缚的轻插扣。夜守侧巷与栈桥，港卫和贺实际接应矿工；林不靠风刃托举浮台或隔空搬人。程从另一侧已离泊小艇进入密集客船航道，夜看见去向，却选择守住撤人的栈桥，拒绝扩大封港或攻击载客航道，令港卫记录船号。归一强者没有被低阶障碍困住，她留下逃犯是为保撤离通道，不是突然失去感知。\",\n    \"选择：林将第一片继续留在可复核封袋中，放弃夺第二片的机会救人；夜接受先救普通人而非强追残片，限制封港范围以免所有商路停摆。\",\n    \"认知：夜只据其守界经历告知界壁外的寂灭风险，林相信证言但没有亲见死海。父亲在苍冥存档的署名检修副本由夜带来的巡查档案核对，只证明其参与守门；不证明投毒真凶。\",\n    \"第279日海程中，林在本次已核验供暖的普通保温客舱轮值结束后、贺接手守证时，完成一小时不受扰温和吐纳，从50章沿用的保守三成半只计回一成至四成半，不因整月间隔算满，也不提高原五成伤后上限。254–278及280–289未另施剑诀或御物，所谓稳定真元练习只作温和调息，不另记恢复收益。290日港内当值医修复核旧掌腿：无新渗痛，许可扶栏短走、有限坐姿凝元式导刃，不准跳台、负重、追跑或反复施术；右肩此时尚未受291的新伤。贺从本案原1000杂费额度实付1枚诊费，归入后来累计780中的医药，不从封存3000取款、也不另加到780之外。诊察本身不增加寿储或真元。\",\n    \"290日复诊许可后林在普通检验席坐稳，触验自252后未再施术的赤霞剑脊与柄均已冷却，以低流量试注确认器身无异响、握剑不痛，实付半成；四成半减半成余四成，不用检验替代施术费用。291入场前再确认清醒、目标辨识和专注稳定，没有其他支出或恢复，沿用四成及旧五成上限；只施一式二成后余二成，剑热立即收起，之后不御物、不追击，肉身只解轻插扣和扶栏退到岸侧。若诊察、握剑或专注不合格则林不登台施术，夜与港卫先控场再用实体工具开舱，承担程先走及矿工继续受困的时间代价，不能让医嘱失效仍照原动作写。\",\n    \"291动手前，贺在港卫陪同下看清此根绑门麻绳：粗麻纤维、无附灵纹与金属内芯，由外耳绕普通插扣，只束缚舱门，不连接浮台系泊或货物吊具；其性质由现场查验确认，未知材质不先套用普通索规则。林在浮台近舱侧靠固定栏杆坐稳，绳段距本人一丈，处于18已实测的两丈内；舷板侧缝至绳段无遮挡，港卫先喊舱内人员退离门边，林实际听见退开回答、看清刃路无人后锁定起式。本次剑气切中、唯一余刃已散且门体与短板复核稳定，才进入开扣步骤；船摆遮挡、失锁或有人进入路径即中止、已付二成不退，贺喊停转移，港卫控制近舱守卫后以普通刀具开扣，林不再发第二式。\",\n    \"浮台为码头原有装卸设施，沿四根导桩随潮升降，两根原系泊缆留在岸桩上，待切绑门绳与它们完全分开。港卫在行动前现场验导桩、缆结、短板止滑与靠岸端，贺按当时背风内湾小浪观察板端未脱位才让林扶栏短走入位；看不稳就停，不用符箓或真元稳台。两名原港卫分别守岸端短板及浮台近舱口，夜以普通脚步和实体持剑占住侧巷入口，面对欲靠近的凝元守卫先示警令停，对方见港卫到位后退回巷口；她不发动未定义术式、不将敌人自动封经。林已亲见余刃耗散、港卫在刃路外复核门体与原短板后，林开扣、近舱港卫肉身推开舱门后，矿工按本人能行动的先出、需要搀扶者由两名港卫轮流接引，贺逐人引过原短板到岸上，七人不挤在浮台或把林当担架。\",\n    \"第六人过板时，货船原有松动护舷木被另一船尾浪推偏，撞裂浮台外缘一块木板并擦撞林右肩。导桩、原系泊和短板未断，但贺立即喊停下一人，近舱港卫先扶林沿仍完整的内侧短板退岸、复核踏板后再接最后一人；没有人被剑诀自动保护或悬浮。若板端脱位就停止上板，港卫须改用港内已有救助划舟逐人接送并重记时序，不能继续踩断板。林新肩伤后立即停握剑和全部术法，291–297由原港内医修随访，七日不是自动痊愈；到301返程仍按复诊许可坐暖车，完整训练须按316及330复诊另判。\",\n    \"291日刃路后段核验：林在原浮台固定栏杆旁坐定，贺与近舱港卫从同侧实际查看，外耳绑绳突出舱外，绳段后一丈直至林两丈边界的延长线沿舱外侧掠向空水面，不进入舱内或扫过短板；舱内人员应答后已退离门边，港卫与贺也站在该直线外。本场仅发一道，固定二成不减；切中后林亲眼看见唯一淡青刃影至两丈界内散尽，近舱港卫站在侧边摸验舱门框未松、短板搭点与原系泊仍稳，才示意林手拨轻扣、自己推门并开始接人。若发刃后船摆遮住余刃或不能确认全数耗散，则停发示警，所有人暂不拨扣、过板或把普通刀具伸入该路径；实际确认余刃已散且结构稳定后才继续，无法确认就等船位恢复或改走刃路外的港内救助划舟，并重记时序。此前已切断的绳和后来撞肩的护舷木风险不因停术复原；接第六人时仍按原安排擦伤林肩、停接撤岸复核，再处理最后一人。\",\n    \"285日起查货仍限已担保仓区。291救人前，港卫核内湾当天无寒潮、外露短栈桥与浮台处于本制式日常寒候；林贺穿干衣、使用289晨已换的第二张护寒符并各自核余纹。这些符只保本人温热，不挡风刃、护舷木或冰水，也不改变林凝元剑诀的二成费用和伤后动作限制。若护符、天气或暖房撤返点不合格，二人不登浮台，交港卫组织实体救助，承担程先离开和重排救援的后果，不靠夜隔空暖场。\",\n    \"本批七名矿工的境界不明，不据身份推定耐寒。291行动前，葬骨港务救济库已从上月港税实际入库款划出本案240枚下品灵石，由本轮值库人验现金签收，不把尚未到账的拨款通知当钱。值库人先实付82给本港登记门市：九张逐张验收尚余至少220小时的art_21各6、计54，七套干燥保温衣各4、计28。九符中两张交原两名港卫，七张随七套衣装入救助包，逐件登记批号；港卫原有干衣亦当场核验。这82从本案240扣，余158，不取林贺14000航款、不把原救济库存再次记成新增款。\",\n    \"近舱港卫推开舱门后先在门内发救助包，逐人协助穿干衣、扣符并验温热与余纹，再按原顺序接过短板；林贺自己的符不轮借给七人。失温、麻木或不能自行走者先由港卫送入原救助划舟已核保温舱，再交医修，不因贴符就算痊愈或能行。行动前港内救助舟承运方已按本案实收20的船班单备好船、本舟原两名船工、隔火炉烟道及本班燃料；该费从240扣，另见下述配载与承运范围，不混入买符衣82。无实有暖舱或超出配载就停止这条转运路径，先组织符合条件的救助，不把敞舟当保温舱。 此处救助舟承运方及其原两名救助船工，与扣工押运货船方及其原两名值炉船工分别归属不同船只、不是同一经营方或同两个人；救助舟的20只支付本次港内船班，不能计为押运货船方的新收入，也不抵其160款下的101支出。\",\n    \"原港口救济所接人时，登记七人姓名、原工籍、衣符编号、伤情及交接港卫，安置在实际隔风、有隔火炉烟道及当班添料的暖房。值库人从本案240另实付70，按所方本批七人291–300十日普通床位、住食与供暖的合计报价结算；这是本批合同，不是全书通用单价，也不包括无限医疗或回乡票。首轮诊治另实付28，覆盖范围与40留存应急款见本段执行账；不得把本案240、82、70或28各自当作新增收入。\",\n    \"这七人的符入暖房后由照料者逐人摘下干封、登记余纹，只有实际再出门时依各自状况核符重启，不让一张符在多人之间抵数。300日后是否继续留所、续住或返乡须由港务与本人依实际健康、床位和已确认新款办理，不能从这70推定无限食宿或凭作者计划瞬间回乡。林肩伤仍按原291撞伤、停术、297不自动痊愈和后续复诊执行；符和暖房不抵消任何伤势。\",\n    \"291救助执行账的船班：港务值库人事前在原港内救助舟承运方柜台按本批实报20支付，救助舟承运方签明从开舱起两个时辰内在本案浮台—救济所既有靠泊点短程待命及分趟转运，含本舟两名船工、炉具燃料和操作，不因未用满趟数退款。该舟本次实验配载上限为本舟两名船工、两名矿工和一名陪护港卫，七人不得挤成一船；必要时最多四趟，单程至多一刻、含装卸交接每趟往返至多半个时辰，现场港况实测可行才承接。实际超时、超载或天气封停要重排，不沿用包价无限开船。\",\n    \"291首轮医疗执行账：救济所原当班医修对本案七人的首次失温、脱水及外伤检查、普通清洁包扎与复温照料、24小时观察和292日一次复查，本次报价每人4、合28；值库人已从240实付给所方经办，收具名七人及范围的收据。该报价含本轮普通敷料、温热饮水与照料人手，不含高级丹药、寿储恢复、后续手术或无限疗程。正常拟定路径首检未见需超出本轮处置的重度失温或大出血，仍逐人记录复查与活动许可；这个诊察结果只在实际检查后成立，不能由护符或付款预先认定。\",\n    \"本案救济240的封闭账：82符衣＋20保温救助船班＋70十日住食供暖＋28首轮诊护＝200，余40由值库人单独保管，限本批必要追加处置，未花仍是救济库现金，不归林贺或矿工。医修若诊出超出28范围的伤情，先开实际项目、药材和报价，值库人仅从已到40中按足额项目实付；不足则由港务向原救济拨款岗申请另拨，并与能实际接收的医舍核床位和转运报价。新钱未到不记足额、完整疗程、治愈或已转院；先执行已付且适合伤情的稳定照料，保留病情风险、住院与延期后果，不能因缺钱强令返乡。\"\n  ],\n  \"cost\": \"浮台外缘木板被尾浪推偏的护舷木撞裂，林右肩在实际接人中撞伤，291–297随访且不因七日期满视作治愈；伤后停握剑和全部术法，不再消耗剩余二成。贺失去本次追货奖金，该奖金未领取，不能算既有现金损失或预支收入。279温和吐纳只回一成、290验剑付半成、291剑诀付二成：3.5+1−0.5−2=2成；不返寿、不借普通动作免术费。290诊费及291后普通医药在原专项杂费中据实列支并归入累计780，未增免费医疗或新寿源。夜耽误三日原返程、巡队缩减一处例行勘查，回去补巡；救人不等于无代价全胜。 北境本批救济另有港税入库款实划240，事前实付符衣82、船班20、十日住食70与首轮诊护28，合200，未用40留库；与林贺航款、林肩伤原杂费医疗及程的商号经费均分账，不当作角色收入。 获救前供给另由押运货船方普通货运预付款160承担本次101支出、余59；实物余料及已用符余纹另存，不挪救济240或林贺14000。此为新增待审作者提案，非从旧正文确认的账目。\",\n  \"outcome\": \"第285–300日。7名矿工上岸、与5名已在赤霄获救的雇工名单分开；程在逃，第二片仍在程手，第一片仍林持有。污染货只封存不由低阶启封。夜为矿工安排港口原有救济所，贺与林则准备携证回青玄。本批转运暂停，不代表九鼎全阵停转。 北境七人与赤霄五工、留在青玄的开篇两名旧工友及430日后新扣六人均为不同人；在本段拟由港卫和救济所逐人核姓名、原工籍、舱位及安置去向形成该批名单，不能凭同乡认作同一批。该名单原件留当地，随既有见证副本交付可核的签认名单副本，不转移人员或增加林贺船票。\"\n}"
+    }
+  ],
+  "changes": [
+    {
+      "path": "/worldPack/locations/1/entryConditions/4",
+      "after": "新增待审的港内救助候查规则：在受监管泊区发现受困或被扣人员时，港务可先登记为获救待核人员，安排港卫陪同移至同一泊区监管界内的救济候查暖房；此路径只延续码头候查，不授予沿岸入境或自由离港资格。港务验籍岗具名接案，负责逐人核对身份材料、去向及到离记录；救济所当班负责人签收人员并承担住食、照护和实际交接责任，不能代签入境。自报姓名、船方舱单、付过救济费均不等于身份已核实；不符处逐项保留。待核人员不是因获救而成为罪犯，也不能交回被指控扣人的船方。需离开监管区时，仍须取得引渡令或由实际到场的巡界使验明身份后另行具名担保，明确地点、期限与责任。候查安置须逐案确定期限、已落实的床位照护与经费，期满须复核并实际办理续接或合法离境，不能自动释放、默认为无限安置或倒填此前入境许可。"
+    },
+    {
+      "path": "/worldPack/locations/24/entryConditions/1",
+      "after": "新增待审的救济所位置限定：本港原救济所用于接收船上获救人员的候查暖房及其既有靠泊点，位于受监管泊区的同一界内。船舱、救助浮台、靠泊点与该暖房之间的本案救助转运由港务登记并由港卫实际交接，不经过对外开放的内陆街区；仍按loc_02逐人核身份、核防寒与安置责任。此位置安排不把普通港区全部变为候查区，也不授予林贺或获救者新的活动权限。"
+    },
+    {
+      "path": "/plan/milestones/6/setup/2",
+      "before": "风暴中护船者承担外敌，林辰利用凝元御物和矿车制动经验固定货索、阻止药箱砸人，救下一名试图私藏货物的押货者；不斩神海海兽或获得免费升级。",
+      "after": "第32章第215日凌晨的风暴中，护船者承担外敌；林辰只把两丈内尚未绷紧、未系重箱的半斤索头御动一息交给水手，预付半成真元后停术，由水手系索、普通船桩承力、制动并搬回药箱。他再让水手用随舱撬杠抬稳压脚箱角、卸去楔上载荷，才从一丈内另付半成御动八两松楔一息；水手抽人、落箱，林不以御物固定受载货索或托箱。救下试图私藏货物的押货者使他错过盯住六号箱的窗口。第31章只是验货登船；本节点按第32章既有动作明确实际承力者，不改变两次支出、失箱与奖金后果，不斩神海海兽或获得免费升级。"
+    },
+    {
+      "path": "/plan/milestones/12/setup/23",
+      "after": "新增待审的七人身份与交接安排：291日行动前，港务原验籍岗经办在本案救助登记上签名，接下七名获救待核人员的身份核对与监管去向责任，核定使用泊区内原救济所候查暖房至300日。原所方当班负责人在已有七床、70枚十日住食供暖及28枚首轮诊护安排上签收候查照护；不发入境许可。开舱后港卫先按实际救出顺序登记，逐人与自报姓名、原工籍线索及船方舱单对应；无法立即核实的栏记待核，不因口供一致就追认自愿上船或真实籍贯。七人在原定衣符、短板和保温救助舟条件下，由原陪护港卫随实际批次交到同一监管泊区内的候查暖房，验籍岗与所方在交接单分别签明身份状态、人数、伤情和去向；从开舱至接收始终走本案候查救助路径，不借夜285日给林贺的查货担保入境。身份与案情分开核对：原航簿、各人口述和实物不相符处继续待查，先照护不等于已查清全链。正常拟定路径至300日仍有原籍材料待核，七人留所候查；300日港务逐人复核身份进展、健康、本人意愿及后续床位经费，再实际办理续接或取得合法离境条件。夜准备返驻地不带走这份港务责任；七人未取得引渡令或独立具名担保时，不得随林贺离港。70不覆盖301日后，期满不自动遣返或交回扣人船方。"
+    },
+    {
+      "path": "/plan/milestones/12/outcome",
+      "before": "第285–300日。7名矿工上岸、与5名已在赤霄获救的雇工名单分开；程在逃，第二片仍在程手，第一片仍林持有。污染货只封存不由低阶启封。夜为矿工安排港口原有救济所，贺与林则准备携证回青玄。本批转运暂停，不代表九鼎全阵停转。 北境七人与赤霄五工、留在青玄的开篇两名旧工友及430日后新扣六人均为不同人；在本段拟由港卫和救济所逐人核姓名、原工籍、舱位及安置去向形成该批名单，不能凭同乡认作同一批。该名单原件留当地，随既有见证副本交付可核的签认名单副本，不转移人员或增加林贺船票。",
+      "after": "第285–300日。7名矿工上岸、与5名已在赤霄获救的雇工名单分开；程在逃，第二片仍在程手，第一片仍林持有。污染货只封存不由低阶启封。夜协助港务将七人交入同一受监管泊区内原救济所候查暖房，由港务接案、所方签收照护；至300日仍为获救待核人员，未取得自由离港资格，贺与林则准备携证回青玄。本批转运暂停，不代表九鼎全阵停转。 北境七人与赤霄五工、留在青玄的开篇两名旧工友及430日后新扣六人均为不同人；在本段拟由港卫和救济所逐人核姓名、原工籍、舱位及安置去向形成该批名单，不能凭同乡认作同一批。该名单原件留当地，随既有见证副本交付可核的签认名单副本，不转移人员或增加林贺船票。"
+    }
+  ],
+  "validation": {
+    "valid": true,
+    "issues": [],
+    "warnings": [
+      {
+        "path": "worldPack",
+        "message": "blocking unresolved questions remain"
+      },
+      {
+        "path": "storyBible",
+        "message": "blocking unresolved story questions remain"
+      }
+    ],
+    "blockers": [
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-power-opening",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-resource-definitions",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-travel-rules",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-tier-exceptions",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-resource-usage",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-first-volume-foundation",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-volume-timeline",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-artifact-continuity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-ending-cost",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-relationship-stages",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-knowledge-reveal-order",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-opening-growth",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-opening-quality",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-resource-growth-budget",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first-volume-blueprint",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-v1-outline-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-v23-macro",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-guard-return-chain",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-barge-inspection",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-second-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first50-narrative",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-message-arrivals",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-review-capacity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "baseline-content-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "opening-growth-repair",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "opening-quality-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "resource-growth-budget",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first-volume-blueprint",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "v1-outline-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "v23-macro",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "guard-return-chain",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "barge-inspection",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "second-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first50-narrative",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "message-arrivals",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "review-capacity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "convoy-custody-causality",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "north-coast-exit-permit",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "chapter25-claw-sequence",
+        "code": "BLOCKING_QUESTION"
+      }
+    ],
+    "formalAcceptance": false,
+    "productionWrites": false,
+    "limitation": "Checks API contracts and structural references only. Open blockers remain; this does not approve a plan, accept content quality, or certify an atomic save."
+  },
+  "retainedBlockingQuestions": 41,
+  "executionChecks": 41,
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitations": [
+    "The custody path and shelter location are explicit new author proposals, not facts established by the prior design or prose.",
+    "The cargo review read chapter31, not chapter32. Its negative finding stays intact; this proposal aligns the macro wording with the existing chapter32 action and does not approve either.",
+    "This candidate has only structural validation. The new rule, responsibility, timing, scope, staffing and post-day300 obligations need content review.",
+    "Wait for the original full worker to exit and verify its result before any local model review, isolated save rehearsal or production application. All other findings remain open."
+  ]
+}
