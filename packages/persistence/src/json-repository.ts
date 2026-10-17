@@ -1,4 +1,5 @@
 import type { DesignReviewRun } from '../../../novel-service-core/src/design-review-run.ts';
+import type { DesignReviewAnnotation } from '../../../novel-service-core/src/design-review-annotations.ts';
 import type { DesignContentReview } from '../../../novel-service-core/src/design-review.ts';
 import { randomUUID } from 'node:crypto';
 import { mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
@@ -23,6 +24,7 @@ interface PersistedWork {
   designHistory?: DesignRevision[];
   designContentReviews?: DesignContentReview[];
   designReviewRuns?: DesignReviewRun[];
+  designReviewAnnotations?: DesignReviewAnnotation[];
   manuscripts?: ManuscriptRevision[];
   candidates: ChapterCandidate[];
   versions: ChapterVersion[];
@@ -157,6 +159,7 @@ function serializeWork(work: Work): PersistedWork {
     designHistory: [...work.designHistory.values()],
     designContentReviews: [...work.designContentReviews.values()],
     designReviewRuns: [...work.designReviewRuns.values()],
+    designReviewAnnotations: [...work.designReviewAnnotations.values()],
     manuscripts: [...work.manuscripts.values()],
     candidates: [...work.candidates.values()],
     versions: [...work.versions.values()],
@@ -183,6 +186,7 @@ function deserializeWork(value: PersistedWork): Work {
   work.worldPack = value.worldPack;
   work.storyBible = value.storyBible;
   for (const run of value.designReviewRuns ?? []) work.designReviewRuns.set(run.id, run);
+  for (const note of value.designReviewAnnotations ?? []) work.designReviewAnnotations.set(note.id, note);
   for (const report of value.designContentReviews ?? []) work.designContentReviews.set(report.id, report);
   for (const revision of value.designHistory ?? []) work.designHistory.set(revision.id, revision);
   if (!work.designHistory.size) {

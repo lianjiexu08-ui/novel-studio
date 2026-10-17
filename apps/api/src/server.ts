@@ -1,8 +1,9 @@
 import { DesignQuestionConflictError } from '../../../novel-service-core/src/design-questions.ts';
+import { annotationSources } from '../../../novel-service-core/src/design-review-annotations.ts';
 import { orderedStoryEvents, resolveStoryEventOrder } from '../../../novel-service-core/src/event-order.ts';
 import { completeDesignReviewRun, designReviewStageInput } from '../../../novel-service-core/src/design-review-run.ts';
 import { restoreChapterReviewRun } from '../../../novel-service-core/src/chapter-review.ts';
-import { designReviewAreaSchema } from 'novel-studio-contracts';
+import { addDesignReviewAnnotationSchema, designReviewAreaSchema } from 'novel-studio-contracts';
 import { designReviewOverview, DesignReviewError } from '../../../novel-service-core/src/design-review.ts';
 import Fastify, { type FastifyInstance } from 'fastify';
 import { z, ZodError } from 'zod';
@@ -573,6 +574,29 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     const { workId } = workParamSchema.parse(request.params);
     const { area, planId } = z.object({ area: designReviewAreaSchema, planId: z.string().min(1).optional() }).strict().parse(request.body);
     return { report: await workflow.reviewDesignContent(workId, area, planId) };
+  });
+
+  app.get('/works/:workId/design/review-annotations', async (request) => {
+    const { workId } = workParamSchema.parse(request.params);
+    const { runId, stageId } = z.object({ runId: z.string().min(1), stageId: z.string().min(1).optional() }).strict().parse(request.query);
+    const work = await repository.get(workId);
+    const run = work?.designReviewRuns.get(runId);
+    if (!work || !run || stageId && !run.stages.some(stage => stage.id === stageId)) throw new NotFoundError('unknown review run or stage');
+    const annotations = [...work.designReviewAnnotations.values()].filter(note => note.runId === runId && (!stageId || note.stageId === stageId));
+    for (const note of annotations) annotationSources(work, note);
+    return { annotations };
+  });
+  app.get('/works/:workId/design/review-annotations/:annotationId', async (request) => {
+    const { workId, annotationId } = workParamSchema.extend({ annotationId: z.string().min(1) }).parse(request.params);
+    const work = await repository.get(workId), annotation = work?.designReviewAnnotations.get(annotationId);
+    if (!work || !annotation) throw new NotFoundError('unknown review annotation');
+    return { annotation, sources: annotationSources(work, annotation) };
+  });
+  app.post('/works/:workId/design/review-annotations', async (request, reply) => {
+    const { workId } = workParamSchema.parse(request.params);
+    const input = addDesignReviewAnnotationSchema.parse(request.body);
+    if (!await repository.get(workId)) throw new NotFoundError(`unknown work ${workId}`);
+    return reply.code(201).send({ annotation: await workflow.addDesignReviewAnnotation(workId, input) });
   });
 
   app.post('/works/:workId/design/review-runs', async (request) => {

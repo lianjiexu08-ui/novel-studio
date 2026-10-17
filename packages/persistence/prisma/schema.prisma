@@ -31,6 +31,8 @@ model Project {
   designContentReviews String @default("[]")
   /// Resumable raw-text coverage, cross checks and synthesis checkpoints.
   designReviewRuns String @default("[]")
+  /// Independent editorial observations; never replace original review results.
+  designReviewAnnotations String @default("[]")
   /// Append-only CovenantRevision JSON array; keeps the author's original words.
   covenantHistory String  @default("[]")
   /// The approved PlanRevision driving briefs and generation.

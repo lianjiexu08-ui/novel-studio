@@ -59,3 +59,20 @@ export const designContentReviewSummarySchema = designContentReviewSchema.omit({
 export const designReviewSummarySchema = designReviewOverviewSchema.extend({ reports: z.array(designContentReviewSummarySchema) });
 export type DesignContentReviewSummaryDto = z.infer<typeof designContentReviewSummarySchema>;
 export type DesignReviewSummaryDto = z.infer<typeof designReviewSummarySchema>;
+
+// Separate append-only editorial observations; never amendments to model results.
+export const addDesignReviewAnnotationSchema = z.object({
+  requestKey: z.string().trim().min(1).max(128),
+  runId: z.string().min(1), stageId: z.string().min(1), criterion: z.string().min(1),
+  expectedInputHash: z.string().regex(/^[a-f0-9]{64}$/),
+  expectedCheckHash: z.string().regex(/^[a-f0-9]{64}$/),
+  claimQuote: z.string().min(4).max(6000),
+  explanation: z.string().trim().min(1).max(8000),
+  evidence: z.array(z.object({ sourceId: z.string().min(1), quote: z.string().min(4).max(6000) }).strict()).min(1).max(32),
+}).strict();
+export const designReviewAnnotationSchema = addDesignReviewAnnotationSchema.extend({
+  id: z.string().min(1), createdAt: z.string().datetime(),
+  scope: designContentReviewSchema.shape.scope,
+});
+export type AddDesignReviewAnnotation = z.infer<typeof addDesignReviewAnnotationSchema>;
+export type DesignReviewAnnotationDto = z.infer<typeof designReviewAnnotationSchema>;

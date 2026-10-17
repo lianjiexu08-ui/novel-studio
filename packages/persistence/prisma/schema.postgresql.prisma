@@ -67,6 +67,8 @@ model Project {
   designContentReviews Json @default("[]")
   /// Resumable raw-text coverage, cross checks and synthesis checkpoints.
   designReviewRuns Json @default("[]")
+  /// Independent editorial observations; never replace original review results.
+  designReviewAnnotations Json @default("[]")
   covenantHistory       Json                    @default("[]")
   activePlanId          String?
   createdAt             DateTime                @default(now())

@@ -1,6 +1,6 @@
 import type { DesignEditingBaseline, DesignBundle } from './design-revision';
 import type { ReviewSourceInput } from './design-review-coverage';
-import type { DesignContentReviewDto, DesignReviewAreaDto, DesignReviewOverviewDto, DesignReviewSummaryDto } from 'novel-studio-contracts';
+import type { DesignContentReviewDto, DesignReviewAreaDto, DesignReviewOverviewDto, DesignReviewSummaryDto, DesignReviewAnnotationDto } from 'novel-studio-contracts';
 import type {
   AdoptionResponse,
   ApiError,
@@ -139,6 +139,8 @@ export const api = {
   designCandidate: (workId: string) => call<DesignEditingBaseline>(`/works/${workId}/design/candidate`),
   saveDesignCandidate: (workId: string, body: DesignEditingBaseline) => call<{ worldPack: DesignBundle['worldPack']; storyBible: DesignBundle['storyBible']; plan: PlanRevisionDto; validation: { blockers: unknown[] } }>(`/works/${workId}/design/candidate`, { method: 'PUT', body }),
   designContentReviews: (workId: string, planId?: string) => call<DesignReviewOverviewDto>(`/works/${workId}/design/content-reviews${planId ? `?planId=${encodeURIComponent(planId)}` : ''}`),
+  designReviewAnnotations: (workId: string, runId: string, stageId?: string) => call<{ annotations: DesignReviewAnnotationDto[] }>(`/works/${workId}/design/review-annotations?runId=${encodeURIComponent(runId)}${stageId ? `&stageId=${encodeURIComponent(stageId)}` : ''}`),
+  designReviewAnnotation: (workId: string, annotationId: string) => call<{ annotation: DesignReviewAnnotationDto; sources: Array<{ id: string; text: string }> }>(`/works/${workId}/design/review-annotations/${encodeURIComponent(annotationId)}`),
   pollDesignContentReviews: (workId: string, planId?: string, since?: string) => {
     const query = new URLSearchParams({ view: 'summary', ...(planId ? { planId } : {}), ...(since ? { since } : {}) });
     return call<(DesignReviewSummaryDto & { revisionToken?: string; unchanged?: false }) | { unchanged: true; revisionToken: string }>(`/works/${workId}/design/content-reviews?${query}`);

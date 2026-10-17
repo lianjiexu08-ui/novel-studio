@@ -1,4 +1,6 @@
 import { retainDesignQuestions } from '../../../novel-service-core/src/design-questions.ts';
+import { recordDesignReviewAnnotation } from '../../../novel-service-core/src/design-review-annotations.ts';
+import type { AddDesignReviewAnnotation } from 'novel-studio-contracts';
 import { resolveStoryEventOrder } from '../../../novel-service-core/src/event-order.ts';
 import { validateDesignCandidate, DesignCandidateValidationError, type DesignCandidate } from './design-candidate.ts';
 export { validateDesignCandidate, DesignCandidateValidationError } from './design-candidate.ts';
@@ -663,6 +665,10 @@ export class ChapterWorkflow {
   }
 
   private readonly contentReviewsInFlight = new Set<string>();
+
+  async addDesignReviewAnnotation(workId: string, input: AddDesignReviewAnnotation) {
+    return this.repository.transaction(workId, ({ work }) => recordDesignReviewAnnotation(work, input, new Date(this.now()).toISOString()));
+  }
 
   async startDesignReview(workId: string, area: DesignReviewArea, planId?: string): Promise<DesignReviewRun> {
     if (!this.designProvider?.reviewDesignContent) throw new DesignReviewError('尚未配置内容评审模型，请在系统设置配置规划模型');

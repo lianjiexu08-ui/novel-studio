@@ -181,3 +181,20 @@ PostgreSQL 部署需在自己的迁移流程中添加 `"designReviewRuns" JSONB 
 提案71的独立控火候选可用 `node --experimental-strip-types scripts/prepare-design71-fire-control-review.mjs --check` 重建并核对已保存的局部复审请求。该脚本读取冻结原文及两处候选修改、重放保存的原始意见，核验完整来源和独立局部指纹；没有模型执行模式。请求中的版本范围只说明候选来自哪个原提案，不冒充已保存的新设计。正式四领域任务结束并完成终止核验后，仍需结合最终意见判断请求是否适用，再进行真实内容复审。详见 [控火局部请求](audits/2026-10-17-design71-fire-control-request.md)。
 
 对应的独立执行入口为 `scripts/review-design71-fire-control-candidate.mjs --check|--execute|--verify`。它先调用上述只读重建，再核对原进程已退出、检查点完成且四领域终止证明一致；运行中拒绝执行，不读取模型连接。执行最多两次调用，保留所有响应与失败，结果存在时拒绝再次提交；离线验证绑定具体请求、候选、终止证明及执行脚本。局部结果不写入作品、不替代完整设计评审，也不自动解决原问题。
+
+## 独立核对记录
+
+评语可能误读原文。`POST /works/:workId/design/review-annotations` 单独追加核对说明，不覆盖模型原答、原判定、补读处置或设计问题，也不改变设计指纹和写作门禁。当前由 API 录入，网页在整项报告及被核对批次中展示；可以返回原批次或打开完整依据。页面尚无新增说明表单。
+
+请求包含 `requestKey`、`runId`、`stageId`、`criterion`、`expectedInputHash`、`expectedCheckHash`、`claimQuote`、`explanation` 和 `evidence: [{sourceId, quote}]`。检查摘要为原始检查对象 `JSON.stringify(check)` 的 SHA-256。被核对原话必须精确出现在该检查的 explanation 中；依据必须逐字匹配该任务最初保存的 `run.input.sources`，使用原始来源编号，不能用当前设计或综合报告替代。引文匹配只证明来源，不证明核对说明在语义上正确。当前可针对解释文字登记核对；报告证据中的错误仍可通过原批次说明追溯，不直接改写历史引文。
+
+同一任务及 `requestKey` 的相同请求返回原记录；内容不同则拒绝覆盖，需要新编号保留追加记录。设计后来改变，仍可对历史任务添加说明。`GET /works/:workId/design/review-annotations?runId=...&stageId=...` 读取列表（stageId 可省略），`GET /works/:workId/design/review-annotations/:annotationId` 返回说明及其完整原始依据。
+
+已有 SQLite 数据库升级此功能前，须等待评审及写作进程正常结束，再停止 API，执行：
+
+```sh
+python3 scripts/migrate-review-annotations.py data/novel-studio.db
+npm run generate -w novel-studio-persistence
+```
+
+脚本先备份，然后只添加 `Project.designReviewAnnotations TEXT NOT NULL DEFAULT '[]'`；已有列时不做修改。请同时完成所部署版本之前尚未执行的其他迁移，再启动匹配版本的 API 和网页。不要在仍有冻结任务执行时生成共享 Prisma 客户端或迁移原库。旧 JSON 仓库缺少数组时按空列表读取。PostgreSQL 草案对应 `JSONB NOT NULL DEFAULT '[]'::jsonb`，本次只验证 schema 语法，未在 PostgreSQL 服务上验证读写。

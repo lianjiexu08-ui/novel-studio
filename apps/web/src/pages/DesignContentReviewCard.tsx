@@ -3,6 +3,7 @@ import { Alert, App, Button, Card, Collapse, Empty, Modal, Select, Space, Tag, T
 import type { DesignContentReviewDto, DesignContentReviewSummaryDto, DesignReviewAreaDto, DesignReviewSummaryDto } from 'novel-studio-contracts';
 import { api, type DesignReviewStageDetail } from '../api';
 import { ReviewSourceCoverage } from './ReviewSourceCoverage';
+import { ReviewAnnotations } from './ReviewAnnotations';
 
 const labels = { world: '世界、势力与历史', power: '力量、功法与法宝', characters: '人物、关系与认知', story: '主线、分卷与章纲' };
 const statuses = { missing: '尚未评审', outdated: '设计已变，需重评', passed: '本项设计通过', needs_revision: '需要返修', inconclusive: '材料不足', reviewing: '评审进行中', interrupted: '评审未完成' };
@@ -125,6 +126,8 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
     return <Space direction="vertical" style={{ width: '100%' }}>
       <Typography.Text type="secondary">世界 v{report.scope.worldPackRevision} · 圣经 v{report.scope.storyBibleRevision} · 计划 v{report.scope.planRevision} {report.createdAt ? ` · ${new Date(report.createdAt).toLocaleString()}` : ''}</Typography.Text>
       <Typography.Paragraph>{report.summary}</Typography.Paragraph>
+      {report.id && reportRun && <ReviewAnnotations key={reportRun.id} workId={workId} runId={reportRun.id} refreshKey={refreshedAt}
+        onSource={setSource} onStage={(runId, stageId) => void showStage(runId, stageId)} />}
       {revisionStages?.length ? <Collapse size="small" style={{ width: '100%' }} items={[{
         key: 'retained-revisions', label: `查看全部返修批次（${revisionStages.length} 条记录，非独立问题数）`,
         children: <Space direction="vertical" style={{ width: '100%' }}>
@@ -250,6 +253,8 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
         {!stageDetail.stage.result && <Typography.Text type="secondary">世界 v{stageDetail.input.scope.worldPackRevision} · 圣经 v{stageDetail.input.scope.storyBibleRevision} · 计划 v{stageDetail.input.scope.planRevision}</Typography.Text>}
         <Alert type="info" showIcon message={stageDetail.stage.kind === 'synthesis' ? '本步综合前置评审报告；新版流程另附计划原文。请按来源区分报告转述与原始设计。' : '本批结论只覆盖下列材料，不代表整项设计通过。'} />
         {stageDetail.stage.error && <Alert type="error" message="本批尚未完成" description={stageDetail.stage.error} />}
+        {stageView && <ReviewAnnotations key={`${stageView.runId}/${stageView.stageId}`} workId={workId} runId={stageView.runId}
+          stageId={stageView.stageId} refreshKey={refreshedAt} onSource={setSource} onStage={(runId, stageId) => void showStage(runId, stageId)} />}
         {stageDetail.stage.result && details({ ...stageDetail.stage.result, sources: stageDetail.input.sources, scope: stageDetail.input.scope })}
         <Collapse style={{ width: '100%' }} items={[
           { key: 'source-coverage', label: '核对本步原文范围与完整来源目录', children: <ReviewSourceCoverage key={`${stageView?.runId}/${stageView?.stageId}`} input={stageDetail.input} onSource={setSource} /> },

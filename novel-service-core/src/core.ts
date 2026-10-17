@@ -1,5 +1,6 @@
 import { eventChangesAgree, orderedStoryEvents, resolveStoryEventOrder } from './event-order.ts';
 import type { DesignReviewRun } from './design-review-run.ts';
+import type { DesignReviewAnnotation } from './design-review-annotations.ts';
 import { executionEvidenceResolver, type ExecutionEvidence } from './execution-evidence.ts';
 import { chapterReviewChecker, chapterReviewRubricForPlan, executionReviewRequired, chapterReviewInput, chapterReviewInputHash, chapterReviewStatus, validateChapterReview, type ChapterReviewInput, type ChapterReviewOptions, type ChapterReviewResult, type ChapterReviewRecord } from './chapter-review.ts';
 import { designReviewOverview, requiresDesignContentReview, type DesignContentReview } from './design-review.ts';
@@ -635,6 +636,7 @@ export class Work {
   readonly designHistory = new Map<string, DesignRevision>();
   readonly designReviewRuns = new Map<string, DesignReviewRun>();
   readonly designContentReviews = new Map<string, DesignContentReview>();
+  readonly designReviewAnnotations = new Map<string, DesignReviewAnnotation>();
   readonly events = new Map<string, StoryEvent>();
   readonly states = new Map<string, CharacterState>();
   readonly relationships = new Map<string, Relationship>();
