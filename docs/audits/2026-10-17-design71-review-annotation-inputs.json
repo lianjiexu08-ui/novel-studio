@@ -1,0 +1,69 @@
+{
+  "kind": "prepared_independent_review_annotations",
+  "inputHash": "70235514bab787e26c05a26fdc9b297adde5a363de5c6c9f10112b7229c018de",
+  "inputsSha256": "77deca6c04132eebd14a14fdf518187cdb857aa1f3068477018218c0ead83a2d",
+  "outputPath": "data/audit-runtimes/design71-review/review-annotation-inputs.json",
+  "outputSha256": "759ca40a4fe41315d758603b2a2a5c4f86e9abb4614413da16ae331d74f47677",
+  "sourceProofs": [
+    {
+      "path": "docs/audits/2026-10-17-design71-gu-cost-reading.json",
+      "sha256": "bdc29d6f79495da044e98c591d3c020902b353608d025d1e7c01ea23b3a7b88a"
+    },
+    {
+      "path": "docs/audits/2026-10-17-design71-father-record-reading.json",
+      "sha256": "c16d0430454baf16978eb3518cf4955cbd8981e36180bae8ea3598f55d9c2749"
+    },
+    {
+      "path": "docs/audits/2026-10-17-design71-barge-balance-reading.json",
+      "sha256": "9bb5de75e67ddeb2dcf7d5d8ab46581b8afd66c8a66112959b5c46b53d47b9e9"
+    }
+  ],
+  "count": 4,
+  "checks": [
+    {
+      "runId": "design_run_ff3b8039-d1e0-4747-ab7d-aebec2ed506d",
+      "stageId": "followup-batch-3/counters",
+      "criterion": "counters",
+      "expectedCheckHash": "3819f485be22654f31eb5fd6af20d64c75ec0b50914dbfd559294cb4940eedc2",
+      "sourceIds": [
+        "plan/chapters/25"
+      ]
+    },
+    {
+      "runId": "design_run_b7c78d18-ac7e-48a1-bb0a-0aab183d503a",
+      "stageId": "followup-batch-5/knowledge",
+      "criterion": "knowledge",
+      "expectedCheckHash": "4dc28be47f383a42c43bf69f6f8a28ff32c62ef1dbfd706bd1af3a1756f2eaf0",
+      "sourceIds": [
+        "plan/milestones/ms_v3_advancement",
+        "story/secrets/sec_01"
+      ]
+    },
+    {
+      "runId": "design_run_47089baf-d597-4ab3-81d0-5a785e2a417c",
+      "stageId": "cross-1-5",
+      "criterion": "causality",
+      "expectedCheckHash": "bbdd932e9969c9f44b516694f34f31ab31bfaa13ae247ef6891fe1adcdbed80a",
+      "sourceIds": [
+        "plan/chapters/44",
+        "plan/chapters/43"
+      ]
+    },
+    {
+      "runId": "design_run_47089baf-d597-4ab3-81d0-5a785e2a417c",
+      "stageId": "cross-1-5",
+      "criterion": "timeline",
+      "expectedCheckHash": "a2d8aeb45aab3a992a8ef0dd9c740dd5af1b5999b360808b555c067d63795eac",
+      "sourceIds": [
+        "plan/chapters/44",
+        "plan/chapters/43"
+      ]
+    }
+  ],
+  "productionWrites": 0,
+  "modelCalls": 0,
+  "verdictChanges": 0,
+  "questionsResolved": 0,
+  "formalAcceptance": false,
+  "deploymentGate": "Finish and terminal-verify the original worker, migrate the annotation field and deploy matching API/UI before production import. Revalidate every bound original check and quote at import. Retain original verdicts and pending questions."
+}
