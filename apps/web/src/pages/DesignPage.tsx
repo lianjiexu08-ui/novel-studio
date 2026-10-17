@@ -72,7 +72,7 @@ export function DesignPage() {
       setDesignHistory([]);
     }
   }
-  useEffect(() => { setDesign(null); setEditingDesign(false); }, [work.id]);
+  useEffect(() => { setDesign(null); setSelectedRevision(null); setEditingDesign(false); }, [work.id]);
   useEffect(() => { void load(); return () => { loadRequest.current += 1; }; }, [work.id, work.constraintRevision]); // eslint-disable-line react-hooks/exhaustive-deps
 
   async function run(key: string, action: () => Promise<unknown>, success: string) {
@@ -123,7 +123,7 @@ export function DesignPage() {
       <Col xs={24} md={12}><Card title={bible ? `Story Bible · v${bible.revision}` : 'Story Bible'} extra={bible ? <StatusTag status={bible.status} /> : bibleAction}>{!bible ? <Space direction="vertical"><Empty description="还没有生成 Story Bible" />{bibleAction}</Space> : <Space direction="vertical" style={{ width: '100%' }}><Space>{bibleAction}</Space><Text type="secondary">依据世界版本 v{bible.worldPackRevision}</Text><Text strong>核心冲突：{bible.coreConflict}</Text><Paragraph type="secondary">结局方向：{bible.endingDirection || '未填写'}</Paragraph><Row gutter={[12, 12]}><Col span={8}><Statistic title="人物" value={bible.characters.length} /></Col><Col span={8}><Statistic title="关系" value={bible.relationships.length} /></Col><Col span={8}><Statistic title="弧光" value={bible.arcs.length} /></Col><Col span={8}><Statistic title="秘密" value={bible.secrets?.length ?? 0} /></Col><Col span={8}><Statistic title="承诺/开放线" value={(bible.promises?.length ?? 0) + (bible.openThreads?.length ?? 0)} /></Col><Col span={8}><Statistic title="计划章节" value={bible.volumes.reduce((sum, volume) => sum + volume.plannedChapterCount, 0)} /></Col></Row><StoryDetails bible={bible} /></Space>}</Card></Col>
     </Row>
     <Card title="设计版本历史" size="small" extra={<Text type="secondary">每次生成、审核、锁定都会留下不可变快照</Text>}>
-      {designHistory.length === 0 ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="还没有设计快照" /> : <List size="small" dataSource={[...designHistory].reverse()} renderItem={(item) => <List.Item actions={[<Button key="view" size="small" onClick={() => setSelectedRevision(item)}>查看快照</Button>]}>
+      {designHistory.length === 0 ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="还没有设计快照" /> : <List key={work.id} size="small" rowKey="id" pagination={{ pageSize: 12, showSizeChanger: false, showQuickJumper: true, showTotal: (total) => `共 ${total} 个版本` }} dataSource={[...designHistory].reverse()} renderItem={(item) => <List.Item actions={[<Button key="view" size="small" onClick={() => setSelectedRevision(item)}>查看快照</Button>]}>
         <List.Item.Meta title={<Space><Text strong>{item.kind === 'world_pack' ? 'World Pack' : 'Story Bible'} v{item.revision}</Text><StatusTag status={item.status} /></Space>} description={`${new Date(item.createdAt).toLocaleString()} · ${item.contentHash.slice(0, 12)}`} />
       </List.Item>} />}
     </Card>
