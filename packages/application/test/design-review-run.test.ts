@@ -75,7 +75,7 @@ test('chapter-only power batches also receive complete tier and technique rules'
   ];
   input.sources = [...rules, ...input.sources];
   const run = createDesignReviewRun(input);
-  assert.equal(run.scheduleVersion, 33);
+  assert.equal(run.scheduleVersion, 34);
   for (const stage of run.stages) {
     const staged = designReviewStageInput(run, stage);
     assert.ok(JSON.stringify(staged.sources).length <= 240_000);
@@ -324,7 +324,7 @@ test('explicit restart retains legacy findings, is idempotent and never resumes 
   ]);
   assert.equal(replacement.id, retried.id);
   assert.equal(replacement.restartedFromRunId, legacy.id);
-  assert.equal(replacement.scheduleVersion, 33);
+  assert.equal(replacement.scheduleVersion, 34);
   assert.ok(replacement.stages.every(stage => !stage.result && stage.attempts === 0));
   assert.equal(work.designReviewRuns.size, 2);
   assert.equal(work.designContentReviews.size, 0);

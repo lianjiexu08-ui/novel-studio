@@ -39,7 +39,7 @@ export interface DesignReviewRun {
   /** A deliberate new assessment; the prior run and its findings stay intact. */
   restartedFromRunId?: string;
   /** Absent on persisted legacy schedules, which must resume without reshuffling. */
-  scheduleVersion?: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | 32 | 33;
+  scheduleVersion?: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | 32 | 33 | 34;
   input: DesignReviewInput;
   units: DesignReviewUnit[];
   stages: DesignReviewStage[];
@@ -53,8 +53,8 @@ export interface DesignReviewRun {
 
 /** All raw text is retained. Cross checks co-read every pair of partitions;
  * synthesis then combines every finding without allowing a blocker to disappear. */
-export function createDesignReviewRun(input: DesignReviewInput, now = new Date().toISOString(), scheduleVersion: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | 32 | 33 = input.purpose === 'chapter_review' ? 31 : 33): DesignReviewRun {
-  if (!Number.isInteger(scheduleVersion) || scheduleVersion < 1 || scheduleVersion > 33) throw new DesignReviewError('未知评审调度版本');
+export function createDesignReviewRun(input: DesignReviewInput, now = new Date().toISOString(), scheduleVersion: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | 32 | 33 | 34 = input.purpose === 'chapter_review' ? 31 : 34): DesignReviewRun {
+  if (!Number.isInteger(scheduleVersion) || scheduleVersion < 1 || scheduleVersion > 34) throw new DesignReviewError('未知评审调度版本');
   if (new Set(input.sources.map(s => s.id)).size !== input.sources.length) throw new DesignReviewError('评审来源 ID 重复');
   const units: DesignReviewUnit[] = [];
   const stages: DesignReviewStage[] = [];
@@ -140,7 +140,7 @@ export function createDesignReviewRun(input: DesignReviewInput, now = new Date()
     }
     level = next;
   }
-  return { id: `design_run_${randomUUID()}`, ...(scheduleVersion >= 2 ? { scheduleVersion: scheduleVersion as 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | 32 | 33 } : {}), input: structuredClone(input), units, stages, status: 'ready', createdAt: now, updatedAt: now };
+  return { id: `design_run_${randomUUID()}`, ...(scheduleVersion >= 2 ? { scheduleVersion: scheduleVersion as 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | 32 | 33 | 34 } : {}), input: structuredClone(input), units, stages, status: 'ready', createdAt: now, updatedAt: now };
 }
 
 function chapterUnitGroups(sources: DesignReviewSource[], units: DesignReviewUnit[]): DesignReviewUnit[][] {
@@ -250,6 +250,17 @@ function coversDeferral(run: DesignReviewRun, stage: DesignReviewStage, pending:
   }
   if (stage.followupFor) return (run.scheduleVersion ?? 1) >= 5 && stage.followupFor === pending.id
     && followupUnits(run, pending, cache)?.every(id => stage.unitIds.includes(id)) === true;
+  if (stage.kind !== 'synthesis' && (run.scheduleVersion ?? 1) >= 34) {
+    // An ordinary later raw check can read the full cited basis and requested
+    // sources without also repeating unrelated material from the old partition.
+    // Expose the question; resolution still requires an explicit pass and all
+    // basis citations. With no original raw evidence, keep the full-batch rule.
+    const cited = citedSourceIds(run, pending);
+    if (cited.length) {
+      const required = new Set([...cited, ...pending.check.awaitingSources!]);
+      return run.units.filter(u => required.has(u.sourceId)).every(u => stage.unitIds.includes(u.id));
+    }
+  }
   return stage.kind !== 'synthesis' && [...pending.stage.unitIds, ...run.units.filter(u => pending.check.awaitingSources!.includes(u.sourceId)).map(u => u.id)].every(id => stage.unitIds.includes(id));
 }
 
@@ -461,10 +472,8 @@ function readDesignReviewStageInput(run: DesignReviewRun, stage: DesignReviewSta
       // this stage cannot authorize a resolution; the unresolved item blocks.
       if (JSON.stringify([...sources, pending.question]).length > designReviewCapacity) continue;
       sources.push(pending.question);
-      const priorSourceIds = followup ? [...new Set(pending.check.evidence.flatMap(e => {
-        const unit = run.units.find(u => u.id === e.sourceId && pending.stage.unitIds.includes(u.id));
-        return unit ? [unit.sourceId] : [];
-      }))] : undefined;
+      const cited = citedSourceIds(run, pending);
+      const priorSourceIds = followup || (run.scheduleVersion ?? 1) >= 34 && cited.length ? cited : undefined;
       pendingChecks.push({ id: pending.id, criterion: pending.check.criterion, questionSourceId: pending.question.id, requiredSourceIds: pending.check.awaitingSources!, priorUnitIds: pending.stage.unitIds.filter(id => stage.unitIds.includes(id)), ...(priorSourceIds ? { priorSourceIds } : {}) });
     }
     if (pendingChecks.length) coverage.pendingChecks = pendingChecks;
@@ -547,7 +556,7 @@ export function acceptDesignReviewStage(run: DesignReviewRun, stage: DesignRevie
  * only explicitly deferred unread-source questions can be settled by a raw
  * stage covering both the original material and every requested source. */
 export function completeDesignReviewRun(run: DesignReviewRun): { input: DesignReviewInput; result: DesignReviewResult } {
-  if (run.scheduleVersion !== undefined && ![2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33].includes(run.scheduleVersion)) throw new DesignReviewError('未知评审调度版本');
+  if (run.scheduleVersion !== undefined && ![2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34].includes(run.scheduleVersion)) throw new DesignReviewError('未知评审调度版本');
   const expected = createDesignReviewRun(run.input, run.createdAt, run.scheduleVersion ?? 1);
   if ((run.scheduleVersion ?? 1) >= 33) {
     // Each completed round can reveal another bounded source request. Rebuild
