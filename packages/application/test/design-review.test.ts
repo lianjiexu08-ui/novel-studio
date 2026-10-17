@@ -30,7 +30,7 @@ test('world capacity review receives the realm ladder and referenced ability rul
     { sourceId: 'world/techniques/technique', quote: '不得把晋阶费用视作施术预付' },
   ];
   validateDesignReview(input, report);
-  for (const rubricVersion of [7, 8, 9, 10, 11, 12, 13, 14, 15]) {
+  for (const rubricVersion of [7, 8, 9, 10, 11, 12, 13, 14, 15, 16]) {
     const legacyHash = createHash('sha256').update(JSON.stringify({
       rubricVersion, title: work.title, covenant: work.covenant,
       world, bible: work.storyBible, planId: work.activePlanId, plan: work.plans.get(work.activePlanId!)!.plan,
