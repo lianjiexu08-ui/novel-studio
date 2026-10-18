@@ -1,0 +1,30 @@
+{
+  "kind": "design76_shared_review_preflight",
+  "verified": true,
+  "createdAt": "2026-10-18T06:58:39.983Z",
+  "control": "data/audit-runtimes/design76-shared-review",
+  "databaseSnapshotPath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design76-shared-review/baseline.db",
+  "predecessorCheckpointSha256": "6aa74aeeaf9658d6d5f3f2009c3350d79ca71f830891f36264df7d712421f108",
+  "predecessorVerificationSha256": "777c49578e38067cbb5764ddb9eacd1d8c47ac1bfc9f9af32426925feec28287",
+  "baselineSha256": "287cba2fed34b34895a61e7aad79010cb5d18c321623c9f2bd79d88ba8574bb7",
+  "runnerSha256": "1986d80a0200808682d0d05c77c244aee2c208f7e561643cd0b9c02872225227",
+  "hostHelperSha256": "883bb6ae052caec9fe5b0333f4ad0ea1d2d799d9616143079eab4ae531544178",
+  "runtimeBindingSha256": "ec9918d855f80b056351601f297fbbaadb4376ec94010cdb73d3aaa0f6fb58dd",
+  "changedRuntimeFiles": [
+    "packages/persistence/src/prisma-repository.ts",
+    "packages/persistence/test/prisma-repository.test.ts"
+  ],
+  "unchangedPromptAndScheduling": true,
+  "prefixCalls": 29,
+  "runIds": [
+    "design_run_98b5460a-ed47-4ba2-bb06-7fdded1f910d",
+    "design_run_77e97b37-cbf2-40be-ab17-2de79839c297",
+    "design_run_aa04b61b-0b13-464a-9b21-9205a91600e2",
+    "design_run_f355dadb-f3ee-4b1b-8834-f17bf0f487dc"
+  ],
+  "annotationsPreserved": 1,
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Preflight and fixture concurrency test only; verify real history and model continuation before claiming live acceptance."
+}

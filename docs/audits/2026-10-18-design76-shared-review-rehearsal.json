@@ -1,0 +1,106 @@
+{
+  "kind": "design76_full_history_shared_review_rehearsal",
+  "verified": true,
+  "createdAt": "2026-10-18T07:00:43.183Z",
+  "directory": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design76-shared-rehearsal-thGYVx",
+  "database": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design76-shared-rehearsal-thGYVx/private.db",
+  "preflightSha256": "be571df8fc273cad59350a9698c377ba918ffe362c57ef2691d362453dd61e0c",
+  "hostHelperSha256": "883bb6ae052caec9fe5b0333f4ad0ea1d2d799d9616143079eab4ae531544178",
+  "runnerSha256": "1986d80a0200808682d0d05c77c244aee2c208f7e561643cd0b9c02872225227",
+  "scriptSha256": "11e74c50af8adde532eeb104efb6e2ed00edb6a2263ff651c3930ae390f92632",
+  "runtimeBindingSha256": "ec9918d855f80b056351601f297fbbaadb4376ec94010cdb73d3aaa0f6fb58dd",
+  "requests": [
+    {
+      "method": "GET",
+      "url": "/health",
+      "statusCode": 200,
+      "elapsedMs": 1.0237078666687012
+    },
+    {
+      "method": "GET",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design",
+      "statusCode": 200,
+      "elapsedMs": 15559.716083049774
+    },
+    {
+      "method": "GET",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/history",
+      "statusCode": 200,
+      "elapsedMs": 23652.703500032425
+    },
+    {
+      "method": "GET",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/quality-audit",
+      "statusCode": 200,
+      "elapsedMs": 32267.397041082382
+    }
+  ],
+  "results": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "suffix": "/design",
+        "bodySha256": "ed1f3ff2a458efd43cb1ec31bb902a832ef7a8020a7b62fbee4d9185e36aff89"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "suffix": "/design/history",
+        "bodySha256": "44d2da01fb163ceb16ee55a6a0bc99094e12847053bc7d5eea9fa007dcdacd56"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "suffix": "/quality-audit",
+        "bodySha256": "793a9f300a5d38addca9af03bf15a0b34d411447c6880918ceabbb8113c21a91"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "suffix": "/design/content-reviews?view=summary",
+        "bodySha256": "8d38a827394f3c37729a232a4c4d1aaa94361e9799dc90930d940126754b2c42"
+      }
+    }
+  ],
+  "counts": {
+    "runs": 99,
+    "reports": 92,
+    "annotations": 1
+  },
+  "allWorkFieldsUnchanged": true,
+  "workFieldDigests": {
+    "activePlanId": "a79cacee9517456fb5abae34e3592ad141a8d092b6782979cdb0aa1996029412",
+    "briefs": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "candidates": "db801c927d61955caf1e94c196129e7ca7a4557cbae7f7f93b7977d2e6ffb6a2",
+    "characters": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "checkpoints": "9360443cd3329deca750224d5f41fd8b848cc87483d84e5d59d8bf1fa6f89d31",
+    "constraintRevision": "6995cc07f1bbeaa4fb5bae27eabd12a1da80c7cebcd3fd1b4f53df506b9f77bd",
+    "covenant": "7b09efc6b0d1edd79e40db6d143a177956b28b40ee5070d303574df8d73121f8",
+    "covenantHistory": "ef48b60cd983a0f4b34cbe25bf37e751eb58681b943b6b8369fdcd5fca1ec745",
+    "designContentReviews": "8b8ab9639e03bd0055431c0e710bacf9dbac0d268f27578ddcb0bfc13e0aed8d",
+    "designHistory": "f2347b762def7bec1232ebed9113bcc4fb424df8b0f09e37b74bcef254165a1b",
+    "designReviewAnnotations": "16ed3c57ec0899a9a0d6e34b17755657782c7c2ea577dc5f7e5471bccefa3610",
+    "designReviewRuns": "d66c5fbf1146994345bab6e6f58d8a56e1f6a51d7155c86baa893ccf428b639c",
+    "events": "69a4c30b560af422264c89ba8cce8c658bf3d137ec8bcdae5f7025cdc4622590",
+    "id": "e6c77c6af51347285f913e10c068833e392333610313a73f42ae654dbeeebb0b",
+    "impacts": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "manuscripts": "3f9dd7880a530d9eb7ccf9113b140958fe9e182f63c9f706f9c55ceb5c46ffc9",
+    "plans": "6afb21f18712fce391f7c0c715b9791eb95f922a669d1cc1a96b2677e905b396",
+    "plotNodes": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "relationships": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "stateRevision": "16dc368a89b428b2485484313ba67a3912ca03f2b2b42429174a4f8b3dc84e44",
+    "states": "71af6764cda2e591af608654aa65a05f8b25e4e8f9871c746de158a77a0618fc",
+    "storyBible": "ae92c644e55aa89fd87920f431acdb817e50351843daddd6cb65d8508350ef02",
+    "title": "9a392c9dee167243ad8ace1e37c8c750c798509925344a9b052ce05cbb6a54b2",
+    "versions": "ab09691b6b0882a4fa32a704a65a61930f961a7d3e35aa52d872fc017e048fb1",
+    "worldPack": "c2c2dd54716be54571a024440590ebbb8c47b55eb37f2b490bfaf24c5bf6be6d",
+    "worldRules": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "maxRssKiB": 3191152
+}
