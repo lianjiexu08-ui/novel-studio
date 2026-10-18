@@ -1,0 +1,33 @@
+{
+  "kind": "real_citation_capacity_guidance_regression",
+  "verified": true,
+  "failurePath": "docs/audits/2026-10-18-design76-citation-budget-failure.json",
+  "failureSha256": "784abeb0638a1dc64ce5d62335bd40e99254a005db3b1ce73fa040cceedbcc4e",
+  "sourceHashes": {
+    "novel-service-core/src/design-review-report.ts": "b1035fb64369e6d80a018ceb11796aa07e33115467077a469e7b396b216967fc",
+    "packages/planner/src/design-review-evidence.ts": "a7eeb90ec22655c058d48c9ae8efa9355ca5ee2d39eba58b7ba6216f3cb79a52",
+    "packages/planner/src/index.ts": "d06d3ed69423447128d3277285ca5bd2bf806f271f80ded64f9da8699d9bd371",
+    "packages/planner/test/design-review.test.ts": "b9608fd2956dbaafef0b9840a9553a686cb808a9d445a0901f06afcfac7ef6fe"
+  },
+  "measurements": [
+    {
+      "currentCharacters": 83622,
+      "remainingCharacters": 6378,
+      "maxCharacters": 90000,
+      "fragmentCount": 337
+    },
+    {
+      "currentCharacters": 91471,
+      "remainingCharacters": -1471,
+      "maxCharacters": 90000,
+      "fragmentCount": 337
+    }
+  ],
+  "rendererSizesUnchanged": true,
+  "missingEvidenceStillRejected": true,
+  "oversizedRepairStillRejected": true,
+  "rawAnswersRetained": true,
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false
+}

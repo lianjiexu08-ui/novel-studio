@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto';
 import { anchoredDesignReviewResultSchema, designReviewResultSchema } from 'novel-studio-contracts';
 import { DesignReviewError, validateDesignReview, validateDesignReviewInsufficiencyFields, type DesignReviewInput } from '../../../novel-service-core/src/design-review.ts';
 import { designReviewHorizon } from './design-review-horizon.ts';
-import { designReviewReportEnvelopeSize } from '../../../novel-service-core/src/design-review-report.ts';
+import { designReviewCitationEnvelopeCharacters, designReviewReportEnvelopeSize } from '../../../novel-service-core/src/design-review-report.ts';
 
 export class DesignReviewEvidenceError extends DesignReviewError {}
 export class DesignReviewReportBudgetError extends DesignReviewError {}
@@ -160,7 +160,26 @@ export function prepareDesignReviewEvidence(input: DesignReviewInput) {
           oneOfPriorUnits: selection(requirement.oneOfPriorUnits),
         }];
       });
-      return { resolutionCitationSelection };
+      const budget = snapshot.stage?.reportBudget;
+      // Navigation only. Use the same schema and renderer as acceptance, even
+      // when a missing required source prevents the answer from being accepted.
+      // Unknown anchors must never receive a fabricated size estimate.
+      if (!budget || parsed.data.checks.some(check => check.evidence.some(e => !lookup.has(e.fragmentId)))) return { resolutionCitationSelection };
+      const expanded = designReviewResultSchema.parse({ ...parsed.data, checks: parsed.data.checks.map(check => ({
+        ...check, evidence: check.evidence.map(e => lookup.get(e.fragmentId)!),
+      })) });
+      const currentCharacters = designReviewReportEnvelopeSize(snapshot, expanded, budget.sourceId);
+      const maxCitationNumber = Math.max(snapshot.stage?.evidenceLimit ?? 64, ...parsed.data.checks.map(check => check.evidence.length + 1));
+      return { resolutionCitationSelection, reportCapacity: {
+        maxCharacters: budget.maxCharacters, currentCharacters, remainingCharacters: budget.maxCharacters - currentCharacters,
+        selectedCitations: parsed.data.checks.map((check, index) => ({ criterion: check.criterion,
+          evidence: check.evidence.map((e, citation) => ({ fragmentId: e.fragmentId,
+            characters: designReviewCitationEnvelopeCharacters(snapshot, lookup.get(e.fragmentId)!, index + 1, citation + 1) })),
+        })),
+        fragments: [...lookup].map(([fragmentId, entry]) => ({ fragmentId,
+          maxAppendCharacters: designReviewCitationEnvelopeCharacters(snapshot, entry, parsed.data.checks.length, maxCitationNumber) })),
+        guidance: '大小为完整报告及来源位置经过JSON转义后的UTF-16字符数，不是短回答长度或token数。remainingCharacters可以为负数。selectedCitations.characters是该条已有引文的展开开销；删除后其他编号变短可能额外节省。fragments.maxAppendCharacters是单次新增引用在本批编号范围内的开销上界；同片段用于不同检查分别计费。更改总结、解释、建议和解除声明也会改变总量。只选择实际支持结论的必要片段；需要删引文时须明确removeEvidence，不能删除必引来源、截断原文、遗漏检查或隐瞒问题。若完整必要证据确实无法容纳，保留insufficient并说明capacity_limit。系统仍完整校验，不按预算自动删改证据或判定。',
+      } };
     },
     resolve(value: unknown) {
       validateDesignReviewInsufficiencyFields(value);

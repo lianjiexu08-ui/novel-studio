@@ -15,15 +15,37 @@ export interface ReviewResolutionNote {
 
 /** Size of a newly accepted report, before any later follow-up dispositions.
  * Use exactly the same origins, offsets and source envelope as the scheduler. */
-export function designReviewReportEnvelopeSize(input: DesignReviewInput, result: DesignReviewResult, sourceId: string): number {
-  const text = renderDesignReviewReport(result, id => {
+function evidenceResolver(input: DesignReviewInput) {
+  return (id: string) => {
     const source = input.sources.find(source => source.id === id);
     if (!source) return undefined;
     const unit = input.stage?.sourceMap.find(unit => unit.id === id);
     return unit ? { sourceId: unit.sourceId, unitId: unit.id, start: unit.start, text: source.text }
       : { sourceId: id, text: source.text };
-  });
+  };
+}
+
+export function designReviewReportEnvelopeSize(input: DesignReviewInput, result: DesignReviewResult, sourceId: string): number {
+  const text = renderDesignReviewReport(result, evidenceResolver(input));
   return JSON.stringify([{ id: sourceId, text }]).length;
+}
+
+/** Exact contribution of one citation, including its separator and JSON escaping.
+ * Removing a citation can also shorten later numbered labels; this excludes that saving. */
+export function designReviewCitationEnvelopeCharacters(input: DesignReviewInput, entry: DesignReviewResult['checks'][number]['evidence'][number], checkNumber: number, citationNumber: number): number {
+  return JSON.stringify('\n' + renderIndependentQuote(entry, evidenceResolver(input), `${checkNumber}.${citationNumber}`)).length - 2;
+}
+
+function renderIndependentQuote(entry: DesignReviewResult['checks'][number]['evidence'][number], resolve: (id: string) => ReviewEvidenceSource | undefined, label: string): string {
+  const source = resolve(entry.sourceId);
+  const offset = source?.text.indexOf(entry.quote) ?? -1;
+  const unique = offset >= 0 && source!.text.indexOf(entry.quote, offset + 1) < 0;
+  // Repeated quotations do not have a uniquely provable location.
+  const origin = source && unique ? {
+    sourceId: source.sourceId, ...(source.unitId ? { unitId: source.unitId } : {}),
+    start: (source.start ?? 0) + offset, end: (source.start ?? 0) + offset + entry.quote.length, unique: true,
+  } : { sourceId: source?.sourceId ?? entry.sourceId, ...(source?.unitId ? { unitId: source.unitId } : {}), unique: false };
+  return `\nBEGIN INDEPENDENT QUOTE ${label}\n${JSON.stringify(origin)}\n${entry.quote}\nEND INDEPENDENT QUOTE ${label}`;
 }
 
 /** Keep independent excerpts visibly separate. JSON-encoding a report and then
@@ -42,17 +64,8 @@ export function renderDesignReviewReport(result: DesignReviewResult, resolve: (i
     }
     lines.push(`\nCHECK ${index + 1}\n${JSON.stringify(finding, null, 2)}`);
     for (const [citation, entry] of evidence.entries()) {
-      const source = resolve(entry.sourceId);
-      const offset = source?.text.indexOf(entry.quote) ?? -1;
-      const unique = offset >= 0 && source!.text.indexOf(entry.quote, offset + 1) < 0;
-      // Repeated quotations do not have a uniquely provable location. Never
-      // choose the first occurrence and present it as the original position.
-      const origin = source && unique ? {
-        sourceId: source.sourceId, ...(source.unitId ? { unitId: source.unitId } : {}),
-        start: (source.start ?? 0) + offset, end: (source.start ?? 0) + offset + entry.quote.length, unique: true,
-      } : { sourceId: source?.sourceId ?? entry.sourceId, ...(source?.unitId ? { unitId: source.unitId } : {}), unique: false };
       const label = `${index + 1}.${citation + 1}`;
-      lines.push(`\nBEGIN INDEPENDENT QUOTE ${label}\n${JSON.stringify(origin)}\n${entry.quote}\nEND INDEPENDENT QUOTE ${label}`);
+      lines.push(renderIndependentQuote(entry, resolve, label));
     }
   }
   return lines.join('\n');

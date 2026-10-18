@@ -3,6 +3,8 @@ import assert from 'node:assert/strict';
 import { JsonDesignPlanner, PlanningParseError } from '../src/index.ts';
 import { applyDesignReviewCitationEdits, DesignReviewReportBudgetError, prepareDesignReviewEvidence } from '../src/design-review-evidence.ts';
 import { DesignReviewCitationError, DesignReviewCriteriaError, DesignReviewInsufficiencyFieldsError, designReviewInput, validateDesignReview } from '../../../novel-service-core/src/design-review.ts';
+import { designReviewCitationEnvelopeCharacters, designReviewReportEnvelopeSize } from '../../../novel-service-core/src/design-review-report.ts';
+import { designReviewResultSchema } from 'novel-studio-contracts';
 import { ChapterWorkflow, InMemoryWorkRepository } from '../../application/src/index.ts';
 import { createReadyWork, fixtureDesignReview } from '../../application/test/fixtures.ts';
 
@@ -606,6 +608,7 @@ test('cross checks index every pending question and name a missing required sour
       { id: 'batch-2/timeline', criterion: 'timeline', questionSourceId: 'question-b', requiredSourceIds: ['arrival/b'], priorUnitIds: ['old-b'] },
     ] },
   };
+  request.stage.reportBudget = { sourceId: 'review-result/cross', maxCharacters: 90000 };
   const prepared = prepareDesignReviewEvidence(request);
   assert.equal(prepared.citationRequirements, undefined);
   assert.deepEqual(prepared.pendingCitationRequirements!.map(r => r.requiredSources.map(s => s.sourceId)), [['question-a', 'arrival/a'], ['question-b', 'arrival/b']]);
@@ -626,6 +629,8 @@ test('cross checks index every pending question and name a missing required sour
     assert.match(sent.problems, /batch-2\/timeline.*新增来源 arrival\/b/);
     assert.deepEqual(sent.originalRequest.pendingCitationRequirements, prepared.pendingCitationRequirements);
     assert.equal(sent.previousOutput, JSON.stringify(missing));
+    assert.equal(sent.reportCapacity.currentCharacters + sent.reportCapacity.remainingCharacters, 90000);
+    assert.deepEqual(sent.reportCapacity, prepared.resolutionRepairContext(missing).reportCapacity);
     const selections = sent.resolutionCitationSelection;
     assert.deepEqual(selections.map((entry: { checkId: string }) => entry.checkId), ['batch-1/timeline', 'batch-2/timeline']);
     assert.deepEqual(selections[0].requiredSources, [
@@ -653,6 +658,46 @@ test('cross checks index every pending question and name a missing required sour
   });
   assert.equal(retryCalls, 2, 'a repaired answer that drops a required citation must still fail after one retry');
   assert.deepEqual(prepared.resolutionRepairContext({ ...missing, requestId: 'another-request' }), {}, 'never label selections from a different request as current');
+});
+
+test('repair budgets measure escaped full reports, source offsets, duplicate text and numbered citations', async () => {
+  const request = await input();
+  request.sources = [
+    { id: 'unit/unique', text: '甲说："必须付出代价"。\\账目\n😀时间线不可更改。' },
+    { id: 'unit/repeat', text: '同一句证据。同一句证据。' },
+  ];
+  request.stage = { kind: 'cross', label: '容量测试', totalBatches: 2, evidenceLimit: 96,
+    sourceMap: [{ id: 'unit/unique', sourceId: 'history/full', start: 123456, end: 123456 + request.sources[0].text.length }],
+    reportBudget: { sourceId: 'review-result/cross-1', maxCharacters: 90000 } };
+  const prepared = prepareDesignReviewEvidence(request);
+  const answer = { requestId: prepared.requestId, summary: '保留时间与代价冲突', checks: Object.keys(request.rubric).map(criterion => ({
+    criterion, verdict: 'revise', explanation: '尚有时间和代价冲突', revisionAdvice: '核对真实时间和账目',
+    evidence: Array.from({ length: 10 }, () => ({ fragmentId: prepared.sources[0].fragments[0].id })),
+  })) };
+  const before = structuredClone(answer);
+  const expanded = prepared.resolve(answer);
+  const size = (result: typeof expanded) => designReviewReportEnvelopeSize(request, result, request.stage!.reportBudget!.sourceId);
+  const context = prepared.resolutionRepairContext(answer).reportCapacity!;
+  assert.equal(context.currentCharacters, size(expanded));
+  assert.equal(context.remainingCharacters, 90000 - size(expanded));
+  const append = structuredClone(expanded);
+  const entry = { sourceId: 'unit/repeat', quote: request.sources[1].text };
+  append.checks[0].evidence.push(entry);
+  assert.equal(size(append) - size(expanded), designReviewCitationEnvelopeCharacters(request, entry, 1, 11));
+  const fragmentCost = context.fragments.find(f => f.fragmentId === prepared.sources[1].fragments[0].id)!;
+  assert.ok(fragmentCost.maxAppendCharacters >= size(append) - size(expanded));
+  const removed = structuredClone(expanded);
+  removed.checks[0].evidence.shift();
+  assert.equal(size(expanded) - size(removed), context.selectedCitations[0].evidence[0].characters + 2, '10 becomes 9 in both independent quote labels');
+  const repeated = { sourceId: 'unit/repeat', quote: '同一句证据。' };
+  const repeatedReport = structuredClone(expanded);
+  repeatedReport.checks[0].evidence.push(repeated);
+  assert.equal(size(repeatedReport) - size(expanded), designReviewCitationEnvelopeCharacters(request, repeated, 1, 11), 'ambiguous offsets remain unclaimed');
+  assert.deepEqual(prepared.resolutionRepairContext({ ...answer, requestId: 'stale' }), {});
+  const unknown = structuredClone(answer); unknown.checks[0].evidence[0].fragmentId = 'unknown';
+  assert.equal(prepared.resolutionRepairContext(unknown).reportCapacity, undefined);
+  assert.deepEqual(answer, before, 'budget navigation never edits the answer');
+  assert.deepEqual(designReviewResultSchema.parse(expanded), expanded);
 });
 
 test('explicit citation edits retain unchanged findings and cannot silently lose required evidence', async () => {
@@ -816,6 +861,9 @@ for (const repairFits of [true, false]) {
       const body = JSON.parse(call.user);
       assert.match(body.instruction, /不得删必要来源、删检查、截断原文/);
       assert.match(body.problems, /展开为完整原文/);
+      assert.deepEqual(body.reportCapacity, prepared.resolutionRepairContext(excessive).reportCapacity);
+      assert.ok(body.reportCapacity.remainingCharacters < 0);
+      assert.equal(body.reportCapacity.currentCharacters + body.reportCapacity.remainingCharacters, 90000);
       assert.deepEqual(body.originalRequest.sources, prepared.sources);
       assert.equal(body.previousOutput, JSON.stringify(excessive));
       return JSON.stringify(repairFits ? repaired : excessive);
