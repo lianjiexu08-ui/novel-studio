@@ -57,7 +57,7 @@ export function ReviewAnnotations({ workId, runId, stageId, onSource, onStage }:
           <Typography.Text strong>计划 v{note.scope.planRevision} · {note.stageId} · {note.criterion}</Typography.Text>
           <Typography.Paragraph type="secondary">记录时间：{new Date(note.createdAt).toLocaleString()}</Typography.Paragraph>
           {!stageId && <Button type="link" size="small" onClick={() => onStage(note.runId, note.stageId)}>查看被核对批次</Button>}
-          <Typography.Text>被核对的原评语：</Typography.Text>
+          <Typography.Text>{note.claimField === 'revisionAdvice' ? '被核对的原返修建议：' : '被核对的原评语：'}</Typography.Text>
           <blockquote style={{ whiteSpace: 'pre-wrap' }}>{note.claimQuote}</blockquote>
           <Typography.Paragraph style={{ whiteSpace: 'pre-wrap' }}>{note.explanation}</Typography.Paragraph>
           {note.evidence.map((evidence, index) => <div key={`${evidence.sourceId}/${index}`}>

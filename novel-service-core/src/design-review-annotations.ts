@@ -14,7 +14,8 @@ export function annotationSources(work: Work, input: AddDesignReviewAnnotation) 
   if (!run || run.input.inputHash !== input.expectedInputHash) throw new DesignReviewError('核对记录的原评审版本不匹配');
   const check = run.stages.find(stage => stage.id === input.stageId)?.result?.checks.find(check => check.criterion === input.criterion);
   if (!check || designReviewCheckHash(check) !== input.expectedCheckHash) throw new DesignReviewError('核对记录的原判定不匹配或尚未完成');
-  if (!check.explanation.includes(input.claimQuote)) throw new DesignReviewError('被核对的原话不在该项评审解释中');
+  const claimField = input.claimField ?? 'explanation';
+  if (!check[claimField].includes(input.claimQuote)) throw new DesignReviewError(`被核对的原话不在该项${claimField === 'revisionAdvice' ? '返修建议' : '评审解释'}中`);
   const sourceIds = [...new Set(input.evidence.map(item => item.sourceId))];
   const sources = sourceIds.map(id => {
     const source = run.input.sources.find(source => source.id === id);

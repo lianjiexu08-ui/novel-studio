@@ -68,6 +68,8 @@ export const addDesignReviewAnnotationSchema = z.object({
   runId: z.string().min(1), stageId: z.string().min(1), criterion: z.string().min(1),
   expectedInputHash: z.string().regex(/^[a-f0-9]{64}$/),
   expectedCheckHash: z.string().regex(/^[a-f0-9]{64}$/),
+  // Omitted on existing notes; they continue to target the explanation.
+  claimField: z.enum(['explanation', 'revisionAdvice']).optional(),
   claimQuote: z.string().min(4).max(6000),
   explanation: z.string().trim().min(1).max(8000),
   evidence: z.array(z.object({ sourceId: z.string().min(1), quote: z.string().min(4).max(6000) }).strict()).min(1).max(32),

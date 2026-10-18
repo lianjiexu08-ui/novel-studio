@@ -58,3 +58,39 @@ test('annotations retain exact original evidence without modifying verdicts, des
   assert.equal((await app.inject({ method: 'POST', url: path.replace(workId, 'missing'), payload: input })).statusCode, 404);
   assert.deepEqual(work.designReviewRuns.get(run.id), run, 'original model record remains intact after historical annotation');
 });
+
+test('advice annotations bind the exact advice field while legacy notes keep explanation semantics', async t => {
+  const repository = new InMemoryWorkRepository();
+  const { workId, input, run } = await annotationFixture(repository);
+  const { app } = createApiServer({ repository, provider: annotationWriter });
+  t.after(() => app.close());
+  const path = `/works/${workId}/design/review-annotations`;
+  const post = (payload: unknown) => app.inject({ method: 'POST', url: path, payload });
+  const before = structuredClone((await repository.get(workId))!);
+  const legacyResponse = await post(input);
+  assert.equal(legacyResponse.statusCode, 201);
+  assert.equal(Object.hasOwn(legacyResponse.json().annotation, 'claimField'), false, 'do not rewrite legacy note bytes with a default field');
+  const advice = { ...input, requestKey: 'advice-1', claimField: 'revisionAdvice', claimQuote: '补充力量代价。',
+    explanation: '原文已有具体代价，应先核对实际规则，不能因错误建议重复增设。' };
+  const response = await post(advice);
+  assert.equal(response.statusCode, 201, response.body);
+  const note = designReviewAnnotationSchema.parse(response.json().annotation);
+  assert.equal(note.claimField, 'revisionAdvice');
+  assert.deepEqual((await post(advice)).json().annotation, note);
+  for (const payload of [
+    { ...advice, requestKey: 'default-target', claimField: undefined },
+    { ...advice, requestKey: 'wrong-target', claimField: 'explanation' },
+    { ...advice, requestKey: 'wrong-quote', claimQuote: input.claimQuote },
+    { ...advice, requestKey: 'stale-check', expectedCheckHash: '0'.repeat(64) },
+    { ...advice, claimField: 'explanation', claimQuote: input.claimQuote },
+  ]) assert.equal((await post(payload)).statusCode, 409);
+  assert.equal((await post({ ...advice, requestKey: 'unknown-field', claimField: 'verdict' })).statusCode, 400);
+  const detail = await app.inject({ method: 'GET', url: `${path}/${note.id}` });
+  assert.equal(detail.statusCode, 200);
+  assert.equal(detail.json().annotation.claimField, 'revisionAdvice');
+  assert.deepEqual(detail.json().sources, run.input.sources.filter(s => s.id === input.evidence[0].sourceId));
+  const after = structuredClone((await repository.get(workId))!);
+  assert.equal(after.designReviewAnnotations.size, 2);
+  after.designReviewAnnotations.clear();
+  assert.deepEqual(after, before, 'annotations never edit advice, verdict, design, histories or writing gates');
+});

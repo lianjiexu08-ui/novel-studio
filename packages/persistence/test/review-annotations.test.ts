@@ -57,6 +57,8 @@ test('SQLite schema upgrade defaults old projects to empty notes and preserves n
   assert.equal((await repository.get('old-work'))!.designReviewAnnotations.size, 0);
   const { workflow, workId, input, run } = await annotationFixture(repository);
   const note = await workflow.addDesignReviewAnnotation(workId, input);
+  const adviceInput = { ...input, requestKey: 'advice-restart', claimField: 'revisionAdvice' as const, claimQuote: '补充力量代价。' };
+  const adviceNote = await workflow.addDesignReviewAnnotation(workId, adviceInput);
   await client.$disconnect();
   client = new PrismaClient({ datasources: { db: { url: databaseUrl } } });
   const restored = new PrismaWorkRepository(client), work = (await restored.get(workId))!;
@@ -64,5 +66,8 @@ test('SQLite schema upgrade defaults old projects to empty notes and preserves n
   assert.deepEqual(work.designReviewRuns.get(run.id), JSON.parse(JSON.stringify(run)));
   assert.match(annotationSources(work, note)[0].text, /力量必须支付代价/);
   assert.deepEqual(await new ChapterWorkflow(restored, annotationWriter).addDesignReviewAnnotation(workId, input), note);
-  assert.equal((await restored.get(workId))!.designReviewAnnotations.size, 1);
+  assert.deepEqual(work.designReviewAnnotations.get(adviceNote.id), adviceNote);
+  assert.match(annotationSources(work, adviceNote)[0].text, /力量必须支付代价/);
+  assert.deepEqual(await new ChapterWorkflow(restored, annotationWriter).addDesignReviewAnnotation(workId, adviceInput), adviceNote);
+  assert.equal((await restored.get(workId))!.designReviewAnnotations.size, 2);
 });
