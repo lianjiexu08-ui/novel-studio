@@ -1,0 +1,56 @@
+{
+  "kind": "design76_capacity_review_preflight",
+  "verified": true,
+  "createdAt": "2026-10-18T09:38:12.509Z",
+  "control": "data/audit-runtimes/design76-capacity-review",
+  "databaseSnapshotPath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design76-capacity-review/baseline.db",
+  "predecessorCheckpointSha256": "37385a18b45e2facd271ba1cfbdb0a20ee7934b345f22ee75563ca193b137b3e",
+  "predecessorVerificationSha256": "796218791d479340018a62385508aec889358f920d7b4ca0787d12c21e71fa56",
+  "baselineSha256": "371aeeeebcf61dcdb496709e9d77cf23bdb7258087d691f0d788cc294242cac6",
+  "runnerSha256": "38ac174e42113643e1c60d6436be2f29e5236d6987d37709fa84583723ce843c",
+  "hostHelperSha256": "883bb6ae052caec9fe5b0333f4ad0ea1d2d799d9616143079eab4ae531544178",
+  "runtimeBindingSha256": "e978d7aab9f0e89c5839fdef6bbea07f910b37a5241d7fc6b9b6678a08d11cce",
+  "changedRuntimeFiles": [
+    "novel-service-core/src/design-review-report.ts",
+    "packages/planner/src/design-review-evidence.ts",
+    "packages/planner/src/index.ts",
+    "packages/planner/test/design-review.test.ts"
+  ],
+  "unchangedSchedulingAndPromptSuffix": true,
+  "changedRepairPrompt": true,
+  "plannerEpochs": [
+    {
+      "afterCall": 0,
+      "bindingPath": "data/audit-runtimes/design76-ui-runtime-v2-bound.json",
+      "bindingSha256": "ec9918d855f80b056351601f297fbbaadb4376ec94010cdb73d3aaa0f6fb58dd"
+    },
+    {
+      "afterCall": 37,
+      "bindingPath": "data/audit-runtimes/design76-citation-runtime-bound.json",
+      "bindingSha256": "e4acd580e352e5617cc588aaa3b34e86afe9a1457b57b3e60528011b4e005e97"
+    },
+    {
+      "afterCall": 39,
+      "bindingPath": "data/audit-runtimes/design76-citation-operations-runtime-bound.json",
+      "bindingSha256": "e7c8ea1854fcda1c44296b8854ea01af14bcda4d5bbf9f509b6d1c4fc02cae48"
+    },
+    {
+      "afterCall": 62,
+      "bindingPath": "data/audit-runtimes/design76-citation-capacity-runtime-bound.json",
+      "bindingSha256": "e978d7aab9f0e89c5839fdef6bbea07f910b37a5241d7fc6b9b6678a08d11cce"
+    }
+  ],
+  "shadowProofSha256": "708221ac66b5532a48328ee061ee379598643b783e8b7978982ae932dd27d8d6",
+  "prefixCalls": 62,
+  "runIds": [
+    "design_run_98b5460a-ed47-4ba2-bb06-7fdded1f910d",
+    "design_run_77e97b37-cbf2-40be-ab17-2de79839c297",
+    "design_run_aa04b61b-0b13-464a-9b21-9205a91600e2",
+    "design_run_f355dadb-f3ee-4b1b-8834-f17bf0f487dc"
+  ],
+  "annotationsPreserved": 8,
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Fresh frozen planner changes corrective capacity guidance and a byte-preserving report-render helper. The detached repair and full tests passed; production continuation and complete content acceptance remain unproven."
+}
