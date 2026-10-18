@@ -1,0 +1,364 @@
+{
+  "kind": "design76_unapplied_knowledge_boundary_candidate",
+  "previousCandidatePath": "data/design-candidates/design76-followup-controls-v2.json",
+  "previousCandidateSha256": "a3487b3f6d4458b6afebbe1b2eb841bbf1fb40dfdcd0d018d9eda38930c54efb",
+  "priorProofPath": "docs/audits/2026-10-18-design76-followup-counters-v2.json",
+  "priorProofSha256": "f3cfaffbf677881ac1618066ea49a8f4489c618dae9730bbe285755ec1fcea7e",
+  "candidatePath": "data/design-candidates/design76-followup-controls-v3.json",
+  "candidateSha256": "134936a7cc0162c4d4d9d2ee132a248dc8b6f65afdbdae967da3af837814c849",
+  "inputsPath": "data/audit-runtimes/design76-citation-edits-review/inputs.json",
+  "inputsSha256": "fc94bb269625716ca4114f9c882de726f23cdec4ded63daccf94089749a9c6f5",
+  "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+  "startPath": "data/audit-runtimes/design76-citation-edits-review/model-calls/00046.started.json",
+  "startSha256": "0698cd071a92027a889e0710f0c453a66d896830a57949883ecd2535ad70af15",
+  "responsePath": "data/audit-runtimes/design76-citation-edits-review/model-calls/00046.response.json",
+  "responseSha256": "fd30883378a35bccf452339e45e419012b35995c06431a22ac8f14c02115e431",
+  "modelFinding": {
+    "runId": "design_run_f355dadb-f3ee-4b1b-8834-f17bf0f487dc",
+    "stageId": "cross-1-4",
+    "checks": [
+      {
+        "criterion": "causality",
+        "verdict": "revise",
+        "explanation": "第33章场景明确侧门的严涛报空、常钧搬箱、陆沉川领箱属于林辰不在场的独立视角，林只能记录程记未签收、正式仓现状和六号箱未知；但同章endState却写林辰当晚“确认严身份”。这会让林辰在尚无接触或传达路径时取得独立视角信息，并提前改变第34章后才展开的问询前置。",
+        "evidence": [
+          {
+            "fragmentId": "e418"
+          },
+          {
+            "fragmentId": "e419"
+          },
+          {
+            "fragmentId": "e420"
+          }
+        ],
+        "revisionAdvice": "将第33章endState中的“林确认严身份”改为林辰尚未确认严涛身份；保留其仅知程记拒接、五箱状态和六号箱未知。若要使其当日得知严涛姓名，须在林辰实际在场的场景中补明身份来源与传达动作，并同步调整后续章的知情阶段。"
+      },
+      {
+        "criterion": "payoff",
+        "verdict": "revise",
+        "explanation": "六号箱调查的证据链本身按“亲见搬运—侧门册—原便条—分架页—实物核验”逐层收束，且首仓火仍保留火因、携页者与倾灯责任未明的边界；但第33章endState提前赋予林辰严涛身份，会破坏同一链条规定的知情顺序和后续证词的取得必要性。",
+        "evidence": [
+          {
+            "fragmentId": "e418"
+          },
+          {
+            "fragmentId": "e421"
+          },
+          {
+            "fragmentId": "e439"
+          },
+          {
+            "fragmentId": "e443"
+          },
+          {
+            "fragmentId": "e435"
+          }
+        ],
+        "revisionAdvice": "修复第33章林辰的身份知情边界，并逐章保持：严涛的私挪责任、常钧的搬运范围、陆沉川凭便条领箱及24包去向均只能在对应当面陈述、原件或实物核验后升级；首仓火不得被这些证据反推为已破案。"
+      }
+    ]
+  },
+  "manualExtension": "The same premature identity claim also occurs in rel_17 stage 33 and ms_v2_loss. These were checked against the original chapter plan, chapter 35 ledger and sec_04 knowledge stages; fixing only chapter 33 would leave contradictory instructions.",
+  "sourceHashes": [
+    {
+      "id": "plan/chapters/32",
+      "sha256": "18e553110baae23e1514205e48599d2de01d92932a5eca37ae001e82720e1f05"
+    },
+    {
+      "id": "plan/chapters/33",
+      "sha256": "c000e9eb6fdf4d025fbb7ca5537c2207783a8f646710ca27e7c1b53a3b67a6af"
+    },
+    {
+      "id": "plan/chapters/34",
+      "sha256": "8d41d0a2fe83b700b4b9c7fc37bfc3d7738d5c2c0ee903c8e83e6f48586eaa94"
+    },
+    {
+      "id": "plan/chapters/35",
+      "sha256": "9f3afe85fd0156640a1b49e90964fa6b697bb4a84396439d807bc1a886e2b097"
+    },
+    {
+      "id": "story/chapterPlans/bible-chapter-33",
+      "sha256": "bda40f4df13241ebdf8c6d5b01f04180b3a7b048ca68bfdbfa28f9dd802038e4"
+    },
+    {
+      "id": "story/relationships/rel_17",
+      "sha256": "f9e27a1ed23707793b0946a73f72729787c7c199583d6ffe168c17f3937f3f76"
+    },
+    {
+      "id": "story/secrets/sec_04",
+      "sha256": "b9094748f818582ea4b0e1d5c5a11dcf5f3c35063e783f985309069017c1579b"
+    },
+    {
+      "id": "plan/milestones/ms_v2_loss",
+      "sha256": "f7e4ee6f786609a0d271685cdb48601fb0385145714bac256bfaaff119de4cc7"
+    }
+  ],
+  "changes": [
+    {
+      "sourceId": "plan/chapters/33",
+      "field": "endState",
+      "before": "217日晚，林确认严身份、程拒接且要求全赔；正式仓仍四箱完好加一箱水损，六号箱去向未知，租符有效至230日。苏在外门见217日07时已完成旧12小时夜班交接，新制四人各6小时轮一处墨岗，顾坐医车返后继续复诊，不再算护路中；林41章收到信前不得知道其返宗结果。",
+      "after": "217日晚，林尚未确认严涛身份，只确认程拒接且要求全赔；侧门报空、搬箱与领箱属于独立视角，不能成为林此时的见闻；正式仓仍四箱完好加一箱水损，六号箱去向未知，租符有效至230日。苏在外门见217日07时已完成旧12小时夜班交接，新制四人各6小时轮一处墨岗，顾坐医车返后继续复诊，不再算护路中；林41章收到信前不得知道其返宗结果。"
+    },
+    {
+      "sourceId": "plan/milestones/ms_v2_loss",
+      "field": "setup[4]",
+      "before": "本航六号箱为24包普通低阶草药。33章才核对严涛身份；34章常钧说明215日暂存和217日抬至侧门，未见领货便条和去向，38–39章才以当面对质、领货便条、批签与散卖页查全去向。",
+      "after": "本航六号箱为24包普通低阶草药。第33章林尚未确认严涛身份；34章与被救押货者当面对话，常钧说明215日暂存和217日抬至侧门，未见领货便条和去向；35章取得侧门册后核对严涛工牌与陆沉川姓名，册上记录仍不等于查明箱内去向；38–39章才以当面对质、领货便条、批签与散卖页查全去向。"
+    },
+    {
+      "sourceId": "story/relationships/rel_17",
+      "field": "stages[0].value",
+      "before": "林已核严的押货身份，尚待当面追问私推动作。",
+      "after": "林记得风暴中被救押货者及其私推动作，尚未确认其姓名身份，也不知道六号箱去向。"
+    },
+    {
+      "sourceId": "story/relationships/rel_17",
+      "field": "stages[0].cause",
+      "before": "33林核出海上押货者是严，失箱责任仍待查。",
+      "after": "32章林亲见私推并先救人，33章只确认正式仓五箱、程记拒接和全赔争议；未在侧门交接现场。"
+    },
+    {
+      "sourceId": "story/relationships/rel_17",
+      "field": "stages[0].cost",
+      "before": "林有被骗的愤怒但不以暴力逼供。",
+      "after": "林仍承担自己救人离位的复核，不能把疑点写成已查清的私挪全貌或幕后定论。"
+    },
+    {
+      "sourceId": "story/relationships/rel_17",
+      "field": "stages[1].cause",
+      "before": "34严要求改称避浪、遭拒后反咬；常当面说明两次搬运。",
+      "after": "34严要求改称避浪、遭拒后反咬；常当面说明两次搬运。35章实际取得侧门册后才核对严的工牌与陆沉川姓名，仍不能由底册直接认定赃物内容和幕后。"
+    }
+  ],
+  "validation": {
+    "valid": true,
+    "issues": [],
+    "warnings": [
+      {
+        "path": "worldPack",
+        "message": "blocking unresolved questions remain"
+      },
+      {
+        "path": "storyBible",
+        "message": "blocking unresolved story questions remain"
+      }
+    ],
+    "blockers": [
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-power-opening",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-resource-definitions",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-travel-rules",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-tier-exceptions",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-resource-usage",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-first-volume-foundation",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-volume-timeline",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-artifact-continuity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-ending-cost",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-relationship-stages",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-knowledge-reveal-order",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-opening-growth",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-opening-quality",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-resource-growth-budget",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first-volume-blueprint",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-v1-outline-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-v23-macro",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-guard-return-chain",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-barge-inspection",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-second-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first50-narrative",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-message-arrivals",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-review-capacity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "baseline-content-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "opening-growth-repair",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "opening-quality-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "resource-growth-budget",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first-volume-blueprint",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "v1-outline-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "v23-macro",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "guard-return-chain",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "barge-inspection",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "second-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first50-narrative",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "message-arrivals",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "review-capacity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "convoy-custody-causality",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "north-coast-exit-permit",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "chapter25-claw-sequence",
+        "code": "BLOCKING_QUESTION"
+      }
+    ],
+    "formalAcceptance": false,
+    "productionWrites": false,
+    "limitation": "Checks API contracts and structural references only. Open blockers remain; this does not approve a plan, accept content quality, or certify an atomic save."
+  },
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "blockersClosed": 0,
+  "formalAcceptance": false,
+  "limitation": "Detached structural validation only. Inherits the previous artifact/control and message corrections; the new story/relationship edits need semantic review. All original reviews and live inputs remain unchanged. No approval or prose expansion."
+}
