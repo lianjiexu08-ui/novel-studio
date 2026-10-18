@@ -1,0 +1,37 @@
+{
+  "kind": "independent_candidate_review_explanation_clarification",
+  "candidatePath": "data/design-candidates/design76-followup-controls-v4.json",
+  "candidateSha256": "fa588e4f4bc003b00c0c42fe021cba7598ef9b4fb80385a51a0659d453e1e374",
+  "verificationPath": "docs/audits/2026-10-18-design76-followup-v4-review.json",
+  "verificationSha256": "984184761470029f79fbcef98b33a16d8eb620f12980d88518d8fed3f0907564",
+  "responsePath": "data/audit-runtimes/design76-followup-v4-review/model-calls/00002.response.json",
+  "responseSha256": "f6ce4524b69c5834879c25da57b16dab71431ba6ef0ddac8c3f6294a911e9898",
+  "area": "story",
+  "criterion": "causality",
+  "originalVerdict": "pass",
+  "claimQuote": "34章由被救押货者当面说明两次搬运",
+  "clarification": "两次搬运陈述的主体是常钧（char_20）；被救押货者是严涛（char_19），34章由严提出改称避浪的伪证条件，林拒绝。原候选把两人的动作分开，不能据模型解释将常的亲历陈述移给严。人物项和故事payoff项也将搬运陈述正确归给常；保留本次原始答复及此独立澄清。",
+  "evidence": [
+    {
+      "sourceId": "plan/chapters/34",
+      "quote": "218–219轻役交班后，严以灵石和被救之情求林改称私推为避浪，林退钱；严反咬后船主禁林私入备缆间。贺来查五名雇工，公开递单一次被拒，两人转向当舱名单上的常钧。"
+    },
+    {
+      "sourceId": "plan/chapters/34",
+      "quote": "常完整说明215按严口令暂存、记粉板，翌日字没；217搬重箱到侧门，听严报空却未阻。他未见擦字者、便条内容，也不知领取者姓名。"
+    },
+    {
+      "sourceId": "story/characters/char_19",
+      "quote": "第32章脚被箱夹住的普通押货者，无修行能力。严涛为作者侧人物姓名；林辰第32章只亲见其私推并救人，第33章尚未确认其姓名身份，第34章与这名被救押货者当面对话并拒绝伪证，第35章取得侧门底册后才核对严涛工牌。不得把旁白称“严”当作林已完成核名，底册也不证明私挪全貌、货物去向或幕后；第38—39章仍须当面对质与实物核验。"
+    },
+    {
+      "sourceId": "story/characters/char_20",
+      "quote": "{\"id\":\"char_20\",\"name\":\"常钧\",\"role\":\"stage\",\"goal\":\"保住水手工钱和上船资格，起初怕承认搬错地方，后决定如实说出自己受命搬箱的经过。\",\"identity\":\"同航次普通水手，215日按严涛的口头避浪指示将第六箱搬入备缆间，未参与船上御阵。\",\"locationId\":\"loc_21\",\"factionId\":\"fac_08\"}"
+    }
+  ],
+  "productionWrites": 0,
+  "modelCalls": 0,
+  "verdictChanges": 0,
+  "formalAcceptance": false,
+  "limitation": "Clarifies one reviewer paraphrase; does not change the candidate, erase the raw answer, or certify whole-book semantic quality."
+}
