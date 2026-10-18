@@ -1,0 +1,65 @@
+{
+  "kind": "design76_macro_review_preflight",
+  "verified": true,
+  "createdAt": "2026-10-18T10:45:53.743Z",
+  "control": "data/audit-runtimes/design76-macro-review",
+  "databaseSnapshotPath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design76-macro-review/baseline.db",
+  "predecessorCheckpointSha256": "c553d033a5ac23b6b7f83555fa09a08d94a59ca3eec200448a5891ec8657280a",
+  "predecessorVerificationSha256": "c2bf6678e1a4d87be0dfedb6db12d74965f1996e96f906e6c9ae69f93f2fb2f5",
+  "baselineSha256": "69e79d81b365e542395be1a2546d545ccb3a9fd835afe90011a361084ab5a66c",
+  "runnerSha256": "bcbc3995242f9257f8fc571bef14bd963075280a8a99a56cb8e433bb0df57741",
+  "hostHelperSha256": "883bb6ae052caec9fe5b0333f4ad0ea1d2d799d9616143079eab4ae531544178",
+  "runtimeBindingSha256": "57ed04d69863ffd20d8e6619002229eb9561c2b4aa4782fec124843bbc954f62",
+  "changedRuntimeFiles": [
+    "packages/planner/src/design-review-evidence.ts",
+    "packages/planner/src/index.ts",
+    "packages/planner/test/design-review.test.ts"
+  ],
+  "unchangedSchedulingAndPromptSuffix": true,
+  "changedRepairPrompt": true,
+  "plannerEpochs": [
+    {
+      "afterCall": 0,
+      "bindingPath": "data/audit-runtimes/design76-ui-runtime-v2-bound.json",
+      "bindingSha256": "ec9918d855f80b056351601f297fbbaadb4376ec94010cdb73d3aaa0f6fb58dd"
+    },
+    {
+      "afterCall": 37,
+      "bindingPath": "data/audit-runtimes/design76-citation-runtime-bound.json",
+      "bindingSha256": "e4acd580e352e5617cc588aaa3b34e86afe9a1457b57b3e60528011b4e005e97"
+    },
+    {
+      "afterCall": 39,
+      "bindingPath": "data/audit-runtimes/design76-citation-operations-runtime-bound.json",
+      "bindingSha256": "e7c8ea1854fcda1c44296b8854ea01af14bcda4d5bbf9f509b6d1c4fc02cae48"
+    },
+    {
+      "afterCall": 62,
+      "bindingPath": "data/audit-runtimes/design76-citation-capacity-runtime-bound.json",
+      "bindingSha256": "e978d7aab9f0e89c5839fdef6bbea07f910b37a5241d7fc6b9b6678a08d11cce"
+    },
+    {
+      "afterCall": 71,
+      "bindingPath": "data/audit-runtimes/design76-citation-unique-runtime-bound.json",
+      "bindingSha256": "6a935f07ca21e6ab65d869254be1ada6162085666a0fbcaef51ff1b1e3271504"
+    },
+    {
+      "afterCall": 76,
+      "bindingPath": "data/audit-runtimes/design76-macro-context-runtime-bound.json",
+      "bindingSha256": "57ed04d69863ffd20d8e6619002229eb9561c2b4aa4782fec124843bbc954f62"
+    }
+  ],
+  "shadowProofSha256": "4153f1de686c8cd9fe9201bad7d0be597abf8c8f05c288546e9aa5a055eeee88",
+  "prefixCalls": 76,
+  "runIds": [
+    "design_run_98b5460a-ed47-4ba2-bb06-7fdded1f910d",
+    "design_run_77e97b37-cbf2-40be-ab17-2de79839c297",
+    "design_run_aa04b61b-0b13-464a-9b21-9205a91600e2",
+    "design_run_f355dadb-f3ee-4b1b-8834-f17bf0f487dc"
+  ],
+  "annotationsPreserved": 11,
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Fresh frozen runtime diagnoses unavailable follow-up IDs alongside field conflicts and lists existing macro candidates for those chapter ranges, without changing verdict validation or adding retries. The new baseline includes eleven independent annotations. The detached repair and full tests passed; production continuation and complete content acceptance remain unproven."
+}
