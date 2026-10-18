@@ -1,0 +1,173 @@
+{
+  "kind": "design76_segment23_notes_private_rehearsal",
+  "verified": true,
+  "createdAt": "2026-10-18T16:20:49.264Z",
+  "runnerSha256": "d12281059b4b636a5a25f3d884846f7bf1493ede5b1e1843dd070863080f270e",
+  "preparedSha256": "109f8bbdf0a01f73c10af65f344f6d981a55867dfbbefb930f398121cae4d6b7",
+  "runtimeBindingSha256": "8a1875b686f31b79d32ca9c00fa4cfd65931a195ca0c6dfd8547ff2c0507b5e5",
+  "baseCheckpointSha256": "0a09c4a5c5e1102f199945495e7dc3b752efe773e8370de693ce0e0a83c47d25",
+  "database": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design76-notes23-rehearsal-2mA7Vi/private.db",
+  "control": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design76-notes23-rehearsal-2mA7Vi",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "notes": [
+    {
+      "requestKey": "design76-world-port-scope-cross24",
+      "runId": "design_run_98b5460a-ed47-4ba2-bb06-7fdded1f910d",
+      "stageId": "followup-cross-2-4/geography",
+      "criterion": "geography",
+      "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+      "expectedCheckHash": "86a2526d13d5e34414170456098756bc963b53e0f224200c7006fbc4b3a987d4",
+      "claimQuote": "第33—50章均限于赤霄天宝外港及其公共港区、潮沟和受护街段",
+      "explanation": "“均限于赤霄天宝外港”只能用来概括这段林辰的港区主线，不能覆盖所有人物和场景。第33章同时有苏凌霜在青玄的独立视角：212日古境外营销班，213—216日慢车返宗，216日19时抵太清外门，217日接押及交回损剑、领取普通备用铁剑。该章地点栏明确并列天宝外港与入口外营至太清外门的返宗支线；前者在赤霄，后者仍在青玄，不是两地瞬移或同一港区内行动。返宗过程与林的海程并行，林在41章实际收到信前不得知道返宗结果。原局部pass及cross-2-4/geography解决声明保留。本说明只缩小评语中的全称范围，不移动支线、不合并两地角色、不使消息即时送达，也不据此关闭全局设计问题。",
+      "evidence": [
+        {
+          "sourceId": "plan/chapters/33",
+          "quote": "loc_23天宝外港原船卸货区与侧门；插叙为loc_05入口外营至loc_29太清外门院"
+        },
+        {
+          "sourceId": "plan/chapters/33",
+          "quote": "第217日；插叙覆盖第212日至第216日的太清销班与四日慢车返宗"
+        },
+        {
+          "sourceId": "plan/chapters/33",
+          "quote": "213–216返宗以白天慢车行路、夜间停营执行，不连夜赶车"
+        },
+        {
+          "sourceId": "plan/chapters/33",
+          "quote": "苏于217日将损剑交外门器械房登记入库待处置，当面验领库内原有的一柄普通备用铁剑"
+        },
+        {
+          "sourceId": "plan/chapters/33",
+          "quote": "林41章收到信前不得知道其返宗结果。"
+        }
+      ],
+      "id": "review_note_6dcea5b1-d700-4a15-8c97-da9c88f38152",
+      "createdAt": "2026-10-18T16:20:27.324Z",
+      "scope": {
+        "worldPackRevision": 40,
+        "storyBibleRevision": 72,
+        "planRevisionId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+        "planRevision": 76
+      }
+    },
+    {
+      "requestKey": "design76-power-blade-vs-telekinesis",
+      "runId": "design_run_77e97b37-cbf2-40be-ab17-2de79839c297",
+      "stageId": "followup-cross-2-3/counters",
+      "criterion": "counters",
+      "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+      "expectedCheckHash": "47da68812f7f7c83645acd7ca3ec141f266b193bb0fe165f16f5240f9abd9260",
+      "claimQuote": "林辰的凝元剑诀只在已实测两丈内、可见且路径安全的普通吊索或轻销上使用，分别支付二成与半成真元",
+      "explanation": "这句把两个独立动作归到了同一个“凝元剑诀”主语下。25章剑诀仅放一道风刃切普通吊索，完整支付二成真元，随即停灌注、收起发热的剑。之后对八两无负载小销施一息御物，另付半成；这不是用风刃切销，也不是半成费用的剑诀或用热剑再施术。轻销仅锁空载拨片，废料斗靠既有机械与重力释放，不由御物承重。两次本章动作在8.5起点上分别扣2和0.5，余6成；21章旧御物费用已计入8.5起点，不再重扣。顾的0.25元载仍单独记账。原局部pass、23章补引修正和cross-2-3/counters解决声明保留。本说明只纠正术式分类与费用主语，不更换技能、不增减成本、不扩大主角对玄府的攻击能力，也不据此验收全局力量体系。",
+      "evidence": [
+        {
+          "sourceId": "plan/chapters/25",
+          "quote": "本式结束即停止灌注、收起热剑，之后拨插销用的是御物，不再以发热剑体施术。"
+        },
+        {
+          "sourceId": "plan/chapters/25",
+          "quote": "本场剑诀只放一道，完整二成不减。"
+        },
+        {
+          "sourceId": "plan/chapters/25",
+          "quote": "御动一息拨销，预付半成真元；小销只锁空载拨片"
+        },
+        {
+          "sourceId": "plan/chapters/25",
+          "quote": "林真元以8.5−2−0.5=6成承接，不重复扣21章成本；顾0.25元载属于顾，不记到林寿储。"
+        },
+        {
+          "sourceId": "plan/chapters/25",
+          "quote": "拨废料斗空载轻销另付半成，不御物托斗搬矿料。"
+        }
+      ],
+      "id": "review_note_fc19b870-c2f1-46f5-b0f1-bbfa963a79b0",
+      "createdAt": "2026-10-18T16:20:27.324Z",
+      "scope": {
+        "worldPackRevision": 40,
+        "storyBibleRevision": 72,
+        "planRevisionId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+        "planRevision": 76
+      }
+    },
+    {
+      "requestKey": "design76-power-failed-third-stone",
+      "runId": "design_run_77e97b37-cbf2-40be-ab17-2de79839c297",
+      "stageId": "followup-cross-2-5/tiers",
+      "criterion": "tiers",
+      "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+      "expectedCheckHash": "283211509db0640df01ae37d1a3f709e5ab1abea1118013dec38eab16e58d9b1",
+      "claimQuote": "第81—83章正安排六个有效周期、一次回流失败报废第七枚、停训复诊、静置与两项复核，再于415日支付十元载",
+      "explanation": "失败报废的是第3枚，不是第7枚。331–340及341–350用第1、2枚完成有效周期1、2；351开第3枚，354回流即停，该枚报废且该周期不计有效。复诊许可后，358–367、368–377、378–387、388–397依次用第4至第7枚完成有效周期3至6。总耗7枚来自6个有效周期加1次失败，不能把“额外耗一枚”写成“最后第7枚失败”。这些周期已在前一训练里程碑中安排；81–87的晋阶里程碑明确398–414只做静置、观察和空载复测，不新增训练周期，第83章承接415日双重复核后实际支付十元载，不在81–83章重做六周期。原局部pass及cross-2-5/tiers解决声明保留。本说明只纠正耗材序号和阶段概括，不新增耗材、训练回合或寿储支出，不把宏观方案当成已经完成的正文事件。",
+      "evidence": [
+        {
+          "sourceId": "plan/milestones/ms_v3_training",
+          "quote": "351开第三枚，354出现胸闷与回流立即停练，当日白榆检查并停训，第三枚报废不退、该周期不计有效"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_training",
+          "quote": "358–367有效3、368–377有效4、378–387有效5、388–397有效6，分别开第四至七枚。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_training",
+          "quote": "六个有效周期60日，加失败4日，实耗七枚"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_advancement",
+          "quote": "第398–414日只做六周期后的静置、丹府稳定观察和普通木柄空载复测，不新增训练周期"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_advancement",
+          "quote": "第83章林在顾监督下完成突破并实际支付。"
+        }
+      ],
+      "id": "review_note_50a846d3-2f4a-4b63-8b6d-485cb5e147a5",
+      "createdAt": "2026-10-18T16:20:27.324Z",
+      "scope": {
+        "worldPackRevision": 40,
+        "storyBibleRevision": 72,
+        "planRevisionId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+        "planRevision": 76
+      }
+    }
+  ],
+  "preservedWorkFieldDigests": {
+    "activePlanId": "a79cacee9517456fb5abae34e3592ad141a8d092b6782979cdb0aa1996029412",
+    "briefs": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "candidates": "db801c927d61955caf1e94c196129e7ca7a4557cbae7f7f93b7977d2e6ffb6a2",
+    "characters": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "checkpoints": "9360443cd3329deca750224d5f41fd8b848cc87483d84e5d59d8bf1fa6f89d31",
+    "constraintRevision": "2ba40268aee5b9944cab5a75508ee699e24bab77b02d3ae0835f176e37868f03",
+    "covenant": "7b09efc6b0d1edd79e40db6d143a177956b28b40ee5070d303574df8d73121f8",
+    "covenantHistory": "ef48b60cd983a0f4b34cbe25bf37e751eb58681b943b6b8369fdcd5fca1ec745",
+    "designContentReviews": "8b8ab9639e03bd0055431c0e710bacf9dbac0d268f27578ddcb0bfc13e0aed8d",
+    "designHistory": "f2347b762def7bec1232ebed9113bcc4fb424df8b0f09e37b74bcef254165a1b",
+    "designReviewRuns": "fc40cfd5ac28087c75bfbec7afa6d6123c6f4becd49663474041494281c4db4b",
+    "events": "69a4c30b560af422264c89ba8cce8c658bf3d137ec8bcdae5f7025cdc4622590",
+    "id": "e6c77c6af51347285f913e10c068833e392333610313a73f42ae654dbeeebb0b",
+    "impacts": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "manuscripts": "3f9dd7880a530d9eb7ccf9113b140958fe9e182f63c9f706f9c55ceb5c46ffc9",
+    "plans": "6afb21f18712fce391f7c0c715b9791eb95f922a669d1cc1a96b2677e905b396",
+    "plotNodes": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "relationships": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "stateRevision": "16dc368a89b428b2485484313ba67a3912ca03f2b2b42429174a4f8b3dc84e44",
+    "states": "71af6764cda2e591af608654aa65a05f8b25e4e8f9871c746de158a77a0618fc",
+    "storyBible": "ae92c644e55aa89fd87920f431acdb817e50351843daddd6cb65d8508350ef02",
+    "title": "9a392c9dee167243ad8ace1e37c8c750c798509925344a9b052ce05cbb6a54b2",
+    "versions": "ab09691b6b0882a4fa32a704a65a61930f961a7d3e35aa52d872fc017e048fb1",
+    "worldPack": "c2c2dd54716be54571a024440590ebbb8c47b55eb37f2b490bfaf24c5bf6be6d",
+    "worldRules": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "oldRunsPreserved": 99,
+  "oldReportsPreserved": 92,
+  "oldAnnotationsPreserved": 26,
+  "annotationsAdded": 3,
+  "restartReadback": true,
+  "rollbackExercised": true,
+  "idempotenceExercised": true,
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "verdictChanges": 0,
+  "questionsResolved": 0,
+  "formalAcceptance": false
+}
