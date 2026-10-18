@@ -181,7 +181,7 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
         <Typography.Paragraph>{check.explanation}</Typography.Paragraph>
         {check.insufficiencyReason && <Typography.Paragraph type="secondary">不足原因：{insufficiencyReasons[check.insufficiencyReason]}。仍需补充或独立复核，不代表通过。</Typography.Paragraph>}
         {check.awaitingSources && <Typography.Paragraph>待核来源：{check.awaitingSources.join('、')}。其他批次须读取原文并明确复核，目录存在不等于通过。</Typography.Paragraph>}
-        {check.resolves && <Typography.Paragraph>本批依据原文解决的补读项：{check.resolves.join('、')}</Typography.Paragraph>}
+        {check.resolves && <Typography.Paragraph>本批依据原文解决的原问题：{check.resolves.join('、')}</Typography.Paragraph>}
         {check.revisionAdvice && <Typography.Paragraph><strong>{check.verdict === 'pass' ? '模型后续建议（待核对）：' : '模型返修建议（待核对）：'}</strong>{check.revisionAdvice}</Typography.Paragraph>}
         {check.evidence.length > 0 && <Collapse size="small" items={[{
           key: 'evidence', label: `${criteria[check.criterion] ?? check.criterion}的原文证据（${check.evidence.length} 条）`,
@@ -267,7 +267,7 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
         {stageDetail.stage.result && details({ ...stageDetail.stage.result, sources: stageDetail.input.sources, scope: stageDetail.input.scope })}
         <Collapse style={{ width: '100%' }} items={[
           { key: 'frozen-annotations', label: `本次评审携带的核对说明（${stageDetail.input.annotationContext?.notes.length ?? 0} 条）`, children: <Space direction="vertical" style={{ width: '100%' }}>
-            <Typography.Paragraph type="secondary">说明在任务创建时固定，继续或重试不会追加后来记录。说明是待核实的编辑意见，模型仍须核对本步原文；它不能替代证据、消除返修或批准写作。要纳入后来记录，需另建评审任务。</Typography.Paragraph>
+            <Typography.Paragraph type="secondary">说明在任务创建时固定，继续或重试不会追加后来记录。说明是待核实的编辑意见，模型仍须核对本步原文；它不能替代证据、消除返修或批准写作。后来的核对记录可为原文返修提交单独的正式复核；原步骤中的说明快照仍保留。</Typography.Paragraph>
             {stageDetail.input.annotationContext?.notes.map(note => <div key={note.id} style={{ width: '100%', overflowWrap: 'anywhere' }}>
               <Button type="link" size="small" onClick={() => void showStage(note.runId, note.stageId)}>查看原批次：{note.stageId} · {note.criterion}</Button>
               <Typography.Paragraph>{note.claimField === 'revisionAdvice' ? '原返修建议：' : '原评语：'}{note.claimQuote}</Typography.Paragraph>

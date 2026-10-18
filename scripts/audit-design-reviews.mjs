@@ -3,16 +3,33 @@ import { writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual, parseArgs } from 'node:util';
-import { acceptDesignReviewStage, completeDesignReviewRun, createDesignReviewRun, designReviewStageInput } from '../novel-service-core/src/design-review-run.ts';
+import { queueDesignReviewReconsideration, acceptDesignReviewStage, completeDesignReviewRun, createDesignReviewRun, designReviewStageInput } from '../novel-service-core/src/design-review-run.ts';
 import { designReviewInput, designReviewOverview } from '../novel-service-core/src/design-review.ts';
 import { JsonDesignPlanner } from '../packages/planner/src/index.ts';
 
 const hash = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 // Persistence omits undefined optional fields; compare their JSON meaning.
 const canonical = value => JSON.parse(JSON.stringify(value));
-const reviewRuntime = { createDesignReviewRun, acceptDesignReviewStage, designReviewStageInput, JsonDesignPlanner };
+const reviewRuntime = { queueDesignReviewReconsideration, createDesignReviewRun, acceptDesignReviewStage, designReviewStageInput, JsonDesignPlanner };
 function same(actual, expected, message) {
   if (!isDeepStrictEqual(canonical(actual), canonical(expected))) throw new Error(message);
+}
+
+function reconsiderationReplay(run, rebuilt, runtime) {
+  rebuilt.id = run.id;
+  let index = 0;
+  return {
+    after(stageId) {
+      const binding = run.reconsiderations?.[index];
+      if (!binding || binding.afterStageId !== stageId) return;
+      if (binding.version !== 1 || !runtime.queueDesignReviewReconsideration) throw new Error('Unsupported formal reconsideration binding');
+      runtime.queueDesignReviewReconsideration(rebuilt, binding.annotation, binding.additionalSourceIds, binding.createdAt);
+      index++;
+    },
+    finish() {
+      if (index !== (run.reconsiderations?.length ?? 0)) throw new Error('Formal reconsideration insertion boundary differs from the saved prefix');
+    },
+  };
 }
 
 /** Validate saved progress against independently supplied design materials.
@@ -25,8 +42,9 @@ export function auditDesignReviewPrefix(run, expectedInput, runtime = reviewRunt
   }
   const before = hash(run);
   const rebuilt = runtime.createDesignReviewRun(expectedInput, run.createdAt, run.scheduleVersion ?? 1);
+  const reconsiderations = reconsiderationReplay(run, rebuilt, runtime);
   same(run.units, rebuilt.units, 'Saved progress has different original byte ranges');
-  const stagePlan = ({ id, kind, unitIds, children, followupFor }) => ({ id, kind, unitIds, children, ...(followupFor ? { followupFor } : {}) });
+  const stagePlan = ({ id, kind, unitIds, children, followupFor, reconsiderationFor }) => ({ id, kind, unitIds, children, ...(followupFor ? { followupFor } : {}), ...(reconsiderationFor ? { reconsiderationFor } : {}) });
   let pending = false, completedStages = 0;
   for (const [index, stored] of run.stages.entries()) {
     if (!stored.result) { pending = true; continue; }
@@ -35,8 +53,10 @@ export function auditDesignReviewPrefix(run, expectedInput, runtime = reviewRunt
     if (!expected) throw new Error('Saved progress contains an unexpected completed stage');
     same(stagePlan(stored), stagePlan(expected), 'Saved progress differs from the canonical review schedule');
     runtime.acceptDesignReviewStage(rebuilt, expected, stored.result);
+    reconsiderations.after(stored.id);
     completedStages++;
   }
+  reconsiderations.finish();
   // Accepting the final raw batch may add required followups and rebuild the
   // synthesis tree. Compare that derived tail too, even before it is executed.
   same(run.stages.map(stagePlan), rebuilt.stages.map(stagePlan), 'Saved pending stages differ from the reconstructed review schedule');
@@ -52,6 +72,7 @@ export function auditDesignReviewPrefix(run, expectedInput, runtime = reviewRunt
 export async function replayDesignReviewPrefix(run, expectedInput, runtime = reviewRuntime) {
   const prefix = auditDesignReviewPrefix(run, expectedInput, runtime), before = hash(run);
   const rebuilt = runtime.createDesignReviewRun(expectedInput, run.createdAt, run.scheduleVersion ?? 1);
+  const reconsiderations = reconsiderationReplay(run, rebuilt, runtime);
   const records = [];
   for (const stage of run.stages) {
     if (!stage.result) break;
@@ -72,10 +93,12 @@ export async function replayDesignReviewPrefix(run, expectedInput, runtime = rev
     same(modelResponses, stage.modelResponses, 'Replay changed the original response sequence');
     same(result, stage.result, 'Saved conclusions differ from original model responses');
     runtime.acceptDesignReviewStage(rebuilt, next, result);
+    reconsiderations.after(stage.id);
     records.push({ stageId: stage.id, kind: stage.kind, stageSha256: hash(stage), inputSha256: hash(input),
       responsesReplayed: calls, checks: result.checks.map(({ criterion, verdict, awaitingSources, resolves }) =>
         ({ criterion, verdict, ...(awaitingSources ? { awaitingSources } : {}), ...(resolves ? { resolves } : {}) })) });
   }
+  reconsiderations.finish();
   if (hash(run) !== before) throw new Error('Response replay changed the original run');
   return { ...prefix, responseReplay: 'verified', responsesReplayed: records.reduce((sum, r) => sum + r.responsesReplayed, 0), records,
     failures: run.stages.flatMap(stage => (stage.failures ?? []).map(failure => ({ stageId: stage.id, failureSha256: hash(failure) }))),

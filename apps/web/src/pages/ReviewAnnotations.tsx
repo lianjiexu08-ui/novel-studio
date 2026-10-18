@@ -19,6 +19,7 @@ export function ReviewAnnotations({ workId, runId, stageId, onSource, onStage, o
   const [loading, setLoading] = useState(true);
   const [checkedAt, setCheckedAt] = useState('');
   const sourceRequest = useRef(0);
+  const queueRequest = useRef(0);
   useEffect(() => {
     let cancelled = false;
     setLoading(true);
@@ -33,7 +34,7 @@ export function ReviewAnnotations({ workId, runId, stageId, onSource, onStage, o
   // Do not display another run's notes while the new request is in flight.
   useEffect(() => {
     setReviewState(undefined); setQueueError(''); setQueuing(undefined); setNotes(undefined); setError(''); setSourceError(''); setCheckedAt('');
-    return () => { sourceRequest.current++; };
+    return () => { sourceRequest.current++; queueRequest.current++; };
   }, [workId, runId, stageId]);
   async function showSource(note: DesignReviewAnnotationDto, sourceId: string) {
     const request = ++sourceRequest.current;
@@ -46,14 +47,14 @@ export function ReviewAnnotations({ workId, runId, stageId, onSource, onStage, o
     } catch (cause) { if (request === sourceRequest.current) setSourceError(cause instanceof Error ? cause.message : String(cause)); }
   }
   async function queue(note: DesignReviewAnnotationDto) {
-    const request = ++sourceRequest.current;
+    const request = ++queueRequest.current;
     setQueuing(note.id); setQueueError('');
     try {
       await api.reconsiderDesignReview(workId, runId, note.id, note.expectedInputHash);
-      if (request !== sourceRequest.current) return;
+      if (request !== queueRequest.current) return;
       setAttempt(value => value + 1); onQueued?.();
-    } catch (cause) { if (request === sourceRequest.current) setQueueError(cause instanceof Error ? cause.message : String(cause)); }
-    finally { if (request === sourceRequest.current) setQueuing(undefined); }
+    } catch (cause) { if (request === queueRequest.current) setQueueError(cause instanceof Error ? cause.message : String(cause)); }
+    finally { if (request === queueRequest.current) setQueuing(undefined); }
   }
   return <>
     <Space wrap>

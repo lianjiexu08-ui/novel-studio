@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { Work } from '../novel-service-core/src/core.ts';
 import { createPlanRevision } from '../novel-service-core/src/planning.ts';
-import { createDesignReviewRun, acceptDesignReviewStage, designReviewStageInput, completeDesignReviewRun } from '../novel-service-core/src/design-review-run.ts';
+import { queueDesignReviewReconsideration, createDesignReviewRun, acceptDesignReviewStage, designReviewStageInput, completeDesignReviewRun } from '../novel-service-core/src/design-review-run.ts';
 import { designReviewAreas, designReviewInput, recordDesignReview } from '../novel-service-core/src/design-review.ts';
 import { minimalWorldPack, minimalStoryBible, minimalPlan, fixtureDesignReview } from '../packages/application/test/fixtures.ts';
 import { auditDesignReviews, auditDesignReviewPrefix, replayDesignReviewPrefix, replayDesignReviewRecord } from './audit-design-reviews.mjs';
@@ -257,4 +257,33 @@ test('requires an explicit existing, reviewable plan', () => {
   assert.throws(() => auditDesignReviews(f.work, 'missing'), /does not exist/);
   f.work.plans.get(f.planId).status = 'superseded';
   assert.throws(() => audit(f), /cannot be reviewed/);
+});
+
+
+test('offline prefix replay reconstructs the explicit formal-recheck boundary and retains original responses', async () => {
+  const { run, input } = await responseFixture();
+  // This fixture needs an unattempted tail; its synthetic interrupted tail is
+  // covered separately above and is not part of this insertion scenario.
+  delete run.stages[1].failures;
+  const original = run.stages[0], check = original.result.checks[0];
+  const note = { id: 'audit-recheck-note', requestKey: 'audit-recheck', runId: run.id, stageId: original.id,
+    criterion: check.criterion, expectedInputHash: run.input.inputHash,
+    expectedCheckHash: (await import('node:crypto')).createHash('sha256').update(JSON.stringify(check)).digest('hex'),
+    claimQuote: check.explanation.slice(0, 8), explanation: '请根据完整来源复核。',
+    evidence: [{ sourceId: 'test/c', quote: input.sources.find(source => source.id === 'test/c').text.slice(0, 40) }],
+    scope: run.input.scope, createdAt: new Date().toISOString() };
+  const stage = queueDesignReviewReconsideration(run, note);
+  const queued = await replayDesignReviewPrefix(run, input);
+  assert.equal(queued.completedStages, 1);
+  const staged = designReviewStageInput(run, stage), prepared = prepareDesignReviewEvidence(staged);
+  const output = { requestId: prepared.requestId, summary: '定向复核测试', checks: [{ criterion: check.criterion,
+    verdict: 'pass', explanation: '重新读取完整原文后解决原问题。', revisionAdvice: '', resolves: [stage.reconsiderationFor],
+    evidence: prepared.citationRequirements.sources.map(source => ({ fragmentId: source.units[0].fragmentIds[0] })) }] };
+  const { modelResponses, ...result } = await new JsonDesignPlanner({ complete: async () => JSON.stringify(output) }).reviewDesignContent(staged);
+  acceptDesignReviewStage(run, stage, result); stage.modelResponses = modelResponses;
+  const before = JSON.stringify(run), replay = await replayDesignReviewPrefix(run, input);
+  assert.equal(replay.completedStages, 2); assert.equal(replay.responsesReplayed, 3);
+  assert.equal(replay.modelCalls, 0); assert.equal(JSON.stringify(run), before);
+  const changed = structuredClone(run); changed.reconsiderations[0].afterStageId = 'unknown';
+  await assert.rejects(() => replayDesignReviewPrefix(changed, input), /schedule|boundary/);
 });
