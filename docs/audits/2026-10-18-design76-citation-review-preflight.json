@@ -1,0 +1,33 @@
+{
+  "kind": "design76_citation_review_preflight",
+  "verified": true,
+  "createdAt": "2026-10-18T07:36:52.938Z",
+  "control": "data/audit-runtimes/design76-citation-review",
+  "databaseSnapshotPath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design76-citation-review/baseline.db",
+  "predecessorCheckpointSha256": "1223d25d1bacaa24d1f68972a682513227fbd38729c0433fd1c5db59fa64e5c2",
+  "predecessorVerificationSha256": "68cabaaaed6ed44feba45e47a3b5fb1efad2897a4b26ae5918045c9b79e28a67",
+  "baselineSha256": "03371c3e2722fb91b5ec8b2372af5e5f50c0550536855ca81067065566a98b8a",
+  "runnerSha256": "bf0af824d5cef4556c0091d598d49e9fe83e2e7fd0a358d71551e4a33c11c6ce",
+  "hostHelperSha256": "883bb6ae052caec9fe5b0333f4ad0ea1d2d799d9616143079eab4ae531544178",
+  "runtimeBindingSha256": "e4acd580e352e5617cc588aaa3b34e86afe9a1457b57b3e60528011b4e005e97",
+  "changedRuntimeFiles": [
+    "packages/planner/src/design-review-evidence.ts",
+    "packages/planner/src/index.ts",
+    "packages/planner/test/design-review.test.ts"
+  ],
+  "unchangedSchedulingAndPromptSuffix": true,
+  "changedRepairPrompt": true,
+  "shadowProofSha256": "8cc4792bf87ce2affbfdc98767a8594f13ab6a931f882e59c2116b583a3bbeeb",
+  "prefixCalls": 37,
+  "runIds": [
+    "design_run_98b5460a-ed47-4ba2-bb06-7fdded1f910d",
+    "design_run_77e97b37-cbf2-40be-ab17-2de79839c297",
+    "design_run_aa04b61b-0b13-464a-9b21-9205a91600e2",
+    "design_run_f355dadb-f3ee-4b1b-8834-f17bf0f487dc"
+  ],
+  "annotationsPreserved": 1,
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Fresh frozen planner changes corrective citation guidance only. The detached repair and full tests passed; production continuation and complete content acceptance remain unproven."
+}
