@@ -1,0 +1,181 @@
+{
+  "kind": "independent_narrow_account_crosscheck",
+  "observedAt": "2026-10-18T08:17:29.744Z",
+  "inputPath": "data/audit-runtimes/design76-citation-edits-review/inputs.json",
+  "inputsSha256": "fc94bb269625716ca4114f9c882de726f23cdec4ded63daccf94089749a9c6f5",
+  "inputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+  "modelCall": 44,
+  "modelResponsePath": "data/audit-runtimes/design76-citation-edits-review/model-calls/00044.response.json",
+  "modelResponseSha256": "e5ba8d6a9fe6f672b1215ddcd9d6e0b59af0aab4c9ac237caa5db4097de4a56a",
+  "originalVerdicts": [
+    {
+      "criterion": "tiers",
+      "verdict": "pass"
+    },
+    {
+      "criterion": "costs",
+      "verdict": "insufficient",
+      "awaitingSources": [
+        "plan/chapters/13",
+        "plan/chapters/18",
+        "plan/chapters/19",
+        "plan/chapters/21",
+        "plan/chapters/23"
+      ]
+    },
+    {
+      "criterion": "counters",
+      "verdict": "insufficient",
+      "awaitingSources": [
+        "plan/chapters/18",
+        "plan/chapters/21",
+        "plan/chapters/23"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "plan/chapters/13",
+      "sha256": "dd5d981045707eb0b114c16afc60f3e8a2c9ebf55e8875e052397414cadc83fe"
+    },
+    {
+      "id": "plan/chapters/18",
+      "sha256": "475e99b4704261d8ddcadde06cb9f4007797ab852b8b410b4e9c6a561c61d1aa"
+    },
+    {
+      "id": "plan/chapters/19",
+      "sha256": "ca9f49ab6ce9184db3814821b5a7fb0f160a76d76a7452f955750172d24a562c"
+    },
+    {
+      "id": "plan/chapters/20",
+      "sha256": "985f0e3f50045287452bdeab6f2b92402608300dee63698cafcd1f6822df714d"
+    },
+    {
+      "id": "plan/chapters/21",
+      "sha256": "74f5864eaeef282817d6442f441f60623d51f02d67f4dab7558779e567a55d8e"
+    },
+    {
+      "id": "plan/chapters/23",
+      "sha256": "b38d593f3b2f480910f542ff8309fc24b8b033081124368f9487caa3e5a0050b"
+    },
+    {
+      "id": "plan/chapters/24",
+      "sha256": "4dd029609df76acf64dfa1a4fbb5cee604860e8dbf0011eb5420ee5fcac32c0b"
+    },
+    {
+      "id": "plan/chapters/25",
+      "sha256": "3d80bc32c48a57da2cfabc0edf942628eb583ea0577a76c94e3f359b44d35c80"
+    }
+  ],
+  "equations": [
+    {
+      "owner": "林辰",
+      "account": "真元（健康上限的成数）",
+      "sources": [
+        18
+      ],
+      "expression": "0 + 3 + 3 + 4",
+      "actual": 10,
+      "expected": 10,
+      "note": "176日终段训练按零起算，177—179日恢复增量。"
+    },
+    {
+      "owner": "林辰",
+      "account": "真元（成）",
+      "sources": [
+        18
+      ],
+      "expression": "10 - 0.5 + 0.5",
+      "actual": 10,
+      "expected": 10,
+      "note": "180日实测支出与当晚复测恢复；181—183日无额外施术或恢复收入。"
+    },
+    {
+      "owner": "林辰",
+      "account": "真元（成）",
+      "sources": [
+        20
+      ],
+      "expression": "10 - 2 - 0.5 + 1.5",
+      "actual": 9,
+      "expected": 9,
+      "note": "184日风刃、试注与实际吐纳；不能漏掉试注费用。"
+    },
+    {
+      "owner": "林辰",
+      "account": "真元（成）",
+      "sources": [
+        21
+      ],
+      "expression": "9 - 0.5",
+      "actual": 8.5,
+      "expected": 8.5,
+      "note": "前哨救秦的防脱钩，不能在25章重复扣这一动作。"
+    },
+    {
+      "owner": "林辰",
+      "account": "真元（成）",
+      "sources": [
+        21,
+        25
+      ],
+      "expression": "8.5 - 2 - 0.5",
+      "actual": 6,
+      "expected": 6,
+      "note": "25章风刃与另一个废料斗插销；伤后可用上限同为六成，仍停止施术。"
+    },
+    {
+      "owner": "林辰",
+      "account": "寿储（元载）",
+      "sources": [
+        13,
+        18,
+        25
+      ],
+      "expression": "7 - 3 - (188 - 19) / 365",
+      "actual": 3.536986301369863,
+      "expected": 3.536986301369863,
+      "note": "仅在无新增寿储耗损条件下的诊察保守下界；腿伤后仍须复查，不是自动医疗许可。"
+    },
+    {
+      "owner": "墨幽屠",
+      "account": "元罡保守下界（成）",
+      "sources": [
+        23
+      ],
+      "expression": "8 - 1 - 2",
+      "actual": 5,
+      "expected": 5,
+      "note": "187日一息血爪与推劲；放血不返还法力。"
+    },
+    {
+      "owner": "墨幽屠",
+      "account": "元罡保守下界（成）",
+      "sources": [
+        23,
+        25
+      ],
+      "expression": "5 - 1 - 1",
+      "actual": 3,
+      "expected": 3,
+      "note": "188日连续两息血爪，不计未写出的恢复；被擒来自伤损、失稳和具体交锋，不是余额归零。"
+    },
+    {
+      "owner": "顾峤",
+      "account": "元罡（成）",
+      "sources": [
+        25
+      ],
+      "expression": "10 - 2 - 3 - 2",
+      "actual": 3,
+      "expected": 3,
+      "note": "护罡、真光、推劲依次扣除；另付顾本人0.25元载，不得扣到林辰寿储。本项只验证章内算术，未证明顾的入场十成和寿储前置。"
+    }
+  ],
+  "checkedEquations": 9,
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "blockersClosed": 0,
+  "formalAcceptance": false,
+  "limitation": "Manual source comparison plus arithmetic verification only. Does not resolve the formal insufficient checks, establish every initial resource balance, audit all training/counter conditions, or approve prose. Formal model review must still co-read the requested originals and retain its actual result."
+}
