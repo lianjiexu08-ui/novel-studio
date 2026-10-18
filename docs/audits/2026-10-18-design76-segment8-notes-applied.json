@@ -1,0 +1,301 @@
+{
+  "kind": "design76_segment8_notes_appended",
+  "verified": true,
+  "createdAt": "2026-10-18T09:21:51.016Z",
+  "runnerSha256": "e7fcb6a0987395a292be6cd0468a6283b56860f32dba60349db351d6eeac5cfb",
+  "preparedSha256": "d640b939d9b8e6c13726961e60e637df1e3f864b00f1e5d08b923ce1b168a5a8",
+  "runtimeBindingSha256": "0032489173afa75b1af5547023a2ad2c4bf51fe48f14080b52b2c3063117f9ec",
+  "baseCheckpointSha256": "260062a62f36a98c13a27ad003d176d45ab4f40dab036d650d4876d6e96a80cc",
+  "database": "/Users/lianjie/Documents/ChatGPT/novel/data/novel-studio.db",
+  "control": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design76-notes8-apply-R3vjNm",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "notes": [
+    {
+      "requestKey": "design76-characters-cross14-lu-elder-action",
+      "runId": "design_run_aa04b61b-0b13-464a-9b21-9205a91600e2",
+      "stageId": "cross-1-4",
+      "criterion": "agency",
+      "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+      "expectedCheckHash": "50944ba239d0a0db67a036d0620ffc67f273a50f0917132c31fdc03479d3af8e",
+      "claimQuote": "陆沉川在弟弟拒绝离港后选择协助辨门",
+      "explanation": "此处行为主体误写。陆沉舟（char_16）是哥哥，陆沉川（char_21）是弟弟。第49章由弟弟陆沉川拒绝随哥哥离港，哥哥陆沉舟随后接受看护、交出亲走入口并提出次晨辨门。应将本句主体纠正为陆沉舟，不能据此给陆沉川新增弟弟或移交哥哥的押送/带路经历。相邻relationships解释的“陆沉川可提供指路”也不得用于把本次哥哥交出的路线归给弟弟。两人既有身份、责任和原章节均保持原样；保存模型原话和局部判定，本核对不证明其余人物关系已通过，不关闭阻塞或批准正文。",
+      "evidence": [
+        {
+          "sourceId": "story/characters/char_16",
+          "quote": "\"name\": \"陆沉舟\""
+        },
+        {
+          "sourceId": "story/characters/char_16",
+          "quote": "保护已获救的弟弟免受程记报复"
+        },
+        {
+          "sourceId": "story/characters/char_21",
+          "quote": "\"name\": \"陆沉川\""
+        },
+        {
+          "sourceId": "story/characters/char_21",
+          "quote": "陆沉舟的弟弟，程记普通药栈伙计"
+        },
+        {
+          "sourceId": "plan/chapters/49",
+          "quote": "沉川主动交条、当面拒绝离港并说出亲见；陆走入有巡员的岗房，接受看护，再把亲走入口交出。"
+        }
+      ],
+      "id": "review_note_78ce6231-4a2a-4e1c-8075-67c7bf71d5ef",
+      "createdAt": "2026-10-18T09:21:41.125Z",
+      "scope": {
+        "worldPackRevision": 40,
+        "storyBibleRevision": 72,
+        "planRevisionId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+        "planRevision": 76
+      }
+    },
+    {
+      "requestKey": "design76-story-cross15-lu-elder-causality",
+      "runId": "design_run_f355dadb-f3ee-4b1b-8834-f17bf0f487dc",
+      "stageId": "cross-1-5",
+      "criterion": "causality",
+      "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+      "expectedCheckHash": "494e9bcd3fb5b87b85eb6806bc4d62af1bad1c785bee77fc0b00184266a3c717",
+      "claimQuote": "第48—50章再由陆沉川指路",
+      "explanation": "原文的带路、停止协助扣人、承认本次押送及后来完整改签自述均属于哥哥陆沉舟（char_16），不能归给弟弟陆沉川（char_21）。第49章弟弟拒绝离港并说明亲见哥哥收钱签字，哥哥随后交出亲走入口；第50章角色列表包含char_16而没有char_21，实际由陆沉舟当面承认点交押送。陆沉川对自己领箱及有限见闻负责，未因同姓成为押运头目。原请求的人物表、章节出场编号及原文均已提供且一致；此处是模型解释混淆，不据此更改正确的设计。保留原答案与局部判定，本澄清不关闭设计阻塞或批准正文。",
+      "evidence": [
+        {
+          "sourceId": "story/characters/char_16",
+          "quote": "\"name\": \"陆沉舟\""
+        },
+        {
+          "sourceId": "story/characters/char_16",
+          "quote": "程记药栈凝元押运头目，曾任大乾军需船校尉；亲自参与过改签，弟弟亦为押货伙计。"
+        },
+        {
+          "sourceId": "story/characters/char_21",
+          "quote": "陆沉舟的弟弟，程记普通药栈伙计"
+        },
+        {
+          "sourceId": "plan/chapters/49",
+          "quote": "沉川主动交条、当面拒绝离港并说出亲见；陆走入有巡员的岗房，接受看护，再把亲走入口交出。"
+        },
+        {
+          "sourceId": "plan/chapters/50",
+          "quote": "陆当面承认本次点交押送，继续受看护，尚未写出完整改签自述。"
+        }
+      ],
+      "id": "review_note_c5da160d-3839-4314-8c4a-b79f024a9a2e",
+      "createdAt": "2026-10-18T09:21:41.126Z",
+      "scope": {
+        "worldPackRevision": 40,
+        "storyBibleRevision": 72,
+        "planRevisionId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+        "planRevision": 76
+      }
+    },
+    {
+      "requestKey": "design76-story-cross15-lu-elder-payoff",
+      "runId": "design_run_f355dadb-f3ee-4b1b-8834-f17bf0f487dc",
+      "stageId": "cross-1-5",
+      "criterion": "payoff",
+      "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+      "expectedCheckHash": "3ddd082bbbbc7045558ba7372026fae816d52dc4f84019450356a404107f9c20",
+      "claimQuote": "陆沉川承认本次点交押送",
+      "explanation": "原文的带路、停止协助扣人、承认本次押送及后来完整改签自述均属于哥哥陆沉舟（char_16），不能归给弟弟陆沉川（char_21）。第49章弟弟拒绝离港并说明亲见哥哥收钱签字，哥哥随后交出亲走入口；第50章角色列表包含char_16而没有char_21，实际由陆沉舟当面承认点交押送。陆沉川对自己领箱及有限见闻负责，未因同姓成为押运头目。原请求的人物表、章节出场编号及原文均已提供且一致；此处是模型解释混淆，不据此更改正确的设计。保留原答案与局部判定，本澄清不关闭设计阻塞或批准正文。",
+      "evidence": [
+        {
+          "sourceId": "story/characters/char_16",
+          "quote": "\"name\": \"陆沉舟\""
+        },
+        {
+          "sourceId": "story/characters/char_16",
+          "quote": "程记药栈凝元押运头目，曾任大乾军需船校尉；亲自参与过改签，弟弟亦为押货伙计。"
+        },
+        {
+          "sourceId": "story/characters/char_21",
+          "quote": "陆沉舟的弟弟，程记普通药栈伙计"
+        },
+        {
+          "sourceId": "plan/chapters/49",
+          "quote": "沉川主动交条、当面拒绝离港并说出亲见；陆走入有巡员的岗房，接受看护，再把亲走入口交出。"
+        },
+        {
+          "sourceId": "plan/chapters/50",
+          "quote": "陆当面承认本次点交押送，继续受看护，尚未写出完整改签自述。"
+        }
+      ],
+      "id": "review_note_adf3fdb5-7670-428d-a51e-e51585a1f0d5",
+      "createdAt": "2026-10-18T09:21:41.126Z",
+      "scope": {
+        "worldPackRevision": 40,
+        "storyBibleRevision": 72,
+        "planRevisionId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+        "planRevision": 76
+      }
+    },
+    {
+      "requestKey": "design76-world-cross16-arrival-versus-meeting",
+      "runId": "design_run_98b5460a-ed47-4ba2-bb06-7fdded1f910d",
+      "stageId": "cross-1-6",
+      "criterion": "geography",
+      "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+      "expectedCheckHash": "545059819e022ac00af670ba32458455078af28d2c99a5a28fa9485f3b207ca4",
+      "claimQuote": "林贺在第285日抵达葬骨外港",
+      "explanation": "此句把抵港与会面日期混为一谈。林辰、贺青梧按ms_v2_voyage于276日暮出航、281日暮抵葬骨外港，先进入受监管候查暖房；285日是夜凝霜抵港会面并提供限程查货担保，291日才实施救援。第57次首答已正确写281日暮，第58次补引文时把林贺抵港误改成285日。同次原材料明确区分三者，不能据这句解释延长原五昼夜航程或覆盖281—285日的防寒、候查和费用。保留原答和局部判定，正确设计不随误读改动；本澄清不关闭阻塞，也不证明其他地理安排已验收。",
+      "evidence": [
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "quote": "276日暮离港、281日暮抵葬骨外港，五昼夜完整航程。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "quote": "查验与防寒分别成立，符不能替代285日才获的查货担保。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_boundary",
+          "quote": "第64章的实际转运在第291日，285日只是夜抵港会面，不把两日混为同一场。"
+        }
+      ],
+      "id": "review_note_ff4c86d1-e866-4f9f-8f1c-40c7ef8362d4",
+      "createdAt": "2026-10-18T09:21:41.126Z",
+      "scope": {
+        "worldPackRevision": 40,
+        "storyBibleRevision": 72,
+        "planRevisionId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+        "planRevision": 76
+      }
+    },
+    {
+      "requestKey": "design76-power-cross24-existing-advancement-tiers",
+      "runId": "design_run_77e97b37-cbf2-40be-ab17-2de79839c297",
+      "stageId": "cross-2-4",
+      "criterion": "tiers",
+      "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+      "expectedCheckHash": "0917adbf9a392f7daf3f99d88c114de57ca8219c309461bcc1fc0ad122b6045b",
+      "claimQuote": "没有落实玄府境明确要求的六枚下品青灵石、六个有效十日周期",
+      "explanation": "此处把本批未读取的宏观来源误当成设计缺失。本次请求只给plan/overview的第83章简述，未发送ms_v3_training与ms_v3_advancement；coverage.planRanges已列出它们分别覆盖73—80与81—87章。冻结原文实际已有六个有效十日周期、一次失败报废耗材、周期前后复诊、398日静置及415日双重确认后才付十元载的候选路径；24枚劳务现金扣3枚既有欠款和14枚食宿常规复查后余7枚，覆盖六次有效与一次失败开封。异常伤情、额外诊疗或延期必须另核费用，不保证按日期自动成功。不能要求重复增写这些已存在的前置；正式复核须实际补读原文，而非凭本说明改pass。第18/21/23章的待补读、全部寿储与实战链仍另行核验；本澄清只纠正上述宏观前置不存在的断言，保留原答、原判定和阻塞。",
+      "evidence": [
+        {
+          "sourceId": "plan/milestones/ms_v3_training",
+          "quote": "六个有效周期60日，加失败4日，实耗七枚；398日完整静置一日"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_training",
+          "quote": "330日实领后，3枚偿付316–329药舍普通食宿及常规复诊的既有约定欠款，14枚按药舍本次约定预付330–415普通食宿和上述常规复查，剩余7枚完整灵石验纯后单独入训练库存"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_advancement",
+          "quote": "支付先后为“六个有效周期完成→静置观察→白榆诊察→顾峤复核→十元载扣除”"
+        }
+      ],
+      "id": "review_note_61f2f2ca-8464-456c-b6d1-0090d8fb0a88",
+      "createdAt": "2026-10-18T09:21:41.126Z",
+      "scope": {
+        "worldPackRevision": 40,
+        "storyBibleRevision": 72,
+        "planRevisionId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+        "planRevision": 76
+      }
+    },
+    {
+      "requestKey": "design76-power-cross24-existing-advancement-costs",
+      "runId": "design_run_77e97b37-cbf2-40be-ab17-2de79839c297",
+      "stageId": "cross-2-4",
+      "criterion": "costs",
+      "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+      "expectedCheckHash": "85c12d9a68a56945f8c86bdf69affe7a135fd2ccfa8d8264456fb400556ec66c",
+      "claimQuote": "玄府晋阶所需六枚下品青灵石及六个十日周期的具体支出、失败损耗和复查成本没有进入第73—83章宏观预算",
+      "explanation": "此处把本批未读取的宏观来源误当成设计缺失。本次请求只给plan/overview的第83章简述，未发送ms_v3_training与ms_v3_advancement；coverage.planRanges已列出它们分别覆盖73—80与81—87章。冻结原文实际已有六个有效十日周期、一次失败报废耗材、周期前后复诊、398日静置及415日双重确认后才付十元载的候选路径；24枚劳务现金扣3枚既有欠款和14枚食宿常规复查后余7枚，覆盖六次有效与一次失败开封。异常伤情、额外诊疗或延期必须另核费用，不保证按日期自动成功。不能要求重复增写这些已存在的前置；正式复核须实际补读原文，而非凭本说明改pass。第18/21/23章的待补读、全部寿储与实战链仍另行核验；本澄清只纠正上述宏观前置不存在的断言，保留原答、原判定和阻塞。",
+      "evidence": [
+        {
+          "sourceId": "plan/milestones/ms_v3_training",
+          "quote": "六个有效周期60日，加失败4日，实耗七枚；398日完整静置一日"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_training",
+          "quote": "330日实领后，3枚偿付316–329药舍普通食宿及常规复诊的既有约定欠款，14枚按药舍本次约定预付330–415普通食宿和上述常规复查，剩余7枚完整灵石验纯后单独入训练库存"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_advancement",
+          "quote": "支付先后为“六个有效周期完成→静置观察→白榆诊察→顾峤复核→十元载扣除”"
+        }
+      ],
+      "id": "review_note_8cfb22b1-ae92-4fdd-be99-25da4b9610bb",
+      "createdAt": "2026-10-18T09:21:41.126Z",
+      "scope": {
+        "worldPackRevision": 40,
+        "storyBibleRevision": 72,
+        "planRevisionId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+        "planRevision": 76
+      }
+    },
+    {
+      "requestKey": "design76-characters-cross23-identity-omission",
+      "runId": "design_run_aa04b61b-0b13-464a-9b21-9205a91600e2",
+      "stageId": "cross-2-3",
+      "criterion": "knowledge",
+      "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+      "expectedCheckHash": "799adc5d81879fd24ff60a1f5ff5201a9f7b69ca85449b1c788622a04342cf31",
+      "claimQuote": "第33章侧门视角明确属于读者/独立角色，林辰只知道正式仓现状和六号箱去向不明。",
+      "explanation": "这一正确的局部描述未消除同次材料中的冲突。人物char_19仍写姓名在第33章由船册和本人确认，plan/chapters/33章末仍写林确认严身份，而圣经对应章明确尚不知道严涛身份。三段原文均已实际发送；本次知情项通过遗漏了相反指令，不能据此撤销故事cross-1-4的返修。离线v4已经连同关系和里程碑修正，但尚未应用正式设计。保留原回答与判定，本说明不自动改判、关闭阻塞或批准正文。",
+      "evidence": [
+        {
+          "sourceId": "story/characters/char_19",
+          "quote": "姓名在第33章由船册和本人确认。"
+        },
+        {
+          "sourceId": "plan/chapters/33",
+          "quote": "217日晚，林确认严身份"
+        },
+        {
+          "sourceId": "story/chapterPlans/bible-chapter-33",
+          "quote": "他尚不知道严涛身份、常钧搬箱或陆沉川接走重箱"
+        }
+      ],
+      "id": "review_note_dfd84895-d928-44d7-9b4e-54394216d87a",
+      "createdAt": "2026-10-18T09:21:41.126Z",
+      "scope": {
+        "worldPackRevision": 40,
+        "storyBibleRevision": 72,
+        "planRevisionId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+        "planRevision": 76
+      }
+    }
+  ],
+  "preservedWorkFieldDigests": {
+    "activePlanId": "a79cacee9517456fb5abae34e3592ad141a8d092b6782979cdb0aa1996029412",
+    "briefs": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "candidates": "db801c927d61955caf1e94c196129e7ca7a4557cbae7f7f93b7977d2e6ffb6a2",
+    "characters": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "checkpoints": "9360443cd3329deca750224d5f41fd8b848cc87483d84e5d59d8bf1fa6f89d31",
+    "constraintRevision": "4d01a3dbd011231a26e4f540ea071bdbeb7e072132acafb6a33a22c94ca256ca",
+    "covenant": "7b09efc6b0d1edd79e40db6d143a177956b28b40ee5070d303574df8d73121f8",
+    "covenantHistory": "ef48b60cd983a0f4b34cbe25bf37e751eb58681b943b6b8369fdcd5fca1ec745",
+    "designContentReviews": "8b8ab9639e03bd0055431c0e710bacf9dbac0d268f27578ddcb0bfc13e0aed8d",
+    "designHistory": "f2347b762def7bec1232ebed9113bcc4fb424df8b0f09e37b74bcef254165a1b",
+    "designReviewRuns": "90c18cc6f27a5c26ca9da8d5cb46c25daad4b5d4adce7fa21a98dd0d70f9003b",
+    "events": "69a4c30b560af422264c89ba8cce8c658bf3d137ec8bcdae5f7025cdc4622590",
+    "id": "e6c77c6af51347285f913e10c068833e392333610313a73f42ae654dbeeebb0b",
+    "impacts": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "manuscripts": "3f9dd7880a530d9eb7ccf9113b140958fe9e182f63c9f706f9c55ceb5c46ffc9",
+    "plans": "6afb21f18712fce391f7c0c715b9791eb95f922a669d1cc1a96b2677e905b396",
+    "plotNodes": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "relationships": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "stateRevision": "16dc368a89b428b2485484313ba67a3912ca03f2b2b42429174a4f8b3dc84e44",
+    "states": "71af6764cda2e591af608654aa65a05f8b25e4e8f9871c746de158a77a0618fc",
+    "storyBible": "ae92c644e55aa89fd87920f431acdb817e50351843daddd6cb65d8508350ef02",
+    "title": "9a392c9dee167243ad8ace1e37c8c750c798509925344a9b052ce05cbb6a54b2",
+    "versions": "ab09691b6b0882a4fa32a704a65a61930f961a7d3e35aa52d872fc017e048fb1",
+    "worldPack": "c2c2dd54716be54571a024440590ebbb8c47b55eb37f2b490bfaf24c5bf6be6d",
+    "worldRules": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "oldRunsPreserved": 99,
+  "oldReportsPreserved": 92,
+  "oldAnnotationsPreserved": 1,
+  "annotationsAdded": 7,
+  "restartReadback": true,
+  "rollbackExercised": false,
+  "idempotenceExercised": false,
+  "modelCalls": 0,
+  "productionWrites": 1,
+  "verdictChanges": 0,
+  "questionsResolved": 0,
+  "formalAcceptance": false
+}

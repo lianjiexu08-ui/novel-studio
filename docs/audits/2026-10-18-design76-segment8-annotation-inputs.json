@@ -1,0 +1,158 @@
+{
+  "kind": "design76_segment8_clarification_inputs",
+  "verificationPath": "docs/audits/2026-10-18-design76-citation-edits-review-segment-8.json",
+  "verificationSha256": "2a2e489c465e72cbbf604f57fa6f1d61a3c7d16f836c7bf9bacd3e7149b9ba7b",
+  "checkpointSha256": "260062a62f36a98c13a27ad003d176d45ab4f40dab036d650d4876d6e96a80cc",
+  "outputPath": "data/audit-runtimes/design76-citation-edits-review/segment8-annotations.json",
+  "outputSha256": "41aba708ab9f2385293397b7acb49f814ff3b23a082b1892246477df97e05298",
+  "annotationCount": 7,
+  "inputs": [
+    {
+      "payloadPath": "data/audit-runtimes/design76-citation-edits-review/characters-cross14-annotation-input.json",
+      "payloadSha256": "32157daa33d411b3f6ad79e9ec27b493ef5147b3f8cc32004bf8c4b5da252445",
+      "proofPath": "docs/audits/2026-10-18-design76-characters-cross14-identity.json",
+      "proofSha256": "a5aa5b2af350622548dffa29007e381448b7392acdfe7f90c976e29010430fb2"
+    },
+    {
+      "payloadPath": "data/audit-runtimes/design76-citation-edits-review/story-cross15-annotation-input.json",
+      "payloadSha256": "ca17477534dbb5a86f997a0483c40d0eccdf483552ce609de2731cbf6ae9e974",
+      "proofPath": "docs/audits/2026-10-18-design76-story-cross15-identity.json",
+      "proofSha256": "02a59901b61cd144d53a8227bb911bf8845c0e96050ababd92228ac4927753e0"
+    },
+    {
+      "payloadPath": "data/audit-runtimes/design76-citation-edits-review/world-cross16-annotation-input.json",
+      "payloadSha256": "555ae15542f17eafd3d3779855f2aa9d5e243366f0e7564119e07fcd536c8413",
+      "proofPath": "docs/audits/2026-10-18-design76-world-cross16-arrival-drift.json",
+      "proofSha256": "0fffb40616d54ccf1f8e24a84ba13e81d54d490216ee83f4445942acd132e691"
+    },
+    {
+      "payloadPath": "data/audit-runtimes/design76-citation-edits-review/power-cross24-annotation-input.json",
+      "payloadSha256": "07ebc99b10dbb59d9b02cb0aaabe74e411acd532488c38eb3833d8b2dd59b2c6",
+      "proofPath": "docs/audits/2026-10-18-design76-power-cross24-unread-advancement.json",
+      "proofSha256": "791671ea8547bd9dae6b3f2b9e3613bbab0285da51912618d81af809c84d2481"
+    }
+  ],
+  "omissionProofPath": "docs/audits/2026-10-18-design76-characters-cross23-knowledge-omission.json",
+  "omissionProofSha256": "c10a92e653d040ede94e0e0238dff59b024b98da65d1f463593a5e009ee3338b",
+  "sourceDigests": [
+    {
+      "requestKey": "design76-characters-cross14-lu-elder-action",
+      "sources": [
+        {
+          "id": "story/characters/char_16",
+          "sha256": "f6e0b886f3517b8848935717215f6631d761a5433d04e1c357a21852a238137b"
+        },
+        {
+          "id": "story/characters/char_21",
+          "sha256": "9fe2629e1052968e1c8a5423915e686fb443dbbf582c35ba4cca54d40280373a"
+        },
+        {
+          "id": "plan/chapters/49",
+          "sha256": "9f17b549fa5197e648449f7bb1618bf7b5c2b2fd9002e0c319c1b2829e406d3a"
+        }
+      ]
+    },
+    {
+      "requestKey": "design76-story-cross15-lu-elder-causality",
+      "sources": [
+        {
+          "id": "story/characters/char_16",
+          "sha256": "f6e0b886f3517b8848935717215f6631d761a5433d04e1c357a21852a238137b"
+        },
+        {
+          "id": "story/characters/char_21",
+          "sha256": "9fe2629e1052968e1c8a5423915e686fb443dbbf582c35ba4cca54d40280373a"
+        },
+        {
+          "id": "plan/chapters/49",
+          "sha256": "9f17b549fa5197e648449f7bb1618bf7b5c2b2fd9002e0c319c1b2829e406d3a"
+        },
+        {
+          "id": "plan/chapters/50",
+          "sha256": "6d9693419b8fddc6d6d4dde40ba55b1fed121e4d5eab59f1ba225e42335b0943"
+        }
+      ]
+    },
+    {
+      "requestKey": "design76-story-cross15-lu-elder-payoff",
+      "sources": [
+        {
+          "id": "story/characters/char_16",
+          "sha256": "f6e0b886f3517b8848935717215f6631d761a5433d04e1c357a21852a238137b"
+        },
+        {
+          "id": "story/characters/char_21",
+          "sha256": "9fe2629e1052968e1c8a5423915e686fb443dbbf582c35ba4cca54d40280373a"
+        },
+        {
+          "id": "plan/chapters/49",
+          "sha256": "9f17b549fa5197e648449f7bb1618bf7b5c2b2fd9002e0c319c1b2829e406d3a"
+        },
+        {
+          "id": "plan/chapters/50",
+          "sha256": "6d9693419b8fddc6d6d4dde40ba55b1fed121e4d5eab59f1ba225e42335b0943"
+        }
+      ]
+    },
+    {
+      "requestKey": "design76-world-cross16-arrival-versus-meeting",
+      "sources": [
+        {
+          "id": "plan/milestones/ms_v2_voyage",
+          "sha256": "c592b3ad81c9f0136995da76b2ecb6881b02dace0c8d7ce756bb90a5622cabb8"
+        },
+        {
+          "id": "plan/milestones/ms_v2_boundary",
+          "sha256": "ad4545c9a8d853f75a0deb2c7c2d00967d2379664bd5f875cb58f479c4edd459"
+        }
+      ]
+    },
+    {
+      "requestKey": "design76-power-cross24-existing-advancement-tiers",
+      "sources": [
+        {
+          "id": "plan/milestones/ms_v3_training",
+          "sha256": "6425cc9f1c49bf3eedda25c4083aca7090c4d74cecbc6e3de59b0138e34e3902"
+        },
+        {
+          "id": "plan/milestones/ms_v3_advancement",
+          "sha256": "2e801db5e6fea8ce29af908d6458de35e5d23f3fd56866bcc4ba318f7a444edb"
+        }
+      ]
+    },
+    {
+      "requestKey": "design76-power-cross24-existing-advancement-costs",
+      "sources": [
+        {
+          "id": "plan/milestones/ms_v3_training",
+          "sha256": "6425cc9f1c49bf3eedda25c4083aca7090c4d74cecbc6e3de59b0138e34e3902"
+        },
+        {
+          "id": "plan/milestones/ms_v3_advancement",
+          "sha256": "2e801db5e6fea8ce29af908d6458de35e5d23f3fd56866bcc4ba318f7a444edb"
+        }
+      ]
+    },
+    {
+      "requestKey": "design76-characters-cross23-identity-omission",
+      "sources": [
+        {
+          "id": "story/characters/char_19",
+          "sha256": "db199e22a07585a1024d864466d54f54cb1240162c327aa1ce3057e60f867164"
+        },
+        {
+          "id": "plan/chapters/33",
+          "sha256": "c000e9eb6fdf4d025fbb7ca5537c2207783a8f646710ca27e7c1b53a3b67a6af"
+        },
+        {
+          "id": "story/chapterPlans/bible-chapter-33",
+          "sha256": "bda40f4df13241ebdf8c6d5b01f04180b3a7b048ca68bfdbfa28f9dd802038e4"
+        }
+      ]
+    }
+  ],
+  "productionWrites": 0,
+  "modelCalls": 0,
+  "formalAcceptance": false,
+  "limitation": "Source and original-check bindings verified. Rehearsal, atomic append, restart readback and actual UI visibility remain required. Original verdicts and blockers are unchanged."
+}

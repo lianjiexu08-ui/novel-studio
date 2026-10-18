@@ -1,0 +1,43 @@
+{
+  "kind": "design76_coalesced_review_preflight",
+  "prepared": true,
+  "control": "data/audit-runtimes/design76-coalesced-review",
+  "databaseSnapshotPath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design76-coalesced-review/baseline.db",
+  "baselineSha256": "c35c79efa2095ba8fa031369ae9e6e0fddf0d6be61fe4a8970848360ec3c3c48",
+  "predecessorCheckpointSha256": "260062a62f36a98c13a27ad003d176d45ab4f40dab036d650d4876d6e96a80cc",
+  "predecessorVerificationSha256": "2a2e489c465e72cbbf604f57fa6f1d61a3c7d16f836c7bf9bacd3e7149b9ba7b",
+  "runtimeProofPath": "docs/audits/2026-10-18-design76-coalesced-api-runtime-preparation.json",
+  "runtimeProofSha256": "a382e3ba66eb012ecc01f13d8336d2b5adec9cd7a8c97ac4a4b4aa2555bf2bf3",
+  "notesPath": "docs/audits/2026-10-18-design76-segment8-notes-applied.json",
+  "notesSha256": "99562069be44448d9128573331841e7d346d73e790fb55c4620713d4a754349e",
+  "annotationsPreserved": 8,
+  "prefixCalls": 60,
+  "runIds": [
+    "design_run_98b5460a-ed47-4ba2-bb06-7fdded1f910d",
+    "design_run_77e97b37-cbf2-40be-ab17-2de79839c297",
+    "design_run_aa04b61b-0b13-464a-9b21-9205a91600e2",
+    "design_run_f355dadb-f3ee-4b1b-8834-f17bf0f487dc"
+  ],
+  "unchangedReviewSchedulingPromptsAndValidation": true,
+  "plannerEpochs": [
+    {
+      "afterCall": 0,
+      "bindingPath": "data/audit-runtimes/design76-ui-runtime-v2-bound.json",
+      "bindingSha256": "ec9918d855f80b056351601f297fbbaadb4376ec94010cdb73d3aaa0f6fb58dd"
+    },
+    {
+      "afterCall": 37,
+      "bindingPath": "data/audit-runtimes/design76-citation-runtime-bound.json",
+      "bindingSha256": "e4acd580e352e5617cc588aaa3b34e86afe9a1457b57b3e60528011b4e005e97"
+    },
+    {
+      "afterCall": 39,
+      "bindingPath": "data/audit-runtimes/design76-citation-operations-runtime-bound.json",
+      "bindingSha256": "e7c8ea1854fcda1c44296b8854ea01af14bcda4d5bbf9f509b6d1c4fc02cae48"
+    }
+  ],
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Preflight replay, service startup and live UI verification remain required. Only API concurrent reads and independent annotations change; design and verdicts remain unchanged."
+}
