@@ -23,15 +23,22 @@ export function applyDesignReviewCitationEdits(value: unknown, previous: unknown
   for (const value of patch.updates as unknown[]) {
     if (!value || typeof value !== 'object' || Array.isArray(value)) fail('编辑项必须是对象');
     const update = value as Record<string, unknown>;
-    if (Object.keys(update).some(key => !['criterion', 'verdict', 'explanation', 'revisionAdvice', 'resolves', 'awaitingSources', 'insufficiencyReason', 'addEvidence', 'removeEvidence'].includes(key))) fail('存在未知编辑字段');
+    if (Object.keys(update).some(key => !['criterion', 'verdict', 'explanation', 'revisionAdvice', 'awaitingSources', 'insufficiencyReason', 'addEvidence', 'removeEvidence', 'addResolutions', 'removeResolutions'].includes(key))) fail('存在未知编辑字段');
     const criterion = update.criterion;
     if (typeof criterion !== 'string' || updates.has(criterion)) fail('检查项缺失或重复');
     const before = original.checks.find(check => check.criterion === criterion);
     if (!before) fail('不能新增未知检查项');
-    if (update.verdict === 'pass' && before!.resolves?.some(id => !Array.isArray(update.resolves) || !update.resolves.includes(id))) {
-      fail('维持通过时必须逐项确认原有resolves；不能漏掉解除声明。若原问题仍未解决，应明确改为insufficient或revise');
+    const { addEvidence, removeEvidence, addResolutions, removeResolutions, ...replacement } = update;
+    if (!Array.isArray(addResolutions) || !Array.isArray(removeResolutions)) fail('必须明确给出新增和撤销解除声明数组；空数组表示保留原声明');
+    const resolutions = new Set(before!.resolves ?? []);
+    for (const id of removeResolutions as unknown[]) {
+      if (typeof id !== 'string' || !resolutions.delete(id)) fail('只能撤销原回答已有的解除声明');
+      if (update.verdict === 'pass') fail('不能维持通过并撤销原问题解除；原问题未解决应明确改为insufficient或revise');
     }
-    const { addEvidence, removeEvidence, ...replacement } = update;
+    for (const id of addResolutions as unknown[]) {
+      if (typeof id !== 'string' || !id) fail('新增解除声明必须使用真实问题ID');
+      resolutions.add(id as string);
+    }
     if (!Array.isArray(addEvidence) || !Array.isArray(removeEvidence)) fail('必须明确给出新增和删除引用数组');
     const existing = new Set(before!.evidence.map(evidence => evidence.fragmentId));
     const removed = new Set<string>();
@@ -39,15 +46,15 @@ export function applyDesignReviewCitationEdits(value: unknown, previous: unknown
       if (typeof id !== 'string' || !existing.has(id) || removed.has(id)) fail('删除项必须是原回答已有且不重复的片段');
       removed.add(id as string);
     }
-    const added = new Set<string>();
     const additions = (addEvidence as unknown[]).map(evidence => {
       if (!evidence || typeof evidence !== 'object' || Array.isArray(evidence) || Object.keys(evidence).length !== 1 || !('fragmentId' in evidence) || typeof evidence.fragmentId !== 'string') fail('新增引用只能包含fragmentId');
       const id = (evidence as { fragmentId: string }).fragmentId;
-      if (existing.has(id) || added.has(id)) fail('不能重复新增、或同时删除又新增同一片段');
-      added.add(id);return { fragmentId: id };
+      if (removed.has(id)) fail('不能同时删除又新增同一片段');
+      return { fragmentId: id };
     });
     if (Object.hasOwn(replacement, 'evidence')) fail('使用新增/删除操作，不直接替换引用数组');
-    updates.set(criterion as string, { ...replacement, evidence: [...before!.evidence.filter(evidence => !removed.has(evidence.fragmentId)), ...additions] });
+    updates.set(criterion as string, { ...replacement, ...(resolutions.size ? { resolves: [...resolutions] } : {}),
+      evidence: [...new Map([...before!.evidence.filter(evidence => !removed.has(evidence.fragmentId)), ...additions].map(evidence => [evidence.fragmentId, evidence])).values()] });
   }
   return anchoredDesignReviewResultSchema.parse({ requestId: original.requestId, summary: patch.summary,
     checks: original.checks.map(check => updates.get(check.criterion) ?? check) });

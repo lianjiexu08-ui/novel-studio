@@ -679,9 +679,9 @@ test('explicit citation edits retain unchanged findings and cannot silently lose
     { criterion: 'geography', verdict: 'revise', explanation: '港口许可不能互换', revisionAdvice: '另核各港实际许可', evidence: [{ fragmentId: fragments[0] }] },
   ] };
   const before = structuredClone(first);
-  const { evidence, ...judgment } = first.checks[0];
+  const { evidence, resolves, ...judgment } = first.checks[0];
   const patch = { requestId: prepared.requestId, repairMode: 'citation_edits', confirmUnchangedChecks: true, summary: first.summary,
-    updates: [{ ...judgment, addEvidence: [{ fragmentId: fragments[2] }], removeEvidence: [] as string[] }],
+    updates: [{ ...judgment, addEvidence: [{ fragmentId: fragments[2] }], removeEvidence: [] as string[], addResolutions: [] as string[], removeResolutions: [] as string[] }],
   };
   let calls = 0;
   const planner = new JsonDesignPlanner({ complete: async call => {
@@ -694,6 +694,7 @@ test('explicit citation edits retain unchanged findings and cannot silently lose
   assert.deepEqual(result.checks[0].evidence.map(e => e.sourceId).sort(), request.sources.map(s => s.id).sort());
   assert.equal(result.checks[1].verdict, 'revise', 'untouched negative findings survive');
   assert.equal(result.checks[1].explanation, first.checks[1].explanation);
+  assert.deepEqual(result.checks[0].resolves, resolves, 'an empty edit list explicitly retains all original resolution claims');
   assert.deepEqual(result.modelResponses, [JSON.stringify(first), JSON.stringify(patch)], 'raw patches remain visible, never masquerade as a full model answer');
   assert.deepEqual(first, before, 'never rewrite the original answer');
 
@@ -708,13 +709,28 @@ test('explicit citation edits retain unchanged findings and cannot silently lose
     { ...patch, confirmUnchangedChecks: false },
     { ...patch, updates: [...patch.updates, ...patch.updates] },
     { ...patch, updates: [{ ...patch.updates[0], criterion: 'unknown' }] },
-    { ...patch, updates: [{ ...patch.updates[0], resolves: undefined }] },
-    { ...patch, updates: [{ ...patch.updates[0], resolves: ['batch-1/timeline'] }] },
+    { ...patch, updates: [{ ...patch.updates[0], addResolutions: undefined }] },
+    { ...patch, updates: [{ ...patch.updates[0], removeResolutions: ['batch-1/timeline'] }] },
+    { ...patch, updates: [{ ...patch.updates[0], addResolutions: ['invented-question'] }] },
     { ...patch, updates: [{ ...patch.updates[0], removeEvidence: ['not-selected'] }] },
     { ...patch, updates: [{ ...patch.updates[0], addEvidence: [{ fragmentId: fragments[0] }] }] },
     { ...patch, updates: [{ ...patch.updates[0], addEvidence: [{ fragmentId: 'invented' }] }] },
     { ...patch, updates: [{ ...patch.updates[0], addEvidence: [{ fragmentId: fragments[2], quote: 'manufactured' }] }] },
   ]) assert.throws(() => prepared.resolve(applyDesignReviewCitationEdits(malformed, first)));
+  const idempotent = structuredClone(patch);
+  idempotent.updates[0].addResolutions = ['batch-2/timeline'];
+  idempotent.updates[0].addEvidence.push({ fragmentId: fragments[2] }, { fragmentId: fragments[0] });
+  const idempotentResult = prepared.resolve(applyDesignReviewCitationEdits(idempotent, first));
+  assert.deepEqual(idempotentResult.checks[0].resolves, resolves);
+  assert.equal(idempotentResult.checks[0].evidence.length, 5, 'reselecting an existing citation does not manufacture extra evidence');
+  const unresolved = structuredClone(patch);
+  unresolved.updates[0].verdict = 'insufficient';
+  unresolved.updates[0].explanation = '本批仍不能确认两个问题均已解决';
+  unresolved.updates[0].revisionAdvice = '继续核对缺失的知情依据';
+  unresolved.updates[0].removeResolutions = resolves ?? [];
+  const unresolvedResult = prepared.resolve(applyDesignReviewCitationEdits(unresolved, first));
+  assert.equal(unresolvedResult.checks[0].verdict, 'insufficient');
+  assert.equal(unresolvedResult.checks[0].resolves, undefined, 'explicitly withdrawing a resolution must retain an unresolved verdict');
 });
 
 for (const repairedVerdict of ['pass', 'insufficient'] as const) {
