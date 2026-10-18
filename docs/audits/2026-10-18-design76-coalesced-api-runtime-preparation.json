@@ -1,0 +1,29 @@
+{
+  "kind": "design76_coalesced_api_runtime_preparation",
+  "preparedAt": "2026-10-18T09:12:36.999Z",
+  "originalBindingPath": "data/audit-runtimes/design76-citation-operations-runtime-bound.json",
+  "originalBindingSha256": "e7c8ea1854fcda1c44296b8854ea01af14bcda4d5bbf9f509b6d1c4fc02cae48",
+  "nextBindingPath": "data/audit-runtimes/design76-coalesced-api-runtime-bound.json",
+  "nextBindingSha256": "0032489173afa75b1af5547023a2ad2c4bf51fe48f14080b52b2c3063117f9ec",
+  "sourceCommit": "577e9e99c1b93466265b84fa227477015cc2b9d6",
+  "changed": [
+    "apps/api/src/server.ts"
+  ],
+  "added": [
+    "apps/api/test/review-poll-concurrency.test.ts"
+  ],
+  "unchangedSourceCount": 100,
+  "scheduleVersion": 34,
+  "rubricVersion": 17,
+  "sourceTestLog": "/tmp/novel-review-poll-concurrency-api-tests.log",
+  "sourceTestLogSha256": "3ebfd9d6b46a60889dd9071a1330b46f5d3dcc0867a8c5d6557411452623b478",
+  "sourceApiTests": 41,
+  "frozenTestLog": "/tmp/novel-coalesced-api-frozen-tests.log",
+  "frozenTestLogSha256": "1c096e564877c9436244d9478d56359d01064c96926c73691915902826657016",
+  "frozenConcurrencyTests": 3,
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "deployed": false,
+  "formalAcceptance": false,
+  "limitation": "冻结文件及接口回归验证完成，当前正式进程仍使用原运行时。终止回放、继承原四项任务的续审基线准备、切换及真实页面验证尚待执行。未测量生产大历史的吞吐或峰值内存。"
+}
