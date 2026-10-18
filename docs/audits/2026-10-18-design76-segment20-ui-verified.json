@@ -1,0 +1,52 @@
+{
+  "kind": "design76_segment20_ui_verification",
+  "observedAt": "2026-10-18T14:35:25.793Z",
+  "startupPath": "data/audit-runtimes/design76-api-start-55304.json",
+  "startupSha256": "a49dbde89fd84db122656b83856a0d3a547d15abc8b1760378bf234c8fcac099",
+  "apiPid": 55304,
+  "health": {
+    "status": 200,
+    "body": {
+      "ok": true
+    },
+    "corsOrigin": "http://127.0.0.1:5180"
+  },
+  "url": "http://127.0.0.1:5180/#/works/work_8b6c9133e13d404083ca33acc63f4f61/design",
+  "browser": "iab",
+  "tabId": "24",
+  "observedBy": "cua_repl accessibility snapshots and native clicks",
+  "progress": {
+    "world": "27/55",
+    "power": "23/73",
+    "characters": "23/47",
+    "story": "21/75"
+  },
+  "refreshErrorAbsent": true,
+  "blockersVisible": 41,
+  "designStillPending": true,
+  "listShowsGrowthAndCausalityPassed": true,
+  "detail": {
+    "stageId": "followup-batch-1/growth",
+    "verdictVisible": "pass",
+    "originalClaimVisible": "每日灵石与复诊",
+    "independentRecordExpanded": true,
+    "annotationId": "review_note_bffb4a8d-6bbe-4d08-bfa6-23e15b02a66a",
+    "clarificationVisible": "每个十日周期一枚、每日一小时、六有效周期加一次失败共七枚；逐周期与异常复查",
+    "cashAllocationVisible": "24=3+14+7",
+    "sourceQuotesVisible": 5,
+    "localScopeWarningVisible": true,
+    "resolvesVisible": "batch-1/growth",
+    "originalResponseCount": 1
+  },
+  "verificationPath": "docs/audits/2026-10-18-design76-notes18-review-segment-20.json",
+  "verificationSha256": "773ee46942958b9af03c866c17ed33249faa5e8f9d0f989a35b851185d29685b",
+  "notesPath": "docs/audits/2026-10-18-design76-segment20-notes-applied.json",
+  "notesSha256": "53423b22be2768e248071ca27fdbebec276ad3ffd863a0f6efab33503e69ebd1",
+  "scopePath": "docs/audits/2026-10-18-design76-segment20-source-scope.json",
+  "scopeSha256": "35c4a0ef87d9901e9489271a04b0aff96284a8940f872392bc9c4a383d45318c",
+  "observation": "Annotation-loading wait reached its deadline; subsequent actual state showed the completed record. No reload, model retry or duplicate write was needed.",
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "UI readback of a saved local judgment and its independent clarification; no global acceptance, blocker closure or prose validation."
+}
