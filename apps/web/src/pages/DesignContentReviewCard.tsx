@@ -60,18 +60,26 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
     if (background && pendingLoad.current !== null) return;
     const current = ++request.current;
     pendingLoad.current = current;
+    const startedAt = performance.now();
     if (reset) { setData(null); setRefreshedAt(undefined); setError(''); revisionToken.current = undefined; }
     try {
       const result = await api.pollDesignContentReviews(workId, planId, revisionToken.current);
       if (current === request.current) {
         if (!result.unchanged) setData(result);
         revisionToken.current = result.revisionToken;
-        // Older servers return the full history; poll less often until upgraded.
-        nextPollAt.current = Date.now() + (result.revisionToken ? 15_000 : 60_000);
+        // Large histories can take tens of seconds to read. Leave time for the
+        // reviewer between polls instead of immediately queuing another load.
+        const readDelay = Math.min(120_000, (performance.now() - startedAt) * 3);
+        nextPollAt.current = Date.now() + Math.max(result.revisionToken ? 15_000 : 60_000, readDelay);
         setError(''); setRefreshedAt(new Date().toLocaleTimeString());
       }
     }
-    catch (cause) { if (current === request.current) setError(cause instanceof Error ? cause.message : String(cause)); }
+    catch (cause) {
+      if (current === request.current) {
+        nextPollAt.current = Date.now() + 60_000;
+        setError(cause instanceof Error ? cause.message : String(cause));
+      }
+    }
     finally { if (pendingLoad.current === current) pendingLoad.current = null; }
   }, [workId, planId]);
   useEffect(() => {
