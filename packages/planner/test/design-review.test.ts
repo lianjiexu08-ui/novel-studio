@@ -480,12 +480,54 @@ test('one repair receives every invalid anchor and can explicitly select current
     assert.equal(call.role, 'reviewing');
     assert.match(repair.problems, /invented_a/);
     assert.match(repair.problems, /invented_b/);
-    assert.deepEqual(repair.originalRequest.sources, prepareDesignReviewEvidence(request).sources);
+    const prepared = prepareDesignReviewEvidence(request);
+    assert.deepEqual(repair.originalRequest.sources, prepared.sources);
+    assert.equal(repair.expectedRequestId, prepared.requestId);
+    assert.deepEqual(repair.fragmentReferenceProblems, [
+      { checkIndex: 0, criterion: invalid.checks[0].criterion, evidenceIndex: 0, invalidFragmentId: 'invented_a' },
+      { checkIndex: 1, criterion: invalid.checks[1].criterion, evidenceIndex: 0, invalidFragmentId: 'invented_b' },
+    ]);
+    assert.deepEqual(repair.availableEvidenceSources, prepared.sources.map(s => ({
+      unitId: s.id, sourceId: s.id, fragmentIds: s.fragments.map(f => f.id),
+    })));
+    assert.match(repair.instruction, /不能按编号递增猜测/);
     return JSON.stringify(expected);
   } });
   assert.deepEqual(await planner.reviewDesignContent(request), { ...prepareDesignReviewEvidence(request).resolve(expected), modelResponses: [JSON.stringify(invalid), JSON.stringify(expected)] });
   assert.equal(calls, 2);
   assert.equal(invalid.checks[0].evidence[0].fragmentId, 'invented_a');
+});
+
+test('fragment navigation uses the frozen source map and cannot accept a newly invented repair anchor', async () => {
+  const request = await input();
+  request.stage = { kind: 'batch', label: '切片', totalBatches: 2,
+    sourceMap: request.sources.map(s => ({ id: s.id, sourceId: `original/${s.id}`, start: 0, end: s.text.length })),
+  };
+  const prepared = prepareDesignReviewEvidence(request), original = anchored(request);
+  const invalid = structuredClone(original);
+  invalid.checks[0].evidence[0].fragmentId = 'e9998';
+  const sourcesBefore = structuredClone(prepared.sources);
+  request.sources[0].text = 'caller changed text';
+  request.stage.sourceMap[0].sourceId = 'caller-changed-origin';
+  const context = prepared.fragmentRepairContext(invalid);
+  assert.deepEqual(context.availableEvidenceSources, sourcesBefore.map(s => ({
+    unitId: s.id, sourceId: s.origin!.sourceId, fragmentIds: s.fragments.map(f => f.id),
+  })));
+  assert.deepEqual(prepared.fragmentRepairContext(null), {});
+  // A stale request gets the current directory, never aliases for its old IDs.
+  assert.equal(prepared.fragmentRepairContext({ ...invalid, requestId: 'stale' }).expectedRequestId, prepared.requestId);
+  const fresh = await input(), first = anchored(fresh), second = structuredClone(first);
+  first.checks[0].evidence[0].fragmentId = 'e9998';
+  second.checks[0].evidence[0].fragmentId = 'e9999';
+  const responses = [JSON.stringify(first), JSON.stringify(second)];
+  let calls = 0;
+  const planner = new JsonDesignPlanner({ complete: async () => responses[calls++] });
+  await assert.rejects(planner.reviewDesignContent(fresh), (error: Error & { modelResponses?: string[] }) => {
+    assert.match(error.message, /e9999/);
+    assert.deepEqual(error.modelResponses, responses);
+    return true;
+  });
+  assert.equal(calls, 2, 'Navigation must not grant another retry or normalize a bad ID');
 });
 
 test('anchors bind content, source identity and version, including when callers reuse a hash', async () => {

@@ -133,6 +133,23 @@ export function prepareDesignReviewEvidence(input: DesignReviewInput) {
     sources,
     citationRequirements,
     pendingCitationRequirements,
+    // A compact exact directory helps a repair navigate the already-sent text.
+    // Never infer replacement anchors from the numbers in a rejected answer.
+    fragmentRepairContext(value: unknown): Record<string, unknown> {
+      const parsed = anchoredDesignReviewResultSchema.safeParse(value);
+      if (!parsed.success) return {};
+      return {
+        expectedRequestId: requestId,
+        fragmentReferenceProblems: parsed.data.checks.flatMap((check, checkIndex) =>
+          check.evidence.flatMap((evidence, evidenceIndex) => lookup.has(evidence.fragmentId) ? [] : [{
+            checkIndex, criterion: check.criterion, evidenceIndex, invalidFragmentId: evidence.fragmentId,
+          }])),
+        availableEvidenceSources: sources.map(source => ({
+          unitId: source.id, sourceId: source.origin?.sourceId ?? source.id,
+          fragmentIds: source.fragments.map(fragment => fragment.id),
+        })),
+      };
+    },
     // Inspect raw source requests even when mutually exclusive fields prevent
     // the full answer from parsing. Diagnostics only; never replace IDs or
     // decide whether a macro source is sufficient for the model's question.
