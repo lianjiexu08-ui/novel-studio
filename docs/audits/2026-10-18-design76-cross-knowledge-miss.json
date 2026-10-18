@@ -1,0 +1,105 @@
+{
+  "kind": "design76_independent_review_semantic_miss",
+  "createdAt": "2026-10-18T06:44:34.117Z",
+  "runId": "design_run_aa04b61b-0b13-464a-9b21-9205a91600e2",
+  "stageId": "cross-1-2",
+  "criterion": "knowledge",
+  "originalCheck": {
+    "criterion": "knowledge",
+    "verdict": "pass",
+    "explanation": "补读sec_02后，赵玄极对港口、北境与押运链的认知阶段与消息锚点一致：第52章程砚仅寄出基于脚夫门外见闻的报告；赵在第53章才阅读第一报并签回令，至第54章只确认旧令送达；其后北境面报、押报、撤押令、败报和正式质询均分别设有实体送达时点及禁止推断范围。林辰、苏凌霜未因这些异地报令同步知情，赵也未被赋予未到报告的现场信息，未见提前知情冲突。",
+    "evidence": [
+      {
+        "sourceId": "review-question/batch-1/knowledge",
+        "quote": "{\n  \"criterion\": \"knowledge\",\n  \"explanation\": \"第1—50章及父案证据边界在已读秘密档中区分了读者信息、角色实际取得材料和禁止推断；但该档明确规定赵玄极对港口、北境和押运报令的后续知情须另按 sec_02 的53、73、88、90、98、99章阶段核对。本批虽有关系档与消息锚点陈述相应安排，却未提供该秘密原档，无法比较其知情阶段是否与赵、林辰、苏凌霜等人的关系安排完全一致，也无法据此确认不存在提前知情。\",\n  \"revisionAdvice\": \"补读秘密原档后，逐项核对程砚寄报、赵玄极阅报与回令、北境面报、撤押令、败报及正式质询的送达对象、日期和可推断范围。\",\n  \"awaitingSources\": [\n    \"story/secrets/sec_02\"\n  ]\n}"
+      },
+      {
+        "sourceId": "review-unit/149",
+        "quote": "      \"belief\": \"知道自己亲自实施的父辈案行为；所知不等于林辰见过的记忆范围或每个守界细节。\",\n      \"trigger\": \"延续赵亲自实施十年前行为的自身记忆；本秘密没有收到林苏父案原件的新渠道。港口、北境及本次押运报令另按sec_02的53/73/88/90/98/99章阶段核对。\",\n      \"consequence\": \"保护自己旧行为的秘密；不能从这份自身记忆推知林苏当前找到哪些副本，也不否定其他事项中后来实际收到的新消息。\",\n      \"forbiddenInferences\": [\n        \"不能无场景得知林辰何时看到哪段记忆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_05\",\n      \"sinceChapter\": 61,\n      \"untilChapter\": 100,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"巡查档案有林苍玄署名，但不知青玄投毒始末。\",\n      \"trigger\": \"既有巡档资料，本次285日带至外港，66章供林核对。\",\n      \"consequence\": \"有限交证，不替林证明全案。\",\n      \"forbiddenInferences\": [\n"
+      },
+      {
+        "sourceId": "review-unit/126",
+        "quote": "{\n  \"id\": \"message-dispatch\",\n  \"arcId\": \"arc_02\",\n  \"characterId\": \"char_14\",\n  \"kind\": \"choice\",\n  \"plannedChapter\": 52,\n  \"expectedChange\": \"规划锚点（非采纳事实）：52章258日，程在天宝落脚处付本商号普通邮资寄程报一号，引用254清晨药栈脚夫在公共巷口亲见林贺随巡查进附棚、两工及两看守被分别带出的报告，自述封匣仍自持。脚夫当日午后步行实到递话，未听门内认罪，不来自被看护的陆。程本人不在254门口，不写本人亲见；封匣253午后正常回铺时已带走。260云梦转驿、262乾都实到，赵此前不知报件已寄。\"\n}"
+      },
+      {
+        "sourceId": "review-unit/130",
+        "quote": "{\n  \"id\": \"message-first-ack\",\n  \"arcId\": \"arc_02\",\n  \"characterId\": \"char_03\",\n  \"kind\": \"belief_shift\",\n  \"plannedChapter\": 54,\n  \"expectedChange\": \"规划锚点（非采纳事实）：第54章第273日。骑使带268程签收联经269–271海程及271–273陆驿回到乾都，当面交赵。赵只确认旧令已送达，不确认毁账是否执行；回执不能含291北境未来事件。林苏仍不知道此番交接。\"\n}"
+      },
+      {
+        "sourceId": "review-unit/134",
+        "quote": "{\n  \"id\": \"message-custody-read\",\n  \"arcId\": \"arc_04\",\n  \"characterId\": \"char_03\",\n  \"kind\": \"belief_shift\",\n  \"plannedChapter\": 88,\n  \"expectedChange\": \"规划锚点（非采纳事实）：第88章第431日。赵实际阅押报一号并对照旧授权，只知祁陈述的两名旧工友与仓册风险。苏同日把另份案卷交本地监督点，两件文书没有共享途径。\"\n}"
+      },
+      {
+        "sourceId": "review-unit/138",
+        "quote": "{\n  \"id\": \"message-withdraw-seized\",\n  \"arcId\": \"arc_04\",\n  \"characterId\": \"char_02\",\n  \"kind\": \"consequence\",\n  \"plannedChapter\": 95,\n  \"expectedChange\": \"规划锚点（非采纳事实）：第95章第436日。顾与祁交锋牵制，林救人放过程；前车四人下地、林伤退后，祁为保住赵亲签原令及自己的申辩机会命押卫停斗，随后交械、令后车放人，亲手把随身撤押一号交苏在见证员面前收存；此后梁才分两趟将八人送药棚，原令交接不以尚未完成的两趟送医作为前提。顾不承诺免罪，祁仍须回答本人具名接押与毁页责任。苏与林当面核看，原令和己方改账页分别保全。林顾对的仍是原两名玄府，祁带伤接受顾监管，不新增第三名，不用真光或普通绳索封禁境界。\"\n}"
+      },
+      {
+        "sourceId": "review-unit/140",
+        "quote": "{\n  \"id\": \"message-formal-inquiry\",\n  \"arcId\": \"arc_04\",\n  \"characterId\": \"char_03\",\n  \"kind\": \"consequence\",\n  \"plannedChapter\": 99,\n  \"expectedChange\": \"规划锚点（非采纳事实）：第99章第442–446日。442本地监督复核点将有原令编号、封存副本及见证签名的本案摘要寄乾都军需复核署，444签收，445赵阅正式质询副本、446答询且停本批私下授权。来件只证明本次命令，不能包办父案与九鼎。\"\n}"
+      },
+      {
+        "sourceId": "review-unit/152",
+        "quote": "      \"untilChapter\": 53,\n      \"certainty\": \"believes\",\n      \"belief\": \"已读程第一报，知道程转引脚夫见到254巡查在附棚门口处置、林贺留外院、两工自行出门及两看守被控，并相信程自述封匣尚自持；这些仍是转述与自述，未由赵独立核实。确认自己263签回令，不知道是否已送达程，也不确认林贺曾进入棚内。\",\n      \"trigger\": \"53章262收发房按封袋号签收交赵，赵实际阅览；263亲签纸质回令一号并封袋交骑使。骑使经263–265陆驿、265暮–267暮邮船，268在天宝当面交程验封；程的签收联尚未回赵府，不瞬时共享。\",\n      \"consequence\": \"要求保封存物、毁自己手中可追到军需的散账；回令不得倒写为254现场拦人的起因，脚夫报告也不等于门内全部事实已被证实。\",\n      \"forbiddenInferences\": [\n        \"不得由读者独立视角获得林苏尚未交出的材料、第一片去向、真解全文或林的寿储。\",\n        \"程的利己口供不等于所有过程均已证实，也不能代表炎煞真身知情。\",\n        \"未亲见封匣内物，不凭自述鉴明碎片用途。\",\n        \"尚不知道291北境失货、夜的行动或林得到父案副本。\"\n      ]\n    },\n    {\n"
+      },
+      {
+        "sourceId": "review-unit/152",
+        "quote": "      \"characterId\": \"char_03\",\n      \"sinceChapter\": 54,\n      \"untilChapter\": 72,\n      \"certainty\": \"believes\",\n      \"belief\": \"保留第一报的有限可信范围，确认268旧回令已交程；没有北境后来失货或林苏新证据的报告。\",\n      \"trigger\": \"54章273骑使按269–271天宝到云梦海程、271–273陆驿返乾都，亲交268程签收联。\",\n      \"consequence\": \"回执只确认送达，继续等待另报，不把收令当已办成毁账。\",\n      \"forbiddenInferences\": [\n        \"不得由读者独立视角获得林苏尚未交出的材料、第一片去向、真解全文或林的寿储。\",\n        \"程的利己口供不等于所有过程均已证实，也不能代表炎煞真身知情。\",\n        \"不提前获知291北境失败或主角未报告的行动。\"\n      ]\n    },\n    {\n      \"characterId\": \"char_03\",\n      \"sinceChapter\": 73,\n      \"untilChapter\": 79,\n      \"certainty\": \"believes\",\n"
+      },
+      {
+        "sourceId": "review-unit/152",
+        "quote": "      \"belief\": \"确认318程亲自交封匣原物；对北境失货、有人获救只接受为程的具名自述。\",\n      \"trigger\": \"73章318程经既定两段海路陆驿抵乾都，当面交物和陈述。\",\n      \"consequence\": \"原物入赵府登记封存，不启动；核算程欠款并考虑缩回本地。\",\n      \"forbiddenInferences\": [\n        \"不得由读者独立视角获得林苏尚未交出的材料、第一片去向、真解全文或林的寿储。\",\n        \"程的利己口供不等于所有过程均已证实，也不能代表炎煞真身知情。\",\n        \"没有夜全部修为和救援细节，不能因程逃出就知道七人后续全部去向。\"\n      ]\n    },\n    {\n      \"characterId\": \"char_03\",\n      \"sinceChapter\": 80,\n      \"untilChapter\": 87,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"确认自己410决定重整本地短途车队，并当面交祁嵩筹备；尚未收到427接押结果。\",\n      \"trigger\": \"80章亲签并当面交在乾都的祁嵩；祁425才随皇使启程。87章429祁发报告，还不等于赵阅报。\",\n"
+      },
+      {
+        "sourceId": "review-unit/152",
+        "quote": "        \"不得由读者独立视角获得林苏尚未交出的材料、第一片去向、真解全文或林的寿储。\",\n        \"程的利己口供不等于所有过程均已证实，也不能代表炎煞真身知情。\",\n        \"报告不含430后新扣六人的完整清点，赵不知梁432现场数得八人。\"\n      ]\n    },\n    {\n      \"characterId\": \"char_03\",\n      \"sinceChapter\": 90,\n      \"untilChapter\": 97,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"确认自己433亲签本批撤人毁页令，但尚未收到该令的交付回执或押运败报。\",\n      \"trigger\": \"90章亲签、骑使实际离都；92章435祁签收是下属场景，95章被截原令不隔空进入赵认知。\",\n      \"consequence\": \"签发责任客观存在；赵按不完整信息等待执行结果。\",\n      \"forbiddenInferences\": [\n        \"不得由读者独立视角获得林苏尚未交出的材料、第一片去向、真解全文或林的寿储。\",\n        \"程的利己口供不等于所有过程均已证实，也不能代表炎煞真身知情。\",\n"
+      },
+      {
+        "sourceId": "review-unit/152",
+        "quote": "        \"不知道435令已交、436八人获救、原令被保住或林放过程，除非随后实际回报。\"\n      ]\n    },\n    {\n      \"characterId\": \"char_03\",\n      \"sinceChapter\": 98,\n      \"untilChapter\": 98,\n      \"certainty\": \"believes\",\n      \"belief\": \"听程自述436现场遭林顾等拦截、自己逃走；未确认原令流失与八人全部安置结果。\",\n      \"trigger\": \"98章439程沿普通驿路抵乾都当面报其逃离前所见；携来的只有自身见闻，不是回传全场。\",\n      \"consequence\": \"要求核清损失、想把欠账转嫁旧代理，但无炎煞接信或新协议。\",\n      \"forbiddenInferences\": [\n        \"不得由读者独立视角获得林苏尚未交出的材料、第一片去向、真解全文或林的寿储。\",\n        \"程的利己口供不等于所有过程均已证实，也不能代表炎煞真身知情。\",\n        \"程不在完整救援结束现场，不能替赵证明最终八人或封存卷的位置。\"\n      ]\n    },\n    {\n      \"characterId\": \"char_03\",\n"
+      },
+      {
+        "sourceId": "review-unit/152",
+        "quote": "      \"sinceChapter\": 99,\n      \"untilChapter\": 100,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"已读正式质询副本，确认监督方掌握本次原令编号、封存副本及相应见证；面对本批授权被停与具名答询。\",\n      \"trigger\": \"99章442监督点寄案摘要，444到乾都复核署，445转给赵阅，446答询；不是436同日得知全案。\",\n      \"consequence\": \"仅对该批撤人和销页命令承担可核责任，不扩张为九鼎全部秘密曝光。\",\n      \"forbiddenInferences\": [\n        \"不得由读者独立视角获得林苏尚未交出的材料、第一片去向、真解全文或林的寿储。\",\n        \"程的利己口供不等于所有过程均已证实，也不能代表炎煞真身知情。\",\n        \"质询材料没有证明十年前投毒全貌；林苏不因赵答询就同步读到他的回答。\"\n      ]\n    }\n  ],\n  \"id\": \"sec_02\",\n  \"ownerCharacterId\": \"char_03\",\n  \"title\": \"九鼎窃寿阵图秘卷\",\n  \"truth\": \"大乾皇权延续至今的九鼎龙脉实为六道转轮偷命策之变体，长年抽割三州流民命数充抵龙气。\",\n"
+      }
+    ],
+    "revisionAdvice": "",
+    "resolves": [
+      "batch-1/knowledge"
+    ]
+  },
+  "sources": [
+    {
+      "id": "review-unit/126",
+      "origin": {
+        "sourceId": "story/arcBeats/message-dispatch",
+        "start": 0,
+        "end": 327
+      },
+      "fragmentId": "e213",
+      "fragmentSha256": "64d489e04b36c263c7c426863c4bc8827ea294b4fafd4f5bb850bb1f33e0b2be",
+      "exactExcerpt": "ter\": 52,\n  \"expectedChange\": \"规划锚点（非采纳事实）：52章258日，程在天宝落脚处付本商号普通邮资寄程报一号，引用254清晨药栈脚夫在公共巷口亲见林贺随巡查进附棚、两工及两看守被分别带出的报告，自述封匣仍自持。脚夫当日午后步行实到递话，未听门内认罪，不来自被看护的陆。程本人不在254门口，不写本人亲见；封匣253午后正常回铺时已带走。260云梦转驿、262乾都实到，赵此前不知报件已寄。\"\n}"
+    },
+    {
+      "id": "review-unit/152",
+      "origin": {
+        "sourceId": "story/secrets/sec_02",
+        "start": 20000,
+        "end": 26549
+      },
+      "fragmentId": "e288",
+      "fragmentSha256": "fbaecd9bbf4248e9f480b28457822b1d9f2db7517b60e95f1760635897caad39",
+      "exactExcerpt": "转引脚夫见到254巡查在附棚门口处置、林贺留外院、两工自行出门及两看守被控，并相信程自述封匣尚自持；这些仍是转述与自述，未由赵独立核实。确认自己263签回令，不知道是否已送达程，也不确认林贺曾进入棚内。\",\n      \"trigger\": \"53章262收发房按封袋号签收交赵，赵实际阅览；263亲签纸质回令一号并封袋交骑使。骑使经263–265陆驿、265暮–267暮邮船，268在天宝当面交程验封；程的签收联尚未回赵府，不瞬时共享。\",\n      \"c"
+    }
+  ],
+  "startPath": "data/audit-runtimes/design76-recovery/model-calls/00028.started.json",
+  "startSha256": "f72046a167f7eb7c711d8ee17a9df96395cb2f9600895f1e811647a856d4fd9d",
+  "responsePath": "data/audit-runtimes/design76-recovery/model-calls/00028.response.json",
+  "responseSha256": "2e51a3d3920b5f0930c7874fae16dd6252af0195ee944da5e737c38355976b9c",
+  "finding": "The same dispatched request contained the arc beat entering the shed and the secret explicitly not confirming entry. The model nevertheless called the message anchors consistent. Preserve its pass as the original verdict, but do not use it to dismiss the previously verified contradiction.",
+  "repairCandidate": "data/design-candidates/design76-followup-controls-v2.json",
+  "repairStatus": "contains inherited message-dispatch correction; latest candidate not semantically reviewed",
+  "productionWrites": 0,
+  "verdictChanges": 0,
+  "blockersClosed": 0,
+  "formalAcceptance": false
+}
