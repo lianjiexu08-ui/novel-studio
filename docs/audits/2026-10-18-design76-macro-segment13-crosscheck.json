@@ -1,0 +1,135 @@
+{
+  "kind": "design76_segment13_targeted_crosscheck",
+  "verified": true,
+  "evidence": [
+    {
+      "callNumber": 77,
+      "requestSha256": "1544fc44fc098399619f1a4e923e6c79ceb3187989ab04ec2effc6a3ea068683",
+      "responseSha256": "14ea2f38631adf7956ac2900fde822bfa02aa4c2968a5a7e6a719820909dd604",
+      "waiting": [
+        {
+          "criterion": "history",
+          "sources": [
+            {
+              "sourceId": "world/historicalEvents/event_14",
+              "length": 1309,
+              "sentRanges": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "callNumber": 78,
+      "requestSha256": "48aafd1e06f18eb69e40e09f07c84220da7d0fcc570500fae6870091f1db54e5",
+      "responseSha256": "26cabb9ed29a2b1e16693f88a62c556ce9f6e283c031a9222f2f230850d933d5",
+      "waiting": [
+        {
+          "criterion": "tiers",
+          "sources": [
+            {
+              "sourceId": "plan/chapters/24",
+              "length": 1628,
+              "sentRanges": []
+            },
+            {
+              "sourceId": "plan/chapters/25",
+              "length": 5406,
+              "sentRanges": []
+            },
+            {
+              "sourceId": "plan/chapters/26",
+              "length": 4126,
+              "sentRanges": []
+            },
+            {
+              "sourceId": "plan/chapters/43",
+              "length": 1939,
+              "sentRanges": []
+            }
+          ]
+        },
+        {
+          "criterion": "costs",
+          "sources": [
+            {
+              "sourceId": "plan/chapters/24",
+              "length": 1628,
+              "sentRanges": []
+            },
+            {
+              "sourceId": "plan/chapters/25",
+              "length": 5406,
+              "sentRanges": []
+            },
+            {
+              "sourceId": "plan/chapters/26",
+              "length": 4126,
+              "sentRanges": []
+            },
+            {
+              "sourceId": "plan/chapters/40",
+              "length": 1635,
+              "sentRanges": []
+            },
+            {
+              "sourceId": "plan/chapters/41",
+              "length": 1758,
+              "sentRanges": []
+            },
+            {
+              "sourceId": "plan/chapters/42",
+              "length": 2290,
+              "sentRanges": []
+            },
+            {
+              "sourceId": "plan/chapters/43",
+              "length": 1939,
+              "sentRanges": []
+            }
+          ]
+        },
+        {
+          "criterion": "counters",
+          "sources": [
+            {
+              "sourceId": "plan/chapters/24",
+              "length": 1628,
+              "sentRanges": []
+            },
+            {
+              "sourceId": "plan/chapters/25",
+              "length": 5406,
+              "sentRanges": []
+            },
+            {
+              "sourceId": "plan/chapters/26",
+              "length": 4126,
+              "sentRanges": []
+            },
+            {
+              "sourceId": "plan/chapters/43",
+              "length": 1939,
+              "sentRanges": []
+            }
+          ]
+        }
+      ],
+      "localAccountCheck": {
+        "sourceId": "plan/chapters/44",
+        "fragmentId": "e378",
+        "quote": "  \"choice\": \"林看见可追原账的方向，仍先把固定救生浮圈递给落水对手，不追陆；贺主动搁浅接板，唐先放许冯过船再带点货夹离开，救人分步不代表放弃另两人。\",\n  \"cost\": \"林一次剑诀支出二成真元，剑体热而停用；贺船底碰裂，三人暂上船但不能出海追击。原账随陆逃走，半页来源仍须核对；林不跳船不提整个人，腿因晃动酸胀，需再复查。 出剑前沿用239日复测的保守余量五成，一式二成后余三成；二成已含剑的供能，之后不再御物，浮圈用手递。剑独立散热，不能借散热把真元账重置。 送钩伙计承接43章四成半真元，44章没有再施术；断索、船摆和失足属于普通受力与站位后果，不扣寿储、不凭空封住其修为。\",\n  \"threads\": [\n    \"th_03\",\n    \"sec_02\"\n  ],\n  \"endState\": \"244夜，唐、许、冯到贺船，唐留着点货夹；落水伙计抓浮圈在船侧，待已到船上的唐与许协力拉上来。陆和另一伙计带原账驶离，巡艇灯已转过外弯。另两名工人不在林视野，不能认定在逃船上。林剑热、真元已减，贺船搁浅破底，不能续追；点货夹尚未启读和比对。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_15\",\n    \"char_16\",\n    \"char_22\"\n  ],\n",
+        "calculation": {
+          "start": 5,
+          "cost": 2,
+          "end": 3
+        },
+        "assessment": "第44章林辰5−2=3与实际引文一致；送钩伙计4.5是另一账户。这里只核第44章局部账，不证明239日至244日前置收支；第40—43章补读保留。"
+      }
+    }
+  ],
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Only verifies that requested sources exist and were not sent in calls77/78, plus chapter44 local arithmetic and account separation. It does not certify all explanations, design quality, completed persistence or the terminal segment."
+}
