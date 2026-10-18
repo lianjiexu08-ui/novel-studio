@@ -3,6 +3,7 @@ import type { DesignReviewAnnotation } from '../../../novel-service-core/src/des
 import type { DesignContentReview } from '../../../novel-service-core/src/design-review.ts';
 import { randomUUID } from 'node:crypto';
 import { PrismaClient } from '@prisma/client';
+import { readProjectWithHistory } from './project-history.ts';
 import { contentHashOf, parseCovenant, rebuildCharacterStates, StaleCandidateError, Work } from '../../../novel-service-core/src/core.ts';
 import type {
   ChapterCandidate, ChapterVersion, Character, CheckInputs, CheckResult, CovenantRevision, RunUsage, Checkpoint, DesignRevision, EventDraft, ManuscriptRevision, PlotNode, Relationship, StoryEvent, WorldRule,
@@ -56,12 +57,15 @@ export class PrismaWorkRepository implements WorkRepository {
   }
 
   async get(workId: string): Promise<Work | undefined> {
-    // findUnique batches concurrent reads into a single driver JSON response.
-    // Preserved long-form review histories can exceed Node's string limit in
-    // that combined envelope. The id remains unique; return each row separately.
-    const project = await this.prisma.project.findFirst({ where: { id: workId } });
-    if (!project) return undefined;
-    return this.loadAggregate(project);
+    const load = async (tx: PrismaTx) => {
+      const project = await readProjectWithHistory(tx, workId);
+      return project ? this.loadAggregate(project, tx) : undefined;
+    };
+    // Audits may supply an existing transaction client; never nest or retain
+    // its delegates after that transaction closes.
+    return typeof this.prisma.$transaction === 'function'
+      ? this.prisma.$transaction(load, { timeout: 120_000 })
+      : load(this.prisma);
   }
 
   async list(): Promise<Array<{ id: string; title: string; stateRevision: number; constraintRevision: number; covenant: ReturnType<typeof parseCovenant> }>> {
@@ -82,6 +86,7 @@ export class PrismaWorkRepository implements WorkRepository {
       where: { id: work.id },
       create: { id: work.id, ...projectFields(work) },
       update: projectFields(work),
+      select: { id: true },
     });
     await this.persist(this.prisma, work);
   }
@@ -154,7 +159,7 @@ export class PrismaWorkRepository implements WorkRepository {
   }
 
   private async loadForUpdate(tx: PrismaTx, workId: string): Promise<Work> {
-    const project = await tx.project.findUnique({ where: { id: workId } });
+    const project = await readProjectWithHistory(tx, workId);
     if (!project) throw new Error(`unknown work ${workId}`);
     return this.loadAggregate(project, tx);
   }

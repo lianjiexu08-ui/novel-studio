@@ -715,6 +715,22 @@ test('atomic aggregate saves can finish beyond the default five-second transacti
   assert.equal((await repository.outbox()).length, 1);
 });
 
+test('long-form review history is read in bounded SQLite chunks without pruning evidence', async t => {
+  const databaseUrl = createDatabase();
+  const { PrismaClient } = await import('@prisma/client');
+  const { PrismaWorkRepository } = await import('../src/prisma-repository.ts');
+  const { Work } = await import('../../../novel-service-core/src/core.ts');
+  const prisma = new PrismaClient({ datasources: { db: { url: databaseUrl } } });
+  const repository = new PrismaWorkRepository(prisma);
+  t.after(async () => { await repository.disconnect(); rmSync(databaseUrl.slice(5), { force: true }); });
+  const work = new Work('超长评审历史');
+  const payload = '甲'.repeat(9 * 1024 * 1024);
+  work.designReviewRuns.set('long-run', { id: 'long-run', payload } as never);
+  await repository.save(work);
+  const restored = (await repository.get(work.id))!;
+  assert.equal((restored.designReviewRuns.get('long-run') as { payload: string }).payload, payload);
+});
+
 test('SQLite reload keeps a newer rejection current when an older passing response arrives late', async t => {
   const databaseUrl = createDatabase();
   process.env.DATABASE_URL = databaseUrl;
