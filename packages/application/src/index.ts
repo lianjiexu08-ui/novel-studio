@@ -1,5 +1,6 @@
 import { retainDesignQuestions } from '../../../novel-service-core/src/design-questions.ts';
 import { recordDesignReviewAnnotation } from '../../../novel-service-core/src/design-review-annotations.ts';
+import { withDesignReviewAnnotations } from '../../../novel-service-core/src/design-review-annotation-context.ts';
 import type { AddDesignReviewAnnotation } from 'novel-studio-contracts';
 import { resolveStoryEventOrder } from '../../../novel-service-core/src/event-order.ts';
 import { validateDesignCandidate, DesignCandidateValidationError, type DesignCandidate } from './design-candidate.ts';
@@ -676,7 +677,7 @@ export class ChapterWorkflow {
       const input = designReviewInput(work, area, planId ?? latestPlan(work)?.id);
       const existing = [...work.designReviewRuns.values()].findLast(run => run.input.area === area && run.input.inputHash === input.inputHash);
       if (existing && existing.status !== 'completed' && existing.status !== 'outdated') return structuredClone(existing);
-      const run = createDesignReviewRun(input, new Date(this.now()).toISOString());
+      const run = createDesignReviewRun(withDesignReviewAnnotations(work, input), new Date(this.now()).toISOString());
       work.designReviewRuns.set(run.id, run);
       work.constraintRevision += 1;
       return structuredClone(run);
@@ -699,7 +700,7 @@ export class ChapterWorkflow {
       // Even an expired lease can still have a delayed worker. Recover that
       // step through the normal fencing path before starting a new assessment.
       if (prior.leaseToken || !['ready', 'failed'].includes(prior.status)) throw new DesignReviewError('仅可重新评审已停止且未完成的任务；仍有执行权时请先恢复原任务');
-      const run = createDesignReviewRun(input, new Date(this.now()).toISOString());
+      const run = createDesignReviewRun(withDesignReviewAnnotations(work, input), new Date(this.now()).toISOString());
       run.restartedFromRunId = prior.id;
       work.designReviewRuns.set(run.id, run);
       work.constraintRevision += 1;

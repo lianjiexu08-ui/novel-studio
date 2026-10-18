@@ -11,13 +11,17 @@ import { PrismaClient } from '@prisma/client';
 import { ChapterWorkflow } from '../../application/src/index.ts';
 import { annotationFixture, annotationWriter } from '../../application/test/review-annotation-fixture.ts';
 import { annotationSources } from '../../../novel-service-core/src/design-review-annotations.ts';
+import { prepareDesignReviewEvidence } from '../../planner/src/design-review-evidence.ts';
 
 test('JSON annotations survive restart, remain idempotent, and older files load without annotations', async t => {
   const dir = mkdtempSync(join(tmpdir(), 'novel-note-json-')), file = join(dir, 'state.json');
   t.after(() => rmSync(dir, { recursive: true, force: true }));
   const { workflow, workId, input } = await annotationFixture(new JsonWorkRepository(file));
   const note = await workflow.addDesignReviewAnnotation(workId, input);
+  const frozen = await workflow.startDesignReview(workId, 'world');
   const restored = new JsonWorkRepository(file), work = (await restored.get(workId))!;
+  assert.deepEqual(work.designReviewRuns.get(frozen.id), JSON.parse(JSON.stringify(frozen)));
+  assert.equal(prepareDesignReviewEvidence(work.designReviewRuns.get(frozen.id)!.input).requestId, prepareDesignReviewEvidence(frozen.input).requestId);
   assert.deepEqual(work.designReviewAnnotations.get(note.id), note);
   assert.match(annotationSources(work, note)[0].text, /力量必须支付代价/);
   assert.deepEqual(await new ChapterWorkflow(restored, annotationWriter).addDesignReviewAnnotation(workId, input), note);
@@ -59,11 +63,14 @@ test('SQLite schema upgrade defaults old projects to empty notes and preserves n
   const note = await workflow.addDesignReviewAnnotation(workId, input);
   const adviceInput = { ...input, requestKey: 'advice-restart', claimField: 'revisionAdvice' as const, claimQuote: '补充力量代价。' };
   const adviceNote = await workflow.addDesignReviewAnnotation(workId, adviceInput);
+  const frozen = await workflow.startDesignReview(workId, 'world');
   await client.$disconnect();
   client = new PrismaClient({ datasources: { db: { url: databaseUrl } } });
   const restored = new PrismaWorkRepository(client), work = (await restored.get(workId))!;
   assert.deepEqual(work.designReviewAnnotations.get(note.id), note);
   assert.deepEqual(work.designReviewRuns.get(run.id), JSON.parse(JSON.stringify(run)));
+  assert.deepEqual(work.designReviewRuns.get(frozen.id), JSON.parse(JSON.stringify(frozen)));
+  assert.equal(prepareDesignReviewEvidence(work.designReviewRuns.get(frozen.id)!.input).requestId, prepareDesignReviewEvidence(frozen.input).requestId);
   assert.match(annotationSources(work, note)[0].text, /力量必须支付代价/);
   assert.deepEqual(await new ChapterWorkflow(restored, annotationWriter).addDesignReviewAnnotation(workId, input), note);
   assert.deepEqual(work.designReviewAnnotations.get(adviceNote.id), adviceNote);

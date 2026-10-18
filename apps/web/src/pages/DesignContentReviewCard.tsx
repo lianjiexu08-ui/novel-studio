@@ -265,6 +265,15 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
           stageId={stageView.stageId} onSource={setSource} onStage={(runId, stageId) => void showStage(runId, stageId)} />}
         {stageDetail.stage.result && details({ ...stageDetail.stage.result, sources: stageDetail.input.sources, scope: stageDetail.input.scope })}
         <Collapse style={{ width: '100%' }} items={[
+          { key: 'frozen-annotations', label: `本次评审携带的核对说明（${stageDetail.input.annotationContext?.notes.length ?? 0} 条）`, children: <Space direction="vertical" style={{ width: '100%' }}>
+            <Typography.Paragraph type="secondary">说明在任务创建时固定，继续或重试不会追加后来记录。说明是待核实的编辑意见，模型仍须核对本步原文；它不能替代证据、消除返修或批准写作。要纳入后来记录，需另建评审任务。</Typography.Paragraph>
+            {stageDetail.input.annotationContext?.notes.map(note => <div key={note.id} style={{ width: '100%', overflowWrap: 'anywhere' }}>
+              <Button type="link" size="small" onClick={() => void showStage(note.runId, note.stageId)}>查看原批次：{note.stageId} · {note.criterion}</Button>
+              <Typography.Paragraph>{note.claimField === 'revisionAdvice' ? '原返修建议：' : '原评语：'}{note.claimQuote}</Typography.Paragraph>
+              <Typography.Paragraph style={{ whiteSpace: 'pre-wrap' }}>{note.explanation}</Typography.Paragraph>
+              {note.evidence.map((evidence, index) => <blockquote key={index} style={{ whiteSpace: 'pre-wrap' }}>{evidence.sourceId}：{evidence.quote}</blockquote>)}
+            </div>) ?? <Typography.Text>此任务未携带核对说明。页面上另行显示的独立核对记录不代表已经送入该次评审。</Typography.Text>}
+          </Space> },
           { key: 'source-coverage', label: '核对本步原文范围与完整来源目录', children: <ReviewSourceCoverage key={`${stageView?.runId}/${stageView?.stageId}`} input={stageDetail.input} onSource={setSource} /> },
           { key: 'materials', label: `查看全部所审材料（${stageDetail.input.sources.length} 项）`, children: <Space direction="vertical">{stageDetail.input.sources.map(item => {
             const original = stageDetail.input.stage?.sourceMap.find(unit => unit.id === item.id);

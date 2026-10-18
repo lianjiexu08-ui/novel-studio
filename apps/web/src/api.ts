@@ -52,6 +52,7 @@ export interface DesignReviewStageDetail {
     inputHash: string;
     scope: DesignContentReviewDto['scope']; sources: DesignContentReviewDto['sources'];
     stage?: ReviewSourceInput['stage'];
+    annotationContext?: { version: 1; sha256: string; notes: DesignReviewAnnotationDto[] };
   };
 }
 

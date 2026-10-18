@@ -1,6 +1,7 @@
 import { createHash, randomUUID } from 'node:crypto';
 import { maxDesignReviewEvidence } from '../../packages/contracts/src/index.ts';
 import { renderDesignReviewReport } from './design-review-report.ts';
+import { validateDesignReviewAnnotationContext } from './design-review-annotation-context.ts';
 import { designReviewChapterCast, designReviewChapterTimes, designReviewEntityMentions, designReviewPlanCharacters, designReviewPlanNeighbors, designReviewPlanRanges, designReviewSourceNames, designReviewReferencedRules, designReviewSourceRelationships, localDesignReviewRubric } from './design-review-scope.ts';
 import { DesignReviewError, validateDesignReview, type DesignReviewInput, type DesignReviewResult, type DesignReviewSource } from './design-review.ts';
 
@@ -12,6 +13,9 @@ const resultCapacity = 40_000;
 const scopedResultSourceCapacity = 90_000;
 const sharedContextCapacity = 40_000;
 const worldPlanningContextCapacity = 80_000;
+const annotationCharacters = (input: DesignReviewInput) => input.annotationContext ? JSON.stringify(input.annotationContext).length : 0;
+const sourceCapacity = (input: DesignReviewInput) => designReviewCapacity - annotationCharacters(input);
+const reportCapacity = (input: DesignReviewInput) => Math.min(scopedResultSourceCapacity, Math.floor((sourceCapacity(input) - sharedContextCapacity - 1000) / 2));
 
 function worldMacroSources(input: DesignReviewInput): DesignReviewSource[] {
   if (input.purpose === 'chapter_review' || input.area !== 'world') return [];
@@ -56,9 +60,10 @@ export interface DesignReviewRun {
 export function createDesignReviewRun(input: DesignReviewInput, now = new Date().toISOString(), scheduleVersion: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | 32 | 33 | 34 = input.purpose === 'chapter_review' ? 31 : 34): DesignReviewRun {
   if (!Number.isInteger(scheduleVersion) || scheduleVersion < 1 || scheduleVersion > 34) throw new DesignReviewError('未知评审调度版本');
   if (new Set(input.sources.map(s => s.id)).size !== input.sources.length) throw new DesignReviewError('评审来源 ID 重复');
+  validateDesignReviewAnnotationContext(input, true);
   const units: DesignReviewUnit[] = [];
   const stages: DesignReviewStage[] = [];
-  const small = JSON.stringify(input.sources).length <= designReviewCapacity;
+  const small = JSON.stringify(input.sources).length <= sourceCapacity(input);
   // Two v3 raw batches plus shared context use at most 220k characters,
   // leaving room for the exact questions a cross check must resolve.
   let ordinaryBatchCapacity = scheduleVersion >= 3 ? 90_000 : batchCapacity;
@@ -97,6 +102,8 @@ export function createDesignReviewRun(input: DesignReviewInput, now = new Date()
     }
     if (shareMacro) ordinaryBatchCapacity = Math.min(90_000, Math.floor((220_000 - JSON.stringify(shared.map(unitSource)).length) / 2));
   }
+  if (input.annotationContext) ordinaryBatchCapacity = Math.min(ordinaryBatchCapacity,
+    Math.floor((220_000 - annotationCharacters(input) - JSON.stringify(shared.map(unitSource)).length) / 2));
   const sharedIds = new Set(shared.map(u => u.id));
   let pending: DesignReviewUnit[] = [];
   const flush = () => { if (pending.length) stages.push({ id: `batch-${stages.length + 1}`, kind: 'batch', label: `原文批次 ${stages.length + 1}`, unitIds: [...shared, ...pending].map(u => u.id), children: [], attempts: 0 }); pending = []; };
@@ -281,7 +288,7 @@ function computeFollowupUnits(run: DesignReviewRun, pending: ReturnType<typeof d
   // be expressible without violating the result contract.
   const citationLimit = (run.scheduleVersion ?? 1) >= 16 ? maxDesignReviewEvidence : 64;
   if (new Set([...cited, ...requested]).size + chain.length > citationLimit) return undefined;
-  const fits = (ids: string[]) => JSON.stringify([...sources.filter(s => ids.includes(s.id)), ...chain.map(item => item.question)]).length <= designReviewCapacity;
+  const fits = (ids: string[]) => JSON.stringify([...sources.filter(s => ids.includes(s.id)), ...chain.map(item => item.question)]).length <= sourceCapacity(run.input);
   const citedUnits = run.units.filter(u => cited.has(u.sourceId)).map(u => u.id);
   const full = [...new Set([...pending.stage.unitIds, ...citedUnits, ...required])];
   const batches = run.stages.filter(s => s.kind === 'batch');
@@ -432,6 +439,7 @@ function synthesisCoverage(run: DesignReviewRun, stage: DesignReviewStage) {
 }
 
 export function designReviewStageInput(run: DesignReviewRun, stage: DesignReviewStage): DesignReviewInput {
+  validateDesignReviewAnnotationContext(run.input, true);
   return readDesignReviewStageInput(run, stage, reviewReadCache());
 }
 function readDesignReviewStageInput(run: DesignReviewRun, stage: DesignReviewStage, cache: ReviewReadCache): DesignReviewInput {
@@ -449,7 +457,7 @@ function readDesignReviewStageInput(run: DesignReviewRun, stage: DesignReviewSta
     const context = readResolutionContext(run, stageIndex, cache);
     if (context) sources.push(context);
   }
-  if (JSON.stringify(sources).length > designReviewCapacity) throw new DesignReviewError('本批材料超出单次评审容量；未截断原文');
+  if (JSON.stringify(sources).length > sourceCapacity(run.input)) throw new DesignReviewError('本批材料与核对说明超出单次评审容量；未截断原文');
   const coverage: NonNullable<DesignReviewInput['stage']>['coverage'] = (run.scheduleVersion ?? 1) >= 3 ? {
     mode: stage.kind === 'synthesis' ? 'reports_with_context' : run.units.every(u => stage.unitIds.includes(u.id)) ? 'whole_input' : 'local_sources',
     sourceLengths: Object.fromEntries(run.input.sources.map(s => [s.id, s.text.length])),
@@ -470,7 +478,7 @@ function readDesignReviewStageInput(run: DesignReviewRun, stage: DesignReviewSta
       if (!coversDeferral(run, stage, pending, cache)) continue;
       // Do not remove raw material to squeeze in a question. If it cannot fit,
       // this stage cannot authorize a resolution; the unresolved item blocks.
-      if (JSON.stringify([...sources, pending.question]).length > designReviewCapacity) continue;
+      if (JSON.stringify([...sources, pending.question]).length > sourceCapacity(run.input)) continue;
       sources.push(pending.question);
       const cited = citedSourceIds(run, pending);
       const priorSourceIds = followup || (run.scheduleVersion ?? 1) >= 34 && cited.length ? cited : undefined;
@@ -534,7 +542,7 @@ function readDesignReviewStageInput(run: DesignReviewRun, stage: DesignReviewSta
     ...(followup ? { followupFor: followup.id } : {}),
     ...(followup && (run.scheduleVersion ?? 1) >= 33 ? { followupBudget: { remainingRounds: Math.max(0, maxFollowupRounds - pendingChain(run, followup).length) } } : {}),
     ...((run.scheduleVersion ?? 1) >= 16 ? { evidenceLimit: 96 as const } : {}),
-    ...((run.scheduleVersion ?? 1) >= 17 ? { reportBudget: { sourceId: `review-result/${stage.id}`, maxCharacters: scopedResultSourceCapacity } } : {}),
+    ...((run.scheduleVersion ?? 1) >= 17 ? { reportBudget: { sourceId: `review-result/${stage.id}`, maxCharacters: reportCapacity(run.input) } } : {}),
     ...((run.scheduleVersion ?? 1) >= 18 && coverage?.mode === 'local_sources' && !followup ? { requireInsufficiencyReason: true as const } : {}),
     sourceMap: run.units.filter(u => stage.unitIds.includes(u.id)),
     ...(coverage ? { coverage } : {}),
@@ -545,7 +553,7 @@ export function acceptDesignReviewStage(run: DesignReviewRun, stage: DesignRevie
   const input = designReviewStageInput(run, stage);
   validateDesignReview(input, result);
   const tooLarge = (run.scheduleVersion ?? 1) >= 3
-    ? JSON.stringify([resultSource(run, { ...stage, result })]).length > scopedResultSourceCapacity
+    ? JSON.stringify([resultSource(run, { ...stage, result })]).length > reportCapacity(run.input)
     : JSON.stringify(result).length > resultCapacity;
   if (tooLarge) throw new DesignReviewError('本批评审结论过长，请重新评审并精炼解释；原文与失败记录保留');
   stage.result = structuredClone(result); stage.error = undefined;

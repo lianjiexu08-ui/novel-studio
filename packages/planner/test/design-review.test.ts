@@ -7,6 +7,7 @@ import { designReviewCitationEnvelopeCharacters, designReviewReportEnvelopeSize 
 import { designReviewResultSchema } from 'novel-studio-contracts';
 import { ChapterWorkflow, InMemoryWorkRepository } from '../../application/src/index.ts';
 import { createReadyWork, fixtureDesignReview } from '../../application/test/fixtures.ts';
+import { annotationFixture } from '../../application/test/review-annotation-fixture.ts';
 
 async function input() {
   const workflow = new ChapterWorkflow(new InMemoryWorkRepository(), { generateChapter: () => ({ content: '', proposedEvents: [] }) });
@@ -19,6 +20,35 @@ function anchored(request: Awaited<ReturnType<typeof input>>) {
     evidence: check.evidence.map((item) => ({ fragmentId: sources.find((s) => s.id === item.sourceId)!.fragments[0].id })),
   })) };
 }
+
+test('frozen annotations reach the model as non-evidence, change request identity, and cannot be cited', async () => {
+  const { workflow, workId, input: noteInput, run: oldRun } = await annotationFixture(new InMemoryWorkRepository());
+  const note = await workflow.addDesignReviewAnnotation(workId, noteInput);
+  const run = await workflow.startDesignReview(workId, 'world');
+  const calls: Array<{ system: string; user: string }> = [];
+  for (const request of [oldRun.input, run.input]) {
+    const planner = new JsonDesignPlanner({ complete: async call => { calls.push(call); return JSON.stringify(anchored(request)); } });
+    await planner.reviewDesignContent(request);
+  }
+  const oldBody = JSON.parse(calls[0].user), body = JSON.parse(calls[1].user);
+  assert.equal(oldBody.annotationContext, undefined);
+  assert.ok(!calls[0].system.includes('annotationContext'));
+  assert.ok(calls[1].system.startsWith(calls[0].system + '\n'));
+  assert.match(calls[1].system, /待核实的编辑意见/);
+  assert.match(calls[1].system, /说明不能解除/);
+  assert.deepEqual(body.annotationContext, run.input.annotationContext);
+  assert.notEqual(oldBody.requestId, body.requestId);
+  assert.deepEqual(body.sources.map((s: { id: string; text: string }) => ({ id: s.id, text: s.text })),
+    oldBody.sources.map((s: { id: string; text: string }) => ({ id: s.id, text: s.text })));
+  const forged = anchored(run.input);
+  forged.checks[0].evidence = [{ fragmentId: note.id }];
+  assert.throws(() => prepareDesignReviewEvidence(run.input).resolve(forged));
+  const tampered = structuredClone(run.input);
+  tampered.annotationContext!.notes[0].explanation = '修改未重新绑定';
+  let modelCalls = 0;
+  await assert.rejects(() => new JsonDesignPlanner({ complete: async () => { modelCalls++; return ''; } }).reviewDesignContent(tampered), /快照不匹配/);
+  assert.equal(modelCalls, 0);
+});
 
 for (const repairedCorrectly of [true, false]) test(`v27 synthesis repair preserves original responses and cannot weaken child findings: ${repairedCorrectly}`, async () => {
   const request = await input();

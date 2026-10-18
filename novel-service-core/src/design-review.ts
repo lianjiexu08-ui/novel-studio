@@ -1,6 +1,7 @@
 import { createHash, randomUUID } from 'node:crypto';
 import { maxDesignReviewAwaitingSources, maxDesignReviewEvidence } from '../../packages/contracts/src/index.ts';
 import type { Work } from './core.ts';
+import type { DesignReviewAnnotationDto } from 'novel-studio-contracts';
 
 export const designReviewAreas = ['world', 'power', 'characters', 'story'] as const;
 export type DesignReviewArea = typeof designReviewAreas[number];
@@ -39,6 +40,8 @@ export interface DesignReviewInput {
   inputHash: string;
   scope: { worldPackRevision: number; storyBibleRevision: number; planRevisionId: string; planRevision: number };
   sources: DesignReviewSource[];
+  /** Immutable editorial context captured for a new assessment, never story evidence. */
+  annotationContext?: { version: 1; sha256: string; notes: DesignReviewAnnotationDto[] };
   rubric: Record<string, string>;
   stage?: {
     kind: 'batch' | 'cross' | 'synthesis'; label: string; totalBatches: number;
