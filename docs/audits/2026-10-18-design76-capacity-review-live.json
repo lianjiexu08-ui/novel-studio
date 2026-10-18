@@ -1,0 +1,74 @@
+{
+  "kind": "design76_capacity_review_live_observation",
+  "observedAt": "2026-10-18T09:47:24.925Z",
+  "pid": 32137,
+  "sourceCommit": "c0dbe63a6c9249cb3e1559683ee7c10f3c5ace7f",
+  "runtimeBindingPath": "data/audit-runtimes/design76-citation-capacity-runtime-bound.json",
+  "runtimeBindingSha256": "e978d7aab9f0e89c5839fdef6bbea07f910b37a5241d7fc6b9b6678a08d11cce",
+  "verificationPath": "docs/audits/2026-10-18-design76-capacity-review-segment-10.json",
+  "verificationSha256": "e2e1546acf51a237f50813ac5ca672ab37a5d80496ad269d04c74c82bd8bff89",
+  "priorCheckpointSha256": "26acd41d5132432133f3cde3cb84c28f5166bdd764f1064d48640c8911fe0030",
+  "session": {
+    "readOnly": true,
+    "status": "running",
+    "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+    "planId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+    "segment": 11,
+    "activeStep": {
+      "area": "world",
+      "runId": "design_run_98b5460a-ed47-4ba2-bb06-7fdded1f910d",
+      "stageId": "cross-2-3",
+      "startedAt": "2026-10-18T09:45:52.294Z"
+    },
+    "completedThisSegment": 0,
+    "totalCalls": 64,
+    "progress": [
+      {
+        "area": "world",
+        "completed": 13,
+        "total": 55
+      },
+      {
+        "area": "power",
+        "completed": 11,
+        "total": 29
+      },
+      {
+        "area": "characters",
+        "completed": 11,
+        "total": 29
+      },
+      {
+        "area": "story",
+        "completed": 10,
+        "total": 29
+      }
+    ]
+  },
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "firstNewRequest": {
+    "path": "data/audit-runtimes/design76-capacity-review/model-calls/00065.started.json",
+    "sha256": "104b7a3d99a66b21308ba612adf403fb4b2e0cf8838a82b018facd1de7d97f21"
+  },
+  "ui": {
+    "tabId": "24",
+    "url": "http://127.0.0.1:5180/#/works/work_8b6c9133e13d404083ca33acc63f4f61/design",
+    "observedLastRead": "17:46:16",
+    "worldProgress": "13/55",
+    "powerProgress": "11/29",
+    "charactersProgress": "11/29",
+    "storyProgress": "10/29",
+    "refreshErrorCleared": true,
+    "worldRevision": 40,
+    "bibleRevision": 72,
+    "planRevision": 76,
+    "approvedPlanRevision": 10,
+    "blockers": 41
+  },
+  "modelCallsByObservation": 0,
+  "productionWritesByObservation": 0,
+  "formalAcceptance": false,
+  "proseGenerated": false,
+  "limitation": "Point-in-time startup and UI observation; segment 11 remains incomplete. Inspect the current checkpoint, not this historical proof, for live status."
+}
