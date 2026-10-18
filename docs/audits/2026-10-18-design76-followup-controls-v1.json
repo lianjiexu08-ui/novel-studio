@@ -1,0 +1,364 @@
+{
+  "kind": "design76_unapplied_control_followup_draft",
+  "createdAt": "2026-10-18T05:53:52.524Z",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "basePlanId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+  "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+  "inputsSha256": "fc94bb269625716ca4114f9c882de726f23cdec4ded63daccf94089749a9c6f5",
+  "previousCandidatePath": "data/design-candidates/design76-followup-knowledge-v1.json",
+  "previousCandidateSha256": "792683dbfc87510231ec784d8331797eb49429b9723b695fe976ba93e8d0b647",
+  "candidatePath": "data/design-candidates/design76-followup-controls-v1.json",
+  "candidateSha256": "286b6f2aaed1afc44866125fc5c9f2a076c9646c1ddd7b7c3ac10c29cc107137",
+  "corrections": [
+    {
+      "id": "art_04",
+      "name": "紫幽罗烟罩",
+      "beforeSha256": "58ea29bc053032eaf6ccf7b1282a150077ea12a13a84a1fc7358c8419c24dbe1",
+      "afterSha256": "d80aa79cf86a547157d1fdaaf868cd02c1ccc0ff76fe76d24779374bc5e8010c",
+      "before": {
+        "cost": "每开启一刻钟以内烟罩，先付操控者健康玄府元罡上限一成，并投入三枚完整下品青灵石；不足一刻钟结束也不退费。灵石只供雾纹，元罡只负责操控，不宣称三枚石与元罡存在跨人通用等额换算。",
+        "limitations": [
+          "须由至少玄府境、能够持续输出纯净元罡者亲自祭炼和维持；无元罡、灵石库存或神识控雾能力任一项不足时不得展开。",
+          "烟障以持有者为中心，最大半径十丈，单次最长维持一刻钟；持有者昏迷、神识受创、元罡断供、器物被击落或主动收罩即退场，已付供能不返还。",
+          "大风狂飙、暴烈风系法术、持续火焰或大范围水压可吹散、焚散或冲散烟雾；神海境以上修士可凭神念穿透遮蔽，已被锁定者不能借烟罩自动脱离追踪。",
+          "烟罩只遮蔽有限区域，不能跨越阵法边界、封锁空间或界门，也不能作为无伤撤退、免疫攻击或替代护体法器。",
+          "反制：大风狂飙、暴烈风系法术、持续火焰或水系冲击驱散烟雾",
+          "反制：神海境以上神念穿透，或以神魂、范围覆盖和预置阵法绕过视觉遮蔽",
+          "反制：直接打断持有者供能、神识专注或击落烟罩"
+        ]
+      },
+      "after": {
+        "cost": "每次展开前预付操控者本人健康稳定当境法力上限一成，并投入三枚完整下品青灵石，供本次起雾和至多一刻钟持续控雾；玄府记元罡，更高境仍只扣本人的唯一当境法力账。不足一刻钟收罩、展开失败或受扰均不退费，续用须停罩复测并按新一次完整付费。灵石供雾纹、当境法力经手柄供操控，两者不相互折算；本器不以神识外探或可用神识储备控制雾区。",
+        "limitations": [
+          "至少玄府境、能稳定输出适格当境法力者，须先由已经掌握本器者指导认主、持柄导流、起雾、收雾及受控打断训练，经实测记录本人本境稳定控雾半径与时长，晋阶不自动继承熟练度。效用只取该实测半径与十丈总上限、实测时长与一刻钟总上限中各自较小者。没有训练记录、足额法力或三枚可用灵石不得展开。",
+          "器身必须始终由本人以手握住实体手柄，通过已练成的接触导流维持固定的环身雾纹；开罩前选定不超过本人实测上限的半径，本次不临时扩张。烟障只以手持者为中心，不远投罩体、隔空指定雾区或分出独立雾团。雾会同样遮住持有者的肉眼，不授予雾中透视、敌我辨认或神识锁定；控雾靠接触柄上的已练导流，不靠看见雾外目标。",
+          "持续握持和稳定导流均不可省略。手柄脱手、持有者昏迷、定向失稳、经脉疼痛、法力通路中断、器身受损或主动收罩即停止器生雾纹，器生紫雾随纹失效散去；现场普通烟火、此前已命中的伤害和物理遮挡不被消除，已付供能不返还。",
+          "控雾的专注是实际注意力负担，不是另一份数值神识池；不得同时操作另一件需要持续定向的术式。受惊、受击或神魂伤使专注失稳时必须收罩。疲劳须实际休息至定向与握持复测稳定，伤损须经医修确认；等一刻钟或法力回满不自动恢复使用资格。更高境也不能以神识改称接触操控而绕过本器条件。",
+          "大风狂飙、暴烈风系法术、持续火焰或大范围水压可吹散、焚散或冲散烟雾；神海境以上修士可凭神念穿透遮蔽，已被锁定者不能借烟罩自动脱离追踪。",
+          "烟罩只遮蔽有限区域，不能跨越阵法边界、封锁空间或界门，也不能作为无伤撤退、免疫攻击或替代护体法器。",
+          "反制：大风狂飙、暴烈风系法术、持续火焰或水系冲击驱散烟雾；神海境以上神念穿透，或以神魂、范围覆盖和预置阵法绕过视觉遮蔽；近身夺柄、打断握持或供能使其退场。"
+        ]
+      }
+    },
+    {
+      "id": "art_06",
+      "name": "雪魄凝晶环",
+      "beforeSha256": "91be1904aaf1561c1d812f9455f8dc30617eb38ad271b0aa02a8d15c27de3b83",
+      "afterSha256": "bd295836bca49dc3e560d862076ae4055b433e1aa98335036fa28e935dc4acda",
+      "before": {
+        "cost": "每次落环先付施术者健康稳定当境法力上限二成，随后十息控环再付一成；须修持冰系或阴柔功法。玄府记元罡，更高境各自按自身法力基准，不能跨人兑换成数。控制中断仍扣已开始阶段费用，寒伤另记，不把恢复法力当经脉痊愈。",
+        "limitations": [
+          "仅至少玄府境且能以神识确认落点者可催动；无水泽、湿地、可供冻结的水分或适格法力时，最多形成短暂霜层，不得宣称完成三十丈冰封。",
+          "自落环起须持续控环十个呼吸，范围内冻结最多维持一刻钟；环被击飞、控力中断、目标脱离冻区或遭持续热力融解即退场，已付法力不返还。",
+          "被冻结者仍可借护体、火法、破冰器具、腾空或外力救援脱困；对玄府境以上完整元罡只能造成表层寒滞，不能自动禁锢。",
+          "在赤霄大陆火山地带威能减退六成，对火属性修士压制力不足；强行在高热区域连续催动会加重持有者经脉寒热冲突。",
+          "反制：火系术法、持续热源或破冰器具融解冻结层",
+          "反制：腾空、外力牵引或护体元罡脱离三十丈冻区",
+          "反制：在落环与控环期间击飞凝晶环或打断持有者神识"
+        ]
+      },
+      "after": {
+        "cost": "投放前核足本次三成本人健康稳定当境法力：起式先付二成，落环后开始十息以内持续控环前再付一成；玄府记元罡，更高境只扣本人的唯一当境法力账。须修持适格冰系或阴柔功法；控制中断仍扣已开始阶段费用，寒伤另记，不把恢复法力当经脉痊愈。操控依本境已练的可见定向与导流，不另设玄府神识账户，也不用高境神识省略本器可见条件。",
+        "limitations": [
+          "至少玄府境且完成本境认主、可见落点定向、持续导流和主动停术训练者方可使用；须由已掌握本器者指导并经受控打断与经脉复测，记录本人本境稳定控环距离、冻结范围和时长。投放与控环距离取本人实测值与三十丈上限中较小者；环周作用范围取本人实测范围与三十丈上限中较小者，不能晋阶即取满上限。",
+          "只能亲手向实际可见的浅水或湿地投放，落点须能让环体至少部分持续露出，且本人能肉眼辨认环体及本次作用边界。不能隔障投放、向不明深水盲掷或靠神识寻找已沉没的环。无适格法力不得发动；无足够可冻结水分最多出现短暂霜层，不保证完成冰封。",
+          "起式后环体落定才可开始控环，持续导流至多十息；失去环体或必要边界的视线、目标定向错误、环被击飞或淹没、导流中断、操作者受扰失稳即停术，不能在同一次失控后重新锁定续上。已开始阶段费用不退；未开始的控环阶段不预支其效果。",
+          "一次冻结维持至多一刻钟；停止控环或达到时限即不再主动追加冻结或经络寒滞。已经形成的普通冰层按实际温度融化或由实物破开，不能把停术当成瞬间清空冰障，也不能将残冰算作继续禁锢经络的法术。余冰可能滑倒或困住旁人，现场须实际处理。",
+          "可见导流依赖清醒、稳定注意力，不是可回充的神识数值池；不兼行另一项持续定向术式。眩晕、受击失准、经脉寒痛即停。疲劳须休息并复测，寒伤和神魂伤另须医修确认；法力补足不替代复核。",
+          "被冻结者仍可借护体、火法、破冰器具、腾空或外力救援脱困；对玄府境以上完整元罡只能造成表层寒滞，不能自动禁锢。",
+          "在赤霄大陆火山地带威能减退六成，对火属性修士压制力不足；强行在高热区域连续催动会加重持有者经脉寒热冲突。",
+          "反制：持续热源与火法融冰，破冰器具或腾空、外力牵引脱离冻区；遮挡落环或必要边界、击飞环体、打断施术者定向与导流，均可阻断主动控制。"
+        ]
+      }
+    },
+    {
+      "id": "art_08",
+      "name": "太清太乙拂尘",
+      "beforeSha256": "0471a5ec4b57eca821ea735c08cf3f8047a902cabb7e032a6d0ef0e8f507b1c5",
+      "afterSha256": "8ffb9de46ce3adb906c1c201741aa19e7b807f502358a97742d067ffe1b61672",
+      "before": {
+        "cost": "须用太清一系的当境法力；玄府明确记元罡，不另造“灵元”货币。展开先付健康法力上限二成，每开始十息控丝另付一成，单次十息共三成；中断仍付已开始阶段成本，收拂后需一刻钟检查银丝与经脉，不自动补满法力。",
+        "limitations": [
+          "仅修有太清体系功法且至少玄府境、完成认主者可操控；非太清一系法力、旁人灌注或临时伪装均不能稳定催发。",
+          "银丝展开须一个呼吸，最大有效范围百丈；单次全力卸力或困锁最多维持十个呼吸，持有者神识中断、当境法力不足、银丝受创或目标脱离范围即退场。",
+          "卸力效果受来力方向、接触面积、银丝完整度与持续供能限制；面对同阶以上持续重击、重型法宝、神魂攻击、空间切割或多点围攻，只能部分缓冲或转移，不能保证持有者无伤。",
+          "银丝遭剧烈腐蚀性魔血易受污损，无法抵御虚空裂隙利刃撕扯；污损、断裂后须净化修复，不能在战中无限再生。",
+          "反制：腐蚀性魔血、烈焰焚蚀或空间裂隙切断银丝",
+          "反制：多方向持续重击与超出卸力承载的重型攻势迫使其过载",
+          "反制：在展开和持续控丝时以神识冲击、近身快攻或位移脱离打断"
+        ]
+      },
+      "after": {
+        "cost": "须用太清一系的当境法力；玄府记元罡，更高境只扣本人唯一当境法力账。起式展开前先付健康稳定法力上限二成，开始十息以内控丝前另付一成，本次完整施用共三成；中断仍付已开始阶段成本，未开始控丝不取得其效果。收拂后至少一刻钟检查银丝与经脉并复测合格才能另起，不能按同一次续交一成无限延长。控制采用已训练的握柄导流与肉眼定向，不以神识账户作玄府隐含资格。",
+        "limitations": [
+          "仅修有太清体系功法且至少玄府境、完成认主者可学习操控；非太清一系法力、旁人灌注或临时伪装均不能稳定催发。须经已掌握本器者指导本境展开、可见导丝、接触卸力和主动停丝，完成受控打断与经脉复测，记录本人本境实际可控范围与时长；晋阶不自动继承。",
+          "银丝展开须一个呼吸，范围取本人本境实测稳定导丝距离与百丈总上限中较小者；单次全力卸力或困锁最多十息且不超过本人实测时长。操作者须持续握住实体拂柄，肉眼看清目标、导丝路径及实际接触部位，不能隔墙盲缠、凭神识补看或同时维持另一项定向控术。",
+          "目标或必要导丝路径被遮挡、持柄脱手、注意力失稳、供能中断、银丝受创或目标脱离范围即停丝。停术后不再主动卸力、缠紧或追击；原有实体银丝按实际松弛、坠落与缠绕状态处理，必要时须当场解缠，已造成的勒伤和断裂不撤销。普通残丝不封禁境界，不凭失控继续发动困锁。",
+          "握持与定向需要实际专注，不是可用神识数值池；受击、眩晕或神魂受创使定向不稳时停术。疲劳须休息至复测稳定，实际伤损须医修确认；冷却届满与法力补足均不自动恢复使用资格。",
+          "卸力效果受来力方向、接触面积、银丝完整度与持续供能限制；面对同阶以上持续重击、重型法宝、神魂攻击、空间切割或多点围攻，只能部分缓冲或转移，不能保证持有者无伤。",
+          "银丝遭剧烈腐蚀性魔血易受污损，无法抵御虚空裂隙利刃撕扯；污损、断裂后须净化修复，不能在战中无限再生。",
+          "反制：腐蚀性魔血、烈焰或空间裂隙切断银丝；多方向持续重击与超出承载的攻势迫使过载；遮挡导丝路径、近身夺柄、冲击心神使定向失稳或位移脱离，均可打断控制。"
+        ]
+      }
+    }
+  ],
+  "inheritedKnowledgeCorrections": [
+    {
+      "sourceId": "story/arcBeats/message-dispatch",
+      "sourceTextSha256": "64d489e04b36c263c7c426863c4bc8827ea294b4fafd4f5bb850bb1f33e0b2be",
+      "fieldPath": "expectedChange",
+      "before": "规划锚点（非采纳事实）：52章258日，程在天宝落脚处付本商号普通邮资寄程报一号，引用254清晨药栈脚夫在公共巷口亲见林贺随巡查进附棚、两工及两看守被分别带出的报告，自述封匣仍自持。脚夫当日午后步行实到递话，未听门内认罪，不来自被看护的陆。程本人不在254门口，不写本人亲见；封匣253午后正常回铺时已带走。260云梦转驿、262乾都实到，赵此前不知报件已寄。",
+      "after": "规划锚点（非采纳事实）：52章258日，程在天宝落脚处付本商号普通邮资寄程报一号，引用254清晨药栈脚夫在公共巷口看见林贺留在外院、巡员在附棚门口处置、两工自行出门后由贺陪同离开、两看守被控制的报告，自述封匣仍自持。脚夫当日午后步行实到递话，未听见门前陆的承认与工人去留对话，不来自被看护的陆。程本人不在254门口，不写本人亲见；封匣253午后正常回铺时已带走。260云梦转驿、262乾都实到，赵此前不知报件已寄。"
+    },
+    {
+      "sourceId": "story/relationships/rel_02",
+      "sourceTextSha256": "b29dce327cdb5ca461978086027a8f74292eff749aa0ce45bd11ba3b8826560c",
+      "fieldPath": "stages[17].cause",
+      "before": "95章436苏取得实际原令并交林核看；98章439程抵乾都只自述自己逃走前所见。",
+      "after": "95章436苏取得实际原令并交林核看；98章程438抵乾都、439获见赵，只自述自己逃走前所见。"
+    },
+    {
+      "sourceId": "story/secrets/sec_02",
+      "sourceTextSha256": "1744142a6d45ce1cbd0ff274f288a4cba71c4b8058081972f0385ccd0706137b",
+      "fieldPath": "knowledgeStages[63].trigger",
+      "before": "98章439程沿普通驿路抵乾都当面报其逃离前所见；携来的只有自身见闻，不是回传全场。",
+      "after": "98章程沿普通驿路438抵乾都、439获见赵当面报其逃离前所见；携来的只有自身见闻，不是回传全场。"
+    },
+    {
+      "sourceId": "plan/milestones/ms_v3_payoff",
+      "sourceTextSha256": "71af953802373e7ad35b6b9c3d491ebd76adcd642195b6552e3eb472a798f586",
+      "fieldPath": "setup[2]",
+      "before": "苏梁核住处、粮食与工钱申领，韩承担改账责任。林只公开父亲守门参与及当地掩案可证部分。98章439程按普通驿路到乾都面报逃前所见；99章442监督点另寄本案摘要、原令封存副本和见证签名，444到复核署，445赵读质询、446答询并停本批授权。双方不即时共享。林仅据436程当场索要工友身份的口信怀疑第二片在赵府，未亲见；第一片仍封存自持。",
+      "after": "苏梁核住处、粮食与工钱申领，韩承担改账责任。林只公开父亲守门参与及当地掩案可证部分。98章程按普通驿路438抵乾都、439获见赵面报逃前所见；99章442监督点另寄本案摘要、原令封存副本和见证签名，444到复核署，445赵读质询、446答询并停本批授权。双方不即时共享。林仅据436程当场索要工友身份的口信怀疑第二片在赵府，未亲见；第一片仍封存自持。"
+    }
+  ],
+  "validation": {
+    "valid": true,
+    "issues": [],
+    "warnings": [
+      {
+        "path": "worldPack",
+        "message": "blocking unresolved questions remain"
+      },
+      {
+        "path": "storyBible",
+        "message": "blocking unresolved story questions remain"
+      }
+    ],
+    "blockers": [
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-power-opening",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-resource-definitions",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-travel-rules",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-tier-exceptions",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-resource-usage",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-first-volume-foundation",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-volume-timeline",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-artifact-continuity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-ending-cost",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-relationship-stages",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-knowledge-reveal-order",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-opening-growth",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-opening-quality",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-resource-growth-budget",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first-volume-blueprint",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-v1-outline-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-v23-macro",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-guard-return-chain",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-barge-inspection",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-second-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first50-narrative",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-message-arrivals",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-review-capacity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "baseline-content-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "opening-growth-repair",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "opening-quality-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "resource-growth-budget",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first-volume-blueprint",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "v1-outline-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "v23-macro",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "guard-return-chain",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "barge-inspection",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "second-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first50-narrative",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "message-arrivals",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "review-capacity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "convoy-custody-causality",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "north-coast-exit-permit",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "chapter25-claw-sequence",
+        "code": "BLOCKING_QUESTION"
+      }
+    ],
+    "formalAcceptance": false,
+    "productionWrites": false,
+    "limitation": "Checks API contracts and structural references only. Open blockers remain; this does not approve a plan, accept content quality, or certify an atomic save."
+  },
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "blockersClosed": 0,
+  "limitation": "Schema-valid offline draft, not a semantic pass. Preserve the live review inputs; consolidate remaining findings and review these control mechanisms before applying."
+}
