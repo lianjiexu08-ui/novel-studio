@@ -1,0 +1,93 @@
+{
+  "kind": "design76_segment24_notes_private_rehearsal",
+  "verified": true,
+  "createdAt": "2026-10-18T16:51:23.363Z",
+  "runnerSha256": "71bebd4fdf432767fdb1324dd5b8a79ce757ddf59a569a75a217345cd180566d",
+  "preparedSha256": "9e923594ef9739248416ccbfb738b4768e56c65e615a24ffd4280e961675b563",
+  "runtimeBindingSha256": "8a1875b686f31b79d32ca9c00fa4cfd65931a195ca0c6dfd8547ff2c0507b5e5",
+  "baseCheckpointSha256": "404cdf6dee935ad4b5159d489be4b7b1b5abffcf9d754c80c485c5f0f71fae89",
+  "database": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design76-notes24-rehearsal-HRDrR3/private.db",
+  "control": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design76-notes24-rehearsal-HRDrR3",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "notes": [
+    {
+      "requestKey": "design76-world-proxy-authority",
+      "runId": "design_run_98b5460a-ed47-4ba2-bb06-7fdded1f910d",
+      "stageId": "followup-cross-2-5/history",
+      "criterion": "history",
+      "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+      "expectedCheckHash": "741cb33c11576ff389245b7c1f05516801ec187b43822a6885f29a9ab5f3a426",
+      "claimQuote": "炎煞真身须实际获报才能扣货或拒新增仓位",
+      "explanation": "原文分别规定两个主体：外围代理在实际收到货损或查验通知后，只能扣留尚未交付的自家货、拒绝新增自家仓位或要求先清欠款；炎煞真身则在实际获报前不知港火、北境失货或赵单方重整。这句评语把代理的条件性商业措施与炎煞真身的消息边界合到了同一主语下，不能据此改成必须先报到真身代理才可行动，也不能推出真身已经接报、亲自扣货或获得港务调度权。53章程—赵第一报和回令没有送达炎煞真身的节点；旧约不允许即时调人救程，也不赋予免检、封港或压案权限。本说明保留原局部pass及cross-2-5/history补读解决声明，只分清执行主体、可处置对象与各自获报条件，不新增命令或通信节点，不将作者前史变成角色即时全知或全局设计验收。",
+      "evidence": [
+        {
+          "sourceId": "world/historicalEvents/event_14",
+          "quote": "炎煞外围代理若实际收到货损或查验通知，可扣留尚未交付的自家货、拒绝新增仓位或要求先清欠款"
+        },
+        {
+          "sourceId": "world/historicalEvents/event_14",
+          "quote": "炎煞真身在实际获报前不会自动知港火、北境失货或赵单方重整。"
+        },
+        {
+          "sourceId": "world/historicalEvents/event_14",
+          "quote": "旧约不允许他跨越地理、封港和消息时限即时调人救程，也未在百章中预写双方达成新协议。"
+        },
+        {
+          "sourceId": "story/relationships/rel_06",
+          "quote": "53章第一报和回令均由程与赵府经手；没有给炎煞真身的送达或阅览节点。"
+        },
+        {
+          "sourceId": "world/historicalEvents/event_14",
+          "quote": "他不控制天宝港务、万象商盟或全部船舶，不能保证免检、免税、封港或压掉他人报案。"
+        }
+      ],
+      "id": "review_note_a556f4ce-c96a-4935-8ea0-6e07d9266ab0",
+      "createdAt": "2026-10-18T16:51:00.795Z",
+      "scope": {
+        "worldPackRevision": 40,
+        "storyBibleRevision": 72,
+        "planRevisionId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+        "planRevision": 76
+      }
+    }
+  ],
+  "preservedWorkFieldDigests": {
+    "activePlanId": "a79cacee9517456fb5abae34e3592ad141a8d092b6782979cdb0aa1996029412",
+    "briefs": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "candidates": "db801c927d61955caf1e94c196129e7ca7a4557cbae7f7f93b7977d2e6ffb6a2",
+    "characters": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "checkpoints": "9360443cd3329deca750224d5f41fd8b848cc87483d84e5d59d8bf1fa6f89d31",
+    "constraintRevision": "a95d67cec3543764f119ac4231c949085816cb7a7908f30a4526e7da65910980",
+    "covenant": "7b09efc6b0d1edd79e40db6d143a177956b28b40ee5070d303574df8d73121f8",
+    "covenantHistory": "ef48b60cd983a0f4b34cbe25bf37e751eb58681b943b6b8369fdcd5fca1ec745",
+    "designContentReviews": "8b8ab9639e03bd0055431c0e710bacf9dbac0d268f27578ddcb0bfc13e0aed8d",
+    "designHistory": "f2347b762def7bec1232ebed9113bcc4fb424df8b0f09e37b74bcef254165a1b",
+    "designReviewRuns": "21430e6013f3353de8ec8e565854e5262cf34cf6c0877765cc0beb7f0f312774",
+    "events": "69a4c30b560af422264c89ba8cce8c658bf3d137ec8bcdae5f7025cdc4622590",
+    "id": "e6c77c6af51347285f913e10c068833e392333610313a73f42ae654dbeeebb0b",
+    "impacts": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "manuscripts": "3f9dd7880a530d9eb7ccf9113b140958fe9e182f63c9f706f9c55ceb5c46ffc9",
+    "plans": "6afb21f18712fce391f7c0c715b9791eb95f922a669d1cc1a96b2677e905b396",
+    "plotNodes": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "relationships": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "stateRevision": "16dc368a89b428b2485484313ba67a3912ca03f2b2b42429174a4f8b3dc84e44",
+    "states": "71af6764cda2e591af608654aa65a05f8b25e4e8f9871c746de158a77a0618fc",
+    "storyBible": "ae92c644e55aa89fd87920f431acdb817e50351843daddd6cb65d8508350ef02",
+    "title": "9a392c9dee167243ad8ace1e37c8c750c798509925344a9b052ce05cbb6a54b2",
+    "versions": "ab09691b6b0882a4fa32a704a65a61930f961a7d3e35aa52d872fc017e048fb1",
+    "worldPack": "c2c2dd54716be54571a024440590ebbb8c47b55eb37f2b490bfaf24c5bf6be6d",
+    "worldRules": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "oldRunsPreserved": 99,
+  "oldReportsPreserved": 92,
+  "oldAnnotationsPreserved": 29,
+  "annotationsAdded": 1,
+  "restartReadback": true,
+  "rollbackExercised": true,
+  "idempotenceExercised": true,
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "verdictChanges": 0,
+  "questionsResolved": 0,
+  "formalAcceptance": false
+}
