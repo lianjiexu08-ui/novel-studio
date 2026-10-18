@@ -1,0 +1,80 @@
+{
+  "kind": "design76_segment29_ui_verification",
+  "observedAt": "2026-10-18T19:23:57.609933+00:00",
+  "apiPid": 75205,
+  "health": {
+    "status": 200,
+    "body": {
+      "ok": true
+    },
+    "corsOrigin": "http://127.0.0.1:5180"
+  },
+  "url": "http://127.0.0.1:5180/#/works/work_8b6c9133e13d404083ca33acc63f4f61/design",
+  "browser": "iab",
+  "tabId": "24",
+  "observedBy": "cua_repl accessibility snapshots and native clicks",
+  "progress": {
+    "world": "45/95",
+    "power": "41/73",
+    "characters": "41/47",
+    "story": "39/75"
+  },
+  "blockersVisible": 41,
+  "designStillPending": true,
+  "proseProductionLockedVisible": true,
+  "details": [
+    {
+      "stageId": "followup-cross-4-7/geography",
+      "verdictVisible": "pass",
+      "localScopeWarningVisible": true,
+      "independentAnnotationsVisible": 1,
+      "independentAnnotationExpanded": true,
+      "annotationId": "review_note_4fdb8bdd-f10b-42fd-a425-f8c4d2645e1e",
+      "claimQuoteVisible": "第33—49章均在天宝外港及其受监管泊区、货院、潮沟、北三水台等已列地点内展开",
+      "explanationVisible": "“均在天宝外港”只能用来概括这段林辰的港区主线，不能覆盖所有人物和场景。第33章同时有苏凌霜在青玄的独立视角：212日古境外营销班，213—216日慢车返宗，216日19时抵太清外门，217日接押及交回损剑、领取普通备用铁剑。该章地点栏明确并列天宝外港与入口外营至太清外门的返宗支线；前者在赤霄，后者仍在青玄，不是两地瞬移或同一港区内行动。返宗过程与林的海程并行，林在41章实际收到信前不得知道返宗结果。原局部pass及cross-4-7/geography解决声明保留。本说明只缩小评语中的全称范围，不移动支线、不合并两地角色、不使消息即时送达，也不据此关闭全局设计问题。",
+      "sourceQuotesVisible": [
+        {
+          "sourceId": "plan/chapters/33",
+          "quote": "loc_23天宝外港原船卸货区与侧门；插叙为loc_05入口外营至loc_29太清外门院"
+        },
+        {
+          "sourceId": "plan/chapters/33",
+          "quote": "第217日；插叙覆盖第212日至第216日的太清销班与四日慢车返宗"
+        },
+        {
+          "sourceId": "plan/chapters/33",
+          "quote": "213–216返宗以白天慢车行路、夜间停营执行，不连夜赶车"
+        },
+        {
+          "sourceId": "plan/chapters/33",
+          "quote": "苏于217日将损剑交外门器械房登记入库待处置，当面验领库内原有的一柄普通备用铁剑"
+        },
+        {
+          "sourceId": "plan/chapters/33",
+          "quote": "林41章收到信前不得知道其返宗结果。"
+        }
+      ],
+      "resolutionClaimRetained": true,
+      "rawAnswerDisclosureExpanded": true,
+      "originalExecutionGroupsVisible": 1,
+      "originalResponsesVisible": 2,
+      "originalStringCitationsRetained": true,
+      "repairedObjectCitationsRetained": true
+    }
+  ],
+  "observation": "The page automatically updated all progress values; story was initially 38/75 and reached 39/75 while the selected detail loaded. The new geographic clarification expanded with its original claim, full explanation and five exact source quotations, alongside the preserved local pass and resolution claim. Raw answers show both invalid string citations and the repaired fragmentId objects. No reload, manual progress refresh, model retry or duplicate publication. Tab 24 remains on the clarification.",
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "UI verification of the new independent clarification and current progress. Does not close 41 blockers, apply offline v6 or accept prose.",
+  "startupPath": "data/audit-runtimes/design76-api-start-75205.json",
+  "startupSha256": "c5ee6ee367db02f7a13f0dfdfd2c11c92e11d3e26114ac02e2cb3c32754d741f",
+  "verificationPath": "docs/audits/2026-10-18-design76-notes26-review-segment-29.json",
+  "verificationSha256": "d59aab2aa99c53c37f5a7f528e07ea53a45759b819b9d0480aaceb1a1443c9f6",
+  "scopePath": "docs/audits/2026-10-18-design76-segment29-source-scope.json",
+  "scopeSha256": "44815f8e602e1175a9d414b9dea2e41896099976d80a4f93b4e4824c827db34d",
+  "notesPath": "docs/audits/2026-10-18-design76-segment29-notes-applied.json",
+  "notesSha256": "44b3b6f5e9c3e24df9ebfe112a986121c3de9435ac0efcce3de8f2469a84b512",
+  "nextBaselinePath": "docs/audits/2026-10-18-design76-notes29-review-preflight-replay.json",
+  "nextBaselineSha256": "6a6f5ac6a65d9bd108501c888403adb1efd712316a62421c6d40cd731cb2a300"
+}

@@ -1,0 +1,39 @@
+// Clarify a geographic overgeneralization without relocating the independent return subplot.
+import fs from 'node:fs';import assert from 'node:assert/strict';import {createHash} from 'node:crypto';
+const read=p=>JSON.parse(fs.readFileSync(p)),sha=p=>createHash('sha256').update(fs.readFileSync(p)).digest('hex'),hash=v=>createHash('sha256').update(JSON.stringify(v)).digest('hex');
+const verificationPath='docs/audits/2026-10-18-design76-notes26-review-segment-29.json',verification=read(verificationPath);
+assert.equal(verification.workerAbsent,true);assert.equal(sha(verification.checkpointPath),verification.checkpointSha256);
+const terminal=read(verification.checkpointPath);assert.equal(terminal.segment,29);
+try{process.kill(terminal.pid,0);assert.fail('Worker still live');}catch(e){assert.equal(e.code,'ESRCH');}
+const run=terminal.runs.find(r=>r.input.area==='world'),stage=run.stages.find(s=>s.id==='followup-cross-4-7/geography');assert.ok(stage.result);
+const bindingPath='data/audit-runtimes/design76-fragment-index-runtime-bound.json',binding=read(bindingPath);
+for(const[p,h]of Object.entries(binding.sourceHashes))assert.equal(sha(binding.runtimePath+'/'+p),h);
+const {annotationSources,designReviewCheckHash}=await import(binding.runtimePath+'/novel-service-core/src/design-review-annotations.ts');
+const {addDesignReviewAnnotationSchema}=await import(binding.runtimePath+'/packages/contracts/src/design-review.ts');
+const base='data/audit-runtimes/design76-notes26-review/model-calls/';
+const requestPath=base+'00196.started.json',responsePath=base+'00196.response.json';
+const request=JSON.parse(read(requestPath).request.user),raw=JSON.parse(read(responsePath).response.text);
+const repairResponsePath=base+'00197.response.json';
+assert.equal(raw.requestId,request.requestId);assert.deepEqual(stage.modelResponses,[read(responsePath).response.text,read(repairResponsePath).response.text]);
+assert.equal(JSON.parse(read(repairResponsePath).response.text).checks[0].explanation,raw.checks[0].explanation);
+const check=stage.result.checks.find(c=>c.criterion==='geography');assert.equal(check.verdict,'pass');assert.ok(check.resolves.includes('cross-4-7/geography'));
+const claimQuote='第33—49章均在天宝外港及其受监管泊区、货院、潮沟、北三水台等已列地点内展开';assert.ok(check.explanation.includes(claimQuote));
+const evidence=[
+ {sourceId:'plan/chapters/33',quote:'loc_23天宝外港原船卸货区与侧门；插叙为loc_05入口外营至loc_29太清外门院'},
+ {sourceId:'plan/chapters/33',quote:'第217日；插叙覆盖第212日至第216日的太清销班与四日慢车返宗'},
+ {sourceId:'plan/chapters/33',quote:'213–216返宗以白天慢车行路、夜间停营执行，不连夜赶车'},
+ {sourceId:'plan/chapters/33',quote:'苏于217日将损剑交外门器械房登记入库待处置，当面验领库内原有的一柄普通备用铁剑'},
+ {sourceId:'plan/chapters/33',quote:'林41章收到信前不得知道其返宗结果。'},
+];
+const actualSupport=evidence.map(e=>{
+ assert.ok(run.input.sources.find(s=>s.id===e.sourceId).text.includes(e.quote));
+ const sent=request.sources.filter(s=>s.origin?.sourceId===e.sourceId).flatMap(s=>s.fragments.filter(f=>f.text.includes(e.quote)).map(f=>f.id));assert.equal(sent.length,1);return {...e,sent};
+});
+assert.deepEqual(actualSupport.map(e=>e.sent[0]),['e361','e361','e359','e360','e361']);
+const annotationInput=addDesignReviewAnnotationSchema.parse({requestKey:'design76-world-cross47-port-scope',runId:run.id,stageId:stage.id,criterion:'geography',expectedInputHash:run.input.inputHash,expectedCheckHash:designReviewCheckHash(check),claimQuote,
+ explanation:'“均在天宝外港”只能用来概括这段林辰的港区主线，不能覆盖所有人物和场景。第33章同时有苏凌霜在青玄的独立视角：212日古境外营销班，213—216日慢车返宗，216日19时抵太清外门，217日接押及交回损剑、领取普通备用铁剑。该章地点栏明确并列天宝外港与入口外营至太清外门的返宗支线；前者在赤霄，后者仍在青玄，不是两地瞬移或同一港区内行动。返宗过程与林的海程并行，林在41章实际收到信前不得知道返宗结果。原局部pass及cross-4-7/geography解决声明保留。本说明只缩小评语中的全称范围，不移动支线、不合并两地角色、不使消息即时送达，也不据此关闭全局设计问题。',evidence});
+annotationSources({designReviewRuns:new Map([[run.id,run]])},annotationInput);
+const proof={kind:'design76_world_cross47_port_scope',verificationPath,verificationSha256:sha(verificationPath),bindingPath,bindingSha256:sha(bindingPath),requestPath,requestSha256:sha(requestPath),responsePath,responseSha256:sha(responsePath),repairResponsePath,repairResponseSha256:sha(repairResponsePath),runId:run.id,stageId:stage.id,acceptedStageSha256:hash(stage),originalCheckHash:designReviewCheckHash(check),originalCheck:check,actualSupport,annotationInput,modelCalls:0,productionWrites:0,formalAcceptance:false,limitation:'Independent clarification draft; does not append an annotation, change a verdict or mutate the design.'};
+const out='docs/audits/2026-10-18-design76-world-cross47-port-scope.json';
+if(process.argv.includes('--check'))assert.deepEqual(read(out),proof);else fs.writeFileSync(out,JSON.stringify(proof,null,2)+'\n',{flag:'wx'});
+console.log(JSON.stringify({verified:true,sourceQuotes:evidence.length,productionWrites:0}));
