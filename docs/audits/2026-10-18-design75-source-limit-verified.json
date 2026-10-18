@@ -1,0 +1,91 @@
+{
+  "kind": "design75_detached_source_limit_probe_verified",
+  "createdAt": "2026-10-18T05:03:20.359Z",
+  "inputSha256": "d49af8ec02f5a617f3247225d2ee30c043b05c8aac37b2cf1bc7630713b271ef",
+  "resultFileSha256": "68aec6fc1e5fac06ff74b94bee1d9440bc932e6e9d5990e0d005b67e74d89022",
+  "responsesReplayed": 1,
+  "checks": [
+    {
+      "criterion": "causality",
+      "verdict": "insufficient",
+      "awaitingSources": 61
+    },
+    {
+      "criterion": "timeline",
+      "verdict": "insufficient",
+      "awaitingSources": 32
+    },
+    {
+      "criterion": "payoff",
+      "verdict": "pass"
+    },
+    {
+      "criterion": "opening",
+      "verdict": "insufficient",
+      "awaitingSources": 50
+    },
+    {
+      "criterion": "pacing",
+      "verdict": "insufficient",
+      "awaitingSources": 18
+    },
+    {
+      "criterion": "genre",
+      "verdict": "pass"
+    },
+    {
+      "criterion": "growth",
+      "verdict": "insufficient",
+      "awaitingSources": 9
+    }
+  ],
+  "followups": [
+    {
+      "stageId": "followup-batch-1/causality",
+      "criterion": "causality",
+      "requestedSources": 61,
+      "mandatorySources": 62,
+      "characters": 195570,
+      "fullMandatorySourcesVerified": true
+    },
+    {
+      "stageId": "followup-batch-1/timeline",
+      "criterion": "timeline",
+      "requestedSources": 32,
+      "mandatorySources": 37,
+      "characters": 215631,
+      "fullMandatorySourcesVerified": true
+    },
+    {
+      "stageId": "followup-batch-1/opening",
+      "criterion": "opening",
+      "requestedSources": 50,
+      "mandatorySources": 52,
+      "characters": 209259,
+      "fullMandatorySourcesVerified": true
+    },
+    {
+      "stageId": "followup-batch-1/pacing",
+      "criterion": "pacing",
+      "requestedSources": 18,
+      "mandatorySources": 20,
+      "characters": 170521,
+      "fullMandatorySourcesVerified": true
+    },
+    {
+      "stageId": "followup-batch-1/growth",
+      "criterion": "growth",
+      "requestedSources": 9,
+      "mandatorySources": 15,
+      "characters": 165385,
+      "fullMandatorySourcesVerified": true
+    }
+  ],
+  "rawSourceCapacity": 240000,
+  "originalCheckpointUnchanged": true,
+  "syntheticOtherRawSteps": true,
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Replays a real local response; synthetic raw-stage completion demonstrates followup scheduling and full-source capacity only. No new followup content verdict or formal review is proven."
+}

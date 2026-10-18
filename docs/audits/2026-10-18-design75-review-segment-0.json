@@ -1,0 +1,528 @@
+{
+  "observedAt": "2026-10-18T04:59:11.335Z",
+  "status": "stopped_after_stage_limit",
+  "segment": 0,
+  "checkpointPath": "data/audit-runtimes/design75-review/terminal-segment-0.json",
+  "checkpointSha256": "95280705adb385046dfa5e62615890da020d25ca63dae4375e73fa71edcbc79f",
+  "workerAbsent": true,
+  "sourceCommit": "1205d214abfcd6f921edc15dc206ce0ebd446000",
+  "runnerSha256": "1d3ae32a6cd62a3ad5404963893640614b8a7e0d68caa7e2448e1d12a407d1d1",
+  "inputsSha256": "2098ce707d0c46a01632a245d881d31be052302391efb38d5d7b5d61ebbf5bf5",
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "totalCallAttempts": 4,
+  "successfulResponses": 4,
+  "failedAttempts": 0,
+  "unsettledCalls": 0,
+  "journal": [
+    {
+      "callNumber": 1,
+      "step": {
+        "area": "world",
+        "runId": "design_run_287efd3c-2a7b-4dde-aacd-ed46acee40c3",
+        "stageId": "batch-1",
+        "startedAt": "2026-10-18T04:48:49.260Z"
+      },
+      "responseSha256": "d2c94ee80e24cd9200756ca8ee8a2a77720ce55a0313870760e744dd4ad2e697",
+      "startSha256": "fdf147ec0344af7b3a852ed64002e471439c313ff332def61e5bd1381361da9a",
+      "outcomeSha256": "a0513968a73e0cb07675f6e8150abf7c074408ef926c06052b06467bb41026a0",
+      "usage": {
+        "calls": 1,
+        "failedCalls": 0,
+        "inputTokens": 132897,
+        "outputTokens": 2139,
+        "costUsd": 0,
+        "costKnown": false,
+        "byRole": {
+          "reviewing": {
+            "calls": 1,
+            "failedCalls": 0,
+            "outputTokens": 2139,
+            "costUsd": 0
+          }
+        },
+        "limits": {
+          "budgetUsd": null,
+          "maxCalls": 400
+        }
+      }
+    },
+    {
+      "callNumber": 2,
+      "step": {
+        "area": "power",
+        "runId": "design_run_0a77dfc8-3f80-4905-9611-4d4568975ab3",
+        "stageId": "batch-1",
+        "startedAt": "2026-10-18T04:50:53.083Z"
+      },
+      "responseSha256": "fbdd69531ebbe9db5df247c854be9bfe33aa2cbb0d16ebf4e15601e2cc232b8d",
+      "startSha256": "c750385d03cbea0734ca58c833b5e457d5e382adf70144097cd267a5d880957f",
+      "outcomeSha256": "2e35b7667c92f30947ac58b65cab5dc5c2730999795b0d05edc52985997bb459",
+      "usage": {
+        "calls": 2,
+        "failedCalls": 0,
+        "inputTokens": 239534,
+        "outputTokens": 4741,
+        "costUsd": 0,
+        "costKnown": false,
+        "byRole": {
+          "reviewing": {
+            "calls": 2,
+            "failedCalls": 0,
+            "outputTokens": 4741,
+            "costUsd": 0
+          }
+        },
+        "limits": {
+          "budgetUsd": null,
+          "maxCalls": 400
+        }
+      }
+    },
+    {
+      "callNumber": 3,
+      "step": {
+        "area": "characters",
+        "runId": "design_run_47da8ac4-c25f-4936-a92c-0b983e858cd5",
+        "stageId": "batch-1",
+        "startedAt": "2026-10-18T04:53:49.077Z"
+      },
+      "responseSha256": "b5cd8b8ab30a37aedd50898dd0fd29816057c5a6f333e3b75f94420c0f42b225",
+      "startSha256": "e358257e28ef2daeb986652860c87daecbb16d8deac34a4e5a501434d1a5e094",
+      "outcomeSha256": "16f098555a616e737af34df8497a145fbc256e4f63f8112861329096878d67df",
+      "usage": {
+        "calls": 3,
+        "failedCalls": 0,
+        "inputTokens": 332728,
+        "outputTokens": 6214,
+        "costUsd": 0,
+        "costKnown": false,
+        "byRole": {
+          "reviewing": {
+            "calls": 3,
+            "failedCalls": 0,
+            "outputTokens": 6214,
+            "costUsd": 0
+          }
+        },
+        "limits": {
+          "budgetUsd": null,
+          "maxCalls": 400
+        }
+      }
+    },
+    {
+      "callNumber": 4,
+      "step": {
+        "area": "story",
+        "runId": "design_run_8594c645-f90d-4381-afa2-bdfcc1134172",
+        "stageId": "batch-1",
+        "startedAt": "2026-10-18T04:56:13.144Z"
+      },
+      "responseSha256": "c7a9e00aef8bd159b877af6483c74a45eff5661d5ad6a18964e7de3a67abab2a",
+      "startSha256": "c755578e63653c3dfc1f7a8247f10ecccf66a7f66227091b3e38780aa113e19f",
+      "outcomeSha256": "cf7e6c3bff70e6abb93b051fd57b9391951f34b744cd33f7eb5e5410686cbbd7",
+      "usage": {
+        "calls": 4,
+        "failedCalls": 0,
+        "inputTokens": 446284,
+        "outputTokens": 10903,
+        "costUsd": 0,
+        "costKnown": false,
+        "byRole": {
+          "reviewing": {
+            "calls": 4,
+            "failedCalls": 0,
+            "outputTokens": 10903,
+            "costUsd": 0
+          }
+        },
+        "limits": {
+          "budgetUsd": null,
+          "maxCalls": 400
+        }
+      }
+    }
+  ],
+  "replays": [
+    {
+      "area": "world",
+      "runId": "design_run_287efd3c-2a7b-4dde-aacd-ed46acee40c3",
+      "verification": "verified",
+      "completedStages": 1,
+      "totalStages": 55,
+      "runSha256": "647a8810aa61a3beab27ca312a7314f608ff2918724cc52001033511c67a6f57",
+      "formalAcceptance": false,
+      "limitation": "Replays saved responses, repairs, citations and conclusions against independently supplied materials. Pending work, semantic quality, blocker disposition and prose acceptance remain separate.",
+      "responseReplay": "verified",
+      "responsesReplayed": 1,
+      "records": [
+        {
+          "stageId": "batch-1",
+          "kind": "batch",
+          "stageSha256": "7025527517d145a44df779ac1fffd1ff1a3bc06f3da67875ed4d24e38863476f",
+          "inputSha256": "0df1b61d57ff3589eb75eeaa1c361284f635067b04c8047ee6769f36b47a4492",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "geography",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/19",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "history",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "capacity",
+              "verdict": "pass"
+            }
+          ]
+        }
+      ],
+      "failures": [],
+      "modelCalls": 0,
+      "reportVerification": "not_completed"
+    },
+    {
+      "area": "power",
+      "runId": "design_run_0a77dfc8-3f80-4905-9611-4d4568975ab3",
+      "verification": "verified",
+      "completedStages": 1,
+      "totalStages": 29,
+      "runSha256": "c242675a1fc8a5acac14a4bbb2725a0097b5291ee7f0574f3ba11d06fd2b32ef",
+      "formalAcceptance": false,
+      "limitation": "Replays saved responses, repairs, citations and conclusions against independently supplied materials. Pending work, semantic quality, blocker disposition and prose acceptance remain separate.",
+      "responseReplay": "verified",
+      "responsesReplayed": 1,
+      "records": [
+        {
+          "stageId": "batch-1",
+          "kind": "batch",
+          "stageSha256": "7e8c2f38c6997d4517e8469241484fb59ba48fd610bd6b4d050e7640d4afa1b8",
+          "inputSha256": "977921bf12138d93ca8f55449a130f18960cedbb0da5911c61d47cfce457c8cb",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "tiers",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/milestones/ms_v2_fire",
+                "plan/milestones/ms_v2_voyage",
+                "plan/milestones/ms_v2_boundary",
+                "plan/milestones/ms_v3_return",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement",
+                "plan/milestones/ms_v3_convoy",
+                "plan/milestones/ms_v3_payoff"
+              ]
+            },
+            {
+              "criterion": "costs",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/milestones/ms_v2_fire",
+                "plan/milestones/ms_v2_voyage",
+                "plan/milestones/ms_v2_boundary",
+                "plan/milestones/ms_v3_return",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement",
+                "plan/milestones/ms_v3_convoy",
+                "plan/milestones/ms_v3_payoff"
+              ]
+            },
+            {
+              "criterion": "counters",
+              "verdict": "pass"
+            }
+          ]
+        }
+      ],
+      "failures": [],
+      "modelCalls": 0,
+      "reportVerification": "not_completed"
+    },
+    {
+      "area": "characters",
+      "runId": "design_run_47da8ac4-c25f-4936-a92c-0b983e858cd5",
+      "verification": "verified",
+      "completedStages": 1,
+      "totalStages": 29,
+      "runSha256": "7d81222422c8e2aa3bba6be95bb6f01b48b0144658a9b0f593d90571df50443e",
+      "formalAcceptance": false,
+      "limitation": "Replays saved responses, repairs, citations and conclusions against independently supplied materials. Pending work, semantic quality, blocker disposition and prose acceptance remain separate.",
+      "responseReplay": "verified",
+      "responsesReplayed": 1,
+      "records": [
+        {
+          "stageId": "batch-1",
+          "kind": "batch",
+          "stageSha256": "b80219190dfeb32d8a8081c7ba2adddb7b24c2ed47ca7bf48c6cf9342dca85d7",
+          "inputSha256": "9d5d14453ef5767bdef92f92fea0763d54d6a995c7574419e193a1fbd65aa175",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "story/secrets/sec_02"
+              ]
+            }
+          ]
+        }
+      ],
+      "failures": [],
+      "modelCalls": 0,
+      "reportVerification": "not_completed"
+    },
+    {
+      "area": "story",
+      "runId": "design_run_8594c645-f90d-4381-afa2-bdfcc1134172",
+      "verification": "verified",
+      "completedStages": 1,
+      "totalStages": 29,
+      "runSha256": "c7e0b687cdf3be9125dc5af57aa3b9f56a04d29d43bafef7c6ccdde226b62df7",
+      "formalAcceptance": false,
+      "limitation": "Replays saved responses, repairs, citations and conclusions against independently supplied materials. Pending work, semantic quality, blocker disposition and prose acceptance remain separate.",
+      "responseReplay": "verified",
+      "responsesReplayed": 1,
+      "records": [
+        {
+          "stageId": "batch-1",
+          "kind": "batch",
+          "stageSha256": "086894100f6ecc9511aaa400b5d052a0d278f852e1a445cee6ed626ec876e838",
+          "inputSha256": "d49af8ec02f5a617f3247225d2ee30c043b05c8aac37b2cf1bc7630713b271ef",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "insufficient"
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "insufficient"
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "story/secrets/sec_01",
+                "story/secrets/sec_02",
+                "story/secrets/sec_03",
+                "story/secrets/sec_04",
+                "story/promises/prom_01",
+                "story/promises/prom_02",
+                "story/promises/prom_03",
+                "story/promises/prom_04",
+                "story/openThreads/th_01",
+                "story/openThreads/th_02",
+                "story/openThreads/th_03",
+                "story/openThreads/th_04",
+                "story/openThreads/th_05",
+                "plan/milestones/ms_v2_fire",
+                "plan/milestones/ms_v2_boundary",
+                "plan/milestones/ms_v3_payoff"
+              ]
+            },
+            {
+              "criterion": "opening",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/1",
+                "plan/chapters/2",
+                "plan/chapters/3",
+                "plan/chapters/4",
+                "plan/chapters/5",
+                "plan/chapters/6",
+                "plan/chapters/7",
+                "plan/chapters/8",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/13",
+                "plan/chapters/14",
+                "plan/chapters/15",
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/1",
+                "plan/chapters/2",
+                "plan/chapters/3",
+                "plan/chapters/4",
+                "plan/chapters/5",
+                "plan/chapters/6",
+                "plan/chapters/7",
+                "plan/chapters/8",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/13",
+                "plan/chapters/14",
+                "plan/chapters/15",
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "growth",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/13",
+                "plan/chapters/14",
+                "plan/chapters/15",
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50",
+                "plan/milestones/ms_growth_v1_recovery",
+                "plan/milestones/ms_growth_v1_training",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement"
+              ]
+            }
+          ]
+        }
+      ],
+      "failures": [],
+      "modelCalls": 0,
+      "reportVerification": "not_completed"
+    }
+  ],
+  "preserved": {
+    "protectedHash": "87edbb70c57db1bc046b721e831a11eeca388144089e05c6f3a30d2b3a22b0d2",
+    "oldRuns": 88,
+    "oldReports": 92
+  },
+  "productionVerification": "read_only_sqlite_backup",
+  "databaseSnapshotPath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design75-review/verify-segment-0-AztyJa/production.db",
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "proseGenerated": false,
+  "limitation": "Verified incomplete prefix only; pending stages and formal quality acceptance remain unproven."
+}

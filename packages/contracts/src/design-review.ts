@@ -1,10 +1,12 @@
 import { z } from 'zod';
 
-// A 64-source deferral also needs its original basis and question cited.
+// Deferred sources also need their original basis and question cited.
 export const maxDesignReviewEvidence = 96;
 // This bounds the request metadata, not raw-source coverage. The scheduler still
 // requires every requested source to fit and every required citation to exist.
-export const maxDesignReviewAwaitingSources = 64;
+// Fifty chapter outlines plus eighteen milestones can fit the raw-source budget
+// but exceed 64 IDs. Let the scheduler check the actual material/citation cost.
+export const maxDesignReviewAwaitingSources = 96;
 export const designReviewAreaSchema = z.enum(['world', 'power', 'characters', 'story']);
 export const designReviewResultSchema = z.object({
   summary: z.string().trim().min(1).max(4000),

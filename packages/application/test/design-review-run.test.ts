@@ -517,14 +517,18 @@ function resolvePending(input: DesignReviewInput) {
   return result;
 }
 
-test('one continuity question can request all 21 chapters and cannot resolve with a missing citation', () => {
-  const requested = Array.from({ length: 21 }, (_, i) => ({ id: `plan/chapters/${30 + i}`, text: `第${30 + i}章核验出发、到达、交接与当日余量。` }));
+for (const count of [21, 68]) test(`one continuity question retains all ${count} sources and cannot resolve with a missing citation`, () => {
+  const requested = Array.from({ length: count }, (_, i) => ({ id: i < 50 ? `plan/chapters/${i + 1}` : `plan/milestones/m${i - 49}`, text: `材料${i + 1}核验出发、到达、交接与当日余量。` }));
   const input = { ...largeInput(), sources: [{ id: 'route', text: '第30至50章必须按真实航路连续核验，不能跳过港内交接。' }, ...['a', 'b', 'c', 'd'].map(id => ({ id, text: '其他原始设定。'.repeat(10000) })), ...requested] };
   const run = createDesignReviewRun(input);
   const first = run.stages[0], firstInput = designReviewStageInput(run, first);
   const pending = stagePass(firstInput);
   pending.checks[0] = { ...pending.checks[0], verdict: 'insufficient', explanation: '需连续核对30至50章的行动时序。', revisionAdvice: '补读全部21章，不能只取前12章。', awaitingSources: requested.map(s => s.id), evidence: [{ sourceId: run.units.find(u => u.sourceId === 'route')!.id, quote: input.sources[0].text }] };
   designReviewResultSchema.parse(pending);
+  const excessive = structuredClone(pending);
+  excessive.checks[0].awaitingSources = Array.from({ length: 97 }, (_, i) => `unread/${i}`);
+  assert.throws(() => designReviewResultSchema.parse(excessive));
+  assert.throws(() => acceptDesignReviewStage(run, first, excessive), /1至96/);
   acceptDesignReviewStage(run, first, pending);
   let resolved = false;
   for (let i = 1; i < run.stages.length; i++) {
@@ -536,9 +540,10 @@ test('one continuity question can request all 21 chapters and cannot resolve wit
       for (const source of requested) assert.equal(staged.stage!.sourceMap.filter(u => u.sourceId === source.id).map(u => staged.sources.find(s => s.id === u.id)!.text).join(''), source.text);
       result = resolvePending(staged);
       const incomplete = structuredClone(result);
-      const lastId = staged.stage!.sourceMap.find(u => u.sourceId === 'plan/chapters/50')!.id;
+      const lastSource = requested.at(-1)!.id;
+      const lastId = staged.stage!.sourceMap.find(u => u.sourceId === lastSource)!.id;
       incomplete.checks[0].evidence = incomplete.checks[0].evidence.filter(e => e.sourceId !== lastId);
-      assert.throws(() => acceptDesignReviewStage(run, stage, incomplete), /新增来源 plan\/chapters\/50/);
+      assert.throws(() => acceptDesignReviewStage(run, stage, incomplete), error => (error as Error).message.includes(`新增来源 ${lastSource}`));
       designReviewResultSchema.parse(result);
       resolved = true;
     }

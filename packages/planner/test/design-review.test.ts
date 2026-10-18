@@ -352,9 +352,9 @@ test('invented anchors receive one repair attempt then fail closed', async () =>
   assert.equal(calls, 2);
 });
 
-test('model transport retains a complete 21-chapter deferral without a format-repair call', async () => {
+for (const count of [21, 68]) test(`model transport retains all ${count} deferred sources without a format-repair call`, async () => {
   const request = await input();
-  const unread = Array.from({ length: 21 }, (_, i) => `plan/chapters/${30 + i}`);
+  const unread = Array.from({ length: count }, (_, i) => i < 50 ? `plan/chapters/${i + 1}` : `plan/milestones/m${i - 49}`);
   request.stage = { kind: 'batch', label: '航路连续性', totalBatches: 3,
     sourceMap: request.sources.map(s => ({ id: s.id, sourceId: s.id, start: 0, end: s.text.length })),
     coverage: { mode: 'local_sources', sourceLengths: { ...Object.fromEntries(request.sources.map(s => [s.id, s.text.length])), ...Object.fromEntries(unread.map(id => [id, 100])) } } };
@@ -363,7 +363,7 @@ test('model transport retains a complete 21-chapter deferral without a format-re
   let calls = 0;
   const planner = new JsonDesignPlanner({ complete: async call => {
     calls++;
-    assert.match(call.system, /最多64项/);
+    assert.match(call.system, /最多96项/);
     assert.match(call.system, /必须列全该具体问题所必需的未读来源/);
     return JSON.stringify(response);
   } });
