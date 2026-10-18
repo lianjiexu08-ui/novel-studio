@@ -1,0 +1,54 @@
+{
+  "kind": "design76_advice_review_live_observation",
+  "observedAt": "2026-10-18T10:20:55.016Z",
+  "control": "data/audit-runtimes/design76-advice-review",
+  "workerPid": 36407,
+  "segment": 12,
+  "status": "running",
+  "activeStep": {
+    "area": "power",
+    "runId": "design_run_77e97b37-cbf2-40be-ab17-2de79839c297",
+    "stageId": "cross-3-4",
+    "startedAt": "2026-10-18T10:18:35.544Z"
+  },
+  "savedProgress": [
+    {
+      "area": "world",
+      "completed": 16,
+      "total": 55
+    },
+    {
+      "area": "power",
+      "completed": 12,
+      "total": 29
+    },
+    {
+      "area": "characters",
+      "completed": 12,
+      "total": 29
+    },
+    {
+      "area": "story",
+      "completed": 11,
+      "total": 29
+    }
+  ],
+  "lastSavedTotalCalls": 72,
+  "dispatchedCalls": 73,
+  "unsettledCalls": [
+    "00073.started.json"
+  ],
+  "checkpointSha256AtObservation": "1c859a3787d63b1435a7a738f895f581be690fcc472641b059c0c07aaf9c4f47",
+  "baselineSha256": "f82c86c78e2c563dcda445366c57120099605767e48e27b120bcb4b2b1f40706",
+  "runnerSha256": "8b7a529f16159d421bedb45caeac508634f98b777ad3ef1b4f41e0eba01dadba",
+  "runtimeBindingSha256": "6a935f07ca21e6ab65d869254be1ada6162085666a0fbcaef51ff1b1e3271504",
+  "annotationsInBaseline": 9,
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "sharedApiPort": 8787,
+  "uiRoot": "data/audit-ui/design76-review/dist-v5",
+  "modelCallsByObserver": 0,
+  "productionWritesByObserver": 0,
+  "formalAcceptance": false,
+  "limitation": "Live observation only. Inspect current process/checkpoint before resuming; segment terminal replay is still required. UI observation is separately recorded and is not claimed to show this newer progress."
+}
