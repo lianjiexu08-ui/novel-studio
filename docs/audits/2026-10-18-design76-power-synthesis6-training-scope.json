@@ -1,0 +1,126 @@
+{
+  "kind": "design76_power_synthesis6_training_scope",
+  "runnerSha256": "2decb7066d8125adfa47ebc69a893fecc4078b8d8a82733f3d3a4b7537a34bd1",
+  "verificationPath": "docs/audits/2026-10-18-design76-notes29-review-segment-30.json",
+  "verificationSha256": "0857b753cea34e6c08d0ebd2326f2862674391d766cb53f7821af33693dd3cbf",
+  "bindingPath": "data/audit-runtimes/design76-fragment-index-runtime-bound.json",
+  "bindingSha256": "8a1875b686f31b79d32ca9c00fa4cfd65931a195ca0c6dfd8547ff2c0507b5e5",
+  "requestPath": "data/audit-runtimes/design76-notes29-review/model-calls/00211.started.json",
+  "requestSha256": "6a1b4b128be3a44a048cbd9b563156e62aa0f07ba84d82af62ad90360ffac9dd",
+  "responsePath": "data/audit-runtimes/design76-notes29-review/model-calls/00211.response.json",
+  "responseSha256": "95b2354f1e842946215c9148924c0f47b7e8a4ef76f07d6d6813a74587f9c5e5",
+  "runId": "design_run_77e97b37-cbf2-40be-ab17-2de79839c297",
+  "stageId": "synthesis-6",
+  "acceptedStageSha256": "daa24a45294765a069d8bf4abda10ca474897d2e36231aee3340446984b06243",
+  "originalCheckHash": "346cf1cf52101da6bf2cab9779497726a1d0aacca01f7405b0a7bf27b15012d4",
+  "originalCheck": {
+    "criterion": "tiers",
+    "verdict": "revise",
+    "explanation": "境界、功法与基础操作的总规则已明确区分承载资格和实际掌握，且第25—50章的已读行动大体遵守训练、对象、距离和法力门槛。问题在于本综合范围必须保留cross-2-4的具体返修：plan/overview对第83章只写“数月努力与诊察后，实际付十元载晋玄府”，没有在当前计划宏观中兑现玄府境要求的六个有效十日周期、六枚下品青灵石、失败/延期、周期前后医修复查、静置及白榆与顾峤双重确认。cross-2-5报告虽转述了后续训练安排，但它是另一前置报告的结论，不能解除本项已列的cross-2-4返修；当前综合提供的原始计划片段也未直接呈现这些细节。",
+    "evidence": [
+      {
+        "sourceId": "review-result/cross-2-4",
+        "quote": "  \"explanation\": \"境界阶梯和低阶术式原则明确：境界不自动授予术式，凝元轻物御动须有训练实测，玄府护罡与贴身运罡也各有训练、对象和上限。已读第25—32章中，林辰的凝元三重、两丈内轻物御动、乾元御风剑诀和墨的玄府血爪均按对象与承载边界安排。但后段宏观只写“数月努力与诊察后，实际付十元载晋玄府”，没有落实玄府境明确要求的六枚下品青灵石、六个有效十日周期、每周期前后医修复查、丹府完成后静置一日及白榆与顾峤双重确认；这不是仅缺逐章招式，而是晋阶准入因果尚未在宏观方案闭合。\",\n  \"revisionAdvice\": \"在第73—83章的宏观里补出六枚下品青灵石、六个有效十日周期、失败损耗与延期规则、周期前后复查、丹府完成后的静置与白榆/顾峤双重确认，并明确第83章十元载支付只能发生在这些条件全部完成之后；同时保持玄府后续术式仍需独立训练，不得把晋阶等同于自动掌握。\"\n}\n\nBEGIN INDEPENDENT QUOTE 1.1\n{\"sourceId\":\"world/axioms/ax_06\",\"unitId\":\"review-unit/8\",\"start\":0,\"end\":394,\"unique\":true}\n{\n  \"id\": \"ax_06\",\n  \"title\": \"境界承载与实际施术\",\n"
+      },
+      {
+        "sourceId": "review-result/cross-2-4",
+        "quote": "  \"content\": \"境界能力栏描述该层能够修习和承载的能力方向，不是一份自动掌握、免费发动的万能招式清单。晋阶费用、术法发动费与持续消耗分别记账；晋阶不等于预付后续法术。实际施术须有已掌握的功法、法宝或明确基础操作规则，逐项满足其对象、范围、供能、时机和中断后果；境界名称不能绕过这些条件。已由ax_05定义的凝元轻物御动等基础操作仍按原规则执行，普通步行、说话、握持不因此加收术法费。尚未展开的高阶术式可以保留为未来能力方向，但首次安排它解决剧情之前必须先完成具体规则与可取得资源的设计、复核；不得以读者未见的万能本能补齐现有行动缺口。\",\n  \"scope\": \"全部境界、功法、法宝及后续能力扩展\",\n  \"precedence\": 6,\n  \"status\": \"proposed\"\n}\nEND INDEPENDENT QUOTE 1.1\n\nBEGIN INDEPENDENT QUOTE 1.2\n{\"sourceId\":\"world/axioms/ax_08\",\"unitId\":\"review-unit/10\",\"start\":0,\"end\":600,\"unique\":true}\n{\n  \"id\": \"ax_08\",\n  \"title\": \"凝元基础操作的学习、对象与支付\",\n"
+      },
+      {
+        "sourceId": "review-result/cross-2-4",
+        "quote": "BEGIN INDEPENDENT QUOTE 1.3\n{\"sourceId\":\"world/realms/realm_03\",\"unitId\":\"review-unit/23\",\"start\":0,\"end\":426,\"unique\":true}\n{\n  \"id\": \"realm_03\",\n  \"systemId\": \"ps_01\",\n  \"name\": \"玄府境\",\n  \"rank\": 3,\n  \"prerequisites\": [\n    \"辟建丹府：须完成tech_19《凝元分流入府诀》的三段分流训练，至少使用六枚下品青灵石完成六个有效十日周期；每个开封失败周期另损一枚，实际库存不足则延期；每一周期前后由医修复查经脉，训练中断或丹府回流即停，不得用预计寿储代替资源。\",\n    \"丹府完成后须静置一日，由白榆确认丹府稳定、伤情可承受、元罡通路未反噬，再由顾峤复核可用元罡与普通器物承载；两项确认均完成后才可支付玄府十元载。\"\n  ],\n  \"capabilities\": [\n    \"元罡护体\",\n    \"凌空虚渡\"\n  ],\n  \"cost\": \"损耗寿元十年\",\n  \"counters\": [\n    \"罡气破裂\"\n  ],\n  \"status\": \"proposed\"\n}\nEND INDEPENDENT QUOTE 1.3\n\n"
+      },
+      {
+        "sourceId": "review-result/cross-2-4",
+        "quote": "BEGIN INDEPENDENT QUOTE 1.4\n{\"sourceId\":\"plan/overview\",\"unitId\":\"review-unit/269\",\"start\":1014,\"end\":1564,\"unique\":true}\n  \"endingDirection\": \"百章有救人、断运、部分父案澄清和玄府成长的可核结局。1–100是450章的阶段验收；接下来的有限寿源、高阶反派、钥匙余片与九鼎机制必须另建经审查的来源和行动链，不将450章全书结局撤销。 没有返寿、燃寿白发、道伤凭空痊愈或三大陆永久太平。此卷不清算全部九鼎，公开传播仍限实到地点。\",\n  \"keyTurns\": [\n    \"第10–12章：伤重林辰与曾撤供的梁九分工救人，只改变普通输送位置；苏保留封样及己方不利证词，争得有限复核，众人仍负伤、欠债和受限。\",\n    \"第23–29章：主角为救人暴露自己，创造顾峤同阶制敌的窗口，取得并分配有限泉液；完成两次十日疗程后南行，苏选择留宗。卷末凝元三重，不能沿用神海及二十年燃寿。\",\n    \"第44/50–53章：44林救落水对手而不追陆与原账，贺付船损；50林不施术而让工人自己回答，陆协助夺闩、两名看守被控，吴卢实际脱控并拒绝立即回船。51–53拟各自选择生计，陆新写改签自述，副本仍待独立核验。\",\n"
+      },
+      {
+        "sourceId": "review-result/cross-2-5",
+        "quote": "  \"explanation\": \"原问题要求核验tech_19是否足以支撑玄府准入，并确认tech_15、tech_16不会与阶梯资格冲突。境界规则明确：境界只给承载方向，实际施术仍须已有功法/法宝/基础操作并逐项满足条件。玄府准入要求tech_19三段训练、至少六个有效十日周期和两项稳定复核后，才可支付十元载。tech_19进一步规定凝元三重、无急性经脉伤、分段训练、逐周期复查；六个有效周期至少耗六枚灵石，失败或中断周期另耗一枚，完成后还须静置、白榆与顾峤复核。第81—83章正安排六个有效周期、一次回流失败报废第七枚、停训复诊、静置与两项复核，再于415日支付十元载，因果与资源接口相符；它也没有把凝元训练或玄府资格倒写为已掌握元罡术式。tech_15仅允许通天境，tech_16仅允许通天或主宰，且均有寿储、本源、法力和神识等独立成本；百章计划未安排林辰或其他低阶角色发动它们。高阶成长算例亦明确只是候选见证、不自动授予角色资源或境界。因此，补读内容解决了原先因未读功法规则造成的局部无法判断，未发现分级或使用门槛冲突。\"\n}\n下列原始insufficient属于已解决的历史等待，不得因本步未重发全部补读原文而重新认定缺料；仍须检查本步实际可见的具体矛盾。\n\nCHECK 1\n{\n  \"criterion\": \"tiers\",\n  \"verdict\": \"insufficient\",\n"
+      },
+      {
+        "sourceId": "review-result/cross-2-5",
+        "quote": "    \"第398–414日只做六周期后的静置、丹府稳定观察和普通木柄空载复测，不新增训练周期；第415日白榆当面确认丹府已稳定成形、经脉无回流、伤情可承受，顾峤随后复核林辰能够承载玄府元罡且普通木柄测试不反噬。只有这两项确认都记录为通过，才在同一日按realm_03实际支付十元载；支付先后为“六个有效周期完成→静置观察→白榆诊察→顾峤复核→十元载扣除”，任何一项失败都延期且不预支寿储。\",\n    \"玄府初成需第416–424日稳定元罡。原赤霞斩铁剑不得灌玄府罡气，归还领用库并核对损耗；主角本段只练自身元罡与普通木柄，不临时得神兵。 顾按ax_12教局部护罡：416–419日只练聚散，420–424日才以轻木棍和普通铁刃做低负荷接触、间隔与散罡实测，每日训练前后核余量与肩伤，未过关就不安排该术参与截车。拟定424日林通过实测并经白榆准许有限负荷；不表示学成全身护体或自动获得顾的真光。\",\n\nEND INDEPENDENT QUOTE 1.4\n\nBEGIN INDEPENDENT QUOTE 1.5\n{\"sourceId\":\"plan/milestones/ms_v3_advancement\",\"unitId\":\"review-unit/289\",\"start\":531,\"end\":1092,\"unique\":true}\n"
+      }
+    ],
+    "revisionAdvice": "在第73—87章宏观或对应里程碑中明确写出tech_19三段分流、六个有效十日周期、实际青灵石库存与失败损耗、每周期前后复查、训练中断和延期规则、完成后的静置一日，以及白榆确认和顾峤复核的先后；明确只有全部完成后才能于第83章或对应实际日期支付十元载。"
+  },
+  "actualSupport": [
+    {
+      "sourceId": "plan/milestones/ms_v3_training",
+      "quote": "六个有效周期60日，加失败4日，实耗七枚",
+      "sent": [
+        {
+          "sourceId": "review-result/cross-2-5",
+          "fragmentId": "e57"
+        }
+      ]
+    },
+    {
+      "sourceId": "plan/milestones/ms_v3_training",
+      "quote": "每次未通过立即停，不把上次许可无限沿用。",
+      "sent": [
+        {
+          "sourceId": "review-result/cross-2-5",
+          "fragmentId": "e57"
+        }
+      ]
+    },
+    {
+      "sourceId": "plan/milestones/ms_v3_training",
+      "quote": "所有日期是正常复诊通过的候选路径，任何异常或耗材不足均顺延训练、415日拟晋阶及后续参战资格，不能追赶固定日期。",
+      "sent": [
+        {
+          "sourceId": "review-result/cross-2-5",
+          "fragmentId": "e57"
+        }
+      ]
+    },
+    {
+      "sourceId": "plan/milestones/ms_v3_advancement",
+      "quote": "六个有效周期完成→静置观察→白榆诊察→顾峤复核→十元载扣除",
+      "sent": [
+        {
+          "sourceId": "review-result/cross-2-5",
+          "fragmentId": "e47"
+        },
+        {
+          "sourceId": "review-result/cross-2-5",
+          "fragmentId": "e58"
+        }
+      ]
+    }
+  ],
+  "annotationInput": {
+    "requestKey": "design76-power-synthesis6-training-scope",
+    "runId": "design_run_77e97b37-cbf2-40be-ab17-2de79839c297",
+    "stageId": "synthesis-6",
+    "criterion": "tiers",
+    "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+    "expectedCheckHash": "346cf1cf52101da6bf2cab9779497726a1d0aacca01f7405b0a7bf27b15012d4",
+    "claimQuote": "当前综合提供的原始计划片段也未直接呈现这些细节。",
+    "explanation": "这一步没有重新发送完整训练与晋阶里程碑，但实际请求中已有前置报告嵌入的独立原文摘录，并非只有另一报告的结论。e57逐字包含训练执行卡：六个有效周期60日、一次失败4日、七枚灵石，逐周期医修复查、异常停训及延期；e47逐字包含完成六周期、静置观察、白榆诊察、顾峤复核后才支付十元载的顺序。这些摘录可与本任务保存的原始里程碑逐字对应。因此，保留cross-2-4的历史返修不等于证明完整宏观设计缺少这些前置；本项成本解释中的同类缺料概括也须按此范围阅读。原tiers/costs返修均保留，本说明不代替完整预算复审、不撤销其他法宝缺陷、不批准设计或正文。",
+    "evidence": [
+      {
+        "sourceId": "plan/milestones/ms_v3_training",
+        "quote": "六个有效周期60日，加失败4日，实耗七枚"
+      },
+      {
+        "sourceId": "plan/milestones/ms_v3_training",
+        "quote": "每次未通过立即停，不把上次许可无限沿用。"
+      },
+      {
+        "sourceId": "plan/milestones/ms_v3_training",
+        "quote": "所有日期是正常复诊通过的候选路径，任何异常或耗材不足均顺延训练、415日拟晋阶及后续参战资格，不能追赶固定日期。"
+      },
+      {
+        "sourceId": "plan/milestones/ms_v3_advancement",
+        "quote": "六个有效周期完成→静置观察→白榆诊察→顾峤复核→十元载扣除"
+      }
+    ]
+  },
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Independent clarification draft based on original excerpts embedded in parent reports; no complete source reread, verdict change or design mutation."
+}

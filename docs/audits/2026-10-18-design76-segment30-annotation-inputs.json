@@ -1,0 +1,49 @@
+{
+  "kind": "design76_segment30_clarification_inputs",
+  "verificationPath": "docs/audits/2026-10-18-design76-notes29-review-segment-30.json",
+  "verificationSha256": "0857b753cea34e6c08d0ebd2326f2862674391d766cb53f7821af33693dd3cbf",
+  "checkpointSha256": "af762cf24d3a276f09a2b15f3d253408d35c21eba0afe1d477c297a5c671f952",
+  "bindingPath": "data/audit-runtimes/design76-fragment-index-runtime-bound.json",
+  "bindingSha256": "8a1875b686f31b79d32ca9c00fa4cfd65931a195ca0c6dfd8547ff2c0507b5e5",
+  "drafts": [
+    {
+      "path": "docs/audits/2026-10-18-design76-power-synthesis6-training-scope.json",
+      "sha256": "b2d04c0dff68dd62563a6e2132682a8ff538c754f5999ec6c688b25c84324c45"
+    },
+    {
+      "path": "docs/audits/2026-10-18-design76-story-synthesis3-voyage-scope.json",
+      "sha256": "af0c7e6a1e3429ed5fcc8c13c87cdbf18d0497c437ee7d3948e5e387fd93871d"
+    }
+  ],
+  "outputPath": "data/audit-runtimes/design76-notes29-review/segment30-annotations.json",
+  "outputSha256": "3445ef38a387129b4bc6dce8bb35b24a316d780c17af5494d06e2e0f5571b75a",
+  "annotationCount": 2,
+  "sourceDigests": [
+    {
+      "requestKey": "design76-power-synthesis6-training-scope",
+      "sources": [
+        {
+          "id": "plan/milestones/ms_v3_training",
+          "sha256": "6425cc9f1c49bf3eedda25c4083aca7090c4d74cecbc6e3de59b0138e34e3902"
+        },
+        {
+          "id": "plan/milestones/ms_v3_advancement",
+          "sha256": "2e801db5e6fea8ce29af908d6458de35e5d23f3fd56866bcc4ba318f7a444edb"
+        }
+      ]
+    },
+    {
+      "requestKey": "design76-story-synthesis3-voyage-scope",
+      "sources": [
+        {
+          "id": "plan/milestones/ms_v2_voyage",
+          "sha256": "c592b3ad81c9f0136995da76b2ecb6881b02dace0c8d7ce756bb90a5622cabb8"
+        }
+      ]
+    }
+  ],
+  "productionWrites": 0,
+  "modelCalls": 0,
+  "formalAcceptance": false,
+  "limitation": "Exact original claims and source bindings only. Private rehearsal, atomic publication, restart readback and UI checks remain required."
+}

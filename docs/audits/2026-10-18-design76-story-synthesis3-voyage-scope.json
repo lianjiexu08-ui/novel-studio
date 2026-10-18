@@ -1,0 +1,114 @@
+{
+  "kind": "design76_story_synthesis3_voyage_scope",
+  "runnerSha256": "2decb7066d8125adfa47ebc69a893fecc4078b8d8a82733f3d3a4b7537a34bd1",
+  "verificationPath": "docs/audits/2026-10-18-design76-notes29-review-segment-30.json",
+  "verificationSha256": "0857b753cea34e6c08d0ebd2326f2862674391d766cb53f7821af33693dd3cbf",
+  "bindingPath": "data/audit-runtimes/design76-fragment-index-runtime-bound.json",
+  "bindingSha256": "8a1875b686f31b79d32ca9c00fa4cfd65931a195ca0c6dfd8547ff2c0507b5e5",
+  "requestPath": "data/audit-runtimes/design76-notes29-review/model-calls/00213.started.json",
+  "requestSha256": "fc2164679172959d100dbe0bd537b53cbfbd934877934617e806005b63d80968",
+  "responsePath": "data/audit-runtimes/design76-notes29-review/model-calls/00213.response.json",
+  "responseSha256": "f3ac850e5fb4ba0e32074588d152ea5eeb604678864abfa1fe61c5f732558ba0",
+  "runId": "design_run_f355dadb-f3ee-4b1b-8834-f17bf0f487dc",
+  "stageId": "synthesis-3",
+  "acceptedStageSha256": "05676411e31c2f37f973241c6ed894d14f92bb0ee21ef4f19fc6e8c8d04a36e6",
+  "originalCheckHash": "5cd5d61796d40c1b78bb50879289e71d967160216046d5ca71c05fbef41c0717",
+  "originalCheck": {
+    "criterion": "timeline",
+    "verdict": "pass",
+    "explanation": "已有报告核对了前50章从第1日至254日的连续推进：第43、44章为244日戌初同一行动的直接续接，第45章才完成后续接人；第214日日暮出航至216日日暮抵天宝符合两昼夜实体海程。后段宏观给出271—281日五昼夜北航、304—310日六昼夜返航，并将258日寄报、262日阅报、263日发令、268日签收与273日回执分开，未把消息送达或未来航程提前兑现。",
+    "evidence": [
+      {
+        "sourceId": "review-result/batch-5",
+        "quote": "  \"explanation\": \"第239日至254日的时序连续：239日复测和试注、241日公告与243日实见、244日戌初提前报警及切索、244夜至247日接应和医棚安置、248—250日临住与修船、251—254日核证、辨门和实际脱控依次衔接。第43、44章明确为同一瞬间续接，未重复报警、登船或施剑；第44章尚未完成拉人，第45章才由唐顺、许桐实际拉起落水伙计。后续宏观将船坞255日交检、256—270日短工以及271日起北航分开安排，未将修船期或尚未发生的航款提前使用。\",\n  \"revisionAdvice\": \"\"\n}\n\nBEGIN INDEPENDENT QUOTE 2.1\n{\"sourceId\":\"story/chapterPlans/bible-chapter-42\",\"unitId\":\"review-unit/285\",\"start\":0,\"end\":598,\"unique\":true}\n{\n  \"id\": \"bible-chapter-42\",\n  \"chapterNumber\": 42,\n  \"title\": \"退得出来的船位\",\n"
+      },
+      {
+        "sourceId": "review-result/batch-5",
+        "quote": "  \"turningPoint\": \"林先报警而后登船，贺在没有许诺冲撞的情况下根据实见拘束决定跟进；陆选择命伙计拖开来船，林不再把救弟之情当作对方会合作的保证。\",\n\nEND INDEPENDENT QUOTE 2.2\n\nBEGIN INDEPENDENT QUOTE 2.3\n{\"sourceId\":\"story/chapterPlans/bible-chapter-43\",\"unitId\":\"review-unit/286\",\"start\":564,\"end\":1047,\"unique\":true}\n  \"endHook\": \"244戌初，三人仍在驳舱，陆在驳上护原账，轻钩已挂贺船拖环、索另一端系驳艉桩。林敲钟已获岗役回应，现扶栏登船坐稳握剑，尚未施术；贺控向。44从切索同一瞬接续，不能重报一次警、重登一次船或提前给唐点货夹内容。 送钩伙计已停御物，余四成半；拖力在普通索具与船桩上，断索即失去物理拖曳，不另添术法反噬。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_15\",\n    \"char_16\",\n    \"char_22\"\n  ],\n  \"locationIds\": [\n    \"loc_23\"\n  ],\n  \"arcBeatIds\": [],\n  \"requiredEvents\": [\n"
+      },
+      {
+        "sourceId": "review-resolutions/eda21cda0ecad904d33c14725cfa4ceb0203d5bdff71c327471c48d2f0fb17fc",
+        "quote": "      \"resolutionExplanation\": \"本次已实际补读原问题要求的plan/chapters/1—50及ms_v2_fire、ms_v2_voyage、ms_v2_boundary、ms_v3_return、ms_v3_training、ms_v3_advancement、ms_v3_convoy、ms_v3_payoff，并结合实体航程规则与关系知情阶段核对。第1—18章从第1日至第180日连续推进，凝元晋阶、训练、恢复与第181—183日三日山路入古境衔接；第188日05:00秦禾送图、06:00交顾、07:00顾出发、08:15抵营外、08:45到位，与第25章08:45开战、09:15结束、10:45撤离、12:00交押相接。第29—32章的212—214日陆路、214日日暮出航、216日日暮抵天宝外港符合青玄—赤霄约两昼夜实体海程；第54—60章宏观安排的276日日暮出航、281日日暮抵葬骨符合五昼夜；第67—72章304日日暮出航、310日日暮抵沧溟符合六昼夜，且第31、32章明确没有把港口到达、放行或登船提前完成。第33—50章的217—254日港口线连续：225日下午唐顺脱身失败与225日晚仓火分开，244日戌初报警、切索、救人窗口由43—45章连续承接，254日吴伍、卢小满实际脱控但未自动答应回船。消息链也未越权：赵玄极的258日来报、26"
+      },
+      {
+        "sourceId": "review-resolutions/eda21cda0ecad904d33c14725cfa4ceb0203d5bdff71c327471c48d2f0fb17fc",
+        "quote": "      \"resolutionExplanation\": \"原问题要求核对逐章日期、航程与消息隔离。第1—50章从第1日推进至254日：林辰214日暮自云梦出航、216日暮抵天宝，后续在217—254日均留在天宝外港；这与两昼夜实体海程一致。后段宏观继续排定271—281日五昼夜北航、301—304日受限陆路离境、304暮—310暮六昼夜返航、311—314日陆路返外山；318日程砚的北境面报及318日夜凝霜收到离境回执均晚于相应实体承运链。首轮消息亦明确为258寄发、262赵玄极阅报、263发令、268程砚签收、273赵玄极取得签收联，未倒置知情。316—415日训练、415日晋玄府、431—436日押运冲突和466日回访按日期顺序衔接。卷二止于第300日、卷三自第301日起的边界一致。上述均为拟定兑现安排，不等同正文已发生。\",\n      \"resolutionEvidenceCount\": 69,\n      \"resolutionEvidenceSha256\": \"ebb4c72a97e0ba9343f103665ba4a08b4ded1a736a112c86d0a5af5cce872a19\"\n    },\n    {\n      \"checkId\": \"cross-1-2/opening\",\n"
+      }
+    ],
+    "revisionAdvice": "展开后半段时继续逐人核对出发地、抵达日、实体航程、休养和消息签收；不要以宏观日期替代未展开章节中的具体承运、许可与付款。"
+  },
+  "actualSupport": [
+    {
+      "sourceId": "plan/milestones/ms_v2_voyage",
+      "quote": "第271日商盟港务理事会为追缴被挪货与避免北境封港，从本案追偿周转款实拨14000枚下品灵石给具名领款的贺青梧",
+      "sent": [
+        {
+          "sourceId": "review-result/batch-5",
+          "fragmentId": "e38"
+        }
+      ]
+    },
+    {
+      "sourceId": "plan/milestones/ms_v2_voyage",
+      "quote": "第271–274日乘普通车沿每日复核开放的既有沿岸驿道从天宝外港到极焱天港",
+      "sent": [
+        {
+          "sourceId": "review-result/batch-5",
+          "fragmentId": "e38"
+        }
+      ]
+    },
+    {
+      "sourceId": "plan/milestones/ms_v2_voyage",
+      "quote": "第275日贺在极焱航司柜台按本航次实报5000/人支付10000，购买两张普通保温客舱票",
+      "sent": [
+        {
+          "sourceId": "review-result/batch-5",
+          "fragmentId": "e39"
+        }
+      ]
+    },
+    {
+      "sourceId": "plan/milestones/ms_v2_voyage",
+      "quote": "276日暮离港、281日暮抵葬骨外港，五昼夜完整航程。",
+      "sent": [
+        {
+          "sourceId": "review-result/batch-5",
+          "fragmentId": "e39"
+        }
+      ]
+    }
+  ],
+  "annotationInput": {
+    "requestKey": "design76-story-synthesis3-voyage-scope",
+    "runId": "design_run_f355dadb-f3ee-4b1b-8834-f17bf0f487dc",
+    "stageId": "synthesis-3",
+    "criterion": "timeline",
+    "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+    "expectedCheckHash": "5cd5d61796d40c1b78bb50879289e71d967160216046d5ca71c05fbef41c0717",
+    "claimQuote": "后段宏观给出271—281日五昼夜北航",
+    "explanation": "271—281日覆盖领款、陆路、买票和海程，不能全部称为五昼夜海程。同次实际请求e38的原文摘录明确271日领取专项航款，271—274日乘普通车从天宝外港到极焱天港；e39明确275日支付两张保温客舱票，276日暮离港、281日暮抵葬骨外港，海程才是五昼夜。这些摘录均可与本任务原始ms_v2_voyage逐字对应。历史补读处理记录的同类缩写不能覆盖原文日期。本说明只纠正评语中阶段与海程的混称，不修改任何出发日、到港日、费用或人员路线；原timeline局部pass保留，不据此认定后半细纲、正文或全书已通过。",
+    "evidence": [
+      {
+        "sourceId": "plan/milestones/ms_v2_voyage",
+        "quote": "第271日商盟港务理事会为追缴被挪货与避免北境封港，从本案追偿周转款实拨14000枚下品灵石给具名领款的贺青梧"
+      },
+      {
+        "sourceId": "plan/milestones/ms_v2_voyage",
+        "quote": "第271–274日乘普通车沿每日复核开放的既有沿岸驿道从天宝外港到极焱天港"
+      },
+      {
+        "sourceId": "plan/milestones/ms_v2_voyage",
+        "quote": "第275日贺在极焱航司柜台按本航次实报5000/人支付10000，购买两张普通保温客舱票"
+      },
+      {
+        "sourceId": "plan/milestones/ms_v2_voyage",
+        "quote": "276日暮离港、281日暮抵葬骨外港，五昼夜完整航程。"
+      }
+    ]
+  },
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Independent clarification draft based on original excerpts embedded in parent reports; no complete source reread, verdict change or design mutation."
+}

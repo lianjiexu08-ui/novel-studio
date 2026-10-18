@@ -1,0 +1,125 @@
+{
+  "kind": "design76_segment30_notes_appended",
+  "verified": true,
+  "createdAt": "2026-10-18T19:52:02.326Z",
+  "runnerSha256": "0b10d44685f8f9487348cf1549503d6ee522eb44f07cbbc2a1acfd6816da8f01",
+  "preparedSha256": "1aff9a239dcbab986066890d1d251a8f78f843d5ab88ed1952c6ef4a73b788b2",
+  "runtimeBindingSha256": "8a1875b686f31b79d32ca9c00fa4cfd65931a195ca0c6dfd8547ff2c0507b5e5",
+  "baseCheckpointSha256": "af762cf24d3a276f09a2b15f3d253408d35c21eba0afe1d477c297a5c671f952",
+  "database": "/Users/lianjie/Documents/ChatGPT/novel/data/novel-studio.db",
+  "control": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design76-notes30-apply-NqdSuq",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "notes": [
+    {
+      "requestKey": "design76-power-synthesis6-training-scope",
+      "runId": "design_run_77e97b37-cbf2-40be-ab17-2de79839c297",
+      "stageId": "synthesis-6",
+      "criterion": "tiers",
+      "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+      "expectedCheckHash": "346cf1cf52101da6bf2cab9779497726a1d0aacca01f7405b0a7bf27b15012d4",
+      "claimQuote": "当前综合提供的原始计划片段也未直接呈现这些细节。",
+      "explanation": "这一步没有重新发送完整训练与晋阶里程碑，但实际请求中已有前置报告嵌入的独立原文摘录，并非只有另一报告的结论。e57逐字包含训练执行卡：六个有效周期60日、一次失败4日、七枚灵石，逐周期医修复查、异常停训及延期；e47逐字包含完成六周期、静置观察、白榆诊察、顾峤复核后才支付十元载的顺序。这些摘录可与本任务保存的原始里程碑逐字对应。因此，保留cross-2-4的历史返修不等于证明完整宏观设计缺少这些前置；本项成本解释中的同类缺料概括也须按此范围阅读。原tiers/costs返修均保留，本说明不代替完整预算复审、不撤销其他法宝缺陷、不批准设计或正文。",
+      "evidence": [
+        {
+          "sourceId": "plan/milestones/ms_v3_training",
+          "quote": "六个有效周期60日，加失败4日，实耗七枚"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_training",
+          "quote": "每次未通过立即停，不把上次许可无限沿用。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_training",
+          "quote": "所有日期是正常复诊通过的候选路径，任何异常或耗材不足均顺延训练、415日拟晋阶及后续参战资格，不能追赶固定日期。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_advancement",
+          "quote": "六个有效周期完成→静置观察→白榆诊察→顾峤复核→十元载扣除"
+        }
+      ],
+      "id": "review_note_87125b54-e6f5-4366-8793-ce51b4d1ab2f",
+      "createdAt": "2026-10-18T19:51:52.469Z",
+      "scope": {
+        "worldPackRevision": 40,
+        "storyBibleRevision": 72,
+        "planRevisionId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+        "planRevision": 76
+      }
+    },
+    {
+      "requestKey": "design76-story-synthesis3-voyage-scope",
+      "runId": "design_run_f355dadb-f3ee-4b1b-8834-f17bf0f487dc",
+      "stageId": "synthesis-3",
+      "criterion": "timeline",
+      "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+      "expectedCheckHash": "5cd5d61796d40c1b78bb50879289e71d967160216046d5ca71c05fbef41c0717",
+      "claimQuote": "后段宏观给出271—281日五昼夜北航",
+      "explanation": "271—281日覆盖领款、陆路、买票和海程，不能全部称为五昼夜海程。同次实际请求e38的原文摘录明确271日领取专项航款，271—274日乘普通车从天宝外港到极焱天港；e39明确275日支付两张保温客舱票，276日暮离港、281日暮抵葬骨外港，海程才是五昼夜。这些摘录均可与本任务原始ms_v2_voyage逐字对应。历史补读处理记录的同类缩写不能覆盖原文日期。本说明只纠正评语中阶段与海程的混称，不修改任何出发日、到港日、费用或人员路线；原timeline局部pass保留，不据此认定后半细纲、正文或全书已通过。",
+      "evidence": [
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "quote": "第271日商盟港务理事会为追缴被挪货与避免北境封港，从本案追偿周转款实拨14000枚下品灵石给具名领款的贺青梧"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "quote": "第271–274日乘普通车沿每日复核开放的既有沿岸驿道从天宝外港到极焱天港"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "quote": "第275日贺在极焱航司柜台按本航次实报5000/人支付10000，购买两张普通保温客舱票"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "quote": "276日暮离港、281日暮抵葬骨外港，五昼夜完整航程。"
+        }
+      ],
+      "id": "review_note_adb11fbc-25ff-423c-a3ac-763ba733c5a5",
+      "createdAt": "2026-10-18T19:51:52.470Z",
+      "scope": {
+        "worldPackRevision": 40,
+        "storyBibleRevision": 72,
+        "planRevisionId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+        "planRevision": 76
+      }
+    }
+  ],
+  "preservedWorkFieldDigests": {
+    "activePlanId": "a79cacee9517456fb5abae34e3592ad141a8d092b6782979cdb0aa1996029412",
+    "briefs": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "candidates": "db801c927d61955caf1e94c196129e7ca7a4557cbae7f7f93b7977d2e6ffb6a2",
+    "characters": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "checkpoints": "9360443cd3329deca750224d5f41fd8b848cc87483d84e5d59d8bf1fa6f89d31",
+    "constraintRevision": "4d57a451959144b67ef15afaa48bf4c33640880c12eaf06fc762870fe7452756",
+    "covenant": "7b09efc6b0d1edd79e40db6d143a177956b28b40ee5070d303574df8d73121f8",
+    "covenantHistory": "ef48b60cd983a0f4b34cbe25bf37e751eb58681b943b6b8369fdcd5fca1ec745",
+    "designContentReviews": "8b8ab9639e03bd0055431c0e710bacf9dbac0d268f27578ddcb0bfc13e0aed8d",
+    "designHistory": "f2347b762def7bec1232ebed9113bcc4fb424df8b0f09e37b74bcef254165a1b",
+    "designReviewRuns": "8e4861d2e7f1b7931ed3240b79845e5febc3f3b571bfc4f1e98e2d64976e56b0",
+    "events": "69a4c30b560af422264c89ba8cce8c658bf3d137ec8bcdae5f7025cdc4622590",
+    "id": "e6c77c6af51347285f913e10c068833e392333610313a73f42ae654dbeeebb0b",
+    "impacts": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "manuscripts": "3f9dd7880a530d9eb7ccf9113b140958fe9e182f63c9f706f9c55ceb5c46ffc9",
+    "plans": "6afb21f18712fce391f7c0c715b9791eb95f922a669d1cc1a96b2677e905b396",
+    "plotNodes": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "relationships": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "stateRevision": "16dc368a89b428b2485484313ba67a3912ca03f2b2b42429174a4f8b3dc84e44",
+    "states": "71af6764cda2e591af608654aa65a05f8b25e4e8f9871c746de158a77a0618fc",
+    "storyBible": "ae92c644e55aa89fd87920f431acdb817e50351843daddd6cb65d8508350ef02",
+    "title": "9a392c9dee167243ad8ace1e37c8c750c798509925344a9b052ce05cbb6a54b2",
+    "versions": "ab09691b6b0882a4fa32a704a65a61930f961a7d3e35aa52d872fc017e048fb1",
+    "worldPack": "c2c2dd54716be54571a024440590ebbb8c47b55eb37f2b490bfaf24c5bf6be6d",
+    "worldRules": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "oldRunsPreserved": 99,
+  "oldReportsPreserved": 92,
+  "oldAnnotationsPreserved": 35,
+  "annotationsAdded": 2,
+  "restartReadback": true,
+  "rollbackExercised": false,
+  "idempotenceExercised": false,
+  "modelCalls": 0,
+  "productionWrites": 1,
+  "verdictChanges": 0,
+  "questionsResolved": 0,
+  "formalAcceptance": false
+}
