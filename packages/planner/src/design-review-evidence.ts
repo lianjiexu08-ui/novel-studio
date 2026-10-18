@@ -81,6 +81,35 @@ export function prepareDesignReviewEvidence(input: DesignReviewInput) {
     sources,
     citationRequirements,
     pendingCitationRequirements,
+    resolutionRepairContext(value: unknown) {
+      const parsed = anchoredDesignReviewResultSchema.safeParse(value);
+      if (!parsed.success || parsed.data.requestId !== requestId) return {};
+      const requirements = pendingCitationRequirements ?? (citationRequirements ? [{
+        checkId: citationRequirements.checkId, criterion: citationRequirements.criterion,
+        requiredSources: citationRequirements.sources,
+        oneOfPriorUnits: sources.filter(source => pending!.priorUnitIds.includes(source.id))
+          .map(source => ({ id: source.id, fragmentIds: source.fragments.map(fragment => fragment.id) })),
+      }] : []);
+      // Report selections for every claimed resolution, not just the missing
+      // source in the error. A repair must not fix one question by dropping
+      // the evidence it previously supplied for another. This is navigation
+      // only: the model still chooses citations and re-evaluates their meaning.
+      const resolutionCitationSelection = requirements.flatMap(requirement => {
+        const check = parsed.data.checks.find(check => check.criterion === requirement.criterion);
+        if (!check?.resolves?.includes(requirement.checkId)) return [];
+        const selected = new Set(check.evidence.map(evidence => evidence.fragmentId));
+        const selection = (units: Array<{ fragmentIds: string[] }>) => {
+          const available = [...new Set(units.flatMap(unit => unit.fragmentIds))];
+          const selectedFragmentIds = available.filter(id => selected.has(id));
+          return { selectedFragmentIds, ...(selectedFragmentIds.length ? {} : { availableFragmentIds: available }) };
+        };
+        return [{ checkId: requirement.checkId, criterion: requirement.criterion,
+          requiredSources: requirement.requiredSources.map(source => ({ sourceId: source.sourceId, ...selection(source.units) })),
+          oneOfPriorUnits: selection(requirement.oneOfPriorUnits),
+        }];
+      });
+      return { resolutionCitationSelection };
+    },
     resolve(value: unknown) {
       validateDesignReviewInsufficiencyFields(value);
       const parsed = anchoredDesignReviewResultSchema.parse(value);

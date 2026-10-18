@@ -626,12 +626,33 @@ test('cross checks index every pending question and name a missing required sour
     assert.match(sent.problems, /batch-2\/timeline.*新增来源 arrival\/b/);
     assert.deepEqual(sent.originalRequest.pendingCitationRequirements, prepared.pendingCitationRequirements);
     assert.equal(sent.previousOutput, JSON.stringify(missing));
+    const selections = sent.resolutionCitationSelection;
+    assert.deepEqual(selections.map((entry: { checkId: string }) => entry.checkId), ['batch-1/timeline', 'batch-2/timeline']);
+    assert.deepEqual(selections[0].requiredSources, [
+      { sourceId: 'question-a', selectedFragmentIds: [prepared.sources[4].fragments[0].id] },
+      { sourceId: 'arrival/a', selectedFragmentIds: [prepared.sources[2].fragments[0].id] },
+    ], 'the already covered question must remain visible while repairing the other question');
+    assert.deepEqual(selections[1].requiredSources[1], { sourceId: 'arrival/b', selectedFragmentIds: [], availableFragmentIds: [prepared.sources[3].fragments[0].id] });
+    assert.deepEqual(selections[0].oneOfPriorUnits, { selectedFragmentIds: [prepared.sources[1].fragments[0].id] }, 'one selected prior unit is sufficient; never ask for every alternative');
+    assert.match(sent.instruction, /不表示它们已被判定能支持结论/);
     return JSON.stringify(good);
   } });
   const result = await planner.reviewDesignContent(request);
   assert.equal(calls, 2);
   assert.deepEqual(result.checks[0].resolves, good.checks[0].resolves);
   assert.deepEqual(result.modelResponses, [JSON.stringify(missing), JSON.stringify(good)]);
+
+  const regressed = structuredClone(good);
+  regressed.checks[0].evidence = regressed.checks[0].evidence.filter(evidence => evidence.fragmentId !== prepared.sources[4].fragments[0].id);
+  let retryCalls = 0;
+  const regressingPlanner = new JsonDesignPlanner({ complete: async () => JSON.stringify(++retryCalls === 1 ? missing : regressed) });
+  await assert.rejects(regressingPlanner.reviewDesignContent(request), (error: Error & { modelResponses?: string[] }) => {
+    assert.match(error.message, /batch-1\/timeline/);
+    assert.deepEqual(error.modelResponses, [JSON.stringify(missing), JSON.stringify(regressed)]);
+    return true;
+  });
+  assert.equal(retryCalls, 2, 'a repaired answer that drops a required citation must still fail after one retry');
+  assert.deepEqual(prepared.resolutionRepairContext({ ...missing, requestId: 'another-request' }), {}, 'never label selections from a different request as current');
 });
 
 for (const repairedVerdict of ['pass', 'insufficient'] as const) {

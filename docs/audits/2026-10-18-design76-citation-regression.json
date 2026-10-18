@@ -1,0 +1,105 @@
+{
+  "kind": "recorded_resolution_citation_regression",
+  "observedAt": "2026-10-18T07:29:54.172Z",
+  "verified": true,
+  "sourceFiles": {
+    "packages/planner/src/index.ts": "442ae87bb90685d69918e6cf444f4e0355a865e600d3ece8cde2f4f8e923bcf4",
+    "packages/planner/src/design-review-evidence.ts": "51b1bfb7b931a85ccf7601bcbfffbf2601dcddca085a88f4224f4b8977078e62"
+  },
+  "historicalCheckpointSha256": "c5691e1d272ff446defd29458aebfec55621f1dbee9b30f517ec43b79ffe313d",
+  "recordedCalls": [
+    {
+      "number": 34,
+      "requestSha256": "b1165e1cf0f770d7b9b9604862f969d8d89363d3a6bf33382a4f19d6babb45b0",
+      "responseSha256": "449350dd9b5edd825e288536b3642d0b4f87f8ce63b67344802c4f27c5109010"
+    },
+    {
+      "number": 35,
+      "requestSha256": "6a10eb6c38771b6523447500bbbfa99d2cbe403b175e03d02e3efa1899481f23",
+      "responseSha256": "2b94cff26df14cead93605ecc35b8057cd78e6e44b0fcbf06f4205c984609a52"
+    }
+  ],
+  "initialMissing": [
+    {
+      "checkId": "batch-6/history",
+      "sourceId": "plan/overview",
+      "selectedFragmentIds": [],
+      "availableFragmentIds": [
+        "e355",
+        "e356",
+        "e357",
+        "e358",
+        "e359",
+        "e360",
+        "e361",
+        "e362",
+        "e363",
+        "e364",
+        "e365",
+        "e366",
+        "e367",
+        "e368",
+        "e369",
+        "e370",
+        "e371",
+        "e372",
+        "e373",
+        "e374",
+        "e375"
+      ]
+    }
+  ],
+  "repairedMissing": [
+    {
+      "checkId": "batch-2/history",
+      "sourceId": "review-question/batch-2/history"
+    },
+    {
+      "checkId": "batch-2/history",
+      "sourceId": "story/overview"
+    },
+    {
+      "checkId": "batch-2/history",
+      "sourceId": "story/relationships/rel_06"
+    },
+    {
+      "checkId": "batch-2/history",
+      "sourceId": "story/relationships/rel_14"
+    },
+    {
+      "checkId": "batch-2/history",
+      "sourceId": "world/historicalEvents/event_12"
+    }
+  ],
+  "requirementsVisible": [
+    {
+      "checkId": "batch-2/geography",
+      "requiredSourceCount": 13
+    },
+    {
+      "checkId": "batch-2/history",
+      "requiredSourceCount": 8
+    },
+    {
+      "checkId": "batch-3/geography",
+      "requiredSourceCount": 11
+    },
+    {
+      "checkId": "batch-4/geography",
+      "requiredSourceCount": 13
+    },
+    {
+      "checkId": "batch-6/history",
+      "requiredSourceCount": 9
+    },
+    {
+      "checkId": "batch-7/geography",
+      "requiredSourceCount": 13
+    }
+  ],
+  "rejectionPreserved": "模型输出修正一次后仍不符合格式：解决待补读项必须引用原问题、原批材料及每个新增来源：batch-2/history；缺少：原问题 review-question/batch-2/history、新增来源 world/historicalEvents/event_12。按本次来源目录选择真实支持片段，不得自动补引文或只删除resolves来掩盖未核验问题。\n专门补读必须引用原问题所依据的每个原始来源：batch-2/history；缺少来源：story/overview、story/relationships/rel_06、story/relationships/rel_14。请按sourceMap对应本次来源选择支持判断的片段，不需穷举其全部片段。",
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Offline replay proves diagnostic accuracy and continued rejection of the recorded invalid answers. It does not show that the real model will repair them successfully; the live worker retains its frozen planner."
+}
