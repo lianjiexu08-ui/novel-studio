@@ -1,0 +1,1496 @@
+{
+  "observedAt": "2026-10-18T06:06:57.935Z",
+  "status": "stopped_after_stage_limit",
+  "segment": 0,
+  "checkpointPath": "data/audit-runtimes/design76-recovery/terminal-segment-0.json",
+  "checkpointSha256": "2e5725dfea9137dec28e65eb83fd7c44fbc5f957dcc61c1b07ba8c4419c9f47e",
+  "workerAbsent": true,
+  "sourceCommit": "26b5f8f16a6b3a442a3873615040a6629069fcb1",
+  "runnerSha256": "720ace1cfb3755cc40c1f21fc098d9b72388d4850f3d28faf9cbb2c407800b58",
+  "inputsSha256": "fc94bb269625716ca4114f9c882de726f23cdec4ded63daccf94089749a9c6f5",
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "totalCallAttempts": 14,
+  "successfulResponses": 14,
+  "failedAttempts": 0,
+  "unsettledCalls": 0,
+  "journal": [
+    {
+      "callNumber": 1,
+      "step": {
+        "area": "world",
+        "runId": "design_run_98b5460a-ed47-4ba2-bb06-7fdded1f910d",
+        "stageId": "batch-1",
+        "startedAt": "2026-10-18T05:33:32.224Z"
+      },
+      "responseSha256": "5d7ff35efb14c97fcbdb270ed57868b3a2cc60521c690c44793667ef7b22a500",
+      "startSha256": "38dea28144412192d7a0beafe2fa8f6cd99bf14cd7d720af2fe645ced5328b79",
+      "outcomeSha256": "6f0c13cedcb7c5210cdaad17b7a1d83dac867eab838bedce7ada256af03af0c8",
+      "usage": {
+        "calls": 1,
+        "failedCalls": 0,
+        "inputTokens": 132898,
+        "outputTokens": 1376,
+        "costUsd": 0,
+        "costKnown": false,
+        "byRole": {
+          "reviewing": {
+            "calls": 1,
+            "failedCalls": 0,
+            "outputTokens": 1376,
+            "costUsd": 0
+          }
+        },
+        "limits": {
+          "budgetUsd": null,
+          "maxCalls": 400
+        }
+      }
+    },
+    {
+      "callNumber": 2,
+      "step": {
+        "area": "power",
+        "runId": "design_run_77e97b37-cbf2-40be-ab17-2de79839c297",
+        "stageId": "batch-1",
+        "startedAt": "2026-10-18T05:35:57.593Z"
+      },
+      "responseSha256": "89ba89e51786567e50f1e44a916a7ecf62b69ad6fed78b79dfa5b454b9da65c1",
+      "startSha256": "6f87f42c852c834b3c0e3e10eb2638ba0859a92090d8fec27bb892077c53ceef",
+      "outcomeSha256": "6f0062c9efc4d5fc5ec4ebb8e5f9c58512dc8121d3643aed4d8671417373039b",
+      "usage": {
+        "calls": 2,
+        "failedCalls": 0,
+        "inputTokens": 239536,
+        "outputTokens": 3500,
+        "costUsd": 0,
+        "costKnown": false,
+        "byRole": {
+          "reviewing": {
+            "calls": 2,
+            "failedCalls": 0,
+            "outputTokens": 3500,
+            "costUsd": 0
+          }
+        },
+        "limits": {
+          "budgetUsd": null,
+          "maxCalls": 400
+        }
+      }
+    },
+    {
+      "callNumber": 3,
+      "step": {
+        "area": "characters",
+        "runId": "design_run_aa04b61b-0b13-464a-9b21-9205a91600e2",
+        "stageId": "batch-1",
+        "startedAt": "2026-10-18T05:38:44.706Z"
+      },
+      "responseSha256": "0b10dd7aac369e427e3ebd64e4a1f6b1a25fb0614693332ca66369ebdde91f94",
+      "startSha256": "c3a57f3612ca63cf358f4cd23dbabef9590af414c1b736d4c97518a8ac677094",
+      "outcomeSha256": "5d1405d91c896314f8382690acaf15e0a2d000598daaf02e9b64fa04f72cfb98",
+      "usage": {
+        "calls": 3,
+        "failedCalls": 0,
+        "inputTokens": 332729,
+        "outputTokens": 5206,
+        "costUsd": 0,
+        "costKnown": false,
+        "byRole": {
+          "reviewing": {
+            "calls": 3,
+            "failedCalls": 0,
+            "outputTokens": 5206,
+            "costUsd": 0
+          }
+        },
+        "limits": {
+          "budgetUsd": null,
+          "maxCalls": 400
+        }
+      }
+    },
+    {
+      "callNumber": 4,
+      "step": {
+        "area": "story",
+        "runId": "design_run_f355dadb-f3ee-4b1b-8834-f17bf0f487dc",
+        "stageId": "batch-1",
+        "startedAt": "2026-10-18T05:41:17.218Z"
+      },
+      "responseSha256": "9a9f81a0c7b3504c46f5d272805fae9b2fcb11650331485146147920d0d0fd9d",
+      "startSha256": "09c674b8538d569ecbd547718ed0cbe40cd000054aa5a6cb9b509590aba5e270",
+      "outcomeSha256": "4f769bf04ccd72f5dd9b5442587af926ab582cf524a0c60fa1da109e6b3b10c6",
+      "usage": {
+        "calls": 4,
+        "failedCalls": 0,
+        "inputTokens": 446287,
+        "outputTokens": 10001,
+        "costUsd": 0,
+        "costKnown": false,
+        "byRole": {
+          "reviewing": {
+            "calls": 4,
+            "failedCalls": 0,
+            "outputTokens": 10001,
+            "costUsd": 0
+          }
+        },
+        "limits": {
+          "budgetUsd": null,
+          "maxCalls": 400
+        }
+      }
+    },
+    {
+      "callNumber": 5,
+      "step": {
+        "area": "world",
+        "runId": "design_run_98b5460a-ed47-4ba2-bb06-7fdded1f910d",
+        "stageId": "batch-2",
+        "startedAt": "2026-10-18T05:43:36.267Z"
+      },
+      "responseSha256": "8b3afc549c39c41d7bc13486f53dab526b30727ff3e4fa045909fb69a54170ca",
+      "startSha256": "00571549391e5f6ff1b272dcd89cae2e4ae7223dca2c65388c4154a74cb0c798",
+      "outcomeSha256": "aa04182db787f0b39499bc6bf3983d63e5153657c5197cd3171c1f4cba01d8fd",
+      "usage": {
+        "calls": 5,
+        "failedCalls": 0,
+        "inputTokens": 569726,
+        "outputTokens": 11934,
+        "costUsd": 0,
+        "costKnown": false,
+        "byRole": {
+          "reviewing": {
+            "calls": 5,
+            "failedCalls": 0,
+            "outputTokens": 11934,
+            "costUsd": 0
+          }
+        },
+        "limits": {
+          "budgetUsd": null,
+          "maxCalls": 400
+        }
+      }
+    },
+    {
+      "callNumber": 6,
+      "step": {
+        "area": "world",
+        "runId": "design_run_98b5460a-ed47-4ba2-bb06-7fdded1f910d",
+        "stageId": "batch-2",
+        "startedAt": "2026-10-18T05:43:36.267Z"
+      },
+      "responseSha256": "e69c11c1dadc4caaa7949b01736efc43bacfa087f87eba88e6a7939943ea47ad",
+      "startSha256": "0cd96eadcb24edd6af5ff3609dd3df5e15891c6376421c2d608d9b665587f468",
+      "outcomeSha256": "1ee35b1e85ad4892b90b8a080316006319bf17c7959f74a9ed3d3b0f0e9fe80d",
+      "usage": {
+        "calls": 6,
+        "failedCalls": 0,
+        "inputTokens": 694654,
+        "outputTokens": 13075,
+        "costUsd": 0,
+        "costKnown": false,
+        "byRole": {
+          "reviewing": {
+            "calls": 6,
+            "failedCalls": 0,
+            "outputTokens": 13075,
+            "costUsd": 0
+          }
+        },
+        "limits": {
+          "budgetUsd": null,
+          "maxCalls": 400
+        }
+      }
+    },
+    {
+      "callNumber": 7,
+      "step": {
+        "area": "power",
+        "runId": "design_run_77e97b37-cbf2-40be-ab17-2de79839c297",
+        "stageId": "batch-2",
+        "startedAt": "2026-10-18T05:45:58.283Z"
+      },
+      "responseSha256": "162b5768b7e5d2aca510cd924ad55bd537a944c8ca2b1f0947152e6603829001",
+      "startSha256": "602a494717576f992f4e4f3dada1ec066e27ad6aebe51bcfeab63699dcba7191",
+      "outcomeSha256": "bd1be33cd65efe93302ee6d11cf7d112bb7dc8ba7babbef30047622374f4d585",
+      "usage": {
+        "calls": 7,
+        "failedCalls": 0,
+        "inputTokens": 790203,
+        "outputTokens": 16611,
+        "costUsd": 0,
+        "costKnown": false,
+        "byRole": {
+          "reviewing": {
+            "calls": 7,
+            "failedCalls": 0,
+            "outputTokens": 16611,
+            "costUsd": 0
+          }
+        },
+        "limits": {
+          "budgetUsd": null,
+          "maxCalls": 400
+        }
+      }
+    },
+    {
+      "callNumber": 8,
+      "step": {
+        "area": "characters",
+        "runId": "design_run_aa04b61b-0b13-464a-9b21-9205a91600e2",
+        "stageId": "batch-2",
+        "startedAt": "2026-10-18T05:49:13.928Z"
+      },
+      "responseSha256": "a53d3edd8ceee96133ac73b8fa5481f6767bf2ce65cfc615e94cf1e09b2f03b8",
+      "startSha256": "d905fac30b716045fb75b0ac14be9ef19337538a598ded1aaa47edd24fa8e14f",
+      "outcomeSha256": "f5c0abc273d12c5e851674c2b2c5ac048d93d8fca29d5b8b94813bb365b89a7c",
+      "usage": {
+        "calls": 8,
+        "failedCalls": 0,
+        "inputTokens": 895318,
+        "outputTokens": 18104,
+        "costUsd": 0,
+        "costKnown": false,
+        "byRole": {
+          "reviewing": {
+            "calls": 8,
+            "failedCalls": 0,
+            "outputTokens": 18104,
+            "costUsd": 0
+          }
+        },
+        "limits": {
+          "budgetUsd": null,
+          "maxCalls": 400
+        }
+      }
+    },
+    {
+      "callNumber": 9,
+      "step": {
+        "area": "characters",
+        "runId": "design_run_aa04b61b-0b13-464a-9b21-9205a91600e2",
+        "stageId": "batch-2",
+        "startedAt": "2026-10-18T05:49:13.928Z"
+      },
+      "responseSha256": "3af1f7d875d61f2108db0c8335050e9196ed6c9525231df53eb9c09c2f53eaed",
+      "startSha256": "f83e43b105a12c8eaa03fe1ffb4a540ff081e716987253aac91ded2201d694ca",
+      "outcomeSha256": "6b64feaa23fda03f63a3cd2734ace91f8048e3dc165aa7032ccc12194feda061",
+      "usage": {
+        "calls": 9,
+        "failedCalls": 0,
+        "inputTokens": 1001487,
+        "outputTokens": 18900,
+        "costUsd": 0,
+        "costKnown": false,
+        "byRole": {
+          "reviewing": {
+            "calls": 9,
+            "failedCalls": 0,
+            "outputTokens": 18900,
+            "costUsd": 0
+          }
+        },
+        "limits": {
+          "budgetUsd": null,
+          "maxCalls": 400
+        }
+      }
+    },
+    {
+      "callNumber": 10,
+      "step": {
+        "area": "story",
+        "runId": "design_run_f355dadb-f3ee-4b1b-8834-f17bf0f487dc",
+        "stageId": "batch-2",
+        "startedAt": "2026-10-18T05:51:53.058Z"
+      },
+      "responseSha256": "69ad580618cbdec208e014e46fb299e69a4dbd77657de3c093fde75eaa196fa7",
+      "startSha256": "32f7c9914be6f6278e8171acaac90acd73f8f09720c58d48f5956fe37d39c6a9",
+      "outcomeSha256": "062511c6fc68323e0813eda469466be8bb7e61bf31321797969c3ae2240bf2b8",
+      "usage": {
+        "calls": 10,
+        "failedCalls": 0,
+        "inputTokens": 1098783,
+        "outputTokens": 23379,
+        "costUsd": 0,
+        "costKnown": false,
+        "byRole": {
+          "reviewing": {
+            "calls": 10,
+            "failedCalls": 0,
+            "outputTokens": 23379,
+            "costUsd": 0
+          }
+        },
+        "limits": {
+          "budgetUsd": null,
+          "maxCalls": 400
+        }
+      }
+    },
+    {
+      "callNumber": 11,
+      "step": {
+        "area": "world",
+        "runId": "design_run_98b5460a-ed47-4ba2-bb06-7fdded1f910d",
+        "stageId": "batch-3",
+        "startedAt": "2026-10-18T05:55:49.740Z"
+      },
+      "responseSha256": "4dca9f6444904e9e784c696158dedaabd91a964abf55ad29d3effe6f805c1008",
+      "startSha256": "387495146db7dfcb880285ea82f1938c5a5695fffcca4c3f821a852988f92e8f",
+      "outcomeSha256": "b9108339fddd907ca7e9f72c82c8196f8fdbdfed7426c8d2f5c456f3cd0b3f62",
+      "usage": {
+        "calls": 11,
+        "failedCalls": 0,
+        "inputTokens": 1216993,
+        "outputTokens": 24796,
+        "costUsd": 0,
+        "costKnown": false,
+        "byRole": {
+          "reviewing": {
+            "calls": 11,
+            "failedCalls": 0,
+            "outputTokens": 24796,
+            "costUsd": 0
+          }
+        },
+        "limits": {
+          "budgetUsd": null,
+          "maxCalls": 400
+        }
+      }
+    },
+    {
+      "callNumber": 12,
+      "step": {
+        "area": "power",
+        "runId": "design_run_77e97b37-cbf2-40be-ab17-2de79839c297",
+        "stageId": "batch-3",
+        "startedAt": "2026-10-18T05:58:16.154Z"
+      },
+      "responseSha256": "2f823ae906c082ac20c4ce67b870c2310b27bdc8c6b40eb6150d5cf18034a013",
+      "startSha256": "ce03505b0a8009976500bc86df1abd00d8e81ab6ad4e337c3aea662fa284e984",
+      "outcomeSha256": "5126c02b11b5c0c0e69487ed5e247b7d42e6f534edf0eeb0170558bef332d29c",
+      "usage": {
+        "calls": 12,
+        "failedCalls": 0,
+        "inputTokens": 1329902,
+        "outputTokens": 28665,
+        "costUsd": 0,
+        "costKnown": false,
+        "byRole": {
+          "reviewing": {
+            "calls": 12,
+            "failedCalls": 0,
+            "outputTokens": 28665,
+            "costUsd": 0
+          }
+        },
+        "limits": {
+          "budgetUsd": null,
+          "maxCalls": 400
+        }
+      }
+    },
+    {
+      "callNumber": 13,
+      "step": {
+        "area": "characters",
+        "runId": "design_run_aa04b61b-0b13-464a-9b21-9205a91600e2",
+        "stageId": "batch-3",
+        "startedAt": "2026-10-18T06:01:28.851Z"
+      },
+      "responseSha256": "1849e895d78f1af963c966727c067a46552357733ae7d64793dbdd1dcf3caddc",
+      "startSha256": "476ae0d839b2466cdeac31a7baaa86bad20a17630ca367f62e36568f752f19a9",
+      "outcomeSha256": "82bf62fd309fd526a550f68b9a8e656c2ea016b645369b83d46bd0adda900e3c",
+      "usage": {
+        "calls": 13,
+        "failedCalls": 0,
+        "inputTokens": 1444590,
+        "outputTokens": 29847,
+        "costUsd": 0,
+        "costKnown": false,
+        "byRole": {
+          "reviewing": {
+            "calls": 13,
+            "failedCalls": 0,
+            "outputTokens": 29847,
+            "costUsd": 0
+          }
+        },
+        "limits": {
+          "budgetUsd": null,
+          "maxCalls": 400
+        }
+      }
+    },
+    {
+      "callNumber": 14,
+      "step": {
+        "area": "story",
+        "runId": "design_run_f355dadb-f3ee-4b1b-8834-f17bf0f487dc",
+        "stageId": "batch-3",
+        "startedAt": "2026-10-18T06:03:51.397Z"
+      },
+      "responseSha256": "cd9012c197df3013031187ebd9eda8f54b9631984626e0a3e2daece36dc56e7f",
+      "startSha256": "04d51428bf17b7e3dcaf09834abe271ea6c6bccf47096eac22419cf732808d82",
+      "outcomeSha256": "a1007024bd58c08fe35716ee28ac65d57fcd4551af729278b6bc697c533c4510",
+      "usage": {
+        "calls": 14,
+        "failedCalls": 0,
+        "inputTokens": 1557894,
+        "outputTokens": 31839,
+        "costUsd": 0,
+        "costKnown": false,
+        "byRole": {
+          "reviewing": {
+            "calls": 14,
+            "failedCalls": 0,
+            "outputTokens": 31839,
+            "costUsd": 0
+          }
+        },
+        "limits": {
+          "budgetUsd": null,
+          "maxCalls": 400
+        }
+      }
+    }
+  ],
+  "replays": [
+    {
+      "area": "world",
+      "runId": "design_run_98b5460a-ed47-4ba2-bb06-7fdded1f910d",
+      "verification": "verified",
+      "completedStages": 3,
+      "totalStages": 55,
+      "runSha256": "93e39546801ad248a3fc6a93e1f5afcc1f48b4fe649598ed79f7e28b0d5f5eea",
+      "formalAcceptance": false,
+      "limitation": "Replays saved responses, repairs, citations and conclusions against independently supplied materials. Pending work, semantic quality, blocker disposition and prose acceptance remain separate.",
+      "responseReplay": "verified",
+      "responsesReplayed": 4,
+      "records": [
+        {
+          "stageId": "batch-1",
+          "kind": "batch",
+          "stageSha256": "20e0b59a05393e35f5dfdd11260a3afcefc2989615c449684e9c11bde3db4da3",
+          "inputSha256": "857ccb7805e18966efcdbf4b1c5da9444419e092fe8959f7ae144ef868b03922",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "geography",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "history",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "capacity",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "stageId": "batch-2",
+          "kind": "batch",
+          "stageSha256": "352c156706318e90e20b1f1f3e53679048ac14a913682bc14d30484dd530fd0e",
+          "inputSha256": "d8a6022cd057e6a1199a4626bfcf722720c299e69c03396bee0b22cb4a7d9b0d",
+          "responsesReplayed": 2,
+          "checks": [
+            {
+              "criterion": "geography",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/locations/loc_21",
+                "world/locations/loc_23",
+                "world/locations/loc_24",
+                "world/locations/loc_25",
+                "world/locations/loc_26",
+                "world/locations/loc_27"
+              ]
+            },
+            {
+              "criterion": "history",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/historicalEvents/event_12",
+                "world/historicalEvents/event_14"
+              ]
+            },
+            {
+              "criterion": "capacity",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "stageId": "batch-3",
+          "kind": "batch",
+          "stageSha256": "eb221992d471981e1b5bd998542eff4be4195f39bbf43c0c7d163bc7ed680c9d",
+          "inputSha256": "b9a7b38b128966a2b264ee45d6ba6e8124f2e08c2628b1b7981e9479808cec06",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "geography",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/locations/loc_21",
+                "world/locations/loc_25",
+                "world/locations/loc_26",
+                "world/locations/loc_27"
+              ]
+            },
+            {
+              "criterion": "history",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "capacity",
+              "verdict": "pass"
+            }
+          ]
+        }
+      ],
+      "failures": [],
+      "modelCalls": 0,
+      "reportVerification": "not_completed"
+    },
+    {
+      "area": "power",
+      "runId": "design_run_77e97b37-cbf2-40be-ab17-2de79839c297",
+      "verification": "verified",
+      "completedStages": 3,
+      "totalStages": 29,
+      "runSha256": "cc91d6074d1484d245b187e5c70c515387a4bf20369c9a752efdab4d3a6d58fd",
+      "formalAcceptance": false,
+      "limitation": "Replays saved responses, repairs, citations and conclusions against independently supplied materials. Pending work, semantic quality, blocker disposition and prose acceptance remain separate.",
+      "responseReplay": "verified",
+      "responsesReplayed": 3,
+      "records": [
+        {
+          "stageId": "batch-1",
+          "kind": "batch",
+          "stageSha256": "78e2a8e1d74379cd16320770299d1956f5053134a444c3d4464d33528080e60c",
+          "inputSha256": "c2237130a222a801772b4d53bd03ee94ed8d494fc9a2a021be18cdd98a79e2b4",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "tiers",
+              "verdict": "revise"
+            },
+            {
+              "criterion": "costs",
+              "verdict": "revise"
+            },
+            {
+              "criterion": "counters",
+              "verdict": "revise"
+            }
+          ]
+        },
+        {
+          "stageId": "batch-2",
+          "kind": "batch",
+          "stageSha256": "e86ac7e28470a02fd5837945d23ea1a445cd1b4c175c56ccba3ac4f95ed4ee94",
+          "inputSha256": "19f860e6f01e9683063396149617b1daa2bc1aaa0b8f92ef7ba13f245b0fe7c2",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "tiers",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/techniques/tech_11",
+                "world/techniques/tech_13",
+                "world/techniques/tech_15",
+                "world/techniques/tech_16",
+                "world/techniques/tech_19",
+                "world/resources/res_01",
+                "story/characters/char_09",
+                "story/characters/char_10",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement"
+              ]
+            },
+            {
+              "criterion": "costs",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/techniques/tech_11",
+                "world/techniques/tech_13",
+                "world/techniques/tech_15",
+                "world/techniques/tech_16",
+                "world/techniques/tech_19",
+                "world/resources/res_01",
+                "story/characters/char_09",
+                "story/characters/char_10",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement"
+              ]
+            },
+            {
+              "criterion": "counters",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/techniques/tech_11",
+                "world/techniques/tech_13",
+                "world/techniques/tech_15",
+                "world/techniques/tech_16",
+                "story/characters/char_10",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25"
+              ]
+            }
+          ]
+        },
+        {
+          "stageId": "batch-3",
+          "kind": "batch",
+          "stageSha256": "2447c196a55016c8510e941a97abf9d8d6376e79c344050dc73e18e7bd8a79c7",
+          "inputSha256": "79c962ee6bae7f77cd1eaf1d1efd20bf1ffee839e25bdd96a1130d2f044e6372",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "tiers",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/techniques/tech_11",
+                "world/techniques/tech_13",
+                "world/techniques/tech_15",
+                "world/techniques/tech_16",
+                "world/techniques/tech_19",
+                "plan/volumes/vol_01",
+                "plan/volumes/vol_02",
+                "plan/volumes/vol_03",
+                "plan/milestones/ms_vol1_climax",
+                "plan/milestones/ms_growth_v1_aftermath",
+                "plan/milestones/ms_growth_v1_crossing",
+                "plan/milestones/ms_bridge_return",
+                "plan/milestones/ms_v2_loss",
+                "plan/milestones/ms_v2_barge",
+                "plan/milestones/ms_v2_fire",
+                "plan/milestones/ms_v2_voyage",
+                "plan/milestones/ms_v2_boundary",
+                "plan/milestones/ms_v3_return",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement",
+                "plan/milestones/ms_v3_convoy",
+                "plan/milestones/ms_v3_payoff",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "costs",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/techniques/tech_11",
+                "world/techniques/tech_13",
+                "world/techniques/tech_15",
+                "world/techniques/tech_16",
+                "world/techniques/tech_19",
+                "world/resources/res_17",
+                "world/resources/res_18",
+                "world/resources/res_19",
+                "plan/milestones/ms_vol1_climax",
+                "plan/milestones/ms_growth_v1_aftermath",
+                "plan/milestones/ms_growth_v1_crossing",
+                "plan/milestones/ms_bridge_return",
+                "plan/milestones/ms_v2_loss",
+                "plan/milestones/ms_v2_barge",
+                "plan/milestones/ms_v2_fire",
+                "plan/milestones/ms_v2_voyage",
+                "plan/milestones/ms_v2_boundary",
+                "plan/milestones/ms_v3_return",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement",
+                "plan/milestones/ms_v3_convoy",
+                "plan/milestones/ms_v3_payoff",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "counters",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/techniques/tech_11",
+                "world/techniques/tech_13",
+                "world/techniques/tech_15",
+                "world/techniques/tech_16",
+                "plan/milestones/ms_vol1_climax",
+                "plan/milestones/ms_growth_v1_aftermath",
+                "plan/milestones/ms_growth_v1_crossing",
+                "plan/milestones/ms_bridge_return",
+                "plan/milestones/ms_v2_loss",
+                "plan/milestones/ms_v2_barge",
+                "plan/milestones/ms_v2_fire",
+                "plan/milestones/ms_v2_voyage",
+                "plan/milestones/ms_v2_boundary",
+                "plan/milestones/ms_v3_return",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement",
+                "plan/milestones/ms_v3_convoy",
+                "plan/milestones/ms_v3_payoff",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            }
+          ]
+        }
+      ],
+      "failures": [],
+      "modelCalls": 0,
+      "reportVerification": "not_completed"
+    },
+    {
+      "area": "characters",
+      "runId": "design_run_aa04b61b-0b13-464a-9b21-9205a91600e2",
+      "verification": "verified",
+      "completedStages": 3,
+      "totalStages": 29,
+      "runSha256": "d69e55f75bf46c3f8cfadece5d8ff910bab17768df451018b2f1c478202804a4",
+      "formalAcceptance": false,
+      "limitation": "Replays saved responses, repairs, citations and conclusions against independently supplied materials. Pending work, semantic quality, blocker disposition and prose acceptance remain separate.",
+      "responseReplay": "verified",
+      "responsesReplayed": 4,
+      "records": [
+        {
+          "stageId": "batch-1",
+          "kind": "batch",
+          "stageSha256": "ef43ca9e9336f54dd5b5f1088c08c09060142233381ddbc0250c05f668c9c309",
+          "inputSha256": "444dd5da98237866ea0d2240202e8ce7498d3e824f1316cfbeb5b4b46d112032",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "story/secrets/sec_02"
+              ]
+            }
+          ]
+        },
+        {
+          "stageId": "batch-2",
+          "kind": "batch",
+          "stageSha256": "984af46fa9baba95576f572bb9f0b28aad596da4c961bd76874be57cc2ea0390",
+          "inputSha256": "ccba496ab0f2ed47368e9e361f7e5eddbc57f2803cef4a74b681aaade9f98cf1",
+          "responsesReplayed": 2,
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "story/relationships/rel_01",
+                "story/relationships/rel_07"
+              ]
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "stageId": "batch-3",
+          "kind": "batch",
+          "stageSha256": "7b2d95c874ccecbe5c6bf86a615cfd938d48cbca46981c298a33500eb9f37608",
+          "inputSha256": "521289c6dd2640d5a0a74cbb919373876e9022da641c9191df65ffa7302c624b",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "pass"
+            }
+          ]
+        }
+      ],
+      "failures": [],
+      "modelCalls": 0,
+      "reportVerification": "not_completed"
+    },
+    {
+      "area": "story",
+      "runId": "design_run_f355dadb-f3ee-4b1b-8834-f17bf0f487dc",
+      "verification": "verified",
+      "completedStages": 3,
+      "totalStages": 29,
+      "runSha256": "bd910ae9b3c0bdacfc2cc187afe0413bfda6fd4b96f0542bd6bc626dff8ccc86",
+      "formalAcceptance": false,
+      "limitation": "Replays saved responses, repairs, citations and conclusions against independently supplied materials. Pending work, semantic quality, blocker disposition and prose acceptance remain separate.",
+      "responseReplay": "verified",
+      "responsesReplayed": 3,
+      "records": [
+        {
+          "stageId": "batch-1",
+          "kind": "batch",
+          "stageSha256": "adb9a4f0ee1ef90c868356a17db2e7fcb40f2d0dd6dfac0cf43c6d140eca5b02",
+          "inputSha256": "41abef0aabfab75b06009d2b249717a0df46a62c844d4d94b29202515a8cd214",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/1",
+                "plan/chapters/2",
+                "plan/chapters/3",
+                "plan/chapters/4",
+                "plan/chapters/5",
+                "plan/chapters/6",
+                "plan/chapters/7",
+                "plan/chapters/8",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/13",
+                "plan/chapters/14",
+                "plan/chapters/15",
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50",
+                "plan/milestones/ms_v2_fire",
+                "plan/milestones/ms_v2_voyage",
+                "plan/milestones/ms_v2_boundary",
+                "plan/milestones/ms_v3_return",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement",
+                "plan/milestones/ms_v3_convoy",
+                "plan/milestones/ms_v3_payoff"
+              ]
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/1",
+                "plan/chapters/2",
+                "plan/chapters/3",
+                "plan/chapters/4",
+                "plan/chapters/5",
+                "plan/chapters/6",
+                "plan/chapters/7",
+                "plan/chapters/8",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/13",
+                "plan/chapters/14",
+                "plan/chapters/15",
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50",
+                "plan/milestones/ms_v2_fire",
+                "plan/milestones/ms_v2_voyage",
+                "plan/milestones/ms_v2_boundary",
+                "plan/milestones/ms_v3_return",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement",
+                "plan/milestones/ms_v3_convoy",
+                "plan/milestones/ms_v3_payoff"
+              ]
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "opening",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/1",
+                "plan/chapters/2",
+                "plan/chapters/3",
+                "plan/chapters/4",
+                "plan/chapters/5",
+                "plan/chapters/6",
+                "plan/chapters/7",
+                "plan/chapters/8",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/13",
+                "plan/chapters/14",
+                "plan/chapters/15",
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/1",
+                "plan/chapters/2",
+                "plan/chapters/3",
+                "plan/chapters/4",
+                "plan/chapters/5",
+                "plan/chapters/6",
+                "plan/chapters/7",
+                "plan/chapters/8",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/13",
+                "plan/chapters/14",
+                "plan/chapters/15",
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "growth",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/13",
+                "plan/chapters/14",
+                "plan/chapters/15",
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/milestones/ms_v3_return",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement"
+              ]
+            }
+          ]
+        },
+        {
+          "stageId": "batch-2",
+          "kind": "batch",
+          "stageSha256": "ae65d5d5869a7bbc85976a2467c763d32abef0e659f2d14c784aee2ca364e45f",
+          "inputSha256": "2ae754af42211e7d5e86df1382cb96f20feb6026c156e2f8c7308e8844747c48",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/1",
+                "plan/chapters/2",
+                "plan/chapters/3",
+                "plan/chapters/4",
+                "plan/chapters/5",
+                "plan/chapters/6",
+                "plan/chapters/7",
+                "plan/chapters/8",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/13",
+                "plan/chapters/14",
+                "plan/chapters/15",
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/1",
+                "plan/chapters/2",
+                "plan/chapters/3",
+                "plan/chapters/4",
+                "plan/chapters/5",
+                "plan/chapters/6",
+                "plan/chapters/7",
+                "plan/chapters/8",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/13",
+                "plan/chapters/14",
+                "plan/chapters/15",
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/milestones/ms_v2_fire",
+                "plan/milestones/ms_v2_voyage",
+                "plan/milestones/ms_v2_boundary",
+                "plan/milestones/ms_v3_return",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement",
+                "plan/milestones/ms_v3_convoy",
+                "plan/milestones/ms_v3_payoff"
+              ]
+            },
+            {
+              "criterion": "opening",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/1",
+                "plan/chapters/2",
+                "plan/chapters/3",
+                "plan/chapters/4",
+                "plan/chapters/5",
+                "plan/chapters/6",
+                "plan/chapters/7",
+                "plan/chapters/8",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/13",
+                "plan/chapters/14",
+                "plan/chapters/15",
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "growth",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement"
+              ]
+            }
+          ]
+        },
+        {
+          "stageId": "batch-3",
+          "kind": "batch",
+          "stageSha256": "eb4dd4c741d090c30f9709a2d014db6c404adc432fc68b39181423758706116e",
+          "inputSha256": "3ecac5a3240004352e9165a236afd3ed06569f671758df575e0c04716c21382c",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "opening",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "growth",
+              "verdict": "pass"
+            }
+          ]
+        }
+      ],
+      "failures": [],
+      "modelCalls": 0,
+      "reportVerification": "not_completed"
+    }
+  ],
+  "preserved": {
+    "protectedHash": "4697415514e888e4076fd3cd9ee4626fe3b27dbe524e2038fb21ca6504c8cb57",
+    "oldRuns": 95,
+    "oldReports": 92
+  },
+  "productionVerification": "read_only_sqlite_backup",
+  "databaseSnapshotPath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design76-recovery/verify-segment-0-ju10sP/production.db",
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "proseGenerated": false,
+  "limitation": "Verified incomplete prefix only; pending stages and formal quality acceptance remain unproven."
+}
