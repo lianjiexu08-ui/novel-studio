@@ -1,0 +1,85 @@
+{
+  "kind": "independent_review_omission_crosscheck",
+  "observedAt": "2026-10-18T09:02:25.023Z",
+  "requestPath": "data/audit-runtimes/design76-citation-edits-review/model-calls/00055.started.json",
+  "requestSha256": "119ada94a0e08dc2145d43ce998105312320c144c44ac336b9125adfd5aa386b",
+  "responsePath": "data/audit-runtimes/design76-citation-edits-review/model-calls/00055.response.json",
+  "responseSha256": "9af83ceda6f26605ae095b8ffae7ea00d255f198d0a4ee05ddd6aa5cc87c9fa9",
+  "inputPath": "data/audit-runtimes/design76-citation-edits-review/inputs.json",
+  "inputSha256": "fc94bb269625716ca4114f9c882de726f23cdec4ded63daccf94089749a9c6f5",
+  "inputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+  "modelCall": 55,
+  "runId": "design_run_aa04b61b-0b13-464a-9b21-9205a91600e2",
+  "stageId": "cross-2-3",
+  "observedAcceptedStageSha256": "b56dad0a0b98b41f40c1f4680ef33bfd2d09364a70843fe96e82a9185a7406e1",
+  "originalCheck": {
+    "criterion": "knowledge",
+    "verdict": "pass",
+    "explanation": "已读材料对角色知情范围和来源限制较清楚。林辰在第7—12章只能依据公开摘录、底联、现场伤害与封样推进调查，不能提前知道九鼎全图或赵玄极即时知情；第21—25章通过秦禾当面报告、现场观察和顾的实际到位获得营地与行动信息，不把独立视角中的墨幽屠命令倒灌给林苏；第33章侧门视角明确属于读者/独立角色，林辰只知道正式仓现状和六号箱去向不明。苏、秦禾、韩叙及墨也分别受其实际接触材料和传播路径限制。",
+    "evidence": [
+      {
+        "fragmentId": "e157"
+      },
+      {
+        "fragmentId": "e172"
+      },
+      {
+        "fragmentId": "e206"
+      },
+      {
+        "fragmentId": "e228"
+      },
+      {
+        "fragmentId": "e366"
+      },
+      {
+        "fragmentId": "e427"
+      }
+    ],
+    "revisionAdvice": ""
+  },
+  "evidence": [
+    {
+      "sourceId": "story/characters/char_19",
+      "sourceSha256": "cd913551aac15d33587289073f75e9dded94d0d052a0f1c72134198602bd6fa9",
+      "quote": "姓名在第33章由船册和本人确认。",
+      "unitId": "review-unit/55",
+      "fragmentId": "e65",
+      "text": "{\n  \"id\": \"char_19\",\n  \"name\": \"严涛\",\n  \"role\": \"stage\",\n  \"goal\": \"私卖部分药材抵赌债并躲过失箱追偿；获救后想用林辰的救命行为当成替自己遮丑的理由。\",\n  \"identity\": \"第32章脚被箱夹住的普通押货者，无修行能力；姓名在第33章由船册和本人确认。\",\n  \"locationId\": \"loc_23\",\n  \"factionId\": \"fac_08\"\n}"
+    },
+    {
+      "sourceId": "plan/chapters/33",
+      "sourceSha256": "858d19c874fa7fd771edaf49088b7f3c98fe9db176f6151e23cd9d38e1591b17",
+      "quote": "217日晚，林确认严身份",
+      "unitId": "review-unit/272",
+      "fragmentId": "e426",
+      "text": "  \"endState\": \"217日晚，林确认严身份、程拒接且要求全赔；正式仓仍四箱完好加一箱水损，六号箱去向未知，租符有效至230日。苏在外门见217日07时已完成旧12小时夜班交接，新制四人各6小时轮一处墨岗，顾坐医车返后继续复诊，不再算护路中；林41章收到信前不得知道其返宗结果。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_04\",\n    \"char_09\",\n    \"char_10\",\n    \"char_12\",\n    \"char_13\",\n    \"char_14\",\n    \"char_17\",\n    \"char_18\",\n    \"char_19\",\n    \"char_20\",\n    \"char_21\"\n  ],\n  \"location\": \"loc_23天宝外港原船卸货区与侧门；插叙为loc_05入口外营至loc_29太清外门院\",\n  \"storyTime\": \"第217日；插叙覆盖第212日至第216日的太清销班与四日慢车返宗\",\n  \"scenes\": [\n"
+    },
+    {
+      "sourceId": "story/chapterPlans/bible-chapter-33",
+      "sourceSha256": "eda7a9a4bb63e7df47932425b41a0d967adea2849610c35e77765725f5b0583d",
+      "quote": "他尚不知道严涛身份、常钧搬箱或陆沉川接走重箱",
+      "unitId": "review-unit/199",
+      "fragmentId": "e248",
+      "text": "  \"endHook\": \"217日晚，林只确认正式仓四箱完好、一箱水损、程记未完成接货签认，六号箱去向未知；他尚不知道严涛身份、常钧搬箱或陆沉川接走重箱，也没有从侧门独立视角获得这些信息。第34章由常钧当面说明暂存与抬箱，第35章取得侧门册后才逐步核对去向。苏在外门见旧夜班交接并去看顾伤，林在第41章收到实体来信前不知道她返宗结果。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_04\",\n    \"char_09\",\n    \"char_10\",\n    \"char_12\",\n    \"char_13\",\n    \"char_14\",\n    \"char_17\",\n    \"char_18\",\n    \"char_19\",\n    \"char_20\",\n    \"char_21\"\n  ],\n  \"locationIds\": [\n    \"loc_23\",\n    \"loc_05\",\n    \"loc_29\"\n  ],\n  \"arcBeatIds\": [],\n  \"requiredEvents\": [\n    \"th_01\",\n    \"th_03\",\n    \"th_05\",\n    \"sec_01\",\n    \"sec_04\",\n"
+    }
+  ],
+  "candidatePath": "data/design-candidates/design76-followup-controls-v4.json",
+  "candidateSha256": "161301346ea7872323f54e1a28db08f8d6db7f0fadf9c862fd2042ac114f66e5",
+  "correctedIdentity": "第32章脚被箱夹住的普通押货者，无修行能力。严涛为作者侧人物姓名；林辰第32章只亲见其私推并救人，第33章尚未确认其姓名身份，第34章与这名被救押货者当面对话并拒绝伪证，第35章取得侧门底册后才核对严涛工牌。不得把旁白称“严”当作林已完成核名，底册也不证明私挪全貌、货物去向或幕后；第38—39章仍须当面对质与实物核验。",
+  "correctedEndState": "217日晚，林尚未确认严涛身份，只确认程拒接且要求全赔；侧门报空、搬箱与领箱属于独立视角，不能成为林此时的见闻；正式仓仍四箱完好加一箱水损，六号箱去向未知，租符有效至230日。苏在外门见217日07时已完成旧12小时夜班交接，新制四人各6小时轮一处墨岗，顾坐医车返后继续复诊，不再算护路中；林41章收到信前不得知道其返宗结果。",
+  "retainedPriorRevision": {
+    "area": "story",
+    "stageId": "cross-1-4",
+    "criteria": [
+      "causality",
+      "payoff"
+    ]
+  },
+  "finding": "第55次人物知情项的局部通过遗漏了同次请求中两处提前核名与圣经章末未知身份之间的矛盾。未读来源不能解释此次漏检。此前故事返修和v4的跨文档修订仍有效，不能据本次通过撤销。",
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "blockersClosed": 0,
+  "formalAcceptance": false,
+  "limitation": "此为运行期间针对已持久化原答和已接受步骤的语义核对；完整段终止回放尚未发生。不更改模型原答、正式判定或设计，也不证明其他人物链条已通过。"
+}
