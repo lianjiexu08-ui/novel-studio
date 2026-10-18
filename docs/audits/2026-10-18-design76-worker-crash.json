@@ -1,0 +1,39 @@
+{
+  "kind": "design76_worker_crash_verified",
+  "observedAt": "2026-10-18T05:19:08.963Z",
+  "status": "failed_before_model_calls",
+  "observedExitCode": 134,
+  "pid": 1810,
+  "workerAbsent": true,
+  "checkpointPath": "data/audit-runtimes/design76-review/crashed-segment-0.json",
+  "checkpointSha256": "8f74bec1ca311f76dd1e27275b5efd1a6f38622a47679c237d924fe929fd3c46",
+  "logSha256": "cf8d5395e100b2e5e39687d01550e640bb22988fb23e3b5e9c55649118bffea6",
+  "databaseSnapshotPath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design76-review/crash-audit-8c07tb/production.db",
+  "inputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+  "oldRunsPreserved": 92,
+  "oldReportsPreserved": 92,
+  "protectedHash": "4697415514e888e4076fd3cd9ee4626fe3b27dbe524e2038fb21ca6504c8cb57",
+  "unstartedRuns": [
+    {
+      "id": "design_run_fd211f33-a570-4688-8fa6-20018d6da2eb",
+      "area": "world",
+      "sha256": "3d61ddd0fe77ea147b2b2a8288115006191d39bf1d5fe6dda7d3f5ae9cef94e4"
+    },
+    {
+      "id": "design_run_722762d6-4392-40e3-8b00-d74ecaf3eeb5",
+      "area": "power",
+      "sha256": "b20eb7d92152876ce3b3f6575ff9329d6d455f51dc228d0749f63090a339461e"
+    },
+    {
+      "id": "design_run_8c7bb847-516f-446f-bf15-5c6e44329873",
+      "area": "characters",
+      "sha256": "64555771538c1c6fd12972681cd344590345c9f6b90d51ef4f5d5ba07dc2e001"
+    }
+  ],
+  "leases": 0,
+  "modelCalls": 0,
+  "unsettledCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "nextAction": "Rehearse bounded history writes against this snapshot, then bind a new runtime and explicitly restart the three unstarted runs; retain all original records and the crashed checkpoint."
+}

@@ -1,0 +1,44 @@
+{
+  "kind": "design76_private_large_history_recovery_rehearsal",
+  "createdAt": "2026-10-18T05:22:54.394Z",
+  "databasePath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design76-history-rehearsal-l5NnXR/private.db",
+  "verified": true,
+  "created": [
+    {
+      "area": "world",
+      "runId": "design_run_c07a315c-1b07-49cc-ae3a-07d68b5e4c49",
+      "restartedFromRunId": "design_run_fd211f33-a570-4688-8fa6-20018d6da2eb",
+      "elapsedMs": 40715
+    },
+    {
+      "area": "power",
+      "runId": "design_run_38a2f60a-bb71-4304-9f8f-38d945574b43",
+      "restartedFromRunId": "design_run_722762d6-4392-40e3-8b00-d74ecaf3eeb5",
+      "elapsedMs": 37905
+    },
+    {
+      "area": "characters",
+      "runId": "design_run_edb8474f-2ab7-4597-930b-5914f0ffb50a",
+      "restartedFromRunId": "design_run_8c7bb847-516f-446f-bf15-5c6e44329873",
+      "elapsedMs": 37782
+    },
+    {
+      "area": "story",
+      "runId": "design_run_9b83c223-87b2-4710-9a64-37e716dc141d",
+      "elapsedMs": 38139
+    }
+  ],
+  "elapsedMs": 172221,
+  "maxRssKiB": 5393632,
+  "oldRunsPreserved": 95,
+  "oldReportsPreserved": 92,
+  "protectedHash": "4697415514e888e4076fd3cd9ee4626fe3b27dbe524e2038fb21ca6504c8cb57",
+  "sourceHashes": {
+    "packages/persistence/src/project-history.ts": "6f80e9dacc43ab7fcd7ccaa6740e137d17722d06a3437e402b6b5322e78c883e",
+    "packages/persistence/src/prisma-repository.ts": "d8a40bc18b16376e1dea3c4223a8c89ce081144c4f6c7586a7de0d5c9272ee47"
+  },
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Proves bounded persistence and preservation through four real-size private task creations. No model step or full design acceptance is implied."
+}

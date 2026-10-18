@@ -668,9 +668,8 @@ test('review-only saves skip historical rows while nested edits and rollback rem
   const input = designReviewInput(initial, 'power');
   writes.length = 0;
   await repository.transaction(created.id, ({ work }) => recordDesignReview(work, input, fixtureDesignReview(input)));
-  assert.equal(writes.length, 1, 'review progress only updates the project row');
-  assert.match(writes[0], /UPDATE .*Project/);
-  assert.doesNotMatch(writes[0], /"designHistory"\s*=|"storyBible"\s*=|"worldPack"\s*=/, 'unchanged large JSON fields are not rewritten');
+  assert.ok(writes.length>=2&&writes.every(query=>/UPDATE .*Project/.test(query)), 'review progress only updates the fenced project row and its changed history');
+  for(const query of writes) assert.doesNotMatch(query, /"designHistory"\s*=|"storyBible"\s*=|"worldPack"\s*=/, 'unchanged large JSON fields are not rewritten');
   const reviewed = (await repository.get(created.id))!;
   assert.equal(reviewed.designContentReviews.size, initial.designContentReviews.size + 1);
   assert.deepEqual(reviewed.plans, initial.plans);
@@ -715,18 +714,25 @@ test('atomic aggregate saves can finish beyond the default five-second transacti
   assert.equal((await repository.outbox()).length, 1);
 });
 
-test('long-form review history is read in bounded SQLite chunks without pruning evidence', async t => {
+test('long-form history uses bounded reads and writes, and a mid-write failure rolls back every chunk', async t => {
   const databaseUrl = createDatabase();
   const { PrismaClient } = await import('@prisma/client');
   const { PrismaWorkRepository } = await import('../src/prisma-repository.ts');
   const { Work } = await import('../../../novel-service-core/src/core.ts');
-  const prisma = new PrismaClient({ datasources: { db: { url: databaseUrl } } });
+  const prisma = new PrismaClient({ datasources: { db: { url: databaseUrl } }, log: [{emit:'event',level:'query'}] });
   const repository = new PrismaWorkRepository(prisma);
   t.after(async () => { await repository.disconnect(); rmSync(databaseUrl.slice(5), { force: true }); });
+  let chunkWrites=0;
+  prisma.$on('query', event=>{
+    if(event.query.startsWith('UPDATE')&&event.query.includes('"designReviewRuns"')){
+      chunkWrites++;
+    }
+  });
   const work = new Work('超长评审历史');
   const payload = '甲'.repeat(9 * 1024 * 1024);
   work.designReviewRuns.set('long-run', { id: 'long-run', payload } as never);
   await repository.save(work);
+  assert.ok(chunkWrites>=2);
   const restored = (await repository.get(work.id))!;
   assert.equal((restored.designReviewRuns.get('long-run') as unknown as { payload: string }).payload, payload);
   await assert.rejects(repository.transaction(work.id, ({ work: current }) => {
@@ -737,6 +743,19 @@ test('long-form review history is read in bounded SQLite chunks without pruning 
   const reloaded = (await repository.get(work.id))!;
   assert.equal(reloaded.title, 'committed');
   assert.deepEqual(reloaded.designReviewRuns.get('long-run'), restored.designReviewRuns.get('long-run'));
+  await prisma.$executeRawUnsafe(`CREATE TRIGGER fail_second_history_chunk BEFORE UPDATE OF designReviewRuns ON Project WHEN length(NEW.designReviewRuns) > 8388608 BEGIN SELECT RAISE(ABORT, 'injected_history_chunk_failure'); END`);
+  await assert.rejects(repository.transaction(work.id, ({work: current})=>{
+    current.title='must roll back with chunks';
+    current.designReviewRuns.set('new-run',{id:'new-run',payload:'😀追加原文'} as never);
+  }),/injected_history_chunk_failure/);
+  assert.deepEqual(structuredClone(await repository.get(work.id)),structuredClone(reloaded));
+  await prisma.$executeRawUnsafe('DROP TRIGGER fail_second_history_chunk');
+  await repository.transaction(work.id, ({work: current})=>{
+    current.designReviewRuns.set('new-run',{id:'new-run',payload:'😀追加原文'} as never);
+  });
+  const committed=(await repository.get(work.id))!;
+  assert.deepEqual(committed.designReviewRuns.get('long-run'),restored.designReviewRuns.get('long-run'));
+  assert.deepEqual(committed.designReviewRuns.get('new-run'),{id:'new-run',payload:'😀追加原文'});
 });
 
 test('SQLite reload keeps a newer rejection current when an older passing response arrives late', async t => {
@@ -804,7 +823,8 @@ test('whole-design save rolls back world and bible when plan insertion fails, th
     if (event.query === 'ROLLBACK') queries.push('rollback');
   });
   await assert.rejects(() => workflow.saveDesignCandidate(work.id, baseline));
-  assert.deepEqual(queries, ['update_project', 'insert_plan', 'rollback']);
+  assert.deepEqual(queries.slice(-2), ['insert_plan', 'rollback']);
+  assert.ok(queries.length>2&&queries.slice(0,-2).every(query=>query==='update_project'));
   assert.deepEqual(structuredClone(await reader.get(work.id)), before, 'failed plan INSERT leaves no partial design or history');
   await prisma.$executeRawUnsafe('DROP TRIGGER fail_bundle_plan');
   const saved = await workflow.saveDesignCandidate(work.id, baseline), restored = (await reader.get(work.id))!;

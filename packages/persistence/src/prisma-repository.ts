@@ -3,7 +3,7 @@ import type { DesignReviewAnnotation } from '../../../novel-service-core/src/des
 import type { DesignContentReview } from '../../../novel-service-core/src/design-review.ts';
 import { randomUUID } from 'node:crypto';
 import { PrismaClient } from '@prisma/client';
-import { readProjectWithHistory } from './project-history.ts';
+import { readProjectWithHistory, historyJsonHash, projectHistoryColumns, writeProjectHistory } from './project-history.ts';
 import { contentHashOf, parseCovenant, rebuildCharacterStates, StaleCandidateError, Work } from '../../../novel-service-core/src/core.ts';
 import type {
   ChapterCandidate, ChapterVersion, Character, CheckInputs, CheckResult, CovenantRevision, RunUsage, Checkpoint, DesignRevision, EventDraft, ManuscriptRevision, PlotNode, Relationship, StoryEvent, WorldRule,
@@ -82,13 +82,16 @@ export class PrismaWorkRepository implements WorkRepository {
   }
 
   async save(work: Work): Promise<void> {
-    await this.prisma.project.upsert({
-      where: { id: work.id },
-      create: { id: work.id, ...projectFields(work) },
-      update: projectFields(work),
-      select: { id: true },
-    });
-    await this.persist(this.prisma, work);
+    await this.prisma.$transaction(async tx => {
+      await tx.project.upsert({
+        where: { id: work.id },
+        create: { id: work.id, ...projectFields(work) },
+        update: projectFields(work),
+        select: { id: true },
+      });
+      for (const column of projectHistoryColumns) await writeProjectHistory(tx, work.id, column, projectHistories(work)[column]);
+      await this.persist(tx, work);
+    }, { timeout: 120_000 });
   }
 
   async outbox(): Promise<OutboxEvent[]> {
@@ -108,6 +111,9 @@ export class PrismaWorkRepository implements WorkRepository {
         const work = await this.loadForUpdate(tx, workId);
         const loadedRevision = work.stateRevision;
         const loadedProject = projectFields(work);
+        // Retain bounded digests, not second copies of every historical JSON
+        // array, while the callback and its new state are in memory.
+        const loadedHistories = Object.fromEntries(projectHistoryColumns.map(column => [column, historyJsonHash(projectHistories(work)[column])]));
         const loadedRows = snapshotRows(work);
         const loadedConstraintRevision = work.constraintRevision;
         // Returned objects are patched after the upsert so callers always see the stored row's id.
@@ -131,6 +137,11 @@ export class PrismaWorkRepository implements WorkRepository {
           ) },
         });
         if (updated.count === 0) throw new StaleCandidateError('concurrent modification detected; reload and retry');
+        for (const column of projectHistoryColumns) {
+          if (historyJsonHash(projectHistories(work)[column]) !== loadedHistories[column]) {
+            await writeProjectHistory(tx, workId, column, projectHistories(work)[column]);
+          }
+        }
         await this.persist(tx, work, loadedRows);
         for (const event of pending) {
           const stored = await tx.outboxEvent.upsert({
@@ -606,11 +617,15 @@ function projectFields(work: Work) {
   return {
     title: work.title, stateRevision: work.stateRevision, constraintRevision: work.constraintRevision, covenant: JSON.stringify(work.covenant),
     worldPack: JSON.stringify(work.worldPack ?? {}), storyBible: JSON.stringify(work.storyBible ?? {}),
-    designContentReviews: JSON.stringify([...work.designContentReviews.values()]),
-    designReviewRuns: JSON.stringify([...work.designReviewRuns.values()]),
-    designReviewAnnotations: JSON.stringify([...work.designReviewAnnotations.values()]),
-    designHistory: JSON.stringify([...work.designHistory.values()]), covenantHistory: JSON.stringify(work.covenantHistory),
     activePlanId: work.activePlanId ?? null,
+  };
+}
+
+function projectHistories(work: Work) {
+  return {
+    designContentReviews: work.designContentReviews.values(), designReviewRuns: work.designReviewRuns.values(),
+    designReviewAnnotations: work.designReviewAnnotations.values(), designHistory: work.designHistory.values(),
+    covenantHistory: work.covenantHistory,
   };
 }
 
