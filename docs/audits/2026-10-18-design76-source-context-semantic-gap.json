@@ -1,0 +1,72 @@
+{
+  "kind": "design76_source_context_isolated_semantic_gap",
+  "observedStatus": "completed",
+  "structurallyAccepted": true,
+  "semanticVerificationPassed": false,
+  "stateSha256": "4f40fde804b32ff922f1511d6cef3bd75246d5c5d342b12d3b37d203758c6746",
+  "requestSha256": "16e32c4eb643fd3daf19049249f05e73cb4217fea431d3f6d423bd2a1bd9f9ea",
+  "responseSha256": "df97015d6e29e8b54f21cdc480466db808b8d9448f63c7c17b2f8ffe6c97b861",
+  "check": {
+    "criterion": "payoff",
+    "verdict": "insufficient",
+    "explanation": "本批已给出前置承诺和阶段性兑现：林在第44章放弃追原账先救落水者，第45章承担安置与船损，第46—47章接受工人自主选择并承担失单，第50章让吴伍、卢小满自己回答、完成脱控。但第50章明确把照护、短工、船舶交检和陆沉舟签认自述留给51—53章；当前完整来源目录没有对应的逐章细纲来源，只有后续宏观提案，因而无法核实这些直接后果是否按条件落实、是否重复消费或是否与第50章结局冲突。",
+    "evidence": [
+      {
+        "fragmentId": "e283"
+      },
+      {
+        "fragmentId": "e291"
+      },
+      {
+        "fragmentId": "e294"
+      },
+      {
+        "fragmentId": "e340"
+      },
+      {
+        "fragmentId": "e341"
+      },
+      {
+        "fragmentId": "e342"
+      }
+    ],
+    "revisionAdvice": "补充并核对51—53章的实际细纲：明确吴伍、卢小满脱控后的安置与生计选择、贺船交检结果、陆沉舟自述及独立核验的发生时点和代价；不得重复计入第50章已经完成的脱控、当面选择或陆的本次承认。",
+    "insufficiencyReason": "missing_design"
+  },
+  "planningHorizon": {
+    "sourceId": "plan/overview",
+    "targetChapterCount": 100,
+    "detailedThroughChapter": 50,
+    "detailedChapterRanges": [
+      {
+        "startChapter": 1,
+        "endChapter": 50
+      }
+    ],
+    "undetailedChapterRanges": [
+      {
+        "startChapter": 51,
+        "endChapter": 100
+      }
+    ]
+  },
+  "macroRanges": [
+    {
+      "sourceId": "plan/volumes/vol_02",
+      "startChapter": 33,
+      "endChapter": 66,
+      "title": "赤霄药火卷：追船与黑舱"
+    },
+    {
+      "sourceId": "plan/milestones/ms_v2_fire",
+      "startChapter": 47,
+      "endChapter": 53,
+      "title": "北三门前与各自的去路"
+    }
+  ],
+  "modelCalls": 0,
+  "originalModelCalls": 1,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "nextAction": "将已有且相关的分卷/里程碑候选直接列入修正导航。模型须按实际原文核对或请求补读，不能仅因未展开细纲改判缺设计；不自动补章节或改判。保留此次结构接收但语义未达标的隔离回答，不用于正式续审预检。"
+}

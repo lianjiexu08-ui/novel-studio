@@ -176,7 +176,11 @@ test('field conflicts and every unknown follow-up source are diagnosed in the sa
   request.stage = { kind: 'cross', label: '先审现有宏观', totalBatches: 2, requireInsufficiencyReason: true,
     sourceMap: [], coverage: { mode: 'local_sources', sourceLengths: {
       ...Object.fromEntries(request.sources.map(s => [s.id, s.text.length])), [macroId]: 300,
-    } } };
+    }, planRanges: [
+      { sourceId: macroId, startChapter: 47, endChapter: 53, title: '后续安置' },
+      { sourceId: 'nonexistent-macro', startChapter: 51, endChapter: 53, title: '不许推造' },
+      { sourceId: request.sources[0].id, startChapter: 1, endChapter: 10, title: '无关前段' },
+    ] } };
   const base = anchored(request);
   const first = { ...base, checks: [
     { ...base.checks[0], verdict: 'revise', explanation: '已读门槛有冲突', revisionAdvice: '保留并核对门槛冲突' },
@@ -201,6 +205,8 @@ test('field conflicts and every unknown follow-up source are diagnosed in the sa
         { checkIndex: 2, criterion: 'counters', invalidSourceIds: ['plan/chapters/53'] },
       ]);
       assert.ok(body.availableSourceIds.includes(macroId));
+      assert.deepEqual(body.macroSourceCandidates, [{ sourceId: macroId, startChapter: 47, endChapter: 53, title: '后续安置', unitsInThisRequest: [] }]);
+      assert.match(body.instruction, /不能仅因后段尚未展开细纲就改用missing_design/);
       assert.ok(!body.availableSourceIds.includes('plan/chapters/51'));
       assert.match(body.instruction, /不能只修字段冲突而保留虚构来源/);
       assert.match(body.instruction, /不自动替换编号，不补造细纲/);

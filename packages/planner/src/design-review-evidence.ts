@@ -146,7 +146,20 @@ export function prepareDesignReviewEvidence(input: DesignReviewInput) {
           typeof id === 'string' && !Object.hasOwn(known, id)))];
         return invalidSourceIds.length ? [{ checkIndex, criterion: check.criterion, invalidSourceIds }] : [];
       });
-      return awaitingSourceProblems.length ? { awaitingSourceProblems, availableSourceIds: Object.keys(known) } : {};
+      if (!awaitingSourceProblems.length) return {};
+      const missingChapters = awaitingSourceProblems.flatMap(problem => problem.invalidSourceIds.flatMap(id => {
+        const match = /^plan\/chapters\/([1-9]\d*)$/.exec(id);
+        const chapter = match ? Number(match[1]) : NaN;
+        return Number.isSafeInteger(chapter) ? [chapter] : [];
+      }));
+      const macroSourceCandidates = (snapshot.stage?.coverage?.planRanges ?? [])
+        .filter(range => Object.hasOwn(known, range.sourceId)
+          && missingChapters.some(chapter => chapter >= range.startChapter && chapter <= range.endChapter))
+        .map(range => ({ ...range, unitsInThisRequest: sources.filter(source =>
+          (source.origin?.sourceId ?? source.id) === range.sourceId).map(source => source.id) }));
+      return { awaitingSourceProblems, availableSourceIds: Object.keys(known),
+        ...(macroSourceCandidates.length ? { planningHorizon: designReviewHorizon(snapshot), macroSourceCandidates } : {}),
+      };
     },
     resolutionRepairContext(value: unknown) {
       const parsed = anchoredDesignReviewResultSchema.safeParse(value);
