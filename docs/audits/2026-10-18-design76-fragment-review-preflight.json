@@ -1,0 +1,71 @@
+{
+  "kind": "design76_fragment_review_preflight",
+  "verified": true,
+  "createdAt": "2026-10-18T11:20:32.903Z",
+  "control": "data/audit-runtimes/design76-fragment-review",
+  "databaseSnapshotPath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design76-fragment-review/baseline.db",
+  "predecessorCheckpointSha256": "2db6ff698bee74842c49f075512508ffc4058e182a62b818435968b829db291c",
+  "predecessorVerificationSha256": "9c4c0ab162848e8b0a5384718f56e547ed35f1e25ee5d850fe26963417fb9e46",
+  "baselineSha256": "5c951ac91b7485161c43bee339ca4a8a29a72f8c39d66070e9a504c11836c942",
+  "runnerSha256": "c421e25816694460a84e6726b7bb820f9ea1361af975c87fc216726625f6fa4c",
+  "hostHelperSha256": "883bb6ae052caec9fe5b0333f4ad0ea1d2d799d9616143079eab4ae531544178",
+  "runtimeBindingSha256": "8a1875b686f31b79d32ca9c00fa4cfd65931a195ca0c6dfd8547ff2c0507b5e5",
+  "changedRuntimeFiles": [
+    "packages/planner/src/design-review-evidence.ts",
+    "packages/planner/src/index.ts",
+    "packages/planner/test/design-review.test.ts"
+  ],
+  "unchangedSchedulingAndPromptSuffix": true,
+  "changedRepairPrompt": true,
+  "plannerEpochs": [
+    {
+      "afterCall": 0,
+      "bindingPath": "data/audit-runtimes/design76-ui-runtime-v2-bound.json",
+      "bindingSha256": "ec9918d855f80b056351601f297fbbaadb4376ec94010cdb73d3aaa0f6fb58dd"
+    },
+    {
+      "afterCall": 37,
+      "bindingPath": "data/audit-runtimes/design76-citation-runtime-bound.json",
+      "bindingSha256": "e4acd580e352e5617cc588aaa3b34e86afe9a1457b57b3e60528011b4e005e97"
+    },
+    {
+      "afterCall": 39,
+      "bindingPath": "data/audit-runtimes/design76-citation-operations-runtime-bound.json",
+      "bindingSha256": "e7c8ea1854fcda1c44296b8854ea01af14bcda4d5bbf9f509b6d1c4fc02cae48"
+    },
+    {
+      "afterCall": 62,
+      "bindingPath": "data/audit-runtimes/design76-citation-capacity-runtime-bound.json",
+      "bindingSha256": "e978d7aab9f0e89c5839fdef6bbea07f910b37a5241d7fc6b9b6678a08d11cce"
+    },
+    {
+      "afterCall": 71,
+      "bindingPath": "data/audit-runtimes/design76-citation-unique-runtime-bound.json",
+      "bindingSha256": "6a935f07ca21e6ab65d869254be1ada6162085666a0fbcaef51ff1b1e3271504"
+    },
+    {
+      "afterCall": 76,
+      "bindingPath": "data/audit-runtimes/design76-macro-context-runtime-bound.json",
+      "bindingSha256": "57ed04d69863ffd20d8e6619002229eb9561c2b4aa4782fec124843bbc954f62"
+    },
+    {
+      "afterCall": 82,
+      "bindingPath": "data/audit-runtimes/design76-fragment-index-runtime-bound.json",
+      "bindingSha256": "8a1875b686f31b79d32ca9c00fa4cfd65931a195ca0c6dfd8547ff2c0507b5e5"
+    }
+  ],
+  "shadowProofSha256": "ca559a9a946432896f265d4b3213e275d53de0c6d1b40deaab6a3050fbcca5fe",
+  "semanticProofSha256": "78c8914f4c7c78bcd99b7a6545e9e16cbd0dff271f2780fb96c4c23d855d5912",
+  "prefixCalls": 82,
+  "runIds": [
+    "design_run_98b5460a-ed47-4ba2-bb06-7fdded1f910d",
+    "design_run_77e97b37-cbf2-40be-ab17-2de79839c297",
+    "design_run_aa04b61b-0b13-464a-9b21-9205a91600e2",
+    "design_run_f355dadb-f3ee-4b1b-8834-f17bf0f487dc"
+  ],
+  "annotationsPreserved": 11,
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Fresh frozen runtime supplies an exact current-source/fragment directory during invalid-anchor repair, without changing verdict validation or adding retries. The new baseline includes eleven independent annotations. The detached repair and full tests passed; production continuation and complete content acceptance remain unproven."
+}

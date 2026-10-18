@@ -1,0 +1,1278 @@
+{
+  "kind": "design76_fragment_index_failure_regression",
+  "verified": true,
+  "bindingSha256": "8a1875b686f31b79d32ca9c00fa4cfd65931a195ca0c6dfd8547ff2c0507b5e5",
+  "sourceCommit": "793801d783a1731e72125731ab58d895958cdcce",
+  "checkpointSha256": "2db6ff698bee74842c49f075512508ffc4058e182a62b818435968b829db291c",
+  "calls": [
+    {
+      "call": 81,
+      "requestSha256": "cdb737ad9083167b0389142537474e80de6cdff7983f3154bf70d559103ceb98",
+      "responseSha256": "5f0f81aafb1110cadf6550a80cfcea0e3a77f9dc3f2228ed54bb9e97b0ccc63c"
+    },
+    {
+      "call": 82,
+      "requestSha256": "959a5a1b013dedb8b044d5338ff319f553dd141ee06f913ba36f0f11900ffea6",
+      "responseSha256": "f3625ee1efccefdbda9aa52cd983a7ec12ab00d2b940851a60dbc0c4ae8439c5"
+    }
+  ],
+  "originalFailuresStillRejected": true,
+  "failures": [
+    [
+      {
+        "checkIndex": 2,
+        "criterion": "capacity",
+        "evidenceIndex": 10,
+        "invalidFragmentId": "e350"
+      },
+      {
+        "checkIndex": 2,
+        "criterion": "capacity",
+        "evidenceIndex": 11,
+        "invalidFragmentId": "e351"
+      },
+      {
+        "checkIndex": 2,
+        "criterion": "capacity",
+        "evidenceIndex": 12,
+        "invalidFragmentId": "e352"
+      }
+    ],
+    [
+      {
+        "checkIndex": 2,
+        "criterion": "capacity",
+        "evidenceIndex": 14,
+        "invalidFragmentId": "e354"
+      },
+      {
+        "checkIndex": 2,
+        "criterion": "capacity",
+        "evidenceIndex": 15,
+        "invalidFragmentId": "e355"
+      },
+      {
+        "checkIndex": 2,
+        "criterion": "capacity",
+        "evidenceIndex": 16,
+        "invalidFragmentId": "e356"
+      },
+      {
+        "checkIndex": 2,
+        "criterion": "capacity",
+        "evidenceIndex": 17,
+        "invalidFragmentId": "e357"
+      },
+      {
+        "checkIndex": 2,
+        "criterion": "capacity",
+        "evidenceIndex": 18,
+        "invalidFragmentId": "e358"
+      },
+      {
+        "checkIndex": 2,
+        "criterion": "capacity",
+        "evidenceIndex": 19,
+        "invalidFragmentId": "e359"
+      },
+      {
+        "checkIndex": 2,
+        "criterion": "capacity",
+        "evidenceIndex": 20,
+        "invalidFragmentId": "e360"
+      }
+    ]
+  ],
+  "availableEvidenceSources": [
+    {
+      "unitId": "review-unit/1",
+      "sourceId": "author",
+      "fragmentIds": [
+        "e1"
+      ]
+    },
+    {
+      "unitId": "review-unit/3",
+      "sourceId": "world/axioms/ax_01",
+      "fragmentIds": [
+        "e2",
+        "e3"
+      ]
+    },
+    {
+      "unitId": "review-unit/4",
+      "sourceId": "world/axioms/ax_02",
+      "fragmentIds": [
+        "e4"
+      ]
+    },
+    {
+      "unitId": "review-unit/5",
+      "sourceId": "world/axioms/ax_03",
+      "fragmentIds": [
+        "e5"
+      ]
+    },
+    {
+      "unitId": "review-unit/6",
+      "sourceId": "world/axioms/ax_04",
+      "fragmentIds": [
+        "e6"
+      ]
+    },
+    {
+      "unitId": "review-unit/7",
+      "sourceId": "world/axioms/ax_05",
+      "fragmentIds": [
+        "e7",
+        "e8"
+      ]
+    },
+    {
+      "unitId": "review-unit/8",
+      "sourceId": "world/axioms/ax_06",
+      "fragmentIds": [
+        "e9"
+      ]
+    },
+    {
+      "unitId": "review-unit/9",
+      "sourceId": "world/axioms/ax_07",
+      "fragmentIds": [
+        "e10",
+        "e11"
+      ]
+    },
+    {
+      "unitId": "review-unit/10",
+      "sourceId": "world/axioms/ax_08",
+      "fragmentIds": [
+        "e12",
+        "e13"
+      ]
+    },
+    {
+      "unitId": "review-unit/11",
+      "sourceId": "world/axioms/ax_09",
+      "fragmentIds": [
+        "e14"
+      ]
+    },
+    {
+      "unitId": "review-unit/12",
+      "sourceId": "world/axioms/ax_10",
+      "fragmentIds": [
+        "e15"
+      ]
+    },
+    {
+      "unitId": "review-unit/13",
+      "sourceId": "world/axioms/ax_11",
+      "fragmentIds": [
+        "e16",
+        "e17",
+        "e18",
+        "e19"
+      ]
+    },
+    {
+      "unitId": "review-unit/14",
+      "sourceId": "world/axioms/ax_12",
+      "fragmentIds": [
+        "e20",
+        "e21"
+      ]
+    },
+    {
+      "unitId": "review-unit/15",
+      "sourceId": "world/axioms/ax_13",
+      "fragmentIds": [
+        "e22",
+        "e23"
+      ]
+    },
+    {
+      "unitId": "review-unit/21",
+      "sourceId": "world/realms/realm_01",
+      "fragmentIds": [
+        "e24",
+        "e25"
+      ]
+    },
+    {
+      "unitId": "review-unit/22",
+      "sourceId": "world/realms/realm_02",
+      "fragmentIds": [
+        "e26"
+      ]
+    },
+    {
+      "unitId": "review-unit/23",
+      "sourceId": "world/realms/realm_03",
+      "fragmentIds": [
+        "e27"
+      ]
+    },
+    {
+      "unitId": "review-unit/24",
+      "sourceId": "world/realms/realm_04",
+      "fragmentIds": [
+        "e28"
+      ]
+    },
+    {
+      "unitId": "review-unit/25",
+      "sourceId": "world/realms/realm_05",
+      "fragmentIds": [
+        "e29"
+      ]
+    },
+    {
+      "unitId": "review-unit/26",
+      "sourceId": "world/realms/realm_06",
+      "fragmentIds": [
+        "e30",
+        "e31"
+      ]
+    },
+    {
+      "unitId": "review-unit/27",
+      "sourceId": "world/realms/realm_07",
+      "fragmentIds": [
+        "e32",
+        "e33"
+      ]
+    },
+    {
+      "unitId": "review-unit/28",
+      "sourceId": "world/realms/realm_08",
+      "fragmentIds": [
+        "e34",
+        "e35"
+      ]
+    },
+    {
+      "unitId": "review-unit/69",
+      "sourceId": "world/locations/loc_01",
+      "fragmentIds": [
+        "e36"
+      ]
+    },
+    {
+      "unitId": "review-unit/70",
+      "sourceId": "world/locations/loc_02",
+      "fragmentIds": [
+        "e37",
+        "e38"
+      ]
+    },
+    {
+      "unitId": "review-unit/71",
+      "sourceId": "world/locations/loc_03",
+      "fragmentIds": [
+        "e39"
+      ]
+    },
+    {
+      "unitId": "review-unit/72",
+      "sourceId": "world/locations/loc_04",
+      "fragmentIds": [
+        "e40"
+      ]
+    },
+    {
+      "unitId": "review-unit/73",
+      "sourceId": "world/locations/loc_05",
+      "fragmentIds": [
+        "e41"
+      ]
+    },
+    {
+      "unitId": "review-unit/74",
+      "sourceId": "world/locations/loc_06",
+      "fragmentIds": [
+        "e42"
+      ]
+    },
+    {
+      "unitId": "review-unit/75",
+      "sourceId": "world/locations/loc_07",
+      "fragmentIds": [
+        "e43"
+      ]
+    },
+    {
+      "unitId": "review-unit/76",
+      "sourceId": "world/locations/loc_08",
+      "fragmentIds": [
+        "e44"
+      ]
+    },
+    {
+      "unitId": "review-unit/77",
+      "sourceId": "world/locations/loc_09",
+      "fragmentIds": [
+        "e45"
+      ]
+    },
+    {
+      "unitId": "review-unit/78",
+      "sourceId": "world/locations/loc_10",
+      "fragmentIds": [
+        "e46"
+      ]
+    },
+    {
+      "unitId": "review-unit/79",
+      "sourceId": "world/locations/loc_11",
+      "fragmentIds": [
+        "e47"
+      ]
+    },
+    {
+      "unitId": "review-unit/80",
+      "sourceId": "world/locations/loc_12",
+      "fragmentIds": [
+        "e48"
+      ]
+    },
+    {
+      "unitId": "review-unit/81",
+      "sourceId": "world/locations/loc_13",
+      "fragmentIds": [
+        "e49"
+      ]
+    },
+    {
+      "unitId": "review-unit/82",
+      "sourceId": "world/locations/loc_14",
+      "fragmentIds": [
+        "e50"
+      ]
+    },
+    {
+      "unitId": "review-unit/83",
+      "sourceId": "world/locations/loc_15",
+      "fragmentIds": [
+        "e51"
+      ]
+    },
+    {
+      "unitId": "review-unit/84",
+      "sourceId": "world/locations/loc_16",
+      "fragmentIds": [
+        "e52"
+      ]
+    },
+    {
+      "unitId": "review-unit/85",
+      "sourceId": "world/locations/loc_17",
+      "fragmentIds": [
+        "e53"
+      ]
+    },
+    {
+      "unitId": "review-unit/86",
+      "sourceId": "world/locations/loc_18",
+      "fragmentIds": [
+        "e54"
+      ]
+    },
+    {
+      "unitId": "review-unit/87",
+      "sourceId": "world/locations/loc_19",
+      "fragmentIds": [
+        "e55"
+      ]
+    },
+    {
+      "unitId": "review-unit/88",
+      "sourceId": "world/locations/loc_20",
+      "fragmentIds": [
+        "e56"
+      ]
+    },
+    {
+      "unitId": "review-unit/90",
+      "sourceId": "world/locations/loc_22",
+      "fragmentIds": [
+        "e57"
+      ]
+    },
+    {
+      "unitId": "review-unit/134",
+      "sourceId": "world/resources/res_10",
+      "fragmentIds": [
+        "e58",
+        "e59"
+      ]
+    },
+    {
+      "unitId": "review-unit/135",
+      "sourceId": "world/resources/res_11",
+      "fragmentIds": [
+        "e60",
+        "e61"
+      ]
+    },
+    {
+      "unitId": "review-unit/136",
+      "sourceId": "world/resources/res_12",
+      "fragmentIds": [
+        "e62",
+        "e63",
+        "e64"
+      ]
+    },
+    {
+      "unitId": "review-unit/137",
+      "sourceId": "world/resources/res_13",
+      "fragmentIds": [
+        "e65",
+        "e66"
+      ]
+    },
+    {
+      "unitId": "review-unit/138",
+      "sourceId": "world/resources/res_14",
+      "fragmentIds": [
+        "e67",
+        "e68"
+      ]
+    },
+    {
+      "unitId": "review-unit/139",
+      "sourceId": "world/resources/res_15",
+      "fragmentIds": [
+        "e69",
+        "e70"
+      ]
+    },
+    {
+      "unitId": "review-unit/140",
+      "sourceId": "world/resources/res_16",
+      "fragmentIds": [
+        "e71",
+        "e72"
+      ]
+    },
+    {
+      "unitId": "review-unit/141",
+      "sourceId": "world/resources/res_17",
+      "fragmentIds": [
+        "e73",
+        "e74",
+        "e75",
+        "e76"
+      ]
+    },
+    {
+      "unitId": "review-unit/142",
+      "sourceId": "world/resources/res_18",
+      "fragmentIds": [
+        "e77",
+        "e78",
+        "e79",
+        "e80",
+        "e81",
+        "e82"
+      ]
+    },
+    {
+      "unitId": "review-unit/143",
+      "sourceId": "world/resources/res_19",
+      "fragmentIds": [
+        "e83",
+        "e84",
+        "e85",
+        "e86",
+        "e87",
+        "e88"
+      ]
+    },
+    {
+      "unitId": "review-unit/144",
+      "sourceId": "world/terminology/term_01",
+      "fragmentIds": [
+        "e89"
+      ]
+    },
+    {
+      "unitId": "review-unit/145",
+      "sourceId": "world/terminology/term_02",
+      "fragmentIds": [
+        "e90"
+      ]
+    },
+    {
+      "unitId": "review-unit/146",
+      "sourceId": "world/terminology/term_03",
+      "fragmentIds": [
+        "e91"
+      ]
+    },
+    {
+      "unitId": "review-unit/147",
+      "sourceId": "world/terminology/term_res_01",
+      "fragmentIds": [
+        "e92"
+      ]
+    },
+    {
+      "unitId": "review-unit/148",
+      "sourceId": "world/terminology/term_res_02",
+      "fragmentIds": [
+        "e93"
+      ]
+    },
+    {
+      "unitId": "review-unit/149",
+      "sourceId": "world/terminology/term_res_03",
+      "fragmentIds": [
+        "e94"
+      ]
+    },
+    {
+      "unitId": "review-unit/150",
+      "sourceId": "world/terminology/term_res_04",
+      "fragmentIds": [
+        "e95"
+      ]
+    },
+    {
+      "unitId": "review-unit/151",
+      "sourceId": "world/terminology/term_res_05",
+      "fragmentIds": [
+        "e96"
+      ]
+    },
+    {
+      "unitId": "review-unit/152",
+      "sourceId": "world/terminology/term_res_06",
+      "fragmentIds": [
+        "e97"
+      ]
+    },
+    {
+      "unitId": "review-unit/153",
+      "sourceId": "world/terminology/term_res_07",
+      "fragmentIds": [
+        "e98"
+      ]
+    },
+    {
+      "unitId": "review-unit/154",
+      "sourceId": "world/terminology/term_res_08",
+      "fragmentIds": [
+        "e99"
+      ]
+    },
+    {
+      "unitId": "review-unit/155",
+      "sourceId": "world/terminology/term_res_09",
+      "fragmentIds": [
+        "e100"
+      ]
+    },
+    {
+      "unitId": "review-unit/156",
+      "sourceId": "world/terminology/term_res_10",
+      "fragmentIds": [
+        "e101"
+      ]
+    },
+    {
+      "unitId": "review-unit/157",
+      "sourceId": "world/terminology/term_res_11",
+      "fragmentIds": [
+        "e102"
+      ]
+    },
+    {
+      "unitId": "review-unit/158",
+      "sourceId": "world/terminology/term_res_12",
+      "fragmentIds": [
+        "e103"
+      ]
+    },
+    {
+      "unitId": "review-unit/159",
+      "sourceId": "world/terminology/term_asset_01",
+      "fragmentIds": [
+        "e104"
+      ]
+    },
+    {
+      "unitId": "review-unit/160",
+      "sourceId": "world/terminology/term_asset_02",
+      "fragmentIds": [
+        "e105"
+      ]
+    },
+    {
+      "unitId": "review-unit/161",
+      "sourceId": "world/terminology/term_asset_04",
+      "fragmentIds": [
+        "e106"
+      ]
+    },
+    {
+      "unitId": "review-unit/162",
+      "sourceId": "world/terminology/term_hist_01",
+      "fragmentIds": [
+        "e107"
+      ]
+    },
+    {
+      "unitId": "review-unit/163",
+      "sourceId": "world/terminology/term_hist_02",
+      "fragmentIds": [
+        "e108"
+      ]
+    },
+    {
+      "unitId": "review-unit/164",
+      "sourceId": "world/terminology/term_ice_school",
+      "fragmentIds": [
+        "e109"
+      ]
+    },
+    {
+      "unitId": "review-unit/165",
+      "sourceId": "world/terminology/term_cold_method",
+      "fragmentIds": [
+        "e110"
+      ]
+    },
+    {
+      "unitId": "review-unit/166",
+      "sourceId": "world/terminology/term_probe_shuttle",
+      "fragmentIds": [
+        "e111"
+      ]
+    },
+    {
+      "unitId": "review-unit/167",
+      "sourceId": "story/overview",
+      "fragmentIds": [
+        "e112",
+        "e113",
+        "e114",
+        "e115",
+        "e116",
+        "e117",
+        "e118",
+        "e119",
+        "e120",
+        "e121"
+      ]
+    },
+    {
+      "unitId": "review-unit/168",
+      "sourceId": "story/characters/char_01",
+      "fragmentIds": [
+        "e122"
+      ]
+    },
+    {
+      "unitId": "review-unit/169",
+      "sourceId": "story/characters/char_02",
+      "fragmentIds": [
+        "e123"
+      ]
+    },
+    {
+      "unitId": "review-unit/170",
+      "sourceId": "story/characters/char_03",
+      "fragmentIds": [
+        "e124"
+      ]
+    },
+    {
+      "unitId": "review-unit/171",
+      "sourceId": "story/characters/char_04",
+      "fragmentIds": [
+        "e125",
+        "e126",
+        "e127"
+      ]
+    },
+    {
+      "unitId": "review-unit/172",
+      "sourceId": "story/characters/char_05",
+      "fragmentIds": [
+        "e128"
+      ]
+    },
+    {
+      "unitId": "review-unit/173",
+      "sourceId": "story/characters/char_06",
+      "fragmentIds": [
+        "e129"
+      ]
+    },
+    {
+      "unitId": "review-unit/174",
+      "sourceId": "story/characters/char_07",
+      "fragmentIds": [
+        "e130"
+      ]
+    },
+    {
+      "unitId": "review-unit/175",
+      "sourceId": "story/characters/char_08",
+      "fragmentIds": [
+        "e131"
+      ]
+    },
+    {
+      "unitId": "review-unit/176",
+      "sourceId": "story/characters/char_09",
+      "fragmentIds": [
+        "e132"
+      ]
+    },
+    {
+      "unitId": "review-unit/177",
+      "sourceId": "story/characters/char_10",
+      "fragmentIds": [
+        "e133",
+        "e134",
+        "e135"
+      ]
+    },
+    {
+      "unitId": "review-unit/178",
+      "sourceId": "story/characters/char_11",
+      "fragmentIds": [
+        "e136"
+      ]
+    },
+    {
+      "unitId": "review-unit/179",
+      "sourceId": "story/characters/char_12",
+      "fragmentIds": [
+        "e137"
+      ]
+    },
+    {
+      "unitId": "review-unit/180",
+      "sourceId": "story/characters/char_13",
+      "fragmentIds": [
+        "e138"
+      ]
+    },
+    {
+      "unitId": "review-unit/181",
+      "sourceId": "story/characters/char_14",
+      "fragmentIds": [
+        "e139"
+      ]
+    },
+    {
+      "unitId": "review-unit/182",
+      "sourceId": "story/characters/char_15",
+      "fragmentIds": [
+        "e140"
+      ]
+    },
+    {
+      "unitId": "review-unit/183",
+      "sourceId": "story/characters/char_16",
+      "fragmentIds": [
+        "e141"
+      ]
+    },
+    {
+      "unitId": "review-unit/184",
+      "sourceId": "story/characters/char_17",
+      "fragmentIds": [
+        "e142"
+      ]
+    },
+    {
+      "unitId": "review-unit/185",
+      "sourceId": "story/characters/char_18",
+      "fragmentIds": [
+        "e143"
+      ]
+    },
+    {
+      "unitId": "review-unit/186",
+      "sourceId": "story/characters/char_19",
+      "fragmentIds": [
+        "e144"
+      ]
+    },
+    {
+      "unitId": "review-unit/187",
+      "sourceId": "story/characters/char_20",
+      "fragmentIds": [
+        "e145"
+      ]
+    },
+    {
+      "unitId": "review-unit/188",
+      "sourceId": "story/characters/char_21",
+      "fragmentIds": [
+        "e146"
+      ]
+    },
+    {
+      "unitId": "review-unit/189",
+      "sourceId": "story/characters/char_22",
+      "fragmentIds": [
+        "e147"
+      ]
+    },
+    {
+      "unitId": "review-unit/190",
+      "sourceId": "story/characters/char_23",
+      "fragmentIds": [
+        "e148"
+      ]
+    },
+    {
+      "unitId": "review-unit/191",
+      "sourceId": "story/characters/char_24",
+      "fragmentIds": [
+        "e149"
+      ]
+    },
+    {
+      "unitId": "review-unit/192",
+      "sourceId": "story/characters/char_25",
+      "fragmentIds": [
+        "e150"
+      ]
+    },
+    {
+      "unitId": "review-unit/193",
+      "sourceId": "story/relationships/rel_01",
+      "fragmentIds": [
+        "e151",
+        "e152",
+        "e153",
+        "e154",
+        "e155",
+        "e156",
+        "e157",
+        "e158"
+      ]
+    },
+    {
+      "unitId": "review-unit/194",
+      "sourceId": "story/relationships/rel_02",
+      "fragmentIds": [
+        "e159",
+        "e160",
+        "e161",
+        "e162",
+        "e163",
+        "e164",
+        "e165",
+        "e166"
+      ]
+    },
+    {
+      "unitId": "review-unit/195",
+      "sourceId": "story/relationships/rel_03",
+      "fragmentIds": [
+        "e167",
+        "e168",
+        "e169",
+        "e170"
+      ]
+    },
+    {
+      "unitId": "review-unit/196",
+      "sourceId": "story/relationships/rel_04",
+      "fragmentIds": [
+        "e171",
+        "e172",
+        "e173"
+      ]
+    },
+    {
+      "unitId": "review-unit/197",
+      "sourceId": "story/relationships/rel_06",
+      "fragmentIds": [
+        "e174",
+        "e175",
+        "e176"
+      ]
+    },
+    {
+      "unitId": "review-unit/198",
+      "sourceId": "story/relationships/rel_07",
+      "fragmentIds": [
+        "e177",
+        "e178",
+        "e179"
+      ]
+    },
+    {
+      "unitId": "review-unit/199",
+      "sourceId": "story/relationships/rel_08",
+      "fragmentIds": [
+        "e180",
+        "e181",
+        "e182"
+      ]
+    },
+    {
+      "unitId": "review-unit/200",
+      "sourceId": "story/relationships/rel_09",
+      "fragmentIds": [
+        "e183",
+        "e184",
+        "e185",
+        "e186"
+      ]
+    },
+    {
+      "unitId": "review-unit/201",
+      "sourceId": "story/relationships/rel_10",
+      "fragmentIds": [
+        "e187",
+        "e188",
+        "e189"
+      ]
+    },
+    {
+      "unitId": "review-unit/202",
+      "sourceId": "story/relationships/rel_11",
+      "fragmentIds": [
+        "e190",
+        "e191",
+        "e192"
+      ]
+    },
+    {
+      "unitId": "review-unit/203",
+      "sourceId": "story/relationships/rel_05",
+      "fragmentIds": [
+        "e193",
+        "e194"
+      ]
+    },
+    {
+      "unitId": "review-unit/204",
+      "sourceId": "story/relationships/rel_12",
+      "fragmentIds": [
+        "e195",
+        "e196",
+        "e197",
+        "e198",
+        "e199",
+        "e200",
+        "e201"
+      ]
+    },
+    {
+      "unitId": "review-unit/205",
+      "sourceId": "story/relationships/rel_13",
+      "fragmentIds": [
+        "e202",
+        "e203",
+        "e204",
+        "e205"
+      ]
+    },
+    {
+      "unitId": "review-unit/206",
+      "sourceId": "story/relationships/rel_14",
+      "fragmentIds": [
+        "e206",
+        "e207",
+        "e208",
+        "e209"
+      ]
+    },
+    {
+      "unitId": "review-unit/347",
+      "sourceId": "story/chapterPlans/bible-chapter-50",
+      "fragmentIds": [
+        "e210",
+        "e211",
+        "e212",
+        "e213"
+      ]
+    },
+    {
+      "unitId": "review-unit/348",
+      "sourceId": "plan/overview",
+      "fragmentIds": [
+        "e214",
+        "e215",
+        "e216",
+        "e217",
+        "e218",
+        "e219",
+        "e220",
+        "e221",
+        "e222",
+        "e223",
+        "e224",
+        "e225",
+        "e226",
+        "e227",
+        "e228",
+        "e229",
+        "e230",
+        "e231",
+        "e232"
+      ]
+    },
+    {
+      "unitId": "review-unit/349",
+      "sourceId": "plan/overview",
+      "fragmentIds": [
+        "e233",
+        "e234"
+      ]
+    },
+    {
+      "unitId": "review-unit/350",
+      "sourceId": "plan/volumes/vol_01",
+      "fragmentIds": [
+        "e235",
+        "e236"
+      ]
+    },
+    {
+      "unitId": "review-unit/351",
+      "sourceId": "plan/volumes/vol_02",
+      "fragmentIds": [
+        "e237",
+        "e238"
+      ]
+    },
+    {
+      "unitId": "review-unit/352",
+      "sourceId": "plan/volumes/vol_03",
+      "fragmentIds": [
+        "e239",
+        "e240",
+        "e241"
+      ]
+    },
+    {
+      "unitId": "review-unit/353",
+      "sourceId": "plan/milestones/ms_vol1_turn",
+      "fragmentIds": [
+        "e242"
+      ]
+    },
+    {
+      "unitId": "review-unit/354",
+      "sourceId": "plan/milestones/ms_growth_v1_recovery",
+      "fragmentIds": [
+        "e243",
+        "e244"
+      ]
+    },
+    {
+      "unitId": "review-unit/355",
+      "sourceId": "plan/milestones/ms_growth_v1_training",
+      "fragmentIds": [
+        "e245",
+        "e246"
+      ]
+    },
+    {
+      "unitId": "review-unit/356",
+      "sourceId": "plan/milestones/ms_growth_v1_expedition",
+      "fragmentIds": [
+        "e247",
+        "e248"
+      ]
+    },
+    {
+      "unitId": "review-unit/357",
+      "sourceId": "plan/milestones/ms_vol1_climax",
+      "fragmentIds": [
+        "e249",
+        "e250",
+        "e251",
+        "e252",
+        "e253"
+      ]
+    },
+    {
+      "unitId": "review-unit/358",
+      "sourceId": "plan/milestones/ms_growth_v1_aftermath",
+      "fragmentIds": [
+        "e254",
+        "e255"
+      ]
+    },
+    {
+      "unitId": "review-unit/359",
+      "sourceId": "plan/milestones/ms_growth_v1_crossing",
+      "fragmentIds": [
+        "e256",
+        "e257"
+      ]
+    },
+    {
+      "unitId": "review-unit/360",
+      "sourceId": "plan/milestones/ms_bridge_return",
+      "fragmentIds": [
+        "e258"
+      ]
+    },
+    {
+      "unitId": "review-unit/361",
+      "sourceId": "plan/milestones/ms_v2_loss",
+      "fragmentIds": [
+        "e259",
+        "e260",
+        "e261",
+        "e262",
+        "e263"
+      ]
+    },
+    {
+      "unitId": "review-unit/362",
+      "sourceId": "plan/milestones/ms_v2_barge",
+      "fragmentIds": [
+        "e264",
+        "e265",
+        "e266"
+      ]
+    },
+    {
+      "unitId": "review-unit/363",
+      "sourceId": "plan/milestones/ms_v2_fire",
+      "fragmentIds": [
+        "e267",
+        "e268",
+        "e269",
+        "e270",
+        "e271",
+        "e272",
+        "e273",
+        "e274",
+        "e275"
+      ]
+    },
+    {
+      "unitId": "review-unit/364",
+      "sourceId": "plan/milestones/ms_v2_voyage",
+      "fragmentIds": [
+        "e276",
+        "e277",
+        "e278",
+        "e279",
+        "e280",
+        "e281"
+      ]
+    },
+    {
+      "unitId": "review-unit/365",
+      "sourceId": "plan/milestones/ms_v2_boundary",
+      "fragmentIds": [
+        "e282",
+        "e283",
+        "e284",
+        "e285",
+        "e286",
+        "e287",
+        "e288",
+        "e289",
+        "e290",
+        "e291",
+        "e292",
+        "e293",
+        "e294",
+        "e295",
+        "e296",
+        "e297",
+        "e298"
+      ]
+    },
+    {
+      "unitId": "review-unit/366",
+      "sourceId": "plan/milestones/ms_v3_return",
+      "fragmentIds": [
+        "e299",
+        "e300",
+        "e301",
+        "e302",
+        "e303",
+        "e304",
+        "e305",
+        "e306",
+        "e307",
+        "e308",
+        "e309"
+      ]
+    },
+    {
+      "unitId": "review-unit/367",
+      "sourceId": "plan/milestones/ms_v3_training",
+      "fragmentIds": [
+        "e310",
+        "e311",
+        "e312",
+        "e313",
+        "e314",
+        "e315"
+      ]
+    },
+    {
+      "unitId": "review-unit/368",
+      "sourceId": "plan/milestones/ms_v3_advancement",
+      "fragmentIds": [
+        "e316",
+        "e317"
+      ]
+    },
+    {
+      "unitId": "review-unit/369",
+      "sourceId": "plan/milestones/ms_v3_convoy",
+      "fragmentIds": [
+        "e318",
+        "e319",
+        "e320",
+        "e321",
+        "e322",
+        "e323",
+        "e324",
+        "e325",
+        "e326",
+        "e327",
+        "e328"
+      ]
+    },
+    {
+      "unitId": "review-unit/370",
+      "sourceId": "plan/milestones/ms_v3_payoff",
+      "fragmentIds": [
+        "e329",
+        "e330",
+        "e331"
+      ]
+    },
+    {
+      "unitId": "review-unit/420",
+      "sourceId": "plan/chapters/50",
+      "fragmentIds": [
+        "e332",
+        "e333",
+        "e334",
+        "e335",
+        "e336",
+        "e337"
+      ]
+    }
+  ],
+  "fragmentCount": 337,
+  "sourceCount": 141,
+  "newRepairInstruction": "上一次使用了不属于本次材料的请求或片段编号。fragmentReferenceProblems逐项列出无效引用，expectedRequestId是本次唯一请求编号；availableEvidenceSources是本次实际发送来源及可选fragmentIds的完整索引，不能选择索引外编号，也不能按编号递增猜测新的片段。按sourceId定位对应原文，逐字核对originalRequest.sources中该片段的真实内容，再选择直接支持结论的片段，证据只返回 fragmentId；索引本身不是证据，不保证列出的片段足以支持任何判断。每一处无效引用都须重新找原文，不是将错误编号换成相邻或更大的数字；短编号仅在本请求内有效，不能只改 requestId 后沿用旧材料的选择。不得自行生成编号、改写引文、将旧输出当证据或为修编号取消实质返修与不足；没有支持材料时保留不足并说明具体缺口。核对全部检查项与原解除声明，返回完整评审JSON，不遗漏未受影响的检查。",
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "The exact directory diagnoses fabricated IDs without mapping or accepting them. This offline replay does not prove model repair success or semantic correctness."
+}

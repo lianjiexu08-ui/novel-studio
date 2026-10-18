@@ -1,0 +1,60 @@
+{
+  "kind": "design76_fragment_index_citation_change_inspection",
+  "verified": true,
+  "isolatedProofSha256": "ca559a9a946432896f265d4b3213e275d53de0c6d1b40deaab6a3050fbcca5fe",
+  "changes": [
+    {
+      "criterion": "geography",
+      "removed": [],
+      "added": []
+    },
+    {
+      "criterion": "history",
+      "removed": [],
+      "added": []
+    },
+    {
+      "criterion": "capacity",
+      "removed": [
+        "e350",
+        "e351",
+        "e352"
+      ],
+      "added": [
+        "e235"
+      ]
+    }
+  ],
+  "addedEvidence": {
+    "id": "e235",
+    "text": "{\n  \"id\": \"vol_01\",\n  \"order\": 1,\n  \"title\": \"青玄争泉卷：短命求生\",\n  \"startChapter\": 1,\n  \"endChapter\": 32,\n  \"goal\": \"在伤势与短寿限制下真正修成凝元，进入有门槛的古境，联合同伴击破墨幽屠本次掳人夺泉行动，取得有限泉液并付出分离代价南渡；卷末凝元三重，不使用逆命真解。\",\n  \"opposition\": \"太清仙宗戒律堂保守派、幽罗殿少主墨幽屠及其死士、大乾天朝暗中渗透的眼线。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_03\",\n    \"char_04\",\n    \"char_07\",\n    \"char_08\",\n    \"char_09\",\n    \"char_10\",\n    \"char_11\",\n    \"char_12\",\n    \"char_13\",\n    \"char_17\",\n    \"char_18\"\n  ],\n  \"climax\": \"第23–26章，林辰与苏分工释放被掳采集者、夺回样箱与有限泉液；顾峤按先前路线到场，以玄府同阶力量和一次付费太乙真光压制墨。主角破坏普通货台制造战术窗口，不越阶斩灭墨或王器。\",\n",
+    "sourceId": "plan/volumes/vol_01"
+  },
+  "retainedSupport": [
+    {
+      "id": "e73",
+      "text": "{\n  \"id\": \"res_17\",\n  \"name\": \"灵脉年轮晶\",\n  \"unit\": \"枚\",\n  \"source\": \"灵虚古境loc_05的寿枝古藤在灵眼周边季节性灵潮转换时形成的年轮结晶；其生机来自古藤自然代谢与古境灵潮回流，不由灌灵、血祭或燃寿催成。\",\n  \"scarcity\": \"极罕见\",\n  \"tier\": \"五品\",\n  \"status\": \"proposed\",\n  \"usage\": {\n    \"effect\": \"一枚经完整十四日疗程及复诊，新增八元载未来可用寿储；只计未来生存和施术储备，不逆转年龄、既付燃寿、旧伤或本源损失。\",\n    \"requirements\": [\n      \"受用者至少凝元境三重；疗程前须连续三日诊察，排除急性失血、严重煞毒、命火紊乱和正在进行的燃寿反噬。\",\n      \"疗程从开始时点起持续十四整日，前七日服药、后七日静养，终点复诊合格才一次入账八元载。\",\n      \"每人终生最多成功使用十枚；两枚疗程之间至少间隔三十日，连续两枚后须额外停用九十日。\",\n      \"灵虚圣地只认可有编号、批次和采集时点的完整结晶；碎片、仿制品、污染品和盗取后重新拼装品不得入账。\",\n",
+      "sourceId": "world/resources/res_17"
+    },
+    {
+      "id": "e77",
+      "text": "{\n  \"id\": \"res_18\",\n  \"name\": \"寒脉伏龄根\",\n  \"unit\": \"段\",\n  \"source\": \"极冰天国loc_13北境封冻旧湖下的寒脉母根，在每八年一次的短暂地脉回温期结出子段；其生机来自封存水木灵性和寒脉缓释，不是人为种植或抽取他人寿元。\",\n  \"scarcity\": \"天地罕有\",\n  \"tier\": \"六品\",\n  \"status\": \"proposed\",\n  \"usage\": {\n    \"effect\": \"一段经完整三十日寒命调和疗程及复诊，新增六十元载未来可用寿储；属于外源新增储备，不修复寒损、命火病因或历史燃寿衰老。\",\n    \"requirements\": [\n      \"受用者至少玄府境且身体适格，无凝元特批；由极冰天国持证、玄府以上冰系医修在loc_26通天渡口获批医舍主持，不用医师境界替代患者境界。\",\n      \"疗程开始前七日及疗程期间不得发动燃寿秘术、血炼秘术或高强度火煞术；出现寒毒入髓、命火骤降或经脉冻结必须停药。\",\n      \"疗程开始后第0、7、14、21、28日各服五分之一，第30日复诊后才一次入账六十元载。\",\n      \"每人终生最多成功使用六段；任两段之间至少间隔一年，连续两段后必须停用三年并重新评估寒命承载。\"\n    ],\n",
+      "sourceId": "world/resources/res_18"
+    },
+    {
+      "id": "e83",
+      "text": "{\n  \"id\": \"res_19\",\n  \"name\": \"界潮命胶\",\n  \"unit\": \"匣\",\n  \"source\": \"苍冥界渊虚谷loc_15内，经苍冥巡界使稳定监测的微型裂隙，在寒脉、缓慢灵潮与定界石槽共同作用下自然析出的胶质；不是虚空神晶，也不从裂隙或活体抽取寿元。\",\n  \"scarcity\": \"天地绝品\",\n  \"tier\": \"六品\",\n  \"status\": \"proposed\",\n  \"usage\": {\n    \"effect\": \"一匣经完整四十五日定相疗程及复诊，新增一百二十元载未来可用寿储；有限外源生机可用于未来扣款，不取消已付支出、衰老或损伤。\",\n    \"requirements\": [\n      \"受用者至少神海境，且须经通晓空间污染的命医和巡界使联合确认；有空间乱流伤、神识裂损、未稳定煞毒或近期强行施展空间术式者不得入疗程。\",\n      \"在fac_12与港务登记的loc_26普通获批医舍，由随匣具名命医和神海以上巡界定相员主持；前十五整日试药、中十五日定相、后十五日静养，终点复诊合格才入账一百二十元载。外部患者至少神海且神识稳固，留在普通港区，不进入界渊。\",\n      \"每人终生最多成功使用八匣；两匣之间至少间隔五年，连续两匣后须完成一次空间污染复查和至少十年停用观察。\",\n",
+      "sourceId": "world/resources/res_19"
+    },
+    {
+      "id": "e241",
+      "text": "  \"carryOver\": \"约450章全书继续追查第二/第三残片与十年前缺失证据，建立可支付的神海以上成长来源并最终解决九鼎与界门危机；百章阶段胜果不等于全书完成。\"\n}",
+      "sourceId": "plan/volumes/vol_03"
+    }
+  ],
+  "assessment": "新增e235含有限获取、同阶交锋、真实费用与分离代价，属于实质分卷设计，不是仅有标题或状态。原资源疗程、八年周期、境界准入及百章阶段边界引文保留。仅删除3个不存在的编号，没有凭空编号、删掉有效引用、改变解释或新增解除声明。",
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Verifies the changed citation and retention of substantive support only. It does not certify every unchanged geography/history/capacity claim, every resource transport/control detail, whole-book capacity, or implementation in future prose. Formal review, prior deferrals and 41 blockers remain unchanged."
+}
