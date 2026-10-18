@@ -1,0 +1,65 @@
+{
+  "kind": "design76_segment12_clarification_inputs",
+  "verificationPath": "docs/audits/2026-10-18-design76-advice-review-segment-12.json",
+  "verificationSha256": "c2bf6678e1a4d87be0dfedb6db12d74965f1996e96f906e6c9ae69f93f2fb2f5",
+  "checkpointSha256": "c553d033a5ac23b6b7f83555fa09a08d94a59ca3eec200448a5891ec8657280a",
+  "bindingPath": "data/audit-runtimes/design76-citation-unique-runtime-bound.json",
+  "bindingSha256": "6a935f07ca21e6ab65d869254be1ada6162085666a0fbcaef51ff1b1e3271504",
+  "drafts": [
+    {
+      "path": "docs/audits/2026-10-18-design76-power-cross34-citations.json",
+      "sha256": "f5485cf18ce610a7a67d75e3d7da518dc78a5a86d4d63c6ee2525091923e9adf"
+    },
+    {
+      "path": "docs/audits/2026-10-18-design76-characters-cross34-lu-actions.json",
+      "sha256": "0d7b14518e7af373490d1814d3ccdc6b05253c325b8a0deb4603088035518e86"
+    }
+  ],
+  "outputPath": "data/audit-runtimes/design76-advice-review/segment12-annotations.json",
+  "outputSha256": "3b5effcf7fa9b5d9028f095effbbb7dbd707566d10b56956a8f28446152b7c2e",
+  "annotationCount": 2,
+  "sourceDigests": [
+    {
+      "requestKey": "design76-power-cross34-title-only-citations",
+      "sources": [
+        {
+          "id": "plan/chapters/18",
+          "sha256": "148b9b090048d1d3fe11ba423fb5751ac4831de096ad6ed61516ab55c36fd155"
+        },
+        {
+          "id": "plan/chapters/21",
+          "sha256": "81e1c79edbef68b8c984a531edb3e732647975291c1490c668f3cbf09fa37b43"
+        },
+        {
+          "id": "plan/chapters/23",
+          "sha256": "b85671bcc3172331fbc123f9119aa15c3e6c40678210ed75b28b79b7223261e1"
+        }
+      ]
+    },
+    {
+      "requestKey": "design76-characters-cross34-lu-actions",
+      "sources": [
+        {
+          "id": "story/characters/char_16",
+          "sha256": "f6e0b886f3517b8848935717215f6631d761a5433d04e1c357a21852a238137b"
+        },
+        {
+          "id": "story/characters/char_21",
+          "sha256": "9fe2629e1052968e1c8a5423915e686fb443dbbf582c35ba4cca54d40280373a"
+        },
+        {
+          "id": "plan/chapters/49",
+          "sha256": "9f17b549fa5197e648449f7bb1618bf7b5c2b2fd9002e0c319c1b2829e406d3a"
+        },
+        {
+          "id": "plan/chapters/50",
+          "sha256": "6d9693419b8fddc6d6d4dde40ba55b1fed121e4d5eab59f1ba225e42335b0943"
+        }
+      ]
+    }
+  ],
+  "productionWrites": 0,
+  "modelCalls": 0,
+  "formalAcceptance": false,
+  "limitation": "Exact original claims and source bindings only. Private rehearsal, atomic publication, restart readback and UI checks remain required."
+}

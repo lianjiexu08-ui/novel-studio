@@ -170,6 +170,57 @@ for (const corrected of [true, false]) {
   });
 }
 
+test('field conflicts and every unknown follow-up source are diagnosed in the same repair', async () => {
+  const request = await input();
+  const macroId = 'plan/milestones/aftermath';
+  request.stage = { kind: 'cross', label: '先审现有宏观', totalBatches: 2, requireInsufficiencyReason: true,
+    sourceMap: [], coverage: { mode: 'local_sources', sourceLengths: {
+      ...Object.fromEntries(request.sources.map(s => [s.id, s.text.length])), [macroId]: 300,
+    } } };
+  const base = anchored(request);
+  const first = { ...base, checks: [
+    { ...base.checks[0], verdict: 'revise', explanation: '已读门槛有冲突', revisionAdvice: '保留并核对门槛冲突' },
+    { ...base.checks[1], verdict: 'insufficient', revisionAdvice: '核对后果',
+      awaitingSources: ['plan/chapters/51', 'plan/chapters/52', macroId], insufficiencyReason: 'capacity_limit' },
+    { ...base.checks[2], verdict: 'insufficient', revisionAdvice: '核对后段反制',
+      awaitingSources: ['plan/chapters/53'] },
+  ] };
+  const before = structuredClone({ request, first });
+  const corrected = { ...first, checks: first.checks.map((c, i) => i ? {
+    ...c, explanation: '实际核对相关宏观前不能确认后果', awaitingSources: [macroId], insufficiencyReason: undefined,
+  } : c) };
+  for (const fixSources of [true, false]) {
+    const repair = fixSources ? corrected : { ...first, checks: first.checks.map(c => ({ ...c, insufficiencyReason: undefined })) };
+    let calls = 0;
+    const planner = new JsonDesignPlanner({ complete: async call => {
+      if (++calls === 1) return JSON.stringify(first);
+      const body = JSON.parse(call.user);
+      assert.deepEqual(body.fieldProblems, [{ checkIndex: 1, criterion: 'costs', issues: ['conflicts_with_awaiting_sources'] }]);
+      assert.deepEqual(body.awaitingSourceProblems, [
+        { checkIndex: 1, criterion: 'costs', invalidSourceIds: ['plan/chapters/51', 'plan/chapters/52'] },
+        { checkIndex: 2, criterion: 'counters', invalidSourceIds: ['plan/chapters/53'] },
+      ]);
+      assert.ok(body.availableSourceIds.includes(macroId));
+      assert.ok(!body.availableSourceIds.includes('plan/chapters/51'));
+      assert.match(body.instruction, /不能只修字段冲突而保留虚构来源/);
+      assert.match(body.instruction, /不自动替换编号，不补造细纲/);
+      assert.equal(body.previousOutput, JSON.stringify(first));
+      return JSON.stringify(repair);
+    } });
+    if (fixSources) {
+      const result = await planner.reviewDesignContent(request);
+      assert.deepEqual(result.checks.map(c => c.verdict), ['revise', 'insufficient', 'insufficient']);
+      assert.deepEqual(result.checks.slice(1).map(c => c.awaitingSources), [[macroId], [macroId]]);
+      assert.deepEqual(result.modelResponses, [JSON.stringify(first), JSON.stringify(repair)]);
+    } else await assert.rejects(planner.reviewDesignContent(request), /等待补读来源不在完整目录中/);
+    assert.equal(calls, 2, 'No additional retries or fabricated source substitution');
+  }
+  const prepared = prepareDesignReviewEvidence(request);
+  assert.deepEqual(prepared.sourceRepairContext({ ...first, requestId: 'stale' }), {});
+  for (const malformed of [null, {}, { requestId: prepared.requestId, checks: [null] }]) assert.deepEqual(prepared.sourceRepairContext(malformed), {});
+  assert.deepEqual({ request, first }, before);
+});
+
 test('insufficiency diagnostics identify every conflicting check and reject null placeholders', async () => {
   const request = await input(), result = fixtureDesignReview(request);
   Object.assign(result.checks[0], { insufficiencyReason: 'capacity_limit' });

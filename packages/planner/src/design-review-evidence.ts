@@ -133,6 +133,21 @@ export function prepareDesignReviewEvidence(input: DesignReviewInput) {
     sources,
     citationRequirements,
     pendingCitationRequirements,
+    // Inspect raw source requests even when mutually exclusive fields prevent
+    // the full answer from parsing. Diagnostics only; never replace IDs or
+    // decide whether a macro source is sufficient for the model's question.
+    sourceRepairContext(value: unknown): Record<string, unknown> {
+      const known = snapshot.stage?.coverage?.sourceLengths;
+      if (!known || !value || typeof value !== 'object' || !('requestId' in value)
+        || value.requestId !== requestId || !('checks' in value) || !Array.isArray(value.checks)) return {};
+      const awaitingSourceProblems = value.checks.flatMap((check, checkIndex) => {
+        if (!check || typeof check !== 'object' || typeof check.criterion !== 'string' || !Array.isArray(check.awaitingSources)) return [];
+        const invalidSourceIds = [...new Set(check.awaitingSources.filter((id: unknown): id is string =>
+          typeof id === 'string' && !Object.hasOwn(known, id)))];
+        return invalidSourceIds.length ? [{ checkIndex, criterion: check.criterion, invalidSourceIds }] : [];
+      });
+      return awaitingSourceProblems.length ? { awaitingSourceProblems, availableSourceIds: Object.keys(known) } : {};
+    },
     resolutionRepairContext(value: unknown) {
       const parsed = anchoredDesignReviewResultSchema.safeParse(value);
       if (!parsed.success || parsed.data.requestId !== requestId) return {};

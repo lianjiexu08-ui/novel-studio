@@ -1,0 +1,125 @@
+{
+  "kind": "design76_segment12_notes_private_rehearsal",
+  "verified": true,
+  "createdAt": "2026-10-18T10:33:17.984Z",
+  "runnerSha256": "4956feb0f9174e4a02b9a76100be861132d17d44355836c7ec7a2ae2896a3a29",
+  "preparedSha256": "44034133406ee11aec8d818745e610f46b3d9d5db4b974c0d8d9988bfadf937a",
+  "runtimeBindingSha256": "6a935f07ca21e6ab65d869254be1ada6162085666a0fbcaef51ff1b1e3271504",
+  "baseCheckpointSha256": "c553d033a5ac23b6b7f83555fa09a08d94a59ca3eec200448a5891ec8657280a",
+  "database": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design76-notes12-rehearsal-gxB755/private.db",
+  "control": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design76-notes12-rehearsal-gxB755",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "notes": [
+    {
+      "requestKey": "design76-power-cross34-title-only-citations",
+      "runId": "design_run_77e97b37-cbf2-40be-ab17-2de79839c297",
+      "stageId": "cross-3-4",
+      "criterion": "counters",
+      "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+      "expectedCheckHash": "713045a2d439862af27ce5ef756fc212909c4dcf59b88cd73913b7a2b787e0a2",
+      "claimQuote": "补读第18、21、23章后，前置与本批反制链能够闭合。",
+      "explanation": "本次报告对第18、23章各只选了e294、e318，二者均仅含编号、卷号和章名，不能独立支持解释中的训练实测、两丈导刃、八两插销与承重边界。第21章选了救人摘要，但半成支出的具体账在未选的cost片段。所需原文实际已经随本次请求提供，下列逐字依据可核对这些具体前置；这是报告引文选择不足，不是设定缺失，也不应据此重写正确章纲。标题命中和格式通过不等于语义证据充分，后续综合须阅读实际训练、费用和动作原文。本说明不替换模型原pass，不自动批准力量设计，资格和成本项的四份补读仍保留。",
+      "evidence": [
+        {
+          "sourceId": "plan/chapters/18",
+          "quote": "直到第176日，顾在原训练场复测其可见目标导刃、停式及剑冷后再用，确认凝元式稳定，未教成玄府式。"
+        },
+        {
+          "sourceId": "plan/chapters/18",
+          "quote": "176日的凝元剑诀实测包含一丈与两丈两处直接可见普通靶，顾核定本次已稳定掌握的导刃距离为两丈内；受扰或靶前有人即主动停式，仍付该式二成。"
+        },
+        {
+          "sourceId": "plan/chapters/21",
+          "quote": "本章只扣一次：9−0.5=8.5成，已经包含拨钩支出，不得再扣同一动作。"
+        },
+        {
+          "sourceId": "plan/chapters/23",
+          "quote": "可拨的小销约八两，只锁空载拨片，满斗重量由支轴和闸钩承受；拨片释放既有机械闸钩，落料靠重力，不把满斗载荷藏进御物费。实际出手仍须进入三丈内直视范围。"
+        }
+      ],
+      "id": "review_note_8032fa3c-628e-4f9b-ab20-6f9091ff4813",
+      "createdAt": "2026-10-18T10:32:54.591Z",
+      "scope": {
+        "worldPackRevision": 40,
+        "storyBibleRevision": 72,
+        "planRevisionId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+        "planRevision": 76
+      }
+    },
+    {
+      "requestKey": "design76-characters-cross34-lu-actions",
+      "runId": "design_run_aa04b61b-0b13-464a-9b21-9205a91600e2",
+      "stageId": "cross-3-4",
+      "criterion": "agency",
+      "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+      "expectedCheckHash": "116317e382cc4349ecc651c6f0b7553c611d4d7c3cccc761963f3b3aace5b54a",
+      "claimQuote": "陆沉川主动交条并承认本次押送",
+      "explanation": "这句把两兄弟分别作出的选择合给了陆沉川。第49章主动交条、拒绝离港的是弟弟陆沉川（char_21）；第50章被吴伍指认后承认本次点交押送的是哥哥、旧押运头目陆沉舟（char_16）。第50章人物清单含char_16而不含char_21，同次请求也实际提供了两人的姓名档案。不能把整句一律改成哥哥，交条仍是弟弟的行为；应分别保留两人的选择、知情与责任。原模型原话和agency局部pass保留，这条说明不认定关系或秘密已通过，也不把尚待核实的220夜完整改签内容补给任何人。",
+      "evidence": [
+        {
+          "sourceId": "story/characters/char_16",
+          "quote": "\"name\": \"陆沉舟\""
+        },
+        {
+          "sourceId": "story/characters/char_21",
+          "quote": "\"name\": \"陆沉川\""
+        },
+        {
+          "sourceId": "plan/chapters/49",
+          "quote": "沉川主动交条、当面拒绝离港并说出亲见；陆走入有巡员的岗房，接受看护，再把亲走入口交出。"
+        },
+        {
+          "sourceId": "plan/chapters/50",
+          "quote": "吴指认陆曾把他们点交到这里，陆当着巡员承认，不再用认路掩盖押送。"
+        }
+      ],
+      "id": "review_note_98d78ca6-46e9-4dce-9588-a42b72ec5c85",
+      "createdAt": "2026-10-18T10:32:54.592Z",
+      "scope": {
+        "worldPackRevision": 40,
+        "storyBibleRevision": 72,
+        "planRevisionId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+        "planRevision": 76
+      }
+    }
+  ],
+  "preservedWorkFieldDigests": {
+    "activePlanId": "a79cacee9517456fb5abae34e3592ad141a8d092b6782979cdb0aa1996029412",
+    "briefs": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "candidates": "db801c927d61955caf1e94c196129e7ca7a4557cbae7f7f93b7977d2e6ffb6a2",
+    "characters": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "checkpoints": "9360443cd3329deca750224d5f41fd8b848cc87483d84e5d59d8bf1fa6f89d31",
+    "constraintRevision": "0c5791cea66c4691968f61da566a3bf7c6e5020360c905ae8233488efa0b5162",
+    "covenant": "7b09efc6b0d1edd79e40db6d143a177956b28b40ee5070d303574df8d73121f8",
+    "covenantHistory": "ef48b60cd983a0f4b34cbe25bf37e751eb58681b943b6b8369fdcd5fca1ec745",
+    "designContentReviews": "8b8ab9639e03bd0055431c0e710bacf9dbac0d268f27578ddcb0bfc13e0aed8d",
+    "designHistory": "f2347b762def7bec1232ebed9113bcc4fb424df8b0f09e37b74bcef254165a1b",
+    "designReviewRuns": "5e9c89614771b4ca134f20e4a88c468974b2798bffb56c42d4a9638c69ca52c0",
+    "events": "69a4c30b560af422264c89ba8cce8c658bf3d137ec8bcdae5f7025cdc4622590",
+    "id": "e6c77c6af51347285f913e10c068833e392333610313a73f42ae654dbeeebb0b",
+    "impacts": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "manuscripts": "3f9dd7880a530d9eb7ccf9113b140958fe9e182f63c9f706f9c55ceb5c46ffc9",
+    "plans": "6afb21f18712fce391f7c0c715b9791eb95f922a669d1cc1a96b2677e905b396",
+    "plotNodes": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "relationships": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "stateRevision": "16dc368a89b428b2485484313ba67a3912ca03f2b2b42429174a4f8b3dc84e44",
+    "states": "71af6764cda2e591af608654aa65a05f8b25e4e8f9871c746de158a77a0618fc",
+    "storyBible": "ae92c644e55aa89fd87920f431acdb817e50351843daddd6cb65d8508350ef02",
+    "title": "9a392c9dee167243ad8ace1e37c8c750c798509925344a9b052ce05cbb6a54b2",
+    "versions": "ab09691b6b0882a4fa32a704a65a61930f961a7d3e35aa52d872fc017e048fb1",
+    "worldPack": "c2c2dd54716be54571a024440590ebbb8c47b55eb37f2b490bfaf24c5bf6be6d",
+    "worldRules": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "oldRunsPreserved": 99,
+  "oldReportsPreserved": 92,
+  "oldAnnotationsPreserved": 9,
+  "annotationsAdded": 2,
+  "restartReadback": true,
+  "rollbackExercised": true,
+  "idempotenceExercised": true,
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "verdictChanges": 0,
+  "questionsResolved": 0,
+  "formalAcceptance": false
+}
