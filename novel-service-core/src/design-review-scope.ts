@@ -14,6 +14,8 @@ const localStoryCriteria: Record<string, string> = {
 
 // v23 scopes the growth criterion added after the other local story criteria.
 // Older runs retain the original question so their saved inputs still replay.
+// Historical rubric values are retained so saved schedules replay unchanged.
+const legacyGrowthCriterion = "单独核对主角的近期成长承诺，不以世界规则合理或出现玄幻术语替代：在已提供的开篇和阶段计划里，主角具体想学会或改变什么、为何主动选择这条路、下一步能做什么、需要何种条件与代价、读者可以期待什么可观察的阶段回报？区分明确目标、获得学习条件、实际训练与已兑现能力，远期高阶秘术或反复说明不能使用不等于近期成长路径。结合作者题材和慢热偏好判断，目标也可体现为知识、判断、关系或职业能力；不强求固定章数突破，不为制造回报放宽伤势、授业、资源、寿储或权限。用具体场景证明路径已进入人物选择；只有泛泛愿望或规则说明时指出需补强的行动，尚未读到相关计划则请求补读。此项只评估设计支撑力，不宣称已验证正文文笔或真实读者喜好。";
 const localGrowthCriterion = '核验本批实际提供的主角成长安排：人物为何主动选择、想学会或改变什么、获得了哪些学习条件、实际训练或选择、可观察的阶段回报，以及支付与后果是否相连。分清目标、资格、训练和已取得能力；仅说明境界规则或远期愿望不能替代实际行动，本批已给成长缺口或矛盾仍须具体返修。只为本批明确依赖而尚未读到的前置或回报，指出待核事实并请求全部必要来源；不能只因尚未完成全书成长验收便笼统索要全部开篇或后续章纲。允许有意义的知识、判断、关系或职业成长，不强求本批升级，不放宽伤势、训练、资源和寿储限制。全书近期成长承诺及跨阶段兑现仍由完整覆盖后的综合按原标准判断。';
 
 // v24 applies the same local/global distinction to world capacity. Whole-book
@@ -44,7 +46,7 @@ export function localDesignReviewRubric(input: DesignReviewInput, scheduleVersio
   ]));
   return Object.fromEntries(Object.entries(input.rubric).map(([criterion, description]) => [criterion,
     `本项是局部原文检查，pass仅表示本批可检验的安排成立，不代表整个领域通过。${scheduleVersion >= 24 && input.area === 'world' && criterion === 'capacity' && description === designReviewRubrics.world.capacity ? localWorldCapacityCriterion
-      : input.area === 'story' && description === designReviewRubrics.story[criterion] ? (scheduleVersion >= 23 && criterion === 'growth' ? localGrowthCriterion : localStoryCriteria[criterion] ?? description)
+      : input.area === 'story' && (description === designReviewRubrics.story[criterion] || (criterion === 'growth' && description === legacyGrowthCriterion)) ? (scheduleVersion >= 23 && criterion === 'growth' ? localGrowthCriterion : localStoryCriteria[criterion] ?? description)
       : scheduleVersion >= 20 && input.area === 'power' && description === designReviewRubrics.power[criterion] ? localPowerCriteria[criterion] ?? description
       : scheduleVersion >= 25 && input.area === 'characters' && description === designReviewRubrics.characters[criterion] ? localCharacterCriteria[criterion] ?? description : description}`
     + (input.area === 'power' ? '本批完整提供的各等级境界、功法、法宝和资源规则本身也是待审对象，包含尚未在章纲中使用的高阶规则；公共来源不只是背景。必须检查其自身约束，再核具体角色行动，不能只核低阶行动账而跳过已经给出的高阶能力缺口。' : '')

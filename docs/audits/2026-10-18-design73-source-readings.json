@@ -1,0 +1,201 @@
+{
+  "observedAt": "2026-10-18T04:03:07.869Z",
+  "inputPath": "data/audit-runtimes/design73-review/inputs.json",
+  "inputsSha256": "43f12ebc804fc7ffaa1698daed785de03b91e7e4c1501e64c70bcd9582613a19",
+  "findings": [
+    {
+      "id": "permit-expires-before-arrival",
+      "disposition": "confirmed_design_conflict",
+      "evidence": [
+        0,
+        1,
+        2
+      ],
+      "nextAction": "Clarify departure-document scope and destination revalidation or validity through actual unloading; do not invent a completed renewal or shorten the two-day voyage."
+    },
+    {
+      "id": "failed-training-cycle-cost",
+      "disposition": "confirmed_resource_gap",
+      "evidence": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "arithmetic": "6 valid cycles + 1 failed opened cycle = 7 consumed stones",
+      "nextAction": "Bind the seventh stone to actual available inventory, debit the failed cycle, and record required pre/post-cycle medical checks and restart permission; do not refund the failed cycle."
+    },
+    {
+      "id": "lifespan-dates-misread",
+      "disposition": "review_claim_contradicted_by_sources",
+      "evidence": [
+        7,
+        8,
+        9
+      ],
+      "balances": [
+        {
+          "day": 209,
+          "balance": 13.479452054794521
+        },
+        {
+          "day": 216,
+          "balance": 13.46027397260274
+        }
+      ],
+      "nextAction": "Preserve both date-specific balances. Obtain an evidence-linked review correction; do not rewrite day216 to the day209 value."
+    },
+    {
+      "id": "true-energy-carry-forward",
+      "disposition": "review_claim_contradicted_by_sources",
+      "evidence": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "arithmetic": "chapter30: 6 - 0.5 + 0.5 = 6; chapter32/day215: 6 - 0.5 - 0.5 = 5; chapter42/day239: 5 - 0.5 + 0.5 = 5; chapter44/day244: 5 - 2 = 3",
+      "nextAction": "Clarify chapter32/day215 as the balance origin if needed, retaining the actual day239 and day244 action dates. Do not invent an additional recovery or move the later action to day215."
+    },
+    {
+      "id": "separate-entry-and-guard-teams",
+      "disposition": "clarification_needed_not_proven_date_collision",
+      "evidence": [
+        17,
+        18,
+        19
+      ],
+      "nextAction": "Clarify the first entry party and later relief guards, their route/escort and handoff duties; preserve the different actors and existing three-day travel dates."
+    }
+  ],
+  "citations": [
+    {
+      "sourceId": "plan/chapters/31",
+      "field": "scenes",
+      "quote": "凭证有效至216日晨卸货复核",
+      "sourceSha256": "b85d03f3ad5361b0c3cd44e9d95594818f526481716f38af9d5c3f60191e8a1b"
+    },
+    {
+      "sourceId": "plan/chapters/32",
+      "field": "storyTime",
+      "quote": "第214日日暮至第216日日暮；实体海程两昼夜",
+      "sourceSha256": "75cb1a3f38159e5a5fd60d0a39f4f36c251412102857bc142b5868022b92c7b8"
+    },
+    {
+      "sourceId": "plan/chapters/32",
+      "field": "scenes",
+      "quote": "普通避火衣与借符按附单留到217日晨卸货交接后分别归还",
+      "sourceSha256": "75cb1a3f38159e5a5fd60d0a39f4f36c251412102857bc142b5868022b92c7b8"
+    },
+    {
+      "sourceId": "world/techniques/tech_19",
+      "field": "cost",
+      "quote": "每个十日周期实际消耗一枚下品青灵石",
+      "sourceSha256": "3f7a2371364b0f2b694dbe037c299fb146fc39cfbe0957780b933bfca185770f"
+    },
+    {
+      "sourceId": "world/techniques/tech_19",
+      "field": "cost",
+      "quote": "耗材开封即扣，失败或中断不返",
+      "sourceSha256": "3f7a2371364b0f2b694dbe037c299fb146fc39cfbe0957780b933bfca185770f"
+    },
+    {
+      "sourceId": "plan/milestones/ms_v3_training",
+      "field": "setup",
+      "quote": "周期3耗材报废、周期不计入有效六周期",
+      "sourceSha256": "57253b7934001b38f0e95dd6ceef516860ccf38200be33883e05756c09f8d0e9"
+    },
+    {
+      "sourceId": "plan/milestones/ms_v3_training",
+      "field": "setup",
+      "quote": "六个有效周期各实耗一枚下品青灵石",
+      "sourceSha256": "57253b7934001b38f0e95dd6ceef516860ccf38200be33883e05756c09f8d0e9"
+    },
+    {
+      "sourceId": "plan/chapters/28",
+      "field": "endState",
+      "quote": "第209日新增第二笔5元载，林辰条件性保守下界约13.479452元载",
+      "sourceSha256": "42f75a53ab18f2ff88d8c93538997c2d28f75cf99da15aa3861a12eeae907b1d"
+    },
+    {
+      "sourceId": "plan/chapters/32",
+      "field": "endState",
+      "quote": "第216日暮靠泊天宝外港",
+      "sourceSha256": "75cb1a3f38159e5a5fd60d0a39f4f36c251412102857bc142b5868022b92c7b8"
+    },
+    {
+      "sourceId": "plan/chapters/32",
+      "field": "endState",
+      "quote": "保守下界约13.460274元载",
+      "sourceSha256": "75cb1a3f38159e5a5fd60d0a39f4f36c251412102857bc142b5868022b92c7b8"
+    },
+    {
+      "sourceId": "plan/chapters/30",
+      "field": "cost",
+      "quote": "实际完成两小时不施术静息后，仅记回半成至伤后上限六成",
+      "sourceSha256": "d2156e5a2b447308dd8f422b6cd2fcdb169bb8909bb6d71d104deb3637261d0d"
+    },
+    {
+      "sourceId": "world/axioms/ax_05",
+      "field": "content",
+      "quote": "普通步行和肉身握持不凭空附加施术",
+      "sourceSha256": "81f0c43a0365496907a72b0dc70757f0836180eb86d73244853ccba8d2b39b8b"
+    },
+    {
+      "sourceId": "plan/chapters/32",
+      "field": "cost",
+      "quote": "各扣半成，共一成；由六成降至五成",
+      "sourceSha256": "75cb1a3f38159e5a5fd60d0a39f4f36c251412102857bc142b5868022b92c7b8"
+    },
+    {
+      "sourceId": "plan/chapters/42",
+      "field": "cost",
+      "quote": "沿用215日行动后保守余量五成",
+      "sourceSha256": "03250c900742e9a4a71e9af35eb7bd50ca27f537df45d7b1bd4a0c618f2da6c7"
+    },
+    {
+      "sourceId": "plan/chapters/42",
+      "field": "cost",
+      "quote": "此次缓慢试注共耗半成，余四成半",
+      "sourceSha256": "03250c900742e9a4a71e9af35eb7bd50ca27f537df45d7b1bd4a0c618f2da6c7"
+    },
+    {
+      "sourceId": "plan/chapters/42",
+      "field": "cost",
+      "quote": "一小时不受扰温和吐纳，复测只记回半成至伤后上限五成",
+      "sourceSha256": "03250c900742e9a4a71e9af35eb7bd50ca27f537df45d7b1bd4a0c618f2da6c7"
+    },
+    {
+      "sourceId": "plan/chapters/44",
+      "field": "cost",
+      "quote": "出剑前沿用239日复测的保守余量五成，一式二成后余三成",
+      "sourceSha256": "dfe7702b21590d14e968ec3d419afe18b389ce38acb50617a8add51f6437b722"
+    },
+    {
+      "sourceId": "plan/chapters/18",
+      "field": "summary",
+      "quote": "褚衡与邵闻在外门核对186日出发的换班牌与行粮",
+      "sourceSha256": "e4281f4dbb9980d018c57994c5c704855beb6699b2fca60cdd751aa09b19cf29"
+    },
+    {
+      "sourceId": "plan/chapters/19",
+      "field": "summary",
+      "quote": "第181日至183日，林辰、苏凌霜携本批联名符牌",
+      "sourceSha256": "a1da88ca4c59b2bcba307b516bd9cd8374aefc92f77657fc084e0bf366534e43"
+    },
+    {
+      "sourceId": "plan/chapters/19",
+      "field": "summary",
+      "quote": "顾峤与杜砺在内外口交接",
+      "sourceSha256": "a1da88ca4c59b2bcba307b516bd9cd8374aefc92f77657fc084e0bf366534e43"
+    }
+  ],
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "blockersClosed": 0,
+  "limitation": "Source excerpts and arithmetic only. Formal report judgments remain unchanged. This does not prove full design quality or settle all retained review findings."
+}

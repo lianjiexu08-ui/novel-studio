@@ -2,6 +2,8 @@
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
+import { execFileSync } from 'node:child_process';
+import path from 'node:path';
 import { PrismaClient } from '@prisma/client';
 import { PrismaWorkRepository } from '../packages/persistence/src/prisma-repository.ts';
 import { replayDesignReviewRecord } from './audit-design-reviews.mjs';
@@ -45,8 +47,24 @@ for (const run of state.runs) {
     retainedNonPassChecks: run.stages.flatMap(stage => stage.result.checks
       .filter(check => check.verdict !== 'pass').map(check => ({ stageId: stage.id, ...check }))) });
 }
-const workRepository = new PrismaWorkRepository();
-const work = await workRepository.get(baseline.workId);
+// All production reads use SQLite's online backup API. The repository then
+// reads a private snapshot, so verification cannot lock the live application.
+const snapshotDirectory = fs.mkdtempSync(path.resolve(root, 'terminal-verification-'));
+const databaseSnapshotPath = path.join(snapshotDirectory, 'production.db');
+execFileSync('python3', ['-c', `
+import sqlite3, sys
+from pathlib import Path
+source = sqlite3.connect(Path(sys.argv[1]).as_uri() + '?mode=ro', uri=True, timeout=30)
+target = sqlite3.connect(sys.argv[2])
+try:
+    source.backup(target, pages=1000, sleep=0.05)
+finally:
+    target.close()
+    source.close()
+`, path.resolve('data/novel-studio.db'), databaseSnapshotPath], { timeout: 120_000 });
+const workRepository = new PrismaWorkRepository(new PrismaClient({ datasources: { db: { url: `file:${databaseSnapshotPath}` } } }));
+let work;
+try { work = await workRepository.get(baseline.workId); } finally { await workRepository.disconnect(); }
 assert.ok(work);
 const protectedHash = hash({ world: work.worldPack, bible: work.storyBible, plans: [...work.plans], activePlanId: work.activePlanId,
   designHistory: [...work.designHistory], versions: [...work.versions], events: [...work.events], manuscripts: [...work.manuscripts], candidates: [...work.candidates] });
@@ -57,12 +75,36 @@ for (const run of state.runs) assert.deepEqual(work.designReviewRuns.get(run.id)
 for (const report of state.reports) assert.deepEqual(work.designContentReviews.get(report.id), report);
 assert.equal(work.designReviewRuns.size, baseline.oldRuns.length + state.runs.length);
 assert.equal(work.designContentReviews.size, baseline.oldReports.length + state.reports.length);
-await workRepository.disconnect();
-const checkpointSha256 = fileHash(checkpointPath);
+assert.equal(work.worldPack.revision, 38);
+assert.equal(work.storyBible.revision, 70);
+assert.equal(work.plans.get(baseline.planId).revision, 73);
+assert.equal(work.plans.get(baseline.planId).status, 'proposed');
+assert.equal(work.plans.get(work.activePlanId).revision, 10);
+const previous = read('docs/audits/2026-10-18-design72-review-result.json');
+assert.equal(fileHash(previous.checkpointPath), previous.checkpointSha256);
+const checkpointSha256 = createHash('sha256').update(checkpointBytes).digest('hex');
+assert.equal(fileHash(checkpointPath), checkpointSha256, 'Checkpoint changed during verification');
+const terminalPath = `${root}/terminal-segment-${state.segment}.json`;
+if (fs.existsSync(terminalPath)) assert.equal(fileHash(terminalPath), checkpointSha256);
+else fs.writeFileSync(terminalPath, checkpointBytes, { flag: 'wx' });
+// Two stages committed before their usage checkpoint crashed. Keep the runner
+// counter unchanged and disclose the extra retained successful responses.
+const recoveredCalls = state.runs.find(run => run.input.area === 'characters').stages
+  .filter(stage => ['cross-3-4', 'cross-3-5'].includes(stage.id))
+  .map(stage => ({ stageId: stage.id, retainedResponses: stage.modelResponses.length }));
+const segmentErrors = [];
+for (let segment = 0; segment <= state.segment; segment++) {
+  const saved = segment === state.segment ? state : read(`${root}/segment-${segment}.json`);
+  segmentErrors.push(...saved.errors.map(error => ({ segment, ...error })));
+}
 const proof = {
   observedAt: new Date().toISOString(), status: state.status, workerPid: state.pid, workerAbsent: true,
-  checkpointPath, checkpointSha256, runtimePath: binding.runtimePath, sourceCommit: binding.sourceCommit,
-  inputsSha256: baseline.inputsSha256, totalCalls: state.totalCalls, errors: state.errors,
+  checkpointPath: terminalPath, checkpointSha256, runtimePath: binding.runtimePath, sourceCommit: binding.sourceCommit,
+  inputsSha256: baseline.inputsSha256, checkpointTotalCalls: state.totalCalls,
+  recoveredCalls, minimumModelCalls: state.totalCalls + recoveredCalls.reduce((sum, stage) => sum + stage.retainedResponses, 0),
+  usageLimitation: 'The two crash windows lack durable usage ledger snapshots. Retained responses prove additional calls, but exact token usage and any unrecorded failed requests cannot be reconstructed.',
+  errors: segmentErrors, databaseSnapshotPath, databaseSnapshotSha256: fileHash(databaseSnapshotPath),
+  productionVerification: 'read_only_sqlite_backup',
   replays, preserved: { protectedHash, oldRunsUnchanged: baseline.oldRuns.length, oldReportsUnchanged: baseline.oldReports.length,
     reviewRuns: work.designReviewRuns.size, reports: work.designContentReviews.size },
   reports: state.reports.map(({ id, area, status, summary }) => ({ id, area, status, summary })),
@@ -71,6 +113,6 @@ const proof = {
 const proofPath = 'docs/audits/2026-10-18-design73-review-result.json';
 assert.ok(!fs.existsSync(proofPath));
 fs.writeFileSync(proofPath, JSON.stringify(proof, null, 2) + '\n', { flag: 'wx' });
-console.log(JSON.stringify({ status: proof.status, totalCalls: proof.totalCalls,
+console.log(JSON.stringify({ status: proof.status, minimumModelCalls: proof.minimumModelCalls,
   reports: proof.reports, replays: replays.map(({ area, completedStages, responsesReplayed }) => ({ area, completedStages, responsesReplayed })),
   preserved: proof.preserved }));

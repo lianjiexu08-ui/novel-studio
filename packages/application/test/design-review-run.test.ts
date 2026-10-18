@@ -1,3 +1,4 @@
+import { designV22StoryRubric } from './fixtures/design-v22-story-rubric.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
@@ -844,7 +845,7 @@ test('v7 scopes local questions without changing raw coverage, legacy inputs or 
 });
 
 test('v23 scopes growth locally while preserving v22 replay, global standards and actual blockers', () => {
-  const input = { ...largeInput(), rubric: { ...designReviewRubrics.story } };
+  const input = { ...largeInput(), rubric: { ...designV22StoryRubric } };
   const old = createDesignReviewRun(input, '2026-10-15T00:00:00Z', 22);
   assert.equal(createHash('sha256').update(JSON.stringify(designReviewStageInput(old, old.stages[0]))).digest('hex'),
     '226d30e06c4906bd286ddf315a5ddf8deaa9367f826f6a8c0dccffd1f9c0eafe', 'saved v22 requests remain byte-for-byte reproducible');

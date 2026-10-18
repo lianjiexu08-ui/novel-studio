@@ -728,7 +728,15 @@ test('long-form review history is read in bounded SQLite chunks without pruning 
   work.designReviewRuns.set('long-run', { id: 'long-run', payload } as never);
   await repository.save(work);
   const restored = (await repository.get(work.id))!;
-  assert.equal((restored.designReviewRuns.get('long-run') as { payload: string }).payload, payload);
+  assert.equal((restored.designReviewRuns.get('long-run') as unknown as { payload: string }).payload, payload);
+  await assert.rejects(repository.transaction(work.id, ({ work: current }) => {
+    current.title = 'rollback';
+    throw new Error('abort chunked transaction');
+  }), /abort chunked transaction/);
+  await repository.transaction(work.id, ({ work: current }) => { current.title = 'committed'; });
+  const reloaded = (await repository.get(work.id))!;
+  assert.equal(reloaded.title, 'committed');
+  assert.deepEqual(reloaded.designReviewRuns.get('long-run'), restored.designReviewRuns.get('long-run'));
 });
 
 test('SQLite reload keeps a newer rejection current when an older passing response arrives late', async t => {
