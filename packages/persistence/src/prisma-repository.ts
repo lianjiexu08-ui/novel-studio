@@ -36,9 +36,29 @@ const now = () => new Date().toISOString();
 
 type PrismaTx = Omit<PrismaClient, '$connect' | '$disconnect' | '$on' | '$transaction' | '$use' | '$extends'>;
 
+// SQLite interactive transactions compete even when they only read. A design
+// page requests several large snapshots at once; queue before opening the DB
+// transaction so waiting does not consume Prisma's acquisition timeout. Share
+// the queue across repositories using one client, but never share Work objects.
+const clientTransactions = new WeakMap<PrismaClient, Promise<void>>();
+async function inClientTransaction<T>(prisma: PrismaClient, callback: (tx: PrismaTx) => Promise<T>): Promise<T> {
+  const previous = clientTransactions.get(prisma) ?? Promise.resolve();
+  let release!: () => void;
+  const current = new Promise<void>(resolve => { release = resolve; });
+  const queued = previous.then(() => current);
+  clientTransactions.set(prisma, queued);
+  await previous;
+  try {
+    return await prisma.$transaction(callback, { timeout: 120_000 });
+  } finally {
+    release();
+    if (clientTransactions.get(prisma) === queued) clientTransactions.delete(prisma);
+  }
+}
+
 /**
  * Maps the in-memory Work aggregate onto normalized SQLite/PostgreSQL tables.
- * - transaction(): in-process per-work mutex + a real DB transaction with an
+ * - transaction(): in-process per-client queue + a real DB transaction with an
  *   optimistic stateRevision check, so concurrent adopters cannot interleave.
  * - Character states are NOT stored: they are a projection rebuilt from active
  *   events on load (single source of truth = StoryEvent).
@@ -46,7 +66,6 @@ type PrismaTx = Omit<PrismaClient, '$connect' | '$disconnect' | '$on' | '$transa
  */
 export class PrismaWorkRepository implements WorkRepository {
   private readonly prisma: PrismaClient;
-  private readonly locks = new Map<string, Promise<void>>();
 
   constructor(prisma?: PrismaClient) {
     this.prisma = prisma ?? new PrismaClient();
@@ -64,7 +83,7 @@ export class PrismaWorkRepository implements WorkRepository {
     // Audits may supply an existing transaction client; never nest or retain
     // its delegates after that transaction closes.
     return typeof this.prisma.$transaction === 'function'
-      ? this.prisma.$transaction(load, { timeout: 120_000 })
+      ? inClientTransaction(this.prisma, load)
       : load(this.prisma);
   }
 
@@ -82,7 +101,7 @@ export class PrismaWorkRepository implements WorkRepository {
   }
 
   async save(work: Work): Promise<void> {
-    await this.prisma.$transaction(async tx => {
+    await inClientTransaction(this.prisma, async tx => {
       await tx.project.upsert({
         where: { id: work.id },
         create: { id: work.id, ...projectFields(work) },
@@ -91,7 +110,7 @@ export class PrismaWorkRepository implements WorkRepository {
       });
       for (const column of projectHistoryColumns) await writeProjectHistory(tx, work.id, column, projectHistories(work)[column]);
       await this.persist(tx, work);
-    }, { timeout: 120_000 });
+    });
   }
 
   async outbox(): Promise<OutboxEvent[]> {
@@ -100,73 +119,55 @@ export class PrismaWorkRepository implements WorkRepository {
   }
 
   async transaction<T>(workId: string, callback: (transaction: WorkTransaction) => Promise<T> | T): Promise<T> {
-    const previous = this.locks.get(workId) ?? Promise.resolve();
-    let release!: () => void;
-    const current = new Promise<void>((resolve) => { release = resolve; });
-    const queued = previous.then(() => current);
-    this.locks.set(workId, queued);
-    await previous;
-    try {
-      return await this.prisma.$transaction(async (tx) => {
-        const work = await this.loadForUpdate(tx, workId);
-        const loadedRevision = work.stateRevision;
-        const loadedProject = projectFields(work);
-        // Retain bounded digests, not second copies of every historical JSON
-        // array, while the callback and its new state are in memory.
-        const loadedHistories = Object.fromEntries(projectHistoryColumns.map(column => [column, historyJsonHash(projectHistories(work)[column])]));
-        const loadedRows = snapshotRows(work);
-        const loadedConstraintRevision = work.constraintRevision;
-        // Returned objects are patched after the upsert so callers always see the stored row's id.
-        const pending: OutboxEvent[] = [];
-        const transaction: WorkTransaction = {
-          work,
-          enqueue: (input) => {
-            const existing = pending.find((event) => event.dedupeKey === input.dedupeKey);
-            if (existing) return existing;
-            const event: OutboxEvent = { ...input, id: id('outbox'), createdAt: now(), attempts: 0 };
-            pending.push(event);
-            return event;
-          },
-        };
-        const result = await callback(transaction);
-        // Optimistic concurrency: the stateRevision we loaded must still be current.
-        const updated = await tx.project.updateMany({
-          where: { id: workId, stateRevision: loadedRevision, constraintRevision: loadedConstraintRevision },
-          data: { stateRevision: work.stateRevision, ...Object.fromEntries(
-            Object.entries(projectFields(work)).filter(([key, value]) => value !== loadedProject[key as keyof typeof loadedProject]),
-          ) },
-        });
-        if (updated.count === 0) throw new StaleCandidateError('concurrent modification detected; reload and retry');
-        for (const column of projectHistoryColumns) {
-          if (historyJsonHash(projectHistories(work)[column]) !== loadedHistories[column]) {
-            await writeProjectHistory(tx, workId, column, projectHistories(work)[column]);
-          }
-        }
-        await this.persist(tx, work, loadedRows);
-        for (const event of pending) {
-          const stored = await tx.outboxEvent.upsert({
-            where: { dedupeKey: event.dedupeKey },
-            create: {
-              id: event.id, projectId: event.workId, dedupeKey: event.dedupeKey, kind: event.kind,
-              aggregateId: event.aggregateId, payload: JSON.stringify(event.payload),
-            },
-            update: {},
-          });
-          Object.assign(event, mapOutbox(stored));
-        }
-        return result;
-      }, {
-        // A long novel includes immutable designs, review evidence and chapter
-        // history. A measured final review save with 53 retained runs and 59
-        // reports takes over 32s, even with incremental writes. Allow bounded
-        // headroom for serialization and SQLite I/O without dropping history;
-        // model calls and report reconstruction stay outside the transaction.
-        timeout: 120_000,
+    return inClientTransaction(this.prisma, async (tx) => {
+      const work = await this.loadForUpdate(tx, workId);
+      const loadedRevision = work.stateRevision;
+      const loadedProject = projectFields(work);
+      // Retain bounded digests, not second copies of every historical JSON
+      // array, while the callback and its new state are in memory.
+      const loadedHistories = Object.fromEntries(projectHistoryColumns.map(column => [column, historyJsonHash(projectHistories(work)[column])]));
+      const loadedRows = snapshotRows(work);
+      const loadedConstraintRevision = work.constraintRevision;
+      // Returned objects are patched after the upsert so callers always see the stored row's id.
+      const pending: OutboxEvent[] = [];
+      const transaction: WorkTransaction = {
+        work,
+        enqueue: (input) => {
+          const existing = pending.find((event) => event.dedupeKey === input.dedupeKey);
+          if (existing) return existing;
+          const event: OutboxEvent = { ...input, id: id('outbox'), createdAt: now(), attempts: 0 };
+          pending.push(event);
+          return event;
+        },
+      };
+      const result = await callback(transaction);
+      // Optimistic concurrency: the stateRevision we loaded must still be current.
+      const updated = await tx.project.updateMany({
+        where: { id: workId, stateRevision: loadedRevision, constraintRevision: loadedConstraintRevision },
+        data: { stateRevision: work.stateRevision, ...Object.fromEntries(
+          Object.entries(projectFields(work)).filter(([key, value]) => value !== loadedProject[key as keyof typeof loadedProject]),
+        ) },
       });
-    } finally {
-      release();
-      if (this.locks.get(workId) === queued) this.locks.delete(workId);
-    }
+      if (updated.count === 0) throw new StaleCandidateError('concurrent modification detected; reload and retry');
+      for (const column of projectHistoryColumns) {
+        if (historyJsonHash(projectHistories(work)[column]) !== loadedHistories[column]) {
+          await writeProjectHistory(tx, workId, column, projectHistories(work)[column]);
+        }
+      }
+      await this.persist(tx, work, loadedRows);
+      for (const event of pending) {
+        const stored = await tx.outboxEvent.upsert({
+          where: { dedupeKey: event.dedupeKey },
+          create: {
+            id: event.id, projectId: event.workId, dedupeKey: event.dedupeKey, kind: event.kind,
+            aggregateId: event.aggregateId, payload: JSON.stringify(event.payload),
+          },
+          update: {},
+        });
+        Object.assign(event, mapOutbox(stored));
+      }
+      return result;
+    });
   }
 
   private async loadForUpdate(tx: PrismaTx, workId: string): Promise<Work> {

@@ -463,6 +463,63 @@ test('prisma repository serializes a third waiter behind the first two', async (
   assert.deepEqual(order, ['first-start', 'first-end', 'second-start', 'second-end', 'third']);
 });
 
+test('shared-client snapshots queue behind writes across repositories and recover after rollback', async t => {
+  const databaseUrl = createDatabase();
+  const { PrismaClient } = await import('@prisma/client');
+  const { PrismaWorkRepository } = await import('../src/prisma-repository.ts');
+  const { Work } = await import('../../../novel-service-core/src/core.ts');
+  const prisma = new PrismaClient({ datasources: { db: { url: databaseUrl } } });
+  const first = new PrismaWorkRepository(prisma), second = new PrismaWorkRepository(prisma);
+  t.after(async () => { await prisma.$disconnect(); rmSync(databaseUrl.slice(5), { force: true }); });
+  const work = new Work('before'), other = new Work('other');
+  await first.save(work);
+  await second.save(other);
+  // Count actual transaction acquisition attempts, not just callback overlap.
+  const original = prisma.$transaction.bind(prisma);
+  let active = 0, maximum = 0;
+  prisma.$transaction = (async (...args: Parameters<typeof original>) => {
+    maximum = Math.max(maximum, ++active);
+    try { return await original(...args); } finally { active--; }
+  }) as typeof prisma.$transaction;
+  const entered = Promise.withResolvers<void>(), release = Promise.withResolvers<void>();
+  const writing = first.transaction(work.id, async ({ work: current }) => {
+    current.title = 'committed';
+    entered.resolve();
+    await release.promise;
+  });
+  await entered.promise;
+  const read1 = second.get(work.id), read2 = first.get(work.id), readOther = second.get(other.id);
+  other.title = 'saved';
+  const saving = second.save(other);
+  const readSaved = first.get(other.id);
+  release.resolve();
+  const [, a, b, c, , d] = await Promise.all([writing, read1, read2, readOther, saving, readSaved]);
+  assert.equal(maximum, 1, 'only one transaction may be acquiring or running on a shared client');
+  assert.equal(a!.title, 'committed');
+  assert.equal(b!.title, 'committed');
+  assert.equal(c!.title, 'other');
+  assert.equal(d!.title, 'saved');
+  assert.notEqual(a, b);
+  a!.title = 'local mutation';
+  a!.worldRules.set('local', { id: 'local' } as never);
+  assert.equal(b!.title, 'committed');
+  assert.equal(b!.worldRules.has('local'), false);
+
+  const rollback = assert.rejects(second.transaction(work.id, ({ work: current }) => {
+    current.title = 'rolled back';
+    throw new Error('expected rollback');
+  }), /expected rollback/);
+  const afterFailure = first.get(work.id);
+  await rollback;
+  assert.equal((await afterFailure)!.title, 'committed');
+  assert.equal(await first.get('missing'), undefined);
+  await original(async tx => {
+    // External audits pass an already-open client; loading must not nest.
+    const nested = new PrismaWorkRepository(tx as typeof prisma);
+    assert.equal((await nested.get(work.id))!.title, 'committed');
+  });
+});
+
 test('prisma repository resumes the same generation checkpoint after restart', async (t) => {
   const databaseUrl = createDatabase();
   const repositories: Array<{ disconnect(): Promise<void> }> = [];
