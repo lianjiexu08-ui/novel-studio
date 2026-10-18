@@ -546,11 +546,9 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     };
   });
 
-  app.get('/works/:workId/design/content-reviews', async (request) => {
-    const { workId } = workParamSchema.parse(request.params);
+  async function loadReviewOverview(workId: string, planId: string | undefined, view: 'full' | 'summary') {
     const work = await repository.get(workId);
     if (!work) throw new NotFoundError(`unknown work ${workId}`);
-    const { planId, since, view } = z.object({ planId: z.string().min(1).optional(), since: z.string().max(64).optional(), view: z.enum(['full', 'summary']).default('full') }).parse(request.query);
     const plans = [...work.plans.values()].filter((plan) => plan.status !== 'superseded').sort((a, b) => b.revision - a.revision);
     const selected = planId ? plans.find((plan) => plan.id === planId) : plans[0];
     if (planId && !selected) throw new NotFoundError(`unknown plan ${planId}`);
@@ -558,8 +556,28 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     // Saved reports are immutable. Track their identities and all mutable run
     // metadata without serializing their potentially huge source/evidence text.
     const revisionToken = createHash('sha256').update(JSON.stringify({ workId, view, ...overview, reports: overview.reports.map(report => report.id) })).digest('hex');
-    if (since === revisionToken) return { unchanged: true, revisionToken };
     return { ...overview, reports: view === 'summary' ? overview.reports.map(({ sources, checks, resolvedDeferrals, ...report }) => report) : overview.reports, revisionToken };
+  }
+  // Concurrent tabs need the same read, not separate queued loads of all review
+  // history. Share only an in-flight response; never retain a settled snapshot
+  // or share a mutable Work aggregate with a writer.
+  const pendingReviewOverviews = new Map<string, ReturnType<typeof loadReviewOverview>>();
+  app.get('/works/:workId/design/content-reviews', async (request) => {
+    const { workId } = workParamSchema.parse(request.params);
+    const { planId, since, view } = z.object({ planId: z.string().min(1).optional(), since: z.string().max(64).optional(), view: z.enum(['full', 'summary']).default('full') }).parse(request.query);
+    const key = JSON.stringify([workId, planId, view]);
+    let pending = pendingReviewOverviews.get(key);
+    if (!pending) {
+      pending = loadReviewOverview(workId, planId, view);
+      pendingReviewOverviews.set(key, pending);
+      // Both outcomes remove the entry; handle rejection without creating an
+      // unobserved rejected promise from finally().
+      const clear = () => { pendingReviewOverviews.delete(key); };
+      void pending.then(clear, clear);
+    }
+    const overview = await pending;
+    if (since === overview.revisionToken) return { unchanged: true, revisionToken: overview.revisionToken };
+    return overview;
   });
 
   app.get('/works/:workId/design/content-reviews/:reportId', async (request) => {
