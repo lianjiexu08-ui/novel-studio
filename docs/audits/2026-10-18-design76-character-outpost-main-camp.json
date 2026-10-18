@@ -1,0 +1,171 @@
+{
+  "kind": "design76_character_outpost_main_camp",
+  "verificationPath": "docs/audits/2026-10-18-design76-notes25-review-segment-26.json",
+  "verificationSha256": "2e14db411002c11aaf84cc74273c669c658f40b6586d303fc50baea60b275b3a",
+  "bindingPath": "data/audit-runtimes/design76-fragment-index-runtime-bound.json",
+  "bindingSha256": "8a1875b686f31b79d32ca9c00fa4cfd65931a195ca0c6dfd8547ff2c0507b5e5",
+  "requestPath": "data/audit-runtimes/design76-notes25-review/model-calls/00175.started.json",
+  "requestSha256": "6f3d5859c7530e75c36d624fb559405516b081b6a1cbe444567f868bba0730e4",
+  "responsePath": "data/audit-runtimes/design76-notes25-review/model-calls/00175.response.json",
+  "responseSha256": "5cc06f354e79f45803b9c646684347fc94e59bc331bdd16f9de7ae4d6bbfe8e3",
+  "runId": "design_run_aa04b61b-0b13-464a-9b21-9205a91600e2",
+  "stageId": "synthesis-11",
+  "acceptedStageSha256": "33cc03acc3674cafe76b9ffa4ecc90e903f2452759cd73b50993063853a6207c",
+  "originalCheckHash": "ee213f9750f17b3102b7aae9acbf8ff7d7850fec1c07a29e94ca9241bee53f7c",
+  "originalCheck": {
+    "criterion": "knowledge",
+    "verdict": "pass",
+    "explanation": "秘密档把林辰、苏凌霜对父案的认知维持在“怀疑”层级：第18—26章的守门参与仅来自署名图纸和撤离记录，投毒全貌与九鼎全阵仍被明确禁止推断；第27章后残片刻痕也只是追查收货链的线索。对古境营地线，林辰在第21章仅因秦禾当面证词获得前哨方向，第23章才由称呼和名牌核定墨幽屠身份，并且不知道墨幽屠独立收到的上层催令；第25章取得样箱、封瓶和救援结果也不等同泉液洁净或归属已定。港口第33章的侧门独立视角同样未回写为林辰知情，后续六号箱线索须经册页、当面对证与实物交叉核验。故人物行动、误解和信息升级均有实际接触、实体交接或核验触发，不存在本子树可见的读者视角倒灌或提前揭露。",
+    "evidence": [
+      {
+        "sourceId": "review-result/followup-cross-3-5/knowledge",
+        "quote": "  \"explanation\": \"原问题指出第15—34章虽写出局部认知边界，但缺少秘密原档核对。补读后，sec_01将林辰、苏凌霜对父亲守门参与的认知限定在第18章旧图、第27章残片刻痕、第33章以后续材料等实际证据，并明确投毒与完整牺牲仍未证实；sec_02将林辰、苏凌霜对九鼎、前哨、墨幽屠、货运链和撤押令的认知逐步绑定于亲见、口述、封签、书信和实体回报，且保留未知范围；sec_04明确第33章侧门独立视角的信息不得回写林辰认知，后续常钧、陆沉川及严涛的事实也按当面证词、册页和交叉核验逐步形成。与第15、17、21、23、25、33、34章章纲逐一对照，未发现同一时点知情倒置、重复消费同一证据或弧光仅列节点而没有触发选择与代价的问题。\",\n  \"revisionAdvice\": \"\",\n  \"resolves\": [\n    \"cross-3-5/knowledge\"\n  ]\n}\n\nBEGIN INDEPENDENT QUOTE 1.1\n{\"sourceId\":\"review-question/cross-3-5/knowledge\",\"start\":0,\"end\":496,\"unique\":true}\n{\n  \"criterion\": \"knowledge\",\n"
+      },
+      {
+        "sourceId": "review-result/followup-cross-3-5/knowledge",
+        "quote": "      \"belief\": \"知道残玉与生父有关，追查家仇；尚不掌握护界牺牲的完整经过。\",\n      \"trigger\": \"身世记忆与早期案卷线索。\",\n      \"consequence\": \"追索血晶去向与古境遗迹。\",\n      \"forbiddenInferences\": [\n        \"不能叙述尚未看见的投毒场面\",\n        \"不能因此知道九鼎全套阵图\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 13,\n      \"untilChapter\": 17,\n      \"certainty\": \"suspects\",\n      \"belief\": \"只有家传笔记和残玉与父亲有关，未确认守门或投毒经过。\",\n      \"trigger\": \"13章已有家传物及双方此前明确交接的有限信息；没有父亲守门或投毒的新证据。\",\n\nEND INDEPENDENT QUOTE 1.9\n\nBEGIN INDEPENDENT QUOTE 1.10\n{\"sourceId\":\"story/secrets/sec_01\",\"unitId\":\"review-unit/149\",\"start\":583,\"end\":1165,\"unique\":true}\n"
+      },
+      {
+        "sourceId": "review-result/followup-cross-3-5/knowledge",
+        "quote": "      \"consequence\": \"据亲见与明确交接继续调查，分别记录知情范围，不把读者独立视角变成角色情报。\",\n      \"forbiddenInferences\": [\n        \"不知九鼎全阵、父案投毒全貌或门外死渊\",\n        \"不得预支后章证据、用残玉搜魂或从胜利推断寿元可逆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 18,\n      \"untilChapter\": 26,\n      \"certainty\": \"suspects\",\n      \"belief\": \"父亲曾参与守门工作的证据来自署名图纸和撤离记录；尚不知父案全貌。\",\n      \"trigger\": \"第18章179日，凭顾新签的限时调阅单，林苏共同核对韩叙交接的实物记录。\",\n      \"consequence\": \"据亲见与明确交接继续调查，分别记录知情范围，不把读者独立视角变成角色情报。\",\n      \"forbiddenInferences\": [\n        \"不知九鼎全阵、父案投毒全貌或门外死渊\",\n        \"不得预支后章证据、用残玉搜魂或从胜利推断寿元可逆\"\n      ]\n    },\n    {\n\n"
+      },
+      {
+        "sourceId": "review-result/followup-cross-3-5/knowledge",
+        "quote": "END INDEPENDENT QUOTE 1.10\n\nBEGIN INDEPENDENT QUOTE 1.11\n{\"sourceId\":\"story/secrets/sec_01\",\"unitId\":\"review-unit/149\",\"start\":1165,\"end\":1734,\"unique\":true}\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 27,\n      \"untilChapter\": 32,\n      \"certainty\": \"suspects\",\n      \"belief\": \"残片刻痕可与旧图对应，为追查收货链提供线索，未得到过去的完整影像。\",\n      \"trigger\": \"第27章对照实际取到的样箱、残片与图纸；不能从共鸣或触摸得到全知。\",\n      \"consequence\": \"据亲见与明确交接继续调查，分别记录知情范围，不把读者独立视角变成角色情报。\",\n      \"forbiddenInferences\": [\n        \"不知九鼎全阵、父案投毒全貌或门外死渊\",\n        \"不得预支后章证据、用残玉搜魂或从胜利推断寿元可逆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n"
+      },
+      {
+        "sourceId": "review-result/followup-cross-3-5/knowledge",
+        "quote": "      \"sinceChapter\": 13,\n      \"untilChapter\": 17,\n      \"certainty\": \"suspects\",\n      \"belief\": \"只有家传笔记和残玉与父亲有关，未确认守门或投毒经过。\",\n      \"trigger\": \"13章已有家传物及双方此前明确交接的有限信息；没有父亲守门或投毒的新证据。\",\n      \"consequence\": \"据亲见与明确交接继续调查，分别记录知情范围，不把读者独立视角变成角色情报。\",\n      \"forbiddenInferences\": [\n        \"不知九鼎全阵、父案投毒全貌或门外死渊\",\n        \"不得预支后章证据、用残玉搜魂或从胜利推断寿元可逆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_02\",\n      \"sinceChapter\": 18,\n      \"untilChapter\": 26,\n\nEND INDEPENDENT QUOTE 1.13\n\nBEGIN INDEPENDENT QUOTE 1.14\n"
+      },
+      {
+        "sourceId": "review-result/followup-cross-3-5/knowledge",
+        "quote": "      \"trigger\": \"第21章救出秦禾，双方当面听到其所见，未搜魂。\",\n      \"consequence\": \"据亲见与明确交接继续调查，分别记录知情范围，不把读者独立视角变成角色情报。\",\n      \"forbiddenInferences\": [\n        \"不知九鼎全阵、父案投毒全貌或门外死渊\",\n        \"不得预支后章证据、用残玉搜魂或从胜利推断寿元可逆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 22,\n      \"untilChapter\": 22,\n      \"certainty\": \"suspects\",\n      \"belief\": \"亲见主营货台、囚笼和样箱，核四里路线；秦返回实报新点检哨与铃绳，两人又实见检修口被岩板堵死，指挥者仍未认出。\",\n\nEND INDEPENDENT QUOTE 1.22\n\nBEGIN INDEPENDENT QUOTE 1.23\n{\"sourceId\":\"story/secrets/sec_02\",\"unitId\":\"review-unit/150\",\"start\":4082,\"end\":4667,\"unique\":true}\n"
+      },
+      {
+        "sourceId": "review-result/followup-cross-3-5/knowledge",
+        "quote": "      \"trigger\": \"22章实地勘查、秦186首次送图受阻后当面报告，再试旁路；不知道岗哨将何时撤回。\",\n      \"consequence\": \"撤离近泉货台观察点，分到装车区外壁和归路岔口；不把旧图当通行保证。\",\n      \"forbiddenInferences\": [\n        \"不知九鼎全阵、父案投毒全貌或门外死渊\",\n        \"不得预支后章证据、用残玉搜魂或从胜利推断寿元可逆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 23,\n      \"untilChapter\": 24,\n      \"certainty\": \"suspects\",\n      \"belief\": \"23亲闻称呼、秦说明名牌而确认墨，见其放血仍保元罡，形成需顾同阶迎敌的方案；仅听现场撤哨与转运口令。\",\n      \"trigger\": \"23秦实际回来会合、众人隔装车区外壁木缝观察和听口令；24两人不在入口，不知交图与交岗是否完成。\",\n      \"consequence\": \"让秦实查通路再送图，两人在营地待实际到位手势；不能读墨独处收到的上层催交内容。\",\n      \"forbiddenInferences\": [\n\n"
+      },
+      {
+        "sourceId": "review-result/followup-cross-3-5/knowledge",
+        "quote": "END INDEPENDENT QUOTE 1.23\n\nBEGIN INDEPENDENT QUOTE 1.24\n{\"sourceId\":\"story/secrets/sec_02\",\"unitId\":\"review-unit/150\",\"start\":4667,\"end\":5259,\"unique\":true}\n        \"不知九鼎全阵、父案投毒全貌或门外死渊\",\n        \"不得预支后章证据、用残玉搜魂或从胜利推断寿元可逆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 25,\n      \"untilChapter\": 25,\n      \"certainty\": \"suspects\",\n      \"belief\": \"顾确已到场、俘虏撤出、墨被同阶制伏；尚未确认泉液洁净和归属。\",\n      \"trigger\": \"第25章亲见顾的手势后行动，携出样箱和封瓶，未验药。\",\n      \"consequence\": \"据亲见与明确交接继续调查，分别记录知情范围，不把读者独立视角变成角色情报。\",\n      \"forbiddenInferences\": [\n        \"不知九鼎全阵、父案投毒全貌或门外死渊\",\n"
+      },
+      {
+        "sourceId": "review-result/followup-cross-3-5/knowledge",
+        "quote": "        \"不得预支后章证据、用残玉搜魂或从胜利推断寿元可逆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 26,\n      \"untilChapter\": 32,\n      \"certainty\": \"suspects\",\n\nEND INDEPENDENT QUOTE 1.24\n\nBEGIN INDEPENDENT QUOTE 1.25\n{\"sourceId\":\"story/secrets/sec_02\",\"unitId\":\"review-unit/150\",\"start\":5259,\"end\":5835,\"unique\":true}\n      \"belief\": \"本次掳人营地、缴获物和泉液验收可核；墨拒供不构成全网证实。\",\n      \"trigger\": \"第26章分别保管获救者证词、点验封瓶与样箱，医修验药后才划分归属，仍不知九鼎全图。\",\n      \"consequence\": \"据亲见与明确交接继续调查，分别记录知情范围，不把读者独立视角变成角色情报。\",\n      \"forbiddenInferences\": [\n        \"不知九鼎全阵、父案投毒全貌或门外死渊\",\n        \"不得预支后章证据、用残玉搜魂或从胜利推断寿元可逆\"\n"
+      },
+      {
+        "sourceId": "review-result/followup-cross-3-5/knowledge",
+        "quote": "{\"sourceId\":\"story/secrets/sec_04\",\"unitId\":\"review-unit/154\",\"start\":0,\"end\":573,\"unique\":true}\n{\n  \"knowledgeStages\": [\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 32,\n      \"untilChapter\": 33,\n      \"certainty\": \"unaware\",\n      \"belief\": \"知道六号箱失踪和有人试移，尚不知去向。\",\n      \"trigger\": \"32章风暴后清点只五箱。\",\n      \"consequence\": \"如实登记，追实际搬移者。\",\n      \"forbiddenInferences\": [\n        \"不因本箱失踪就知道九鼎全网、赵指使仓火或所有商盟成员有罪。\",\n        \"不把被救者自报名等同完成身份核实，也不因兄弟关系自动知道陆沉舟另一批改签。\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 34,\n      \"untilChapter\": 34,\n"
+      },
+      {
+        "sourceId": "review-result/followup-cross-3-5/knowledge",
+        "quote": "      \"belief\": \"侧门册记陆沉川姓名、严工牌和空箱一件；只是查人的线索，不知其兄弟关系或箱内去向。\",\n      \"trigger\": \"35章实际调取217日侧门底册；册上姓名只作为找人的线索。\",\n      \"consequence\": \"向程记与登记领货人核证，不以底册直接认定赃物内容和幕后。\",\n      \"forbiddenInferences\": [\n        \"不因本箱失踪就知道九鼎全网、赵指使仓火或所有商盟成员有罪。\",\n\nEND INDEPENDENT QUOTE 1.51\n\nBEGIN INDEPENDENT QUOTE 1.52\n{\"sourceId\":\"story/secrets/sec_04\",\"unitId\":\"review-unit/154\",\"start\":1153,\"end\":1738,\"unique\":true}\n        \"不把被救者自报名等同完成身份核实，也不因兄弟关系自动知道陆沉舟另一批改签。\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 37,\n      \"untilChapter\": 37,\n      \"certainty\": \"confirmed\",\n"
+      },
+      {
+        "sourceId": "review-result/followup-cross-3-5/knowledge",
+        "quote": "      \"belief\": \"当面核陆沉川身份及与陆沉舟的兄弟关系，严认私挪和擦板；已有便条与分架页，药材总数仍须验物。\",\n      \"trigger\": \"陆沉舟按226医棚送达条于227到原船岗当面认弟，常辨人、陆沉川交便条分架页，严常复走。林此前不在医棚登记现场。\",\n      \"consequence\": \"核库存与散卖页。\",\n      \"forbiddenInferences\": [\n        \"不因本箱失踪就知道九鼎全网、赵指使仓火或所有商盟成员有罪。\",\n        \"不把被救者自报名等同完成身份核实，也不因兄弟关系自动知道陆沉舟另一批改签。\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 39,\n      \"untilChapter\": 100,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"24包由12原物/6火毁材料/6医铺接用页互证；追偿未到账，首仓火因未明。\",\n      \"trigger\": \"39章批签、货账、火毁前柜和亲历者交叉核对。\",\n\nEND INDEPENDENT QUOTE 1.53\n\nBEGIN INDEPENDENT QUOTE 1.54\n"
+      },
+      {
+        "sourceId": "review-resolutions/bf833ca89a10962246c01722141223fdf033ead275c85656fe3d0ab92470084d",
+        "quote": "      \"resolutionExplanation\": \"原问题指出第15—34章虽写出局部认知边界，但缺少秘密原档核对。补读后，sec_01将林辰、苏凌霜对父亲守门参与的认知限定在第18章旧图、第27章残片刻痕、第33章以后续材料等实际证据，并明确投毒与完整牺牲仍未证实；sec_02将林辰、苏凌霜对九鼎、前哨、墨幽屠、货运链和撤押令的认知逐步绑定于亲见、口述、封签、书信和实体回报，且保留未知范围；sec_04明确第33章侧门独立视角的信息不得回写林辰认知，后续常钧、陆沉川及严涛的事实也按当面证词、册页和交叉核验逐步形成。与第15、17、21、23、25、33、34章章纲逐一对照，未发现同一时点知情倒置、重复消费同一证据或弧光仅列节点而没有触发选择与代价的问题。\",\n      \"resolutionEvidenceCount\": 57,\n      \"resolutionEvidenceSha256\": \"c1cbed7265c2f985acc9481af34b5341f44ff87f85c686b1c88dd9b4d2b9c709\"\n    },\n    {\n      \"checkId\": \"cross-4-5/relationships\",\n      \"resolvedByStageId\": \"followup-cross-4-5/relationships\",\n"
+      }
+    ],
+    "revisionAdvice": ""
+  },
+  "actualSupport": [
+    {
+      "sourceId": "story/chapterPlans/chapter-plan-21",
+      "quote": "林辰与苏凌霜循残缺采集单找到前哨废料高台",
+      "embedded": [
+        {
+          "parent": "review-result/followup-cross-3-5/relationships",
+          "fragment": "e10"
+        },
+        {
+          "parent": "review-result/followup-cross-3-5/knowledge",
+          "fragment": "e81"
+        }
+      ]
+    },
+    {
+      "sourceId": "story/chapterPlans/chapter-plan-21",
+      "quote": "秦禾当面说明主营方向与已走路线，只答应有限带路、送信，不承诺陪战。",
+      "embedded": [
+        {
+          "parent": "review-result/followup-cross-3-5/relationships",
+          "fragment": "e10"
+        },
+        {
+          "parent": "review-result/followup-cross-3-5/knowledge",
+          "fragment": "e81"
+        }
+      ]
+    },
+    {
+      "sourceId": "story/chapterPlans/chapter-plan-21",
+      "quote": "秦已说明主营大致方向，尚未实核布局或辨清指挥者。",
+      "embedded": [
+        {
+          "parent": "review-result/followup-cross-3-5/relationships",
+          "fragment": "e11"
+        }
+      ]
+    },
+    {
+      "sourceId": "story/secrets/sec_02",
+      "quote": "秦禾亲历被扣，知道前哨方向；证词尚不能证明完整幕后指挥。",
+      "embedded": [
+        {
+          "parent": "review-result/followup-cross-3-5/knowledge",
+          "fragment": "e105"
+        }
+      ]
+    },
+    {
+      "sourceId": "story/secrets/sec_02",
+      "quote": "亲见主营货台、囚笼和样箱，核四里路线；秦返回实报新点检哨与铃绳，两人又实见检修口被岩板堵死，指挥者仍未认出。",
+      "embedded": [
+        {
+          "parent": "review-result/followup-cross-3-5/knowledge",
+          "fragment": "e106"
+        }
+      ]
+    }
+  ],
+  "annotationInput": {
+    "requestKey": "design76-character-outpost-main-camp",
+    "runId": "design_run_aa04b61b-0b13-464a-9b21-9205a91600e2",
+    "stageId": "synthesis-11",
+    "criterion": "knowledge",
+    "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+    "expectedCheckHash": "ee213f9750f17b3102b7aae9acbf8ff7d7850fec1c07a29e94ca9241bee53f7c",
+    "claimQuote": "林辰在第21章仅因秦禾当面证词获得前哨方向",
+    "explanation": "这里应区分已经抵达的前哨与秦禾提供方向的主营。21章先由林苏循残缺采集单找到前哨废料高台并救秦，之后秦才当面说明主营方向及已走路线；章末明确主营布局和指挥者仍未实核。22章实地勘查才亲见主营货台、囚笼、样箱并核路线，不能倒写为21章秦一开口便验证全部布局。原秘密档sec_02两人的21章belief仍使用“知道前哨方向”，未准确承接章纲中的新增主营线索，本次综合沿用了这处旧表述；因此不能以本项pass认定这条认知链已经完全一致。原答、pass及前置补读解决记录保留，原设定不在本说明中改写；另行离线候选须将林苏的21章认知与章纲统一，保留口述来源、有限知情及后章实核的先后关系。本次实际收到的是前置报告中的独立摘录，不是重新读取全部原档。",
+    "evidence": [
+      {
+        "sourceId": "story/chapterPlans/chapter-plan-21",
+        "quote": "林辰与苏凌霜循残缺采集单找到前哨废料高台"
+      },
+      {
+        "sourceId": "story/chapterPlans/chapter-plan-21",
+        "quote": "秦禾当面说明主营方向与已走路线，只答应有限带路、送信，不承诺陪战。"
+      },
+      {
+        "sourceId": "story/chapterPlans/chapter-plan-21",
+        "quote": "秦已说明主营大致方向，尚未实核布局或辨清指挥者。"
+      },
+      {
+        "sourceId": "story/secrets/sec_02",
+        "quote": "秦禾亲历被扣，知道前哨方向；证词尚不能证明完整幕后指挥。"
+      },
+      {
+        "sourceId": "story/secrets/sec_02",
+        "quote": "亲见主营货台、囚笼和样箱，核四里路线；秦返回实报新点检哨与铃绳，两人又实见检修口被岩板堵死，指挥者仍未认出。"
+      }
+    ]
+  },
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Identifies a stale original knowledge-stage field propagated into a partial synthesis. Only embedded parent quotations were sent; no annotation append, verdict change or design mutation."
+}

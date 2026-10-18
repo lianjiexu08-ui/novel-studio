@@ -1,0 +1,133 @@
+{
+  "kind": "design76_segment26_notes_private_rehearsal",
+  "verified": true,
+  "createdAt": "2026-10-18T17:50:43.238Z",
+  "runnerSha256": "c994bb97a3949272a9c1e2e033adce9c4776a1229d907dfafdb03becef5f5e87",
+  "preparedSha256": "a887aaf238c6a1eb0aa970463ccff25c62e1b975230fe589c2f8057b89314da4",
+  "runtimeBindingSha256": "8a1875b686f31b79d32ca9c00fa4cfd65931a195ca0c6dfd8547ff2c0507b5e5",
+  "baseCheckpointSha256": "804b3b23c782b222f96995315a20f223465d9268c8def7264d976065cc6d901c",
+  "database": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design76-notes26-rehearsal-ZQQ2Rz/private.db",
+  "control": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design76-notes26-rehearsal-ZQQ2Rz",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "notes": [
+    {
+      "requestKey": "design76-world-cross34-port-scope",
+      "runId": "design_run_98b5460a-ed47-4ba2-bb06-7fdded1f910d",
+      "stageId": "followup-cross-3-4/geography",
+      "criterion": "geography",
+      "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+      "expectedCheckHash": "20bf999ad7aed079f7414b57d563205b2d7e536112576d8100a72acb92322427",
+      "claimQuote": "第33—50章均在天宝外港及其公共港区、受护街段和近岸水道内推进",
+      "explanation": "“均在天宝外港”只能用来概括这段林辰的港区主线，不能覆盖所有人物和场景。第33章同时有苏凌霜在青玄的独立视角：212日古境外营销班，213—216日慢车返宗，216日19时抵太清外门，217日接押及交回损剑、领取普通备用铁剑。该章地点栏明确并列天宝外港与入口外营至太清外门的返宗支线；前者在赤霄，后者仍在青玄，不是两地瞬移或同一港区内行动。返宗过程与林的海程并行，林在41章实际收到信前不得知道返宗结果。原局部pass及cross-3-4/geography解决声明保留。本说明只缩小评语中的全称范围，不移动支线、不合并两地角色、不使消息即时送达，也不据此关闭全局设计问题。",
+      "evidence": [
+        {
+          "sourceId": "plan/chapters/33",
+          "quote": "loc_23天宝外港原船卸货区与侧门；插叙为loc_05入口外营至loc_29太清外门院"
+        },
+        {
+          "sourceId": "plan/chapters/33",
+          "quote": "第217日；插叙覆盖第212日至第216日的太清销班与四日慢车返宗"
+        },
+        {
+          "sourceId": "plan/chapters/33",
+          "quote": "213–216返宗以白天慢车行路、夜间停营执行，不连夜赶车"
+        },
+        {
+          "sourceId": "plan/chapters/33",
+          "quote": "苏于217日将损剑交外门器械房登记入库待处置，当面验领库内原有的一柄普通备用铁剑"
+        },
+        {
+          "sourceId": "plan/chapters/33",
+          "quote": "林41章收到信前不得知道其返宗结果。"
+        }
+      ],
+      "id": "review_note_ff147c9e-6506-4f2d-8975-3c1ffba2fb33",
+      "createdAt": "2026-10-18T17:50:21.002Z",
+      "scope": {
+        "worldPackRevision": 40,
+        "storyBibleRevision": 72,
+        "planRevisionId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+        "planRevision": 76
+      }
+    },
+    {
+      "requestKey": "design76-character-outpost-main-camp",
+      "runId": "design_run_aa04b61b-0b13-464a-9b21-9205a91600e2",
+      "stageId": "synthesis-11",
+      "criterion": "knowledge",
+      "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+      "expectedCheckHash": "ee213f9750f17b3102b7aae9acbf8ff7d7850fec1c07a29e94ca9241bee53f7c",
+      "claimQuote": "林辰在第21章仅因秦禾当面证词获得前哨方向",
+      "explanation": "这里应区分已经抵达的前哨与秦禾提供方向的主营。21章先由林苏循残缺采集单找到前哨废料高台并救秦，之后秦才当面说明主营方向及已走路线；章末明确主营布局和指挥者仍未实核。22章实地勘查才亲见主营货台、囚笼、样箱并核路线，不能倒写为21章秦一开口便验证全部布局。原秘密档sec_02两人的21章belief仍使用“知道前哨方向”，未准确承接章纲中的新增主营线索，本次综合沿用了这处旧表述；因此不能以本项pass认定这条认知链已经完全一致。原答、pass及前置补读解决记录保留，原设定不在本说明中改写；另行离线候选须将林苏的21章认知与章纲统一，保留口述来源、有限知情及后章实核的先后关系。本次实际收到的是前置报告中的独立摘录，不是重新读取全部原档。",
+      "evidence": [
+        {
+          "sourceId": "story/chapterPlans/chapter-plan-21",
+          "quote": "林辰与苏凌霜循残缺采集单找到前哨废料高台"
+        },
+        {
+          "sourceId": "story/chapterPlans/chapter-plan-21",
+          "quote": "秦禾当面说明主营方向与已走路线，只答应有限带路、送信，不承诺陪战。"
+        },
+        {
+          "sourceId": "story/chapterPlans/chapter-plan-21",
+          "quote": "秦已说明主营大致方向，尚未实核布局或辨清指挥者。"
+        },
+        {
+          "sourceId": "story/secrets/sec_02",
+          "quote": "秦禾亲历被扣，知道前哨方向；证词尚不能证明完整幕后指挥。"
+        },
+        {
+          "sourceId": "story/secrets/sec_02",
+          "quote": "亲见主营货台、囚笼和样箱，核四里路线；秦返回实报新点检哨与铃绳，两人又实见检修口被岩板堵死，指挥者仍未认出。"
+        }
+      ],
+      "id": "review_note_b7389adf-9d46-4c30-98eb-fe45ff03ab80",
+      "createdAt": "2026-10-18T17:50:21.003Z",
+      "scope": {
+        "worldPackRevision": 40,
+        "storyBibleRevision": 72,
+        "planRevisionId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+        "planRevision": 76
+      }
+    }
+  ],
+  "preservedWorkFieldDigests": {
+    "activePlanId": "a79cacee9517456fb5abae34e3592ad141a8d092b6782979cdb0aa1996029412",
+    "briefs": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "candidates": "db801c927d61955caf1e94c196129e7ca7a4557cbae7f7f93b7977d2e6ffb6a2",
+    "characters": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "checkpoints": "9360443cd3329deca750224d5f41fd8b848cc87483d84e5d59d8bf1fa6f89d31",
+    "constraintRevision": "2432f63cf0e11221691ae19475e77147418bc3d5c74435d1fecee3168b428782",
+    "covenant": "7b09efc6b0d1edd79e40db6d143a177956b28b40ee5070d303574df8d73121f8",
+    "covenantHistory": "ef48b60cd983a0f4b34cbe25bf37e751eb58681b943b6b8369fdcd5fca1ec745",
+    "designContentReviews": "8b8ab9639e03bd0055431c0e710bacf9dbac0d268f27578ddcb0bfc13e0aed8d",
+    "designHistory": "f2347b762def7bec1232ebed9113bcc4fb424df8b0f09e37b74bcef254165a1b",
+    "designReviewRuns": "af343595b623db256075fab0720ba517924a64290409ad9fea3d986207a7d3d5",
+    "events": "69a4c30b560af422264c89ba8cce8c658bf3d137ec8bcdae5f7025cdc4622590",
+    "id": "e6c77c6af51347285f913e10c068833e392333610313a73f42ae654dbeeebb0b",
+    "impacts": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "manuscripts": "3f9dd7880a530d9eb7ccf9113b140958fe9e182f63c9f706f9c55ceb5c46ffc9",
+    "plans": "6afb21f18712fce391f7c0c715b9791eb95f922a669d1cc1a96b2677e905b396",
+    "plotNodes": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "relationships": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "stateRevision": "16dc368a89b428b2485484313ba67a3912ca03f2b2b42429174a4f8b3dc84e44",
+    "states": "71af6764cda2e591af608654aa65a05f8b25e4e8f9871c746de158a77a0618fc",
+    "storyBible": "ae92c644e55aa89fd87920f431acdb817e50351843daddd6cb65d8508350ef02",
+    "title": "9a392c9dee167243ad8ace1e37c8c750c798509925344a9b052ce05cbb6a54b2",
+    "versions": "ab09691b6b0882a4fa32a704a65a61930f961a7d3e35aa52d872fc017e048fb1",
+    "worldPack": "c2c2dd54716be54571a024440590ebbb8c47b55eb37f2b490bfaf24c5bf6be6d",
+    "worldRules": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "oldRunsPreserved": 99,
+  "oldReportsPreserved": 92,
+  "oldAnnotationsPreserved": 32,
+  "annotationsAdded": 2,
+  "restartReadback": true,
+  "rollbackExercised": true,
+  "idempotenceExercised": true,
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "verdictChanges": 0,
+  "questionsResolved": 0,
+  "formalAcceptance": false
+}

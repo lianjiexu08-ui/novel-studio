@@ -1,0 +1,348 @@
+{
+  "kind": "design76_unapplied_camp_knowledge_candidate",
+  "runnerSha256": "25b99ee8c1de8c9a05193e763e70c9b16e5b012a379bdc6eb477a300eeca42e9",
+  "priorProofPath": "docs/audits/2026-10-18-design76-followup-knowledge-v4.json",
+  "priorProofSha256": "400a488ec55ee8b27358238a16ea5c796367a73145a036c64c8da65b5146d014",
+  "previousCandidatePath": "data/design-candidates/design76-followup-controls-v4.json",
+  "previousCandidateSha256": "fa588e4f4bc003b00c0c42fe021cba7598ef9b4fb80385a51a0659d453e1e374",
+  "findingPath": "docs/audits/2026-10-18-design76-character-outpost-main-camp.json",
+  "findingSha256": "4dac03b43e937cbf38efd6263f2412d842a19c25ced8ae591dbcfaaf27f73499",
+  "inputsPath": "data/audit-runtimes/design76-notes25-review/inputs.json",
+  "inputsSha256": "fc94bb269625716ca4114f9c882de726f23cdec4ded63daccf94089749a9c6f5",
+  "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+  "candidatePath": "data/design-candidates/design76-followup-controls-v5.json",
+  "candidateSha256": "eba7f38716d6698be43842bf0960fb3d4ae70f27a1bf09e3c085d31a66dfd9e7",
+  "evidence": [
+    {
+      "sourceId": "story/chapterPlans/chapter-plan-20",
+      "quote": "两人确认附近存在拦截采集者的前哨",
+      "sourceSha256": "7b539c6cb004910621c811a7cd7c179d67f5632c5ded6ebb35d2a3caa55e368e"
+    },
+    {
+      "sourceId": "story/chapterPlans/chapter-plan-21",
+      "quote": "林辰与苏凌霜循残缺采集单找到前哨废料高台",
+      "sourceSha256": "48f12e8011e40e2148f1f9b47c3e06c010354717ee9bbf4a1fafbdd62a909f2a"
+    },
+    {
+      "sourceId": "story/chapterPlans/chapter-plan-21",
+      "quote": "秦禾当面说明主营方向与已走路线，只答应有限带路、送信，不承诺陪战。",
+      "sourceSha256": "48f12e8011e40e2148f1f9b47c3e06c010354717ee9bbf4a1fafbdd62a909f2a"
+    },
+    {
+      "sourceId": "story/chapterPlans/chapter-plan-21",
+      "quote": "秦已说明主营大致方向，尚未实核布局或辨清指挥者。",
+      "sourceSha256": "48f12e8011e40e2148f1f9b47c3e06c010354717ee9bbf4a1fafbdd62a909f2a"
+    },
+    {
+      "sourceId": "story/chapterPlans/chapter-plan-22",
+      "quote": "秦禾按亲历路线带林辰、苏凌霜抵主营外围",
+      "sourceSha256": "2d58758d93f379872f7137c87c9ffef82f08c0839c3023942d1996f218e1fd24"
+    },
+    {
+      "sourceId": "story/chapterPlans/chapter-plan-22",
+      "quote": "三人确认普通货台、囚笼与封存样箱确在此处，却没看清指挥者面貌。",
+      "sourceSha256": "2d58758d93f379872f7137c87c9ffef82f08c0839c3023942d1996f218e1fd24"
+    }
+  ],
+  "changes": [
+    {
+      "sourceId": "story/secrets/sec_02",
+      "characterId": "char_01",
+      "sinceChapter": 21,
+      "untilChapter": 21,
+      "field": "belief",
+      "before": "秦禾亲历被扣，知道前哨方向；证词尚不能证明完整幕后指挥。",
+      "after": "已循残缺采集单抵达前哨并救出秦禾；据秦当面说明得知主营大致方向与其已走路线，尚未实核主营布局、辨清指挥者或知道随后新设的封路岗；这份口述不能证明完整幕后指挥。",
+      "stageBefore": {
+        "characterId": "char_01",
+        "sinceChapter": 21,
+        "untilChapter": 21,
+        "certainty": "suspects",
+        "belief": "秦禾亲历被扣，知道前哨方向；证词尚不能证明完整幕后指挥。",
+        "trigger": "第21章救出秦禾，双方当面听到其所见，未搜魂。",
+        "consequence": "据亲见与明确交接继续调查，分别记录知情范围，不把读者独立视角变成角色情报。",
+        "forbiddenInferences": [
+          "不知九鼎全阵、父案投毒全貌或门外死渊",
+          "不得预支后章证据、用残玉搜魂或从胜利推断寿元可逆"
+        ]
+      },
+      "stageAfter": {
+        "characterId": "char_01",
+        "sinceChapter": 21,
+        "untilChapter": 21,
+        "certainty": "suspects",
+        "belief": "已循残缺采集单抵达前哨并救出秦禾；据秦当面说明得知主营大致方向与其已走路线，尚未实核主营布局、辨清指挥者或知道随后新设的封路岗；这份口述不能证明完整幕后指挥。",
+        "trigger": "第21章救出秦禾，双方当面听到其所见，未搜魂。",
+        "consequence": "据亲见与明确交接继续调查，分别记录知情范围，不把读者独立视角变成角色情报。",
+        "forbiddenInferences": [
+          "不知九鼎全阵、父案投毒全貌或门外死渊",
+          "不得预支后章证据、用残玉搜魂或从胜利推断寿元可逆"
+        ]
+      }
+    },
+    {
+      "sourceId": "story/secrets/sec_02",
+      "characterId": "char_02",
+      "sinceChapter": 21,
+      "untilChapter": 21,
+      "field": "belief",
+      "before": "秦禾亲历被扣，知道前哨方向；证词尚不能证明完整幕后指挥。",
+      "after": "已循残缺采集单抵达前哨并救出秦禾；据秦当面说明得知主营大致方向与其已走路线，尚未实核主营布局、辨清指挥者或知道随后新设的封路岗；这份口述不能证明完整幕后指挥。",
+      "stageBefore": {
+        "characterId": "char_02",
+        "sinceChapter": 21,
+        "untilChapter": 21,
+        "certainty": "suspects",
+        "belief": "秦禾亲历被扣，知道前哨方向；证词尚不能证明完整幕后指挥。",
+        "trigger": "第21章救出秦禾，双方当面听到其所见，未搜魂。",
+        "consequence": "据亲见与明确交接继续调查，分别记录知情范围，不把读者独立视角变成角色情报。",
+        "forbiddenInferences": [
+          "不知九鼎全阵、父案投毒全貌或门外死渊",
+          "不得预支后章证据、用残玉搜魂或从胜利推断寿元可逆"
+        ]
+      },
+      "stageAfter": {
+        "characterId": "char_02",
+        "sinceChapter": 21,
+        "untilChapter": 21,
+        "certainty": "suspects",
+        "belief": "已循残缺采集单抵达前哨并救出秦禾；据秦当面说明得知主营大致方向与其已走路线，尚未实核主营布局、辨清指挥者或知道随后新设的封路岗；这份口述不能证明完整幕后指挥。",
+        "trigger": "第21章救出秦禾，双方当面听到其所见，未搜魂。",
+        "consequence": "据亲见与明确交接继续调查，分别记录知情范围，不把读者独立视角变成角色情报。",
+        "forbiddenInferences": [
+          "不知九鼎全阵、父案投毒全貌或门外死渊",
+          "不得预支后章证据、用残玉搜魂或从胜利推断寿元可逆"
+        ]
+      }
+    }
+  ],
+  "validation": {
+    "valid": true,
+    "issues": [],
+    "warnings": [
+      {
+        "path": "worldPack",
+        "message": "blocking unresolved questions remain"
+      },
+      {
+        "path": "storyBible",
+        "message": "blocking unresolved story questions remain"
+      }
+    ],
+    "blockers": [
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-power-opening",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-resource-definitions",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-travel-rules",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-tier-exceptions",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-resource-usage",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-first-volume-foundation",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-volume-timeline",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-artifact-continuity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-ending-cost",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-relationship-stages",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-knowledge-reveal-order",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-opening-growth",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-opening-quality",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-resource-growth-budget",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first-volume-blueprint",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-v1-outline-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-v23-macro",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-guard-return-chain",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-barge-inspection",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-second-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first50-narrative",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-message-arrivals",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-review-capacity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "baseline-content-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "opening-growth-repair",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "opening-quality-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "resource-growth-budget",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first-volume-blueprint",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "v1-outline-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "v23-macro",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "guard-return-chain",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "barge-inspection",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "second-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first50-narrative",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "message-arrivals",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "review-capacity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "convoy-custody-causality",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "north-coast-exit-permit",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "chapter25-claw-sequence",
+        "code": "BLOCKING_QUESTION"
+      }
+    ],
+    "formalAcceptance": false,
+    "productionWrites": false,
+    "limitation": "Checks API contracts and structural references only. Open blockers remain; this does not approve a plan, accept content quality, or certify an atomic save."
+  },
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "blockersClosed": 0,
+  "formalAcceptance": false,
+  "limitation": "Offline candidate only. All v4 changes remain intact, including artifact controls, message-dispatch, arrival/report and Yan identity corrections. This changes only two chapter-21 belief fields; certainty, triggers, later verification and all other design fields remain unchanged. Structural validation does not constitute model semantic review or approval; do not apply during the frozen review."
+}
