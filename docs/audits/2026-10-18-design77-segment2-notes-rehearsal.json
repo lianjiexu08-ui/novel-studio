@@ -1,0 +1,121 @@
+{
+  "kind": "design77_segment2_notes_private_rehearsal",
+  "verified": true,
+  "createdAt": "2026-10-18T22:16:06.028Z",
+  "runnerSha256": "7c896d852f4eb080564c291e581eef0b186f27c163d8918f9f27d9f7ff20e9ec",
+  "preparedSha256": "6e6ad825f8f27c50029d128f005af0ff3ac5b19b0e36e6e6d56c23a4a25df302",
+  "runtimeBindingSha256": "f527094395d8e8387875ba0830aac4fc7cd9c72bb46e35a27b803c97f20640d9",
+  "baseCheckpointSha256": "06d4740410568e5d6783099a3c9d02515dfff5a3489fbe4ca0b483bde07a9d15",
+  "database": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design77-notes2-rehearsal-JKji5x/private.db",
+  "control": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design77-notes2-rehearsal-JKji5x",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "notes": [
+    {
+      "requestKey": "design77-story-batch4-one-hour",
+      "runId": "design_run_8b168b9a-9e6a-4bac-a4cc-b845453ebba3",
+      "stageId": "batch-4",
+      "criterion": "timeline",
+      "expectedInputHash": "98e041a25813c8482c83989ee55106ac892279bf2bdcf99281822e366976c7f8",
+      "expectedCheckHash": "72fa76fb4195ff6607546b05d273ba95e6564dae1bf173552b0cd4e41cf6c096",
+      "claimQuote": "四里轻装求援约一时辰",
+      "explanation": "原评语将“一小时”误写为“一时辰”。第24章已明确秦禾05:00亲见撤哨后出发，四里路约一小时，06:00面交；顾峤07:00交岗后出发，08:15到营外，再用半小时至08:45到位。这是不同人物的两段实体行程，不得把秦的单程改成两小时，也不能据评语重排原章纲。本说明只纠正评语的时间单位，保留原timeline/pass、原回答与引文，不据此宣称全书时序通过。",
+      "evidence": [
+        {
+          "sourceId": "plan/chapters/24",
+          "quote": "四里路约一小时，卯正06:00秦把更新图面交顾"
+        },
+        {
+          "sourceId": "plan/chapters/24",
+          "quote": "辰初07:00与杜完成入口交岗后带二人出发"
+        },
+        {
+          "sourceId": "plan/chapters/24",
+          "quote": "于08:15到营外，再用半小时避开装车区视线接近侧廊。辰末08:45顾到位"
+        }
+      ],
+      "id": "review_note_a7696eb6-abe1-4196-923b-54c38e61adab",
+      "createdAt": "2026-10-18T22:15:46.398Z",
+      "scope": {
+        "worldPackRevision": 41,
+        "storyBibleRevision": 73,
+        "planRevisionId": "plan_14b9ff794fce4e67b7ff6dbf33344e29",
+        "planRevision": 77
+      }
+    },
+    {
+      "requestKey": "design77-story-batch4-daily-one-drop",
+      "runId": "design_run_8b168b9a-9e6a-4bac-a4cc-b845453ebba3",
+      "stageId": "batch-4",
+      "criterion": "growth",
+      "expectedInputHash": "98e041a25813c8482c83989ee55106ac892279bf2bdcf99281822e366976c7f8",
+      "expectedCheckHash": "c09424926b344cfd230d4b089ed67381eb6442150eac78624c2bbd2abef58d16",
+      "claimQuote": "每日三滴、静养、复诊",
+      "explanation": "原评语误将每剂共三滴写成每日三滴。第27章190—192日每日一滴、共三滴，193—199日静养，199日复诊有效才新增5元载，个人库存6→3；第28章200—202日每日一滴、203—209日静养，209日复诊有效才新增第二笔5元载，库存3→0。两剂共六滴，不是每天三滴，不能据评语三倍计量、补造药源或提前入账。原growth/pass及原答保留，本说明只澄清剂量转述，未改变设定或完成整体成长验收。",
+      "evidence": [
+        {
+          "sourceId": "plan/chapters/27",
+          "quote": "第190–192日每日炼化一滴，共三滴"
+        },
+        {
+          "sourceId": "plan/chapters/27",
+          "quote": "林每日实际服一滴，193–199日静养"
+        },
+        {
+          "sourceId": "plan/chapters/27",
+          "quote": "199日复诊确认本剂完整炼化有效，才登记寿储新增5元载、有效剂数由0到1，个人封存原液由6滴减至3滴"
+        },
+        {
+          "sourceId": "plan/chapters/28",
+          "quote": "200–202日每日一滴、203–209日静养。209日复诊确认有效才登记新增5元载，有效剂数从1到2、原液库存从3到0"
+        }
+      ],
+      "id": "review_note_f40f673b-5a1c-4a27-82e6-873f4bd1a398",
+      "createdAt": "2026-10-18T22:15:46.398Z",
+      "scope": {
+        "worldPackRevision": 41,
+        "storyBibleRevision": 73,
+        "planRevisionId": "plan_14b9ff794fce4e67b7ff6dbf33344e29",
+        "planRevision": 77
+      }
+    }
+  ],
+  "preservedWorkFieldDigests": {
+    "activePlanId": "a79cacee9517456fb5abae34e3592ad141a8d092b6782979cdb0aa1996029412",
+    "briefs": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "candidates": "db801c927d61955caf1e94c196129e7ca7a4557cbae7f7f93b7977d2e6ffb6a2",
+    "characters": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "checkpoints": "9360443cd3329deca750224d5f41fd8b848cc87483d84e5d59d8bf1fa6f89d31",
+    "constraintRevision": "95d4361a36944b766410d2e8b0835fb195992e18d6522c653efb90cb1a98b2d0",
+    "covenant": "7b09efc6b0d1edd79e40db6d143a177956b28b40ee5070d303574df8d73121f8",
+    "covenantHistory": "ef48b60cd983a0f4b34cbe25bf37e751eb58681b943b6b8369fdcd5fca1ec745",
+    "designContentReviews": "8b8ab9639e03bd0055431c0e710bacf9dbac0d268f27578ddcb0bfc13e0aed8d",
+    "designHistory": "274ade14f671a707e4f9c29fc3dbf468c0ee60baf53a64ed9f9d4db4242b873a",
+    "designReviewRuns": "fa8c1fc3a531ac2e8d9e75ab0650d8fd6bab1703d396d36fc6377cb815b659ac",
+    "events": "69a4c30b560af422264c89ba8cce8c658bf3d137ec8bcdae5f7025cdc4622590",
+    "id": "e6c77c6af51347285f913e10c068833e392333610313a73f42ae654dbeeebb0b",
+    "impacts": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "manuscripts": "3f9dd7880a530d9eb7ccf9113b140958fe9e182f63c9f706f9c55ceb5c46ffc9",
+    "plans": "6bcb8af5951ba5da1d6f011325759834214331abeb9746342c04a8a1771a3871",
+    "plotNodes": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "relationships": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "stateRevision": "16dc368a89b428b2485484313ba67a3912ca03f2b2b42429174a4f8b3dc84e44",
+    "states": "71af6764cda2e591af608654aa65a05f8b25e4e8f9871c746de158a77a0618fc",
+    "storyBible": "52dad4132aebc941f74ce62612fccb964e01e1772599d9413e4b826010124dd9",
+    "title": "9a392c9dee167243ad8ace1e37c8c750c798509925344a9b052ce05cbb6a54b2",
+    "versions": "ab09691b6b0882a4fa32a704a65a61930f961a7d3e35aa52d872fc017e048fb1",
+    "worldPack": "a98a853874da211d2c156ebc412e055534e8e81d7db8f479d71b3a6f6cf4c7d3",
+    "worldRules": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "oldRunsPreserved": 103,
+  "oldReportsPreserved": 92,
+  "oldAnnotationsPreserved": 39,
+  "annotationsAdded": 2,
+  "restartReadback": true,
+  "rollbackExercised": true,
+  "idempotenceExercised": true,
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "verdictChanges": 0,
+  "questionsResolved": 0,
+  "formalAcceptance": false
+}

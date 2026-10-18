@@ -1,0 +1,91 @@
+{
+  "kind": "design77_segment2_clarification_inputs",
+  "verified": true,
+  "verificationPath": "docs/audits/2026-10-18-design77-notes-continuation-segment-2.json",
+  "verificationSha256": "d7b956307178a605a1bea4f87d3cdfc701f7d3437078f72d4a02edad36f24621",
+  "checkpointSha256": "06d4740410568e5d6783099a3c9d02515dfff5a3489fbe4ca0b483bde07a9d15",
+  "bindingPath": "data/audit-runtimes/design77-runtime-bound.json",
+  "bindingSha256": "f527094395d8e8387875ba0830aac4fc7cd9c72bb46e35a27b803c97f20640d9",
+  "requestPath": "data/audit-runtimes/design77-notes-continuation/model-calls/00021.started.json",
+  "requestSha256": "9ec138bc1b017f77e811420ba9983d17eb25e5eb60bc3fe6804eb4a7ade4088f",
+  "responsePath": "data/audit-runtimes/design77-notes-continuation/model-calls/00021.response.json",
+  "responseSha256": "f08d35cd51be1d302d106fc6d4897b2ba84e86a49cd382d45e821e2a22c3cb2a",
+  "runId": "design_run_8b168b9a-9e6a-4bac-a4cc-b845453ebba3",
+  "stageId": "batch-4",
+  "acceptedStageSha256": "2ec73f25f1381910d99475909c70fe2dd7287505a23e2a7d5b01a82a76a2dd07",
+  "sourcesSent": [
+    {
+      "criterion": "timeline",
+      "sourceId": "plan/chapters/24",
+      "quote": "四里路约一小时，卯正06:00秦把更新图面交顾",
+      "fragmentId": "e185"
+    },
+    {
+      "criterion": "timeline",
+      "sourceId": "plan/chapters/24",
+      "quote": "辰初07:00与杜完成入口交岗后带二人出发",
+      "fragmentId": "e185"
+    },
+    {
+      "criterion": "timeline",
+      "sourceId": "plan/chapters/24",
+      "quote": "于08:15到营外，再用半小时避开装车区视线接近侧廊。辰末08:45顾到位",
+      "fragmentId": "e185"
+    },
+    {
+      "criterion": "growth",
+      "sourceId": "plan/chapters/27",
+      "quote": "第190–192日每日炼化一滴，共三滴",
+      "fragmentId": "e207"
+    },
+    {
+      "criterion": "growth",
+      "sourceId": "plan/chapters/27",
+      "quote": "林每日实际服一滴，193–199日静养",
+      "fragmentId": "e207"
+    },
+    {
+      "criterion": "growth",
+      "sourceId": "plan/chapters/27",
+      "quote": "199日复诊确认本剂完整炼化有效，才登记寿储新增5元载、有效剂数由0到1，个人封存原液由6滴减至3滴",
+      "fragmentId": "e207"
+    },
+    {
+      "criterion": "growth",
+      "sourceId": "plan/chapters/28",
+      "quote": "200–202日每日一滴、203–209日静养。209日复诊确认有效才登记新增5元载，有效剂数从1到2、原液库存从3到0",
+      "fragmentId": "e212"
+    }
+  ],
+  "outputPath": "data/audit-runtimes/design77-notes-continuation/segment2-annotations.json",
+  "outputSha256": "75c59b43cb648d7ca9ae4766ed7c679697550bb77bb1e7f86bc6c662ed8f3e54",
+  "annotationCount": 2,
+  "sourceDigests": [
+    {
+      "requestKey": "design77-story-batch4-one-hour",
+      "sources": [
+        {
+          "id": "plan/chapters/24",
+          "sha256": "7ad494d68d884d15e184bad402c5d31c38b067d6985fe9aa910e755e49970308"
+        }
+      ]
+    },
+    {
+      "requestKey": "design77-story-batch4-daily-one-drop",
+      "sources": [
+        {
+          "id": "plan/chapters/27",
+          "sha256": "e2dfee869b054cccd7eef59526852068dba047e908414659f835da28d7b6b19b"
+        },
+        {
+          "id": "plan/chapters/28",
+          "sha256": "86617a03354dbd12c1341169d46e898f50e2f7189a95bc72354e849b8b2d4cff"
+        }
+      ]
+    }
+  ],
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Source-verified drafts only; original pass judgments remain unchanged. Rehearsal and atomic append are separate."
+}
