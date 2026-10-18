@@ -1,0 +1,37 @@
+{
+  "kind": "design76_duplicate_citation_edit_failure",
+  "verificationPath": "docs/audits/2026-10-18-design76-capacity-review-segment-11.json",
+  "verificationSha256": "29e7f33113589e74bb69578fb04a17d8f7216c771584926258d1e3c790578743",
+  "checkpointSha256": "1b94fd8711bae833e8b981767f3398a537d1bafbb666d8ab9eb2ef26ac1a8fea",
+  "bindingPath": "data/audit-runtimes/design76-citation-capacity-runtime-bound.json",
+  "bindingSha256": "e978d7aab9f0e89c5839fdef6bbea07f910b37a5241d7fc6b9b6678a08d11cce",
+  "calls": [
+    {
+      "path": "data/audit-runtimes/design76-capacity-review/model-calls/00070.started.json",
+      "sha256": "0400abeee3e6fd59594ae0d00a40934949aa4385c45ab4bfce23f269ea293e85"
+    },
+    {
+      "path": "data/audit-runtimes/design76-capacity-review/model-calls/00070.response.json",
+      "sha256": "6d4b7d94280ac83fe85a499bc08c63d7e61fb9c001762e9151f1a40e1c5687fa"
+    },
+    {
+      "path": "data/audit-runtimes/design76-capacity-review/model-calls/00071.started.json",
+      "sha256": "fac8d18cd6b3e36345ab08e1874f4af27c7681599a8afd552de3902a9d5d7335"
+    },
+    {
+      "path": "data/audit-runtimes/design76-capacity-review/model-calls/00071.response.json",
+      "sha256": "faa542a5b9f1e5802516f83bb5dcd8f1a1cc45144ab92ae8e007cb46b5d46f2a"
+    }
+  ],
+  "stageId": "cross-3-4",
+  "firstFailure": "解决待补读项必须引用原问题、原批材料及每个新增来源：cross-1-4/counters；缺少：新增来源 plan/chapters/18、新增来源 plan/chapters/21、新增来源 plan/chapters/23。按本次来源目录选择真实支持片段，不得自动补引文或只删除resolves来掩盖未核验问题。\n解决待补读项必须引用原问题、原批材料及每个新增来源：cross-2-4/counters；缺少：新增来源 plan/chapters/18、新增来源 plan/chapters/21、新增来源 plan/chapters/23。按本次来源目录选择真实支持片段，不得自动补引文或只删除resolves来掩盖未核验问题。",
+  "duplicateCriteria": [
+    "counters",
+    "counters"
+  ],
+  "originalAndRepairRejected": true,
+  "nextAction": "明确同一criterion的多个问题必须在一个updates项中共同核对；保留重复检查拒绝校验，不自动合并两份不同判断。先隔离验证，再恢复正式评审。",
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false
+}

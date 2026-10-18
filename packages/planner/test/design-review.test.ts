@@ -732,6 +732,8 @@ test('explicit citation edits retain unchanged findings and cannot silently lose
   const planner = new JsonDesignPlanner({ complete: async call => {
     if (++calls === 1) return JSON.stringify(first);
     assert.match(JSON.parse(call.user).instruction, /citation_edits/);
+    assert.match(JSON.parse(call.user).instruction, /每个criterion最多一项/);
+    assert.deepEqual(JSON.parse(call.user).resolutionCitationSelection.map((item: { criterion: string; checkId: string }) => [item.criterion, item.checkId]), [['timeline', 'batch-1/timeline'], ['timeline', 'batch-2/timeline']]);
     return JSON.stringify(patch);
   } });
   const result = await planner.reviewDesignContent(request);
