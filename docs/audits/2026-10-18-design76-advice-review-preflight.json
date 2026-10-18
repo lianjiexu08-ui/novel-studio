@@ -1,0 +1,63 @@
+{
+  "kind": "design76_advice_review_preflight",
+  "verified": true,
+  "createdAt": "2026-10-18T10:13:06.516Z",
+  "control": "data/audit-runtimes/design76-advice-review",
+  "databaseSnapshotPath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design76-advice-review/baseline.db",
+  "predecessorCheckpointSha256": "1b94fd8711bae833e8b981767f3398a537d1bafbb666d8ab9eb2ef26ac1a8fea",
+  "predecessorVerificationSha256": "29e7f33113589e74bb69578fb04a17d8f7216c771584926258d1e3c790578743",
+  "baselineSha256": "f82c86c78e2c563dcda445366c57120099605767e48e27b120bcb4b2b1f40706",
+  "runnerSha256": "8b7a529f16159d421bedb45caeac508634f98b777ad3ef1b4f41e0eba01dadba",
+  "hostHelperSha256": "883bb6ae052caec9fe5b0333f4ad0ea1d2d799d9616143079eab4ae531544178",
+  "runtimeBindingSha256": "6a935f07ca21e6ab65d869254be1ada6162085666a0fbcaef51ff1b1e3271504",
+  "changedRuntimeFiles": [
+    "apps/api/test/review-annotations.test.ts",
+    "novel-service-core/src/design-review-annotations.ts",
+    "packages/contracts/src/design-review.ts",
+    "packages/persistence/test/review-annotations.test.ts",
+    "packages/planner/src/index.ts",
+    "packages/planner/test/design-review.test.ts"
+  ],
+  "unchangedSchedulingAndPromptSuffix": true,
+  "changedRepairPrompt": true,
+  "plannerEpochs": [
+    {
+      "afterCall": 0,
+      "bindingPath": "data/audit-runtimes/design76-ui-runtime-v2-bound.json",
+      "bindingSha256": "ec9918d855f80b056351601f297fbbaadb4376ec94010cdb73d3aaa0f6fb58dd"
+    },
+    {
+      "afterCall": 37,
+      "bindingPath": "data/audit-runtimes/design76-citation-runtime-bound.json",
+      "bindingSha256": "e4acd580e352e5617cc588aaa3b34e86afe9a1457b57b3e60528011b4e005e97"
+    },
+    {
+      "afterCall": 39,
+      "bindingPath": "data/audit-runtimes/design76-citation-operations-runtime-bound.json",
+      "bindingSha256": "e7c8ea1854fcda1c44296b8854ea01af14bcda4d5bbf9f509b6d1c4fc02cae48"
+    },
+    {
+      "afterCall": 62,
+      "bindingPath": "data/audit-runtimes/design76-citation-capacity-runtime-bound.json",
+      "bindingSha256": "e978d7aab9f0e89c5839fdef6bbea07f910b37a5241d7fc6b9b6678a08d11cce"
+    },
+    {
+      "afterCall": 71,
+      "bindingPath": "data/audit-runtimes/design76-citation-unique-runtime-bound.json",
+      "bindingSha256": "6a935f07ca21e6ab65d869254be1ada6162085666a0fbcaef51ff1b1e3271504"
+    }
+  ],
+  "shadowProofSha256": "d0ef65e32fe4e9037f29b9bb9e3cec0a4f5e85d8635efc03e788c97179871036",
+  "prefixCalls": 71,
+  "runIds": [
+    "design_run_98b5460a-ed47-4ba2-bb06-7fdded1f910d",
+    "design_run_77e97b37-cbf2-40be-ab17-2de79839c297",
+    "design_run_aa04b61b-0b13-464a-9b21-9205a91600e2",
+    "design_run_f355dadb-f3ee-4b1b-8834-f17bf0f487dc"
+  ],
+  "annotationsPreserved": 9,
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Fresh frozen runtime supports advice annotations and clarifies one repair per criterion. The new baseline includes nine independent annotations. The detached repair and full tests passed; production continuation and complete content acceptance remain unproven."
+}
