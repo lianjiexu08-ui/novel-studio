@@ -1,0 +1,167 @@
+{
+  "kind": "design76_character_father_evidence_stages",
+  "verificationPath": "docs/audits/2026-10-18-design76-notes24-review-segment-25.json",
+  "verificationSha256": "e126300d2843fa6bd3c99c18dcc56e863ffb53ca32a2f4ed1f5fcd1d29ff51eb",
+  "bindingPath": "data/audit-runtimes/design76-fragment-index-runtime-bound.json",
+  "bindingSha256": "8a1875b686f31b79d32ca9c00fa4cfd65931a195ca0c6dfd8547ff2c0507b5e5",
+  "requestPath": "data/audit-runtimes/design76-notes24-review/model-calls/00167.started.json",
+  "requestSha256": "b583f43b36588af30181225f1ce75682fde159f3614b626bf9548572e8a5191a",
+  "responsePath": "data/audit-runtimes/design76-notes24-review/model-calls/00167.response.json",
+  "responseSha256": "f30a16fed2ee7b1c34a929a4a79e29d368c2cc570c04407c5058f67252a7c9fd",
+  "runId": "design_run_aa04b61b-0b13-464a-9b21-9205a91600e2",
+  "stageId": "synthesis-9",
+  "acceptedStageSha256": "a801ff26a8decaf51924d903c227b2dd148e34cc51be34551a9776b6c0f2b2fc",
+  "originalCheckHash": "aea81a76afa8788f37ecd11450b0a6c65ed51434d5d5dc4ada32c5a3a7b4fd33",
+  "originalCheck": {
+    "criterion": "knowledge",
+    "verdict": "pass",
+    "explanation": "秘密知情按实际证物、现场行为和传递条件分层。sec_01限定林辰在第1—32章仅怀疑父案关联、不得推知九鼎全阵或门外情形；sec_04又限定六号箱失踪只支持追查实际搬移者，不能反推完整运输网或改签链。第49章中陆沉川只以亲见“收钱签条”促成陆沉舟有限承认和交出入口，陆仍隐瞒条文内容；第50章林辰选择让巡员当面听取吴伍、卢小满意愿，现场回答仅证明本次扣留与押送，不使其获得程砚位置、原账、第二片或完整改签信息。补读报告据此维持通过，并明确51—100章的宏观节点仍属待写安排，未被误作已发生事实。",
+    "evidence": [
+      {
+        "sourceId": "review-result/followup-cross-2-4/knowledge",
+        "quote": "  \"explanation\": \"补读并核对原问题要求的全部来源后，原通过判断不变。原问题要求检查林辰、苏凌霜、梁九、韩叙等是否把读者视角或后续证据倒灌为已知；sec_01与sec_02已给出早期父案、九鼎线及赵玄极的分阶段知情边界，既有章纲证据也限定了林辰只能依据公开账目、现场证物、有限承认和实际传递消息行动。sec_03进一步限定林辰在第1—64章不知道界门外真实景象，第65章后也只是基于夜凝霜有限证言形成相信，未把门外死渊写成亲见事实。sec_04限定第32章六号箱失踪及第34—39章逐步核验的知识范围，林辰不能因失箱、身份登记或救人提前知道完整转运网、火因或改签链。第49章中林辰只知道陆沉舟承认收钱签条并能指认入口，不知道条内全貌、原账或第二片；第50章则让林辰现场听取吴伍、卢小满和陆沉舟的有限回答，明确程砚不在场、完整改签仍待核实。由此，补读来源与原有认知阶段和第1—50章的行动边界相容；第51—100章尚未逐章展开仍属于设计阶段范围，不构成本项缺陷。\",\n  \"revisionAdvice\": \"\",\n  \"resolves\": [\n    \"cross-2-4/knowledge\"\n  ]\n}\n\nBEGIN INDEPENDENT QUOTE 1.1\n"
+      },
+      {
+        "sourceId": "review-result/followup-cross-2-4/knowledge",
+        "quote": "BEGIN INDEPENDENT QUOTE 1.2\n{\"sourceId\":\"story/secrets/sec_01\",\"unitId\":\"review-unit/149\",\"start\":0,\"end\":583,\"unique\":true}\n{\n  \"knowledgeStages\": [\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 1,\n      \"untilChapter\": 12,\n      \"certainty\": \"suspects\",\n      \"belief\": \"知道残玉与生父有关，追查家仇；尚不掌握护界牺牲的完整经过。\",\n      \"trigger\": \"身世记忆与早期案卷线索。\",\n      \"consequence\": \"追索血晶去向与古境遗迹。\",\n      \"forbiddenInferences\": [\n        \"不能叙述尚未看见的投毒场面\",\n        \"不能因此知道九鼎全套阵图\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 13,\n      \"untilChapter\": 17,\n"
+      },
+      {
+        "sourceId": "review-result/followup-cross-2-4/knowledge",
+        "quote": "      \"characterId\": \"char_05\",\n      \"sinceChapter\": 61,\n      \"untilChapter\": 100,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"巡查档案有林苍玄署名，但不知青玄投毒始末。\",\n      \"trigger\": \"既有巡档资料，本次285日带至外港，66章供林核对。\",\n      \"consequence\": \"有限交证，不替林证明全案。\",\n      \"forbiddenInferences\": [\n\nEND INDEPENDENT QUOTE 1.10\n\nBEGIN INDEPENDENT QUOTE 1.11\n{\"sourceId\":\"story/secrets/sec_02\",\"unitId\":\"review-unit/150\",\"start\":8102,\"end\":8686,\"unique\":true}\n      \"belief\": \"254林亲见两工顶门要求离开、陆协助夺闩并承认本次点交押送、两名普通看守被控制及两工自行出门；只证本次现场行为。程不在现场，林不知道其位置、第二片封匣或改签全貌，未得原账。\",\n"
+      },
+      {
+        "sourceId": "review-result/followup-cross-2-4/knowledge",
+        "quote": "      \"belief\": \"知道六号箱失踪和有人试移，尚不知去向。\",\n      \"trigger\": \"32章风暴后清点只五箱。\",\n      \"consequence\": \"如实登记，追实际搬移者。\",\n      \"forbiddenInferences\": [\n        \"不因本箱失踪就知道九鼎全网、赵指使仓火或所有商盟成员有罪。\",\n        \"不把被救者自报名等同完成身份核实，也不因兄弟关系自动知道陆沉舟另一批改签。\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 34,\n      \"untilChapter\": 34,\n      \"certainty\": \"believes\",\n      \"belief\": \"常说明215日暂存与217日抬至侧门，未知领货人身份；次日粉板已无编号，常没看见谁擦。\",\n\nEND INDEPENDENT QUOTE 1.14\n\nBEGIN INDEPENDENT QUOTE 1.15\n{\"sourceId\":\"story/chapterPlans/bible-chapter-49\",\"unitId\":\"review-unit/215\",\"start\":0,\"end\":516,\"unique\":true}\n{\n"
+      },
+      {
+        "sourceId": "review-result/followup-cross-2-4/knowledge",
+        "quote": "  \"id\": \"bible-chapter-49\",\n  \"chapterNumber\": 49,\n  \"title\": \"弟弟留下\",\n  \"purpose\": \"253日陆经原船岗旁茶摊送条，要弟弟见面后随他离港。沉川将纸条交给巡查，自己留在复核岗等；林贺来向巡查交接北三公共入口排查范围。陆到门前看见巡员仍走入，劝弟赶在天黑前走。沉川把哥哥递来的手推开，说要留港对217领箱负责，并说出220夜送饭时见兄长收钱签条。陆承认动作，却对那张条的内容闭口。弟弟坐回登记桌前，陆终于停止催走，接受到案看护与随身财物登记。他望见北三水台的查找记录，画出自己走过的废砖甬道和无牌附棚入口，提出次晨随巡查辨门。林接过图，巡查当夜查外围出口；兄弟一人留岗配合、一人受看护，各自面对自己的责任。\",\n  \"conflict\": \"陆把带弟离港当成补救，弟却认为再次逃走会让自己的选择继续被哥哥代替。弟只看见收钱签条；陆若开口说内容，就得直面自己参与的另一批货。\",\n  \"turningPoint\": \"沉川主动交条、当面拒绝离港并说出亲见；陆走入有巡员的岗房，接受看护，再把亲走入口交出。他仍隐瞒条内内容，兄弟关系未因指路而和好。\",\n\nEND INDEPENDENT QUOTE 1.15\n\nBEGIN INDEPENDENT QUOTE 1.16\n"
+      },
+      {
+        "sourceId": "review-result/followup-cross-2-4/knowledge",
+        "quote": "{\"sourceId\":\"plan/chapters/50\",\"unitId\":\"review-unit/289\",\"start\":0,\"end\":537,\"unique\":true}\n{\n  \"id\": \"chapter-50\",\n  \"chapterNumber\": 50,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"门闩交给谁\",\n  \"summary\": \"254晨，陆带巡查到北三门。看守称吴伍、卢小满是自愿留下候工，贺在门外喊名，两人却要求出去。看守急着合门，吴卢从内侧顶住，旧押运头目陆被喊来帮忙压门。林原已握住剑柄，见门缝里露出两人的手，松开剑，让巡员走到能听清回答的位置，要求当面问他们是否愿留。陆伸向木闩的手停住，转而向外拉；一名巡员夺闩控制持闩者，另一名截住想退向后巷的看守。吴卢自己推开门走进外院。吴指认陆曾把他们点交到这里，陆当着巡员承认，不再用认路掩盖押送。贺说船修好便能接他们回去，吴却说回不回船要由他们自己定，卢也不愿立即上船。贺让开去船坞的方向，先陪两人去安全落脚。五名雇工至此全部脱控；被谁雇用、为谁作证，仍由他们自己回答。\",\n"
+      }
+    ],
+    "revisionAdvice": ""
+  },
+  "actualSupport": [
+    {
+      "sourceId": "story/secrets/sec_01",
+      "quote": "只有家传笔记和残玉与父亲有关，未确认守门或投毒经过。",
+      "embedded": [
+        {
+          "parent": "review-result/followup-cross-2-4/knowledge",
+          "fragment": "e5"
+        },
+        {
+          "parent": "review-result/followup-cross-2-4/knowledge",
+          "fragment": "e9"
+        }
+      ]
+    },
+    {
+      "sourceId": "story/secrets/sec_01",
+      "quote": "父亲曾参与守门工作的证据来自署名图纸和撤离记录；尚不知父案全貌。",
+      "embedded": [
+        {
+          "parent": "review-result/followup-cross-2-4/knowledge",
+          "fragment": "e6"
+        },
+        {
+          "parent": "review-result/followup-cross-2-4/knowledge",
+          "fragment": "e10"
+        }
+      ]
+    },
+    {
+      "sourceId": "story/secrets/sec_01",
+      "quote": "第18章179日，凭顾新签的限时调阅单，林苏共同核对韩叙交接的实物记录。",
+      "embedded": [
+        {
+          "parent": "review-result/followup-cross-2-4/knowledge",
+          "fragment": "e6"
+        },
+        {
+          "parent": "review-result/followup-cross-2-4/knowledge",
+          "fragment": "e10"
+        }
+      ]
+    },
+    {
+      "sourceId": "story/secrets/sec_01",
+      "quote": "残片刻痕可与旧图对应，为追查收货链提供线索，未得到过去的完整影像。",
+      "embedded": [
+        {
+          "parent": "review-result/followup-cross-2-4/knowledge",
+          "fragment": "e7"
+        },
+        {
+          "parent": "review-result/followup-cross-2-4/knowledge",
+          "fragment": "e11"
+        }
+      ]
+    },
+    {
+      "sourceId": "story/secrets/sec_01",
+      "quote": "不知九鼎全阵、父案投毒全貌或门外死渊",
+      "embedded": [
+        {
+          "parent": "review-result/followup-cross-2-4/knowledge",
+          "fragment": "e5"
+        },
+        {
+          "parent": "review-result/followup-cross-2-4/knowledge",
+          "fragment": "e6"
+        },
+        {
+          "parent": "review-result/followup-cross-2-4/knowledge",
+          "fragment": "e7"
+        },
+        {
+          "parent": "review-result/followup-cross-2-4/knowledge",
+          "fragment": "e10"
+        },
+        {
+          "parent": "review-result/followup-cross-2-4/knowledge",
+          "fragment": "e11"
+        }
+      ]
+    }
+  ],
+  "annotationInput": {
+    "requestKey": "design76-character-father-evidence-stages",
+    "runId": "design_run_aa04b61b-0b13-464a-9b21-9205a91600e2",
+    "stageId": "synthesis-9",
+    "criterion": "knowledge",
+    "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+    "expectedCheckHash": "aea81a76afa8788f37ecd11450b0a6c65ed51434d5d5dc4ada32c5a3a7b4fd33",
+    "claimQuote": "sec_01限定林辰在第1—32章仅怀疑父案关联",
+    "explanation": "“第1—32章仅怀疑父案关联”压平了这段期间已经发生的证据变化。sec_01的suspects仍表示父案全貌未明，不表示每个局部事实都只有无证猜测：13—17章只有家传物与有限信息，18章179日林苏已凭限时调阅单核对韩叙交接的署名图纸和撤离记录，获得父亲参与守门的具体依据；27—32章又以实际残片刻痕和旧图对应追查收货链。上述原文以独立摘录实际嵌在本次前置报告中。本说明保留原suspects标签、原局部pass和未知边界，不将父案全貌、投毒、九鼎全阵或门外景象提前确认为已知；同时不得因为概括为“仅怀疑”而撤回18章已取得的局部证据或重复安排首次发现。这里只补明被概括省去的证据阶段，不声称本次综合重读了完整原档或通过全局验收。",
+    "evidence": [
+      {
+        "sourceId": "story/secrets/sec_01",
+        "quote": "只有家传笔记和残玉与父亲有关，未确认守门或投毒经过。"
+      },
+      {
+        "sourceId": "story/secrets/sec_01",
+        "quote": "父亲曾参与守门工作的证据来自署名图纸和撤离记录；尚不知父案全貌。"
+      },
+      {
+        "sourceId": "story/secrets/sec_01",
+        "quote": "第18章179日，凭顾新签的限时调阅单，林苏共同核对韩叙交接的实物记录。"
+      },
+      {
+        "sourceId": "story/secrets/sec_01",
+        "quote": "残片刻痕可与旧图对应，为追查收货链提供线索，未得到过去的完整影像。"
+      },
+      {
+        "sourceId": "story/secrets/sec_01",
+        "quote": "不知九鼎全阵、父案投毒全貌或门外死渊"
+      }
+    ]
+  },
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Clarifies compressed evidence stages without upgrading the original suspects certainty label. Only embedded parent quotations were sent; no annotation append, verdict change or design mutation."
+}

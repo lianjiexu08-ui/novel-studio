@@ -1,0 +1,133 @@
+{
+  "kind": "design76_segment25_notes_private_rehearsal",
+  "verified": true,
+  "createdAt": "2026-10-18T17:20:03.018Z",
+  "runnerSha256": "88dbc82bf7b423baae8e5309caa3dbd13dadda4feab3a253f31ced2d595a9d50",
+  "preparedSha256": "d185e49edc1dba9f8627e7a2423a81b309c335acc5bbeec8b01c9ff0917534fc",
+  "runtimeBindingSha256": "8a1875b686f31b79d32ca9c00fa4cfd65931a195ca0c6dfd8547ff2c0507b5e5",
+  "baseCheckpointSha256": "e1f65a5f2237142ec4bb5a574aeed061a65ea49b614f21cc8057d6cb648ac034",
+  "database": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design76-notes25-rehearsal-Vj8Bnt/private.db",
+  "control": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design76-notes25-rehearsal-Vj8Bnt",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "notes": [
+    {
+      "requestKey": "design76-story-north-voyage-dates",
+      "runId": "design_run_f355dadb-f3ee-4b1b-8834-f17bf0f487dc",
+      "stageId": "followup-cross-1-2/timeline",
+      "criterion": "timeline",
+      "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+      "expectedCheckHash": "c71c192d2b91875fe9f8c52ac6f1c521cbe2502ea6ae968adbfcb4bc44ad1631",
+      "claimQuote": "271—281日五昼夜北航",
+      "explanation": "此处将北行准备和陆路日期并入了海程。原文是271—274日沿岸陆路到极焱，275日实际购买两张保温客舱票，276日暮离港、281日暮抵葬骨，海上航行恰为五昼夜；271—281日不能整体称为五昼夜北航。271日拨款、陆路放行和275日购票均不代表已经启航，也不能将276日提前到271日，或把五昼夜改成十昼夜。该航期还以实际登船核验和持续供暖为条件，延期须改签并重排后续日期。本说明只校正评语中的出发日期及陆海阶段划分，保留原局部pass、cross-1-2/timeline补读解决声明与原始回答，不改原章纲、不代表其他时序和角色认知矛盾已经解决。",
+      "evidence": [
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "quote": "第271–274日乘普通车沿每日复核开放的既有沿岸驿道从天宝外港到极焱天港"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "quote": "第275日贺在极焱航司柜台按本航次实报5000/人支付10000，购买两张普通保温客舱票"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "quote": "276日暮离港、281日暮抵葬骨外港，五昼夜完整航程。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "quote": "原276—281航期仅适用于本次五日供暖实际持续的正常路径。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "quote": "延期就改签并重排后续日期和实际费用，不能保持原抵达日。"
+        }
+      ],
+      "id": "review_note_b2dd42ec-7ad5-452f-9456-72f25c479c99",
+      "createdAt": "2026-10-18T17:19:40.909Z",
+      "scope": {
+        "worldPackRevision": 40,
+        "storyBibleRevision": 72,
+        "planRevisionId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+        "planRevision": 76
+      }
+    },
+    {
+      "requestKey": "design76-character-father-evidence-stages",
+      "runId": "design_run_aa04b61b-0b13-464a-9b21-9205a91600e2",
+      "stageId": "synthesis-9",
+      "criterion": "knowledge",
+      "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+      "expectedCheckHash": "aea81a76afa8788f37ecd11450b0a6c65ed51434d5d5dc4ada32c5a3a7b4fd33",
+      "claimQuote": "sec_01限定林辰在第1—32章仅怀疑父案关联",
+      "explanation": "“第1—32章仅怀疑父案关联”压平了这段期间已经发生的证据变化。sec_01的suspects仍表示父案全貌未明，不表示每个局部事实都只有无证猜测：13—17章只有家传物与有限信息，18章179日林苏已凭限时调阅单核对韩叙交接的署名图纸和撤离记录，获得父亲参与守门的具体依据；27—32章又以实际残片刻痕和旧图对应追查收货链。上述原文以独立摘录实际嵌在本次前置报告中。本说明保留原suspects标签、原局部pass和未知边界，不将父案全貌、投毒、九鼎全阵或门外景象提前确认为已知；同时不得因为概括为“仅怀疑”而撤回18章已取得的局部证据或重复安排首次发现。这里只补明被概括省去的证据阶段，不声称本次综合重读了完整原档或通过全局验收。",
+      "evidence": [
+        {
+          "sourceId": "story/secrets/sec_01",
+          "quote": "只有家传笔记和残玉与父亲有关，未确认守门或投毒经过。"
+        },
+        {
+          "sourceId": "story/secrets/sec_01",
+          "quote": "父亲曾参与守门工作的证据来自署名图纸和撤离记录；尚不知父案全貌。"
+        },
+        {
+          "sourceId": "story/secrets/sec_01",
+          "quote": "第18章179日，凭顾新签的限时调阅单，林苏共同核对韩叙交接的实物记录。"
+        },
+        {
+          "sourceId": "story/secrets/sec_01",
+          "quote": "残片刻痕可与旧图对应，为追查收货链提供线索，未得到过去的完整影像。"
+        },
+        {
+          "sourceId": "story/secrets/sec_01",
+          "quote": "不知九鼎全阵、父案投毒全貌或门外死渊"
+        }
+      ],
+      "id": "review_note_e9657aef-d27a-4296-974f-346d891350b3",
+      "createdAt": "2026-10-18T17:19:40.910Z",
+      "scope": {
+        "worldPackRevision": 40,
+        "storyBibleRevision": 72,
+        "planRevisionId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+        "planRevision": 76
+      }
+    }
+  ],
+  "preservedWorkFieldDigests": {
+    "activePlanId": "a79cacee9517456fb5abae34e3592ad141a8d092b6782979cdb0aa1996029412",
+    "briefs": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "candidates": "db801c927d61955caf1e94c196129e7ca7a4557cbae7f7f93b7977d2e6ffb6a2",
+    "characters": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "checkpoints": "9360443cd3329deca750224d5f41fd8b848cc87483d84e5d59d8bf1fa6f89d31",
+    "constraintRevision": "6102effdcc3de43e410c83679178440ad75d323410a3d07620b5cd3fc11e3ea7",
+    "covenant": "7b09efc6b0d1edd79e40db6d143a177956b28b40ee5070d303574df8d73121f8",
+    "covenantHistory": "ef48b60cd983a0f4b34cbe25bf37e751eb58681b943b6b8369fdcd5fca1ec745",
+    "designContentReviews": "8b8ab9639e03bd0055431c0e710bacf9dbac0d268f27578ddcb0bfc13e0aed8d",
+    "designHistory": "f2347b762def7bec1232ebed9113bcc4fb424df8b0f09e37b74bcef254165a1b",
+    "designReviewRuns": "5287f598cd1627982fce80cc4d79c62aa716be1c2ab8e2deeb8c63fadef86173",
+    "events": "69a4c30b560af422264c89ba8cce8c658bf3d137ec8bcdae5f7025cdc4622590",
+    "id": "e6c77c6af51347285f913e10c068833e392333610313a73f42ae654dbeeebb0b",
+    "impacts": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "manuscripts": "3f9dd7880a530d9eb7ccf9113b140958fe9e182f63c9f706f9c55ceb5c46ffc9",
+    "plans": "6afb21f18712fce391f7c0c715b9791eb95f922a669d1cc1a96b2677e905b396",
+    "plotNodes": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "relationships": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "stateRevision": "16dc368a89b428b2485484313ba67a3912ca03f2b2b42429174a4f8b3dc84e44",
+    "states": "71af6764cda2e591af608654aa65a05f8b25e4e8f9871c746de158a77a0618fc",
+    "storyBible": "ae92c644e55aa89fd87920f431acdb817e50351843daddd6cb65d8508350ef02",
+    "title": "9a392c9dee167243ad8ace1e37c8c750c798509925344a9b052ce05cbb6a54b2",
+    "versions": "ab09691b6b0882a4fa32a704a65a61930f961a7d3e35aa52d872fc017e048fb1",
+    "worldPack": "c2c2dd54716be54571a024440590ebbb8c47b55eb37f2b490bfaf24c5bf6be6d",
+    "worldRules": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "oldRunsPreserved": 99,
+  "oldReportsPreserved": 92,
+  "oldAnnotationsPreserved": 30,
+  "annotationsAdded": 2,
+  "restartReadback": true,
+  "rollbackExercised": true,
+  "idempotenceExercised": true,
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "verdictChanges": 0,
+  "questionsResolved": 0,
+  "formalAcceptance": false
+}

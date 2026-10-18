@@ -1,0 +1,67 @@
+{
+  "kind": "design76_segment25_ui_verification",
+  "observedAt": "2026-10-18T17:26:09.518749+00:00",
+  "apiPid": 67355,
+  "health": {
+    "status": 200,
+    "body": {
+      "ok": true
+    },
+    "corsOrigin": "http://127.0.0.1:5180"
+  },
+  "url": "http://127.0.0.1:5180/#/works/work_8b6c9133e13d404083ca33acc63f4f61/design",
+  "browser": "iab",
+  "tabId": "24",
+  "observedBy": "cua_repl accessibility snapshots and native clicks",
+  "progress": {
+    "world": "37/95",
+    "power": "33/73",
+    "characters": "33/47",
+    "story": "31/75"
+  },
+  "blockersVisible": 41,
+  "designStillPending": true,
+  "proseProductionLockedVisible": true,
+  "details": [
+    {
+      "stageId": "followup-cross-1-2/timeline",
+      "annotationId": "review_note_d70dec40-8175-44c3-95e5-a68e390097bd",
+      "verdictVisible": "pass",
+      "originalClaimVisible": "271—281日五昼夜北航",
+      "independentRecordExpanded": true,
+      "clarificationVisible": "271—274陆路，275购票，276日暮至281日暮才是五昼夜海程；延期须重排日期。",
+      "sourceQuotesVisible": 5,
+      "localScopeWarningVisible": true,
+      "originalExecutionGroupsVisible": 1,
+      "resolvesVisible": "cross-1-2/timeline",
+      "rawAnswerDisclosureExpanded": true,
+      "originalResponsesVisible": 1
+    },
+    {
+      "stageId": "synthesis-9",
+      "annotationId": "review_note_e68b75ec-0ff6-4a93-ace6-ace8d4fa29cb",
+      "verdictVisible": "pass",
+      "originalClaimVisible": "sec_01限定林辰在第1—32章仅怀疑父案关联",
+      "independentRecordExpanded": true,
+      "clarificationVisible": "父案全貌仍为suspects；18章实物记录及27章刻痕对应已经取得，不得因综合概括而撤回或重复发现。",
+      "sourceQuotesVisible": 5,
+      "partialSynthesisWarningVisible": true,
+      "originalExecutionGroupsVisible": 1,
+      "rawAnswerDisclosureExpanded": true,
+      "originalResponsesVisible": 1
+    }
+  ],
+  "observation": "After API restoration, one manual read-only progress refresh cleared the stale fetch-error display. Current progress, 41 blockers, pending proposal and prose gate were visible. Both independent records were expanded with five quotes, original claims and pass verdicts; both raw disclosures showed one original response. One raw-disclosure click failed during accordion layout change and succeeded after fresh AX observation. The character annotation wait timed out while the original read remained pending; it completed without reload, model retry or duplicate write.",
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "UI readback only; no global acceptance, blocker closure, candidate application or prose validation.",
+  "startupPath": "data/audit-runtimes/design76-api-start-67355.json",
+  "startupSha256": "d57b7b719f114332f6a8c693e52dd77313e0a542d0d36f87bdf2e8e101cd53c5",
+  "verificationPath": "docs/audits/2026-10-18-design76-notes24-review-segment-25.json",
+  "verificationSha256": "e126300d2843fa6bd3c99c18dcc56e863ffb53ca32a2f4ed1f5fcd1d29ff51eb",
+  "notesPath": "docs/audits/2026-10-18-design76-segment25-notes-applied.json",
+  "notesSha256": "a494efe074f31cc71592c7fb25814d3a34489f0ce3fcfdf9e6f1a08d7dc741f2",
+  "scopePath": "docs/audits/2026-10-18-design76-segment25-source-scope.json",
+  "scopeSha256": "62d5dce1c2172667915b1327ec4036da14778c5e9083c819517631758d4e3383"
+}
