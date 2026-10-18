@@ -1,0 +1,54 @@
+{
+  "kind": "design76_production_ui_restored",
+  "verified": true,
+  "observedAt": "2026-10-18T06:49:57.936Z",
+  "backend": {
+    "pid": 10888,
+    "startedAt": "2026-10-18T06:46:26.620Z",
+    "runtimeRoot": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design76-ui-runtime-v2",
+    "sourceCommit": "ca459394c0fc0e9135ec4aa16cc24da2d51810f2",
+    "preflightSha256": "13574dbb8862b0e32de6707c46ca9fbcc955e79a779b8b5fa62a5e43eb218a02",
+    "settingsUnchangedAtStartup": true,
+    "backendPort": 8787,
+    "corsOrigin": "http://127.0.0.1:5180",
+    "batchWritingEnabled": false
+  },
+  "frontend": {
+    "pid": 10891,
+    "port": 5180,
+    "outDir": "data/audit-ui/design76-review/dist-v3"
+  },
+  "http": {
+    "verified": true,
+    "at": "2026-10-18T06:47:44.526Z",
+    "health": 200,
+    "annotation": 200,
+    "cors": "http://127.0.0.1:5180",
+    "noteId": "review_note_89af01bd-e18b-4df2-bf23-39b519805ad0",
+    "sourceIds": [
+      "story/characters/char_16",
+      "story/characters/char_21",
+      "plan/milestones/ms_v2_fire"
+    ]
+  },
+  "artifacts": {
+    "data/audit-ui/design76-review/production.ax.txt": "0d734427125f2999aaab7c816d5f3a7970cdd38cdd9b9c351917cf96d7ba6c79",
+    "data/audit-ui/design76-review/production-annotation.ax.txt": "178849a179753860578eb532dbf96541ca48b5ca2620b0dfcd2b724251e72105",
+    "data/audit-ui/design76-review/production.png": "dc8d8a4ecce973432ec2b382fd0085e11401543dd2b7e2fdef1f68389ac72af5",
+    "data/audit-ui/design76-review/production-annotation.png": "a383702b3b6d9a6db760243937f534a09494ef9ba3f45502a4b30ebdfc5de81a",
+    "data/audit-runtimes/design76-api-start-10888.json": "9620327b90ee131698c476f64bae704c14ed334e877a47d52c7d36c77b44b389",
+    "docs/audits/2026-10-18-design76-ui-api-preflight-v3.json": "13574dbb8862b0e32de6707c46ca9fbcc955e79a779b8b5fa62a5e43eb218a02"
+  },
+  "formalReview": {
+    "status": "stopped_after_stage_limit",
+    "segment": 1,
+    "completedSteps": 24,
+    "totalCalls": 29,
+    "workerAbsent": true,
+    "formalAcceptance": false
+  },
+  "productionAnnotationAdded": 1,
+  "proseGenerated": false,
+  "blockersClosed": 0,
+  "limitation": "Full-history reads remain slow. Coordinate standalone review worker access before resuming; shared-client queue does not serialize separate processes."
+}
