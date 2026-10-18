@@ -1,0 +1,73 @@
+{
+  "kind": "design75_applied_as_proposal",
+  "createdAt": "2026-10-18T04:44:02.739Z",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "sourcePlanId": "plan_cfd96dcb946a49e28109511c74dbd3a0",
+  "appliedPlanId": "plan_dec14a159f674b83ab34a4aac0ba8243",
+  "candidatePath": "data/design-candidates/design75-technique-v1.json",
+  "candidateSha256": "c6132ee7093ab96cef2156dbc6d43b9b6fd02eef01584dca0ef7000e1ce48785",
+  "expectedInputHash": "5c28be6fb3cb7ab07399e262b53ca131968665660605399add0908e1699c7efc",
+  "reviews": {
+    "world": {
+      "inputSha256": "911647fe93accfbfb4a145ffe85ad868c68a69e6a357bfebcc2ac715d6ad63bc",
+      "resultSha256": "86141a2c3808f969164262e00cb8845d4b98ec98d805073cf540ed5d266eb4d8",
+      "responses": 1,
+      "checks": [
+        {
+          "criterion": "history",
+          "verdict": "pass"
+        }
+      ]
+    },
+    "power": {
+      "inputSha256": "6b0e9c69c045351b7bace4110efb95f82b0e83288914b09ecfd5dee879e847c6",
+      "resultSha256": "1a8d805ada180b221ba021c171a285093fbdbcaff4a10edd266fa4caa004d665",
+      "responses": 1,
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "costs",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "counters",
+          "verdict": "pass"
+        }
+      ]
+    },
+    "story": {
+      "inputSha256": "31cadc07ce44575b0e6e43a7072150c90e511b325cfefc820fc71ff0a71fd649",
+      "resultSha256": "07ca87e042f079c217821746f3df100fd6cd94bd64c2c69dbae448a5688c763c",
+      "responses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        }
+      ]
+    }
+  },
+  "verified": true,
+  "revisions": {
+    "world": 40,
+    "storyBible": 72,
+    "plan": 75,
+    "approvedPlan": 10
+  },
+  "historicalCounts": {
+    "plans": 74,
+    "designHistory": 110,
+    "runs": 88,
+    "reports": 92
+  },
+  "allHistoryAndProsePreserved": true,
+  "blockersRetained": 41,
+  "blockersClosed": 0,
+  "formalAcceptance": false,
+  "proseGenerated": false,
+  "productionDesignSaves": 1,
+  "nextRequiredAction": "Four-area formal review of design75; local pass does not approve prose."
+}

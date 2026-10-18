@@ -1,0 +1,247 @@
+{
+  "createdAt": "2026-10-18T04:39:48.306Z",
+  "kind": "design75_unapplied_technique_acquisition_repair",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "basePlanId": "plan_cfd96dcb946a49e28109511c74dbd3a0",
+  "basePlanRevision": 74,
+  "expectedInputHash": "5c28be6fb3cb7ab07399e262b53ca131968665660605399add0908e1699c7efc",
+  "baselinePath": "data/design-candidates/design75-baseline.json",
+  "baseCandidateSha256": "a373a94701cb8394c30848e254651f14affd1705ef32d552dc56553a4cabb75b",
+  "candidatePath": "data/design-candidates/design75-technique-v1.json",
+  "candidateSha256": "c6132ee7093ab96cef2156dbc6d43b9b6fd02eef01584dca0ef7000e1ce48785",
+  "confirmedFindingPath": "docs/audits/2026-10-18-design74-technique-access.json",
+  "changes": [
+    "tech_19归属、受限借阅与实际授课权限",
+    "同一劳务合同明确现金24枚和一次课程名额，保留3+14+7账",
+    "330日前实际验收、医修准许、借页授课及复述后开练",
+    "三段教学分别对应六个有效周期，失败暂停与复诊恢复，不自动掌握"
+  ],
+  "validation": {
+    "valid": true,
+    "issues": [],
+    "warnings": [
+      {
+        "path": "worldPack",
+        "message": "blocking unresolved questions remain"
+      },
+      {
+        "path": "storyBible",
+        "message": "blocking unresolved story questions remain"
+      }
+    ],
+    "blockers": [
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-power-opening",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-resource-definitions",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-travel-rules",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-tier-exceptions",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-resource-usage",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-first-volume-foundation",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-volume-timeline",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-artifact-continuity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-ending-cost",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-relationship-stages",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-knowledge-reveal-order",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-opening-growth",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-opening-quality",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-resource-growth-budget",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first-volume-blueprint",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-v1-outline-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-v23-macro",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-guard-return-chain",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-barge-inspection",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-second-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first50-narrative",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-message-arrivals",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-review-capacity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "baseline-content-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "opening-growth-repair",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "opening-quality-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "resource-growth-budget",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first-volume-blueprint",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "v1-outline-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "v23-macro",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "guard-return-chain",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "barge-inspection",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "second-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first50-narrative",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "message-arrivals",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "review-capacity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "convoy-custody-causality",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "north-coast-exit-permit",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "chapter25-claw-sequence",
+        "code": "BLOCKING_QUESTION"
+      }
+    ],
+    "formalAcceptance": false,
+    "productionWrites": false,
+    "limitation": "Checks API contracts and structural references only. Open blockers remain; this does not approve a plan, accept content quality, or certify an atomic save."
+  },
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "proseGenerated": false,
+  "blockersClosed": 0
+}

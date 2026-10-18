@@ -1,0 +1,53 @@
+{
+  "observedAt": "2026-10-18T04:32:35.412Z",
+  "kind": "design74_read_only_ui_smoke",
+  "sourceCommit": "691c145",
+  "snapshotProofPath": "docs/audits/2026-10-18-design74-review-segment-0.json",
+  "snapshotProofSha256": "30b2641d8412b6f547155b6c81733e33e105c7101942edb36d0e4eb4bc9010c2",
+  "databaseSnapshotPath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design74-review/verify-segment-0-d21Y3J/production.db",
+  "uiUrl": "http://127.0.0.1:5184/#/works/work_8b6c9133e13d404083ca33acc63f4f61/design",
+  "backend": "in_memory_copy_of_verified_sqlite_snapshot",
+  "mutationRoutes": "GET/OPTIONS only; all other methods return405",
+  "observations": {
+    "world": 39,
+    "storyBible": 71,
+    "latestPlan": 74,
+    "approvedPlan": 10,
+    "blockers": 41,
+    "unresolvedQuestions": 58,
+    "questionRecords": 60,
+    "historicalRuns": 87,
+    "historicalReports": 92,
+    "designHistoryVersions": 110,
+    "worldReviewCompleted": 1,
+    "worldReviewTotal": 55,
+    "selectedPlanStatus": "待批准提案",
+    "proseGate": "正文生产尚未开放",
+    "chapterOutlineCount": 50,
+    "targetChapterCount": 100
+  },
+  "verifiedInteractions": [
+    "打开世界构建页，默认最新计划74，显示当前及批准版本和阻塞数量",
+    "展开当前任务批次列表，查看batch-1原文与结果",
+    "批次弹窗显示世界39/圣经71/计划74及仅限本批结论提示",
+    "展开地理证据并打开review-unit/5，实际显示ax_03界门封禁律原文"
+  ],
+  "screenshots": [
+    {
+      "path": "data/audit-runtimes/design74-ui-check/batch-review.png",
+      "sha256": "1a6381d2830db377caa4207ff454b4313f76706397247934d3e926a618e8ebd3"
+    },
+    {
+      "path": "data/audit-runtimes/design74-ui-check/source-evidence.png",
+      "sha256": "bad1661178949b7cc10a54cc024939a81ac525043064fb537ad8a4fe1f8050f7"
+    }
+  ],
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitations": [
+    "只验证已完成第0段的只读快照，不代表实时后台进度",
+    "没有点击生成、继续评审、锁定、批准或编辑按钮",
+    "不能据界面可显示推断叙事质量已通过"
+  ]
+}
