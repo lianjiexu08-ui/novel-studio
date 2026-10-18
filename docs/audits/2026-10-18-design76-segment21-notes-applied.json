@@ -1,0 +1,221 @@
+{
+  "kind": "design76_segment21_notes_appended",
+  "verified": true,
+  "createdAt": "2026-10-18T15:07:16.025Z",
+  "runnerSha256": "670e3993f6ff031577a38c4d1d86c6ba25c9a91fee6e1e421084b2e0316ba164",
+  "preparedSha256": "11f579abb01255c93db24b5bc387c8e8ae3b454eab401d319957576f5d7836b1",
+  "runtimeBindingSha256": "8a1875b686f31b79d32ca9c00fa4cfd65931a195ca0c6dfd8547ff2c0507b5e5",
+  "baseCheckpointSha256": "d060375b5ae5af01a14fe95c24724a559eb8dc0a2357ead02b8618b02a3a6e04",
+  "database": "/Users/lianjie/Documents/ChatGPT/novel/data/novel-studio.db",
+  "control": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design76-notes21-apply-UlrC9x",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "notes": [
+    {
+      "requestKey": "design76-character-report-recipient",
+      "runId": "design_run_aa04b61b-0b13-464a-9b21-9205a91600e2",
+      "stageId": "followup-cross-4-5/knowledge",
+      "criterion": "knowledge",
+      "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+      "expectedCheckHash": "a55cfc8a64667b6fabe5914a7ba856cda4ec8f914a95c1dee0219c26c2532c4e",
+      "claimQuote": "林辰在第50—52章只知道附棚现场行为，53章才通过程报形成受限认知，54章只确认回令送达，73章才收到程当面交来的封匣与自述",
+      "explanation": "这句评语从“林辰”连续叙述到了本属赵玄极的消息，接收者混淆。第50—52章的现场见闻属于林辰；53章林辰拟取得的是陆沉舟新写自述的签认副本，不是程砚给赵的报告。同在53章，262日实际阅程第一报者是赵玄极；54章273日收回268签收联、只确认旧令送达者仍是赵，林苏不知道交接。73章318日由程面交封匣原物并报告北境货损、由赵府登记封存，林苏未在场，也未因此得到第二片或该报告。后续消息须继续逐人区分：95章苏收存原令后与林当面核看，99章赵收到质询、答询不使林苏同步读到其回答。原局部pass和原补读解决声明保留，本说明只纠正评语主语，不新增消息渠道、不提前角色知情、不更改持物或关闭已知消息链与身份时点问题。",
+      "evidence": [
+        {
+          "sourceId": "story/arcBeats/message-first-read",
+          "quote": "第53章第262日。赵府收发房据程报一号签收、交赵亲阅。赵只信为程的利己自述，不鉴定匣内物，不知道陆53交页或291北境未来结果。"
+        },
+        {
+          "sourceId": "story/arcBeats/message-first-ack",
+          "quote": "第54章第273日。骑使带268程签收联经269–271海程及271–273陆驿回到乾都，当面交赵。赵只确认旧令已送达，不确认毁账是否执行；回执不能含291北境未来事件。林苏仍不知道此番交接。"
+        },
+        {
+          "sourceId": "story/arcBeats/message-north-report",
+          "quote": "第73章第318日。程301离葬骨、306极焱、310天宝、312–314海程到云梦、318乾都，当面交封匣原物并自述北境货损与有人获救。赵封存登记不启动；报述非全貌，林苏未在场。"
+        },
+        {
+          "sourceId": "story/secrets/sec_02",
+          "quote": "53章拟陆在巡员、贺见证下书写签认；原件由赤霄巡查保存，林当面核对并取得陆与见证者签认的副本。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_training",
+          "quote": "程往返交通食宿出自身商号经费，报述不让林苏同步知情；318赵府只封存第二片原物，不启用。"
+        },
+        {
+          "sourceId": "story/secrets/sec_02",
+          "quote": "95章苏保住实际交到护卫手里的命令并与林核看。"
+        },
+        {
+          "sourceId": "story/secrets/sec_02",
+          "quote": "质询材料没有证明十年前投毒全貌；林苏不因赵答询就同步读到他的回答。"
+        }
+      ],
+      "id": "review_note_0b30c81e-a921-487a-9db5-5f8906a34312",
+      "createdAt": "2026-10-18T15:07:05.773Z",
+      "scope": {
+        "worldPackRevision": 40,
+        "storyBibleRevision": 72,
+        "planRevisionId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+        "planRevision": 76
+      }
+    },
+    {
+      "requestKey": "design76-story-patrol-rescue-day",
+      "runId": "design_run_f355dadb-f3ee-4b1b-8834-f17bf0f487dc",
+      "stageId": "followup-batch-2/timeline",
+      "criterion": "timeline",
+      "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+      "expectedCheckHash": "65ca0795b932bb539b01a6ca14ccfca855fe5293d622377e354a55321398c9d9",
+      "claimQuote": "第43—45章承接244日戌初报警、切索、接板与次日巡艇分趟接人",
+      "explanation": "“次日巡艇分趟接人”应为当晚244日入夜的接应。第43—44章是244日戌初报警、切索及过板；第45章开场继续同一夜，巡艇绕外弯到场，巡员用小划舟分趟接人，贺最后离开裂底船。245日清晨才是医棚分诊、清点名单和工人交夹，不能把医疗次日误当成救援次日，也不能在章节交界额外插入一夜等待。原时间线局部pass与补读解决声明保留，本说明只纠正评语相对日期，不移动真实章纲事件、不重复接救、不据此批准后续正文。",
+      "evidence": [
+        {
+          "sourceId": "plan/chapters/44",
+          "quote": "第244日戌初至入夜；承接43章已报警登船和钩索拖偏，直接从切索开始"
+        },
+        {
+          "sourceId": "plan/chapters/45",
+          "quote": "244夜巡艇分趟接人，贺最后离开自己的裂底船。"
+        },
+        {
+          "sourceId": "plan/chapters/45",
+          "quote": "第244日入夜的接应至第247日暮"
+        },
+        {
+          "sourceId": "plan/chapters/45",
+          "quote": "巡艇在244夜接到岸钟报信后绕外弯赶来，大艇吃水不能上滩，巡员用随艇小划舟靠近并分趟接人。"
+        },
+        {
+          "sourceId": "plan/chapters/45",
+          "quote": "245晨医棚分诊：三工脱水擦伤，落水伙计呛水"
+        }
+      ],
+      "id": "review_note_0920fdd7-ea79-42ff-a7e4-7e8d88531ad9",
+      "createdAt": "2026-10-18T15:07:05.774Z",
+      "scope": {
+        "worldPackRevision": 40,
+        "storyBibleRevision": 72,
+        "planRevisionId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+        "planRevision": 76
+      }
+    },
+    {
+      "requestKey": "design76-world-return-overlap",
+      "runId": "design_run_98b5460a-ed47-4ba2-bb06-7fdded1f910d",
+      "stageId": "followup-cross-1-4/geography",
+      "criterion": "geography",
+      "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+      "expectedCheckHash": "49764a4ea2f3318a90e3eb6bf422a018c5867a2aaa030e30908e9e111e82d47e",
+      "claimQuote": "第33—35章的销班、四日慢车返宗、港内卸货与侧门调查均发生在已抵赤霄之后",
+      "explanation": "这里的“均发生在已抵赤霄之后”混淆了叙述顺序与事件时间。第33章回述的本批退出核验与撤临时桌在212日18:30—19时；返宗车队213日07时出发，213—216日按白天慢车、夜间停营执行。林辰的跨海是214日日暮至216日日暮，两条路线有并行时段，不能等林抵赤霄后才开始四日返宗。217日港口交接和之后的侧门调查属于抵港后行动，但不可把它们的日期套到回述的销班与返宗上。原文还明确林尚不知道返宗；不能由并行叙述生成即时消息。保留原地理局部pass和补读解决声明，本说明仅澄清评语范围，不移动行程、不缩短护送或休息、不改变人物知情。",
+      "evidence": [
+        {
+          "sourceId": "plan/chapters/33",
+          "quote": "212日18:30，杜与26章原配额台登记书吏核对本批最后一人退出记录，先离开的林亦有212日退出记录；19时书吏按原授权当面签收本批退出联、回收的准入符牌及未清事项，原登记台留存签收联，杜才撤本批临时接待桌。"
+        },
+        {
+          "sourceId": "plan/chapters/33",
+          "quote": "212日19时褚先接本批外营驻车的夜间护路，杜交清白班后休息；213日07时杜接回后出发。"
+        },
+        {
+          "sourceId": "plan/chapters/33",
+          "quote": "213–216返宗以白天慢车行路、夜间停营执行，不连夜赶车"
+        },
+        {
+          "sourceId": "plan/chapters/32",
+          "quote": "第214日日暮至第216日日暮；实体海程两昼夜"
+        },
+        {
+          "sourceId": "plan/chapters/33",
+          "quote": "林尚不知道这次返宗。"
+        }
+      ],
+      "id": "review_note_7995ca08-8f56-496b-90e6-df0bc75384b6",
+      "createdAt": "2026-10-18T15:07:05.774Z",
+      "scope": {
+        "worldPackRevision": 40,
+        "storyBibleRevision": 72,
+        "planRevisionId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+        "planRevision": 76
+      }
+    },
+    {
+      "requestKey": "design76-story-order-vs-receipt",
+      "runId": "design_run_f355dadb-f3ee-4b1b-8834-f17bf0f487dc",
+      "stageId": "followup-batch-2/payoff",
+      "criterion": "payoff",
+      "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+      "expectedCheckHash": "c42d1663b5bdd17a9c9124b08dbddd53305af3df4cdf7ad3e7f2f3cd72ff58d0",
+      "claimQuote": "赵玄极收到的是程砚转述和后续实体回令",
+      "explanation": "赵收到的是程报及后来返回的签收回执，不是“后续实体回令”。262日赵实际阅程报；263日赵本人签发赵回一号，268日骑使当面交程验封签收，原令留程。骑使只带程268日具名签收联，经269—271海程和271—273陆驿，于273日交赵。签收联只能证明回令送达，不能证明毁账执行，也不能包含291日北境未来事件；林苏没有因此同步知情。回令和回执是不同实物、方向及生效节点，不能因统称“收到”而倒置发令人、收令人或文件保管。原兑现局部pass和补读解决声明保留，本说明不新增文书、不改邮程或角色知情，也不证明整条消息链的其他已知问题已修复。",
+      "evidence": [
+        {
+          "sourceId": "story/arcBeats/message-first-read",
+          "quote": "第53章第262日。赵府收发房据程报一号签收、交赵亲阅。赵只信为程的利己自述"
+        },
+        {
+          "sourceId": "story/arcBeats/message-first-order",
+          "quote": "第53章第263日。赵签赵回一号，令程保封存物、毁自己手中直指军需的散账，不擅启封"
+        },
+        {
+          "sourceId": "story/arcBeats/message-first-delivery",
+          "quote": "第53章第268日。骑使在程本人停留的天宝落脚处交赵回一号，程留原令，骑使收268具名签收联"
+        },
+        {
+          "sourceId": "story/arcBeats/message-first-ack",
+          "quote": "第54章第273日。骑使带268程签收联经269–271海程及271–273陆驿回到乾都，当面交赵。赵只确认旧令已送达，不确认毁账是否执行"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_fire",
+          "quote": "回令原件归程；骑使只带程268日签收联，于269日启程、271日云梦转陆驿、273日交赵，签收联只证送达，不证执行。"
+        }
+      ],
+      "id": "review_note_3c0f34cd-cacf-486e-a56e-e11842ccd6d4",
+      "createdAt": "2026-10-18T15:07:05.774Z",
+      "scope": {
+        "worldPackRevision": 40,
+        "storyBibleRevision": 72,
+        "planRevisionId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+        "planRevision": 76
+      }
+    }
+  ],
+  "preservedWorkFieldDigests": {
+    "activePlanId": "a79cacee9517456fb5abae34e3592ad141a8d092b6782979cdb0aa1996029412",
+    "briefs": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "candidates": "db801c927d61955caf1e94c196129e7ca7a4557cbae7f7f93b7977d2e6ffb6a2",
+    "characters": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "checkpoints": "9360443cd3329deca750224d5f41fd8b848cc87483d84e5d59d8bf1fa6f89d31",
+    "constraintRevision": "1b457162acd3bc249096a759943769e27b27ecbd1fb20a870b70b82e9c0264d6",
+    "covenant": "7b09efc6b0d1edd79e40db6d143a177956b28b40ee5070d303574df8d73121f8",
+    "covenantHistory": "ef48b60cd983a0f4b34cbe25bf37e751eb58681b943b6b8369fdcd5fca1ec745",
+    "designContentReviews": "8b8ab9639e03bd0055431c0e710bacf9dbac0d268f27578ddcb0bfc13e0aed8d",
+    "designHistory": "f2347b762def7bec1232ebed9113bcc4fb424df8b0f09e37b74bcef254165a1b",
+    "designReviewRuns": "fcbce7cfa246a2737121c5c51305ef938ad33b3214c8aecf9d4ac69a85e31156",
+    "events": "69a4c30b560af422264c89ba8cce8c658bf3d137ec8bcdae5f7025cdc4622590",
+    "id": "e6c77c6af51347285f913e10c068833e392333610313a73f42ae654dbeeebb0b",
+    "impacts": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "manuscripts": "3f9dd7880a530d9eb7ccf9113b140958fe9e182f63c9f706f9c55ceb5c46ffc9",
+    "plans": "6afb21f18712fce391f7c0c715b9791eb95f922a669d1cc1a96b2677e905b396",
+    "plotNodes": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "relationships": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "stateRevision": "16dc368a89b428b2485484313ba67a3912ca03f2b2b42429174a4f8b3dc84e44",
+    "states": "71af6764cda2e591af608654aa65a05f8b25e4e8f9871c746de158a77a0618fc",
+    "storyBible": "ae92c644e55aa89fd87920f431acdb817e50351843daddd6cb65d8508350ef02",
+    "title": "9a392c9dee167243ad8ace1e37c8c750c798509925344a9b052ce05cbb6a54b2",
+    "versions": "ab09691b6b0882a4fa32a704a65a61930f961a7d3e35aa52d872fc017e048fb1",
+    "worldPack": "c2c2dd54716be54571a024440590ebbb8c47b55eb37f2b490bfaf24c5bf6be6d",
+    "worldRules": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "oldRunsPreserved": 99,
+  "oldReportsPreserved": 92,
+  "oldAnnotationsPreserved": 20,
+  "annotationsAdded": 4,
+  "restartReadback": true,
+  "rollbackExercised": false,
+  "idempotenceExercised": false,
+  "modelCalls": 0,
+  "productionWrites": 1,
+  "verdictChanges": 0,
+  "questionsResolved": 0,
+  "formalAcceptance": false
+}

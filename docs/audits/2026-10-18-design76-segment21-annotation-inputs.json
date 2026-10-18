@@ -1,0 +1,111 @@
+{
+  "kind": "design76_segment21_clarification_inputs",
+  "verificationPath": "docs/audits/2026-10-18-design76-notes20-review-segment-21.json",
+  "verificationSha256": "086e67d1d7ff934e557d4cccf2d2f246bb72089544342e3b0527f755be7893f8",
+  "checkpointSha256": "d060375b5ae5af01a14fe95c24724a559eb8dc0a2357ead02b8618b02a3a6e04",
+  "bindingPath": "data/audit-runtimes/design76-fragment-index-runtime-bound.json",
+  "bindingSha256": "8a1875b686f31b79d32ca9c00fa4cfd65931a195ca0c6dfd8547ff2c0507b5e5",
+  "drafts": [
+    {
+      "path": "docs/audits/2026-10-18-design76-character-report-recipient.json",
+      "sha256": "a57f1923b69847af66f194f4b2fb3c96fe79f3ce6f13625954e6cc25070d073a"
+    },
+    {
+      "path": "docs/audits/2026-10-18-design76-story-patrol-rescue-day.json",
+      "sha256": "fdb3413abd46432cb5f6d7524cf2a2009533af57ec5c165208b0e27488d4eac8"
+    },
+    {
+      "path": "docs/audits/2026-10-18-design76-world-return-overlap.json",
+      "sha256": "13f72dc990bf31b683fb5cc4f7a877e7ff9c34aea003ddf20b8533821521d151"
+    },
+    {
+      "path": "docs/audits/2026-10-18-design76-story-order-vs-receipt.json",
+      "sha256": "4c57a603f356fb9e53e30ff6c8e8b49819cf1a0f5d413eadaabecfd665f126c3"
+    }
+  ],
+  "outputPath": "data/audit-runtimes/design76-notes20-review/segment21-annotations.json",
+  "outputSha256": "06389bc9d797f0ff708b805b323f2790b9a0a9d995aec9cddf2b89956c507575",
+  "annotationCount": 4,
+  "sourceDigests": [
+    {
+      "requestKey": "design76-character-report-recipient",
+      "sources": [
+        {
+          "id": "story/arcBeats/message-first-read",
+          "sha256": "49df6e6b2cb31e30e774059d677106fff89fb9da237f3101f454a04684e0909b"
+        },
+        {
+          "id": "story/arcBeats/message-first-ack",
+          "sha256": "ba45ffa82e9e6373250e2c983e5162767481597e1ebc2c028d372d8d8fc471c5"
+        },
+        {
+          "id": "story/arcBeats/message-north-report",
+          "sha256": "61dd5bb5511115281138977d57efd846dc0e8218d357be9412d4320d720115bf"
+        },
+        {
+          "id": "story/secrets/sec_02",
+          "sha256": "a5797768d46d735b9236b281d72251c57041e1374b80461a9be001a53eea05cc"
+        },
+        {
+          "id": "plan/milestones/ms_v3_training",
+          "sha256": "6425cc9f1c49bf3eedda25c4083aca7090c4d74cecbc6e3de59b0138e34e3902"
+        }
+      ]
+    },
+    {
+      "requestKey": "design76-story-patrol-rescue-day",
+      "sources": [
+        {
+          "id": "plan/chapters/44",
+          "sha256": "ef8d386bdcece300d2ed7b050abaddd8640441f9dabf44518a4b2dc3daf078ca"
+        },
+        {
+          "id": "plan/chapters/45",
+          "sha256": "ac077060ee24875221f41ebc4629a982da8ffbce38050089fc76a4d923cd839b"
+        }
+      ]
+    },
+    {
+      "requestKey": "design76-world-return-overlap",
+      "sources": [
+        {
+          "id": "plan/chapters/33",
+          "sha256": "c000e9eb6fdf4d025fbb7ca5537c2207783a8f646710ca27e7c1b53a3b67a6af"
+        },
+        {
+          "id": "plan/chapters/32",
+          "sha256": "18e553110baae23e1514205e48599d2de01d92932a5eca37ae001e82720e1f05"
+        }
+      ]
+    },
+    {
+      "requestKey": "design76-story-order-vs-receipt",
+      "sources": [
+        {
+          "id": "story/arcBeats/message-first-read",
+          "sha256": "49df6e6b2cb31e30e774059d677106fff89fb9da237f3101f454a04684e0909b"
+        },
+        {
+          "id": "story/arcBeats/message-first-order",
+          "sha256": "2e7716c5e019f9699551ab591e6316585971d3ef0067fe081ad88690c4162530"
+        },
+        {
+          "id": "story/arcBeats/message-first-delivery",
+          "sha256": "3b10b7c48b04c5385a01a15c01a72118305e62da52ca8161e4b39075cb9944d4"
+        },
+        {
+          "id": "story/arcBeats/message-first-ack",
+          "sha256": "ba45ffa82e9e6373250e2c983e5162767481597e1ebc2c028d372d8d8fc471c5"
+        },
+        {
+          "id": "plan/milestones/ms_v2_fire",
+          "sha256": "4aba8cb07ceadb80d1b9e192ea4fb1ce3584374acdba7f931222104d7b06c99b"
+        }
+      ]
+    }
+  ],
+  "productionWrites": 0,
+  "modelCalls": 0,
+  "formalAcceptance": false,
+  "limitation": "Exact original claims and source bindings only. Private rehearsal, atomic publication, restart readback and UI checks remain required."
+}
