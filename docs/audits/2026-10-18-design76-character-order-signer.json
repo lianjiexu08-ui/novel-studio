@@ -1,0 +1,167 @@
+{
+  "kind": "design76_character_order_signer",
+  "verificationPath": "docs/audits/2026-10-18-design76-notes21-review-segment-22.json",
+  "verificationSha256": "e066ac47dbacb5696f266993fba847900fcd5c23ce535d645dc0a6b2235f699e",
+  "bindingPath": "data/audit-runtimes/design76-fragment-index-runtime-bound.json",
+  "bindingSha256": "8a1875b686f31b79d32ca9c00fa4cfd65931a195ca0c6dfd8547ff2c0507b5e5",
+  "requestPath": "data/audit-runtimes/design76-notes21-review/model-calls/00142.started.json",
+  "requestSha256": "3e166a94a5fd69a94eb21a8fd7731e119c1375cbf0b3f4dd47874a73ee5d7f15",
+  "responsePath": "data/audit-runtimes/design76-notes21-review/model-calls/00142.response.json",
+  "responseSha256": "da696aa22716b9290af384114f31f1fa7e5254aae81d033973a73ca563d12163",
+  "runId": "design_run_aa04b61b-0b13-464a-9b21-9205a91600e2",
+  "stageId": "synthesis-3",
+  "acceptedStageSha256": "a5a6316831c5d9e3ddb6865b67678bbf6ece87f15eeaa290ffd6957bf4c703cc",
+  "originalCheckHash": "d25679c47c2d204048323e34baf5aaf41dce17f74b98b890b229d2f8f7c13dae",
+  "originalCheck": {
+    "criterion": "agency",
+    "verdict": "pass",
+    "explanation": "已覆盖材料中的主角与关键配角均有不被主角意志替代的利益、选择及后果。前段中，林辰救工友而失去追凶窗口，梁九以家人生计为由签和解、保留仅对亲见事实作证的边界，苏凌霜以留置核查承担问责与限行代价。后段中，林辰在追程与开舱救人、追击与先救被夹伤者之间均选择后者；夜凝霜为撤离通道限制封港；祁嵩为保留亲签原令和申辩机会而停斗交械，但仍失去差使并接受监管。转运、伤情、元罡消耗与货车报废均被列为后果，未将救援写成无代价胜利。",
+    "evidence": [
+      {
+        "sourceId": "review-result/cross-1-2",
+        "quote": "前置报告。以下引文是独立摘录；同一来源的摘录可能相隔很远，不可把不同摘录里的字段拼成同一条记录。字符范围采用原始来源的UTF-16下标，右端不含。\n{\n  \"summary\": \"本批已补齐两项待核原档；前14章的角色选择、关系阶段与知情边界可相互支持，未见本批内的提前知情、关系跳变或取消代价问题。\"\n}\n\nCHECK 1\n{\n  \"criterion\": \"agency\",\n  \"verdict\": \"pass\",\n  \"explanation\": \"已读细纲中的选择均由角色自身利益与限制推动并留下后果：林辰在第1章放弃独逃救工友而受伤、失去追凶窗口；梁九在第8章为家人配粮签和解，林辰不能替其决定口供；苏凌霜在第12章选择保留己方不利证词并接受停俸、限行与保全证人的责任；第14章林辰拒绝以删去逃生支岔换额外酬劳，得到的是基础页款而失去加价续单。配角不是无条件服从，行动确实改变了调查、证词与生计局面。\",\n  \"revisionAdvice\": \"\"\n}\n\nBEGIN INDEPENDENT QUOTE 1.1\n{\"sourceId\":\"plan/chapters/1\",\"unitId\":\"review-unit/240\",\"start\":554,\"end\":1149,\"unique\":true}\n"
+      },
+      {
+        "sourceId": "review-result/cross-1-2",
+        "quote": "  \"characterGoals\": \"林辰想救出仍活着的矿工、确认灭口者身份，并保留足够体力回宗门报案；他必须隐藏残玉和父亲笔记，避免被人夺走。\",\n  \"conflict\": \"矿道缺氧、塌方和矿火毒烟同时逼近，林辰的淬体肉身只能承受有限伤害，无法使用凝元术法或乾坤逆命真解；暗桩需要灭口后脱身，工友则因恐慌妨碍撤离。\",\n  \"choice\": \"林辰原可独自穿过旧排水口，却选择先敲警钟并等梁九带工友合推矿车，冒着被截住的风险救人。\",\n  \"cost\": \"他被凝元真元震伤胸腹，左臂被矿梁划开，至少数日不能全力搬运；暗桩逃走，最直接的凶手线索暂时中断。 编辑执行账：暗桩本轮行动前经自身实测保守余量四成，附掌伤林预付一成、收束后击裂薄板再付一成，余两成；焚油布、搬工牌及从维修口跑离为普通动作，本轮没有其他施术或恢复。这是作者执行依据，林只看到聚气、实际掌击与薄板破裂，不知道对方准确余额，也未在此场识破其完整身份。 开篇前既有技能依据（作者侧）：这名暗桩在幽罗殿外派训练中已受教完成附掌的聚气、接触与收束练习，并实测过按ax_08击裂腐朽薄木的限度；不是因凝元身份临场自动学会。本场掌腕无伤、气路稳定，四成起点足付两次各一成；这些初始设定不代表林辰知道其门派、训练经历或余额。\",\n  \"threads\": [\n    \"th_01\",\n    \"sec_01\"\n  ],\n\n"
+      },
+      {
+        "sourceId": "review-result/cross-1-2",
+        "quote": "    \"梁九交回木牌，承认为了家人口粮签下和解。\",\n    \"林辰质问，梁九追问谁来养活家人，争执未获安慰式解决。\",\n    \"苏在半日窗口内让韩叙出示亲自保存的缺页底联。\",\n    \"韩叙承认改账，要求记录所有经手人，苏当场登记。\",\n    \"林辰不逼梁九撤销和解，梁九仅同意继续搭档和证明亲见之事。\",\n\nEND INDEPENDENT QUOTE 1.2\n\nBEGIN INDEPENDENT QUOTE 1.3\n{\"sourceId\":\"plan/chapters/12\",\"unitId\":\"review-unit/251\",\"start\":1218,\"end\":1799,\"unique\":true}\n  \"characterGoals\": \"林辰要保住封样、账册和幸存工友，争取合法的后续取证位置；苏凌霜要让宗门承认留置核查并保护证人，同时承担公开站队后的宗门问责。 他主动选择伤后引气、贯脉与日后控制轻物的成长路线，先问医师、后求授业，不把救人功劳兑换修为。\",\n  \"conflict\": \"戒律堂想把事故定性为林辰破坏赛事；使团要保矿额与自身文书信用，主张控制证人、封存复核以免当场暴露账目失真，利益与戒律堂并不完全相同，被留置的执行者避答上层指使，旧案缺页与两次袭击的指挥链仍不完整；林辰重伤不能逃亡或强闯禁地，苏凌霜也不能以凝元术法替代正式审查。\",\n"
+      },
+      {
+        "sourceId": "review-result/cross-1-2",
+        "quote": "  \"choice\": \"二人选择提交编号吻合的封样与账册，要求留置核查并接受限制，而不是私自带证人逃离宗门或把未证实的九鼎阴谋宣告为定案。 暂缓拘押后，林辰主动合上尚不可用的逆命残卷，先争取自己能实际迈出的基础修习路径。\",\n  \"cost\": \"林辰被停发俸给、限制出入，预选夺魁资格作废，仅保留矿务复验候补登记，须复诊合格及担保后才能到场；梁九面临器械赔偿，配粮问题未解；苏凌霜失去中立空间并承担保全证人的责任，伤者和被毁账页仍需后续核对。\",\n  \"threads\": [\n    \"th_01\",\n    \"sec_01\",\n    \"sec_02\",\n    \"rel_01\"\n  ],\n\nEND INDEPENDENT QUOTE 1.3\n\nBEGIN INDEPENDENT QUOTE 1.4\n{\"sourceId\":\"plan/chapters/14\",\"unitId\":\"review-unit/253\",\"start\":609,\"end\":1197,\"unique\":true}\n  \"characterGoals\": \"林辰要以矿工经验换取稳定生计，同时保住逃生图的真实性；苏凌霜要从公开承运链继续取证；顾峤要守住古境三重准入；墨幽屠要把失败行动转化为可交易的掳人夺泉计划。\",\n"
+      },
+      {
+        "sourceId": "review-result/batch-5",
+        "quote": "前置报告。以下引文是独立摘录；同一来源的摘录可能相隔很远，不可把不同摘录里的字段拼成同一条记录。字符范围采用原始来源的UTF-16下标，右端不含。\n{\n  \"summary\": \"本批已提供的角色档案、世界约束与第61—100章宏观里程碑，对人物自主选择、关系边界及信息取得路径作出了可执行安排；未见本批内部的硬性冲突。结论仅限本批提案可行，不表示后段细纲或正文已实现。\"\n}\n\nCHECK 1\n{\n  \"criterion\": \"agency\",\n  \"verdict\": \"pass\",\n  \"explanation\": \"关键人物并非被主角行动自动带动：林辰在第291日于追程与开舱救人之间选择后者，夜凝霜为保撤离通道而限制封港；第436日林辰伤后放弃追程、转救被车门夹伤者，顾峤与祁嵩也各自以停斗、保留原令和承担监管/问责为代价作选择。梁九拒绝为未亲见之事指控他人，并限定自己只承担白日领车；获救者的转运须在祁嵩实际停斗交械后才开始，未把救援结果倒推为敌方已失去行动能力。代价包括林、顾受伤和术力支出、贺青梧失去追货奖金、祁嵩失职受监管，均实际改变后续局面。\",\n  \"revisionAdvice\": \"\"\n}\n\nBEGIN INDEPENDENT QUOTE 1.1\n"
+      },
+      {
+        "sourceId": "review-result/batch-5",
+        "quote": "{\"sourceId\":\"plan/milestones/ms_v2_boundary\",\"unitId\":\"review-unit/234\",\"start\":1816,\"end\":2361,\"unique\":true}\n    \"第64章的实际转运在第291日，285日只是夜抵港会面，不把两日混为同一场。夜要先封存污染货并救出七名被扣在普通货舱的青玄矿工；林在仍可追程的小艇与先开囚舱之间选择救人。贺依现场舷号确认目标货舱，林沿港卫先验过的短板扶栏走到既有码头装卸浮台的近舱侧，不跳跃、不负重。舱口外露普通插扣被另加的一根未附灵麻绳绕耳绑紧，港卫从码头正面被舷板遮住，浮台近侧才看得见绳段；林在此施一次已掌握的凝元剑诀，实际只放一道风刃切断绑门麻绳一处，亲见唯一余刃在两丈界内散尽、港卫核舱门与短板仍稳后，再以肉身拨开失去束缚的轻插扣。夜守侧巷与栈桥，港卫和贺实际接应矿工；林不靠风刃托举浮台或隔空搬人。程从另一侧已离泊小艇进入密集客船航道，夜看见去向，却选择守住撤人的栈桥，拒绝扩大封港或攻击载客航道，令港卫记录船号。归一强者没有被低阶障碍困住，她留下逃犯是为保撤离通道，不是突然失去感知。\",\n    \"选择：林将第一片继续留在可复核封袋中，放弃夺第二片的机会救人；夜接受先救普通人而非强追残片，限制封港范围以免所有商路停摆。\",\n"
+      },
+      {
+        "sourceId": "review-result/batch-5",
+        "quote": "    \"认知：夜只据其守界经历告知界壁外的寂灭风险，林相信证言但没有亲见死海。父亲在苍冥存档的署名检修副本由夜带来的巡查档案核对，只证明其参与守门；不证明投毒真凶。\",\n\nEND INDEPENDENT QUOTE 1.1\n\nBEGIN INDEPENDENT QUOTE 1.2\n{\"sourceId\":\"plan/milestones/ms_v2_boundary\",\"unitId\":\"review-unit/234\",\"start\":3465,\"end\":4049,\"unique\":true}\n    \"第六人过板时，货船原有松动护舷木被另一船尾浪推偏，撞裂浮台外缘一块木板并擦撞林右肩。导桩、原系泊和短板未断，但贺立即喊停下一人，近舱港卫先扶林沿仍完整的内侧短板退岸、复核踏板后再接最后一人；没有人被剑诀自动保护或悬浮。若板端脱位就停止上板，港卫须改用港内已有救助划舟逐人接送并重记时序，不能继续踩断板。林新肩伤后立即停握剑和全部术法，291–297由原港内医修随访，七日不是自动痊愈；到301返程仍按复诊许可坐暖车，完整训练须按316及330复诊另判。\",\n"
+      },
+      {
+        "sourceId": "review-result/batch-5",
+        "quote": "    \"选择：林伤后本有沿侧路追程的机会，却回身拉开夹住救护人员手臂的普通铰接车门，让伤者先脱身。顾听见林停术撤开的提醒，不追杀祁，带着前臂伤在车角与祁拉开交锋距离，要求停手先救人。此刻只有前车四人下车退到侧道待接点，后车四人仍在车内，梁的货车尚未开始往返。祁仍有短刀、元罡与另一名玄府押卫可用，不能把他写成已无反抗能力；但他亲见程离开、己方接押身份已被见证员认明，前车失守且现场有人被门夹伤。继续灭证无法消除自己已寄出的具名押报。他权衡后选择当场保全赵亲签原令与受押者，保留日后逐级申辩的机会，而不只给自己留下具名押报和新的伤亡。祁先命另一名玄府及押车者停斗，顾同时停止进逼；双方保持可见距离，林退到待接点止血，不再支撑谈判或转运期间的术法防线。顾只提出停斗、放人、原令当众封存和具名移交，不许诺免罪、保俸职或替皇庭裁决。祁随即放下短刀，令后车开门、将随身原令亲交苏在见证员面前收存，接受顾监管；他仍否认超出本批的指控。另一玄府按统领当面停斗令退出接人侧道，在八人完成现场清点后退去，不等于被击倒或自动认罪。停斗与放人是实际发生的选择，不能先拿尚未成立的八人安全转运来倒推祁已交械。\",\n    \"认知：实际撤人令和亲历者支持追究赵本次行动，不能证明所有皇族、九鼎全阵或十年前的全部杀人细节。\",\n\nEND INDEPENDENT QUOTE 1.4\n\n"
+      },
+      {
+        "sourceId": "review-result/batch-5",
+        "quote": "BEGIN INDEPENDENT QUOTE 1.5\n{\"sourceId\":\"plan/milestones/ms_v3_convoy\",\"unitId\":\"review-unit/238\",\"start\":2727,\"end\":3045,\"unique\":true}\n    \"祁停斗交械后，押车者退出门口，苏才开后车，余四人下地在同一待接点候运；顾留在交接视野内看祁，普通见证员只记人证与原令，不顶替玄府监管。\",\n    \"梁和原自由雇工先载前四人到药棚，卸车交现有医护、空车沿原路返回，再载后四人；原救护队在候运点照护等候者和门伤护卫，不让他们留在仍交战的路上。\",\n    \"两名护卫另由队内原有担架转送，不挤占已满的伤者车位。以每趟去程八分钟、卸车交接五分钟、空返五分钟保守预留，第一趟18分钟完成返回，第二趟至少13分钟送达；两趟合计至少31分钟且另留装车、核名及伤情处理时间，不把林三次护罡或顾一次护罡当作这段31分钟的持续屏障。只有八人逐批到棚被医护接收，才在结果中记全部安置完成。\",\n\nEND INDEPENDENT QUOTE 1.5\n\nBEGIN INDEPENDENT QUOTE 1.6\n"
+      },
+      {
+        "sourceId": "review-result/batch-5",
+        "quote": "  \"cost\": \"林本场三次局部护罡，每次聚罡一成、受击一成，合计支出六成元罡，按本人健康十成基准由可用八成降至二成；第三次护罡被穿造成肩伤后，剩余二成封存待复诊、不得续用。顾本场只施一次局部护罡，聚罡一成、受击一成，合计支出二成，按其个人健康十成基准保守由八成降至六成；新前臂伤后停止该侧施术，剩余可用上限仍须医修实检。林与顾分别记账，不合并两人的余额；这里汇总的是setup逐次执行账中的同一批费用，不在逐次扣账之外再扣一次。林肩伤、顾前臂划伤及两名普通护卫重伤，均须当场止血、移交救护；梁九货车在两趟伤者送达后，移回侧道清场时一侧普通轮轴因旧裂和重载扩大断裂，货车空载、无伤者再乘；由监督队记录实际赔偿，报废后不用它继续运输或追程。若展开时安排更早毁车，必须另核替代运输，不能仍按本方案两趟完成。赵丢失本批证人、承运名单及撤令证据，失去这条供应链的信用和货物，但没有凭空暴毙。祁交械保住原令作为申辩材料，同时失去押运差使、进入监管并须回答自己的接押和毁页责任，不因交令免罪。顾的寿储预算只扣第25章第188日那一次真光0.25元载，本次第88–95章不施真光、不扣第二次寿元；以第60日下界12计，至第436日为12-376/365-0.25=10.719863元载。这是跨章规划累计，不是已采纳正文账，也不把0.25当作第436日重新支出。\",\n\n"
+      },
+      {
+        "sourceId": "review-result/batch-5",
+        "quote": "END INDEPENDENT QUOTE 1.6\n\nBEGIN INDEPENDENT QUOTE 1.7\n{\"sourceId\":\"story/characters/char_07\",\"unitId\":\"review-unit/43\",\"start\":0,\"end\":219,\"unique\":true}\n{\n  \"id\": \"char_07\",\n  \"name\": \"梁九\",\n  \"role\": \"supporting\",\n  \"goal\": \"带家人活过矿务封锁、拿回工钱和配粮；只为亲眼所见作证，不愿被要求为别人的家仇押上全家。\",\n  \"identity\": \"外山领车工，未入修行境界，熟悉普通矿车制动，精钢玄纹刀的持有人。\",\n  \"locationId\": \"loc_28\",\n  \"factionId\": \"fac_01\"\n}\nEND INDEPENDENT QUOTE 1.7\n\nBEGIN INDEPENDENT QUOTE 1.8\n{\"sourceId\":\"story/characters/char_23\",\"unitId\":\"review-unit/59\",\"start\":0,\"end\":452,\"unique\":true}\n{\n  \"id\": \"char_23\",\n  \"name\": \"祁嵩\",\n  \"role\": \"stage\",\n"
+      },
+      {
+        "sourceId": "review-result/batch-5",
+        "quote": "  \"goal\": \"先按赵令完成移交、销去旧接押痕迹以保俸职；撤运失败后，保住完整原令作为自己服从上命的申辩材料，即使因此丢掉差使、受押候审，也不再只留下自己具名押报。申辩不免除他扣人和毁页的责任。\",\n  \"identity\": \"现有两名玄府押卫中的统领，负责本批接押与具名仓册；95章与顾峤牵制交锋后带伤交械、交出撤押原令，96章交邵闻监管。不是新增第三名护卫，无跨陆传讯、王器或九鼎全图。开篇前已有押运军职的普通短刀持握、步法与徒手脱离训练，本段只用普通铁刀与肉身动作，不因玄府身份获得未定义的阴煞、全身护罡或远程攻杀。交械是撤运失败后为保存原令和申辩机会所作的有限取舍，不是被真光封禁，也不是突然认同林苏。\",\n  \"locationId\": \"loc_08\",\n  \"factionId\": \"fac_02\",\n  \"startingRealmId\": \"realm_03\"\n}\nEND INDEPENDENT QUOTE 1.8\n\nCHECK 2\n{\n  \"criterion\": \"relationships\",\n  \"verdict\": \"pass\",\n"
+      }
+    ],
+    "revisionAdvice": ""
+  },
+  "actualSupport": [
+    {
+      "sourceId": "plan/milestones/ms_v3_convoy",
+      "quote": "他权衡后选择当场保全赵亲签原令与受押者，保留日后逐级申辩的机会",
+      "embedded": [
+        {
+          "parent": "review-result/batch-5",
+          "fragment": "e7"
+        },
+        {
+          "parent": "review-result/batch-5",
+          "fragment": "e18"
+        }
+      ]
+    },
+    {
+      "sourceId": "story/secrets/sec_02",
+      "quote": "确认自己433亲签本批撤人毁页令，但尚未收到该令的交付回执或押运败报。",
+      "embedded": [
+        {
+          "parent": "review-result/cross-1-2",
+          "fragment": "e62"
+        }
+      ]
+    },
+    {
+      "sourceId": "story/secrets/sec_02",
+      "quote": "92章435祁签收是下属场景，95章被截原令不隔空进入赵认知。",
+      "embedded": [
+        {
+          "parent": "review-result/cross-1-2",
+          "fragment": "e62"
+        }
+      ]
+    },
+    {
+      "sourceId": "plan/milestones/ms_v3_convoy",
+      "quote": "将随身原令亲交苏在见证员面前收存，接受顾监管",
+      "embedded": [
+        {
+          "parent": "review-result/batch-5",
+          "fragment": "e7"
+        },
+        {
+          "parent": "review-result/batch-5",
+          "fragment": "e18"
+        }
+      ]
+    },
+    {
+      "sourceId": "story/arcBeats/message-withdraw-seized",
+      "quote": "顾不承诺免罪，祁仍须回答本人具名接押与毁页责任。",
+      "embedded": [
+        {
+          "parent": "review-result/cross-1-2",
+          "fragment": "e56"
+        }
+      ]
+    }
+  ],
+  "annotationInput": {
+    "requestKey": "design76-character-order-signer",
+    "runId": "design_run_aa04b61b-0b13-464a-9b21-9205a91600e2",
+    "stageId": "synthesis-3",
+    "criterion": "agency",
+    "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+    "expectedCheckHash": "d25679c47c2d204048323e34baf5aaf41dce17f74b98b890b229d2f8f7c13dae",
+    "claimQuote": "祁嵩为保留亲签原令和申辩机会而停斗交械",
+    "explanation": "这里省略了“亲签原令”的签发人，应明确为“保留赵玄极亲签的原令”。433日签发本批撤人毁页令的是赵，435日祁嵩是签收、执行的下属；祁自己的具名接押报告与赵签发的撤押原令不是同一文书。436日祁为保全赵的原令和受押者、保留申辩机会而命停斗、交械，随后亲手交苏封存；亲手交出不等于亲自签发。祁仍须承担本人接押和毁页责任，赵的签发责任也不能因下属交令而转移或消失。原局部pass与前置报告保留。本说明只补明省略的主语，不改变停斗先后、持物、角色动机或既有责任，也不将第三次局部综合当作全局验收。",
+    "evidence": [
+      {
+        "sourceId": "plan/milestones/ms_v3_convoy",
+        "quote": "他权衡后选择当场保全赵亲签原令与受押者，保留日后逐级申辩的机会"
+      },
+      {
+        "sourceId": "story/secrets/sec_02",
+        "quote": "确认自己433亲签本批撤人毁页令，但尚未收到该令的交付回执或押运败报。"
+      },
+      {
+        "sourceId": "story/secrets/sec_02",
+        "quote": "92章435祁签收是下属场景，95章被截原令不隔空进入赵认知。"
+      },
+      {
+        "sourceId": "plan/milestones/ms_v3_convoy",
+        "quote": "将随身原令亲交苏在见证员面前收存，接受顾监管"
+      },
+      {
+        "sourceId": "story/arcBeats/message-withdraw-seized",
+        "quote": "顾不承诺免罪，祁仍须回答本人具名接押与毁页责任。"
+      }
+    ]
+  },
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Clarifies an omitted signer rather than asserting an explicit contrary signer claim. The synthesis saw embedded parent quotations, not complete original sources. No annotation append, verdict change or design mutation."
+}

@@ -1,0 +1,347 @@
+{
+  "kind": "design76_segment22_source_scope_crosscheck",
+  "verified": true,
+  "runnerSha256": "aa81dc3bc11982dfe7561d78510b7042102a10e0188ddf2cd83be0e9d711c1eb",
+  "preservedFirstAttempt": {
+    "path": "docs/audits/2026-10-18-design76-segment22-scope-check-failure.json",
+    "sha256": "1bd90e33de82157ea08db2275fe27bce34be3e3d9f7b3d5be18a8a453ea6e530"
+  },
+  "verificationPath": "docs/audits/2026-10-18-design76-notes21-review-segment-22.json",
+  "verificationSha256": "e066ac47dbacb5696f266993fba847900fcd5c23ce535d645dc0a6b2235f699e",
+  "checkpointSha256": "c63a7da5884cf139c1022854644c38578376cae02730ad4578f8535a6951227a",
+  "calls": [
+    {
+      "number": 135,
+      "requestPath": "data/audit-runtimes/design76-notes21-review/model-calls/00135.started.json",
+      "requestSha256": "8c4ba996bf67d6a03811ef23028813a3562246d25e0ee04a6034b359716326b0",
+      "responsePath": "data/audit-runtimes/design76-notes21-review/model-calls/00135.response.json",
+      "responseSha256": "6373bc19ddda17b5efd1d275d77cbc3a92408a6b7a82929cb95781258c0e8b6e",
+      "stageId": "followup-cross-2-3/geography",
+      "acceptedStageSha256": "40ffe37854ae241f5894c333a0a481aa0d32a0ff9034ac448aae930a5a770a17"
+    },
+    {
+      "number": 136,
+      "requestPath": "data/audit-runtimes/design76-notes21-review/model-calls/00136.started.json",
+      "requestSha256": "543d0e3c4ecdee3593b8def3be4b524dff5f1c714b0aa6e0548c0e9d19372244",
+      "responsePath": "data/audit-runtimes/design76-notes21-review/model-calls/00136.response.json",
+      "responseSha256": "145d8c9f503f03a2ab9f0d8db56fd476fc94855d78f5b6cdd622c4d19c617dfd",
+      "stageId": "followup-cross-2-3/geography",
+      "acceptedStageSha256": "40ffe37854ae241f5894c333a0a481aa0d32a0ff9034ac448aae930a5a770a17"
+    },
+    {
+      "number": 137,
+      "requestPath": "data/audit-runtimes/design76-notes21-review/model-calls/00137.started.json",
+      "requestSha256": "e5d2266e26efc15943db10c093f6b3efbb8f20a5390c229cdd06a93cc015f915",
+      "responsePath": "data/audit-runtimes/design76-notes21-review/model-calls/00137.response.json",
+      "responseSha256": "0bf430627200858a098d15b5af83cbb3f7b73708894cea4126eb90d0b80fe0ec",
+      "stageId": "followup-cross-2-3/tiers",
+      "acceptedStageSha256": "303747a2f431ccb192aabebc2c14061c1cdbaed0fe4e963f8cbb5b5047a3a41e"
+    },
+    {
+      "number": 138,
+      "requestPath": "data/audit-runtimes/design76-notes21-review/model-calls/00138.started.json",
+      "requestSha256": "0d1cad9649f5b326fbb009c5d15534413618eea00c12f0c35b0fe14be0659dfe",
+      "responsePath": "data/audit-runtimes/design76-notes21-review/model-calls/00138.response.json",
+      "responseSha256": "1dc6917d6ec0225eb40d32cc8b3fd59c256f6dfa4e53e127fb4406897c588e4d",
+      "stageId": "synthesis-2",
+      "acceptedStageSha256": "a903c2188e7fa69253b04b7374b8233a4c9ea97c6e883c3246e50816819c24b2"
+    },
+    {
+      "number": 139,
+      "requestPath": "data/audit-runtimes/design76-notes21-review/model-calls/00139.started.json",
+      "requestSha256": "7bd1c6d06e0e777c4129fc28d16e988d5849ba7832eef555fb071da37688d8f2",
+      "responsePath": "data/audit-runtimes/design76-notes21-review/model-calls/00139.response.json",
+      "responseSha256": "939b5f95b30cab83acba0f0a89fe5160f285e95077c33287c736d8a3e3efee81",
+      "stageId": "followup-batch-2/opening",
+      "acceptedStageSha256": "3bf50e636aedafb227f0fbc28934f7ced59a050fc8a813b429d70e6aeed2241f"
+    },
+    {
+      "number": 140,
+      "requestPath": "data/audit-runtimes/design76-notes21-review/model-calls/00140.started.json",
+      "requestSha256": "38d601263e703ce756dfe1e10a01e6300263ff2562d4a0cd8826c5a0873fd988",
+      "responsePath": "data/audit-runtimes/design76-notes21-review/model-calls/00140.response.json",
+      "responseSha256": "d154baede09f217d154f0e942a8dcd8cc807be1cc600ede319d4547c4226319c",
+      "stageId": "followup-cross-2-3/history",
+      "acceptedStageSha256": "dddcc5b3c79af4ad56a8437da9cd7a9f4b2127680ff01833cac50c7660728985"
+    },
+    {
+      "number": 141,
+      "requestPath": "data/audit-runtimes/design76-notes21-review/model-calls/00141.started.json",
+      "requestSha256": "99dadf00d48fbb96b5ec5309e6a8e87a08cb9f276b4155f734f50a81ea229102",
+      "responsePath": "data/audit-runtimes/design76-notes21-review/model-calls/00141.response.json",
+      "responseSha256": "a2db6a26640f23e75ba3d837879753a890768991561b52e52ae6e0d92c562855",
+      "stageId": "followup-cross-2-3/costs",
+      "acceptedStageSha256": "b17ebb954bfe3329a3307a22c5b918fb245fa745b2c015f9ccbcf6bbe789df97"
+    },
+    {
+      "number": 142,
+      "requestPath": "data/audit-runtimes/design76-notes21-review/model-calls/00142.started.json",
+      "requestSha256": "3e166a94a5fd69a94eb21a8fd7731e119c1375cbf0b3f4dd47874a73ee5d7f15",
+      "responsePath": "data/audit-runtimes/design76-notes21-review/model-calls/00142.response.json",
+      "responseSha256": "da696aa22716b9290af384114f31f1fa7e5254aae81d033973a73ca563d12163",
+      "stageId": "synthesis-3",
+      "acceptedStageSha256": "a5a6316831c5d9e3ddb6865b67678bbf6ece87f15eeaa290ffd6957bf4c703cc"
+    },
+    {
+      "number": 143,
+      "requestPath": "data/audit-runtimes/design76-notes21-review/model-calls/00143.started.json",
+      "requestSha256": "9a5d379d3ee7a135b20f6fa012118d76d48f9f6d26e6ab27e5504bc446981c94",
+      "responsePath": "data/audit-runtimes/design76-notes21-review/model-calls/00143.response.json",
+      "responseSha256": "395eab3594d100cac57aa7cf1cac8e508e2e81c6aab216243a62c43246908b36",
+      "stageId": "followup-batch-2/pacing",
+      "acceptedStageSha256": "dbbc8759822bc22df3e7f815f468755fef34db209624f65641600368ed2e0c79"
+    }
+  ],
+  "evidence": [
+    {
+      "number": 135,
+      "sourceId": "world/locations/loc_21",
+      "quote": "同一天地内的虚海航网，不穿越太古界门",
+      "fragments": [
+        "e95"
+      ]
+    },
+    {
+      "number": 135,
+      "sourceId": "world/locations/loc_21",
+      "quote": "苍冥通天渡口至青玄沧溟古港约六日实体海程",
+      "fragments": [
+        "e95"
+      ]
+    },
+    {
+      "number": 135,
+      "sourceId": "plan/chapters/35",
+      "quote": "两人完成眼前分工后才问沉川，把目标放回实际领箱者而非无根据的箱影。",
+      "fragments": [
+        "e397"
+      ]
+    },
+    {
+      "number": 137,
+      "sourceId": "plan/chapters/18",
+      "quote": "176日复测只证明两丈内可见目标导刃和主动停式",
+      "fragments": [
+        "e218"
+      ]
+    },
+    {
+      "number": 137,
+      "sourceId": "plan/chapters/20",
+      "quote": "10−2−0.5+1.5=9成",
+      "fragments": [
+        "e220"
+      ]
+    },
+    {
+      "number": 137,
+      "sourceId": "plan/chapters/25",
+      "quote": "林真元以8.5−2−0.5=6成承接，不重复扣21章成本；顾0.25元载属于顾，不记到林寿储。",
+      "fragments": [
+        "e245"
+      ]
+    },
+    {
+      "number": 137,
+      "sourceId": "plan/milestones/ms_v3_training",
+      "quote": "六个有效周期60日，加失败4日，实耗七枚",
+      "fragments": [
+        "e179"
+      ]
+    },
+    {
+      "number": 137,
+      "sourceId": "plan/milestones/ms_v3_advancement",
+      "quote": "六个有效周期完成→静置观察→白榆诊察→顾峤复核→十元载扣除",
+      "fragments": [
+        "e183"
+      ]
+    },
+    {
+      "number": 139,
+      "sourceId": "plan/chapters/17",
+      "quote": "苏只为公开调令、伤势记录和图纸交接程序担保，不为残玉作证。",
+      "fragments": [
+        "e260"
+      ]
+    },
+    {
+      "number": 139,
+      "sourceId": "plan/chapters/45",
+      "quote": "章末唐仍按习惯铺了五个人的位置，空着的两处使救援的胜利第一次显出缺口。",
+      "fragments": [
+        "e398"
+      ]
+    },
+    {
+      "number": 139,
+      "sourceId": "plan/chapters/50",
+      "quote": "五名雇工至此全部脱控；被谁雇用、为谁作证，仍由他们自己回答。",
+      "fragments": [
+        "e418"
+      ]
+    },
+    {
+      "number": 139,
+      "sourceId": "plan/chapters/50",
+      "quote": "林未施术，保守余量三成半，旧伤许可不变",
+      "fragments": [
+        "e420"
+      ]
+    },
+    {
+      "number": 140,
+      "sourceId": "world/historicalEvents/event_14",
+      "quote": "历史约页不是当前库存或已付船票。",
+      "fragments": [
+        "e65"
+      ]
+    },
+    {
+      "number": 140,
+      "sourceId": "story/relationships/rel_06",
+      "quote": "不能把程收令当炎煞也收令，不能认定炎煞知本港火仓和北境结果。",
+      "fragments": [
+        "e67"
+      ]
+    },
+    {
+      "number": 140,
+      "sourceId": "plan/milestones/ms_v3_training",
+      "quote": "赵只按利己口供登记，核欠账后到80章410日才正式选择本地短途重整",
+      "fragments": [
+        "e166"
+      ]
+    },
+    {
+      "number": 141,
+      "sourceId": "plan/milestones/ms_v3_training",
+      "quote": "剩余7枚完整灵石验纯后单独入训练库存，不再交易或抵费。",
+      "fragments": [
+        "e181"
+      ]
+    },
+    {
+      "number": 141,
+      "sourceId": "plan/milestones/ms_v3_training",
+      "quote": "现金24枚与课程是同一合同的两个报酬项，不把一份劳务再次换出第二笔钱",
+      "fragments": [
+        "e181"
+      ]
+    },
+    {
+      "number": 142,
+      "sourceId": "plan/milestones/ms_v3_return",
+      "quote": "315日两人当面交换材料，梁九拒绝让林拿家人作诱饵。",
+      "embedded": [
+        {
+          "parent": "review-result/batch-5",
+          "fragment": "e15"
+        },
+        {
+          "parent": "review-result/batch-5",
+          "fragment": "e24"
+        }
+      ],
+      "scope": "Original quotation embedded in a partial parent report, not a complete original-source reading."
+    },
+    {
+      "number": 142,
+      "sourceId": "plan/milestones/ms_v3_training",
+      "quote": "夜至此才知道林贺304日按期离开苍冥",
+      "embedded": [
+        {
+          "parent": "review-result/batch-5",
+          "fragment": "e29"
+        }
+      ],
+      "scope": "Original quotation embedded in a partial parent report, not a complete original-source reading."
+    },
+    {
+      "number": 143,
+      "sourceId": "plan/chapters/42",
+      "quote": "现在能进去，不等于接到人后能出来。",
+      "fragments": [
+        "e393"
+      ]
+    },
+    {
+      "number": 143,
+      "sourceId": "plan/chapters/46",
+      "quote": "林第一次对尚未见过的苍冥生出不是追凶的向往",
+      "fragments": [
+        "e413"
+      ]
+    },
+    {
+      "number": 143,
+      "sourceId": "plan/chapters/47",
+      "quote": "林已经付尽最后一枚食宿钱，无法兑现方才的包赔。",
+      "fragments": [
+        "e416"
+      ]
+    }
+  ],
+  "geographyScope": {
+    "initialCall": 135,
+    "repairCall": 136,
+    "chapter35CitationRepaired": true,
+    "detailedChapters19Through50Sent": true,
+    "tradeRouteActuallySent": true,
+    "limitation": "The accepted all-actions-in-port wording is too broad: chapter33 also contains the Qingxuan return subplot. A separately source-bound clarification preserves the two places, independent viewpoints and delayed knowledge."
+  },
+  "artifactScope": {
+    "art_04": false,
+    "art_06": false,
+    "art_08": false
+  },
+  "powerScope": "Selected qualification and cost checks only. The three known artifact defects were outside this request and remain unresolved.",
+  "synthesisScope": {
+    "call": 138,
+    "parents": [
+      "review-result/batch-3",
+      "review-result/batch-4"
+    ],
+    "limitation": "Partial synthesis of batches3/4 and their reported resolutions only. It cannot erase independently established message-chain or identity-timing defects or approve characters globally."
+  },
+  "thirdSynthesisScope": {
+    "call": 142,
+    "parents": [
+      "review-result/batch-5",
+      "review-result/cross-1-2"
+    ],
+    "limitation": "Partial synthesis only. Embedded quotations preserve actual 315-day personal exchange and 318-day delivered notice. The omitted signer in the agency explanation is clarified separately: Zhao signs, Qi receives and later hands over."
+  },
+  "openingScope": {
+    "call": 139,
+    "detailedChapters1Through50Sent": true,
+    "planningHorizon": {
+      "sourceId": "plan/overview",
+      "targetChapterCount": 100,
+      "detailedThroughChapter": 50,
+      "detailedChapterRanges": [
+        {
+          "startChapter": 1,
+          "endChapter": 50
+        }
+      ],
+      "undetailedChapterRanges": [
+        {
+          "startChapter": 51,
+          "endChapter": 100
+        }
+      ]
+    },
+    "limitation": "Proposal-level feasibility only. Different rescue stages, relationship boundaries and consequences are supported; actual narrative pacing and reader experience remain unproven until prose is reviewed."
+  },
+  "pacingScope": {
+    "call": 143,
+    "detailedChapters33Through50Sent": true,
+    "limitation": "Retreat after actual tide measurement, independent travel wishes and unaffordable compensation give adjacent scenes distinct choices. Chapters51-100 remain macro proposals; no prose pacing or global acceptance is established."
+  },
+  "contentLimit": "Selected semantic checks only; local passes do not close existing blockers, approve global design, or validate prose.",
+  "annotationsAdded": 0,
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false
+}

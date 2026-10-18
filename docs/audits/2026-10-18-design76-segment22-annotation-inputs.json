@@ -1,0 +1,53 @@
+{
+  "kind": "design76_segment22_clarification_inputs",
+  "verificationPath": "docs/audits/2026-10-18-design76-notes21-review-segment-22.json",
+  "verificationSha256": "e066ac47dbacb5696f266993fba847900fcd5c23ce535d645dc0a6b2235f699e",
+  "checkpointSha256": "c63a7da5884cf139c1022854644c38578376cae02730ad4578f8535a6951227a",
+  "bindingPath": "data/audit-runtimes/design76-fragment-index-runtime-bound.json",
+  "bindingSha256": "8a1875b686f31b79d32ca9c00fa4cfd65931a195ca0c6dfd8547ff2c0507b5e5",
+  "drafts": [
+    {
+      "path": "docs/audits/2026-10-18-design76-world-port-scope.json",
+      "sha256": "1200055037b3776d03dd6e978707912b3f12a4db824a32648cd60b8e0a289736"
+    },
+    {
+      "path": "docs/audits/2026-10-18-design76-character-order-signer.json",
+      "sha256": "0974725ea9635cf4c2618797d0d7944bb01937c510fa7f4275f64b903d2c795c"
+    }
+  ],
+  "outputPath": "data/audit-runtimes/design76-notes21-review/segment22-annotations.json",
+  "outputSha256": "b0ab9cff84a5e4112f832c5f7a417c9081f3d7a3ff300ee237a591aab5218e1e",
+  "annotationCount": 2,
+  "sourceDigests": [
+    {
+      "requestKey": "design76-world-port-scope",
+      "sources": [
+        {
+          "id": "plan/chapters/33",
+          "sha256": "c000e9eb6fdf4d025fbb7ca5537c2207783a8f646710ca27e7c1b53a3b67a6af"
+        }
+      ]
+    },
+    {
+      "requestKey": "design76-character-order-signer",
+      "sources": [
+        {
+          "id": "plan/milestones/ms_v3_convoy",
+          "sha256": "a4b80b1ca13d6cc0420671242b3c8d2b3fe56d051b851df619511a8e353c67b7"
+        },
+        {
+          "id": "story/secrets/sec_02",
+          "sha256": "a5797768d46d735b9236b281d72251c57041e1374b80461a9be001a53eea05cc"
+        },
+        {
+          "id": "story/arcBeats/message-withdraw-seized",
+          "sha256": "265007a3362dd2c7918a0fec4166297d4bbb9b7937eab754cfb1210c6665aed8"
+        }
+      ]
+    }
+  ],
+  "productionWrites": 0,
+  "modelCalls": 0,
+  "formalAcceptance": false,
+  "limitation": "Exact original claims and source bindings only. Private rehearsal, atomic publication, restart readback and UI checks remain required."
+}
