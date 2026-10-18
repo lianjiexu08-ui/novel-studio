@@ -1,0 +1,50 @@
+{
+  "kind": "design76_citation_edits_review_preflight",
+  "verified": true,
+  "createdAt": "2026-10-18T08:00:19.149Z",
+  "control": "data/audit-runtimes/design76-citation-edits-review",
+  "databaseSnapshotPath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design76-citation-edits-review/baseline.db",
+  "predecessorCheckpointSha256": "4cf3e050f03b22fdbcf80ff9b260999a848ee48b334b97b423460e992707049d",
+  "predecessorVerificationSha256": "116ee54e79f1e1731ee7c49b480753684520073cfce5bd9dd0865815439e40b6",
+  "baselineSha256": "e445cffadfd4e62a7af78817f5a3e6b9c6b5879c279a6ad6d2d5ad1a46673fd9",
+  "runnerSha256": "a41bd1260494126a4af77cc1abebb800ae038555b3b8cb3b799cbdc5423a20c4",
+  "hostHelperSha256": "883bb6ae052caec9fe5b0333f4ad0ea1d2d799d9616143079eab4ae531544178",
+  "runtimeBindingSha256": "e7c8ea1854fcda1c44296b8854ea01af14bcda4d5bbf9f509b6d1c4fc02cae48",
+  "changedRuntimeFiles": [
+    "packages/planner/src/design-review-evidence.ts",
+    "packages/planner/src/index.ts",
+    "packages/planner/test/design-review.test.ts"
+  ],
+  "unchangedSchedulingAndPromptSuffix": true,
+  "changedRepairPrompt": true,
+  "plannerEpochs": [
+    {
+      "afterCall": 0,
+      "bindingPath": "data/audit-runtimes/design76-ui-runtime-v2-bound.json",
+      "bindingSha256": "ec9918d855f80b056351601f297fbbaadb4376ec94010cdb73d3aaa0f6fb58dd"
+    },
+    {
+      "afterCall": 37,
+      "bindingPath": "data/audit-runtimes/design76-citation-runtime-bound.json",
+      "bindingSha256": "e4acd580e352e5617cc588aaa3b34e86afe9a1457b57b3e60528011b4e005e97"
+    },
+    {
+      "afterCall": 39,
+      "bindingPath": "data/audit-runtimes/design76-citation-operations-runtime-bound.json",
+      "bindingSha256": "e7c8ea1854fcda1c44296b8854ea01af14bcda4d5bbf9f509b6d1c4fc02cae48"
+    }
+  ],
+  "shadowProofSha256": "e3aee287888ee789725af2ae8bc530146e083c6e9d04254035dc237b45074831",
+  "prefixCalls": 39,
+  "runIds": [
+    "design_run_98b5460a-ed47-4ba2-bb06-7fdded1f910d",
+    "design_run_77e97b37-cbf2-40be-ab17-2de79839c297",
+    "design_run_aa04b61b-0b13-464a-9b21-9205a91600e2",
+    "design_run_f355dadb-f3ee-4b1b-8834-f17bf0f487dc"
+  ],
+  "annotationsPreserved": 1,
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Fresh frozen planner changes corrective citation guidance only. The detached repair and full tests passed; production continuation and complete content acceptance remain unproven."
+}
