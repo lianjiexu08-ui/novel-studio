@@ -1,0 +1,18 @@
+{
+  "verified": true,
+  "failurePath": "data/audit-runtimes/design77-review/startup-failure.log",
+  "failureSha256": "374370c692dcab4983d93a7979f2178362862f832f0a182f8c6b2228074f681b",
+  "originalRunnerSha256": "5198c2067d38ce79f7ada5afc0d42c7eb77d38fc9dd0a5cf493571022a588c71",
+  "recoveredRunnerSha256": "38d7c37e43244f2a2b466ee1bb67a285bf5c70f5c5022b6ce9148cb7a57d70d5",
+  "originalBaselineSha256": "4e06a0b92e7e1088fc18dad5a6b8186b4f444ebdd9e59975aae596ad671e6c20",
+  "recoveredBaselineSha256": "bc902ec25bdd573ce1948e63c39ea77f271de6791cd6a85dc0a1258a5ebba174",
+  "hostHelperSha256": "883bb6ae052caec9fe5b0333f4ad0ea1d2d799d9616143079eab4ae531544178",
+  "sharedHostTestSha256": "6bc8f8993c09b7056e0ecc05c1ff5defce797dcbb96d0e9378ce0e924c8b6020",
+  "identicalInputsAndPromptAdditions": true,
+  "originalFailedBeforeFirstWorkRead": true,
+  "originalModelCalls": 0,
+  "originalReviewTasksCreated": 0,
+  "protectedStateAndOldReviewsUnchangedAtRecoveryPreparation": true,
+  "recovery": "Use the existing per-client transaction queue through one shared repository for UI and review; no timeout extension or model retry.",
+  "formalAcceptance": false
+}
