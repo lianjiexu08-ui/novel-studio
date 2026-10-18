@@ -1,0 +1,123 @@
+{
+  "kind": "unapplied_review_identity_clarification",
+  "observedAt": "2026-10-18T08:20:46.032Z",
+  "segment": 7,
+  "runId": "design_run_aa04b61b-0b13-464a-9b21-9205a91600e2",
+  "stageId": "cross-1-4",
+  "stageSha256": "1a40d71ea2334aea51b7bc40549aaa88c63a447b4e0f947378be9a375440293a",
+  "startPath": "data/audit-runtimes/design76-citation-edits-review/model-calls/00045.started.json",
+  "startSha256": "6f69c47c334341834e582492c91faaf2fa4dbda301034b0bd22325fc5a5035df",
+  "responsePath": "data/audit-runtimes/design76-citation-edits-review/model-calls/00045.response.json",
+  "responseSha256": "b02dcd896c7a4fa6af5e5e334db7c3ad4e218271a028b392e185cd221d0fa4f2",
+  "outputPath": "data/audit-runtimes/design76-citation-edits-review/characters-cross14-annotation-input.json",
+  "outputSha256": "c9f14bc86981dc1007369cdb46dc0f68547fed21b4ea59e91bf2ba7b0f62621c",
+  "note": {
+    "requestKey": "design76-characters-cross14-lu-elder-action",
+    "runId": "design_run_aa04b61b-0b13-464a-9b21-9205a91600e2",
+    "stageId": "cross-1-4",
+    "criterion": "agency",
+    "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+    "expectedCheckHash": "50944ba239d0a0db67a036d0620ffc67f273a50f0917132c31fdc03479d3af8e",
+    "claimQuote": "陆沉川在弟弟拒绝离港后选择协助辨门",
+    "explanation": "此处行为主体误写。陆沉舟（char_16）是哥哥，陆沉川（char_21）是弟弟。第49章由弟弟陆沉川拒绝随哥哥离港，哥哥陆沉舟随后接受看护、交出亲走入口并提出次晨辨门。应将本句主体纠正为陆沉舟，不能据此给陆沉川新增弟弟或移交哥哥的押送/带路经历。相邻relationships解释的“陆沉川可提供指路”也不得用于把本次哥哥交出的路线归给弟弟。两人既有身份、责任和原章节均保持原样；保存模型原话和局部判定，本核对不证明其余人物关系已通过，不关闭阻塞或批准正文。",
+    "evidence": [
+      {
+        "sourceId": "story/characters/char_16",
+        "quote": "\"name\": \"陆沉舟\""
+      },
+      {
+        "sourceId": "story/characters/char_16",
+        "quote": "保护已获救的弟弟免受程记报复"
+      },
+      {
+        "sourceId": "story/characters/char_21",
+        "quote": "\"name\": \"陆沉川\""
+      },
+      {
+        "sourceId": "story/characters/char_21",
+        "quote": "陆沉舟的弟弟，程记普通药栈伙计"
+      },
+      {
+        "sourceId": "plan/chapters/49",
+        "quote": "沉川主动交条、当面拒绝离港并说出亲见；陆走入有巡员的岗房，接受看护，再把亲走入口交出。"
+      }
+    ]
+  },
+  "actualRequestSources": [
+    {
+      "sourceId": "story/characters/char_16",
+      "sourceSha256": "f6e0b886f3517b8848935717215f6631d761a5433d04e1c357a21852a238137b",
+      "units": [
+        {
+          "id": "review-unit/52",
+          "origin": {
+            "sourceId": "story/characters/char_16",
+            "start": 0,
+            "end": 258
+          },
+          "fragments": [
+            {
+              "id": "e82",
+              "text": "{\n  \"id\": \"char_16\",\n  \"name\": \"陆沉舟\",\n  \"role\": \"stage\",\n  \"goal\": \"保护已获救的弟弟免受程记报复，同时害怕承认自己的改签会失去自由；在保账自保与如实供述之间反复。\",\n  \"identity\": \"程记药栈凝元押运头目，曾任大乾军需船校尉；亲自参与过改签，弟弟亦为押货伙计。\",\n  \"locationId\": \"loc_24\",\n  \"factionId\": \"fac_02\",\n  \"startingRealmId\": \"realm_02\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "story/characters/char_21",
+      "sourceSha256": "9fe2629e1052968e1c8a5423915e686fb443dbbf582c35ba4cca54d40280373a",
+      "units": [
+        {
+          "id": "review-unit/57",
+          "origin": {
+            "sourceId": "story/characters/char_21",
+            "start": 0,
+            "end": 263
+          },
+          "fragments": [
+            {
+              "id": "e87",
+              "text": "{\n  \"id\": \"char_21\",\n  \"name\": \"陆沉川\",\n  \"role\": \"stage\",\n  \"goal\": \"保住药栈差事并隐瞒自己领走假报空箱的责任；获救后在自保、哥哥和如实交证之间选择，不能用救命之恩换免罪。\",\n  \"identity\": \"陆沉舟的弟弟，程记普通药栈伙计，无修行能力；217日从船侧门领六号箱，218日分架与送医铺。第35章林只知册上姓名，38章当面对质才知兄弟关系。\",\n  \"locationId\": \"loc_23\",\n  \"factionId\": \"fac_08\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "plan/chapters/49",
+      "sourceSha256": "9f17b549fa5197e648449f7bb1618bf7b5c2b2fd9002e0c319c1b2829e406d3a",
+      "units": [
+        {
+          "id": "review-unit/288",
+          "origin": {
+            "sourceId": "plan/chapters/49",
+            "start": 0,
+            "end": 1515
+          },
+          "fragments": [
+            {
+              "id": "e428",
+              "text": "{\n  \"id\": \"chapter-49\",\n  \"chapterNumber\": 49,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"弟弟留下\",\n  \"summary\": \"253日陆经原船岗旁茶摊送条，要弟弟见面后随他离港。沉川将纸条交给巡查，自己留在复核岗等；林贺来向巡查交接北三公共入口排查范围。陆到门前看见巡员仍走入，劝弟赶在天黑前走。沉川把哥哥递来的手推开，说要留港对217领箱负责，并说出220夜送饭时见兄长收钱签条。陆承认动作，却对那张条的内容闭口。弟弟坐回登记桌前，陆终于停止催走，接受到案看护与随身财物登记。他望见北三水台的查找记录，画出自己走过的废砖甬道和无牌附棚入口，提出次晨随巡查辨门。林接过图，巡查当夜查外围出口；兄弟一人留岗配合、一人受看护，各自面对自己的责任。\",\n  \"characterGoals\": \"陆想把弟带离程的势力范围，也想避开自己签条的追问；沉川要留下说明自己领箱的经过；林贺要从陆亲走的路线找到两名工人。\",\n  \"conflict\": \"陆把带弟离港当成补救，弟却认为再次逃走会让自己的选择继续被哥哥代替。弟只看见收钱签条；陆若开口说内容，就得直面自己参与的另一批货。\",\n"
+            },
+            {
+              "id": "e429",
+              "text": "  \"choice\": \"沉川主动交条、当面拒绝离港并说出亲见；陆走入有巡员的岗房，接受看护，再把亲走入口交出。他仍隐瞒条内内容，兄弟关系未因指路而和好。\",\n  \"cost\": \"陆丧失自由回避问询的空间，2枚随身钱仅登记仍属本人，原账未找回；弟承担与兄争执、继续复核的压力。林现金仍0，贺资格暂停，完整改签自认和原页尚未取得。\",\n  \"threads\": [\n    \"th_03\",\n    \"sec_02\",\n    \"th_01\"\n  ],\n  \"endState\": \"253夜，陆在巡查看护下已到案，愿254晨随队从废砖甬道辨无牌附棚；弟自愿留港复核，没有被林拘禁。林知道陆承认收钱签条、指过入口，但不知条内改签全貌，也未取得原账或第二片。吴卢具体位置仍须现场见人。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_15\",\n    \"char_16\",\n    \"char_21\"\n  ],\n  \"location\": \"loc_23天宝外港商盟、原船复核岗与普通转运仓区\",\n  \"storyTime\": \"第253日午后至夜间\",\n  \"scenes\": [\n    \"253茶摊送来哥哥约见后离港的纸条。沉川读完，把纸条交给当班巡员，搬凳子坐在原船复核岗等人。林贺来交接北三公共入口的排查范围，看见的是他自己选下的等候位置。\",\n"
+            },
+            {
+              "id": "e430",
+              "text": "    \"陆在岗外看见巡员，停步后仍进门，伸手要带弟走。沉川挣开，坐回登记桌，要求先说清自己217领箱的经过。陆催他趁天黑前离港，弟问220夜那笔钱和那张签条是不是也要带着躲下去。\",\n    \"弟说当夜送饭见到收钱和签字，没看清条内内容。陆先称正常押运，见弟没有起身，终于承认领钱签过条；被问写了什么时又沉默。他不再催弟出门，转身接受到案登记和看护。\",\n    \"巡员当面清点陆随身2枚，登记未罚没。陆说原账已交程，巡员先记下待核。林把北三水台返单与昨日公开入口记录放在桌上，陆认出地点，在空处画废砖甬道，标出自己走过的无牌附棚门。\",\n    \"陆说自己可以带到门前；弟仍留在登记桌那边，没有用跟他走换取指路。巡查安排看护陆，立即查外巷出口，定254晨两路辨门。林贺带走入口图准备认人，兄弟隔着岗房各自坐下。\"\n  ],\n  \"source\": \"author\"\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "productionWrites": 0,
+  "modelCalls": 0,
+  "annotationsApplied": 0,
+  "verdictChanges": 0,
+  "blockersClosed": 0,
+  "formalAcceptance": false,
+  "limitation": "Exact quotations verified against both the accepted checkpoint stage and actual request. Live segment has not yet passed terminal independent replay; annotation remains offline and cannot be counted as a production/UI clarification. Preserve this finding for final synthesis and candidate review."
+}
