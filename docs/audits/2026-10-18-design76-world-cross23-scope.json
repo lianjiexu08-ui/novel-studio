@@ -1,0 +1,789 @@
+{
+  "kind": "world_cross23_unread_source_scope",
+  "verified": true,
+  "verificationPath": "docs/audits/2026-10-18-design76-capacity-review-segment-10.json",
+  "verificationSha256": "e2e1546acf51a237f50813ac5ca672ab37a5d80496ad269d04c74c82bd8bff89",
+  "checkpointPath": "data/audit-runtimes/design76-capacity-review/terminal-segment-10.json",
+  "checkpointSha256": "26acd41d5132432133f3cde3cb84c28f5166bdd764f1064d48640c8911fe0030",
+  "bindingPath": "data/audit-runtimes/design76-citation-capacity-runtime-bound.json",
+  "bindingSha256": "e978d7aab9f0e89c5839fdef6bbea07f910b37a5241d7fc6b9b6678a08d11cce",
+  "requestPath": "data/audit-runtimes/design76-capacity-review/model-calls/00065.started.json",
+  "requestSha256": "104b7a3d99a66b21308ba612adf403fb4b2e0cf8838a82b018facd1de7d97f21",
+  "responsePath": "data/audit-runtimes/design76-capacity-review/model-calls/00065.response.json",
+  "responseSha256": "fc659042cd80003b2a99c8d5a0343adaea0abaeaa20a9a3ccc5f70f16438b4d9",
+  "requestId": "review_fcc7a15f26fb8cffd0814823",
+  "findings": [
+    {
+      "criterion": "geography",
+      "verdict": "insufficient",
+      "requestedSources": 53,
+      "requestedChapterNumbers": [
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50
+      ],
+      "requestedEnvelopeCharacters": 94749,
+      "inputLimit": 240000,
+      "requestedSourcesAloneFit": true,
+      "sourceCoverage": [
+        {
+          "sourceId": "world/locations/loc_21",
+          "sourceCharacters": 640,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "world/locations/loc_23",
+          "sourceCharacters": 181,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "world/locations/loc_24",
+          "sourceCharacters": 181,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "world/locations/loc_25",
+          "sourceCharacters": 357,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "world/locations/loc_26",
+          "sourceCharacters": 288,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "world/locations/loc_27",
+          "sourceCharacters": 181,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "world/locations/loc_28",
+          "sourceCharacters": 314,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "world/locations/loc_29",
+          "sourceCharacters": 318,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "world/locations/loc_30",
+          "sourceCharacters": 229,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "world/artifacts/art_15",
+          "sourceCharacters": 340,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "world/artifacts/art_16",
+          "sourceCharacters": 600,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "world/artifacts/art_17",
+          "sourceCharacters": 1044,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "world/artifacts/art_18",
+          "sourceCharacters": 1256,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "world/artifacts/art_21",
+          "sourceCharacters": 946,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "world/techniques/tech_04",
+          "sourceCharacters": 1998,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "world/techniques/tech_19",
+          "sourceCharacters": 874,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "world/factions/fac_01",
+          "sourceCharacters": 297,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "world/factions/fac_05",
+          "sourceCharacters": 369,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "world/factions/fac_08",
+          "sourceCharacters": 424,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "world/factions/fac_09",
+          "sourceCharacters": 274,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "world/factions/fac_12",
+          "sourceCharacters": 383,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/19",
+          "sourceCharacters": 2046,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/20",
+          "sourceCharacters": 2006,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/21",
+          "sourceCharacters": 2183,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/22",
+          "sourceCharacters": 1769,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/23",
+          "sourceCharacters": 2722,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/24",
+          "sourceCharacters": 1628,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/25",
+          "sourceCharacters": 5406,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/26",
+          "sourceCharacters": 4126,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/27",
+          "sourceCharacters": 2405,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/28",
+          "sourceCharacters": 2693,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/29",
+          "sourceCharacters": 2766,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/30",
+          "sourceCharacters": 1966,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/31",
+          "sourceCharacters": 2648,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/32",
+          "sourceCharacters": 2351,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/33",
+          "sourceCharacters": 3532,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/34",
+          "sourceCharacters": 1504,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/35",
+          "sourceCharacters": 1488,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/36",
+          "sourceCharacters": 1835,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/37",
+          "sourceCharacters": 3224,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/38",
+          "sourceCharacters": 1790,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/39",
+          "sourceCharacters": 2039,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/40",
+          "sourceCharacters": 1635,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/41",
+          "sourceCharacters": 1758,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/42",
+          "sourceCharacters": 2290,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/43",
+          "sourceCharacters": 1939,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/44",
+          "sourceCharacters": 3084,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/45",
+          "sourceCharacters": 2288,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/46",
+          "sourceCharacters": 1690,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/47",
+          "sourceCharacters": 1686,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/48",
+          "sourceCharacters": 2666,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/49",
+          "sourceCharacters": 1515,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/50",
+          "sourceCharacters": 2916,
+          "readRanges": [],
+          "fullyRead": false
+        }
+      ],
+      "limitation": "Only requested-source envelope size. Original question, original sources, optional context and metadata still require the normal scheduler budget check; no follow-up is accepted here."
+    },
+    {
+      "criterion": "history",
+      "verdict": "insufficient",
+      "requestedSources": 57,
+      "requestedChapterNumbers": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50
+      ],
+      "requestedEnvelopeCharacters": 122570,
+      "inputLimit": 240000,
+      "requestedSourcesAloneFit": true,
+      "sourceCoverage": [
+        {
+          "sourceId": "world/historicalEvents/event_14",
+          "sourceCharacters": 1309,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "world/factions/fac_02",
+          "sourceCharacters": 339,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "world/factions/fac_03",
+          "sourceCharacters": 271,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "world/factions/fac_06",
+          "sourceCharacters": 276,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "world/factions/fac_07",
+          "sourceCharacters": 258,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "world/factions/fac_08",
+          "sourceCharacters": 424,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "world/factions/fac_12",
+          "sourceCharacters": 383,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/1",
+          "sourceCharacters": 2079,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/2",
+          "sourceCharacters": 1182,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/3",
+          "sourceCharacters": 1636,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/4",
+          "sourceCharacters": 1462,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/5",
+          "sourceCharacters": 1281,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/6",
+          "sourceCharacters": 1131,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/7",
+          "sourceCharacters": 1778,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/8",
+          "sourceCharacters": 1200,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/9",
+          "sourceCharacters": 1863,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/10",
+          "sourceCharacters": 1778,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/11",
+          "sourceCharacters": 2013,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/12",
+          "sourceCharacters": 3068,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/13",
+          "sourceCharacters": 2190,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/14",
+          "sourceCharacters": 2458,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/15",
+          "sourceCharacters": 1934,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/16",
+          "sourceCharacters": 1635,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/17",
+          "sourceCharacters": 1858,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/18",
+          "sourceCharacters": 3787,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/19",
+          "sourceCharacters": 2046,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/20",
+          "sourceCharacters": 2006,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/21",
+          "sourceCharacters": 2183,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/22",
+          "sourceCharacters": 1769,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/23",
+          "sourceCharacters": 2722,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/24",
+          "sourceCharacters": 1628,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/25",
+          "sourceCharacters": 5406,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/26",
+          "sourceCharacters": 4126,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/27",
+          "sourceCharacters": 2405,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/28",
+          "sourceCharacters": 2693,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/29",
+          "sourceCharacters": 2766,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/30",
+          "sourceCharacters": 1966,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/31",
+          "sourceCharacters": 2648,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/32",
+          "sourceCharacters": 2351,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/33",
+          "sourceCharacters": 3532,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/34",
+          "sourceCharacters": 1504,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/35",
+          "sourceCharacters": 1488,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/36",
+          "sourceCharacters": 1835,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/37",
+          "sourceCharacters": 3224,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/38",
+          "sourceCharacters": 1790,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/39",
+          "sourceCharacters": 2039,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/40",
+          "sourceCharacters": 1635,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/41",
+          "sourceCharacters": 1758,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/42",
+          "sourceCharacters": 2290,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/43",
+          "sourceCharacters": 1939,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/44",
+          "sourceCharacters": 3084,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/45",
+          "sourceCharacters": 2288,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/46",
+          "sourceCharacters": 1690,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/47",
+          "sourceCharacters": 1686,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/48",
+          "sourceCharacters": 2666,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/49",
+          "sourceCharacters": 1515,
+          "readRanges": [],
+          "fullyRead": false
+        },
+        {
+          "sourceId": "plan/chapters/50",
+          "sourceCharacters": 2916,
+          "readRanges": [],
+          "fullyRead": false
+        }
+      ],
+      "limitation": "Only requested-source envelope size. Original question, original sources, optional context and metadata still require the normal scheduler budget check; no follow-up is accepted here."
+    }
+  ],
+  "conclusion": "Both deferrals name existing sources that were not completely supplied in this request. Do not rewrite existing design merely because these local checks are insufficient. Capacity pass remains local and does not settle geography/history or whole-book acceptance.",
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false
+}
