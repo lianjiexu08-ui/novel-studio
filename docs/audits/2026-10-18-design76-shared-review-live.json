@@ -1,0 +1,40 @@
+{
+  "kind": "design76_shared_review_live_observation",
+  "observedAt": "2026-10-18T07:19:16.689Z",
+  "segment": 2,
+  "checkpointSha256": "8597255bf9e481aa399f1008676300e35805a20bc047754f8e52a64d61e0d50e",
+  "workerAbsent": true,
+  "http": {
+    "path": "data/audit-runtimes/design76-shared-review/http-segment-2.jsonl",
+    "sha256": "f3586948cc9ff26effa8242b3138ab736dc206ccfe4612fc8e72389d3eea94fe",
+    "count": 89,
+    "getCount": 50,
+    "statusCounts": {
+      "200": 50,
+      "204": 39
+    },
+    "slowestGetMs": 60171.05650019646
+  },
+  "browser": {
+    "path": "data/audit-runtimes/design76-shared-review/page-after-power.txt",
+    "sha256": "637181a94fa1c31119af4732dbec1870f111ff0b9158c1a4bffe1160dd89dfd4",
+    "world": "7/55",
+    "power": "7/29",
+    "loadErrorVisible": false
+  },
+  "tests": {
+    "command": "npm test",
+    "log": "/tmp/novel-design76-shared-full-tests.log",
+    "logSha256": "c9d025fc479f8dd66ed5e0a96c10559a575b17f968c7db5441c9284875637423",
+    "count": 612,
+    "passed": 612,
+    "failed": 0
+  },
+  "sampledRssKiB": 4542368,
+  "formalAcceptance": false,
+  "limitations": [
+    "Browser evidence covers saved world and power progress during segment 2, not final content acceptance.",
+    "Full-history reads still have substantial latency and memory cost; sampled RSS is not a measured peak.",
+    "API closes normally at the segment boundary."
+  ]
+}
