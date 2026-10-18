@@ -1,0 +1,53 @@
+{
+  "kind": "design75_manual_identity_finding",
+  "observedAt": "2026-10-18T04:47:50.861Z",
+  "candidatePath": "data/design-candidates/design75-technique-v1.json",
+  "candidateSha256": "c6132ee7093ab96cef2156dbc6d43b9b6fd02eef01584dca0ef7000e1ce48785",
+  "scope": {
+    "world": 40,
+    "storyBible": 72,
+    "plan": 75
+  },
+  "status": "confirmed_text_mismatch_pending_repair",
+  "finding": "第三卷训练资源账将待归还220旅资的船主写作贺小满，人物表对应船主为贺青梧（char_15）；卢小满（char_25）是另一名雇工。",
+  "evidence": [
+    {
+      "sourceId": "plan/milestones/ms_v3_training",
+      "quote": "训练资源执行账（本次具体劳务约定，不是全境统一物价）：316日白榆只允许无痛坐姿抄录，林与修缮库当面约定318–329日十二日、每日两小时核对旧库存抄本，验收合格每日现金两枚下品青灵石，330日按实际完成的十二日一次结清24枚。此项为既有修缮技能的短期补账劳务，与矿务署拖欠工钱分开，付款来自修缮库既有当期劳务预算，不支用贺小满待归还的220旅资。330日实领后，3枚偿付316–329药舍普通食宿及常规复诊的既有约定欠款，14枚按药舍本次约定预付330–415普通食宿和上述常规复查，剩余7枚完整灵石验纯后单独入训练库存，不再交易或抵费。药舍约定不含新增药石、急伤处置和延期食宿；354回流如检查需额外药物或急救，先停训核实费用与新来源，不能挪已消耗灵石或免费治愈。轻役致痛即停，少做一天不发当天报酬，结算不足先清既有欠款并核后续食宿，耗材凑不足则不开周期。正常轻微回流经医修判断只需停练观察，才能沿上述七枚预算继续；不存在无条件康复。此账在作者侧校验，正文呈现接活、实领、一次失败与重启选择，不逐条展示行政账单。"
+    },
+    {
+      "sourceId": "story/characters/char_15",
+      "value": {
+        "id": "char_15",
+        "name": "贺青梧",
+        "role": "supporting",
+        "goal": "救回被扣的雇工、保住自己的船与合法接货资格；不愿为了别人的家仇无限承担损失。",
+        "identity": "天宝外港驳船船主，淬体修士；熟悉港内普通潮道、雇工与船务，不懂界门或高阶阵法。",
+        "locationId": "loc_23",
+        "factionId": "fac_08",
+        "startingRealmId": "realm_01"
+      }
+    },
+    {
+      "sourceId": "story/characters/char_25",
+      "value": {
+        "id": "char_25",
+        "name": "卢小满",
+        "role": "supporting",
+        "goal": "走出附棚并留在岸上重新选择生计，不因获救而自动回到任何人的船上。",
+        "identity": "贺原五名普通雇工之一，无修为；与吴同被扣，不是新增第六第七人；48章拒绝被代答，50章当面自行决定去留。",
+        "locationId": "loc_23",
+        "factionId": "fac_08"
+      }
+    }
+  ],
+  "proposedReplacement": {
+    "from": "不支用贺小满待归还的220旅资",
+    "to": "不支用贺青梧待归还的220旅资"
+  },
+  "nextAction": "Collect the current bounded formal review findings before making a new proposal; do not mutate inputs while the worker is live.",
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Identity spelling mismatch confirmed against profiles; does not independently revalidate the 220 balance or its entire ownership history."
+}
