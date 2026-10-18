@@ -1,0 +1,97 @@
+{
+  "kind": "design76_segment18_notes_appended",
+  "verified": true,
+  "createdAt": "2026-10-18T13:18:43.952Z",
+  "runnerSha256": "d305a2bb10f80ca57d987e860df6f4e6fda05375c0d511c5f0d48a26a8be586b",
+  "preparedSha256": "6caf88fd1480a007c4a12a79bd5c59bd0e298f113846338a83fbb36cd205716a",
+  "runtimeBindingSha256": "8a1875b686f31b79d32ca9c00fa4cfd65931a195ca0c6dfd8547ff2c0507b5e5",
+  "baseCheckpointSha256": "3319b1f50775f62bcb39665b087405a9be3e61e9e7a1872f1524b2ec80adb9ad",
+  "database": "/Users/lianjie/Documents/ChatGPT/novel/data/novel-studio.db",
+  "control": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design76-notes18-apply-PPFLFG",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "notes": [
+    {
+      "requestKey": "design76-story-north-rescue-order",
+      "runId": "design_run_f355dadb-f3ee-4b1b-8834-f17bf0f487dc",
+      "stageId": "followup-batch-1/causality",
+      "criterion": "causality",
+      "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+      "expectedCheckHash": "accfe485df5170842b3d981b98b431680ddaeb3a0a158251574f129c9b6af529",
+      "claimQuote": "依次推进七人救援与候查安置、北航、黑舱取舍",
+      "explanation": "原解释把“七人救援与候查安置”列在北航之前，顺序不符实际发送的里程碑。第54—60章先北航：276日暮离港、281日暮抵葬骨外港；第61—66章才展开黑舱行动，其中第64章291日救出七名青玄籍矿工，随后由港卫按实际批次交入同一监管泊区内的候查暖房。林放弃追程、取第二片而先救人，属于这次291日行动中的选择，不是另一个先于北航的救援。北境七人与此前赤霄获救的五名雇工须分开，不能混算或重复救援。保留原局部pass及补读解决声明；本说明只纠正评语列举的先后，不搬移里程碑、不改写原日历，也不代表全部因果或全书设计已验收。",
+      "evidence": [
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "quote": "\"startChapter\": 54,\n  \"endChapter\": 60"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "quote": "276日暮离港、281日暮抵葬骨外港，五昼夜完整航程。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_boundary",
+          "quote": "\"startChapter\": 61,\n  \"endChapter\": 66"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_boundary",
+          "quote": "第64章的实际转运在第291日，285日只是夜抵港会面，不把两日混为同一场。夜要先封存污染货并救出七名被扣在普通货舱的青玄矿工；林在仍可追程的小艇与先开囚舱之间选择救人。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_boundary",
+          "quote": "七人在原定衣符、短板和保温救助舟条件下，由原陪护港卫随实际批次交到同一监管泊区内的候查暖房"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_boundary",
+          "quote": "7名矿工上岸、与5名已在赤霄获救的雇工名单分开"
+        }
+      ],
+      "id": "review_note_f57d2ceb-5bc0-49da-ba1e-7ad984ba9ff6",
+      "createdAt": "2026-10-18T13:18:33.786Z",
+      "scope": {
+        "worldPackRevision": 40,
+        "storyBibleRevision": 72,
+        "planRevisionId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+        "planRevision": 76
+      }
+    }
+  ],
+  "preservedWorkFieldDigests": {
+    "activePlanId": "a79cacee9517456fb5abae34e3592ad141a8d092b6782979cdb0aa1996029412",
+    "briefs": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "candidates": "db801c927d61955caf1e94c196129e7ca7a4557cbae7f7f93b7977d2e6ffb6a2",
+    "characters": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "checkpoints": "9360443cd3329deca750224d5f41fd8b848cc87483d84e5d59d8bf1fa6f89d31",
+    "constraintRevision": "b3c5c183d11f7a78f3bffc84ee898ce24e98ed6254138a32a270f7b3a288c162",
+    "covenant": "7b09efc6b0d1edd79e40db6d143a177956b28b40ee5070d303574df8d73121f8",
+    "covenantHistory": "ef48b60cd983a0f4b34cbe25bf37e751eb58681b943b6b8369fdcd5fca1ec745",
+    "designContentReviews": "8b8ab9639e03bd0055431c0e710bacf9dbac0d268f27578ddcb0bfc13e0aed8d",
+    "designHistory": "f2347b762def7bec1232ebed9113bcc4fb424df8b0f09e37b74bcef254165a1b",
+    "designReviewRuns": "246ee7a0f77b7db32e6a89cf0b7bffc195449914ca6674d5e06054b78c6eae24",
+    "events": "69a4c30b560af422264c89ba8cce8c658bf3d137ec8bcdae5f7025cdc4622590",
+    "id": "e6c77c6af51347285f913e10c068833e392333610313a73f42ae654dbeeebb0b",
+    "impacts": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "manuscripts": "3f9dd7880a530d9eb7ccf9113b140958fe9e182f63c9f706f9c55ceb5c46ffc9",
+    "plans": "6afb21f18712fce391f7c0c715b9791eb95f922a669d1cc1a96b2677e905b396",
+    "plotNodes": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "relationships": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "stateRevision": "16dc368a89b428b2485484313ba67a3912ca03f2b2b42429174a4f8b3dc84e44",
+    "states": "71af6764cda2e591af608654aa65a05f8b25e4e8f9871c746de158a77a0618fc",
+    "storyBible": "ae92c644e55aa89fd87920f431acdb817e50351843daddd6cb65d8508350ef02",
+    "title": "9a392c9dee167243ad8ace1e37c8c750c798509925344a9b052ce05cbb6a54b2",
+    "versions": "ab09691b6b0882a4fa32a704a65a61930f961a7d3e35aa52d872fc017e048fb1",
+    "worldPack": "c2c2dd54716be54571a024440590ebbb8c47b55eb37f2b490bfaf24c5bf6be6d",
+    "worldRules": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "oldRunsPreserved": 99,
+  "oldReportsPreserved": 92,
+  "oldAnnotationsPreserved": 18,
+  "annotationsAdded": 1,
+  "restartReadback": true,
+  "rollbackExercised": false,
+  "idempotenceExercised": false,
+  "modelCalls": 0,
+  "productionWrites": 1,
+  "verdictChanges": 0,
+  "questionsResolved": 0,
+  "formalAcceptance": false
+}
