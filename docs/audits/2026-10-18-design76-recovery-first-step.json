@@ -1,0 +1,62 @@
+{
+  "kind": "design76_recovery_first_real_step_verified",
+  "observedAt": "2026-10-18T05:38:38.822Z",
+  "runId": "design_run_98b5460a-ed47-4ba2-bb06-7fdded1f910d",
+  "restartedFromRunId": "design_run_fd211f33-a570-4688-8fa6-20018d6da2eb",
+  "stageId": "batch-1",
+  "scope": {
+    "worldPackRevision": 40,
+    "storyBibleRevision": 72,
+    "planRevisionId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+    "planRevision": 76
+  },
+  "checkpointPath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design76-recovery/first-step-verified-HPmw2h/checkpoint.json",
+  "checkpointSha256": "c1a74c90e13da58d86a88389dba6247255207644caadb6ac1408f26bee6c7f44",
+  "databaseRunPath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design76-recovery/first-step-verified-HPmw2h/database-run.json",
+  "databaseRunSha256": "3a4e48ced0e22791e37a6bb9a4d38d392af1e2b5b06f048ca54b5af22dd02bc8",
+  "sourceCommit": "26b5f8f16a6b3a442a3873615040a6629069fcb1",
+  "runnerSha256": "720ace1cfb3755cc40c1f21fc098d9b72388d4850f3d28faf9cbb2c407800b58",
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "replay": {
+    "verification": "verified",
+    "completedStages": 1,
+    "totalStages": 55,
+    "runSha256": "3a4e48ced0e22791e37a6bb9a4d38d392af1e2b5b06f048ca54b5af22dd02bc8",
+    "formalAcceptance": false,
+    "limitation": "Replays saved responses, repairs, citations and conclusions against independently supplied materials. Pending work, semantic quality, blocker disposition and prose acceptance remain separate.",
+    "responseReplay": "verified",
+    "responsesReplayed": 1,
+    "records": [
+      {
+        "stageId": "batch-1",
+        "kind": "batch",
+        "stageSha256": "20e0b59a05393e35f5dfdd11260a3afcefc2989615c449684e9c11bde3db4da3",
+        "inputSha256": "857ccb7805e18966efcdbf4b1c5da9444419e092fe8959f7ae144ef868b03922",
+        "responsesReplayed": 1,
+        "checks": [
+          {
+            "criterion": "geography",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "history",
+            "verdict": "pass"
+          },
+          {
+            "criterion": "capacity",
+            "verdict": "pass"
+          }
+        ]
+      }
+    ],
+    "failures": [],
+    "modelCalls": 0,
+    "reportVerification": "not_completed"
+  },
+  "responsesReplayed": 1,
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Verifies only the saved first world step against the actual request, raw response and a read-only database row. Other steps and full historical protection still require terminal verification."
+}
