@@ -1,0 +1,10 @@
+{
+  "status": "failed",
+  "command": "/Users/lianjie/.pixi/envs/nodejs/bin/node scripts/verify-design77-segment1-note-ui.mjs",
+  "exitCode": 1,
+  "error": "AssertionError: screenshot header ffd8ffe000104a46 differs from expected PNG header 89504e470d0a1a0a",
+  "cause": "Browser capture was saved under a .png filename but contains JPEG bytes.",
+  "resolution": "Preserve original capture bytes and filename; detect and record the actual image MIME type in the verifier.",
+  "productionWrites": 0,
+  "modelCalls": 0
+}

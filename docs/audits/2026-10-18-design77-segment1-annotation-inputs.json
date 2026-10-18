@@ -1,0 +1,49 @@
+{
+  "kind": "design77_segment1_clarification_inputs",
+  "verificationPath": "docs/audits/2026-10-18-design77-shared-review-segment-1.json",
+  "verificationSha256": "acc6332308577f3c308643fd85e77436c7f7f99cacee9eca1948c05da9b1d95a",
+  "checkpointSha256": "ee3a356aa3d2b3842ea0ec5cd876d61bd5e1bfd41036f902e17d7a1600b3e7eb",
+  "bindingPath": "data/audit-runtimes/design77-runtime-bound.json",
+  "bindingSha256": "f527094395d8e8387875ba0830aac4fc7cd9c72bb46e35a27b803c97f20640d9",
+  "drafts": [
+    {
+      "path": "docs/audits/2026-10-18-design77-world-batch2-north-voyage-dates.json",
+      "sha256": "fd02eb96cd983368c2ab4a36891f8d22625e60029a569439ea4cb32ddfacd139"
+    },
+    {
+      "path": "docs/audits/2026-10-18-design77-sword-inspection-scope.json",
+      "sha256": "3eafcd9ad37bb705ed7418b8dfef5ba597ea4a9b860a9c238f9f1fd0fc80d46f"
+    }
+  ],
+  "outputPath": "data/audit-runtimes/design77-shared-review/segment1-annotations.json",
+  "outputSha256": "42aa7c43f0ae579541606940e03b5b84078822182ec69ddbcf863a9c9444a512",
+  "annotationCount": 2,
+  "sourceDigests": [
+    {
+      "requestKey": "design77-world-batch2-north-voyage-dates",
+      "sources": [
+        {
+          "id": "plan/milestones/ms_v2_voyage",
+          "sha256": "c592b3ad81c9f0136995da76b2ecb6881b02dace0c8d7ce756bb90a5622cabb8"
+        }
+      ]
+    },
+    {
+      "requestKey": "design77-power-batch3-sword-inspection",
+      "sources": [
+        {
+          "id": "world/artifacts/art_03",
+          "sha256": "0903c39875d3fdea64c967c0eaecc631d83adfcca2116b69cc110a8acf4e894b"
+        },
+        {
+          "id": "plan/chapters/20",
+          "sha256": "d2174b286ca94296c842ac4c0b3b6c4434d609a5d4309555c3209b880fc7d95c"
+        }
+      ]
+    }
+  ],
+  "productionWrites": 0,
+  "modelCalls": 0,
+  "formalAcceptance": false,
+  "limitation": "Exact original claims and source bindings only. Private rehearsal, atomic publication, restart readback and UI checks remain required."
+}

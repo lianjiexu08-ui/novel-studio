@@ -1,0 +1,133 @@
+{
+  "kind": "design77_segment1_notes_appended",
+  "verified": true,
+  "createdAt": "2026-10-18T21:36:46.598Z",
+  "runnerSha256": "11c28a9a89c3fcdb1dda2727edcc845d5256c7af3a5347e27dac27fb51e2fe9e",
+  "preparedSha256": "5b3c7508f9b0755b4208cee0bcc80ed9ef731abc625f2f16c1fd793a8e49d9c4",
+  "runtimeBindingSha256": "f527094395d8e8387875ba0830aac4fc7cd9c72bb46e35a27b803c97f20640d9",
+  "baseCheckpointSha256": "ee3a356aa3d2b3842ea0ec5cd876d61bd5e1bfd41036f902e17d7a1600b3e7eb",
+  "database": "/Users/lianjie/Documents/ChatGPT/novel/data/novel-studio.db",
+  "control": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design77-notes1-apply-nmyFaO",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "notes": [
+    {
+      "requestKey": "design77-world-batch2-north-voyage-dates",
+      "runId": "design_run_46d4115c-ff06-405b-b5a2-53ed194828a1",
+      "stageId": "batch-2",
+      "criterion": "geography",
+      "expectedInputHash": "98e041a25813c8482c83989ee55106ac892279bf2bdcf99281822e366976c7f8",
+      "expectedCheckHash": "46c6a930201d7fc6378c251a45440fcbe754adb98e654a24baeb64c94e06cbce",
+      "claimQuote": "第275—281日五昼夜北航",
+      "explanation": "评语将购票日压缩进海程。当前原文是271—274日沿岸陆路到极焱，275日购两张保温客舱票，276日暮离港、281日暮抵葬骨；实际海上航行为五昼夜。第275—281日包含购票与准备，不能整体当作五昼夜海程，不能据此把启航提前到275日或把航程改为六昼夜。正常航期仍以实际登船核验及持续供暖为前提，延期需重排日期。本说明只澄清评语中的时间压缩，保留原insufficient、全部awaitingSources及两份原始回答，不更改章纲或其他时序结论。",
+      "evidence": [
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "quote": "第271–274日乘普通车沿每日复核开放的既有沿岸驿道从天宝外港到极焱天港"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "quote": "第275日贺在极焱航司柜台按本航次实报5000/人支付10000，购买两张普通保温客舱票"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "quote": "276日暮离港、281日暮抵葬骨外港，五昼夜完整航程。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "quote": "原276—281航期仅适用于本次五日供暖实际持续的正常路径。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "quote": "延期就改签并重排后续日期和实际费用，不能保持原抵达日。"
+        }
+      ],
+      "id": "review_note_755ffb9d-a7c8-4389-9f0c-f1a0ebb46697",
+      "createdAt": "2026-10-18T21:36:36.360Z",
+      "scope": {
+        "worldPackRevision": 41,
+        "storyBibleRevision": 73,
+        "planRevisionId": "plan_14b9ff794fce4e67b7ff6dbf33344e29",
+        "planRevision": 77
+      }
+    },
+    {
+      "requestKey": "design77-power-batch3-sword-inspection",
+      "runId": "design_run_8de92f7d-7a21-4f84-8bb9-ebd7c093a13f",
+      "stageId": "batch-3",
+      "criterion": "costs",
+      "expectedInputHash": "98e041a25813c8482c83989ee55106ac892279bf2bdcf99281822e366976c7f8",
+      "expectedCheckHash": "7f161d8431a65f1e8018b2c76b0f288513685b3f8b197d22c2e1d02419501eb3",
+      "claimQuote": "未定义这种试注是否属于施剑、御物、器物检验或其他操作，也没有对应对象、效果和失败后果。",
+      "explanation": "本批未提供赤霞斩铁剑art_03完整原文，不能由此认定世界设定没有试注规则。当前任务的完整输入已经列明：这是独立器身复用检查，须已学会注剑、收注及冷却检查；每次预付健康稳定真元上限半成，与挥击、剑诀和御物分账，最长三息，无攻击效果，异常即停、已付不退并停用待检修。第20章10−2−0.5+1.5=9的账也有明确原文。已另行保存带完整器物、功法及18/20/21章的局部复核，不能把该局部结果当成整项力量验收。本说明指出原返修依据遗漏必要规则；保留原revise、原答与待补读项，不删除半成费用，不自动关闭问题，也不宣称后补说明已进入原任务的模型输入。",
+      "evidence": [
+        {
+          "sourceId": "world/artifacts/art_03",
+          "quote": "冷却后的低流量试注是单独的器身复用检查，每次预付本人凝元健康稳定真元上限的半成，另于挥击、剑诀和御物计费；中断、异常或检查失败均不退"
+        },
+        {
+          "sourceId": "world/artifacts/art_03",
+          "quote": "低流量试注只供已在授业中练成凝元注剑、收注与冷却检查者执行，不能由持剑或晋阶自动取得"
+        },
+        {
+          "sourceId": "world/artifacts/art_03",
+          "quote": "一次最多三息，半成是整次上限和固定支出，不因延长或多试免费"
+        },
+        {
+          "sourceId": "world/artifacts/art_03",
+          "quote": "听到异响、剑柄灼热、掌痛或导气不稳即停注，已付不退，剑停用待检修和复验"
+        },
+        {
+          "sourceId": "plan/chapters/20",
+          "quote": "执行核算：10−2−0.5+1.5=9成；两小时吐纳上限为2成，实际只记1.5成，不抵销此前已付费用。"
+        }
+      ],
+      "id": "review_note_dc7b780b-a508-4229-a4fd-6b97931c52b1",
+      "createdAt": "2026-10-18T21:36:36.361Z",
+      "scope": {
+        "worldPackRevision": 41,
+        "storyBibleRevision": 73,
+        "planRevisionId": "plan_14b9ff794fce4e67b7ff6dbf33344e29",
+        "planRevision": 77
+      }
+    }
+  ],
+  "preservedWorkFieldDigests": {
+    "activePlanId": "a79cacee9517456fb5abae34e3592ad141a8d092b6782979cdb0aa1996029412",
+    "briefs": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "candidates": "db801c927d61955caf1e94c196129e7ca7a4557cbae7f7f93b7977d2e6ffb6a2",
+    "characters": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "checkpoints": "9360443cd3329deca750224d5f41fd8b848cc87483d84e5d59d8bf1fa6f89d31",
+    "constraintRevision": "131f4493792b4c6d292a7705ab7683a5097b4da974c3d33959924ee2ff164b50",
+    "covenant": "7b09efc6b0d1edd79e40db6d143a177956b28b40ee5070d303574df8d73121f8",
+    "covenantHistory": "ef48b60cd983a0f4b34cbe25bf37e751eb58681b943b6b8369fdcd5fca1ec745",
+    "designContentReviews": "8b8ab9639e03bd0055431c0e710bacf9dbac0d268f27578ddcb0bfc13e0aed8d",
+    "designHistory": "274ade14f671a707e4f9c29fc3dbf468c0ee60baf53a64ed9f9d4db4242b873a",
+    "designReviewRuns": "2247254189d0972ea3d2bcfb0f04b773eef0e873953c9f7c823b77eac795c9ac",
+    "events": "69a4c30b560af422264c89ba8cce8c658bf3d137ec8bcdae5f7025cdc4622590",
+    "id": "e6c77c6af51347285f913e10c068833e392333610313a73f42ae654dbeeebb0b",
+    "impacts": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "manuscripts": "3f9dd7880a530d9eb7ccf9113b140958fe9e182f63c9f706f9c55ceb5c46ffc9",
+    "plans": "6bcb8af5951ba5da1d6f011325759834214331abeb9746342c04a8a1771a3871",
+    "plotNodes": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "relationships": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "stateRevision": "16dc368a89b428b2485484313ba67a3912ca03f2b2b42429174a4f8b3dc84e44",
+    "states": "71af6764cda2e591af608654aa65a05f8b25e4e8f9871c746de158a77a0618fc",
+    "storyBible": "52dad4132aebc941f74ce62612fccb964e01e1772599d9413e4b826010124dd9",
+    "title": "9a392c9dee167243ad8ace1e37c8c750c798509925344a9b052ce05cbb6a54b2",
+    "versions": "ab09691b6b0882a4fa32a704a65a61930f961a7d3e35aa52d872fc017e048fb1",
+    "worldPack": "a98a853874da211d2c156ebc412e055534e8e81d7db8f479d71b3a6f6cf4c7d3",
+    "worldRules": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "oldRunsPreserved": 103,
+  "oldReportsPreserved": 92,
+  "oldAnnotationsPreserved": 37,
+  "annotationsAdded": 2,
+  "restartReadback": true,
+  "rollbackExercised": false,
+  "idempotenceExercised": false,
+  "modelCalls": 0,
+  "productionWrites": 1,
+  "verdictChanges": 0,
+  "questionsResolved": 0,
+  "formalAcceptance": false
+}

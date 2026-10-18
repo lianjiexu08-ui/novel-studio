@@ -1,0 +1,162 @@
+{
+  "kind": "design77_world_batch2_north_voyage_dates",
+  "verificationPath": "docs/audits/2026-10-18-design77-shared-review-segment-1.json",
+  "verificationSha256": "acc6332308577f3c308643fd85e77436c7f7f99cacee9eca1948c05da9b1d95a",
+  "bindingPath": "data/audit-runtimes/design77-runtime-bound.json",
+  "bindingSha256": "f527094395d8e8387875ba0830aac4fc7cd9c72bb46e35a27b803c97f20640d9",
+  "requestPath": "data/audit-runtimes/design77-shared-review/model-calls/00006.started.json",
+  "requestSha256": "0370eb5a23c6dbacb9a66bc2b91cdce443f5e219b1b0b0c877647161046bb1fd",
+  "responsePath": "data/audit-runtimes/design77-shared-review/model-calls/00007.response.json",
+  "responseSha256": "150d71aec71861ffa057939b28abd9816e469ea40b8af745a4473b15646c876a",
+  "runId": "design_run_46d4115c-ff06-405b-b5a2-53ed194828a1",
+  "stageId": "batch-2",
+  "acceptedStageSha256": "e6aadd11bfdd329972dfe11cc06354826e488f8cf957b653c62e0aa2513f6672",
+  "originalCheckHash": "46c6a930201d7fc6378c251a45440fcbe754adb98e654a24baeb64c94e06cbce",
+  "originalCheck": {
+    "criterion": "geography",
+    "verdict": "insufficient",
+    "explanation": "宏观方案已给出青玄、灵虚古境、赤霄与苍冥之间的实体航程、入境凭证、寒热防护、港务验籍与具名担保限制，也明确普通跨海航线不经过太古界门（e37、e39、e41、e42）。里程碑进一步提出第181—183日抵达灵虚古境、第214—216日实体海程抵赤霄、第275—281日五昼夜北航及后续返程安排（e242、e251、e271、e294）。但本批未提供第19—50章的实际细纲原文，仍无法逐项核对这些拟定行动中的起点、终点、操作资格、通行凭证、实体行程、支付与防护是否闭合；目录存在不能替代阅读，宏观安排也不能替代已有细纲执行账。",
+    "evidence": [
+      {
+        "sourceId": "review-unit/70",
+        "quote": "{\n  \"id\": \"loc_02\",\n  \"name\": \"苍冥大陆\",\n  \"kind\": \"continent\",\n  \"entryConditions\": [\n    \"大陆环境寒冷；凝元境以下需保温舟舱或护身寒符。修为不是政治通行权。\",\n    \"沿岸官港验引渡令；无令者可由巡界使验明身份后具名担保，担保者承担监护和越界责任。例外仅到指定会合地，不自动授予进入界渊的权利。\",\n    \"具体到访须区分受监管码头候查、沿岸入境担保和界渊准入；担保须由实际到场者具名承担，只在约定范围与期限生效。\",\n    \"上述防寒门槛针对实际暴露于寒候。普通港区和已开放公共驿路的固定暖房、暖车只有在隔风围护、隔火炉、通风烟道、燃料与值守人手均实际存在且持续供热时，才提供其内部的温暖避难处；不把整座港口或一段驿路变成免寒区。离开温暖内部进入寒候，凝元以下仍须实际可用的护身寒符；普通衣物、修为名义或商业票不替代此条件。供暖失败要停止进入或转移到另一个已核实暖处，另记真实燃料、交通与照料费用。\",\n"
+      },
+      {
+        "sourceId": "review-unit/71",
+        "quote": "{\n  \"id\": \"loc_03\",\n  \"name\": \"赤霄大陆\",\n  \"kind\": \"continent\",\n  \"entryConditions\": [\n    \"需修持适用到访区域的抗火法门或佩戴避火灵符。天宝外港及既有受护街段在非地火喷发期的日常炙热，以已验明余量的普通避火符art_16满足；凡器避火衣art_15只作辅助，不替代此项灵符/法门门槛。离开这些受护区域前须另核当地实际危险和适配防护，普通符不授予闯明火、火法或地火的资格。\",\n    \"玄府境以下须避开地火煞气喷发期。港务依据沿岸岗哨实际见到的热裂、硫烟和异常地火记录发布封航/放行旗号，航司出航前查本航次通告、靠港前复核当日旗号；旧通告不保证未来安全，若转为封航须在许可锚地待令或返航，不能靠日常避火符硬闯。\"\n  ],\n  \"status\": \"proposed\"\n}"
+      },
+      {
+        "sourceId": "review-unit/73",
+        "quote": "{\n  \"id\": \"loc_05\",\n  \"name\": \"灵虚古境\",\n  \"kind\": \"region\",\n  \"parentId\": \"loc_01\",\n  \"entryConditions\": [\n    \"修为达到凝元境三重以上\",\n    \"持有太清仙宗或大乾天朝联名准入符牌\"\n  ],\n  \"status\": \"proposed\"\n}"
+      },
+      {
+        "sourceId": "review-unit/74",
+        "quote": "{\n  \"id\": \"loc_06\",\n  \"name\": \"青玄极天界门\",\n  \"kind\": \"other\",\n  \"parentId\": \"loc_01\",\n  \"entryConditions\": [\n    \"穿越天地界壁须先由通天层级之力开启完整门户；这是必要条件，持匙、精血或寿元不能替代。\",\n    \"若借太古界门破虚匙协助开启或定空，还须满足该圣器的所在地、精血或命寿成本及限制。无匙的千年献寿不是独立开门办法。大陆之间的日常商路不经此门。\"\n  ],\n  \"status\": \"proposed\"\n}"
+      },
+      {
+        "sourceId": "review-unit/356",
+        "quote": "{\n  \"id\": \"ms_growth_v1_expedition\",\n  \"title\": \"救一人之后的封路\",\n  \"kind\": \"turn\",\n  \"startChapter\": 19,\n  \"endChapter\": 22,\n  \"setup\": [\n    \"第181–183日沿大乾境内山路抵达灵虚古境固定入口，双方检验本批联名符牌；这是同天地内古境通路，不打开太古界门。顾峤守入口内侧，白榆在入口外营地接伤者，未达到三重的医修不入境；出发前明确两名轮值护卫负责外侧伤者转移，顾不能弃无人看守的出口。\",\n    \"184日林苏在支路遇凝元劫掠者，以一次风刃和普通地形逼退，恢复后据遗落采集单查前哨。21只救秦禾一人，22再亲见主营，指挥者须23亲闻称呼并由秦核名才认出。\",\n    \"21只进行一次先取样箱或先救人的争执，林最终配合苏先救秦：苏扶门卸去侧压，林一次御物抬开无受载的外侧闩槽轻钩，苏再抽外闩开门。空笼被原营点名发现，轮值巡守随后被调去归路设卡；三人22才实际碰到新哨，不因读者见到设卡决定就提前知道。 秦未学会御物，外侧机关被连续挡板与笼内隔开；他先前推门、扳栅失败并引来看守，见苏接近才主动示意、退开配合，不靠新伤或临时封修强留笼中。\",\n"
+      },
+      {
+        "sourceId": "review-unit/359",
+        "quote": "{\n  \"id\": \"ms_growth_v1_crossing\",\n  \"title\": \"护货南渡与入港代价\",\n  \"kind\": \"turn\",\n  \"startChapter\": 30,\n  \"endChapter\": 32,\n  \"setup\": [\n    \"第212–214日按山路转驿车到云梦天港，运送六箱指定低阶药材换本航次普通舱；管货不等于可炼化物资。\",\n    \"第214日暮出航、第216日暮到天宝外港，海程两昼夜；不沿用旧第17–19日航历。\",\n    \"第32章第215日凌晨的风暴中，护船者承担外敌；林辰只把两丈内尚未绷紧、未系重箱的半斤索头御动一息交给水手，预付半成真元后停术，由水手系索、普通船桩承力、制动并搬回药箱。他再让水手用随舱撬杠抬稳压脚箱角、卸去楔上载荷，才从一丈内另付半成御动八两松楔一息；水手抽人、落箱，林不以御物固定受载货索或托箱。救下试图私藏货物的押货者使他错过盯住六号箱的窗口。第31章只是验货登船；本节点按第32章既有动作明确实际承力者，不改变两次支出、失箱与奖金后果，不斩神海海兽或获得免费升级。\",\n    \"入港用验籍及实际避火防护，局限于有防护的外港街区；他必须补交因护货失损的说明，收货人的真名与失踪货箱构成下一卷具体调查线索，不能潜行岩浆暗渠。\"\n  ],\n"
+      },
+      {
+        "sourceId": "review-unit/364",
+        "quote": "{\n  \"id\": \"ms_v2_voyage\",\n  \"title\": \"有限航款与五日北行\",\n  \"kind\": \"turn\",\n  \"startChapter\": 54,\n  \"endChapter\": 60,\n  \"setup\": [\n    \"第271日商盟港务理事会为追缴被挪货与避免北境封港，从本案追偿周转款实拨14000枚下品灵石给具名领款的贺青梧；这是有账有追偿风险的商盟垫款，不是几天劳务值一万。用途限两人北航查货、回青玄交证及沿途食宿医药。\",\n    \"第271–274日乘普通车沿每日复核开放的既有沿岸驿道从天宝外港到极焱天港；271日出发前贺从已拨1000杂费额度中实付12购两张满额普通避火符（各6枚，计入后来核销780而非另加支出），两人核余纹后佩戴新符；旧符不得续算有效，不进太微城、神炎内地、魔谷或天坑。陆与弟弟留赤霄接受传唤，不能无交通随队到北境。\",\n    \"林延续252及254回访的短走、坐车许可，仍不负重，拒绝接受程记以撤供换赔偿的口信。第275日贺在极焱航司柜台按本航次实报5000/人支付10000，购买两张普通保温客舱票；船方在两人具名舱单上列明隔火暖炉、通风烟道、五昼夜保温舱位及燃料、当班船员添料看火均含在这10000内，普通是舱等，不是敞舱或仅发一件保温衣。276日暮离港、281日暮抵葬骨外港，五昼夜完整航程。\",\n"
+      },
+      {
+        "sourceId": "review-unit/366",
+        "quote": "{\n  \"id\": \"ms_v3_return\",\n  \"title\": \"带证返乡与先救谁\",\n  \"kind\": \"turn\",\n  \"startChapter\": 67,\n  \"endChapter\": 72,\n  \"setup\": [\n    \"第300日，夜的原外港查货担保仍只到当日，不自动延长。林贺当面申请回青玄交证；夜依loc_02具名担保规则，在葬骨外港原港务和本轮当值巡队见证下另签限程离境担保，列林、贺实名、原名册及货证封袋，指定会合/交接地为通天渡口受监管候船区。许可仅301日晨至304日夜有效，沿已勘验的葬骨外港—海岸公共驿路—通天渡口路线坐暖车，夜宿所列原驿站；不准离道查货、入极冰国、妖域、神宫或界渊。原巡队在301日出港时复核名单并交当班驿车的纸质限程单，沿岸既有岗哨在车辆实际到站时逐站验籍、签注到离时点，终站港务于303日实际到达后验原单接收候船监管，304日只在原单、名册和船票相符后办理登船离境。夜仍承担这份限程担保的越界责任，原巡队承担出港核验和未按期交回签注单时的追查责任；没有远程瞬时验籍或只有商业票就能通行。\",\n"
+      }
+    ],
+    "revisionAdvice": "补读并逐项对照第19—50章细纲，重点核验灵虚古境入境、赤霄外港抵达与离港、仓火后港区移动、潮沟截驳及北三门行动的实际交通、授权、防护、费用和时间；若细纲与宏观或地点规则冲突，再按实际动作修正。",
+    "awaitingSources": [
+      "plan/chapters/19",
+      "plan/chapters/20",
+      "plan/chapters/21",
+      "plan/chapters/22",
+      "plan/chapters/23",
+      "plan/chapters/24",
+      "plan/chapters/25",
+      "plan/chapters/26",
+      "plan/chapters/27",
+      "plan/chapters/28",
+      "plan/chapters/29",
+      "plan/chapters/30",
+      "plan/chapters/31",
+      "plan/chapters/32",
+      "plan/chapters/33",
+      "plan/chapters/34",
+      "plan/chapters/35",
+      "plan/chapters/36",
+      "plan/chapters/37",
+      "plan/chapters/38",
+      "plan/chapters/39",
+      "plan/chapters/40",
+      "plan/chapters/41",
+      "plan/chapters/42",
+      "plan/chapters/43",
+      "plan/chapters/44",
+      "plan/chapters/45",
+      "plan/chapters/46",
+      "plan/chapters/47",
+      "plan/chapters/48",
+      "plan/chapters/49",
+      "plan/chapters/50"
+    ]
+  },
+  "actualSupport": [
+    {
+      "sourceId": "plan/milestones/ms_v2_voyage",
+      "quote": "第271–274日乘普通车沿每日复核开放的既有沿岸驿道从天宝外港到极焱天港",
+      "sent": [
+        "e271"
+      ]
+    },
+    {
+      "sourceId": "plan/milestones/ms_v2_voyage",
+      "quote": "第275日贺在极焱航司柜台按本航次实报5000/人支付10000，购买两张普通保温客舱票",
+      "sent": [
+        "e271"
+      ]
+    },
+    {
+      "sourceId": "plan/milestones/ms_v2_voyage",
+      "quote": "276日暮离港、281日暮抵葬骨外港，五昼夜完整航程。",
+      "sent": [
+        "e271"
+      ]
+    },
+    {
+      "sourceId": "plan/milestones/ms_v2_voyage",
+      "quote": "原276—281航期仅适用于本次五日供暖实际持续的正常路径。",
+      "sent": [
+        "e274"
+      ]
+    },
+    {
+      "sourceId": "plan/milestones/ms_v2_voyage",
+      "quote": "延期就改签并重排后续日期和实际费用，不能保持原抵达日。",
+      "sent": [
+        "e273"
+      ]
+    }
+  ],
+  "annotationInput": {
+    "requestKey": "design77-world-batch2-north-voyage-dates",
+    "runId": "design_run_46d4115c-ff06-405b-b5a2-53ed194828a1",
+    "stageId": "batch-2",
+    "criterion": "geography",
+    "expectedInputHash": "98e041a25813c8482c83989ee55106ac892279bf2bdcf99281822e366976c7f8",
+    "expectedCheckHash": "46c6a930201d7fc6378c251a45440fcbe754adb98e654a24baeb64c94e06cbce",
+    "claimQuote": "第275—281日五昼夜北航",
+    "explanation": "评语将购票日压缩进海程。当前原文是271—274日沿岸陆路到极焱，275日购两张保温客舱票，276日暮离港、281日暮抵葬骨；实际海上航行为五昼夜。第275—281日包含购票与准备，不能整体当作五昼夜海程，不能据此把启航提前到275日或把航程改为六昼夜。正常航期仍以实际登船核验及持续供暖为前提，延期需重排日期。本说明只澄清评语中的时间压缩，保留原insufficient、全部awaitingSources及两份原始回答，不更改章纲或其他时序结论。",
+    "evidence": [
+      {
+        "sourceId": "plan/milestones/ms_v2_voyage",
+        "quote": "第271–274日乘普通车沿每日复核开放的既有沿岸驿道从天宝外港到极焱天港"
+      },
+      {
+        "sourceId": "plan/milestones/ms_v2_voyage",
+        "quote": "第275日贺在极焱航司柜台按本航次实报5000/人支付10000，购买两张普通保温客舱票"
+      },
+      {
+        "sourceId": "plan/milestones/ms_v2_voyage",
+        "quote": "276日暮离港、281日暮抵葬骨外港，五昼夜完整航程。"
+      },
+      {
+        "sourceId": "plan/milestones/ms_v2_voyage",
+        "quote": "原276—281航期仅适用于本次五日供暖实际持续的正常路径。"
+      },
+      {
+        "sourceId": "plan/milestones/ms_v2_voyage",
+        "quote": "延期就改签并重排后续日期和实际费用，不能保持原抵达日。"
+      }
+    ]
+  },
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Independent clarification draft; does not append an annotation, change a verdict or mutate the design."
+}
