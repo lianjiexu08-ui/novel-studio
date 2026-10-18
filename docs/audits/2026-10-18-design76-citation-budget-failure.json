@@ -1,0 +1,150 @@
+{
+  "kind": "reproduced_citation_repair_capacity_failure",
+  "verificationPath": "docs/audits/2026-10-18-design76-coalesced-review-segment-9.json",
+  "verificationSha256": "796218791d479340018a62385508aec889358f920d7b4ca0787d12c21e71fa56",
+  "checkpointSha256": "37385a18b45e2facd271ba1cfbdb0a20ee7934b345f22ee75563ca193b137b3e",
+  "runtimeBindingPath": "data/audit-runtimes/design76-coalesced-api-runtime-bound.json",
+  "runtimeBindingSha256": "0032489173afa75b1af5547023a2ad2c4bf51fe48f14080b52b2c3063117f9ec",
+  "calls": [
+    {
+      "path": "data/audit-runtimes/design76-coalesced-review/model-calls/00061.started.json",
+      "sha256": "e4f732b024cfa30aa057a2f33034c4fff03493887eb70f05ebd1b4687f264f16"
+    },
+    {
+      "path": "data/audit-runtimes/design76-coalesced-review/model-calls/00061.response.json",
+      "sha256": "af69dfedb0e43f1623c0bdbfb1be0184ea0ad34141f3c8198e28124fd3135454"
+    },
+    {
+      "path": "data/audit-runtimes/design76-coalesced-review/model-calls/00062.started.json",
+      "sha256": "35199ef4a9728e39e377cbc2f8cceca71048820be1bb29b3569baf22f46c0494"
+    },
+    {
+      "path": "data/audit-runtimes/design76-coalesced-review/model-calls/00062.response.json",
+      "sha256": "a62d1eb9cdeb0497d6fe48513f47b9a6b052dd1508f96381dc91def5116d227c"
+    }
+  ],
+  "requestId": "review_bf5b16329c54babd06f88a77",
+  "stageId": "cross-1-7",
+  "maxCharacters": 90000,
+  "firstExpandedCharacters": 83622,
+  "firstRemainingCharacters": 6378,
+  "repairedExpandedCharacters": 91471,
+  "overBudgetCharacters": 1471,
+  "originalCounts": [
+    {
+      "criterion": "geography",
+      "citations": 39,
+      "resolves": [
+        "batch-2/geography",
+        "batch-3/geography",
+        "batch-4/geography",
+        "batch-7/geography"
+      ]
+    },
+    {
+      "criterion": "history",
+      "citations": 40,
+      "resolves": [
+        "batch-6/history"
+      ]
+    },
+    {
+      "criterion": "capacity",
+      "citations": 44,
+      "resolves": []
+    }
+  ],
+  "repairedCounts": [
+    {
+      "criterion": "geography",
+      "citations": 51,
+      "resolves": [
+        "batch-2/geography",
+        "batch-3/geography",
+        "batch-4/geography",
+        "batch-7/geography"
+      ]
+    },
+    {
+      "criterion": "history",
+      "citations": 40,
+      "resolves": [
+        "batch-6/history"
+      ]
+    },
+    {
+      "criterion": "capacity",
+      "citations": 44,
+      "resolves": []
+    }
+  ],
+  "addedEvidence": [
+    {
+      "criterion": "geography",
+      "fragmentId": "e275",
+      "quoteCharacters": 378
+    },
+    {
+      "criterion": "geography",
+      "fragmentId": "e276",
+      "quoteCharacters": 278
+    },
+    {
+      "criterion": "geography",
+      "fragmentId": "e277",
+      "quoteCharacters": 405
+    },
+    {
+      "criterion": "geography",
+      "fragmentId": "e278",
+      "quoteCharacters": 323
+    },
+    {
+      "criterion": "geography",
+      "fragmentId": "e279",
+      "quoteCharacters": 432
+    },
+    {
+      "criterion": "geography",
+      "fragmentId": "e280",
+      "quoteCharacters": 545
+    },
+    {
+      "criterion": "geography",
+      "fragmentId": "e282",
+      "quoteCharacters": 569
+    },
+    {
+      "criterion": "geography",
+      "fragmentId": "e283",
+      "quoteCharacters": 584
+    },
+    {
+      "criterion": "geography",
+      "fragmentId": "e285",
+      "quoteCharacters": 530
+    },
+    {
+      "criterion": "geography",
+      "fragmentId": "e286",
+      "quoteCharacters": 395
+    },
+    {
+      "criterion": "geography",
+      "fragmentId": "e288",
+      "quoteCharacters": 503
+    },
+    {
+      "criterion": "geography",
+      "fragmentId": "e289",
+      "quoteCharacters": 389
+    }
+  ],
+  "firstFailure": "专门补读必须引用原问题所依据的每个原始来源：batch-3/geography；缺少来源：plan/milestones/ms_v2_boundary。请按sourceMap对应本次来源选择支持判断的片段，不需穷举其全部片段。\n专门补读必须引用原问题所依据的每个原始来源：batch-7/geography；缺少来源：plan/milestones/ms_v2_boundary。请按sourceMap对应本次来源选择支持判断的片段，不需穷举其全部片段。",
+  "originalAndRepairRejected": true,
+  "acceptedStepsAdded": 0,
+  "nextAction": "为引文修正提供当前完整报告大小、剩余容量及片段展开开销，要求模型明确选择必要新增/删除引用；保留必要来源、判定、全部原文和90,000上限。先用这对真实回答离线回归，再做有界隔离修正，不能直接重试正式运行。",
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false
+}

@@ -118,3 +118,12 @@ v4已补齐char_19身份档，结构校验和精确重建通过。同一连接�
 续审控制目录已另建`data/audit-runtimes/design76-coalesced-review`，保留原目录的第8段终态。新运行时只优化相同并发API读取，100份旧来源及模型提示、调度、判定、原输入完全相同；新基线显式包含8条说明。原60次调用全部复制且逐项绑定，预检再次独立回放通过。新入口为`run-design76-coalesced-review.mjs`，终止后使用`verify-design76-coalesced-review.mjs`；原四项任务继续，不建立替代任务。准备与预检见`2026-10-18-design76-coalesced-review-preflight.json`及`2026-10-18-design76-coalesced-review-preflight-replay.json`。实际服务启动和界面核验另行记录，准备不等于上线。
 
 第9段已启动，PID29325，日志`/tmp/novel-design76-coalesced-segment9.log`，继续同一四任务，第61次真实请求已派发给世界`cross-1-7`。8787由该进程与评审共享仓储，禁止另启独立API。页面刷新显示12/55、11/29、11/29、10/29，并实测打开力量`cross-2-4`的两条独立说明及`ms_v3_training`完整原文，原返修结论仍显示。启动、CORS、请求与页面观察见`2026-10-18-design76-coalesced-review-live.json`；不是第9段完成或完整质量通过的证明。以后判断进度须读取新控制目录，不能再据旧目录第8段终态重启旧脚本。
+
+
+## 第9段终止：补引文超出完整报告容量
+
+第61次首答漏引地理核对所需的 `plan/milestones/ms_v2_boundary`；第62次明确编辑新增12段引文后，完整报告由83,622增长为91,471字符，超过既有90,000上限，校验拒绝接收。PID29325已退出，终态为 `stopped_after_failure`，累计62次调用，本段没有新增有效步骤；四领域仍为12/55、11/29、11/29、10/29。此前第9段启动记录仅代表历史观察，不能据此声称仍在评审。
+
+`2026-10-18-design76-coalesced-review-segment-9.json`独立回放并核验终态、原答和历史保护；`2026-10-18-design76-citation-budget-failure.json`使用同一冻结解析器和报告渲染器复现两次拒绝，包含实际展开大小。未截断引文、放宽容量、关闭阻塞或修改设计。世界40、圣经72、提案76、批准计划10及8条独立说明保留，v4仍为离线候选。
+
+核验后恢复独立界面API（启动PID29849，日志 `/tmp/novel-design76-coalesced-api-after-segment9.log`）；正式评审工作进程当前停止。下一步为修正请求增加实测容量及片段开销导航，先离线回归和有界隔离验证，再准备正式续审；续审前必须关闭独立API。
