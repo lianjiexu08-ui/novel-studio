@@ -1,0 +1,89 @@
+{
+  "kind": "design74_private_sqlite_rehearsal",
+  "createdAt": "2026-10-18T04:16:03.382Z",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "sourcePlanId": "plan_3479da743a6f46f1b130277e86f34939",
+  "appliedPlanId": "plan_c7fb41df8520430ba85980c4322042b3",
+  "candidatePath": "data/design-candidates/design74-repairs-v1.json",
+  "candidateSha256": "6db19d5962ca6d07192bda19de1cecd29df47a8efa982e2cd8c54d16298d40e4",
+  "expectedInputHash": "6ce3bca33274764dac57a90693eac8601b046baba082f6689e4e598cf427c5bd",
+  "reviews": {
+    "world": {
+      "inputSha256": "8285a2865a092e27b612751ba86fca5b17b91e84290e1f28bc40011f601762d0",
+      "resultSha256": "2e6c5ecd5e6df48bbb39774ebb1450fd7b2ffffcb4d5cf539b0e8a3911a444e1",
+      "responses": 1,
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "history",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass"
+        }
+      ]
+    },
+    "power": {
+      "inputSha256": "bc1290f9c57bbd3ea23ab2cfe7a47334d38c5875c8302e5a11c020b9a4a9bfbc",
+      "resultSha256": "e5441a0aef4bebf12c3fc24a84f1266c7b01c2309f7207544d8d6a4260790b1c",
+      "responses": 1,
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "costs",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "counters",
+          "verdict": "pass"
+        }
+      ]
+    },
+    "story": {
+      "inputSha256": "aebf47f7478cf665eb2da276cbdb4b228de66713916eb87943af3bb13c7716f9",
+      "resultSha256": "e36042579194ca6d4803fb1ae9fd0eb12f9e287db90bc85ce2939c910204391c",
+      "responses": 1,
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "continuity",
+          "verdict": "pass"
+        },
+        {
+          "criterion": "payoffs",
+          "verdict": "pass"
+        }
+      ]
+    }
+  },
+  "verified": true,
+  "revisions": {
+    "world": 39,
+    "storyBible": 71,
+    "plan": 74,
+    "approvedPlan": 10
+  },
+  "historicalCounts": {
+    "plans": 73,
+    "designHistory": 108,
+    "runs": 87,
+    "reports": 92
+  },
+  "allHistoryAndProsePreserved": true,
+  "blockersRetained": 41,
+  "blockersClosed": 0,
+  "formalAcceptance": false,
+  "proseGenerated": false,
+  "productionDesignSaves": 0,
+  "nextRequiredAction": "Four-area formal review of design74; local pass does not approve prose."
+}
