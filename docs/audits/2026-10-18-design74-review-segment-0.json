@@ -1,0 +1,103 @@
+{
+  "observedAt": "2026-10-18T04:25:51.851Z",
+  "status": "stopped_after_stage_limit",
+  "segment": 0,
+  "checkpointPath": "data/audit-runtimes/design74-review/terminal-segment-0.json",
+  "checkpointSha256": "58d8341cb5f37c18a9df0b9f5c9b85ba61e91b5ebc416ce2ebde0b5be3b1760f",
+  "workerAbsent": true,
+  "sourceCommit": "f5688545b22d848467b2ae0018d6e09c05b2890c",
+  "runnerSha256": "0cb49e3e0937d92539f5ad457b40f4fc51a2de25680e6eb65529ffa085f872e9",
+  "inputsSha256": "cf38f66d58abc062ea7a5b30c289dabb3065992315e7fe177a8b3107f275a768",
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "totalCallAttempts": 1,
+  "successfulResponses": 1,
+  "failedAttempts": 0,
+  "unsettledCalls": 0,
+  "journal": [
+    {
+      "callNumber": 1,
+      "step": {
+        "area": "world",
+        "runId": "design_run_d3b4de46-7113-49a1-b790-a33327344e70",
+        "stageId": "batch-1",
+        "startedAt": "2026-10-18T04:23:17.464Z"
+      },
+      "responseSha256": "fe3323370c176396e35b89529c6c9ac6f6914b464a777ce0a7553266dd95b7f8",
+      "startSha256": "1692e8f1b97f7d27246c9a19f04e9dc111f32fbff3ad5731e4475801e2ebbe80",
+      "outcomeSha256": "958ee166317de14a42d53dffca6e1586a0c8561883ec695933bbc6556ef82ddd",
+      "usage": {
+        "calls": 1,
+        "failedCalls": 0,
+        "inputTokens": 132789,
+        "outputTokens": 1271,
+        "costUsd": 0,
+        "costKnown": false,
+        "byRole": {
+          "reviewing": {
+            "calls": 1,
+            "failedCalls": 0,
+            "outputTokens": 1271,
+            "costUsd": 0
+          }
+        },
+        "limits": {
+          "budgetUsd": null,
+          "maxCalls": 400
+        }
+      }
+    }
+  ],
+  "replays": [
+    {
+      "area": "world",
+      "runId": "design_run_d3b4de46-7113-49a1-b790-a33327344e70",
+      "verification": "verified",
+      "completedStages": 1,
+      "totalStages": 55,
+      "runSha256": "4a36b58d30b6d78b26955b6b001f5a9c4d5c1520c40f3774610545b267d852c7",
+      "formalAcceptance": false,
+      "limitation": "Replays saved responses, repairs, citations and conclusions against independently supplied materials. Pending work, semantic quality, blocker disposition and prose acceptance remain separate.",
+      "responseReplay": "verified",
+      "responsesReplayed": 1,
+      "records": [
+        {
+          "stageId": "batch-1",
+          "kind": "batch",
+          "stageSha256": "0cb4c800c4fb42cc573339274c8ec0ff226e9eb89cf51394a3948a782824ef5d",
+          "inputSha256": "57b928fb9a2c91a24ac63ee091163cf451f8d0f1765bc2824f764eff77297557",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "geography",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "history",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "capacity",
+              "verdict": "pass"
+            }
+          ]
+        }
+      ],
+      "failures": [],
+      "modelCalls": 0,
+      "reportVerification": "not_completed"
+    }
+  ],
+  "preserved": {
+    "protectedHash": "182532ca18af6d7ee1af5cc82621db4b4253305a2ac3a0659af4082c867773ee",
+    "oldRuns": 87,
+    "oldReports": 92
+  },
+  "productionVerification": "read_only_sqlite_backup",
+  "databaseSnapshotPath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design74-review/verify-segment-0-d21Y3J/production.db",
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "proseGenerated": false,
+  "limitation": "Verified incomplete prefix only; pending stages and formal quality acceptance remain unproven."
+}

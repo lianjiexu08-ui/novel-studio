@@ -1,0 +1,88 @@
+{
+  "startedAt": "2026-10-18T04:20:47.305Z",
+  "status": "completed",
+  "sourcePath": "data/audit-runtimes/design73-review/terminal-segment-15.json",
+  "sourceSha256": "f3ef6601829e7a1215d387759f873681ab5fbe3e18a23985584bece5da55bde2",
+  "inputHash": "71225570b43a4b8b4a111436eed425faacfb860fdc6be3b5fe7ec618ee1215d2",
+  "guidanceSha256": "0b0bc213de71a0d0a0dd311cbbb0519464a9db34f3ca755c5efd4e72f4c8b847",
+  "oldCheck": {
+    "criterion": "geography",
+    "verdict": "insufficient",
+    "explanation": "宏观材料仍能支持部分判断：三大陆之间采用实体虚海航程，商盟、港务、沿岸守军和巡界使分别承担航运、验籍、引渡与监管责任，赤霄与苍冥也分别设置避火、保温、担保和候查门槛。但本次补读仅覆盖无尽虚海商路及相关里程碑，仍未提供此前所请求的plan/chapters/19–22、30–50逐章原文，因此无法核对古境进入、登船验货、外港救援、离境和支付是否在每个实际动作中满足这些规则。不能把宏观摘要当作逐章执行账，也不能据此把原不足改判为通过。",
+    "insufficiencyReason": "unlocatable_sources"
+  },
+  "knownButUnreadSourceIds": [
+    "plan/chapters/19",
+    "plan/chapters/20",
+    "plan/chapters/21",
+    "plan/chapters/22",
+    "plan/chapters/30",
+    "plan/chapters/31",
+    "plan/chapters/32",
+    "plan/chapters/33",
+    "plan/chapters/34",
+    "plan/chapters/35",
+    "plan/chapters/36",
+    "plan/chapters/37",
+    "plan/chapters/38",
+    "plan/chapters/39",
+    "plan/chapters/40",
+    "plan/chapters/41",
+    "plan/chapters/42",
+    "plan/chapters/43",
+    "plan/chapters/44",
+    "plan/chapters/45",
+    "plan/chapters/46",
+    "plan/chapters/47",
+    "plan/chapters/48",
+    "plan/chapters/49",
+    "plan/chapters/50"
+  ],
+  "productionWrites": 0,
+  "oldFindingChanged": false,
+  "formalAcceptance": false,
+  "usage": {
+    "calls": 1,
+    "failedCalls": 0,
+    "inputTokens": 179174,
+    "outputTokens": 1423,
+    "costUsd": 0,
+    "costKnown": false,
+    "byRole": {
+      "reviewing": {
+        "calls": 1,
+        "failedCalls": 0,
+        "outputTokens": 1423,
+        "costUsd": 0
+      }
+    },
+    "limits": {
+      "budgetUsd": null,
+      "maxCalls": 2
+    }
+  },
+  "result": {
+    "summary": "本批可核的跨域通行、地域差异与历史—制度因果链均能支撑百章提案；两项既有历史补读问题已由本次提供的势力与历史原档解决。结论仅针对设计提案及本批可检验安排，不表示正文已实现或全书验收完成。",
+    "checks": [
+      {
+        "criterion": "geography",
+        "verdict": "pass",
+        "explanation": "三大陆均以同一天地内实体虚海航线连接，不把商路误作界门穿越。计划为青玄—赤霄安排两昼夜海程，为赤霄—苍冥安排五昼夜保温客舱、港口候查和具名担保，为苍冥—青玄安排六昼夜暖舱返航；均列出验籍、防护、供暖、票款或专项款及失败时停留重排，且未用商盟关系、护符或境界名义替代准入。地域规则也实际改变卷内选择：赤霄热区限制行程，苍冥寒候和候查限制人员去向，北境救援不进入界渊。"
+      },
+      {
+        "criterion": "history",
+        "verdict": "pass",
+        "explanation": "两项待补读问题所要求的势力与历史原档现已齐备。商盟的实体航运、港务结算与追偿利益，太清/大乾/幽罗的权力冲突，极冰、神炎与巡界使的资源、边境和救济责任，均有独立目标与历史前因。赵府—炎煞外围代理—程砚的旧约明确仅提供有限货路、仓位和结算责任，不授予免检、即时调度或无限资源；计划中的失箱、扣工、港口救助、实体回令、北境查货及后续本地改线因此均有可追溯的制度边界和代价。原问题提出的“缺少势力及历史原档”已被本批原文补齐，而非由计划状态字段推定解决。"
+      },
+      {
+        "criterion": "capacity",
+        "verdict": "pass",
+        "explanation": "本批世界容量不是靠增列地名维持：青玄的宗门—皇权—矿务矛盾推动首卷准入与争泉；赤霄的热区、港务、商盟和扣工链推动追船与雇工自救；苍冥的寒候、担保、巡界职责和受监管救济路径将北境救援限制为外港行动。资源、航程、边检和安置责任分别改变角色可选路线与代价，且百章只切断一条三地链，保留九鼎、界门与高阶成长给后续另建前置，未把阶段成果伪装为全书解决。"
+      }
+    ]
+  },
+  "finishedAt": "2026-10-18T04:21:32.591Z",
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "limitation": "独立重试只验证来源定位；不能改动旧报告、解除阻塞或证明新设计已通过。"
+}

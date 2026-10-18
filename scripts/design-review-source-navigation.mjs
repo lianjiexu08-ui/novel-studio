@@ -1,0 +1,3 @@
+// Additional navigation reminder shared by shadow and formal audit runners.
+// This does not authorize changing any stored finding or skipping raw sources.
+export const sourceNavigationGuidance = '\n来源定位复核：sourceLengths是完整来源目录，sourceMap只是本次实际切片。返回unlocatable_sources前，逐项查完整目录：已能明确写出plan/chapters/N等真实来源ID，但本次未提供原文，属于可定位但未读，应列全awaitingSources；不能把“未在当前sources中”写成“无法定位”。例如目录有第19至22章，当前只给里程碑，而问题要求核对这四章的行动，就请求四个真实章纲ID；不得缩成代表章、把目录当成已读证据或改pass。真正无法定位应说明缺的是哪一事实或条目以及为什么目录无法对应；完整必要来源超出容量时如实保留capacity_limit，不以unlocatable_sources规避容量。pendingChecks只适用于其明确标出的criterion，某项历史补读不代表其他标准所需原文已经提供。综合阶段仍保留所有未解决的普通不足和返修；不得凭此提示撤销历史判定。';
