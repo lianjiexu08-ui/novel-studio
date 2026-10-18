@@ -1,0 +1,92 @@
+{
+  "kind": "design76_review_clarification_appended",
+  "createdAt": "2026-10-18T06:45:58.398Z",
+  "verified": true,
+  "database": "/Users/lianjie/Documents/ChatGPT/novel/data/novel-studio.db",
+  "control": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design76-note-apply-cThiHr",
+  "runnerSha256": "94f016f12c65006132b2a67b20ce4f65bb4ad4981e5ccaf811ddee965b62d04b",
+  "preparedSha256": "b31a11b67761fc8f4ec1ddd5bd4cfd36f4b0a08ce25749e3aa594c5f3e1e42ad",
+  "runtimeBindingSha256": "d62ce12f1e6c39ad829d4fa4d988cb7261ca8da8f92740d1239e85335dba2f0b",
+  "sourceCommit": "26b5f8f16a6b3a442a3873615040a6629069fcb1",
+  "baseCheckpointSha256": "6aa74aeeaf9658d6d5f3f2009c3350d79ca71f830891f36264df7d712421f108",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "note": {
+    "requestKey": "design76-world-batch3-lu-brothers",
+    "runId": "design_run_98b5460a-ed47-4ba2-bb06-7fdded1f910d",
+    "stageId": "batch-3",
+    "criterion": "history",
+    "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+    "expectedCheckHash": "f5b73c2a4b9457e6dcac601bd24573c83cef871ca640f0b26f40b09ef6200c73",
+    "claimQuote": "赤霄五工脱控与陆沉川有限自述只提供待核线索",
+    "explanation": "此句未清楚区分陆氏兄弟的证据主体。陆沉舟（char_16）亲自参与改签，第53章拟由他在看护中自行署名写改签自述，林取得签认副本；弟弟陆沉川（char_21）只证明第220夜亲眼见兄收钱签字，不替条内内容背书。若本评语指第53章签认的改签自述，主体应为陆沉舟；若仅指弟弟陈述亲见事实，则应明确其见闻范围，不能将两者合并。保留原评语和本批history判定，本说明不修改人物身份、不把供述升级为已独立核实，也不关闭其他设计阻塞或批准正文。",
+    "evidence": [
+      {
+        "sourceId": "story/characters/char_16",
+        "quote": "\"name\": \"陆沉舟\""
+      },
+      {
+        "sourceId": "story/characters/char_16",
+        "quote": "程记药栈凝元押运头目，曾任大乾军需船校尉；亲自参与过改签，弟弟亦为押货伙计。"
+      },
+      {
+        "sourceId": "story/characters/char_21",
+        "quote": "\"name\": \"陆沉川\""
+      },
+      {
+        "sourceId": "story/characters/char_21",
+        "quote": "陆沉舟的弟弟，程记普通药栈伙计，无修行能力；217日从船侧门领六号箱，218日分架与送医铺。第35章林只知册上姓名，38章当面对质才知兄弟关系。"
+      },
+      {
+        "sourceId": "plan/milestones/ms_v2_fire",
+        "quote": "53拟主写陆在看护中自行书写改签自述：他已承认50押送，弟也拒绝一起走，不能再把指路当作免谈旧事的交换。弟只肯为220夜亲眼见过的收钱签字担保，不替纸内内容背书；陆须自己署名，贺见证，林取得签认副本而非原条、原账或第二片。林得到可查的新方向，却必须接受证词仍需物证核验，不能把长篇自述演成全案答案。261–270原轻役食宿只作继续留港的实际前提，260支付和有限补工承诺按后附执行约束发生，省去新的逐日谋食段。以短独立视角呈现262赵阅报、263发令、268程收令，令对方获得下一步行动条件；邮路、权限和269–273回执按原约束保留，不逐站展开。"
+      }
+    ],
+    "id": "review_note_89af01bd-e18b-4df2-bf23-39b519805ad0",
+    "createdAt": "2026-10-18T06:45:48.522Z",
+    "scope": {
+      "worldPackRevision": 40,
+      "storyBibleRevision": 72,
+      "planRevisionId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+      "planRevision": 76
+    }
+  },
+  "preservedWorkFieldDigests": {
+    "activePlanId": "a79cacee9517456fb5abae34e3592ad141a8d092b6782979cdb0aa1996029412",
+    "briefs": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "candidates": "db801c927d61955caf1e94c196129e7ca7a4557cbae7f7f93b7977d2e6ffb6a2",
+    "characters": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "checkpoints": "9360443cd3329deca750224d5f41fd8b848cc87483d84e5d59d8bf1fa6f89d31",
+    "constraintRevision": "6995cc07f1bbeaa4fb5bae27eabd12a1da80c7cebcd3fd1b4f53df506b9f77bd",
+    "covenant": "7b09efc6b0d1edd79e40db6d143a177956b28b40ee5070d303574df8d73121f8",
+    "covenantHistory": "ef48b60cd983a0f4b34cbe25bf37e751eb58681b943b6b8369fdcd5fca1ec745",
+    "designContentReviews": "8b8ab9639e03bd0055431c0e710bacf9dbac0d268f27578ddcb0bfc13e0aed8d",
+    "designHistory": "f2347b762def7bec1232ebed9113bcc4fb424df8b0f09e37b74bcef254165a1b",
+    "designReviewRuns": "d66c5fbf1146994345bab6e6f58d8a56e1f6a51d7155c86baa893ccf428b639c",
+    "events": "69a4c30b560af422264c89ba8cce8c658bf3d137ec8bcdae5f7025cdc4622590",
+    "id": "e6c77c6af51347285f913e10c068833e392333610313a73f42ae654dbeeebb0b",
+    "impacts": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "manuscripts": "3f9dd7880a530d9eb7ccf9113b140958fe9e182f63c9f706f9c55ceb5c46ffc9",
+    "plans": "6afb21f18712fce391f7c0c715b9791eb95f922a669d1cc1a96b2677e905b396",
+    "plotNodes": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "relationships": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "stateRevision": "16dc368a89b428b2485484313ba67a3912ca03f2b2b42429174a4f8b3dc84e44",
+    "states": "71af6764cda2e591af608654aa65a05f8b25e4e8f9871c746de158a77a0618fc",
+    "storyBible": "ae92c644e55aa89fd87920f431acdb817e50351843daddd6cb65d8508350ef02",
+    "title": "9a392c9dee167243ad8ace1e37c8c750c798509925344a9b052ce05cbb6a54b2",
+    "versions": "ab09691b6b0882a4fa32a704a65a61930f961a7d3e35aa52d872fc017e048fb1",
+    "worldPack": "c2c2dd54716be54571a024440590ebbb8c47b55eb37f2b490bfaf24c5bf6be6d",
+    "worldRules": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "oldRunsPreserved": 99,
+  "oldReportsPreserved": 92,
+  "oldAnnotationsPreserved": 0,
+  "annotationsAdded": 1,
+  "restartReadback": true,
+  "idempotenceExercised": false,
+  "modelCalls": 0,
+  "productionWrites": 1,
+  "verdictChanges": 0,
+  "questionsResolved": 0,
+  "formalAcceptance": false,
+  "maxRssKiB": 2803728
+}
