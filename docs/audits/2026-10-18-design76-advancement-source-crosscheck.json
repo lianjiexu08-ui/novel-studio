@@ -1,0 +1,189 @@
+{
+  "kind": "independent_advancement_source_crosscheck",
+  "inputPath": "data/audit-runtimes/design76-citation-edits-review/inputs.json",
+  "inputsSha256": "fc94bb269625716ca4114f9c882de726f23cdec4ded63daccf94089749a9c6f5",
+  "inputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+  "requestPath": "data/audit-runtimes/design76-citation-edits-review/model-calls/00054.started.json",
+  "requestSha256": "2f4685872f3016ce644d12d3059678c295e59761aa025d78ea19c05941e5bd26",
+  "responsePath": "data/audit-runtimes/design76-citation-edits-review/model-calls/00054.response.json",
+  "responseSha256": "ead92edfaa5ab1ac6f36306c1a6f8e7b7d0873c84d861888acf8078fdd795873",
+  "modelCall": 54,
+  "candidatePath": "data/design-candidates/design76-followup-controls-v4.json",
+  "candidateSha256": "161301346ea7872323f54e1a28db08f8d6db7f0fadf9c862fd2042ac114f66e5",
+  "sources": [
+    {
+      "id": "world/realms/realm_03",
+      "sha256": "5051083b06b759a935dd089107b0fe248fef7e90fe720970dbfe64ceb17c7ae2",
+      "sentRanges": [
+        {
+          "sourceId": "world/realms/realm_03",
+          "start": 0,
+          "end": 426
+        }
+      ],
+      "unchangedInV4": true
+    },
+    {
+      "id": "world/techniques/tech_19",
+      "sha256": "d47c5f5bd93a7b58191867eaa6d519036598df2f4381fda9971afc9768390433",
+      "sentRanges": [],
+      "unchangedInV4": true
+    },
+    {
+      "id": "world/artifacts/art_03",
+      "sha256": "1a0060c815e1df00846151997d818e5103e08ebd2481fce0ad6209616454986f",
+      "sentRanges": [],
+      "unchangedInV4": true
+    },
+    {
+      "id": "world/resources/res_01",
+      "sha256": "d3484faa5ceaf7d173a128eded7b1d416beab06bb38febcf8a3a2fe468a03cfb",
+      "sentRanges": [],
+      "unchangedInV4": true
+    },
+    {
+      "id": "story/characters/char_02",
+      "sha256": "535f4a599754db95906859f962d13861be57f652858b0de039f9ab5451d57b25",
+      "sentRanges": [],
+      "unchangedInV4": true
+    },
+    {
+      "id": "story/characters/char_04",
+      "sha256": "bb7468fd0e4552b86826b87f4382d54d167ffcaf23e9952f6b4d7b0303e5e592",
+      "sentRanges": [],
+      "unchangedInV4": true
+    },
+    {
+      "id": "story/characters/char_10",
+      "sha256": "728c48169654c91d23217351487954ec4b301207fc6685bb2ca85654f5105c01",
+      "sentRanges": [],
+      "unchangedInV4": true
+    },
+    {
+      "id": "plan/milestones/ms_v3_training",
+      "sha256": "2da3811dc4499fccfce8b6053e99440435ea787219f7d810d77cf4fe97f77a45",
+      "sentRanges": [],
+      "unchangedInV4": true
+    },
+    {
+      "id": "plan/milestones/ms_v3_advancement",
+      "sha256": "b540ad31441e2927d113cdabefd45899081c0aed0ddc17cd945b933148736179",
+      "sentRanges": [],
+      "unchangedInV4": true
+    }
+  ],
+  "originalVerdicts": [
+    {
+      "criterion": "tiers",
+      "verdict": "insufficient",
+      "awaitingSources": [
+        "world/artifacts/art_03",
+        "world/resources/res_01",
+        "story/characters/char_02",
+        "story/characters/char_04",
+        "story/characters/char_10",
+        "plan/chapters/24",
+        "plan/chapters/25",
+        "plan/chapters/26",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement"
+      ]
+    },
+    {
+      "criterion": "costs",
+      "verdict": "insufficient",
+      "awaitingSources": [
+        "world/artifacts/art_03",
+        "world/resources/res_01",
+        "plan/chapters/24",
+        "plan/chapters/25",
+        "plan/chapters/26",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement"
+      ]
+    },
+    {
+      "criterion": "counters",
+      "verdict": "insufficient",
+      "awaitingSources": [
+        "world/artifacts/art_03",
+        "story/characters/char_04",
+        "story/characters/char_10",
+        "plan/chapters/24",
+        "plan/chapters/25",
+        "plan/chapters/26"
+      ]
+    }
+  ],
+  "effectiveCycles": [
+    {
+      "start": 331,
+      "end": 340,
+      "days": 10
+    },
+    {
+      "start": 341,
+      "end": 350,
+      "days": 10
+    },
+    {
+      "start": 358,
+      "end": 367,
+      "days": 10
+    },
+    {
+      "start": 368,
+      "end": 377,
+      "days": 10
+    },
+    {
+      "start": 378,
+      "end": 387,
+      "days": 10
+    },
+    {
+      "start": 388,
+      "end": 397,
+      "days": 10
+    }
+  ],
+  "effectiveDays": 60,
+  "failedCycle": {
+    "start": 351,
+    "stop": 354,
+    "days": 4,
+    "stonesConsumed": 1,
+    "effectiveCycles": 0
+  },
+  "equations": [
+    {
+      "expression": "12 * 2",
+      "actual": 24,
+      "expected": 24,
+      "account": "实际完成十二日轻役的现金报酬，课程为同一合同另列报酬项"
+    },
+    {
+      "expression": "24 - 3 - 14",
+      "actual": 7,
+      "expected": 7,
+      "account": "偿付既有欠款并预付约定食宿复查后，独立训练库存"
+    },
+    {
+      "expression": "6 + 1",
+      "actual": 7,
+      "expected": 7,
+      "account": "六个有效周期加一次开封失败；失败耗材不退"
+    }
+  ],
+  "findings": [
+    "实际第54次请求给了玄府准入规则，但没有发送两项训练/晋阶里程碑、tech_19、三位人物资格档、剑和灵石条目。待补读合理，不是这些来源在设计中不存在。",
+    "冻结输入已有六个有效十日周期、354日失败停训、357日复诊与358日行前再核、398日静置及415日两项确认后付十元载的候选路径。",
+    "现金与训练灵石的局部算式相符；异常诊疗、延期食宿、少做轻役或库存不足均须重新核费和顺延，不能保证按固定日期晋阶。",
+    "上述来源在v4中逐项未改，不需要为了本次未读而重复增写同一设定。正式评审仍须实际补读并核验。"
+  ],
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "blockersClosed": 0,
+  "formalAcceptance": false,
+  "limitations": "仅核对来源存在、v4未改及局部训练日期/耗材算术；不证明全部寿储余额、早章交锋、训练负荷、叙事效果或全书质量，也不替代正式补读和终止回放。"
+}
