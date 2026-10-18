@@ -21,9 +21,14 @@ const {app}=createApiServer({repository,authToken:'',provider:{generateChapter:u
   designProvider:{generateWorld:unavailable,generateBible:unavailable},planProvider:{generatePlan:unavailable,generateOutlines:unavailable},
   manageModelSettings:false,writeProcessEnvironment:false,allowBatchRuns:false});
 const requests=[];
+let failDesignOnce=process.argv.includes('--fail-design-once');
 app.addHook('onError',async(request,_reply,error)=>{console.error(JSON.stringify({url:request.url,name:error.name,message:error.message.slice(0,2000)}));});
 app.addHook('onRequest',async(request,reply)=>{
   if(!['GET','HEAD','OPTIONS'].includes(request.method))return reply.code(405).send({error:{code:'READ_ONLY',message:'UI acceptance is read-only'}});
+  if(failDesignOnce&&request.method==='GET'&&request.url.endsWith('/design')){
+    failDesignOnce=false;
+    return reply.code(503).send({error:{code:'PROBE_UNAVAILABLE',message:'验收注入：设计读取暂不可用，请重试。'}});
+  }
 });
 app.addHook('onResponse',async(request,reply)=>{requests.push({method:request.method,url:request.url,statusCode:reply.statusCode});});
 app.get('/__probe',async()=>({readOnly:true,database:rehearsal.database,annotationId:rehearsal.note.id,requests}));

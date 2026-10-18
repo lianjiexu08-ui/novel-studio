@@ -53,6 +53,7 @@ export function DesignPage() {
   const { message } = AntApp.useApp();
   const { work, refresh } = useOutletContext<WorkspaceContext>();
   const [design, setDesign] = useState<DesignDto | null>(null);
+  const [loadError, setLoadError] = useState<string | null>(null);
   const [designHistory, setDesignHistory] = useState<DesignHistoryDto['revisions']>([]);
   const [selectedRevision, setSelectedRevision] = useState<DesignHistoryDto['revisions'][number] | null>(null);
   const [editingDesign, setEditingDesign] = useState(false);
@@ -61,18 +62,20 @@ export function DesignPage() {
   const loadRequest = useRef(0);
   async function load() {
     const token = ++loadRequest.current;
+    setLoadError(null);
     try {
       const [current, history] = await Promise.all([api.design(work.id), api.designHistory(work.id)]);
       if (token !== loadRequest.current) return;
       setDesign(current);
       setDesignHistory(history.revisions);
-    } catch {
+    } catch (error) {
       if (token !== loadRequest.current) return;
-      setDesign({ constraintRevision: work.constraintRevision });
+      setDesign(null);
       setDesignHistory([]);
+      setLoadError(error instanceof ApiRequestError ? error.message : '暂时无法读取设计，请稍后重试。');
     }
   }
-  useEffect(() => { setDesign(null); setSelectedRevision(null); setEditingDesign(false); }, [work.id]);
+  useEffect(() => { setDesign(null); setLoadError(null); setSelectedRevision(null); setEditingDesign(false); }, [work.id]);
   useEffect(() => { void load(); return () => { loadRequest.current += 1; }; }, [work.id, work.constraintRevision]); // eslint-disable-line react-hooks/exhaustive-deps
 
   async function run(key: string, action: () => Promise<unknown>, success: string) {
@@ -94,6 +97,8 @@ export function DesignPage() {
     }
   }
 
+  if (loadError) return <Alert type="error" showIcon message="设计加载失败" description={loadError}
+    action={<Button onClick={() => void load()}>重新加载</Button>} />;
   if (!design) return <div style={{ display: 'flex', justifyContent: 'center', padding: 80 }}><Spin size="large" /></div>;
   const world = design.worldPack;
   const bible = design.storyBible;

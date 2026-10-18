@@ -1,0 +1,99 @@
+{
+  "kind": "design76_private_ui_failure_retry",
+  "verified": true,
+  "createdAt": "2026-10-18T06:35:50.709Z",
+  "database": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design76-note-rehearsal-Ob6hiO/private.db",
+  "requests": [
+    {
+      "method": "OPTIONS",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61",
+      "statusCode": 204
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61",
+      "statusCode": 204
+    },
+    {
+      "method": "GET",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61",
+      "statusCode": 200
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design",
+      "statusCode": 204
+    },
+    {
+      "method": "GET",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design",
+      "statusCode": 503
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/history",
+      "statusCode": 204
+    },
+    {
+      "method": "GET",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/history",
+      "statusCode": 200
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design",
+      "statusCode": 204
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/history",
+      "statusCode": 204
+    },
+    {
+      "method": "GET",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design",
+      "statusCode": 200
+    },
+    {
+      "method": "GET",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/history",
+      "statusCode": 200
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/quality-audit",
+      "statusCode": 204
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/content-reviews?view=summary",
+      "statusCode": 204
+    },
+    {
+      "method": "GET",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/quality-audit",
+      "statusCode": 200
+    },
+    {
+      "method": "GET",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/content-reviews?view=summary",
+      "statusCode": 200
+    }
+  ],
+  "files": {
+    "apps/web/src/pages/DesignPage.tsx": "08ec02d5601b1257bfc9e48d78fb7e614debb82acd2ac6bc8ce98262e3f00125",
+    "scripts/probe-design76-review-ui.mjs": "bb9bf426b4f303f30290f9725547046faf20de2a2fdcf3ec8f6044a5dcbda61d",
+    "data/audit-ui/design76-review/retry-recovered.ax.txt": "dd912b919e4cdc19284a73b8f64f31b77bfe493e702c6915e3d811c34e7f31c5",
+    "data/audit-ui/design76-review/error-probe.png": "faa4f6df798d99667b28b6c7fb27c57723d78ab88ebcaedfe794008d7c593c8d",
+    "data/audit-ui/design76-review/dist-v3/index.html": "c143151728210210a980a7d926d8e114383d20d00e0a4d878cec8b7349a81a46"
+  },
+  "browserObserved": {
+    "failureShowsErrorAndRetry": true,
+    "failureHidesGenerationControls": true,
+    "retryRestoresWorld40Bible72And41Blockers": true
+  },
+  "typescriptAndProductionBuildPassed": true,
+  "productionWrites": 0,
+  "modelCalls": 0,
+  "formalAcceptance": false
+}
