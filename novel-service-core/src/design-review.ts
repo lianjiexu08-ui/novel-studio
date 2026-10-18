@@ -46,6 +46,7 @@ export interface DesignReviewInput {
   stage?: {
     kind: 'batch' | 'cross' | 'synthesis'; label: string; totalBatches: number;
     followupFor?: string;
+    reconsiderationFor?: string;
     /** v33: finite source navigation after a dedicated follow-up; never approval. */
     followupBudget?: { remainingRounds: number };
     /** v16 gives required new sources, original evidence and the question room together. */
@@ -91,7 +92,7 @@ export interface DesignReviewInput {
       /** Navigation only: ranges stated by existing plan sources, never evidence. */
       planRanges?: Array<{ sourceId: string; startChapter: number; endChapter: number; title?: string }>;
       pendingChecks?: Array<{ id: string; criterion: string; questionSourceId: string; requiredSourceIds: string[]; priorUnitIds: string[]; priorSourceIds?: string[] }>;
-      resolvedDeferrals?: Array<{ checkId: string; resolvedByStageId: string }>;
+      resolvedDeferrals?: Array<{ checkId: string; resolvedByStageId: string; kind?: 'reconsideration' }>;
     };
   };
 }
@@ -108,7 +109,7 @@ export interface DesignReviewCheck {
   /** Explicit, evidenced disposition of an earlier local uncertainty. */
   resolves?: string[];
 }
-export interface DesignReviewResult { summary: string; checks: DesignReviewCheck[]; modelResponses?: string[]; resolvedDeferrals?: Array<{ checkId: string; resolvedByStageId: string }> }
+export interface DesignReviewResult { resolvedReconsiderations?: Array<{ checkId: string; resolvedByStageId: string; kind: 'reconsideration' }>; summary: string; checks: DesignReviewCheck[]; modelResponses?: string[]; resolvedDeferrals?: Array<{ checkId: string; resolvedByStageId: string; kind?: 'reconsideration' }> }
 export interface DesignContentReview extends DesignReviewResult {
   id: string;
   area: DesignReviewArea;
@@ -284,7 +285,9 @@ export function validateDesignReview(input: DesignReviewInput, result: DesignRev
     if (check.evidence.length > designReviewEvidenceLimit(input)) throw new DesignReviewError(`本批每项证据不得超过${designReviewEvidenceLimit(input)}条，不能省略必引来源来凑数`);
     if (check.verdict !== 'insufficient' && check.evidence.length === 0) throw new DesignReviewError('通过或返修结论必须提供原文证据');
     if (check.verdict !== 'pass' && !check.revisionAdvice?.trim()) throw new DesignReviewError('未通过项目必须给出补充或返修要求');
+    if (input.stage?.reconsiderationFor && check.verdict === 'pass' && !check.resolves?.includes(input.stage.reconsiderationFor)) throw new DesignReviewError('正式复核通过必须显式 resolves 原问题并提供全部必引证据');
     if (check.awaitingSources !== undefined) {
+      if (input.stage?.reconsiderationFor) throw new DesignReviewError('正式复核不能递归请求补读；仍缺材料时保留普通不足和原返修');
       if (input.stage?.followupFor && !(Number.isSafeInteger(input.stage.followupBudget?.remainingRounds) && input.stage.followupBudget!.remainingRounds > 0)) throw new DesignReviewError('专门补读不得递归建立等待；仍缺必要材料时保留普通材料不足');
       const coverage = input.stage?.coverage;
       if (check.verdict !== 'insufficient' || input.stage?.kind === 'synthesis' || coverage?.mode !== 'local_sources' || !Array.isArray(check.awaitingSources) || !check.awaitingSources.length || check.awaitingSources.length > maxDesignReviewAwaitingSources || new Set(check.awaitingSources).size !== check.awaitingSources.length) throw new DesignReviewError(`等待补读只能用于局部材料不足，并指定1至${maxDesignReviewAwaitingSources}个不同的未读来源`);

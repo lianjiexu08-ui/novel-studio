@@ -1,4 +1,6 @@
 import { createHash, randomUUID } from 'node:crypto';
+import { annotationRunSources } from './design-review-annotations.ts';
+import { designReviewAnnotationSchema, type DesignReviewAnnotationDto } from 'novel-studio-contracts';
 import { maxDesignReviewEvidence } from '../../packages/contracts/src/index.ts';
 import { renderDesignReviewReport } from './design-review-report.ts';
 import { validateDesignReviewAnnotationContext } from './design-review-annotation-context.ts';
@@ -31,6 +33,7 @@ export interface DesignReviewStage {
   children: string[];
   /** A bounded raw-source recheck of one unresolved unread-source question. */
   followupFor?: string;
+  reconsiderationFor?: string;
   result?: DesignReviewResult;
   attempts: number;
   error?: string;
@@ -38,12 +41,20 @@ export interface DesignReviewStage {
   rejectedResult?: DesignReviewResult;
   failures?: Array<{ at: string; error: string; modelResponses?: string[]; rejectedResult?: DesignReviewResult }>;
 }
+export interface DesignReviewReconsideration {
+  version: 1;
+  annotation: DesignReviewAnnotationDto;
+  additionalSourceIds: string[];
+  afterStageId: string;
+  createdAt: string;
+}
 export interface DesignReviewRun {
   id: string;
   /** A deliberate new assessment; the prior run and its findings stay intact. */
   restartedFromRunId?: string;
   /** Absent on persisted legacy schedules, which must resume without reshuffling. */
   scheduleVersion?: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | 32 | 33 | 34;
+  reconsiderations?: DesignReviewReconsideration[];
   input: DesignReviewInput;
   units: DesignReviewUnit[];
   stages: DesignReviewStage[];
@@ -150,6 +161,70 @@ export function createDesignReviewRun(input: DesignReviewInput, now = new Date()
   return { id: `design_run_${randomUUID()}`, ...(scheduleVersion >= 2 ? { scheduleVersion: scheduleVersion as 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | 32 | 33 | 34 } : {}), input: structuredClone(input), units, stages, status: 'ready', createdAt: now, updatedAt: now };
 }
 
+/** Append a bounded formal recheck without changing any earlier request or result.
+ * A note is a challenge to investigate, never evidence that a verdict is wrong. */
+export function queueDesignReviewReconsideration(run: DesignReviewRun, annotation: DesignReviewAnnotationDto,
+  additionalSourceIds: string[] = [], now = new Date().toISOString()): DesignReviewStage {
+  designReviewAnnotationSchema.parse(annotation);
+  annotationRunSources(run, annotation);
+  if (JSON.stringify(annotation.scope) !== JSON.stringify(run.input.scope)) throw new DesignReviewError('复核记录范围不匹配');
+  if (!Array.isArray(additionalSourceIds) || additionalSourceIds.some(id => typeof id !== 'string') || new Set(additionalSourceIds).size !== additionalSourceIds.length) throw new DesignReviewError('复核来源列表无效或重复');
+  const prior = run.reconsiderations?.find(item => item.annotation.id === annotation.id);
+  if (prior) {
+    if (JSON.stringify(prior.annotation) !== JSON.stringify(annotation) || JSON.stringify(prior.additionalSourceIds) !== JSON.stringify(additionalSourceIds)) throw new DesignReviewError('复核请求已绑定其他内容');
+    const stage = run.stages.find(stage => stage.id === `reconsider-${annotation.id}`);
+    if (!stage) throw new DesignReviewError('复核步骤缺失');
+    return stage;
+  }
+  if ((run.scheduleVersion ?? 1) < 34 || run.input.purpose === 'chapter_review') throw new DesignReviewError('当前任务版本不支持定向设计复核');
+  if (run.leaseToken || !['ready', 'failed'].includes(run.status)) throw new DesignReviewError('请先停止评审并释放执行权，再提交正式复核');
+  const target = run.stages.find(stage => stage.id === annotation.stageId)!;
+  const check = target.result!.checks.find(check => check.criterion === annotation.criterion)!;
+  const checkId = `${target.id}/${check.criterion}`;
+  if (target.kind === 'synthesis' || target.reconsiderationFor || check.verdict !== 'revise') throw new DesignReviewError('仅支持对原文评审的返修判定提交正式复核');
+  if (run.reconsiderations?.some(item => `${item.annotation.stageId}/${item.annotation.criterion}` === checkId)) throw new DesignReviewError('该判定已有正式复核，请继续已有步骤');
+  if (run.stages.some(stage => stage.reconsiderationFor && !stage.result)) throw new DesignReviewError('请先完成已加入的正式复核');
+  const boundary = run.stages.findIndex(stage => !stage.result);
+  if (boundary < 1 || run.stages.slice(boundary).some(stage => stage.result || stage.attempts || stage.failures?.length)
+    || run.stages.some(stage => stage.kind === 'synthesis' && (stage.result || stage.attempts))) throw new DesignReviewError('只能在连续已完成原文批次之后、未尝试的后续步骤之前加入复核');
+  // Complete every source touched by the original batch, not just quoted units.
+  const required = new Set([...target.unitIds.map(id => run.units.find(unit => unit.id === id)!.sourceId),
+    ...annotation.evidence.map(item => item.sourceId), ...additionalSourceIds]);
+  for (const id of required) if (!run.input.sources.some(source => source.id === id)) throw new DesignReviewError(`复核来源不存在：${id}`);
+  const binding: DesignReviewReconsideration = { version: 1, annotation: structuredClone(annotation), additionalSourceIds: [...additionalSourceIds], afterStageId: run.stages[boundary - 1].id, createdAt: now };
+  const stage: DesignReviewStage = { id: `reconsider-${annotation.id}`, kind: 'cross', label: `正式复核 ${checkId}`, unitIds: run.units.filter(unit => required.has(unit.sourceId)).map(unit => unit.id), children: [], reconsiderationFor: checkId, attempts: 0 };
+  // Preflight on a detached copy: capacity/validation failures are atomic even
+  // for callers without a database transaction.
+  const proposed = structuredClone(run);
+  (proposed.reconsiderations ??= []).push(binding);
+  proposed.stages.splice(boundary, 0, stage);
+  rebuildSynthesis(proposed);
+  const input = designReviewStageInput(proposed, stage);
+  const pending = input.stage!.coverage!.pendingChecks!.find(item => item.id === checkId)!;
+  if (new Set([...pending.requiredSourceIds, ...(pending.priorSourceIds ?? [])]).size + 1 > maxDesignReviewEvidence) throw new DesignReviewError('正式复核必引依据超过引用容量，未截断来源');
+  run.reconsiderations = proposed.reconsiderations;
+  run.stages = proposed.stages;
+  run.status = 'ready'; run.updatedAt = now;
+  return run.stages.find(item => item.id === stage.id)!;
+}
+
+function rebuildSynthesis(run: DesignReviewRun): void {
+  const context = run.stages.find(stage => stage.kind === 'synthesis')?.unitIds ?? [];
+  const raw = run.stages.filter(stage => stage.kind !== 'synthesis');
+  const stages = [...raw];
+  let level = raw.map(stage => stage.id), sequence = 0;
+  while (level.length > 1) {
+    const next: string[] = [];
+    for (let i = 0; i < level.length; i += 2) {
+      if (i + 1 === level.length) { next.push(level[i]); continue; }
+      const id = `synthesis-${++sequence}`;
+      stages.push({ id, kind: 'synthesis', label: `综合检查 ${sequence}`, unitIds: [...context], children: level.slice(i, i + 2), attempts: 0 }); next.push(id);
+    }
+    level = next;
+  }
+  run.stages = stages;
+}
+
 function chapterUnitGroups(sources: DesignReviewSource[], units: DesignReviewUnit[]): DesignReviewUnit[][] {
   const chapters = new Map<number, { kinds: Set<string>; sourceIds: string[] }>();
   for (const source of sources) {
@@ -224,10 +299,19 @@ function resultSource(run: DesignReviewRun, stage: DesignReviewStage, cache = re
   return source;
 }
 function deferrals(run: DesignReviewRun, before = run.stages.length) {
-  return run.stages.slice(0, before).flatMap(stage => stage.kind === 'synthesis' || stage.followupFor && (run.scheduleVersion ?? 1) < 33 ? [] : (stage.result?.checks ?? []).filter(check => check.verdict === 'insufficient' && check.awaitingSources?.length).map(check => ({
+  const deferred = run.stages.slice(0, before).flatMap(stage => stage.kind === 'synthesis' || stage.followupFor && (run.scheduleVersion ?? 1) < 33 ? [] : (stage.result?.checks ?? []).filter(check => check.verdict === 'insufficient' && check.awaitingSources?.length).map(check => ({
     id: `${stage.id}/${check.criterion}`, stage, check,
     question: { id: `review-question/${stage.id}/${check.criterion}`, text: JSON.stringify({ criterion: check.criterion, explanation: check.explanation, revisionAdvice: check.revisionAdvice, awaitingSources: check.awaitingSources }, null, 2) },
   })));
+  const challenged = (run.reconsiderations ?? []).flatMap(binding => {
+    const stage = run.stages.slice(0, before).find(stage => stage.id === binding.annotation.stageId);
+    const check = stage?.result?.checks.find(check => check.criterion === binding.annotation.criterion);
+    if (!stage || !check || check.verdict !== 'revise') return [];
+    return [{ id: `${stage.id}/${check.criterion}`, stage, check,
+      question: { id: `review-question/${stage.id}/${check.criterion}`, text: JSON.stringify({ originalCheck: check,
+        challenge: binding.annotation, notice: '核对说明是待检验意见，不是故事事实或通过依据；请复核原标准整项返修，不能只核对所选句子。' }, null, 2) } }];
+  });
+  return [...deferred, ...challenged];
 }
 // Three dedicated reads per original question. Old schedules never use this
 // chain; every original negative and every later navigation request is retained.
@@ -249,6 +333,14 @@ function citedSourceIds(run: DesignReviewRun, pending: ReturnType<typeof deferra
   }))];
 }
 function coversDeferral(run: DesignReviewRun, stage: DesignReviewStage, pending: ReturnType<typeof deferrals>[number], cache = reviewReadCache()) {
+  if (stage.reconsiderationFor || pending.check.verdict === 'revise') {
+    if (stage.reconsiderationFor !== pending.id) return false;
+    const binding = run.reconsiderations?.find(item => `reconsider-${item.annotation.id}` === stage.id);
+    if (!binding) return false;
+    const required = new Set([...pending.stage.unitIds.map(id => run.units.find(unit => unit.id === id)!.sourceId), ...binding.annotation.evidence.map(item => item.sourceId), ...binding.additionalSourceIds]);
+    return run.units.filter(unit => required.has(unit.sourceId)).every(unit => stage.unitIds.includes(unit.id));
+  }
+
   if (stage.followupFor && (run.scheduleVersion ?? 1) >= 33) {
     const direct = deferrals(run).find(item => item.id === stage.followupFor);
     if (!direct || !pendingChain(run, direct).some(item => item.id === pending.id)) return false;
@@ -353,7 +445,7 @@ function scheduleFollowups(run: DesignReviewRun): void {
   const resolved = new Set(resolvedDeferrals(run, run.stages.length, cache).map(r => r.checkId));
   const followups: DesignReviewStage[] = [];
   for (const pending of deferrals(run)) {
-    if (resolved.has(pending.id)) continue;
+    if (pending.check.verdict === 'revise' || resolved.has(pending.id)) continue;
     if (chained && (run.stages.some(s => s.followupFor === pending.id) || pendingChain(run, pending).length > maxFollowupRounds)) continue;
     const unitIds = followupUnits(run, pending, cache);
     if (unitIds) followups.push({ id: `followup-${pending.id}`, kind: 'cross', label: `原文补读 ${pending.id}`, unitIds, children: [], followupFor: pending.id, attempts: 0 });
@@ -378,7 +470,7 @@ function scheduleFollowups(run: DesignReviewRun): void {
 function resolvedDeferrals(run: DesignReviewRun, before = run.stages.length, cache = reviewReadCache()) {
   return deferrals(run, before).flatMap(pending => {
     const resolver = run.stages.slice(run.stages.indexOf(pending.stage) + 1, before).find(stage => coversDeferral(run, stage, pending, cache) && stage.result?.checks.some(check => check.criterion === pending.check.criterion && check.verdict === 'pass' && check.resolves?.includes(pending.id)));
-    return resolver ? [{ checkId: pending.id, resolvedByStageId: resolver.id }] : [];
+    return resolver ? [{ checkId: pending.id, resolvedByStageId: resolver.id, ...(pending.check.verdict === 'revise' ? { kind: 'reconsideration' as const } : {}) }] : [];
   });
 }
 
@@ -411,7 +503,8 @@ function readResolutionContext(run: DesignReviewRun, before: number, cache: Revi
       resolutionEvidenceSha256: createHash('sha256').update(JSON.stringify(check.evidence)).digest('hex'),
     };
   });
-  const text = '已校验的补读处理记录。每项均由覆盖原问题及必要原文的后续评审明确解决，并已通过引用验证。报告中仍保留的对应旧insufficient及原问题引文是历史，不因复核位于另一综合分支就重新变成未解决。\n'
+  const reconsidered = resolutions.some(item => item.kind === 'reconsideration');
+  const text = (reconsidered ? '含正式复核处理记录：kind=reconsideration 表示原revise经完整原文重读和必引证据验证后已解决；原判定仍保留为历史，其他问题不受影响。\n' : '') + '已校验的补读处理记录。每项均由覆盖原问题及必要原文的后续评审明确解决，并已通过引用验证。报告中仍保留的对应旧insufficient及原问题引文是历史，不因复核位于另一综合分支就重新变成未解决。\n'
     + '本记录只证明所列等待有有效处理；不证明全文设计通过，不取消其他返修、普通不足或新发现的冲突，也不代表正文事件已发生。新冲突仍须依据实际交付的原文或报告说明，不得凭此记录自动通过。\n'
     + JSON.stringify({ inputHash: run.input.inputHash, resolvedDeferrals: records }, null, 2);
   const source = { id: `review-resolutions/${createHash('sha256').update(text).digest('hex')}`, text };
@@ -445,6 +538,14 @@ export function designReviewStageInput(run: DesignReviewRun, stage: DesignReview
 function readDesignReviewStageInput(run: DesignReviewRun, stage: DesignReviewStage, cache: ReviewReadCache): DesignReviewInput {
   const stageIndex = run.stages.findIndex(s => s.id === stage.id);
   if (stageIndex < 0) throw new DesignReviewError('评审步骤不属于本任务');
+  if (stage.reconsiderationFor) {
+    const binding = run.reconsiderations?.find(item => `reconsider-${item.annotation.id}` === stage.id);
+    if (!binding || binding.version !== 1) throw new DesignReviewError('正式复核绑定缺失或版本无效');
+    annotationRunSources(run, binding.annotation);
+    if (binding.additionalSourceIds.some(id => !run.input.sources.some(source => source.id === id))) throw new DesignReviewError('正式复核新增来源不存在');
+  }
+  const reconsideration = stage.reconsiderationFor ? deferrals(run, stageIndex).find(item => item.id === stage.reconsiderationFor) : undefined;
+  if (stage.reconsiderationFor && (!reconsideration || !coversDeferral(run, stage, reconsideration, cache))) throw new DesignReviewError('正式复核缺少完整原文或绑定的返修判定');
   const followup = stage.followupFor ? deferrals(run, stageIndex).find(p => p.id === stage.followupFor) : undefined;
   if (stage.followupFor && ((run.scheduleVersion ?? 1) < 5 || !followup)) throw new DesignReviewError('补读步骤没有原始等待问题');
   const rawSources = designReviewUnitSources(run).filter(s => stage.unitIds.includes(s.id));
@@ -478,11 +579,14 @@ function readDesignReviewStageInput(run: DesignReviewRun, stage: DesignReviewSta
       if (!coversDeferral(run, stage, pending, cache)) continue;
       // Do not remove raw material to squeeze in a question. If it cannot fit,
       // this stage cannot authorize a resolution; the unresolved item blocks.
-      if (JSON.stringify([...sources, pending.question]).length > sourceCapacity(run.input)) continue;
+      if (JSON.stringify([...sources, pending.question]).length > sourceCapacity(run.input)) {
+        if (stage.reconsiderationFor) throw new DesignReviewError('正式复核原文与问题超过容量，未截断来源');
+        continue;
+      }
       sources.push(pending.question);
       const cited = citedSourceIds(run, pending);
-      const priorSourceIds = followup || (run.scheduleVersion ?? 1) >= 34 && cited.length ? cited : undefined;
-      pendingChecks.push({ id: pending.id, criterion: pending.check.criterion, questionSourceId: pending.question.id, requiredSourceIds: pending.check.awaitingSources!, priorUnitIds: pending.stage.unitIds.filter(id => stage.unitIds.includes(id)), ...(priorSourceIds ? { priorSourceIds } : {}) });
+      const priorSourceIds = reconsideration || followup || (run.scheduleVersion ?? 1) >= 34 && cited.length ? cited : undefined;
+      pendingChecks.push({ id: pending.id, criterion: pending.check.criterion, questionSourceId: pending.question.id, requiredSourceIds: pending.check.verdict === 'revise' ? [...new Set(run.reconsiderations!.filter(item => `reconsider-${item.annotation.id}` === stage.id).flatMap(item => [...item.annotation.evidence.map(e => e.sourceId), ...item.additionalSourceIds]))] : pending.check.awaitingSources!, priorUnitIds: pending.stage.unitIds.filter(id => stage.unitIds.includes(id)), ...(priorSourceIds ? { priorSourceIds } : {}) });
     }
     if (pendingChecks.length) coverage.pendingChecks = pendingChecks;
   }
@@ -493,7 +597,7 @@ function readDesignReviewStageInput(run: DesignReviewRun, stage: DesignReviewSta
       const resolved = new Set(coverage.resolvedDeferrals.map(item => item.checkId));
       coverage.synthesis.requiredFindings = stage.children.flatMap(id =>
         run.stages.find(child => child.id === id)!.result!.checks.flatMap(check => {
-          if (check.verdict === 'pass' || check.awaitingSources && resolved.has(`${id}/${check.criterion}`)) return [];
+          if (check.verdict === 'pass' || resolved.has(`${id}/${check.criterion}`)) return [];
           return [{ stageId: id, criterion: check.criterion, verdict: check.verdict }];
         }));
     }
@@ -533,17 +637,19 @@ function readDesignReviewStageInput(run: DesignReviewRun, stage: DesignReviewSta
   // through the original raw checks; no existing finding is discarded.
   const synthesisCriteria = stage.kind === 'synthesis' && (run.scheduleVersion ?? 1) >= 15
     ? new Set(stage.children.flatMap(id => run.stages.find(child => child.id === id)!.result!.checks.map(check => check.criterion))) : undefined;
-  const rubric = followup ? { [followup.check.criterion]: run.input.rubric[followup.check.criterion] }
+  const focused = reconsideration ?? followup;
+  const rubric = focused ? { [focused.check.criterion]: run.input.rubric[focused.check.criterion] }
     : synthesisCriteria ? Object.fromEntries(Object.entries(run.input.rubric).filter(([criterion]) => synthesisCriteria.has(criterion)))
     : (run.scheduleVersion ?? 1) >= 7 && coverage?.mode === 'local_sources' ? localDesignReviewRubric(run.input, run.scheduleVersion) : structuredClone(run.input.rubric);
   if (synthesisCriteria && !Object.keys(rubric).length) throw new DesignReviewError('综合前置报告没有可核验的评审标准');
   return { ...structuredClone(run.input), rubric, sources, stage: {
     kind: stage.kind, label: stage.label, totalBatches: run.stages.filter(s => s.kind === 'batch').length,
+    ...(reconsideration ? { reconsiderationFor: reconsideration.id } : {}),
     ...(followup ? { followupFor: followup.id } : {}),
     ...(followup && (run.scheduleVersion ?? 1) >= 33 ? { followupBudget: { remainingRounds: Math.max(0, maxFollowupRounds - pendingChain(run, followup).length) } } : {}),
     ...((run.scheduleVersion ?? 1) >= 16 ? { evidenceLimit: 96 as const } : {}),
     ...((run.scheduleVersion ?? 1) >= 17 ? { reportBudget: { sourceId: `review-result/${stage.id}`, maxCharacters: reportCapacity(run.input) } } : {}),
-    ...((run.scheduleVersion ?? 1) >= 18 && coverage?.mode === 'local_sources' && !followup ? { requireInsufficiencyReason: true as const } : {}),
+    ...((run.scheduleVersion ?? 1) >= 18 && coverage?.mode === 'local_sources' && !followup && !reconsideration ? { requireInsufficiencyReason: true as const } : {}),
     sourceMap: run.units.filter(u => stage.unitIds.includes(u.id)),
     ...(coverage ? { coverage } : {}),
   } };
@@ -566,6 +672,15 @@ export function acceptDesignReviewStage(run: DesignReviewRun, stage: DesignRevie
 export function completeDesignReviewRun(run: DesignReviewRun): { input: DesignReviewInput; result: DesignReviewResult } {
   if (run.scheduleVersion !== undefined && ![2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34].includes(run.scheduleVersion)) throw new DesignReviewError('未知评审调度版本');
   const expected = createDesignReviewRun(run.input, run.createdAt, run.scheduleVersion ?? 1);
+  expected.id = run.id;
+  let bindingIndex = 0;
+  const insertReconsiderations = (afterStageId: string) => {
+    const binding = run.reconsiderations?.[bindingIndex];
+    if (!binding || binding.afterStageId !== afterStageId) return;
+    if (binding.version !== 1) throw new DesignReviewError('未知正式复核版本');
+    queueDesignReviewReconsideration(expected, binding.annotation, binding.additionalSourceIds, binding.createdAt);
+    bindingIndex++;
+  };
   if ((run.scheduleVersion ?? 1) >= 33) {
     // Each completed round can reveal another bounded source request. Rebuild
     // those rounds from their actual responses before accepting the schedule.
@@ -574,6 +689,7 @@ export function completeDesignReviewRun(run: DesignReviewRun): { input: DesignRe
       const result = run.stages.find(s => s.id === next!.id)?.result;
       if (!result) throw new DesignReviewError('原文覆盖或跨批检查未完成，不得形成整体结论');
       acceptDesignReviewStage(expected, next, result);
+      insertReconsiderations(next.id);
       next = expected.stages.find(s => s.kind !== 'synthesis' && !s.result);
     }
   } else if ((run.scheduleVersion ?? 1) >= 5) {
@@ -585,7 +701,8 @@ export function completeDesignReviewRun(run: DesignReviewRun): { input: DesignRe
       acceptDesignReviewStage(expected, stage, result);
     }
   }
-  const plan = (r: DesignReviewRun) => r.stages.map(({ id, kind, unitIds, children, followupFor }) => ({ id, kind, unitIds, children, ...(followupFor ? { followupFor } : {}) }));
+  if (bindingIndex !== (run.reconsiderations?.length ?? 0)) throw new DesignReviewError('正式复核插入边界不匹配');
+  const plan = (r: DesignReviewRun) => r.stages.map(({ id, kind, unitIds, children, followupFor, reconsiderationFor }) => ({ id, kind, unitIds, children, ...(followupFor ? { followupFor } : {}), ...(reconsiderationFor ? { reconsiderationFor } : {}) }));
   if (JSON.stringify(run.units) !== JSON.stringify(expected.units) || JSON.stringify(plan(run)) !== JSON.stringify(plan(expected)) || !run.stages.length || run.stages.some(s => !s.result)) throw new DesignReviewError('原文覆盖或跨批检查未完成，不得形成整体结论');
   const cache = reviewReadCache();
   for (const stage of run.stages) validateDesignReview(readDesignReviewStageInput(run, stage, cache), stage.result!);
@@ -598,7 +715,7 @@ export function completeDesignReviewRun(run: DesignReviewRun): { input: DesignRe
     for (const stage of run.stages) {
       const check = stage.result!.checks.find(c => c.criterion === criterion);
       if (!check) continue; // Dedicated follow-ups evaluate only their original criterion.
-      if (check.awaitingSources && resolved.has(`${stage.id}/${criterion}`)) continue;
+      if (resolved.has(`${stage.id}/${criterion}`)) continue;
       if (rank[check.verdict] > rank[selected.verdict]) selected = check;
     }
     // Scoped dispositions stay in the immutable stages and resolution ledger;
@@ -614,7 +731,7 @@ export function completeDesignReviewRun(run: DesignReviewRun): { input: DesignRe
     })).values()] : [];
   const input = { ...run.input, sources: [...resolutionSources, ...designReviewUnitSources(run), ...run.stages.filter(s => s.result).map(s => resultSource(run, s, cache)), ...((run.scheduleVersion ?? 1) >= 3 ? deferrals(run).map(p => p.question) : [])] };
   const blocked = checks.some(c => c.verdict !== 'pass');
-  const result = { summary: blocked ? '全部批次已完成，但仍有返修或材料不足项；详见逐项结论。' : root.summary, checks, ...(resolutions.length ? { resolvedDeferrals: resolutions } : {}) };
+  const result = { summary: blocked ? '全部批次已完成，但仍有返修或材料不足项；详见逐项结论。' : root.summary, checks, ...(resolutions.some(item => !item.kind) ? { resolvedDeferrals: resolutions.filter(item => !item.kind) } : {}), ...(resolutions.some(item => item.kind) ? { resolvedReconsiderations: resolutions.filter(item => item.kind).map(item => ({ ...item, kind: 'reconsideration' as const })) } : {}) };
   validateDesignReview(input, result);
   return { input, result };
 }

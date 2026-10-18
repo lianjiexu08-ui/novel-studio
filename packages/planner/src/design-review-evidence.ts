@@ -104,7 +104,7 @@ export function prepareDesignReviewEvidence(input: DesignReviewInput) {
   });
   // Give the reviewer a direct index for dedicated follow-ups. These IDs are
   // navigational metadata, never proof that any fragment supports a verdict.
-  const pending = snapshot.stage?.coverage?.pendingChecks?.find(check => check.id === snapshot.stage?.followupFor);
+  const pending = snapshot.stage?.coverage?.pendingChecks?.find(check => check.id === (snapshot.stage?.reconsiderationFor ?? snapshot.stage?.followupFor));
   const citationRequirements = pending ? {
     checkId: pending.id, criterion: pending.criterion,
     sources: [...new Set([pending.questionSourceId, ...(pending.priorSourceIds ?? []), ...pending.requiredSourceIds])].map(sourceId => ({

@@ -3,12 +3,16 @@ import { Alert, Button, Collapse, Space, Typography } from 'antd';
 import type { DesignReviewAnnotationDto } from 'novel-studio-contracts';
 import { api } from '../api';
 
-export function ReviewAnnotations({ workId, runId, stageId, onSource, onStage }: {
+export function ReviewAnnotations({ workId, runId, stageId, onSource, onStage, onQueued }: {
+  onQueued?: () => void;
   workId: string; runId: string; stageId?: string;
   onSource: (source: { id: string; text: string }) => void;
   onStage: (runId: string, stageId: string) => void;
 }) {
   const [notes, setNotes] = useState<DesignReviewAnnotationDto[]>();
+  const [reviewState, setReviewState] = useState<Awaited<ReturnType<typeof api.designReviewAnnotations>>>();
+  const [queuing, setQueuing] = useState<string>();
+  const [queueError, setQueueError] = useState('');
   const [error, setError] = useState('');
   const [sourceError, setSourceError] = useState('');
   const [attempt, setAttempt] = useState(0);
@@ -19,7 +23,7 @@ export function ReviewAnnotations({ workId, runId, stageId, onSource, onStage }:
     let cancelled = false;
     setLoading(true);
     void api.designReviewAnnotations(workId, runId, stageId).then(result => {
-      if (!cancelled) { setNotes(result.annotations); setError(''); setCheckedAt(new Date().toLocaleTimeString()); }
+      if (!cancelled) { setReviewState(result); setNotes(result.annotations); setError(''); setCheckedAt(new Date().toLocaleTimeString()); }
     }).catch(cause => { if (!cancelled) setError(cause instanceof Error ? cause.message : String(cause)); })
       .finally(() => { if (!cancelled) setLoading(false); });
     return () => { cancelled = true; };
@@ -28,7 +32,7 @@ export function ReviewAnnotations({ workId, runId, stageId, onSource, onStage }:
   }, [workId, runId, stageId, attempt]);
   // Do not display another run's notes while the new request is in flight.
   useEffect(() => {
-    setNotes(undefined); setError(''); setSourceError(''); setCheckedAt('');
+    setReviewState(undefined); setQueueError(''); setQueuing(undefined); setNotes(undefined); setError(''); setSourceError(''); setCheckedAt('');
     return () => { sourceRequest.current++; };
   }, [workId, runId, stageId]);
   async function showSource(note: DesignReviewAnnotationDto, sourceId: string) {
@@ -41,6 +45,16 @@ export function ReviewAnnotations({ workId, runId, stageId, onSource, onStage }:
       setSourceError(''); onSource(source);
     } catch (cause) { if (request === sourceRequest.current) setSourceError(cause instanceof Error ? cause.message : String(cause)); }
   }
+  async function queue(note: DesignReviewAnnotationDto) {
+    const request = ++sourceRequest.current;
+    setQueuing(note.id); setQueueError('');
+    try {
+      await api.reconsiderDesignReview(workId, runId, note.id, note.expectedInputHash);
+      if (request !== sourceRequest.current) return;
+      setAttempt(value => value + 1); onQueued?.();
+    } catch (cause) { if (request === sourceRequest.current) setQueueError(cause instanceof Error ? cause.message : String(cause)); }
+    finally { if (request === sourceRequest.current) setQueuing(undefined); }
+  }
   return <>
     <Space wrap>
       <Button size="small" loading={loading} onClick={() => setAttempt(value => value + 1)}>刷新核对记录</Button>
@@ -48,6 +62,7 @@ export function ReviewAnnotations({ workId, runId, stageId, onSource, onStage }:
     </Space>
     {error && <Alert type="warning" showIcon message="核对记录暂不可用" description={error}
       action={<Button size="small" loading={loading} onClick={() => setAttempt(value => value + 1)}>重试</Button>} />}
+    {queueError && <Alert type="error" message="正式复核未提交" description={queueError} />}
     {sourceError && <Alert type="error" message="核对原文加载失败" description={sourceError} />}
     {notes?.length ? <Collapse style={{ width: '100%' }} items={[{
       key: 'annotations', label: `独立核对记录（${notes.length} 条，不改变原判定）`,
@@ -60,6 +75,13 @@ export function ReviewAnnotations({ workId, runId, stageId, onSource, onStage }:
           <Typography.Text>{note.claimField === 'revisionAdvice' ? '被核对的原返修建议：' : '被核对的原评语：'}</Typography.Text>
           <blockquote style={{ whiteSpace: 'pre-wrap' }}>{note.claimQuote}</blockquote>
           <Typography.Paragraph style={{ whiteSpace: 'pre-wrap' }}>{note.explanation}</Typography.Paragraph>
+          {reviewState?.reconsiderations?.find(item => item.annotationId === note.id) ? (() => {
+            const item = reviewState.reconsiderations!.find(item => item.annotationId === note.id)!;
+            return <Button type="link" size="small" onClick={() => onStage(runId, item.stageId)}>{item.resolved ? '已正式复核解决，查看依据' : item.completed ? '复核仍未解决，查看原问题与结果' : '已加入正式复核，查看待审材料'}</Button>;
+          })() : reviewState?.reconsiderableAnnotationIds?.includes(note.id) ? <Space direction="vertical">
+            <Button size="small" disabled={!!queuing} loading={queuing === note.id} onClick={() => void queue(note)}>提交正式复核</Button>
+            <Typography.Text type="secondary">加入本任务下一步，继续评审时调用模型核验整项返修及完整依据；原判定保留。</Typography.Text>
+          </Space> : null}
           {note.evidence.map((evidence, index) => <div key={`${evidence.sourceId}/${index}`}>
             <Button type="link" size="small" style={{ height: 'auto', whiteSpace: 'normal', textAlign: 'left' }}
               onClick={() => void showSource(note, evidence.sourceId)}>查看完整依据：{evidence.sourceId}</Button>

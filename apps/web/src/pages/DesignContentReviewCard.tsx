@@ -128,14 +128,15 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
       if (activeWork.current === workId && current === stageRequest.current) setStageView({ runId, stageId, error: cause instanceof Error ? cause.message : String(cause) });
     }
   }
-  function details(report: Pick<DesignContentReviewDto, 'summary' | 'checks' | 'sources' | 'scope' | 'resolvedDeferrals'> & { id?: string; runId?: string; createdAt?: string }) {
+  function details(report: Pick<DesignContentReviewDto, 'summary' | 'checks' | 'sources' | 'scope' | 'resolvedDeferrals' | 'resolvedReconsiderations'> & { id?: string; runId?: string; createdAt?: string }) {
     const reportRun = data?.runs.find(run => report.runId ? run.id === report.runId : report.id !== undefined && run.reportId === report.id);
+    const resolutions = [...(report.resolvedDeferrals ?? []), ...(report.resolvedReconsiderations ?? [])];
     const revisionStages = reportRun?.stages.filter(stage => stage.verdict === 'needs_revision');
     return <Space direction="vertical" style={{ width: '100%' }}>
       <Typography.Text type="secondary">世界 v{report.scope.worldPackRevision} · 圣经 v{report.scope.storyBibleRevision} · 计划 v{report.scope.planRevision} {report.createdAt ? ` · ${new Date(report.createdAt).toLocaleString()}` : ''}</Typography.Text>
       <Typography.Paragraph>{report.summary}</Typography.Paragraph>
       {report.id && reportRun && <ReviewAnnotations key={reportRun.id} workId={workId} runId={reportRun.id}
-        onSource={setSource} onStage={(runId, stageId) => void showStage(runId, stageId)} />}
+        onQueued={() => void load()} onSource={setSource} onStage={(runId, stageId) => void showStage(runId, stageId)} />}
       {revisionStages?.length ? <Collapse size="small" style={{ width: '100%' }} items={[{
         key: 'retained-revisions', label: `查看全部返修批次（${revisionStages.length} 条记录，非独立问题数）`,
         children: <Space direction="vertical" style={{ width: '100%' }}>
@@ -155,11 +156,11 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
         </Space>,
       }]} />}
       {reportRun?.stages.some(stage => stage.completed && stage.insufficientCriteria === undefined) && <Typography.Text type="secondary">此接口未提供完整的逐项不足索引，返修批次中可能另有材料不足；请打开批次原文与结果核对。</Typography.Text>}
-      {report.resolvedDeferrals?.length ? <Collapse size="small" style={{ width: '100%' }} items={[{
-        key: 'deferrals', label: `补读复核记录（${report.resolvedDeferrals.length} 项）`,
+      {resolutions.length ? <Collapse size="small" style={{ width: '100%' }} items={[{
+        key: 'deferrals', label: `已解决问题的复核记录（${resolutions.length} 项）`,
         children: <Space direction="vertical" style={{ width: '100%' }}>
           <Typography.Text type="secondary">查看原先缺少什么材料，以及后续如何依据原文完成复核。原批次结论与引用仍然保留。</Typography.Text>
-          {report.resolvedDeferrals.map(item => {
+          {resolutions.map(item => {
             // Follow-up stage IDs also contain slashes; resolve against the saved
             // run rather than assuming the first slash separates the criterion.
             const original = reportRun?.stages.filter(stage => item.checkId.startsWith(`${stage.id}/`)).sort((a, b) => b.id.length - a.id.length)[0];
@@ -168,7 +169,7 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
             return <div key={item.checkId} style={{ width: '100%', overflowWrap: 'anywhere' }}>
               <Typography.Text>{original ? `${original.label} · ${criteria[criterion] ?? criterion}` : item.checkId}</Typography.Text>
               <Space wrap>
-                {reportRun && original && <Button type="link" size="small" onClick={() => void showStage(reportRun.id, original.id)}>查看原补读问题</Button>}
+                {reportRun && original && <Button type="link" size="small" onClick={() => void showStage(reportRun.id, original.id)}>查看原始问题</Button>}
                 {reportRun && resolution ? <Button type="link" size="small" onClick={() => void showStage(reportRun.id, resolution.id)}>查看解决依据：{resolution.label}</Button>
                   : <Typography.Text type="secondary">解决批次：{item.resolvedByStageId}（批次详情暂不可用）</Typography.Text>}
               </Space>
@@ -262,7 +263,7 @@ export function DesignContentReviewCard({ workId, revision, onReviewed }: { work
         <Alert type="info" showIcon message={stageDetail.stage.kind === 'synthesis' ? '本步综合前置评审报告；新版流程另附计划原文。请按来源区分报告转述与原始设计。' : '本批结论只覆盖下列材料，不代表整项设计通过。'} />
         {stageDetail.stage.error && <Alert type="error" message="本批尚未完成" description={stageDetail.stage.error} />}
         {stageView && <ReviewAnnotations key={`${stageView.runId}/${stageView.stageId}`} workId={workId} runId={stageView.runId}
-          stageId={stageView.stageId} onSource={setSource} onStage={(runId, stageId) => void showStage(runId, stageId)} />}
+          stageId={stageView.stageId} onQueued={() => void load()} onSource={setSource} onStage={(runId, stageId) => void showStage(runId, stageId)} />}
         {stageDetail.stage.result && details({ ...stageDetail.stage.result, sources: stageDetail.input.sources, scope: stageDetail.input.scope })}
         <Collapse style={{ width: '100%' }} items={[
           { key: 'frozen-annotations', label: `本次评审携带的核对说明（${stageDetail.input.annotationContext?.notes.length ?? 0} 条）`, children: <Space direction="vertical" style={{ width: '100%' }}>

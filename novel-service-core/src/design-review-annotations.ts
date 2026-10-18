@@ -1,5 +1,6 @@
 import { createHash, randomUUID } from 'node:crypto';
 import { addDesignReviewAnnotationSchema, type AddDesignReviewAnnotation, type DesignReviewAnnotationDto } from 'novel-studio-contracts';
+import type { DesignReviewRun } from './design-review-run.ts';
 import type { Work } from './core.ts';
 import { DesignReviewError, type DesignReviewResult } from './design-review.ts';
 
@@ -10,8 +11,11 @@ export const designReviewCheckHash = (check: DesignReviewResult['checks'][number
 /** Validate against the immutable run input, including when the live design has changed.
  * Exact quotations establish provenance, not the semantic truth of the annotation. */
 export function annotationSources(work: Work, input: AddDesignReviewAnnotation) {
-  const run = work.designReviewRuns.get(input.runId);
-  if (!run || run.input.inputHash !== input.expectedInputHash) throw new DesignReviewError('核对记录的原评审版本不匹配');
+  return annotationRunSources(work.designReviewRuns.get(input.runId), input);
+}
+
+export function annotationRunSources(run: DesignReviewRun | undefined, input: AddDesignReviewAnnotation) {
+  if (!run || run.id !== input.runId || run.input.inputHash !== input.expectedInputHash) throw new DesignReviewError('核对记录的原评审版本不匹配');
   const check = run.stages.find(stage => stage.id === input.stageId)?.result?.checks.find(check => check.criterion === input.criterion);
   if (!check || designReviewCheckHash(check) !== input.expectedCheckHash) throw new DesignReviewError('核对记录的原判定不匹配或尚未完成');
   const claimField = input.claimField ?? 'explanation';

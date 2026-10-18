@@ -5,7 +5,7 @@ import type { AddDesignReviewAnnotation } from 'novel-studio-contracts';
 import { resolveStoryEventOrder } from '../../../novel-service-core/src/event-order.ts';
 import { validateDesignCandidate, DesignCandidateValidationError, type DesignCandidate } from './design-candidate.ts';
 export { validateDesignCandidate, DesignCandidateValidationError } from './design-candidate.ts';
-import { createDesignReviewRun, designReviewStageInput, acceptDesignReviewStage, completeDesignReviewRun, type DesignReviewRun } from '../../../novel-service-core/src/design-review-run.ts';
+import { queueDesignReviewReconsideration, createDesignReviewRun, designReviewStageInput, acceptDesignReviewStage, completeDesignReviewRun, type DesignReviewRun } from '../../../novel-service-core/src/design-review-run.ts';
 import { designReviewHash, designReviewOverview, requiresDesignContentReview, designReviewInput, recordDesignReview, DesignReviewError, type DesignReviewInput, type DesignReviewResult, type DesignReviewArea, type DesignContentReview } from '../../../novel-service-core/src/design-review.ts';
 import { randomUUID } from 'node:crypto';
 import { chapterReviewChecker, executionReviewRequired, chapterReviewInput, chapterReviewStatus, validateChapterReview, type ChapterReviewRecord } from '../../../novel-service-core/src/chapter-review.ts';
@@ -681,6 +681,20 @@ export class ChapterWorkflow {
       work.designReviewRuns.set(run.id, run);
       work.constraintRevision += 1;
       return structuredClone(run);
+    });
+  }
+
+  async reconsiderDesignReview(workId: string, runId: string, annotationId: string, expectedInputHash: string, additionalSourceIds: string[] = []) {
+    return this.repository.transaction(workId, ({ work }) => {
+      const run = work.designReviewRuns.get(runId), note = work.designReviewAnnotations.get(annotationId);
+      if (!run || !note || note.runId !== runId) throw new DesignReviewError('评审任务或核对记录不存在');
+      if (run.input.inputHash !== expectedInputHash || designReviewHash(work, run.input.scope.planRevisionId) !== expectedInputHash) throw new DesignReviewError('设计或计划已变化，请刷新后评审当前版本');
+      const latest = [...work.designReviewRuns.values()].findLast(item => item.input.area === run.input.area && item.input.inputHash === run.input.inputHash);
+      if (latest?.id !== runId) throw new DesignReviewError('已有较新的评审任务，请继续最新任务');
+      const count = run.reconsiderations?.length ?? 0;
+      const stage = queueDesignReviewReconsideration(run, note, additionalSourceIds, new Date(this.now()).toISOString());
+      if ((run.reconsiderations?.length ?? 0) !== count) work.constraintRevision++;
+      return { runId, stageId: stage.id };
     });
   }
 

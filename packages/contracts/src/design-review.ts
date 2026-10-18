@@ -28,6 +28,7 @@ export const anchoredDesignReviewResultSchema = designReviewResultSchema.extend(
   })).min(1).max(32),
 });
 export const designContentReviewSchema = designReviewResultSchema.extend({
+  resolvedReconsiderations: z.array(z.object({ checkId: z.string(), resolvedByStageId: z.string(), kind: z.literal('reconsideration') })).optional(),
   resolvedDeferrals: z.array(z.object({ checkId: z.string(), resolvedByStageId: z.string() })).optional(),
   runId: z.string().optional(),
   id: z.string(), area: designReviewAreaSchema, inputHash: z.string().length(64),
@@ -57,7 +58,7 @@ export type DesignContentReviewDto = z.infer<typeof designContentReviewSchema>;
 export type DesignReviewOverviewDto = z.infer<typeof designReviewOverviewSchema>;
 // List views retain conclusions and version binding; full evidence is fetched
 // by immutable report ID when the reader opens a report.
-export const designContentReviewSummarySchema = designContentReviewSchema.omit({ sources: true, checks: true, resolvedDeferrals: true });
+export const designContentReviewSummarySchema = designContentReviewSchema.omit({ sources: true, checks: true, resolvedDeferrals: true, resolvedReconsiderations: true });
 export const designReviewSummarySchema = designReviewOverviewSchema.extend({ reports: z.array(designContentReviewSummarySchema) });
 export type DesignContentReviewSummaryDto = z.infer<typeof designContentReviewSummarySchema>;
 export type DesignReviewSummaryDto = z.infer<typeof designReviewSummarySchema>;

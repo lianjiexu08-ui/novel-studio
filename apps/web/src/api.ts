@@ -140,7 +140,7 @@ export const api = {
   designCandidate: (workId: string) => call<DesignEditingBaseline>(`/works/${workId}/design/candidate`),
   saveDesignCandidate: (workId: string, body: DesignEditingBaseline) => call<{ worldPack: DesignBundle['worldPack']; storyBible: DesignBundle['storyBible']; plan: PlanRevisionDto; validation: { blockers: unknown[] } }>(`/works/${workId}/design/candidate`, { method: 'PUT', body }),
   designContentReviews: (workId: string, planId?: string) => call<DesignReviewOverviewDto>(`/works/${workId}/design/content-reviews${planId ? `?planId=${encodeURIComponent(planId)}` : ''}`),
-  designReviewAnnotations: (workId: string, runId: string, stageId?: string) => call<{ annotations: DesignReviewAnnotationDto[] }>(`/works/${workId}/design/review-annotations?runId=${encodeURIComponent(runId)}${stageId ? `&stageId=${encodeURIComponent(stageId)}` : ''}`),
+  designReviewAnnotations: (workId: string, runId: string, stageId?: string) => call<{ annotations: DesignReviewAnnotationDto[]; reconsiderableAnnotationIds?: string[]; reconsiderations?: Array<{ annotationId: string; stageId: string; completed: boolean; resolved: boolean }> }>(`/works/${workId}/design/review-annotations?runId=${encodeURIComponent(runId)}${stageId ? `&stageId=${encodeURIComponent(stageId)}` : ''}`),
   designReviewAnnotation: (workId: string, annotationId: string) => call<{ annotation: DesignReviewAnnotationDto; sources: Array<{ id: string; text: string }> }>(`/works/${workId}/design/review-annotations/${encodeURIComponent(annotationId)}`),
   pollDesignContentReviews: (workId: string, planId?: string, since?: string) => {
     const query = new URLSearchParams({ view: 'summary', ...(planId ? { planId } : {}), ...(since ? { since } : {}) });
@@ -148,6 +148,7 @@ export const api = {
   },
   designContentReview: (workId: string, reportId: string) => call<{ report: DesignContentReviewDto }>(`/works/${encodeURIComponent(workId)}/design/content-reviews/${encodeURIComponent(reportId)}`),
   startDesignReview: (workId: string, area: DesignReviewAreaDto, planId?: string) => call<{ runId: string }>(`/works/${workId}/design/review-runs`, { method: 'POST', body: { area, planId } }),
+  reconsiderDesignReview: (workId: string, runId: string, annotationId: string, expectedInputHash: string) => call<{ runId: string; stageId: string }>(`/works/${workId}/design/review-runs/${runId}/reconsider`, { method: 'POST', body: { annotationId, expectedInputHash } }),
   restartDesignReview: (workId: string, runId: string, expectedInputHash: string) => call<{ runId: string }>(`/works/${workId}/design/review-runs/${runId}/restart`, { method: 'POST', body: { expectedInputHash } }),
   stepDesignReview: (workId: string, runId: string) => call<{ runId: string; status: string; completed: number; total: number; reportId?: string }>(`/works/${workId}/design/review-runs/${runId}/step`, { method: 'POST', body: {} }),
   designReviewStage: (workId: string, runId: string, stageId: string) => call<DesignReviewStageDetail>(`/works/${workId}/design/review-runs/${runId}/stages/${encodeURIComponent(stageId)}`),

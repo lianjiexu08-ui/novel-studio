@@ -556,7 +556,7 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     // Saved reports are immutable. Track their identities and all mutable run
     // metadata without serializing their potentially huge source/evidence text.
     const revisionToken = createHash('sha256').update(JSON.stringify({ workId, view, ...overview, reports: overview.reports.map(report => report.id) })).digest('hex');
-    return { ...overview, reports: view === 'summary' ? overview.reports.map(({ sources, checks, resolvedDeferrals, ...report }) => report) : overview.reports, revisionToken };
+    return { ...overview, reports: view === 'summary' ? overview.reports.map(({ sources, checks, resolvedDeferrals, resolvedReconsiderations, ...report }) => report) : overview.reports, revisionToken };
   }
   // Concurrent tabs need the same read, not separate queued loads of all review
   // history. Share only an in-flight response; never retain a settled snapshot
@@ -602,7 +602,15 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     if (!work || !run || stageId && !run.stages.some(stage => stage.id === stageId)) throw new NotFoundError('unknown review run or stage');
     const annotations = [...work.designReviewAnnotations.values()].filter(note => note.runId === runId && (!stageId || note.stageId === stageId));
     for (const note of annotations) annotationSources(work, note);
-    return { annotations };
+    const reconsiderations = (run.reconsiderations ?? []).map(item => {
+      const stage = run.stages.find(stage => stage.id === `reconsider-${item.annotation.id}`)!;
+      return { annotationId: item.annotation.id, stageId: stage.id, completed: !!stage.result,
+        resolved: stage.result?.checks.some(check => check.verdict === 'pass' && check.resolves?.includes(stage.reconsiderationFor!)) ?? false };
+    });
+    const reconsiderableAnnotationIds = !run.leaseToken && ['ready', 'failed'].includes(run.status)
+      && !run.stages.some(stage => stage.kind === 'synthesis' && (stage.result || stage.attempts))
+      ? annotations.filter(note => run.stages.find(stage => stage.id === note.stageId)?.result?.checks.some(check => check.criterion === note.criterion && check.verdict === 'revise')).map(note => note.id) : [];
+    return { annotations, reconsiderations, reconsiderableAnnotationIds };
   });
   app.get('/works/:workId/design/review-annotations/:annotationId', async (request) => {
     const { workId, annotationId } = workParamSchema.extend({ annotationId: z.string().min(1) }).parse(request.params);
@@ -627,6 +635,11 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     const { workId, runId } = z.object({ workId: z.string(), runId: z.string() }).parse(request.params);
     const run = await workflow.stepDesignReview(workId, runId);
     return { runId: run.id, status: run.status, completed: run.stages.filter(s => s.result).length, total: run.stages.length, reportId: run.reportId };
+  });
+  app.post('/works/:workId/design/review-runs/:runId/reconsider', async request => {
+    const { workId, runId } = z.object({ workId: z.string().min(1), runId: z.string().min(1) }).parse(request.params);
+    const { annotationId, expectedInputHash, additionalSourceIds } = z.object({ annotationId: z.string().min(1), expectedInputHash: z.string().regex(/^[a-f0-9]{64}$/), additionalSourceIds: z.array(z.string().min(1)).max(96).default([]) }).strict().parse(request.body);
+    return workflow.reconsiderDesignReview(workId, runId, annotationId, expectedInputHash, additionalSourceIds);
   });
   app.post('/works/:workId/design/review-runs/:runId/restart', async (request) => {
     const { workId, runId } = z.object({ workId: z.string().min(1), runId: z.string().min(1) }).parse(request.params);
