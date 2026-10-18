@@ -1,0 +1,209 @@
+{
+  "kind": "design76_segment17_notes_appended",
+  "verified": true,
+  "createdAt": "2026-10-18T12:36:17.246Z",
+  "runnerSha256": "fdbc8c661da1f40d74b1b1bda046b60c0f63997f9e391bc3e7ad84c7d06d87b2",
+  "preparedSha256": "bdbe0dbbb0431904d57f1c3fc57a3e04526b678abf8d3e294c48a47a2816c10c",
+  "runtimeBindingSha256": "8a1875b686f31b79d32ca9c00fa4cfd65931a195ca0c6dfd8547ff2c0507b5e5",
+  "baseCheckpointSha256": "7f4367be2058ed05746236a17621bb68d8d06f75b7c48dee19840b5850236507",
+  "database": "/Users/lianjie/Documents/ChatGPT/novel/data/novel-studio.db",
+  "control": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design76-notes17-apply-q2NXSp",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "notes": [
+    {
+      "requestKey": "design76-power-followup-cycle-count",
+      "runId": "design_run_77e97b37-cbf2-40be-ab17-2de79839c297",
+      "stageId": "followup-batch-2/tiers",
+      "criterion": "tiers",
+      "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+      "expectedCheckHash": "d3a848c58c73fc3bd13553938ee4d019c96ec2af460cf3c66a88902eb528586b",
+      "claimQuote": "330日至397日的两个有效周期",
+      "explanation": "330日是授课及行前许可，331—397日整个训练安排有六个有效十日周期，不是两个：331—340、341—350为第一段两周期；358—367、368—377为第二段两周期；378—387、388—397为第三段两周期，共60日。351—354失败周期报废一枚、不计有效，355—357停训；总计七枚实际耗材。原解释前句的六周期门槛与原文一致，但后句“两个”误将每段数量写成全程数量。保留原局部pass及解除声明；不能据此缩减训练、提前支付十元载或把勘误当成新的全局资格验收。",
+      "evidence": [
+        {
+          "sourceId": "plan/milestones/ms_v3_training",
+          "quote": "331–340为有效1、341–350为有效2。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_training",
+          "quote": "358–367有效3、368–377有效4、378–387有效5、388–397有效6，分别开第四至七枚。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_training",
+          "quote": "六个有效周期60日，加失败4日，实耗七枚；398日完整静置一日，399–414日只做复诊、稳定观察和获准的空载复测。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_training",
+          "quote": "378开始前顾同样借页讲第三段，复述和医修许可都通过后才做378–387、388–397两个有效周期。"
+        }
+      ],
+      "id": "review_note_07f12076-f7a6-4172-ab01-8040c15f8e6d",
+      "createdAt": "2026-10-18T12:36:07.328Z",
+      "scope": {
+        "worldPackRevision": 40,
+        "storyBibleRevision": 72,
+        "planRevisionId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+        "planRevision": 76
+      }
+    },
+    {
+      "requestKey": "design76-world-cross36-volume-scope",
+      "runId": "design_run_98b5460a-ed47-4ba2-bb06-7fdded1f910d",
+      "stageId": "cross-3-6",
+      "criterion": "capacity",
+      "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+      "expectedCheckHash": "9b33fc2e1c35b336ec7c45527cfe1fa18cacb095e9da30af930c2108f9323edc",
+      "claimQuote": "第一卷以受限跨海、失箱和港口劳务展开",
+      "explanation": "第一卷范围是1—32章，核心是矿务求生、凝元成长、古境救援与有限分泉，南渡和失箱属于卷末转折。第33章起进入第二卷（33—66章）；第217日换租符后到港口轻役货位，以及后续失箱索偿、仓火和港口劳务，不能整体归入第一卷。原解释将第二卷的港口劳务并入第一卷，压缩并错置了第一卷的主要承载功能。保留原局部pass，不因勘误改动卷界、搬移事件或视全书容量已验收；后续综合须按实际卷界分别评价古境成长与港口救援。",
+      "evidence": [
+        {
+          "sourceId": "plan/volumes/vol_01",
+          "quote": "\"startChapter\": 1,\n  \"endChapter\": 32"
+        },
+        {
+          "sourceId": "plan/volumes/vol_01",
+          "quote": "在伤势与短寿限制下真正修成凝元，进入有门槛的古境，联合同伴击破墨幽屠本次掳人夺泉行动，取得有限泉液并付出分离代价南渡；卷末凝元三重，不使用逆命真解。"
+        },
+        {
+          "sourceId": "plan/volumes/vol_02",
+          "quote": "\"startChapter\": 33,\n  \"endChapter\": 66"
+        },
+        {
+          "sourceId": "plan/chapters/33",
+          "quote": "\"chapterNumber\": 33,\n  \"volumeId\": \"vol_02\""
+        },
+        {
+          "sourceId": "plan/chapters/33",
+          "quote": "217日晨，林在受护交接位退还旧借衣符，换上船方实付租来的另一张避火符，随后坐到轻役货位。"
+        }
+      ],
+      "id": "review_note_ac41e8ff-9629-4add-9e1a-31092b97ffd4",
+      "createdAt": "2026-10-18T12:36:07.329Z",
+      "scope": {
+        "worldPackRevision": 40,
+        "storyBibleRevision": 72,
+        "planRevisionId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+        "planRevision": 76
+      }
+    },
+    {
+      "requestKey": "design76-story-cross45-causality-restoration",
+      "runId": "design_run_f355dadb-f3ee-4b1b-8834-f17bf0f487dc",
+      "stageId": "cross-4-5",
+      "criterion": "causality",
+      "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+      "expectedCheckHash": "1e224f48bccf236ec1c35199d09aa92ab9acaaca554bf18dd6d70e895ae9d538",
+      "claimQuote": "第32章又把两次各半成支出写成“由六成降至五成”，忽略第30章已扣的一次半成。",
+      "explanation": "这项余额冲突指控漏读了同次请求e353中紧接扣款的实际恢复记录。第30章六成−半成＋驿站两小时静息恢复半成＝六成；第32章两次御物各扣半成后为五成。第42章239日沿用五成，试注扣半成、另完成一小时不受扰吐纳并复测只回半成，仍为五成；第44章完整剑诀再扣二成后为三成。第43章送钩的五成降四成半属于另一名凝元伙计，不属于林辰。原文已写恢复时段和伤后上限，不能据该评语再增加一次恢复、删除原有支出或把伙计与林混账。此核对仅否定所指30—44章余额断裂，不证明其他伤情、术式或全书预算都通过；原revise、返修建议和原答继续保留，不在此改判或关闭问题。",
+      "evidence": [
+        {
+          "sourceId": "plan/chapters/30",
+          "quote": "轻柄一次按半成扣，保守余量六成减至五成半；驿站实际完成两小时不施术静息后，仅记回半成至伤后上限六成，不把温养写成伤愈。"
+        },
+        {
+          "sourceId": "plan/chapters/32",
+          "quote": "拉索头和松小楔分别是一次轻物御动，各扣半成，共一成；由六成降至五成。后续日常休整不自动记满，直到下一次复测才增加可用账面数。"
+        },
+        {
+          "sourceId": "plan/chapters/42",
+          "quote": "此次缓慢试注共耗半成，余四成半。试船之前另在原住处完成一小时不受扰温和吐纳，复测只记回半成至伤后上限五成，再赴码头；此后至244出剑前未再施术。"
+        },
+        {
+          "sourceId": "plan/chapters/43",
+          "quote": "凝元伙计一次送钩支出半成真元，自身保守余量五成降至四成半，钩挂稳即停术；后续拖力由船行、普通索具和艉桩承担"
+        },
+        {
+          "sourceId": "plan/chapters/44",
+          "quote": "出剑前沿用239日复测的保守余量五成，一式二成后余三成；二成已含剑的供能，之后不再御物，浮圈用手递。"
+        }
+      ],
+      "id": "review_note_e112589c-8084-41d4-a819-9697ebc67e34",
+      "createdAt": "2026-10-18T12:36:07.329Z",
+      "scope": {
+        "worldPackRevision": 40,
+        "storyBibleRevision": 72,
+        "planRevisionId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+        "planRevision": 76
+      }
+    },
+    {
+      "requestKey": "design76-story-cross45-timeline-restoration",
+      "runId": "design_run_f355dadb-f3ee-4b1b-8834-f17bf0f487dc",
+      "stageId": "cross-4-5",
+      "criterion": "timeline",
+      "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+      "expectedCheckHash": "8c15745df85b37668e29a5e20d5cb1dc148d62e3df266e8926d83f4418763881",
+      "claimQuote": "第30章第212—213日已发生一次半成御物并收束到五成半，第32章第215日却按六成起算两次半成",
+      "explanation": "这项余额冲突指控漏读了同次请求e353中紧接扣款的实际恢复记录。第30章六成−半成＋驿站两小时静息恢复半成＝六成；第32章两次御物各扣半成后为五成。第42章239日沿用五成，试注扣半成、另完成一小时不受扰吐纳并复测只回半成，仍为五成；第44章完整剑诀再扣二成后为三成。第43章送钩的五成降四成半属于另一名凝元伙计，不属于林辰。原文已写恢复时段和伤后上限，不能据该评语再增加一次恢复、删除原有支出或把伙计与林混账。此核对仅否定所指30—44章余额断裂，不证明其他伤情、术式或全书预算都通过；原revise、返修建议和原答继续保留，不在此改判或关闭问题。",
+      "evidence": [
+        {
+          "sourceId": "plan/chapters/30",
+          "quote": "轻柄一次按半成扣，保守余量六成减至五成半；驿站实际完成两小时不施术静息后，仅记回半成至伤后上限六成，不把温养写成伤愈。"
+        },
+        {
+          "sourceId": "plan/chapters/32",
+          "quote": "拉索头和松小楔分别是一次轻物御动，各扣半成，共一成；由六成降至五成。后续日常休整不自动记满，直到下一次复测才增加可用账面数。"
+        },
+        {
+          "sourceId": "plan/chapters/42",
+          "quote": "此次缓慢试注共耗半成，余四成半。试船之前另在原住处完成一小时不受扰温和吐纳，复测只记回半成至伤后上限五成，再赴码头；此后至244出剑前未再施术。"
+        },
+        {
+          "sourceId": "plan/chapters/43",
+          "quote": "凝元伙计一次送钩支出半成真元，自身保守余量五成降至四成半，钩挂稳即停术；后续拖力由船行、普通索具和艉桩承担"
+        },
+        {
+          "sourceId": "plan/chapters/44",
+          "quote": "出剑前沿用239日复测的保守余量五成，一式二成后余三成；二成已含剑的供能，之后不再御物，浮圈用手递。"
+        }
+      ],
+      "id": "review_note_d0bb5d74-936a-463c-b6d2-4e532f71e249",
+      "createdAt": "2026-10-18T12:36:07.329Z",
+      "scope": {
+        "worldPackRevision": 40,
+        "storyBibleRevision": 72,
+        "planRevisionId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+        "planRevision": 76
+      }
+    }
+  ],
+  "preservedWorkFieldDigests": {
+    "activePlanId": "a79cacee9517456fb5abae34e3592ad141a8d092b6782979cdb0aa1996029412",
+    "briefs": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "candidates": "db801c927d61955caf1e94c196129e7ca7a4557cbae7f7f93b7977d2e6ffb6a2",
+    "characters": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "checkpoints": "9360443cd3329deca750224d5f41fd8b848cc87483d84e5d59d8bf1fa6f89d31",
+    "constraintRevision": "c3867352aab641358faec75d733af012dbe2259a014ea8c3b0864e85fbf1ff80",
+    "covenant": "7b09efc6b0d1edd79e40db6d143a177956b28b40ee5070d303574df8d73121f8",
+    "covenantHistory": "ef48b60cd983a0f4b34cbe25bf37e751eb58681b943b6b8369fdcd5fca1ec745",
+    "designContentReviews": "8b8ab9639e03bd0055431c0e710bacf9dbac0d268f27578ddcb0bfc13e0aed8d",
+    "designHistory": "f2347b762def7bec1232ebed9113bcc4fb424df8b0f09e37b74bcef254165a1b",
+    "designReviewRuns": "808ed1cdd68888054fea2e228ca57387a34da4c3c860648f1bdd3c287f34ca92",
+    "events": "69a4c30b560af422264c89ba8cce8c658bf3d137ec8bcdae5f7025cdc4622590",
+    "id": "e6c77c6af51347285f913e10c068833e392333610313a73f42ae654dbeeebb0b",
+    "impacts": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "manuscripts": "3f9dd7880a530d9eb7ccf9113b140958fe9e182f63c9f706f9c55ceb5c46ffc9",
+    "plans": "6afb21f18712fce391f7c0c715b9791eb95f922a669d1cc1a96b2677e905b396",
+    "plotNodes": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "relationships": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "stateRevision": "16dc368a89b428b2485484313ba67a3912ca03f2b2b42429174a4f8b3dc84e44",
+    "states": "71af6764cda2e591af608654aa65a05f8b25e4e8f9871c746de158a77a0618fc",
+    "storyBible": "ae92c644e55aa89fd87920f431acdb817e50351843daddd6cb65d8508350ef02",
+    "title": "9a392c9dee167243ad8ace1e37c8c750c798509925344a9b052ce05cbb6a54b2",
+    "versions": "ab09691b6b0882a4fa32a704a65a61930f961a7d3e35aa52d872fc017e048fb1",
+    "worldPack": "c2c2dd54716be54571a024440590ebbb8c47b55eb37f2b490bfaf24c5bf6be6d",
+    "worldRules": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "oldRunsPreserved": 99,
+  "oldReportsPreserved": 92,
+  "oldAnnotationsPreserved": 14,
+  "annotationsAdded": 4,
+  "restartReadback": true,
+  "rollbackExercised": false,
+  "idempotenceExercised": false,
+  "modelCalls": 0,
+  "productionWrites": 1,
+  "verdictChanges": 0,
+  "questionsResolved": 0,
+  "formalAcceptance": false
+}

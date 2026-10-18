@@ -1,0 +1,124 @@
+{
+  "kind": "design76_world_cross36_volume_scope",
+  "verificationPath": "docs/audits/2026-10-18-design76-notes16-review-segment-17.json",
+  "verificationSha256": "6fa351861564462f890b74c59889d5482053448630633edebb133fcfa66bb9a8",
+  "bindingPath": "data/audit-runtimes/design76-fragment-index-runtime-bound.json",
+  "bindingSha256": "8a1875b686f31b79d32ca9c00fa4cfd65931a195ca0c6dfd8547ff2c0507b5e5",
+  "requestPath": "data/audit-runtimes/design76-notes16-review/model-calls/00093.started.json",
+  "requestSha256": "8206129c13cbee22cb8e5aa31e8ee9f7e7e98faebc96321707a6b946556b23e7",
+  "responsePath": "data/audit-runtimes/design76-notes16-review/model-calls/00093.response.json",
+  "responseSha256": "982ac82ee1d4f0a23ab96c1a5e375e5017d28b39f78bc04f96d40336b44b4938",
+  "runId": "design_run_98b5460a-ed47-4ba2-bb06-7fdded1f910d",
+  "stageId": "cross-3-6",
+  "acceptedStageSha256": "99de66a157874876de929ebe2ef9b7654fdc77cd140cb006733c8654f30c81a2",
+  "originalCheckHash": "9b33fc2e1c35b336ec7c45527cfe1fa18cacb095e9da30af930c2108f9323edc",
+  "originalCheck": {
+    "criterion": "capacity",
+    "verdict": "pass",
+    "explanation": "按本轮100章阶段而非450章全书衡量，提案已给出可承载的阶段范围：第一卷以受限跨海、失箱和港口劳务展开，第二卷转为扣工、船损、救援与有限合作，第三卷再进入证据返乡、玄府成长和押运截停；当前细纲中地域差异会实际改变选择——赤霄热候要求避火符与受护港区，潮沟和船损限制救援，扣工与生计约束改变追查节奏。资源、伤情、船款和证言代价均被写入行动后果，未以境界名或后续高阶能力填补当前缺口。后半段仍属宏观规划，但本项不要求本轮一次展开其全部逐章场景。",
+    "evidence": [
+      {
+        "sourceId": "review-unit/350",
+        "quote": "{\n  \"id\": \"vol_01\",\n  \"order\": 1,\n  \"title\": \"青玄争泉卷：短命求生\",\n  \"startChapter\": 1,\n  \"endChapter\": 32,\n  \"goal\": \"在伤势与短寿限制下真正修成凝元，进入有门槛的古境，联合同伴击破墨幽屠本次掳人夺泉行动，取得有限泉液并付出分离代价南渡；卷末凝元三重，不使用逆命真解。\",\n  \"opposition\": \"太清仙宗戒律堂保守派、幽罗殿少主墨幽屠及其死士、大乾天朝暗中渗透的眼线。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_03\",\n    \"char_04\",\n    \"char_07\",\n    \"char_08\",\n    \"char_09\",\n    \"char_10\",\n    \"char_11\",\n    \"char_12\",\n    \"char_13\",\n    \"char_17\",\n    \"char_18\"\n  ],\n  \"climax\": \"第23–26章，林辰与苏分工释放被掳采集者、夺回样箱与有限泉液；顾峤按先前路线到场，以玄府同阶力量和一次付费太乙真光压制墨。主角破坏普通货台制造战术窗口，不越阶斩灭墨或王器。\",\n"
+      },
+      {
+        "sourceId": "review-unit/351",
+        "quote": "{\n  \"id\": \"vol_02\",\n  \"order\": 2,\n  \"title\": \"赤霄药火卷：追船与黑舱\",\n  \"startChapter\": 33,\n  \"endChapter\": 66,\n  \"goal\": \"由失箱责任追查程记扣工和跨陆转运，救出5名承运雇工、陆弟与北境7名矿工，以凝元实力和各方有限合作截停本批货；不以进入天坑或杀神海作门槛。\",\n  \"opposition\": \"程记药栈的改签、扣工与反诉，首仓火因仍待查；炎煞港口代理催货；赵的实体回令与商盟内部自保。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_03\",\n    \"char_05\",\n    \"char_14\",\n    \"char_15\",\n    \"char_16\",\n    \"char_19\",\n    \"char_20\"\n  ],\n  \"climax\": \"第61–66章北境外港截黑舱，林选择先救人，夜守撤离栈桥而未追持第二片逃跑的程。此前44章潮沟截驳付出船损；50章以吴卢亲口拒绝、陆停止协助旧同伙及两名看守被控制，固定本次扣工事实并完成脱控；51–53转入各自生计与有限供述。\",\n"
+      },
+      {
+        "sourceId": "review-unit/352",
+        "quote": "{\n  \"id\": \"vol_03\",\n  \"order\": 3,\n  \"title\": \"青玄归证卷：十年与一条活路\",\n  \"startChapter\": 67,\n  \"endChapter\": 100,\n  \"goal\": \"携证回乡，和苏、梁九、韩叙、顾分别承担调查、证人保护和修行；救出本次押送工友，确认父亲守门参与与本地掩案责任，切断已验证的三地转运链。\",\n  \"opposition\": \"赵的境内改线与撤人令、两名玄府押卫、宗门保守派的掩责；伙伴生计和林不足以继续豪赌的寿储。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_03\",\n    \"char_07\",\n    \"char_08\",\n    \"char_09\",\n    \"char_10\",\n    \"char_14\",\n    \"char_15\",\n    \"char_12\",\n    \"char_13\",\n    \"char_17\",\n    \"char_18\"\n  ],\n"
+      },
+      {
+        "sourceId": "review-unit/359",
+        "quote": "{\n  \"id\": \"ms_growth_v1_crossing\",\n  \"title\": \"护货南渡与入港代价\",\n  \"kind\": \"turn\",\n  \"startChapter\": 30,\n  \"endChapter\": 32,\n  \"setup\": [\n    \"第212–214日按山路转驿车到云梦天港，运送六箱指定低阶药材换本航次普通舱；管货不等于可炼化物资。\",\n    \"第214日暮出航、第216日暮到天宝外港，海程两昼夜；不沿用旧第17–19日航历。\",\n    \"第32章第215日凌晨的风暴中，护船者承担外敌；林辰只把两丈内尚未绷紧、未系重箱的半斤索头御动一息交给水手，预付半成真元后停术，由水手系索、普通船桩承力、制动并搬回药箱。他再让水手用随舱撬杠抬稳压脚箱角、卸去楔上载荷，才从一丈内另付半成御动八两松楔一息；水手抽人、落箱，林不以御物固定受载货索或托箱。救下试图私藏货物的押货者使他错过盯住六号箱的窗口。第31章只是验货登船；本节点按第32章既有动作明确实际承力者，不改变两次支出、失箱与奖金后果，不斩神海海兽或获得免费升级。\",\n    \"入港用验籍及实际避火防护，局限于有防护的外港街区；他必须补交因护货失损的说明，收货人的真名与失踪货箱构成下一卷具体调查线索，不能潜行岩浆暗渠。\"\n  ],\n"
+      },
+      {
+        "sourceId": "review-unit/362",
+        "quote": "{\n  \"id\": \"ms_v2_barge\",\n  \"title\": \"潮沟截驳与有条件合作\",\n  \"kind\": \"turn\",\n  \"startChapter\": 40,\n  \"endChapter\": 46,\n  \"setup\": [\n    \"231贺由60修船储备付12买两普通符，48尚留修船；林230实领3，239诊费1、231–250食宿1后余1。没有新增寿源。\",\n    \"40贺拒押船认赔，撤回自有未交付的作业资源，引发装货停顿，237程取消下一单。233林实收苏信，主动共享相关图货单，贺以自有潮簿确定查证顺序。41章238见三人，唐自主要求离院被挡，贺核当天船牌；巡查239追放工说法见空棚、分路找人。\",\n    \"42章239掌腿实测才准短时握剑、扶栏登船；贺杆测浅水、见漂木回流后实际退船换观察位，林承担坐姿浮圈和岸钟路线。241公告仅244亥时计划，243亲见移潮口并补报；43章244戌初实际见三人推舱后林先敲钟，岗役报巡艇、贺跟近。\",\n    \"43陆护原账、两凝元伙计一人御轻钩挂拖环拉索、一人守舱。44紧接林一次剑诀二成真元切普通索，剑热停用；一人跌水，驳艉抵旧护桩，陆与另一伙计忙撑船，唐趁空开未锁死的搭扣放板。贺船头搁在板端下撞裂，三人趴板过船；林以固定浮圈救对手不追原账。\",\n"
+      },
+      {
+        "sourceId": "review-unit/416",
+        "quote": "  \"conflict\": \"同样看见远航，有人想走、有人想留下；一次共同逃生不能把三名工人重新绑成同一支队。贺提供住处，不能以此索要下一次跟船。\",\n  \"choice\": \"贺主动收回未经工人同意的远航安排，只提供原三床与有期限的轻工；唐不再替许承诺等到找齐人，林接受贺不以小船换自己的远行。250贺拒撤证换赔款，仍只同意陆上找人。\",\n  \"cost\": \"贺储备归零且船仍在坞，延期也须重新评估，不能先花未来航款。林个人1枚未再花，基础食宿只付至250，251以后须另落实；寿储仅按自然流逝作条件预算，非新实测余额。吴卢未寻回，陆和原账都未追回。\",\n  \"threads\": [\n    \"th_03\",\n    \"sec_02\",\n    \"th_01\"\n  ],\n  \"endState\": \"250暮，唐许冯住进贺的原船员工铺，248–255基础饭食由两人的自愿轻工承担，冯养伤。巡查仍查旧岸仓车辆，未确定吴卢当前地点；程未交两人。林贺保留有限陆上合作，修船245午至255午尚未满期，贺不能驾船追击。林凝元三重、个人1枚；无新增寿源，第一片封存自持，第二片原物未取得。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_15\",\n    \"char_22\"\n  ],\n"
+      },
+      {
+        "sourceId": "review-unit/417",
+        "quote": "  \"choice\": \"贺把装货次序交给接手船管保住货主行期，将程的空单退回并拒改陈述；林收回包赔空话，找齐原始钟报与救助记录，支持她接受失单后果。\",\n  \"cost\": \"贺的48修船款已付、船未到255交检日，资格又暂停，新运单撤回。林将余1付251–260食宿后现金为0，无新寿源，无未来航款可挪用。 程只是提出替船安排，没有实际租到或交付船、付赔款；贺未签，不能记作曾获得新船又归还。会面在既有受护公共装货口，双方均沿原港内许可活动，未施法。 场间续接约束：钟报与245救助记录送核作为场间安排，252事故与扣工分开核证。唐自愿作证，许只答应一次后补工，冯休养。林付完251–260食宿，和贺站在受护装货棚里看货离开；没有再进行一轮逐项对账。\",\n  \"threads\": [\n    \"th_03\",\n    \"sec_02\",\n    \"th_01\"\n  ],\n  \"endState\": \"251暮，商盟仅暂缓贺新接运单而未定罪；252安排事故与扣工分别核证。吴卢仍未找到，陆尚未到案，原账未取。林现金0、基础食宿已付至260，贺船仍在坞，冯没有被迫出庭。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_14\",\n    \"char_15\",\n    \"char_22\"\n  ],\n"
+      }
+    ],
+    "revisionAdvice": ""
+  },
+  "actualSupport": [
+    {
+      "sourceId": "plan/volumes/vol_01",
+      "quote": "\"startChapter\": 1,\n  \"endChapter\": 32",
+      "sent": [
+        "e282"
+      ]
+    },
+    {
+      "sourceId": "plan/volumes/vol_01",
+      "quote": "在伤势与短寿限制下真正修成凝元，进入有门槛的古境，联合同伴击破墨幽屠本次掳人夺泉行动，取得有限泉液并付出分离代价南渡；卷末凝元三重，不使用逆命真解。",
+      "sent": [
+        "e282"
+      ]
+    },
+    {
+      "sourceId": "plan/volumes/vol_02",
+      "quote": "\"startChapter\": 33,\n  \"endChapter\": 66",
+      "sent": [
+        "e284"
+      ]
+    },
+    {
+      "sourceId": "plan/chapters/33",
+      "quote": "\"chapterNumber\": 33,\n  \"volumeId\": \"vol_02\"",
+      "sent": [
+        "e383"
+      ]
+    },
+    {
+      "sourceId": "plan/chapters/33",
+      "quote": "217日晨，林在受护交接位退还旧借衣符，换上船方实付租来的另一张避火符，随后坐到轻役货位。",
+      "sent": [
+        "e383"
+      ]
+    }
+  ],
+  "annotationInput": {
+    "requestKey": "design76-world-cross36-volume-scope",
+    "runId": "design_run_98b5460a-ed47-4ba2-bb06-7fdded1f910d",
+    "stageId": "cross-3-6",
+    "criterion": "capacity",
+    "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+    "expectedCheckHash": "9b33fc2e1c35b336ec7c45527cfe1fa18cacb095e9da30af930c2108f9323edc",
+    "claimQuote": "第一卷以受限跨海、失箱和港口劳务展开",
+    "explanation": "第一卷范围是1—32章，核心是矿务求生、凝元成长、古境救援与有限分泉，南渡和失箱属于卷末转折。第33章起进入第二卷（33—66章）；第217日换租符后到港口轻役货位，以及后续失箱索偿、仓火和港口劳务，不能整体归入第一卷。原解释将第二卷的港口劳务并入第一卷，压缩并错置了第一卷的主要承载功能。保留原局部pass，不因勘误改动卷界、搬移事件或视全书容量已验收；后续综合须按实际卷界分别评价古境成长与港口救援。",
+    "evidence": [
+      {
+        "sourceId": "plan/volumes/vol_01",
+        "quote": "\"startChapter\": 1,\n  \"endChapter\": 32"
+      },
+      {
+        "sourceId": "plan/volumes/vol_01",
+        "quote": "在伤势与短寿限制下真正修成凝元，进入有门槛的古境，联合同伴击破墨幽屠本次掳人夺泉行动，取得有限泉液并付出分离代价南渡；卷末凝元三重，不使用逆命真解。"
+      },
+      {
+        "sourceId": "plan/volumes/vol_02",
+        "quote": "\"startChapter\": 33,\n  \"endChapter\": 66"
+      },
+      {
+        "sourceId": "plan/chapters/33",
+        "quote": "\"chapterNumber\": 33,\n  \"volumeId\": \"vol_02\""
+      },
+      {
+        "sourceId": "plan/chapters/33",
+        "quote": "217日晨，林在受护交接位退还旧借衣符，换上船方实付租来的另一张避火符，随后坐到轻役货位。"
+      }
+    ]
+  },
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Independent clarification draft; no annotation append, verdict change or design mutation."
+}
