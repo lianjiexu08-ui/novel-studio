@@ -116,3 +116,5 @@ v4已补齐char_19身份档，结构校验和精确重建通过。同一连接�
 将上述独立澄清与第7段陆氏兄弟纠错合并为七条说明，逐项绑定已回放步骤、原判定散列及逐字引文。先在第8段已核验数据库快照的私有副本演练：最后一条故意无效时整批回滚，正确提交后重复请求幂等，重启回读与原记录保持一致。随后正式库仅做一次原子追加，99条任务、92份报告、原有一条说明及其他全部作品字段逐项散列未变；现在共8条独立说明。见`2026-10-18-design76-segment8-notes-rehearsal.json`和`2026-10-18-design76-segment8-notes-applied.json`。未改正式判定、世界40、圣经72、提案76、批准计划10或41项阻塞，v4仍为离线候选。
 
 续审控制目录已另建`data/audit-runtimes/design76-coalesced-review`，保留原目录的第8段终态。新运行时只优化相同并发API读取，100份旧来源及模型提示、调度、判定、原输入完全相同；新基线显式包含8条说明。原60次调用全部复制且逐项绑定，预检再次独立回放通过。新入口为`run-design76-coalesced-review.mjs`，终止后使用`verify-design76-coalesced-review.mjs`；原四项任务继续，不建立替代任务。准备与预检见`2026-10-18-design76-coalesced-review-preflight.json`及`2026-10-18-design76-coalesced-review-preflight-replay.json`。实际服务启动和界面核验另行记录，准备不等于上线。
+
+第9段已启动，PID29325，日志`/tmp/novel-design76-coalesced-segment9.log`，继续同一四任务，第61次真实请求已派发给世界`cross-1-7`。8787由该进程与评审共享仓储，禁止另启独立API。页面刷新显示12/55、11/29、11/29、10/29，并实测打开力量`cross-2-4`的两条独立说明及`ms_v3_training`完整原文，原返修结论仍显示。启动、CORS、请求与页面观察见`2026-10-18-design76-coalesced-review-live.json`；不是第9段完成或完整质量通过的证明。以后判断进度须读取新控制目录，不能再据旧目录第8段终态重启旧脚本。

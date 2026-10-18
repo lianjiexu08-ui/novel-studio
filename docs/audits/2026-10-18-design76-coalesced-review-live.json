@@ -1,0 +1,173 @@
+{
+  "kind": "design76_coalesced_review_live_observation",
+  "observedAt": "2026-10-18T09:27:42.712Z",
+  "pid": 29325,
+  "segment": 9,
+  "session": {
+    "readOnly": true,
+    "status": "running",
+    "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+    "planId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+    "segment": 9,
+    "activeStep": {
+      "area": "world",
+      "runId": "design_run_98b5460a-ed47-4ba2-bb06-7fdded1f910d",
+      "stageId": "cross-1-7",
+      "startedAt": "2026-10-18T09:23:53.601Z"
+    },
+    "completedThisSegment": 0,
+    "totalCalls": 60,
+    "progress": [
+      {
+        "area": "world",
+        "completed": 12,
+        "total": 55
+      },
+      {
+        "area": "power",
+        "completed": 11,
+        "total": 29
+      },
+      {
+        "area": "characters",
+        "completed": 11,
+        "total": 29
+      },
+      {
+        "area": "story",
+        "completed": 10,
+        "total": 29
+      }
+    ]
+  },
+  "baselinePath": "data/audit-runtimes/design76-coalesced-review/baseline.json",
+  "baselineSha256": "c35c79efa2095ba8fa031369ae9e6e0fddf0d6be61fe4a8970848360ec3c3c48",
+  "runtimeBindingPath": "data/audit-runtimes/design76-coalesced-api-runtime-bound.json",
+  "runtimeBindingSha256": "0032489173afa75b1af5547023a2ad2c4bf51fe48f14080b52b2c3063117f9ec",
+  "runnerSha256": "0e15efe35c2e5e5639f826f7c62045528d16c954285e11b7b6f4a10b9241dcb9",
+  "sourceCommit": "577e9e99c1b93466265b84fa227477015cc2b9d6",
+  "notesAppliedPath": "docs/audits/2026-10-18-design76-segment8-notes-applied.json",
+  "notesAppliedSha256": "99562069be44448d9128573331841e7d346d73e790fb55c4620713d4a754349e",
+  "firstResumedCallPath": "data/audit-runtimes/design76-coalesced-review/model-calls/00061.started.json",
+  "firstResumedCallSha256": "e4f732b024cfa30aa057a2f33034c4fff03493887eb70f05ebd1b4687f264f16",
+  "firstResumedCall": 61,
+  "firstResumedStep": {
+    "area": "world",
+    "runId": "design_run_98b5460a-ed47-4ba2-bb06-7fdded1f910d",
+    "stageId": "cross-1-7",
+    "startedAt": "2026-10-18T09:23:53.601Z"
+  },
+  "corsOrigin": "http://127.0.0.1:5180",
+  "browserObservation": {
+    "tabId": "24",
+    "url": "http://127.0.0.1:5180/#/works/work_8b6c9133e13d404083ca33acc63f4f61/design",
+    "progress": [
+      "世界12/55",
+      "力量11/29",
+      "人物11/29",
+      "故事10/29"
+    ],
+    "openedStage": "power/cross-2-4",
+    "visibleLabel": "独立核对记录（2 条，不改变原判定）",
+    "visibleCorrection": "此处把本批未读取的宏观来源误当成设计缺失。",
+    "openedOriginalSource": "plan/milestones/ms_v3_training",
+    "visibleOriginalQuote": "六个有效周期60日，加失败4日，实耗七枚；398日完整静置一日",
+    "method": "通过CUA实际点击刷新、返修证据、独立核对记录和完整依据后读取页面可访问文本；不是根据组件源码推测。"
+  },
+  "observedHttp": [
+    {
+      "at": "2026-10-18T09:24:01.446Z",
+      "method": "GET",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/content-reviews?view=summary&since=2cffaff5afce1a19217d7eeefe96d9060c692d580136c6b70faeef308cc2b6c3",
+      "statusCode": 200,
+      "elapsedMs": 15483.68395781517
+    },
+    {
+      "at": "2026-10-18T09:24:01.447Z",
+      "method": "GET",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/content-reviews?view=summary&since=a0f317f5b32e270fa1ddaef1b71de8f6ce803587665284c73ad212c387b95203",
+      "statusCode": 200,
+      "elapsedMs": 1653.6840422153473
+    },
+    {
+      "at": "2026-10-18T09:24:17.758Z",
+      "method": "GET",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/content-reviews?view=summary&since=2cffaff5afce1a19217d7eeefe96d9060c692d580136c6b70faeef308cc2b6c3",
+      "statusCode": 200,
+      "elapsedMs": 8524.81345796585
+    },
+    {
+      "at": "2026-10-18T09:25:04.375Z",
+      "method": "GET",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/review-runs/design_run_77e97b37-cbf2-40be-ab17-2de79839c297/stages/cross-2-4",
+      "statusCode": 200,
+      "elapsedMs": 43987.20795798302
+    },
+    {
+      "at": "2026-10-18T09:25:12.544Z",
+      "method": "GET",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/content-reviews?view=summary&since=2cffaff5afce1a19217d7eeefe96d9060c692d580136c6b70faeef308cc2b6c3",
+      "statusCode": 200,
+      "elapsedMs": 42163.981915950775
+    },
+    {
+      "at": "2026-10-18T09:25:12.545Z",
+      "method": "GET",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/content-reviews?view=summary&since=2cffaff5afce1a19217d7eeefe96d9060c692d580136c6b70faeef308cc2b6c3",
+      "statusCode": 200,
+      "elapsedMs": 5563.43495798111
+    },
+    {
+      "at": "2026-10-18T09:25:20.540Z",
+      "method": "GET",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/review-annotations?runId=design_run_77e97b37-cbf2-40be-ab17-2de79839c297&stageId=cross-2-4",
+      "statusCode": 200,
+      "elapsedMs": 16149.21954202652
+    },
+    {
+      "at": "2026-10-18T09:25:38.314Z",
+      "method": "GET",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/content-reviews?view=summary&since=9842c2b958f6ee57c74823bea1ad5f2ef0a3dd9d4cd07b06586760409f0c5e35",
+      "statusCode": 200,
+      "elapsedMs": 7931.095625162125
+    },
+    {
+      "at": "2026-10-18T09:26:08.211Z",
+      "method": "GET",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/content-reviews?view=summary&since=9842c2b958f6ee57c74823bea1ad5f2ef0a3dd9d4cd07b06586760409f0c5e35",
+      "statusCode": 200,
+      "elapsedMs": 7828.351583957672
+    },
+    {
+      "at": "2026-10-18T09:26:16.030Z",
+      "method": "GET",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/review-annotations/review_note_61f2f2ca-8464-456c-b6d1-0090d8fb0a88",
+      "statusCode": 200,
+      "elapsedMs": 12283.799499988556
+    },
+    {
+      "at": "2026-10-18T09:26:38.583Z",
+      "method": "GET",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/content-reviews?view=summary&since=9842c2b958f6ee57c74823bea1ad5f2ef0a3dd9d4cd07b06586760409f0c5e35",
+      "statusCode": 200,
+      "elapsedMs": 8199.251124858856
+    },
+    {
+      "at": "2026-10-18T09:27:25.889Z",
+      "method": "GET",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/content-reviews?view=summary&since=9842c2b958f6ee57c74823bea1ad5f2ef0a3dd9d4cd07b06586760409f0c5e35",
+      "statusCode": 200,
+      "elapsedMs": 47301.256209135056
+    },
+    {
+      "at": "2026-10-18T09:27:25.889Z",
+      "method": "GET",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/content-reviews?view=summary&since=9842c2b958f6ee57c74823bea1ad5f2ef0a3dd9d4cd07b06586760409f0c5e35",
+      "statusCode": 200,
+      "elapsedMs": 5507.447333097458
+    }
+  ],
+  "formalAcceptance": false,
+  "proseGenerated": false,
+  "limitation": "证明新API启动、同任务继续派发及两条力量说明和一份完整依据在真实页面可见。其余说明保存通过重启读取核验，未逐项做浏览器遍历；该观察不是完整段回放，也不是生产吞吐或峰值内存基准。"
+}
