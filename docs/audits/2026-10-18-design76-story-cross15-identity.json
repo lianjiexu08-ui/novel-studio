@@ -1,0 +1,183 @@
+{
+  "kind": "terminal_verified_unapplied_review_identity_clarifications",
+  "verificationPath": "docs/audits/2026-10-18-design76-citation-edits-review-segment-7.json",
+  "verificationSha256": "ad65a98a4117f6255c190d4aab2c5f407c2f8739667a5958de4b8ddb8bd67af7",
+  "checkpointSha256": "17d03e38c69d53df497897a02225f38770fe53260df7b1d71a26787d44ebb43e",
+  "runId": "design_run_f355dadb-f3ee-4b1b-8834-f17bf0f487dc",
+  "stageId": "cross-1-5",
+  "stageSha256": "abcc3a81967d405a99664b17822495f9802a3d920fbef6cb3aa8415b65909219",
+  "startPath": "data/audit-runtimes/design76-citation-edits-review/model-calls/00051.started.json",
+  "startSha256": "76a90ee842d23977b9e699b68e7738397bc960d40e9dab0c15075067d4fcaf1e",
+  "responsePath": "data/audit-runtimes/design76-citation-edits-review/model-calls/00051.response.json",
+  "responseSha256": "f80023e59bf9a07ba7044013b15d63a40a345eab79349d962fd9608ad06475cf",
+  "outputPath": "data/audit-runtimes/design76-citation-edits-review/story-cross15-annotation-input.json",
+  "outputSha256": "b866678a995a9645c169ad7df87d0d35043b4fff053a8ca3bb89272c8d0cce63",
+  "annotations": [
+    {
+      "requestKey": "design76-story-cross15-lu-elder-causality",
+      "runId": "design_run_f355dadb-f3ee-4b1b-8834-f17bf0f487dc",
+      "stageId": "cross-1-5",
+      "criterion": "causality",
+      "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+      "expectedCheckHash": "494e9bcd3fb5b87b85eb6806bc4d62af1bad1c785bee77fc0b00184266a3c717",
+      "claimQuote": "第48—50章再由陆沉川指路",
+      "explanation": "原文的带路、停止协助扣人、承认本次押送及后来完整改签自述均属于哥哥陆沉舟（char_16），不能归给弟弟陆沉川（char_21）。第49章弟弟拒绝离港并说明亲见哥哥收钱签字，哥哥随后交出亲走入口；第50章角色列表包含char_16而没有char_21，实际由陆沉舟当面承认点交押送。陆沉川对自己领箱及有限见闻负责，未因同姓成为押运头目。原请求的人物表、章节出场编号及原文均已提供且一致；此处是模型解释混淆，不据此更改正确的设计。保留原答案与局部判定，本澄清不关闭设计阻塞或批准正文。",
+      "evidence": [
+        {
+          "sourceId": "story/characters/char_16",
+          "quote": "\"name\": \"陆沉舟\""
+        },
+        {
+          "sourceId": "story/characters/char_16",
+          "quote": "程记药栈凝元押运头目，曾任大乾军需船校尉；亲自参与过改签，弟弟亦为押货伙计。"
+        },
+        {
+          "sourceId": "story/characters/char_21",
+          "quote": "陆沉舟的弟弟，程记普通药栈伙计"
+        },
+        {
+          "sourceId": "plan/chapters/49",
+          "quote": "沉川主动交条、当面拒绝离港并说出亲见；陆走入有巡员的岗房，接受看护，再把亲走入口交出。"
+        },
+        {
+          "sourceId": "plan/chapters/50",
+          "quote": "陆当面承认本次点交押送，继续受看护，尚未写出完整改签自述。"
+        }
+      ]
+    },
+    {
+      "requestKey": "design76-story-cross15-lu-elder-payoff",
+      "runId": "design_run_f355dadb-f3ee-4b1b-8834-f17bf0f487dc",
+      "stageId": "cross-1-5",
+      "criterion": "payoff",
+      "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+      "expectedCheckHash": "3ddd082bbbbc7045558ba7372026fae816d52dc4f84019450356a404107f9c20",
+      "claimQuote": "陆沉川承认本次点交押送",
+      "explanation": "原文的带路、停止协助扣人、承认本次押送及后来完整改签自述均属于哥哥陆沉舟（char_16），不能归给弟弟陆沉川（char_21）。第49章弟弟拒绝离港并说明亲见哥哥收钱签字，哥哥随后交出亲走入口；第50章角色列表包含char_16而没有char_21，实际由陆沉舟当面承认点交押送。陆沉川对自己领箱及有限见闻负责，未因同姓成为押运头目。原请求的人物表、章节出场编号及原文均已提供且一致；此处是模型解释混淆，不据此更改正确的设计。保留原答案与局部判定，本澄清不关闭设计阻塞或批准正文。",
+      "evidence": [
+        {
+          "sourceId": "story/characters/char_16",
+          "quote": "\"name\": \"陆沉舟\""
+        },
+        {
+          "sourceId": "story/characters/char_16",
+          "quote": "程记药栈凝元押运头目，曾任大乾军需船校尉；亲自参与过改签，弟弟亦为押货伙计。"
+        },
+        {
+          "sourceId": "story/characters/char_21",
+          "quote": "陆沉舟的弟弟，程记普通药栈伙计"
+        },
+        {
+          "sourceId": "plan/chapters/49",
+          "quote": "沉川主动交条、当面拒绝离港并说出亲见；陆走入有巡员的岗房，接受看护，再把亲走入口交出。"
+        },
+        {
+          "sourceId": "plan/chapters/50",
+          "quote": "陆当面承认本次点交押送，继续受看护，尚未写出完整改签自述。"
+        }
+      ]
+    }
+  ],
+  "deliveredChapterCast": {
+    "sourceId": "plan/chapters/50",
+    "chapterNumber": 50,
+    "characterIds": [
+      "char_01",
+      "char_15",
+      "char_16",
+      "char_24",
+      "char_25"
+    ]
+  },
+  "actualRequestSources": [
+    {
+      "id": "review-unit/129",
+      "origin": {
+        "sourceId": "story/characters/char_16",
+        "start": 0,
+        "end": 258
+      },
+      "fragments": [
+        {
+          "id": "e230",
+          "text": "{\n  \"id\": \"char_16\",\n  \"name\": \"陆沉舟\",\n  \"role\": \"stage\",\n  \"goal\": \"保护已获救的弟弟免受程记报复，同时害怕承认自己的改签会失去自由；在保账自保与如实供述之间反复。\",\n  \"identity\": \"程记药栈凝元押运头目，曾任大乾军需船校尉；亲自参与过改签，弟弟亦为押货伙计。\",\n  \"locationId\": \"loc_24\",\n  \"factionId\": \"fac_02\",\n  \"startingRealmId\": \"realm_02\"\n}"
+        }
+      ]
+    },
+    {
+      "id": "review-unit/134",
+      "origin": {
+        "sourceId": "story/characters/char_21",
+        "start": 0,
+        "end": 263
+      },
+      "fragments": [
+        {
+          "id": "e235",
+          "text": "{\n  \"id\": \"char_21\",\n  \"name\": \"陆沉川\",\n  \"role\": \"stage\",\n  \"goal\": \"保住药栈差事并隐瞒自己领走假报空箱的责任；获救后在自保、哥哥和如实交证之间选择，不能用救命之恩换免罪。\",\n  \"identity\": \"陆沉舟的弟弟，程记普通药栈伙计，无修行能力；217日从船侧门领六号箱，218日分架与送医铺。第35章林只知册上姓名，38章当面对质才知兄弟关系。\",\n  \"locationId\": \"loc_23\",\n  \"factionId\": \"fac_08\"\n}"
+        }
+      ]
+    },
+    {
+      "id": "review-unit/365",
+      "origin": {
+        "sourceId": "plan/chapters/49",
+        "start": 0,
+        "end": 1515
+      },
+      "fragments": [
+        {
+          "id": "e448",
+          "text": "{\n  \"id\": \"chapter-49\",\n  \"chapterNumber\": 49,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"弟弟留下\",\n  \"summary\": \"253日陆经原船岗旁茶摊送条，要弟弟见面后随他离港。沉川将纸条交给巡查，自己留在复核岗等；林贺来向巡查交接北三公共入口排查范围。陆到门前看见巡员仍走入，劝弟赶在天黑前走。沉川把哥哥递来的手推开，说要留港对217领箱负责，并说出220夜送饭时见兄长收钱签条。陆承认动作，却对那张条的内容闭口。弟弟坐回登记桌前，陆终于停止催走，接受到案看护与随身财物登记。他望见北三水台的查找记录，画出自己走过的废砖甬道和无牌附棚入口，提出次晨随巡查辨门。林接过图，巡查当夜查外围出口；兄弟一人留岗配合、一人受看护，各自面对自己的责任。\",\n  \"characterGoals\": \"陆想把弟带离程的势力范围，也想避开自己签条的追问；沉川要留下说明自己领箱的经过；林贺要从陆亲走的路线找到两名工人。\",\n  \"conflict\": \"陆把带弟离港当成补救，弟却认为再次逃走会让自己的选择继续被哥哥代替。弟只看见收钱签条；陆若开口说内容，就得直面自己参与的另一批货。\",\n"
+        },
+        {
+          "id": "e449",
+          "text": "  \"choice\": \"沉川主动交条、当面拒绝离港并说出亲见；陆走入有巡员的岗房，接受看护，再把亲走入口交出。他仍隐瞒条内内容，兄弟关系未因指路而和好。\",\n  \"cost\": \"陆丧失自由回避问询的空间，2枚随身钱仅登记仍属本人，原账未找回；弟承担与兄争执、继续复核的压力。林现金仍0，贺资格暂停，完整改签自认和原页尚未取得。\",\n  \"threads\": [\n    \"th_03\",\n    \"sec_02\",\n    \"th_01\"\n  ],\n  \"endState\": \"253夜，陆在巡查看护下已到案，愿254晨随队从废砖甬道辨无牌附棚；弟自愿留港复核，没有被林拘禁。林知道陆承认收钱签条、指过入口，但不知条内改签全貌，也未取得原账或第二片。吴卢具体位置仍须现场见人。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_15\",\n    \"char_16\",\n    \"char_21\"\n  ],\n  \"location\": \"loc_23天宝外港商盟、原船复核岗与普通转运仓区\",\n  \"storyTime\": \"第253日午后至夜间\",\n  \"scenes\": [\n    \"253茶摊送来哥哥约见后离港的纸条。沉川读完，把纸条交给当班巡员，搬凳子坐在原船复核岗等人。林贺来交接北三公共入口的排查范围，看见的是他自己选下的等候位置。\",\n"
+        },
+        {
+          "id": "e450",
+          "text": "    \"陆在岗外看见巡员，停步后仍进门，伸手要带弟走。沉川挣开，坐回登记桌，要求先说清自己217领箱的经过。陆催他趁天黑前离港，弟问220夜那笔钱和那张签条是不是也要带着躲下去。\",\n    \"弟说当夜送饭见到收钱和签字，没看清条内内容。陆先称正常押运，见弟没有起身，终于承认领钱签过条；被问写了什么时又沉默。他不再催弟出门，转身接受到案登记和看护。\",\n    \"巡员当面清点陆随身2枚，登记未罚没。陆说原账已交程，巡员先记下待核。林把北三水台返单与昨日公开入口记录放在桌上，陆认出地点，在空处画废砖甬道，标出自己走过的无牌附棚门。\",\n    \"陆说自己可以带到门前；弟仍留在登记桌那边，没有用跟他走换取指路。巡查安排看护陆，立即查外巷出口，定254晨两路辨门。林贺带走入口图准备认人，兄弟隔着岗房各自坐下。\"\n  ],\n  \"source\": \"author\"\n}"
+        }
+      ]
+    },
+    {
+      "id": "review-unit/366",
+      "origin": {
+        "sourceId": "plan/chapters/50",
+        "start": 0,
+        "end": 2916
+      },
+      "fragments": [
+        {
+          "id": "e451",
+          "text": "{\n  \"id\": \"chapter-50\",\n  \"chapterNumber\": 50,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"门闩交给谁\",\n  \"summary\": \"254晨，陆带巡查到北三门。看守称吴伍、卢小满是自愿留下候工，贺在门外喊名，两人却要求出去。看守急着合门，吴卢从内侧顶住，旧押运头目陆被喊来帮忙压门。林原已握住剑柄，见门缝里露出两人的手，松开剑，让巡员走到能听清回答的位置，要求当面问他们是否愿留。陆伸向木闩的手停住，转而向外拉；一名巡员夺闩控制持闩者，另一名截住想退向后巷的看守。吴卢自己推开门走进外院。吴指认陆曾把他们点交到这里，陆当着巡员承认，不再用认路掩盖押送。贺说船修好便能接他们回去，吴却说回不回船要由他们自己定，卢也不愿立即上船。贺让开去船坞的方向，先陪两人去安全落脚。五名雇工至此全部脱控；被谁雇用、为谁作证，仍由他们自己回答。\",\n  \"characterGoals\": \"吴卢要走出门并决定自己的去处；贺想救回原班雇工，却须接受他们未必再上自己的船；陆想把自己限定为带路人，旧手下和吴的当面指认迫使他决定是否继续参与扣人；林要让工人的亲口选择被现场听见，巡员要核实是否自愿并制止实际拦阻。\",\n"
+        },
+        {
+          "id": "e452",
+          "text": "  \"conflict\": \"看守以自愿候工掩饰扣人，试图在巡员听到工人回答前合门；陆若顺着旧同伙压门，还能维持正常押运的说辞。开门不需要一场越阶胜负，真正改变局面的是吴卢当面拒绝、陆拒绝继续扣人及巡员亲见拦阻。贺接回人后还要面对他们拒绝立即回船。\",\n  \"choice\": \"林松开剑柄，把门前位置让给能现场处置的巡员，请其直接问吴卢，而不替他们宣布愿意去哪。吴卢自己顶门、要求离开；陆改为外拉木闩，协助控制旧手下，承认本次点交押送并接受继续看护。贺接受二人不立刻回船的回答，先安排安全落脚，不以救命索取服从。\",\n  \"cost\": \"林只短走和肉身握持，未施剑诀或御物，沿用252复用检查后保守余量三成半；不因数日间隔算满，也不放宽旧掌腿的短走、受限握剑和不负重限制。陆公开站到旧手下的对面并承认本次押送，不能再只以认识路解释到场，协助不换免罪。贺现金仍0、船至255午才交检，即使救齐五人也不能承诺恢复原班营运。两名普通看守和陆的本次行为已有现场见证，完整改签与原账则仍待另查，不以这次控人替代全案证明。\",\n  \"threads\": [\n    \"th_03\",\n    \"sec_02\",\n    \"th_02\"\n  ],\n"
+        },
+        {
+          "id": "e453",
+          "text": "  \"endState\": \"254晨，吴伍、卢小满自己走出北三门到安全外院，和244获救的唐许冯合计五人脱控；两名未入境普通看守均被巡员控制。陆当面承认本次点交押送，继续受看护，尚未写出完整改签自述。林未施术，保守余量三成半，旧伤许可不变；程不在现场，林不知道其位置或第二片封匣状态。吴卢拒绝立即承诺回贺船，贺接受先安置、再分别谈去留。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_15\",\n    \"char_16\",\n    \"char_24\",\n    \"char_25\"\n  ],\n  \"location\": \"loc_23天宝外港北三水台无牌附棚门口与外院\",\n  \"storyTime\": \"第254日清晨\",\n  \"scenes\": [\n    \"254晨，陆随两名原有巡员从废砖甬道到北三门，林贺在外院等认人。门内是普通转运附棚，两名未入境看守守着吴伍、卢小满。看守见陆，先说人自愿留下候工，今天正等陆头安排下一趟。贺喊两人名字，吴在门后回应说要出去，卢也出声；巡员能听见双方回答。\",\n"
+        },
+        {
+          "id": "e454",
+          "text": "    \"看守试图合上向外开的门，一人压门、一人抱外侧木闩准备落托。吴卢从里面合力顶住半开的门。林手握剑柄，见门缝里两只手仍抓着门边，松开剑，退开让巡员贴近门口，要求当面问两人是否愿意留下；他不施术，也不拿自己的判断代替回答。巡员明确要求门内的人自行出来说话。\",\n    \"持闩看守喊陆头来帮忙压门。陆伸手后停了一瞬，改握闩外端向外拽，第一名巡员同时扣住持闩手腕、夺闩并把人带离门扇。另一看守想退向后巷，第二名巡员已经站住那条普通窄路，扣腕转身将其控制。两名看守都无修为，未用法阵或高阶器物；陆只用肉身协助一根木闩，随即仍留在两名巡员可见的院墙边。\",\n    \"吴卢把门推开，自行跨过平整门槛到外院，贺在门外接应。吴看清陆，指出就是他把这一趟人点交进棚；陆当着巡员承认。巡员先安顿两工和两名看守，不在门口延长讯问；陆不争辩、不要求二人替自己作保，也没有借混乱离开。所承认的仅是本次押送，220夜改签仍须另行核实。\",\n    \"贺告诉吴卢，船明日交检，修好后可以接他们回去。吴说回不回船要自己定，卢明确说暂时不再上船。贺原要带他们往船坞方向走，停下后转向港务救助处，只问两人愿不愿先找地方休息。他们点头，跟着自己选的路离开。林收好入口图，留两名巡员记录亲见的拦阻和回答；本章以工人真正脱控及第一次去留分歧结束。\"\n  ],\n  \"source\": \"author\",\n"
+        },
+        {
+          "id": "e455",
+          "text": "  \"executionChecks\": [\n    {\n      \"id\": \"workers-choice\",\n      \"requirement\": \"254晨吴伍、卢小满当面要求离开并自己顶门，林松剑让巡员直接听答；陆改为外拉闩，巡员实际控制两看守，吴卢自行走到安全外院，不写成林施术强攻。\",\n      \"sourceQuestion\": {\n        \"document\": \"story\",\n        \"questionId\": \"audit-second-warehouse-fire\"\n      }\n    },\n    {\n      \"id\": \"custody-is-not-release\",\n      \"requirement\": \"吴卢脱控与陆受看护必须分清；陆只承认本次点交押送，不借协助脱身、不获免罪，220夜改签和完整自述留待后续独立核实。程不在场，林不知道其位置或第二片封匣状态。\",\n      \"sourceQuestion\": {\n        \"document\": \"story\",\n        \"questionId\": \"audit-barge-inspection\"\n      }\n    },\n    {\n      \"id\": \"no-rescue-debt\",\n"
+        },
+        {
+          "id": "e456",
+          "text": "      \"requirement\": \"五名工人脱控不等于答应回船或作证；吴卢拒绝立即回船，贺接受各自去留，先陪去安全落脚。不提前把第51—53章后续救助、交检与签认写成本章已完成。\",\n      \"sourceQuestion\": {\n        \"document\": \"story\",\n        \"questionId\": \"audit-relationship-stages\"\n      }\n    }\n  ]\n}"
+        }
+      ]
+    }
+  ],
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "annotationsApplied": 0,
+  "formalAcceptance": false,
+  "limitation": "Two independent clarifications are prepared and tied to a terminal-replayed step. Production still retains the original model answers; annotations are not yet imported to the UI. Final synthesis and candidate review must not transfer the elder brother’s actions to the younger."
+}

@@ -21,7 +21,9 @@ const settingsPath=path.join(root,'data/model-settings.json'),settingsHash=fileH
 const store=loadModelStore(settingsPath),connection=connectionOf(activeChannel(store),store.source);
 assert.equal(connection.planningModel,'gpt-5.6-luna');assert.equal(connection.writingModel,'gpt-5.6-luna');
 assert.ok(store.channels.every(c=>!c.fallback));
-const proofPath='docs/audits/2026-10-18-design76-citation-edits-api-preflight.json';
+// Preserve the earlier preflight; this version also accepts a verified graceful
+// stop after the active step finishes, with the same absent-process check.
+const proofPath='docs/audits/2026-10-18-design76-citation-edits-api-v2-preflight.json';
 const proof={kind:'design76_ui_api_restore_preflight',runtimeBindingSha256:fileHash(bindingPath),sourceCommit:binding.sourceCommit,
   runnerSha256:fileHash(process.argv[1]),uiRoot,uiFiles,backendPort:8787,frontendPort:5180,corsOrigin:'http://127.0.0.1:5180',
   model:'gpt-5.6-luna',fallback:false,batchWritingEnabled:false,modelCalls:0,productionWrites:0,formalAcceptance:false,
@@ -35,7 +37,7 @@ if(prepare){
   assert.equal(process.env.API_CORS_ORIGIN,proof.corsOrigin);
   assert.equal(process.env.NOVEL_ENABLE_BATCH_RUNS,'false');
   const checkpointPath='data/audit-runtimes/design76-citation-edits-review/result.json',checkpoint=read(checkpointPath);
-  assert.ok(['stopped_after_stage_limit','stopped_after_failure','stopped_after_budget','completed'].includes(checkpoint.status));
+  assert.ok(['stopped_after_stage_limit','stopped_after_failure','stopped_after_budget','stopped_by_signal','completed'].includes(checkpoint.status));
   try{process.kill(checkpoint.pid,0);assert.fail('Formal worker is live');}catch(e){assert.equal(e.code,'ESRCH');}
   const verification=read(`docs/audits/2026-10-18-design76-citation-edits-review-segment-${checkpoint.segment}.json`);
   assert.equal(fileHash(checkpointPath),verification.checkpointSha256);assert.equal(verification.workerAbsent,true);

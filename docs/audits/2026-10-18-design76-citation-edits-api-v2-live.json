@@ -1,0 +1,37 @@
+{
+  "kind": "design76_api_restored_after_verified_graceful_stop",
+  "observedAt": "2026-10-18T08:42:05.791Z",
+  "statePath": "data/audit-runtimes/design76-api-start-24388.json",
+  "stateSha256": "da106c963a2bf79f7b3978004808b57f99b6674b2deeaa6a09a40ab8f6f885cc",
+  "pid": 24388,
+  "formalVerificationPath": "docs/audits/2026-10-18-design76-citation-edits-review-segment-7.json",
+  "formalVerificationSha256": "ad65a98a4117f6255c190d4aab2c5f407c2f8739667a5958de4b8ddb8bd67af7",
+  "formalStatus": "stopped_by_signal",
+  "formalWorkerAbsent": true,
+  "health": {
+    "url": "http://127.0.0.1:8787/health",
+    "status": 200,
+    "body": {
+      "ok": true
+    },
+    "corsOrigin": "http://127.0.0.1:5180"
+  },
+  "browserObservation": {
+    "browserId": "3",
+    "tabId": "24",
+    "url": "http://127.0.0.1:5180/#/works/work_8b6c9133e13d404083ca33acc63f4f61/design",
+    "action": "Clicked existing 刷新记录 button; no review or writing action",
+    "displayedLastCheck": "16:38:23",
+    "visibleProgress": {
+      "world": "10/55",
+      "power": "9/29",
+      "characters": "9/29",
+      "story": "9/29"
+    },
+    "state": "Unfinished reviews; previous running batch indicator cleared"
+  },
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Confirms service startup, health/CORS and rendered checkpoint progress only; candidate reviews remain detached, and content acceptance is still incomplete."
+}
