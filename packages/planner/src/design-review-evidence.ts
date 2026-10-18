@@ -28,6 +28,9 @@ export function applyDesignReviewCitationEdits(value: unknown, previous: unknown
     if (typeof criterion !== 'string' || updates.has(criterion)) fail('检查项缺失或重复');
     const before = original.checks.find(check => check.criterion === criterion);
     if (!before) fail('不能新增未知检查项');
+    if (update.verdict === 'pass' && before!.resolves?.some(id => !Array.isArray(update.resolves) || !update.resolves.includes(id))) {
+      fail('维持通过时必须逐项确认原有resolves；不能漏掉解除声明。若原问题仍未解决，应明确改为insufficient或revise');
+    }
     const { addEvidence, removeEvidence, ...replacement } = update;
     if (!Array.isArray(addEvidence) || !Array.isArray(removeEvidence)) fail('必须明确给出新增和删除引用数组');
     const existing = new Set(before!.evidence.map(evidence => evidence.fragmentId));

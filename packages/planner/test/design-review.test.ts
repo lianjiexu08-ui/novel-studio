@@ -708,6 +708,8 @@ test('explicit citation edits retain unchanged findings and cannot silently lose
     { ...patch, confirmUnchangedChecks: false },
     { ...patch, updates: [...patch.updates, ...patch.updates] },
     { ...patch, updates: [{ ...patch.updates[0], criterion: 'unknown' }] },
+    { ...patch, updates: [{ ...patch.updates[0], resolves: undefined }] },
+    { ...patch, updates: [{ ...patch.updates[0], resolves: ['batch-1/timeline'] }] },
     { ...patch, updates: [{ ...patch.updates[0], removeEvidence: ['not-selected'] }] },
     { ...patch, updates: [{ ...patch.updates[0], addEvidence: [{ fragmentId: fragments[0] }] }] },
     { ...patch, updates: [{ ...patch.updates[0], addEvidence: [{ fragmentId: 'invented' }] }] },
