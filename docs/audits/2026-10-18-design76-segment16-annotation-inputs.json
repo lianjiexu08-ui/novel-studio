@@ -1,0 +1,73 @@
+{
+  "kind": "design76_segment16_clarification_inputs",
+  "verificationPath": "docs/audits/2026-10-18-design76-clarified-review-segment-16.json",
+  "verificationSha256": "eb8b9ad0b1b8f0ddaa11c30ae2bc6e4fe5b20c57d59914b94398ca4152ee7f5f",
+  "checkpointSha256": "aed76c7347fe5f9d39ecd1d3534cd9eaf839145944a1ad9d8bd3a9fdd87806e0",
+  "bindingPath": "data/audit-runtimes/design76-fragment-index-runtime-bound.json",
+  "bindingSha256": "8a1875b686f31b79d32ca9c00fa4cfd65931a195ca0c6dfd8547ff2c0507b5e5",
+  "drafts": [
+    {
+      "path": "docs/audits/2026-10-18-design76-world-cross34-route-ranges.json",
+      "sha256": "922cf958c6e5e289c0e1f494e14a60eefc3d903e10de05a9a0c3a6aa679a2b50"
+    },
+    {
+      "path": "docs/audits/2026-10-18-design76-story-cross34-payoff-timing.json",
+      "sha256": "93dc12545ef450c7bee8a13f0f8969fb878aad35341d355885c753bfb7207352"
+    }
+  ],
+  "outputPath": "data/audit-runtimes/design76-clarified-review/segment16-annotations.json",
+  "outputSha256": "ad675dbe4cad50d1a32538900b6351f33b5315c3e2e18245ac8ed48871b37c76",
+  "annotationCount": 2,
+  "sourceDigests": [
+    {
+      "requestKey": "design76-world-cross34-route-ranges",
+      "sources": [
+        {
+          "id": "plan/milestones/ms_growth_v1_expedition",
+          "sha256": "1bc7313e3f5cc447fbb0e49413f10243f8a1f7fb45b60613084a6c9ef724c4f2"
+        },
+        {
+          "id": "plan/milestones/ms_growth_v1_crossing",
+          "sha256": "f1fb81a21b11c1862e736725154773e3d9dd1fd4415798797ff748d36da1155a"
+        },
+        {
+          "id": "plan/milestones/ms_v2_voyage",
+          "sha256": "c592b3ad81c9f0136995da76b2ecb6881b02dace0c8d7ce756bb90a5622cabb8"
+        },
+        {
+          "id": "plan/milestones/ms_v3_return",
+          "sha256": "c2ea2f5856998a4717bcf33be420f8cd04711dc904d08db6074ee3626d892bad"
+        }
+      ]
+    },
+    {
+      "requestKey": "design76-story-cross34-payoff-timing",
+      "sources": [
+        {
+          "id": "plan/chapters/25",
+          "sha256": "655b9853c0a24c79015f1036cf223761e641f3519852e94b28a5ee7f8db6a9ff"
+        },
+        {
+          "id": "plan/chapters/26",
+          "sha256": "74fd81f6c31e0aae5cfa7cf2bbbb37872a2132047c3573ecfd814707a605f7f4"
+        },
+        {
+          "id": "plan/chapters/27",
+          "sha256": "e2dfee869b054cccd7eef59526852068dba047e908414659f835da28d7b6b19b"
+        },
+        {
+          "id": "plan/chapters/28",
+          "sha256": "86617a03354dbd12c1341169d46e898f50e2f7189a95bc72354e849b8b2d4cff"
+        },
+        {
+          "id": "plan/chapters/29",
+          "sha256": "c07c360b776ed84964625bc9694d58cd6a9e7c9465c681328307fef8a5824780"
+        }
+      ]
+    }
+  ],
+  "productionWrites": 0,
+  "modelCalls": 0,
+  "formalAcceptance": false,
+  "limitation": "Exact original claims and source bindings only. Private rehearsal, atomic publication, restart readback and UI checks remain required."
+}

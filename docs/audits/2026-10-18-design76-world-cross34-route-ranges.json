@@ -1,0 +1,191 @@
+{
+  "kind": "design76_world_cross34_route_ranges",
+  "verificationPath": "docs/audits/2026-10-18-design76-clarified-review-segment-16.json",
+  "verificationSha256": "eb8b9ad0b1b8f0ddaa11c30ae2bc6e4fe5b20c57d59914b94398ca4152ee7f5f",
+  "bindingPath": "data/audit-runtimes/design76-fragment-index-runtime-bound.json",
+  "bindingSha256": "8a1875b686f31b79d32ca9c00fa4cfd65931a195ca0c6dfd8547ff2c0507b5e5",
+  "requestPath": "data/audit-runtimes/design76-clarified-review/model-calls/00084.started.json",
+  "requestSha256": "e566769095c420d15c7f496c73c862b2b49e66a3725bd863ecf17ff004d35e9b",
+  "responsePath": "data/audit-runtimes/design76-clarified-review/model-calls/00084.response.json",
+  "responseSha256": "65b8f56a07c4a8b9f2b37e330770c45edd2031249b2948a931346106d09066ff",
+  "runId": "design_run_98b5460a-ed47-4ba2-bb06-7fdded1f910d",
+  "stageId": "cross-3-4",
+  "acceptedStageSha256": "4f0bfb5106ae23d3078c9f7abffc319baeb0214c7562ee1ac898f51e2430183c",
+  "originalCheckHash": "3a6a8b3bd4892dd748c16a3eedd171b9ef298a2fb342debb7f566ff82f77fa79",
+  "originalCheck": {
+    "criterion": "geography",
+    "verdict": "insufficient",
+    "explanation": "当前第1—17章主要发生在青玄大陆太清外山、外门院与矿务区，已给行动没有跨大陆移动，且当地权限、伤情与术法限制基本相容。宏观计划为后续安排了进入灵虚古境、经虚海航线抵达赤霄、再赴苍冥并返青玄的实体路线；世界规则也明确灵虚古境要求凝元三重及联名符牌，赤霄需避火符与放行旗号，苍冥需防寒、引渡令或具名担保，普通航线不能替代界门。但这些路线的具体出发、验籍、交通、票款、供能和抵达动作位于第18—50章，当前未读到，尚不能核对宏观安排是否在逐章执行中闭合。",
+    "evidence": [
+      {
+        "sourceId": "review-unit/73",
+        "quote": "{\n  \"id\": \"loc_05\",\n  \"name\": \"灵虚古境\",\n  \"kind\": \"region\",\n  \"parentId\": \"loc_01\",\n  \"entryConditions\": [\n    \"修为达到凝元境三重以上\",\n    \"持有太清仙宗或大乾天朝联名准入符牌\"\n  ],\n  \"status\": \"proposed\"\n}"
+      },
+      {
+        "sourceId": "review-unit/71",
+        "quote": "{\n  \"id\": \"loc_03\",\n  \"name\": \"赤霄大陆\",\n  \"kind\": \"continent\",\n  \"entryConditions\": [\n    \"需修持适用到访区域的抗火法门或佩戴避火灵符。天宝外港及既有受护街段在非地火喷发期的日常炙热，以已验明余量的普通避火符art_16满足；凡器避火衣art_15只作辅助，不替代此项灵符/法门门槛。离开这些受护区域前须另核当地实际危险和适配防护，普通符不授予闯明火、火法或地火的资格。\",\n    \"玄府境以下须避开地火煞气喷发期。港务依据沿岸岗哨实际见到的热裂、硫烟和异常地火记录发布封航/放行旗号，航司出航前查本航次通告、靠港前复核当日旗号；旧通告不保证未来安全，若转为封航须在许可锚地待令或返航，不能靠日常避火符硬闯。\"\n  ],\n  \"status\": \"proposed\"\n}"
+      },
+      {
+        "sourceId": "review-unit/70",
+        "quote": "{\n  \"id\": \"loc_02\",\n  \"name\": \"苍冥大陆\",\n  \"kind\": \"continent\",\n  \"entryConditions\": [\n    \"大陆环境寒冷；凝元境以下需保温舟舱或护身寒符。修为不是政治通行权。\",\n    \"沿岸官港验引渡令；无令者可由巡界使验明身份后具名担保，担保者承担监护和越界责任。例外仅到指定会合地，不自动授予进入界渊的权利。\",\n    \"具体到访须区分受监管码头候查、沿岸入境担保和界渊准入；担保须由实际到场者具名承担，只在约定范围与期限生效。\",\n    \"上述防寒门槛针对实际暴露于寒候。普通港区和已开放公共驿路的固定暖房、暖车只有在隔风围护、隔火炉、通风烟道、燃料与值守人手均实际存在且持续供热时，才提供其内部的温暖避难处；不把整座港口或一段驿路变成免寒区。离开温暖内部进入寒候，凝元以下仍须实际可用的护身寒符；普通衣物、修为名义或商业票不替代此条件。供暖失败要停止进入或转移到另一个已核实暖处，另记真实燃料、交通与照料费用。\",\n"
+      },
+      {
+        "sourceId": "review-unit/348",
+        "quote": "  \"mainConflict\": \"先天短寿的林辰由矿务逃生追查跨陆扣工与非法货运，在寿储、境界与各方利益限制下同伙伴救人、查清父亲守门及外山掩案责任。百章只切断已实证的一条三地运输链；九鼎全貌、三残片与最终界门危机仍是约450章全书必须收束的主线。 人员口径：赤霄获救承运雇工是唐、许、冯、吴、卢五人；陆弟单列，陆本人是受看护的押送责任人，不算五工。北境黑舱七人是另一批来自青玄的矿工，至300日仍由北境港口救济所安置，不随林贺返青玄。435–436日青玄两车八人是开篇两名旧工友加430日后新扣六人，与赤霄五工、北境七人均不重合；梁九为自由领车救援者，不在被救八人内。三地名单不能互相改写为人数增长，首卷救过而再被移交的两名旧工友只算两位不同人，不因再次获救重复加人。\",\n  \"theme\": \"活命与查真相不能以牺牲无辜者代价换取；信任来自共同选择和承担自己一方的责任。\",\n  \"protagonistArc\": \"从负伤矿工到能接受伙伴自主选择的凝元修士，再经数月修习、实测丹府与支付十元载成为玄府初期；力量增加时可用寿储反而减少。百章不发动逆命真解，不越阶斩高境，不把神兵持有当作启动权限。\",\n"
+      },
+      {
+        "sourceId": "review-unit/356",
+        "quote": "{\n  \"id\": \"ms_growth_v1_expedition\",\n  \"title\": \"救一人之后的封路\",\n  \"kind\": \"turn\",\n  \"startChapter\": 19,\n  \"endChapter\": 22,\n  \"setup\": [\n    \"第181–183日沿大乾境内山路抵达灵虚古境固定入口，双方检验本批联名符牌；这是同天地内古境通路，不打开太古界门。顾峤守入口内侧，白榆在入口外营地接伤者，未达到三重的医修不入境；出发前明确两名轮值护卫负责外侧伤者转移，顾不能弃无人看守的出口。\",\n    \"184日林苏在支路遇凝元劫掠者，以一次风刃和普通地形逼退，恢复后据遗落采集单查前哨。21只救秦禾一人，22再亲见主营，指挥者须23亲闻称呼并由秦核名才认出。\",\n    \"21只进行一次先取样箱或先救人的争执，林最终配合苏先救秦：苏扶门卸去侧压，林一次御物抬开无受载的外侧闩槽轻钩，苏再抽外闩开门。空笼被原营点名发现，轮值巡守随后被调去归路设卡；三人22才实际碰到新哨，不因读者见到设卡决定就提前知道。 秦未学会御物，外侧机关被连续挡板与笼内隔开；他先前推门、扳栅失败并引来看守，见苏接近才主动示意、退开配合，不靠新伤或临时封修强留笼中。\",\n"
+      },
+      {
+        "sourceId": "review-unit/359",
+        "quote": "{\n  \"id\": \"ms_growth_v1_crossing\",\n  \"title\": \"护货南渡与入港代价\",\n  \"kind\": \"turn\",\n  \"startChapter\": 30,\n  \"endChapter\": 32,\n  \"setup\": [\n    \"第212–214日按山路转驿车到云梦天港，运送六箱指定低阶药材换本航次普通舱；管货不等于可炼化物资。\",\n    \"第214日暮出航、第216日暮到天宝外港，海程两昼夜；不沿用旧第17–19日航历。\",\n    \"第32章第215日凌晨的风暴中，护船者承担外敌；林辰只把两丈内尚未绷紧、未系重箱的半斤索头御动一息交给水手，预付半成真元后停术，由水手系索、普通船桩承力、制动并搬回药箱。他再让水手用随舱撬杠抬稳压脚箱角、卸去楔上载荷，才从一丈内另付半成御动八两松楔一息；水手抽人、落箱，林不以御物固定受载货索或托箱。救下试图私藏货物的押货者使他错过盯住六号箱的窗口。第31章只是验货登船；本节点按第32章既有动作明确实际承力者，不改变两次支出、失箱与奖金后果，不斩神海海兽或获得免费升级。\",\n    \"入港用验籍及实际避火防护，局限于有防护的外港街区；他必须补交因护货失损的说明，收货人的真名与失踪货箱构成下一卷具体调查线索，不能潜行岩浆暗渠。\"\n  ],\n"
+      }
+    ],
+    "revisionAdvice": "补读并核对plan/chapters/18—50：逐章确认林辰等人从青玄至灵虚古境、赤霄外港及后续港口移动的实体行程、准入资格、通行文书、交通支付、防护消耗与到达时点；若与现有宏观路线、苍冥/赤霄入境条件或界门封禁规则不符，再具体返修。",
+    "awaitingSources": [
+      "plan/chapters/18",
+      "plan/chapters/19",
+      "plan/chapters/20",
+      "plan/chapters/21",
+      "plan/chapters/22",
+      "plan/chapters/23",
+      "plan/chapters/24",
+      "plan/chapters/25",
+      "plan/chapters/26",
+      "plan/chapters/27",
+      "plan/chapters/28",
+      "plan/chapters/29",
+      "plan/chapters/30",
+      "plan/chapters/31",
+      "plan/chapters/32",
+      "plan/chapters/33",
+      "plan/chapters/34",
+      "plan/chapters/35",
+      "plan/chapters/36",
+      "plan/chapters/37",
+      "plan/chapters/38",
+      "plan/chapters/39",
+      "plan/chapters/40",
+      "plan/chapters/41",
+      "plan/chapters/42",
+      "plan/chapters/43",
+      "plan/chapters/44",
+      "plan/chapters/45",
+      "plan/chapters/46",
+      "plan/chapters/47",
+      "plan/chapters/48",
+      "plan/chapters/49",
+      "plan/chapters/50"
+    ]
+  },
+  "ranges": [
+    {
+      "sourceId": "plan/milestones/ms_growth_v1_expedition",
+      "title": "救一人之后的封路",
+      "startChapter": 19,
+      "endChapter": 22,
+      "quote": "\"startChapter\": 19,\n  \"endChapter\": 22",
+      "sent": [
+        "e310"
+      ]
+    },
+    {
+      "sourceId": "plan/milestones/ms_growth_v1_crossing",
+      "title": "护货南渡与入港代价",
+      "startChapter": 30,
+      "endChapter": 32,
+      "quote": "\"startChapter\": 30,\n  \"endChapter\": 32",
+      "sent": [
+        "e319"
+      ]
+    },
+    {
+      "sourceId": "plan/milestones/ms_v2_voyage",
+      "title": "有限航款与五日北行",
+      "startChapter": 54,
+      "endChapter": 60,
+      "quote": "\"startChapter\": 54,\n  \"endChapter\": 60",
+      "sent": [
+        "e339"
+      ]
+    },
+    {
+      "sourceId": "plan/milestones/ms_v3_return",
+      "title": "带证返乡与先救谁",
+      "startChapter": 67,
+      "endChapter": 72,
+      "quote": "\"startChapter\": 67,\n  \"endChapter\": 72",
+      "sent": [
+        "e362"
+      ]
+    }
+  ],
+  "awaitingSourcesVerified": [
+    "plan/chapters/18",
+    "plan/chapters/19",
+    "plan/chapters/20",
+    "plan/chapters/21",
+    "plan/chapters/22",
+    "plan/chapters/23",
+    "plan/chapters/24",
+    "plan/chapters/25",
+    "plan/chapters/26",
+    "plan/chapters/27",
+    "plan/chapters/28",
+    "plan/chapters/29",
+    "plan/chapters/30",
+    "plan/chapters/31",
+    "plan/chapters/32",
+    "plan/chapters/33",
+    "plan/chapters/34",
+    "plan/chapters/35",
+    "plan/chapters/36",
+    "plan/chapters/37",
+    "plan/chapters/38",
+    "plan/chapters/39",
+    "plan/chapters/40",
+    "plan/chapters/41",
+    "plan/chapters/42",
+    "plan/chapters/43",
+    "plan/chapters/44",
+    "plan/chapters/45",
+    "plan/chapters/46",
+    "plan/chapters/47",
+    "plan/chapters/48",
+    "plan/chapters/49",
+    "plan/chapters/50"
+  ],
+  "annotationInput": {
+    "requestKey": "design76-world-cross34-route-ranges",
+    "runId": "design_run_98b5460a-ed47-4ba2-bb06-7fdded1f910d",
+    "stageId": "cross-3-4",
+    "criterion": "geography",
+    "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+    "expectedCheckHash": "3a6a8b3bd4892dd748c16a3eedd171b9ef298a2fb342debb7f566ff82f77fa79",
+    "claimQuote": "但这些路线的具体出发、验籍、交通、票款、供能和抵达动作位于第18—50章",
+    "explanation": "第18—50章待补读只覆盖已展开的前段行动，不能覆盖前句所列全部跨陆路线。已发送的里程碑明确：古境行程为19—22章，青玄南渡赤霄为30—32章；赤霄赴苍冥北航为54—60章，北境返青玄为67—72章。后两段应据现有宏观原文审查，不应写成发生于18—50章，也不能认为补读18—50章就完成后两段执行核验。保留原insufficient和33份真实存在、当次未发送的待补读细纲，不新增后半本细纲要求；本说明仅纠正章号范围，不证明任何路线的资格、费用或行程已经通过。",
+    "evidence": [
+      {
+        "sourceId": "plan/milestones/ms_growth_v1_expedition",
+        "quote": "\"startChapter\": 19,\n  \"endChapter\": 22"
+      },
+      {
+        "sourceId": "plan/milestones/ms_growth_v1_crossing",
+        "quote": "\"startChapter\": 30,\n  \"endChapter\": 32"
+      },
+      {
+        "sourceId": "plan/milestones/ms_v2_voyage",
+        "quote": "\"startChapter\": 54,\n  \"endChapter\": 60"
+      },
+      {
+        "sourceId": "plan/milestones/ms_v3_return",
+        "quote": "\"startChapter\": 67,\n  \"endChapter\": 72"
+      }
+    ]
+  },
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Independent clarification draft only. The original verdict and pending readings remain unchanged; no annotation has been appended by this script."
+}

@@ -1,0 +1,129 @@
+{
+  "kind": "design76_segment16_notes_appended",
+  "verified": true,
+  "createdAt": "2026-10-18T11:56:17.090Z",
+  "runnerSha256": "e9da4f73029652930ba729b1790ab7df43e7d08153dc51b70bc55dd80bc0a66a",
+  "preparedSha256": "0be3ba5d6a80861d524933667b866fd8f9c41693436325fd37e6cdc9c72ee114",
+  "runtimeBindingSha256": "8a1875b686f31b79d32ca9c00fa4cfd65931a195ca0c6dfd8547ff2c0507b5e5",
+  "baseCheckpointSha256": "aed76c7347fe5f9d39ecd1d3534cd9eaf839145944a1ad9d8bd3a9fdd87806e0",
+  "database": "/Users/lianjie/Documents/ChatGPT/novel/data/novel-studio.db",
+  "control": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design76-notes16-apply-sejOJY",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "notes": [
+    {
+      "requestKey": "design76-world-cross34-route-ranges",
+      "runId": "design_run_98b5460a-ed47-4ba2-bb06-7fdded1f910d",
+      "stageId": "cross-3-4",
+      "criterion": "geography",
+      "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+      "expectedCheckHash": "3a6a8b3bd4892dd748c16a3eedd171b9ef298a2fb342debb7f566ff82f77fa79",
+      "claimQuote": "但这些路线的具体出发、验籍、交通、票款、供能和抵达动作位于第18—50章",
+      "explanation": "第18—50章待补读只覆盖已展开的前段行动，不能覆盖前句所列全部跨陆路线。已发送的里程碑明确：古境行程为19—22章，青玄南渡赤霄为30—32章；赤霄赴苍冥北航为54—60章，北境返青玄为67—72章。后两段应据现有宏观原文审查，不应写成发生于18—50章，也不能认为补读18—50章就完成后两段执行核验。保留原insufficient和33份真实存在、当次未发送的待补读细纲，不新增后半本细纲要求；本说明仅纠正章号范围，不证明任何路线的资格、费用或行程已经通过。",
+      "evidence": [
+        {
+          "sourceId": "plan/milestones/ms_growth_v1_expedition",
+          "quote": "\"startChapter\": 19,\n  \"endChapter\": 22"
+        },
+        {
+          "sourceId": "plan/milestones/ms_growth_v1_crossing",
+          "quote": "\"startChapter\": 30,\n  \"endChapter\": 32"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "quote": "\"startChapter\": 54,\n  \"endChapter\": 60"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "quote": "\"startChapter\": 67,\n  \"endChapter\": 72"
+        }
+      ],
+      "id": "review_note_98a2e7b0-b0a1-4db7-84af-35724a388433",
+      "createdAt": "2026-10-18T11:56:07.232Z",
+      "scope": {
+        "worldPackRevision": 40,
+        "storyBibleRevision": 72,
+        "planRevisionId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+        "planRevision": 76
+      }
+    },
+    {
+      "requestKey": "design76-story-cross34-payoff-timing",
+      "runId": "design_run_f355dadb-f3ee-4b1b-8834-f17bf0f487dc",
+      "stageId": "cross-3-4",
+      "criterion": "payoff",
+      "expectedInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded",
+      "expectedCheckHash": "3d661dca161cafacf1acfc1641d01ae482fd6d225b32a1fd366c2b06576033a7",
+      "claimQuote": "第26章完成实际解囚、交押、泉液来源核验、追回12滴并区分9滴洁净与3滴污染；林只获配6滴，且第27、29章分别完成两剂十日疗程和复诊后入账",
+      "explanation": "本项对救援和疗程的章号定位不准确。第25章已使被掳者离开笼车并取得样箱、封瓶；第26章承接188日撤离、12:00外营交押及189日来源、洁净度和分配核验，不是到26章才解囚。第一剂在27章190—199日完成，199日复诊后入账5元载；第二剂在28章200—209日完成，209日复诊后再入账5元载。29章210日的复诊确认两剂均已生效，决定有限旅行许可与分路，不是第二剂完成或再次入账。保留原局部pass和解除声明，不将本说明冒充重新评审；不得为适配错误章号搬动既有事件、重复服药或重复增加寿储。",
+      "evidence": [
+        {
+          "sourceId": "plan/chapters/25",
+          "quote": "被掳者离开笼车，两名随顾到场的普通护卫协助撤人时一死一伤；林辰腿被落石割伤，仍护住已取走的样箱与封瓶。墨被顾同阶制伏并持续看守，尚未完成外营交押或泉液验证"
+        },
+        {
+          "sourceId": "plan/chapters/26",
+          "quote": "伤者队伍用75分钟，到12:00抵外营，由已休足的乔当面接墨，杜仍守入口。"
+        },
+        {
+          "sourceId": "plan/chapters/27",
+          "quote": "第199日复诊确认药程有效后，才将新增5元载记入可用寿储"
+        },
+        {
+          "sourceId": "plan/chapters/28",
+          "quote": "第209日，第二剂完整完成并复诊有效，新增5元载，六滴全部用尽。"
+        },
+        {
+          "sourceId": "plan/chapters/29",
+          "quote": "第210日白榆复诊，允许林辰短距步行、坐车旅行和轻物点数，禁止搬药箱、疾跑与持剑久战。灵泉两剂均已生效，腿伤仍未痊愈。"
+        }
+      ],
+      "id": "review_note_93186cb6-acce-4775-b82b-67e9ab94cb01",
+      "createdAt": "2026-10-18T11:56:07.233Z",
+      "scope": {
+        "worldPackRevision": 40,
+        "storyBibleRevision": 72,
+        "planRevisionId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+        "planRevision": 76
+      }
+    }
+  ],
+  "preservedWorkFieldDigests": {
+    "activePlanId": "a79cacee9517456fb5abae34e3592ad141a8d092b6782979cdb0aa1996029412",
+    "briefs": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "candidates": "db801c927d61955caf1e94c196129e7ca7a4557cbae7f7f93b7977d2e6ffb6a2",
+    "characters": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "checkpoints": "9360443cd3329deca750224d5f41fd8b848cc87483d84e5d59d8bf1fa6f89d31",
+    "constraintRevision": "1724d7333046d2818a4a1b1edf16da3e4af6ff939f16f790f3d787909db9194d",
+    "covenant": "7b09efc6b0d1edd79e40db6d143a177956b28b40ee5070d303574df8d73121f8",
+    "covenantHistory": "ef48b60cd983a0f4b34cbe25bf37e751eb58681b943b6b8369fdcd5fca1ec745",
+    "designContentReviews": "8b8ab9639e03bd0055431c0e710bacf9dbac0d268f27578ddcb0bfc13e0aed8d",
+    "designHistory": "f2347b762def7bec1232ebed9113bcc4fb424df8b0f09e37b74bcef254165a1b",
+    "designReviewRuns": "e4f31986542e05e00e251fa598bb73934912843d912f8a16d75d9c210c34fa8a",
+    "events": "69a4c30b560af422264c89ba8cce8c658bf3d137ec8bcdae5f7025cdc4622590",
+    "id": "e6c77c6af51347285f913e10c068833e392333610313a73f42ae654dbeeebb0b",
+    "impacts": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "manuscripts": "3f9dd7880a530d9eb7ccf9113b140958fe9e182f63c9f706f9c55ceb5c46ffc9",
+    "plans": "6afb21f18712fce391f7c0c715b9791eb95f922a669d1cc1a96b2677e905b396",
+    "plotNodes": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "relationships": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "stateRevision": "16dc368a89b428b2485484313ba67a3912ca03f2b2b42429174a4f8b3dc84e44",
+    "states": "71af6764cda2e591af608654aa65a05f8b25e4e8f9871c746de158a77a0618fc",
+    "storyBible": "ae92c644e55aa89fd87920f431acdb817e50351843daddd6cb65d8508350ef02",
+    "title": "9a392c9dee167243ad8ace1e37c8c750c798509925344a9b052ce05cbb6a54b2",
+    "versions": "ab09691b6b0882a4fa32a704a65a61930f961a7d3e35aa52d872fc017e048fb1",
+    "worldPack": "c2c2dd54716be54571a024440590ebbb8c47b55eb37f2b490bfaf24c5bf6be6d",
+    "worldRules": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "oldRunsPreserved": 99,
+  "oldReportsPreserved": 92,
+  "oldAnnotationsPreserved": 12,
+  "annotationsAdded": 2,
+  "restartReadback": true,
+  "rollbackExercised": false,
+  "idempotenceExercised": false,
+  "modelCalls": 0,
+  "productionWrites": 1,
+  "verdictChanges": 0,
+  "questionsResolved": 0,
+  "formalAcceptance": false
+}
