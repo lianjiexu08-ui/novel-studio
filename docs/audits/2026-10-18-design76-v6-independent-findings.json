@@ -1,0 +1,213 @@
+{
+  "verified": true,
+  "originalReviewPath": "docs/audits/2026-10-18-design76-followup-v6-integrated-review.json",
+  "originalReviewSha256": "56c693c53b6eea4e0f6b97f20c2e45a75f91ea2cfa0df22893e93231ef0f27ea",
+  "originalVerdictsPreserved": true,
+  "evidence": [
+    {
+      "sourceId": "plan/milestones/ms_v3_return",
+      "quote": "275护寒符36、保温衣8",
+      "fragmentIds": [
+        "e78"
+      ],
+      "requestId": "review_4af0f46f85deb341172b5ca5"
+    },
+    {
+      "sourceId": "plan/milestones/ms_v3_return",
+      "quote": "此前实际车费、医药、食宿、供暖与查验625",
+      "fragmentIds": [
+        "e78"
+      ],
+      "requestId": "review_4af0f46f85deb341172b5ca5"
+    },
+    {
+      "sourceId": "plan/milestones/ms_v3_return",
+      "quote": "当场付24后累计724、余276",
+      "fragmentIds": [
+        "e78"
+      ],
+      "requestId": "review_4af0f46f85deb341172b5ca5"
+    },
+    {
+      "sourceId": "plan/milestones/ms_v3_return",
+      "quote": "再实付56，累计780、余220",
+      "fragmentIds": [
+        "e78"
+      ],
+      "requestId": "review_4af0f46f85deb341172b5ca5"
+    },
+    {
+      "sourceId": "story/characters/char_09",
+      "quote": "愿冒失去药役职位的风险保住病人",
+      "fragmentIds": [
+        "e20"
+      ],
+      "requestId": "review_a2684195575ab751028e81ae"
+    },
+    {
+      "sourceId": "world/locations/loc_29",
+      "quote": "访客、矿工须有对应药役、管事或执事登记陪同",
+      "fragmentIds": [
+        "e35"
+      ],
+      "requestId": "review_4af0f46f85deb341172b5ca5"
+    }
+  ],
+  "accounting": {
+    "taxBefore": [
+      12,
+      1,
+      18,
+      36,
+      8,
+      625
+    ],
+    "sum": 700,
+    "portTax": 24,
+    "laterTravel": 56,
+    "total": 780,
+    "sealedBalance": 220,
+    "finding": "Original review omitted the explicitly supplied clothing cost of 8; do not change 625 to 633."
+  },
+  "travel": {
+    "omittedFromWorldRequest": "plan/milestones/ms_v3_convoy",
+    "sourceSha256": "085533dbf68fa3e9d58ffc164630c2574e1ef327816c713cf51e14e7d736b80b",
+    "finding": "435 arrival at the outer-mountain warehouse is already planned. 436–438 return to the capital must not be repaired by inventing another sea trip. Earlier 291–318 travel remains subject to separate coverage review."
+  },
+  "physician": {
+    "rolePresentInRequest": true,
+    "visitorRuleMissingFromStoryRequest": true,
+    "finding": "The goal field names the medicine-worker post; the causal review must also read loc_29 before judging its visitor authority."
+  },
+  "provenanceCorrection": {
+    "originalDeclaredScope": {
+      "worldPackRevision": 40,
+      "storyBibleRevision": 72,
+      "planRevisionId": "plan_dec14a159f674b83ab34a4aac0ba8243",
+      "planRevision": 76
+    },
+    "actualCurrentScope": {
+      "worldPackRevision": 40,
+      "storyBibleRevision": 72,
+      "planRevisionId": "plan_96d5caf10e47437aba7356bcd26e22cc",
+      "planRevision": 76
+    },
+    "explanation": "The v6 runner used the archived plan75 comparison wrapper while labeling revision76. Candidate text itself is v6 and all 12 actual changes were supplied intact. One already-applied training-name correction was redundantly presented as a change. This detached review cannot stand as a formal current-plan assessment or production-save baseline. v7 targeted requests use the actual current scope.",
+    "actualChanged": [
+      {
+        "sourceId": "world/artifacts/art_04",
+        "beforeSha256": "58ea29bc053032eaf6ccf7b1282a150077ea12a13a84a1fc7358c8419c24dbe1",
+        "afterSha256": "02629e44d4912158a7845a6b9f6fb06175513b37dfdce968f707d8739648f9a0",
+        "reviewedIn": [
+          "power"
+        ]
+      },
+      {
+        "sourceId": "world/artifacts/art_06",
+        "beforeSha256": "91be1904aaf1561c1d812f9455f8dc30617eb38ad271b0aa02a8d15c27de3b83",
+        "afterSha256": "bd295836bca49dc3e560d862076ae4055b433e1aa98335036fa28e935dc4acda",
+        "reviewedIn": [
+          "power"
+        ]
+      },
+      {
+        "sourceId": "world/artifacts/art_08",
+        "beforeSha256": "0471a5ec4b57eca821ea735c08cf3f8047a902cabb7e032a6d0ef0e8f507b1c5",
+        "afterSha256": "8ffb9de46ce3adb906c1c201741aa19e7b807f502358a97742d067ffe1b61672",
+        "reviewedIn": [
+          "power"
+        ]
+      },
+      {
+        "sourceId": "story/characters/char_19",
+        "beforeSha256": "be6d4706a6e306c005485f69982dddeaf40f20aa9e51092a2cbaecdc49061d5d",
+        "afterSha256": "77703ee087c93064f49f04bf5d8f5af2e4cfc24370c0db4aa40270eaafbf285d",
+        "reviewedIn": [
+          "characters",
+          "world",
+          "story"
+        ]
+      },
+      {
+        "sourceId": "story/relationships/rel_02",
+        "beforeSha256": "bc8f68d1cf6aa0a8b27ea4cd47e60d2e825c2b077618f7600672f23d9839bc7b",
+        "afterSha256": "d16de55109b8048dba9d5c35678d180cd4310a84f7ddfa7a1109d0097ad58e02",
+        "reviewedIn": [
+          "characters",
+          "story"
+        ]
+      },
+      {
+        "sourceId": "story/relationships/rel_17",
+        "beforeSha256": "6da9e83decc3753537860ce6baba18313d2b966445121384b7c3f8cef375d32b",
+        "afterSha256": "5a3670863a622429d33430489c5be9b82342e35a8a04281d63f8bb2f20dc4edd",
+        "reviewedIn": [
+          "characters",
+          "story"
+        ]
+      },
+      {
+        "sourceId": "story/secrets/sec_02",
+        "beforeSha256": "72b81074192fa77f9cec2df6d0852c47fd571286d2a6b5b1725e87042284154a",
+        "afterSha256": "e2739ac7e2c91b2225b256efe17b008e93f6e95eb6ae7eec4f816ea10bf6b410",
+        "reviewedIn": [
+          "characters",
+          "story"
+        ]
+      },
+      {
+        "sourceId": "story/arcBeats/message-dispatch",
+        "beforeSha256": "5e242393d3996ff9a6484b14bdef54c1644a2f994ecac77f01d93050579d95fe",
+        "afterSha256": "58acbd753372d7c8bc31bba5ed518afb9deafbff6aa62386d808e91e80f36f17",
+        "reviewedIn": [
+          "characters",
+          "story"
+        ]
+      },
+      {
+        "sourceId": "plan/milestones/ms_v2_loss",
+        "beforeSha256": "bcf05dce6b30344a33d67e8ee6c17ccf42c621257f4cad4639e9b58b6eb9eda8",
+        "afterSha256": "772075c988646ace22e80b816d757669b76d19cbed56196cb83a81edc2dfafbb",
+        "reviewedIn": [
+          "characters",
+          "story"
+        ]
+      },
+      {
+        "sourceId": "plan/milestones/ms_v3_return",
+        "beforeSha256": "98c3bae8a3446d1268f68398fd198ba9d1c8384ca07861de0eac525b540e8cbd",
+        "afterSha256": "7c6524926b7a414b64646b1c4eef208c719bf0a95efbe314c43554a686bcdb41",
+        "reviewedIn": [
+          "characters",
+          "world",
+          "story"
+        ]
+      },
+      {
+        "sourceId": "plan/milestones/ms_v3_payoff",
+        "beforeSha256": "2d41dc6472da657c49c9ce089e4da2e9f2b181479da26a6bd1c64c59b87c14e6",
+        "afterSha256": "fa56555a692c2649f13c886226d4d696be7db8f2219be3d271439649d1971896",
+        "reviewedIn": [
+          "characters",
+          "world",
+          "story"
+        ]
+      },
+      {
+        "sourceId": "plan/chapters/33",
+        "beforeSha256": "de4b9169f8fa4d98a626821665e274acce861dc96326657dd999dc9be046ee45",
+        "afterSha256": "fb1a8b102324d8f61d5bea313efb2d86f19ce04e938865c46a95b9050623308a",
+        "reviewedIn": [
+          "characters",
+          "story"
+        ]
+      }
+    ],
+    "extraHistoricalComparison": "plan/milestones/ms_v3_training",
+    "correctCurrentInputHash": "9583e5f14c6e7450196b6d93dd76ffa0294d39d675865e36d2920aa9ed446ded"
+  },
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "blockersClosed": 0,
+  "formalAcceptance": false
+}
