@@ -1,0 +1,127 @@
+{
+  "kind": "design76_private_ui_read_acceptance",
+  "createdAt": "2026-10-18T06:31:32.019Z",
+  "verified": true,
+  "runtimeBindingSha256": "ec9918d855f80b056351601f297fbbaadb4376ec94010cdb73d3aaa0f6fb58dd",
+  "sourceCommit": "ca459394c0fc0e9135ec4aa16cc24da2d51810f2",
+  "probeScriptSha256": "937ef810332ba1bcf8ec790328126e78a8c0e43445442396494c298b08c9c722",
+  "verifierSha256": "fb16ed915df7017f06cf98c989c57e0a9d84df9dcf79b360d89bd5c9f483b672",
+  "database": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design76-note-rehearsal-Ob6hiO/private.db",
+  "annotationId": "review_note_5898e760-bc7d-4812-9c56-1170701d894b",
+  "requests": [
+    {
+      "method": "OPTIONS",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61",
+      "statusCode": 204
+    },
+    {
+      "method": "GET",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61",
+      "statusCode": 200
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design",
+      "statusCode": 204
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/history",
+      "statusCode": 204
+    },
+    {
+      "method": "GET",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design",
+      "statusCode": 200
+    },
+    {
+      "method": "GET",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/history",
+      "statusCode": 200
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/quality-audit",
+      "statusCode": 204
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/content-reviews?view=summary",
+      "statusCode": 204
+    },
+    {
+      "method": "GET",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/quality-audit",
+      "statusCode": 200
+    },
+    {
+      "method": "GET",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/content-reviews?view=summary",
+      "statusCode": 200
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/review-runs/design_run_98b5460a-ed47-4ba2-bb06-7fdded1f910d/stages/batch-3",
+      "statusCode": 204
+    },
+    {
+      "method": "GET",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/review-runs/design_run_98b5460a-ed47-4ba2-bb06-7fdded1f910d/stages/batch-3",
+      "statusCode": 200
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/review-annotations?runId=design_run_98b5460a-ed47-4ba2-bb06-7fdded1f910d&stageId=batch-3",
+      "statusCode": 204
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/content-reviews?view=summary&since=b33593340950ad352d2bcd460ba91d82d64d5a9ad46c7dfc40964f20fc64f5b7",
+      "statusCode": 204
+    },
+    {
+      "method": "GET",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/review-annotations?runId=design_run_98b5460a-ed47-4ba2-bb06-7fdded1f910d&stageId=batch-3",
+      "statusCode": 200
+    },
+    {
+      "method": "GET",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/content-reviews?view=summary&since=b33593340950ad352d2bcd460ba91d82d64d5a9ad46c7dfc40964f20fc64f5b7",
+      "statusCode": 200
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/review-annotations/review_note_5898e760-bc7d-4812-9c56-1170701d894b",
+      "statusCode": 204
+    },
+    {
+      "method": "GET",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/review-annotations/review_note_5898e760-bc7d-4812-9c56-1170701d894b",
+      "statusCode": 200
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/content-reviews?view=summary&since=b33593340950ad352d2bcd460ba91d82d64d5a9ad46c7dfc40964f20fc64f5b7",
+      "statusCode": 204
+    },
+    {
+      "method": "GET",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/content-reviews?view=summary&since=b33593340950ad352d2bcd460ba91d82d64d5a9ad46c7dfc40964f20fc64f5b7",
+      "statusCode": 200
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/content-reviews?view=summary&since=b33593340950ad352d2bcd460ba91d82d64d5a9ad46c7dfc40964f20fc64f5b7",
+      "statusCode": 204
+    }
+  ],
+  "tests": {
+    "passed": 611,
+    "failed": 0,
+    "logSha256": "4279d852ef98a162a34fe9d836d310c1c24d4ab874db0278c0a11c0cd216fab3"
+  },
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Shared-client transaction queue only; this probe does not test separate processes competing for SQLite or approve story quality."
+}

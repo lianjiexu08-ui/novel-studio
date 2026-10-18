@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {PrismaClient} from '@prisma/client';
+process.env.API_CORS_ORIGIN='http://127.0.0.1:5182';
 const read=p=>JSON.parse(fs.readFileSync(p));
 const hash=p=>createHash('sha256').update(fs.readFileSync(p)).digest('hex');
 const binding=read('data/audit-runtimes/design76-ui-runtime-v2-bound.json');
