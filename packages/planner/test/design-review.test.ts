@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { JsonDesignPlanner, PlanningParseError } from '../src/index.ts';
-import { DesignReviewReportBudgetError, prepareDesignReviewEvidence } from '../src/design-review-evidence.ts';
+import { applyDesignReviewCitationEdits, DesignReviewReportBudgetError, prepareDesignReviewEvidence } from '../src/design-review-evidence.ts';
 import { DesignReviewCitationError, DesignReviewCriteriaError, DesignReviewInsufficiencyFieldsError, designReviewInput, validateDesignReview } from '../../../novel-service-core/src/design-review.ts';
 import { ChapterWorkflow, InMemoryWorkRepository } from '../../application/src/index.ts';
 import { createReadyWork, fixtureDesignReview } from '../../application/test/fixtures.ts';
@@ -653,6 +653,66 @@ test('cross checks index every pending question and name a missing required sour
   });
   assert.equal(retryCalls, 2, 'a repaired answer that drops a required citation must still fail after one retry');
   assert.deepEqual(prepared.resolutionRepairContext({ ...missing, requestId: 'another-request' }), {}, 'never label selections from a different request as current');
+});
+
+test('explicit citation edits retain unchanged findings and cannot silently lose required evidence', async () => {
+  const request = await input();
+  request.rubric = { timeline: '两封信都须实际送达', geography: '港口许可不得互相替代' };
+  request.sources = [
+    { id: 'old', text: '两封信分别出发，接收人此时还不知道内容。' },
+    { id: 'arrival-a', text: '第一封信第3日送达并由收信人阅知。' },
+    { id: 'arrival-b', text: '第二封信第5日送达并由收信人阅知。' },
+    { id: 'question-a', text: '第一封信是否存在提前知情？' },
+    { id: 'question-b', text: '第二封信是否存在提前知情？' },
+  ];
+  request.stage = { kind: 'cross', label: '跨批消息', totalBatches: 2,
+    sourceMap: request.sources.slice(0, 3).map(source => ({ id: source.id, sourceId: source.id, start: 0, end: source.text.length })),
+    coverage: { mode: 'local_sources', sourceLengths: {}, pendingChecks: [
+      { id: 'batch-1/timeline', criterion: 'timeline', questionSourceId: 'question-a', requiredSourceIds: ['arrival-a'], priorUnitIds: ['old'] },
+      { id: 'batch-2/timeline', criterion: 'timeline', questionSourceId: 'question-b', requiredSourceIds: ['arrival-b'], priorUnitIds: ['old'] },
+    ] },
+  };
+  const prepared = prepareDesignReviewEvidence(request);
+  const fragments = prepared.sources.map(source => source.fragments[0].id);
+  const first = { requestId: prepared.requestId, summary: '时间可行但港口规则返修', checks: [
+    { criterion: 'timeline', verdict: 'pass', explanation: '两封信各自在实际交收后才阅知', revisionAdvice: '', resolves: ['batch-1/timeline', 'batch-2/timeline'], evidence: [0, 1, 3, 4].map(i => ({ fragmentId: fragments[i] })) },
+    { criterion: 'geography', verdict: 'revise', explanation: '港口许可不能互换', revisionAdvice: '另核各港实际许可', evidence: [{ fragmentId: fragments[0] }] },
+  ] };
+  const before = structuredClone(first);
+  const { evidence, ...judgment } = first.checks[0];
+  const patch = { requestId: prepared.requestId, repairMode: 'citation_edits', confirmUnchangedChecks: true, summary: first.summary,
+    updates: [{ ...judgment, addEvidence: [{ fragmentId: fragments[2] }], removeEvidence: [] as string[] }],
+  };
+  let calls = 0;
+  const planner = new JsonDesignPlanner({ complete: async call => {
+    if (++calls === 1) return JSON.stringify(first);
+    assert.match(JSON.parse(call.user).instruction, /citation_edits/);
+    return JSON.stringify(patch);
+  } });
+  const result = await planner.reviewDesignContent(request);
+  assert.equal(calls, 2);
+  assert.deepEqual(result.checks[0].evidence.map(e => e.sourceId).sort(), request.sources.map(s => s.id).sort());
+  assert.equal(result.checks[1].verdict, 'revise', 'untouched negative findings survive');
+  assert.equal(result.checks[1].explanation, first.checks[1].explanation);
+  assert.deepEqual(result.modelResponses, [JSON.stringify(first), JSON.stringify(patch)], 'raw patches remain visible, never masquerade as a full model answer');
+  assert.deepEqual(first, before, 'never rewrite the original answer');
+
+  const losesQuestion = structuredClone(patch);
+  losesQuestion.updates[0].removeEvidence = [fragments[3]];
+  let failedCalls = 0;
+  const badPlanner = new JsonDesignPlanner({ complete: async () => JSON.stringify(++failedCalls === 1 ? first : losesQuestion) });
+  await assert.rejects(badPlanner.reviewDesignContent(request), /batch-1\/timeline/);
+  assert.equal(failedCalls, 2);
+  for (const malformed of [
+    { ...patch, requestId: 'wrong-request' },
+    { ...patch, confirmUnchangedChecks: false },
+    { ...patch, updates: [...patch.updates, ...patch.updates] },
+    { ...patch, updates: [{ ...patch.updates[0], criterion: 'unknown' }] },
+    { ...patch, updates: [{ ...patch.updates[0], removeEvidence: ['not-selected'] }] },
+    { ...patch, updates: [{ ...patch.updates[0], addEvidence: [{ fragmentId: fragments[0] }] }] },
+    { ...patch, updates: [{ ...patch.updates[0], addEvidence: [{ fragmentId: 'invented' }] }] },
+    { ...patch, updates: [{ ...patch.updates[0], addEvidence: [{ fragmentId: fragments[2], quote: 'manufactured' }] }] },
+  ]) assert.throws(() => prepared.resolve(applyDesignReviewCitationEdits(malformed, first)));
 });
 
 for (const repairedVerdict of ['pass', 'insufficient'] as const) {

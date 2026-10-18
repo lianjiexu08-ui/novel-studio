@@ -8,6 +8,48 @@ export class DesignReviewEvidenceError extends DesignReviewError {}
 export class DesignReviewReportBudgetError extends DesignReviewError {}
 export class DesignReviewInsufficiencyError extends DesignReviewError {}
 
+/** Apply only edits explicitly selected by the model; retain the original raw
+ * answer separately. The caller must validate the entire reconstructed answer. */
+export function applyDesignReviewCitationEdits(value: unknown, previous: unknown): unknown {
+  if (!value || typeof value !== 'object' || Array.isArray(value) || !('repairMode' in value)) return value;
+  const patch = value as Record<string, unknown>;
+  const fail = (message: string): never => { throw new DesignReviewEvidenceError(`引文编辑不合格：${message}`); };
+  if (patch.repairMode !== 'citation_edits' || patch.confirmUnchangedChecks !== true) fail('必须明确确认未改动检查项');
+  if (Object.keys(patch).some(key => !['requestId', 'repairMode', 'confirmUnchangedChecks', 'summary', 'updates'].includes(key))) fail('存在未知顶层字段');
+  const original = anchoredDesignReviewResultSchema.parse(previous);
+  if (patch.requestId !== original.requestId) fail('请求编号与原回答不一致');
+  if (typeof patch.summary !== 'string' || !Array.isArray(patch.updates) || !patch.updates.length) fail('必须提供总结和至少一项明确编辑');
+  const updates = new Map<string, unknown>();
+  for (const value of patch.updates as unknown[]) {
+    if (!value || typeof value !== 'object' || Array.isArray(value)) fail('编辑项必须是对象');
+    const update = value as Record<string, unknown>;
+    if (Object.keys(update).some(key => !['criterion', 'verdict', 'explanation', 'revisionAdvice', 'resolves', 'awaitingSources', 'insufficiencyReason', 'addEvidence', 'removeEvidence'].includes(key))) fail('存在未知编辑字段');
+    const criterion = update.criterion;
+    if (typeof criterion !== 'string' || updates.has(criterion)) fail('检查项缺失或重复');
+    const before = original.checks.find(check => check.criterion === criterion);
+    if (!before) fail('不能新增未知检查项');
+    const { addEvidence, removeEvidence, ...replacement } = update;
+    if (!Array.isArray(addEvidence) || !Array.isArray(removeEvidence)) fail('必须明确给出新增和删除引用数组');
+    const existing = new Set(before!.evidence.map(evidence => evidence.fragmentId));
+    const removed = new Set<string>();
+    for (const id of removeEvidence as unknown[]) {
+      if (typeof id !== 'string' || !existing.has(id) || removed.has(id)) fail('删除项必须是原回答已有且不重复的片段');
+      removed.add(id as string);
+    }
+    const added = new Set<string>();
+    const additions = (addEvidence as unknown[]).map(evidence => {
+      if (!evidence || typeof evidence !== 'object' || Array.isArray(evidence) || Object.keys(evidence).length !== 1 || !('fragmentId' in evidence) || typeof evidence.fragmentId !== 'string') fail('新增引用只能包含fragmentId');
+      const id = (evidence as { fragmentId: string }).fragmentId;
+      if (existing.has(id) || added.has(id)) fail('不能重复新增、或同时删除又新增同一片段');
+      added.add(id);return { fragmentId: id };
+    });
+    if (Object.hasOwn(replacement, 'evidence')) fail('使用新增/删除操作，不直接替换引用数组');
+    updates.set(criterion as string, { ...replacement, evidence: [...before!.evidence.filter(evidence => !removed.has(evidence.fragmentId)), ...additions] });
+  }
+  return anchoredDesignReviewResultSchema.parse({ requestId: original.requestId, summary: patch.summary,
+    checks: original.checks.map(check => updates.get(check.criterion) ?? check) });
+}
+
 /** Partition without rewriting, omitting or duplicating source text. Prefer line boundaries. */
 function fragments(text: string, size = 1200): string[] {
   const parts: string[] = [];
