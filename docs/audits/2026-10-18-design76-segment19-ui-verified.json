@@ -1,0 +1,44 @@
+{
+  "kind": "design76_segment19_ui_verification",
+  "observedAt": "2026-10-18T13:58:24.842Z",
+  "startupPath": "data/audit-runtimes/design76-api-start-53165.json",
+  "startupSha256": "266bd302b4d82c0364264a72de6d235ff4fee0778b25691be9e4b8f52b17dee7",
+  "apiPid": 53165,
+  "health": {
+    "status": 200,
+    "body": {
+      "ok": true
+    },
+    "corsOrigin": "http://127.0.0.1:5180"
+  },
+  "url": "http://127.0.0.1:5180/#/works/work_8b6c9133e13d404083ca33acc63f4f61/design",
+  "browser": "iab",
+  "tabId": "24",
+  "observedBy": "cua_repl accessibility snapshots and native clicks",
+  "progress": {
+    "world": "25/55",
+    "power": "21/73",
+    "characters": "21/47",
+    "story": "19/75"
+  },
+  "refreshErrorAbsent": true,
+  "listShowsOpeningAndPacingPassed": true,
+  "detail": {
+    "stageId": "followup-batch-1/pacing",
+    "verdictVisible": "pass",
+    "riskVisible": "训练与核验段落虽存在静态节奏风险",
+    "localScopeWarningVisible": true,
+    "resolvesVisible": "batch-1/pacing",
+    "evidenceCount": 54,
+    "evidenceExpanded": true,
+    "originalResponseCount": 1
+  },
+  "verificationPath": "docs/audits/2026-10-18-design76-notes18-review-segment-19.json",
+  "verificationSha256": "4c9f12161baebc35fa659b75209b61567b8406d0b283f7417d8ac6b71d1af897",
+  "scopePath": "docs/audits/2026-10-18-design76-segment19-source-scope.json",
+  "scopeSha256": "ee78d18d1bdaf5242f3a621f8667101da3bf67bdd0a6feec7bff112c9e7f6d04",
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "UI readback of saved local judgments and evidence. Does not approve global design, validate prose pacing, or close existing blockers."
+}

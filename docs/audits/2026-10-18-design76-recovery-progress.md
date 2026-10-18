@@ -276,3 +276,17 @@ clarified控制目录的独立前缀回放已成功退出（见`2026-10-18-desig
 独立API恢复为PID51360，入口`start-design76-notes18-api.mjs --execute`，日志`/tmp/novel-design76-notes18-api.log`，保持冻结运行时和dist-v5页面。健康检查与5180 CORS已通过，页面刷新显示23/55、19/73、19/47、17/75且清除切换期间的读取错误。下一次正式续审前须先关闭该独立API；本轮未启动第19段。预先准备过的notes17-verified API入口未执行，不能代替追加说明后的notes18入口。
 
 界面核验完成：打开故事`followup-batch-1/causality`，展开“独立核对记录（1条，不改变原判定）”，实际看到原pass、原误述、勘误全文、六段逐字来源及原`batch-1/causality`解决声明同时保留。证明为`2026-10-18-design76-segment18-ui-verified.json`。浏览器tab24已保留；没有通过页面触发新模型调用。
+
+## 第19段完成：成本、认知、开篇和节奏补读
+
+从已含19条独立说明的notes18基线续跑同一四任务，当前连接和gpt-5.6-luna、无备用连接保持不变。本段8步、9次真实调用，累计115次，终态`stopped_after_stage_limit`，正式工作进程51670已退出。进度为世界25/55、力量21/73、人物21/47、故事19/75。分母是评审及补读步骤，仍非小说章数。
+
+`2026-10-18-design76-notes18-review-segment-19.json`独立回放已接受的请求与回答，确认95条旧任务、92份旧报告、19条独立说明及受保护设定、计划、正文完整。唯一修正是成本首答缺少18/20/21章必引来源，109补证后接收；首答与修正答均保留。世界两步继续材料不足，力量成本/反制、人物认知/关系、故事开篇/节奏各为局部pass；范围和独立核对见开放问题笔记与`2026-10-18-design76-segment19-source-scope.json`。
+
+未新增正式说明，因此无需重建评审基线：下一轮继续`data/audit-runtimes/design76-notes18-review`及`run-design76-notes18-review.mjs`，使用第19段最新结果的散列；不要拿第18段旧散列续跑。世界40、圣经72、提案76、批准计划10、41项阻塞、50章细纲/100章宏观和离线v4候选均保持原状，未扩章或生成正文。
+
+第19段续跑检查点SHA：`076ff1429ae7536a7108d30d791da0088da2f948888ceea434507c5e714dac88`。下一步依次为世界cross-5-6、力量followup-batch-4/tiers、人物followup-cross-3-5/knowledge、故事followup-batch-1/growth。本轮尚未启动第20段。
+
+终态核验后已用`start-design76-notes18-verified-api.mjs --execute`恢复独立API，PID53165，日志`/tmp/novel-design76-notes18-verified-api.log`。新入口要求notes18当前终态已有独立验证，且验证保留19条说明；不再用只绑定第18段追加说明证明的旧启动入口来代表最新终态。健康检查、5180 CORS和页面最新25/55、21/73、21/47、19/75进度已实测通过。正式续审前须先关闭PID53165，避免另开仓储服务。
+
+界面已实测打开故事`followup-batch-1/pacing`：原pass、完整解释、“训练与核验段落仍有静态节奏风险”、局部范围警示及`batch-1/pacing`解决声明均可见，并实际展开54条证据；列表同时显示opening与pacing已保存。证明见`2026-10-18-design76-segment19-ui-verified.json`，tab24已保留。未通过界面触发任何新模型调用。
