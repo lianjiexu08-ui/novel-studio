@@ -1,0 +1,207 @@
+{
+  "verified": true,
+  "checkpoint": "data/audit-runtimes/design77-navigation-continuation/terminal-segment-3.json",
+  "areas": [
+    {
+      "area": "world",
+      "completed": 8,
+      "total": 55,
+      "newResults": [
+        {
+          "stageId": "batch-7",
+          "summary": "本批已提供的世界地点规则、跨域航行与三卷宏观安排能够相互支撑。计划将跨海移动限定为实体车船、受监管港口、验籍/担保和实际防护，不以界门或境界名跳过行程；地域制度、资源与责任链也对救援、调查和成长选择形成实际约束。本结论仅覆盖本批可检验的提案安排。",
+          "checks": [
+            {
+              "criterion": "geography",
+              "verdict": "pass",
+              "resolves": [],
+              "awaitingSources": []
+            },
+            {
+              "criterion": "history",
+              "verdict": "pass",
+              "resolves": [],
+              "awaitingSources": []
+            },
+            {
+              "criterion": "capacity",
+              "verdict": "pass",
+              "resolves": [],
+              "awaitingSources": []
+            }
+          ]
+        },
+        {
+          "stageId": "cross-1-2",
+          "summary": "本批可检验的三大陆地理、历史因果与分卷承载均可成立。此前关于苍冥返青玄目的港与航路的待核点，已由商路和沧溟古港原档明确解决。",
+          "checks": [
+            {
+              "criterion": "geography",
+              "verdict": "pass",
+              "resolves": [
+                "batch-4/geography"
+              ],
+              "awaitingSources": []
+            },
+            {
+              "criterion": "history",
+              "verdict": "pass",
+              "resolves": [],
+              "awaitingSources": []
+            },
+            {
+              "criterion": "capacity",
+              "verdict": "pass",
+              "resolves": [],
+              "awaitingSources": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "area": "power",
+      "completed": 11,
+      "total": 37,
+      "newResults": [
+        {
+          "stageId": "cross-1-3",
+          "summary": "本跨批次已补足并验证第10—11、20—21章所涉低阶器物、供能与反制规则；但第83章玄府晋阶及其前序训练的宏观来源尚未读入，境界资格与寿储成本不能据摘要闭合。",
+          "checks": [
+            {
+              "criterion": "tiers",
+              "verdict": "insufficient",
+              "resolves": [],
+              "awaitingSources": [
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement"
+              ]
+            },
+            {
+              "criterion": "costs",
+              "verdict": "insufficient",
+              "resolves": [],
+              "awaitingSources": [
+                "plan/milestones/ms_v3_return",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement"
+              ]
+            },
+            {
+              "criterion": "counters",
+              "verdict": "pass",
+              "resolves": [
+                "batch-3/counters"
+              ],
+              "awaitingSources": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "area": "characters",
+      "completed": 7,
+      "total": 29,
+      "newResults": [
+        {
+          "stageId": "cross-1-3",
+          "summary": "本批已补齐并可交叉核对第15—34章的关键行动、四份相关关系原档及秘密阶段。所检验的人物选择、关系变化与知情边界在提案层面可成立；结论仅覆盖本批安排，不代表全书人物领域或正文已验收。",
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass",
+              "resolves": [],
+              "awaitingSources": []
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "pass",
+              "resolves": [
+                "batch-3/relationships"
+              ],
+              "awaitingSources": []
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "pass",
+              "resolves": [],
+              "awaitingSources": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "area": "story",
+      "completed": 7,
+      "total": 29,
+      "newResults": [
+        {
+          "stageId": "cross-1-3",
+          "summary": "本批第1—19章局部设计成立。前置报告关于第16—18章功法、法器与灵石规则未读造成的三项材料不足，已由本批原文补核解决；因果、时序、成长及其余局部标准均未见硬冲突。结论不扩展至第20—100章、全领域或正文验收，既有工作流阻塞仍保留。",
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "pass",
+              "resolves": [
+                "batch-3/causality"
+              ],
+              "awaitingSources": []
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "pass",
+              "resolves": [
+                "batch-3/timeline"
+              ],
+              "awaitingSources": []
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "pass",
+              "resolves": [],
+              "awaitingSources": []
+            },
+            {
+              "criterion": "opening",
+              "verdict": "pass",
+              "resolves": [],
+              "awaitingSources": []
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "pass",
+              "resolves": [],
+              "awaitingSources": []
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass",
+              "resolves": [],
+              "awaitingSources": []
+            },
+            {
+              "criterion": "growth",
+              "verdict": "pass",
+              "resolves": [
+                "batch-3/growth"
+              ],
+              "awaitingSources": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "formalAcceptance": false,
+  "proseGenerated": false,
+  "manualConcern": {
+    "runArea": "story",
+    "stageId": "cross-1-3",
+    "criterion": "payoff",
+    "issue": "返还已耗寿元只能作为最终落空的愿望，不得解释成后续兑现能力。",
+    "sourceId": "story/promises/prom_03",
+    "resolution": "Append a source-backed clarification without changing the original model verdict."
+  }
+}

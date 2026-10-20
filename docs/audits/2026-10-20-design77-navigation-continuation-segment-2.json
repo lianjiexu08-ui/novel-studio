@@ -1,0 +1,1740 @@
+{
+  "verified": true,
+  "status": "stopped_after_stage_limit",
+  "segment": 2,
+  "checkpointSha256": "0976bc5fa1c25d56b22e3934ae1b95af539ded263cf7d8b6e8c58610a3e60c2d",
+  "checkpointPath": "data/audit-runtimes/design77-navigation-continuation/terminal-segment-2.json",
+  "baselineSha256": "db3bac104b220eb9c63cb9008836aac515224b3057720d38b72d37a5d5526807",
+  "sourceCommit": "5ac248309bd8c2d8be66595b896d51aae8af3018",
+  "runtimeBindingSha256": "a37cb7ef6923f50224c63cda857f6731fa08c9753036472632e5b4a0436ae4ae",
+  "runnerSha256": "f4da379358c6e87cf1193d18351794cb2f9d727fd2b938a7a01917bb441d51d3",
+  "runnerBoundBeforeExecution": false,
+  "promptChange": "Continuation calls retain sourceNavigationGuidance but omit the older additional suffix; exact saved requests replayed.",
+  "originalCalls": 35,
+  "newCallAttempts": 6,
+  "newResponses": 5,
+  "newFailures": 1,
+  "unsettledCalls": 0,
+  "replays": [
+    {
+      "area": "world",
+      "verification": "verified",
+      "completedStages": 8,
+      "totalStages": 55,
+      "runSha256": "c71d5fed94764e6f8579e7c27ccb6c7a385591fd75c1ec0264c57599179b8831",
+      "formalAcceptance": false,
+      "limitation": "Replays saved responses, repairs, citations and conclusions against independently supplied materials. Pending work, semantic quality, blocker disposition and prose acceptance remain separate.",
+      "responseReplay": "verified",
+      "responsesReplayed": 10,
+      "records": [
+        {
+          "stageId": "batch-1",
+          "kind": "batch",
+          "stageSha256": "7d12c3798ab3b58d52397c6b92cc2b83092f40bbe4d331cb8905dfdf88a5970a",
+          "inputSha256": "d55b3695a9ddaac53b921ffef54eea0e8098cb04dff7120e824a2d5761ce4134",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "geography",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "history",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/1",
+                "plan/chapters/2",
+                "plan/chapters/3",
+                "plan/chapters/4",
+                "plan/chapters/5",
+                "plan/chapters/6",
+                "plan/chapters/7",
+                "plan/chapters/8",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/13",
+                "plan/chapters/14",
+                "plan/chapters/15",
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "capacity",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "stageId": "batch-2",
+          "kind": "batch",
+          "stageSha256": "e6aadd11bfdd329972dfe11cc06354826e488f8cf957b653c62e0aa2513f6672",
+          "inputSha256": "8e2aef865956c985df57f8ca98e9155afba35835a132030652159c6c0574cd30",
+          "responsesReplayed": 2,
+          "checks": [
+            {
+              "criterion": "geography",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "history",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/overview",
+                "world/historicalEvents/event_14",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "capacity",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "stageId": "batch-3",
+          "kind": "batch",
+          "stageSha256": "46aca6058ece5e3795a874f01b2a813cefb751ebaa2d3627255e1922831695fc",
+          "inputSha256": "c4e0e2a1ddd0942ec5c8e9aeb7171dbaf2109b049f858c44fe009f0701281bc3",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "geography",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "history",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/factions/fac_01",
+                "world/factions/fac_02",
+                "world/factions/fac_03",
+                "world/factions/fac_05",
+                "world/factions/fac_08",
+                "world/factions/fac_12",
+                "world/historicalEvents/event_08",
+                "world/historicalEvents/event_09",
+                "world/historicalEvents/event_13",
+                "world/historicalEvents/event_14",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "capacity",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "stageId": "batch-4",
+          "kind": "batch",
+          "stageSha256": "8d5f8974d5e63823fe393e0ffd187d8d0129949a4e3d8745d024722037c81f01",
+          "inputSha256": "f568bd67f72a3dc7cda695e9bd8080dc7154fac4a94244d5dd121687380b6605",
+          "responsesReplayed": 2,
+          "checks": [
+            {
+              "criterion": "geography",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/locations/loc_21",
+                "world/locations/loc_27"
+              ]
+            },
+            {
+              "criterion": "history",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "capacity",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "stageId": "batch-5",
+          "kind": "batch",
+          "stageSha256": "7d1fe7a8f8d29d78756fffaa18da3b96155863490371284aee5d364edcc446d6",
+          "inputSha256": "1dd2d24732391ab8f47cc2777ae63fedda15d13acc7cfb0167cd2c693ec55069",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "geography",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "history",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "capacity",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "stageId": "batch-6",
+          "kind": "batch",
+          "stageSha256": "69289af964f57c6cbd39e5b4201900772ef20123bc99a3f0362b1ce8aa1d0faa",
+          "inputSha256": "0b01c7ca0d0dfc767cd3ec395b823b62416550cec6d027c8984bb5c671bdd4fb",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "geography",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "history",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "capacity",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "stageId": "batch-7",
+          "kind": "batch",
+          "stageSha256": "46a086ff6ecf42c5ed5daa4ca854a634366cceb95370532a1bb1b3e86cd75e6b",
+          "inputSha256": "dcc643b30bf6320904bb41a9d527261af9d91624cb17033126ac3797a16788bb",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "geography",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "history",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "capacity",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "stageId": "cross-1-2",
+          "kind": "cross",
+          "stageSha256": "393d5fbf59695dee67b201c363124fde84addab5c2db28814bce723935d2ad74",
+          "inputSha256": "6d254e927b58a74c0dcabeac0e73a1cecec06f81a758f12f495426d11532bf3e",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "geography",
+              "verdict": "pass",
+              "resolves": [
+                "batch-4/geography"
+              ]
+            },
+            {
+              "criterion": "history",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "capacity",
+              "verdict": "pass"
+            }
+          ]
+        }
+      ],
+      "failures": [
+        {
+          "stageId": "batch-6",
+          "failureSha256": "7fd41327733b9e033248c77e6d8d6c5ee3079937edbc3c06c5e0e886174d9894"
+        }
+      ],
+      "modelCalls": 0,
+      "reportVerification": "not_completed"
+    },
+    {
+      "area": "power",
+      "verification": "verified",
+      "completedStages": 11,
+      "totalStages": 37,
+      "runSha256": "4ec47c003078033ad2261864926eee6515e33d107f6c42e01ba5c09b9fcc6ddd",
+      "formalAcceptance": false,
+      "limitation": "Replays saved responses, repairs, citations and conclusions against independently supplied materials. Pending work, semantic quality, blocker disposition and prose acceptance remain separate.",
+      "responseReplay": "verified",
+      "responsesReplayed": 13,
+      "records": [
+        {
+          "stageId": "batch-1",
+          "kind": "batch",
+          "stageSha256": "1be15ca6cd963b78448a5072b9dbfd35f8ff11aa3d19fac486e3f7349c7b3259",
+          "inputSha256": "1f85cbe5cd8795765802b9d2e429004a7d9cd396ae0706c1811a4e5ba444f17b",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "tiers",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/5",
+                "plan/chapters/7",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/16",
+                "plan/chapters/18",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/23",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/29",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/40",
+                "plan/chapters/44",
+                "plan/chapters/48",
+                "plan/milestones/ms_growth_v1_training",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement"
+              ]
+            },
+            {
+              "criterion": "costs",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/5",
+                "plan/chapters/7",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/16",
+                "plan/chapters/18",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/23",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/29",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/40",
+                "plan/chapters/44",
+                "plan/chapters/48",
+                "plan/milestones/ms_growth_v1_training",
+                "plan/milestones/ms_growth_v1_recovery",
+                "plan/milestones/ms_growth_v1_aftermath",
+                "plan/milestones/ms_growth_v1_crossing",
+                "plan/milestones/ms_v2_loss",
+                "plan/milestones/ms_v2_voyage",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement"
+              ]
+            },
+            {
+              "criterion": "counters",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/5",
+                "plan/chapters/7",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/16",
+                "plan/chapters/18",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/40",
+                "plan/chapters/44",
+                "plan/chapters/48",
+                "plan/milestones/ms_vol1_climax",
+                "plan/milestones/ms_v2_barge",
+                "plan/milestones/ms_v2_boundary",
+                "plan/milestones/ms_v3_convoy",
+                "plan/milestones/ms_v3_advancement"
+              ]
+            }
+          ]
+        },
+        {
+          "stageId": "batch-2",
+          "kind": "batch",
+          "stageSha256": "615741a5621c7c0acda3a3bba913261339f916c4019b61a2e380b5f7cd8baf75",
+          "inputSha256": "4407bc54f4b60c30afa35a6ca5c4c476454ca1e612df8b734f3397328b169d05",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "tiers",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/techniques/tech_19",
+                "plan/chapters/18",
+                "plan/chapters/25"
+              ]
+            },
+            {
+              "criterion": "costs",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/techniques/tech_19",
+                "plan/chapters/18",
+                "plan/chapters/25"
+              ]
+            },
+            {
+              "criterion": "counters",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/techniques/tech_15",
+                "world/techniques/tech_16",
+                "plan/chapters/25"
+              ]
+            }
+          ]
+        },
+        {
+          "stageId": "batch-3",
+          "kind": "batch",
+          "stageSha256": "01860346d47da75ec69c8c9944db3f68d498c2734868a34481ec1a4d45a8486b",
+          "inputSha256": "b26e709357bde7dcdf314795469a6e588ec62f173f97dcc261c92988ee8cf353",
+          "responsesReplayed": 2,
+          "checks": [
+            {
+              "criterion": "tiers",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/artifacts/art_03",
+                "world/techniques/tech_19",
+                "world/resources/res_01"
+              ]
+            },
+            {
+              "criterion": "costs",
+              "verdict": "revise"
+            },
+            {
+              "criterion": "counters",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/artifacts/art_03",
+                "world/artifacts/art_20",
+                "world/resources/res_01"
+              ]
+            }
+          ]
+        },
+        {
+          "stageId": "batch-4",
+          "kind": "batch",
+          "stageSha256": "c890c7cc43b636c1df9ddba399350eef7fb773d5958d08f1a395b37af01f9893",
+          "inputSha256": "8246243b1927e7144855b7e84f71a0c58e3f86e0407991d05b7b40a6a2fe9c22",
+          "responsesReplayed": 2,
+          "checks": [
+            {
+              "criterion": "tiers",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/techniques/tech_19",
+                "world/resources/res_01",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement"
+              ]
+            },
+            {
+              "criterion": "costs",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/techniques/tech_15",
+                "world/techniques/tech_16",
+                "world/resources/res_17",
+                "world/resources/res_18",
+                "world/resources/res_19"
+              ]
+            },
+            {
+              "criterion": "counters",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/techniques/tech_11",
+                "world/techniques/tech_13",
+                "world/techniques/tech_15",
+                "world/techniques/tech_16"
+              ]
+            }
+          ]
+        },
+        {
+          "stageId": "reconsider-review_note_dc7b780b-a508-4229-a4fd-6b97931c52b1",
+          "kind": "cross",
+          "stageSha256": "f32df0e2ec3a5beab06caadcbd2e0f76153f53887ae1d51cd36beee024bb67cb",
+          "inputSha256": "e5928540c563d0675dd70ecfc70abc27abe06a77fd90bae027534dc0f2c3d5fe",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "costs",
+              "verdict": "pass",
+              "resolves": [
+                "batch-3/costs"
+              ]
+            }
+          ]
+        },
+        {
+          "stageId": "batch-5",
+          "kind": "batch",
+          "stageSha256": "309fbc7eca684613665802573a9f85269f23eb2d4d387530e6e0c10a92ff0bbf",
+          "inputSha256": "f244ce225d4c9ddb08f0a68136c7499725e3ee59a2efbe04c76acfc43808166d",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "tiers",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/techniques/tech_11",
+                "world/techniques/tech_13",
+                "world/techniques/tech_15",
+                "world/techniques/tech_16",
+                "world/techniques/tech_19",
+                "world/artifacts/art_03",
+                "plan/chapters/18"
+              ]
+            },
+            {
+              "criterion": "costs",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/artifacts/art_03",
+                "plan/chapters/18",
+                "world/techniques/tech_11",
+                "world/techniques/tech_13",
+                "world/techniques/tech_15",
+                "world/techniques/tech_16",
+                "world/techniques/tech_19",
+                "world/resources/res_17",
+                "world/resources/res_18",
+                "world/resources/res_19"
+              ]
+            },
+            {
+              "criterion": "counters",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/techniques/tech_11",
+                "world/techniques/tech_13",
+                "world/techniques/tech_15",
+                "world/techniques/tech_16",
+                "world/techniques/tech_19",
+                "world/artifacts/art_03",
+                "plan/chapters/18"
+              ]
+            }
+          ]
+        },
+        {
+          "stageId": "cross-1-2",
+          "kind": "cross",
+          "stageSha256": "9004ac50185a98a8985336234e00d793b999b134b20e058a89e77c9ddcb3d6f3",
+          "inputSha256": "4e6e320d5a501704ecf6059b01673ce8aa13e7519a9f88d62ba9cae8007f6e1b",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "tiers",
+              "verdict": "insufficient"
+            },
+            {
+              "criterion": "costs",
+              "verdict": "insufficient"
+            },
+            {
+              "criterion": "counters",
+              "verdict": "insufficient"
+            }
+          ]
+        },
+        {
+          "stageId": "reconsider-review_note_b29b56cb-3b43-4810-aeba-62284d6cf6b4",
+          "kind": "cross",
+          "stageSha256": "e558a1f01334db5e29f8c962a0b48b8ea21f7924dcbcdcca9e41bb30c4177473",
+          "inputSha256": "4baa8b25237b304777e19adf17998333456b8a062d573b03ed02e82db797b740",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "tiers",
+              "verdict": "pass",
+              "resolves": [
+                "cross-1-2/tiers"
+              ]
+            }
+          ]
+        },
+        {
+          "stageId": "reconsider-review_note_c8211678-e082-4bef-b2a9-638b89a87d49",
+          "kind": "cross",
+          "stageSha256": "4f683c09c1c2a84aa98a3374198d14f851d1e751ab91f651261b4c860fde64f8",
+          "inputSha256": "98ae4dae27cec6a8f0f5c6469ea71a7b8f74974759b92ff1f98c5f9873565643",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "costs",
+              "verdict": "pass",
+              "resolves": [
+                "cross-1-2/costs"
+              ]
+            }
+          ]
+        },
+        {
+          "stageId": "reconsider-review_note_03b79638-1583-4c6e-bc58-92a3e3745646",
+          "kind": "cross",
+          "stageSha256": "011cea3ff9179c969bf93cf2ac0962493df579226d51fe0ed79a261b1a7163bd",
+          "inputSha256": "17b8afb1a3b07374f7faf581717222a2f5528c66a4c380b9a565b8d7fbeff8d4",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "counters",
+              "verdict": "pass",
+              "resolves": [
+                "cross-1-2/counters"
+              ]
+            }
+          ]
+        },
+        {
+          "stageId": "cross-1-3",
+          "kind": "cross",
+          "stageSha256": "dec7d8f44abff389bb30913a8b241cfd5986f39804195e22fc6b254c8c55c81c",
+          "inputSha256": "fa4024fe461cf10e75f81fe910ca1ee85ec1bbdeacf2fa0f87b131827821b8ef",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "tiers",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement"
+              ]
+            },
+            {
+              "criterion": "costs",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/milestones/ms_v3_return",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement"
+              ]
+            },
+            {
+              "criterion": "counters",
+              "verdict": "pass",
+              "resolves": [
+                "batch-3/counters"
+              ]
+            }
+          ]
+        }
+      ],
+      "failures": [],
+      "modelCalls": 0,
+      "reportVerification": "not_completed"
+    },
+    {
+      "area": "characters",
+      "verification": "verified",
+      "completedStages": 7,
+      "totalStages": 29,
+      "runSha256": "b009f4e808a315350b7259231229d038920f8beae19814874886d46fa59e906e",
+      "formalAcceptance": false,
+      "limitation": "Replays saved responses, repairs, citations and conclusions against independently supplied materials. Pending work, semantic quality, blocker disposition and prose acceptance remain separate.",
+      "responseReplay": "verified",
+      "responsesReplayed": 8,
+      "records": [
+        {
+          "stageId": "batch-1",
+          "kind": "batch",
+          "stageSha256": "449966d295f06b57b0b5c25e320cfb45d42fb1f3fd311751f2b78d0329a13b00",
+          "inputSha256": "a28dd460ccaee85776a75d776460772c70af3508630bc707279ee56157266856",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "stageId": "batch-2",
+          "kind": "batch",
+          "stageSha256": "688b1e7c9abe7d3d309d7c9b9870ddf32e8f71b4749bd052d03deace08a64853",
+          "inputSha256": "bf02f9cdf474430a3b3612c4d3bb79dfda1665fa946cb773e7d9154b77e81664",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "story/relationships/rel_01"
+              ]
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "story/secrets/sec_01"
+              ]
+            }
+          ]
+        },
+        {
+          "stageId": "batch-3",
+          "kind": "batch",
+          "stageSha256": "541639250a6c7b717d8fc9a30d6022b371efdda5861c52e13d188b3b6c9f6686",
+          "inputSha256": "944166e82b77e03293ccdbd812a764f506f11bfd06e4416c0b363ce7306b93cf",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "story/relationships/rel_01",
+                "story/relationships/rel_03",
+                "story/relationships/rel_09",
+                "story/relationships/rel_10"
+              ]
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "story/secrets/sec_01",
+                "story/secrets/sec_02"
+              ]
+            }
+          ]
+        },
+        {
+          "stageId": "batch-4",
+          "kind": "batch",
+          "stageSha256": "c68f78477064932cedaa27ab12c00044c03bd2dba0f0952b934c306a9a9c82ba",
+          "inputSha256": "ff8c2a7cb07bc8f8b4854bf538f37ade259ed3700afa68000bb9907d31d24be3",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "stageId": "batch-5",
+          "kind": "batch",
+          "stageSha256": "4203208e65453939acfaec5539c8c1b4ec3da40e598caea1e9c002c783018022",
+          "inputSha256": "4a591127f0de98134abfa1c46bbe6c4df5bcb8810832b49b9ba83ec033c0dcf3",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "story/relationships/rel_01",
+                "story/relationships/rel_07",
+                "story/relationships/rel_12",
+                "story/relationships/rel_13",
+                "story/relationships/rel_14"
+              ]
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "stageId": "cross-1-2",
+          "kind": "cross",
+          "stageSha256": "5a6ed3f514ac98e6ab9dfdda1de932d83271329198ba4ac193565d45bdc8f866",
+          "inputSha256": "11ac651cd32ddc491143fa4daa32436957b5b10f6c24bf7c36ba6d61442a2cf3",
+          "responsesReplayed": 2,
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "pass",
+              "resolves": [
+                "batch-2/relationships"
+              ]
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "pass",
+              "resolves": [
+                "batch-2/knowledge"
+              ]
+            }
+          ]
+        },
+        {
+          "stageId": "cross-1-3",
+          "kind": "cross",
+          "stageSha256": "b39fe2263aae4ff8d045c0d7dd8f9450de749ca6a702c51dad0216311322c84a",
+          "inputSha256": "a454b843ffaa2c81adf95fee182099c91e80dfa00e9127487bd56d1e755b016a",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "pass",
+              "resolves": [
+                "batch-3/relationships"
+              ]
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "pass"
+            }
+          ]
+        }
+      ],
+      "failures": [],
+      "modelCalls": 0,
+      "reportVerification": "not_completed"
+    },
+    {
+      "area": "story",
+      "verification": "verified",
+      "completedStages": 6,
+      "totalStages": 29,
+      "runSha256": "8d583c6f1d7a6ab9b5992facbbd2ca8699048033fa18356db25aab9e49eb355a",
+      "formalAcceptance": false,
+      "limitation": "Replays saved responses, repairs, citations and conclusions against independently supplied materials. Pending work, semantic quality, blocker disposition and prose acceptance remain separate.",
+      "responseReplay": "verified",
+      "responsesReplayed": 7,
+      "records": [
+        {
+          "stageId": "batch-1",
+          "kind": "batch",
+          "stageSha256": "45251ef4f275e3a2cd78a64e2e60c5cd0cfcbd7b9c8ac96caa2fa060b6893131",
+          "inputSha256": "c719424f6496567354eaf77c2dab67ccbdd169acff4fe95be2a8c625d6978a62",
+          "responsesReplayed": 2,
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/1",
+                "plan/chapters/2",
+                "plan/chapters/3",
+                "plan/chapters/4",
+                "plan/chapters/5",
+                "plan/chapters/6",
+                "plan/chapters/7",
+                "plan/chapters/8",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/13",
+                "plan/chapters/14",
+                "plan/chapters/15",
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/1",
+                "plan/chapters/2",
+                "plan/chapters/3",
+                "plan/chapters/4",
+                "plan/chapters/5",
+                "plan/chapters/6",
+                "plan/chapters/7",
+                "plan/chapters/8",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/13",
+                "plan/chapters/14",
+                "plan/chapters/15",
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/1",
+                "plan/chapters/2",
+                "plan/chapters/3",
+                "plan/chapters/4",
+                "plan/chapters/5",
+                "plan/chapters/6",
+                "plan/chapters/7",
+                "plan/chapters/8",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/13",
+                "plan/chapters/14",
+                "plan/chapters/15",
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50",
+                "story/secrets/sec_01",
+                "story/secrets/sec_02",
+                "story/secrets/sec_03",
+                "story/secrets/sec_04",
+                "story/promises/prom_01",
+                "story/promises/prom_02",
+                "story/promises/prom_03",
+                "story/promises/prom_04",
+                "story/openThreads/th_01",
+                "story/openThreads/th_02",
+                "story/openThreads/th_03",
+                "story/openThreads/th_04",
+                "story/openThreads/th_05"
+              ]
+            },
+            {
+              "criterion": "opening",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/1",
+                "plan/chapters/2",
+                "plan/chapters/3",
+                "plan/chapters/4",
+                "plan/chapters/5",
+                "plan/chapters/6",
+                "plan/chapters/7",
+                "plan/chapters/8",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/13",
+                "plan/chapters/14",
+                "plan/chapters/15",
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/1",
+                "plan/chapters/2",
+                "plan/chapters/3",
+                "plan/chapters/4",
+                "plan/chapters/5",
+                "plan/chapters/6",
+                "plan/chapters/7",
+                "plan/chapters/8",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/13",
+                "plan/chapters/14",
+                "plan/chapters/15",
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "growth",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/1",
+                "plan/chapters/2",
+                "plan/chapters/3",
+                "plan/chapters/4",
+                "plan/chapters/5",
+                "plan/chapters/6",
+                "plan/chapters/7",
+                "plan/chapters/8",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/13",
+                "plan/chapters/14",
+                "plan/chapters/15",
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            }
+          ]
+        },
+        {
+          "stageId": "batch-2",
+          "kind": "batch",
+          "stageSha256": "7b9faafa6182ef529cce2205f818b66f7c081607b4d76a284d24a2ed9910406c",
+          "inputSha256": "17b1f6a2525438a32c01a00a0040391fa96b9c600495345c746b51d6b43b0956",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "opening",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "growth",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "stageId": "batch-3",
+          "kind": "batch",
+          "stageSha256": "93b55104bed76ea00cea2699ffe72edc7d6bc484590b106beff3c3b9e1ccf12c",
+          "inputSha256": "06a2f5b8b980536715622e5d0be0fed8f36a32f37d9ba44e9711f9dea3dadad3",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/techniques/tech_02",
+                "world/techniques/tech_04",
+                "world/artifacts/art_03",
+                "world/resources/res_01"
+              ]
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/techniques/tech_02",
+                "world/techniques/tech_04",
+                "world/artifacts/art_03",
+                "world/resources/res_01"
+              ]
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "opening",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "growth",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/techniques/tech_02",
+                "world/techniques/tech_04",
+                "world/artifacts/art_03",
+                "world/resources/res_01"
+              ]
+            }
+          ]
+        },
+        {
+          "stageId": "batch-4",
+          "kind": "batch",
+          "stageSha256": "2ec73f25f1381910d99475909c70fe2dd7287505a23e2a7d5b01a82a76a2dd07",
+          "inputSha256": "fb0af9bfddbb86abc0ce89155352470daabdbfcc0ec3d49a8c94bfc5cce26d56",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/18",
+                "world/techniques/tech_04",
+                "world/techniques/tech_05",
+                "world/techniques/tech_06",
+                "story/characters/char_10"
+              ]
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "opening",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "growth",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "stageId": "batch-5",
+          "kind": "batch",
+          "stageSha256": "dca182cd89e09304c65d45aa257ad78a0f72b416b95819f068d4c4142ab94ffb",
+          "inputSha256": "73b6c79f1f40bb9769aa9f859c78e91f93e9447879040d81269ecaf72359ca86",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "opening",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "growth",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "stageId": "cross-1-2",
+          "kind": "cross",
+          "stageSha256": "ff88ec293da0498dfb7d747b7d9a839ea2622310445bfd7488cd6fc33569f7df",
+          "inputSha256": "84e25892cf08a0c9b177101251815d5ca1d4f922997dcbaf4ac156f8a89a7382",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/50",
+                "plan/milestones/ms_v2_fire",
+                "plan/milestones/ms_v2_voyage",
+                "plan/milestones/ms_v2_boundary",
+                "plan/milestones/ms_v3_return",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement",
+                "plan/milestones/ms_v3_convoy",
+                "plan/milestones/ms_v3_payoff"
+              ]
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/milestones/ms_v2_fire",
+                "plan/milestones/ms_v2_voyage",
+                "plan/milestones/ms_v2_boundary",
+                "plan/milestones/ms_v3_return",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement",
+                "plan/milestones/ms_v3_convoy",
+                "plan/milestones/ms_v3_payoff"
+              ]
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/milestones/ms_v2_fire",
+                "plan/milestones/ms_v2_boundary",
+                "plan/milestones/ms_v3_return",
+                "plan/milestones/ms_v3_convoy",
+                "plan/milestones/ms_v3_payoff"
+              ]
+            },
+            {
+              "criterion": "opening",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "growth",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/milestones/ms_v3_return",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement"
+              ]
+            }
+          ]
+        }
+      ],
+      "failures": [
+        {
+          "stageId": "cross-1-3",
+          "failureSha256": "5093bce9956cb687f55cdcce94b180f713769c50e44822993387bb1c614c93dd"
+        }
+      ],
+      "modelCalls": 0,
+      "reportVerification": "not_completed"
+    }
+  ],
+  "journal": [
+    {
+      "key": "continuation/1",
+      "step": {
+        "area": "world",
+        "runId": "design_run_46d4115c-ff06-405b-b5a2-53ed194828a1",
+        "stageId": "batch-7",
+        "startedAt": "2026-10-20T08:17:50.859Z"
+      },
+      "startSha256": "b0811557fcdeb6a73caca68435a32fc9058263bbfcf88e54131683b8f1e08f67",
+      "outcomeSha256": "c7b8a4d796c2523d7969a1d365acad7400a147a8ba78996658364ace9a36d9d5",
+      "hasResponse": true
+    },
+    {
+      "key": "continuation/2",
+      "step": {
+        "area": "power",
+        "runId": "design_run_8de92f7d-7a21-4f84-8bb9-ebd7c093a13f",
+        "stageId": "cross-1-3",
+        "startedAt": "2026-10-20T08:20:24.892Z"
+      },
+      "startSha256": "95c83efaeacfa737dfa4880e3876d7d480e381a957c72d17a07d8d1db7e440ea",
+      "outcomeSha256": "60f7a1a77635673f5f23d42b707efa0268a492f519c7aca96f8fe3ad0730fea3",
+      "hasResponse": true
+    },
+    {
+      "key": "continuation/3",
+      "step": {
+        "area": "characters",
+        "runId": "design_run_971824f5-c779-4e49-a602-a578f0d3e6ab",
+        "stageId": "cross-1-3",
+        "startedAt": "2026-10-20T08:23:06.520Z"
+      },
+      "startSha256": "8f84960956f716bc52c7c6bcbd39d0cb63fa399e9fd5c753654105a72aa1eaf2",
+      "outcomeSha256": "de1c0b9ee5706de0b0dd595c691071fdb68f09004320bd98a7b6c0c02dbf852d",
+      "hasResponse": true
+    },
+    {
+      "key": "continuation/4",
+      "step": {
+        "area": "story",
+        "runId": "design_run_8b168b9a-9e6a-4bac-a4cc-b845453ebba3",
+        "stageId": "cross-1-3",
+        "startedAt": "2026-10-20T08:26:04.968Z"
+      },
+      "startSha256": "fe1ccd890471ea9c03073eb472b4cf23d85672364c572e55547fca24f7f81640",
+      "outcomeSha256": "058bcfb677b0c03d144a38084681e868e13044bcef74794cb5422abd9be51d27",
+      "hasResponse": true
+    },
+    {
+      "key": "continuation/5",
+      "step": {
+        "area": "story",
+        "runId": "design_run_8b168b9a-9e6a-4bac-a4cc-b845453ebba3",
+        "stageId": "cross-1-3",
+        "startedAt": "2026-10-20T08:26:04.968Z"
+      },
+      "startSha256": "0e9c8c8b93259cbf2425484db5c144f292f468da2c74e4c7ff7e9cf8f5a7aeeb",
+      "outcomeSha256": "d52955a70c7ed76de82ab12d87a3fc15ea31365c7abdbb8803605020e8e5df3c",
+      "hasResponse": false
+    },
+    {
+      "key": "continuation/6",
+      "step": {
+        "area": "world",
+        "runId": "design_run_46d4115c-ff06-405b-b5a2-53ed194828a1",
+        "stageId": "cross-1-2",
+        "startedAt": "2026-10-20T08:32:53.263Z"
+      },
+      "startSha256": "e7fe00e1ab581337b68c52f8d1d5d462cff3bde841de90cc585e0263b06a6bd0",
+      "outcomeSha256": "c4b42c73eef5835aba78c47d119e8bbbec7b154a95902d74f8322490b785f159",
+      "hasResponse": true
+    }
+  ],
+  "oldRunsPreserved": 99,
+  "oldReportsPreserved": 92,
+  "oldAnnotationsPreserved": 44,
+  "protectedHash": "78cfcbbd1e3047cfdf10c7986569d3762e5b45e02ac4080f4534987ea443790d",
+  "databaseSnapshotPath": "/Users/lianjie/Documents/ChatGPT/novel/data/audit-runtimes/design77-navigation-continuation/verify-i4Gpcu/production.db",
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "proseGenerated": false,
+  "limitation": "Failed story response is retained as a failed attempt, not accepted. This validates saved evidence and immutable history, not full design quality."
+}
