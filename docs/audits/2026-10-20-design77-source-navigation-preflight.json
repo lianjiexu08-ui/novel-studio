@@ -1,0 +1,1718 @@
+{
+  "prepared": true,
+  "checkpointPath": "data/audit-runtimes/design77-formal-continuation/result.json",
+  "checkpointSha256": "a6b59fc4412f32fde7a9645efcc29a183241ff943be0a03391b6b0479baab790",
+  "verificationPath": "docs/audits/2026-10-18-design77-formal-continuation-segment-3.json",
+  "verificationSha256": "5bcabcf8639193884dbc772af04f9ab1d16b6aeea83ff50c864ff46531b3bdc0",
+  "diagnosisPath": "docs/audits/2026-10-20-design77-power-cross-source-navigation.json",
+  "diagnosisSha256": "d51ca00f58343d7b8eb84e88e9ceb8222ce447469da4b04c2cd94c09a3803a16",
+  "sourceHashes": {
+    "novel-service-core/src/design-review-run.ts": "bbd72865fed1c6b91e10712e62c31f65c29c97e790966b489ff3132a09aa91ea",
+    "novel-service-core/src/design-review.ts": "f632a133c00263744593ae24099ce90ed4300c96a901b40c423f47afbc95b945",
+    "novel-service-core/src/design-review-report.ts": "bb5958eb1cbd1e37589f285fbe8359852c7a350b19d97b7aaac2a2623edc65c0",
+    "packages/planner/src/index.ts": "703bad5d62f345fc7af0c318070db11adebed72080ad7567ce6cbf811d8812f4",
+    "apps/api/src/server.ts": "1e5246fb2f1e7afa46e67c1f508b86008dc97f7d9c164f8f4a68a0902c9ba159",
+    "apps/web/src/pages/ReviewAnnotations.tsx": "4ee80776a087d7fae14ac4577f6869d22b66e8d1c7133b4d8b98aff08e0d744c"
+  },
+  "replays": [
+    {
+      "area": "world",
+      "calls": 8,
+      "verification": "verified",
+      "completedStages": 6,
+      "totalStages": 55,
+      "runSha256": "fa4e15166508fb4a2110f6b109977c6bae20a0a50f289292bc4ee9e85ab85b5f",
+      "formalAcceptance": false,
+      "limitation": "Replays saved responses, repairs, citations and conclusions against independently supplied materials. Pending work, semantic quality, blocker disposition and prose acceptance remain separate.",
+      "responseReplay": "verified",
+      "responsesReplayed": 8,
+      "records": [
+        {
+          "stageId": "batch-1",
+          "kind": "batch",
+          "stageSha256": "7d12c3798ab3b58d52397c6b92cc2b83092f40bbe4d331cb8905dfdf88a5970a",
+          "inputSha256": "d55b3695a9ddaac53b921ffef54eea0e8098cb04dff7120e824a2d5761ce4134",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "geography",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "history",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/1",
+                "plan/chapters/2",
+                "plan/chapters/3",
+                "plan/chapters/4",
+                "plan/chapters/5",
+                "plan/chapters/6",
+                "plan/chapters/7",
+                "plan/chapters/8",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/13",
+                "plan/chapters/14",
+                "plan/chapters/15",
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "capacity",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "stageId": "batch-2",
+          "kind": "batch",
+          "stageSha256": "e6aadd11bfdd329972dfe11cc06354826e488f8cf957b653c62e0aa2513f6672",
+          "inputSha256": "8e2aef865956c985df57f8ca98e9155afba35835a132030652159c6c0574cd30",
+          "responsesReplayed": 2,
+          "checks": [
+            {
+              "criterion": "geography",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "history",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/overview",
+                "world/historicalEvents/event_14",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "capacity",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "stageId": "batch-3",
+          "kind": "batch",
+          "stageSha256": "46aca6058ece5e3795a874f01b2a813cefb751ebaa2d3627255e1922831695fc",
+          "inputSha256": "c4e0e2a1ddd0942ec5c8e9aeb7171dbaf2109b049f858c44fe009f0701281bc3",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "geography",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "history",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/factions/fac_01",
+                "world/factions/fac_02",
+                "world/factions/fac_03",
+                "world/factions/fac_05",
+                "world/factions/fac_08",
+                "world/factions/fac_12",
+                "world/historicalEvents/event_08",
+                "world/historicalEvents/event_09",
+                "world/historicalEvents/event_13",
+                "world/historicalEvents/event_14",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "capacity",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "stageId": "batch-4",
+          "kind": "batch",
+          "stageSha256": "8d5f8974d5e63823fe393e0ffd187d8d0129949a4e3d8745d024722037c81f01",
+          "inputSha256": "f568bd67f72a3dc7cda695e9bd8080dc7154fac4a94244d5dd121687380b6605",
+          "responsesReplayed": 2,
+          "checks": [
+            {
+              "criterion": "geography",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/locations/loc_21",
+                "world/locations/loc_27"
+              ]
+            },
+            {
+              "criterion": "history",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "capacity",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "stageId": "batch-5",
+          "kind": "batch",
+          "stageSha256": "7d1fe7a8f8d29d78756fffaa18da3b96155863490371284aee5d364edcc446d6",
+          "inputSha256": "1dd2d24732391ab8f47cc2777ae63fedda15d13acc7cfb0167cd2c693ec55069",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "geography",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "history",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "capacity",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "stageId": "batch-6",
+          "kind": "batch",
+          "stageSha256": "69289af964f57c6cbd39e5b4201900772ef20123bc99a3f0362b1ce8aa1d0faa",
+          "inputSha256": "0b01c7ca0d0dfc767cd3ec395b823b62416550cec6d027c8984bb5c671bdd4fb",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "geography",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "history",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "capacity",
+              "verdict": "pass"
+            }
+          ]
+        }
+      ],
+      "failures": [
+        {
+          "stageId": "batch-6",
+          "failureSha256": "7fd41327733b9e033248c77e6d8d6c5ee3079937edbc3c06c5e0e886174d9894"
+        }
+      ],
+      "modelCalls": 0,
+      "reportVerification": "not_completed"
+    },
+    {
+      "area": "power",
+      "calls": 9,
+      "verification": "verified",
+      "completedStages": 7,
+      "totalStages": 31,
+      "runSha256": "c24254e8c0f787b5dc4ae813ce6e5fd3ee5b70cfc117f5f9d344b03a9e06fd1d",
+      "formalAcceptance": false,
+      "limitation": "Replays saved responses, repairs, citations and conclusions against independently supplied materials. Pending work, semantic quality, blocker disposition and prose acceptance remain separate.",
+      "responseReplay": "verified",
+      "responsesReplayed": 9,
+      "records": [
+        {
+          "stageId": "batch-1",
+          "kind": "batch",
+          "stageSha256": "1be15ca6cd963b78448a5072b9dbfd35f8ff11aa3d19fac486e3f7349c7b3259",
+          "inputSha256": "1f85cbe5cd8795765802b9d2e429004a7d9cd396ae0706c1811a4e5ba444f17b",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "tiers",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/5",
+                "plan/chapters/7",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/16",
+                "plan/chapters/18",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/23",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/29",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/40",
+                "plan/chapters/44",
+                "plan/chapters/48",
+                "plan/milestones/ms_growth_v1_training",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement"
+              ]
+            },
+            {
+              "criterion": "costs",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/5",
+                "plan/chapters/7",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/16",
+                "plan/chapters/18",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/23",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/29",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/40",
+                "plan/chapters/44",
+                "plan/chapters/48",
+                "plan/milestones/ms_growth_v1_training",
+                "plan/milestones/ms_growth_v1_recovery",
+                "plan/milestones/ms_growth_v1_aftermath",
+                "plan/milestones/ms_growth_v1_crossing",
+                "plan/milestones/ms_v2_loss",
+                "plan/milestones/ms_v2_voyage",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement"
+              ]
+            },
+            {
+              "criterion": "counters",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/5",
+                "plan/chapters/7",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/16",
+                "plan/chapters/18",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/40",
+                "plan/chapters/44",
+                "plan/chapters/48",
+                "plan/milestones/ms_vol1_climax",
+                "plan/milestones/ms_v2_barge",
+                "plan/milestones/ms_v2_boundary",
+                "plan/milestones/ms_v3_convoy",
+                "plan/milestones/ms_v3_advancement"
+              ]
+            }
+          ]
+        },
+        {
+          "stageId": "batch-2",
+          "kind": "batch",
+          "stageSha256": "615741a5621c7c0acda3a3bba913261339f916c4019b61a2e380b5f7cd8baf75",
+          "inputSha256": "4407bc54f4b60c30afa35a6ca5c4c476454ca1e612df8b734f3397328b169d05",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "tiers",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/techniques/tech_19",
+                "plan/chapters/18",
+                "plan/chapters/25"
+              ]
+            },
+            {
+              "criterion": "costs",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/techniques/tech_19",
+                "plan/chapters/18",
+                "plan/chapters/25"
+              ]
+            },
+            {
+              "criterion": "counters",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/techniques/tech_15",
+                "world/techniques/tech_16",
+                "plan/chapters/25"
+              ]
+            }
+          ]
+        },
+        {
+          "stageId": "batch-3",
+          "kind": "batch",
+          "stageSha256": "01860346d47da75ec69c8c9944db3f68d498c2734868a34481ec1a4d45a8486b",
+          "inputSha256": "b26e709357bde7dcdf314795469a6e588ec62f173f97dcc261c92988ee8cf353",
+          "responsesReplayed": 2,
+          "checks": [
+            {
+              "criterion": "tiers",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/artifacts/art_03",
+                "world/techniques/tech_19",
+                "world/resources/res_01"
+              ]
+            },
+            {
+              "criterion": "costs",
+              "verdict": "revise"
+            },
+            {
+              "criterion": "counters",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/artifacts/art_03",
+                "world/artifacts/art_20",
+                "world/resources/res_01"
+              ]
+            }
+          ]
+        },
+        {
+          "stageId": "batch-4",
+          "kind": "batch",
+          "stageSha256": "c890c7cc43b636c1df9ddba399350eef7fb773d5958d08f1a395b37af01f9893",
+          "inputSha256": "8246243b1927e7144855b7e84f71a0c58e3f86e0407991d05b7b40a6a2fe9c22",
+          "responsesReplayed": 2,
+          "checks": [
+            {
+              "criterion": "tiers",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/techniques/tech_19",
+                "world/resources/res_01",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement"
+              ]
+            },
+            {
+              "criterion": "costs",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/techniques/tech_15",
+                "world/techniques/tech_16",
+                "world/resources/res_17",
+                "world/resources/res_18",
+                "world/resources/res_19"
+              ]
+            },
+            {
+              "criterion": "counters",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/techniques/tech_11",
+                "world/techniques/tech_13",
+                "world/techniques/tech_15",
+                "world/techniques/tech_16"
+              ]
+            }
+          ]
+        },
+        {
+          "stageId": "reconsider-review_note_dc7b780b-a508-4229-a4fd-6b97931c52b1",
+          "kind": "cross",
+          "stageSha256": "f32df0e2ec3a5beab06caadcbd2e0f76153f53887ae1d51cd36beee024bb67cb",
+          "inputSha256": "e5928540c563d0675dd70ecfc70abc27abe06a77fd90bae027534dc0f2c3d5fe",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "costs",
+              "verdict": "pass",
+              "resolves": [
+                "batch-3/costs"
+              ]
+            }
+          ]
+        },
+        {
+          "stageId": "batch-5",
+          "kind": "batch",
+          "stageSha256": "309fbc7eca684613665802573a9f85269f23eb2d4d387530e6e0c10a92ff0bbf",
+          "inputSha256": "f244ce225d4c9ddb08f0a68136c7499725e3ee59a2efbe04c76acfc43808166d",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "tiers",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/techniques/tech_11",
+                "world/techniques/tech_13",
+                "world/techniques/tech_15",
+                "world/techniques/tech_16",
+                "world/techniques/tech_19",
+                "world/artifacts/art_03",
+                "plan/chapters/18"
+              ]
+            },
+            {
+              "criterion": "costs",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/artifacts/art_03",
+                "plan/chapters/18",
+                "world/techniques/tech_11",
+                "world/techniques/tech_13",
+                "world/techniques/tech_15",
+                "world/techniques/tech_16",
+                "world/techniques/tech_19",
+                "world/resources/res_17",
+                "world/resources/res_18",
+                "world/resources/res_19"
+              ]
+            },
+            {
+              "criterion": "counters",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/techniques/tech_11",
+                "world/techniques/tech_13",
+                "world/techniques/tech_15",
+                "world/techniques/tech_16",
+                "world/techniques/tech_19",
+                "world/artifacts/art_03",
+                "plan/chapters/18"
+              ]
+            }
+          ]
+        },
+        {
+          "stageId": "cross-1-2",
+          "kind": "cross",
+          "stageSha256": "9004ac50185a98a8985336234e00d793b999b134b20e058a89e77c9ddcb3d6f3",
+          "inputSha256": "4e6e320d5a501704ecf6059b01673ce8aa13e7519a9f88d62ba9cae8007f6e1b",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "tiers",
+              "verdict": "insufficient"
+            },
+            {
+              "criterion": "costs",
+              "verdict": "insufficient"
+            },
+            {
+              "criterion": "counters",
+              "verdict": "insufficient"
+            }
+          ]
+        }
+      ],
+      "failures": [],
+      "modelCalls": 0,
+      "reportVerification": "not_completed"
+    },
+    {
+      "area": "characters",
+      "calls": 7,
+      "verification": "verified",
+      "completedStages": 6,
+      "totalStages": 29,
+      "runSha256": "2c150e65ec86460dfe748c6f35a57484b38adc09db64fb707627a0b9a15d57d8",
+      "formalAcceptance": false,
+      "limitation": "Replays saved responses, repairs, citations and conclusions against independently supplied materials. Pending work, semantic quality, blocker disposition and prose acceptance remain separate.",
+      "responseReplay": "verified",
+      "responsesReplayed": 7,
+      "records": [
+        {
+          "stageId": "batch-1",
+          "kind": "batch",
+          "stageSha256": "449966d295f06b57b0b5c25e320cfb45d42fb1f3fd311751f2b78d0329a13b00",
+          "inputSha256": "a28dd460ccaee85776a75d776460772c70af3508630bc707279ee56157266856",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "stageId": "batch-2",
+          "kind": "batch",
+          "stageSha256": "688b1e7c9abe7d3d309d7c9b9870ddf32e8f71b4749bd052d03deace08a64853",
+          "inputSha256": "bf02f9cdf474430a3b3612c4d3bb79dfda1665fa946cb773e7d9154b77e81664",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "story/relationships/rel_01"
+              ]
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "story/secrets/sec_01"
+              ]
+            }
+          ]
+        },
+        {
+          "stageId": "batch-3",
+          "kind": "batch",
+          "stageSha256": "541639250a6c7b717d8fc9a30d6022b371efdda5861c52e13d188b3b6c9f6686",
+          "inputSha256": "944166e82b77e03293ccdbd812a764f506f11bfd06e4416c0b363ce7306b93cf",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "story/relationships/rel_01",
+                "story/relationships/rel_03",
+                "story/relationships/rel_09",
+                "story/relationships/rel_10"
+              ]
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "story/secrets/sec_01",
+                "story/secrets/sec_02"
+              ]
+            }
+          ]
+        },
+        {
+          "stageId": "batch-4",
+          "kind": "batch",
+          "stageSha256": "c68f78477064932cedaa27ab12c00044c03bd2dba0f0952b934c306a9a9c82ba",
+          "inputSha256": "ff8c2a7cb07bc8f8b4854bf538f37ade259ed3700afa68000bb9907d31d24be3",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "stageId": "batch-5",
+          "kind": "batch",
+          "stageSha256": "4203208e65453939acfaec5539c8c1b4ec3da40e598caea1e9c002c783018022",
+          "inputSha256": "4a591127f0de98134abfa1c46bbe6c4df5bcb8810832b49b9ba83ec033c0dcf3",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "story/relationships/rel_01",
+                "story/relationships/rel_07",
+                "story/relationships/rel_12",
+                "story/relationships/rel_13",
+                "story/relationships/rel_14"
+              ]
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "stageId": "cross-1-2",
+          "kind": "cross",
+          "stageSha256": "5a6ed3f514ac98e6ab9dfdda1de932d83271329198ba4ac193565d45bdc8f866",
+          "inputSha256": "11ac651cd32ddc491143fa4daa32436957b5b10f6c24bf7c36ba6d61442a2cf3",
+          "responsesReplayed": 2,
+          "checks": [
+            {
+              "criterion": "agency",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "relationships",
+              "verdict": "pass",
+              "resolves": [
+                "batch-2/relationships"
+              ]
+            },
+            {
+              "criterion": "knowledge",
+              "verdict": "pass",
+              "resolves": [
+                "batch-2/knowledge"
+              ]
+            }
+          ]
+        }
+      ],
+      "failures": [],
+      "modelCalls": 0,
+      "reportVerification": "not_completed"
+    },
+    {
+      "area": "story",
+      "calls": 7,
+      "verification": "verified",
+      "completedStages": 6,
+      "totalStages": 29,
+      "runSha256": "5c5de647e6b37b560db0e4d37d5ccdb3f751ec2d3f6c6167c0b3ad3a93586e13",
+      "formalAcceptance": false,
+      "limitation": "Replays saved responses, repairs, citations and conclusions against independently supplied materials. Pending work, semantic quality, blocker disposition and prose acceptance remain separate.",
+      "responseReplay": "verified",
+      "responsesReplayed": 7,
+      "records": [
+        {
+          "stageId": "batch-1",
+          "kind": "batch",
+          "stageSha256": "45251ef4f275e3a2cd78a64e2e60c5cd0cfcbd7b9c8ac96caa2fa060b6893131",
+          "inputSha256": "c719424f6496567354eaf77c2dab67ccbdd169acff4fe95be2a8c625d6978a62",
+          "responsesReplayed": 2,
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/1",
+                "plan/chapters/2",
+                "plan/chapters/3",
+                "plan/chapters/4",
+                "plan/chapters/5",
+                "plan/chapters/6",
+                "plan/chapters/7",
+                "plan/chapters/8",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/13",
+                "plan/chapters/14",
+                "plan/chapters/15",
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/1",
+                "plan/chapters/2",
+                "plan/chapters/3",
+                "plan/chapters/4",
+                "plan/chapters/5",
+                "plan/chapters/6",
+                "plan/chapters/7",
+                "plan/chapters/8",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/13",
+                "plan/chapters/14",
+                "plan/chapters/15",
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/1",
+                "plan/chapters/2",
+                "plan/chapters/3",
+                "plan/chapters/4",
+                "plan/chapters/5",
+                "plan/chapters/6",
+                "plan/chapters/7",
+                "plan/chapters/8",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/13",
+                "plan/chapters/14",
+                "plan/chapters/15",
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50",
+                "story/secrets/sec_01",
+                "story/secrets/sec_02",
+                "story/secrets/sec_03",
+                "story/secrets/sec_04",
+                "story/promises/prom_01",
+                "story/promises/prom_02",
+                "story/promises/prom_03",
+                "story/promises/prom_04",
+                "story/openThreads/th_01",
+                "story/openThreads/th_02",
+                "story/openThreads/th_03",
+                "story/openThreads/th_04",
+                "story/openThreads/th_05"
+              ]
+            },
+            {
+              "criterion": "opening",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/1",
+                "plan/chapters/2",
+                "plan/chapters/3",
+                "plan/chapters/4",
+                "plan/chapters/5",
+                "plan/chapters/6",
+                "plan/chapters/7",
+                "plan/chapters/8",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/13",
+                "plan/chapters/14",
+                "plan/chapters/15",
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/1",
+                "plan/chapters/2",
+                "plan/chapters/3",
+                "plan/chapters/4",
+                "plan/chapters/5",
+                "plan/chapters/6",
+                "plan/chapters/7",
+                "plan/chapters/8",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/13",
+                "plan/chapters/14",
+                "plan/chapters/15",
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "growth",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/1",
+                "plan/chapters/2",
+                "plan/chapters/3",
+                "plan/chapters/4",
+                "plan/chapters/5",
+                "plan/chapters/6",
+                "plan/chapters/7",
+                "plan/chapters/8",
+                "plan/chapters/9",
+                "plan/chapters/10",
+                "plan/chapters/11",
+                "plan/chapters/12",
+                "plan/chapters/13",
+                "plan/chapters/14",
+                "plan/chapters/15",
+                "plan/chapters/16",
+                "plan/chapters/17",
+                "plan/chapters/18",
+                "plan/chapters/19",
+                "plan/chapters/20",
+                "plan/chapters/21",
+                "plan/chapters/22",
+                "plan/chapters/23",
+                "plan/chapters/24",
+                "plan/chapters/25",
+                "plan/chapters/26",
+                "plan/chapters/27",
+                "plan/chapters/28",
+                "plan/chapters/29",
+                "plan/chapters/30",
+                "plan/chapters/31",
+                "plan/chapters/32",
+                "plan/chapters/33",
+                "plan/chapters/34",
+                "plan/chapters/35",
+                "plan/chapters/36",
+                "plan/chapters/37",
+                "plan/chapters/38",
+                "plan/chapters/39",
+                "plan/chapters/40",
+                "plan/chapters/41",
+                "plan/chapters/42",
+                "plan/chapters/43",
+                "plan/chapters/44",
+                "plan/chapters/45",
+                "plan/chapters/46",
+                "plan/chapters/47",
+                "plan/chapters/48",
+                "plan/chapters/49",
+                "plan/chapters/50"
+              ]
+            }
+          ]
+        },
+        {
+          "stageId": "batch-2",
+          "kind": "batch",
+          "stageSha256": "7b9faafa6182ef529cce2205f818b66f7c081607b4d76a284d24a2ed9910406c",
+          "inputSha256": "17b1f6a2525438a32c01a00a0040391fa96b9c600495345c746b51d6b43b0956",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "opening",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "growth",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "stageId": "batch-3",
+          "kind": "batch",
+          "stageSha256": "93b55104bed76ea00cea2699ffe72edc7d6bc484590b106beff3c3b9e1ccf12c",
+          "inputSha256": "06a2f5b8b980536715622e5d0be0fed8f36a32f37d9ba44e9711f9dea3dadad3",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/techniques/tech_02",
+                "world/techniques/tech_04",
+                "world/artifacts/art_03",
+                "world/resources/res_01"
+              ]
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/techniques/tech_02",
+                "world/techniques/tech_04",
+                "world/artifacts/art_03",
+                "world/resources/res_01"
+              ]
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "opening",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "growth",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "world/techniques/tech_02",
+                "world/techniques/tech_04",
+                "world/artifacts/art_03",
+                "world/resources/res_01"
+              ]
+            }
+          ]
+        },
+        {
+          "stageId": "batch-4",
+          "kind": "batch",
+          "stageSha256": "2ec73f25f1381910d99475909c70fe2dd7287505a23e2a7d5b01a82a76a2dd07",
+          "inputSha256": "fb0af9bfddbb86abc0ce89155352470daabdbfcc0ec3d49a8c94bfc5cce26d56",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/18",
+                "world/techniques/tech_04",
+                "world/techniques/tech_05",
+                "world/techniques/tech_06",
+                "story/characters/char_10"
+              ]
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "opening",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "growth",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "stageId": "batch-5",
+          "kind": "batch",
+          "stageSha256": "dca182cd89e09304c65d45aa257ad78a0f72b416b95819f068d4c4142ab94ffb",
+          "inputSha256": "73b6c79f1f40bb9769aa9f859c78e91f93e9447879040d81269ecaf72359ca86",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "opening",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "growth",
+              "verdict": "pass"
+            }
+          ]
+        },
+        {
+          "stageId": "cross-1-2",
+          "kind": "cross",
+          "stageSha256": "ff88ec293da0498dfb7d747b7d9a839ea2622310445bfd7488cd6fc33569f7df",
+          "inputSha256": "84e25892cf08a0c9b177101251815d5ca1d4f922997dcbaf4ac156f8a89a7382",
+          "responsesReplayed": 1,
+          "checks": [
+            {
+              "criterion": "causality",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/chapters/50",
+                "plan/milestones/ms_v2_fire",
+                "plan/milestones/ms_v2_voyage",
+                "plan/milestones/ms_v2_boundary",
+                "plan/milestones/ms_v3_return",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement",
+                "plan/milestones/ms_v3_convoy",
+                "plan/milestones/ms_v3_payoff"
+              ]
+            },
+            {
+              "criterion": "timeline",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/milestones/ms_v2_fire",
+                "plan/milestones/ms_v2_voyage",
+                "plan/milestones/ms_v2_boundary",
+                "plan/milestones/ms_v3_return",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement",
+                "plan/milestones/ms_v3_convoy",
+                "plan/milestones/ms_v3_payoff"
+              ]
+            },
+            {
+              "criterion": "payoff",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/milestones/ms_v2_fire",
+                "plan/milestones/ms_v2_boundary",
+                "plan/milestones/ms_v3_return",
+                "plan/milestones/ms_v3_convoy",
+                "plan/milestones/ms_v3_payoff"
+              ]
+            },
+            {
+              "criterion": "opening",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "pacing",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "genre",
+              "verdict": "pass"
+            },
+            {
+              "criterion": "growth",
+              "verdict": "insufficient",
+              "awaitingSources": [
+                "plan/milestones/ms_v3_return",
+                "plan/milestones/ms_v3_training",
+                "plan/milestones/ms_v3_advancement"
+              ]
+            }
+          ]
+        }
+      ],
+      "failures": [],
+      "modelCalls": 0,
+      "reportVerification": "not_completed"
+    }
+  ],
+  "proposals": [
+    {
+      "note": {
+        "id": "design77-source-navigation-tiers",
+        "createdAt": "2026-10-20T07:30:16.233Z",
+        "requestKey": "design77-power-cross1-2-navigation-tiers",
+        "runId": "design_run_8de92f7d-7a21-4f84-8bb9-ebd7c093a13f",
+        "stageId": "cross-1-2",
+        "criterion": "tiers",
+        "expectedInputHash": "98e041a25813c8482c83989ee55106ac892279bf2bdcf99281822e366976c7f8",
+        "expectedCheckHash": "f21e4b2849ce5db7e3839c5283ca76aa250e8fe114efcee4405c49601e8f72ee",
+        "claimQuote": "境界阶梯明确低阶不能凭意志或外物自动越境，境界承载亦不等于自动掌握术式；玄府晋阶还要求分流训练、六个有效十日周期、灵石和双重复核。林辰的百章玄府安排因而必须核对第73—87章的实际训练、灵石、医修复核与支付时点。当前只读到其宏观目标与依赖声明，未读相关里程碑原文，不能以“数月修习、实际付十元载”直接判定资格链已成立。",
+        "explanation": "本次原请求的sourceLengths及planRanges已列出对应宏观来源，但该批未携带其原文。请核验整项原不足，不把定位成功当作设计通过；不要求先补51—100章逐章细纲。",
+        "evidence": [
+          {
+            "sourceId": "plan/milestones/ms_v3_training",
+            "quote": "白榆316日重新诊察肩伤及寿储下界，症状恢复前停止负荷；第330日复诊才恢复完整训练，诊断不增加寿元。顾肩伤已按复诊康复，只指导玄府前置，不白送功法或寿储。"
+          },
+          {
+            "sourceId": "plan/milestones/ms_v3_advancement",
+            "quote": "第398–414日只做六周期后的静置、丹府稳定观察和普通木柄空载复测，不新增训练周期；第415日白榆当面确认丹府已稳定成形、经脉无回流、伤情可承受，顾峤随后复核林辰能够承载玄府元罡且普通木柄测试不反噬。只有这两项确认都记录为通过，才在同一日按realm_03实际支付十元载；支付先后为“六个有效周期完成→静置观察→白榆诊察→顾峤复核→十元载扣除”，任何一项失败都延期且不预支寿储。"
+          }
+        ],
+        "scope": {
+          "worldPackRevision": 41,
+          "storyBibleRevision": 73,
+          "planRevisionId": "plan_14b9ff794fce4e67b7ff6dbf33344e29",
+          "planRevision": 77
+        }
+      },
+      "stageId": "reconsider-design77-source-navigation-tiers",
+      "sourceCharacters": 24096,
+      "pending": {
+        "id": "cross-1-2/tiers",
+        "criterion": "tiers",
+        "questionSourceId": "review-question/cross-1-2/tiers",
+        "requiredSourceIds": [
+          "plan/milestones/ms_v3_training",
+          "plan/milestones/ms_v3_advancement"
+        ],
+        "priorUnitIds": [
+          "review-unit/269",
+          "review-unit/270",
+          "review-unit/8",
+          "review-unit/23",
+          "review-unit/47",
+          "review-unit/167"
+        ],
+        "priorSourceIds": [
+          "world/axioms/ax_06",
+          "world/realms/realm_03",
+          "world/techniques/tech_19",
+          "plan/overview",
+          "story/arcBeats/beat_v23_9"
+        ]
+      }
+    },
+    {
+      "note": {
+        "id": "design77-source-navigation-costs",
+        "createdAt": "2026-10-20T07:30:16.233Z",
+        "requestKey": "design77-power-cross1-2-navigation-costs",
+        "runId": "design_run_8de92f7d-7a21-4f84-8bb9-ebd7c093a13f",
+        "stageId": "cross-1-2",
+        "criterion": "costs",
+        "expectedInputHash": "98e041a25813c8482c83989ee55106ac892279bf2bdcf99281822e366976c7f8",
+        "expectedCheckHash": "6700ab8fc8b65647c0bb051ce7acec6ecd446c82c106a712dca7a47a76b6ebfb",
+        "claimQuote": "寿储、当境法力和资源不能互换预支的规则清楚：自然寿源须完成疗程和复诊才入账，玄府支付另须满足资源与诊断前置。现有概览虽将林辰第83章的十元载支出、百章末约2.775342元载及前段依赖写为提案，但未提供第51—100章宏观里程碑的实际航款、疗程、寿储、灵石、训练失败或伤情收支，无法核算同一账户在北航、返乡、训练、晋阶及后续行动中的余额是否闭合。",
+        "explanation": "本次原请求的sourceLengths及planRanges已列出对应宏观来源，但该批未携带其原文。请核验整项原不足，不把定位成功当作设计通过；不要求先补51—100章逐章细纲。",
+        "evidence": [
+          {
+            "sourceId": "plan/milestones/ms_v2_fire",
+            "quote": "251程提出改扣工陈述换替船接货，贺退单并将货序交接手船，客户按期走、她仍失单停牌。47结尾留在货船离岸，不以送核或结账再开一场；无船款交付，林最后1枚已用于251–260食宿，现金0。"
+          },
+          {
+            "sourceId": "plan/milestones/ms_v2_voyage",
+            "quote": "第271日商盟港务理事会为追缴被挪货与避免北境封港，从本案追偿周转款实拨14000枚下品灵石给具名领款的贺青梧；这是有账有追偿风险的商盟垫款，不是几天劳务值一万。用途限两人北航查货、回青玄交证及沿途食宿医药。"
+          },
+          {
+            "sourceId": "plan/milestones/ms_v2_boundary",
+            "quote": "第285日夜在外港真身会见，对照北境原封签存根、45章交接残联与旧封的签认拓本、53章拟取得的陆新写改签自述签认副本；这些是货运线索，不是第二片图样，不能凭同封号认定匣内物。她具名担保林贺仅在外港指定仓区查货至300日；归一实力不赋予林准入界渊的能力。"
+          },
+          {
+            "sourceId": "plan/milestones/ms_v3_return",
+            "quote": "第300日，夜的原外港查货担保仍只到当日，不自动延长。林贺当面申请回青玄交证；夜依loc_02具名担保规则，在葬骨外港原港务和本轮当值巡队见证下另签限程离境担保，列林、贺实名、原名册及货证封袋，指定会合/交接地为通天渡口受监管候船区。许可仅301日晨至304日夜有效，沿已勘验的葬骨外港—海岸公共驿路—通天渡口路线坐暖车，夜宿所列原驿站；不准离道查货、入极冰国、妖域、神宫或界渊。原巡队在301日出港时复核名单并交当班驿车的纸质限程单，沿岸既有岗哨在车辆实际到站时逐站验籍、签注到离时点，终站港务于303日实际到达后验原单接收候船监管，304日只在原单、名册和船票相符后办理登船离境。夜仍承担这份限程担保的越界责任，原巡队承担出港核验和未按期交回签注单时的追查责任；没有远程瞬时验籍或只有商业票就能通行。"
+          },
+          {
+            "sourceId": "plan/milestones/ms_v3_training",
+            "quote": "白榆316日重新诊察肩伤及寿储下界，症状恢复前停止负荷；第330日复诊才恢复完整训练，诊断不增加寿元。顾肩伤已按复诊康复，只指导玄府前置，不白送功法或寿储。"
+          },
+          {
+            "sourceId": "plan/milestones/ms_v3_advancement",
+            "quote": "第398–414日只做六周期后的静置、丹府稳定观察和普通木柄空载复测，不新增训练周期；第415日白榆当面确认丹府已稳定成形、经脉无回流、伤情可承受，顾峤随后复核林辰能够承载玄府元罡且普通木柄测试不反噬。只有这两项确认都记录为通过，才在同一日按realm_03实际支付十元载；支付先后为“六个有效周期完成→静置观察→白榆诊察→顾峤复核→十元载扣除”，任何一项失败都延期且不预支寿储。"
+          },
+          {
+            "sourceId": "plan/milestones/ms_v3_convoy",
+            "quote": "第431日苏把现场案卷送监督复核点，不能一日传播三大陆；护送执事顾仅能调一队外山见证与救护人员，玄府护卫数量与运人笼位置由实际跟车确认。"
+          },
+          {
+            "sourceId": "plan/milestones/ms_v3_payoff",
+            "quote": "顾436日交锋后先由救护人员清洗、包扎前臂，实检能够步行和保持监管才转外门值守房；若不能则留原地等待邵实际接押，不把就医延后等同于无需处置。祁保持交械候核的选择，普通绳索不封境。96章第437日辰初邵闻在外门值守房向顾面接受伤统领祁嵩并核身份伤情；乔仍看墨，杜褚在夜班分别接墨/押卫。两岗四人各12小时值12小时休，暂停其他外出任务；顾完成交接才去白榆处作进一步复诊，普通见证员只管登记、不代替玄府看押。苏协调8人床位，梁九帮两名旧工友找家属，其余6人分别登记联系人。"
+          }
+        ],
+        "scope": {
+          "worldPackRevision": 41,
+          "storyBibleRevision": 73,
+          "planRevisionId": "plan_14b9ff794fce4e67b7ff6dbf33344e29",
+          "planRevision": 77
+        }
+      },
+      "stageId": "reconsider-design77-source-navigation-costs",
+      "sourceCharacters": 56632,
+      "pending": {
+        "id": "cross-1-2/costs",
+        "criterion": "costs",
+        "questionSourceId": "review-question/cross-1-2/costs",
+        "requiredSourceIds": [
+          "plan/milestones/ms_v2_fire",
+          "plan/milestones/ms_v2_voyage",
+          "plan/milestones/ms_v2_boundary",
+          "plan/milestones/ms_v3_return",
+          "plan/milestones/ms_v3_training",
+          "plan/milestones/ms_v3_advancement",
+          "plan/milestones/ms_v3_convoy",
+          "plan/milestones/ms_v3_payoff"
+        ],
+        "priorUnitIds": [
+          "review-unit/269",
+          "review-unit/270",
+          "review-unit/6",
+          "review-unit/11",
+          "review-unit/12",
+          "review-unit/23",
+          "review-unit/86"
+        ],
+        "priorSourceIds": [
+          "world/axioms/ax_04",
+          "world/axioms/ax_09",
+          "world/axioms/ax_10",
+          "world/realms/realm_03",
+          "world/resources/res_18",
+          "plan/overview"
+        ]
+      }
+    },
+    {
+      "note": {
+        "id": "design77-source-navigation-counters",
+        "createdAt": "2026-10-20T07:30:16.233Z",
+        "requestKey": "design77-power-cross1-2-navigation-counters",
+        "runId": "design_run_8de92f7d-7a21-4f84-8bb9-ebd7c093a13f",
+        "stageId": "cross-1-2",
+        "criterion": "counters",
+        "expectedInputHash": "98e041a25813c8482c83989ee55106ac892279bf2bdcf99281822e366976c7f8",
+        "expectedCheckHash": "f771e40f56acbc5309d242a2cba54fcd325bfebb2a96ac5ee39cc7f901ab1a4a",
+        "claimQuote": "已读规则没有把高境界或高品器物设为无条件胜利：剑诀受锁定、实测距离、二成法力和失锁余刃风险限制；玄府局部护罡只护一处两息，真光也只灼散接触到的阴煞且同场限一印。百章提案同时明确不越阶斩高境，并把高潮定位为顾峤牵制、祁嵩为保留原令而有限交械。不过第61—66章救援和第88—100章截押的实际对手、动作、供能、撤退路径与伤情处理未在本批原文中提供，无法核验是否确实按这些反制边界执行。",
+        "explanation": "本次原请求的sourceLengths及planRanges已列出对应宏观来源，但该批未携带其原文。请核验整项原不足，不把定位成功当作设计通过；不要求先补51—100章逐章细纲。",
+        "evidence": [
+          {
+            "sourceId": "plan/milestones/ms_v2_boundary",
+            "quote": "第285日夜在外港真身会见，对照北境原封签存根、45章交接残联与旧封的签认拓本、53章拟取得的陆新写改签自述签认副本；这些是货运线索，不是第二片图样，不能凭同封号认定匣内物。她具名担保林贺仅在外港指定仓区查货至300日；归一实力不赋予林准入界渊的能力。"
+          },
+          {
+            "sourceId": "plan/milestones/ms_v3_convoy",
+            "quote": "第431日苏把现场案卷送监督复核点，不能一日传播三大陆；护送执事顾仅能调一队外山见证与救护人员，玄府护卫数量与运人笼位置由实际跟车确认。"
+          },
+          {
+            "sourceId": "plan/milestones/ms_v3_payoff",
+            "quote": "顾436日交锋后先由救护人员清洗、包扎前臂，实检能够步行和保持监管才转外门值守房；若不能则留原地等待邵实际接押，不把就医延后等同于无需处置。祁保持交械候核的选择，普通绳索不封境。96章第437日辰初邵闻在外门值守房向顾面接受伤统领祁嵩并核身份伤情；乔仍看墨，杜褚在夜班分别接墨/押卫。两岗四人各12小时值12小时休，暂停其他外出任务；顾完成交接才去白榆处作进一步复诊，普通见证员只管登记、不代替玄府看押。苏协调8人床位，梁九帮两名旧工友找家属，其余6人分别登记联系人。"
+          }
+        ],
+        "scope": {
+          "worldPackRevision": 41,
+          "storyBibleRevision": 73,
+          "planRevisionId": "plan_14b9ff794fce4e67b7ff6dbf33344e29",
+          "planRevision": 77
+        }
+      },
+      "stageId": "reconsider-design77-source-navigation-counters",
+      "sourceCharacters": 39033,
+      "pending": {
+        "id": "cross-1-2/counters",
+        "criterion": "counters",
+        "questionSourceId": "review-question/cross-1-2/counters",
+        "requiredSourceIds": [
+          "plan/milestones/ms_v2_boundary",
+          "plan/milestones/ms_v3_convoy",
+          "plan/milestones/ms_v3_payoff"
+        ],
+        "priorUnitIds": [
+          "review-unit/269",
+          "review-unit/270",
+          "review-unit/14",
+          "review-unit/32",
+          "review-unit/34",
+          "review-unit/111",
+          "review-unit/190"
+        ],
+        "priorSourceIds": [
+          "world/axioms/ax_12",
+          "world/techniques/tech_04",
+          "world/techniques/tech_06",
+          "story/characters/char_23",
+          "story/arcBeats/message-withdraw-seized",
+          "plan/overview"
+        ]
+      }
+    }
+  ],
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "originalVerdictsUnchanged": true,
+  "formalAcceptance": false,
+  "limitation": "Three independent detached insertion preflights. No production annotation, queued recheck, new runtime deployment, or model judgment is claimed; execution must bind the then-current checkpoint and run each challenge sequentially."
+}

@@ -1,0 +1,292 @@
+{
+  "inspectedAt": "2026-10-20T07:22:16.056Z",
+  "requestPath": "data/audit-runtimes/design77-formal-continuation/model-calls/00029.started.json",
+  "requestSha256": "8ef54fb3842ba49132e2d2bee357888052ed80383018fc6a321e5c7f110d1ea6",
+  "responsePath": "data/audit-runtimes/design77-formal-continuation/model-calls/00029.response.json",
+  "responseSha256": "096b8c4c106003e93a02833e893c0674541c40f0d5db307a1512ea4625f45375",
+  "runId": "design_run_8de92f7d-7a21-4f84-8bb9-ebd7c093a13f",
+  "inputHash": "98e041a25813c8482c83989ee55106ac892279bf2bdcf99281822e366976c7f8",
+  "stageId": "cross-1-2",
+  "model": "gpt-5.6-luna",
+  "originalRequestContainedSourceLengthsAndPlanRanges": true,
+  "rows": [
+    {
+      "criterion": "tiers",
+      "originalCheck": {
+        "criterion": "tiers",
+        "verdict": "insufficient",
+        "explanation": "境界阶梯明确低阶不能凭意志或外物自动越境，境界承载亦不等于自动掌握术式；玄府晋阶还要求分流训练、六个有效十日周期、灵石和双重复核。林辰的百章玄府安排因而必须核对第73—87章的实际训练、灵石、医修复核与支付时点。当前只读到其宏观目标与依赖声明，未读相关里程碑原文，不能以“数月修习、实际付十元载”直接判定资格链已成立。",
+        "evidence": [
+          {
+            "fragmentId": "e14"
+          },
+          {
+            "fragmentId": "e37"
+          },
+          {
+            "fragmentId": "e91"
+          },
+          {
+            "fragmentId": "e425"
+          },
+          {
+            "fragmentId": "e327"
+          },
+          {
+            "fragmentId": "e442"
+          }
+        ],
+        "revisionAdvice": "补读后须逐项核验林辰是否在支付十元载前完成凝元分流入府诀的三段训练、至少六个有效周期及白榆、顾峤的规定复核；并核验后续玄府操作是否另有已学与实测依据，而非由晋阶自动取得。",
+        "insufficiencyReason": "unlocatable_sources"
+      },
+      "requestedChapterRanges": [
+        [
+          73,
+          87
+        ]
+      ],
+      "candidateSources": [
+        {
+          "sourceId": "plan/milestones/ms_v3_training",
+          "startChapter": 73,
+          "endChapter": 80,
+          "title": "延期的复仇与丹府苦练",
+          "characters": 2989,
+          "exactQuote": "白榆316日重新诊察肩伤及寿储下界，症状恢复前停止负荷；第330日复诊才恢复完整训练，诊断不增加寿元。顾肩伤已按复诊康复，只指导玄府前置，不白送功法或寿储。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_advancement",
+          "startChapter": 81,
+          "endChapter": 87,
+          "title": "十年换玄府与旧案的缺口",
+          "characters": 1092,
+          "exactQuote": "第398–414日只做六周期后的静置、丹府稳定观察和普通木柄空载复测，不新增训练周期；第415日白榆当面确认丹府已稳定成形、经脉无回流、伤情可承受，顾峤随后复核林辰能够承载玄府元罡且普通木柄测试不反噬。只有这两项确认都记录为通过，才在同一日按realm_03实际支付十元载；支付先后为“六个有效周期完成→静置观察→白榆诊察→顾峤复核→十元载扣除”，任何一项失败都延期且不预支寿储。"
+        }
+      ],
+      "citedSourceIds": [
+        "world/axioms/ax_06",
+        "world/realms/realm_03",
+        "world/techniques/tech_19",
+        "plan/overview",
+        "story/arcBeats/beat_v23_9"
+      ],
+      "originalFullBatchPlusCandidateCharacters": 219137,
+      "citedFullSourcesPlusCandidateCharacters": 18328,
+      "capacityCaveat": "Serialized raw-source envelope only; a formal recheck also needs its question and annotation context. These sizes do not authorize dropping other material."
+    },
+    {
+      "criterion": "costs",
+      "originalCheck": {
+        "criterion": "costs",
+        "verdict": "insufficient",
+        "explanation": "寿储、当境法力和资源不能互换预支的规则清楚：自然寿源须完成疗程和复诊才入账，玄府支付另须满足资源与诊断前置。现有概览虽将林辰第83章的十元载支出、百章末约2.775342元载及前段依赖写为提案，但未提供第51—100章宏观里程碑的实际航款、疗程、寿储、灵石、训练失败或伤情收支，无法核算同一账户在北航、返乡、训练、晋阶及后续行动中的余额是否闭合。",
+        "evidence": [
+          {
+            "fragmentId": "e11"
+          },
+          {
+            "fragmentId": "e19"
+          },
+          {
+            "fragmentId": "e20"
+          },
+          {
+            "fragmentId": "e37"
+          },
+          {
+            "fragmentId": "e166"
+          },
+          {
+            "fragmentId": "e425"
+          },
+          {
+            "fragmentId": "e426"
+          },
+          {
+            "fragmentId": "e443"
+          }
+        ],
+        "revisionAdvice": "补读后应按林辰个人寿储、真元/元罡、青灵石、航款和寿源疗程分账，确认每项收入均在疗程与复诊后入账，确认六周期灵石和玄府十元载均未重复使用或预支；同时核北航、返航与救援成本不被误作寿储收入。",
+        "insufficiencyReason": "unlocatable_sources"
+      },
+      "requestedChapterRanges": [
+        [
+          51,
+          100
+        ]
+      ],
+      "candidateSources": [
+        {
+          "sourceId": "plan/milestones/ms_v2_fire",
+          "startChapter": 47,
+          "endChapter": 53,
+          "title": "北三门前与各自的去路",
+          "characters": 4531,
+          "exactQuote": "251程提出改扣工陈述换替船接货，贺退单并将货序交接手船，客户按期走、她仍失单停牌。47结尾留在货船离岸，不以送核或结账再开一场；无船款交付，林最后1枚已用于251–260食宿，现金0。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_voyage",
+          "startChapter": 54,
+          "endChapter": 60,
+          "title": "有限航款与五日北行",
+          "characters": 2937,
+          "exactQuote": "第271日商盟港务理事会为追缴被挪货与避免北境封港，从本案追偿周转款实拨14000枚下品灵石给具名领款的贺青梧；这是有账有追偿风险的商盟垫款，不是几天劳务值一万。用途限两人北航查货、回青玄交证及沿途食宿医药。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v2_boundary",
+          "startChapter": 61,
+          "endChapter": 66,
+          "title": "黑舱截留与残片取舍",
+          "characters": 7497,
+          "exactQuote": "第285日夜在外港真身会见，对照北境原封签存根、45章交接残联与旧封的签认拓本、53章拟取得的陆新写改签自述签认副本；这些是货运线索，不是第二片图样，不能凭同封号认定匣内物。她具名担保林贺仅在外港指定仓区查货至300日；归一实力不赋予林准入界渊的能力。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_return",
+          "startChapter": 67,
+          "endChapter": 72,
+          "title": "带证返乡与先救谁",
+          "characters": 5363,
+          "exactQuote": "第300日，夜的原外港查货担保仍只到当日，不自动延长。林贺当面申请回青玄交证；夜依loc_02具名担保规则，在葬骨外港原港务和本轮当值巡队见证下另签限程离境担保，列林、贺实名、原名册及货证封袋，指定会合/交接地为通天渡口受监管候船区。许可仅301日晨至304日夜有效，沿已勘验的葬骨外港—海岸公共驿路—通天渡口路线坐暖车，夜宿所列原驿站；不准离道查货、入极冰国、妖域、神宫或界渊。原巡队在301日出港时复核名单并交当班驿车的纸质限程单，沿岸既有岗哨在车辆实际到站时逐站验籍、签注到离时点，终站港务于303日实际到达后验原单接收候船监管，304日只在原单、名册和船票相符后办理登船离境。夜仍承担这份限程担保的越界责任，原巡队承担出港核验和未按期交回签注单时的追查责任；没有远程瞬时验籍或只有商业票就能通行。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_training",
+          "startChapter": 73,
+          "endChapter": 80,
+          "title": "延期的复仇与丹府苦练",
+          "characters": 2989,
+          "exactQuote": "白榆316日重新诊察肩伤及寿储下界，症状恢复前停止负荷；第330日复诊才恢复完整训练，诊断不增加寿元。顾肩伤已按复诊康复，只指导玄府前置，不白送功法或寿储。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_advancement",
+          "startChapter": 81,
+          "endChapter": 87,
+          "title": "十年换玄府与旧案的缺口",
+          "characters": 1092,
+          "exactQuote": "第398–414日只做六周期后的静置、丹府稳定观察和普通木柄空载复测，不新增训练周期；第415日白榆当面确认丹府已稳定成形、经脉无回流、伤情可承受，顾峤随后复核林辰能够承载玄府元罡且普通木柄测试不反噬。只有这两项确认都记录为通过，才在同一日按realm_03实际支付十元载；支付先后为“六个有效周期完成→静置观察→白榆诊察→顾峤复核→十元载扣除”，任何一项失败都延期且不预支寿储。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_convoy",
+          "startChapter": 88,
+          "endChapter": 95,
+          "title": "押运截停与放弃追凶",
+          "characters": 4658,
+          "exactQuote": "第431日苏把现场案卷送监督复核点，不能一日传播三大陆；护送执事顾仅能调一队外山见证与救护人员，玄府护卫数量与运人笼位置由实际跟车确认。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_payoff",
+          "startChapter": 96,
+          "endChapter": 100,
+          "title": "有边界的胜果与更长的路",
+          "characters": 1207,
+          "exactQuote": "顾436日交锋后先由救护人员清洗、包扎前臂，实检能够步行和保持监管才转外门值守房；若不能则留原地等待邵实际接押，不把就医延后等同于无需处置。祁保持交械候核的选择，普通绳索不封境。96章第437日辰初邵闻在外门值守房向顾面接受伤统领祁嵩并核身份伤情；乔仍看墨，杜褚在夜班分别接墨/押卫。两岗四人各12小时值12小时休，暂停其他外出任务；顾完成交接才去白榆处作进一步复诊，普通见证员只管登记、不代替玄府看押。苏协调8人床位，梁九帮两名旧工友找家属，其余6人分别登记联系人。"
+        }
+      ],
+      "citedSourceIds": [
+        "world/axioms/ax_04",
+        "world/axioms/ax_09",
+        "world/axioms/ax_10",
+        "world/realms/realm_03",
+        "world/resources/res_18",
+        "plan/overview"
+      ],
+      "originalFullBatchPlusCandidateCharacters": 246053,
+      "citedFullSourcesPlusCandidateCharacters": 47667,
+      "capacityCaveat": "Serialized raw-source envelope only; a formal recheck also needs its question and annotation context. These sizes do not authorize dropping other material."
+    },
+    {
+      "criterion": "counters",
+      "originalCheck": {
+        "criterion": "counters",
+        "verdict": "insufficient",
+        "explanation": "已读规则没有把高境界或高品器物设为无条件胜利：剑诀受锁定、实测距离、二成法力和失锁余刃风险限制；玄府局部护罡只护一处两息，真光也只灼散接触到的阴煞且同场限一印。百章提案同时明确不越阶斩高境，并把高潮定位为顾峤牵制、祁嵩为保留原令而有限交械。不过第61—66章救援和第88—100章截押的实际对手、动作、供能、撤退路径与伤情处理未在本批原文中提供，无法核验是否确实按这些反制边界执行。",
+        "evidence": [
+          {
+            "fragmentId": "e25"
+          },
+          {
+            "fragmentId": "e26"
+          },
+          {
+            "fragmentId": "e51"
+          },
+          {
+            "fragmentId": "e52"
+          },
+          {
+            "fragmentId": "e57"
+          },
+          {
+            "fragmentId": "e58"
+          },
+          {
+            "fragmentId": "e214"
+          },
+          {
+            "fragmentId": "e350"
+          },
+          {
+            "fragmentId": "e425"
+          },
+          {
+            "fragmentId": "e434"
+          }
+        ],
+        "revisionAdvice": "补读后应对北境救援与押运截停逐一列明：各方境界与已掌握术式、每次施术对象和支付、可用反制、伤者撤离及停止条件；尤其不能将顾峤的真光、林辰晋玄府后的基础能力或祁嵩交械写成自动压制两名玄府押卫。",
+        "insufficiencyReason": "unlocatable_sources"
+      },
+      "requestedChapterRanges": [
+        [
+          61,
+          66
+        ],
+        [
+          88,
+          100
+        ]
+      ],
+      "candidateSources": [
+        {
+          "sourceId": "plan/milestones/ms_v2_boundary",
+          "startChapter": 61,
+          "endChapter": 66,
+          "title": "黑舱截留与残片取舍",
+          "characters": 7497,
+          "exactQuote": "第285日夜在外港真身会见，对照北境原封签存根、45章交接残联与旧封的签认拓本、53章拟取得的陆新写改签自述签认副本；这些是货运线索，不是第二片图样，不能凭同封号认定匣内物。她具名担保林贺仅在外港指定仓区查货至300日；归一实力不赋予林准入界渊的能力。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_convoy",
+          "startChapter": 88,
+          "endChapter": 95,
+          "title": "押运截停与放弃追凶",
+          "characters": 4658,
+          "exactQuote": "第431日苏把现场案卷送监督复核点，不能一日传播三大陆；护送执事顾仅能调一队外山见证与救护人员，玄府护卫数量与运人笼位置由实际跟车确认。"
+        },
+        {
+          "sourceId": "plan/milestones/ms_v3_payoff",
+          "startChapter": 96,
+          "endChapter": 100,
+          "title": "有边界的胜果与更长的路",
+          "characters": 1207,
+          "exactQuote": "顾436日交锋后先由救护人员清洗、包扎前臂，实检能够步行和保持监管才转外门值守房；若不能则留原地等待邵实际接押，不把就医延后等同于无需处置。祁保持交械候核的选择，普通绳索不封境。96章第437日辰初邵闻在外门值守房向顾面接受伤统领祁嵩并核身份伤情；乔仍看墨，杜褚在夜班分别接墨/押卫。两岗四人各12小时值12小时休，暂停其他外出任务；顾完成交接才去白榆处作进一步复诊，普通见证员只管登记、不代替玄府看押。苏协调8人床位，梁九帮两名旧工友找家属，其余6人分别登记联系人。"
+        }
+      ],
+      "citedSourceIds": [
+        "world/axioms/ax_12",
+        "world/techniques/tech_04",
+        "world/techniques/tech_06",
+        "story/characters/char_23",
+        "story/arcBeats/message-withdraw-seized",
+        "plan/overview"
+      ],
+      "originalFullBatchPlusCandidateCharacters": 228582,
+      "citedFullSourcesPlusCandidateCharacters": 30481,
+      "capacityCaveat": "Serialized raw-source envelope only; a formal recheck also needs its question and annotation context. These sizes do not authorize dropping other material."
+    }
+  ],
+  "finding": "The specified chapter ranges have existing macro source IDs in the directory delivered to this call, but their text was not supplied. The unlocatable classification needs an evidenced navigation recheck.",
+  "limitation": "This proves source location and preserves exact excerpts, not sufficiency, completeness of all dependencies, or narrative quality. It does not replace the original model judgment or resolve any check.",
+  "verdictChanges": 0,
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false
+}

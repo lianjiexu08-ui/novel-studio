@@ -47,6 +47,7 @@ export interface DesignReviewInput {
     kind: 'batch' | 'cross' | 'synthesis'; label: string; totalBatches: number;
     followupFor?: string;
     reconsiderationFor?: string;
+    reconsiderationKind?: 'source_navigation';
     /** v33: finite source navigation after a dedicated follow-up; never approval. */
     followupBudget?: { remainingRounds: number };
     /** v16 gives required new sources, original evidence and the question room together. */
@@ -93,6 +94,7 @@ export interface DesignReviewInput {
       planRanges?: Array<{ sourceId: string; startChapter: number; endChapter: number; title?: string }>;
       pendingChecks?: Array<{ id: string; criterion: string; questionSourceId: string; requiredSourceIds: string[]; priorUnitIds: string[]; priorSourceIds?: string[] }>;
       resolvedDeferrals?: Array<{ checkId: string; resolvedByStageId: string; kind?: 'reconsideration' }>;
+      sourceNavigationReconsidered?: true;
     };
   };
 }

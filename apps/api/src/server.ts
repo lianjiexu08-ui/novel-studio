@@ -609,7 +609,7 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
     });
     const reconsiderableAnnotationIds = !run.leaseToken && ['ready', 'failed'].includes(run.status)
       && !run.stages.some(stage => stage.kind === 'synthesis' && (stage.result || stage.attempts))
-      ? annotations.filter(note => run.stages.find(stage => stage.id === note.stageId)?.result?.checks.some(check => check.criterion === note.criterion && check.verdict === 'revise')).map(note => note.id) : [];
+      ? annotations.filter(note => run.stages.find(stage => stage.id === note.stageId)?.result?.checks.some(check => check.criterion === note.criterion && (check.verdict === 'revise' || check.verdict === 'insufficient' && check.insufficiencyReason === 'unlocatable_sources' && !check.awaitingSources?.length))).map(note => note.id) : [];
     return { annotations, reconsiderations, reconsiderableAnnotationIds };
   });
   app.get('/works/:workId/design/review-annotations/:annotationId', async (request) => {

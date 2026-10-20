@@ -34,6 +34,40 @@ for(const run of prior.runs){
  assert.deepEqual(current.input,run.input);
  for(const stage of run.stages.filter(stage=>stage.result))assert.deepEqual(current.stages.find(item=>item.id===stage.id),stage);
 }
+// Bind every continuation to its immediately preceding verified segment, not
+// only the initial 17-stage/22-call baseline. Never rewrite older receipts.
+const predecessorPath=`${control}/segment-${state.segment-1}.json`,predecessor=read(predecessorPath);
+assert.equal(predecessor.segment,state.segment-1);
+assert.equal(fileHash(predecessorPath),state.priorCheckpointSha256);
+assert.equal(state.previousCalls,predecessor.totalCalls);
+let preservedPredecessorStages=0,previousVerificationSha256;
+for(const run of predecessor.runs){
+ const current=state.runs.find(item=>item.id===run.id);assert.ok(current);
+ assert.deepEqual(current.input,run.input);
+ for(const stage of run.stages.filter(stage=>stage.result)){
+  assert.deepEqual(current.stages.find(item=>item.id===stage.id),stage);
+  preservedPredecessorStages++;
+ }
+}
+for(const report of predecessor.reports)assert.deepEqual(state.reports.find(item=>item.id===report.id),report);
+assert.equal(state.runs.reduce((sum,run)=>sum+run.stages.filter(stage=>stage.result).length,0)-preservedPredecessorStages,state.completedThisSegment);
+if(state.segment>1){
+ const previousVerificationPath=`docs/audits/2026-10-18-design77-formal-continuation-segment-${state.segment-1}.json`,previousVerification=read(previousVerificationPath);
+ assert.equal(previousVerification.segment,predecessor.segment);
+ assert.equal(previousVerification.checkpointSha256,state.priorCheckpointSha256);
+ assert.equal(fileHash(previousVerification.checkpointPath),state.priorCheckpointSha256);
+ assert.equal(previousVerification.totalCallAttempts,state.previousCalls);
+ assert.equal(previousVerification.unsettledCalls,0);
+ assert.equal(previousVerification.journal.length,state.previousCalls);
+ for(const old of previousVerification.journal){
+  const current=calls[old.callNumber-1];assert.ok(current);
+  assert.equal(current.startSha256,old.startSha256);
+  assert.equal(current.outcomeSha256,old.outcomeSha256);
+ }
+ previousVerificationSha256=fileHash(previousVerificationPath);
+}
+const continuity={previousSegment:predecessor.segment,predecessorCheckpointSha256:state.priorCheckpointSha256,previousVerificationSha256,
+ preservedCompletedStages:preservedPredecessorStages,preservedCallAttempts:state.previousCalls,newCompletedStages:state.completedThisSegment};
 const replays=[];
 for(const run of state.runs){
  assert.deepEqual(run.input,inputs[run.input.area]);
@@ -86,5 +120,6 @@ assert.equal(fileHash(checkpointPath),checkpointHash);
 const terminalPath=`${control}/terminal-segment-${state.segment}.json`;
 if(fs.existsSync(terminalPath))assert.equal(fileHash(terminalPath),checkpointHash);else fs.copyFileSync(checkpointPath,terminalPath,fs.constants.COPYFILE_EXCL);
 const proof={observedAt:new Date().toISOString(),status:state.status,segment:state.segment,checkpointPath:terminalPath,checkpointSha256:checkpointHash,workerAbsent:true,sourceCommit:binding.sourceCommit,runnerSha256:baseline.runnerSha256,inputsSha256:baseline.inputsSha256,model:state.model,fallback:state.fallback,totalCallAttempts:starts.length,successfulResponses:calls.filter(c=>c.response).length,failedAttempts:calls.filter(c=>c.failure).length,unsettledCalls:0,journal:calls.map(c=>({callNumber:c.start.callNumber,step:c.start.step,responseSha256:c.response?hash(c.response.response.text):undefined,startSha256:c.startSha256,outcomeSha256:c.outcomeSha256,usage:(c.response??c.failure).usage})),replays,preserved:{original17Stages:true,original22Calls:true,protectedHash,oldRuns:baseline.oldRuns.length,oldReports:baseline.oldReports.length,oldAnnotations:baseline.oldAnnotations.length},productionVerification:'read_only_sqlite_backup',databaseSnapshotPath:dbPath,modelCalls:0,productionWrites:0,formalAcceptance:false,proseGenerated:false,limitation:state.status==='completed'?'Evidence integrity verification; content verdicts, unresolved blockers and approval remain separate.':'Verified incomplete prefix only; pending stages and formal quality acceptance remain unproven.'};
+proof.continuity=continuity;
 const out=`docs/audits/2026-10-18-design77-formal-continuation-segment-${state.segment}.json`;assert.ok(!fs.existsSync(out));fs.writeFileSync(out,JSON.stringify(proof,null,2)+'\n',{flag:'wx',flush:true});
 console.log(JSON.stringify({verified:true,status:state.status,segment:state.segment,calls:starts.length,areas:replays.map(r=>({area:r.area,completed:r.completedStages,total:r.totalStages})),oldRunsPreserved:baseline.oldRuns.length,oldReportsPreserved:baseline.oldReports.length,formalAcceptance:false}));

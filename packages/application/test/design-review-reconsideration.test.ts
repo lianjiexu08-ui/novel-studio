@@ -135,3 +135,60 @@ test('resolving one negative never clears another criterion or a later adverse r
   assert.deepEqual(final.result.checks.map(check => check.verdict), ['revise', 'revise']);
   assert.equal(final.result.resolvedReconsiderations!.length, 1);
 });
+
+function navigationFixture() {
+  const fixture = reconsiderationFixture(), check = fixture.original.result!.checks[0];
+  check.verdict = 'insufficient'; check.insufficiencyReason = 'unlocatable_sources';
+  check.explanation = '尚未读到检查规则，目前无法定位所需原文。';
+  fixture.note.claimQuote = '目前无法定位所需原文';
+  fixture.note.expectedCheckHash = designReviewCheckHash(check);
+  return fixture;
+}
+
+test('source navigation recheck reads complete cited basis and additions without replacing the original insufficient answer', async () => {
+  const { run, note, original } = navigationFixture(), before = structuredClone(original);
+  const originalRequest = designReviewStageInput(run, original);
+  const stage = queueDesignReviewReconsideration(run, note), input = designReviewStageInput(run, stage);
+  assert.equal(run.reconsiderations![0].version, 2);
+  assert.equal(input.stage!.reconsiderationKind, 'source_navigation');
+  assert.deepEqual(designReviewStageInput(run, original), originalRequest);
+  const pending = input.stage!.coverage!.pendingChecks![0];
+  for (const id of [...pending.priorSourceIds!, ...pending.requiredSourceIds]) {
+    assert.equal(input.stage!.sourceMap.filter(unit => unit.sourceId === id).map(unit => input.sources.find(source => source.id === unit.id)!.text).join(''), run.input.sources.find(source => source.id === id)!.text);
+  }
+  assert.throws(() => acceptDesignReviewStage(run, stage, answer(input)), /显式/);
+  const missing = resolved(input); missing.checks[0].evidence = missing.checks[0].evidence.filter(e => e.sourceId !== input.stage!.sourceMap.find(unit => unit.sourceId === 'source/4')!.id);
+  assert.throws(() => acceptDesignReviewStage(run, stage, missing), /新增来源/);
+  const planner = new JsonDesignPlanner({ complete: async request => {
+    assert.ok(request.system.includes('来源定位正式复核'));
+    assert.ok(!request.system.includes('指向已有revise'));
+    const sent = JSON.parse(request.user), requirements = sent.citationRequirements;
+    return JSON.stringify({ requestId: sent.requestId, summary: '读到完整规则后核实原不足', checks: [{ criterion: 'costs', verdict: 'pass', explanation: '原问题与完整原依据、补充规则一致，检查有明确代价。', revisionAdvice: '', resolves: [requirements.checkId], evidence: requirements.sources.map((source: { units: Array<{ fragmentIds: string[] }> }) => ({ fragmentId: source.units[0].fragmentIds[0] })) }] });
+  } });
+  acceptDesignReviewStage(run, stage, await planner.reviewDesignContent(input));
+  const final = finish(run);
+  assert.equal(final.result.checks[0].verdict, 'pass');
+  assert.equal(final.result.resolvedReconsiderations!.length, 1);
+  assert.ok(final.input.sources.some(source => source.text.includes('原始insufficient是已正式复核解决')));
+  assert.deepEqual(original, before);
+  const corrupt = structuredClone(run); corrupt.reconsiderations![0].version = 1;
+  assert.throws(() => completeDesignReviewRun(corrupt), /复核版本|旧版/);
+});
+
+test('navigation notes cannot erase other insufficiencies, skip new sources or clear unresolved rechecks', () => {
+  for (const reason of ['missing_design', 'capacity_limit'] as const) {
+    const { run, note, original } = navigationFixture(); original.result!.checks[0].insufficiencyReason = reason;
+    note.expectedCheckHash = designReviewCheckHash(original.result!.checks[0]);
+    const before = structuredClone(run); assert.throws(() => queueDesignReviewReconsideration(run, note), /仅支持/); assert.deepEqual(run, before);
+  }
+  const { run, note, original } = navigationFixture();
+  const unit = run.units.find(unit => unit.id === original.unitIds[0])!, source = run.input.sources.find(source => source.id === unit.sourceId)!;
+  assert.throws(() => queueDesignReviewReconsideration(run, { ...note, evidence: [{ sourceId: source.id, quote: source.text.slice(0, 40) }] }), /未读到/);
+  original.result!.checks[1] = { ...original.result!.checks[1], verdict: 'insufficient', insufficiencyReason: 'missing_design', revisionAdvice: '仍需补设计' };
+  const stage = queueDesignReviewReconsideration(run, note), input = designReviewStageInput(run, stage), failed = answer(input);
+  failed.checks[0] = { ...failed.checks[0], verdict: 'insufficient', revisionAdvice: '读到新来源后仍有前置条件未核实。' };
+  acceptDesignReviewStage(run, stage, failed);
+  const final = finish(run);
+  assert.deepEqual(final.result.checks.map(check => check.verdict), ['insufficient', 'insufficient']);
+  assert.equal(final.result.resolvedReconsiderations, undefined);
+});

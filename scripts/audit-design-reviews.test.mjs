@@ -77,12 +77,13 @@ test('validates a partial accepted prefix while preserving failed responses and 
   assert.equal(JSON.stringify(run), before);
 });
 
-async function responseFixture() {
+async function responseFixture(navigation = false) {
   const { input } = partialFixture(), run = createDesignReviewRun(input), stage = run.stages[0];
   const request = designReviewStageInput(run, stage), prepared = prepareDesignReviewEvidence(request);
   const output = { ...fixtureDesignReview(request), requestId: prepared.requestId };
   output.checks = output.checks.map(check => ({ ...check, evidence: [{ fragmentId: prepared.sources[0].fragments[0].id }] }));
   Object.assign(output.checks[0], { verdict: 'revise', revisionAdvice: '保留原始返修结论' });
+  if (navigation) Object.assign(output.checks[0], { verdict: 'insufficient', insufficiencyReason: 'unlocatable_sources', explanation: '所需原文暂时无法定位，不能通过。' });
   const responses = [JSON.stringify({ ...output, checks: output.checks.slice(1) }), JSON.stringify(output)];
   let calls = 0;
   const { modelResponses, ...result } = await new JsonDesignPlanner({ complete: async () => responses[calls++] }).reviewDesignContent(request);
@@ -260,8 +261,8 @@ test('requires an explicit existing, reviewable plan', () => {
 });
 
 
-test('offline prefix replay reconstructs the explicit formal-recheck boundary and retains original responses', async () => {
-  const { run, input } = await responseFixture();
+for (const navigation of [false, true]) test(`offline prefix replay reconstructs the ${navigation ? 'source-navigation' : 'revise'} recheck boundary and retains original responses`, async () => {
+  const { run, input } = await responseFixture(navigation);
   // This fixture needs an unattempted tail; its synthetic interrupted tail is
   // covered separately above and is not part of this insertion scenario.
   delete run.stages[1].failures;
@@ -286,4 +287,6 @@ test('offline prefix replay reconstructs the explicit formal-recheck boundary an
   assert.equal(replay.modelCalls, 0); assert.equal(JSON.stringify(run), before);
   const changed = structuredClone(run); changed.reconsiderations[0].afterStageId = 'unknown';
   await assert.rejects(() => replayDesignReviewPrefix(changed, input), /schedule|boundary/);
+  const wrongVersion = structuredClone(run); wrongVersion.reconsiderations[0].version = navigation ? 1 : 2;
+  await assert.rejects(() => replayDesignReviewPrefix(wrongVersion, input), /version/);
 });

@@ -81,7 +81,7 @@ export function ReviewAnnotations({ workId, runId, stageId, onSource, onStage, o
             return <Button type="link" size="small" onClick={() => onStage(runId, item.stageId)}>{item.resolved ? '已正式复核解决，查看依据' : item.completed ? '复核仍未解决，查看原问题与结果' : '已加入正式复核，查看待审材料'}</Button>;
           })() : reviewState?.reconsiderableAnnotationIds?.includes(note.id) ? <Space direction="vertical">
             <Button size="small" disabled={!!queuing} loading={queuing === note.id} onClick={() => void queue(note)}>提交正式复核</Button>
-            <Typography.Text type="secondary">加入本任务下一步，继续评审时调用模型核验整项返修及完整依据；原判定保留。</Typography.Text>
+            <Typography.Text type="secondary">加入本任务下一步，继续评审时调用模型核验原问题及完整依据；原判定保留，找到来源不等于通过。</Typography.Text>
           </Space> : null}
           {note.evidence.map((evidence, index) => <div key={`${evidence.sourceId}/${index}`}>
             <Button type="link" size="small" style={{ height: 'auto', whiteSpace: 'normal', textAlign: 'left' }}

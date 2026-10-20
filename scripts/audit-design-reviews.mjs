@@ -22,8 +22,9 @@ function reconsiderationReplay(run, rebuilt, runtime) {
     after(stageId) {
       const binding = run.reconsiderations?.[index];
       if (!binding || binding.afterStageId !== stageId) return;
-      if (binding.version !== 1 || !runtime.queueDesignReviewReconsideration) throw new Error('Unsupported formal reconsideration binding');
+      if (![1, 2].includes(binding.version) || !runtime.queueDesignReviewReconsideration) throw new Error('Unsupported formal reconsideration binding');
       runtime.queueDesignReviewReconsideration(rebuilt, binding.annotation, binding.additionalSourceIds, binding.createdAt);
+      if (rebuilt.reconsiderations.at(-1).version !== binding.version) throw new Error('Formal reconsideration version differs from the original judgment');
       index++;
     },
     finish() {

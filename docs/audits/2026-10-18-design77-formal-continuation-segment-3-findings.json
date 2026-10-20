@@ -1,0 +1,2147 @@
+{
+  "verificationPath": "docs/audits/2026-10-18-design77-formal-continuation-segment-3.json",
+  "verificationSha256": "5bcabcf8639193884dbc772af04f9ab1d16b6aeea83ff50c864ff46531b3bdc0",
+  "checkpointSha256": "a6b59fc4412f32fde7a9645efcc29a183241ff943be0a03391b6b0479baab790",
+  "segment": 3,
+  "completedThisSegment": 4,
+  "newCalls": 5,
+  "rows": [
+    {
+      "area": "world",
+      "runId": "design_run_46d4115c-ff06-405b-b5a2-53ed194828a1",
+      "stageId": "batch-6",
+      "summary": "本批所含港口救援、赤霄—苍冥实体航程及返乡宏观安排，均把准入、实体交通、现场核验、费用与失败分支写入提案；地域差异也实际改变了行动选择。局部可检验部分成立，不代表未在本批逐章展开的后段已经实现或全领域验收完成。",
+      "sourceCharacters": 149633,
+      "chapters": [
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49
+      ],
+      "sourceIds": [
+        "author",
+        "world/axioms/ax_01",
+        "world/axioms/ax_02",
+        "world/axioms/ax_03",
+        "world/axioms/ax_04",
+        "world/axioms/ax_05",
+        "world/axioms/ax_06",
+        "world/axioms/ax_07",
+        "world/axioms/ax_08",
+        "world/axioms/ax_09",
+        "world/axioms/ax_10",
+        "world/axioms/ax_11",
+        "world/axioms/ax_12",
+        "world/axioms/ax_13",
+        "world/realms/realm_01",
+        "world/realms/realm_02",
+        "world/realms/realm_03",
+        "world/realms/realm_04",
+        "world/realms/realm_05",
+        "world/realms/realm_06",
+        "world/realms/realm_07",
+        "world/realms/realm_08",
+        "world/locations/loc_01",
+        "world/locations/loc_02",
+        "world/locations/loc_03",
+        "world/locations/loc_04",
+        "world/locations/loc_05",
+        "world/locations/loc_06",
+        "world/locations/loc_07",
+        "world/locations/loc_08",
+        "world/locations/loc_09",
+        "world/locations/loc_10",
+        "world/locations/loc_11",
+        "world/locations/loc_12",
+        "world/locations/loc_13",
+        "world/locations/loc_14",
+        "world/locations/loc_15",
+        "world/locations/loc_16",
+        "world/locations/loc_17",
+        "world/locations/loc_18",
+        "world/locations/loc_19",
+        "world/locations/loc_20",
+        "story/chapterPlans/chapter-plan-32",
+        "story/chapterPlans/bible-chapter-33",
+        "story/chapterPlans/bible-chapter-34",
+        "story/chapterPlans/bible-chapter-35",
+        "story/chapterPlans/bible-chapter-36",
+        "story/chapterPlans/bible-chapter-37",
+        "story/chapterPlans/bible-chapter-38",
+        "story/chapterPlans/bible-chapter-39",
+        "story/chapterPlans/bible-chapter-40",
+        "story/chapterPlans/bible-chapter-41",
+        "story/chapterPlans/bible-chapter-42",
+        "story/chapterPlans/bible-chapter-43",
+        "story/chapterPlans/bible-chapter-44",
+        "story/chapterPlans/bible-chapter-45",
+        "story/chapterPlans/bible-chapter-46",
+        "story/chapterPlans/bible-chapter-47",
+        "story/chapterPlans/bible-chapter-48",
+        "story/chapterPlans/bible-chapter-49",
+        "plan/overview",
+        "plan/volumes/vol_01",
+        "plan/volumes/vol_02",
+        "plan/volumes/vol_03",
+        "plan/milestones/ms_vol1_turn",
+        "plan/milestones/ms_growth_v1_recovery",
+        "plan/milestones/ms_growth_v1_training",
+        "plan/milestones/ms_growth_v1_expedition",
+        "plan/milestones/ms_vol1_climax",
+        "plan/milestones/ms_growth_v1_aftermath",
+        "plan/milestones/ms_growth_v1_crossing",
+        "plan/milestones/ms_bridge_return",
+        "plan/milestones/ms_v2_loss",
+        "plan/milestones/ms_v2_barge",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff",
+        "plan/chapters/32",
+        "plan/chapters/33",
+        "plan/chapters/34",
+        "plan/chapters/35",
+        "plan/chapters/36",
+        "plan/chapters/37",
+        "plan/chapters/38",
+        "plan/chapters/39",
+        "plan/chapters/40",
+        "plan/chapters/41",
+        "plan/chapters/42",
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49"
+      ],
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "pass",
+          "explanation": "跨域移动未以界门或境界名义跳过实体行程：青玄、赤霄、苍冥同属虚海分隔大陆，日常跨海须走飞舟航程；32章按两昼夜海程抵赤霄，并以当日放行旗号、港务验货验籍及避火防护入泊。后续北航明确采用沿岸驿道、逐日地火放行核对、五昼夜保温客舱及抵港候查；返青玄则另有苍冥限程担保、逐站验籍、暖车、六昼夜暖舱和青玄港验籍缴税。苍冥候查救助路径也明确不等同自由入境或离港。已提供安排不存在以商业票、修为或普通符箓替代政治准入、实体供暖或行程的冲突。",
+          "evidence": [
+            {
+              "sourceId": "review-unit/5",
+              "quote": "{\n  \"id\": \"ax_03\",\n  \"title\": \"界门封禁律\",\n  \"content\": \"青玄、赤霄、苍冥是同一天地内被虚海分隔的大陆。太古界门穿越天地界壁，其完整门户非通天之力不可开启；普通跨海飞舟、沿岸定位阵与大陆内部传送不经过太古界门，也不具有穿越界壁的能力。“破界飞舟”之名仅指破开海上风暴与局部空间乱流。\",\n  \"scope\": \"界门\",\n  \"precedence\": 3,\n  \"status\": \"proposed\"\n}",
+              "originalSourceId": "world/axioms/ax_03",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/70",
+              "quote": "{\n  \"id\": \"loc_02\",\n  \"name\": \"苍冥大陆\",\n  \"kind\": \"continent\",\n  \"entryConditions\": [\n    \"大陆环境寒冷；凝元境以下需保温舟舱或护身寒符。修为不是政治通行权。\",\n    \"沿岸官港验引渡令；无令者可由巡界使验明身份后具名担保，担保者承担监护和越界责任。例外仅到指定会合地，不自动授予进入界渊的权利。\",\n    \"具体到访须区分受监管码头候查、沿岸入境担保和界渊准入；担保须由实际到场者具名承担，只在约定范围与期限生效。\",\n    \"上述防寒门槛针对实际暴露于寒候。普通港区和已开放公共驿路的固定暖房、暖车只有在隔风围护、隔火炉、通风烟道、燃料与值守人手均实际存在且持续供热时，才提供其内部的温暖避难处；不把整座港口或一段驿路变成免寒区。离开温暖内部进入寒候，凝元以下仍须实际可用的护身寒符；普通衣物、修为名义或商业票不替代此条件。供暖失败要停止进入或转移到另一个已核实暖处，另记真实燃料、交通与照料费用。\",\n",
+              "originalSourceId": "world/locations/loc_02",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/71",
+              "quote": "{\n  \"id\": \"loc_03\",\n  \"name\": \"赤霄大陆\",\n  \"kind\": \"continent\",\n  \"entryConditions\": [\n    \"需修持适用到访区域的抗火法门或佩戴避火灵符。天宝外港及既有受护街段在非地火喷发期的日常炙热，以已验明余量的普通避火符art_16满足；凡器避火衣art_15只作辅助，不替代此项灵符/法门门槛。离开这些受护区域前须另核当地实际危险和适配防护，普通符不授予闯明火、火法或地火的资格。\",\n    \"玄府境以下须避开地火煞气喷发期。港务依据沿岸岗哨实际见到的热裂、硫烟和异常地火记录发布封航/放行旗号，航司出航前查本航次通告、靠港前复核当日旗号；旧通告不保证未来安全，若转为封航须在许可锚地待令或返航，不能靠日常避火符硬闯。\"\n  ],\n  \"status\": \"proposed\"\n}",
+              "originalSourceId": "world/locations/loc_03",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/402",
+              "quote": "{\n  \"id\": \"chapter-32\",\n  \"chapterNumber\": 32,\n  \"volumeId\": \"vol_01\",\n  \"title\": \"潮声里的空位\",\n  \"summary\": \"第215日凌晨，飞舟在实体航线遇风暴，船上护阵者维持航向，林辰留货舱值看。索具松脱时他把自己固定在靠墙短绳上，在两丈内直视一段尚未绷紧、未系重箱的半斤索头，御动一息递给水手，指挥水手先制动再把箱子拉回；不以真元托举整箱。一个押货者试图把货箱私推到侧舱，脚被夹住。林辰选择先让水手救人，待水手用随舱普通撬杠抬稳压脚的箱角、卸去楔上载荷，再从一丈内直视八两松楔，以一次一息御物移开，失去盯住六号箱的片刻。风暴后五箱仍在，其中一箱进水，六号箱不知去向；林辰报告亲见的搬移动作却承认没看见六号箱最后被谁移走。第216日暮抵天宝外港，领航员先从海侧确认当日非喷发放行旗号，港务再核验借领避火衣、仍有余纹的普通避火符及货单，收货人程砚迟迟不来。林辰失去履约奖金，等待实际货损责任复核；他先要求验明五箱、留下失踪箱记录与可联系去处，而不是凭疑点闯入内陆追凶。\",\n  \"characterGoals\": \"林辰要让药材和人员尽量安全抵港，并保住合同与收货线索；船队要在风暴中维持航向、区分天灾和失职；港务方要按赤霄外港规则完成卸货与验籍。\",\n",
+              "originalSourceId": "plan/chapters/32",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/402",
+              "quote": "  \"storyTime\": \"第214日日暮至第216日日暮；实体海程两昼夜\",\n  \"scenes\": [\n    \"第215日凌晨风暴袭来，护阵者在上层维持航向，林辰留在货舱值看，定位阵不缩短实体海程。\",\n    \"货索松脱，林辰靠短绳固定身位，直视两丈内尚未绷紧、未系重箱的半斤索头，预付半成真元御动一息递给水手，随即停术；水手再系索、用普通船桩受力、制动并搬回药箱，林不持续拉承重索。\",\n    \"押货者私推一箱进侧舱时脚被夹住，林辰先叫水手用随舱普通撬杠抬稳压脚箱角卸去楔上载荷；他从一丈内直视八两松楔，另付半成真元御动一息移开，水手抽人、落箱。撬杠与水手承重，御物不搬箱；救人期间林顾不上盯住六号箱。\",\n    \"风暴后只点到五箱，其中一箱进水，林辰把亲见搬移与未亲见失箱分别记录，不用猜测填空。\",\n    \"第216日暮，飞舟靠泊天宝外港；港务验货、验籍和避火衣借领单，要求未交割前留在受护卸货区。 航司在靠港前从海侧看见216日当日放行旗号，港务复核沿岸岗哨无本港地火喷发记录后才准入泊。215日海上风暴不被当作地火喷发，也不能用214日旧通告代替今天核验；林仍戴船方借符，不把次晨才租的新符算作此刻持有。\",\n    \"程砚没有来，林辰交验五箱并留下可联系住处与失箱记录；普通避火衣与借符按附单留到217日晨卸货交接后分别归还，下一步须另办适配防护与去处。\"\n  ],\n",
+              "originalSourceId": "plan/chapters/32",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/359",
+              "quote": "{\n  \"id\": \"ms_growth_v1_crossing\",\n  \"title\": \"护货南渡与入港代价\",\n  \"kind\": \"turn\",\n  \"startChapter\": 30,\n  \"endChapter\": 32,\n  \"setup\": [\n    \"第212–214日按山路转驿车到云梦天港，运送六箱指定低阶药材换本航次普通舱；管货不等于可炼化物资。\",\n    \"第214日暮出航、第216日暮到天宝外港，海程两昼夜；不沿用旧第17–19日航历。\",\n    \"第32章第215日凌晨的风暴中，护船者承担外敌；林辰只把两丈内尚未绷紧、未系重箱的半斤索头御动一息交给水手，预付半成真元后停术，由水手系索、普通船桩承力、制动并搬回药箱。他再让水手用随舱撬杠抬稳压脚箱角、卸去楔上载荷，才从一丈内另付半成御动八两松楔一息；水手抽人、落箱，林不以御物固定受载货索或托箱。救下试图私藏货物的押货者使他错过盯住六号箱的窗口。第31章只是验货登船；本节点按第32章既有动作明确实际承力者，不改变两次支出、失箱与奖金后果，不斩神海海兽或获得免费升级。\",\n    \"入港用验籍及实际避火防护，局限于有防护的外港街区；他必须补交因护货失损的说明，收货人的真名与失踪货箱构成下一卷具体调查线索，不能潜行岩浆暗渠。\"\n  ],\n",
+              "originalSourceId": "plan/milestones/ms_growth_v1_crossing",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/364",
+              "quote": "{\n  \"id\": \"ms_v2_voyage\",\n  \"title\": \"有限航款与五日北行\",\n  \"kind\": \"turn\",\n  \"startChapter\": 54,\n  \"endChapter\": 60,\n  \"setup\": [\n    \"第271日商盟港务理事会为追缴被挪货与避免北境封港，从本案追偿周转款实拨14000枚下品灵石给具名领款的贺青梧；这是有账有追偿风险的商盟垫款，不是几天劳务值一万。用途限两人北航查货、回青玄交证及沿途食宿医药。\",\n    \"第271–274日乘普通车沿每日复核开放的既有沿岸驿道从天宝外港到极焱天港；271日出发前贺从已拨1000杂费额度中实付12购两张满额普通避火符（各6枚，计入后来核销780而非另加支出），两人核余纹后佩戴新符；旧符不得续算有效，不进太微城、神炎内地、魔谷或天坑。陆与弟弟留赤霄接受传唤，不能无交通随队到北境。\",\n    \"林延续252及254回访的短走、坐车许可，仍不负重，拒绝接受程记以撤供换赔偿的口信。第275日贺在极焱航司柜台按本航次实报5000/人支付10000，购买两张普通保温客舱票；船方在两人具名舱单上列明隔火暖炉、通风烟道、五昼夜保温舱位及燃料、当班船员添料看火均含在这10000内，普通是舱等，不是敞舱或仅发一件保温衣。276日暮离港、281日暮抵葬骨外港，五昼夜完整航程。\",\n",
+              "originalSourceId": "plan/milestones/ms_v2_voyage",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/364",
+              "quote": "    \"第271–274日乘普通车沿天宝外港至极焱天港的既有沿岸驿道行进，不穿内陆地火带。该道不是全程受护街段：本次271日出发前、272–274每日续行前，由沿岸岗哨把当日巡路所见的热裂、硫烟及异常地火结果交驿站当值车头核对；本次开放段仅有日晒与日常热气，无明火、硫烟和喷发，车头据此放行普通客车。贺逐段看当日放行牌、核两人的符纹，车夫只走已核段，夜宿既有受护驿舍；受护驿舍仅降低环境危险，不替符充能。若新见硫烟、热裂、地火或符纹不足，停在受护驿舍或沿已确认安全段回站，须等待复核，不能为赶275票期硬闯；延期就改签并重排后续日期和实际费用，不能保持原抵达日。本次逐日复核可行才按四日抵极焱，入港另验籍，不用商业款代替放行。\",\n    \"两符自271购入至276暮登船即使连续佩戴也各不超过144小时，至少余576小时，仍须以当次验纹确认；登船封存停耗。普通车费与受护驿舍住食计本款杂费实支，不从保留的回程3000中挪用。\",\n    \"北航登船核验并入本次出港场面：276日林贺、港务当班人员与实际船方共同核对具名舱位、隔火炉和通风烟道完好、五日燃料实载及船员值守安排；只在本次核验合格后登船。贺全程在该保温舱内，守证与换班也在舱内完成；林279日温和吐纳仍在已确认有供暖的同一客舱，不因暖舱增加真元恢复额或放宽伤后上限。船体航路护罩不被写成额外免费护寒术。\",\n",
+              "originalSourceId": "plan/milestones/ms_v2_voyage",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/364",
+              "quote": "    \"北航防寒失效分支：舱位或五日燃料未兑现、炉道不合格就不登船，在极焱原有获准客舍候船并办理改签；途中失暖先由船员核实备用保温舱并实际转移，无法转移则赴最近可安全抵达且允许接泊的港口补修救助，不凭普通衣物硬熬。延期要重记票款退款或补价、食宿、抵港与后续会面日期，现金不足先取得经确认的真实来源，不再花已付的10000或挪封存3000。原276—281航期仅适用于本次五日供暖实际持续的正常路径。\",\n    \"275日贺在极焱航司同街商盟登记的制符门市实购art_21普通护身寒符六张，本次报价每张6枚、共36；另购两件干燥保温衣共8。货架实物由店方出示本制式符师制成与逐张验收记录，林贺现场试扣、读取每张尚余至少220小时，再各自编号三张并干封；符师本境、工时、制符材料与耗灵记录均须可核，不把店名当现货。36从原杂费669中细分，衣费8也原在该项，剩余其他625；不增垫款、不挪回程3000、不把制符已耗石再当主角收入。\",\n    \"281日暮抵葬骨时，港务当班人员在本船暖舱门内核本次码头寒候和候查暖房是否开放。林贺先穿干衣，各启第一张护寒符、确认余纹与温热正常后才过短栈桥；只去受监管候查暖房。该房有实燃隔火炉、烟道和当班添料者，食宿供暖按本次到港登记实付并计原杂费，不由船舱免费覆盖岸上。查验与防寒分别成立，符不能替代285日才获的查货担保。\",\n",
+              "originalSourceId": "plan/milestones/ms_v2_voyage",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/366",
+              "quote": "{\n  \"id\": \"ms_v3_return\",\n  \"title\": \"带证返乡与先救谁\",\n  \"kind\": \"turn\",\n  \"startChapter\": 67,\n  \"endChapter\": 72,\n  \"setup\": [\n    \"第300日，夜的原外港查货担保仍只到当日，不自动延长。林贺当面申请回青玄交证；夜依loc_02具名担保规则，在葬骨外港原港务和本轮当值巡队见证下另签限程离境担保，列林、贺实名、原名册及货证封袋，指定会合/交接地为通天渡口受监管候船区。许可仅301日晨至304日夜有效，沿已勘验的葬骨外港—海岸公共驿路—通天渡口路线坐暖车，夜宿所列原驿站；不准离道查货、入极冰国、妖域、神宫或界渊。原巡队在301日出港时复核名单并交当班驿车的纸质限程单，沿岸既有岗哨在车辆实际到站时逐站验籍、签注到离时点，终站港务于303日实际到达后验原单接收候船监管，304日只在原单、名册和船票相符后办理登船离境。夜仍承担这份限程担保的越界责任，原巡队承担出港核验和未按期交回签注单时的追查责任；没有远程瞬时验籍或只有商业票就能通行。\",\n",
+              "originalSourceId": "plan/milestones/ms_v3_return",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/366",
+              "quote": "    \"夜在301日午交清具名名单和责任后，沿既有陆路走满十昼夜，311日午实际抵驻地；与在岗巡队当面交接后才返岗补巡，301—311在途中，不随林回青玄，也不在301日虚写已抵岗。限程担保的越界责任并不因本人出发而取消，林贺是否按期离境须以后续实体纸单送达得知，不能由311日返岗自动推定。林贺本次各站验籍通过，301–303日坐暖车到通天；若任一关未放行或304夜前未完成登船，停在最近受监管驿站/候船区，申请重审并改签，后续抵达、训练及费用必须重排，不允许沿用315日返乡日期。\",\n    \"商盟在第303日两人已在通天渡口受监管候船区，实际航司在当地柜台报价确认本案两席设有隔火暖炉、通风烟道的密闭保温舟舱各1500（普通货船的实有暖舱，不是仅加一件保温衣），贺用此前封存3000实付；船方具名舱单注明两席六昼夜保温舟舱、暖炉燃料与当班船员添料看火均包含在这3000中，按loc_02满足凝元以下乘客的舱内防寒要求，不另虚开免费护身符。304日登船前林贺与港务当面核对实际舱位、炉道完好和六日燃料配载，贺全程住该暖舱；第304日暮出航、第310日暮沧溟古港抵达，六昼夜。第310日暮到港后先在沧溟古港受监管泊区办理下述入港核验，不把到港当成已获准上岸；实际核验放行后，第311–314日才沿大乾普通驿路返外山，各站验本次入港签注、名册和现有路引，费用按同一杂费账据实结算。\",\n",
+              "originalSourceId": "plan/milestones/ms_v3_return",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/366",
+              "quote": "    \"返青玄入港执行约束（并入返航到岸场面，不另开一轮办手续章节）：310日暮船靠沧溟古港受监管泊区，船方交实际到港舱单；林贺当面向大乾沿岸守军所属的当班港务验籍岗出示本人原籍凭证、原名册、现有路引及苍冥实际签注离境单，逐一核人、核航次和随身封袋。林的本土身份不替贺免除外来海路入港查验；苍冥限程单只证明此前获准离境，不能充当大乾入境许可。核验岗按loc_01、loc_21及loc_27的既有分工登记本次入港，税务经办当面核定本案两人本航次的应缴税费合计24枚下品灵石，贺从原专项杂费现金实际交清并收有日期、两人姓名、航次、金额及经办签记的收讫联；这是本次拟定实缴情节，不设通用税率、不增商盟代付或免检特权。港务在原名册及现有路引签注本次核验放行，船方只负责舱单交接，不代替守军放行；实际放行后两人当晚进入港内原有普通客舍，次晨按普通驿路离港。检查封袋只核申报、外观和封记，不启动残片，不把北境见证或父案副本当作本地已认定罪证。\",\n",
+              "originalSourceId": "plan/milestones/ms_v3_return",
+              "unitStart": 0
+            }
+          ],
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "history",
+          "verdict": "pass",
+          "explanation": "本批提案将现状中的失箱、扣工、港口火灾与跨陆转运拆为可追溯但不全知的因果链：林辰只据亲见和可核原件推进，首仓火的倾倒责任、携页者与火因保持未明；程记因外部问询而撤走五工外口作业，继而引出港务记录、巡查、潮沟救援和后续北境查货。不同势力亦有独立选择及代价：船主暂停起吊承担仓占，贺撤回缆具并失单，陆保账逃离，港务与巡查仅按权限推进。宏观北境段仍要求原航簿、口供、炉料、轮班与收支联交叉核对，救助不反推全链定罪，因果边界清楚。",
+          "evidence": [
+            {
+              "sourceId": "review-unit/361",
+              "quote": "{\n  \"id\": \"ms_v2_loss\",\n  \"title\": \"失箱索偿与仓火救人\",\n  \"kind\": \"turn\",\n  \"startChapter\": 33,\n  \"endChapter\": 39,\n  \"setup\": [\n    \"第216日到港五箱（含一箱水损）、六号箱失踪，未出现的程砚次日才来；林辰仅亲见一名货工试移第六箱，未亲见失箱。\",\n    \"第217日晨先在港口受护交接位归还31章船方借出的普通避火衣及借符，按两件领用号分别销借；借符使用至多60小时，至少余12小时，不记成满符。仍负卸货责任的原船主另向租铺实付2枚下品灵石，交付不同领用号、验余量不少于336小时的普通避火符，林佩戴后才离开交接位。租期至230日，2枚从另签14日轻役总酬6枚中扣一次；本时点预计4枚，225仓火后又有同意列账的1枚普通敷伤药，230实领3枚。林只看护交货、不能负重；符限非喷发期受护外港普通炙热，不抗地火、火法或火烟。\",\n",
+              "originalSourceId": "plan/milestones/ms_v2_loss",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/361",
+              "quote": "    \"风暴规程允许口头指挥当舱水手暂存，常写过粉板、严后擦去并虚报已查；船方未全船复查。217日侧门凭严工牌与程记领废箱便条只按空箱记底册，值门水手未拆验，常虽感重仍未说。39章各承担可证失职，不将监管写成毫无缺陷。\",\n    \"第34章严让林把私挪改成林指挥避浪，许分售药钱；林拒收并只签亲见救人。严反咬林脱岗，船主暂停其查备缆间；34章常在怕停工与说实话间选择说明自己搬箱范围。\",\n    \"6包火毁依据：218分架页与陆兄弟自承，225后架12包原签实物，前柜6枚本批焦吊签与残灰、灭火工确认原处；另6包由医铺接收和用药页核实。材料只支持本箱去向，首仓火因和携页者仍待查；任何不足应保留去向未明。\",\n    \"38陆沉川自愿交出随身工袋保存的217便条、218分架页；兄到场要带走弟，被弟拒绝。林不知其另一批改签。首仓火因与纸页逃者仍未核，50章新提案没有第二仓纵火，不能用已废弃镜头反推首仓火因。\",\n    \"230日酉时在受护住处还旧符并领净酬3枚，夜间当地船医分别复诊掌腿，五日观察满后仅准吐纳与平路短走，握剑仍待复测；231新符到手前留受护区。\",\n",
+              "originalSourceId": "plan/milestones/ms_v2_loss",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/361",
+              "quote": "    \"此处只存普通草药、木架与纸包，不是地肺毒焰区。边门向外开，门板下侧破口可伸入短木杆钩到内侧轻闩拉环；倒架停在门内半步外，低处仍可爬过。烟正从另一侧主门涌出，边门上沿暂未着火；林留在门外上风侧，只用湿毡裹持门的手减热，不能靠湿毡滤毒或进入烟层。\",\n    \"39章船主提议让常先担未验缺额换林先脱责，林先问能否离船后拒签；无批号医铺抄页遭程有效质疑，贺去核原接收页、批签包装和逐日领用页，再记六包售用。常接受账清仍拒绝私下帮林查船员。\",\n    \"226日午后林在原船换药时，陆沉川在医棚请登记员联络哥哥陆沉舟。登记员写明伤者已稳定、227辰初在原船复核岗问讯，由港务跑腿脚夫沿港内公共路送到北泊卸货棚；陆沉舟当晚收到条，因弟已稳定，先做完当夜核货差事，翌晨步行赶来。纸条只载获救、安置、问讯时间地点，不含海上私挪、火因或完整药材去向；林未在登记现场，也未见送达条。\",\n    \"35章取得侧门册后，贺与林帮助原搬工疏通公共退包货道，才由对方指明225夜外桌核页、仓内退包及油灯旁堆纸绳。37见拖拉后灯架倾倒、油火沿纸绳燃起，携页伙计逃走；贺报警叫水、灭火工压火验安全、搬工取物、港务保存，火因人名仍待查。\",\n    \"36唐独立尝试带五工借退包工序离院，普通木楔被凝元看守御物抽走，五人遭拦回并被撤外口活、转后排工棚；林贺不知。37木仓退包由原药栈伙计接手，救陆弟不等于救五工。\"\n",
+              "originalSourceId": "plan/milestones/ms_v2_loss",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/407",
+              "quote": "{\n  \"id\": \"chapter-37\",\n  \"chapterNumber\": 37,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"火仓留人\",\n  \"summary\": \"225夜，林贺为核册上领货人到木仓外公共交接处，两人在门外等了片刻，见一名交割伙计在外桌核纸页，侧窗内正有人往外挪退包装。灯架在一阵拖拉声后歪倒，带油火线沿纸绳窜起；撞落还是固定处松脱，林没看清。外桌伙计抱页跑向侧巷，边门同时传出求救。林先向侧巷迈了半步，听到第二声求救才停住：边门尚未烧着，对方还能应声挪动，若此时追人，门上窜起的火会先断掉出口。林仍不知是谁，转身让贺叫水手汲水，用湿毡裹手、短木杆从门板破口钩开轻闩，留在外侧上风处撑门约十息，叫对方自行爬过倒架。人被拉到门外时林掌心被热铁包角烫伤，腿伤也不许他再进仓。获救伙计自报陆沉川，林只记姓名待核。火势压住后，贺和搬运工在安全的后架取回12包原批签药和破口外板。林识出六号箱刻号，但救人已使携页者逃出视线，所携纸页内容和火因都未知。 226日陆在医棚请人联络哥哥，林正回原船换药，尚不知这次联络。\",\n",
+              "originalSourceId": "plan/chapters/37",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/407",
+              "quote": "  \"cost\": \"林掌心烫伤，225夜起停练观察至230夜，满五日复诊后仅准吐纳，握剑须239日另测，期间不攀绳搬货；船主从船医药包实际付普通敷伤药折1枚，记轻役总酬待230结算。携页者逃脱，身份、纸页内容与火因仍未知；湿毡焦损由贺承担，不凭此新增林债。 腿伤与掌伤分开记录，225–230均只做坐姿轻役和平路短走，不能追跑、攀跳或搬重物；230结束的只是掌伤五日停练观察期，不等于腿伤全好。\",\n  \"threads\": [\n    \"th_03\",\n    \"th_05\",\n    \"sec_04\"\n  ],\n  \"endState\": \"226日，获救伙计自报陆沉川，正式身份和领箱行为待38章当面核证；六号箱外板、12包原批签药已取回并登记暂存，林确认箱到过程记。林手伤须复诊，火因及其余12包去向未知，陆沉川不计入贺那5名被扣雇工。 现场保留倾倒的普通油灯架与通向纸绳堆的燃迹，支持从该处起火的调查方向；倾倒动作、挪包者和携页者身份仍待核，不把观察到起火点等同确认人为纵火。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_15\",\n    \"char_21\"\n  ],\n  \"location\": \"loc_23天宝外港程记普通木仓外公共货道与临时火场救护点\",\n  \"storyTime\": \"第225日至第226日\",\n",
+              "originalSourceId": "plan/chapters/37",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/409",
+              "quote": "{\n  \"id\": \"chapter-39\",\n  \"chapterNumber\": 39,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"不替别人结的账\",\n  \"summary\": \"229日船主把转嫁条推到林面前：先把未验缺额挂给常，林就能退出全责争议。林问自己是不是终于可以离船，伤腿却在桌下发紧；他想起为这一缕真元付掉的三年。常放下空搬钩套，问他是不是只差一个替身。林收回手拒签，留到轻役约满，让贺去核药。230日贺带回核清与返还的结果，赔款还没有到账。林以为这就能请常再私下帮忙，常却收起钩套，只肯应正式传问。林划掉请求私访的那一行，让他走。离船时领到的净酬不能补好这道裂缝；他仍只能按医嘱短走。\",\n  \"characterGoals\": \"林想尽快摆脱全责和轻役，却必须决定是否接受把缺额压给常的出口；常要承担自己可证的责任，不愿继续充当林随叫随到的线人；贺要把追人所需的可靠基础留住。\",\n  \"conflict\": \"船主的简便结算能让林先脱离争议，却把尚未验清的缺额先转给暂停工作的常。医铺无批号抄页不能定本箱去向；拒绝转嫁就必须让核验完成，且不能要求常以继续帮忙回应。\",\n  \"choice\": \"林拒签将缺额先压给常的条件，继续履行最后两日轻役；贺主导医铺核验。核清后林接受常只正式配合的拒绝，不拿自己拒签或救人经历索取额外帮助。\",\n",
+              "originalSourceId": "plan/chapters/39",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/410",
+              "quote": "{\n  \"id\": \"chapter-40\",\n  \"chapterNumber\": 40,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"撤回的缆绳\",\n  \"summary\": \"231日贺从60枚修船储备付12买两符，一张给林，余48留作修船。她到装货口时，自家备用缆仍盘在车上，临时替工等她发话；程要求先把缺口填上，再拿船押认赔才肯谈五人的下落。贺叫人把缆车掉头，向本船未涉案人员说明今天回坞保养，不替程补工。程指着装不出去的货说下一单可以给别人，她仍带队离开。林原想借混乱跟接货伙计查遗物，见贺逐一点齐退回人员，便留下帮她叫名；五个无人应声的名字把问题从货箱拉回活人。232正式受理与238见工安排简短落定，贺将五人的出工单留在船员名册里，没有提前替谁销名。\",\n  \"characterGoals\": \"贺要确认五名雇工的生死与行动自由，并守住自己仍可维持的船务；林要支持救人而不把父案追查压过船员安危；程要借补工、认赔和拒见拖住外部核查。\",\n  \"conflict\": \"程既要贺补足装货缺口，又用见人资格诱她押船认赔；贺若继续供人供物，程记可维持装运，若撤回自有资源则失去订单关系并可能加重对五人的控制。港务受理只能排定复核，不能立刻进院搜人。\",\n",
+              "originalSourceId": "plan/chapters/40",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/413",
+              "quote": "{\n  \"id\": \"chapter-43\",\n  \"chapterNumber\": 43,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"先响的岸钟\",\n  \"summary\": \"244戌初，比公告早一个时辰，林贺在装卸灯下认出唐、许、冯被推入低舱，唐喊不让走，舱门外扣随即搭上。林先敲岸钟，岗役回应后沿石阶跑报巡艇；驳船已转向浅沟出口，若继续停在观察位，三人会从视线里消失。贺让林扶栏正常登船坐稳，解缆跟近，主动离开测好的安全观察位置。驳上的陆沉舟看见他们，护着原账命此前做过轻钩控制训练并完成实测的凝元伙计御动轻钩挂住贺船尾拖环，索另一端事先系在驳艉桩上；御物只付半成真元送钩，挂稳便停术，随后靠驳船前行和艉桩承力拖偏小船。林听见命令，知道对方正是先前来认弟的人，却得不到一句解释。绷紧的索把船尾带偏，贺竭力控向；林坐稳握剑，只剩切索这一瞬，施术留到下一章紧接发生。\",\n  \"characterGoals\": \"林要把真实拘束和提前开船变成及时报警，并随贺保住三人的可见位置；贺要追上自己的雇工，陆要护账逃查，不让跟船者靠近。\",\n  \"conflict\": \"公告亥时不能替代眼前戌初的动作，巡艇须走实体水路；不跟就丢视线，跟近又被同阶伙计以轻钩和船桩拖偏。林的伤势不允许跳船硬夺钩，贺独驾小船难以同时控向和解索。\",\n",
+              "originalSourceId": "plan/chapters/43",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/414",
+              "quote": "{\n  \"id\": \"chapter-44\",\n  \"chapterNumber\": 44,\n  \"volumeId\": \"vol_02\",\n  \"title\": \"浅滩一剑\",\n  \"summary\": \"紧接43章244日戌初钩索拖偏的瞬间，林坐稳只用一次剑诀切断外露索，付二成真元、剑热停术。舷边收余索的伙计因驳艉骤摆、脚下湿滑失足跌水，陆驳转向时艉部被旧护桩顶住，陆和另一伙计忙撑篙脱困。林亲见本次唯一余刃在两丈界内散尽；唐趁看守离开推开未锁死的舱门外搭扣，先扣住短跳板验板身和搭点。贺宁可撞裂自船底也把船头搁在沙舌，实际停到板端下面；唐见船位和护桩仍稳才放板。林看见陆提原账箱向船头去，却在余刃已散后先递固定浮圈给刃路外、正抓舷侧垂索的落水者。许、冯、唐依次趴板过船，唐带出自己挂着的点货夹。陆见巡艇灯接近，取舍保原账，撑开驳船逃向深槽。\",\n  \"characterGoals\": \"林要保住工人和落水者，不以腿伤硬拼；贺要给三人提供可踩住的逃生落点；唐要带两名同伴出舱并保住自己经手的点货夹；陆要保住原账、躲过巡查，不愿为困住贺船把自己留在浅沟。\",\n  \"conflict\": \"驳船提前离开原定过闸路线，巡艇要绕外弯赶到。陆与两名伙计均凝元，正面久战林贺无胜算；断索和护桩只提供十余息转移窗口，贺若怕损船，跳板下就没有稳定落点。\",\n",
+              "originalSourceId": "plan/chapters/44",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/365",
+              "quote": "    \"监管与知情的新增提案：押运货船方把七人列作随船劳役，对两港均隐瞒强迫扣留；本航次实际舱单、到港签注只能证明这艘船获准到指定受监管泊区，不能证明七人自愿或拘禁合法。290到港岗未逐人私下问询，并被外锁和押运货船方代答遮蔽扣人事实，此为本案具体漏查，不能写成全港默认准许扣工。291行动前，原巡检港卫在外锁舱口听到“七个人被扣住”的求救，见外绑绳后回近处值岗当面报告；港务据此先按七人实备原定救助包，口头报数此时只是救助需求，待开舱才逐人核实。夜与原两名港卫到位控制侧巷，近舱港卫按既定开扣顺序接人，不先把呼救当作全链定罪。救援后逐人分开问询，将七人的亲历与押运货船原航簿、炉料领用、轮班和收支联交叉核对；林只亲见现场，未读到的航程或账目不自动成为他的知识。押运货船方单据可伪造，七人口供也各有范围；不相符部分保留待查，不因此追认入境自愿或全链已经破案。相关原件由当地港务封存，林贺既有随行见证副本只记录本次救助与已核部分，不凭本草案新增全知货运证据。\",\n",
+              "originalSourceId": "plan/milestones/ms_v2_boundary",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/365",
+              "quote": "    \"第64章的实际转运在第291日，285日只是夜抵港会面，不把两日混为同一场。夜要先封存污染货并救出七名被扣在普通货舱的青玄矿工；林在仍可追程的小艇与先开囚舱之间选择救人。贺依现场舷号确认目标货舱，林沿港卫先验过的短板扶栏走到既有码头装卸浮台的近舱侧，不跳跃、不负重。舱口外露普通插扣被另加的一根未附灵麻绳绕耳绑紧，港卫从码头正面被舷板遮住，浮台近侧才看得见绳段；林在此施一次已掌握的凝元剑诀，实际只放一道风刃切断绑门麻绳一处，亲见唯一余刃在两丈界内散尽、港卫核舱门与短板仍稳后，再以肉身拨开失去束缚的轻插扣。夜守侧巷与栈桥，港卫和贺实际接应矿工；林不靠风刃托举浮台或隔空搬人。程从另一侧已离泊小艇进入密集客船航道，夜看见去向，却选择守住撤人的栈桥，拒绝扩大封港或攻击载客航道，令港卫记录船号。归一强者没有被低阶障碍困住，她留下逃犯是为保撤离通道，不是突然失去感知。\",\n    \"选择：林将第一片继续留在可复核封袋中，放弃夺第二片的机会救人；夜接受先救普通人而非强追残片，限制封港范围以免所有商路停摆。\",\n    \"认知：夜只据其守界经历告知界壁外的寂灭风险，林相信证言但没有亲见死海。父亲在苍冥存档的署名检修副本由夜带来的巡查档案核对，只证明其参与守门；不证明投毒真凶。\",\n",
+              "originalSourceId": "plan/milestones/ms_v2_boundary",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/365",
+              "quote": "    \"新增待审的七人身份与交接安排：291日行动前，港务原验籍岗经办在本案救助登记上签名，接下七名获救待核人员的身份核对与监管去向责任，核定使用泊区内原救济所候查暖房至300日。原所方当班负责人在已有七床、70枚十日住食供暖及28枚首轮诊护安排上签收候查照护；不发入境许可。开舱后港卫先按实际救出顺序登记，逐人与自报姓名、原工籍线索及船方舱单对应；无法立即核实的栏记待核，不因口供一致就追认自愿上船或真实籍贯。七人在原定衣符、短板和保温救助舟条件下，由原陪护港卫随实际批次交到同一监管泊区内的候查暖房，验籍岗与所方在交接单分别签明身份状态、人数、伤情和去向；从开舱至接收始终走本案候查救助路径，不借夜285日给林贺的查货担保入境。身份与案情分开核对：原航簿、各人口述和实物不相符处继续待查，先照护不等于已查清全链。正常拟定路径至300日仍有原籍材料待核，七人留所候查；300日港务逐人复核身份进展、健康、本人意愿及后续床位经费，再实际办理续接或取得合法离境条件。夜准备返驻地不带走这份港务责任；七人未取得引渡令或独立具名担保时，不得随林贺离港。70不覆盖301日后，期满不自动遣返或交回扣人船方。\",\n",
+              "originalSourceId": "plan/milestones/ms_v2_boundary",
+              "unitStart": 0
+            }
+          ],
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "capacity",
+          "verdict": "pass",
+          "explanation": "地域与制度差异已实际承载不同冲突，而非仅换地点：赤霄外港的热候、避火符、放行旗号和受护区限制货损调查与行动范围；潮沟的水深、回流、公共岸钟和巡艇航路决定救援只能先测位、报警并承担船损；苍冥以暖舱、护寒符、候查暖房、验籍担保及界渊禁入改变北行后的救援与安置方式。三卷也据此转化目标：首卷有限泉液与南渡，第二卷受限港口和北境救人，第三卷携证返乡、训练及本地押运链收束。资源、行程、权限和失败分支均成为选择成本，足以支撑本批可见阶段的扩展。",
+          "evidence": [
+            {
+              "sourceId": "review-unit/70",
+              "quote": "{\n  \"id\": \"loc_02\",\n  \"name\": \"苍冥大陆\",\n  \"kind\": \"continent\",\n  \"entryConditions\": [\n    \"大陆环境寒冷；凝元境以下需保温舟舱或护身寒符。修为不是政治通行权。\",\n    \"沿岸官港验引渡令；无令者可由巡界使验明身份后具名担保，担保者承担监护和越界责任。例外仅到指定会合地，不自动授予进入界渊的权利。\",\n    \"具体到访须区分受监管码头候查、沿岸入境担保和界渊准入；担保须由实际到场者具名承担，只在约定范围与期限生效。\",\n    \"上述防寒门槛针对实际暴露于寒候。普通港区和已开放公共驿路的固定暖房、暖车只有在隔风围护、隔火炉、通风烟道、燃料与值守人手均实际存在且持续供热时，才提供其内部的温暖避难处；不把整座港口或一段驿路变成免寒区。离开温暖内部进入寒候，凝元以下仍须实际可用的护身寒符；普通衣物、修为名义或商业票不替代此条件。供暖失败要停止进入或转移到另一个已核实暖处，另记真实燃料、交通与照料费用。\",\n",
+              "originalSourceId": "world/locations/loc_02",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/71",
+              "quote": "{\n  \"id\": \"loc_03\",\n  \"name\": \"赤霄大陆\",\n  \"kind\": \"continent\",\n  \"entryConditions\": [\n    \"需修持适用到访区域的抗火法门或佩戴避火灵符。天宝外港及既有受护街段在非地火喷发期的日常炙热，以已验明余量的普通避火符art_16满足；凡器避火衣art_15只作辅助，不替代此项灵符/法门门槛。离开这些受护区域前须另核当地实际危险和适配防护，普通符不授予闯明火、火法或地火的资格。\",\n    \"玄府境以下须避开地火煞气喷发期。港务依据沿岸岗哨实际见到的热裂、硫烟和异常地火记录发布封航/放行旗号，航司出航前查本航次通告、靠港前复核当日旗号；旧通告不保证未来安全，若转为封航须在许可锚地待令或返航，不能靠日常避火符硬闯。\"\n  ],\n  \"status\": \"proposed\"\n}",
+              "originalSourceId": "world/locations/loc_03",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/339",
+              "quote": "{\n  \"id\": \"bible-chapter-42\",\n  \"chapterNumber\": 42,\n  \"title\": \"退得出来的船位\",\n  \"purpose\": \"239林经握轻柄、扶栏一级台阶和平走实测才获准短时握剑、普通登船，付诊费1与231–250食宿1后余1。医修准其受限握剑后，林验冷却剑体并低流量试注，耗半成；试船前另回住处完成一小时不受扰吐纳，复测只回半成至五成。同日巡查查程的无签认放工条，休工棚为空，继续分路追人。贺先系船测水，再收杆解缆沿公共近岸试行，林坐船尾放漂木；旧潮簿预计能停的第一位置实测水浅，漂木又被回流推向窄处。贺立即掉头，放弃正对待查驳船的视线。林想让她再靠近一点，贺把回旋木片指给他看：现在能进去，不等于接到人后能出来。两人改靠堤第二位置，重新测深确认退路，才练系桩浮圈和岸钟路线。241公告预计244亥时过闸，243实见低驳移潮口；林接受少看一段水面以保住真正可撤的位置。\",\n  \"conflict\": \"旧潮簿不能保证今天的水深和回流，最直观的盯船位置既被堤角堆栈遮出口，又不利接人后退回。林想贴近查舱，但伤势不能支撑跳船负重，贺也不拿尚未救到的人赌一条没有退路的船位。\",\n  \"turningPoint\": \"贺用实测水深和漂木流向否定原观察位，及时退船；林放弃靠近偷登，接受较差正面视野换取可撤路线，承担坐姿浮圈与岸钟报警准备。\",\n",
+              "originalSourceId": "story/chapterPlans/bible-chapter-42",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/339",
+              "quote": "    \"近巡查依据238日受理记录到程记核五人，程出示没有本人签认的放工条，称唐许冯已去北泊休工棚；巡查实查空棚，留下记录后分路问旧岸仓、外闸和院外承运去向，不将纸条当作人已自由的证明。\",\n    \"贺先将自船系在公共近岸泊桩，用普通测深杆核第一观察位水深，比旧潮簿记的浅；收杆后才解缆试行。林坐稳船尾依次放漂木，木片绕回旋流、偏向窄处，水深来自杆测、流向来自木片，二者分别记录。\",\n    \"贺操篙使小船退出回流旁的窄口，不往里硬挤；船未触底或受损。林要她再近一点，贺指着旋回木片问接到人后如何出去。林收回偷登念头，承认第一位置还被堤角和堆栈挡着浅沟小出口，正对驳船也看不全。\",\n    \"贺改到靠堤第二观察位，系稳后测深，确认能沿公共水道退出。林坐着递系在船艉桩的救生浮圈，由贺拉索验受力；随后扶栏分段走到岸钟和巡查岗，中途坐歇，与岗役当面约明林敲钟、岗役跑报巡艇，林不提重物不追跑。\",\n    \"241公告写低驳预定244日亥时经外闸；243两人从公共堤边亲见其移至潮沟口，贺立刻补报实见船位。两人守在能撤离的近岸观察位，尚未看到有人被推入舱，也不知道该船会否依公告行船。\",\n",
+              "originalSourceId": "story/chapterPlans/bible-chapter-42",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/351",
+              "quote": "{\n  \"id\": \"vol_02\",\n  \"order\": 2,\n  \"title\": \"赤霄药火卷：追船与黑舱\",\n  \"startChapter\": 33,\n  \"endChapter\": 66,\n  \"goal\": \"由失箱责任追查程记扣工和跨陆转运，救出5名承运雇工、陆弟与北境7名矿工，以凝元实力和各方有限合作截停本批货；不以进入天坑或杀神海作门槛。\",\n  \"opposition\": \"程记药栈的改签、扣工与反诉，首仓火因仍待查；炎煞港口代理催货；赵的实体回令与商盟内部自保。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_03\",\n    \"char_05\",\n    \"char_14\",\n    \"char_15\",\n    \"char_16\",\n    \"char_19\",\n    \"char_20\"\n  ],\n  \"climax\": \"第61–66章北境外港截黑舱，林选择先救人，夜守撤离栈桥而未追持第二片逃跑的程。此前44章潮沟截驳付出船损；50章以吴卢亲口拒绝、陆停止协助旧同伙及两名看守被控制，固定本次扣工事实并完成脱控；51–53转入各自生计与有限供述。\",\n",
+              "originalSourceId": "plan/volumes/vol_02",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/351",
+              "quote": "  \"endState\": \"第300日葬骨外港，林凝元三重、第一残片封存自持，第二片仍程持有，未合匙。无新寿储，条件预算约13.230137。苏仍留青玄，陆兄弟留赤霄，夜准备返北境驻地；7名矿工由当地救济所安置，回青玄票尚待实际购买。 人员口径：赤霄获救承运雇工是唐、许、冯、吴、卢五人；陆弟单列，陆本人是受看护的押送责任人，不算五工。北境黑舱七人是另一批来自青玄的矿工，至300日仍由北境港口救济所安置，不随林贺返青玄。435–436日青玄两车八人是开篇两名旧工友加430日后新扣六人，与赤霄五工、北境七人均不重合；梁九为自由领车救援者，不在被救八人内。三地名单不能互相改写为人数增长，首卷救过而再被移交的两名旧工友只算两位不同人，不因再次获救重复加人。\",\n  \"carryOver\": \"带回陆自述的签认副本（非旧改签原条）、北境封签副本与父亲署名副本；回应失箱和贺的垫款责任，照计划六日海程回乡并重新训练，不能接回旧归一、破虚或燃寿前提。\"\n}",
+              "originalSourceId": "plan/volumes/vol_02",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/352",
+              "quote": "{\n  \"id\": \"vol_03\",\n  \"order\": 3,\n  \"title\": \"青玄归证卷：十年与一条活路\",\n  \"startChapter\": 67,\n  \"endChapter\": 100,\n  \"goal\": \"携证回乡，和苏、梁九、韩叙、顾分别承担调查、证人保护和修行；救出本次押送工友，确认父亲守门参与与本地掩案责任，切断已验证的三地转运链。\",\n  \"opposition\": \"赵的境内改线与撤人令、两名玄府押卫、宗门保守派的掩责；伙伴生计和林不足以继续豪赌的寿储。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_03\",\n    \"char_07\",\n    \"char_08\",\n    \"char_09\",\n    \"char_10\",\n    \"char_14\",\n    \"char_15\",\n    \"char_12\",\n    \"char_13\",\n    \"char_17\",\n    \"char_18\"\n  ],\n",
+              "originalSourceId": "plan/volumes/vol_03",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/364",
+              "quote": "{\n  \"id\": \"ms_v2_voyage\",\n  \"title\": \"有限航款与五日北行\",\n  \"kind\": \"turn\",\n  \"startChapter\": 54,\n  \"endChapter\": 60,\n  \"setup\": [\n    \"第271日商盟港务理事会为追缴被挪货与避免北境封港，从本案追偿周转款实拨14000枚下品灵石给具名领款的贺青梧；这是有账有追偿风险的商盟垫款，不是几天劳务值一万。用途限两人北航查货、回青玄交证及沿途食宿医药。\",\n    \"第271–274日乘普通车沿每日复核开放的既有沿岸驿道从天宝外港到极焱天港；271日出发前贺从已拨1000杂费额度中实付12购两张满额普通避火符（各6枚，计入后来核销780而非另加支出），两人核余纹后佩戴新符；旧符不得续算有效，不进太微城、神炎内地、魔谷或天坑。陆与弟弟留赤霄接受传唤，不能无交通随队到北境。\",\n    \"林延续252及254回访的短走、坐车许可，仍不负重，拒绝接受程记以撤供换赔偿的口信。第275日贺在极焱航司柜台按本航次实报5000/人支付10000，购买两张普通保温客舱票；船方在两人具名舱单上列明隔火暖炉、通风烟道、五昼夜保温舱位及燃料、当班船员添料看火均含在这10000内，普通是舱等，不是敞舱或仅发一件保温衣。276日暮离港、281日暮抵葬骨外港，五昼夜完整航程。\",\n",
+              "originalSourceId": "plan/milestones/ms_v2_voyage",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/364",
+              "quote": "    \"护符作者执行账：两人各第一张从281暮用至289晨，第二张289晨至297晨，第三张297晨至304暮进入返航保温舱后摘下封存；每次先在实有暖房内验新符，再换旧符、登记其余纹，旧符不计新收入。即使把每段所有室内时间也算持续佩戴，各张均不超过192小时，交付至少220小时的下界留至少28小时。不能把六张共用成一个无限账户；雨湿、破符或延误时按实际重新核验和购置，不因表上还余时就保证有效。\",\n    \"北境停留期间，林贺每次离开实际暖房查货、诊治或到码头，先核当日巡路的普通寒候、最短开放段与暖房撤返点，再核本人护符与干衣；本次正常路径逐日具备才安排出门。缺符或失暖先留合法暖处、按真实库存与现金补给，必要时向原担保岗申请延期；未获准不得越界，后续日程与780预算必须据实重排，不能预花封存220或默认商盟再付。该安排只作既有场面的随身装备与供给约束，不另加逐日办手续章节。\"\n  ],\n",
+              "originalSourceId": "plan/milestones/ms_v2_voyage",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/365",
+              "quote": "    \"285日起查货仍限已担保仓区。291救人前，港卫核内湾当天无寒潮、外露短栈桥与浮台处于本制式日常寒候；林贺穿干衣、使用289晨已换的第二张护寒符并各自核余纹。这些符只保本人温热，不挡风刃、护舷木或冰水，也不改变林凝元剑诀的二成费用和伤后动作限制。若护符、天气或暖房撤返点不合格，二人不登浮台，交港卫组织实体救助，承担程先离开和重排救援的后果，不靠夜隔空暖场。\",\n    \"本批七名矿工的境界不明，不据身份推定耐寒。291行动前，葬骨港务救济库已从上月港税实际入库款划出本案240枚下品灵石，由本轮值库人验现金签收，不把尚未到账的拨款通知当钱。值库人先实付82给本港登记门市：九张逐张验收尚余至少220小时的art_21各6、计54，七套干燥保温衣各4、计28。九符中两张交原两名港卫，七张随七套衣装入救助包，逐件登记批号；港卫原有干衣亦当场核验。这82从本案240扣，余158，不取林贺14000航款、不把原救济库存再次记成新增款。\",\n",
+              "originalSourceId": "plan/milestones/ms_v2_boundary",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/365",
+              "quote": "  \"outcome\": \"第285–300日。7名矿工上岸、与5名已在赤霄获救的雇工名单分开；程在逃，第二片仍在程手，第一片仍林持有。污染货只封存不由低阶启封。夜协助港务将七人交入同一受监管泊区内原救济所候查暖房，由港务接案、所方签收照护；至300日仍为获救待核人员，未取得自由离港资格，贺与林则准备携证回青玄。本批转运暂停，不代表九鼎全阵停转。 北境七人与赤霄五工、留在青玄的开篇两名旧工友及430日后新扣六人均为不同人；在本段拟由港卫和救济所逐人核姓名、原工籍、舱位及安置去向形成该批名单，不能凭同乡认作同一批。该名单原件留当地，随既有见证副本交付可核的签认名单副本，不转移人员或增加林贺船票。\"\n}",
+              "originalSourceId": "plan/milestones/ms_v2_boundary",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/369",
+              "quote": "{\n  \"id\": \"ms_v3_convoy\",\n  \"title\": \"押运截停与放弃追凶\",\n  \"kind\": \"climax\",\n  \"startChapter\": 88,\n  \"endChapter\": 95,\n  \"setup\": [\n    \"第431日苏把现场案卷送监督复核点，不能一日传播三大陆；护送执事顾仅能调一队外山见证与救护人员，玄府护卫数量与运人笼位置由实际跟车确认。\",\n    \"88章431赵阅祁429具名接押报告，不是苏同日送当地监督点的案卷。90章433赵据旧清册和此报签撤押一号，骑使沿普通驿路92章435交祁。两车八人在432已装载并被梁看见，435令触发撤走而非首次装车。程318已抵押原物，410才本地重整；433赵以核回程记货账后才考虑减债为条件派程携旧货签清册随骑使，二日435到外山押运仓核货签。程想减债赎匣、无权指挥玄府，第二片仍赵府封存。不再写三个月已重整或省略程离都行程。\",\n",
+              "originalSourceId": "plan/milestones/ms_v3_convoy",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/369",
+              "quote": "  \"outcome\": \"第431–436日。本批八人经停斗后两趟转运、逐一由医护接收，才全部清点到安全药舍，外山该批运人班停止，赤霄和北境被截的同批货物仍封存；这条已证明的三地链断运。两名玄府押卫中，林牵制者退去，统领祁嵩交锋受伤后主动交械、交出原令，由顾监管至具名交接；这是带条件的接受看押，不是失去元罡或被普通绳索永久封禁。顾仍须防止其反悔，祁若再反抗则立即呼具名同阶接应、停止转移；不得把尚未成立的交接写成完成。苏与林当面核看原令，原令和己方原改账页分别保全，不把敌方责任用来抹去己方违法取证或改账责任。 本地这批共8人：第1–12章两名被转移旧工友和新近被扣的6名矿工；梁九仍自由领车，不能把他重复算作被救人。 这八人不是第61–66章已在北境安置的七人，也不含赤霄唐许冯吴卢及陆兄弟。见证员按432日梁九实见两车各四人的记录与获救者逐人自报、工籍对照，救援时记录新扣六人的姓名和联系人，不能拿尚未获得的名单预先赋予角色全知。\"\n}",
+              "originalSourceId": "plan/milestones/ms_v3_convoy",
+              "unitStart": 0
+            }
+          ],
+          "revisionAdvice": ""
+        }
+      ]
+    },
+    {
+      "area": "power",
+      "runId": "design_run_8de92f7d-7a21-4f84-8bb9-ebd7c093a13f",
+      "stageId": "cross-1-2",
+      "summary": "本批完整读到的力量体系规则对境界、术式、器物、资源及高阶限制已提供较明确的准入、分账、成本与反制；但本批未提供关键章节细纲及51—100章相关里程碑原文，无法据宏观摘要核验具体施术、晋阶、航行与截押安排是否逐项满足这些规则。",
+      "sourceCharacters": 214860,
+      "chapters": [],
+      "sourceIds": [
+        "author",
+        "world/overview",
+        "world/axioms/ax_01",
+        "world/axioms/ax_02",
+        "world/axioms/ax_03",
+        "world/axioms/ax_04",
+        "world/axioms/ax_05",
+        "world/axioms/ax_06",
+        "world/axioms/ax_07",
+        "world/axioms/ax_08",
+        "world/axioms/ax_09",
+        "world/axioms/ax_10",
+        "world/axioms/ax_11",
+        "world/axioms/ax_12",
+        "world/axioms/ax_13",
+        "world/powerSystems/ps_01",
+        "world/tierLadders/ladder_realm",
+        "world/tierLadders/ladder_technique",
+        "world/tierLadders/ladder_artifact",
+        "world/tierLadders/ladder_resource",
+        "world/realms/realm_01",
+        "world/realms/realm_02",
+        "world/realms/realm_03",
+        "world/realms/realm_04",
+        "world/realms/realm_05",
+        "world/realms/realm_06",
+        "world/realms/realm_07",
+        "world/realms/realm_08",
+        "world/techniques/tech_01",
+        "world/techniques/tech_02",
+        "world/techniques/tech_03",
+        "world/techniques/tech_04",
+        "world/techniques/tech_05",
+        "world/techniques/tech_06",
+        "world/techniques/tech_07",
+        "world/techniques/tech_08",
+        "world/techniques/tech_09",
+        "world/techniques/tech_10",
+        "world/techniques/tech_11",
+        "world/techniques/tech_12",
+        "world/techniques/tech_13",
+        "world/techniques/tech_14",
+        "world/techniques/tech_15",
+        "world/techniques/tech_16",
+        "world/techniques/tech_17",
+        "world/techniques/tech_18",
+        "world/techniques/tech_19",
+        "world/artifacts/art_01",
+        "world/artifacts/art_02",
+        "world/artifacts/art_03",
+        "world/artifacts/art_04",
+        "world/artifacts/art_05",
+        "world/artifacts/art_06",
+        "world/artifacts/art_07",
+        "world/artifacts/art_08",
+        "world/artifacts/art_09",
+        "world/artifacts/art_10",
+        "world/artifacts/art_11",
+        "world/artifacts/art_12",
+        "world/artifacts/art_13",
+        "world/artifacts/art_14",
+        "world/artifacts/art_15",
+        "world/artifacts/art_16",
+        "world/artifacts/art_17",
+        "world/artifacts/art_18",
+        "world/artifacts/art_19",
+        "world/artifacts/art_20",
+        "world/artifacts/art_21",
+        "world/resources/res_01",
+        "world/resources/res_02",
+        "world/resources/res_03",
+        "world/resources/res_04",
+        "world/resources/res_05",
+        "world/resources/res_06",
+        "world/resources/res_07",
+        "world/resources/res_08",
+        "world/resources/res_09",
+        "world/resources/res_10",
+        "world/resources/res_11",
+        "world/resources/res_12",
+        "world/resources/res_13",
+        "world/resources/res_14",
+        "world/resources/res_15",
+        "world/resources/res_16",
+        "world/resources/res_17",
+        "world/resources/res_18",
+        "world/resources/res_19",
+        "story/overview",
+        "story/characters/char_01",
+        "story/characters/char_02",
+        "story/characters/char_03",
+        "story/characters/char_04",
+        "story/characters/char_05",
+        "story/characters/char_06",
+        "story/characters/char_07",
+        "story/characters/char_08",
+        "story/characters/char_09",
+        "story/characters/char_10",
+        "story/characters/char_11",
+        "story/characters/char_12",
+        "story/characters/char_13",
+        "story/characters/char_14",
+        "story/characters/char_15",
+        "story/characters/char_16",
+        "story/characters/char_17",
+        "story/characters/char_18",
+        "story/characters/char_19",
+        "story/characters/char_20",
+        "story/characters/char_21",
+        "story/characters/char_22",
+        "story/characters/char_23",
+        "story/characters/char_24",
+        "story/characters/char_25",
+        "story/relationships/rel_01",
+        "story/relationships/rel_02",
+        "story/relationships/rel_03",
+        "story/relationships/rel_04",
+        "story/relationships/rel_06",
+        "story/relationships/rel_07",
+        "story/relationships/rel_08",
+        "story/relationships/rel_09",
+        "story/relationships/rel_10",
+        "story/relationships/rel_11",
+        "story/relationships/rel_05",
+        "story/relationships/rel_12",
+        "story/relationships/rel_13",
+        "story/relationships/rel_14",
+        "story/relationships/rel_15",
+        "story/relationships/rel_16",
+        "story/relationships/rel_17",
+        "story/relationships/rel_18",
+        "story/relationships/rel_19",
+        "story/relationships/rel_20",
+        "story/relationships/rel_21",
+        "story/relationships/rel_22",
+        "story/arcs/arc_01",
+        "story/arcs/arc_02",
+        "story/arcs/arc_03",
+        "story/arcs/arc_04",
+        "story/arcBeats/beat_01",
+        "story/arcBeats/beat_02",
+        "story/arcBeats/beat_03",
+        "story/arcBeats/audit-su-3",
+        "story/arcBeats/audit-su-8",
+        "story/arcBeats/audit-su-12",
+        "story/arcBeats/audit-su-testimony",
+        "story/arcBeats/audit-su-stay",
+        "story/arcBeats/audit-zhao-control",
+        "story/arcBeats/audit-mo-bargain",
+        "story/arcBeats/audit-mo-last-bet",
+        "story/arcBeats/v1-white-stop",
+        "story/arcBeats/v1-lin-advance",
+        "story/arcBeats/v1-qin-bargain",
+        "story/arcBeats/v1-qin-message",
+        "story/arcBeats/v1-gu-counter",
+        "story/arcBeats/v1-du-post",
+        "story/arcBeats/v1-qiao-custody",
+        "story/arcBeats/v1-lin-share",
+        "story/arcBeats/beat_v23_1",
+        "story/arcBeats/beat_v23_2",
+        "story/arcBeats/beat_v23_3",
+        "story/arcBeats/beat_v23_4",
+        "story/arcBeats/beat_v23_5",
+        "story/arcBeats/beat_v23_6",
+        "story/arcBeats/beat_v23_7",
+        "story/arcBeats/beat_v23_8",
+        "story/arcBeats/beat_v23_9",
+        "story/arcBeats/beat_v23_10",
+        "story/arcBeats/beat_v23_11",
+        "story/arcBeats/beat_v23_12",
+        "story/arcBeats/beat_bridge_1",
+        "story/arcBeats/beat_bridge_2",
+        "story/arcBeats/beat_bridge_3",
+        "story/arcBeats/beat_bridge_4",
+        "story/arcBeats/beat_box_rescue",
+        "story/arcBeats/beat_box_correction",
+        "story/arcBeats/beat_barge_priority",
+        "story/arcBeats/message-dispatch",
+        "story/arcBeats/message-first-read",
+        "story/arcBeats/message-first-order",
+        "story/arcBeats/message-first-delivery",
+        "story/arcBeats/message-first-ack",
+        "story/arcBeats/message-north-report",
+        "story/arcBeats/message-local-replan",
+        "story/arcBeats/message-custody-report",
+        "story/arcBeats/message-custody-read",
+        "story/arcBeats/message-withdraw-order",
+        "story/arcBeats/message-cheng-local-mission",
+        "story/arcBeats/message-withdraw-delivery",
+        "story/arcBeats/message-withdraw-seized",
+        "story/arcBeats/message-defeat-report",
+        "story/arcBeats/message-formal-inquiry",
+        "story/arcBeats/v1-lin-route-failure",
+        "story/arcBeats/v1-su-tactical-share",
+        "story/arcBeats/beat_port_work_before_questions",
+        "story/arcBeats/beat_port_current_retreat",
+        "story/arcBeats/beat_workers_failed_exit",
+        "story/arcBeats/harbor-lin-horizon",
+        "story/arcBeats/harbor-he-refuses-boat",
+        "story/arcBeats/harbor-lu-speaks",
+        "story/secrets/sec_01",
+        "story/secrets/sec_02",
+        "story/secrets/sec_03",
+        "plan/overview"
+      ],
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "insufficient",
+          "explanation": "境界阶梯明确低阶不能凭意志或外物自动越境，境界承载亦不等于自动掌握术式；玄府晋阶还要求分流训练、六个有效十日周期、灵石和双重复核。林辰的百章玄府安排因而必须核对第73—87章的实际训练、灵石、医修复核与支付时点。当前只读到其宏观目标与依赖声明，未读相关里程碑原文，不能以“数月修习、实际付十元载”直接判定资格链已成立。",
+          "evidence": [
+            {
+              "sourceId": "review-unit/8",
+              "quote": "{\n  \"id\": \"ax_06\",\n  \"title\": \"境界承载与实际施术\",\n  \"content\": \"境界能力栏描述该层能够修习和承载的能力方向，不是一份自动掌握、免费发动的万能招式清单。晋阶费用、术法发动费与持续消耗分别记账；晋阶不等于预付后续法术。实际施术须有已掌握的功法、法宝或明确基础操作规则，逐项满足其对象、范围、供能、时机和中断后果；境界名称不能绕过这些条件。已由ax_05定义的凝元轻物御动等基础操作仍按原规则执行，普通步行、说话、握持不因此加收术法费。尚未展开的高阶术式可以保留为未来能力方向，但首次安排它解决剧情之前必须先完成具体规则与可取得资源的设计、复核；不得以读者未见的万能本能补齐现有行动缺口。\",\n  \"scope\": \"全部境界、功法、法宝及后续能力扩展\",\n  \"precedence\": 6,\n  \"status\": \"proposed\"\n}",
+              "originalSourceId": "world/axioms/ax_06",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/23",
+              "quote": "{\n  \"id\": \"realm_03\",\n  \"systemId\": \"ps_01\",\n  \"name\": \"玄府境\",\n  \"rank\": 3,\n  \"prerequisites\": [\n    \"辟建丹府：须完成tech_19《凝元分流入府诀》的三段分流训练，至少使用六枚下品青灵石完成六个有效十日周期；每个开封失败周期另损一枚，实际库存不足则延期；每一周期前后由医修复查经脉，训练中断或丹府回流即停，不得用预计寿储代替资源。\",\n    \"丹府完成后须静置一日，由白榆确认丹府稳定、伤情可承受、元罡通路未反噬，再由顾峤复核可用元罡与普通器物承载；两项确认均完成后才可支付玄府十元载。\"\n  ],\n  \"capabilities\": [\n    \"元罡护体\",\n    \"凌空虚渡\"\n  ],\n  \"cost\": \"损耗寿元十年\",\n  \"counters\": [\n    \"罡气破裂\"\n  ],\n  \"status\": \"proposed\"\n}",
+              "originalSourceId": "world/realms/realm_03",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/47",
+              "quote": "{\n  \"id\": \"tech_19\",\n  \"name\": \"凝元分流入府诀\",\n  \"kind\": \"technique\",\n  \"tier\": \"玄阶\",\n  \"allowedRealmIds\": [\n    \"realm_02\"\n  ],\n  \"effect\": \"将已稳定的凝元真元分成三路，沿经脉节点在体内构筑丹府雏形；只提供辟建丹府的训练路径，不产生玄府元罡、凌空虚渡或其他越境能力。\",\n  \"cost\": \"每个十日周期实际消耗一枚下品青灵石的导引灵气并占用每日一小时静修；六个有效周期至少六枚，每个失败或中断的开封周期另耗一枚；本卷一次失败加六个有效周期实际共耗七枚，耗材开封即扣，失败或中断不返。训练期间仍须饮食、睡眠和医修复查，不能把静修时长或灵石投入当作寿储收入。\",\n  \"limitations\": [\n    \"须凝元三重且经医修确认经脉无急性伤，先完成第一段分流再进入第二、第三段；凝元低重、伤势恶化或定向失稳即停。\",\n    \"每周期结束须记录三路真元的流向、余量和是否回流；出现胸闷、经脉灼痛、丹府塌缩或余量低于医嘱下限，立即停止并等待复诊。\",\n    \"完成六周期只取得丹府稳定雏形的训练资格，不自动晋入玄府；须静置一日、白榆诊察和顾峤承载复核均通过，才可按realm_03支付十元载。\",\n",
+              "originalSourceId": "world/techniques/tech_19",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/269",
+              "quote": "  \"mainConflict\": \"先天短寿的林辰由矿务逃生追查跨陆扣工与非法货运，在寿储、境界与各方利益限制下同伙伴救人、查清父亲守门及外山掩案责任。百章只切断已实证的一条三地运输链；九鼎全貌、三残片与最终界门危机仍是约450章全书必须收束的主线。 人员口径：赤霄获救承运雇工是唐、许、冯、吴、卢五人；陆弟单列，陆本人是受看护的押送责任人，不算五工。北境黑舱七人是另一批来自青玄的矿工，至300日仍由北境港口救济所安置，不随林贺返青玄。435–436日青玄两车八人是开篇两名旧工友加430日后新扣六人，与赤霄五工、北境七人均不重合；梁九为自由领车救援者，不在被救八人内。三地名单不能互相改写为人数增长，首卷救过而再被移交的两名旧工友只算两位不同人，不因再次获救重复加人。\",\n  \"theme\": \"活命与查真相不能以牺牲无辜者代价换取；信任来自共同选择和承担自己一方的责任。\",\n  \"protagonistArc\": \"从负伤矿工到能接受伙伴自主选择的凝元修士，再经数月修习、实测丹府与支付十元载成为玄府初期；力量增加时可用寿储反而减少。百章不发动逆命真解，不越阶斩高境，不把神兵持有当作启动权限。\",\n",
+              "originalSourceId": "plan/overview",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/167",
+              "quote": "{\n  \"id\": \"beat_v23_9\",\n  \"arcId\": \"arc_04\",\n  \"characterId\": \"char_01\",\n  \"kind\": \"consequence\",\n  \"plannedChapter\": 83,\n  \"expectedChange\": \"415日实际付十元载晋玄府，余寿大减，退还不能承载元罡的旧剑。\"\n}",
+              "originalSourceId": "story/arcBeats/beat_v23_9",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/269",
+              "quote": "      \"id\": \"dep_ms_v3_training\",\n      \"targetId\": \"ms_v3_training\",\n      \"sourceId\": \"ms_v3_return\",\n      \"requiredness\": \"must\",\n      \"description\": \"前段救援、实物交接、健康和可用款项成立后才进入本段；海程与消息按实际日期，不以预期收入或未具能力替代前提。\"\n    },\n    {\n      \"id\": \"dep_ms_v3_advancement\",\n      \"targetId\": \"ms_v3_advancement\",\n      \"sourceId\": \"ms_v3_training\",\n      \"requiredness\": \"must\",\n      \"description\": \"前段救援、实物交接",
+              "originalSourceId": "plan/overview",
+              "unitStart": 0
+            }
+          ],
+          "revisionAdvice": "补读后须逐项核验林辰是否在支付十元载前完成凝元分流入府诀的三段训练、至少六个有效周期及白榆、顾峤的规定复核；并核验后续玄府操作是否另有已学与实测依据，而非由晋阶自动取得。",
+          "insufficiencyReason": "unlocatable_sources"
+        },
+        {
+          "criterion": "costs",
+          "verdict": "insufficient",
+          "explanation": "寿储、当境法力和资源不能互换预支的规则清楚：自然寿源须完成疗程和复诊才入账，玄府支付另须满足资源与诊断前置。现有概览虽将林辰第83章的十元载支出、百章末约2.775342元载及前段依赖写为提案，但未提供第51—100章宏观里程碑的实际航款、疗程、寿储、灵石、训练失败或伤情收支，无法核算同一账户在北航、返乡、训练、晋阶及后续行动中的余额是否闭合。",
+          "evidence": [
+            {
+              "sourceId": "review-unit/6",
+              "quote": "{\n  \"id\": \"ax_04\",\n  \"title\": \"寿储核算与诊断边界\",\n  \"content\": \"命寿储备以元载核算，一元载按365日当量记账，自然流逝与施术支出分别扣减。医修须经连续诊察给出保守可支配下界而非预言死亡日；诊断校正不是寿元收入，未明部分不许花。晋入同一大境界的寿元成本只付一次，低于必要支出与安全余量不得突破；晋阶本身不另赠未定义寿元。已确认的新寿储仍按来源、剂量和疗程入账，伤病若恶化须重新评估，不得以上次下界保证安全。 本体系成本中的一年寿元、阳寿或命寿均指一元载；“三个月寿元”为四分之一元载即91.25日当量的旧称，并非按某三个月的历法天数扣款。行程与疗程仍按实际日数计算。\",\n  \"scope\": \"命寿预算\",\n  \"precedence\": 4,\n  \"status\": \"proposed\"\n}",
+              "originalSourceId": "world/axioms/ax_04",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/11",
+              "quote": "{\n  \"id\": \"ax_09\",\n  \"title\": \"自然寿源只在完成疗程后入账\",\n  \"content\": \"任何自然形成的延寿资源必须同时满足来源验真、配额登记、适格境界、伤情诊察、完整疗程和复诊确认，方可增加未来可用寿储。采收上限、市场价格、持有凭证、传闻库存和未完成疗程不得预支寿元。该收入不返还已燃寿元、已付晋阶成本、自然衰老、道伤、神魂本源或术法冷却。 下列新成熟日是候选世界自然周期的相位设定，不是前百章已知消息、现有库存或给主角的承诺。成熟窗表示生态合格时可形成的上限，现场测得产量不足或审批未通过时条件账分支中止。\",\n  \"scope\": \"全域命寿资源与医疗\",\n  \"precedence\": 9,\n  \"status\": \"proposed\"\n}",
+              "originalSourceId": "world/axioms/ax_09",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/12",
+              "quote": "{\n  \"id\": \"ax_10\",\n  \"title\": \"自然寿源配额不得跨账或跨周期预支\",\n  \"content\": \"自然寿源的形成周期、保护配额和个人终生上限分别记账。保育额、公共医疗额、应急额和未来周期产量不得转为当前个人库存；不同资源之间不得按品阶、货币、法力或灵石自动兑换。运输、保存、污染和疗程失败造成的损失不可由下一周期自动补发。 新寿储可以逐笔支付未来成本；“不返还过去”不等于禁止支付未来。禁止重复记入同一疗程。res_09规则及已用两剂保持不变。\",\n  \"scope\": \"资源供给、势力权限与寿储核算\",\n  \"precedence\": 10,\n  \"status\": \"proposed\"\n}",
+              "originalSourceId": "world/axioms/ax_10",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/23",
+              "quote": "{\n  \"id\": \"realm_03\",\n  \"systemId\": \"ps_01\",\n  \"name\": \"玄府境\",\n  \"rank\": 3,\n  \"prerequisites\": [\n    \"辟建丹府：须完成tech_19《凝元分流入府诀》的三段分流训练，至少使用六枚下品青灵石完成六个有效十日周期；每个开封失败周期另损一枚，实际库存不足则延期；每一周期前后由医修复查经脉，训练中断或丹府回流即停，不得用预计寿储代替资源。\",\n    \"丹府完成后须静置一日，由白榆确认丹府稳定、伤情可承受、元罡通路未反噬，再由顾峤复核可用元罡与普通器物承载；两项确认均完成后才可支付玄府十元载。\"\n  ],\n  \"capabilities\": [\n    \"元罡护体\",\n    \"凌空虚渡\"\n  ],\n  \"cost\": \"损耗寿元十年\",\n  \"counters\": [\n    \"罡气破裂\"\n  ],\n  \"status\": \"proposed\"\n}",
+              "originalSourceId": "world/realms/realm_03",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/86",
+              "quote": "{\n  \"id\": \"res_18\",\n  \"name\": \"寒脉伏龄根\",\n  \"unit\": \"段\",\n  \"source\": \"极冰天国loc_13北境封冻旧湖下的寒脉母根，在每八年一次的短暂地脉回温期结出子段；其生机来自封存水木灵性和寒脉缓释，不是人为种植或抽取他人寿元。\",\n  \"scarcity\": \"天地罕有\",\n  \"tier\": \"六品\",\n  \"status\": \"proposed\",\n  \"usage\": {\n    \"effect\": \"一段经完整三十日寒命调和疗程及复诊，新增六十元载未来可用寿储；属于外源新增储备，不修复寒损、命火病因或历史燃寿衰老。\",\n    \"requirements\": [\n      \"受用者至少玄府境且身体适格，无凝元特批；由极冰天国持证、玄府以上冰系医修在loc_26通天渡口获批医舍主持，不用医师境界替代患者境界。\",\n      \"疗程开始前七日及疗程期间不得发动燃寿秘术、血炼秘术或高强度火煞术；出现寒毒入髓、命火骤降或经脉冻结必须停药。\",\n      \"疗程开始后第0、7、14、21、28日各服五分之一，第30日复诊后才一次入账六十元载。\",\n      \"每人终生最多成功使用六段；任两段之间至少间隔一年，连续两段后必须停用三年并重新评估寒命承载。\"\n    ],\n",
+              "originalSourceId": "world/resources/res_18",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/269",
+              "quote": "  \"mainConflict\": \"先天短寿的林辰由矿务逃生追查跨陆扣工与非法货运，在寿储、境界与各方利益限制下同伙伴救人、查清父亲守门及外山掩案责任。百章只切断已实证的一条三地运输链；九鼎全貌、三残片与最终界门危机仍是约450章全书必须收束的主线。 人员口径：赤霄获救承运雇工是唐、许、冯、吴、卢五人；陆弟单列，陆本人是受看护的押送责任人，不算五工。北境黑舱七人是另一批来自青玄的矿工，至300日仍由北境港口救济所安置，不随林贺返青玄。435–436日青玄两车八人是开篇两名旧工友加430日后新扣六人，与赤霄五工、北境七人均不重合；梁九为自由领车救援者，不在被救八人内。三地名单不能互相改写为人数增长，首卷救过而再被移交的两名旧工友只算两位不同人，不因再次获救重复加人。\",\n  \"theme\": \"活命与查真相不能以牺牲无辜者代价换取；信任来自共同选择和承担自己一方的责任。\",\n  \"protagonistArc\": \"从负伤矿工到能接受伙伴自主选择的凝元修士，再经数月修习、实测丹府与支付十元载成为玄府初期；力量增加时可用寿储反而减少。百章不发动逆命真解，不越阶斩高境，不把神兵持有当作启动权限。\",\n",
+              "originalSourceId": "plan/overview",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/269",
+              "quote": "  \"endingDirection\": \"百章有救人、断运、部分父案澄清和玄府成长的可核结局。1–100是450章的阶段验收；接下来的有限寿源、高阶反派、钥匙余片与九鼎机制必须另建经审查的来源和行动链，不将450章全书结局撤销。 没有返寿、燃寿白发、道伤凭空痊愈或三大陆永久太平。此卷不清算全部九鼎，公开传播仍限实到地点。\",\n  \"keyTurns\": [\n    \"第10–12章：伤重林辰与曾撤供的梁九分工救人，只改变普通输送位置；苏保留封样及己方不利证词，争得有限复核，众人仍负伤、欠债和受限。\",\n    \"第23–29章：主角为救人暴露自己，创造顾峤同阶制敌的窗口，取得并分配有限泉液；完成两次十日疗程后南行，苏选择留宗。卷末凝元三重，不能沿用神海及二十年燃寿。\",\n    \"第44/50–53章：44林救落水对手而不追陆与原账，贺付船损；50林不施术而让工人自己回答，陆协助夺闩、两名看守被控，吴卢实际脱控并拒绝立即回船。51–53拟各自选择生计，陆新写改签自述，副本仍待独立核验。\",\n    \"第61–66章：付费北航后在受限外港救出七名矿工，夜真身守撤离路，林放弃第二片，不入界渊。\",\n    \"第83章：数月努力与诊察后，实际付十元载晋玄府；不能再用旧法器承载元罡。\",\n",
+              "originalSourceId": "plan/overview",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/270",
+              "quote": "、健康和可用款项成立后才进入本段；海程与消息按实际日期，不以预期收入或未具能力替代前提。\"\n    },\n    {\n      \"id\": \"dep_ms_v3_convoy\",\n      \"targetId\": \"ms_v3_convoy\",\n      \"sourceId\": \"ms_v3_advancement\",\n      \"requiredness\": \"must\",\n      \"description\": \"前段救援、实物交接、健康和可用款项成立后才进入本段；海程与消息按实际日期，不以预期收入或未具能力替代前提。\"\n    },\n    {\n      \"id\": \"dep_ms_v3_payoff\",\n      \"targetId\": \"ms_v3_payoff\",\n      \"sourceId\": \"ms_v3_convoy\",\n      \"requiredness\": \"must\",\n      \"description\": \"前段救援、实物交接、健康和可用款项成立后才进入本段；海程与消息按实际日期，不以预期收入或未具能力替代前提。\"\n    },\n    {\n      \"id\": \"dep_bridge_return\",\n      \"targetId\": \"ms_bridge_return\",\n",
+              "originalSourceId": "plan/overview",
+              "unitStart": 10000
+            }
+          ],
+          "revisionAdvice": "补读后应按林辰个人寿储、真元/元罡、青灵石、航款和寿源疗程分账，确认每项收入均在疗程与复诊后入账，确认六周期灵石和玄府十元载均未重复使用或预支；同时核北航、返航与救援成本不被误作寿储收入。",
+          "insufficiencyReason": "unlocatable_sources"
+        },
+        {
+          "criterion": "counters",
+          "verdict": "insufficient",
+          "explanation": "已读规则没有把高境界或高品器物设为无条件胜利：剑诀受锁定、实测距离、二成法力和失锁余刃风险限制；玄府局部护罡只护一处两息，真光也只灼散接触到的阴煞且同场限一印。百章提案同时明确不越阶斩高境，并把高潮定位为顾峤牵制、祁嵩为保留原令而有限交械。不过第61—66章救援和第88—100章截押的实际对手、动作、供能、撤退路径与伤情处理未在本批原文中提供，无法核验是否确实按这些反制边界执行。",
+          "evidence": [
+            {
+              "sourceId": "review-unit/14",
+              "quote": "{\n  \"id\": \"ax_12\",\n  \"title\": \"玄府局部护罡的训练、支付与失效\",\n  \"content\": \"元罡护体是能力方向；本条只定义其中最基础的局部护罡，其他全身护持仍须另有术式。施术者须已入玄府，经有经验者指导，将元罡在本人一处掌大范围皮肤外稳定聚合，并通过轻木棍、普通铁刃的受控低负荷实测及复诊。完成晋阶不自动获得此操作。\\n每次聚罡先用一息并预付本人当境健康稳定元罡上限的一成；只护同一选定部位，至多维持随后两息，不远控、不护他人、不同时覆盖全身。若承受一次实际接触，另预留并即时扣一成，随后该层即散；开启前须至少有两成获准可用余量。即使落空、提前收束或被打断，聚罡一成不退；未受击则不虚扣受击费。每次散后至少三息重新定息，间隙没有护罡。连续最多三次，此后至少休整一刻并复测，伤痛、麻木或气路不稳立即停用；控术和战斗期间不计恢复。此基础操作只用自身元罡，无额外神识、寿储或外物账户，不提供力量、速度、飞行或恢复。\\n效果只是在接触部位分散普通拳棍或无附灵铁刃一次擦击/斜击的表层冲击，需要站位退让与卸力；不保证挡住同阶全力正击、重刃、尖刺、多次连续攻势或已付费的攻杀术，不保证免伤。对方可换落点、抓聚罡一息、在三息空档进攻或持续压制。击穿时仍扣本次受击费，余力实际伤及该处，不把破罡化作无害光效；肩、腕或经脉受损即停术撤离，不能因还有余额续顶。一次付款不能抵三次来招，也",
+              "originalSourceId": "world/axioms/ax_12",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/14",
+              "quote": "不能将健康基准当作当前伤后可用量。\",\n  \"scope\": \"玄府基础局部防护与本章首次训练\",\n  \"precedence\": 12,\n  \"status\": \"proposed\"\n}",
+              "originalSourceId": "world/axioms/ax_12",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/32",
+              "quote": "{\n  \"id\": \"tech_04\",\n  \"name\": \"乾元御风剑诀\",\n  \"kind\": \"technique\",\n  \"tier\": \"玄阶\",\n  \"allowedRealmIds\": [\n    \"realm_02\",\n    \"realm_03\"\n  ],\n  \"effect\": \"以本人已熟习的凝元真元或玄府元罡凝成至多三十六道风刃剑气，沿已锁定的可见方向劈斩敌手或普通实体目标，包括未附灵、无护甲包覆的普通绳索；可徒手导刃，不以持有某把法剑作为自动掌握的凭据。\",\n  \"cost\": \"完整施展一次耗本人当境法力二成（凝元真元或玄府元罡）及少量心神，以健康稳定上限为基准；少放几道风刃不按比例免成本。仅凝元真元配合赤霞斩铁剑时，该二成已经包含这一式的器身引火与御剑供能，不另加一次普通挥击费；另作普通附芒挥击或另行御物仍分别计费。 心神负担指维持定向和导刃的注意力疲劳，不是本命神魂永久扣减，也不折算寿储或另设可花费的数值池；真元余量不能替代清醒与稳定专注。\",\n  \"limitations\": [\n    \"凝元式以肉眼看清实际目标、已训练的真元定向和导刃维持锁定，不要求未定义的神念外探。有效距离取本人同式实测稳定导刃距离与百丈总上限中较小者；百丈不是入门即有的能力。凝元式须分别练成起式、定向和主动停式并由教习实测，晋阶或持剑不能替代。\",\n",
+              "originalSourceId": "world/techniques/tech_04",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/32",
+              "quote": "    \"面对厚重元罡穿透力减半\",\n    \"施式须清醒、能辨认并稳定锁定实际目标，不可同时另行御物或维持另一功法；受到惊扰而失去导刃控制时中止，已支出的二成当境法力不退。\",\n    \"每次施式前后须确认定向与专注是否稳定。眩晕、目标错认、注意力不能维持或神识受创时立即停用；不能凭真元尚有余量强行连发。普通疲劳须安静休息至症状消退、定向恢复后再判断，固定时长不保证恢复；神识伤另须医修确认，吐纳回真元或普通疗伤不自动恢复受伤心神。\",\n    \"玄府式须另经稳定元罡导刃的修习与实测，晋阶不自动视为熟练。元罡式以自身导刃，不灌入赤霞斩铁剑，不把元罡降名为凝元真元绕过器身承载；凝元式旧剑的冷却与合并费用不适用于元罡式。现有第416–424日仅练基础元罡的主角不因此获得已练成剑诀玄府式的事实。\",\n    \"切普通绳索时须实际看见目标绳段并保持锁定，距离仍受本人本式实测稳定导刃范围与百丈总上限双重限制，路径被遮挡、目标脱离锁定或施术受扰则按原中断规则处理，不因付费保证命中。一次完整剑诀切断一处可见普通绳段仍付二成，不按绳轻免费；附灵绳、金属链、完整护罡或未知材质不能按普通绳保证切断。绳断后的落物、船摆与伤人风险依实际结构、受力和站位发生，剑诀不托举被悬挂的重物、不控制倒塌方向或自动保护旁人，不能将切索偷换为免费御动整车整船。\",\n",
+              "originalSourceId": "world/techniques/tech_04",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/34",
+              "quote": "{\n  \"id\": \"tech_06\",\n  \"name\": \"太清太乙真光\",\n  \"kind\": \"technique\",\n  \"tier\": \"地阶\",\n  \"allowedRealmIds\": [\n    \"realm_03\",\n    \"realm_04\"\n  ],\n  \"effect\": \"以本人当境纯阳法力凝成太乙真光：玄府用元罡，神海用本境法力，均按ax_07从唯一当境账户支出；同一人不另开低境元罡余额。真光克制外放的阴煞血爪，可灼散其表层煞气、破坏出爪节奏；不自动消除对手的玄府元罡、境界或行动能力。克制后仍须同阶实战制伏，不能把属性相克当成永久封禁。\",\n  \"cost\": \"每次完成法印支付本人当境健康稳定法力上限的三成（玄府为元罡，神海为本境法力）与0.25元载寿储；旧称“三个月寿元”按命寿核算律固定为四分之一元载，不另用历法月长计费。\",\n  \"limitations\": [\n    \"阴煞死渊深处光芒威能被大幅压制\",\n    \"蓄势施展需三个呼吸间隔\",\n    \"每次完成法印即支付本人当境健康稳定法力上限的三成与0.25元载，放空也不返还；法印未成即受近身打断时需散去蓄势，至少损本人当境法力一成（实际损耗按实测，不足不得起印），不能把未付寿元当成已完成施术。\",\n",
+              "originalSourceId": "world/techniques/tech_06",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/34",
+              "quote": "    \"真光只在这一次正面交锋中灼散接触到的阴煞；不能隔墙锁定、长时间保持压制或对更高境界自动生效。同一场交战只准凝印一次，至少隔一昼夜且本人当境法力余量足付、经脉复查稳定后才能再施；肩臂经脉伤未恢复者不可强开第二印。\",\n    \"两境均须先完成本境纯阳供能与凝印训练、三息起式及收势的受控实测、经脉复诊，晋入神海不自动完成这些条件。\",\n    \"玄府与神海的百分比各以本人本境健康稳定实测上限计费，不按伤后余量缩小；允许境界只表示可训练和承载，不额外授予探知、距离、持续压制或跨境破防。伤损上限、普通恢复与供能属性仍服从ax_07；真光须保持纯阳供能，不能用阴煞或其他账户代付。\"\n  ],\n  \"counters\": [\n    \"九幽死息污浊法印\",\n    \"近身快攻打断蓄力结印\"\n  ],\n  \"status\": \"proposed\"\n}",
+              "originalSourceId": "world/techniques/tech_06",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/111",
+              "quote": "{\n  \"id\": \"char_23\",\n  \"name\": \"祁嵩\",\n  \"role\": \"stage\",\n  \"goal\": \"先按赵令完成移交、销去旧接押痕迹以保俸职；撤运失败后，保住完整原令作为自己服从上命的申辩材料，即使因此丢掉差使、受押候审，也不再只留下自己具名押报。申辩不免除他扣人和毁页的责任。\",\n  \"identity\": \"现有两名玄府押卫中的统领，负责本批接押与具名仓册；95章与顾峤牵制交锋后带伤交械、交出撤押原令，96章交邵闻监管。不是新增第三名护卫，无跨陆传讯、王器或九鼎全图。开篇前已有押运军职的普通短刀持握、步法与徒手脱离训练，本段只用普通铁刀与肉身动作，不因玄府身份获得未定义的阴煞、全身护罡或远程攻杀。交械是撤运失败后为保存原令和申辩机会所作的有限取舍，不是被真光封禁，也不是突然认同林苏。\",\n  \"locationId\": \"loc_08\",\n  \"factionId\": \"fac_02\",\n  \"startingRealmId\": \"realm_03\"\n}",
+              "originalSourceId": "story/characters/char_23",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/190",
+              "quote": "{\n  \"id\": \"message-withdraw-seized\",\n  \"arcId\": \"arc_04\",\n  \"characterId\": \"char_02\",\n  \"kind\": \"consequence\",\n  \"plannedChapter\": 95,\n  \"expectedChange\": \"规划锚点（非采纳事实）：第95章第436日。顾与祁交锋牵制，林救人放过程；前车四人下地、林伤退后，祁为保住赵亲签原令及自己的申辩机会命押卫停斗，随后交械、令后车放人，亲手把随身撤押一号交苏在见证员面前收存；此后梁才分两趟将八人送药棚，原令交接不以尚未完成的两趟送医作为前提。顾不承诺免罪，祁仍须回答本人具名接押与毁页责任。苏与林当面核看，原令和己方改账页分别保全。林顾对的仍是原两名玄府，祁带伤接受顾监管，不新增第三名，不用真光或普通绳索封禁境界。\"\n}",
+              "originalSourceId": "story/arcBeats/message-withdraw-seized",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/269",
+              "quote": "  \"mainConflict\": \"先天短寿的林辰由矿务逃生追查跨陆扣工与非法货运，在寿储、境界与各方利益限制下同伙伴救人、查清父亲守门及外山掩案责任。百章只切断已实证的一条三地运输链；九鼎全貌、三残片与最终界门危机仍是约450章全书必须收束的主线。 人员口径：赤霄获救承运雇工是唐、许、冯、吴、卢五人；陆弟单列，陆本人是受看护的押送责任人，不算五工。北境黑舱七人是另一批来自青玄的矿工，至300日仍由北境港口救济所安置，不随林贺返青玄。435–436日青玄两车八人是开篇两名旧工友加430日后新扣六人，与赤霄五工、北境七人均不重合；梁九为自由领车救援者，不在被救八人内。三地名单不能互相改写为人数增长，首卷救过而再被移交的两名旧工友只算两位不同人，不因再次获救重复加人。\",\n  \"theme\": \"活命与查真相不能以牺牲无辜者代价换取；信任来自共同选择和承担自己一方的责任。\",\n  \"protagonistArc\": \"从负伤矿工到能接受伙伴自主选择的凝元修士，再经数月修习、实测丹府与支付十元载成为玄府初期；力量增加时可用寿储反而减少。百章不发动逆命真解，不越阶斩高境，不把神兵持有当作启动权限。\",\n",
+              "originalSourceId": "plan/overview",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/269",
+              "quote": "      \"question\": \"后段高潮改为原令暴露后的有限交械：已撤去无阴煞目标的真光及第二次寿元扣款，改由顾牵制、祁为保留申辩原令交械。该宏观因果、伤情看押及人物选择尚待四领域完整复审和后续分批章纲落实，不能据此批准计划或宣称正文事实成立。另已把前车短时脱困与停斗后两趟送医分开，转运至少31分钟；车门伤、货车在卸完伤者后损坏及担架另送护卫均须后续按现场执行，不得把宏观预算当已发生事实。\",\n      \"blocking\": true,\n      \"status\": \"open\"\n    },\n    {\n      \"id\": \"north-coast-exit-permit\",\n",
+              "originalSourceId": "plan/overview",
+              "unitStart": 0
+            }
+          ],
+          "revisionAdvice": "补读后应对北境救援与押运截停逐一列明：各方境界与已掌握术式、每次施术对象和支付、可用反制、伤者撤离及停止条件；尤其不能将顾峤的真光、林辰晋玄府后的基础能力或祁嵩交械写成自动压制两名玄府押卫。",
+          "insufficiencyReason": "unlocatable_sources"
+        }
+      ]
+    },
+    {
+      "area": "characters",
+      "runId": "design_run_971824f5-c779-4e49-a602-a578f0d3e6ab",
+      "stageId": "cross-1-2",
+      "summary": "重新核对后，relationships维持原通过及其解除声明；knowledge补入缺少的story/secrets/sec_02证据。该秘密档的第1—14章认知阶段与章纲、sec_01及原问题相容，支持原knowledge通过判断，无需撤销batch-2/knowledge的解决声明。",
+      "sourceCharacters": 210755,
+      "chapters": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "sourceIds": [
+        "author",
+        "world/overview",
+        "world/axioms/ax_01",
+        "world/axioms/ax_02",
+        "world/axioms/ax_03",
+        "world/axioms/ax_04",
+        "world/axioms/ax_05",
+        "world/axioms/ax_06",
+        "world/axioms/ax_07",
+        "world/axioms/ax_08",
+        "world/axioms/ax_09",
+        "world/axioms/ax_10",
+        "world/axioms/ax_11",
+        "world/axioms/ax_12",
+        "world/axioms/ax_13",
+        "world/factions/fac_01",
+        "world/factions/fac_02",
+        "world/factions/fac_03",
+        "world/factions/fac_04",
+        "world/factions/fac_05",
+        "world/factions/fac_06",
+        "world/factions/fac_07",
+        "world/factions/fac_08",
+        "world/factions/fac_09",
+        "world/factions/fac_10",
+        "world/factions/fac_11",
+        "world/factions/fac_12",
+        "world/realms/realm_01",
+        "world/realms/realm_02",
+        "world/realms/realm_03",
+        "world/realms/realm_04",
+        "world/realms/realm_05",
+        "world/realms/realm_06",
+        "world/realms/realm_07",
+        "world/realms/realm_08",
+        "story/overview",
+        "story/characters/char_01",
+        "story/characters/char_02",
+        "story/characters/char_03",
+        "story/characters/char_04",
+        "story/characters/char_05",
+        "story/characters/char_06",
+        "story/characters/char_07",
+        "story/characters/char_08",
+        "story/characters/char_09",
+        "story/characters/char_10",
+        "story/characters/char_11",
+        "story/characters/char_12",
+        "story/characters/char_13",
+        "story/characters/char_14",
+        "story/characters/char_15",
+        "story/characters/char_16",
+        "story/characters/char_17",
+        "story/characters/char_18",
+        "story/characters/char_19",
+        "story/characters/char_20",
+        "story/characters/char_21",
+        "story/characters/char_22",
+        "story/characters/char_23",
+        "story/characters/char_24",
+        "story/characters/char_25",
+        "story/relationships/rel_01",
+        "story/relationships/rel_02",
+        "story/relationships/rel_03",
+        "story/relationships/rel_04",
+        "story/relationships/rel_06",
+        "story/relationships/rel_07",
+        "story/relationships/rel_08",
+        "story/relationships/rel_09",
+        "story/relationships/rel_10",
+        "story/relationships/rel_11",
+        "story/relationships/rel_05",
+        "story/relationships/rel_12",
+        "story/relationships/rel_13",
+        "story/relationships/rel_14",
+        "story/relationships/rel_15",
+        "story/relationships/rel_16",
+        "story/relationships/rel_17",
+        "story/relationships/rel_18",
+        "story/relationships/rel_19",
+        "story/relationships/rel_20",
+        "story/relationships/rel_21",
+        "story/relationships/rel_22",
+        "story/arcs/arc_01",
+        "story/arcs/arc_02",
+        "story/arcs/arc_03",
+        "story/arcs/arc_04",
+        "story/arcBeats/beat_01",
+        "story/arcBeats/beat_02",
+        "story/arcBeats/beat_03",
+        "story/arcBeats/audit-su-3",
+        "story/arcBeats/audit-su-8",
+        "story/arcBeats/audit-su-12",
+        "story/arcBeats/audit-su-testimony",
+        "story/arcBeats/audit-su-stay",
+        "story/arcBeats/audit-zhao-control",
+        "story/arcBeats/audit-mo-bargain",
+        "story/arcBeats/audit-mo-last-bet",
+        "story/arcBeats/v1-white-stop",
+        "story/arcBeats/v1-lin-advance",
+        "story/arcBeats/v1-qin-bargain",
+        "story/arcBeats/v1-qin-message",
+        "story/arcBeats/v1-gu-counter",
+        "story/arcBeats/v1-du-post",
+        "story/arcBeats/v1-qiao-custody",
+        "story/arcBeats/v1-lin-share",
+        "story/arcBeats/beat_v23_1",
+        "story/arcBeats/beat_v23_2",
+        "story/arcBeats/beat_v23_3",
+        "story/arcBeats/beat_v23_4",
+        "story/arcBeats/beat_v23_5",
+        "story/arcBeats/beat_v23_6",
+        "story/arcBeats/beat_v23_7",
+        "story/arcBeats/beat_v23_8",
+        "story/arcBeats/beat_v23_9",
+        "story/arcBeats/beat_v23_10",
+        "story/arcBeats/beat_v23_11",
+        "story/arcBeats/beat_v23_12",
+        "story/arcBeats/beat_bridge_1",
+        "story/arcBeats/beat_bridge_2",
+        "story/arcBeats/beat_bridge_3",
+        "story/arcBeats/beat_bridge_4",
+        "story/arcBeats/beat_box_rescue",
+        "story/arcBeats/beat_box_correction",
+        "story/arcBeats/beat_barge_priority",
+        "story/arcBeats/message-dispatch",
+        "story/arcBeats/message-first-read",
+        "story/arcBeats/message-first-order",
+        "story/arcBeats/message-first-delivery",
+        "story/arcBeats/message-first-ack",
+        "story/arcBeats/message-north-report",
+        "story/arcBeats/message-local-replan",
+        "story/arcBeats/message-custody-report",
+        "story/arcBeats/message-custody-read",
+        "story/arcBeats/message-withdraw-order",
+        "story/arcBeats/message-cheng-local-mission",
+        "story/arcBeats/message-withdraw-delivery",
+        "story/arcBeats/message-withdraw-seized",
+        "story/arcBeats/message-defeat-report",
+        "story/arcBeats/message-formal-inquiry",
+        "story/arcBeats/v1-lin-route-failure",
+        "story/arcBeats/v1-su-tactical-share",
+        "story/arcBeats/beat_port_work_before_questions",
+        "story/arcBeats/beat_port_current_retreat",
+        "story/arcBeats/beat_workers_failed_exit",
+        "story/arcBeats/harbor-lin-horizon",
+        "story/arcBeats/harbor-he-refuses-boat",
+        "story/arcBeats/harbor-lu-speaks",
+        "story/secrets/sec_01",
+        "story/secrets/sec_02",
+        "story/secrets/sec_03",
+        "story/secrets/sec_04",
+        "story/promises/prom_01",
+        "story/promises/prom_02",
+        "story/promises/prom_03",
+        "story/promises/prom_04",
+        "story/openThreads/th_01",
+        "story/openThreads/th_02",
+        "story/openThreads/th_03",
+        "story/openThreads/th_04",
+        "story/openThreads/th_05",
+        "story/volumes/vol_01",
+        "story/volumes/vol_02",
+        "story/volumes/vol_03",
+        "story/chapterPlans/chapter-plan-1",
+        "story/chapterPlans/chapter-plan-2",
+        "story/chapterPlans/chapter-plan-3",
+        "story/chapterPlans/chapter-plan-4",
+        "story/chapterPlans/chapter-plan-5",
+        "story/chapterPlans/chapter-plan-6",
+        "story/chapterPlans/chapter-plan-7",
+        "story/chapterPlans/chapter-plan-8",
+        "story/chapterPlans/chapter-plan-9",
+        "story/chapterPlans/chapter-plan-10",
+        "story/chapterPlans/chapter-plan-11",
+        "story/chapterPlans/chapter-plan-12",
+        "story/chapterPlans/chapter-plan-13",
+        "story/chapterPlans/chapter-plan-14",
+        "plan/overview",
+        "plan/chapters/1",
+        "plan/chapters/2",
+        "plan/chapters/3",
+        "plan/chapters/4",
+        "plan/chapters/5",
+        "plan/chapters/6",
+        "plan/chapters/7",
+        "plan/chapters/8",
+        "plan/chapters/9",
+        "plan/chapters/10",
+        "plan/chapters/11",
+        "plan/chapters/12",
+        "plan/chapters/13",
+        "plan/chapters/14"
+      ],
+      "checks": [
+        {
+          "criterion": "agency",
+          "verdict": "pass",
+          "explanation": "本批已读章纲给出了人物的具体目标、利益冲突、可拒绝或改变条件的选择，以及选择后的可见代价。林辰在第1章选择留下救工友，承担受伤与凶手逃脱；第3章交出管道残片但拒绝以父亲笔记换特权；第6章拒绝以撤供换药，并不强迫梁九跟随；第8章接受梁九保留家人和解；第9—11章接受梁九的现场判断，把制动和救人关键动作交给他。苏凌霜在第3、7、8、10—12章持续在调查权限、证据保全和救人之间取舍，承担签名、停俸、路线限制及失去中立空间的代价。梁九、韩叙及墨幽屠也不是被动工具人：梁九保留证词和生计边界，韩叙承认自身改账并公开指认记录员，墨在第14章收到失败回报后改变策略。行动后果确实改变了局面，如有限复核成立、两名工友脱离本轮输送、证据链获得可核责任对象、后续掳人夺泉计划启动。这里只对本批已提供的第1—14章作局部判断。",
+          "evidence": [
+            {
+              "sourceId": "review-unit/240",
+              "quote": "  \"characterGoals\": \"林辰想救出仍活着的矿工、确认灭口者身份，并保留足够体力回宗门报案；他必须隐藏残玉和父亲笔记，避免被人夺走。\",\n  \"conflict\": \"矿道缺氧、塌方和矿火毒烟同时逼近，林辰的淬体肉身只能承受有限伤害，无法使用凝元术法或乾坤逆命真解；暗桩需要灭口后脱身，工友则因恐慌妨碍撤离。\",\n  \"choice\": \"林辰原可独自穿过旧排水口，却选择先敲警钟并等梁九带工友合推矿车，冒着被截住的风险救人。\",\n  \"cost\": \"他被凝元真元震伤胸腹，左臂被矿梁划开，至少数日不能全力搬运；暗桩逃走，最直接的凶手线索暂时中断。 编辑执行账：暗桩本轮行动前经自身实测保守余量四成，附掌伤林预付一成、收束后击裂薄板再付一成，余两成；焚油布、搬工牌及从维修口跑离为普通动作，本轮没有其他施术或恢复。这是作者执行依据，林只看到聚气、实际掌击与薄板破裂，不知道对方准确余额，也未在此场识破其完整身份。 开篇前既有技能依据（作者侧）：这名暗桩在幽罗殿外派训练中已受教完成附掌的聚气、接触与收束练习，并实测过按ax_08击裂腐朽薄木的限度；不是因凝元身份临场自动学会。本场掌腕无伤、气路稳定，四成起点足付两次各一成；这些初始设定不代表林辰知道其门派、训练经历或余额。\",\n  \"threads\": [\n    \"th_01\",\n    \"sec_01\"\n  ],\n",
+              "originalSourceId": "plan/chapters/1",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/240",
+              "quote": "  \"endState\": \"梁九与另两名矿工暂避旧排水道；林辰保存抽气管残片，记住异常运车批号，尚未取得完整矿账，凶手去向不明。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_07\"\n  ],\n  \"location\": \"loc_28太清外山血精铁矿道\",\n  \"storyTime\": \"第1日清晨至傍晚\",\n  \"scenes\": [\n    \"林辰在清点时发现运车批号重复，随后看见几名矿工在新风被抽走、刺鼻毒烟涌入后捂口喘息、倒在巷边；他只能判断缺氧和毒烟伤人，不能把所见认定为抽取气血或寿元。\",\n    \"凝元暗桩封路并焚毁工牌，梁九不肯舍掉自己的工钱牌。\",\n    \"林辰把口粮袋交给梁九，选择留下敲警钟。\",\n    \"梁九与两名工友合推矿车，林辰引导避开浓烟积聚的巷段。\",\n    \"暗桩贴近聚气一息，附掌击中林辰胸腹；林左臂被矿梁划伤。警钟引来外侧呼喊后，暗桩收掌一息、再聚气一息，第二掌击裂腐朽薄木封板，从旧维修口逃离。林没有拦第二掌，选择保住工友。\",\n    \"众人进旧排水道，林辰保存管道残片；纸面笔记说明逆命真解的境界和余寿门槛。\"\n  ],\n  \"source\": \"author\",\n  \"executionChecks\": [\n    {\n",
+              "originalSourceId": "plan/chapters/1",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/241",
+              "quote": "  \"choice\": \"林辰选择保护证人和账册，而不是沿沾有油烟矿尘的脚印追踪凶手，避免证人和证物同时落入对方手中。\",\n  \"cost\": \"他失去追击暗桩的时间，伤势恶化，且管事趁混乱烧掉账册末页；被保护的矿工从此成为对方明确的灭口目标。\",\n  \"threads\": [\n    \"th_01\",\n    \"sec_02\"\n  ],\n  \"endState\": \"三名矿工暂时藏在旧药庐，林辰持有残缺账册、矿车序号和抽气管残片；戒律堂将案件定性为普通矿难，暗中开始查找证人藏处。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_07\"\n  ],\n  \"location\": \"loc_29太清外门杂役院与旧药庐\",\n  \"storyTime\": \"第2日午时至第3日夜\",\n  \"scenes\": [\n    \"林辰与梁九扶工友回到杂役院。\",\n    \"管事宣布塌方并命人焚烧旧账，梁九指出废料房的旧册箱。\",\n    \"林辰抢出残账，末页已烧掉；他只指出支柱与尸伤不符，不能判定幕后人。\",\n    \"差役盘问时梁九只承认亲见管道，拒绝签下替别人推定的罪名。\",\n    \"三名工友躲入药庐，药童见证伤口；医师给林辰留底诊单。\",\n    \"第3日林辰卧床，梁九代取食水，夜里有人试探门锁。\"\n  ],\n",
+              "originalSourceId": "plan/chapters/2",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/242",
+              "quote": "  \"characterGoals\": \"林辰想取得合法调查身份、保护证人并确认苏凌霜是否会把证物交给戒律堂；苏凌霜要查清矿难与魔道暗桩，同时避免无证偏袒林辰。 他也想问清从受伤淬体走向第一缕可控真元的实际起点，先学会辨别条件，暂不运功。\",\n  \"conflict\": \"苏需要核对证人的能力和口供，却不能用带伤比武逼供；林辰既怕证物被退回戒律堂，也不肯交出父亲笔记。\",\n  \"choice\": \"林辰交出管道残片并接受基础动作核验，拒绝以父案猜想交换特权；苏选择签名承担有限查案责任。\",\n  \"cost\": \"林辰的行动和遗物持有事实进入调查记录，仍不得负重比武；苏的签名使她无法在证物出错后置身事外。\",\n  \"threads\": [\n    \"th_01\",\n    \"rel_01\",\n    \"sec_01\"\n  ],\n  \"endState\": \"三日凭证明确准入地点和第6日调档范围，林辰仍是淬体境；苏尚未信任父案指控，梁九只承认亲眼所见。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_07\"\n  ],\n  \"location\": \"loc_29外门剑坪、loc_28外山矿口\",\n  \"storyTime\": \"第4日申时至戌时\",\n  \"scenes\": [\n",
+              "originalSourceId": "plan/chapters/3",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/245",
+              "quote": "  \"choice\": \"林辰退回附带撤供条件的药袋，不强迫梁九跟随；梁九暂时愿意搭档，但保留为家人和解的选择。\",\n  \"cost\": \"林辰错过即时止痛药，仍靠普通敷药缓解；梁九为两天食宿欠下工棚的债，合作随时可能破裂。\",\n  \"threads\": [\n    \"th_01\",\n    \"sec_02\",\n    \"rel_01\"\n  ],\n  \"endState\": \"二人登记矿务领作考核，林辰只能坐席识险、不得搬运比武；通过只取得交割现场说明权。灵泉仍只是远方资源的消息，没有形成任何寿元收入。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_07\"\n  ],\n  \"location\": \"loc_29外门演武场、loc_28矿务署\",\n  \"storyTime\": \"第9日清晨至第11日申时\",\n  \"scenes\": [\n    \"休养两日中，梁九垫粮，工棚宣布暂停涉案者配给。\",\n    \"管事把药袋和工钱压在和解书上，要求否认外来袭击。\",\n    \"林辰退药，不肯替梁九决定他的供词。\",\n    \"苏核对演练告示和运油批号，说明现场资格的实际用途。\",\n    \"医师限定坐席识险，梁九以搬运搭档身份报名。\"\n  ],\n  \"source\": \"author\"\n}",
+              "originalSourceId": "plan/chapters/6",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/246",
+              "quote": "  \"characterGoals\": \"林辰想把矿车序号、货签与公开运输账目逐项对应，确认灭口案是否牵涉皇室运输链；苏凌霜要保护矿工证据并迫使宗门留下可复核的交接记录，同时避免把未经核实的九鼎猜测当成罪证。\",\n  \"conflict\": \"大乾使团以观礼和商路秩序为名压制查问，太清守旧派担心失去名额与资源而配合封口；林辰仍受胸腹伤和左臂伤影响，不能靠境界或术法强行夺取账册。\",\n  \"choice\": \"林辰选择留在公开告示席核对文书，而不是追随使团气机或贸然闯入禁区；苏凌霜选择当众索取副本，承受宗门与皇使的双重注视。\",\n  \"cost\": \"两人的调查范围被正式标记，原始验收册被转移，矿务书吏遭到控制；林辰坐席听完公示，不能亲自抄写，由韩叙抄成两联并请苏验字，仍没有获得任何寿元补偿或高阶力量。\",\n  \"threads\": [\n    \"th_01\",\n    \"sec_01\",\n    \"sec_02\"\n  ],\n  \"endState\": \"林辰与苏凌霜确认矿车序号和公开账目存在可核验缺口，掌握一份使团文书副本；原始账册去向指向洗髓池，戒律堂开始限制他们接触证人和档案。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_08\"\n  ],\n",
+              "originalSourceId": "plan/chapters/7",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/247",
+              "quote": "  \"choice\": \"林辰放弃逼梁九重新签供；苏把韩叙的改账责任一并登记，二人接受证据可能对自己不利。\",\n  \"cost\": \"梁九仍拿不到安全保证，林辰失去无条件支持；苏交出的案卷含己方证人改账事实，两名工友仍被转移。\",\n  \"threads\": [\n    \"th_01\",\n    \"sec_01\",\n    \"sec_02\",\n    \"rel_01\"\n  ],\n  \"endState\": \"合作变为有分歧、有保留的搭档关系，旧账页正文没有找回；缺页底联只能用于追问经手人，不能单独证明九鼎或父案。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_07\",\n    \"char_08\"\n  ],\n  \"location\": \"loc_28矿务署、废料仓与看守偏房\",\n  \"storyTime\": \"第13日午时至子时\",\n  \"scenes\": [\n    \"梁九交回木牌，承认为了家人口粮签下和解。\",\n    \"林辰质问，梁九追问谁来养活家人，争执未获安慰式解决。\",\n    \"苏在半日窗口内让韩叙出示亲自保存的缺页底联。\",\n    \"韩叙承认改账，要求记录所有经手人，苏当场登记。\",\n    \"林辰不逼梁九撤销和解，梁九仅同意继续搭档和证明亲见之事。\",\n",
+              "originalSourceId": "plan/chapters/8",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/248",
+              "quote": "  \"summary\": \"第14日卯时，领作考核要求两人一组按流程检查矿车，领作人坐席报出隐患、搭档操作；演练图示标出拔销后矿车会滑进旁侧检修槽，空车试滑须验证这条逃生线路，违规让伤者搬运会整组淘汰。梁九想按图省时，林辰却发现图上漏画一处止退销，二人为是否复检争执；这次林辰听取梁九在车底看到的情况，再要求裁判现场见证空车试滑。试滑暴露被调换的滑轮，裁判在各组面前重验器械，苏在距岔口两丈的裁判侧位看见一枚卡在回位槽边的一斤松木销；她按开篇前已在凌云峰完成训练和实测的轻物御动法，先喊人离开岔口，再御动这枚无负载木销一息，付半成真元。木销退出后原有配重将分流闸片落回检修支轨，车轮沿轨进入沙坑；载荷由闸片、轨道与沙挡承受，苏没有隔空推车。梁九按口令以木楔制动，林辰全程未握刀负重。二人取得交割说明席，却因复检耗时落在末位。韩叙登记成绩时指出，记录员正是第7章公开运输摘录上具名的验收经手人；这是可以要求其说明的工作关联，尚不能据此认定他是凶手。 苏移开木销时，林辰没有只看车停住，而是追问她为何只动这枚木销、不直接推车。苏指给他看配重与轨道的承力处，说明自己的凝元轻物控制只负责这个已卸载的小部件；林辰把近期成长目标缩到日后亲自移稳一枚无负载木块，而非一掌击败暗桩。眼下他仍靠梁九伸手拔销，不能把看懂一次当作已经会用。\",\n",
+              "originalSourceId": "plan/chapters/9",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/248",
+              "quote": "  \"characterGoals\": \"林辰要拿到说明席；梁九想尽快结束考核回去看家人；苏要保住公平复验的现场。 林辰开始把修炼期待具体化为日后能亲自控制一枚无负载木块，不再只盯着无法使用的高阶残卷。\",\n  \"conflict\": \"图纸漏项、换轮和名次时限冲突；林辰若强行搬运将整组失格，也不能把工作交集直接当罪证。\",\n  \"choice\": \"林辰听取梁九的现场判断后坚持空车试滑，二人用末位成绩换取安全核查。\",\n  \"cost\": \"二人失去择位优先权，只能分到离看台最远的交割点；苏出手被记为影响计时。苏行前复测凝元真元保守余量六成，本次御动一枚木销先付半成，动作后五成半；同场不再施术，不把裁判争执期间算作恢复。其余量按本人健康稳定实测上限计，林梁只看见实际动作，不知道具体余额。\",\n  \"threads\": [\n    \"th_01\",\n    \"sec_02\",\n    \"rel_01\"\n  ],\n  \"endState\": \"二人取得远端交割说明席，记住了普通牵引机构的止退销和安全挡；验收经手人与账目有工作关联，尚未被证明参与灭口。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_07\",\n    \"char_08\"\n  ],\n  \"location\": \"loc_28外山预选矿场\",\n",
+              "originalSourceId": "plan/chapters/9",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/249",
+              "quote": "  \"conflict\": \"两名工友已在低压试抽中受伤，正式输送即将开闸；说明席地处远端，苏和药役不能瞬间跨过看台到达。\",\n  \"choice\": \"梁九冒着再失配粮的风险留下掀帆布；林辰放弃继续记装置顺序，立即指认机械制动点；苏派人先救、自己封样，不把名誉顾虑当作拖延救援的理由。\",\n  \"cost\": \"低压试抽已经造成一名工友昏厥；梁九被记违例，苏得罪裁判，留给二人的行动时间只剩数息。 苏本章封样、派人和循折梯赶往下层均未施术，保守账沿第14日御销后五成半，不因一夜间隔自行记满。她站在上层看台，距下层机关超过三丈且有横梁遮挡，不能照搬第9章近距御销替代梁九。\",\n  \"threads\": [\n    \"th_01\",\n    \"sec_02\",\n    \"rel_01\"\n  ],\n  \"endState\": \"正式输送闸刚被推动，普通止退销暴露，救援必须紧接此刻；同号封样签条已由使团书记签收，证据来源尚须伤者和封口共同核验。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_07\",\n    \"char_08\"\n  ],\n  \"location\": \"loc_28外山矿务预选封闭矿场\",\n  \"storyTime\": \"第15日酉末至戌初，结尾正式输送开闸前数息\",\n  \"scenes\": [\n",
+              "originalSourceId": "plan/chapters/10",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/249",
+              "quote": "    \"远端说明席上的梁九认出被转走的两名工友。\",\n    \"记录员按领用记录把两枚下品青灵石分别装入两路槽座并持钥开低压；两名未入凝元工友的腕套已接短管，管内出现灰白载雾。一人原已虚弱、空腹且有伤，腕刺后昏厥；林辰只从可见针套、管路和昏厥判断有人受伤，不知道精确抽量或寿储。\",\n    \"记录员以配粮要挟梁九，梁九仍掀起帆布。\",\n    \"苏在四十步外上层要求停场被拒；药役沿折梯与两道门救援，苏封存台上已卸管件。\",\n    \"韩叙把签条交给使团书记登记，两联记清封口和见证人。\",\n    \"闸轮向第二道齿压下，梁九手已在止退销旁；先转入检修槽停住，之后才有时间解绳。\",\n    \"本场器具账：使用art_20本机，两枚res_01来自矿务交割器材领用，不从林苏或工友账扣除，启流后整枚不退。低压起流至转槽脱接尚在首个三十息周期内；闸轮在第二齿前被打断，正常档及下坡输送均未完成。记录员拒绝停总阀，梁九须在数息内拔销利用已经试过的支轨脱接，不能等远处药役；费用及隐蔽槽内机理是作者执行账，不把它们全部写成林当时已知。\"\n  ],\n  \"source\": \"author\"\n}",
+              "originalSourceId": "plan/chapters/10",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/250",
+              "quote": "  \"summary\": \"紧接第10章开闸前数息，梁九手已搭在销柄上，拔销后车轮沿第9章验证过的岔口滑入相邻检修槽，经过支轨入口时，固定斜块如第9章空车实测那样脱开车侧接头，两路回阀闭合，灰雾改入地下排散槽；车随后被尽头沙挡停住。数息内完成的是拔销、转槽与随车位发生的脱接，针套未自行拔出；车停稳后，梁九依可见的搭扣逐个松开腕套，压住针孔，再解束带。他用自己的精钢玄纹刀割开工友束带；刀刃已在第5章崩缺，只能连续割同一道普通绳口，不能砍断带法纹的阵链。束带割开后，刀尖滑入阵链环与车沿的窄隙；梁九急于抽刀去拖人，横扳刀柄，原有崩口处受侧向弯折而断，阵链未损。车已经停稳，断刀来自卡住后的侧扳，不是阵链一碰即毁。林辰右手夹板未除，只靠左掌压住空载摇柄回弹，并喊工友向检修侧翻滚；一名尚清醒的工友拉住昏厥同伴，梁九把二人拖下车。本地引血槽的阵纹、阵链与地下收集槽仍完好，已付周期的残能在排散槽泛着冷光；腕套已无主动抽力，仍须止血，冷光不等于继续隔空抽人；车斗撞坏支架扬起烟尘，林辰松手撤离时撞到胸口，痛得无法站起。记录员想把操纵闸轮的责任改记到梁九名下，拿着登记板挤向出口。韩叙认出他手中仍挂着演练计时牌，当众喊出登记在第7章公开摘录中的姓名；使团护卫为免自家签过的交割记录被私改，将他和登记板一同留置。留下的是本场执行人及当班记录，不是幕后主使的供认，也补不回第4章失去的旧页。药役先到伤者旁，苏沿折",
+              "originalSourceId": "plan/chapters/11",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/250",
+              "quote": "梯到下层后，先确认脚前两块各不足一斤、未压人也不承重的松碎木；她在一丈内分两次御动，每次一息、各先付半成真元，将木块放到空墙边后即停术，她只负责转移伤者，让韩叙和护卫完成登记封存，没有跨过现场去同时擒人。\",\n  \"characterGoals\": \"林辰负责判断、发出口令；梁九负责制动和解绳，两名工友互相拖离阵槽；苏和药役接手撤离；韩叙阻止当班记录被改写。\",\n  \"conflict\": \"正式输送只剩数息，林辰不能持刀搬物；普通检修机构只移动受伤者并脱开本机接口，没有摧毁地下管槽，数息内只能拔销转槽，割绳搬人必须等沙挡将车停稳。\",\n  \"choice\": \"梁九放弃成绩、冒失去配粮的风险救同伴；林辰承认身体限制，把关键动作交给搭档，苏选择先转移伤者；韩叙公开指认记录员，失去躲在匿名账页后的退路。\",\n  \"cost\": \"二人成绩作废，梁九被列为破坏器械的责任人；林辰胸痛失去行动能力，刀刃彻底报废，记录员被使团留置但拒绝交代指使者，韩叙遭到其当面威胁，旧案缺页仍无法补齐。 苏用已熟练的凝元轻物御动移两块松碎木，各扣半成，由沿用的五成半减至四成半；随后与药役肉身抬扶伤者，不御动活人或整副担架。中途没有吐纳或恢复入账，未能清出的重梁仍绕开；新伤、眩晕或余量不足则停术交药役处理。\",\n  \"threads\": [\n    \"th_01\",\n    \"sec_01\",\n",
+              "originalSourceId": "plan/chapters/11",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/251",
+              "quote": "  \"characterGoals\": \"林辰要保住封样、账册和幸存工友，争取合法的后续取证位置；苏凌霜要让宗门承认留置核查并保护证人，同时承担公开站队后的宗门问责。 他主动选择伤后引气、贯脉与日后控制轻物的成长路线，先问医师、后求授业，不把救人功劳兑换修为。\",\n  \"conflict\": \"戒律堂想把事故定性为林辰破坏赛事；使团要保矿额与自身文书信用，主张控制证人、封存复核以免当场暴露账目失真，利益与戒律堂并不完全相同，被留置的执行者避答上层指使，旧案缺页与两次袭击的指挥链仍不完整；林辰重伤不能逃亡或强闯禁地，苏凌霜也不能以凝元术法替代正式审查。\",\n  \"choice\": \"二人选择提交编号吻合的封样与账册，要求留置核查并接受限制，而不是私自带证人逃离宗门或把未证实的九鼎阴谋宣告为定案。 暂缓拘押后，林辰主动合上尚不可用的逆命残卷，先争取自己能实际迈出的基础修习路径。\",\n  \"cost\": \"林辰被停发俸给、限制出入，预选夺魁资格作废，仅保留矿务复验候补登记，须复诊合格及担保后才能到场；梁九面临器械赔偿，配粮问题未解；苏凌霜失去中立空间并承担保全证人的责任，伤者和被毁账页仍需后续核对。\",\n  \"threads\": [\n    \"th_01\",\n    \"sec_01\",\n    \"sec_02\",\n    \"rel_01\"\n  ],\n",
+              "originalSourceId": "plan/chapters/12",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/253",
+              "quote": "  \"summary\": \"第23日至第39日，林辰将此前两次空木柄握持失败和医嘱退回低负荷的过程压入日常背景，继续以坐姿口述矿路图换取粮药。承包外山修缮的管事看中他熟悉旧矿道，愿按图结算，却要求删去逃生支岔、压低支护与制动料用量，以便把账面节余留作额外酬劳。林辰拒绝删改自己口述的新绘矿路劳务图，也不再去柜台重复申诉；他口述，由韩叙摆放桌上木块、斜板，以矿车惯性复现岔道失效后的滑行路径，指出删支岔会把普通修缮变成下一次困人事故。林辰提出由当班工人在停运段做空车与支护核验；工班带回磨痕和侧偏记录，原压料方案过不了交工验收，管事才接受保留逃生支岔、补足关键制动木与支护料的实际修缮决定，却取消林辰原可拿到的额外酬劳，已登记基础页款按原约支付，图页只以“伤者口述待核”名义归档。苏继续沿限定路线核对公开承运记录，顾峤则明确凝元三重、联名符牌与实测伤况缺一不可，绝不为林预留古境位置。另一边，墨幽屠在青灵坊市普通后街等到徒步赶来的信使，收到矿道行动失败的实体回报；他为避开巡查延误半个时辰，随后把索取采集名单和泉液去向的纸面短令折好交回同一信使带往原班集结者，将灭口失手转为下一期掳人夺泉的打算，尚未确认远处收令；此事只为读者所知。\",\n",
+              "originalSourceId": "plan/chapters/14",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/253",
+              "quote": "  \"characterGoals\": \"林辰要以矿工经验换取稳定生计，同时保住逃生图的真实性；苏凌霜要从公开承运链继续取证；顾峤要守住古境三重准入；墨幽屠要把失败行动转化为可交易的掳人夺泉计划。\",\n  \"conflict\": \"承包方以额外酬劳诱使林辰压料删图，既能解决他眼前粮药困境，也会把下一批矿工置于无逃路的风险；林辰重伤且仍是淬体，无法靠武力或术法逼迫对方。古境资格也不能由劳务、同情或顾峤口头预留替代。\",\n  \"choice\": \"林辰拒绝删图换额外酬劳，先口述推演，再要求工班在停运段核验磨痕与支护；以能否交工的实际压力争取保留逃生支岔，接受失去加价续单。\",\n  \"cost\": \"林辰失去额外酬劳和可提前换取的肉食份额，只保有基本粮药；他的矿路经验被登记为待核材料，不能当作父案证据或古境担保。墨已转向下一期行动，主角尚不知其身份与计划。\",\n  \"threads\": [\n    \"th_01\",\n    \"sec_01\",\n    \"sec_02\",\n    \"rel_01\",\n    \"rel_03\",\n    \"rel_09\"\n  ],\n  \"endState\": \"外山实际保留一条逃生支岔并补做关键制动、支护工序，林辰以较低报酬维持劳务，仍未能负重或进入古境。顾峤明确无三重不准入、不留位；墨的掳人夺泉筹备开始形成，尚未进入林苏认知。\",\n",
+              "originalSourceId": "plan/chapters/14",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/253",
+              "quote": "    \"苏在限定路线内比对公开承运栏，将尚缺交接册的批次圈给林辰；顾峤来核验采集名册，明确凝元三重、联名符牌和届时实测缺一不可，不替他预留位置。\",\n    \"青灵坊市收摊后的普通后街，一身便衣的墨幽屠等着沿外山公共道路徒步赶来的外围信使。信使认出墨，停到他面前，刚要喊“少主”，就被他抬手截住；墨接过对方递来的矿道失败纸报，贴近檐下翻看。巡查的脚步从街口逼近，他立即合上纸报，让信使退开等候；两人多耗了半个时辰，等巡查走过、附近摊贩收完货离开，才重新交接。墨没有在街上说出掳人目标。他在纸背写下索取下一期采集名单和泉液去向的短令，折回原状交还同一信使，低声只说“带回去，交给原来负责集结的人”，亲眼看着信使收妥离开。墨收起始终折着的未炼成万鬼幡图谱：矿道灭口既然失败，他决定把下一期采集者和泉液当作新的目标。此场完成的是墨接到失败消息、作出选择并交出待送的命令，未写远处手下已经收令或行动；便衣和躲开一次巡查只降低暴露风险，不构成免检或保证无人目击，林苏也未在场。\"\n  ],\n  \"source\": \"author\",\n  \"executionChecks\": [\n    {\n      \"id\": \"mo-public-message-location\",\n",
+              "originalSourceId": "plan/chapters/14",
+              "unitStart": 0
+            }
+          ],
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "relationships",
+          "verdict": "pass",
+          "explanation": "补读的关系原档与第3、6、8、12章纲相容。林辰—苏凌霜的起点是第3章“有程序约束的临时庇护与试探”：苏以诊单、限定权限凭证承担调查问责，林受出入和见证约束，不能直接推成信任。第8章关系仍是保留分歧的有限同盟：苏登记韩叙改账，林不强逼梁九撤销和解，双方接受救援和调查可能失败。第12章二人通过提交封样、账册和不利证词形成受限共同作证，但共同取证不抹除停俸、行动限制、伤势、器械债和证词不利后果。第13—14章的分工是公开承运线索与生计劳务上的互助，并明确苏不能越权调档、林不能以劳务或同情取得古境资格。阶段变化有明确行动、付出和生效边界，没有把救援自动写成无条件信任或服从。",
+          "evidence": [
+            {
+              "sourceId": "review-question/batch-2/relationships",
+              "quote": "{\n  \"criterion\": \"relationships\",\n  \"explanation\": \"章纲显示林辰与苏凌霜的合作从有限授权、互不完全信任，发展为保留分歧下的共同取证；梁九保留家人生计与证词边界，苏和林也接受己方不利事实，变化原因和代价在章纲中可见。但本批没有提供关系原档story/relationships/rel_01，无法核对“trust”关系的初始阶段、既有信任程度、变化生效时点及是否与章纲的“尚未信任”“第一次失去互信”“有分歧、有保留的搭档关系”相容。当前不足属于未完整读到必要来源，并非据此认定设计冲突。\",\n  \"revisionAdvice\": \"补读story/relationships/rel_01后，核对林辰—苏凌霜在第3、8、12—14章的初始状态、信任变化及生效边界；若关系原档与章纲冲突，再具体修正阶段或触发行动。\",\n  \"awaitingSources\": [\n    \"story/relationships/rel_01\"\n  ]\n}",
+              "originalSourceId": "review-question/batch-2/relationships"
+            },
+            {
+              "sourceId": "review-unit/1",
+              "quote": "{\n  \"title\": \"真实模型链路验收\",\n  \"covenant\": {\n    \"entryMode\": \"expand\",\n    \"genre\": \"xuanhuan\",\n    \"substyle\": \"宗门成长、诸域探索\",\n    \"audience\": \"喜欢长篇玄幻成长与世界探索的读者\",\n    \"hook\": \"主角以寿命换取力量，在三大陆冲突中追查界门真相\",\n    \"mustKeep\": \"三大陆、清晰力量等级、势力博弈\",\n    \"lockedNotes\": \"\",\n    \"avoid\": \"\",\n    \"targetLength\": \"百万字长篇\",\n    \"chapterWords\": 2200,\n    \"updateCadence\": \"日更\",\n    \"protagonistGoal\": \"\",\n    \"obstacle\": \"\",\n    \"readingExperience\": \"\"\n  }\n}",
+              "originalSourceId": "author",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/242",
+              "quote": "{\n  \"id\": \"chapter-3\",\n  \"chapterNumber\": 3,\n  \"volumeId\": \"vol_01\",\n  \"title\": \"一枚受限的试剑牌\",\n  \"summary\": \"第4日申时，苏凌霜奉矿务复核令封查矿口。她先看药房留底诊单，不准胸腹受伤的林辰下场对剑，只让他坐着指出矿道图上的退路、以左手空握木柄演示一次起手；她收敛凝元真元，不迫使淬体境的他承受剑气。林辰交出抽气管残片，梁九当面确认取出位置，却拒绝把怀疑写成魔门罪名。苏签出三日查案凭证，附在外门试剑牌背面：林辰可进剑坪与药房；调档仅限第6日由苏陪同，查看矿车出入簿和公开移交目录，封存袋必须另请库印。她要求登记父亲笔记的持有人，林辰只肯报作家传遗物。苏暂缓拘押他，也把他纳入自己的调查责任。 林辰望着不能握稳的木柄，问苏：同样困在窄矿道，自己怎样才可能不再只靠挨一掌替别人争路。苏以自己从淬体走到凝元的经历说明，先要伤后获准重新引气、练通经脉，晋阶还须实诊可支配寿储并支付三元载；有了真元也要另学控制，不能读到残卷就施术。林辰没有要求她替自己拔高境界，只请她告诉自己第一步该学会辨清什么，决定先辨明伤情与引气条件，伤愈许可前不实际运功。 本章按场面中的人物对抗、选择与后果组织叙事；必要的权限核对和处置记录保留为这些行动的依据与结果，不再逐项扩写成连续办手续的独立场景。\",\n",
+              "originalSourceId": "plan/chapters/3",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/242",
+              "quote": "  \"characterGoals\": \"林辰想取得合法调查身份、保护证人并确认苏凌霜是否会把证物交给戒律堂；苏凌霜要查清矿难与魔道暗桩，同时避免无证偏袒林辰。 他也想问清从受伤淬体走向第一缕可控真元的实际起点，先学会辨别条件，暂不运功。\",\n  \"conflict\": \"苏需要核对证人的能力和口供，却不能用带伤比武逼供；林辰既怕证物被退回戒律堂，也不肯交出父亲笔记。\",\n  \"choice\": \"林辰交出管道残片并接受基础动作核验，拒绝以父案猜想交换特权；苏选择签名承担有限查案责任。\",\n  \"cost\": \"林辰的行动和遗物持有事实进入调查记录，仍不得负重比武；苏的签名使她无法在证物出错后置身事外。\",\n  \"threads\": [\n    \"th_01\",\n    \"rel_01\",\n    \"sec_01\"\n  ],\n  \"endState\": \"三日凭证明确准入地点和第6日调档范围，林辰仍是淬体境；苏尚未信任父案指控，梁九只承认亲眼所见。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_07\"\n  ],\n  \"location\": \"loc_29外门剑坪、loc_28外山矿口\",\n  \"storyTime\": \"第4日申时至戌时\",\n  \"scenes\": [\n",
+              "originalSourceId": "plan/chapters/3",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/242",
+              "quote": "    \"场面一：带伤的林辰面对苏的核验，先被取消实战试剑，只能坐着以左手木柄演示起手。他需要她的查案位置，却不肯让父亲笔记成为交换物；苏要确认他的口供，既不肯拿伤者试剑，也不肯替父案猜想背书。诊单核对只作为取消比武的直接依据，不另起一轮诊察场。\",\n    \"场面二：梁九在二人面前划去供词中未曾目睹的幕后姓名，只确认残片出处；林辰接受这项不利于追凶的限定。苏转而要求登记笔记持有人，林护住原件，只报家传遗物，争执使双方都无法取得完整信任。\",\n    \"场面三：苏没有扣人夺书，而是登记争议、签下由自己承担责任的三日有限凭证；权限作为这次冲突的结果交代，不逐条另演签收。林得到的只是剑坪和药房准入，以及第6日由苏陪同看矿车簿与公开目录；封袋仍需另请库印。临走时他望着木柄问怎样才能不再只靠挨一掌替人争路，苏以自身经历指出伤后获准引气、贯脉和实诊付三元载才到凝元，之后仍要学控制。林决定先辨清条件，伤愈许可前不运功；这次追问从被核验者转为他自己选择下一步，不新增讲授课。\"\n  ],\n  \"source\": \"author\"\n}",
+              "originalSourceId": "plan/chapters/3",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/245",
+              "quote": "{\n  \"id\": \"chapter-6\",\n  \"chapterNumber\": 6,\n  \"volumeId\": \"vol_01\",\n  \"title\": \"一袋药与一纸撤供\",\n  \"summary\": \"第9、10日，林辰按医嘱卧床，梁九垫出口粮，工棚却通知涉案矿工暂停配粮。第11日矿管事带来止痛药和补发工钱，条件是众人签下事故和解书。梁九要养家，劝林辰先签；林辰几乎答应，最后发现文书还要求交回货签并承认没有外来袭击，便退回药袋，答应让梁九自行决定自己的口供。与此同时，例行外门矿务演练开放领作考核，两人一组、按识险和停机步骤计分，搬运由搭档完成；通过者可在使团查验批次时当场说明器械问题，没有调阅秘档的权力。梁九的运油货签标有第15日演练交割批号，苏核对告示后解释：他们可以争这个现场位置，但三日调查凭证已到期，不能继续查档。药房只允许林辰参加坐席识险，禁止负重；梁九作为搭档报名。\",\n  \"characterGoals\": \"林辰要在活命用药与留下真实口供间选择；梁九想拿回家人口粮，又不愿否认林辰救命的事实；苏要给两人指出已有规则的边界。\",\n  \"conflict\": \"撤供能立刻换回药和食物，继续追查却只有一次可能失败的现场发言机会；报名也会暴露二人的去向。\",\n",
+              "originalSourceId": "plan/chapters/6",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/245",
+              "quote": "  \"choice\": \"林辰退回附带撤供条件的药袋，不强迫梁九跟随；梁九暂时愿意搭档，但保留为家人和解的选择。\",\n  \"cost\": \"林辰错过即时止痛药，仍靠普通敷药缓解；梁九为两天食宿欠下工棚的债，合作随时可能破裂。\",\n  \"threads\": [\n    \"th_01\",\n    \"sec_02\",\n    \"rel_01\"\n  ],\n  \"endState\": \"二人登记矿务领作考核，林辰只能坐席识险、不得搬运比武；通过只取得交割现场说明权。灵泉仍只是远方资源的消息，没有形成任何寿元收入。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_07\"\n  ],\n  \"location\": \"loc_29外门演武场、loc_28矿务署\",\n  \"storyTime\": \"第9日清晨至第11日申时\",\n  \"scenes\": [\n    \"休养两日中，梁九垫粮，工棚宣布暂停涉案者配给。\",\n    \"管事把药袋和工钱压在和解书上，要求否认外来袭击。\",\n    \"林辰退药，不肯替梁九决定他的供词。\",\n    \"苏核对演练告示和运油批号，说明现场资格的实际用途。\",\n    \"医师限定坐席识险，梁九以搬运搭档身份报名。\"\n  ],\n  \"source\": \"author\"\n}",
+              "originalSourceId": "plan/chapters/6",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/247",
+              "quote": "{\n  \"id\": \"chapter-8\",\n  \"chapterNumber\": 8,\n  \"volumeId\": \"vol_01\",\n  \"title\": \"救过的人撤了供\",\n  \"summary\": \"第13日午时，梁九交回搭档木牌，承认自己为取回家人口粮签了和解书，管事准备把另两名工友转入封闭工棚。林辰当面质问他，梁九反问林辰能否保证家人明日有饭吃；林辰拿不出保证，双方第一次失去互信。苏只能争取半日见证人窗口，若硬抢工棚就会失去复核权。韩叙在这次当面询问中拿出第4章自己留下的缺页签收底联：上面是他经手的页号、交付人和签收时间，没有凭空出现被烧掉的正文。他愿意登记此联，条件是苏同时登记自己曾按管事要求把一笔损耗记作正常，不能让他背全部责任。林辰同意保留这项不利证词，也承认梁九有权自行陈述。梁九答应仍担任搬运搭档、证明亲见的抽气管，但不撤回家人和解书；夜里另两名工友还是被调走。\",\n  \"characterGoals\": \"林辰要保住证词，又必须承认工友有不同于复仇的生计；梁九要保障家人；韩叙想避免成为替罪羊；苏要留下包含自身一方不利事实的记录。\",\n  \"conflict\": \"梁九的撤供损害林辰的判断和合作，韩叙承认改账又会削弱己方证据；公然劫人会让有限复核立即中断。\",\n",
+              "originalSourceId": "plan/chapters/8",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/247",
+              "quote": "  \"choice\": \"林辰放弃逼梁九重新签供；苏把韩叙的改账责任一并登记，二人接受证据可能对自己不利。\",\n  \"cost\": \"梁九仍拿不到安全保证，林辰失去无条件支持；苏交出的案卷含己方证人改账事实，两名工友仍被转移。\",\n  \"threads\": [\n    \"th_01\",\n    \"sec_01\",\n    \"sec_02\",\n    \"rel_01\"\n  ],\n  \"endState\": \"合作变为有分歧、有保留的搭档关系，旧账页正文没有找回；缺页底联只能用于追问经手人，不能单独证明九鼎或父案。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_07\",\n    \"char_08\"\n  ],\n  \"location\": \"loc_28矿务署、废料仓与看守偏房\",\n  \"storyTime\": \"第13日午时至子时\",\n  \"scenes\": [\n    \"梁九交回木牌，承认为了家人口粮签下和解。\",\n    \"林辰质问，梁九追问谁来养活家人，争执未获安慰式解决。\",\n    \"苏在半日窗口内让韩叙出示亲自保存的缺页底联。\",\n    \"韩叙承认改账，要求记录所有经手人，苏当场登记。\",\n    \"林辰不逼梁九撤销和解，梁九仅同意继续搭档和证明亲见之事。\",\n",
+              "originalSourceId": "plan/chapters/8",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/247",
+              "quote": "    \"两名工友仍被调走，苏把新的押送批号记下，承诺继续追问而非宣称已救出。\"\n  ],\n  \"source\": \"author\"\n}",
+              "originalSourceId": "plan/chapters/8",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/251",
+              "quote": "{\n  \"id\": \"chapter-12\",\n  \"chapterNumber\": 12,\n  \"volumeId\": \"vol_01\",\n  \"title\": \"留置核查\",\n",
+              "originalSourceId": "plan/chapters/12",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/251",
+              "quote": "  \"summary\": \"第16日辰时至第18日午时，戒律堂以林辰破坏预选、伤及器械和擅自改变赛程为由，要求立即取消其矿务见证资格并交出所有证物。苏凌霜没有替林辰强行脱罪，而是提交自己保全的编号封样、预选登记和伤者记录，要求按照宗门矿务规程留置核查。林辰躺在药舍口述货签号码，韩叙誊写对应表，苏连同第7章公开摘录、第10章双联签条一并呈交，明确说明第1、5章的凝元暗桩仍在逃；被留置的记录员只被当场核定操作与改记行为，尚未证明与两次灭口是同一指挥链，拒绝声称自己已经查明九鼎或父亲旧案全貌。封样编号已进入使团留存副本，梁九只证明亲眼所见的矿车、管件与救人步骤，也公开承认第8章签过和解书；韩叙承认自己改记过损耗，双方证词须交叉核验，不能靠一张同号签条认定真相；当场销毁或强改将使使团自己的封印文书与交接账失真。使团为保住矿额和商路交割信用，要求短期封存复核并控制证人和记录员，后者的口供仍须与当班记录、伤者所见交叉核对，戒律堂因此同意暂缓刑讯拘押，但将林辰的活动限制在外门院，并限制苏的外出调查路线、停发本月俸给，并仅保留林辰参加后续矿务复验的候补登记：他必须第18日复诊合格、有担保后才能到场，这不是洗髓池或古境的入境名额。苏凌霜公开作证保护林辰和矿工，却因此失去中立空间，决定留宗继续转移证人和追查档案。医师复诊仍不许林辰负重或握刀，他无法立刻参加下轮；梁九被追索报废器械钱、家人配粮仍待复核，",
+              "originalSourceId": "plan/chapters/12",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/251",
+              "quote": "救人没有自动免债。林辰伤势需要继续静养，乾坤逆命真解仍只是纸面口诀，发动门槛、余寿不足与三十日冷却被再次确认，二人尚未获得任何延寿资源或突破。 复诊后，林辰主动问苏怎样才能练出自己的第一缕真元，而不是反复翻看尚不能使用的乾坤逆命真解；他希望将来能控制那样一枚无负载木块，给搭档多争一个撤离机会。苏把已到期的查案凭证翻面，代右手仍固定的他写下他口述的顺序：先按医嘱恢复并取得基础引气许可，再分段练通经脉；实诊寿储足够支付凝元三元载且保有安全余量才考虑晋阶，之后才学御物控制。她按自己既有修习经历说明清风引气诀的淬体导引不等于真元外放；林辰当面改正自己“能引气就能拨销”的误解。凭证背面的字只是他的个人目标，不能延长调档权限、替代授业或医嘱；苏不许他当天试练，也不保证何时达标。林辰把最急着翻看的逆命残卷合上，先请苏将这张目标纸留在枕边，准备次日向白榆询问恢复与寿储复查。此处只得到明确路径与自选目标，不提前获得伤愈、寿储、功法熟练或复验准入；第19日首次寿储下界诊察、第60日引气许可与第120日实际晋阶仍按后文发生。 本章按场面中的人物对抗、选择与后果组织叙事；必要的权限核对和处置记录保留为这些行动的依据与结果，不再逐项扩写成连续办手续的独立场景。\",\n",
+              "originalSourceId": "plan/chapters/12",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/251",
+              "quote": "  \"characterGoals\": \"林辰要保住封样、账册和幸存工友，争取合法的后续取证位置；苏凌霜要让宗门承认留置核查并保护证人，同时承担公开站队后的宗门问责。 他主动选择伤后引气、贯脉与日后控制轻物的成长路线，先问医师、后求授业，不把救人功劳兑换修为。\",\n  \"conflict\": \"戒律堂想把事故定性为林辰破坏赛事；使团要保矿额与自身文书信用，主张控制证人、封存复核以免当场暴露账目失真，利益与戒律堂并不完全相同，被留置的执行者避答上层指使，旧案缺页与两次袭击的指挥链仍不完整；林辰重伤不能逃亡或强闯禁地，苏凌霜也不能以凝元术法替代正式审查。\",\n  \"choice\": \"二人选择提交编号吻合的封样与账册，要求留置核查并接受限制，而不是私自带证人逃离宗门或把未证实的九鼎阴谋宣告为定案。 暂缓拘押后，林辰主动合上尚不可用的逆命残卷，先争取自己能实际迈出的基础修习路径。\",\n  \"cost\": \"林辰被停发俸给、限制出入，预选夺魁资格作废，仅保留矿务复验候补登记，须复诊合格及担保后才能到场；梁九面临器械赔偿，配粮问题未解；苏凌霜失去中立空间并承担保全证人的责任，伤者和被毁账页仍需后续核对。\",\n  \"threads\": [\n    \"th_01\",\n    \"sec_01\",\n    \"sec_02\",\n    \"rel_01\"\n  ],\n",
+              "originalSourceId": "plan/chapters/12",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/251",
+              "quote": "  \"endState\": \"林辰仍是淬体境，带伤留在太清外门院受限行动，未突破、未燃寿、未发动任何高阶法术；苏凌霜留宗负责证人和账目，宗门暂缓拘押却没有承认皇权或魔门罪行，后续矿务复验仍要解决医嘱、担保和证人安置，候补登记不授权进入洗髓池或古境。 林辰得到苏代写的个人修炼路径，决定第19日先问白榆恢复与寿储复查；纸上目标没有权限或术法效力，尚未开始练习。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_07\",\n    \"char_08\"\n  ],\n  \"location\": \"loc_29戒律堂驻外山问讯处、外门档房与药舍\",\n  \"storyTime\": \"第16日辰时至第18日午时\",\n  \"scenes\": [\n    \"场面一：林卧在药舍面对取消见证资格、交出证物的要求。苏把已整理的管件封样、诊单、两联签条与公开摘录摆上，要求留置核查；林口述批号由韩誊写，并坚持只指认本场执行、改记行为。证物保管人、编号和抄录作为对抗双方正在使用的依据集中交代，不将每份材料拆成单独核验问答；逃走的暗桩与父案仍无完整证据。\",\n",
+              "originalSourceId": "plan/chapters/12",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/251",
+              "quote": "    \"场面二：梁九当众承认和解，韩叙也承认改记损耗，己方并不干净的证词让苏必须选择如何作证。她保留两份不利陈述，不用删供换取一套更漂亮的指控；记录员仍拒供上层。使团自身签联使其不能随意销毁记录，但只能促成封存与交叉核验，不能凭同号判真；这场的转折是人物愿意付出什么来保留调查，而非又取得一张新证明。\",\n    \"场面三：使团为矿额、商路和交割信用，坚持留置执行者及当班记录并控制证人，戒律堂暂缓刑讯拘押却限制林苏、停俸。林不能立刻参加下轮，梁九仍面对器械债与未定配粮，苏公开作证后留下保全证人；局部救援的损失落到三人身上。第18日复诊、伤者止血补食、断流排残及封存等必要处置在此作为已经执行的连续结果交代，不再排一场手续高潮。候补复验仍需合格复诊与担保，没有洗髓池或古境准入。\",\n",
+              "originalSourceId": "plan/chapters/12",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/251",
+              "quote": "    \"复诊后，林辰主动问苏怎样才能练出自己的第一缕真元，而不是反复翻看尚不能使用的乾坤逆命真解；他希望将来能控制那样一枚无负载木块，给搭档多争一个撤离机会。苏把已到期的查案凭证翻面，代右手仍固定的他写下他口述的顺序：先按医嘱恢复并取得基础引气许可，再分段练通经脉；实诊寿储足够支付凝元三元载且保有安全余量才考虑晋阶，之后才学御物控制。她按自己既有修习经历说明清风引气诀的淬体导引不等于真元外放；林辰当面改正自己“能引气就能拨销”的误解。凭证背面的字只是他的个人目标，不能延长调档权限、替代授业或医嘱；苏不许他当天试练，也不保证何时达标。林辰把最急着翻看的逆命残卷合上，先请苏将这张目标纸留在枕边，准备次日向白榆询问恢复与寿储复查。此处只得到明确路径与自选目标，不提前获得伤愈、寿储、功法熟练或复验准入；第19日首次寿储下界诊察、第60日引气许可与第120日实际晋阶仍按后文发生。\"\n  ],\n  \"source\": \"author\"\n}",
+              "originalSourceId": "plan/chapters/12",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/62",
+              "quote": "{\n  \"stages\": [\n    {\n      \"sinceChapter\": 3,\n      \"untilChapter\": 7,\n      \"value\": \"有程序约束的临时庇护与试探。\",\n      \"cause\": \"苏核对诊单和口供，以限定权限的凭证暂保林辰；没有让伤者与凝元剑气实战。\",\n      \"cost\": \"苏承担调查问责；林辰受出入和见证条件约束，不能推定她相信父案全貌。\"\n    },\n    {\n      \"sinceChapter\": 8,\n      \"untilChapter\": 11,\n      \"value\": \"能保留分歧及不利证词的有限同盟。\",\n      \"cause\": \"苏登记韩叙改账，林辰不强逼梁九撤销和解；二人接受救人和调查可能失败。\",\n      \"cost\": \"两名工友仍被移交，己方证词受到质疑；苏无法保证所有人平安。\"\n    },\n    {\n      \"sinceChapter\": 12,\n      \"untilChapter\": 12,\n      \"value\": \"公开共同作证后的受限同盟。\",\n      \"cause\": \"苏公开提交双联签收及证人不利陈述；林辰接受医嘱与担保条件，保住后续复核可能。\",\n",
+              "originalSourceId": "story/relationships/rel_01",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/62",
+              "quote": "      \"cost\": \"二人失去部分俸禄与行动自由；后续恢复与修习须按此起点推进，不能沿用旧稿燃寿胜利。\"\n    },\n    {\n      \"sinceChapter\": 13,\n      \"untilChapter\": 14,\n      \"value\": \"在生计与公开线索上互助，遗物仍未核实。\",\n      \"cause\": \"13苏交公开调令，林选择口述矿路维生。\",\n      \"cost\": \"苏停俸限行，林无资格担保。\"\n    },\n    {\n      \"sinceChapter\": 15,\n      \"untilChapter\": 16,\n      \"value\": \"接受有代价的复核机会，尚未同意为遗物背书。\",\n      \"cause\": \"15苏放弃优先配额，林拒交原件换资助。\",\n      \"cost\": \"苏失去优先位，林继续自筹粮药。\"\n    },\n    {\n      \"sinceChapter\": 17,\n      \"untilChapter\": 17,\n      \"value\": \"承认私心后的有限合作。\",\n      \"cause\": \"17争执后林只提交自绘矿路，苏不替残玉真实性担保。\",\n      \"cost\": \"合作须接受来源质询，优先位不返还。\"\n    },\n    {\n",
+              "originalSourceId": "story/relationships/rel_01",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/62",
+              "quote": "      \"sinceChapter\": 18,\n      \"untilChapter\": 18,\n      \"value\": \"在实测和共同核图后合作。\",\n      \"cause\": \"18章179日共同核父亲署名，180日各自实测三重。\",\n      \"cost\": \"只得限定路线许可，不证明投毒全貌。\"\n    },\n    {\n      \"sinceChapter\": 19,\n      \"untilChapter\": 19,\n      \"value\": \"同意按任务路线勘查。\",\n      \"cause\": \"19入境登记，林接受苏先保全队资格的次序。\",\n      \"cost\": \"只能见逾期名牌，前哨和指挥者尚未知。\"\n    },\n    {\n      \"sinceChapter\": 20,\n      \"untilChapter\": 20,\n      \"value\": \"共同应对实际遇袭。\",\n      \"cause\": \"20苏守退路、林御剑逼开劫掠者。\",\n      \"cost\": \"只有前哨编号采集单，未救秦禾、未见墨。\"\n    },\n    {\n      \"sinceChapter\": 21,\n      \"untilChapter\": 21,\n      \"value\": \"分歧后先救能够带路的人。\",\n",
+              "originalSourceId": "story/relationships/rel_01",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/62",
+              "quote": "      \"cause\": \"林接受苏先解秦禾的次序，苏先扶稳笼门卸去横闩侧压、林御动无受载的小防脱钩，随后苏抽闩开门。\",\n      \"cost\": \"错过接近样箱窗口，苏付一枚补偿，主营待核。\"\n    },\n    {\n      \"sinceChapter\": 22,\n      \"untilChapter\": 22,\n      \"value\": \"由一次救人决定转为共同承担求援受阻。\",\n      \"cause\": \"秦第一次送图实遇封哨并回来告知；林苏主动试检修旁路失败，再共同撤离近货台观察点。\",\n      \"cost\": \"丢掉近距离取货窗口，秦尚未送达顾；旧图不能保证道路仍通。\"\n    },\n    {\n      \"sinceChapter\": 23,\n      \"untilChapter\": 24,\n      \"value\": \"依据强敌实况共同制定分工，互相承担风险。\",\n      \"cause\": \"23亲见墨放血仍有元罡，林提同阶迎敌与落料遮视、苏提开笼撤路和引看守；听到撤哨口令后让秦再实查通路。\",\n      \"cost\": \"未见顾到场不发动；24入口交接不是两人远知消息，战斗与伤亡均未发生。\"\n    },\n    {\n      \"sinceChapter\": 25,\n      \"untilChapter\": 25,\n",
+              "originalSourceId": "story/relationships/rel_01",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/62",
+              "quote": "      \"value\": \"共同救援形成实际战术信任。\",\n      \"cause\": \"亲见顾到场后林开路诱敌、苏引看守、顾制伏墨。\",\n      \"cost\": \"林腿伤、苏剑损，泉液洁净与归属尚待验收。\"\n    },\n    {\n      \"sinceChapter\": 26,\n      \"untilChapter\": 26,\n      \"value\": \"在资源分配中共同承担救人代价。\",\n      \"cause\": \"验药与原批配额核对后，苏与顾撤回本批个人申请；林撤去一剂申请，同意告急者优先。三方配额台依诊察和可分余额核准告急者三滴、林六滴，林没有自行分配药物的权力。\",\n      \"cost\": \"林只得六滴封存，分配不等于疗程已生效。\"\n    },\n    {\n      \"sinceChapter\": 27,\n      \"untilChapter\": 27,\n      \"value\": \"受伤后共同核对有限实物。\",\n      \"cause\": \"林苏在药棚核样箱刻痕、图纸接口和收货号，林接受第一剂疗程。\",\n      \"cost\": \"伤势未好、父案未破，两人仍在外营。\"\n    },\n    {\n      \"sinceChapter\": 28,\n      \"untilChapter\": 28,\n",
+              "originalSourceId": "story/relationships/rel_01",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/62",
+              "quote": "      \"value\": \"限定共享材料而非要求交出全部遗物。\",\n      \"cause\": \"苏反对林独占本次调查成果，双方共享货签及路线副本。\",\n      \"cost\": \"家传笔记仍归林，苏的伤者与看守责任继续。\"\n    },\n    {\n      \"sinceChapter\": 29,\n      \"untilChapter\": 32,\n      \"value\": \"认可分路职责，异地新消息须送达。\",\n      \"cause\": \"29苏选择随押解队返宗，林签护货南行；约定副本与递信责任。\",\n      \"cost\": \"约定返宗不是林亲见返宗，直到41收信才确认苏实际近况。\"\n    },\n    {\n      \"sinceChapter\": 33,\n      \"untilChapter\": 40,\n      \"value\": \"分路后的有限互信，等待实体消息。\",\n      \"cause\": \"承接27–32章约定；苏留宗照顾证人，林已南渡。\",\n      \"cost\": \"林尚未收到233日送达的信，双方不能即时知悉异地事。\"\n    },\n    {\n      \"sinceChapter\": 41,\n      \"untilChapter\": 71,\n      \"value\": \"来信证实近况，尊重各自的调查责任。\",\n",
+              "originalSourceId": "story/relationships/rel_01",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/62",
+              "quote": "      \"cause\": \"41章233日林收到苏226寄信，得青玄复核摘录；林不再要求苏立即离宗。\",\n      \"cost\": \"林收起的责问未寄，苏并不知道；后续彼此新消息仍须实际送达。\"\n    },\n    {\n      \"sinceChapter\": 72,\n      \"untilChapter\": 87,\n      \"value\": \"重聚但不为对方家仇放弃自己的调查原则。\",\n      \"cause\": \"315日面对面交换证据；林留院修行，苏独立查车队并坚持交出己方改账页。\",\n      \"cost\": \"林不能替苏决定风险，苏失去外派机会且承受宗门压力。\"\n    },\n    {\n      \"sinceChapter\": 88,\n      \"untilChapter\": 94,\n      \"value\": \"按各自能力共同准备救人，未以尚未发生的营救交换信任。\",\n      \"cause\": \"承接72共同护证；431苏送本地复核点，433梁的当面见闻支持分工。\",\n      \"cost\": \"苏仍可否决拿工友作诱饵；林没有提前完成95救伤者的选择。\"\n    },\n    {\n      \"sinceChapter\": 95,\n      \"untilChapter\": 99,\n",
+              "originalSourceId": "story/relationships/rel_01",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/62",
+              "quote": "      \"value\": \"这次救援中共同坚持先救活人、保留双方责任证物。\",\n      \"cause\": \"95林放弃追程救伤者，苏接人且保住原撤令；之后分别担伤、留证与安置。\",\n      \"cost\": \"救援不免除己方改账责任；三十日回访尚未提前完成。\"\n    },\n    {\n      \"sinceChapter\": 100,\n      \"untilChapter\": 100,\n      \"value\": \"经三十日回访检验的有限搭档关系。\",\n      \"cause\": \"466林苏共同核查具体住处、粮食和申领渠道；苏提交己方不利记录。\",\n      \"cost\": \"父案仍不完整、林短寿仍在，不许诺无条件服从。\"\n    }\n  ],\n  \"id\": \"rel_01\",\n  \"fromCharacterId\": \"char_01\",\n  \"toCharacterId\": \"char_02\",\n  \"kind\": \"trust\",\n  \"value\": \"苏凌霜调查灵矿异动时给予林辰有限庇护，双方尚在试探。\",\n  \"locked\": false,\n  \"sinceChapter\": 3\n}",
+              "originalSourceId": "story/relationships/rel_01",
+              "unitStart": 0
+            }
+          ],
+          "revisionAdvice": "",
+          "resolves": [
+            "batch-2/relationships"
+          ]
+        },
+        {
+          "criterion": "knowledge",
+          "verdict": "pass",
+          "explanation": "补入story/secrets/sec_02后，林辰在第1—6章仅围绕袭击与家仇调查，第7章通过公开运输摘录发现数量缺口，第8—12章逐步取得底联、封样、伤者记录与证词，但仍未知道九鼎或具体窃寿子阵全貌；第13—14章也只是沿公开修缮与承运线索继续调查。章纲明确第7章赵玄极没有亲临，常令由副使实体携带，不能据此推定赵已知道矿难；第14章墨幽屠收到失败纸报并作出下一期行动决定，但该信息未传给林辰或苏凌霜，远处收令与执行也未被预支。story/secrets/sec_02对应阶段进一步限定林辰、苏凌霜和赵玄极的来源、时点与禁止推断，与本批第3、7、8、12、14章安排相容，未见同一时点的知情冲突。原有sec_01、章纲及原问题引文保留。",
+          "evidence": [
+            {
+              "sourceId": "review-question/batch-2/knowledge",
+              "quote": "{\n  \"criterion\": \"knowledge\",\n  \"explanation\": \"已提供的认知阶段能够支持多数局部安排：林辰在第1—6章仍不了解九鼎联系，第7章仅凭公开摘录形成怀疑，第8—12章逐步取得底联、证词和现场材料，第13—14章仍未将局部承运线索推成九鼎全貌；墨幽屠在第14章收到失败纸报并作出新计划，但林辰、苏凌霜并未因此获得读者视角信息。可是第1、3、4、7、8、12、14章均关联sec_01，而本批未提供story/secrets/sec_01，无法核对该秘密的真实内容、知情阶段和是否存在与当前认知边界相冲突的前置知情。\",\n  \"revisionAdvice\": \"补读story/secrets/sec_01，逐项核对第1—14章关联sec_01的角色、来源、时点与认知边界；确认林辰、苏凌霜、梁九、韩叙及墨幽屠没有提前获得本批未提供的秘密信息。\",\n  \"awaitingSources\": [\n    \"story/secrets/sec_01\"\n  ]\n}",
+              "originalSourceId": "review-question/batch-2/knowledge"
+            },
+            {
+              "sourceId": "review-unit/1",
+              "quote": "{\n  \"title\": \"真实模型链路验收\",\n  \"covenant\": {\n    \"entryMode\": \"expand\",\n    \"genre\": \"xuanhuan\",\n    \"substyle\": \"宗门成长、诸域探索\",\n    \"audience\": \"喜欢长篇玄幻成长与世界探索的读者\",\n    \"hook\": \"主角以寿命换取力量，在三大陆冲突中追查界门真相\",\n    \"mustKeep\": \"三大陆、清晰力量等级、势力博弈\",\n    \"lockedNotes\": \"\",\n    \"avoid\": \"\",\n    \"targetLength\": \"百万字长篇\",\n    \"chapterWords\": 2200,\n    \"updateCadence\": \"日更\",\n    \"protagonistGoal\": \"\",\n    \"obstacle\": \"\",\n    \"readingExperience\": \"\"\n  }\n}",
+              "originalSourceId": "author",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/149",
+              "quote": "{\n  \"knowledgeStages\": [\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 1,\n      \"untilChapter\": 12,\n      \"certainty\": \"suspects\",\n      \"belief\": \"知道残玉与生父有关，追查家仇；尚不掌握护界牺牲的完整经过。\",\n      \"trigger\": \"身世记忆与早期案卷线索。\",\n      \"consequence\": \"追索血晶去向与古境遗迹。\",\n      \"forbiddenInferences\": [\n        \"不能叙述尚未看见的投毒场面\",\n        \"不能因此知道九鼎全套阵图\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 13,\n      \"untilChapter\": 17,\n      \"certainty\": \"suspects\",\n      \"belief\": \"只有家传笔记和残玉与父亲有关，未确认守门或投毒经过。\",\n      \"trigger\": \"13章已有家传物及双方此前明确交接的有限信息；没有父亲守门或投毒的新证据。\",\n",
+              "originalSourceId": "story/secrets/sec_01",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/149",
+              "quote": "      \"consequence\": \"据亲见与明确交接继续调查，分别记录知情范围，不把读者独立视角变成角色情报。\",\n      \"forbiddenInferences\": [\n        \"不知九鼎全阵、父案投毒全貌或门外死渊\",\n        \"不得预支后章证据、用残玉搜魂或从胜利推断寿元可逆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 18,\n      \"untilChapter\": 26,\n      \"certainty\": \"suspects\",\n      \"belief\": \"父亲曾参与守门工作的证据来自署名图纸和撤离记录；尚不知父案全貌。\",\n      \"trigger\": \"第18章179日，凭顾新签的限时调阅单，林苏共同核对韩叙交接的实物记录。\",\n      \"consequence\": \"据亲见与明确交接继续调查，分别记录知情范围，不把读者独立视角变成角色情报。\",\n      \"forbiddenInferences\": [\n        \"不知九鼎全阵、父案投毒全貌或门外死渊\",\n        \"不得预支后章证据、用残玉搜魂或从胜利推断寿元可逆\"\n      ]\n    },\n    {\n",
+              "originalSourceId": "story/secrets/sec_01",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/149",
+              "quote": "      \"characterId\": \"char_01\",\n      \"sinceChapter\": 27,\n      \"untilChapter\": 32,\n      \"certainty\": \"suspects\",\n      \"belief\": \"残片刻痕可与旧图对应，为追查收货链提供线索，未得到过去的完整影像。\",\n      \"trigger\": \"第27章对照实际取到的样箱、残片与图纸；不能从共鸣或触摸得到全知。\",\n      \"consequence\": \"据亲见与明确交接继续调查，分别记录知情范围，不把读者独立视角变成角色情报。\",\n      \"forbiddenInferences\": [\n        \"不知九鼎全阵、父案投毒全貌或门外死渊\",\n        \"不得预支后章证据、用残玉搜魂或从胜利推断寿元可逆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 33,\n      \"untilChapter\": 65,\n      \"certainty\": \"suspects\",\n      \"belief\": \"残片刻痕可与旧图对应，为追查收货链提供线索，未得到过去的完整影像。\",\n",
+              "originalSourceId": "story/secrets/sec_01",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/149",
+              "quote": "      \"trigger\": \"延续先前已实际取得的材料；本段没有提前获得后段新信息。\",\n      \"consequence\": \"按已有信息行动，等待实际证据或消息。\",\n      \"forbiddenInferences\": [\n        \"不知九鼎全阵、父案投毒全貌或门外死渊\",\n        \"不得预支后章证据、用残玉搜魂或从胜利推断寿元可逆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 66,\n      \"untilChapter\": 84,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"夜带来父亲署名巡查副本，与已有旧图相符，仅证实参与守门。\",\n      \"trigger\": \"66章亲看副本并记录来源，不是宝鉴留影。\",\n      \"consequence\": \"返乡找原始移交存根互证。\",\n      \"forbiddenInferences\": [\n        \"不能从局部证据推知九鼎全阵、父案全部凶手或未在场者所知。\",\n        \"不能以残片感应、圣器留影、神念全知替代实际消息和证据。\"\n      ]\n    },\n    {\n",
+              "originalSourceId": "story/secrets/sec_01",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/149",
+              "quote": "      \"characterId\": \"char_01\",\n      \"sinceChapter\": 85,\n      \"untilChapter\": 100,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"三份原始记录支持父亲守门参与与外山掩案责任；投毒与十年前完整因果仍未证实。\",\n      \"trigger\": \"85章外山仓取存根，与第18章旧图及北境副本对照。\",\n      \"consequence\": \"拒绝把梁九的未见之事写成指控。\",\n      \"forbiddenInferences\": [\n        \"不能从局部证据推知九鼎全阵、父案全部凶手或未在场者所知。\",\n        \"不能以残片感应、圣器留影、神念全知替代实际消息和证据。\"\n      ]\n    },\n    {\n      \"characterId\": \"char_02\",\n      \"sinceChapter\": 3,\n      \"untilChapter\": 12,\n      \"certainty\": \"unaware\",\n      \"belief\": \"掌握当代魔门渗透线索，但没有父辈遇害全貌。\",\n      \"trigger\": \"追查暗桩、护持同门。\",\n",
+              "originalSourceId": "story/secrets/sec_01",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/149",
+              "quote": "      \"consequence\": \"先依实物证据阻止宗门清算。\",\n      \"forbiddenInferences\": [\n        \"不得以作者真相直接指控投毒细节\"\n      ]\n    },\n    {\n      \"characterId\": \"char_02\",\n      \"sinceChapter\": 13,\n      \"untilChapter\": 17,\n      \"certainty\": \"suspects\",\n      \"belief\": \"只有家传笔记和残玉与父亲有关，未确认守门或投毒经过。\",\n      \"trigger\": \"13章已有家传物及双方此前明确交接的有限信息；没有父亲守门或投毒的新证据。\",\n      \"consequence\": \"据亲见与明确交接继续调查，分别记录知情范围，不把读者独立视角变成角色情报。\",\n      \"forbiddenInferences\": [\n        \"不知九鼎全阵、父案投毒全貌或门外死渊\",\n        \"不得预支后章证据、用残玉搜魂或从胜利推断寿元可逆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_02\",\n      \"sinceChapter\": 18,\n      \"untilChapter\": 26,\n",
+              "originalSourceId": "story/secrets/sec_01",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/149",
+              "quote": "      \"certainty\": \"suspects\",\n      \"belief\": \"父亲曾参与守门工作的证据来自署名图纸和撤离记录；尚不知父案全貌。\",\n      \"trigger\": \"第18章179日，凭顾新签的限时调阅单，林苏共同核对韩叙交接的实物记录。\",\n      \"consequence\": \"据亲见与明确交接继续调查，分别记录知情范围，不把读者独立视角变成角色情报。\",\n      \"forbiddenInferences\": [\n        \"不知九鼎全阵、父案投毒全貌或门外死渊\",\n        \"不得预支后章证据、用残玉搜魂或从胜利推断寿元可逆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_02\",\n      \"sinceChapter\": 27,\n      \"untilChapter\": 32,\n      \"certainty\": \"suspects\",\n      \"belief\": \"残片刻痕可与旧图对应，为追查收货链提供线索，未得到过去的完整影像。\",\n      \"trigger\": \"第27章对照实际取到的样箱、残片与图纸；不能从共鸣或触摸得到全知。\",\n",
+              "originalSourceId": "story/secrets/sec_01",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/149",
+              "quote": "      \"consequence\": \"据亲见与明确交接继续调查，分别记录知情范围，不把读者独立视角变成角色情报。\",\n      \"forbiddenInferences\": [\n        \"不知九鼎全阵、父案投毒全貌或门外死渊\",\n        \"不得预支后章证据、用残玉搜魂或从胜利推断寿元可逆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_02\",\n      \"sinceChapter\": 33,\n      \"untilChapter\": 71,\n      \"certainty\": \"suspects\",\n      \"belief\": \"残片刻痕可与旧图对应，为追查收货链提供线索，未得到过去的完整影像。\",\n      \"trigger\": \"延续先前已实际取得的材料；本段没有提前获得后段新信息。\",\n      \"consequence\": \"按已有信息行动，等待实际证据或消息。\",\n      \"forbiddenInferences\": [\n        \"不知九鼎全阵、父案投毒全貌或门外死渊\",\n        \"不得预支后章证据、用残玉搜魂或从胜利推断寿元可逆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_02\",\n",
+              "originalSourceId": "story/secrets/sec_01",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/149",
+              "quote": "      \"sinceChapter\": 72,\n      \"untilChapter\": 84,\n      \"certainty\": \"believes\",\n      \"belief\": \"林当面交来北境副本，父亲参与守门的证据增加。\",\n      \"trigger\": \"72章归乡当面交接，苏没见过所谓完整留影。\",\n      \"consequence\": \"继续调外山原档。\",\n      \"forbiddenInferences\": [\n        \"不能从局部证据推知九鼎全阵、父案全部凶手或未在场者所知。\",\n        \"不能以残片感应、圣器留影、神念全知替代实际消息和证据。\"\n      ]\n    },\n    {\n      \"characterId\": \"char_02\",\n      \"sinceChapter\": 85,\n      \"untilChapter\": 100,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"与林共同核对守门参与和外山掩案记录。\",\n      \"trigger\": \"85章在场核对原件。\",\n      \"consequence\": \"提交己方不利记录仍保留凶手证据缺口。\",\n      \"forbiddenInferences\": [\n",
+              "originalSourceId": "story/secrets/sec_01",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/149",
+              "quote": "        \"不能从局部证据推知九鼎全阵、父案全部凶手或未在场者所知。\",\n        \"不能以残片感应、圣器留影、神念全知替代实际消息和证据。\"\n      ]\n    },\n    {\n      \"characterId\": \"char_03\",\n      \"sinceChapter\": 1,\n      \"untilChapter\": 32,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"知道自己亲自实施的父辈案行为；所知不等于林辰见过的记忆范围或每个守界细节。\",\n      \"trigger\": \"赵因十年前自己实施的投毒、谋害与嫁祸形成自身记忆；不以旧稿92章留影或未来揭示作为本阶段认知来源，新提案不采用完整父辈留影。\",\n      \"consequence\": \"通过追查残玉持有者及毁碑保护统治。\",\n      \"forbiddenInferences\": [\n        \"不能无场景得知林辰何时看到哪段记忆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_03\",\n      \"sinceChapter\": 33,\n      \"untilChapter\": 100,\n      \"certainty\": \"confirmed\",\n",
+              "originalSourceId": "story/secrets/sec_01",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/149",
+              "quote": "      \"belief\": \"知道自己亲自实施的父辈案行为；所知不等于林辰见过的记忆范围或每个守界细节。\",\n      \"trigger\": \"延续赵亲自实施十年前行为的自身记忆；本秘密没有收到林苏父案原件的新渠道。港口、北境及本次押运报令另按sec_02的53/73/88/90/98/99章阶段核对。\",\n      \"consequence\": \"保护自己旧行为的秘密；不能从这份自身记忆推知林苏当前找到哪些副本，也不否定其他事项中后来实际收到的新消息。\",\n      \"forbiddenInferences\": [\n        \"不能无场景得知林辰何时看到哪段记忆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_05\",\n      \"sinceChapter\": 61,\n      \"untilChapter\": 100,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"巡查档案有林苍玄署名，但不知青玄投毒始末。\",\n      \"trigger\": \"既有巡档资料，本次285日带至外港，66章供林核对。\",\n      \"consequence\": \"有限交证，不替林证明全案。\",\n      \"forbiddenInferences\": [\n",
+              "originalSourceId": "story/secrets/sec_01",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/149",
+              "quote": "        \"不能从局部证据推知九鼎全阵、父案全部凶手或未在场者所知。\",\n        \"不能以残片感应、圣器留影、神念全知替代实际消息和证据。\"\n      ]\n    }\n  ],\n  \"id\": \"sec_01\",\n  \"ownerCharacterId\": \"char_01\",\n  \"title\": \"乾坤逆命真解渊源\",\n  \"truth\": \"残卷系十年前青玄极天界门灵震中其生父以百年阳寿护界陨落后所留遗蜕古玉。\",\n  \"revealCondition\": \"18/27章旧图与刻痕为起点；66章巡档副本、72章当面交苏、85章外山原存根互证父亲守门参与与掩案。十年前投毒与完整守门牺牲的证据保留给后续450章主线，不以留影或残片共鸣补齐。\",\n  \"status\": \"proposed\"\n}",
+              "originalSourceId": "story/secrets/sec_01",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/173",
+              "quote": "{\n  \"id\": \"chapter-plan-7\",\n  \"chapterNumber\": 7,\n  \"title\": \"使团观礼\",\n  \"purpose\": \"第12日辰时，大乾使团抵达太清外门院演武场，公开观礼文书要求太清仙宗配合核验矿务领作资格与灵虚古境名额。林辰以已报名领作考核的身份坐在对所有参赛者开放的外围告示席，苏凌霜以调查身份查阅交接册，两人只能看见使团递交的封印文书、运输清单和公开账目，无法感知九鼎全图或皇室真正阵枢。林辰发现一批血精铁矿的数量与矿车序号对不上，缺口恰好对应第1章矿道的异常运输记录；赵玄极没有亲临；副使说明自己在启程前从赵处亲自签领常令，随团保管并带到矿场，当场展示骑缝日期和印记，再把令交给主持交割的执事宣读。常令只授权保交割矿额与商路稳定，没有授予裁定矿难的权力。把当日质疑斥为扰乱交割、拒开内册，是执事此刻作出的决定，不能据此断言赵已知道矿难或现场灭口。林辰试图追问账目来源，却被使团执事以权限不足挡回，苏凌霜当众要求把供各组核验的运输摘录留作副本；使团执事让韩叙只抄对外公布的批次、数量和验收责任人，在两联登记单上盖骑缝印，保密内册并未交出。散会后，韩叙指给苏看当日移库公示：原始验收册送往洗髓池交割房。他随后被带去询问第4章副册缺页，林辰只能怀疑两事有关。 本章按场面中的人物对抗、选择与后果组织叙事；必要的权限核对和处置记录保留为这些行动的依据与",
+              "originalSourceId": "story/chapterPlans/chapter-plan-7",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/173",
+              "quote": "结果，不再逐项扩写成连续办手续的独立场景。\",\n  \"conflict\": \"大乾使团以观礼和商路秩序为名压制查问，太清守旧派担心失去名额与资源而配合封口；林辰仍受胸腹伤和左臂伤影响，不能靠境界或术法强行夺取账册。\",\n  \"turningPoint\": \"林辰选择留在公开告示席核对文书，而不是追随使团气机或贸然闯入禁区；苏凌霜选择当众索取副本，承受宗门与皇使的双重注视。\",\n  \"endHook\": \"林辰与苏凌霜确认矿车序号和公开账目存在可核验缺口，掌握一份使团文书副本；原始账册去向指向洗髓池，戒律堂开始限制他们接触证人和档案。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_08\"\n  ],\n  \"locationIds\": [\n    \"loc_29\",\n    \"loc_28\"\n  ],\n  \"arcBeatIds\": [],\n  \"requiredEvents\": [\n    \"th_01\",\n",
+              "originalSourceId": "story/chapterPlans/chapter-plan-7",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/173",
+              "quote": "    \"场次安排：场面一：观礼礼仪和常令交接压在同一场的开端：副使从赵处签领、随团实体携行的常令交给执事，印记日期和权限在公开宣读中成立；令只保交割与商路，不裁定矿难，赵未亲临，也未因此知道现场灭口。林在外围告示席听到公开矿额，口述手中货签批号，苏比对后发现缺口；主冲突从他们当众追问账目来源开始，不另写完整观礼流程。\\n场面二：执事以权限为由挡回追问，林不能闯内册；苏选择当众索取已公开的运输摘录，让自己的调查与矿工质疑一同暴露在宗门、使团眼前。她获得的只是公开批次、数量和验收责任人；韩叙当场形成两联骑缝摘录的核验过程压缩为争执后的结果，保密内册没有移交。场面结束在林苏拿到有限可查缺口、同时被正式标记，不能用抄号盖章反复充当转折。\\n场面三：散会时韩叙刚指明公开移库单上的洗髓池交割房去向，就被带去问第4章丢页责任。林只能看着他离开，不能将先后发生推成已证报复；自己仍坐着等梁九接回工棚。收尾是得知梁九被管事单独约见，风险转入搭档家人生计，为下一章撤供形成压力，不再追加一场查阅登记。\"\n  ]\n}",
+              "originalSourceId": "story/chapterPlans/chapter-plan-7",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/242",
+              "quote": "{\n  \"id\": \"chapter-3\",\n  \"chapterNumber\": 3,\n  \"volumeId\": \"vol_01\",\n  \"title\": \"一枚受限的试剑牌\",\n  \"summary\": \"第4日申时，苏凌霜奉矿务复核令封查矿口。她先看药房留底诊单，不准胸腹受伤的林辰下场对剑，只让他坐着指出矿道图上的退路、以左手空握木柄演示一次起手；她收敛凝元真元，不迫使淬体境的他承受剑气。林辰交出抽气管残片，梁九当面确认取出位置，却拒绝把怀疑写成魔门罪名。苏签出三日查案凭证，附在外门试剑牌背面：林辰可进剑坪与药房；调档仅限第6日由苏陪同，查看矿车出入簿和公开移交目录，封存袋必须另请库印。她要求登记父亲笔记的持有人，林辰只肯报作家传遗物。苏暂缓拘押他，也把他纳入自己的调查责任。 林辰望着不能握稳的木柄，问苏：同样困在窄矿道，自己怎样才可能不再只靠挨一掌替别人争路。苏以自己从淬体走到凝元的经历说明，先要伤后获准重新引气、练通经脉，晋阶还须实诊可支配寿储并支付三元载；有了真元也要另学控制，不能读到残卷就施术。林辰没有要求她替自己拔高境界，只请她告诉自己第一步该学会辨清什么，决定先辨明伤情与引气条件，伤愈许可前不实际运功。 本章按场面中的人物对抗、选择与后果组织叙事；必要的权限核对和处置记录保留为这些行动的依据与结果，不再逐项扩写成连续办手续的独立场景。\",\n",
+              "originalSourceId": "plan/chapters/3",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/242",
+              "quote": "  \"characterGoals\": \"林辰想取得合法调查身份、保护证人并确认苏凌霜是否会把证物交给戒律堂；苏凌霜要查清矿难与魔道暗桩，同时避免无证偏袒林辰。 他也想问清从受伤淬体走向第一缕可控真元的实际起点，先学会辨别条件，暂不运功。\",\n  \"conflict\": \"苏需要核对证人的能力和口供，却不能用带伤比武逼供；林辰既怕证物被退回戒律堂，也不肯交出父亲笔记。\",\n  \"choice\": \"林辰交出管道残片并接受基础动作核验，拒绝以父案猜想交换特权；苏选择签名承担有限查案责任。\",\n  \"cost\": \"林辰的行动和遗物持有事实进入调查记录，仍不得负重比武；苏的签名使她无法在证物出错后置身事外。\",\n  \"threads\": [\n    \"th_01\",\n    \"rel_01\",\n    \"sec_01\"\n  ],\n  \"endState\": \"三日凭证明确准入地点和第6日调档范围，林辰仍是淬体境；苏尚未信任父案指控，梁九只承认亲眼所见。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_07\"\n  ],\n  \"location\": \"loc_29外门剑坪、loc_28外山矿口\",\n  \"storyTime\": \"第4日申时至戌时\",\n  \"scenes\": [\n",
+              "originalSourceId": "plan/chapters/3",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/242",
+              "quote": "    \"场面一：带伤的林辰面对苏的核验，先被取消实战试剑，只能坐着以左手木柄演示起手。他需要她的查案位置，却不肯让父亲笔记成为交换物；苏要确认他的口供，既不肯拿伤者试剑，也不肯替父案猜想背书。诊单核对只作为取消比武的直接依据，不另起一轮诊察场。\",\n    \"场面二：梁九在二人面前划去供词中未曾目睹的幕后姓名，只确认残片出处；林辰接受这项不利于追凶的限定。苏转而要求登记笔记持有人，林护住原件，只报家传遗物，争执使双方都无法取得完整信任。\",\n    \"场面三：苏没有扣人夺书，而是登记争议、签下由自己承担责任的三日有限凭证；权限作为这次冲突的结果交代，不逐条另演签收。林得到的只是剑坪和药房准入，以及第6日由苏陪同看矿车簿与公开目录；封袋仍需另请库印。临走时他望着木柄问怎样才能不再只靠挨一掌替人争路，苏以自身经历指出伤后获准引气、贯脉和实诊付三元载才到凝元，之后仍要学控制。林决定先辨清条件，伤愈许可前不运功；这次追问从被核验者转为他自己选择下一步，不新增讲授课。\"\n  ],\n  \"source\": \"author\"\n}",
+              "originalSourceId": "plan/chapters/3",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/246",
+              "quote": "{\n  \"id\": \"chapter-7\",\n  \"chapterNumber\": 7,\n  \"volumeId\": \"vol_01\",\n  \"title\": \"使团观礼\",\n",
+              "originalSourceId": "plan/chapters/7",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/246",
+              "quote": "  \"summary\": \"第12日辰时，大乾使团抵达太清外门院演武场，公开观礼文书要求太清仙宗配合核验矿务领作资格与灵虚古境名额。林辰以已报名领作考核的身份坐在对所有参赛者开放的外围告示席，苏凌霜以调查身份查阅交接册，两人只能看见使团递交的封印文书、运输清单和公开账目，无法感知九鼎全图或皇室真正阵枢。林辰发现一批血精铁矿的数量与矿车序号对不上，缺口恰好对应第1章矿道的异常运输记录；赵玄极没有亲临；副使说明自己在启程前从赵处亲自签领常令，随团保管并带到矿场，当场展示骑缝日期和印记，再把令交给主持交割的执事宣读。常令只授权保交割矿额与商路稳定，没有授予裁定矿难的权力。把当日质疑斥为扰乱交割、拒开内册，是执事此刻作出的决定，不能据此断言赵已知道矿难或现场灭口。林辰试图追问账目来源，却被使团执事以权限不足挡回，苏凌霜当众要求把供各组核验的运输摘录留作副本；使团执事让韩叙只抄对外公布的批次、数量和验收责任人，在两联登记单上盖骑缝印，保密内册并未交出。散会后，韩叙指给苏看当日移库公示：原始验收册送往洗髓池交割房。他随后被带去询问第4章副册缺页，林辰只能怀疑两事有关。 本章按场面中的人物对抗、选择与后果组织叙事；必要的权限核对和处置记录保留为这些行动的依据与结果，不再逐项扩写成连续办手续的独立场景。\",\n",
+              "originalSourceId": "plan/chapters/7",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/246",
+              "quote": "  \"characterGoals\": \"林辰想把矿车序号、货签与公开运输账目逐项对应，确认灭口案是否牵涉皇室运输链；苏凌霜要保护矿工证据并迫使宗门留下可复核的交接记录，同时避免把未经核实的九鼎猜测当成罪证。\",\n  \"conflict\": \"大乾使团以观礼和商路秩序为名压制查问，太清守旧派担心失去名额与资源而配合封口；林辰仍受胸腹伤和左臂伤影响，不能靠境界或术法强行夺取账册。\",\n  \"choice\": \"林辰选择留在公开告示席核对文书，而不是追随使团气机或贸然闯入禁区；苏凌霜选择当众索取副本，承受宗门与皇使的双重注视。\",\n  \"cost\": \"两人的调查范围被正式标记，原始验收册被转移，矿务书吏遭到控制；林辰坐席听完公示，不能亲自抄写，由韩叙抄成两联并请苏验字，仍没有获得任何寿元补偿或高阶力量。\",\n  \"threads\": [\n    \"th_01\",\n    \"sec_01\",\n    \"sec_02\"\n  ],\n  \"endState\": \"林辰与苏凌霜确认矿车序号和公开账目存在可核验缺口，掌握一份使团文书副本；原始账册去向指向洗髓池，戒律堂开始限制他们接触证人和档案。\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_08\"\n  ],\n",
+              "originalSourceId": "plan/chapters/7",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/246",
+              "quote": "  \"location\": \"loc_29外门演武场、loc_28矿务交接署\",\n  \"storyTime\": \"第12日辰时至酉时\",\n  \"scenes\": [\n    \"场面一：观礼礼仪和常令交接压在同一场的开端：副使从赵处签领、随团实体携行的常令交给执事，印记日期和权限在公开宣读中成立；令只保交割与商路，不裁定矿难，赵未亲临，也未因此知道现场灭口。林在外围告示席听到公开矿额，口述手中货签批号，苏比对后发现缺口；主冲突从他们当众追问账目来源开始，不另写完整观礼流程。\",\n    \"场面二：执事以权限为由挡回追问，林不能闯内册；苏选择当众索取已公开的运输摘录，让自己的调查与矿工质疑一同暴露在宗门、使团眼前。她获得的只是公开批次、数量和验收责任人；韩叙当场形成两联骑缝摘录的核验过程压缩为争执后的结果，保密内册没有移交。场面结束在林苏拿到有限可查缺口、同时被正式标记，不能用抄号盖章反复充当转折。\",\n    \"场面三：散会时韩叙刚指明公开移库单上的洗髓池交割房去向，就被带去问第4章丢页责任。林只能看着他离开，不能将先后发生推成已证报复；自己仍坐着等梁九接回工棚。收尾是得知梁九被管事单独约见，风险转入搭档家人生计，为下一章撤供形成压力，不再追加一场查阅登记。\"\n  ],\n  \"source\": \"author\"\n}",
+              "originalSourceId": "plan/chapters/7",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/253",
+              "quote": "{\n  \"id\": \"chapter-14\",\n  \"chapterNumber\": 14,\n  \"volumeId\": \"vol_01\",\n  \"title\": \"不删的岔路\",\n",
+              "originalSourceId": "plan/chapters/14",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/253",
+              "quote": "  \"summary\": \"第23日至第39日，林辰将此前两次空木柄握持失败和医嘱退回低负荷的过程压入日常背景，继续以坐姿口述矿路图换取粮药。承包外山修缮的管事看中他熟悉旧矿道，愿按图结算，却要求删去逃生支岔、压低支护与制动料用量，以便把账面节余留作额外酬劳。林辰拒绝删改自己口述的新绘矿路劳务图，也不再去柜台重复申诉；他口述，由韩叙摆放桌上木块、斜板，以矿车惯性复现岔道失效后的滑行路径，指出删支岔会把普通修缮变成下一次困人事故。林辰提出由当班工人在停运段做空车与支护核验；工班带回磨痕和侧偏记录，原压料方案过不了交工验收，管事才接受保留逃生支岔、补足关键制动木与支护料的实际修缮决定，却取消林辰原可拿到的额外酬劳，已登记基础页款按原约支付，图页只以“伤者口述待核”名义归档。苏继续沿限定路线核对公开承运记录，顾峤则明确凝元三重、联名符牌与实测伤况缺一不可，绝不为林预留古境位置。另一边，墨幽屠在青灵坊市普通后街等到徒步赶来的信使，收到矿道行动失败的实体回报；他为避开巡查延误半个时辰，随后把索取采集名单和泉液去向的纸面短令折好交回同一信使带往原班集结者，将灭口失手转为下一期掳人夺泉的打算，尚未确认远处收令；此事只为读者所知。\",\n",
+              "originalSourceId": "plan/chapters/14",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/253",
+              "quote": "  \"characterGoals\": \"林辰要以矿工经验换取稳定生计，同时保住逃生图的真实性；苏凌霜要从公开承运链继续取证；顾峤要守住古境三重准入；墨幽屠要把失败行动转化为可交易的掳人夺泉计划。\",\n  \"conflict\": \"承包方以额外酬劳诱使林辰压料删图，既能解决他眼前粮药困境，也会把下一批矿工置于无逃路的风险；林辰重伤且仍是淬体，无法靠武力或术法逼迫对方。古境资格也不能由劳务、同情或顾峤口头预留替代。\",\n  \"choice\": \"林辰拒绝删图换额外酬劳，先口述推演，再要求工班在停运段核验磨痕与支护；以能否交工的实际压力争取保留逃生支岔，接受失去加价续单。\",\n  \"cost\": \"林辰失去额外酬劳和可提前换取的肉食份额，只保有基本粮药；他的矿路经验被登记为待核材料，不能当作父案证据或古境担保。墨已转向下一期行动，主角尚不知其身份与计划。\",\n  \"threads\": [\n    \"th_01\",\n    \"sec_01\",\n    \"sec_02\",\n    \"rel_01\",\n    \"rel_03\",\n    \"rel_09\"\n  ],\n  \"endState\": \"外山实际保留一条逃生支岔并补做关键制动、支护工序，林辰以较低报酬维持劳务，仍未能负重或进入古境。顾峤明确无三重不准入、不留位；墨的掳人夺泉筹备开始形成，尚未进入林苏认知。\",\n",
+              "originalSourceId": "plan/chapters/14",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/253",
+              "quote": "  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_04\",\n    \"char_08\",\n    \"char_09\",\n    \"char_10\"\n  ],\n  \"location\": \"loc_29太清外门药舍、loc_28太清外山矿务区与loc_30青灵坊市普通后街\",\n  \"storyTime\": \"第23日至第39日，劳务议价、现场复现与公开核档并行\",\n  \"scenes\": [\n    \"数次空木柄握持失败与白榆要求退回低负荷被压缩为日常记录，林辰仍坐在药舍案边口述矿路，右手始终不碰笔。\",\n    \"承包方管事把结算木牌推到林辰面前，要求删掉逃生支岔、把制动木和支护料改成较低数额，承诺将省下的钱折进他的额外酬劳。\",\n    \"林辰口述坡度，由韩叙摆木块和斜板推演矿车失控后的路线，指出被删的岔路正是伤员离开主槽的唯一缓冲。\",\n    \"管事以取消后续加价图件相逼，林辰仍拒绝删改劳务图，提出先让当班工人在停运段按韩叙标出的坡度做空车、卸载与支护核验。工班带回磨痕和侧偏记录后，管事发现删岔方案无法通过交工验收，只能保留支岔、补足用料；林辰丢掉加价续单，已登记基础页款仍按原约结算。\",\n",
+              "originalSourceId": "plan/chapters/14",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/253",
+              "quote": "    \"苏在限定路线内比对公开承运栏，将尚缺交接册的批次圈给林辰；顾峤来核验采集名册，明确凝元三重、联名符牌和届时实测缺一不可，不替他预留位置。\",\n    \"青灵坊市收摊后的普通后街，一身便衣的墨幽屠等着沿外山公共道路徒步赶来的外围信使。信使认出墨，停到他面前，刚要喊“少主”，就被他抬手截住；墨接过对方递来的矿道失败纸报，贴近檐下翻看。巡查的脚步从街口逼近，他立即合上纸报，让信使退开等候；两人多耗了半个时辰，等巡查走过、附近摊贩收完货离开，才重新交接。墨没有在街上说出掳人目标。他在纸背写下索取下一期采集名单和泉液去向的短令，折回原状交还同一信使，低声只说“带回去，交给原来负责集结的人”，亲眼看着信使收妥离开。墨收起始终折着的未炼成万鬼幡图谱：矿道灭口既然失败，他决定把下一期采集者和泉液当作新的目标。此场完成的是墨接到失败消息、作出选择并交出待送的命令，未写远处手下已经收令或行动；便衣和躲开一次巡查只降低暴露风险，不构成免检或保证无人目击，林苏也未在场。\"\n  ],\n  \"source\": \"author\",\n  \"executionChecks\": [\n    {\n      \"id\": \"mo-public-message-location\",\n",
+              "originalSourceId": "plan/chapters/14",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/253",
+              "quote": "      \"requirement\": \"墨在青灵坊市普通公共后街实际接到失败纸报，信使认出他但称呼被截住；巡查逼近使交接暂停并耗时半个时辰。墨不公开口述掳人命令，以折好的纸面短令交回同一信使，指定带给原班集结者；远处收令、执行和无人目击均不得预先写成事实。接报后才改变打算，不新增总坛准入、防护或法宝，图谱仍未炼成王器，林苏不因读者视角知情。\"\n    }\n  ]\n}",
+              "originalSourceId": "plan/chapters/14",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/150",
+              "quote": "{\n  \"knowledgeStages\": [\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 1,\n      \"untilChapter\": 6,\n      \"certainty\": \"unaware\",\n      \"belief\": \"尚未建立九鼎与具体窃寿子阵的联系。\",\n      \"trigger\": \"早期调查仍围绕袭击与家仇。\",\n      \"consequence\": \"追查暗桩。\",\n      \"forbiddenInferences\": [\n        \"不得先知道完整子阵位置与破法\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 7,\n      \"untilChapter\": 7,\n      \"certainty\": \"suspects\",\n      \"belief\": \"已发现公开运输数量与矿车批号有缺口，并持有合法抄出的公开摘录；仅怀疑矿务账目有问题，不知道九鼎和具体窃寿子阵的关系。\",\n      \"trigger\": \"第7章当场核对运输公示、货签和既有矿车批号，苏要求留下公开摘录。\",\n",
+              "originalSourceId": "story/secrets/sec_02",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/150",
+              "quote": "      \"consequence\": \"追问原始验收记录和经手人；不能提前拿到第8章底联或韩叙改账陈述。\",\n      \"forbiddenInferences\": [\n        \"淬体境不能直接感应皇权内部命源\",\n        \"不能据同号凭证认定九鼎全部节点\",\n        \"尚无证据确认具体幕后人的全部罪行\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 8,\n      \"untilChapter\": 9,\n      \"certainty\": \"suspects\",\n      \"belief\": \"在第7章已知数量缺口上，又取得缺页底联和韩叙承认改记损耗的陈述，怀疑多环节利益关联；九鼎机制仍不明。\",\n      \"trigger\": \"第8章韩叙亲自出示第4章留下的底联并承认改账；这是新增证言，不是再次发现第7章的数量缺口。\",\n      \"consequence\": \"争取交割现场说明权，准备核对异常批次。\",\n      \"forbiddenInferences\": [\n        \"淬体境不能直接感应皇权内部命源\",\n        \"不能据同号凭证认定九鼎全部节点\",\n        \"尚无证据确认具体幕后人的全部罪行\"\n",
+              "originalSourceId": "story/secrets/sec_02",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/150",
+              "quote": "      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 10,\n      \"untilChapter\": 11,\n      \"certainty\": \"suspects\",\n      \"belief\": \"亲见工友受管道伤害，怀疑现场输送与异常矿务有关；原样已封存，不等于知道全阵。\",\n      \"trigger\": \"第10章试抽、真实管件封样及双联签收。\",\n      \"consequence\": \"立即救人并保全管件，不可提前叙述第12章听证结果。\",\n      \"forbiddenInferences\": [\n        \"淬体境不能直接感应皇权内部命源\",\n        \"不能据同号凭证认定九鼎全部节点\",\n        \"尚无证据确认具体幕后人的全部罪行\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 12,\n      \"untilChapter\": 12,\n      \"certainty\": \"suspects\",\n      \"belief\": \"本场执行者与记录被留置，尚未查明两次灭口的共同指挥人或九鼎全图。\",\n",
+              "originalSourceId": "story/secrets/sec_02",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/150",
+              "quote": "      \"trigger\": \"第11章韩叙公开指认，12章提交签条、伤者记录及不利证词。\",\n      \"consequence\": \"接受受监督复核，继续查旧案而不当作定罪。\",\n      \"forbiddenInferences\": [\n        \"淬体境不能直接感应皇权内部命源\",\n        \"不能据同号凭证认定九鼎全部节点\",\n        \"尚无证据确认具体幕后人的全部罪行\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 13,\n      \"untilChapter\": 15,\n      \"certainty\": \"suspects\",\n      \"belief\": \"公开修缮调令提示当地矿务与管件承运可继续核对，尚无交接册实证。\",\n      \"trigger\": \"13章苏带来公开修缮调令副本。\",\n      \"consequence\": \"据亲见与明确交接继续调查，分别记录知情范围，不把读者独立视角变成角色情报。\",\n      \"forbiddenInferences\": [\n        \"不知九鼎全阵、父案投毒全貌或门外死渊\",\n        \"不得预支后章证据、用残玉搜魂或从胜利推断寿元可逆\"\n      ]\n",
+              "originalSourceId": "story/secrets/sec_02",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/150",
+              "quote": "    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 16,\n      \"untilChapter\": 18,\n      \"certainty\": \"suspects\",\n      \"belief\": \"交接册确认旧管件由古境采集队承运的批次和经手栏，尚不知九鼎机制。\",\n      \"trigger\": \"16章苏在限定陪同下抄录公开交接册并交给林辰。\",\n      \"consequence\": \"据亲见与明确交接继续调查，分别记录知情范围，不把读者独立视角变成角色情报。\",\n      \"forbiddenInferences\": [\n        \"不知九鼎全阵、父案投毒全貌或门外死渊\",\n        \"不得预支后章证据、用残玉搜魂或从胜利推断寿元可逆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 19,\n      \"untilChapter\": 19,\n      \"certainty\": \"suspects\",\n      \"belief\": \"仅见入口归期已过的采集名牌，未确认失踪地点与指使人。\",\n",
+              "originalSourceId": "story/secrets/sec_02",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/150",
+              "quote": "      \"trigger\": \"第19章山路抵口与入境核验时亲见未销号名牌。\",\n      \"consequence\": \"据亲见与明确交接继续调查，分别记录知情范围，不把读者独立视角变成角色情报。\",\n      \"forbiddenInferences\": [\n        \"不知九鼎全阵、父案投毒全貌或门外死渊\",\n        \"不得预支后章证据、用残玉搜魂或从胜利推断寿元可逆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 20,\n      \"untilChapter\": 20,\n      \"certainty\": \"suspects\",\n      \"belief\": \"附近有拦截采集者的前哨，营地与指挥者未知。\",\n      \"trigger\": \"第20章遇袭后取得残缺采集单，核对前哨编号与人数。\",\n      \"consequence\": \"据亲见与明确交接继续调查，分别记录知情范围，不把读者独立视角变成角色情报。\",\n      \"forbiddenInferences\": [\n        \"不知九鼎全阵、父案投毒全貌或门外死渊\",\n        \"不得预支后章证据、用残玉搜魂或从胜利推断寿元可逆\"\n      ]\n    },\n",
+              "originalSourceId": "story/secrets/sec_02",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/150",
+              "quote": "      \"characterId\": \"char_02\",\n      \"sinceChapter\": 7,\n      \"untilChapter\": 7,\n      \"certainty\": \"suspects\",\n      \"belief\": \"已发现公开运输数量与矿车批号有缺口，并持有合法抄出的公开摘录；仅怀疑矿务账目有问题，",
+              "originalSourceId": "story/secrets/sec_02",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/151",
+              "quote": "不知道九鼎和具体窃寿子阵的关系。\",\n      \"trigger\": \"第7章当场核对运输公示、货签和既有矿车批号，苏要求留下公开摘录。\",\n      \"consequence\": \"追问原始验收记录和经手人；不能提前拿到第8章底联或韩叙改账陈述。\",\n      \"forbiddenInferences\": [\n        \"不得直接知道九鼎全阵\",\n        \"不因信任林辰而自动掌握父案真相\"\n      ]\n    },\n    {\n      \"characterId\": \"char_02\",\n      \"sinceChapter\": 8,\n      \"untilChapter\": 9,\n      \"certainty\": \"suspects\",\n      \"belief\": \"在第7章已知数量缺口上，又取得缺页底联和韩叙承认改记损耗的陈述，怀疑多环节利益关联；九鼎机制仍不明。\",\n      \"trigger\": \"第8章韩叙亲自出示第4章留下的底联并承认改账；这是新增证言，不是再次发现第7章的数量缺口。\",\n      \"consequence\": \"争取交割现场说明权，准备核对异常批次。\",\n      \"forbiddenInferences\": [\n        \"不得直接知道九鼎全阵\",\n",
+              "originalSourceId": "story/secrets/sec_02",
+              "unitStart": 10000
+            },
+            {
+              "sourceId": "review-unit/151",
+              "quote": "        \"不因信任林辰而自动掌握父案真相\"\n      ]\n    },\n    {\n      \"characterId\": \"char_02\",\n      \"sinceChapter\": 10,\n      \"untilChapter\": 11,\n      \"certainty\": \"suspects\",\n      \"belief\": \"亲见工友受管道伤害，怀疑现场输送与异常矿务有关；原样已封存，不等于知道全阵。\",\n      \"trigger\": \"第10章试抽、真实管件封样及双联签收。\",\n      \"consequence\": \"立即救人并保全管件，不可提前叙述第12章听证结果。\",\n      \"forbiddenInferences\": [\n        \"不得直接知道九鼎全阵\",\n        \"不因信任林辰而自动掌握父案真相\"\n      ]\n    },\n    {\n      \"characterId\": \"char_02\",\n      \"sinceChapter\": 12,\n      \"untilChapter\": 12,\n      \"certainty\": \"suspects\",\n      \"belief\": \"本场执行者与记录被留置，尚未查明两次灭口的共同指挥人或九鼎全图。\",\n",
+              "originalSourceId": "story/secrets/sec_02",
+              "unitStart": 10000
+            },
+            {
+              "sourceId": "review-unit/151",
+              "quote": "      \"trigger\": \"第11章韩叙公开指认，12章提交签条、伤者记录及不利证词。\",\n      \"consequence\": \"接受受监督复核，继续查旧案而不当作定罪。\",\n      \"forbiddenInferences\": [\n        \"不得直接知道九鼎全阵\",\n        \"不因信任林辰而自动掌握父案真相\"\n      ]\n    },\n    {\n      \"characterId\": \"char_02\",\n      \"sinceChapter\": 13,\n      \"untilChapter\": 15,\n      \"certainty\": \"suspects\",\n      \"belief\": \"公开修缮调令提示当地矿务与管件承运可继续核对，尚无交接册实证。\",\n      \"trigger\": \"13章苏带来公开修缮调令副本。\",\n      \"consequence\": \"据亲见与明确交接继续调查，分别记录知情范围，不把读者独立视角变成角色情报。\",\n      \"forbiddenInferences\": [\n        \"不知九鼎全阵、父案投毒全貌或门外死渊\",\n        \"不得预支后章证据、用残玉搜魂或从胜利推断寿元可逆\"\n      ]\n    },\n    {\n",
+              "originalSourceId": "story/secrets/sec_02",
+              "unitStart": 10000
+            },
+            {
+              "sourceId": "review-unit/151",
+              "quote": "      \"characterId\": \"char_02\",\n      \"sinceChapter\": 16,\n      \"untilChapter\": 18,\n      \"certainty\": \"suspects\",\n      \"belief\": \"交接册确认旧管件由古境采集队承运的批次和经手栏，尚不知九鼎机制。\",\n      \"trigger\": \"16章苏在限定陪同下抄录公开交接册并交给林辰。\",\n      \"consequence\": \"据亲见与明确交接继续调查，分别记录知情范围，不把读者独立视角变成角色情报。\",\n      \"forbiddenInferences\": [\n        \"不知九鼎全阵、父案投毒全貌或门外死渊\",\n        \"不得预支后章证据、用残玉搜魂或从胜利推断寿元可逆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_02\",\n      \"sinceChapter\": 19,\n      \"untilChapter\": 19,\n      \"certainty\": \"suspects\",\n      \"belief\": \"仅见入口归期已过的采集名牌，未确认失踪地点与指使人。\",\n      \"trigger\": \"第19章山路抵口与入境核验时亲见未销号名牌。\",\n",
+              "originalSourceId": "story/secrets/sec_02",
+              "unitStart": 10000
+            },
+            {
+              "sourceId": "review-unit/151",
+              "quote": "      \"consequence\": \"据亲见与明确交接继续调查，分别记录知情范围，不把读者独立视角变成角色情报。\",\n      \"forbiddenInferences\": [\n        \"不知九鼎全阵、父案投毒全貌或门外死渊\",\n        \"不得预支后章证据、用残玉搜魂或从胜利推断寿元可逆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_02\",\n      \"sinceChapter\": 20,\n      \"untilChapter\": 20,\n      \"certainty\": \"suspects\",\n      \"belief\": \"附近有拦截采集者的前哨，营地与指挥者未知。\",\n      \"trigger\": \"第20章遇袭后取得残缺采集单，核对前哨编号与人数。\",\n      \"consequence\": \"据亲见与明确交接继续调查，分别记录知情范围，不把读者独立视角变成角色情报。\",\n      \"forbiddenInferences\": [\n        \"不知九鼎全阵、父案投毒全貌或门外死渊\",\n        \"不得预支后章证据、用残玉搜魂或从胜利推断寿元可逆\"\n      ]\n    },\n    {\n      \"characterId\": \"char_02\",\n",
+              "originalSourceId": "story/secrets/sec_02",
+              "unitStart": 10000
+            },
+            {
+              "sourceId": "review-unit/151",
+              "quote": "        \"常令不证明他已收到当地第1、5章袭击或第10–11章事故的现场消息\",\n        \"不得把使团执事当场封口的执行选择写成赵即时遥控；未补传播路径前不得安排针对现场具体行动的回应\"\n      ]\n    },\n    {\n      \"characterId\": \"char_03\",\n      \"sinceChapter\": 13,\n      \"untilChapter\": 32,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"掌握自己布置的窃寿目的与控制链。\",\n      \"trigger\": \"延续自己部署与亲签常令的既有认知；使者拒签回报和异地执行结果须实体送达后才知，不能用后期密券或祭礼作当前消息来源。\",\n      \"consequence\": \"夺印、补给和祭礼围绕个人道果安排。\",\n      \"forbiddenInferences\": [\n        \"不能自动知道对手已截获密约或破解节点\",\n        \"不能因使团、程或读者知道现场情况，就认定赵已收到报告。\"\n      ]\n    },\n    {\n      \"characterId\": \"char_05\",\n      \"sinceChapter\": 61,\n      \"untilChapter\": 100,\n",
+              "originalSourceId": "story/secrets/sec_02",
+              "unitStart": 10000
+            },
+            {
+              "sourceId": "review-unit/151",
+              "quote": "      \"certainty\": \"believes\",\n      \"belief\": \"只知道巡界港口的污染货号与来访材料可核联系，不知六道全阵。\",\n      \"trigger\": \"61章外港面对面核存根，后续救人确认这一批扣工。\",\n      \"consequence\": \"限定外港查扣，不凭归一境界推演全大陆。\",\n      \"forbiddenInferences\": [\n        \"不能从局部证据推知九鼎全阵、父案全部凶手或未在场者所知。\",\n        \"不能以残片感应、圣器留影、神念全知替代实际消息和证据。\"\n      ]\n    },\n    {\n      \"characterId\": \"char_07\",\n      \"sinceChapter\": 1,\n      \"untilChapter\": 4,\n      \"certainty\": \"suspects\",\n      \"belief\": \"亲见矿道管件与工友伤亡，只怀疑矿务有人害人。\",\n      \"trigger\": \"第1章逃生中看见管道和伤者。\",\n      \"consequence\": \"只为亲见现象作证，不替林辰指认幕后人。\",\n      \"forbiddenInferences\": [\n        \"不知道九鼎全图或林家父案\",\n",
+              "originalSourceId": "story/secrets/sec_02",
+              "unitStart": 10000
+            },
+            {
+              "sourceId": "review-unit/151",
+              "quote": "        \"不能凭对林辰的信任自动获得残卷秘密\"\n      ]\n    },\n    {\n      \"characterId\": \"char_07\",\n      \"sinceChapter\": 5,\n      \"untilChapter\": 5,\n      \"certainty\": \"suspects\",\n      \"belief\": \"拿到运油车货签，尚不知谁派车；药庐烧毁，只能借住工棚，暂停配粮须第6章才知。\",\n      \"trigger\": \"第5章逃出药庐并从矿车上取走货签。\",\n      \"consequence\": \"借宿工棚、垫粮，担心家人生计。\",\n      \"forbiddenInferences\": [\n        \"不知道九鼎全图或林家父案\",\n        \"不能凭对林辰的信任自动获得残卷秘密\"\n      ]\n    },\n    {\n      \"characterId\": \"char_07\",\n      \"sinceChapter\": 6,\n      \"untilChapter\": 7,\n      \"certainty\": \"suspects\",\n      \"belief\": \"货签批号对应后续交割；知道管事用药钱和口粮交换撤供，但还未签。\",\n",
+              "originalSourceId": "story/secrets/sec_02",
+              "unitStart": 10000
+            },
+            {
+              "sourceId": "review-unit/151",
+              "quote": "      \"trigger\": \"第6章和解条件与公开演练告示。\",\n      \"consequence\": \"先报名搭档，仍考虑和解。\",\n      \"forbiddenInferences\": [\n        \"不知道九鼎全图或林家父案\",\n        \"不能凭对林辰的信任自动获得残卷秘密\"\n      ]\n    },\n    {\n      \"characterId\": \"char_07\",\n      \"sinceChapter\": 8,\n      \"untilChapter\": 9,\n      \"certainty\": \"suspects\",\n      \"belief\": \"运油货签可联系到矿务批次，但自己不知谁派车；配粮和家人比继续追凶更急迫。\",\n      \"trigger\": \"第8章为配粮签和解并向林辰承认。\",\n      \"consequence\": \"保留和解，只继续搭档和证明亲见之事。\",\n      \"forbiddenInferences\": [\n        \"不知道九鼎全图或林家父案\",\n        \"不能凭对林辰的信任自动获得残卷秘密\"\n      ]\n    },\n    {\n      \"characterId\": \"char_07\",\n      \"sinceChapter\": 10,\n",
+              "originalSourceId": "story/secrets/sec_02",
+              "unitStart": 10000
+            },
+            {
+              "sourceId": "review-unit/151",
+              "quote": "      \"untilChapter\": 10,\n      \"certainty\": \"suspects\",\n      \"belief\": \"演练管道正使同伴昏厥，必须立即让他们离位；不知道地下法阵的全图。\",\n      \"trigger\": \"第10章亲见固定工友和灰白气流。\",\n      \"consequence\": \"冒停粮风险掀帆布，准备按口令制动。\",\n      \"forbiddenInferences\": [\n        \"不知道九鼎全图或林家父案\",\n        \"不能凭对林辰的信任自动获得残卷秘密\"\n      ]\n    },\n    {\n      \"characterId\": \"char_07\",\n      \"sinceChapter\": 11,\n      \"untilChapter\": 32,\n      \"certainty\": \"suspects\",\n      \"belief\": \"亲手把两名工友移出本轮输送，无法证明高阶阵法已被毁。\",\n      \"trigger\": \"第11章拔销解绳救人后仍见阵槽冷光。\",\n      \"consequence\": \"仅为救人步骤作证，承担器械债，不许诺永久忠诚。\",\n      \"forbiddenInferences\": [\n        \"不知道九鼎全图或林家父案\",\n",
+              "originalSourceId": "story/secrets/sec_02",
+              "unitStart": 10000
+            },
+            {
+              "sourceId": "review-unit/151",
+              "quote": "        \"不能凭对林辰的信任自动获得残卷秘密\"\n      ]\n    },\n    {\n      \"characterId\": \"char_07\",\n      \"sinceChapter\": 33,\n      \"untilChapter\": 100,\n      \"certainty\": \"suspects\",\n      \"belief\": \"亲手把两名工友移出本轮输送，无法证明高阶阵法已被毁。\",\n      \"trigger\": \"延续先前已实际取得的材料；本段没有提前获得后段新信息。\",\n      \"consequence\": \"按已有信息行动，等待实际证据或消息。\",\n      \"forbiddenInferences\": [\n        \"不知道九鼎全图或林家父案\",\n        \"不能凭对林辰的信任自动获得残卷秘密\"\n      ]\n    },\n    {\n      \"characterId\": \"char_08\",\n      \"sinceChapter\": 4,\n      \"untilChapter\": 6,\n      \"certainty\": \"suspects\",\n      \"belief\": \"知道自己以前按管事要求把损耗记作正常，第4章亲见副册缺页；不知道是谁策划火警。\",\n",
+              "originalSourceId": "story/secrets/sec_02",
+              "unitStart": 10000
+            }
+          ],
+          "revisionAdvice": "",
+          "resolves": [
+            "batch-2/knowledge"
+          ]
+        }
+      ]
+    },
+    {
+      "area": "story",
+      "runId": "design_run_8b168b9a-9e6a-4bac-a4cc-b845453ebba3",
+      "stageId": "cross-1-2",
+      "summary": "本批可见的前50章关系、选择与玄幻约束总体能支撑局部节奏和类型判断；但51—100章的关键因果、行程、兑现与成长均依赖本次未提供的分卷里程碑原文，不能用索引或关系阶段替代复核。",
+      "sourceCharacters": 213371,
+      "chapters": [],
+      "sourceIds": [
+        "author",
+        "world/overview",
+        "world/axioms/ax_01",
+        "world/axioms/ax_02",
+        "world/axioms/ax_03",
+        "world/axioms/ax_04",
+        "world/axioms/ax_05",
+        "world/axioms/ax_06",
+        "world/axioms/ax_07",
+        "world/axioms/ax_08",
+        "world/axioms/ax_09",
+        "world/axioms/ax_10",
+        "world/axioms/ax_11",
+        "world/axioms/ax_12",
+        "world/axioms/ax_13",
+        "world/locations/loc_01",
+        "world/locations/loc_02",
+        "world/locations/loc_03",
+        "world/locations/loc_04",
+        "world/locations/loc_05",
+        "world/locations/loc_06",
+        "world/locations/loc_07",
+        "world/locations/loc_08",
+        "world/locations/loc_09",
+        "world/locations/loc_10",
+        "world/locations/loc_11",
+        "world/locations/loc_12",
+        "world/locations/loc_13",
+        "world/locations/loc_14",
+        "world/locations/loc_15",
+        "world/locations/loc_16",
+        "world/locations/loc_17",
+        "world/locations/loc_18",
+        "world/locations/loc_19",
+        "world/locations/loc_20",
+        "world/locations/loc_21",
+        "world/locations/loc_22",
+        "world/locations/loc_23",
+        "world/locations/loc_24",
+        "world/locations/loc_25",
+        "world/locations/loc_26",
+        "world/locations/loc_27",
+        "world/locations/loc_28",
+        "world/locations/loc_29",
+        "world/locations/loc_30",
+        "world/realms/realm_01",
+        "world/realms/realm_02",
+        "world/realms/realm_03",
+        "world/realms/realm_04",
+        "world/realms/realm_05",
+        "world/realms/realm_06",
+        "world/realms/realm_07",
+        "world/realms/realm_08",
+        "world/techniques/tech_01",
+        "world/techniques/tech_02",
+        "world/techniques/tech_03",
+        "world/techniques/tech_04",
+        "world/techniques/tech_05",
+        "world/techniques/tech_06",
+        "world/techniques/tech_07",
+        "world/techniques/tech_08",
+        "world/techniques/tech_09",
+        "world/techniques/tech_10",
+        "world/techniques/tech_11",
+        "world/techniques/tech_12",
+        "world/techniques/tech_13",
+        "world/techniques/tech_14",
+        "world/techniques/tech_15",
+        "world/techniques/tech_16",
+        "world/techniques/tech_17",
+        "world/techniques/tech_18",
+        "world/techniques/tech_19",
+        "world/artifacts/art_01",
+        "world/artifacts/art_02",
+        "world/artifacts/art_03",
+        "world/artifacts/art_04",
+        "world/artifacts/art_05",
+        "world/artifacts/art_06",
+        "world/artifacts/art_07",
+        "world/artifacts/art_08",
+        "world/artifacts/art_09",
+        "world/artifacts/art_10",
+        "world/artifacts/art_11",
+        "world/artifacts/art_12",
+        "world/artifacts/art_13",
+        "world/artifacts/art_14",
+        "world/artifacts/art_15",
+        "world/artifacts/art_16",
+        "world/artifacts/art_17",
+        "world/artifacts/art_18",
+        "world/artifacts/art_19",
+        "world/artifacts/art_20",
+        "world/artifacts/art_21",
+        "world/resources/res_01",
+        "world/resources/res_02",
+        "world/resources/res_03",
+        "world/resources/res_04",
+        "world/resources/res_05",
+        "world/resources/res_06",
+        "world/resources/res_07",
+        "world/resources/res_08",
+        "world/resources/res_09",
+        "world/resources/res_10",
+        "world/resources/res_11",
+        "world/resources/res_12",
+        "world/resources/res_13",
+        "world/resources/res_14",
+        "world/resources/res_15",
+        "world/resources/res_16",
+        "world/resources/res_17",
+        "world/resources/res_18",
+        "world/resources/res_19",
+        "story/overview",
+        "story/characters/char_01",
+        "story/characters/char_02",
+        "story/characters/char_03",
+        "story/characters/char_04",
+        "story/characters/char_05",
+        "story/characters/char_06",
+        "story/characters/char_07",
+        "story/characters/char_08",
+        "story/characters/char_09",
+        "story/characters/char_10",
+        "story/characters/char_11",
+        "story/characters/char_12",
+        "story/characters/char_13",
+        "story/characters/char_14",
+        "story/characters/char_15",
+        "story/characters/char_16",
+        "story/characters/char_17",
+        "story/characters/char_18",
+        "story/characters/char_19",
+        "story/characters/char_20",
+        "story/characters/char_21",
+        "story/characters/char_22",
+        "story/characters/char_23",
+        "story/characters/char_24",
+        "story/characters/char_25",
+        "story/relationships/rel_01",
+        "story/relationships/rel_02",
+        "story/relationships/rel_03",
+        "story/relationships/rel_04",
+        "story/relationships/rel_06",
+        "story/relationships/rel_07",
+        "story/relationships/rel_08",
+        "story/relationships/rel_09",
+        "story/relationships/rel_10",
+        "story/relationships/rel_11",
+        "story/relationships/rel_05",
+        "story/relationships/rel_12",
+        "story/relationships/rel_13",
+        "story/relationships/rel_14",
+        "story/relationships/rel_15",
+        "story/relationships/rel_16",
+        "story/relationships/rel_17",
+        "story/relationships/rel_18",
+        "story/relationships/rel_19",
+        "story/relationships/rel_20",
+        "story/relationships/rel_21",
+        "story/relationships/rel_22",
+        "story/arcs/arc_01",
+        "story/arcs/arc_02",
+        "story/arcs/arc_03",
+        "story/arcs/arc_04",
+        "story/arcBeats/beat_01",
+        "story/arcBeats/beat_02",
+        "story/arcBeats/beat_03",
+        "story/arcBeats/audit-su-3",
+        "story/arcBeats/audit-su-8",
+        "story/arcBeats/audit-su-12",
+        "story/arcBeats/audit-su-testimony",
+        "story/arcBeats/audit-su-stay",
+        "story/arcBeats/audit-zhao-control",
+        "story/arcBeats/audit-mo-bargain",
+        "story/arcBeats/audit-mo-last-bet",
+        "story/arcBeats/v1-white-stop",
+        "story/arcBeats/v1-lin-advance",
+        "story/arcBeats/v1-qin-bargain",
+        "story/arcBeats/v1-qin-message",
+        "story/arcBeats/v1-gu-counter",
+        "story/arcBeats/v1-du-post",
+        "story/arcBeats/v1-qiao-custody",
+        "story/arcBeats/v1-lin-share",
+        "story/arcBeats/beat_v23_1",
+        "story/arcBeats/beat_v23_2",
+        "story/arcBeats/beat_v23_3",
+        "story/arcBeats/beat_v23_4",
+        "story/arcBeats/beat_v23_5",
+        "story/arcBeats/beat_v23_6",
+        "story/arcBeats/beat_v23_7",
+        "story/arcBeats/beat_v23_8",
+        "story/arcBeats/beat_v23_9",
+        "story/arcBeats/beat_v23_10",
+        "story/arcBeats/beat_v23_11",
+        "story/arcBeats/beat_v23_12",
+        "story/arcBeats/beat_bridge_1",
+        "story/arcBeats/beat_bridge_2",
+        "story/arcBeats/beat_bridge_3",
+        "story/arcBeats/beat_bridge_4",
+        "story/arcBeats/beat_box_rescue",
+        "story/arcBeats/beat_box_correction",
+        "story/arcBeats/beat_barge_priority",
+        "story/arcBeats/message-dispatch",
+        "story/arcBeats/message-first-read",
+        "story/arcBeats/message-first-order",
+        "story/arcBeats/message-first-delivery",
+        "story/arcBeats/message-first-ack",
+        "story/arcBeats/message-north-report",
+        "story/arcBeats/message-local-replan",
+        "story/arcBeats/message-custody-report",
+        "story/arcBeats/message-custody-read",
+        "story/arcBeats/message-withdraw-order",
+        "story/arcBeats/message-cheng-local-mission",
+        "story/arcBeats/message-withdraw-delivery",
+        "story/arcBeats/message-withdraw-seized",
+        "story/arcBeats/message-defeat-report",
+        "story/arcBeats/message-formal-inquiry",
+        "story/arcBeats/v1-lin-route-failure",
+        "story/arcBeats/v1-su-tactical-share",
+        "story/arcBeats/beat_port_work_before_questions",
+        "story/arcBeats/beat_port_current_retreat",
+        "story/arcBeats/beat_workers_failed_exit",
+        "story/arcBeats/harbor-lin-horizon",
+        "story/arcBeats/harbor-he-refuses-boat",
+        "story/arcBeats/harbor-lu-speaks",
+        "story/secrets/sec_01",
+        "story/secrets/sec_02",
+        "plan/overview"
+      ],
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "insufficient",
+          "explanation": "总纲明确将51—100的各段设为必须顺序依赖，且第50章后续的安置、自述、北航、北境救援、返乡、晋阶与截押均是拟定安排。当前仅有总纲依赖声明及关系阶段，未提供承接第50章后的关键里程碑原文，无法核验专项航款、港口权限、救援选择、原令暴露和后果是否实际形成可闭合的因果链；不能据目录或“拟”字默认成立。",
+          "evidence": [
+            {
+              "sourceId": "review-unit/294",
+              "quote": "{\n  \"targetChapterCount\": 100,\n  \"volumeCount\": 3,\n  \"detailedThroughChapter\": 50,\n  \"outlinedChapterNumbers\": [\n    1,\n    2,\n    3,\n    4,\n    5,\n    6,\n    7,\n    8,\n    9,\n    10,\n    11,\n    12,\n    13,\n    14,\n    15,\n    16,\n    17,\n    18,\n    19,\n    20,\n    21,\n    22,\n    23,\n    24,\n    25,\n    26,\n    27,\n    28,\n    29,\n    30,\n    31,\n    32,\n    33,\n    34,\n    35,\n    36,\n    37,\n    38,\n    39,\n    40,\n    41,\n    42,\n    43,\n    44,\n    45,\n    46,\n    47,\n    48,\n    49,\n    50\n  ],\n",
+              "originalSourceId": "plan/overview",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/294",
+              "quote": "  \"endingDirection\": \"百章有救人、断运、部分父案澄清和玄府成长的可核结局。1–100是450章的阶段验收；接下来的有限寿源、高阶反派、钥匙余片与九鼎机制必须另建经审查的来源和行动链，不将450章全书结局撤销。 没有返寿、燃寿白发、道伤凭空痊愈或三大陆永久太平。此卷不清算全部九鼎，公开传播仍限实到地点。\",\n  \"keyTurns\": [\n    \"第10–12章：伤重林辰与曾撤供的梁九分工救人，只改变普通输送位置；苏保留封样及己方不利证词，争得有限复核，众人仍负伤、欠债和受限。\",\n    \"第23–29章：主角为救人暴露自己，创造顾峤同阶制敌的窗口，取得并分配有限泉液；完成两次十日疗程后南行，苏选择留宗。卷末凝元三重，不能沿用神海及二十年燃寿。\",\n    \"第44/50–53章：44林救落水对手而不追陆与原账，贺付船损；50林不施术而让工人自己回答，陆协助夺闩、两名看守被控，吴卢实际脱控并拒绝立即回船。51–53拟各自选择生计，陆新写改签自述，副本仍待独立核验。\",\n    \"第61–66章：付费北航后在受限外港救出七名矿工，夜真身守撤离路，林放弃第二片，不入界渊。\",\n    \"第83章：数月努力与诊察后，实际付十元载晋玄府；不能再用旧法器承载元罡。\",\n",
+              "originalSourceId": "plan/overview",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/294",
+              "quote": "      \"description\": \"前段救援、实物交接、健康和可用款项成立后才进入本段；海程与消息按实际日期，不以预期收入或未具能力替代前提。\"\n    },\n    {\n      \"id\": \"dep_ms_v2_barge\",\n      \"targetId\": \"ms_v2_barge\",\n      \"sourceId\": \"ms_v2_loss\",\n      \"requiredness\": \"must\",\n      \"description\": \"前段救援、实物交接、健康和可用款项成立后才进入本段；海程与消息按实际日期，不以预期收入或未具能力替代前提。\"\n    },\n    {\n      \"id\": \"dep_ms_v2_fire\",\n      \"targetId\": \"ms_v2_fire\",\n      \"sourceId\": \"ms_v2_barge\",\n      \"requiredness\": \"must\",\n      \"description\": \"前段救援、实物交接、健康和可用款项成立后才进入本段；海程与消息按实际日期，不以预期收入或未具能力替代前提。\"\n    },\n    {\n      \"id\": \"dep_ms_v2_voyage\",\n      \"targetId\": \"ms_v2_voyage\",\n",
+              "originalSourceId": "plan/overview",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/294",
+              "quote": "      \"sourceId\": \"ms_v2_fire\",\n      \"requiredness\": \"must\",\n      \"description\": \"前段救援、实物交接、健康和可用款项成立后才进入本段；海程与消息按实际日期，不以预期收入或未具能力替代前提。\"\n    },\n    {\n      \"id\": \"dep_ms_v2_boundary\",\n      \"targetId\": \"ms_v2_boundary\",\n      \"sourceId\": \"ms_v2_voyage\",\n      \"requiredness\": \"must\",\n      \"description\": \"前段救援、实物交接、健康和可用款项成立后才进入本段；海程与消息按实际日期，不以预期收入或未具能力替代前提。\"\n    },\n    {\n      \"id\": \"dep_ms_v3_return\",\n      \"targetId\": \"ms_v3_return\",\n      \"sourceId\": \"ms_v2_boundary\",\n      \"requiredness\": \"must\",\n      \"description\": \"前段救援、实物交接、健康和可用款项成立后才进入本段；海程与消息按实际日期，不以预期收入或未具能力替代前提。\"\n    },\n    {\n",
+              "originalSourceId": "plan/overview",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/295",
+              "quote": "、健康和可用款项成立后才进入本段；海程与消息按实际日期，不以预期收入或未具能力替代前提。\"\n    },\n    {\n      \"id\": \"dep_ms_v3_convoy\",\n      \"targetId\": \"ms_v3_convoy\",\n      \"sourceId\": \"ms_v3_advancement\",\n      \"requiredness\": \"must\",\n      \"description\": \"前段救援、实物交接、健康和可用款项成立后才进入本段；海程与消息按实际日期，不以预期收入或未具能力替代前提。\"\n    },\n    {\n      \"id\": \"dep_ms_v3_payoff\",\n      \"targetId\": \"ms_v3_payoff\",\n      \"sourceId\": \"ms_v3_convoy\",\n      \"requiredness\": \"must\",\n      \"description\": \"前段救援、实物交接、健康和可用款项成立后才进入本段；海程与消息按实际日期，不以预期收入或未具能力替代前提。\"\n    },\n    {\n      \"id\": \"dep_bridge_return\",\n      \"targetId\": \"ms_bridge_return\",\n",
+              "originalSourceId": "plan/overview",
+              "unitStart": 10000
+            }
+          ],
+          "revisionAdvice": "补读所列里程碑后，逐段核对前一段实际留下的人员、证物、权限、款项与伤情是否足以启动后一段；尤其确认第50章吴伍、卢小满脱控与陆沉舟受看护，如何具体导向51—53安置、54北航及其后北境、返乡行动。",
+          "awaitingSources": [
+            "plan/chapters/50",
+            "plan/milestones/ms_v2_fire",
+            "plan/milestones/ms_v2_voyage",
+            "plan/milestones/ms_v2_boundary",
+            "plan/milestones/ms_v3_return",
+            "plan/milestones/ms_v3_training",
+            "plan/milestones/ms_v3_advancement",
+            "plan/milestones/ms_v3_convoy",
+            "plan/milestones/ms_v3_payoff"
+          ]
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "insufficient",
+          "explanation": "已读材料能定位前50章至第254日，并把后段安排为北航、六日返航、数月训练及第466日回访；关系档也区分了夜凝霜第301—311日返岗与林辰、贺青梧304—310日海程，当前未见直接同一人物同刻冲突。但51—100的具体航次、验籍、许可、寄递、疗程、训练周期和第415日晋阶的原始里程碑未提供，故无法验证全段日期与实体行程。",
+          "evidence": [
+            {
+              "sourceId": "review-unit/36",
+              "quote": "{\n  \"id\": \"loc_21\",\n  \"name\": \"无尽虚海商路\",\n  \"kind\": \"region\",\n  \"entryConditions\": [\n    \"同一天地内的虚海航网，不穿越太古界门；普通修士依赖护罩与定位阵飞舟，持钥匙不能免费或瞬移过海。\",\n    \"青玄云梦天港至赤霄天宝外港为约两昼夜实体海程；内陆抵港时间另算。船票、劳务换舱、担保与额外打点须分别说明，商盟信物不自动代付。新第一卷拟第214日暮出航、第216日暮到港，旧第17–19日章纲不再适用。\",\n    \"赤霄极焱天港至苍冥葬骨玄冰原外港为约五昼夜实体海程。常规客舱旧报价五千枚下品灵石，上等舱三品火灵晶百两；具体货物换舱须核实品种、数量与双方同意，不凭品级推定兑换率。后续新章纲须重新安排日期和可用支付来源，旧第27–32日航历不是约束新提案的日期。\",\n    \"苍冥通天渡口至青玄沧溟古港约六日实体海程；紧急征用也须明确船舶、燃料、具名供给者与担保责任，不能当作免费瞬移。回师日期须随前卷训练、休养和航程顺延。\",\n    \"万象商盟管船舶、泊位、货单与运费；大乾、神炎及苍冥沿岸守军各管本方港口，巡界使处理空间污染和紧急引渡。商业信物不能豁免扣船、搜舱或追缴。\",\n",
+              "originalSourceId": "world/locations/loc_21",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/149",
+              "quote": "{\n  \"stages\": [\n    {\n      \"sinceChapter\": 61,\n      \"untilChapter\": 63,\n      \"value\": \"真身会见但有地点与物品保管限制。\",\n      \"cause\": \"夜在285日外港巡查，按外观与存根查第一片封袋，具名担保仅到指定仓区。\",\n      \"cost\": \"不授予界渊权限，不开启圣器验心。\"\n    },\n    {\n      \"sinceChapter\": 64,\n      \"untilChapter\": 66,\n      \"value\": \"救人优先形成的有限信任。\",\n      \"cause\": \"林放弃追片救黑舱矿工，夜守撤离栈桥。\",\n      \"cost\": \"程逃、夜误三日巡程；她不能任意弃岗。\"\n    },\n    {\n      \"sinceChapter\": 67,\n      \"untilChapter\": 100,\n      \"value\": \"各自执行职责的异地同盟。\",\n",
+              "originalSourceId": "story/relationships/rel_05",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/149",
+              "quote": "      \"cause\": \"夜在301日午交清外港名单与限程担保责任后开始返驻地，沿既有陆路走满十昼夜，311日午实际抵驻地、完成当面值守交接后才返岗补巡；301—311途中不写成已在驻地执勤。林另按304暮—310暮六昼夜航程回青玄；后续只按实体船信实际送达共享信息，二人不因关系进入异地同盟就互知行程与现场结果。 本次另按回执链区分返岗与知情：311交岗时向值守文书登记回执未到、担保仍待核；318午实到封袋经文书核对并当面交阅后，她才知道304已按期离境、本次正常监护履行核清，既有违规责任不因结清而豁免。该回执不证明两人已获青玄准入或后续安全，也不提前带来父案结局；若未实际到件，继续待核而不写318已知情。\",\n      \"cost\": \"无投影护航、无同日全知、无万能援军。\"\n    }\n  ],\n  \"id\": \"rel_05\",\n  \"fromCharacterId\": \"char_01\",\n  \"toCharacterId\": \"char_05\",\n  \"kind\": \"trust\",\n  \"value\": \"外港会面后的受限合作。\",\n  \"locked\": false,\n  \"lockPolicy\": \"evolvable\",\n  \"sinceChapter\": 61\n}",
+              "originalSourceId": "story/relationships/rel_05",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/150",
+              "quote": "      \"value\": \"贺接受救回雇工不等于由自己决定其去处，林让工人的回答被现场听见。\",\n      \"cause\": \"254林松开剑柄让巡员听取吴卢要求离开的回答；陆反拉门闩、两看守被控，两工自行出门后拒绝立即回船，贺接受。\",\n      \"cost\": \"五工在该替换章纲中脱控，但船尚待255交检且仍停牌，生计与去留要分别谈，不能以救命要求服从。\"\n    },\n    {\n      \"sinceChapter\": 51,\n      \"untilChapter\": 53,\n      \"value\": \"后续拟在有限分工中各负生活对价，贺不承诺无限垫款，也不把照护变成服从债。\",\n      \"cause\": \"51–53拟落实原三床工铺、吴卢两床短工、贺自身岸工和260棚主实付1给客舍的林十日轻役；贺最多每日补两小时林的缺额。53拟在场见证陆自述，不替内容保真。\",\n      \"cost\": \"仅当相应住食和工时实际落实才进入该阶段；个人现金仍0，不动271航款，供述不换免罪。\"\n    },\n    {\n      \"sinceChapter\": 54,\n      \"untilChapter\": 66,\n      \"value\": \"共同背劫船指控并接受有账的公款任务。\",\n",
+              "originalSourceId": "story/relationships/rel_12",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/164",
+              "quote": "{\n  \"id\": \"arc_04\",\n  \"title\": \"十年寿元换玄府与押运截停\",\n  \"characterIds\": [\n    \"char_01\",\n    \"char_02\",\n    \"char_03\",\n    \"char_07\",\n    \"char_08\",\n    \"char_09\",\n    \"char_10\",\n    \"char_14\",\n    \"char_15\"\n  ],\n  \"goal\": \"携证回乡，和苏、梁九、韩叙、顾分别承担调查、证人保护和修行；救出本次押送工友，确认父亲守门参与与本地掩案责任，切断已验证的三地转运链。\",\n  \"stakes\": \"晋阶永久减寿，逼供会伤害同伴，追凶与救人不能兼得。\",\n  \"plannedOutcome\": \"第466日三十日回访：本批人安全、该链断运、父亲参与守门与外山掩案可核。林玄府初期，条件寿储约2.775342元载，有肩伤但无凭空燃寿白发。赵仍玄府并受本次军需行动问责，程仍在逃，九鼎和界门总危机留待全书后续。\"\n}",
+              "originalSourceId": "story/arcs/arc_04",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/294",
+              "quote": "  \"endingDirection\": \"百章有救人、断运、部分父案澄清和玄府成长的可核结局。1–100是450章的阶段验收；接下来的有限寿源、高阶反派、钥匙余片与九鼎机制必须另建经审查的来源和行动链，不将450章全书结局撤销。 没有返寿、燃寿白发、道伤凭空痊愈或三大陆永久太平。此卷不清算全部九鼎，公开传播仍限实到地点。\",\n  \"keyTurns\": [\n    \"第10–12章：伤重林辰与曾撤供的梁九分工救人，只改变普通输送位置；苏保留封样及己方不利证词，争得有限复核，众人仍负伤、欠债和受限。\",\n    \"第23–29章：主角为救人暴露自己，创造顾峤同阶制敌的窗口，取得并分配有限泉液；完成两次十日疗程后南行，苏选择留宗。卷末凝元三重，不能沿用神海及二十年燃寿。\",\n    \"第44/50–53章：44林救落水对手而不追陆与原账，贺付船损；50林不施术而让工人自己回答，陆协助夺闩、两名看守被控，吴卢实际脱控并拒绝立即回船。51–53拟各自选择生计，陆新写改签自述，副本仍待独立核验。\",\n    \"第61–66章：付费北航后在受限外港救出七名矿工，夜真身守撤离路，林放弃第二片，不入界渊。\",\n    \"第83章：数月努力与诊察后，实际付十元载晋玄府；不能再用旧法器承载元罡。\",\n",
+              "originalSourceId": "plan/overview",
+              "unitStart": 0
+            }
+          ],
+          "revisionAdvice": "补读后按人物分别列出第254日至466日的位置、出发和抵达日期、实体航程、候查/担保期限、疗程与训练周期；不得把夜凝霜的地面返岗行程混入林辰、贺青梧的返青玄航程。",
+          "awaitingSources": [
+            "plan/milestones/ms_v2_fire",
+            "plan/milestones/ms_v2_voyage",
+            "plan/milestones/ms_v2_boundary",
+            "plan/milestones/ms_v3_return",
+            "plan/milestones/ms_v3_training",
+            "plan/milestones/ms_v3_advancement",
+            "plan/milestones/ms_v3_convoy",
+            "plan/milestones/ms_v3_payoff"
+          ]
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "insufficient",
+          "explanation": "前50章已经把港口救援、工人自主去留、陆沉舟继续受看护、供述须独立核验等条件写成非免费兑现；父案和九鼎全貌也被明确保留到后续而非提前终局。但北境七人救援、父案三份记录互证、截押原令及三十日回访等后段兑现目前只见关系/秘密阶段和总纲结果，缺少相应里程碑原文，无法核验其触发、可见证据、代价与是否重复消费同一线索。",
+          "evidence": [
+            {
+              "sourceId": "review-unit/150",
+              "quote": "      \"value\": \"贺接受救回雇工不等于由自己决定其去处，林让工人的回答被现场听见。\",\n      \"cause\": \"254林松开剑柄让巡员听取吴卢要求离开的回答；陆反拉门闩、两看守被控，两工自行出门后拒绝立即回船，贺接受。\",\n      \"cost\": \"五工在该替换章纲中脱控，但船尚待255交检且仍停牌，生计与去留要分别谈，不能以救命要求服从。\"\n    },\n    {\n      \"sinceChapter\": 51,\n      \"untilChapter\": 53,\n      \"value\": \"后续拟在有限分工中各负生活对价，贺不承诺无限垫款，也不把照护变成服从债。\",\n      \"cause\": \"51–53拟落实原三床工铺、吴卢两床短工、贺自身岸工和260棚主实付1给客舍的林十日轻役；贺最多每日补两小时林的缺额。53拟在场见证陆自述，不替内容保真。\",\n      \"cost\": \"仅当相应住食和工时实际落实才进入该阶段；个人现金仍0，不动271航款，供述不换免罪。\"\n    },\n    {\n      \"sinceChapter\": 54,\n      \"untilChapter\": 66,\n      \"value\": \"共同背劫船指控并接受有账的公款任务。\",\n",
+              "originalSourceId": "story/relationships/rel_12",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/151",
+              "quote": "      \"cost\": \"陆仍受看护，旧同伙已见其协助巡查，不能再只以认路解释；完整改签自述仍须53实际书写签认。\"\n    },\n    {\n      \"sinceChapter\": 51,\n      \"untilChapter\": 52,\n      \"value\": \"后续拟保持受看护的有限合作，救援不替代陆承担押送和改签责任。\",\n      \"cause\": \"51承接50吴卢已脱控、陆已承认本次押送的拟定结果，分别照护和问询；不再以林救陆换信任。陆不能替工人选择去处。\",\n      \"cost\": \"陆仍受看护，未取得免罪或离港资格；53的自述须实际写出签认，不能预支原账或第二片。\"\n    },\n    {\n      \"sinceChapter\": 53,\n      \"untilChapter\": 53,\n      \"value\": \"接受有限且对自身不利的供述，不据此恢复无条件信任。\",\n      \"cause\": \"53章拟在到案复核中，弟只重申220夜亲见收钱签字并拒绝替兄担保条内内容。陆面对自己拦船、50当面承认押送与弟拒绝遮掩的连续后果，选择停止以正常押运搪塞，在巡员和贺面前新写亲历改签自述，逐项标明亲见与记忆不清处并签认；林只接经核对的签认副本。\",\n",
+              "originalSourceId": "story/relationships/rel_13",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/151",
+              "quote": "      \"cost\": \"陆接受继续看护和追究自己拦截、改签的责任，不以供述或救弟之情交换免罪；原账和220夜原签条仍未取得，供述可能被独立材料推翻。\"\n    },\n    {\n      \"sinceChapter\": 54,\n      \"untilChapter\": 100,\n      \"value\": \"陆留赤霄为自己做过的事作证。\",\n      \"cause\": \"他与弟弟未搭北航船，供述须经副本实体传播。\",\n      \"cost\": \"不得为林提供未经历的北境与父案真相。\"\n    }\n  ],\n  \"id\": \"rel_13\",\n  \"fromCharacterId\": \"char_01\",\n  \"toCharacterId\": \"char_16\",\n  \"kind\": \"trust\",\n  \"value\": \"救下亲人并不等于免除押运者自己的责任。\",\n  \"locked\": false,\n  \"lockPolicy\": \"evolvable\",\n  \"sinceChapter\": 38\n}",
+              "originalSourceId": "story/relationships/rel_13",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/226",
+              "quote": "      \"characterId\": \"char_01\",\n      \"sinceChapter\": 85,\n      \"untilChapter\": 100,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"三份原始记录支持父亲守门参与与外山掩案责任；投毒与十年前完整因果仍未证实。\",\n      \"trigger\": \"85章外山仓取存根，与第18章旧图及北境副本对照。\",\n      \"consequence\": \"拒绝把梁九的未见之事写成指控。\",\n      \"forbiddenInferences\": [\n        \"不能从局部证据推知九鼎全阵、父案全部凶手或未在场者所知。\",\n        \"不能以残片感应、圣器留影、神念全知替代实际消息和证据。\"\n      ]\n    },\n    {\n      \"characterId\": \"char_02\",\n      \"sinceChapter\": 3,\n      \"untilChapter\": 12,\n      \"certainty\": \"unaware\",\n      \"belief\": \"掌握当代魔门渗透线索，但没有父辈遇害全貌。\",\n      \"trigger\": \"追查暗桩、护持同门。\",\n",
+              "originalSourceId": "story/secrets/sec_01",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/227",
+              "quote": "      \"trigger\": \"66章亲见救人并取得北境封存副本，72章交苏。\",\n      \"consequence\": \"回乡保护本批证人、查本地改线。\",\n      \"forbiddenInferences\": [\n        \"不能从局部证据推知九鼎全阵、父案全部凶手或未在场者所知。\",\n        \"不能以残片感应、圣器留影、神念全知替代实际消息和证据。\"\n      ]\n    },\n    {\n      \"characterId\": \"char_01\",\n      \"sinceChapter\": 95,\n      \"untilChapter\": 100,\n      \"certainty\": \"confirmed\",\n      \"belief\": \"本次押运及赵撤人令有原件与在场证人；九鼎全貌仍未知。\",\n      \"trigger\": \"95章苏保住实际交到护卫手里的命令并与林核看。\",\n      \"consequence\": \"救人断运，推动可复核问责而非全国定罪。\",\n      \"forbiddenInferences\": [\n        \"不能从局部证据推知九鼎全阵、父案全部凶手或未在场者所知。\",\n        \"不能以残片感应、圣器留影、神念全知替代实际消息和证据。\"\n      ]\n    },\n    {\n",
+              "originalSourceId": "story/secrets/sec_02",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/294",
+              "quote": "  \"endingDirection\": \"百章有救人、断运、部分父案澄清和玄府成长的可核结局。1–100是450章的阶段验收；接下来的有限寿源、高阶反派、钥匙余片与九鼎机制必须另建经审查的来源和行动链，不将450章全书结局撤销。 没有返寿、燃寿白发、道伤凭空痊愈或三大陆永久太平。此卷不清算全部九鼎，公开传播仍限实到地点。\",\n  \"keyTurns\": [\n    \"第10–12章：伤重林辰与曾撤供的梁九分工救人，只改变普通输送位置；苏保留封样及己方不利证词，争得有限复核，众人仍负伤、欠债和受限。\",\n    \"第23–29章：主角为救人暴露自己，创造顾峤同阶制敌的窗口，取得并分配有限泉液；完成两次十日疗程后南行，苏选择留宗。卷末凝元三重，不能沿用神海及二十年燃寿。\",\n    \"第44/50–53章：44林救落水对手而不追陆与原账，贺付船损；50林不施术而让工人自己回答，陆协助夺闩、两名看守被控，吴卢实际脱控并拒绝立即回船。51–53拟各自选择生计，陆新写改签自述，副本仍待独立核验。\",\n    \"第61–66章：付费北航后在受限外港救出七名矿工，夜真身守撤离路，林放弃第二片，不入界渊。\",\n    \"第83章：数月努力与诊察后，实际付十元载晋玄府；不能再用旧法器承载元罡。\",\n",
+              "originalSourceId": "plan/overview",
+              "unitStart": 0
+            }
+          ],
+          "revisionAdvice": "补读后核对：陆沉舟的签认副本不能替代220夜原签条或原账；北境材料、外山存根和截得撤押原令须分别具有取得与交接路径；第100章回访只能兑现已落实的安置，不得将其扩展为父案或九鼎全案结案。",
+          "awaitingSources": [
+            "plan/milestones/ms_v2_fire",
+            "plan/milestones/ms_v2_boundary",
+            "plan/milestones/ms_v3_return",
+            "plan/milestones/ms_v3_convoy",
+            "plan/milestones/ms_v3_payoff"
+          ]
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass",
+          "explanation": "本批可见的33—50章安排并非单一调查模板：失箱索偿转向仓火救人，继而是潮路退让、报警追船、船损安置、拒绝空头赔偿、附棚救援与工人自主去留。每一转折均保留具体损失或未解决项，未把一次救援提前写成终局。此结论仅覆盖已读局部安排。",
+          "evidence": [
+            {
+              "sourceId": "review-unit/150",
+              "quote": "{\n  \"stages\": [\n    {\n      \"sinceChapter\": 34,\n      \"untilChapter\": 36,\n      \"value\": \"先谈救人的范围，不以遗物换雇工性命。\",\n      \"cause\": \"34章贺追被扣雇工，在林拒严伪证后同意只走公共货道问人，不先借船追遗物。\",\n      \"cost\": \"34章贺丢掉程记当天小运单，不因此无限担保林的家仇。\"\n    },\n    {\n      \"sinceChapter\": 37,\n      \"untilChapter\": 39,\n      \"value\": \"仓火救人后更愿意共享本批线索。\",\n      \"cause\": \"37章林先救陆弟，贺与工役搬出12包药；共同核箱但尚未出船追击。\",\n      \"cost\": \"火场有风险，药材不能全追回；合作还未授予林免费船和资金。\"\n    },\n    {\n      \"sinceChapter\": 40,\n      \"untilChapter\": 40,\n      \"value\": \"先顾五人安危，尊重贺自主经营决定。\",\n      \"cause\": \"40贺拒押船认赔、撤回自有未交付资源，林接受先找雇工。\",\n      \"cost\": \"贺付12买两符余48修船款，承担程报复风险；林无出船保证。\"\n",
+              "originalSourceId": "story/relationships/rel_12",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/150",
+              "quote": "    },\n    {\n      \"sinceChapter\": 41,\n      \"untilChapter\": 41,\n      \"value\": \"共享有限线索，实际争取三人离院受阻后仍坚持找齐五人。\",\n      \"cause\": \"41收到苏信后林共享相关原件；238见唐许冯，唐迈步离院被挡，贺实核待查船。\",\n      \"cost\": \"林接受贺港路主导，237贺丢下一单；苏不在场，五人未救。\"\n    },\n    {\n      \"sinceChapter\": 42,\n      \"untilChapter\": 42,\n      \"value\": \"以实际潮路和能力边界分工观察。\",\n      \"cause\": \"42章239后杆测水深、漂木回流让贺实际退船换位；林放弃靠近偷登，承担坐姿浮圈与岸钟准备。\",\n      \"cost\": \"没有事先承诺冲撞救人；船位与航次必须再实见，伤势仍受限。\"\n    },\n    {\n      \"sinceChapter\": 43,\n      \"untilChapter\": 43,\n      \"value\": \"由观察转入实际报警追船，信任落实为同船风险。\",\n      \"cause\": \"244戌初实见三人被拘束入舱，林先敲钟、贺接其正常登船后跟进，陆命挂钩拖偏。\",\n",
+              "originalSourceId": "story/relationships/rel_12",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/150",
+              "quote": "      \"cost\": \"船未破、人未救，林尚未施剑；下一瞬的成本和选择仍须在44实际发生。\"\n    },\n    {\n      \"sinceChapter\": 44,\n      \"untilChapter\": 44,\n      \"value\": \"共同救人，但船损已发生、修理款尚未付。\",\n      \"cause\": \"林先救落水对手，贺搁浅接三人，唐自行带夹逃离。\",\n      \"cost\": \"贺破船，林剑热腿酸，原账逃走；余48待修船。\"\n    },\n    {\n      \"sinceChapter\": 45,\n      \"untilChapter\": 45,\n      \"value\": \"把获救者安置置于追账之前。\",\n      \"cause\": \"245船损余波里林收回追案草稿先安置，唐与许对继续等待出现分歧；246比号仅作有限线索回告。\",\n      \"cost\": \"245付48后储备归零，船修至255；不能靠一次救援无限出船。\"\n    },\n    {\n      \"sinceChapter\": 46,\n      \"untilChapter\": 46,\n      \"value\": \"有边界的陆上合作，拒绝以撤证换赔款。\",\n",
+              "originalSourceId": "story/relationships/rel_12",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/150",
+              "quote": "      \"cause\": \"248贺收回未获同意的远航安排，工人各选有限轻工与养伤；观远处商路飞舟时林承认想见世界，接受贺保留小船去向。250贺拒撤证条件。\",\n      \"cost\": \"赔款未到，原账未取，船仍在坞，另两人未寻回。\"\n    },\n    {\n      \"sinceChapter\": 47,\n      \"untilChapter\": 48,\n      \"value\": \"共同应对事故问询，但贺拒绝空头包赔。\",\n      \"cause\": \"251程当面提出改陈述换替船接货，贺退空单并把货序交接手船；林收回包赔承诺。252仅交接查找范围，不擅知吴卢内线。\",\n      \"cost\": \"贺失去新单、仍停牌，林个人1枚付食宿后归零。\"\n    },\n    {\n      \"sinceChapter\": 49,\n      \"untilChapter\": 49,\n      \"value\": \"接纳陆的有限指路，仍让贺决定查人安排。\",\n      \"cause\": \"253陆到案给北三入口；林贺与巡查准备辨门，还未见吴卢。\",\n      \"cost\": \"无完整改签自认、无航款，不能提前叙50的辨人或伤势。\"\n    },\n    {\n      \"sinceChapter\": 50,\n      \"untilChapter\": 50,\n",
+              "originalSourceId": "story/relationships/rel_12",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/150",
+              "quote": "      \"value\": \"贺接受救回雇工不等于由自己决定其去处，林让工人的回答被现场听见。\",\n      \"cause\": \"254林松开剑柄让巡员听取吴卢要求离开的回答；陆反拉门闩、两看守被控，两工自行出门后拒绝立即回船，贺接受。\",\n      \"cost\": \"五工在该替换章纲中脱控，但船尚待255交检且仍停牌，生计与去留要分别谈，不能以救命要求服从。\"\n    },\n    {\n      \"sinceChapter\": 51,\n      \"untilChapter\": 53,\n      \"value\": \"后续拟在有限分工中各负生活对价，贺不承诺无限垫款，也不把照护变成服从债。\",\n      \"cause\": \"51–53拟落实原三床工铺、吴卢两床短工、贺自身岸工和260棚主实付1给客舍的林十日轻役；贺最多每日补两小时林的缺额。53拟在场见证陆自述，不替内容保真。\",\n      \"cost\": \"仅当相应住食和工时实际落实才进入该阶段；个人现金仍0，不动271航款，供述不换免罪。\"\n    },\n    {\n      \"sinceChapter\": 54,\n      \"untilChapter\": 66,\n      \"value\": \"共同背劫船指控并接受有账的公款任务。\",\n",
+              "originalSourceId": "story/relationships/rel_12",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/159",
+              "quote": "      \"cost\": \"轻工有期限，不能无限劳动换救命；两人仍未归。\"\n    },\n    {\n      \"sinceChapter\": 50,\n      \"untilChapter\": 50,\n      \"value\": \"五人脱控不等于船主可替每个人许诺回船。\",\n      \"cause\": \"吴卢在北三门自己走到外院，拒绝立即答应回船；贺当场接受。唐仍在原工铺，待51由贺告知后再当面见两人，不凭空知情。\",\n      \"cost\": \"贺失去立即重聚原班人的确定性，唐也不能替吴卢签未来用工。\"\n    },\n    {\n      \"sinceChapter\": 51,\n      \"untilChapter\": 100,\n      \"value\": \"后续拟分别选择有期限的工作与住处，保留是否回船的决定。\",\n      \"cause\": \"51–53拟由唐许续有限轻工照顾冯，吴卢自选两周岸工；各人实际同意并落实住食后才生效，作证不换工食。\",\n      \"cost\": \"到270的短工与三床工铺许可不自动续到100章；再换雇主、远航或延长安置须各自落实，不把一次救援算作永久结清。\"\n    }\n  ],\n  \"id\": \"rel_21\",\n  \"fromCharacterId\": \"char_15\",\n",
+              "originalSourceId": "story/relationships/rel_21",
+              "unitStart": 0
+            }
+          ],
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass",
+          "explanation": "33—50章的调查、救援、休整和问询有明确的递进用途：34—35压缩为公共货道与核册，36以五人失败脱身改变处境，41—42以实际潮况限制方案，43—44转为报警、切索和接人，47—50再转向停牌、辨门及自主离开；未见仅换地点重复同一冲突的明确证据。",
+          "evidence": [
+            {
+              "sourceId": "review-unit/220",
+              "quote": "{\n  \"id\": \"beat_port_work_before_questions\",\n  \"arcId\": \"arc_02\",\n  \"characterId\": \"char_01\",\n  \"kind\": \"choice\",\n  \"plannedChapter\": 35,\n  \"expectedChange\": \"留下协助疏通退包公共货道，放弃无根据追盖布车；由共同劳动建立查人路径，接受贺的港口经验。\"\n}",
+              "originalSourceId": "story/arcBeats/beat_port_work_before_questions",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/222",
+              "quote": "{\n  \"id\": \"beat_workers_failed_exit\",\n  \"arcId\": \"arc_02\",\n  \"characterId\": \"char_22\",\n  \"kind\": \"consequence\",\n  \"plannedChapter\": 36,\n  \"expectedChange\": \"唐用普通木楔带五人同走遭凝元看守识破，承认自己的主意，失去外口作业路径而不抛下同伴。\"\n}",
+              "originalSourceId": "story/arcBeats/beat_workers_failed_exit",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/221",
+              "quote": "{\n  \"id\": \"beat_port_current_retreat\",\n  \"arcId\": \"arc_02\",\n  \"characterId\": \"char_15\",\n  \"kind\": \"choice\",\n  \"plannedChapter\": 42,\n  \"expectedChange\": \"亲自试潮遇不利水深与回流后退船，放弃直接盯驳的视野以保留救人撤路；不为林急切偷登而赌船。\"\n}",
+              "originalSourceId": "story/arcBeats/beat_port_current_retreat",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/150",
+              "quote": "    },\n    {\n      \"sinceChapter\": 41,\n      \"untilChapter\": 41,\n      \"value\": \"共享有限线索，实际争取三人离院受阻后仍坚持找齐五人。\",\n      \"cause\": \"41收到苏信后林共享相关原件；238见唐许冯，唐迈步离院被挡，贺实核待查船。\",\n      \"cost\": \"林接受贺港路主导，237贺丢下一单；苏不在场，五人未救。\"\n    },\n    {\n      \"sinceChapter\": 42,\n      \"untilChapter\": 42,\n      \"value\": \"以实际潮路和能力边界分工观察。\",\n      \"cause\": \"42章239后杆测水深、漂木回流让贺实际退船换位；林放弃靠近偷登，承担坐姿浮圈与岸钟准备。\",\n      \"cost\": \"没有事先承诺冲撞救人；船位与航次必须再实见，伤势仍受限。\"\n    },\n    {\n      \"sinceChapter\": 43,\n      \"untilChapter\": 43,\n      \"value\": \"由观察转入实际报警追船，信任落实为同船风险。\",\n      \"cause\": \"244戌初实见三人被拘束入舱，林先敲钟、贺接其正常登船后跟进，陆命挂钩拖偏。\",\n",
+              "originalSourceId": "story/relationships/rel_12",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/150",
+              "quote": "      \"cost\": \"船未破、人未救，林尚未施剑；下一瞬的成本和选择仍须在44实际发生。\"\n    },\n    {\n      \"sinceChapter\": 44,\n      \"untilChapter\": 44,\n      \"value\": \"共同救人，但船损已发生、修理款尚未付。\",\n      \"cause\": \"林先救落水对手，贺搁浅接三人，唐自行带夹逃离。\",\n      \"cost\": \"贺破船，林剑热腿酸，原账逃走；余48待修船。\"\n    },\n    {\n      \"sinceChapter\": 45,\n      \"untilChapter\": 45,\n      \"value\": \"把获救者安置置于追账之前。\",\n      \"cause\": \"245船损余波里林收回追案草稿先安置，唐与许对继续等待出现分歧；246比号仅作有限线索回告。\",\n      \"cost\": \"245付48后储备归零，船修至255；不能靠一次救援无限出船。\"\n    },\n    {\n      \"sinceChapter\": 46,\n      \"untilChapter\": 46,\n      \"value\": \"有边界的陆上合作，拒绝以撤证换赔款。\",\n",
+              "originalSourceId": "story/relationships/rel_12",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/150",
+              "quote": "      \"cause\": \"后续拟54贺领14000专项航款，再按实际北航章节支出并参与北港救人。\",\n      \"cost\": \"没有私人奖金，追偿失败的垫款责任仍需结案；留3000回程款不能挪用。\"\n    },\n    {\n      \"sinceChapter\": 67,\n      \"untilChapter\": 71,\n      \"value\": \"受同一笔有账垫款约束的同行返程。\",\n      \"cause\": \"301–314公共驿路及六日海程返青玄，303到通天渡口验籍接监管后实际付3000回程票；315结算尚未来。\",\n      \"cost\": \"返程无新增私人奖金，预留款不得作林寿药。\"\n    },\n    {\n      \"sinceChapter\": 72,\n      \"untilChapter\": 100,\n      \"value\": \"交证结账后尊重贺重返自家营生的选择。\",\n      \"cause\": \"72章315当面交证、核实际杂费780并封存余220；贺此后以自己合法货船工作返赤霄交款，到达须另有行程。\",\n      \"cost\": \"不是67就归还220；林不能指望贺隔空代付或把余款留作己用。\"\n    }\n  ],\n  \"id\": \"rel_12\",\n  \"fromCharacterId\": \"char_01\",\n",
+              "originalSourceId": "story/relationships/rel_12",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/159",
+              "quote": "      \"cost\": \"轻工有期限，不能无限劳动换救命；两人仍未归。\"\n    },\n    {\n      \"sinceChapter\": 50,\n      \"untilChapter\": 50,\n      \"value\": \"五人脱控不等于船主可替每个人许诺回船。\",\n      \"cause\": \"吴卢在北三门自己走到外院，拒绝立即答应回船；贺当场接受。唐仍在原工铺，待51由贺告知后再当面见两人，不凭空知情。\",\n      \"cost\": \"贺失去立即重聚原班人的确定性，唐也不能替吴卢签未来用工。\"\n    },\n    {\n      \"sinceChapter\": 51,\n      \"untilChapter\": 100,\n      \"value\": \"后续拟分别选择有期限的工作与住处，保留是否回船的决定。\",\n      \"cause\": \"51–53拟由唐许续有限轻工照顾冯，吴卢自选两周岸工；各人实际同意并落实住食后才生效，作证不换工食。\",\n      \"cost\": \"到270的短工与三床工铺许可不自动续到100章；再换雇主、远航或延长安置须各自落实，不把一次救援算作永久结清。\"\n    }\n  ],\n  \"id\": \"rel_21\",\n  \"fromCharacterId\": \"char_15\",\n",
+              "originalSourceId": "story/relationships/rel_21",
+              "unitStart": 0
+            }
+          ],
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass",
+          "explanation": "玄幻规则实际限制了人物选择而非仅作术语：跨海必须走实体航程且须验籍、支付或记录代付；赤霄日常防热不等于可闯火场；凝元与玄府能力也不因境界名自动取得。相应地，故事的救援、航路、资源与战力上限均受这些限制，符合本批可检验的玄幻成长与诸域探索定位。",
+          "evidence": [
+            {
+              "sourceId": "review-unit/1",
+              "quote": "{\n  \"title\": \"真实模型链路验收\",\n  \"covenant\": {\n    \"entryMode\": \"expand\",\n    \"genre\": \"xuanhuan\",\n    \"substyle\": \"宗门成长、诸域探索\",\n    \"audience\": \"喜欢长篇玄幻成长与世界探索的读者\",\n    \"hook\": \"主角以寿命换取力量，在三大陆冲突中追查界门真相\",\n    \"mustKeep\": \"三大陆、清晰力量等级、势力博弈\",\n    \"lockedNotes\": \"\",\n    \"avoid\": \"\",\n    \"targetLength\": \"百万字长篇\",\n    \"chapterWords\": 2200,\n    \"updateCadence\": \"日更\",\n    \"protagonistGoal\": \"\",\n    \"obstacle\": \"\",\n    \"readingExperience\": \"\"\n  }\n}",
+              "originalSourceId": "author",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/8",
+              "quote": "{\n  \"id\": \"ax_06\",\n  \"title\": \"境界承载与实际施术\",\n  \"content\": \"境界能力栏描述该层能够修习和承载的能力方向，不是一份自动掌握、免费发动的万能招式清单。晋阶费用、术法发动费与持续消耗分别记账；晋阶不等于预付后续法术。实际施术须有已掌握的功法、法宝或明确基础操作规则，逐项满足其对象、范围、供能、时机和中断后果；境界名称不能绕过这些条件。已由ax_05定义的凝元轻物御动等基础操作仍按原规则执行，普通步行、说话、握持不因此加收术法费。尚未展开的高阶术式可以保留为未来能力方向，但首次安排它解决剧情之前必须先完成具体规则与可取得资源的设计、复核；不得以读者未见的万能本能补齐现有行动缺口。\",\n  \"scope\": \"全部境界、功法、法宝及后续能力扩展\",\n  \"precedence\": 6,\n  \"status\": \"proposed\"\n}",
+              "originalSourceId": "world/axioms/ax_06",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/17",
+              "quote": "{\n  \"id\": \"loc_02\",\n  \"name\": \"苍冥大陆\",\n  \"kind\": \"continent\",\n  \"entryConditions\": [\n    \"大陆环境寒冷；凝元境以下需保温舟舱或护身寒符。修为不是政治通行权。\",\n    \"沿岸官港验引渡令；无令者可由巡界使验明身份后具名担保，担保者承担监护和越界责任。例外仅到指定会合地，不自动授予进入界渊的权利。\",\n    \"具体到访须区分受监管码头候查、沿岸入境担保和界渊准入；担保须由实际到场者具名承担，只在约定范围与期限生效。\",\n    \"上述防寒门槛针对实际暴露于寒候。普通港区和已开放公共驿路的固定暖房、暖车只有在隔风围护、隔火炉、通风烟道、燃料与值守人手均实际存在且持续供热时，才提供其内部的温暖避难处；不把整座港口或一段驿路变成免寒区。离开温暖内部进入寒候，凝元以下仍须实际可用的护身寒符；普通衣物、修为名义或商业票不替代此条件。供暖失败要停止进入或转移到另一个已核实暖处，另记真实燃料、交通与照料费用。\",\n",
+              "originalSourceId": "world/locations/loc_02",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/18",
+              "quote": "{\n  \"id\": \"loc_03\",\n  \"name\": \"赤霄大陆\",\n  \"kind\": \"continent\",\n  \"entryConditions\": [\n    \"需修持适用到访区域的抗火法门或佩戴避火灵符。天宝外港及既有受护街段在非地火喷发期的日常炙热，以已验明余量的普通避火符art_16满足；凡器避火衣art_15只作辅助，不替代此项灵符/法门门槛。离开这些受护区域前须另核当地实际危险和适配防护，普通符不授予闯明火、火法或地火的资格。\",\n    \"玄府境以下须避开地火煞气喷发期。港务依据沿岸岗哨实际见到的热裂、硫烟和异常地火记录发布封航/放行旗号，航司出航前查本航次通告、靠港前复核当日旗号；旧通告不保证未来安全，若转为封航须在许可锚地待令或返航，不能靠日常避火符硬闯。\"\n  ],\n  \"status\": \"proposed\"\n}",
+              "originalSourceId": "world/locations/loc_03",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/36",
+              "quote": "{\n  \"id\": \"loc_21\",\n  \"name\": \"无尽虚海商路\",\n  \"kind\": \"region\",\n  \"entryConditions\": [\n    \"同一天地内的虚海航网，不穿越太古界门；普通修士依赖护罩与定位阵飞舟，持钥匙不能免费或瞬移过海。\",\n    \"青玄云梦天港至赤霄天宝外港为约两昼夜实体海程；内陆抵港时间另算。船票、劳务换舱、担保与额外打点须分别说明，商盟信物不自动代付。新第一卷拟第214日暮出航、第216日暮到港，旧第17–19日章纲不再适用。\",\n    \"赤霄极焱天港至苍冥葬骨玄冰原外港为约五昼夜实体海程。常规客舱旧报价五千枚下品灵石，上等舱三品火灵晶百两；具体货物换舱须核实品种、数量与双方同意，不凭品级推定兑换率。后续新章纲须重新安排日期和可用支付来源，旧第27–32日航历不是约束新提案的日期。\",\n    \"苍冥通天渡口至青玄沧溟古港约六日实体海程；紧急征用也须明确船舶、燃料、具名供给者与担保责任，不能当作免费瞬移。回师日期须随前卷训练、休养和航程顺延。\",\n    \"万象商盟管船舶、泊位、货单与运费；大乾、神炎及苍冥沿岸守军各管本方港口，巡界使处理空间污染和紧急引渡。商业信物不能豁免扣船、搜舱或追缴。\",\n",
+              "originalSourceId": "world/locations/loc_21",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/294",
+              "quote": "  \"mainConflict\": \"先天短寿的林辰由矿务逃生追查跨陆扣工与非法货运，在寿储、境界与各方利益限制下同伙伴救人、查清父亲守门及外山掩案责任。百章只切断已实证的一条三地运输链；九鼎全貌、三残片与最终界门危机仍是约450章全书必须收束的主线。 人员口径：赤霄获救承运雇工是唐、许、冯、吴、卢五人；陆弟单列，陆本人是受看护的押送责任人，不算五工。北境黑舱七人是另一批来自青玄的矿工，至300日仍由北境港口救济所安置，不随林贺返青玄。435–436日青玄两车八人是开篇两名旧工友加430日后新扣六人，与赤霄五工、北境七人均不重合；梁九为自由领车救援者，不在被救八人内。三地名单不能互相改写为人数增长，首卷救过而再被移交的两名旧工友只算两位不同人，不因再次获救重复加人。\",\n  \"theme\": \"活命与查真相不能以牺牲无辜者代价换取；信任来自共同选择和承担自己一方的责任。\",\n  \"protagonistArc\": \"从负伤矿工到能接受伙伴自主选择的凝元修士，再经数月修习、实测丹府与支付十元载成为玄府初期；力量增加时可用寿储反而减少。百章不发动逆命真解，不越阶斩高境，不把神兵持有当作启动权限。\",\n",
+              "originalSourceId": "plan/overview",
+              "unitStart": 0
+            }
+          ],
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "growth",
+          "verdict": "insufficient",
+          "explanation": "已读总纲将主角成长限定为凝元三重后，经数月修习、丹府实测和支付十元载进入玄府，且世界规则要求三段分流、至少六个有效十日周期、灵石消耗、静置日、白榆与顾峤两项复核。可是第73—83章的训练安排、实际灵石来源、失败/中断处理、复诊与第415日付款均未在本批提供，不能仅凭结局目标认定成长前置已闭合。",
+          "evidence": [
+            {
+              "sourceId": "review-unit/48",
+              "quote": "{\n  \"id\": \"realm_03\",\n  \"systemId\": \"ps_01\",\n  \"name\": \"玄府境\",\n  \"rank\": 3,\n  \"prerequisites\": [\n    \"辟建丹府：须完成tech_19《凝元分流入府诀》的三段分流训练，至少使用六枚下品青灵石完成六个有效十日周期；每个开封失败周期另损一枚，实际库存不足则延期；每一周期前后由医修复查经脉，训练中断或丹府回流即停，不得用预计寿储代替资源。\",\n    \"丹府完成后须静置一日，由白榆确认丹府稳定、伤情可承受、元罡通路未反噬，再由顾峤复核可用元罡与普通器物承载；两项确认均完成后才可支付玄府十元载。\"\n  ],\n  \"capabilities\": [\n    \"元罡护体\",\n    \"凌空虚渡\"\n  ],\n  \"cost\": \"损耗寿元十年\",\n  \"counters\": [\n    \"罡气破裂\"\n  ],\n  \"status\": \"proposed\"\n}",
+              "originalSourceId": "world/realms/realm_03",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/72",
+              "quote": "{\n  \"id\": \"tech_19\",\n  \"name\": \"凝元分流入府诀\",\n  \"kind\": \"technique\",\n  \"tier\": \"玄阶\",\n  \"allowedRealmIds\": [\n    \"realm_02\"\n  ],\n  \"effect\": \"将已稳定的凝元真元分成三路，沿经脉节点在体内构筑丹府雏形；只提供辟建丹府的训练路径，不产生玄府元罡、凌空虚渡或其他越境能力。\",\n  \"cost\": \"每个十日周期实际消耗一枚下品青灵石的导引灵气并占用每日一小时静修；六个有效周期至少六枚，每个失败或中断的开封周期另耗一枚；本卷一次失败加六个有效周期实际共耗七枚，耗材开封即扣，失败或中断不返。训练期间仍须饮食、睡眠和医修复查，不能把静修时长或灵石投入当作寿储收入。\",\n  \"limitations\": [\n    \"须凝元三重且经医修确认经脉无急性伤，先完成第一段分流再进入第二、第三段；凝元低重、伤势恶化或定向失稳即停。\",\n    \"每周期结束须记录三路真元的流向、余量和是否回流；出现胸闷、经脉灼痛、丹府塌缩或余量低于医嘱下限，立即停止并等待复诊。\",\n    \"完成六周期只取得丹府稳定雏形的训练资格，不自动晋入玄府；须静置一日、白榆诊察和顾峤承载复核均通过，才可按realm_03支付十元载。\",\n",
+              "originalSourceId": "world/techniques/tech_19",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/72",
+              "quote": "    \"本诀不能以赤霞斩铁剑、灵泉或旧有寿储替代六枚灵石和诊察，也不能在玄府之后倒推林辰此前已经掌握元罡。\",\n    \"本诀原本由太清外门教习室保管，凝元三重只满足修行门槛，不自动取得文本或授业资格。教习室可在本期外门复训名额内，以事先明确且已验收的宗门劳务交换受限借阅和教习指导；须由获本期授权的教习实际借出凝元前置页、授课并收回原本。学员不得私传、把教材当个人财物或据此使用玄府战斗术；已有合法学习资格也不豁免逐周期医修复查。\"\n  ],\n  \"counters\": [\n    \"经脉回流与丹府塌缩\",\n    \"医修判定伤情不允许继续分流\"\n  ],\n  \"status\": \"proposed\"\n}",
+              "originalSourceId": "world/techniques/tech_19",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/190",
+              "quote": "{\n  \"id\": \"beat_v23_7\",\n  \"arcId\": \"arc_04\",\n  \"characterId\": \"char_01\",\n  \"kind\": \"cost\",\n  \"plannedChapter\": 79,\n  \"expectedChange\": \"丹府未稳主动延期突破，失去护运遴选机会；向白榆问是否能逆转已耗寿储，被明确告知不能。\"\n}",
+              "originalSourceId": "story/arcBeats/beat_v23_7",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/192",
+              "quote": "{\n  \"id\": \"beat_v23_9\",\n  \"arcId\": \"arc_04\",\n  \"characterId\": \"char_01\",\n  \"kind\": \"consequence\",\n  \"plannedChapter\": 83,\n  \"expectedChange\": \"415日实际付十元载晋玄府，余寿大减，退还不能承载元罡的旧剑。\"\n}",
+              "originalSourceId": "story/arcBeats/beat_v23_9",
+              "unitStart": 0
+            },
+            {
+              "sourceId": "review-unit/294",
+              "quote": "  \"endingDirection\": \"百章有救人、断运、部分父案澄清和玄府成长的可核结局。1–100是450章的阶段验收；接下来的有限寿源、高阶反派、钥匙余片与九鼎机制必须另建经审查的来源和行动链，不将450章全书结局撤销。 没有返寿、燃寿白发、道伤凭空痊愈或三大陆永久太平。此卷不清算全部九鼎，公开传播仍限实到地点。\",\n  \"keyTurns\": [\n    \"第10–12章：伤重林辰与曾撤供的梁九分工救人，只改变普通输送位置；苏保留封样及己方不利证词，争得有限复核，众人仍负伤、欠债和受限。\",\n    \"第23–29章：主角为救人暴露自己，创造顾峤同阶制敌的窗口，取得并分配有限泉液；完成两次十日疗程后南行，苏选择留宗。卷末凝元三重，不能沿用神海及二十年燃寿。\",\n    \"第44/50–53章：44林救落水对手而不追陆与原账，贺付船损；50林不施术而让工人自己回答，陆协助夺闩、两名看守被控，吴卢实际脱控并拒绝立即回船。51–53拟各自选择生计，陆新写改签自述，副本仍待独立核验。\",\n    \"第61–66章：付费北航后在受限外港救出七名矿工，夜真身守撤离路，林放弃第二片，不入界渊。\",\n    \"第83章：数月努力与诊察后，实际付十元载晋玄府；不能再用旧法器承载元罡。\",\n",
+              "originalSourceId": "plan/overview",
+              "unitStart": 0
+            }
+          ],
+          "revisionAdvice": "补读后应逐项核对林辰在玄府晋阶前的凝元三重状态、六个有效十日周期及额外失败耗材、每日静修与医修复查、静置一日、白榆诊察、顾峤承载复核和十元载付款；任一项不能由远期寿储预算或境界目标替代。",
+          "awaitingSources": [
+            "plan/milestones/ms_v3_return",
+            "plan/milestones/ms_v3_training",
+            "plan/milestones/ms_v3_advancement"
+          ]
+        }
+      ]
+    }
+  ],
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "limitation": "Verbatim new local findings with source identity; not an independent semantic validation or final domain verdict."
+}

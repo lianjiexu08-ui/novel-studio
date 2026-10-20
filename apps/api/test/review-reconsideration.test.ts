@@ -14,7 +14,7 @@ import type { DesignReviewInput } from '../../../novel-service-core/src/design-r
 
 // Public API + ordinary worker failure/reconnect path. The temporary JSON
 // repository is retained so a failed assertion remains inspectable.
-test('queued formal reconsideration survives reconnect and failure, is idempotent and never changes design', async t => {
+for (const navigation of [false, true]) test(`queued ${navigation ? 'source navigation' : 'revise'} reconsideration survives reconnect and failure, is idempotent and never changes design`, async t => {
   const file = join(mkdtempSync(join(tmpdir(), 'novel-formal-recheck-')), 'state.json');
   let repository = new JsonWorkRepository(file), fail = true;
   const provider = {
@@ -23,6 +23,7 @@ test('queued formal reconsideration survives reconnect and failure, is idempoten
       const result = fixtureDesignReview(input);
       if (!input.stage?.reconsiderationFor) {
         result.checks[0] = { ...result.checks[0], verdict: 'revise', explanation: '误称规则没有代价。', revisionAdvice: '请补全代价。' };
+        if (navigation) result.checks[0] = { ...result.checks[0], verdict: 'insufficient', insufficiencyReason: 'unlocatable_sources', explanation: '无法定位尚未读到的规则来源。' };
       } else {
         if (fail) throw Object.assign(new Error('模型连接临时失败'), { modelResponses: ['保存失败回答，不覆盖历史'] });
         const pending = input.stage.coverage!.pendingChecks![0];
@@ -42,12 +43,15 @@ test('queued formal reconsideration survives reconnect and failure, is idempoten
   let run = await workflow.startDesignReview(work.id, 'power');
   run = await workflow.stepDesignReview(work.id, run.id);
   const original = run.stages[0], beforeRequest = designReviewStageInput(run, original);
+  const unread = run.input.sources.find(source => !original.unitIds.some(id => run.units.find(unit => unit.id === id)!.sourceId === source.id));
+  assert.ok(unread);
   const note = await workflow.addDesignReviewAnnotation(work.id, { requestKey: 'recheck', runId: run.id, stageId: original.id, criterion: original.result!.checks[0].criterion,
-    expectedInputHash: run.input.inputHash, expectedCheckHash: designReviewCheckHash(original.result!.checks[0]), claimQuote: '误称规则没有代价', explanation: '完整原文包含明确代价。', evidence: [{ sourceId: 'world/axioms/axiom', quote: '力量必须支付代价' }] });
+    expectedInputHash: run.input.inputHash, expectedCheckHash: designReviewCheckHash(original.result!.checks[0]), claimQuote: navigation ? '无法定位尚未读到的规则来源' : '误称规则没有代价', explanation: '完整原文包含明确代价。', evidence: navigation ? [{ sourceId: unread.id, quote: unread.text.slice(0, 40) }] : [{ sourceId: 'world/axioms/axiom', quote: '力量必须支付代价' }] });
   const before = (await repository.get(work.id))!;
   let app = createApiServer({ repository, provider: annotationWriter, designProvider: provider }).app;
   t.after(() => app.close());
   const url = `/works/${work.id}/design/review-runs/${run.id}/reconsider`, payload = { annotationId: note.id, expectedInputHash: run.input.inputHash };
+  assert.ok((await app.inject({ method: 'GET', url: `/works/${work.id}/design/review-annotations?runId=${run.id}` })).json().reconsiderableAnnotationIds.includes(note.id));
   assert.equal((await app.inject({ method: 'POST', url, payload: { ...payload, verdict: 'pass' } })).statusCode, 400);
   assert.equal((await app.inject({ method: 'POST', url, payload: { ...payload, expectedInputHash: '0'.repeat(64) } })).statusCode, 409);
   const queued = await app.inject({ method: 'POST', url, payload }); assert.equal(queued.statusCode, 200, queued.body);
@@ -60,6 +64,7 @@ test('queued formal reconsideration survives reconnect and failure, is idempoten
   const stageId = queued.json().stageId;
   const detail = await app.inject({ method: 'GET', url: `/works/${work.id}/design/review-runs/${run.id}/stages/${stageId}` });
   assert.equal(detail.statusCode, 200, detail.body); assert.equal(detail.json().input.stage.reconsiderationFor, `${original.id}/${note.criterion}`);
+  assert.equal(detail.json().input.stage.reconsiderationKind, navigation ? 'source_navigation' : undefined);
   const step = `/works/${work.id}/design/review-runs/${run.id}/step`;
   assert.equal((await app.inject({ method: 'POST', url: step })).statusCode, 500);
   const afterFailure = (await repository.get(work.id))!.designReviewRuns.get(run.id)!;

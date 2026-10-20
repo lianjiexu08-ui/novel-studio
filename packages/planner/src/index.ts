@@ -23,6 +23,7 @@ function synthesisFindingGuidance(input: DesignReviewInput): string {
 }
 
 function reconsiderationGuidance(input: DesignReviewInput): string {
+  if (input.stage?.reconsiderationKind === 'source_navigation' || input.stage?.coverage?.sourceNavigationReconsidered) return '\n来源定位正式复核：只核验reconsiderationFor所指的原unlocatable_sources不足。review-question保留原问题、全部原判定与独立定位意见；定位意见不证明设计通过。按原rubric重读priorSourceIds每份完整原引用依据和requiredSourceIds每份完整补充来源，不能只确认目录中有这些ID。只有整项原问题已由实际原文解决才pass，并显式resolves原问题ID，引用原问题、全部原引用来源和全部补充来源；有冲突仍revise，仍缺事实、条件或其他依赖用普通insufficient，不递归请求补读。不得补造后段细纲、把宏观提案当已发生事实或为了通过缩小问题。原判定、回答和失败记录保留。综合时kind=reconsideration可包括已经上述校验解决的来源定位不足；仅解除明确列出的原问题，其他不足和返修继续保留，综合不能自行解除。';
   if (!input.stage?.reconsiderationFor && !input.stage?.coverage?.resolvedDeferrals?.some(item => item.kind === 'reconsideration')) return '';
   return '\n正式复核扩展规则（仅适用于本次明确标记的判定）：stage.reconsiderationFor 指向已有revise。请按rubric重读该标准的全部原返修问题、原批所涉及的完整来源、核对记录提及的完整原文及新增来源。review-question包含原判定和独立核对意见，后者仅是待检验的质疑，不能当作设计事实或自动采信；不要只回答核对记录选中的一句话。只有整项原返修已由实际原文消除，才pass并显式resolves该ID；引用原问题、原批材料、priorSourceIds每个原始依据及requiredSourceIds每个补充来源，解释原判定是否误读及为什么。原问题仍成立用revise，仍无法判断用普通insufficient，不输出awaitingSources。禁止因希望通过或已有局部复核通过而降低标准。综合时，coverage.resolvedDeferrals中kind=reconsideration仅表示该ID的历史revise已被上述原文复核显式解决；其他返修和不足仍保留，综合不能自行复核或声明resolves。';
 }
