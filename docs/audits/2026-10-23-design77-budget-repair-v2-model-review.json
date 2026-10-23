@@ -1,0 +1,39 @@
+{
+  "kind": "design77_budget_repair_v2_model_review",
+  "createdAt": "2026-10-23T14:45:34.415Z",
+  "candidatePath": "data/design-candidates/design77-budget-repair-v2.json",
+  "candidateSha256": "9248ff23dc688f6b47545474fbadcb7487ce52a426cd8244c1220ec580b20d9f",
+  "controlPath": "data/audit-runtimes/design77-budget-repair-v2-review",
+  "resultPath": "data/audit-runtimes/design77-budget-repair-v2-review/result.json",
+  "resultSha256": "d6e644af9048018092d733157bd5d85159528aa9184fb1a6c3546fa6796f5e80",
+  "rawResponsePath": "data/audit-runtimes/design77-budget-repair-v2-review/model-calls/00001.response.json",
+  "rawResponseSha256": "7b591657fa9e2e30d92ea611c8446b9407423505922053581fcbc2b3e5f1c393",
+  "model": "gpt-5.6-luna",
+  "fallback": false,
+  "calls": 1,
+  "status": "completed",
+  "checks": [
+    {
+      "criterion": "causality",
+      "verdict": "pass",
+      "evidenceCount": 11,
+      "revisionAdvice": ""
+    },
+    {
+      "criterion": "timeline",
+      "verdict": "pass",
+      "evidenceCount": 11,
+      "revisionAdvice": ""
+    },
+    {
+      "criterion": "growth",
+      "verdict": "pass",
+      "evidenceCount": 12,
+      "revisionAdvice": ""
+    }
+  ],
+  "productionWrites": 0,
+  "formalAcceptance": false,
+  "proseGenerated": false,
+  "limitation": "局部模型复核只覆盖第29、31、33、37、39章现金账；不代表四领域设计通过。"
+}
