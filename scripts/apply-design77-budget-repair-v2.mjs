@@ -73,7 +73,7 @@ const repo = new PrismaWorkRepository(prisma);
 try {
   const before = await repo.get(workId); assert.ok(before);
   const expectedInputHash = designReviewHash(before, basePlanId);
-  assert.equal(before.worldPack.revision, 41); assert.equal(before.storyBible.revision, 73); assert.equal(before.plans.get(basePlanId).revision, 77);
+  assert.equal(before.worldPack.revision, 41); assert.equal(before.storyBible.revision, mode === '--verify' ? 74 : 73); assert.equal(before.plans.get(basePlanId).revision, 77);
   if (mode === '--apply') {
     assert.ok(!fs.existsSync(outputPath));
     assert.ok(![...before.designReviewRuns.values()].some(run => run.leaseToken));
