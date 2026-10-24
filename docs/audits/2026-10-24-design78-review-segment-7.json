@@ -1,0 +1,140 @@
+{
+  "kind": "design78_review_segment_7_world_recovery",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "planId": "plan_a5fff5fb0e5a4dcfb63912107924c2fa",
+  "inputHash": "28c13900f419ccc8a3faa5e8a3600348b6e119964681e21ef8f4f00919733d08",
+  "previousReceiptSha256": "ade4383bc6b155d31d8e51cd4e8eeb361b673c4c6a1e4191cbec1eb274e67ea5",
+  "formalAcceptance": false,
+  "contentReviewsReady": false,
+  "session": {
+    "executedRunnerCommit": "f286665",
+    "apiSourceCommit": "f286665",
+    "journal": "data/audit-runtimes/design78-recovery/continuation-1792857265129-71602.jsonl",
+    "startedAt": "2026-10-24T15:54:25.129Z",
+    "completedAt": "2026-10-24T15:56:54.356Z",
+    "completedStages": 1,
+    "runnerSha256": "5a3de402c48c70c3e2e5f51d4498e4e92715d549cd0e6787e844a822ff451eed",
+    "clientSha256": "093c85ed3e8a04a85a3d23f0c9f981b43264d7d324398f6c5525883b6ac963e4"
+  },
+  "progress": [
+    {
+      "area": "power",
+      "runId": "design_run_1050f783-7af7-4062-b5d2-bebd517cb730",
+      "status": "ready",
+      "completed": 9,
+      "total": 29
+    },
+    {
+      "area": "characters",
+      "runId": "design_run_2b6bc122-ddd6-4c1b-9166-303b1a6953de",
+      "status": "ready",
+      "completed": 9,
+      "total": 29
+    },
+    {
+      "area": "story",
+      "runId": "design_run_8bf5a361-cec3-4f5c-8fce-a1e65e2c8ac9",
+      "status": "ready",
+      "completed": 9,
+      "total": 29
+    },
+    {
+      "area": "world",
+      "runId": "design_run_0d086731-493f-4cb9-816a-398ff3ff1123",
+      "status": "ready",
+      "completed": 10,
+      "total": 55
+    }
+  ],
+  "stage": {
+    "area": "world",
+    "stageId": "cross-1-4",
+    "attempts": 4,
+    "savedCurrentModelResponses": 1,
+    "summary": "本批已补齐并核对跨海商路、港口、寒热防护、地点权限及对应宏观行动；两项既有地理待核问题可解除。本批可检验的历史动因与世界容量亦成立。",
+    "checks": [
+      {
+        "criterion": "geography",
+        "verdict": "pass",
+        "explanation": "两项待核问题所要求的地点、装备和功法原档已齐。计划采用实体海程而非界门：青玄—赤霄两昼夜、赤霄—苍冥五昼夜、苍冥—青玄六昼夜，均与商路规则一致。赤霄段逐日核验开放路段、避火符余量与暖舱；北境段停留在受监管泊区，夜的具名担保只覆盖指定查货区；返程另设限程担保、逐站验籍、暖车、暖舱、入港验籍和实缴税费。救出七人后仍按候查暖房安置，未被误写成自由入境或离港。林在北境只对经查验的一丈内普通麻绳使用一次已训练的凝元剑诀，分流入府诀则被放在后段玄府训练链中，未被越级挪用。故此前关于港口层级、航线、准入、防护与行动支持不足的两个局部缺口已由原档实际解决。",
+        "revisionAdvice": "",
+        "resolves": [
+          "batch-2/geography",
+          "batch-3/geography"
+        ]
+      },
+      {
+        "criterion": "history",
+        "verdict": "pass",
+        "explanation": "历史设定提供了持续而非换图即重置的利益冲突：界门封禁保留实体商路，旧药税战和赵府私运旧约分别解释跨陆运输的脆弱性、程赵炎煞之间有限且可追责的物流关系。第二卷的失箱、扣工与港口复核，第三卷的赵方改线、撤运和有限问责，均被安排为各方基于既有货损、欠账、权限和声誉作出的选择；计划也明确不能由旧约反推各方即时知情或免检。北境救援没有将航簿、口供或候查安置夸大成全链定罪，保留待核范围，符合历史因果边界。",
+        "revisionAdvice": ""
+      },
+      {
+        "criterion": "capacity",
+        "verdict": "pass",
+        "explanation": "本批可见容量并非重复换地图：青玄侧以矿务、宗门档案和古境配额形成生计与证据压力；赤霄侧以港务、热候、船损、扣工和商盟追偿形成物流冲突；苍冥侧以寒候、候查、巡界权限、救助配额和界渊禁入迫使救人与追货取舍。三卷终点分别保留失箱追偿、北境七人候查、返乡证据与本地押运链等不同后果；后段玄府成长还被六周期训练、灵石、复诊、十年寿储和局部护罡实测约束。现有100章阶段目标因此有足够的地域、制度、资源与选择差异承载，不要求未展开的51—100章先补成逐章细纲。",
+        "revisionAdvice": ""
+      }
+    ]
+  },
+  "verification": {
+    "kind": "world_recovered_stage_verification",
+    "observedAt": "2026-10-24T15:57:40.035Z",
+    "inputHash": "28c13900f419ccc8a3faa5e8a3600348b6e119964681e21ef8f4f00919733d08",
+    "reportCharacters": 39126,
+    "maxCharacters": 90000,
+    "oldFailuresDeepEqual": true,
+    "previousFailureCount": 3,
+    "attemptsBefore": 3,
+    "attemptsAfter": 4,
+    "savedCurrentModelResponses": 1,
+    "rawResponseRevalidated": true,
+    "formalAcceptance": false,
+    "modelCalls": 0,
+    "productionWrites": 0
+  },
+  "artifacts": {
+    "data/audit-runtimes/design78-recovery/continuation-1792857265129-71602.jsonl": "1cbf0b98771e7bec1e304258d742bcdd790a498faf090b4218c22f92b2ec5e0d",
+    "data/audit-runtimes/design78-recovery/segment-7-summary.json": "952966b998cfebcf1b79dd58af9fa0f3cd920bcfb70f37b2142ea484dd1d40b3",
+    "data/audit-runtimes/design78-recovery/world-cross-1-4-recovered.json": "8b56be54b662abdc17673f4bf4dc4a3f18db267c469a30f53c8a12b15f175262",
+    "data/audit-runtimes/design78-recovery/world-recovery-verification.json": "1f15a051cbaec1ac897387805527d9ea060382866df74617cc87a99e21ac6501",
+    "data/audit-runtimes/design78-recovery/segment-7-production-check.json": "88b54ec92fe40a8910a49104783376e9293600fb82707c7f13d4d8ea97aaaad4"
+  },
+  "productionCounts": {
+    "ChapterCandidate": 116,
+    "StoryEvent": 383,
+    "ManuscriptRevision": 1,
+    "ChapterVersion": 101
+  },
+  "productionCountsUnchanged": true,
+  "productionWrites": 0,
+  "limitations": [
+    "Recovery succeeded on its first response; citation repair branch was not exercised. This is not proof that the new repair prompt caused recovery.",
+    "World step pass resolves only batch-2/geography and batch-3/geography, not all world-design checks.",
+    "Other domain reviews remain incomplete; no design locking, plan approval or prose production."
+  ],
+  "uiObservation": {
+    "method": "CUA DOM snapshot",
+    "worldPack": 41,
+    "storyBible": 74,
+    "latestPlan": 78,
+    "approvedPlan": 10,
+    "proseBlocked": true,
+    "progress": "world 10/55; power/characters/story each 9/29",
+    "worldCross14Label": "本批通过",
+    "detailLoaded": true,
+    "visibleEvidenceCounts": {
+      "geography": 27,
+      "history": 15,
+      "capacity": 16
+    },
+    "reviewedMaterialCount": 202,
+    "executionCount": 4,
+    "historicalErrorsVisible": [
+      "94123-character report",
+      "invalid deletion of unselected fragment",
+      "HTTP 524"
+    ],
+    "temporaryTabClosed": true
+  }
+}
