@@ -2,7 +2,7 @@
 import fs from 'node:fs';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
-import { requestJson, advanceReview, assertReviewBaseline } from './design-review-step-client.mjs';
+import { requestJson, advanceReview, assertReviewBaseline, parseReviewRetry } from './design-review-step-client.mjs';
 
 export const workId = 'work_8b6c9133e13d404083ca33acc63f4f61';
 export const planId = 'plan_a5fff5fb0e5a4dcfb63912107924c2fa';
@@ -18,6 +18,7 @@ async function main() {
   const base = process.env.REVIEW_API ?? 'http://127.0.0.1:8790';
   const limit = Number(process.env.REVIEW_MAX_STEPS ?? Number.MAX_SAFE_INTEGER);
   if (!Number.isSafeInteger(limit) || limit <= 0) throw new Error('REVIEW_MAX_STEPS must be a positive integer');
+  let retryFailedStage = parseReviewRetry(process.env.REVIEW_RETRY_FAILED_STAGE);
   const directory = 'data/audit-runtimes/design78-recovery';
   fs.mkdirSync(directory, { recursive: true });
   const journal = `${directory}/continuation-${Date.now()}-${process.pid}.jsonl`;
@@ -33,7 +34,7 @@ async function main() {
     return response.body;
   };
   const sha = url => createHash('sha256').update(fs.readFileSync(url)).digest('hex');
-  log({ status: 'started', workId, planId, inputHash, limit,
+  log({ status: 'started', workId, planId, inputHash, limit, retryFailedStage,
     runnerSha256: sha(new URL(import.meta.url)),
     clientSha256: sha(new URL('./design-review-step-client.mjs', import.meta.url)),
   });
@@ -52,14 +53,17 @@ async function main() {
       }
       // Give every domain source review before concentrating on cross checks.
       pending.sort((a, b) => a.run.stages.filter(s => s.completed).length - b.run.stages.filter(s => s.completed).length);
-      const { area, run } = pending[0];
+      const selected = retryFailedStage ? pending.find(item => item.run.id === retryFailedStage.runId) : pending[0];
+      if (!selected) throw new Error('Inspected retry run is missing or completed; no model call dispatched');
+      const { area, run } = selected;
       log({ status: 'dispatching', area, runId: run.id, stageId: run.stages.find(s => !s.completed)?.id });
-      const after = await advanceReview({ before: run,
+      const after = await advanceReview({ before: run, retryFailedStage,
         post: () => requestJson(`${base}/works/${workId}/design/review-runs/${run.id}/step`, 'POST'),
         read: async () => { state = await overview(); return state.runs.find(item => item.id === run.id); },
         wait: () => new Promise(resolve => setTimeout(resolve, 15_000)),
         onObservation: value => log({ area, runId: run.id, ...value }),
       });
+      retryFailedStage = undefined;
       log({ area, runId: run.id, status: after.status, completed: after.stages.filter(s => s.completed).length, total: after.stages.length });
       if (after.stages.some(stage => stage.verdict === 'needs_revision')) {
         log({ status: 'stopped_for_content_revision', area, runId: run.id, formalAcceptance: false });

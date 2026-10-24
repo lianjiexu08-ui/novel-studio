@@ -29,10 +29,31 @@ export function assertReviewBaseline(run, inputHash, planId) {
   }
 }
 
-export async function advanceReview({ before, read, post, wait, onObservation = () => {} }) {
+export function parseReviewRetry(value) {
+  if (value === undefined) return undefined;
+  const retry = JSON.parse(value);
+  if (!retry || typeof retry !== 'object' || Array.isArray(retry)
+    || Object.keys(retry).some(key => !['runId', 'stageId', 'attempts'].includes(key))
+    || typeof retry.runId !== 'string' || !retry.runId
+    || typeof retry.stageId !== 'string' || !retry.stageId
+    || !Number.isSafeInteger(retry.attempts) || retry.attempts < 0) {
+    throw new Error('Retry must identify the inspected runId, stageId and attempts');
+  }
+  return retry;
+}
+
+export async function advanceReview({ before, read, post, wait, retryFailedStage, onObservation = () => {} }) {
   const pending = before.stages.find(stage => !stage.completed);
   if (!pending) return before;
   if (before.status === 'running' || before.leaseExpiresAt) throw new Error('Review already has an execution lease; no model call dispatched');
+  const previouslyAttempted = before.status === 'failed' || pending.attempts > 0 || Boolean(pending.error);
+  if (retryFailedStage && (!previouslyAttempted || retryFailedStage.runId !== before.id
+    || retryFailedStage.stageId !== pending.id || retryFailedStage.attempts !== pending.attempts)) {
+    throw new Error('Inspected retry no longer matches the pending failure; no model call dispatched');
+  }
+  if (previouslyAttempted && !retryFailedStage) {
+    throw new Error(`Stage ${pending.id} has a previous attempt; inspect its saved result before explicitly retrying; no model call dispatched`);
+  }
   let response;
   let transportError;
   try { response = await post(); } catch (error) { transportError = error; }
