@@ -1,0 +1,208 @@
+{
+  "kind": "design78_review_segment_6",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "planId": "plan_a5fff5fb0e5a4dcfb63912107924c2fa",
+  "inputHash": "28c13900f419ccc8a3faa5e8a3600348b6e119964681e21ef8f4f00919733d08",
+  "previousReceiptSha256": "486f8df06e3cab52eb7b8c1d5b6fc8db248bc8650d161d1ac44bee76cec5b2f8",
+  "formalAcceptance": false,
+  "contentReviewsReady": false,
+  "session": {
+    "executedRunnerCommit": "7af4597",
+    "apiSourceCommit": "0456617",
+    "journal": "data/audit-runtimes/design78-recovery/continuation-1792856716484-70884.jsonl",
+    "startedAt": "2026-10-24T15:45:16.484Z",
+    "completedAt": "2026-10-24T15:53:32.916Z",
+    "completedStages": 3,
+    "runnerSha256": "5a3de402c48c70c3e2e5f51d4498e4e92715d549cd0e6787e844a822ff451eed",
+    "clientSha256": "093c85ed3e8a04a85a3d23f0c9f981b43264d7d324398f6c5525883b6ac963e4"
+  },
+  "progress": [
+    {
+      "area": "power",
+      "runId": "design_run_1050f783-7af7-4062-b5d2-bebd517cb730",
+      "status": "ready",
+      "completed": 9,
+      "total": 29
+    },
+    {
+      "area": "characters",
+      "runId": "design_run_2b6bc122-ddd6-4c1b-9166-303b1a6953de",
+      "status": "ready",
+      "completed": 9,
+      "total": 29
+    },
+    {
+      "area": "story",
+      "runId": "design_run_8bf5a361-cec3-4f5c-8fce-a1e65e2c8ac9",
+      "status": "ready",
+      "completed": 9,
+      "total": 29
+    },
+    {
+      "area": "world",
+      "runId": "design_run_0d086731-493f-4cb9-816a-398ff3ff1123",
+      "status": "failed",
+      "completed": 9,
+      "total": 55
+    }
+  ],
+  "batches": [
+    {
+      "area": "power",
+      "stageId": "cross-1-5",
+      "attempts": 1,
+      "savedModelResponses": 2,
+      "summary": "已按必引来源重核并补齐遗漏引文。完整报告当前76553字符、余13447字符；本次新增7个片段的展开开销上界约5486字符，仍为说明字段变化保留约7961字符余量。原有引文、结论与已声明的等待项解除均保留。",
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "pass",
+          "explanation": "此前等待的资格链可核：玄府晋阶须先完成分流诀的凝元三重门槛、三段训练、六个有效十日周期、静置和双重复核，才支付十元载；第73—87章将失败周期、复诊、教材授权、六周期、静置及第415日双确认依序安排，未把晋阶倒推为自动掌握。计划总览也将百章成长明确限定为凝元至玄府，且要求前段条件实际成立后才能推进。高阶境界栏援引的领域、空间、界门和法则功法，与其允许境界及限制相容；第43章轻钩另有训练、对象、重量、距离和支付，不以凝元身份替代实测。",
+          "revisionAdvice": "",
+          "resolves": [
+            "batch-1/tiers",
+            "batch-5/tiers"
+          ]
+        },
+        {
+          "criterion": "costs",
+          "verdict": "pass",
+          "explanation": "寿储、法力、神识、本源与实物耗材保持分账。自然寿源均以完整疗程和复诊作为入账点，不能预支；故事总览亦明确466日余额只是健康条件成立时的提案预算，不把它当已采纳收入。第83章十元载支付以前，训练采用七枚青灵石（六个有效周期加一次失败），并先扣日常食宿和复诊、再独立封存训练库存；计划总览将成长限定为支付十元载后的玄府初期，而非由资源或境界名称免费跳阶。高阶寿源、火髓、血菩提及通天术式各自仍有疗程、配额、实物燃料或本源限制，未把资源品级直接兑换为角色现有余额。",
+          "revisionAdvice": "",
+          "resolves": [
+            "batch-1/costs",
+            "batch-2/costs",
+            "batch-5/costs"
+          ]
+        },
+        {
+          "criterion": "counters",
+          "verdict": "pass",
+          "explanation": "高低阶能力均未留下以境界名自动取胜的缺口。分流诀本身不产生玄府元罡或越境能力，计划总览也将百章冲突限定为同阶及已训练能力；领域受范围、供能、神识、领域碰撞和空间反制限制，空间刃、神印与鸿蒙典均有定位、蓄势、成本、中断和对应反制。百章实际冲突进一步收束为已训练的局部护罡、实体车角、普通兵刃、伤后停术和具名接应：林三次护罡逐次付费后受伤撤出，顾只开一次局部护罡，不以真光或未训练术式解决同阶对抗。第44章切索同样限定为一道风刃、可见普通索、余刃确认和失锁停式。",
+          "revisionAdvice": "",
+          "resolves": [
+            "batch-2/counters",
+            "batch-5/counters"
+          ]
+        }
+      ]
+    },
+    {
+      "area": "characters",
+      "stageId": "cross-1-5",
+      "attempts": 1,
+      "savedModelResponses": 1,
+      "summary": "本批跨材料的人物行动、关系阶段与知情链能够互相承接；均属于待写提案，不视作正文既成事实。未发现本批原文间足以要求返修的同一时点冲突。",
+      "checks": [
+        {
+          "criterion": "agency",
+          "verdict": "pass",
+          "explanation": "本批关键人物均有不完全服从主角目标的自主取舍及可见后果：贺青梧将雇工安全和自身经营置于追账之前，拒绝以改证换替船；林辰在北港与外山两次放弃追物/追程而优先救人；夜凝霜为保撤离栈桥而容程离去；祁嵩在现场责任已暴露、伤者待救的条件下，为保留原令和申辩机会选择停斗交械。各选择均保留船损、巡程、伤情、问责、未追回残片或未结案等代价，而非由救援自动消除。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "relationships",
+          "verdict": "pass",
+          "explanation": "林辰与贺青梧、陆沉舟、夜凝霜及苏凌霜的关系档案均把阶段变化系于具体行动、拒绝或承担，并保留边界：救援不换服从或免罪，供述仍待独立核验，异地合作不产生即时共知。后段宏观也与这些阶段一致：吴、卢脱控后自行决定去留；陆的自述仅是有限、待核材料；夜的合作限于担保与撤离职责；林苏在截押后共同保留双方责任证物。关系档案中51章以后使用“拟”说明的是兑现义务，不与宏观提案冲突。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "knowledge",
+          "verdict": "pass",
+          "explanation": "知情安排明确区分角色亲见、实体送达、读者侧场景与未证实推论。程报、赵回令、签收回执、北境面报、撤押令及正式质询均按发出、到达和阅览拆分；林苏在未实际取得原令前不能据此定责，赵也不能由已收到的旧报预知后续北境或外山结果。父案材料同样只支持守门参与及外山掩案，不被扩张为投毒全貌或九鼎全图。该链作为提案具备可执行的认知生效点。",
+          "revisionAdvice": ""
+        }
+      ]
+    },
+    {
+      "area": "story",
+      "stageId": "cross-1-5",
+      "attempts": 1,
+      "savedModelResponses": 1,
+      "summary": "本批已读的40—50章细纲与44—100章宏观里程碑可相互承接：港口救援明确分次完成、后段的航行、安置、训练、晋阶和截押均保留前置、权限与代价。本批可检验安排成立；结论仅限设计提案，不表示正文或全领域验收通过。",
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass",
+          "explanation": "44章将43章的报警、登船和索具拖偏直接兑现为一次付费切索，45章才完成落水者接上与巡艇转运；50章又明确只完成吴卢脱控，未提前消费51—53章的安置、交检和供述。后段宏观依次将有限生计、专项航款与受监管北行、候查安置、返乡、复诊训练、十元载晋阶、停斗交械及三十日回访串联，并在每段要求前段的救援、交接、健康和可用款项已成立。七名北境矿工、赤霄五工与青玄八人分批安置，未把同一批救援重复结算。",
+          "revisionAdvice": "",
+          "resolves": [
+            "batch-1/causality",
+            "cross-1-2/causality"
+          ]
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass",
+          "explanation": "40—50章从231日至254日连续推进：44章紧接43章同一时点切索，45章承接接人，50章在254晨完成门前脱控，未将后续事项提前写成既成。宏观后段也给出北航五昼夜、北境候查至300日、限程返航与六昼夜海程、316—415日训练和436—466日救援回访的明确顺序；异常分支要求延后重排而非保留原日期。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass",
+          "explanation": "本批港口线的兑现层级清楚：44章救出唐许冯但失原账并损船，50章才救出吴卢；两次救援均没有自动换得回船、作证或免罪。唐带出的点货夹只作为待核线索，陆在50章仅承认本次点交，均未越界写成全案结论。后段保留第二片、完整改签、父案凶手与九鼎机制的未解状态，百章回访只结算可核的断运与本地安置。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass",
+          "explanation": "所供40—50章不是重复救援模板：撤工求见、门内拒绝代答、潮沟报警救三人、船损后的分歧与生计、拒绝改口换生意、陆弟留港、门前当面核实意愿，冲突由查人逐步升级为角色各自承担责任。44章和50章的两次脱控对象、方法、代价与结果不同，且没有过早把港口线写成总案终局。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass",
+          "explanation": "40—50章每段均改变行动条件：撤回资源导致失单，见工受阻转为实测跟船，切索救援转为三人安置与两人失踪，随后通过拒签、内线选择、入口辨认推进至门前脱控。45—46章的修船、安置和工人分歧承担救援余波，未把核验或问询机械重复成同类场景。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass",
+          "explanation": "玄幻规则并非术语装饰：凝元剑诀的距离、可见路径、二成真元、余刃确认与热剑停用决定44章只能切普通索；伤势和真元限制又使50章选择让巡员直接处置。后段玄府突破同样以分流周期、灵石、复诊、丹府稳定和十元载付款为准入条件，能力成长持续改变可选行动而不提供免费越阶解法。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "growth",
+          "verdict": "pass",
+          "explanation": "林辰在本批的成长体现为受限条件下的判断而非升级：44章以既有实测范围完成一次剑诀后停用，50章虽仍可握剑却选择不施术、让当事人与巡员完成脱控。后段则给出从肩伤复诊、六个有效分流周期与一次失败，到双重复核后支付十元载晋玄府、再接受有限局部护罡实测的完整选择、训练、代价和生效顺序。",
+          "revisionAdvice": ""
+        }
+      ]
+    }
+  ],
+  "artifacts": {
+    "data/audit-runtimes/design78-recovery/continuation-1792856716484-70884.jsonl": "15f0e2dc8d26b7318a42b516ba3b06cc6886976fc9891d2c359262ae676d9314",
+    "data/audit-runtimes/design78-recovery/segment-6-before-world-summary.json": "68d51dfef42af850582a3a84ca732af588501b8197840adac8ac9951c38e6c23",
+    "data/audit-runtimes/design78-recovery/citation-edit-diagnosis.json": "ecf77c1579483de01e92b537bc54c96de28f8bc46e27d2adc406b33a85fb1232",
+    "data/audit-runtimes/design78-recovery/pre-citation-fix-restart-check.json": "316df259de5afad87c2a9ec4d56a123e94c2fd766468fb89c541b0d0816c9c16",
+    "data/audit-runtimes/design78-recovery/power-cross-1-5.json": "8c666ce45e1aff3303e8dd62cc88d79e491d543f9385208e8f56658ea42815bd",
+    "data/audit-runtimes/design78-recovery/characters-cross-1-5.json": "0fdbe2d8698fc6a894868e34061b204090b91e4d06487e1b88a4a104ee99f0d9",
+    "data/audit-runtimes/design78-recovery/story-cross-1-5.json": "566d9bc1482c847e68541def568c89aa9a113659fbbb3748260ea1654e81724b"
+  },
+  "productionCounts": {
+    "ChapterCandidate": 116,
+    "StoryEvent": 383,
+    "ManuscriptRevision": 1,
+    "ChapterVersion": 101
+  },
+  "productionCountsUnchanged": true,
+  "productionWrites": 0,
+  "citationRepairFix": {
+    "commit": "f286665",
+    "reason": "World prior repair attempted deleting e459, which exists in the input but was not selected in geography. The report had 36956 characters remaining, so no deletion was forced by capacity.",
+    "change": "Provide explicit per-check selected citation and resolution IDs, including requests without a report budget; clarify that add-only repairs use empty removeEvidence. No automatic citation changes or weakened validation.",
+    "validation": [
+      "46 planner design-review tests passed",
+      "typecheck:core passed",
+      "git diff --check passed",
+      "Offline replay confirms invalid e459 deletion and missing mandatory citations remain rejected"
+    ],
+    "deployedAfterSession": true
+  },
+  "limitations": [
+    "Character cross-1-5 contains no explicit resolves; cross-1-4 knowledge remains deferred.",
+    "Story batch-1/causality was already resolved earlier; this step reaffirms it and explicitly resolves cross-1-2/causality.",
+    "World single-step recovery is a separate, later session and is not included in this receipt.",
+    "Saved response counts are not billing counts."
+  ]
+}
