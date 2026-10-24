@@ -862,6 +862,11 @@ test('explicit citation edits retain unchanged findings and cannot silently lose
     if (++calls === 1) return JSON.stringify(first);
     assert.match(JSON.parse(call.user).instruction, /citation_edits/);
     assert.match(JSON.parse(call.user).instruction, /每个criterion最多一项/);
+    assert.match(JSON.parse(call.user).instruction, /removeEvidence明确返回\[\]/);
+    assert.deepEqual(JSON.parse(call.user).citationEditTargets, [
+      { criterion: 'timeline', selectedFragmentIds: [0, 1, 3, 4].map(i => fragments[i]), claimedResolutionIds: resolves },
+      { criterion: 'geography', selectedFragmentIds: [fragments[0]], claimedResolutionIds: [] },
+    ], 'deletion targets are selected evidence per check, not every available source; no report budget is required');
     assert.deepEqual(JSON.parse(call.user).resolutionCitationSelection.map((item: { criterion: string; checkId: string }) => [item.criterion, item.checkId]), [['timeline', 'batch-1/timeline'], ['timeline', 'batch-2/timeline']]);
     return JSON.stringify(patch);
   } });
@@ -889,6 +894,7 @@ test('explicit citation edits retain unchanged findings and cannot silently lose
     { ...patch, updates: [{ ...patch.updates[0], removeResolutions: ['batch-1/timeline'] }] },
     { ...patch, updates: [{ ...patch.updates[0], addResolutions: ['invented-question'] }] },
     { ...patch, updates: [{ ...patch.updates[0], removeEvidence: ['not-selected'] }] },
+    { ...patch, updates: [{ ...patch.updates[0], removeEvidence: [fragments[2]] }] },
     { ...patch, updates: [{ ...patch.updates[0], addEvidence: [{ fragmentId: fragments[0] }] }] },
     { ...patch, updates: [{ ...patch.updates[0], addEvidence: [{ fragmentId: 'invented' }] }] },
     { ...patch, updates: [{ ...patch.updates[0], addEvidence: [{ fragmentId: fragments[2], quote: 'manufactured' }] }] },

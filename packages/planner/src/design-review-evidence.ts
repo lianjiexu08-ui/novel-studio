@@ -181,6 +181,14 @@ export function prepareDesignReviewEvidence(input: DesignReviewInput) {
     resolutionRepairContext(value: unknown) {
       const parsed = anchoredDesignReviewResultSchema.safeParse(value);
       if (!parsed.success || parsed.data.requestId !== requestId) return {};
+      // Patch deletions are scoped to the selected evidence of one check,
+      // not the request-wide fragment catalogue. Expose that distinction even
+      // when this request has no report budget (or has an invalid anchor).
+      const citationEditTargets = parsed.data.checks.map(check => ({
+        criterion: check.criterion,
+        selectedFragmentIds: [...new Set(check.evidence.map(evidence => evidence.fragmentId))],
+        claimedResolutionIds: check.resolves ?? [],
+      }));
       const requirements = pendingCitationRequirements ?? (citationRequirements ? [{
         checkId: citationRequirements.checkId, criterion: citationRequirements.criterion,
         requiredSources: citationRequirements.sources,
@@ -209,13 +217,13 @@ export function prepareDesignReviewEvidence(input: DesignReviewInput) {
       // Navigation only. Use the same schema and renderer as acceptance, even
       // when a missing required source prevents the answer from being accepted.
       // Unknown anchors must never receive a fabricated size estimate.
-      if (!budget || parsed.data.checks.some(check => check.evidence.some(e => !lookup.has(e.fragmentId)))) return { resolutionCitationSelection };
+      if (!budget || parsed.data.checks.some(check => check.evidence.some(e => !lookup.has(e.fragmentId)))) return { citationEditTargets, resolutionCitationSelection };
       const expanded = designReviewResultSchema.parse({ ...parsed.data, checks: parsed.data.checks.map(check => ({
         ...check, evidence: check.evidence.map(e => lookup.get(e.fragmentId)!),
       })) });
       const currentCharacters = designReviewReportEnvelopeSize(snapshot, expanded, budget.sourceId);
       const maxCitationNumber = Math.max(snapshot.stage?.evidenceLimit ?? 64, ...parsed.data.checks.map(check => check.evidence.length + 1));
-      return { resolutionCitationSelection, reportCapacity: {
+      return { citationEditTargets, resolutionCitationSelection, reportCapacity: {
         maxCharacters: budget.maxCharacters, currentCharacters, remainingCharacters: budget.maxCharacters - currentCharacters,
         selectedCitations: parsed.data.checks.map((check, index) => ({ criterion: check.criterion,
           evidence: check.evidence.map((e, citation) => ({ fragmentId: e.fragmentId,
