@@ -37,24 +37,32 @@ const now = () => new Date().toISOString();
 
 type PrismaTx = Omit<PrismaClient, '$connect' | '$disconnect' | '$on' | '$transaction' | '$use' | '$extends'>;
 
-// SQLite interactive transactions compete even when they only read. A design
-// page requests several large snapshots at once; queue before opening the DB
-// transaction so waiting does not consume Prisma's acquisition timeout. Share
-// the queue across repositories using one client, but never share Work objects.
-const clientTransactions = new WeakMap<PrismaClient, Promise<void>>();
-async function inClientTransaction<T>(prisma: PrismaClient, callback: (tx: PrismaTx) => Promise<T>): Promise<T> {
-  const previous = clientTransactions.get(prisma) ?? Promise.resolve();
+// A large SQLite write can hold the database past the driver's busy deadline.
+// Queue reads as well as transactions before entering Prisma, sharing the queue
+// across repositories that use one client. Single-query reads need no new DB
+// transaction; a caller-supplied transaction client already owns its snapshot.
+const clientOperations = new WeakMap<PrismaClient, Promise<void>>();
+async function inClientQueue<T>(prisma: PrismaClient, callback: () => Promise<T>): Promise<T> {
+  const previous = clientOperations.get(prisma) ?? Promise.resolve();
   let release!: () => void;
   const current = new Promise<void>(resolve => { release = resolve; });
   const queued = previous.then(() => current);
-  clientTransactions.set(prisma, queued);
+  clientOperations.set(prisma, queued);
   await previous;
   try {
-    return await prisma.$transaction(callback, { timeout: 120_000 });
+    return await callback();
   } finally {
     release();
-    if (clientTransactions.get(prisma) === queued) clientTransactions.delete(prisma);
+    if (clientOperations.get(prisma) === queued) clientOperations.delete(prisma);
   }
+}
+
+function inClientTransaction<T>(prisma: PrismaClient, callback: (tx: PrismaTx) => Promise<T>): Promise<T> {
+  return inClientQueue(prisma, () => prisma.$transaction(callback, { timeout: 120_000 }));
+}
+
+function inClientRead<T>(prisma: PrismaClient, callback: (tx: PrismaTx) => Promise<T>): Promise<T> {
+  return typeof prisma.$transaction === 'function' ? inClientQueue(prisma, () => callback(prisma)) : callback(prisma);
 }
 
 /**
@@ -89,31 +97,37 @@ export class PrismaWorkRepository implements WorkRepository {
   }
 
   async list(): Promise<Array<{ id: string; title: string; stateRevision: number; constraintRevision: number; covenant: ReturnType<typeof parseCovenant> }>> {
-    const projects = await this.prisma.project.findMany({ orderBy: { createdAt: 'desc' },
-      select: { id: true, title: true, stateRevision: true, constraintRevision: true, covenant: true },
+    return inClientRead(this.prisma, async tx => {
+      const projects = await tx.project.findMany({ orderBy: { createdAt: 'desc' },
+        select: { id: true, title: true, stateRevision: true, constraintRevision: true, covenant: true },
+      });
+      return projects.map((project) => ({
+        id: project.id,
+        title: project.title,
+        stateRevision: project.stateRevision,
+        constraintRevision: project.constraintRevision,
+        covenant: readCovenant(project.covenant),
+      }));
     });
-    return projects.map((project) => ({
-      id: project.id,
-      title: project.title,
-      stateRevision: project.stateRevision,
-      constraintRevision: project.constraintRevision,
-      covenant: readCovenant(project.covenant),
-    }));
   }
 
   async getWorkSummary(workId: string): Promise<WorkSummary | undefined> {
-    const project = await this.prisma.project.findUnique({ where: { id: workId },
-      select: { id: true, title: true, stateRevision: true, constraintRevision: true, covenant: true },
+    return inClientRead(this.prisma, async tx => {
+      const project = await tx.project.findUnique({ where: { id: workId },
+        select: { id: true, title: true, stateRevision: true, constraintRevision: true, covenant: true },
+      });
+      return project ? { ...project, constraintRevision: project.constraintRevision ?? 0, covenant: readCovenant(project.covenant) } : undefined;
     });
-    return project ? { ...project, constraintRevision: project.constraintRevision ?? 0, covenant: readCovenant(project.covenant) } : undefined;
   }
 
   async getDesignSnapshot(workId: string): Promise<Pick<Work, 'worldPack' | 'storyBible' | 'constraintRevision'> | undefined> {
-    const project = await this.prisma.project.findUnique({ where: { id: workId },
-      select: { worldPack: true, storyBible: true, constraintRevision: true },
+    return inClientRead(this.prisma, async tx => {
+      const project = await tx.project.findUnique({ where: { id: workId },
+        select: { worldPack: true, storyBible: true, constraintRevision: true },
+      });
+      return project ? { worldPack: readJson<WorldPack>(project.worldPack), storyBible: readJson<StoryBible>(project.storyBible),
+        constraintRevision: project.constraintRevision ?? 0 } : undefined;
     });
-    return project ? { worldPack: readJson<WorldPack>(project.worldPack), storyBible: readJson<StoryBible>(project.storyBible),
-      constraintRevision: project.constraintRevision ?? 0 } : undefined;
   }
 
   async getDesignReviewRun(workId: string, runId: string): Promise<DesignReviewRun | undefined> {
@@ -139,8 +153,10 @@ export class PrismaWorkRepository implements WorkRepository {
   }
 
   async outbox(): Promise<OutboxEvent[]> {
-    const rows = await this.prisma.outboxEvent.findMany({ orderBy: { createdAt: 'asc' } });
-    return rows.map(mapOutbox);
+    return inClientRead(this.prisma, async tx => {
+      const rows = await tx.outboxEvent.findMany({ orderBy: { createdAt: 'asc' } });
+      return rows.map(mapOutbox);
+    });
   }
 
   async transaction<T>(workId: string, callback: (transaction: WorkTransaction) => Promise<T> | T): Promise<T> {
