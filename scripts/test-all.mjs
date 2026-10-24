@@ -37,6 +37,7 @@ run('review-recovery-chain-audit', process.execPath, ['--test', 'scripts/audit-r
 run('design-review-insufficiencies', process.execPath, ['--test', 'scripts/collect-design-review-insufficiencies.test.mjs'], root);
 run('design-candidate-preflight', process.execPath, ['--experimental-strip-types', '--test', 'scripts/validate-design-candidate.test.mjs'], root);
 run('shared-review-host', process.execPath, ['--experimental-strip-types', '--test', 'scripts/shared-review-host.test.mjs'], root);
+run('design-review-step-client', process.execPath, ['--test', 'scripts/design-review-step-client.test.mjs'], root);
 
 const spike = join(root, 'novel-service-spike');
 if (existsSync(join(spike, 'test_queue.mjs'))) run('novel-service-spike/node', process.execPath, ['--test', 'test_queue.mjs'], spike);
