@@ -1,0 +1,721 @@
+{
+  "kind": "design78_review_segment_9",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "planId": "plan_a5fff5fb0e5a4dcfb63912107924c2fa",
+  "inputHash": "28c13900f419ccc8a3faa5e8a3600348b6e119964681e21ef8f4f00919733d08",
+  "previousReceiptSha256": "afc5f4cbba61b180963421cb972bdbce54c4d0306e8d0e128d7e1da33811f129",
+  "formalAcceptance": false,
+  "contentReviewsReady": false,
+  "session": {
+    "executedRunnerCommit": "3384276",
+    "apiSourceCommit": "f286665",
+    "journal": "data/audit-runtimes/design78-recovery/continuation-1792859315956-74237.jsonl",
+    "startedAt": "2026-10-24T16:28:35.956Z",
+    "completedAt": "2026-10-24T16:49:03.045Z",
+    "completedStages": 8,
+    "runnerSha256": "7830580c59bf8f4d835751e9c425f25793468ba6e41d45b791d095f303b8da6a",
+    "clientSha256": "e84f87609a97e7b0ec8067b784a4f2de5d426016e305fbff60d1993cc00662e7"
+  },
+  "progress": [
+    {
+      "area": "power",
+      "runId": "design_run_1050f783-7af7-4062-b5d2-bebd517cb730",
+      "status": "ready",
+      "completed": 13,
+      "total": 29,
+      "nextStage": "cross-3-5"
+    },
+    {
+      "area": "characters",
+      "runId": "design_run_2b6bc122-ddd6-4c1b-9166-303b1a6953de",
+      "status": "ready",
+      "completed": 13,
+      "total": 29,
+      "nextStage": "cross-3-5"
+    },
+    {
+      "area": "story",
+      "runId": "design_run_8bf5a361-cec3-4f5c-8fce-a1e65e2c8ac9",
+      "status": "ready",
+      "completed": 13,
+      "total": 29,
+      "nextStage": "cross-3-5"
+    },
+    {
+      "area": "world",
+      "runId": "design_run_0d086731-493f-4cb9-816a-398ff3ff1123",
+      "status": "ready",
+      "completed": 14,
+      "total": 55,
+      "nextStage": "cross-2-4"
+    }
+  ],
+  "batches": [
+    {
+      "file": "data/audit-runtimes/design78-recovery/power-cross-2-5.json",
+      "sha256": "89511e9fe1fdd8e6623da3bac7f72907c59e599e2d834a6186759e25b27fa05c",
+      "area": "power",
+      "stageId": "cross-2-5",
+      "attempts": 1,
+      "savedModelResponses": 1,
+      "reportCharacters": 25821,
+      "reportCap": 90000,
+      "sourceAndCitationValidationPassed": true,
+      "summary": "本批已读的低阶至主宰规则、43—50章行动及后段宏观账大体遵守“境界不等于自动施术”、分账、实测与停术边界；但若要验收本批明确援引的玄府晋阶、高阶术式、器物和寿源安排，仍须补读若干直接依赖的原条目，故三项均为局部材料不足，不构成对整书的否定。",
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "insufficient",
+          "explanation": "已读规则明确将境界承载与实际掌握分开；43—50章的轻钩、一次剑诀、试注及不施术救援均列出对象、实测、余量或停止条件。玄府晋阶也已明确要求tech_19三段训练、六个有效十日周期、六枚灵石及双重复核。然而后段宏观实际安排了tech_19训练和玄府晋阶，并把归一、破虚、通天、主宰能力分别直接援引tech_11、13、15、16；这些原术式均未在本批提供，无法核验其允许境界、学习前置与供能是否和已读境界条目相容。赤霞剑、避火/护寒符的器物承载与使用资格也直接影响已列行动，不能仅凭目录或章纲代替原器物规则。",
+          "revisionAdvice": "补读所列直接依赖原条目；届时逐项核对tech_19的三段训练与六有效周期是否足以支持415日晋阶，并核高阶术式和器物是否具有与宏观引用一致的资格、供能与器身限制。",
+          "awaitingSources": [
+            "world/techniques/tech_11",
+            "world/techniques/tech_13",
+            "world/techniques/tech_15",
+            "world/techniques/tech_16",
+            "world/techniques/tech_19",
+            "world/artifacts/art_03",
+            "world/artifacts/art_16",
+            "world/artifacts/art_21"
+          ]
+        },
+        {
+          "criterion": "costs",
+          "verdict": "insufficient",
+          "explanation": "已读部分的成本边界清晰：寿储、真元、元罡和本源不可互换；43章轻钩半成真元、44章剑诀二成、48章试注半成及50章不施术的账目连续。后段也已提出玄府十元载、六有效周期与失败耗材，以及不同账户的局部护罡支出。可是，本批宏观同时将两剂灵泉收入、未来res_17—19收入、火髓消耗、寒/避火符采购和器物试注纳入预算；其资源的疗程、剂量、库存、有效期与失败损失须由未读res_09、res_12、res_17—19及相关器物、tech_19原条目确定。ax_11自身也明示只是候选见证，不能替角色取得资源。因此现有材料不足以确认这些具体预算均可执行，不能以宏观数字直接判为闭合。",
+          "revisionAdvice": "补读列明的寿源、火髓、丹府训练和相关器物规则后，按角色分账复核：两剂灵泉何时完成疗程入账、七枚灵石中失败周期的实际损失、符箓有效时长及采购来源，以及高阶示例资源是否仅为世界容量见证而未被误记为角色既得资产。",
+          "awaitingSources": [
+            "world/techniques/tech_19",
+            "world/artifacts/art_03",
+            "world/artifacts/art_16",
+            "world/artifacts/art_21",
+            "world/resources/res_09",
+            "world/resources/res_12",
+            "world/resources/res_17",
+            "world/resources/res_18",
+            "world/resources/res_19"
+          ]
+        },
+        {
+          "criterion": "counters",
+          "verdict": "insufficient",
+          "explanation": "已读行动的反制设计总体可执行：轻钩只负责送未受力钩头，拖船改由索具与船桩承力；44章只切可见普通索且确认余刃消散；50章以巡员、工人自主回答和普通看守的站位解决，不把凝元能力当作万能开门手段。玄府局部护罡也已规定聚罡、受击、间隙、三次上限和受伤即停，后段车队方案按三次各二成、第三次被穿后撤离来写，未把护罡延长为转运全过程。不过，已读高阶境界条目将领域、裂空、神印、鸿蒙典的限制和反制直接指向未读tech_11、13、15、16；玄府晋阶行动又直接依赖未读tech_19。缺少这些原规则，无法确认宏观后段所称的高阶反制、训练失败路径与限制没有被原条目否定。",
+          "revisionAdvice": "补读所列术式原文后，逐项核对领域、空间、界门与法则术的打断、对象、撤退和代价；同时核tech_19是否为丹府训练提供明确的中断与失败后果。若原条目另有更严上限，应将后段宏观动作按原上限调整，而不能由境界名称补足。",
+          "awaitingSources": [
+            "world/techniques/tech_11",
+            "world/techniques/tech_13",
+            "world/techniques/tech_15",
+            "world/techniques/tech_16",
+            "world/techniques/tech_19",
+            "world/artifacts/art_03"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "data/audit-runtimes/design78-recovery/characters-cross-2-5.json",
+      "sha256": "634a16662960b762e7cdddffd6817e084dff15b4b9fd5a2e94533ba82180a6f9",
+      "area": "characters",
+      "stageId": "cross-2-5",
+      "attempts": 1,
+      "savedModelResponses": 1,
+      "reportCharacters": 18845,
+      "reportCap": 90000,
+      "sourceAndCitationValidationPassed": true,
+      "summary": "本批已读的第1—14章提案在人物能动性、关系变化与知情边界上均有可执行的动机、选择、代价和生效时点；结论仅覆盖本批实际提供材料，不表示全书人物领域或未读关系原档已完成验收。",
+      "checks": [
+        {
+          "criterion": "agency",
+          "verdict": "pass",
+          "explanation": "林辰在救人、保留证据、拒签和解、接受受限修行路径及拒绝删改逃生图之间持续作出会损失追凶机会、药物、收入或资格的选择；梁九为家人签和解、仍有限合作，韩叙以自认改账换取不被单独替罪，苏以停俸和调查限制换取留置核查，均非被动执行。第14章墨幽屠收到实体失败回报后改定掳人夺泉计划，且命令尚待送达，行动因果和信息边界明确。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "relationships",
+          "verdict": "pass",
+          "explanation": "本批可见的关系变化均由具体选择而非救援自动兑换：林辰与梁九从共同逃生转为因配粮和和解产生不信任、仍保留限定搭档；林辰与苏凌霜在证物、权限和父亲笔记上维持保留，通过苏签有限凭证、双方接受调查代价形成有限协作；韩叙的底联与改账自认也使合作建立在不互相遮丑的边界上。各变化都保留拒绝权、未解冲突与实际损失，没有把信任写成免责或永久服从。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "knowledge",
+          "verdict": "pass",
+          "explanation": "林、苏在第7章前只取得公开摘录、管件、货签及有限证言；第10—12章仅能确认本场伤害、封样和当班操作，未越界推断九鼎全阵或幕后主使。秘密阶段表也将林在第7—25章持续限定为怀疑，并明确每次证据来源及禁止推论。第14章墨的接报、纸面回令和远端尚未收令被明确区分，读者侧信息未赋予林苏。",
+          "revisionAdvice": ""
+        }
+      ]
+    },
+    {
+      "file": "data/audit-runtimes/design78-recovery/story-cross-2-5.json",
+      "sha256": "357ff0fd10c8f058f32a78ae18ea4cdc9f893cb87506ddbcf59e8ffca1d408a6",
+      "area": "story",
+      "stageId": "cross-2-5",
+      "attempts": 1,
+      "savedModelResponses": 1,
+      "reportCharacters": 43186,
+      "reportCap": 90000,
+      "sourceAndCitationValidationPassed": true,
+      "summary": "本批第40—50章的港口救援链条与后续宏观里程碑能够衔接：救援、安置、航行、训练、晋阶及押运高潮均保留了条件、代价与消息延迟。局部可检验安排通过；这不等于正文已实现或全书验收完成。",
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass",
+          "explanation": "第44—50章将切索救人、船损安置、吴卢仍被扣、陆到案指路和两工实际脱控分为连续且不重复的动作；后段里程碑再以已拨专项款、实体航程、候查安置、训练复诊、十元载付款和停斗交令逐段承接。总纲也明确这些阶段必须以前段交接、健康与可用款项成立为前提。此前等待的两项因果核验已由本批补读覆盖并可解决。",
+          "revisionAdvice": "",
+          "resolves": [
+            "batch-1/causality",
+            "cross-1-2/causality"
+          ]
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass",
+          "explanation": "已给出的日历可顺接：271—281日北行与五昼夜航程，285—300日外港查验和救援，301—315日限程返航，随后316—415日训练与复诊，431—466日押运、质询及回访。夜凝霜301—311日返岗与318日实际收到回执亦被明确区分；消息、许可、登船和角色抵达没有被压缩为同一时点。此前等待的时序核验因此解决。",
+          "revisionAdvice": "",
+          "resolves": [
+            "cross-1-2/timeline"
+          ]
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass",
+          "explanation": "本批兑现遵守阶段边界：第44章只救出唐许冯并留下吴卢缺口，第45章才完成落水者接船与有限比号，第50章才由吴卢亲口选择离开而脱控。原账、完整改签和程的去向仍保留待查，未把一次救援虚写成全案结案。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass",
+          "explanation": "本批章节的冲突逐层升级：先是撤缆失单与受阻问询，再到实测潮路、报警追船、付船损救三人，最后回到被扣两人的自主选择。第50章的解决是有限脱控而非无代价终局，仍保留程、原账和生计问题，未过早耗尽主线。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass",
+          "explanation": "第40—50章虽然包含问询、核证和安置，但每段都有不同戏剧目标与不可逆后果：撤回资源、识别扣留、放弃危险船位、实施救援、承担修船与失单、工人各自决定去留。核账与医疗限制服务于行动成本，没有被重复写成同一种救援结局。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass",
+          "explanation": "玄幻能力在本批是受规则约束的有限工具，而非术语装饰：轻物御动只负责送钩，实际拖力由索具和船桩承担；林的剑诀有距离、刃路、真元与热剑停用条件，救人仍依赖船、短板、巡艇和当事人行动。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "growth",
+          "verdict": "pass",
+          "explanation": "本批没有免费升级，却完成了可观察的成长：林在伤限和真元账内学习放弃强闯、先报警并承担救后安置；第50章又主动停手，让吴卢的亲口选择成为结果。后段玄府成长也明确把训练、六个有效周期、静置、双重复诊与十元载支付分开，未将远期能力倒灌为当前资格。",
+          "revisionAdvice": ""
+        }
+      ]
+    },
+    {
+      "file": "data/audit-runtimes/design78-recovery/world-cross-1-7.json",
+      "sha256": "a66cef0adf7912d292421fa13d2f567733508d6f24903cd1d29f934a69a49f6b",
+      "area": "world",
+      "stageId": "cross-1-7",
+      "attempts": 1,
+      "savedModelResponses": 2,
+      "reportCharacters": 36755,
+      "reportCap": 90000,
+      "sourceAndCitationValidationPassed": true,
+      "summary": "完整报告当前展开大小为35770字符，剩余54230字符；补入e230的新增引文开销上界为776字符，连同说明字段变化仍远低于90000字符上限。地理项此前已满足两项待补读的其余必引来源；现补足batch-3/geography遗漏的plan/volumes/vol_02依据，维持其已声明的两项解除结论。history与capacity的既有引文和判断经复核后不作编辑。",
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "pass",
+          "explanation": "重新核对两项待补读问题后维持通过。batch-2/geography所需的界门规则、三大陆与各港口条目、三段航程里程碑及七个商路/港口条目均已有对应引文；其结论可由实体航路、验籍、担保和实际航程约束支撑。batch-3/geography此前遗漏vol_02的必引依据，现补入e230：该卷明确以失箱责任、扣工与跨陆转运为主冲突，并将北境黑舱救援限定为凝元层级下的有限合作，不以进入天坑或杀高阶者推进；这与既有的五日实体北航、受监管泊区、候查安置、寒热防护、限程返航及港口规则引文共同支撑该问题。计划中的剑诀切绑门麻绳、丹府训练、外山/外门活动也仍受既有功法和地点条件限制，未见与已读规则的明确冲突。因此两项原先因未读来源造成的局部无法判断均可保留已声明的解决状态。本次仅修正引文完整性，不把提案安排误作已采纳正文事实。",
+          "revisionAdvice": "",
+          "resolves": [
+            "batch-2/geography",
+            "batch-3/geography"
+          ]
+        },
+        {
+          "criterion": "history",
+          "verdict": "pass",
+          "explanation": "历史并非只作背景名词：界门落锁明确保留同一天地内的实体跨海交通及其风暴、燃料、验籍和担保约束；商盟崛起解释跨陆航网与商业查验权；既有寿材运医约解释通天渡口普通医舍、预约和港口准入须分开处理；赵府旧约则给出程、赵、炎煞各自有限物流利益及不得由旧约推出免检、无限库存或即时跨域调度的边界。第二、三卷由失箱、扣工、货运责任和地方掩案推进，能够让势力基于既有利益作独立选择，而非仅换地图重复战斗。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "capacity",
+          "verdict": "pass",
+          "explanation": "本批可见容量由不同地域规则实际改变选择与代价：赤霄的封航旗号、避火符和受护路段限制陆路北行；苍冥的寒候、候查、具名担保和暖舱限制救援、停留及返程；外山、外门和港区又分别限制矿务、授课与访客活动。资源与制度还对应具体的航款、符衣、救济、床位、邮递和责任账，避免把大陆转换写成免费移动。百章后段虽未逐章展开，但宏观里程碑已给出跨域行动的前置、选择和后果；本项不以尚无51—100章细纲判缺料。",
+          "revisionAdvice": ""
+        }
+      ]
+    },
+    {
+      "file": "data/audit-runtimes/design78-recovery/power-cross-3-4.json",
+      "sha256": "bb4df9e268e3f334c98a28958615e3181df3976edb86d802698917de3c1ccaaa",
+      "area": "power",
+      "stageId": "cross-3-4",
+      "attempts": 1,
+      "savedModelResponses": 1,
+      "reportCharacters": 16543,
+      "reportCap": 90000,
+      "sourceAndCitationValidationPassed": true,
+      "summary": "本跨批材料中的低阶至玄府前段规则、训练、施术与账目大体具备明确门槛和分账；但本批未读完已列入本轮详细范围的第43—50章，也未读到百章玄府晋阶及高阶规则明确援引的功法、资源和里程碑原文，无法完成本项局部验收。以下不足均为待补读，不将未读内容认定为设计缺陷。",
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "insufficient",
+          "explanation": "已读部分明确区分境界承载与实际掌握：林辰先经诊察、支付三元载，随后获得授业、实测与两丈凝元剑诀范围；玄府晋阶则明确要求tech_19三段训练、六枚灵石、医修与器物复核。第83章玄府成长已列为百章关键转折，但其实际训练、资源取得和晋阶安排不在本批原文；同时第43—50章虽属于既有细纲范围，本批也未提供，无法核验该段角色是否调用尚未见到的术式、法宝或等级资格。",
+          "revisionAdvice": "补读后核对玄府训练、六枚灵石来源和复核是否先于支付，并逐章核对第43—50章未越过已实测的凝元资格。",
+          "awaitingSources": [
+            "world/techniques/tech_19",
+            "plan/chapters/43",
+            "plan/chapters/44",
+            "plan/chapters/45",
+            "plan/chapters/46",
+            "plan/chapters/47",
+            "plan/chapters/48",
+            "plan/chapters/49",
+            "plan/chapters/50",
+            "plan/milestones/ms_v3_training",
+            "plan/milestones/ms_v3_advancement"
+          ]
+        },
+        {
+          "criterion": "costs",
+          "verdict": "insufficient",
+          "explanation": "本批已读行动的账目可局部追溯：凝元三元载只支付一次；第20—21章真元由十成扣至八成半；第25章再扣剑诀二成与御物半成，并把顾峤的0.25元载与林辰账户分开；两剂灵泉均在完整疗程和复诊后才各入账5元载。可是高阶成长见证明确依赖res_17、res_18、res_19的采收、疗程、配额和终生限制，并明确还须承担tech_15、tech_16的法力、神识、本源与冷却成本；这些条目未读，不能核验已给高阶成本规则是否闭合。后半段宏观也安排第83章支付十元载，尚须读取对应里程碑及第43—50章的实际收支。",
+          "revisionAdvice": "补读后按人物分别核算寿储、当境法力、神识、本源、灵石与实物剂量；特别核实高阶候选资源是否有实际采收、完整疗程、复诊和可分配权限，不能把容量算例当角色既得收入。",
+          "awaitingSources": [
+            "world/techniques/tech_11",
+            "world/techniques/tech_13",
+            "world/techniques/tech_15",
+            "world/techniques/tech_16",
+            "world/resources/res_17",
+            "world/resources/res_18",
+            "world/resources/res_19",
+            "plan/chapters/43",
+            "plan/chapters/44",
+            "plan/chapters/45",
+            "plan/chapters/46",
+            "plan/chapters/47",
+            "plan/chapters/48",
+            "plan/chapters/49",
+            "plan/chapters/50",
+            "plan/milestones/ms_v3_training",
+            "plan/milestones/ms_v3_advancement",
+            "plan/milestones/ms_v3_convoy",
+            "plan/milestones/ms_v3_payoff"
+          ]
+        },
+        {
+          "criterion": "counters",
+          "verdict": "insufficient",
+          "explanation": "已读低阶规则和行动具有可执行反制：轻物御动限定可见、卸载、轻小单件与预付费用；剑诀受实测距离、锁定、遮挡、余刃和现场安全约束；第25章将真光的三息起印置于墨幽屠两息血爪之后，并保留墨的余量、伤势、撤退机会及普通绳索不能封经的限制。可是归一、破虚、通天、主宰规则把领域、裂空、神印和鸿蒙典作为其具体对象、代价与反制边界，而相应功法原文未在本批提供；第43—50章亦可能承接港口救援中的剑诀、御物或器物行动。故不能确认本批已给全部高阶规则与未读后段行动的反制链。",
+          "revisionAdvice": "补读后逐项核对领域、空间、界门和言律术式的对象、范围、供能、打断、退出与不可逆后果，并核第43—50章所有实际施术是否仍在已训练范围、余量和伤后上限内。",
+          "awaitingSources": [
+            "world/techniques/tech_11",
+            "world/techniques/tech_13",
+            "world/techniques/tech_15",
+            "world/techniques/tech_16",
+            "plan/chapters/43",
+            "plan/chapters/44",
+            "plan/chapters/45",
+            "plan/chapters/46",
+            "plan/chapters/47",
+            "plan/chapters/48",
+            "plan/chapters/49",
+            "plan/chapters/50",
+            "plan/milestones/ms_v2_fire",
+            "plan/milestones/ms_v2_voyage",
+            "plan/milestones/ms_v2_boundary",
+            "plan/milestones/ms_v3_training",
+            "plan/milestones/ms_v3_advancement",
+            "plan/milestones/ms_v3_convoy",
+            "plan/milestones/ms_v3_payoff"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "data/audit-runtimes/design78-recovery/characters-cross-3-4.json",
+      "sha256": "48b095574c3c2969e562b110f27908ca8b5639167490912ee0fc1e6f5384fd41",
+      "area": "characters",
+      "stageId": "cross-3-4",
+      "attempts": 1,
+      "savedModelResponses": 1,
+      "reportCharacters": 14876,
+      "reportCap": 90000,
+      "sourceAndCitationValidationPassed": true,
+      "summary": "本批已读第15—50章细纲与相关宏观安排中，人物选择、关系边界及知情链均有明确动机、代价和生效条件；未见同一时点的角色认知或关系安排互相否定。以下仅为本批局部提案结论，不等同正文已实现或全书人物领域验收完成。",
+      "checks": [
+        {
+          "criterion": "agency",
+          "verdict": "pass",
+          "explanation": "人物行动并非服务情节的被动移动。林辰多次在即时收益与可承担后果之间取舍：第29章接受与苏分路、以有限护货职责南行；第44章放弃追逐原账而救落水者；第50章又让巡员而非自身武力决定工人是否自愿离开。苏、贺、唐、许、吴卢及陆也各有拒绝、退出或改条件的选择，且这些选择实际改变了调查、救援、船务和责任链的后果。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "relationships",
+          "verdict": "pass",
+          "explanation": "本批关系变化均由具体选择而非救援自动兑换。林苏在第29章因留守与南行冲突明确分路，只共享可核副本并约定递信；林贺的合作也持续保留船主的自主判断。唐不再替许决定等待，吴卢明确废止彼此代答；第50章贺接受二人获救后仍可拒绝回船。陆帮助开门并承认本次点交，只构成继续看护与核查的前提，并未被写成免责、和解或完整自述。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "knowledge",
+          "verdict": "pass",
+          "explanation": "细纲持续区分角色亲见、独立视角和后续可核事实。第33章明确侧门私挪与苏返宗不能倒灌为林辰当时认知；第36章五工的失败脱身亦未传给林贺；第37—39章将火因、携页者、陆氏兄弟的知情和物证核验分层处理。第48章吴卢的门内对话仍限读者视角，第50章要求巡员重新当面听取二人回答，未把内线信息预支给外线人物。",
+          "revisionAdvice": ""
+        }
+      ]
+    },
+    {
+      "file": "data/audit-runtimes/design78-recovery/story-cross-3-4.json",
+      "sha256": "83045d8d0ad9222629cf577e07e31dbeaacb71fb6baeac625d14539e7502d3b2",
+      "area": "story",
+      "stageId": "cross-3-4",
+      "attempts": 1,
+      "savedModelResponses": 1,
+      "reportCharacters": 62044,
+      "reportCap": 90000,
+      "sourceAndCitationValidationPassed": true,
+      "summary": "跨批3/4所覆盖的第20—39章提案中，古境救援、泉液疗程、南渡失箱与港口核证均有明确前置、选择、代价和时间衔接；已补读材料解决此前“payoff”待核项。本结论仅评价本批可检验设计，不等同正文已实现或全书通过。",
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass",
+          "explanation": "古境段将救援建立在残缺采集单、先救秦禾、实测封哨和秦实体送信之上；林苏须亲见顾到场手势才发动，顾以具体站位、蓄势和支付制伏墨。其后泉液按来源核验、验毒、配额、疗程和复诊逐段兑现。南渡失箱亦由救人造成的盯箱空档进入后续实物、册页与当事人核证，未把猜测直接写成定罪。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass",
+          "explanation": "第184—189日的勘路、封哨、四里送信、顾的交岗与抵达、战后75分钟伤员撤离及夜班交接均给出可连续的时点；第190—211日两次各十日疗程、复诊和分路在前。第212—216日陆路、两昼夜海程及217日港口交割也与实体航程及当日验籍相接，未见同一人物瞬时跨地或将未来手续提前算作完成。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass",
+          "explanation": "此前待核的两项兑现均已落实为提案内的条件链：第一卷承诺要求的解囚、同阶制伏与交押后，泉液先验真、验毒、分配，再经两次完整疗程和复诊才入寿储；第六药箱则由第32章未目击失箱开始，经33—39章搬运证词、侧门册、便条、分架页、火毁与医铺原件核对闭合为12回收、6火毁、6售用，仍保留追偿、火因和携页者未明。没有将申请、封存原液或单方口供提前记为兑现。",
+          "revisionAdvice": "",
+          "resolves": [
+            "batch-3/payoff"
+          ]
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass",
+          "explanation": "本批中段从窄坡遇袭、救秦与封路失败递进到需要实体求援的营救；第25章的解囚与同阶交锋保留伤亡、逃脱看守和伤势后果。随后转入药程、分路与南渡，港口段则以失箱、救人和有限核证形成不同于古境战斗的冲突，不构成同一高潮的无代价重复。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass",
+          "explanation": "第33—39章虽集中调查失箱，但各章戏剧目标发生变化：保住正式仓与拒绝全责、取得搬运证词、先做公共互助、展示五工脱身失败、火场救人、当面对质、拒绝责任转嫁并完成独立核证。调查程序持续产生人物选择、损失或新的证据边界，未被设计成重复核账。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass",
+          "explanation": "玄幻能力不是术语装饰：林的风刃、轻物御动和顾的真光均受可见范围、对象、蓄势、真元或寿储支付限制，普通机关、地形、同伴搬运与实际看押承担其余效果；灵泉也不能治腿伤，须经来源、配额、疗程和复诊才形成寿储。奇异规则实际改变了救援方案、风险与回报。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "growth",
+          "verdict": "pass",
+          "explanation": "林在本批不是凭境界名义越限：第20章按两丈实测范围施一式风刃并核余量；第21章只御动无受载防脱钩；第25章在顾到场后分别支付风刃与轻销成本，腿伤后停术。后续两次药程带来的是经复诊确认的寿储收入，不替代伤口治疗；第29—32章又把其职责限制为坐车、清点和轻物操作。能力使用、医疗限制与判断成长保持分开。",
+          "revisionAdvice": ""
+        }
+      ]
+    },
+    {
+      "file": "data/audit-runtimes/design78-recovery/world-cross-2-3.json",
+      "sha256": "eb083f1263a4b08233ae622d70fd1c1404f355618c6b8f52c517709c601cfcb6",
+      "area": "world",
+      "stageId": "cross-2-3",
+      "attempts": 1,
+      "savedModelResponses": 1,
+      "reportCharacters": 15758,
+      "reportCap": 90000,
+      "sourceAndCitationValidationPassed": true,
+      "summary": "本批已读规则与宏观方案能看出三地的环境、监管和资源差异确实改变行动选择；但跨海航路、北境港口—通天渡口—青玄回航链所依赖的若干实际地点及防护器物原文未在本批提供，地理通行与历史旧约均不能作完整局部核验。",
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "insufficient",
+          "explanation": "已读部分不存在直接硬冲突：赤霄港区要求普通避火符且随封航旗号复核，苍冥则将寒候防护、验籍担保及“获救待核不等于入境”分开；方案也分别安排了避火符、暖舱、夜的限程具名担保、候查暖房、逐站验籍和实体回执，方向上相容。但54—72章实际经过天宝、极焱、葬骨、通天与沧溟等港口，并多次援引既有虚海航线、港区准入与普通护身寒符；这些地点和器物的原始规则未被本批读取，无法确认每一段的航线、准入、港税、暖房/候船条件及符箓效力均与世界条目相符。",
+          "revisionAdvice": "补读后逐段核验：赤霄受护街段至极焱、极焱至葬骨、葬骨限程陆路至通天、通天至沧溟的实体交通、验籍与防护；并核普通避火符、普通护身寒符是否足以承担方案写明的时长和环境。",
+          "awaitingSources": [
+            "world/locations/loc_21",
+            "world/locations/loc_22",
+            "world/locations/loc_23",
+            "world/locations/loc_24",
+            "world/locations/loc_25",
+            "world/locations/loc_26",
+            "world/locations/loc_27",
+            "world/artifacts/art_16",
+            "world/artifacts/art_21"
+          ]
+        },
+        {
+          "criterion": "history",
+          "verdict": "insufficient",
+          "explanation": "港口线已把首仓火因、原账、改签全貌和程的供述可信度保留为待查，而没有将救援或一份自述直接升级为全链定罪；赵的命令亦被安排为必须经实体寄报、回令和回执才产生相应知情，因果边界清楚。可是赵—炎煞—程记的跨陆私运框架明确以event_14为历史前置，而该历史事件原文未在本批读取，无法核其原有参与方、权限和代价是否真的能支撑当前“旧约延续”的设定。",
+          "revisionAdvice": "补读event_14后，核对其是否实际建立赵方、炎煞外围代理与程记之间的有限货款、仓位和承运关系；若历史原文不含其中任一主体或权限，应在宏观方案中改为新的、可追溯的订约与传递前置。",
+          "awaitingSources": [
+            "world/historicalEvents/event_14"
+          ]
+        },
+        {
+          "criterion": "capacity",
+          "verdict": "pass",
+          "explanation": "就本批可见阶段而言，地域并非换地图重复冲突：赤霄的日常热害、封航复核和港口劳务/船损，苍冥的寒候、港务候查、担保责任与界渊准入边界，分别迫使角色采用不同交通、防护、监管和救援方案。寿源又有成熟周期、个人上限、疗程、配额竞争及运输失败成本，能为百章后续成长保留受约束的扩展空间，而非以资源名称直接解决当前困境。",
+          "revisionAdvice": ""
+        }
+      ]
+    }
+  ],
+  "newExplicitlyResolvedChecks": [
+    {
+      "area": "story",
+      "checkId": "cross-1-2/timeline",
+      "resolvedByStageId": "cross-2-5"
+    },
+    {
+      "area": "story",
+      "checkId": "batch-3/payoff",
+      "resolvedByStageId": "cross-3-4"
+    }
+  ],
+  "reaffirmedPreviouslyResolvedChecks": [
+    {
+      "area": "story",
+      "stageId": "cross-2-5",
+      "checkIds": [
+        "batch-1/causality",
+        "cross-1-2/causality"
+      ]
+    },
+    {
+      "area": "world",
+      "stageId": "cross-1-7",
+      "checkIds": [
+        "batch-2/geography",
+        "batch-3/geography"
+      ]
+    }
+  ],
+  "validation": {
+    "savedStageValidation": true,
+    "rawResponsesReplayed": 9,
+    "savedResultsMatchReplay": true,
+    "newDeferrals": 8,
+    "newExplicitReviseChecks": 0,
+    "notASecondSemanticReview": true
+  },
+  "implementation": [
+    {
+      "commit": "28cb688",
+      "change": "Targeted current work metadata and design reads with compatibility fallback",
+      "tests": "6 targeted persistence/API tests, core typecheck and strict targeted persistence typecheck passed"
+    },
+    {
+      "commit": "c719ced",
+      "change": "Ask repaired summaries to describe design findings, not technical budget/edit logs",
+      "tests": "46 existing design-review tests passed",
+      "livePromptEffectVerified": false
+    }
+  ],
+  "deployment": {
+    "observedAt": "2026-10-24T16:51:32.639Z",
+    "beforeApiCommit": "f286665",
+    "afterApiCommit": "c719ced",
+    "rows": [
+      {
+        "path": "/works/work_8b6c9133e13d404083ca33acc63f4f61",
+        "beforeMs": 8371.294709,
+        "afterMs": 8.089292,
+        "responseIdentical": true,
+        "status": 200
+      },
+      {
+        "path": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design",
+        "beforeMs": 8276.251042,
+        "afterMs": 4.768499999999989,
+        "responseIdentical": true,
+        "status": 200
+      }
+    ],
+    "modelCalls": 0,
+    "productionWrites": 0,
+    "formalAcceptance": false,
+    "limitation": "One sequential sample per endpoint on the local database while the review worker is idle. This is not a load test or a whole-page benchmark; other routes still load the aggregate. An earlier standalone concurrent Prisma probe timed out with P1008 and is preserved separately."
+  },
+  "overlappingReadCheck": {
+    "observedAt": "2026-10-24T16:52:12.835Z",
+    "apiCommit": "c719ced",
+    "responsesIdentical": true,
+    "rows": [
+      {
+        "path": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design/content-reviews?planId=plan_a5fff5fb0e5a4dcfb63912107924c2fa&view=summary",
+        "elapsedMs": 8226.685583,
+        "status": 200
+      },
+      {
+        "path": "/works/work_8b6c9133e13d404083ca33acc63f4f61",
+        "elapsedMs": 3.426040999999998,
+        "status": 200
+      },
+      {
+        "path": "/works/work_8b6c9133e13d404083ca33acc63f4f61/design",
+        "elapsedMs": 6.389665999999977,
+        "status": 200
+      }
+    ],
+    "modelCalls": 0,
+    "productionWrites": 0,
+    "formalAcceptance": false,
+    "limitation": "One overlapping read-only API scenario; no model write transaction or load test."
+  },
+  "trainingArithmetic": {
+    "kind": "v78_proposed_training_calendar_and_cash_arithmetic",
+    "observedAt": "2026-10-24T16:35:40.250Z",
+    "inputHash": "28c13900f419ccc8a3faa5e8a3600348b6e119964681e21ef8f4f00919733d08",
+    "characterId": "char_01",
+    "cycles": [
+      {
+        "number": 1,
+        "start": 331,
+        "end": 340
+      },
+      {
+        "number": 2,
+        "start": 341,
+        "end": 350
+      },
+      {
+        "number": 3,
+        "start": 358,
+        "end": 367
+      },
+      {
+        "number": 4,
+        "start": 368,
+        "end": 377
+      },
+      {
+        "number": 5,
+        "start": 378,
+        "end": 387
+      },
+      {
+        "number": 6,
+        "start": 388,
+        "end": 397
+      }
+    ],
+    "effectiveTrainingDays": 60,
+    "failedCycle": {
+      "start": 351,
+      "end": 354,
+      "days": 4,
+      "consumedStones": 1,
+      "refundedStones": 0
+    },
+    "restAfterFailure": {
+      "start": 355,
+      "end": 357,
+      "days": 3
+    },
+    "fullRestDay": 398,
+    "subsequentObservation": {
+      "start": 399,
+      "end": 414,
+      "days": 16
+    },
+    "proposedAdvancementDay": 415,
+    "labor": {
+      "start": 318,
+      "end": 329,
+      "days": 12,
+      "hoursPerDay": 2,
+      "cashPerDay": 2,
+      "settlementDay": 330,
+      "totalCash": 24
+    },
+    "spending": {
+      "priorDebt": 3,
+      "prepaidRoomBoardRoutineChecks": 14,
+      "trainingStones": 7,
+      "total": 24,
+      "additionalFailureBuffer": 0
+    },
+    "sourceSha256": {
+      "world/techniques/tech_19": "d47c5f5bd93a7b58191867eaa6d519036598df2f4381fda9971afc9768390433",
+      "plan/milestones/ms_v3_training": "2da3811dc4499fccfce8b6053e99440435ea787219f7d810d77cf4fe97f77a45",
+      "plan/milestones/ms_v3_advancement": "b540ad31441e2927d113cdabefd45899081c0aed0ddc17cd945b933148736179"
+    },
+    "frozenBatchArtifacts": {
+      "data/audit-runtimes/design78-recovery/power-batch-1.json": "eb4d610c20c2d6f214a2a27b1718c1c15ef44eefc49725918aa25bcb9556ac3d",
+      "data/audit-runtimes/design78-recovery/power-batch-2.json": "69740ea3312d79ffb501d93346daab57977dae491ce0e4cd72a6408090fb6473",
+      "data/audit-runtimes/design78-recovery/power-batch-3.json": "b4805c0b4e9ace534483d7660859eca4a492fad81699a299417995cd4926e778",
+      "data/audit-runtimes/design78-recovery/power-batch-4.json": "66df6bc60686c5174c3ab402f95c4e5ec0b3478ff61afbe98fa1388b32669164",
+      "data/audit-runtimes/design78-recovery/power-batch-5.json": "041bc1a36e1ac78656e812b838f0c259b4998e934a501b99355530e98a8fe775"
+    },
+    "modelCalls": 0,
+    "productionWrites": 0,
+    "formalAcceptance": false,
+    "limitations": [
+      "Calendar and arithmetic checks apply only to the existing proposal, not adopted events.",
+      "Every course, examination, teaching authorization and payment must actually occur; dates alone confer no entitlement or skill.",
+      "The seven-stone budget has no spare for a second failure, extra medicine or delayed accommodation. Those events require a new funding source and delayed advancement, as the proposal already specifies.",
+      "Does not independently establish economic plausibility, medical success, prose quality or overall design acceptance."
+    ]
+  },
+  "production": {
+    "observedAt": "2026-10-24T16:50:21.804277+00:00",
+    "counts": {
+      "ChapterCandidate": 116,
+      "StoryEvent": 383,
+      "ManuscriptRevision": 1,
+      "ChapterVersion": 101
+    },
+    "worldPack": 41,
+    "storyBible": 74,
+    "approvedPlan": {
+      "id": "plan_3240e0b8bc124f38a4f39ae8d74c2abc",
+      "revision": 10,
+      "status": "approved"
+    },
+    "designReviewLeases": [],
+    "chapterRunLeases": [],
+    "productionWrites": 0,
+    "formalAcceptance": false
+  },
+  "artifacts": {
+    "data/audit-runtimes/design78-recovery/continuation-1792859315956-74237.jsonl": "ea9021ba17b7ef6c3f617287b985336194e6c2a20364e113551a67eb81249075",
+    "data/audit-runtimes/design78-recovery/power-cross-2-5.json": "89511e9fe1fdd8e6623da3bac7f72907c59e599e2d834a6186759e25b27fa05c",
+    "data/audit-runtimes/design78-recovery/characters-cross-2-5.json": "634a16662960b762e7cdddffd6817e084dff15b4b9fd5a2e94533ba82180a6f9",
+    "data/audit-runtimes/design78-recovery/story-cross-2-5.json": "357ff0fd10c8f058f32a78ae18ea4cdc9f893cb87506ddbcf59e8ffca1d408a6",
+    "data/audit-runtimes/design78-recovery/world-cross-1-7.json": "a66cef0adf7912d292421fa13d2f567733508d6f24903cd1d29f934a69a49f6b",
+    "data/audit-runtimes/design78-recovery/power-cross-3-4.json": "bb4df9e268e3f334c98a28958615e3181df3976edb86d802698917de3c1ccaaa",
+    "data/audit-runtimes/design78-recovery/characters-cross-3-4.json": "48b095574c3c2969e562b110f27908ca8b5639167490912ee0fc1e6f5384fd41",
+    "data/audit-runtimes/design78-recovery/story-cross-3-4.json": "83045d8d0ad9222629cf577e07e31dbeaacb71fb6baeac625d14539e7502d3b2",
+    "data/audit-runtimes/design78-recovery/world-cross-2-3.json": "eb083f1263a4b08233ae622d70fd1c1404f355618c6b8f52c517709c601cfcb6",
+    "data/audit-runtimes/design78-recovery/segment-9-stage-validation.json": "6a3ba9773882e84f0726d9e0f94306a75783151c1ebf90bc6aef2fec56af76a4",
+    "data/audit-runtimes/design78-recovery/segment-9-response-replay.json": "2022b9c4f6d4a327b549611a571f0fa0df9be531e348e48de1c24b10f358e7f8",
+    "data/audit-runtimes/design78-recovery/segment-9-summary.json": "fddc5d5d805baa7d017b6bec291cec129e28136bb8a2208ac9113291d4767197",
+    "data/audit-runtimes/design78-recovery/segment-9-production-check.json": "52b0decc5645e7bfe2a167e8567f988fc7ba87a3d41adee53275862463a9178a",
+    "data/audit-runtimes/design78-recovery/v78-training-arithmetic.json": "11acd086369dece7fc216173a60d255ca17b0532b936beb0cde246db77012e03",
+    "data/audit-runtimes/design78-recovery/check-training-arithmetic.mjs": "20548bdfdfecc7441961cffdc4169d8daef332b951ba4c54600b5935317e9f6a",
+    "data/audit-runtimes/design78-recovery/segment-9-frozen-power-sources.json": "2d435a818e70e93df3ce1f624cacb768fe0aa73d93cb6d365d09e41d22f258ba",
+    "data/audit-runtimes/design78-recovery/world-cross-1-7-repair-verification.json": "cc95c08ea199682814d7d5c83e96b4df50d5c1790f45c5d88051527d7082f74e",
+    "data/audit-runtimes/design78-recovery/segment-9-reader-before.json": "58a7d8164c78d0cbbd82752a97e5b14f768d94102523b25be8e177575068efc7",
+    "data/audit-runtimes/design78-recovery/segment-9-reader-probe-failure.json": "e0a93b0372764d6db859ba0039e72aad817b34a00f207741b3cf0a1553679aca",
+    "data/audit-runtimes/design78-recovery/segment-9-reader-idle-before.json": "171ad63b8afb530c7f10dc1970f62bd2a9137cc494baa226de6026014597a58a",
+    "data/audit-runtimes/design78-recovery/segment-9-reader-deployment-verification.json": "b2b552edf9446bb248e454ce5796c8796d1ba06ef593d2cbdac3242f06dc7a45",
+    "data/audit-runtimes/design78-recovery/segment-9-concurrent-reader-verification.json": "bc5c3b9b6610bf2d574140469ec9f37ef371b3913f1f38b91965db1e5ea2a8cf",
+    "data/audit-runtimes/design78-recovery/collect-segment-9.mjs": "db4da6c70999fa92c33201345ac090f514cff5cc966f66f1f282621740f06f28",
+    "data/audit-runtimes/design78-recovery/replay-segment-9.mjs": "b745d71fdcea189e4a0b583e643b847ab8a367668e7e996364470cc7988dcc00",
+    "data/audit-runtimes/design78-recovery/check-segment-9-production.py": "914e0443640fd0bf55a6224fde596756707eba7c998c47f5686156451b78165c"
+  },
+  "limitations": [
+    "Incomplete quality review. Local pass and ready-to-run do not mean final acceptance.",
+    "Training arithmetic is conditional proposal validation, not adopted events or guaranteed medical outcomes.",
+    "One idle and one overlapping read scenario do not establish write concurrency or whole-page performance; earlier P1008 probe failure is preserved.",
+    "No new browser rendering check and no full repository test run."
+  ]
+}
