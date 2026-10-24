@@ -1,6 +1,7 @@
 import { orderedStoryEvents, resolveStoryEventOrder } from './event-order.ts';
 import { createHash, randomUUID } from 'node:crypto';
 import { isDeepStrictEqual } from 'node:util';
+import { explicitStoryTimeConflicts } from './story-time.ts';
 import type { ReadinessBlocker, RealizationStatus, StoryEvent, Work } from './core.ts';
 
 /**
@@ -112,7 +113,7 @@ export type PlanIssueCode =
   | 'OUTLINE_MISSING' | 'OUTLINE_INCOMPLETE' | 'OUTLINE_DUPLICATE' | 'OUTLINE_VOLUME_MISMATCH' | 'OUTLINE_OUT_OF_RANGE'
   | 'MILESTONE_RANGE' | 'DEPENDENCY_DANGLING' | 'DEPENDENCY_INVALID' | 'DEPENDENCY_CYCLE' | 'DEPENDENCY_ORDER'
   | 'REFERENCE_UNKNOWN' | 'BLOCKING_QUESTION' | 'DESIGN_OUTDATED' | 'DESIGN_MISMATCH' | 'DUPLICATE_ID' | 'COVENANT_MISMATCH'
-  | 'VOLUME_WITHOUT_CLIMAX' | 'MILESTONE_WITHOUT_SETUP' | 'REPEATED_CONFLICT' | 'EXECUTION_CHECK_INVALID';
+  | 'VOLUME_WITHOUT_CLIMAX' | 'MILESTONE_WITHOUT_SETUP' | 'REPEATED_CONFLICT' | 'EXECUTION_CHECK_INVALID' | 'STORY_TIME_MISMATCH';
 
 export interface PlanIssue {
   code: PlanIssueCode;
@@ -217,8 +218,16 @@ function compactRanges(numbers: number[]): string {
  * references, acyclic must-dependencies and blocking questions are errors.
  * Semantic hints are warnings; passing never means the plan is good writing.
  */
+function planTimeIssues(plan: BookPlan): PlanIssue[] {
+  return plan.chapters.flatMap(outline => explicitStoryTimeConflicts(outline.storyTime ?? '').map(message => ({
+    code: 'STORY_TIME_MISMATCH' as const, severity: 'error' as const,
+    chapterNumber: outline.chapterNumber, message: `第 ${outline.chapterNumber} 章：${message}`,
+  })));
+}
+
 export function reviewBookPlan(plan: BookPlan, refs: { characterIds: Set<string> } = { characterIds: new Set() }): PlanIssue[] {
   const issues: PlanIssue[] = [];
+  issues.push(...planTimeIssues(plan));
   const error = (issue: Omit<PlanIssue, 'severity'>) => issues.push({ ...issue, severity: 'error' });
   const warn = (issue: Omit<PlanIssue, 'severity'>) => issues.push({ ...issue, severity: 'warning' });
   const target = plan.targetChapterCount;
@@ -437,6 +446,9 @@ export function reviewPlanRevision(work: Work, planId: string): PlanReview {
  */
 export function approvePlanRevision(work: Work, planId: string): PlanRevision {
   const plan = mustGetPlan(work, planId);
+  // Recheck even when a passing review predates this validation rule.
+  const timeIssues = planTimeIssues(plan.plan);
+  if (timeIssues.length) throw new PlanGateError(timeIssues.map(issue => issue.message).join('; '));
   const designIssues = planDesignIssues(work, plan.plan);
   if (designIssues.length) throw new PlanGateError(`plan design gate blocked: ${designIssues.map((issue) => issue.message).join('; ')}`);
   if (plan.status === 'approved') {
@@ -700,6 +712,8 @@ export function planBlockers(work: Work, chapterNumber: number): ReadinessBlocke
   const revision = activePlan(work);
   if (!revision) return [{ code: 'PLAN_NOT_APPROVED', message: 'no approved book plan', nextAction: '生成或编写全书计划，审核后批准' }];
   if (designOutdated(work, revision)) return [{ code: 'PLAN_OUTDATED', message: 'the approved plan was drafted against an older world pack or story bible', nextAction: '基于当前设计另存计划，审核后重新批准' }];
+  const timeIssues = planTimeIssues(revision.plan);
+  if (timeIssues.length) return [{ code: 'PLAN_OUTDATED', message: timeIssues.map(issue => issue.message).join('; '), nextAction: '统一章纲的时辰与钟点，另存计划并重新审核' }];
   const designIssues = planDesignIssues(work, revision.plan);
   if (designIssues.length) return [{ code: 'PLAN_OUTDATED', message: designIssues.map((issue) => issue.message).join('; '), nextAction: '统一分卷范围并解决设计阻塞后重新审核计划' }];
   if (chapterNumber > revision.plan.targetChapterCount) return [{ code: 'PLAN_OUTLINE_MISSING', message: `chapter ${chapterNumber} is beyond the planned ${revision.plan.targetChapterCount} chapters`, nextAction: '先修改全书目标章数或追加卷' }];

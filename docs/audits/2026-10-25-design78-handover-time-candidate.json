@@ -1,0 +1,631 @@
+{
+  "kind": "design78_handover_time_candidate",
+  "basePlanId": "plan_a5fff5fb0e5a4dcfb63912107924c2fa",
+  "baseInputHash": "28c13900f419ccc8a3faa5e8a3600348b6e119964681e21ef8f4f00919733d08",
+  "snapshotPath": "data/audit-runtimes/design78-recovery/segment-12-current-design-snapshot.json",
+  "snapshotSha256": "c438ac802bc8a32368f53ef4b6c35c18ec857f415f13b980bdaffd21af7e2b84",
+  "candidatePath": "data/design-candidates/design78-handover-time-draft.json",
+  "candidateSha256": "c9313aca12de0b55b45f4cf7d46ab0848723c4f1dc29606e1537861c3e325754",
+  "issue": "第26章以酉初对应19:00，与常用时辰及18:00抵达、19:00交班、07—19十二小时轮班的具体安排冲突。统一改为戌初，保留实际钟点和行动顺序。",
+  "patches": [
+    {
+      "path": [
+        "storyBible",
+        "relationships",
+        2,
+        "stages",
+        8,
+        "cause"
+      ],
+      "before": "188午正顾将墨面交乔，酉初邵接夜班。",
+      "after": "188午正顾将墨面交乔，戌初邵接夜班。",
+      "replacements": 1
+    },
+    {
+      "path": [
+        "storyBible",
+        "relationships",
+        9,
+        "stages",
+        3,
+        "cause"
+      ],
+      "before": "顾午正回营交乔看押才就医；酉初褚接杜入口、邵接乔墨岗。",
+      "after": "顾午正回营交乔看押才就医；戌初褚接杜入口、邵接乔墨岗。",
+      "replacements": 1
+    },
+    {
+      "path": [
+        "storyBible",
+        "relationships",
+        14,
+        "stages",
+        0,
+        "cause"
+      ],
+      "before": "180日核定未来换班牌：褚拟186出发、188白昼补眠、暮抵外营后接酉初夜岗；实际抵达交班须26章发生。",
+      "after": "180日核定未来换班牌：褚拟186出发、188白昼补眠、暮抵外营后接戌初夜岗；实际抵达交班须26章发生。",
+      "replacements": 1
+    },
+    {
+      "path": [
+        "storyBible",
+        "relationships",
+        15,
+        "stages",
+        0,
+        "cause"
+      ],
+      "before": "188午正乔接顾，188酉初睡过白昼的邵接乔，189辰初休足的乔接回。",
+      "after": "188午正乔接顾，188戌初睡过白昼的邵接乔，189辰初休足的乔接回。",
+      "replacements": 1
+    },
+    {
+      "path": [
+        "storyBible",
+        "chapterPlans",
+        25,
+        "purpose"
+      ],
+      "before": "第188日10:45，顾带伤近身看押墨，苏与能行动的获救采集者轮替抬林的担架、推载伤护卫和包裹死者的原运人小车，绕开落料侧廊沿已核四里主支洞撤回；伤者队伍用75分钟，到12:00抵外营，由已休足的乔当面接墨，杜仍守入口。顾交押后先让白榆止血、固定肩伤，夜间休息，次日才参加核验。乔从午正守到酉初，杜从辰初守到酉初。褚、邵按预排在途中白昼补眠后暮抵，酉初分别当面接入口和墨岗，夜班到189日辰初，再由休足的杜、乔接两处日班；顾不充作夜间后备。189日众人按各自亲见范围登记获救者，核对样箱和四支各三滴的原封管，与182日采封原联、实际采封人的亲历及入口对照页逐项相合，先确认灵眼原液来源与本期个人可分额归属。白榆再独立验毒验煞，九滴洁净、三滴污染；联名授权的入口配额台核同批诊察与申请，林主动将原三剂申请减为两剂，让告急者的一剂先完成签领；配额台批准余两剂给林封存，顾、苏放弃本批分配申请。林不占污染管或未来配额，不能由救援功劳自行分药。墨只承认本次营地与货物，林腿伤仍不能追击。",
+      "after": "第188日10:45，顾带伤近身看押墨，苏与能行动的获救采集者轮替抬林的担架、推载伤护卫和包裹死者的原运人小车，绕开落料侧廊沿已核四里主支洞撤回；伤者队伍用75分钟，到12:00抵外营，由已休足的乔当面接墨，杜仍守入口。顾交押后先让白榆止血、固定肩伤，夜间休息，次日才参加核验。乔从午正守到戌初，杜从辰初守到戌初。褚、邵按预排在途中白昼补眠后暮抵，戌初分别当面接入口和墨岗，夜班到189日辰初，再由休足的杜、乔接两处日班；顾不充作夜间后备。189日众人按各自亲见范围登记获救者，核对样箱和四支各三滴的原封管，与182日采封原联、实际采封人的亲历及入口对照页逐项相合，先确认灵眼原液来源与本期个人可分额归属。白榆再独立验毒验煞，九滴洁净、三滴污染；联名授权的入口配额台核同批诊察与申请，林主动将原三剂申请减为两剂，让告急者的一剂先完成签领；配额台批准余两剂给林封存，顾、苏放弃本批分配申请。林不占污染管或未来配额，不能由救援功劳自行分药。墨只承认本次营地与货物，林腿伤仍不能追击。",
+      "replacements": 3
+    },
+    {
+      "path": [
+        "storyBible",
+        "chapterPlans",
+        25,
+        "endHook"
+      ],
+      "before": "第189日，墨已于188日午正由顾交乔、酉初由乔交邵，夜班未空置；杜/褚守入口、乔/邵看押，07–19日班与19–次日07夜班各12小时，顾休养不占班额。九滴洁净泉液已按原批个人可分额正式登记三滴给告急者、六滴由林封存；污染管三滴单独登记扣原批损失，不补额；林只登记领药、既用有效剂数仍零，未提前增加寿储；幕后网络仍未揭开。",
+      "after": "第189日，墨已于188日午正由顾交乔、戌初由乔交邵，夜班未空置；杜/褚守入口、乔/邵看押，07–19日班与19–次日07夜班各12小时，顾休养不占班额。九滴洁净泉液已按原批个人可分额正式登记三滴给告急者、六滴由林封存；污染管三滴单独登记扣原批损失，不补额；林只登记领药、既用有效剂数仍零，未提前增加寿储；幕后网络仍未揭开。",
+      "replacements": 1
+    },
+    {
+      "path": [
+        "storyBible",
+        "chapterPlans",
+        25,
+        "requiredEvents",
+        1
+      ],
+      "before": "乔午正至酉初看墨，杜辰初至酉初守入口。褚邵按180日所核行程先在山路歇脚棚10–16时睡6小时、16–18时走末段，暮抵外营后饮食核牌；19时褚接杜的入口岗、邵接乔的墨岗，二人守至189日07时，杜乔连续休息12小时后回来。顾整夜不当值。",
+      "after": "乔午正至戌初看墨，杜辰初至戌初守入口。褚邵按180日所核行程先在山路歇脚棚10–16时睡6小时、16–18时走末段，暮抵外营后饮食核牌；19时褚接杜的入口岗、邵接乔的墨岗，二人守至189日07时，杜乔连续休息12小时后回来。顾整夜不当值。",
+      "replacements": 2
+    },
+    {
+      "path": [
+        "plan",
+        "milestones",
+        1,
+        "setup",
+        5
+      ],
+      "before": "第15章明确太清本批护送值守及后半期褚衡、邵闻换班：186出发、188暮到外营；代价是外山一条晚巡缩减和巡检延期。全员退出本批并销班后才能撤接待桌，不能遗留本批成员。 188日白昼补眠后酉初接夜岗，具体行程180日核对。",
+      "after": "第15章明确太清本批护送值守及后半期褚衡、邵闻换班：186出发、188暮到外营；代价是外山一条晚巡缩减和巡检延期。全员退出本批并销班后才能撤接待桌，不能遗留本批成员。 188日白昼补眠后戌初接夜岗，具体行程180日核对。",
+      "replacements": 1
+    },
+    {
+      "path": [
+        "plan",
+        "milestones",
+        4,
+        "setup",
+        8
+      ],
+      "before": "188日10:45沿已核四里主支洞撤离，苏与能行获救者轮替抬林担架、推载伤护卫和死者的原运人小车；顾近身看墨不兼抬车。伤者队伍行75分钟，于12:00向乔面交后顾即就医，非急迫核验留到次日。褚、邵已按15/18章预定表于188白昼补眠后暮到营，酉初实际接两处夜班：杜褚日夜轮入口、乔邵日夜轮看押，各值12小时休12小时，顾伤重不计入值班。两人未参与25章战斗，不成为迟来的斩敌帮手。",
+      "after": "188日10:45沿已核四里主支洞撤离，苏与能行获救者轮替抬林担架、推载伤护卫和死者的原运人小车；顾近身看墨不兼抬车。伤者队伍行75分钟，于12:00向乔面交后顾即就医，非急迫核验留到次日。褚、邵已按15/18章预定表于188白昼补眠后暮到营，戌初实际接两处夜班：杜褚日夜轮入口、乔邵日夜轮看押，各值12小时休12小时，顾伤重不计入值班。两人未参与25章战斗，不成为迟来的斩敌帮手。",
+      "replacements": 1
+    },
+    {
+      "path": [
+        "plan",
+        "chapters",
+        25,
+        "summary"
+      ],
+      "before": "第188日10:45，顾带伤近身看押墨，苏与能行动的获救采集者轮替抬林的担架、推载伤护卫和包裹死者的原运人小车，绕开落料侧廊沿已核四里主支洞撤回；伤者队伍用75分钟，到12:00抵外营，由已休足的乔当面接墨，杜仍守入口。顾交押后先让白榆止血、固定肩伤，夜间休息，次日才参加核验。乔从午正守到酉初，杜从辰初守到酉初。褚、邵按预排在途中白昼补眠后暮抵，酉初分别当面接入口和墨岗，夜班到189日辰初，再由休足的杜、乔接两处日班；顾不充作夜间后备。189日众人按各自亲见范围登记获救者，核对样箱和四支各三滴的原封管，与182日采封原联、实际采封人的亲历及入口对照页逐项相合，先确认灵眼原液来源与本期个人可分额归属。白榆再独立验毒验煞，九滴洁净、三滴污染；联名授权的入口配额台核同批诊察与申请，林主动将原三剂申请减为两剂，让告急者的一剂先完成签领；配额台批准余两剂给林封存，顾、苏放弃本批分配申请。林不占污染管或未来配额，不能由救援功劳自行分药。墨只承认本次营地与货物，林腿伤仍不能追击。",
+      "after": "第188日10:45，顾带伤近身看押墨，苏与能行动的获救采集者轮替抬林的担架、推载伤护卫和包裹死者的原运人小车，绕开落料侧廊沿已核四里主支洞撤回；伤者队伍用75分钟，到12:00抵外营，由已休足的乔当面接墨，杜仍守入口。顾交押后先让白榆止血、固定肩伤，夜间休息，次日才参加核验。乔从午正守到戌初，杜从辰初守到戌初。褚、邵按预排在途中白昼补眠后暮抵，戌初分别当面接入口和墨岗，夜班到189日辰初，再由休足的杜、乔接两处日班；顾不充作夜间后备。189日众人按各自亲见范围登记获救者，核对样箱和四支各三滴的原封管，与182日采封原联、实际采封人的亲历及入口对照页逐项相合，先确认灵眼原液来源与本期个人可分额归属。白榆再独立验毒验煞，九滴洁净、三滴污染；联名授权的入口配额台核同批诊察与申请，林主动将原三剂申请减为两剂，让告急者的一剂先完成签领；配额台批准余两剂给林封存，顾、苏放弃本批分配申请。林不占污染管或未来配额，不能由救援功劳自行分药。墨只承认本次营地与货物，林腿伤仍不能追击。",
+      "replacements": 3
+    },
+    {
+      "path": [
+        "plan",
+        "chapters",
+        25,
+        "endState"
+      ],
+      "before": "第189日，墨已于188日午正由顾交乔、酉初由乔交邵，夜班未空置；杜/褚守入口、乔/邵看押，07–19日班与19–次日07夜班各12小时，顾休养不占班额。九滴洁净泉液已按原批个人可分额正式登记三滴给告急者、六滴由林封存；污染管三滴单独登记扣原批损失，不补额；林只登记领药、既用有效剂数仍零，未提前增加寿储；幕后网络仍未揭开。",
+      "after": "第189日，墨已于188日午正由顾交乔、戌初由乔交邵，夜班未空置；杜/褚守入口、乔/邵看押，07–19日班与19–次日07夜班各12小时，顾休养不占班额。九滴洁净泉液已按原批个人可分额正式登记三滴给告急者、六滴由林封存；污染管三滴单独登记扣原批损失，不补额；林只登记领药、既用有效剂数仍零，未提前增加寿储；幕后网络仍未揭开。",
+      "replacements": 1
+    },
+    {
+      "path": [
+        "plan",
+        "chapters",
+        25,
+        "storyTime"
+      ],
+      "before": "第188日巳末10:45离营、午正12:00交押、酉初19:00两岗接夜班；第189日辰初07:00换日班、午后验收分配",
+      "after": "第188日巳末10:45离营、午正12:00交押、戌初19:00两岗接夜班；第189日辰初07:00换日班、午后验收分配",
+      "replacements": 1
+    },
+    {
+      "path": [
+        "plan",
+        "chapters",
+        25,
+        "scenes",
+        1
+      ],
+      "before": "乔午正至酉初看墨，杜辰初至酉初守入口。褚邵按180日所核行程先在山路歇脚棚10–16时睡6小时、16–18时走末段，暮抵外营后饮食核牌；19时褚接杜的入口岗、邵接乔的墨岗，二人守至189日07时，杜乔连续休息12小时后回来。顾整夜不当值。",
+      "after": "乔午正至戌初看墨，杜辰初至戌初守入口。褚邵按180日所核行程先在山路歇脚棚10–16时睡6小时、16–18时走末段，暮抵外营后饮食核牌；19时褚接杜的入口岗、邵接乔的墨岗，二人守至189日07时，杜乔连续休息12小时后回来。顾整夜不当值。",
+      "replacements": 2
+    }
+  ],
+  "fieldsChanged": 13,
+  "replacements": 19,
+  "beforeValidation": {
+    "valid": false,
+    "issues": [
+      {
+        "path": "plan",
+        "code": "STORY_TIME_MISMATCH",
+        "severity": "error",
+        "chapterNumber": 26,
+        "message": "第 26 章：“酉初19:00”的时辰与钟点不一致；按常用时辰换算，酉初应在 17:00 至 18:00 之前，请统一时间标注"
+      }
+    ],
+    "warnings": [
+      {
+        "path": "worldPack",
+        "message": "blocking unresolved questions remain"
+      },
+      {
+        "path": "storyBible",
+        "message": "blocking unresolved story questions remain"
+      }
+    ],
+    "blockers": [
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-power-opening",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-resource-definitions",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-travel-rules",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-tier-exceptions",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-resource-usage",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-first-volume-foundation",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-volume-timeline",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-artifact-continuity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-ending-cost",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-relationship-stages",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-knowledge-reveal-order",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-opening-growth",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-opening-quality",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-resource-growth-budget",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first-volume-blueprint",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-v1-outline-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-v23-macro",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-guard-return-chain",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-barge-inspection",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-second-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first50-narrative",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-message-arrivals",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-review-capacity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "baseline-content-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "opening-growth-repair",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "opening-quality-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "resource-growth-budget",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first-volume-blueprint",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "v1-outline-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "v23-macro",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "guard-return-chain",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "barge-inspection",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "second-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first50-narrative",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "message-arrivals",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "review-capacity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "convoy-custody-causality",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "north-coast-exit-permit",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "chapter25-claw-sequence",
+        "code": "BLOCKING_QUESTION"
+      }
+    ],
+    "formalAcceptance": false,
+    "productionWrites": false,
+    "limitation": "Checks API contracts and structural references only. Open blockers remain; this does not approve a plan, accept content quality, or certify an atomic save."
+  },
+  "afterValidation": {
+    "valid": true,
+    "issues": [],
+    "warnings": [
+      {
+        "path": "worldPack",
+        "message": "blocking unresolved questions remain"
+      },
+      {
+        "path": "storyBible",
+        "message": "blocking unresolved story questions remain"
+      }
+    ],
+    "blockers": [
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-power-opening",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-resource-definitions",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-travel-rules",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-tier-exceptions",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-resource-usage",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "worldPack.unresolvedQuestions",
+        "id": "audit-first-volume-foundation",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-volume-timeline",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-artifact-continuity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-ending-cost",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-relationship-stages",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-knowledge-reveal-order",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-opening-growth",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-opening-quality",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-resource-growth-budget",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first-volume-blueprint",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-v1-outline-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-v23-macro",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-guard-return-chain",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-barge-inspection",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-second-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-first50-narrative",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-message-arrivals",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "storyBible.unresolvedQuestions",
+        "id": "audit-review-capacity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "baseline-content-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "opening-growth-repair",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "opening-quality-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "resource-growth-budget",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first-volume-blueprint",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "v1-outline-review",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "v23-macro",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "guard-return-chain",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "barge-inspection",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "second-warehouse-fire",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "first50-narrative",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "message-arrivals",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "review-capacity",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "convoy-custody-causality",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "north-coast-exit-permit",
+        "code": "BLOCKING_QUESTION"
+      },
+      {
+        "path": "plan.openQuestions",
+        "id": "chapter25-claw-sequence",
+        "code": "BLOCKING_QUESTION"
+      }
+    ],
+    "formalAcceptance": false,
+    "productionWrites": false,
+    "limitation": "Checks API contracts and structural references only. Open blockers remain; this does not approve a plan, accept content quality, or certify an atomic save."
+  },
+  "unrelatedFieldsPreserved": true,
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "applied": false,
+  "formalAcceptance": false,
+  "limitation": "A prepared correction, not an applied design revision. Keep the current frozen review intact and combine with other findings before saving a new proposal. Structural validation does not certify overall story quality."
+}
