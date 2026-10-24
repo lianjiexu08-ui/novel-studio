@@ -1,70 +1,72 @@
-# 模型连接
+# 模型连接与创作流程
 
-服务端通过 OpenAI-compatible 接口调用规划和写作模型。密钥只放在服务端环境变量中，不写入作品数据、浏览器或 Git。
+服务端通过 OpenAI-compatible 接口调用规划、写作和独立事件抽取模型。推荐先打开“系统设置”：
+
+1. 新增渠道，填写接口地址和密钥。
+2. 测试连接，拉取模型列表，选择规划模型和写作模型；写作模型留空时使用规划模型。
+3. 保存渠道，确认“使用中”标记。保存非当前渠道不会自动切换，需点击“改用这条”。
+4. 按需要配置超时、独立抽取及备用渠道。希望验收始终使用同一连接时，关闭其他渠道的“作为备用”。
+
+渠道保存在本机服务端的 `data/model-settings.json`，该目录被 Git 忽略。配置查询只返回密钥是否存在和末四位提示，不返回完整密钥；编辑已有渠道时密钥留空表示保持原值。已保存的配置优先于环境变量。
+
+尚未保存渠道时，也可用环境变量启动。以下地址、密钥与模型名称需替换为实际值：
 
 ```sh
-export NOVEL_MODEL_ENDPOINT=https://api.autofish.club
-export NOVEL_MODEL_API_KEY=<your-api-key>
-export NOVEL_PLANNING_MODEL=gpt-5.6-sol
-# 首轮里程碑生成 100 章；扩展完整长篇时改为 450
-export NOVEL_PLANNING_CHAPTER_TARGET=100
+export NOVEL_MODEL_ENDPOINT='https://api.example.com'
+export NOVEL_MODEL_API_KEY='YOUR_API_KEY'
+export NOVEL_PLANNING_MODEL='YOUR_PLANNING_MODEL'
 # 可选；不设置时正文使用规划模型
-export NOVEL_WRITING_MODEL=gpt-5.6-sol
+export NOVEL_WRITING_MODEL='YOUR_WRITING_MODEL'
+export NOVEL_PLANNING_CHAPTER_TARGET=100
 # 可选；单位 USD
 export NOVEL_MODEL_BUDGET_USD=20
-# 可选；默认 60000 毫秒，长规划响应可提高到 120000 或 180000
-export NOVEL_MODEL_TIMEOUT_MS=120000
-# 默认对每章正文再做一次独立事件抽取；预算紧张时才关闭
+# 应用默认 180000 毫秒
+export NOVEL_MODEL_TIMEOUT_MS=180000
+# 默认开启：独立读取正文并核对事件声明
 export NOVEL_INDEPENDENT_EXTRACTION=true
-mkdir -p data
-DATABASE_URL="file:$(pwd)/data/novel-studio.db" npm run push -w novel-studio-persistence
 npm run dev:api
 ```
 
-`/v1` 会由适配器自动补齐。世界构建页的流程是：
+数据库初始化命令见 [README](../README.md)。接口地址末尾的 `/v1` 可写可不写。规划与正文请求要求结构化 JSON，并使用非流式请求；网关的超时控制按连续无输出时间计算。等待超时不等于服务端一定没有保存结果。
 
-1. 生成 World Pack；
-2. 查看规则、境界、功法、法宝、资源、大陆、势力和历史；
-3. 审核并锁定 World Pack；
-4. 生成 Story Bible；
-5. 查看人物关系、秘密、人物弧光、伏笔节点、分卷大纲和前 50 章逐章计划；
-6. 审核并锁定 Story Bible；
-7. 进入章节候选的生成、检查、采用流程。
+## 先设计和评审，再逐章创作
 
-长篇 Story Bible 在 50 章以上的目标下必须先产出 `chapterPlans`，完整覆盖第 1 至 50 章。每项计划包含本章目的、冲突、转折、章末钩子、人物/地点引用和必须发生的事件；当前章节写作请求会携带对应计划。正式创作建议在章节页逐章执行“生成候选 → 运行检查 → 采用”，连续生成只用于里程碑验收和可恢复存稿，不作为一次性产出整本书的替代。
+先完成创作约定，确定题材、读者、风格、核心约束和目标规模。随后构建世界包，核对境界、功法、法宝、资源、大陆、势力和历史的分级、条件、代价及相互关系，再建立 Story Bible 的人物目标、关系阶段、秘密、弧光、承诺和开放线。
 
-世界包和 Story Bible 的每次生成、审核、锁定都会保存设计快照，可通过 `GET /works/:workId/design/history` 查询；成稿同时记录采用时的世界包和 Story Bible revision。
+全书计划应确定总章数、分卷、主要转折和阶段收束，并准备前五十章的细纲。后段可先保留分卷与里程碑，在已有阶段质量确认后滚动细化。未来安排属于提案，不表示角色已经取得资源、掌握能力或知道秘密。
 
-章节页的“按蓝图连续生成”会以后台 run 执行，接口立即返回；进度从检查点轮询，失败会标为 `paused` 并保留错误原因。服务重启后使用同一个 runId 重试即可继续。
+世界构建页可以直接评审最新计划提案。百章及以上长篇必须完成世界、力量、人物、故事四项内容评审；大材料依次经过原文批次、跨批对照、必要补读和综合判断。每一步保存原文证据与结果，单批通过不等于整个领域通过。发现返修先改设计，修改后应针对新版本重新评审。
 
-模型输出必须是结构化 JSON。世界包和 Story Bible 会先经过合同校验、引用校验和锁定门禁；正文生成后会再调用一次抽取角色独立读取正文，事件声明、独立观察结果和世界引用必须全部匹配，否则不能采用。
+结构审核、锁定设计、批准计划与内容质量评审是不同步骤。提案评审不会自动批准或锁定；锁定世界包或 Story Bible 会推进版本，旧内容结论会过期，正式写作前仍须核对当前绑定版本的四项结论。不能用历史通过记录替代当前设计验收。
 
-启用真实模型配置时，章节长度检查要求正文达到创作约定单章目标的至少 75%，避免用短摘要填满长篇章节数；冻结书稿会继续显示实际字数与目标字数的覆盖率。
+设计与计划满足门禁后，在章节页逐章执行“生成候选 → 运行检查 → 采用”。正文必须实际呈现关键动作、代价、角色知情来源和结果，不能仅在事件声明中宣称完成。检查失败或设计未通过时不能采纳；已采纳事件才进入故事事实。内容评审不代替逐章正文质量检查。
 
-真实模型调用有 60 秒超时保护。一次调用超时只会让候选生成失败，不会写入章节事实；重新生成时使用新的 runId。
+世界包和 Story Bible 的生成、审核、锁定会保存历史快照，可通过 `GET /works/:workId/design/history` 查询。冻结的 ManuscriptRevision 保留具体设计及章节版本；历史书稿不能证明新版设计已经写成或验收。
 
-部分 OpenAI-compatible 中转服务对 `stream: true` 会保持连接很久，甚至在正文已经生成后仍不结束。生产规划、写作和独立抽取请求使用有界的 JSON 响应，网关仍保留流式适配能力用于其他调用方和测试。
+## 失败与恢复
 
-连接配置完成并启动 API 后，可以用验收脚本跑通首个真实模型里程碑：
+设计评审的进度和失败响应会持久化。恢复前检查原 run 和步骤状态：已经保存的结果继续使用，尚在运行的任务等待，明确失败的步骤先检查原因。不要仅因浏览器或客户端超时就重复提交付费请求。
+
+连续生成的检查点、错误和控制操作可在“任务中心”查看。暂停在步骤边界生效；失败或服务重启后，在问题解决且门禁满足时使用同一个作品 ID 和 runId 恢复。取消后的运行不能继续。章节候选、检查结果和采纳状态要分别核对，不能把候选生成成功视为正式正文。
+
+## 真实模型里程碑
+
+批量入口默认关闭，日常创作按章节推进。里程碑脚本仅用于已具备相应设计和计划的验收作品；先完成并锁定设计、批准计划，通过当前四项内容评审，再显式以 `NOVEL_ENABLE_BATCH_RUNS=true` 启动 API：
 
 ```sh
-npm run dev:api
-# 另开终端
-node scripts/run-model-milestone.mjs
+NOVEL_ENABLE_BATCH_RUNS=true npm run dev:api
+# 另开终端，指向已经准备好的验收作品
+NOVEL_MILESTONE_WORK_ID='WORK_ID' npm run model:milestone
 ```
 
-脚本会创建一个验收作品，等待 100 章完成，冻结 ManuscriptRevision，并把导出 JSON 写入被 Git 忽略的 `data/` 目录。输出会同时显示实际字数、目标字数和收束覆盖率；若中途暂停，检查日志里的章节号和错误原因后，可以复用同一个作品和 runId 继续。脚本支持 `NOVEL_MILESTONE_WORK_ID`、`NOVEL_MILESTONE_RUN_ID`，扩展阶段另设 `NOVEL_MILESTONE_EXPANSION_RUN_ID`：
+脚本尝试运行到第 100 章，完成后请求冻结并导出，门禁不满足时失败退出。导出结果包括实际字数、目标字数和收束覆盖率，写入被 Git 忽略的 `data/` 目录。未提供作品 ID 时脚本会创建作品，但不会替它自动生成、评审、锁定或批准设计，因此新空作品仍会被门禁阻止。
+
+已暂停的验收运行可在核对原因后使用原 ID：
 
 ```sh
-NOVEL_MILESTONE_WORK_ID=<已有作品 ID> \
-NOVEL_MILESTONE_RUN_ID=<原 100 章 runId> \
+NOVEL_MILESTONE_WORK_ID='WORK_ID' \
+NOVEL_MILESTONE_RUN_ID='RUN_ID' \
 npm run model:milestone
 ```
 
-需要按验收顺序自动继续到完整长篇时，设置 `NOVEL_MILESTONE_EXPAND=true`。脚本会先导出 100 章版本，再生成 450 章蓝图、从第 101 章继续，最后导出 450 章版本：
-
-```sh
-NOVEL_MILESTONE_EXPAND=true npm run model:milestone
-```
-
-100 章验收通过后，作品的“世界构建与全书蓝图”页可以执行“扩展并启动450章”。系统会重新生成并锁定严格 450 章的 Story Bible，保留已经采用的前100章，从第101章继续；100章版本仍作为历史 ManuscriptRevision 保留。
+`NOVEL_MILESTONE_EXPAND=true` 只会在百章步骤后尝试调用 450 章入口，不会自动扩写或批准蓝图。该入口要求另行准备、锁定、批准并通过当前内容评审的 450 章设计和计划；不满足时拒绝启动且不改变设计。扩展运行可通过 `NOVEL_MILESTONE_EXPANSION_RUN_ID` 指定原 runId。百章历史稿继续保留，最终百万字目标仍须由完整新版正文、收束检查及冻结导出证明。
