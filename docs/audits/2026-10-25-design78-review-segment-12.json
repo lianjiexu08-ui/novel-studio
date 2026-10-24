@@ -1,0 +1,870 @@
+{
+  "kind": "design78_review_segment_12",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "planId": "plan_a5fff5fb0e5a4dcfb63912107924c2fa",
+  "inputHash": "28c13900f419ccc8a3faa5e8a3600348b6e119964681e21ef8f4f00919733d08",
+  "previousReceiptSha256": "d33ecf9bec06080ae3c235414227f922d8f3aa1d41d88427c6bdfc79f634aaf4",
+  "previousArtifactsPreserved": {
+    "receipts": 10,
+    "boundArtifactReferences": 146
+  },
+  "formalAcceptance": false,
+  "contentReviewsReady": false,
+  "session": {
+    "executedRunnerCommit": "512775c",
+    "apiSourceCommit": "9b03fe2",
+    "journal": "data/audit-runtimes/design78-recovery/continuation-1792864000082-86329.jsonl",
+    "startedAt": "2026-10-24T17:46:40.082Z",
+    "completedAt": "2026-10-24T18:04:45.790Z",
+    "completedStages": 8,
+    "runnerSha256": "7830580c59bf8f4d835751e9c425f25793468ba6e41d45b791d095f303b8da6a",
+    "clientSha256": "e84f87609a97e7b0ec8067b784a4f2de5d426016e305fbff60d1993cc00662e7"
+  },
+  "progress": [
+    {
+      "area": "power",
+      "runId": "design_run_1050f783-7af7-4062-b5d2-bebd517cb730",
+      "status": "ready",
+      "completed": 19,
+      "total": 75,
+      "nextStage": "followup-cross-1-2/counters"
+    },
+    {
+      "area": "characters",
+      "runId": "design_run_2b6bc122-ddd6-4c1b-9166-303b1a6953de",
+      "status": "ready",
+      "completed": 19,
+      "total": 33,
+      "nextStage": "synthesis-3"
+    },
+    {
+      "area": "story",
+      "runId": "design_run_8bf5a361-cec3-4f5c-8fce-a1e65e2c8ac9",
+      "status": "ready",
+      "completed": 19,
+      "total": 51,
+      "nextStage": "followup-batch-2/growth"
+    },
+    {
+      "area": "world",
+      "runId": "design_run_0d086731-493f-4cb9-816a-398ff3ff1123",
+      "status": "ready",
+      "completed": 20,
+      "total": 55,
+      "nextStage": "cross-3-6"
+    }
+  ],
+  "batches": [
+    {
+      "file": "data/audit-runtimes/design78-recovery/power-followup-cross-1-2__tiers.json",
+      "sha256": "c9156168418e04bc580d1037807a2b6248e5d574873cb9d5faffa87b6bea1c7e",
+      "area": "power",
+      "stageId": "followup-cross-1-2/tiers",
+      "attempts": 1,
+      "savedModelResponses": 1,
+      "reportCharacters": 21023,
+      "reportCap": 90000,
+      "sourceAndCitationValidationPassed": true,
+      "summary": "已补读指定章纲与里程碑。主角从凝元三重到玄府的训练来源、七枚灵石（六有效一期失败）、逐段授课复诊、静置与双重复核，以及十元载支付均有明确安排；第25章的凝元施术亦未越过已训练的对象、范围、账户和伤后停术限制。本项提案在境界与使用门槛上成立。",
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "pass",
+          "explanation": "原问题所要求的玄府前置现已形成可执行闭环。规则明确：境界只给承载方向，实际施术须另有已掌握能力；玄府须凝元分流三段、至少六个有效十日周期及六枚灵石，并经静置、白榆与顾峤双重复核后才能支付十元载。第18章先将林辰安排为第120日支付3元载晋入凝元、至第180日实测凝元三重，并通过受教、失控停练、两丈导刃实测及器剑冷却限制落实凝元剑诀与御物训练；第25章仅以该已测剑诀切普通吊索，并将废料斗的八两空载插销作为另一次半成御物，真元账、视距、结构受力和腿伤后停术均已分列，未把凝元资格扩大为越级能力。第83章前的训练安排又明确：第316日先因伤停负荷，330日诊准、完成劳务后才合法借阅并由顾峤授课；331—397日完成六个有效周期，351日第三枚失败报废、共实耗七枚，复诊不通过即停训，六周期后还须398日静置及399—414日观察。第415日依次由白榆确认丹府和伤情、顾峤复核元罡承载，二者均通过才实际支付十元载；这与realm_03及tech_19的门槛一致。寿储也有可核来源：第25章条件账约3.537元载，后续两剂灵泉在第199、209日复诊后各入账5元载；至415日自然流逝后仍足以支付10元载，且里程碑仍将诊察与安全余量作为支付条件，而非由晋阶或诊断凭空增寿。因此，宏观第83章玄府初期及后段仅训练有限局部护罡的安排没有倒推已掌握高阶功法、旧法器承载元罡或免除实测。",
+          "revisionAdvice": "",
+          "resolves": [
+            "cross-1-2/tiers"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "data/audit-runtimes/design78-recovery/characters-synthesis-1.json",
+      "sha256": "728479b0d3ae88215c77d7106bf562f1d0abbf88bef85d8a1a562ee37d5e78ad",
+      "area": "characters",
+      "stageId": "synthesis-1",
+      "attempts": 1,
+      "savedModelResponses": 1,
+      "reportCharacters": 29017,
+      "reportCap": 90000,
+      "sourceAndCitationValidationPassed": true,
+      "summary": "综合本子树所含batch-1与batch-2报告：三项人物设计标准均有可核的提案内因果与边界。已由原文补读解决的batch-2关系材料不足不再作为当前缺料传播；本结论仅覆盖本次partial_reports子树，不替代其余批次、正文或整体计划验收。",
+      "checks": [
+        {
+          "criterion": "agency",
+          "verdict": "pass",
+          "explanation": "两份报告的证据能够支持人物并非仅为林辰服务：开篇梁九以家人生计限制证言并承担救援、器械债与追责，苏凌霜以自身中立性和俸给换取有限核查；林辰也因保人、保物或拒绝删改安全方案而失去追凶窗口、额外酬劳或承受伤势。港口至后段的安排继续给贺青梧、秦禾、吴伍、卢小满、赵玄极等人独立目标、拒绝空间和可见代价，且其选择会改变救援范围、资源边界或主线走向。提案明确这些是预定安排，并未将其误作已发生正文事实。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "relationships",
+          "verdict": "pass",
+          "explanation": "关系设计将初态、变化触发、代价与阶段边界分开处理。林辰—苏凌霜的有限庇护、分路通信和后续重聚均要求实体消息或面对面交换，且保留各自调查原则；林辰—贺青梧明确救工合作不等于免费船、无限垫款或船主可替雇工决定去处；林辰—陆沉舟也将救弟、受看护合作、拟定自述和免责严格区分。吴伍—卢小满则否定互相代答与获救后必须同行。batch-2原先因未提供关系档而作出的insufficient，已被经核验的补读明确解决，不能重复认定为当前缺料。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "knowledge",
+          "verdict": "pass",
+          "explanation": "知情设计将亲见、实体信件、寄送、签收、回执、当面报告与读者视角分别限定。林辰和苏凌霜在分路后须待信件实际送达；林辰由货号关联只能取得待核线索，不能据此推定赵玄极知情。赵玄极对港口、北境和押运信息的认知被拆为阅报、发令、收到签收联、面报、撤令及正式质询等不同节点，并限制每个节点能够证明的范围。父案材料也明确禁止由残片、局部副本或读者信息跳推全貌。已校验补读记录进一步确认sec_02与该消息链相容，故本子树内不存在角色提前知情或以读者信息替代证据的冲突。",
+          "revisionAdvice": ""
+        }
+      ]
+    },
+    {
+      "file": "data/audit-runtimes/design78-recovery/story-followup-batch-1__pacing.json",
+      "sha256": "8f3eb417a66041d55cb2de3c322b1970501865331d34163e055ff3e9823161af",
+      "area": "story",
+      "stageId": "followup-batch-1/pacing",
+      "attempts": 1,
+      "savedModelResponses": 1,
+      "reportCharacters": 36330,
+      "reportCap": 90000,
+      "sourceAndCitationValidationPassed": true,
+      "summary": "已补读第1—50章细纲：各段虽含诊察、核验与救援，但均以不同的选择、权限变化、代价或行动目标推进，未构成以重复核账或同构救援填充章节的设计性拖沓。",
+      "checks": [
+        {
+          "criterion": "pacing",
+          "verdict": "pass",
+          "explanation": "补读解决了原先“未附细纲”的判断缺口。第1—12章由矿难救人、保全证词、有限调查、演练揭险到数息救援与留置核查，危机从生存转为证据和责任；第13—18章并非重复训练记录，而是依次完成生计取舍、拒删逃路、拒售原件、资源/休息选择、越界停练后的合作边界重订，以及付寿晋阶和实测准入。第19—29章将古境探路、救秦、封路、传讯、同阶解囚、药液验配与两剂疗程分别连接为路线、救援、看押和南行的后果链。第34—42章的查箱从证人停班、侧门册、五工脱身失败、仓火救人、物证对质、责任结算，推进到撤工、正式见工与可撤船位；每次获得的信息均改变下一步权限或选择。第43—50章则把报警追船、切索救援、安置与拒绝转嫁责任、附棚内自主选择、陆到案和门前核实依次兑现；第50章让吴伍、卢小满自行回答去留，避免把此前救援重复写成主角单方面完成。少量账目被压入场景依据或阶段结果，未替代人物冲突场次。故该提案的前50章节奏可成立；这只解决本次pacing补读问题，不表示正文已实现或解除其他领域的既有审核状态。",
+          "revisionAdvice": "",
+          "resolves": [
+            "batch-1/pacing"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "data/audit-runtimes/design78-recovery/world-cross-3-4.json",
+      "sha256": "21dbed6f862787caba012a2babda23576802566a0c746daae5ba08bd19d1b14b",
+      "area": "world",
+      "stageId": "cross-3-4",
+      "attempts": 1,
+      "savedModelResponses": 1,
+      "reportCharacters": 19597,
+      "reportCap": 90000,
+      "sourceAndCitationValidationPassed": true,
+      "summary": "本批跨批材料显示三大陆路线、港口监管、救助与运输成本确实进入人物选择，且百章阶段的地域差异具有可持续承载作用；但第18—50章已存在细纲未随本批提供，且北境港口、商路及返程节点的地点原档未读，无法完成本批要求的逐次跨域移动与准入核验。",
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "insufficient",
+          "explanation": "已读宏观方案为跨海移动设置了实体航程、暖舱/护符、逐日放行、港口候查、具名担保、票款及失败停留分支；苍冥大陆原档也明确商业票不等于入境资格、候查不等于自由离港。第61—66章还将救出的七人限定为监管泊区候查人员，不让其随林贺离港，方向上相容。可是本批未提供第18—50章细纲，无法逐项核验已详细展开的第31—50章南渡、赤霄港内移动、航线与受限地点进入的实际动作；同时，天宝外港、极焱天港、葬骨外港、通天渡口、沧溟古港及无尽虚海商路的地点规则也未读，不能确认宏观所列验籍、航线和出入港权限与其原档一致。",
+          "revisionAdvice": "补读后核对每一次实际出港、靠港、候查、限程离境与返青玄入港：行动者、交通工具、地点准入、担保/验籍、实际供暖防护、费用及日期必须逐项相符；不应以宏观票款或候查安排代替未读细纲中的具体行动依据。",
+          "awaitingSources": [
+            "world/locations/loc_21",
+            "world/locations/loc_22",
+            "world/locations/loc_23",
+            "world/locations/loc_24",
+            "world/locations/loc_25",
+            "world/locations/loc_26",
+            "world/locations/loc_27",
+            "plan/chapters/18",
+            "plan/chapters/19",
+            "plan/chapters/20",
+            "plan/chapters/21",
+            "plan/chapters/22",
+            "plan/chapters/23",
+            "plan/chapters/24",
+            "plan/chapters/25",
+            "plan/chapters/26",
+            "plan/chapters/27",
+            "plan/chapters/28",
+            "plan/chapters/29",
+            "plan/chapters/30",
+            "plan/chapters/31",
+            "plan/chapters/32",
+            "plan/chapters/33",
+            "plan/chapters/34",
+            "plan/chapters/35",
+            "plan/chapters/36",
+            "plan/chapters/37",
+            "plan/chapters/38",
+            "plan/chapters/39",
+            "plan/chapters/40",
+            "plan/chapters/41",
+            "plan/chapters/42",
+            "plan/chapters/43",
+            "plan/chapters/44",
+            "plan/chapters/45",
+            "plan/chapters/46",
+            "plan/chapters/47",
+            "plan/chapters/48",
+            "plan/chapters/49",
+            "plan/chapters/50"
+          ]
+        },
+        {
+          "criterion": "history",
+          "verdict": "pass",
+          "explanation": "就本批可读安排而言，既有事件不会被简单改写为角色全知或即时政令：墨在收到实体失败回报后才改为部署下一期掳人；赵对港口与北境信息的认知严格随纸质报告、回令和回执分段生效。父案、界门与九鼎仍被保留为证据不足的长期问题，百章只确认守门参与、外山掩案及一条三地转运链，未将局部物证扩张为全案定罪。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "capacity",
+          "verdict": "pass",
+          "explanation": "本批可见容量并非单纯换地图：青玄的矿务、古境准入与有限寿源驱动成长取舍；赤霄的热候、防护、港口扣工、船损和短工安排改变救援后的生计选择；苍冥则以寒候、候查、担保、救助预算和受限查货把“北行救人”限制为制度化风险。三卷分别以求生争泉、港口追船/黑舱、返乡修行与截运承担不同冲突，且保留长期界门和九鼎线，不把百章阶段胜果伪作全书收束。",
+          "revisionAdvice": ""
+        }
+      ]
+    },
+    {
+      "file": "data/audit-runtimes/design78-recovery/power-followup-cross-1-2__costs.json",
+      "sha256": "c676ec0487f6454678b1125d68165bb59504e73d435b50ca6ff352552a507c13",
+      "area": "power",
+      "stageId": "followup-cross-1-2/costs",
+      "attempts": 1,
+      "savedModelResponses": 1,
+      "reportCharacters": 22909,
+      "reportCap": 90000,
+      "sourceAndCitationValidationPassed": true,
+      "summary": "已补读指定章节与里程碑：林辰寿储、真元、灵泉疗程及北航专项款均按独立账户安排，未见预支、重复记入或以结局取消核心代价的提案内冲突。",
+      "checks": [
+        {
+          "criterion": "costs",
+          "verdict": "pass",
+          "explanation": "原问题所缺的收支链现已可核。林辰以第19日诊察的7元载条件下界为起点，第120日实际付3元载凝元；两支灵泉均须三滴、十日疗程与复诊，分别只在第199、209日各入账5元载，且个人6滴库存归零。自然流逝持续扣除，至415日玄府付款前，既有链条为7−3＋10−396/365，足以支付10元载并仍留正余额；415日付款又被置于六有效周期、静置、白榆诊察和顾峤承载复核全部通过之后。疗伤、诊断、真元与顾峤的0.25元载均未被混作林辰寿储收入或支出。北航14000枚专项款的拨付权限、10000票款、3000封存返航款、780累计杂费与220结余亦有分账；北境扣工船方160与港务救济240明确不并入林贺航款。高阶寿源条目仍要求完整疗程、复诊、配额和运输，未把未来资源提前用于百章付款。百章结局明确不返还燃寿或取消既付代价。",
+          "revisionAdvice": "",
+          "resolves": [
+            "cross-1-2/costs"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "data/audit-runtimes/design78-recovery/characters-synthesis-2.json",
+      "sha256": "8dc9b422cdf06f78edec6ea9baf18c6e3cd91280b88b7533cb2029b59077c624",
+      "area": "characters",
+      "stageId": "synthesis-2",
+      "attempts": 1,
+      "savedModelResponses": 1,
+      "reportCharacters": 23916,
+      "reportCap": 90000,
+      "sourceAndCitationValidationPassed": true,
+      "summary": "本次为覆盖 batch-3、batch-4 的中间综合：两批报告的具体证据与结论相容，均支持第15—50章已展开提案中的人物主动性、关系边界与知情限制。该结论不延伸为51—100章、未合入批次、正文落实或全书人物领域的验收；已由原文复核解决的历史等待项不重复传播。",
+      "checks": [
+        {
+          "criterion": "agency",
+          "verdict": "pass",
+          "explanation": "两批材料一致把关键推进建立在多方人物可拒绝、会付代价的选择上，而非主角单向调度。前段中，林辰拒绝以家传原件换资助、救秦禾而放弃样箱窗口，并接受苏凌霜留宗、分路的决定；秦禾的带路与送信均有明确限度。港口段中，贺青梧优先雇工安全与船务自主，拒绝以改扣工陈述换复业；常钧以停班作证，唐、许、吴伍、卢小满分别保有离开、等待或拒绝被代答的权利。林辰在救援与调查中转为让当事人与巡员完成有权限的处置，并承担线索遗失、船损、关系不能私下修复等后果。前后报告未将获救或协助写成免罪、归附或无偿回报，结论相容。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "relationships",
+          "verdict": "pass",
+          "explanation": "已覆盖章节中的关系变化均具有初始边界、触发选择、代价和生效范围。林辰与苏凌霜先因林试图借苏的身份替未验遗物增信而重谈担保，改为只提交可质询重绘图；其后围绕救秦禾和分路继续划定副本、递信与留守责任。秦禾获救后只接受补偿并承诺有限带路、送信，不承诺陪战。港口段则持续保留林辰—贺青梧的有限协作、林辰—常钧不得以拒签换私人协助、唐许吴卢之间的分歧，以及陆沉舟只在当场停止协助扣人、仍受看护的边界。第50章的脱控不被当作雇工回船承诺，也不构成陆沉舟免责；与计划概览将51—53章另列为后续生计、改签自述及独立核验的安排一致。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "knowledge",
+          "verdict": "pass",
+          "explanation": "两批均以亲见、实体送达、当面核验或巡员听答限制人物认知，并明确区分读者独立视角。古境段中，林苏须待秦禾提供名牌见闻才核定墨幽屠身份；秦实体送图、顾实体抵达及林苏亲见手势均不能跳过。港口段中，林辰仅以货单确认程砚的运输关联，不据此定罪；仓火的倾灯原因、携页者身份和纸页内容保持未知；吴卢在无牌附棚的谈话只供读者知悉，林贺仍须在第50章由巡员当面听取二人的回答。陆沉舟承认的范围也被限定为本次点交押送，改签内容仍待独立核实。报告之间对这些知情时点和禁止倒填没有冲突。",
+          "revisionAdvice": ""
+        }
+      ]
+    },
+    {
+      "file": "data/audit-runtimes/design78-recovery/story-followup-batch-1__growth.json",
+      "sha256": "56a1162b90c33ceb4350fb43b008a5c3ffafb1c098710cd3fbd7171343b68fd6",
+      "area": "story",
+      "stageId": "followup-batch-1/growth",
+      "attempts": 1,
+      "savedModelResponses": 2,
+      "reportCharacters": 26196,
+      "reportCap": 90000,
+      "sourceAndCitationValidationPassed": true,
+      "summary": "本批提案为林辰建立了可观察且受约束的近期成长链：他先在伤势、短寿和生计压力下作出取舍，以凝元的受训与受限实战获得阶段回报；返乡后又主动延后追案，在复诊、劳务、受限授课、失败停训与六个有效周期之后，才具备支付玄府代价的资格。成长回报不以寿储、境界名称或持物自动兑换能力。该通过仅说明所审成长提案的因果和门槛可成立；仍须按既定计划逐章实现，且不等同正文或全书验收。",
+      "checks": [
+        {
+          "criterion": "growth",
+          "verdict": "pass",
+          "explanation": "重新核对后，原等待项所要求的第13—29章细纲、返乡里程碑、丹府训练与玄府晋阶材料共同构成完整成长路径。林辰先在重伤与短寿诊断后主动放弃内门选拔，以口述劳务维持生计；又拒绝删逃生岔路换酬劳、拒绝以家传原件换资助。其后经过温和引气、停练复查与三经实测，在确认安全余量后支付3元载晋入凝元；御物和导刃均有授业、失败、赔偿、实测、消耗及范围限制，阶段回报是受限的两丈导刃、轻物御动和救援参与，而非越境能力。两剂灵泉均经完整疗程和复诊才入账，且不治疗腿伤。返乡段进一步明确他不以抵家即追父案，而先协助保障旧工友住处；肩伤好转后才进入后续训练。丹府阶段有受限借阅、劳务对价、三段讲授、六个有效十日周期、一次回流失败与耗石、静置及双重复核；只有条件均通过才支付10元载晋玄府。玄府后的回报也仅限经训练实测的局部护罡，不自动取得元罡剑诀或神兵使用资格。该路径符合作者明示的长篇玄幻成长与世界探索定位，并未以未说明的慢热偏好替代当前回报。",
+          "revisionAdvice": "",
+          "resolves": [
+            "batch-1/growth"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "data/audit-runtimes/design78-recovery/world-cross-3-5.json",
+      "sha256": "bc7cbe4a5d8cad62478f79298e5e8866ef1d895928b3179ac7c48589b635adbf",
+      "area": "world",
+      "stageId": "cross-3-5",
+      "attempts": 1,
+      "savedModelResponses": 2,
+      "reportCharacters": 13718,
+      "reportCap": 90000,
+      "sourceAndCitationValidationPassed": true,
+      "summary": "本批世界设计的地域差异、跨区制度与分卷功能已形成可执行骨架；但首段青玄至赤霄的实际海程、目的港核验及入港准入所依赖的地点规则和第32章细纲未读，地理项不能完成局部验收。",
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "insufficient",
+          "explanation": "已读材料明确大陆间日常往来必须走实体虚海航程、不得借界门；赤霄外港又要求避火符或法门及当日封航复核。第31章拟以验籍单、借用避火衣符和214日暮出航承接这条约束，宏观里程碑也规定第214日至216日的两昼夜实体海程及入港后续责任，方向没有已见冲突。但第216—217日实际海程、抵达天宝外港后的动作仍在未读第32章；云梦港、跨海商路、天宝外港的原始地点准入规则亦未随本批提供，无法核验该行动是否真正满足交通、供能、港口权限与入境条件，不能以第31章预告或宏观节点替代。",
+          "revisionAdvice": "补读并对照第32章与三处地点原档：确认飞舟实体航程、正常或异常天气分支、赤霄靠港时的当日旗号与防护余量、验籍或待验区手续，以及六箱实际到港差异如何进入后续失箱责任链。",
+          "awaitingSources": [
+            "plan/chapters/32",
+            "world/locations/loc_21",
+            "world/locations/loc_22",
+            "world/locations/loc_23"
+          ]
+        },
+        {
+          "criterion": "history",
+          "verdict": "pass",
+          "explanation": "本批可核的历史与现状因果能够支撑分卷：首卷将矿务、古境掳人、有限泉液和收货号串成可追查而非全知的线索；第二卷把失箱、港口扣工、首仓火因未明和程记责任分开处理；北境段又把既有跨陆线索限定为仓区查货、救援与封存，不将局部证物升级为九鼎全案。各方行动也有可见利益与代价：程记拒收或反诉，贺为救工承担船损与停牌，港务与巡界使只在权限内接案、担保和候查安置。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "capacity",
+          "verdict": "pass",
+          "explanation": "地域并非仅换地图：青玄古境以准入、采封和宗门值守限制行动；赤霄以火候、港务验货、船损和扣工网络改变追查方式；苍冥以寒候、监管泊区、具名担保、暖房与候查责任限制救援后的去向。三卷的核心选择也随之变化，从有限争泉、港口救人与跨海查货，到返乡训练和押运截停；每段保留资源、伤情、权限或航程代价，足以承载本批可见的阶段递进。此结论只针对本批已读规划，不等同全书世界容量或后续正文验收。",
+          "revisionAdvice": ""
+        }
+      ]
+    }
+  ],
+  "newExplicitlyResolvedChecks": [
+    {
+      "area": "power",
+      "checkId": "cross-1-2/tiers",
+      "resolvedByStageId": "followup-cross-1-2/tiers",
+      "firstResolvedByStageId": "followup-cross-1-2/tiers",
+      "newThisStage": true
+    },
+    {
+      "area": "power",
+      "checkId": "cross-1-2/costs",
+      "resolvedByStageId": "followup-cross-1-2/costs",
+      "firstResolvedByStageId": "followup-cross-1-2/costs",
+      "newThisStage": true
+    },
+    {
+      "area": "story",
+      "checkId": "batch-1/pacing",
+      "resolvedByStageId": "followup-batch-1/pacing",
+      "firstResolvedByStageId": "followup-batch-1/pacing",
+      "newThisStage": true
+    },
+    {
+      "area": "story",
+      "checkId": "batch-1/growth",
+      "resolvedByStageId": "followup-batch-1/growth",
+      "firstResolvedByStageId": "followup-batch-1/growth",
+      "newThisStage": true
+    }
+  ],
+  "validation": {
+    "stages": 8,
+    "checks": 16,
+    "verdicts": {
+      "pass": 14,
+      "insufficient": 2
+    },
+    "rawResponsesReplayed": 10,
+    "allSavedResultsMatchReplay": true,
+    "followupCoverage": [
+      {
+        "area": "power",
+        "stageId": "followup-cross-1-2/tiers",
+        "requiredSources": 6,
+        "priorContextUnits": 62,
+        "complete": true
+      },
+      {
+        "area": "story",
+        "stageId": "followup-batch-1/pacing",
+        "requiredSources": 50,
+        "priorContextUnits": 108,
+        "complete": true
+      },
+      {
+        "area": "power",
+        "stageId": "followup-cross-1-2/costs",
+        "requiredSources": 14,
+        "priorContextUnits": 71,
+        "complete": true
+      },
+      {
+        "area": "story",
+        "stageId": "followup-batch-1/growth",
+        "requiredSources": 20,
+        "priorContextUnits": 141,
+        "complete": true
+      }
+    ],
+    "firstInputs": {
+      "characterSynthesisInputUnchanged": true,
+      "synthesisCoverage": {
+        "scope": "partial_reports",
+        "coveredStageIds": [
+          "batch-1",
+          "batch-2"
+        ],
+        "totalStages": 17,
+        "requiredFindings": []
+      },
+      "resolvedDeferrals": [
+        {
+          "checkId": "batch-2/relationships",
+          "resolvedByStageId": "cross-1-2"
+        },
+        {
+          "checkId": "cross-1-4/knowledge",
+          "resolvedByStageId": "followup-cross-1-4/knowledge"
+        },
+        {
+          "checkId": "cross-3-5/relationships",
+          "resolvedByStageId": "followup-cross-3-5/relationships"
+        }
+      ],
+      "pacingInputUnchanged": true,
+      "modelCalls": 0,
+      "productionWrites": 0,
+      "formalAcceptance": false
+    },
+    "growthRepair": {
+      "kind": "design78_segment12_growth_citation_repair",
+      "problem": "解决待补读项必须引用原问题、原批材料及每个新增来源：batch-1/growth；缺少：新增来源 plan/milestones/ms_v3_return。按本次来源目录选择真实支持片段，不得自动补引文或只删除resolves来掩盖未核验问题。",
+      "verdictUnchanged": true,
+      "resolutionClaimsUnchanged": true,
+      "priorEvidencePreserved": 34,
+      "addedEvidence": {
+        "fragmentId": "e290",
+        "originalSourceId": "plan/milestones/ms_v3_return",
+        "sourceId": "review-unit/312",
+        "quote": "{\n  \"id\": \"ms_v3_return\",\n  \"title\": \"带证返乡与先救谁\",\n  \"kind\": \"turn\",\n  \"startChapter\": 67,\n  \"endChapter\": 72,\n  \"setup\": [\n    \"第300日，夜的原外港查货担保仍只到当日，不自动延长。林贺当面申请回青玄交证；夜依loc_02具名担保规则，在葬骨外港原港务和本轮当值巡队见证下另签限程离境担保，列林、贺实名、原名册及货证封袋，指定会合/交接地为通天渡口受监管候船区。许可仅301日晨至304日夜有效，沿已勘验的葬骨外港—海岸公共驿路—通天渡口路线坐暖车，夜宿所列原驿站；不准离道查货、入极冰国、妖域、神宫或界渊。原巡队在301日出港时复核名单并交当班驿车的纸质限程单，沿岸既有岗哨在车辆实际到站时逐站验籍、签注到离时点，终站港务于303日实际到达后验原单接收候船监管，304日只在原单、名册和船票相符后办理登船离境。夜仍承担这份限程担保的越界责任，原巡队承担出港核验和未按期交回签注单时的追查责任；没有远程瞬时验籍或只有商业票就能通行。\",\n"
+      },
+      "summaryChanged": true,
+      "explanationChanged": true,
+      "repairMode": "citation_edits",
+      "modelCallsInVerification": 0,
+      "formalAcceptance": false,
+      "limitation": "One live repair retained a substantive design summary and added the missing return-home evidence. This is not a general evaluation of prompting quality."
+    },
+    "worldFieldRepair": {
+      "stageId": "world/cross-3-5",
+      "changes": [
+        [
+          "/checks/0/revisionAdvice",
+          "补读并对照第32章与三处地点原档：确认飞舟实体航程、正常/异常天气分支、赤霄靠港时的当日旗号与防护余量、验籍/待验区手续，以及六箱实际到港差异如何进入后续失箱责任链。",
+          "补读并对照第32章与三处地点原档：确认飞舟实体航程、正常或异常天气分支、赤霄靠港时的当日旗号与防护余量、验籍或待验区手续，以及六箱实际到港差异如何进入后续失箱责任链。"
+        ],
+        [
+          "/checks/0/explanation",
+          "已读材料明确大陆间日常往来必须走实体虚海航程、不得借界门；赤霄外港又要求避火符/法门及当日封航复核。第31章拟以验籍单、借用避火衣符和214日暮出航承接这条约束，且明示目的港仍须核旗号、人员、实到箱数与借符效力，设计方向没有已见冲突。但第216—217日实际海程、抵达天宝外港后的动作在未读第32章；云梦港、跨海商路、天宝外港的原始地点准入规则亦未随本批提供，无法核验该行动是否真正满足交通、供能、港口权限与入境条件，不能以第31章的预告或宏观节点替代。",
+          "已读材料明确大陆间日常往来必须走实体虚海航程、不得借界门；赤霄外港又要求避火符或法门及当日封航复核。第31章拟以验籍单、借用避火衣符和214日暮出航承接这条约束，宏观里程碑也规定第214日至216日的两昼夜实体海程及入港后续责任，方向没有已见冲突。但第216—217日实际海程、抵达天宝外港后的动作仍在未读第32章；云梦港、跨海商路、天宝外港的原始地点准入规则亦未随本批提供，无法核验该行动是否真正满足交通、供能、港口权限与入境条件，不能以第31章预告或宏观节点替代。"
+        ],
+        [
+          "/checks/0/insufficiencyReason",
+          "unlocatable_sources",
+          null
+        ],
+        [
+          "/checks/1/explanation",
+          "本批可核的历史与现状因果能够支撑分卷：首卷将矿务、古境掳人、有限泉液和收货号串成可追查而非全知的线索；第二卷把失箱、港口扣工、首仓火因未明和程记责任分开处理；北境段又把既有跨陆线索限定为仓区查货、救援与封存，不将局部证物升级为九鼎全案。各方行动也有可见利益与代价：程记拒收/反诉，贺为救工承担船损与停牌，港务与巡界使只在权限内接案、担保和候查安置。",
+          "本批可核的历史与现状因果能够支撑分卷：首卷将矿务、古境掳人、有限泉液和收货号串成可追查而非全知的线索；第二卷把失箱、港口扣工、首仓火因未明和程记责任分开处理；北境段又把既有跨陆线索限定为仓区查货、救援与封存，不将局部证物升级为九鼎全案。各方行动也有可见利益与代价：程记拒收或反诉，贺为救工承担船损与停牌，港务与巡界使只在权限内接案、担保和候查安置。"
+        ]
+      ],
+      "otherFieldsDeepEqual": true,
+      "modelCalls": 0
+    }
+  },
+  "currentDesignAndScheduleVerification": {
+    "kind": "v78_segment_12_current_design_input_and_schedule_verification",
+    "observedAt": "2026-10-24T18:09:06.222Z",
+    "stateRevision": 101,
+    "inputHash": "28c13900f419ccc8a3faa5e8a3600348b6e119964681e21ef8f4f00919733d08",
+    "sourceSnapshotFile": "data/audit-runtimes/design78-recovery/segment-12-current-design-snapshot.json",
+    "sourceSnapshotSha256": "c438ac802bc8a32368f53ef4b6c35c18ec857f415f13b980bdaffd21af7e2b84",
+    "rows": [
+      {
+        "area": "power",
+        "runId": "design_run_1050f783-7af7-4062-b5d2-bebd517cb730",
+        "currentInputMatchesFrozenRun": true,
+        "currentInputSha256": "00c1c78b8d29ef9924012e6981389b664ef8e105567da8ba32227d000ae2e07f",
+        "sources": 338,
+        "audit": {
+          "verification": "verified",
+          "completedStages": 19,
+          "totalStages": 75,
+          "runSha256": "e4faf9d63dbd53b9835bf4e5c1d65096f3609fe225c3dd3033e4601deb447991",
+          "formalAcceptance": false,
+          "limitation": "Validates saved stage results, citations and pending schedule against the supplied input; does not replay raw model responses or approve incomplete work."
+        },
+        "resolutions": [
+          {
+            "checkId": "cross-1-2/tiers",
+            "resolvedByStageId": "followup-cross-1-2/tiers",
+            "firstResolvedByStageId": "followup-cross-1-2/tiers",
+            "newThisStage": true
+          },
+          {
+            "checkId": "cross-1-2/costs",
+            "resolvedByStageId": "followup-cross-1-2/costs",
+            "firstResolvedByStageId": "followup-cross-1-2/costs",
+            "newThisStage": true
+          }
+        ],
+        "followups": [
+          {
+            "stageId": "followup-batch-1/counters",
+            "checkId": "batch-1/counters",
+            "completed": true
+          },
+          {
+            "stageId": "followup-batch-2/tiers",
+            "checkId": "batch-2/tiers",
+            "completed": true
+          },
+          {
+            "stageId": "followup-cross-1-2/tiers",
+            "checkId": "cross-1-2/tiers",
+            "completed": true
+          },
+          {
+            "stageId": "followup-cross-1-2/costs",
+            "checkId": "cross-1-2/costs",
+            "completed": true
+          },
+          {
+            "stageId": "followup-cross-1-2/counters",
+            "checkId": "cross-1-2/counters",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-2-3/tiers",
+            "checkId": "cross-2-3/tiers",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-2-3/costs",
+            "checkId": "cross-2-3/costs",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-2-3/counters",
+            "checkId": "cross-2-3/counters",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-2-4/tiers",
+            "checkId": "cross-2-4/tiers",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-2-4/costs",
+            "checkId": "cross-2-4/costs",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-2-4/counters",
+            "checkId": "cross-2-4/counters",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-2-5/tiers",
+            "checkId": "cross-2-5/tiers",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-2-5/costs",
+            "checkId": "cross-2-5/costs",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-2-5/counters",
+            "checkId": "cross-2-5/counters",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-3-4/tiers",
+            "checkId": "cross-3-4/tiers",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-3-4/costs",
+            "checkId": "cross-3-4/costs",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-3-4/counters",
+            "checkId": "cross-3-4/counters",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-3-5/tiers",
+            "checkId": "cross-3-5/tiers",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-3-5/costs",
+            "checkId": "cross-3-5/costs",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-3-5/counters",
+            "checkId": "cross-3-5/counters",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-4-5/tiers",
+            "checkId": "cross-4-5/tiers",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-4-5/costs",
+            "checkId": "cross-4-5/costs",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-4-5/counters",
+            "checkId": "cross-4-5/counters",
+            "completed": false
+          }
+        ],
+        "nextStage": "followup-cross-1-2/counters",
+        "nextInputSerializedCharacters": 110664,
+        "nextInputSha256": "5c1ee9c5dbeeb8f91c356bdff57b2eb8ba8d198b01919811b1066ee6e6f416aa"
+      },
+      {
+        "area": "characters",
+        "runId": "design_run_2b6bc122-ddd6-4c1b-9166-303b1a6953de",
+        "currentInputMatchesFrozenRun": true,
+        "currentInputSha256": "45824c3fac397ae985be80cf855bba1dce87f1911766971454f85b719dec3533",
+        "sources": 286,
+        "audit": {
+          "verification": "verified",
+          "completedStages": 19,
+          "totalStages": 33,
+          "runSha256": "6ebe56ba805836096435594c4c951dff0e2c22e7c26c41e0c049f22beb557429",
+          "formalAcceptance": false,
+          "limitation": "Validates saved stage results, citations and pending schedule against the supplied input; does not replay raw model responses or approve incomplete work."
+        },
+        "resolutions": [],
+        "followups": [
+          {
+            "stageId": "followup-cross-1-4/knowledge",
+            "checkId": "cross-1-4/knowledge",
+            "completed": true
+          },
+          {
+            "stageId": "followup-cross-3-5/relationships",
+            "checkId": "cross-3-5/relationships",
+            "completed": true
+          }
+        ],
+        "nextStage": "synthesis-3",
+        "nextInputSerializedCharacters": 56601,
+        "nextInputSha256": "6d991af988fe323599ac670ed4c3b95e7b3828c0d945d44c269294743a3eda6b"
+      },
+      {
+        "area": "story",
+        "runId": "design_run_8bf5a361-cec3-4f5c-8fce-a1e65e2c8ac9",
+        "currentInputMatchesFrozenRun": true,
+        "currentInputSha256": "19557517224dee03fa0f30be49635b2997d29f32c4696997f89f6bb630e44df8",
+        "sources": 363,
+        "audit": {
+          "verification": "verified",
+          "completedStages": 19,
+          "totalStages": 51,
+          "runSha256": "9dfd14ae1138887af2f74a6bca6825ae55f44623a6dcea35e2be1be26def8df7",
+          "formalAcceptance": false,
+          "limitation": "Validates saved stage results, citations and pending schedule against the supplied input; does not replay raw model responses or approve incomplete work."
+        },
+        "resolutions": [
+          {
+            "checkId": "batch-1/pacing",
+            "resolvedByStageId": "followup-batch-1/pacing",
+            "firstResolvedByStageId": "followup-batch-1/pacing",
+            "newThisStage": true
+          },
+          {
+            "checkId": "batch-1/growth",
+            "resolvedByStageId": "followup-batch-1/growth",
+            "firstResolvedByStageId": "followup-batch-1/growth",
+            "newThisStage": true
+          }
+        ],
+        "followups": [
+          {
+            "stageId": "followup-batch-1/payoff",
+            "checkId": "batch-1/payoff",
+            "completed": true
+          },
+          {
+            "stageId": "followup-batch-1/opening",
+            "checkId": "batch-1/opening",
+            "completed": true
+          },
+          {
+            "stageId": "followup-batch-1/pacing",
+            "checkId": "batch-1/pacing",
+            "completed": true
+          },
+          {
+            "stageId": "followup-batch-1/growth",
+            "checkId": "batch-1/growth",
+            "completed": true
+          },
+          {
+            "stageId": "followup-batch-2/growth",
+            "checkId": "batch-2/growth",
+            "completed": false
+          },
+          {
+            "stageId": "followup-batch-4/causality",
+            "checkId": "batch-4/causality",
+            "completed": false
+          },
+          {
+            "stageId": "followup-batch-4/growth",
+            "checkId": "batch-4/growth",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-1-2/payoff",
+            "checkId": "cross-1-2/payoff",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-1-2/growth",
+            "checkId": "cross-1-2/growth",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-2-3/growth",
+            "checkId": "cross-2-3/growth",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-2-4/causality",
+            "checkId": "cross-2-4/causality",
+            "completed": false
+          }
+        ],
+        "nextStage": "followup-batch-2/growth",
+        "nextInputSerializedCharacters": 196375,
+        "nextInputSha256": "1c7af28ad6d63e19144b6effc2bcef9b1694e551115bf65d4c9ba2af72b3438b"
+      },
+      {
+        "area": "world",
+        "runId": "design_run_0d086731-493f-4cb9-816a-398ff3ff1123",
+        "currentInputMatchesFrozenRun": true,
+        "currentInputSha256": "88e3c03c6df75b8e9208a43cf3989547d445bb5cc9b88c52578bc851741c8b2d",
+        "sources": 417,
+        "audit": {
+          "verification": "verified",
+          "completedStages": 20,
+          "totalStages": 55,
+          "runSha256": "21d778f21daa726770cfc970645643d51db667c7fba873495a8b856c1296af7c",
+          "formalAcceptance": false,
+          "limitation": "Validates saved stage results, citations and pending schedule against the supplied input; does not replay raw model responses or approve incomplete work."
+        },
+        "resolutions": [],
+        "followups": [],
+        "nextStage": "cross-3-6",
+        "nextInputSerializedCharacters": 219456,
+        "nextInputSha256": "157a81eadb7f4e664ff58f8c1cd71a8cf7fb42f2665609f75e084f145894edda"
+      }
+    ],
+    "modelCalls": 0,
+    "productionWrites": 0,
+    "formalAcceptance": false,
+    "limitation": "Current design and settings are independently read in the same database snapshot and mapped as in the repository loader. Source equality, canonical schedule, citations and first resolution provenance are checked; semantic quality and prose acceptance remain separate."
+  },
+  "annotation": {
+    "id": "review_note_272db24a-6573-4def-9b5b-a8730fbc8959",
+    "requestKey": "design78-segment12-training-failure-date",
+    "stageId": "followup-cross-1-2/tiers",
+    "criterion": "tiers",
+    "metadataWrites": 1,
+    "modelCalls": 0,
+    "stageUnchanged": true,
+    "sourceReadbackVerified": true,
+    "verdictChanges": 0,
+    "questionsResolved": 0,
+    "designChanges": 0,
+    "proseChanges": 0,
+    "explanation": "Corrects the failure date in the model explanation: day 351 opened the third stone; day 354 failed and stopped training. Original response and verdict retained."
+  },
+  "ui": {
+    "verifiedStage": "power/followup-cross-1-2/tiers",
+    "independentAnnotationCount": 1,
+    "originalClaimVisible": true,
+    "correctionVisible": true,
+    "sourceQuotesVisible": 2,
+    "temporaryTabClosed": true,
+    "screenshot": "data/audit-runtimes/design78-recovery/segment-12-training-date-ui.png",
+    "accessibilityText": "data/audit-runtimes/design78-recovery/segment-12-training-date-ui.txt"
+  },
+  "production": {
+    "observedAt": "2026-10-24T18:09:01.598641+00:00",
+    "counts": {
+      "ChapterCandidate": 116,
+      "StoryEvent": 383,
+      "ManuscriptRevision": 1,
+      "ChapterVersion": 101
+    },
+    "worldPack": 41,
+    "storyBible": 74,
+    "approvedPlan": {
+      "id": "plan_3240e0b8bc124f38a4f39ae8d74c2abc",
+      "revision": 10,
+      "status": "approved"
+    },
+    "designReviewLeases": [],
+    "chapterRunLeases": [],
+    "productionWrites": 0,
+    "formalAcceptance": false
+  },
+  "implementationChanges": [
+    "Added a one-off, source-validated annotation script and payload; no product runtime code change."
+  ],
+  "artifacts": {
+    "data/audit-runtimes/design78-recovery/characters-synthesis-1.json": "728479b0d3ae88215c77d7106bf562f1d0abbf88bef85d8a1a562ee37d5e78ad",
+    "data/audit-runtimes/design78-recovery/characters-synthesis-2.json": "8dc9b422cdf06f78edec6ea9baf18c6e3cd91280b88b7533cb2029b59077c624",
+    "data/audit-runtimes/design78-recovery/check-segment-12-current-inputs.mjs": "a5ff518e551adfc758df567d55ea1308d2884e89ec0964affb8a00f5c30253d4",
+    "data/audit-runtimes/design78-recovery/check-segment-12-followup-coverage.py": "79fc12fc3e33e29f92f0521dda044fe4ec9992f1210ad73558e95e873471db2f",
+    "data/audit-runtimes/design78-recovery/check-segment-12-production.py": "b9bf5376643c66a292aeac425099ef7967e056b8eaacfa8a98b7279f2283dc75",
+    "data/audit-runtimes/design78-recovery/collect-segment-12.mjs": "bb2aab81693a5923a0bd7470e336c08d93fbd5ad2b89c028007b15c30e812f5a",
+    "data/audit-runtimes/design78-recovery/continuation-1792864000082-86329.jsonl": "1246b8ab74c305eedcbc94e6f9a27bc6e37071cb678c2e0d38be2177b1646697",
+    "data/audit-runtimes/design78-recovery/power-followup-cross-1-2__costs.json": "c676ec0487f6454678b1125d68165bb59504e73d435b50ca6ff352552a507c13",
+    "data/audit-runtimes/design78-recovery/power-followup-cross-1-2__tiers.json": "c9156168418e04bc580d1037807a2b6248e5d574873cb9d5faffa87b6bea1c7e",
+    "data/audit-runtimes/design78-recovery/replay-segment-12.mjs": "a55c281e42728e2d854a43a5dbbcc3bf62eadd52c2723a6c332f2ae78a21646b",
+    "data/audit-runtimes/design78-recovery/segment-12-characters-first-stage-before.json": "67a04cabb2e44840cc30b662e67666c96489c023ad18a67de6c84c68eab734d3",
+    "data/audit-runtimes/design78-recovery/segment-12-current-design-snapshot.json": "c438ac802bc8a32368f53ef4b6c35c18ec857f415f13b980bdaffd21af7e2b84",
+    "data/audit-runtimes/design78-recovery/segment-12-current-input-verification.json": "38a31ed0c4a757e9b21a1947de5365e4330bbc421bc79e307985ca17ec79e79d",
+    "data/audit-runtimes/design78-recovery/segment-12-first-input-verification.json": "81de127614b52c6d2f300fb759434e84dbd0cc8c3628f8a67a24083fb6a38227",
+    "data/audit-runtimes/design78-recovery/segment-12-followup-coverage.json": "c334a936df95eb962f95f6bc2f0db0d328eac18b7b6e70b05885e0bcce3d5cb1",
+    "data/audit-runtimes/design78-recovery/segment-12-growth-repair-request.json": "b13af824114652cb784d10579a3aebb4b1829a8fdfde8a24869615316bba1a97",
+    "data/audit-runtimes/design78-recovery/segment-12-growth-repair-verification.json": "ad433a301a3f7a9151380378bc9508bca9248c41322952a89c6d1b27b350ef61",
+    "data/audit-runtimes/design78-recovery/segment-12-production-after-annotation.json": "b0c38c5a520655300a20b6237629183699867624e499c945425994ba044766ce",
+    "data/audit-runtimes/design78-recovery/segment-12-production-before.json": "c5dff38564c9eeeadea185e0657e87f10911454ccc3405d1245e34f34d19b242",
+    "data/audit-runtimes/design78-recovery/segment-12-production-check.json": "56732aa07cd55cbdea86b1616359ffcba936fb52a00fcda244fafd6fe1a7628c",
+    "data/audit-runtimes/design78-recovery/segment-12-response-replay.json": "a3530e427258576ea36685491b33377217b50ec520a8ea34f1eff18361b0e51b",
+    "data/audit-runtimes/design78-recovery/segment-12-stage-validation.json": "cea4a20363ed82d9fe17e6ed6be47866d0709beb089b3ea3470d9eff7faf407d",
+    "data/audit-runtimes/design78-recovery/segment-12-story-first-stage-before.json": "6c5a76f004e11729fbeaeaff5fbf7d2099d209c9e65516f1d174ee32f8ac6caf",
+    "data/audit-runtimes/design78-recovery/segment-12-summary.json": "bf4d1fc61692d8bd5311e2e8c225326dc7b7d8e85f5326c7f4bda5ad2ef38fec",
+    "data/audit-runtimes/design78-recovery/segment-12-training-date-annotation-applied.json": "0f1a712e37f878e9a15671d7bd0e1787302fb4c738ea90c9e571bc5761b527d3",
+    "data/audit-runtimes/design78-recovery/segment-12-training-date-ui.png": "f7089d69d2897a602299987088facc1eb069f4e732fb8a98014648b0be9b5a0b",
+    "data/audit-runtimes/design78-recovery/segment-12-training-date-ui.txt": "f46f9f301b4e9ecfd70b153c38ffd22bd5aa60da0979d6e5e9bfd864c1273b85",
+    "data/audit-runtimes/design78-recovery/segment-12-world-field-repair-verification.json": "f6d31f3bf9e171b692d5c756ae1b28835fd786c99eb8844fd711752eead32cf8",
+    "data/audit-runtimes/design78-recovery/story-followup-batch-1__growth.json": "56a1162b90c33ceb4350fb43b008a5c3ffafb1c098710cd3fbd7171343b68fd6",
+    "data/audit-runtimes/design78-recovery/story-followup-batch-1__pacing.json": "8f3eb417a66041d55cb2de3c322b1970501865331d34163e055ff3e9823161af",
+    "data/audit-runtimes/design78-recovery/world-cross-3-4.json": "21dbed6f862787caba012a2babda23576802566a0c746daae5ba08bd19d1b14b",
+    "data/audit-runtimes/design78-recovery/world-cross-3-5.json": "bc7cbe4a5d8cad62478f79298e5e8866ef1d895928b3179ac7c48589b635adbf",
+    "docs/audits/2026-10-25-design78-review-segment-12.md": "09e1ddf15ca83ba8b5ae3dd0ad608f01f931142119c44d22e0c62ce7ba185c95",
+    "docs/audits/2026-10-25-design78-training-date-annotation.json": "0a069a7661c9c6f174fc5e28c43128c239740b9166e9d3e42f42df73b8b19faf",
+    "scripts/annotate-design78-training-date.mjs": "88f520c31a28ef2ace4ad11a446112214376dde4b897580efbe3a05ad1ef008b"
+  },
+  "limitations": [
+    "All four final content reviews remain incomplete; no plan approval, design locking, prose generation/adoption or manuscript acceptance.",
+    "Character synthesis covers only batch-1/2 and batch-3/4; no new resolution claims or full-domain acceptance.",
+    "Two geography deferrals require further source reading and are not two proven independent design contradictions.",
+    "Source equality, citation validity and response replay do not establish semantic correctness; a date error required an independent annotation.",
+    "Growth repair provides one observed summary rewrite, not general proof of prompt effectiveness. The added route citation does not alone support every new explanation sentence; the full supplied milestone was also read.",
+    "World repair changed four fields, preserving verdicts, evidence, awaited sources and summary.",
+    "No unrelated full repository test run; annotation preparation, idempotency, readback and UI were checked."
+  ]
+}

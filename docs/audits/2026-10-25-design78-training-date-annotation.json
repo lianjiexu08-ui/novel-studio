@@ -1,0 +1,27 @@
+{
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "planId": "plan_a5fff5fb0e5a4dcfb63912107924c2fa",
+  "sourcePath": "data/audit-runtimes/design78-recovery/power-followup-cross-1-2__tiers.json",
+  "sourceStageSha256": "ac864499d5eabf7c74f755c1e65735e76cd2e219eb835d94a70edb1d66a0bce2",
+  "input": {
+    "requestKey": "design78-segment12-training-failure-date",
+    "runId": "design_run_1050f783-7af7-4062-b5d2-bebd517cb730",
+    "stageId": "followup-cross-1-2/tiers",
+    "criterion": "tiers",
+    "expectedInputHash": "28c13900f419ccc8a3faa5e8a3600348b6e119964681e21ef8f4f00919733d08",
+    "expectedCheckHash": "42f74ce60dc4d4295afbbfb62f32b6ea509d9e446e220ca56912a8fd45c687aa",
+    "claimField": "explanation",
+    "claimQuote": "351日第三枚失败报废、共实耗七枚",
+    "explanation": "此处把第三枚灵石的开封日与失败停训日合写为351日，日期表述不准确。原计划是351日开封第三枚并开始第二段训练，354日出现胸闷与回流、当日停练和检查，该枚报废且此周期不计有效；355—357日休息观察，复诊及358日行前再核通过后才重开。六个有效周期、一次失败和七枚总耗材的数量不因此改变。本说明校正评语中的失败日期，不修改原模型判定，不证明正文已执行，也不允许省略失败训练的四日、休息或复诊。",
+    "evidence": [
+      {
+        "sourceId": "plan/milestones/ms_v3_training",
+        "quote": "351开第三枚，354出现胸闷与回流立即停练，当日白榆检查并停训，第三枚报废不退、该周期不计有效；355–357仅休息及遵医嘱观察，357复诊须胸闷消失、经脉无急性反应、轻度导引无回流才准358重开，不能因休满三日自动许可。"
+      },
+      {
+        "sourceId": "plan/milestones/ms_v3_training",
+        "quote": "351开始前顾当面讲第二段、林复述通过并经白榆行前复查后才开第三枚，354失败立即停训。"
+      }
+    ]
+  }
+}
