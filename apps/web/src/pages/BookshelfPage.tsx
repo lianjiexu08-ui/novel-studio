@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { App as AntApp, Button, Empty, Spin } from 'antd';
+import { Alert, Button, Empty, Spin } from 'antd';
 import { PlusOutlined, RightOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
-import { api, ApiRequestError } from '../api';
+import { api } from '../api';
 import { covenantReady } from '../covenant';
 import type { WorkDto } from 'novel-studio-contracts';
 
@@ -23,16 +23,20 @@ function coverOf(title: string) {
 }
 
 export function BookshelfPage() {
-  const { message } = AntApp.useApp();
   const navigate = useNavigate();
   const [works, setWorks] = useState<WorkDto[] | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [loadFailed, setLoadFailed] = useState(false);
 
   async function load() {
+    setLoading(true);
+    setLoadFailed(false);
     try {
       setWorks((await api.listWorks()).works);
-    } catch (error) {
-      message.error(error instanceof ApiRequestError ? `[${error.code}] ${error.message}` : String(error));
-      setWorks([]);
+    } catch {
+      setLoadFailed(true);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -53,9 +57,15 @@ export function BookshelfPage() {
         <Button type="primary" icon={<PlusOutlined />} onClick={() => navigate('/new')}>创作</Button>
       </header>
 
-      {works === null ? (
+      {loadFailed && (
+        <Alert type="error" showIcon message="暂时无法读取书架"
+          description="作品列表读取失败，请稍后重试。"
+          action={<Button onClick={() => void load()} loading={loading}>重新加载</Button>} />
+      )}
+
+      {works === null && loading ? (
         <div className="state-block"><Spin size="large" /></div>
-      ) : works.length === 0 ? (
+      ) : works === null ? null : works.length === 0 ? (
         <div className="panel empty-panel">
           <Empty description="书架是空的。点右上角「创作」，先写下这本小说的约定。" />
         </div>
