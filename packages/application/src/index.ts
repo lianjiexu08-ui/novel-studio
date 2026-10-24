@@ -127,6 +127,8 @@ export interface WorkSummary {
 
 export interface WorkRepository {
   get(workId: string): Promise<Work | undefined>;
+  /** Read one saved assessment for evidence display, without loading a mutable Work. */
+  getDesignReviewRun?(workId: string, runId: string): Promise<DesignReviewRun | undefined>;
   list(): Promise<WorkSummary[]>;
   save(work: Work): Promise<void> | void;
   transaction<T>(workId: string, callback: (transaction: WorkTransaction) => Promise<T> | T): Promise<T>;

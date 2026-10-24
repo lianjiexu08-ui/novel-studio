@@ -4,6 +4,7 @@ import type { DesignContentReview } from '../../../novel-service-core/src/design
 import { randomUUID } from 'node:crypto';
 import { PrismaClient } from '@prisma/client';
 import { readProjectWithHistory, historyJsonHash, projectHistoryColumns, writeProjectHistory } from './project-history.ts';
+import { readDesignReviewRun } from './review-run-reader.ts';
 import { contentHashOf, parseCovenant, rebuildCharacterStates, StaleCandidateError, Work } from '../../../novel-service-core/src/core.ts';
 import type {
   ChapterCandidate, ChapterVersion, Character, CheckInputs, CheckResult, CovenantRevision, RunUsage, Checkpoint, DesignRevision, EventDraft, ManuscriptRevision, PlotNode, Relationship, StoryEvent, WorldRule,
@@ -98,6 +99,15 @@ export class PrismaWorkRepository implements WorkRepository {
       constraintRevision: project.constraintRevision,
       covenant: readCovenant(project.covenant),
     }));
+  }
+
+  async getDesignReviewRun(workId: string, runId: string): Promise<DesignReviewRun | undefined> {
+    const load = (tx: PrismaTx) => readDesignReviewRun(tx, workId, runId);
+    // Chunk reads must share one snapshot, including when an audit supplies
+    // an existing transaction client rather than the root Prisma client.
+    return typeof this.prisma.$transaction === 'function'
+      ? inClientTransaction(this.prisma, load)
+      : load(this.prisma);
   }
 
   async save(work: Work): Promise<void> {

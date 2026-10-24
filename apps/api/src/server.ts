@@ -649,8 +649,9 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
   });
   app.get('/works/:workId/design/review-runs/:runId/stages/:stageId', async (request) => {
     const { workId, runId, stageId } = z.object({ workId: z.string(), runId: z.string(), stageId: z.string() }).parse(request.params);
-    const work = await repository.get(workId);
-    const run = work?.designReviewRuns.get(runId);
+    const run = repository.getDesignReviewRun
+      ? await repository.getDesignReviewRun(workId, runId)
+      : (await repository.get(workId))?.designReviewRuns.get(runId);
     const stage = run?.stages.find(stage => stage.id === stageId);
     if (!run || !stage) throw new NotFoundError('unknown review stage');
     return { stage, input: designReviewStageInput(run, stage) };
