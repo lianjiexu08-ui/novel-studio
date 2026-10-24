@@ -1,0 +1,431 @@
+{
+  "observedAt": "2026-10-24T14:29:35.530Z",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "planId": "plan_a5fff5fb0e5a4dcfb63912107924c2fa",
+  "inputHash": "28c13900f419ccc8a3faa5e8a3600348b6e119964681e21ef8f4f00919733d08",
+  "formalAcceptance": false,
+  "approved": false,
+  "areas": [
+    {
+      "area": "power",
+      "runId": "design_run_1050f783-7af7-4062-b5d2-bebd517cb730",
+      "status": "ready",
+      "completed": 1,
+      "total": 29,
+      "scope": {
+        "worldPackRevision": 41,
+        "storyBibleRevision": 74,
+        "planRevisionId": "plan_a5fff5fb0e5a4dcfb63912107924c2fa",
+        "planRevision": 78
+      }
+    },
+    {
+      "area": "characters",
+      "runId": "design_run_2b6bc122-ddd6-4c1b-9166-303b1a6953de",
+      "status": "ready",
+      "completed": 1,
+      "total": 29,
+      "scope": {
+        "worldPackRevision": 41,
+        "storyBibleRevision": 74,
+        "planRevisionId": "plan_a5fff5fb0e5a4dcfb63912107924c2fa",
+        "planRevision": 78
+      }
+    },
+    {
+      "area": "story",
+      "runId": "design_run_8bf5a361-cec3-4f5c-8fce-a1e65e2c8ac9",
+      "status": "ready",
+      "completed": 1,
+      "total": 29,
+      "scope": {
+        "worldPackRevision": 41,
+        "storyBibleRevision": 74,
+        "planRevisionId": "plan_a5fff5fb0e5a4dcfb63912107924c2fa",
+        "planRevision": 78
+      }
+    },
+    {
+      "area": "world",
+      "runId": "design_run_0d086731-493f-4cb9-816a-398ff3ff1123",
+      "status": "failed",
+      "completed": 9,
+      "total": 55,
+      "scope": {
+        "worldPackRevision": 41,
+        "storyBibleRevision": 74,
+        "planRevisionId": "plan_a5fff5fb0e5a4dcfb63912107924c2fa",
+        "planRevision": 78
+      }
+    }
+  ],
+  "checks": [
+    {
+      "area": "power",
+      "stageId": "batch-1",
+      "attempts": 1,
+      "summary": "本批完整给出的力量规则在分账、境界准入、资源品阶和高阶能力限制上总体自洽；但具体战斗、寿储与玄府晋阶的执行细节主要位于尚未补读的章纲和后段里程碑，故本批只能作局部规则结论，不能确认相关行动安排已经可执行。",
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "insufficient",
+          "explanation": "境界、功法、法宝、资源的基础分级与准入规则已形成可核链条：境界不自动授予术式，玄府晋阶明确要求分流训练、灵石周期、静置及双重复核；百章目标也限定为由凝元至玄府、不得发动逆命真解或越阶。然而第83章实际支付玄府十元载以前，是否完成三段分流、六个有效周期、医修/器物承载复核及前段伤情与资源承接，须读61—87章的宏观里程碑核验，现有概览不能替代这些原文。",
+          "revisionAdvice": "补读所列里程碑，核对林辰从第61章至第83章的丹府训练资格、灵石实际来源与消耗、每周期复查、伤情、静置及两项晋阶复核；若其中任一条件未安排，应在对应里程碑补足而非以百章目标倒推已完成。",
+          "awaitingSources": [
+            "plan/milestones/ms_v2_boundary",
+            "plan/milestones/ms_v3_return",
+            "plan/milestones/ms_v3_training",
+            "plan/milestones/ms_v3_advancement"
+          ]
+        },
+        {
+          "criterion": "costs",
+          "verdict": "insufficient",
+          "explanation": "规则层面对寿储、当境法力、神识、本源和实物资源均要求分账，且明确自然寿源须完成疗程和复诊才可入账；玄府晋阶另需十元载，不能由训练或预计寿源替代。概览虽给出第19日诊断、两剂灵泉、凝元三元载及第83章玄府十元载的候选时间线，但同时明示466日余额只是条件成立时的提案预算，不能据此认定已闭合。第61—83章的资源取得、疗程完成、自然流逝及训练耗材账尚未提供，无法审定该次实际晋阶是否留有可支配余额。",
+          "revisionAdvice": "补读所列里程碑后，按同一账户列出第61章起的寿储期初下界、每笔已完成疗程收入、自然流逝、训练耗材与晋阶支出，并明确第83章支付前的诊断下界和安全余量；不得把申请配额、在途资源或未完成疗程预记为收入。",
+          "awaitingSources": [
+            "plan/milestones/ms_v2_boundary",
+            "plan/milestones/ms_v3_return",
+            "plan/milestones/ms_v3_training",
+            "plan/milestones/ms_v3_advancement"
+          ]
+        },
+        {
+          "criterion": "counters",
+          "verdict": "insufficient",
+          "explanation": "已给能力普遍具有对象、距离、供能、打断、冷却和反制：御风剑诀受可见锁定、训练、二成法力与失锁后果限制，噬血爪也受近身、一息一成、三息上限、积毒和纯阳反制约束；这使规则本身不存在本批可见的万能胜负缺口。但第25章顾峤真光与墨幽屠两息血爪的先后、扣费和接触条件，被概览明确列为尚待复评的具体动作问题；后段同阶截押的牵制、伤情与转运同样只有宏观目标，未提供可核的战斗执行链。因此不能确认同阶胜负是否实际遵守已给反制规则。",
+          "revisionAdvice": "补读第25章两套章纲，逐息核对墨的起爪/停爪/放血、顾的三息结印及双方元罡余额、伤情与中断窗口；再补读后段截押与收束里程碑，核对顾的牵制、祁嵩交械选择、伤者转运和看押是否仍有实际反制与失败代价。",
+          "awaitingSources": [
+            "plan/chapters/25",
+            "story/chapterPlans/chapter-plan-25",
+            "plan/milestones/ms_v3_convoy",
+            "plan/milestones/ms_v3_payoff"
+          ]
+        }
+      ]
+    },
+    {
+      "area": "characters",
+      "stageId": "batch-1",
+      "attempts": 1,
+      "summary": "局部人物设计可成立：主要人物、配角与群体角色均有利益边界、拒绝权和可见后果；关系与消息链明确区分拟定阶段、实际送达和角色未知。结论仅覆盖本批已读原文，不代表后续章纲或正文已验收。",
+      "checks": [
+        {
+          "criterion": "agency",
+          "verdict": "pass",
+          "explanation": "本批人物行动并非围绕主角单向服务。梁九限定证言范围以保护家人生计，秦禾接受补偿但拒绝陪队冲营，顾峤坚持守口优先且以交接为救援前提；贺青梧拒绝以虚假陈述换替船、承担失单停牌，吴伍与卢小满也在脱控后自行决定不立即回船。林辰多次以追查线索、资源或复仇机会交换救人与他人的选择权，且保留伤势、船损、现金耗尽、失去窗口及未获免责等后果。后段同样将夜凝霜守撤离路、苏凌霜不交证人换外派、赵玄极基于实际到达报告重整、祁嵩为保存申辩原令而有限交械，分别落在人物自身职责与利益上。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "relationships",
+          "verdict": "pass",
+          "explanation": "关系档案将阶段变化绑定于可归责的行动、代价与生效时间，而非将救援自动换算为信任或免责。林辰—苏凌霜从有限庇护、保留不利证词、分路通信到回访搭档，各阶段均保留调查原则、行动限制和未解父案；林辰—贺青梧从救工合作推进到吴卢自主去留，明确船损、停牌、资金与雇佣边界。林辰—陆沉舟则区分指路、阻止扣人、持续看护和第53章拟签认自述，未把救弟或协助当作免罪。吴伍—卢小满的关系也明确否定互相代答及脱困后必须同路。第51—53章的关系变化明确标作拟定，且以住食、工时和签认实际落实为生效条件，未与第50章既定提案时点混同。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "knowledge",
+          "verdict": "pass",
+          "explanation": "知情设计明确区分读者信息、角色亲见、实体信件、当面报告、签收回执与尚未送达的未来消息。林辰与苏凌霜在33—40章只沿已持材料调查，林辰至41章收到苏凌霜第226日寄信后才更新异地近况；林、苏对程砚—赵玄极的第53章报令及后续回执始终不具知情资格。赵玄极的认知则按第53章首报、54章签收联、73章北境面报、88章押报、90章撤押令、98章败报和99章正式质询分期，且每段都限制报告所能证明的范围。父案证据亦限定为守门参与和外山掩案，明确禁止由残片、读者视角或局部材料跳推投毒全貌与九鼎全图。",
+          "revisionAdvice": ""
+        }
+      ]
+    },
+    {
+      "area": "story",
+      "stageId": "batch-1",
+      "attempts": 1,
+      "summary": "本批已读世界约束与百章总纲能确认提案坚持有限寿储、实体航程、分阶段成长和有限阶段性结局；但实际第1—50章细纲及后半段里程碑原文未随批次提供，不能用目录、导航索引或状态说明替代对具体动作、时序、兑现和节奏的核验。以下不足均为等待指定原文的局部补读，不等同于否定提案。",
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "insufficient",
+          "explanation": "总纲将第44/50—53章的港口救援、61—66章北航救人、83章晋阶、88—100章截押与回访串为连续选择，并明确百章只切断一条已实证运输链，不将其伪装成全局终局；但本批未提供第44—50章实际承接动作及第51—100章各里程碑原文，无法核验救援后的安置、航款/准入、放弃残片、晋阶条件和原令交械是否具有逐段可执行的前置与代价，也无法检查是否重复兑现同一救援或证物。",
+          "revisionAdvice": "补读后应逐段核对：第50章吴伍、卢小满脱控及陆沉舟选择的即时后果；北航的实际付款、许可和抵达；第83章训练、诊察、灵石与十元载付款；第95—100章交械、救援、证物与回访之间的因果链。",
+          "awaitingSources": [
+            "plan/chapters/44",
+            "plan/chapters/45",
+            "plan/chapters/46",
+            "plan/chapters/47",
+            "plan/chapters/48",
+            "plan/chapters/49",
+            "plan/chapters/50",
+            "plan/milestones/ms_v2_fire",
+            "plan/milestones/ms_v2_voyage",
+            "plan/milestones/ms_v2_boundary",
+            "plan/milestones/ms_v3_return",
+            "plan/milestones/ms_v3_training",
+            "plan/milestones/ms_v3_advancement",
+            "plan/milestones/ms_v3_convoy",
+            "plan/milestones/ms_v3_payoff"
+          ]
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "insufficient",
+          "explanation": "已读规则明确青玄至赤霄约两昼夜、赤霄至苍冥约五昼夜、苍冥返青玄约六昼夜，且要求各航次另列实际支付与准入；总纲也明确第83章是数月训练与诊察后的玄府晋阶。这些约束使宏观路线具备可核基础，但本批没有第30—50章实际出航与港口日程，也没有51—100里程碑中的日期、寄递、疗程和回程安排，故不能确认前后段是否留足实体行程、休养、消息送达和训练周期。",
+          "revisionAdvice": "补读时应把第30章起的实际离港、抵港、救援、北航、返航、丹府训练、静置复诊、晋阶和三十日回访列在同一日历中；将船费、担保和寄递与相应日期、签收节点分开核算。",
+          "awaitingSources": [
+            "plan/chapters/30",
+            "plan/chapters/31",
+            "plan/chapters/32",
+            "plan/chapters/33",
+            "plan/chapters/34",
+            "plan/chapters/35",
+            "plan/chapters/36",
+            "plan/chapters/37",
+            "plan/chapters/38",
+            "plan/chapters/39",
+            "plan/chapters/40",
+            "plan/chapters/41",
+            "plan/chapters/42",
+            "plan/chapters/43",
+            "plan/chapters/44",
+            "plan/chapters/45",
+            "plan/chapters/46",
+            "plan/chapters/47",
+            "plan/chapters/48",
+            "plan/chapters/49",
+            "plan/chapters/50",
+            "plan/milestones/ms_v2_fire",
+            "plan/milestones/ms_v2_voyage",
+            "plan/milestones/ms_v2_boundary",
+            "plan/milestones/ms_v3_return",
+            "plan/milestones/ms_v3_training",
+            "plan/milestones/ms_v3_advancement",
+            "plan/milestones/ms_v3_convoy",
+            "plan/milestones/ms_v3_payoff"
+          ]
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "insufficient",
+          "explanation": "林辰与苏凌霜的关系安排并未把尚未发生的救援倒填为既成信任：第88—94章仍限定为准备，第95章才以先救伤者并保住撤令为变化原因，第100章再以三十日回访检验有限搭档关系；总纲亦明确父案仅部分澄清、全局界门危机不在百章结清。可是后半段承诺的原令、父案证据、运输链断裂与回访的实际条件只见概述，未见相关里程碑原文，无法审查它们与既有秘密、证物边界之间是否相容或是否被重复消费。",
+          "revisionAdvice": "补读后应逐项区分：何种材料仅为线索、何种原令可独立核验、谁在何时获得何种知情，以及百章阶段结局实际关闭哪一条运输链而仍保留哪些父案与界门问题。",
+          "awaitingSources": [
+            "plan/milestones/ms_v2_fire",
+            "plan/milestones/ms_v2_boundary",
+            "plan/milestones/ms_v3_return",
+            "plan/milestones/ms_v3_convoy",
+            "plan/milestones/ms_v3_payoff",
+            "story/secrets/sec_01",
+            "story/secrets/sec_02",
+            "story/secrets/sec_03",
+            "story/secrets/sec_04",
+            "story/promises/prom_01",
+            "story/promises/prom_02",
+            "story/promises/prom_03",
+            "story/promises/prom_04",
+            "story/openThreads/th_01",
+            "story/openThreads/th_02",
+            "story/openThreads/th_03",
+            "story/openThreads/th_04",
+            "story/openThreads/th_05"
+          ]
+        },
+        {
+          "criterion": "opening",
+          "verdict": "insufficient",
+          "explanation": "计划原文声明第1—50章均已有细纲，且总纲列出开篇矿务逃生、第一卷古境救援、港口失箱与扣工救援等递进节点；但本批实际未提供任一plan/chapters/1—50正文，不能据章节编号或chapterCast推断冲突、选择与后果已经写明，更无法比较是否存在过早终局或结构性重复。",
+          "revisionAdvice": "补读时按实际场景核查开篇矿务逃生、复核受限、古境救援、南渡、港口查箱、仓火、潮沟协作及第43—50章救援的冲突升级和未结后果。",
+          "awaitingSources": [
+            "plan/chapters/1",
+            "plan/chapters/2",
+            "plan/chapters/3",
+            "plan/chapters/4",
+            "plan/chapters/5",
+            "plan/chapters/6",
+            "plan/chapters/7",
+            "plan/chapters/8",
+            "plan/chapters/9",
+            "plan/chapters/10",
+            "plan/chapters/11",
+            "plan/chapters/12",
+            "plan/chapters/13",
+            "plan/chapters/14",
+            "plan/chapters/15",
+            "plan/chapters/16",
+            "plan/chapters/17",
+            "plan/chapters/18",
+            "plan/chapters/19",
+            "plan/chapters/20",
+            "plan/chapters/21",
+            "plan/chapters/22",
+            "plan/chapters/23",
+            "plan/chapters/24",
+            "plan/chapters/25",
+            "plan/chapters/26",
+            "plan/chapters/27",
+            "plan/chapters/28",
+            "plan/chapters/29",
+            "plan/chapters/30",
+            "plan/chapters/31",
+            "plan/chapters/32",
+            "plan/chapters/33",
+            "plan/chapters/34",
+            "plan/chapters/35",
+            "plan/chapters/36",
+            "plan/chapters/37",
+            "plan/chapters/38",
+            "plan/chapters/39",
+            "plan/chapters/40",
+            "plan/chapters/41",
+            "plan/chapters/42",
+            "plan/chapters/43",
+            "plan/chapters/44",
+            "plan/chapters/45",
+            "plan/chapters/46",
+            "plan/chapters/47",
+            "plan/chapters/48",
+            "plan/chapters/49",
+            "plan/chapters/50"
+          ]
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "insufficient",
+          "explanation": "宏观层面可见第一卷的救人与疗程、第二卷的失箱—仓火—潮沟—北航、第三卷的返乡—训练—截押—回访具有不同戏剧目标，不能仅凭题材标签认定重复；但判断连续问询、核账、救援是否各自引入新选择和不可逆后果，必须读取第1—50章的具体场次。本批未附这些细纲，不能作通过或返修判断。",
+          "revisionAdvice": "补读时重点比较第13—18章恢复/训练、27—29章疗程核验、34—42章查箱与潮沟交涉、43—50章追船和附棚救援；每段应确认其新信息、选择、损失或权限变化，而非只重复核账。",
+          "awaitingSources": [
+            "plan/chapters/1",
+            "plan/chapters/2",
+            "plan/chapters/3",
+            "plan/chapters/4",
+            "plan/chapters/5",
+            "plan/chapters/6",
+            "plan/chapters/7",
+            "plan/chapters/8",
+            "plan/chapters/9",
+            "plan/chapters/10",
+            "plan/chapters/11",
+            "plan/chapters/12",
+            "plan/chapters/13",
+            "plan/chapters/14",
+            "plan/chapters/15",
+            "plan/chapters/16",
+            "plan/chapters/17",
+            "plan/chapters/18",
+            "plan/chapters/19",
+            "plan/chapters/20",
+            "plan/chapters/21",
+            "plan/chapters/22",
+            "plan/chapters/23",
+            "plan/chapters/24",
+            "plan/chapters/25",
+            "plan/chapters/26",
+            "plan/chapters/27",
+            "plan/chapters/28",
+            "plan/chapters/29",
+            "plan/chapters/30",
+            "plan/chapters/31",
+            "plan/chapters/32",
+            "plan/chapters/33",
+            "plan/chapters/34",
+            "plan/chapters/35",
+            "plan/chapters/36",
+            "plan/chapters/37",
+            "plan/chapters/38",
+            "plan/chapters/39",
+            "plan/chapters/40",
+            "plan/chapters/41",
+            "plan/chapters/42",
+            "plan/chapters/43",
+            "plan/chapters/44",
+            "plan/chapters/45",
+            "plan/chapters/46",
+            "plan/chapters/47",
+            "plan/chapters/48",
+            "plan/chapters/49",
+            "plan/chapters/50"
+          ]
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass",
+          "explanation": "本批可核的设计并非以玄幻术语替代选择：跨海不能借界门或钥匙瞬移，航程、验籍、付款与担保必须分别成立；寿储、当境法力和资源疗程也严格分账。主线又将短寿、跨陆运输、有限救援与界门谜团绑定，且百章末仍是玄府而非越阶终局，能够让奇异规则实际改变风险、路径和回报。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "growth",
+          "verdict": "insufficient",
+          "explanation": "成长目标和硬门槛已具备可行框架：林辰百章不发动逆命真解，先由凝元三重、丹府三段训练、至少六个有效十日周期、灵石消耗、静置与双重复核，才可支付十元载晋玄府；规则也禁止把未来寿储或境界名称当作免费能力。但本批未提供第13—29章既有训练、伤势、疗程及资源细纲，亦未提供后段返乡训练和第83章晋阶里程碑，无法核对实际训练是否完成、个人寿储是否足额以及成长回报是否在正确时点生效。",
+          "revisionAdvice": "补读时应以林辰个人账户逐项核验：第19日诊断下界、两剂灵泉完成疗程后的实际入账、自然流逝、凝元三年付款、丹府六有效周期及失败耗石、静置与白榆/顾峤复核、玄府十元载付款；并确认第83章后未将凝元法器或未训练的元罡术式继续当作既得能力。",
+          "awaitingSources": [
+            "plan/chapters/13",
+            "plan/chapters/14",
+            "plan/chapters/15",
+            "plan/chapters/16",
+            "plan/chapters/17",
+            "plan/chapters/18",
+            "plan/chapters/19",
+            "plan/chapters/20",
+            "plan/chapters/21",
+            "plan/chapters/22",
+            "plan/chapters/23",
+            "plan/chapters/24",
+            "plan/chapters/25",
+            "plan/chapters/26",
+            "plan/chapters/27",
+            "plan/chapters/28",
+            "plan/chapters/29",
+            "plan/milestones/ms_v3_return",
+            "plan/milestones/ms_v3_training",
+            "plan/milestones/ms_v3_advancement"
+          ]
+        }
+      ]
+    }
+  ],
+  "artifacts": {
+    "data/audit-runtimes/design78-recovery/failed-stage.json": "d76fb5ce1dda77e7e1d553e8618802f1adbdbddbc105b2427ffe5d5629f4c82e",
+    "data/audit-runtimes/design78-recovery/power-batch-1.json": "eb4d610c20c2d6f214a2a27b1718c1c15ef44eefc49725918aa25bcb9556ac3d",
+    "data/audit-runtimes/design78-recovery/characters-batch-1.json": "5525828ee8b86b525740f766e8eae13fd2cccf2db23222f26ed296cd8b1525d1",
+    "data/audit-runtimes/design78-recovery/story-batch-1.json": "62343cc443eba4794a5a826458236e66f053192128552f295bb77749f2bab03c",
+    "data/audit-runtimes/design78-recovery/continuation-1792851432109-10227.jsonl": "8d1af663175e155d51c0ee4372dc68ea90041ebc0a12cc959a2cc613aa888ef0",
+    "data/audit-runtimes/design78-recovery/production-readonly-check.json": "3a02ba0c083b87e32c2c3543e4b50ce7c9d530e782acd5cde6bda3801774e3e2"
+  },
+  "session": {
+    "executedRunnerCommit": "d00eec4",
+    "status": "stopped_after_stage_limit",
+    "completedStages": 3,
+    "modelInvocationAttempts": "Not inferred from stage counts; raw responses retained in stage records",
+    "tests": {
+      "target": "scripts/design-review-step-client.test.mjs",
+      "passed": 5
+    }
+  },
+  "productionCheck": {
+    "worldPack": 41,
+    "storyBible": 74,
+    "approvedPlan": 10,
+    "counts": {
+      "ChapterCandidate": 116,
+      "StoryEvent": 383,
+      "ManuscriptRevision": 1,
+      "ChapterVersion": 101
+    },
+    "sameCountsAsBeforeV78": true,
+    "historicalManuscripts": [
+      [
+        "manuscript_294dc9e86760422cb56e0890f25d98c0",
+        1,
+        7,
+        6,
+        100
+      ]
+    ],
+    "productionWrites": 0,
+    "formalAcceptance": false
+  },
+  "uiObservation": {
+    "method": "CUA DOM snapshot",
+    "url": "http://127.0.0.1:5180/#/works/work_8b6c9133e13d404083ca33acc63f4f61/design",
+    "observedText": [
+      "正文生产尚未开放",
+      "当前世界观 v41 · 故事圣经 v74 · 最新计划 v78 · 批准计划 v10",
+      "计划 v78 · 待批准提案",
+      "力量、功法与法宝 · 1/29 步",
+      "世界、势力与历史 · 9/55 步"
+    ],
+    "scope": "UI observation occurred while characters and story first stages were still in progress; final counts are from API."
+  }
+}

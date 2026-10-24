@@ -1,5 +1,6 @@
 // Resume existing v78 reviews; never create, approve, lock, or generate prose.
 import fs from 'node:fs';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { requestJson, advanceReview, assertReviewBaseline } from './design-review-step-client.mjs';
 
@@ -31,6 +32,11 @@ async function main() {
     for (const [, id] of runs) assertReviewBaseline(response.body.runs.find(run => run.id === id), inputHash, planId);
     return response.body;
   };
+  const sha = url => createHash('sha256').update(fs.readFileSync(url)).digest('hex');
+  log({ status: 'started', workId, planId, inputHash, limit,
+    runnerSha256: sha(new URL(import.meta.url)),
+    clientSha256: sha(new URL('./design-review-step-client.mjs', import.meta.url)),
+  });
   try {
     let state = await overview(), count = 0;
     while (count < limit) {
@@ -41,7 +47,7 @@ async function main() {
       }
       const pending = current.filter(({ run }) => run.status !== 'completed');
       if (!pending.length) {
-        log({ status: 'reviews_completed', ready: state.ready, formalAcceptance: state.ready, approved: false });
+        log({ status: 'reviews_completed', contentReviewsPassed: state.ready, formalAcceptance: false, approved: false });
         return;
       }
       // Give every domain source review before concentrating on cross checks.
@@ -55,6 +61,10 @@ async function main() {
         onObservation: value => log({ area, runId: run.id, ...value }),
       });
       log({ area, runId: run.id, status: after.status, completed: after.stages.filter(s => s.completed).length, total: after.stages.length });
+      if (after.stages.some(stage => stage.verdict === 'needs_revision')) {
+        log({ status: 'stopped_for_content_revision', area, runId: run.id, formalAcceptance: false });
+        return;
+      }
       count++;
     }
     log({ status: 'stopped_after_stage_limit', completedThisSession: count, formalAcceptance: false });
