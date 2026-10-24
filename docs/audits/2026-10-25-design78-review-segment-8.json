@@ -1,0 +1,750 @@
+{
+  "kind": "design78_review_segment_8",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "planId": "plan_a5fff5fb0e5a4dcfb63912107924c2fa",
+  "inputHash": "28c13900f419ccc8a3faa5e8a3600348b6e119964681e21ef8f4f00919733d08",
+  "previousReceiptSha256": "9ea394fc397493589c62b8a1180bfba3e2453f6896c89490afb1cf4792c06e6e",
+  "formalAcceptance": false,
+  "contentReviewsReady": false,
+  "session": {
+    "executedRunnerCommit": "351d19a",
+    "apiSourceCommit": "f286665",
+    "journal": "data/audit-runtimes/design78-recovery/continuation-1792857848578-72282.jsonl",
+    "startedAt": "2026-10-24T16:04:08.578Z",
+    "completedAt": "2026-10-24T16:23:11.625Z",
+    "completedStages": 8,
+    "runnerSha256": "7830580c59bf8f4d835751e9c425f25793468ba6e41d45b791d095f303b8da6a",
+    "clientSha256": "e84f87609a97e7b0ec8067b784a4f2de5d426016e305fbff60d1993cc00662e7"
+  },
+  "progress": [
+    {
+      "area": "power",
+      "runId": "design_run_1050f783-7af7-4062-b5d2-bebd517cb730",
+      "status": "ready",
+      "completed": 11,
+      "total": 29,
+      "nextStage": "cross-2-5"
+    },
+    {
+      "area": "characters",
+      "runId": "design_run_2b6bc122-ddd6-4c1b-9166-303b1a6953de",
+      "status": "ready",
+      "completed": 11,
+      "total": 29,
+      "nextStage": "cross-2-5"
+    },
+    {
+      "area": "story",
+      "runId": "design_run_8bf5a361-cec3-4f5c-8fce-a1e65e2c8ac9",
+      "status": "ready",
+      "completed": 11,
+      "total": 29,
+      "nextStage": "cross-2-5"
+    },
+    {
+      "area": "world",
+      "runId": "design_run_0d086731-493f-4cb9-816a-398ff3ff1123",
+      "status": "ready",
+      "completed": 12,
+      "total": 55,
+      "nextStage": "cross-1-7"
+    }
+  ],
+  "batches": [
+    {
+      "area": "power",
+      "stageId": "cross-2-3",
+      "attempts": 1,
+      "savedModelResponses": 1,
+      "summary": "本批已读的低阶成长、基础御物、凝元剑诀与前22章行动账彼此可执行，且未见已读规则内部的免费越阶或重复寿储收入；但本批同时给出并援引多项未读高阶术式、玄府晋阶术式及第23章后的具体章纲。它们关系到全等级分级、成本和反制的判断，当前只能保留局部材料不足，不能据目录或宏观结局补足。",
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "insufficient",
+          "explanation": "已读部分对“境界承载不等于自动掌握”有明确约束；林辰从淬体诊断、温和引气、三经复测、支付三元载凝元，到受教、实测两丈凝元剑式的链条也已写出，前22章未见以境界名跳过学习门槛。可是玄府准入明确要求未读的《凝元分流入府诀》，而归一、破虚、通天、主宰境条目又分别将既有领域、空间术、神印、鸿蒙典作为能力边界；这些术式的允许境界、取得和训练条件均未在本批原文中提供。计划还把玄府晋阶安排在第83章，但本批未读到对应细纲或该段宏观里程碑，无法核验提案是否实际满足丹府训练、灵石周期、双重复核与十元载支付。",
+          "revisionAdvice": "补读所列术式、资源和第23章后的相关计划原文后，逐项核对玄府及以上能力的取得、训练、器物承载与实际使用；尤其核第83章是否先完成tech_19规定的六个有效十日周期、库存支付及白榆/顾峤复核。",
+          "awaitingSources": [
+            "world/techniques/tech_10",
+            "world/techniques/tech_11",
+            "world/techniques/tech_13",
+            "world/techniques/tech_15",
+            "world/techniques/tech_16",
+            "world/techniques/tech_19",
+            "world/resources/res_17",
+            "world/resources/res_18",
+            "world/resources/res_19",
+            "plan/milestones/ms_v2_loss",
+            "plan/milestones/ms_v2_barge",
+            "plan/milestones/ms_v2_fire",
+            "plan/milestones/ms_v2_voyage",
+            "plan/milestones/ms_v2_boundary",
+            "plan/milestones/ms_v3_return",
+            "plan/milestones/ms_v3_training",
+            "plan/milestones/ms_v3_advancement",
+            "plan/milestones/ms_v3_convoy",
+            "plan/milestones/ms_v3_payoff",
+            "plan/chapters/23",
+            "plan/chapters/24",
+            "plan/chapters/25",
+            "plan/chapters/26",
+            "plan/chapters/27",
+            "plan/chapters/28",
+            "plan/chapters/29",
+            "plan/chapters/30",
+            "plan/chapters/31",
+            "plan/chapters/32",
+            "plan/chapters/33",
+            "plan/chapters/34",
+            "plan/chapters/35",
+            "plan/chapters/36",
+            "plan/chapters/37",
+            "plan/chapters/38",
+            "plan/chapters/39",
+            "plan/chapters/40",
+            "plan/chapters/41",
+            "plan/chapters/42",
+            "plan/chapters/43",
+            "plan/chapters/44",
+            "plan/chapters/45",
+            "plan/chapters/46",
+            "plan/chapters/47",
+            "plan/chapters/48",
+            "plan/chapters/49",
+            "plan/chapters/50"
+          ]
+        },
+        {
+          "criterion": "costs",
+          "verdict": "insufficient",
+          "explanation": "已读前段成本账可闭合：寿储诊断不被当作收入；第120日凝元从第19日下界扣自然流逝后一次支付三元载；第176日至180日真元恢复按实际饭食、静息和复测累计，未重花已抵粮的灵石。第20—21章又明确从十成扣剑诀二成、试注半成、实得吐纳一成半、再扣轻钩半成，行动内没有把恢复或申请泉液提前入账。可是百章终局寿储、未来寿源和玄府十元载支付仅以宏观/候选见证出现；其所依赖的res_17—19规则、第83章训练与支付细纲、以及第23—50章已安排的疗程和后续行动账均未读，不能据当前摘要确认全段没有超支、预支或重复入账。",
+          "revisionAdvice": "补读所列资源规则、里程碑及第23—50章细纲后，按林辰个人账户分开核算：自然流逝、两剂灵泉完成疗程后的收入、凝元与玄府晋阶支出、每次施术法力支出及伤后可用上限；不得将公共配额、候选成熟窗或未来航款计作已得个人余额。",
+          "awaitingSources": [
+            "world/resources/res_17",
+            "world/resources/res_18",
+            "world/resources/res_19",
+            "world/techniques/tech_19",
+            "plan/milestones/ms_growth_v1_expedition",
+            "plan/milestones/ms_vol1_climax",
+            "plan/milestones/ms_growth_v1_aftermath",
+            "plan/milestones/ms_growth_v1_crossing",
+            "plan/milestones/ms_v2_loss",
+            "plan/milestones/ms_v2_barge",
+            "plan/milestones/ms_v2_fire",
+            "plan/milestones/ms_v2_voyage",
+            "plan/milestones/ms_v2_boundary",
+            "plan/milestones/ms_v3_return",
+            "plan/milestones/ms_v3_training",
+            "plan/milestones/ms_v3_advancement",
+            "plan/milestones/ms_v3_convoy",
+            "plan/milestones/ms_v3_payoff",
+            "plan/chapters/23",
+            "plan/chapters/24",
+            "plan/chapters/25",
+            "plan/chapters/26",
+            "plan/chapters/27",
+            "plan/chapters/28",
+            "plan/chapters/29",
+            "plan/chapters/30",
+            "plan/chapters/31",
+            "plan/chapters/32",
+            "plan/chapters/33",
+            "plan/chapters/34",
+            "plan/chapters/35",
+            "plan/chapters/36",
+            "plan/chapters/37",
+            "plan/chapters/38",
+            "plan/chapters/39",
+            "plan/chapters/40",
+            "plan/chapters/41",
+            "plan/chapters/42",
+            "plan/chapters/43",
+            "plan/chapters/44",
+            "plan/chapters/45",
+            "plan/chapters/46",
+            "plan/chapters/47",
+            "plan/chapters/48",
+            "plan/chapters/49",
+            "plan/chapters/50"
+          ]
+        },
+        {
+          "criterion": "counters",
+          "verdict": "insufficient",
+          "explanation": "已读规则和行动的局部反制成立：基础御物受可见、重量、单件、受载和预付限制；剑诀受实测距离、锁定、余刃、结构后果与二成法力约束；林在第20章只切可见悬索、等余刃和落石稳定后撤离，第21章只移无载小钩，均未用术式代替结构承力。高阶条目也在文字上列出供能、起式、中断和反制，但它们明确依赖未读的领域、空间、神印与鸿蒙典具体规则；不能只凭境界条目的转述判定其范围、撤退条件与相互反制已完整闭合。后段“同阶截押运”的实际对手、林与顾所用玄府操作及伤后监管，也尚未有第88—95章细纲可核。",
+          "revisionAdvice": "补读被援引术式及后段里程碑/细纲后，分别核实领域、裂空、神印与鸿蒙典的可作用对象、打断、退出和费用；并核第88—95章实际牵制、局部护罡、伤势停术、交械及具名看押是否与既有反制边界一致。",
+          "awaitingSources": [
+            "world/techniques/tech_11",
+            "world/techniques/tech_13",
+            "world/techniques/tech_15",
+            "world/techniques/tech_16",
+            "plan/milestones/ms_v2_fire",
+            "plan/milestones/ms_v2_boundary",
+            "plan/milestones/ms_v3_advancement",
+            "plan/milestones/ms_v3_convoy",
+            "plan/milestones/ms_v3_payoff",
+            "plan/chapters/23",
+            "plan/chapters/24",
+            "plan/chapters/25",
+            "plan/chapters/26",
+            "plan/chapters/27",
+            "plan/chapters/28",
+            "plan/chapters/29",
+            "plan/chapters/30",
+            "plan/chapters/31",
+            "plan/chapters/32",
+            "plan/chapters/33",
+            "plan/chapters/34",
+            "plan/chapters/35",
+            "plan/chapters/36",
+            "plan/chapters/37",
+            "plan/chapters/38",
+            "plan/chapters/39",
+            "plan/chapters/40",
+            "plan/chapters/41",
+            "plan/chapters/42",
+            "plan/chapters/43",
+            "plan/chapters/44",
+            "plan/chapters/45",
+            "plan/chapters/46",
+            "plan/chapters/47",
+            "plan/chapters/48",
+            "plan/chapters/49",
+            "plan/chapters/50"
+          ]
+        }
+      ]
+    },
+    {
+      "area": "characters",
+      "stageId": "cross-2-3",
+      "attempts": 1,
+      "savedModelResponses": 1,
+      "summary": "本批可检验的人物行动、关系边界与知情链均有明确动机、选择、代价和生效条件；未见本批内部的提前知情、关系自动升级或角色被动工具化冲突。结论仅覆盖本次实际提供的局部原文，不代替全书人物领域验收。",
+      "checks": [
+        {
+          "criterion": "agency",
+          "verdict": "pass",
+          "explanation": "林辰的选择持续以自身求生、取证与不牺牲他人为代价展开：开篇先救工友而失去追凶窗口；伤后拒绝以删改逃生支岔换报酬；古境中放弃样箱窗口先救秦禾，并在泉液分配时撤回一剂申请让告急者先领。梁九、秦禾、苏凌霜、顾峤及墨幽屠也都不是被动执行者：梁为家人生计保留和解与有限作证边界，秦获救后只承诺有限带路送信，苏选择留守证人与回宗而不随林南行，顾坚持实测、交岗和伤后限制，墨则为保住囚货拒绝延后或分批转运。各选择均改变后续权限、线索、救援条件或人员代价，未由救命之恩自动取消责任。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "relationships",
+          "verdict": "pass",
+          "explanation": "本批关系变化以具体互动和边界生效，而非以终局标签替代过程。林辰与梁九在配粮压力下发生失信，林放弃强迫其撤供，之后只恢复为带保留的搭档与亲见证词关系；林辰与苏凌霜也经历了残玉担保边界的重新谈判，并在第210—211日因留守证人和南行调查的现实冲突分路、分存副本和递信责任。秦禾获救后明确只接受一次灵石补偿、有限带路送信且不陪战，避免将救援直接兑换为服从。上述安排同时保留梁的家庭压力、苏的留守责任、秦的生计与自保权，且后果进入后续行动条件。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "knowledge",
+          "verdict": "pass",
+          "explanation": "本批为关键认知设置了可追溯来源和明确禁推。林、苏在前期仅凭公开摘录、底联、现场封样逐步形成怀疑，不能据此认定九鼎全图或幕后全责；古境中二人直到亲闻“墨少主”并由秦禾补足名牌信息才核定墨幽屠身份。营地的上层催令、侧门移箱和苏返宗均被明确划作独立视角，不回填为林辰当时知识。第33—34章亦维持林只知正式仓现状与常钧亲历范围，不把侧门视角、便条内容或领取者身份提前当作已知。该认知链能约束人物选择，未见消息未到即作出针对性回应的本批冲突。",
+          "revisionAdvice": ""
+        }
+      ]
+    },
+    {
+      "area": "story",
+      "stageId": "cross-2-3",
+      "attempts": 1,
+      "savedModelResponses": 1,
+      "summary": "本批已读的第1—19章细纲与相应世界、关系、秘密及百章宏观安排，在开篇因果、日期、成长动机和有限兑现上可相互衔接；但凝元导刃训练的具体功法准入与限制未随本批原文提供，成长项须补读该功法条目后才能确认。",
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "pass",
+          "explanation": "已读开篇将矿道救援的受伤与证据缺口，连续导向受限取证、保留不利证词、诊疗劳务、有限训练、实测晋阶和古境准入。林辰每次取得位置均以放弃、受伤、权限或可核实条件为代价；第19章的泉液申请亦明确只是受理，不倒填未来资源。局部所见未发现把读者信息、候补资格或预期配额提前变成行动能力的冲突。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass",
+          "explanation": "第1—19章日期从第1日至第183日连续推进：第15、16章的训练、停练与恢复落在第60—119日，第18章于第120日支付凝元成本并训练至第180日，第19章再以三日山路于第183日办理入境。褚衡、邵闻186日才出发、188日暮接班，未被写成前期即时援军；顾峤亦在183日守入口而不随林苏深入。已读范围内日期、交接和行程没有重叠冲突。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass",
+          "explanation": "已读安排将首卷承诺拆为可验证的节点：第26章解囚和交押不能替代药效，第28—29章完成两次疗程、复诊及旅途评估才确认有限寿储；百章救援承诺又明确区分赤霄五工、北境七人和青玄八人，禁止重复计数。九鼎、父案及界门均保留在本阶段之后，并限制百章只能证一条三地链，未出现以局部证据结清总谜团的重复兑现。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass",
+          "explanation": "开篇冲突由矿道灭口、伤者撤离和证据保存建立；随后不是重复同一救援，而依次转为证人保护、有限调档、逃离、撤供抉择、公开核验和输送事故。每段均以林辰在伤势、权限或生计压力下的选择推进，并在第10—12章形成“救人但不破全局阴谋”的阶段高潮，未过早给予高阶胜利或终局答案。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass",
+          "explanation": "已读章节在矿道逃生、调查权限冲突、搭档生计分歧、机械救援、诊疗劳务、修炼取舍及入境准备之间切换。第12章明确把编号、封存和处置压入人物对抗的结果；第14章以拒绝删图换酬劳形成新的实践选择；第17章则把岔气转为林苏重订证据担保边界，避免连续核账或医嘱场景没有新后果。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass",
+          "explanation": "玄幻要素不是术语装饰：寿储支付限制林辰的晋阶选择，凝元基础操作被限制为训练后的小范围动作，古境又以三重、符牌和路线权限约束探索。矿务机关、灵石导灵架、真元训练和古境采集共同改变了角色的风险、资源与可选路线，且没有以境界名义跳过代价。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "growth",
+          "verdict": "insufficient",
+          "explanation": "林辰的成长动机、伤后许可、资源取舍、岔气停练、凝元三元载支付、失败赔偿和三重实测均已有明确安排，成长链本身具备选择与代价。但第18章将后续导刃训练归入《乾元御风剑诀》凝元章，并以“一式二成真元”等规则安排实测；本批没有该功法原文，无法核对借授资格、发动条件、对象范围、冷却及成本是否与章纲相容。因此不能仅凭章纲的作者执行账确认该项能力设计可行。",
+          "revisionAdvice": "补读并核对《乾元御风剑诀》原条目后，确认第132—176日的借授、两丈实测、一式二成消耗、散热与恢复安排逐项满足该功法的境界、武器、目标和中断限制；若不符，应修改第18章训练或功法规则，而非以凝元境名称补足。",
+          "awaitingSources": [
+            "world/techniques/tech_04"
+          ]
+        }
+      ]
+    },
+    {
+      "area": "world",
+      "stageId": "cross-1-5",
+      "attempts": 1,
+      "savedModelResponses": 2,
+      "summary": "已复核报告容量：现有完整报告约57835字符，剩余32165字符；补入vol_02的e277、e278展开开销上界合计约1388字符，连同本次说明字段变化仍留有充足余量。地理项原有结论及其余必引来源均保留；新增引文补足batch-3/geography要求的plan/volumes/vol_02原始依据。history与capacity的既有判断和引文经复核未改动。",
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "pass",
+          "explanation": "此前两项待补读问题指出，跨海航线、港口层级、防护与候查准入尚未能核验；现已读原档明确三大陆同属一天地、日常跨陆走实体虚海航程而非界门。青玄—赤霄两昼夜、赤霄—苍冥五昼夜、苍冥—青玄六昼夜的航程与计划安排一致；各港均要求对应航段验籍及支付或代付记录。补入的第二卷原文进一步确认其33—66章目标是追查跨陆转运、救出赤霄雇工与北境矿工，并以北境外港截黑舱为卷末行动；其终局仍将北境七人留在当地救济所安置，未把候查人员误写为随主角自由离港。赤霄段把普通避火符限定为日常热气防护，苍冥段把获救者安置限定在监管泊区候查暖房，均不等同自由入境。后段计划进一步安排暖舱、护寒符、具名限程担保、逐站验籍、到港核验和异常时停留重排，因而地域转换确实改变行动权限、支付与风险，未见以商盟引荐、低阶修为或太古界门跳过准入。",
+          "revisionAdvice": "",
+          "resolves": [
+            "batch-2/geography",
+            "batch-3/geography"
+          ]
+        },
+        {
+          "criterion": "history",
+          "verdict": "pass",
+          "explanation": "历史设定为当下跨陆冲突提供了可行动的因果链：界门落锁没有切断同天地内虚海航线，但航程、风暴、验籍和担保仍有效；商盟因实体航运取得管船、泊位、货单与结算的权力。赵府、炎煞代理与程砚的旧约也明确只是有限物流和资金安排，不授予港务控制、免检或无限赊额；货损、查验和欠款会分别驱动程、赵及代理作出不同选择。当前分卷将这些既有利益冲突转化为失箱追查、港口救援、北境候查与返乡交证，而非仅换地图重复冲突。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "capacity",
+          "verdict": "pass",
+          "explanation": "本批可见的世界容量并非靠地点堆叠：青玄古境的配额与伤病限制、赤霄港口的热害和货运责任、苍冥的寒候、候查监管与救济资源，分别改变角色能否行动、如何支付、是否可自由离港及救援后的安置边界。后两卷还把专项航款、船票、防护符衣、救济预算、担保期限及异地回执拆分处理；北境七人与赤霄五工、青玄八人的名单和安置地点亦明确分开，避免把救援人数或资源重复消费。就本批实际提供的三卷宏观设计而言，地域、制度与资源均持续产生不同选择和代价，足以支撑百章阶段的分卷递进。",
+          "revisionAdvice": ""
+        }
+      ]
+    },
+    {
+      "area": "power",
+      "stageId": "cross-2-4",
+      "attempts": 1,
+      "savedModelResponses": 1,
+      "summary": "本批已读的低中阶行动、寿储分账和多数术式限制均有明确支付、对象与中断条件；但若要对本批已给出的全境界规则及第25章剑诀资格作完整局部结论，仍须补读其明确援引而未提供的功法、人物资格与第18章训练细纲。当前不能以目录或章纲中的转述替代这些原文核验。",
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "insufficient",
+          "explanation": "已读规则明确区分境界承载与已掌握术式；第25章也把林辰剑诀的两丈实测和顾峤的开篇前纯阳凝印资格作为发动前提，而非由凝元、玄府境界自动取得。可是本批未提供林辰第18章剑诀训练/实测原文，亦未提供顾峤人物档案以核其所称开篇前资格。另一方面，玄府以上各境界已直接援引tech_11、tech_13、tech_15、tech_16及玄府晋阶所需tech_19的具体训练或施术规则；这些原文缺席，无法核验已给出的全等级资格链是否与被引用条目一致。",
+          "revisionAdvice": "补读所列原始来源，核对：第18章是否完成林辰凝元剑诀所需训练与实测；顾峤档案是否实际设定其纯阳真光资格；以及五个被境界规则直接引用的功法是否满足对应境界、训练、资源与器物承载条件。",
+          "awaitingSources": [
+            "plan/chapters/18",
+            "story/characters/char_10",
+            "world/techniques/tech_11",
+            "world/techniques/tech_13",
+            "world/techniques/tech_15",
+            "world/techniques/tech_16",
+            "world/techniques/tech_19"
+          ]
+        },
+        {
+          "criterion": "costs",
+          "verdict": "insufficient",
+          "explanation": "本批可直接核对的账目没有发现当前硬冲突：林辰第25章真元按8.5−2−0.5=6成分账，顾峤的0.25元载不混入林辰寿储；两剂灵泉均安排在完成三日服用、七日静养与复诊后才各入账5元载，且污染三滴不重列为可分配收入。可是已提供的归一至主宰规则把具体领域、裂空、神印与鸿蒙典的寿储、法力、神识和本源成本作为自身限制的一部分，玄府晋阶也把tech_19训练与灵石周期作为准入成本。相应功法原文未读，无法验证这些明确引用的高阶成本是否存在重复支付、漏付或与境界条目冲突。",
+          "revisionAdvice": "补读所列功法原文，逐项对照归一、破虚、通天、主宰及玄府晋阶条目中的供能账户、寿储/本源支出、冷却、资源剂量和失败损失；确认它们不将同一收入或同一账户重复计入。",
+          "awaitingSources": [
+            "world/techniques/tech_11",
+            "world/techniques/tech_13",
+            "world/techniques/tech_15",
+            "world/techniques/tech_16",
+            "world/techniques/tech_19"
+          ]
+        },
+        {
+          "criterion": "counters",
+          "verdict": "insufficient",
+          "explanation": "已读的低中阶对抗设计具备具体反制：轻物御动受可见、重量、单件和受载限制；剑诀要求可见锁定、实测射程、完整付费与失锁停发；第25章没有把真光写成降境或清空墨的元罡，而以站位、废木卡足、伤势与持续近身看押解释制伏。玄府局部护罡、贴身推劲及噬血爪也已有打断、空档、伤势和停术条件。但归一至主宰境的反制条目直接依赖尚未提供的tech_11、tech_13、tech_15、tech_16；不读其对象、范围、打断与撤退规则，无法确认高阶能力条目所列反制不是仅有名目而与功法实际效果抵触。",
+          "revisionAdvice": "补读所列高阶功法，核查其实际范围、锁定/定位前提、可打断环节、持续上限、退出条件及失败后果，并与各境界条目的领域、空间、界门和言律反制逐项对照。",
+          "awaitingSources": [
+            "world/techniques/tech_11",
+            "world/techniques/tech_13",
+            "world/techniques/tech_15",
+            "world/techniques/tech_16"
+          ]
+        }
+      ]
+    },
+    {
+      "area": "characters",
+      "stageId": "cross-2-4",
+      "attempts": 1,
+      "savedModelResponses": 1,
+      "summary": "本批已读的第1—50章提案中，人物选择、关系边界与知情限制均有明确行动和后果；结论仅适用于本批可检验安排，不代表全书人物领域或正文已验收。",
+      "checks": [
+        {
+          "criterion": "agency",
+          "verdict": "pass",
+          "explanation": "人物并非被动推动情节：林辰在矿道放弃独逃、承担重伤以救工友，后续又持续选择不以他人承担自己的脱责、追证或生计压力；梁九、贺青梧、唐顺、许、吴伍、卢小满均能拒绝、退出或限定合作。第50章的脱控由吴卢亲口要求、陆沉舟改变站队、巡员现场处置共同造成，而非主角用力量替所有人决定；代价保留为伤势、失单、船损、看护与未解原账。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "relationships",
+          "verdict": "pass",
+          "explanation": "本批可见关系变化均以选择和边界生效，而未把救援直接等同忠诚或服从：林与梁九从争执后的有限搭档转为保留各自供词边界；贺拒以床位、救援或雇佣要求工人回船；唐不再替许作答，吴也撤回替卢承诺，卢在获救后仍自行决定不上船。林在门前让巡员直接听当事人回答，陆仅因当场协助而继续受看护，未获免责。关系档案原文未在本批读取，故本结论不外推至全书关系链。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "knowledge",
+          "verdict": "pass",
+          "explanation": "知情安排能区分读者视角、角色实际获得的信息与待核事实。林在港口调查中依次只取得侧门册、当面供述、实物或有限编号，持续保留火因、原账、改签全貌及吴卢位置的不知；第48章门内谈话明确不传给外线人物，第50章再以现场回答完成确认。赵的认知也限定为实体报告、阅报与实体回令之后的有限内容，未将254现场情况即时共享或扩张为全案已知。",
+          "revisionAdvice": ""
+        }
+      ]
+    },
+    {
+      "area": "story",
+      "stageId": "cross-2-4",
+      "attempts": 1,
+      "savedModelResponses": 1,
+      "summary": "本批20—39章的时间推进、受限救援—疗养—南渡—港口查验链，以及救人优先于追证的选择总体可执行；但第25章决定性同阶交锋同时调用未补读的功法条目、顾峤既有训练和第18章实测，无法在本批核验其准入与术式规则是否相容。",
+      "checks": [
+        {
+          "criterion": "causality",
+          "verdict": "insufficient",
+          "explanation": "第25章把顾峤的真光、墨幽屠的噬血爪、林辰的剑诀及顾的既有资格作为制伏与救援链的关键前置；公理明确境界和能力方向不能替代已掌握术式、对象、供能与时机规则。现有章纲虽写出呼吸顺序、支付和伤后停术，却未提供三门功法原条、顾峤人物档或第18章训练实测，不能核定这些自述是否确能支持该交锋。",
+          "revisionAdvice": "补读所列来源，核对林辰剑诀、墨幽屠血爪、顾峤真光的实际资格、起式/供能/冷却及第18章训练前置；若不符，应调整第25章动作或前置，而非以境界名称补足。",
+          "awaitingSources": [
+            "world/techniques/tech_04",
+            "world/techniques/tech_05",
+            "world/techniques/tech_06",
+            "story/characters/char_10",
+            "plan/chapters/18"
+          ]
+        },
+        {
+          "criterion": "timeline",
+          "verdict": "pass",
+          "explanation": "第20—26章把侦察、封哨、实体送信、顾峤交岗后四里接应、战后75分钟撤离及昼夜换岗逐项落在184—189日；第29—33章也明确林辰独立南行、苏凌霜随押解慢车返宗，未把二人写成同时同地。214日暮起航、216日暮抵港与两昼夜实体海程相合。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "payoff",
+          "verdict": "pass",
+          "explanation": "本批伏笔均以有限证据推进而未提前定案：古境样箱刻痕与收货号只构成追链线索；港口侧门、火场和分架页逐步补足本箱去向，同时持续保留火因、携页者、改签与幕后责任的证据缺口。主角在第25、37章均以救人为代价放弃部分追证，后果没有被即时抵销。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "opening",
+          "verdict": "pass",
+          "explanation": "在本批可见区间，冲突由古境救援的准入与救人选择，递进到战后疗养、有限护货、货损责任、雇工失联和火场取舍。各段均以新的目标、可见代价和未解决后果承接，并非用同一种战斗或核账反复结案。该结论仅覆盖本批章节，不评价全书开篇或后段高潮分布。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "pacing",
+          "verdict": "pass",
+          "explanation": "第20—29章的恢复、药程、轮值和分路并非纯执行账：它们分别迫使林辰放弃追问与商队、苏凌霜选择留宗、顾峤接受有限复岗。第33—39章的查验亦连续改变可得信息、人物责任和下一步查人路径；第37章火场将调查节奏转为即时救援，并保留追证损失。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "genre",
+          "verdict": "pass",
+          "explanation": "玄幻能力在本批是受规则约束的行动条件，而非术语装饰：轻物御动只处理可见、无载的小钩、插销、制动柄和松楔；跨海仍走实体航程并受港口防护与当日旗号限制；寿泉也必须完成疗程和复诊才入账。这些限制直接塑造救援、护货、行程与查案选择。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "growth",
+          "verdict": "pass",
+          "explanation": "林辰的成长由明确目标、训练/实测、受伤后的行动限制与可观察回报组成：此前凝元资格只支持受限轻物操作；第25章战伤后停术并接受常规治疗；两剂灵泉分别完成十日疗程、复诊后才各入账5元载，且延寿不等于治愈腿伤。其后取得的是坐车轻役和护货资格，而非免费升级或伤势豁免。",
+          "revisionAdvice": ""
+        }
+      ]
+    },
+    {
+      "area": "world",
+      "stageId": "cross-1-6",
+      "attempts": 1,
+      "savedModelResponses": 2,
+      "summary": "已复核完整报告容量：当前52236字符，剩余37764字符；新增e281的展开开销上界776字符，连同本次说明字段变化仍有充足余量。地理项原有证据及两项解除声明均保留；补入此前遗漏的plan/volumes/vol_02必引依据，使batch-3/geography的全部指定来源均有实际引文支持。history与capacity的既有引文和判断经复核保持不变。",
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "pass",
+          "explanation": "重新核对两项待补读问题：界门封禁律与三大陆、港口及商路条目共同限定跨陆须走实体虚海航程，港口验籍、候查、担保、寒热防护及离开监管区的权限不能由商业票或防护器具替代。第一卷南渡、第二卷赤霄—苍冥五昼夜北航及受监管候查、第三卷限程担保和六昼夜返航均按这些约束安排。此前对batch-2/geography的商路与港口原档引文齐备；对batch-3/geography，现补入第二卷分卷原文，明确该卷以凝元实力开展跨陆扣工/黑舱救援，且其阶段终态仍保留北境七人候查安置与六日实体回航，而非将救援、防护或航票写成自由通行。故两项原先仅因未读来源产生的局部材料不足均可维持已声明的解决；这仍仅说明提案在本批可检验范围内可行，不把安排当作已写正文事实。",
+          "revisionAdvice": "",
+          "resolves": [
+            "batch-2/geography",
+            "batch-3/geography"
+          ]
+        },
+        {
+          "criterion": "history",
+          "verdict": "pass",
+          "explanation": "历史事件已将界门封禁与实体商路并存的原因、大乾—太清的权力裂缝、赤霄药火贸易冲突及寿材运医约的制度遗产写为当前势力行动的具体约束，而非背景名词。计划第二卷的扣工/私运冲突、北境港口候查与第三卷的本地军需转运，都承接这些既有利益链，并保留了旧约不等于当前库存、授权或即时知情的边界。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "capacity",
+          "verdict": "pass",
+          "explanation": "本批可见容量不是单纯换地图：青玄的宗门/军需掩案、赤霄的港口货运与扣工、苍冥的候查救助和巡界担保分别改变准入、交通、证据与救援选择；三卷目标亦由有限救援、跨境查货、返乡断运递进。寿源见证明确只是有资格、资源竞争和疗程均成立时的候选上限，避免把世界资源直接授予角色；后段也以十年玄府成本、训练周期、伤情和实体转运约束成长与高潮。因此本批已能承载百章阶段的多地冲突，未要求未展开的51—100章提供逐场细纲。",
+          "revisionAdvice": ""
+        }
+      ]
+    }
+  ],
+  "newDeferredChecks": [
+    {
+      "area": "power",
+      "checkId": "cross-2-3/tiers",
+      "awaitingSources": [
+        "world/techniques/tech_10",
+        "world/techniques/tech_11",
+        "world/techniques/tech_13",
+        "world/techniques/tech_15",
+        "world/techniques/tech_16",
+        "world/techniques/tech_19",
+        "world/resources/res_17",
+        "world/resources/res_18",
+        "world/resources/res_19",
+        "plan/milestones/ms_v2_loss",
+        "plan/milestones/ms_v2_barge",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff",
+        "plan/chapters/23",
+        "plan/chapters/24",
+        "plan/chapters/25",
+        "plan/chapters/26",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/29",
+        "plan/chapters/30",
+        "plan/chapters/31",
+        "plan/chapters/32",
+        "plan/chapters/33",
+        "plan/chapters/34",
+        "plan/chapters/35",
+        "plan/chapters/36",
+        "plan/chapters/37",
+        "plan/chapters/38",
+        "plan/chapters/39",
+        "plan/chapters/40",
+        "plan/chapters/41",
+        "plan/chapters/42",
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50"
+      ]
+    },
+    {
+      "area": "power",
+      "checkId": "cross-2-3/costs",
+      "awaitingSources": [
+        "world/resources/res_17",
+        "world/resources/res_18",
+        "world/resources/res_19",
+        "world/techniques/tech_19",
+        "plan/milestones/ms_growth_v1_expedition",
+        "plan/milestones/ms_vol1_climax",
+        "plan/milestones/ms_growth_v1_aftermath",
+        "plan/milestones/ms_growth_v1_crossing",
+        "plan/milestones/ms_v2_loss",
+        "plan/milestones/ms_v2_barge",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_voyage",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_return",
+        "plan/milestones/ms_v3_training",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff",
+        "plan/chapters/23",
+        "plan/chapters/24",
+        "plan/chapters/25",
+        "plan/chapters/26",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/29",
+        "plan/chapters/30",
+        "plan/chapters/31",
+        "plan/chapters/32",
+        "plan/chapters/33",
+        "plan/chapters/34",
+        "plan/chapters/35",
+        "plan/chapters/36",
+        "plan/chapters/37",
+        "plan/chapters/38",
+        "plan/chapters/39",
+        "plan/chapters/40",
+        "plan/chapters/41",
+        "plan/chapters/42",
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50"
+      ]
+    },
+    {
+      "area": "power",
+      "checkId": "cross-2-3/counters",
+      "awaitingSources": [
+        "world/techniques/tech_11",
+        "world/techniques/tech_13",
+        "world/techniques/tech_15",
+        "world/techniques/tech_16",
+        "plan/milestones/ms_v2_fire",
+        "plan/milestones/ms_v2_boundary",
+        "plan/milestones/ms_v3_advancement",
+        "plan/milestones/ms_v3_convoy",
+        "plan/milestones/ms_v3_payoff",
+        "plan/chapters/23",
+        "plan/chapters/24",
+        "plan/chapters/25",
+        "plan/chapters/26",
+        "plan/chapters/27",
+        "plan/chapters/28",
+        "plan/chapters/29",
+        "plan/chapters/30",
+        "plan/chapters/31",
+        "plan/chapters/32",
+        "plan/chapters/33",
+        "plan/chapters/34",
+        "plan/chapters/35",
+        "plan/chapters/36",
+        "plan/chapters/37",
+        "plan/chapters/38",
+        "plan/chapters/39",
+        "plan/chapters/40",
+        "plan/chapters/41",
+        "plan/chapters/42",
+        "plan/chapters/43",
+        "plan/chapters/44",
+        "plan/chapters/45",
+        "plan/chapters/46",
+        "plan/chapters/47",
+        "plan/chapters/48",
+        "plan/chapters/49",
+        "plan/chapters/50"
+      ]
+    },
+    {
+      "area": "story",
+      "checkId": "cross-2-3/growth",
+      "awaitingSources": [
+        "world/techniques/tech_04"
+      ]
+    },
+    {
+      "area": "power",
+      "checkId": "cross-2-4/tiers",
+      "awaitingSources": [
+        "plan/chapters/18",
+        "story/characters/char_10",
+        "world/techniques/tech_11",
+        "world/techniques/tech_13",
+        "world/techniques/tech_15",
+        "world/techniques/tech_16",
+        "world/techniques/tech_19"
+      ]
+    },
+    {
+      "area": "power",
+      "checkId": "cross-2-4/costs",
+      "awaitingSources": [
+        "world/techniques/tech_11",
+        "world/techniques/tech_13",
+        "world/techniques/tech_15",
+        "world/techniques/tech_16",
+        "world/techniques/tech_19"
+      ]
+    },
+    {
+      "area": "power",
+      "checkId": "cross-2-4/counters",
+      "awaitingSources": [
+        "world/techniques/tech_11",
+        "world/techniques/tech_13",
+        "world/techniques/tech_15",
+        "world/techniques/tech_16"
+      ]
+    },
+    {
+      "area": "story",
+      "checkId": "cross-2-4/causality",
+      "awaitingSources": [
+        "world/techniques/tech_04",
+        "world/techniques/tech_05",
+        "world/techniques/tech_06",
+        "story/characters/char_10",
+        "plan/chapters/18"
+      ]
+    }
+  ],
+  "artifacts": {
+    "data/audit-runtimes/design78-recovery/continuation-1792857848578-72282.jsonl": "34e125553384f028b72d6df46820221ed08bc2e04cbf2eb674617247390fb4e0",
+    "data/audit-runtimes/design78-recovery/segment-8-summary.json": "69aaf57a84c2a5bc50d068586b81952f594b1248006f39051ecddc6da6371d77",
+    "data/audit-runtimes/design78-recovery/segment-8-production-check.json": "6d4f8a9af01c41406e616d3a109bfc016a91a58ff5e700ba4f998646f460acde",
+    "data/audit-runtimes/design78-recovery/segment-8-stage-validation.json": "3546d029358e3ec493a87372face22f904b0eeeffa1cb5d3cc8a3ceb5803b978",
+    "data/audit-runtimes/design78-recovery/v78-lifespan-arithmetic.json": "faf58e8b230c62749b1c70fe2bf24a9181fdd4c593edbde3c9921f3f8e7ddf6b",
+    "data/audit-runtimes/design78-recovery/power-cross-2-3-followup-capacity.json": "495e7dc4b1ff94a2243de7a7c0397ba5e5e33198cdff7c2531704aca7d76c8d9",
+    "data/audit-runtimes/design78-recovery/world-cross-1-5-repair-verification.json": "3ef31a378f8fbee40e24bc4ae26c9a9012d079d29cc6e5c694fde7acf57dc7cd",
+    "data/audit-runtimes/design78-recovery/power-cross-2-3.json": "bffd2dae7a436a9bbdfe33d50a450ae160d27f8a6d6d37301286a7c4342a607e",
+    "data/audit-runtimes/design78-recovery/characters-cross-2-3.json": "ed1ce18100562c50c34e619c9589ad6cac98a7ad6f93c86cc41973842930c18f",
+    "data/audit-runtimes/design78-recovery/story-cross-2-3.json": "32fca01799ed828174654785dd39a5394a39e2833a5cb4a24a113c947195da01",
+    "data/audit-runtimes/design78-recovery/world-cross-1-5.json": "d5ecfef88fceb021380d45bb51ee932576cfef5ecba99db93047216157e891ec",
+    "data/audit-runtimes/design78-recovery/power-cross-2-4.json": "538378fbb72d70b2a8f25ef62d35107eb85aa020d37fd7252a2d626108d226fb",
+    "data/audit-runtimes/design78-recovery/characters-cross-2-4.json": "df2742ee0c80a0b7aee720bfb3c3a41aa38ba6d7556323bc0bddd5a28eed8946",
+    "data/audit-runtimes/design78-recovery/story-cross-2-4.json": "ca2f72bf9489869e6f24ff1e1c2e3a34046a77f70e386785a95c8a63aad9f503",
+    "data/audit-runtimes/design78-recovery/world-cross-1-6.json": "d5853ec3259b55a2055efc7a4c40ee8b794a8dd259d9265c6912557678f22472"
+  },
+  "productionCounts": {
+    "ChapterCandidate": 116,
+    "StoryEvent": 383,
+    "ManuscriptRevision": 1,
+    "ChapterVersion": 101
+  },
+  "productionCountsUnchanged": true,
+  "productionWrites": 0,
+  "retryProtection": {
+    "commit": "351d19a",
+    "change": "Default continuation refuses previously attempted pending stages; an explicit run/stage/attempt tuple permits exactly the inspected retry, and mismatches or active leases still stop before dispatch.",
+    "validation": [
+      "7 recovery tests passed",
+      "runner node --check passed",
+      "git diff --check passed"
+    ]
+  },
+  "independentChecks": {
+    "allEightSavedStageEvidenceRevalidated": true,
+    "allExpandedReportsWithinOriginalCap": true,
+    "worldCitationRepairObserved": true,
+    "worldOtherChecksPreserved": true,
+    "lifespanArithmeticMatched": true,
+    "paidHistoricalLifespanNeverRefunded": true,
+    "powerCross23FocusedSourceFallbackFitsCapacity": true
+  },
+  "limitations": [
+    "Eight new deferred checks are not eight independent design errors.",
+    "World cross-1-5 and cross-1-6 reaffirm the two geography resolutions already recorded in cross-1-4; they are not newly resolved independent issues.",
+    "Successful citation repairs are observations, not causal proof that the prompt improvement caused success.",
+    "Lifespan arithmetic is conditional on the source proposal health, allocation, course completion and no-extra-loss premises; it is not medical or prose acceptance.",
+    "Follow-up capacity computation proves source delivery can fit, not that the model will resolve the questions.",
+    "The API source remains f286665; this turn changed only the client continuation workflow and documentation.",
+    "No new UI rendering check this segment; prior evidence viewer verification remains in segment 7.",
+    "Saved response counts are not billing counts."
+  ]
+}
