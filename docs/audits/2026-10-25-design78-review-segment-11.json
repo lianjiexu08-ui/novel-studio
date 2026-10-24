@@ -1,0 +1,812 @@
+{
+  "kind": "design78_review_segment_11",
+  "workId": "work_8b6c9133e13d404083ca33acc63f4f61",
+  "planId": "plan_a5fff5fb0e5a4dcfb63912107924c2fa",
+  "inputHash": "28c13900f419ccc8a3faa5e8a3600348b6e119964681e21ef8f4f00919733d08",
+  "previousReceiptSha256": "98980287cb7133e02c8b57fe717ab4312872bc1cd33ae4c1d24caf7a1009b78e",
+  "previousArtifactsPreserved": {
+    "receipts": 9,
+    "boundArtifactReferences": 117
+  },
+  "formalAcceptance": false,
+  "contentReviewsReady": false,
+  "session": {
+    "executedRunnerCommit": "057b72d",
+    "apiSourceCommit": "9b03fe2",
+    "journal": "data/audit-runtimes/design78-recovery/continuation-1792862669987-84785.jsonl",
+    "startedAt": "2026-10-24T17:24:29.987Z",
+    "completedAt": "2026-10-24T17:41:59.941Z",
+    "completedStages": 8,
+    "runnerSha256": "7830580c59bf8f4d835751e9c425f25793468ba6e41d45b791d095f303b8da6a",
+    "clientSha256": "e84f87609a97e7b0ec8067b784a4f2de5d426016e305fbff60d1993cc00662e7"
+  },
+  "progress": [
+    {
+      "area": "power",
+      "runId": "design_run_1050f783-7af7-4062-b5d2-bebd517cb730",
+      "status": "ready",
+      "completed": 17,
+      "total": 75,
+      "nextStage": "followup-cross-1-2/tiers"
+    },
+    {
+      "area": "characters",
+      "runId": "design_run_2b6bc122-ddd6-4c1b-9166-303b1a6953de",
+      "status": "ready",
+      "completed": 17,
+      "total": 33,
+      "nextStage": "synthesis-1"
+    },
+    {
+      "area": "story",
+      "runId": "design_run_8bf5a361-cec3-4f5c-8fce-a1e65e2c8ac9",
+      "status": "ready",
+      "completed": 17,
+      "total": 51,
+      "nextStage": "followup-batch-1/pacing"
+    },
+    {
+      "area": "world",
+      "runId": "design_run_0d086731-493f-4cb9-816a-398ff3ff1123",
+      "status": "ready",
+      "completed": 18,
+      "total": 55,
+      "nextStage": "cross-3-4"
+    }
+  ],
+  "batches": [
+    {
+      "file": "data/audit-runtimes/design78-recovery/power-followup-batch-1__counters.json",
+      "sha256": "056dcf9cfcbb6c070d24c4a6e1e64be8f97643eddaf63021e97f09aa0dc24185",
+      "area": "power",
+      "stageId": "followup-batch-1/counters",
+      "attempts": 1,
+      "savedModelResponses": 1,
+      "reportCharacters": 12363,
+      "reportCap": 90000,
+      "sourceAndCitationValidationPassed": true,
+      "summary": "已补读第25章双章纲及第88—100章里程碑：能力上限、反制、越阶禁限与同阶牵制的动作链均已落到可执行条件，本项原等待问题已解决。",
+      "checks": [
+        {
+          "criterion": "counters",
+          "verdict": "pass",
+          "explanation": "第25章将顾峤三息结印与墨幽屠第二、第三息各付一成的血爪逐息对齐：真光只接触当场外放爪煞，墨停爪后仍保有元罡和行动能力；其被制伏还另有夺箱选择、接膝站位、废木卡足、指骨裂伤和腿伤，普通绳索不构成封经。该安排符合真光的三息起式、单场一次与近身打断限制，也符合血爪近身、逐息付费、停爪后冷却及积毒限制。后段截押明确林、顾各自仅以局部护罡和车角/退步争取短时窗口；林第三次护罡被穿即肩伤停术，护罡不覆盖后续31分钟转运。祁嵩交械则由原令、具名押报、现场伤者与保留申辩机会驱动，且仍保留另一玄府、祁自身元罡和反悔时呼援的风险，不是以绝对压制取得胜利。计划同时明确百章不发动逆命真解、不越阶斩高境，玄府阶段只对同阶护卫实施有限牵制，未与境界压制规则冲突。",
+          "revisionAdvice": "",
+          "resolves": [
+            "batch-1/counters"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "data/audit-runtimes/design78-recovery/characters-followup-cross-1-4__knowledge.json",
+      "sha256": "8f42ffbdec698f131ef6bd8aa3f2d9abb3b2671f1ccbe6a36c150674aa532b76",
+      "area": "characters",
+      "stageId": "followup-cross-1-4/knowledge",
+      "attempts": 1,
+      "savedModelResponses": 1,
+      "reportCharacters": 17830,
+      "reportCap": 90000,
+      "sourceAndCitationValidationPassed": true,
+      "summary": "对补读的《九鼎窃寿阵图秘卷》与既有报令、关系阶段交叉核对后，港口报令至正式质询的知情链在角色、信息范围、送达时点与禁止推断上相互一致；原等待补读项已解决。",
+      "checks": [
+        {
+          "criterion": "knowledge",
+          "verdict": "pass",
+          "explanation": "原问题要求核验的跨阶段知情链已可闭合。程砚第258日寄报只转述脚夫在公共巷口所见及其自述，不能冒充门内见闻；赵玄极到262日实际阅报才取得这一有限、未独立核实的信息，263日签回令，且不知回令是否已经送达。268日程实收回令、273日赵才收到签收联，签收联仅证明送达而不证明毁账执行。秘密档对赵在33—52章未收港口新报、53章阅报后的有限认知、54—72章仅确认回令送达、73章仅以程砚面报理解北境损失、90—97章未收到撤令执行结果、98章仅收到程砚逃离前见闻、99章才收到正式质询，逐段作出同样限制。林辰与苏凌霜在50—52章只掌握亲历现场行为，53章即使取得陆沉舟签认副本也仍须独立核验；炎煞尊者亦未获新增送达节点。因此没有角色因读者视角、他人收到消息或已发出命令而提前取得异地事实。秘密档同时把赵对十年前父案的既有自身记忆与港口/北境/押运新报分开，未以旧秘密替代新消息来源。",
+          "revisionAdvice": "",
+          "resolves": [
+            "cross-1-4/knowledge"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "data/audit-runtimes/design78-recovery/story-followup-batch-1__payoff.json",
+      "sha256": "515ee0f55feffab27bd8187f789815354c8f5c2eb1ba4b4f979889ed4dfff2cd",
+      "area": "story",
+      "stageId": "followup-batch-1/payoff",
+      "attempts": 1,
+      "savedModelResponses": 1,
+      "reportCharacters": 28789,
+      "reportCap": 90000,
+      "sourceAndCitationValidationPassed": true,
+      "summary": "补读材料已为百章阶段性兑现建立了可核条件、证物边界与未结事项；后半段宏观安排可成立，但均仍是待逐章实现的设计安排。",
+      "checks": [
+        {
+          "criterion": "payoff",
+          "verdict": "pass",
+          "explanation": "原问题要求核对后段原令、父案材料、运输链与回访是否会越过既有秘密边界或重复兑现。补读后可确认：林辰与苏凌霜在88—94章仅准备救援，95章以“先救伤者、保住原令”为关系变化触发，100章才由三十日回访检验有限搭档关系，未倒填救援成果。原令仅支持本批撤人责任；父案三份记录只确认守门参与与外山掩案，不延伸为投毒或九鼎全貌；原令、北境副本、陆沉舟自述也分别保留来源与独立核验边界。百章兑现的是三地已实证转运链中各自已追查批次的救援、安置和本地断运，而非九鼎全网停转：北境七人仍候查、赤霄五工及陆弟按当地安排、青玄八人仅由本地回访核验。第六箱线已在39章闭合并明确不等于大网络，其他承诺与开放线分别留至后续或450章总线；“返还既耗寿元”则明确作为被否定的角色愿望收束。故伏笔、承诺与开放线的阶段归宿、兑现条件和代价相互兼容。",
+          "revisionAdvice": "",
+          "resolves": [
+            "batch-1/payoff"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "data/audit-runtimes/design78-recovery/world-cross-2-6.json",
+      "sha256": "a66c1a5fd6e1c7f807eb9a04a7e13dbd077f73465119325f36088e0fa1586512",
+      "area": "world",
+      "stageId": "cross-2-6",
+      "attempts": 1,
+      "savedModelResponses": 1,
+      "reportCharacters": 24814,
+      "reportCap": 90000,
+      "sourceAndCitationValidationPassed": true,
+      "summary": "本批可核的三大陆通行、港口监管、跨区利益链与分卷承载均能支撑现有100章提案；以下均为设计可行性判断，不等于事件已写入正文或后段逐章安排已兑现。",
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "pass",
+          "explanation": "跨域移动没有借界门、瞬移或境界名缩短实体航程：青玄至赤霄明确为两昼夜海程，并在到港当日复核赤霄放行旗号、验籍和避火防护；后续赤霄至苍冥、苍冥返青玄均明确使用暖车、实体保温舟舱、当日巡路/港务核验及实际票款。赤霄日常热区的避火符门槛、苍冥凝元以下防寒与沿岸验籍担保规则，也分别被北行、候查、外港担保、限程离境和返港验籍安排实际承接。夜的担保仅限指定仓区或限程离境，不被扩写成界渊准入、自由入境或无限通行权。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "history",
+          "verdict": "pass",
+          "explanation": "本批的现状并非只以既往阴谋作标签：失箱、仓火、扣工、程记承运与赵方旧互供被拆为各自可知范围和可追查后果；首仓火因、原账、改签原条及父案全貌仍保留为未证事项。程—赵通信具有寄送、阅件、回令、签收与回执的实体节点，避免把一方收令扩展为炎煞或林苏即时知情。后段赵改为本地车队、祁基于具名原令和申辩机会交械，仍保留其接押、毁页与监管责任；这使势力的自保、转嫁风险与角色选择均有独立因果，而非由主角胜利自动停摆。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "capacity",
+          "verdict": "pass",
+          "explanation": "现有地域差异会实际改变选择和代价，而非仅换地图：青玄古境的准入、有限灵泉与护送责任导向第一卷；赤霄的热区防护、港务程序、潮道和船损将调查转为救人与生计抉择；苍冥的寒候、候查监管、有限担保与港务救济则限制北境行动和人员去向。三卷的冲突对象也递进为古境掳人与寿源分配、港口扣工与跨陆转运、返乡后的证据与同阶押运，且每卷保留资源、伤情、许可或安置的后果。高阶寿源条目同时规定成熟窗口、配额、疗程、竞争和失败损失，提供后续扩展空间但没有倒灌为百章内既得资产。",
+          "revisionAdvice": ""
+        }
+      ]
+    },
+    {
+      "file": "data/audit-runtimes/design78-recovery/power-followup-batch-2__tiers.json",
+      "sha256": "9e5f0470329699c91097c0edea33370cda3ff2128d4a7fe37a600b415bf8257e",
+      "area": "power",
+      "stageId": "followup-batch-2/tiers",
+      "attempts": 1,
+      "savedModelResponses": 1,
+      "reportCharacters": 10443,
+      "reportCap": 90000,
+      "sourceAndCitationValidationPassed": true,
+      "summary": "补读已补足玄府晋阶所需的法门、灵石、训练、复核与晋阶后能力边界；该项原等待问题可解除。",
+      "checks": [
+        {
+          "criterion": "tiers",
+          "verdict": "pass",
+          "explanation": "原问题所缺的四类材料现已形成闭环。规则明确境界仅为承载资格，玄府须先完成分流训练、六个有效十日周期、灵石消耗及白榆、顾峤两次复核；分流诀又限定凝元三重、逐段训练、失败耗材和合法授课。第三卷安排330日取得受限借阅与指导，331—397日完成六个有效周期，354日失败的一枚另计报废，合计七枚；24枚劳务结算后扣除食宿，七枚完整灵石单列为训练库存。398—414日静置与观察后，415日依“白榆诊察—顾峤承载复核—支付十元载”顺序晋玄府。晋阶后仅安排经训练、低负荷实测的局部护罡，且明确不沿用旧剑、不得把晋阶或元罡承载写成自动掌握其他能力。因此第79章延期与第83章实际晋阶的安排均有前置、代价和生效时点，符合非自动掌握规则。",
+          "revisionAdvice": "",
+          "resolves": [
+            "batch-2/tiers"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "data/audit-runtimes/design78-recovery/characters-followup-cross-3-5__relationships.json",
+      "sha256": "b0f6029880ef7c623486720ae609b7d4fc1a771544c63a1ca97a98be8c92fb57",
+      "area": "characters",
+      "stageId": "followup-cross-3-5/relationships",
+      "attempts": 1,
+      "savedModelResponses": 1,
+      "reportCharacters": 11975,
+      "reportCap": 90000,
+      "sourceAndCitationValidationPassed": true,
+      "summary": "关系原档补读后，原先关于关系阶段与第17、21—29章安排能否相容的待核问题已解决：三组关系均有初态、触发选择、代价和明确生效章节，且未将救援或共同作战误写为无条件信任、全知或永久服从。",
+      "checks": [
+        {
+          "criterion": "relationships",
+          "verdict": "pass",
+          "explanation": "原问题要求核对林辰—苏凌霜、林辰—墨幽屠、苏凌霜—秦禾的既定关系阶段与章纲。林苏关系原档将第17章明确设为：林承认欲借苏的身份为未验遗物背书后，仅提交可质询的重绘矿图，苏只担保程序而不担保残玉；这与第17章的争执、停练代价和重新划定担保范围一致。第21章救秦禾是林放弃样箱窗口、苏支付一次补偿的优先次序选择；第22章又接受秦禾拒绝冲哨、转移观察点和失去近货台窗口，均被关系原档分别列为有限合作的生效原因和代价。第29章分路并约定副本、递信责任，关系原档也明确此后异地消息须实际送达，未把约定倒填为即时互知。林墨原档把第23章的核名、25章实际对抗、26章具名交押及后续押解分别分段，和章纲的知情、制伏与持续看押边界一致。苏秦原档同样把获救、补偿、有限带路、拒绝冲哨和实体送信分开处理，明确不构成无限报恩或永久忠诚。故原先因未提供关系原档而无法判断的局部不足已由本批原文补足并通过。",
+          "revisionAdvice": "",
+          "resolves": [
+            "cross-3-5/relationships"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "data/audit-runtimes/design78-recovery/story-followup-batch-1__opening.json",
+      "sha256": "2dadf4be0567981f210d80ccec59b275e450dbfce4b62b45c06b855f431fd80b",
+      "area": "story",
+      "stageId": "followup-batch-1/opening",
+      "attempts": 1,
+      "savedModelResponses": 1,
+      "reportCharacters": 40802,
+      "reportCap": 90000,
+      "sourceAndCitationValidationPassed": true,
+      "summary": "已补读第1—50章细纲：开篇由矿难救援与受限取证起步，经伤后生计和凝元训练、古境解囚与有限分药，再转入跨海失箱、港口调查和两阶段救工；每次胜利均保留伤势、债务、未明证据或未获救者，未形成过早终局。",
+      "checks": [
+        {
+          "criterion": "opening",
+          "verdict": "pass",
+          "explanation": "原问题所称的50章细纲现已实际提供。第1—12章以矿道灭口、证人保护、有限复核及矿场救援建立主冲突，救人后仍留下伤势、封存复核和逃逸指挥链；13—18章将重心转为放弃选拔、有限劳务、受控训练和付出三年寿元的凝元成长，而非重复同一救援。19—29章把古境线推进为先救秦禾、封路失效、实体求援、同阶制伏、有限泉液分配与林苏分路，高潮后仍保留伤残、墨的羁押和跨海收货线。30—42章的港口段从护货失箱、拒绝伪证、查箱与首仓火，递进至五名雇工失联和可撤离条件的实测；43—45章先救出唐、许、冯并留下吴伍、卢小满和原账逃逸，48—50章再以调查定位、两人的自主拒绝与巡员现场处置完成脱控，属于前一救援未竟后果的兑现，不是无代价重演。第50章明确工人不承诺回船、陆仅承认本次押送、改签与程砚仍待查；总纲也限定百章只切断一条运输链，因此前50章的阶段高潮没有提前封闭主线。",
+          "revisionAdvice": "",
+          "resolves": [
+            "batch-1/opening"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "data/audit-runtimes/design78-recovery/world-cross-2-7.json",
+      "sha256": "2f0fcc70c8233de6d3b14aec476e3f72aa7695503e1c238cdefba79caf68fa77",
+      "area": "world",
+      "stageId": "cross-2-7",
+      "attempts": 1,
+      "savedModelResponses": 1,
+      "reportCharacters": 25437,
+      "reportCap": 90000,
+      "sourceAndCitationValidationPassed": true,
+      "summary": "本批可检验的三大陆移动、港口监管、资源竞争与分卷地域功能彼此相容；结论仅针对所给提案，不表示后续正文或全领域验收已完成。",
+      "checks": [
+        {
+          "criterion": "geography",
+          "verdict": "pass",
+          "explanation": "提案没有把三大陆航线误作界门穿越：世界规则允许实体飞舟、沿岸定位阵和普通跨海航程，计划中的赤霄—苍冥、苍冥—青玄均明确采用有燃料、船员和值守的实体暖舱航程。赤霄段以实际避火符、逐日放行旗和受护驿舍处理热候；苍冥段先留受监管泊区，夜凝霜的具名担保只覆盖指定仓区或限程离境，七名获救者仍留候查暖房而非被当作自动入境或自由离港。返航另有逐站验籍、暖车/暖舱、入港核验和实缴税费安排，未见以商业票、关系或境界绕过准入。三卷的青玄古境与外山责任、赤霄港口扣工链、苍冥受监管救援及返乡交证也分别改变人物的行动资格、费用、风险和选择，并非单纯换地图。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "history",
+          "verdict": "pass",
+          "explanation": "本批宏观史因果能支撑当前势力各自行动，而未将旧约或既有嫌疑直接写成全知定罪。赵—炎煞的旧互供框架限定为有限货签、垫款、仓运及程记自负违约，且明确本港货损不会自动成为双方即时知情；程—赵之间的报令、收令、签收联和后续面报则逐段区分。父案证据也只逐步证明守门参与、外山掩案或本次撤运责任，明确不由货运关联、残片或原令外推十年前投毒和九鼎全貌。首仓火因、原账与改签全貌仍保留待核，因而历史悬案仍能产生调查、问责和势力自保的后果，而非被阶段胜利提前消解。",
+          "revisionAdvice": ""
+        },
+        {
+          "criterion": "capacity",
+          "verdict": "pass",
+          "explanation": "已给规则和宏观安排提供了足够的阶段性承载差异：青玄的古境准入、有限灵泉配额与医修复诊，赤霄的热候、港务和工食/航款约束，苍冥的寒候、担保、候查安置与巡界风险，都会分别限制路线、资源和人物选择。寿源资源还将成熟周期、生态保留、竞争配额、运输保存、疗程和失败损失拆开，避免把高阶成长写成可任意复制的奖励。百章计划相应把成长控制在凝元至玄府，以十年寿储成本、丹府训练和伤后停术为代价，并保留高阶资源与界门总危机给后续另建来源链；以100章为本轮范围，未见必须依靠无代价便利或单一重复冲突才能推进的问题。",
+          "revisionAdvice": ""
+        }
+      ]
+    }
+  ],
+  "newExplicitlyResolvedChecks": [
+    {
+      "area": "power",
+      "checkId": "batch-1/counters",
+      "resolvedByStageId": "followup-batch-1/counters",
+      "firstResolvedByStageId": "followup-batch-1/counters",
+      "newThisStage": true
+    },
+    {
+      "area": "power",
+      "checkId": "batch-2/tiers",
+      "resolvedByStageId": "followup-batch-2/tiers",
+      "firstResolvedByStageId": "followup-batch-2/tiers",
+      "newThisStage": true
+    },
+    {
+      "area": "characters",
+      "checkId": "cross-1-4/knowledge",
+      "resolvedByStageId": "followup-cross-1-4/knowledge",
+      "firstResolvedByStageId": "followup-cross-1-4/knowledge",
+      "newThisStage": true
+    },
+    {
+      "area": "characters",
+      "checkId": "cross-3-5/relationships",
+      "resolvedByStageId": "followup-cross-3-5/relationships",
+      "firstResolvedByStageId": "followup-cross-3-5/relationships",
+      "newThisStage": true
+    },
+    {
+      "area": "story",
+      "checkId": "batch-1/payoff",
+      "resolvedByStageId": "followup-batch-1/payoff",
+      "firstResolvedByStageId": "followup-batch-1/payoff",
+      "newThisStage": true
+    },
+    {
+      "area": "story",
+      "checkId": "batch-1/opening",
+      "resolvedByStageId": "followup-batch-1/opening",
+      "firstResolvedByStageId": "followup-batch-1/opening",
+      "newThisStage": true
+    }
+  ],
+  "validation": {
+    "localChecks": 12,
+    "rawResponsesReplayed": 8,
+    "responseReplayMatches": true,
+    "maxExpandedReportCharacters": 40802,
+    "followupCoverage": [
+      {
+        "area": "power",
+        "stageId": "followup-batch-1/counters",
+        "requiredSources": 4,
+        "priorContextUnits": 120,
+        "complete": true
+      },
+      {
+        "area": "characters",
+        "stageId": "followup-cross-1-4/knowledge",
+        "requiredSources": 1,
+        "priorContextUnits": 198,
+        "complete": true
+      },
+      {
+        "area": "story",
+        "stageId": "followup-batch-1/payoff",
+        "requiredSources": 18,
+        "priorContextUnits": 141,
+        "complete": true
+      },
+      {
+        "area": "power",
+        "stageId": "followup-batch-2/tiers",
+        "requiredSources": 4,
+        "priorContextUnits": 127,
+        "complete": true
+      },
+      {
+        "area": "characters",
+        "stageId": "followup-cross-3-5/relationships",
+        "requiredSources": 3,
+        "priorContextUnits": 102,
+        "complete": true
+      },
+      {
+        "area": "story",
+        "stageId": "followup-batch-1/opening",
+        "requiredSources": 50,
+        "priorContextUnits": 108,
+        "complete": true
+      }
+    ],
+    "firstFollowupInputStability": {
+      "observedAt": "2026-10-24T17:33:00.624445+00:00",
+      "rows": [
+        {
+          "area": "power",
+          "stageId": "followup-batch-1/counters",
+          "beforeFile": "data/audit-runtimes/design78-recovery/segment-11-power-first-followup-before.json",
+          "beforeSha256": "462735dc06ed33da0f7d49bbcb4bebd329a92753dd5f94bdffc0c0ac1798babf",
+          "afterFile": "data/audit-runtimes/design78-recovery/power-followup-batch-1__counters.json",
+          "afterSha256": "056dcf9cfcbb6c070d24c4a6e1e64be8f97643eddaf63021e97f09aa0dc24185",
+          "inputUnchanged": true,
+          "requiredSourcesCompletelyPresent": {
+            "plan/chapters/25": 5406,
+            "story/chapterPlans/chapter-plan-25": 3162,
+            "plan/milestones/ms_v3_convoy": 4658,
+            "plan/milestones/ms_v3_payoff": 1207
+          },
+          "resolvedQuestions": [
+            "batch-1/counters"
+          ]
+        },
+        {
+          "area": "characters",
+          "stageId": "followup-cross-1-4/knowledge",
+          "beforeFile": "data/audit-runtimes/design78-recovery/segment-11-characters-first-followup-before.json",
+          "beforeSha256": "40cddefe07b82a78dc08c1251030ad4d6d16334cc1d1dd128d0079c7fa5c1f35",
+          "afterFile": "data/audit-runtimes/design78-recovery/characters-followup-cross-1-4__knowledge.json",
+          "afterSha256": "8f42ffbdec698f131ef6bd8aa3f2d9abb3b2671f1ccbe6a36c150674aa532b76",
+          "inputUnchanged": true,
+          "requiredSourcesCompletelyPresent": {
+            "story/secrets/sec_02": 26658
+          },
+          "resolvedQuestions": [
+            "cross-1-4/knowledge"
+          ]
+        },
+        {
+          "area": "story",
+          "stageId": "followup-batch-1/payoff",
+          "beforeFile": "data/audit-runtimes/design78-recovery/segment-11-story-first-followup-before.json",
+          "beforeSha256": "5799c663f0e25f3a21252b544c4faf3cf429c374d2e34eae4f3a1b1b5e54ed2c",
+          "afterFile": "data/audit-runtimes/design78-recovery/story-followup-batch-1__payoff.json",
+          "afterSha256": "515ee0f55feffab27bd8187f789815354c8f5c2eb1ba4b4f979889ed4dfff2cd",
+          "inputUnchanged": true,
+          "requiredSourcesCompletelyPresent": {
+            "plan/milestones/ms_v2_fire": 4531,
+            "plan/milestones/ms_v2_boundary": 7497,
+            "plan/milestones/ms_v3_return": 5363,
+            "plan/milestones/ms_v3_convoy": 4658,
+            "plan/milestones/ms_v3_payoff": 1207,
+            "story/secrets/sec_01": 6748,
+            "story/secrets/sec_02": 26658,
+            "story/secrets/sec_03": 1637,
+            "story/secrets/sec_04": 4133,
+            "story/promises/prom_01": 325,
+            "story/promises/prom_02": 207,
+            "story/promises/prom_03": 223,
+            "story/promises/prom_04": 323,
+            "story/openThreads/th_01": 209,
+            "story/openThreads/th_02": 213,
+            "story/openThreads/th_03": 208,
+            "story/openThreads/th_04": 194,
+            "story/openThreads/th_05": 251
+          },
+          "resolvedQuestions": [
+            "batch-1/payoff"
+          ]
+        }
+      ],
+      "productionWrites": 0,
+      "modelCalls": 0,
+      "limitation": "Verifies supplied material and input stability; semantic conclusions require source inspection and remaining domain synthesis."
+    }
+  },
+  "currentDesignAndScheduleVerification": {
+    "kind": "v78_segment_11_current_design_input_and_schedule_verification",
+    "observedAt": "2026-10-24T17:43:26.738Z",
+    "stateRevision": 101,
+    "inputHash": "28c13900f419ccc8a3faa5e8a3600348b6e119964681e21ef8f4f00919733d08",
+    "sourceSnapshotFile": "data/audit-runtimes/design78-recovery/segment-11-current-design-snapshot.json",
+    "sourceSnapshotSha256": "c438ac802bc8a32368f53ef4b6c35c18ec857f415f13b980bdaffd21af7e2b84",
+    "rows": [
+      {
+        "area": "power",
+        "runId": "design_run_1050f783-7af7-4062-b5d2-bebd517cb730",
+        "currentInputMatchesFrozenRun": true,
+        "currentInputSha256": "00c1c78b8d29ef9924012e6981389b664ef8e105567da8ba32227d000ae2e07f",
+        "sources": 338,
+        "audit": {
+          "verification": "verified",
+          "completedStages": 17,
+          "totalStages": 75,
+          "runSha256": "93ea316a5ec151258ec5459e751034fc63d2fb8473bc4f670cfe86d9641b8af3",
+          "formalAcceptance": false,
+          "limitation": "Validates saved stage results, citations and pending schedule against the supplied input; does not replay raw model responses or approve incomplete work."
+        },
+        "resolutions": [
+          {
+            "checkId": "batch-1/counters",
+            "resolvedByStageId": "followup-batch-1/counters",
+            "firstResolvedByStageId": "followup-batch-1/counters",
+            "newThisStage": true
+          },
+          {
+            "checkId": "batch-2/tiers",
+            "resolvedByStageId": "followup-batch-2/tiers",
+            "firstResolvedByStageId": "followup-batch-2/tiers",
+            "newThisStage": true
+          }
+        ],
+        "followups": [
+          {
+            "stageId": "followup-batch-1/counters",
+            "checkId": "batch-1/counters",
+            "completed": true
+          },
+          {
+            "stageId": "followup-batch-2/tiers",
+            "checkId": "batch-2/tiers",
+            "completed": true
+          },
+          {
+            "stageId": "followup-cross-1-2/tiers",
+            "checkId": "cross-1-2/tiers",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-1-2/costs",
+            "checkId": "cross-1-2/costs",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-1-2/counters",
+            "checkId": "cross-1-2/counters",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-2-3/tiers",
+            "checkId": "cross-2-3/tiers",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-2-3/costs",
+            "checkId": "cross-2-3/costs",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-2-3/counters",
+            "checkId": "cross-2-3/counters",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-2-4/tiers",
+            "checkId": "cross-2-4/tiers",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-2-4/costs",
+            "checkId": "cross-2-4/costs",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-2-4/counters",
+            "checkId": "cross-2-4/counters",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-2-5/tiers",
+            "checkId": "cross-2-5/tiers",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-2-5/costs",
+            "checkId": "cross-2-5/costs",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-2-5/counters",
+            "checkId": "cross-2-5/counters",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-3-4/tiers",
+            "checkId": "cross-3-4/tiers",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-3-4/costs",
+            "checkId": "cross-3-4/costs",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-3-4/counters",
+            "checkId": "cross-3-4/counters",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-3-5/tiers",
+            "checkId": "cross-3-5/tiers",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-3-5/costs",
+            "checkId": "cross-3-5/costs",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-3-5/counters",
+            "checkId": "cross-3-5/counters",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-4-5/tiers",
+            "checkId": "cross-4-5/tiers",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-4-5/costs",
+            "checkId": "cross-4-5/costs",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-4-5/counters",
+            "checkId": "cross-4-5/counters",
+            "completed": false
+          }
+        ],
+        "nextStage": "followup-cross-1-2/tiers",
+        "nextInputSerializedCharacters": 93984,
+        "nextInputSha256": "2b54e82c386c5aead27847cd4d5faff5583ec2d6f4df01d83a017856b8e0f2ce"
+      },
+      {
+        "area": "characters",
+        "runId": "design_run_2b6bc122-ddd6-4c1b-9166-303b1a6953de",
+        "currentInputMatchesFrozenRun": true,
+        "currentInputSha256": "45824c3fac397ae985be80cf855bba1dce87f1911766971454f85b719dec3533",
+        "sources": 286,
+        "audit": {
+          "verification": "verified",
+          "completedStages": 17,
+          "totalStages": 33,
+          "runSha256": "f9c1437cbcc92dbe49681bb6ebedb1071d5cf9a2eb92bb8ef9eb0542b619f159",
+          "formalAcceptance": false,
+          "limitation": "Validates saved stage results, citations and pending schedule against the supplied input; does not replay raw model responses or approve incomplete work."
+        },
+        "resolutions": [
+          {
+            "checkId": "cross-1-4/knowledge",
+            "resolvedByStageId": "followup-cross-1-4/knowledge",
+            "firstResolvedByStageId": "followup-cross-1-4/knowledge",
+            "newThisStage": true
+          },
+          {
+            "checkId": "cross-3-5/relationships",
+            "resolvedByStageId": "followup-cross-3-5/relationships",
+            "firstResolvedByStageId": "followup-cross-3-5/relationships",
+            "newThisStage": true
+          }
+        ],
+        "followups": [
+          {
+            "stageId": "followup-cross-1-4/knowledge",
+            "checkId": "cross-1-4/knowledge",
+            "completed": true
+          },
+          {
+            "stageId": "followup-cross-3-5/relationships",
+            "checkId": "cross-3-5/relationships",
+            "completed": true
+          }
+        ],
+        "nextStage": "synthesis-1",
+        "nextInputSerializedCharacters": 69620,
+        "nextInputSha256": "aae0e25ab6ab011b2717fcbddc07876b9c87be1dfccd1a9c5379eb7bfd727480"
+      },
+      {
+        "area": "story",
+        "runId": "design_run_8bf5a361-cec3-4f5c-8fce-a1e65e2c8ac9",
+        "currentInputMatchesFrozenRun": true,
+        "currentInputSha256": "19557517224dee03fa0f30be49635b2997d29f32c4696997f89f6bb630e44df8",
+        "sources": 363,
+        "audit": {
+          "verification": "verified",
+          "completedStages": 17,
+          "totalStages": 51,
+          "runSha256": "19f258eb0abec475aed8f892f73a72db18192626fd5e5feac4aba59d7c7453a3",
+          "formalAcceptance": false,
+          "limitation": "Validates saved stage results, citations and pending schedule against the supplied input; does not replay raw model responses or approve incomplete work."
+        },
+        "resolutions": [
+          {
+            "checkId": "batch-1/payoff",
+            "resolvedByStageId": "followup-batch-1/payoff",
+            "firstResolvedByStageId": "followup-batch-1/payoff",
+            "newThisStage": true
+          },
+          {
+            "checkId": "batch-1/opening",
+            "resolvedByStageId": "followup-batch-1/opening",
+            "firstResolvedByStageId": "followup-batch-1/opening",
+            "newThisStage": true
+          }
+        ],
+        "followups": [
+          {
+            "stageId": "followup-batch-1/payoff",
+            "checkId": "batch-1/payoff",
+            "completed": true
+          },
+          {
+            "stageId": "followup-batch-1/opening",
+            "checkId": "batch-1/opening",
+            "completed": true
+          },
+          {
+            "stageId": "followup-batch-1/pacing",
+            "checkId": "batch-1/pacing",
+            "completed": false
+          },
+          {
+            "stageId": "followup-batch-1/growth",
+            "checkId": "batch-1/growth",
+            "completed": false
+          },
+          {
+            "stageId": "followup-batch-2/growth",
+            "checkId": "batch-2/growth",
+            "completed": false
+          },
+          {
+            "stageId": "followup-batch-4/causality",
+            "checkId": "batch-4/causality",
+            "completed": false
+          },
+          {
+            "stageId": "followup-batch-4/growth",
+            "checkId": "batch-4/growth",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-1-2/payoff",
+            "checkId": "cross-1-2/payoff",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-1-2/growth",
+            "checkId": "cross-1-2/growth",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-2-3/growth",
+            "checkId": "cross-2-3/growth",
+            "completed": false
+          },
+          {
+            "stageId": "followup-cross-2-4/causality",
+            "checkId": "cross-2-4/causality",
+            "completed": false
+          }
+        ],
+        "nextStage": "followup-batch-1/pacing",
+        "nextInputSerializedCharacters": 203805,
+        "nextInputSha256": "554990852e482f2ed329b2d80cc9b2d9e6680980e5c39432a79b0870726a9f66"
+      },
+      {
+        "area": "world",
+        "runId": "design_run_0d086731-493f-4cb9-816a-398ff3ff1123",
+        "currentInputMatchesFrozenRun": true,
+        "currentInputSha256": "88e3c03c6df75b8e9208a43cf3989547d445bb5cc9b88c52578bc851741c8b2d",
+        "sources": 417,
+        "audit": {
+          "verification": "verified",
+          "completedStages": 18,
+          "totalStages": 55,
+          "runSha256": "a52132a717da9412a89d454d6380ba58803f1262e9026a392a95c7e7be734bf1",
+          "formalAcceptance": false,
+          "limitation": "Validates saved stage results, citations and pending schedule against the supplied input; does not replay raw model responses or approve incomplete work."
+        },
+        "resolutions": [],
+        "followups": [],
+        "nextStage": "cross-3-4",
+        "nextInputSerializedCharacters": 217378,
+        "nextInputSha256": "06ba036347f5c88af277fc822987f821e67f3488b6bf1195349ec22fdc1a20af"
+      }
+    ],
+    "modelCalls": 0,
+    "productionWrites": 0,
+    "formalAcceptance": false,
+    "limitation": "Current design and settings are independently read in the same database snapshot and mapped as in the repository loader. Source equality, canonical schedule, citations and first resolution provenance are checked; semantic quality and prose acceptance remain separate."
+  },
+  "ui": {
+    "verifiedStage": "characters/followup-cross-1-4/knowledge",
+    "evidenceCount": 23,
+    "resolvedQuestionVisible": true,
+    "expandedEvidenceVisible": true,
+    "temporaryTabClosed": true,
+    "midRunSnapshot": true
+  },
+  "production": {
+    "observedAt": "2026-10-24T17:42:52.932999+00:00",
+    "counts": {
+      "ChapterCandidate": 116,
+      "StoryEvent": 383,
+      "ManuscriptRevision": 1,
+      "ChapterVersion": 101
+    },
+    "worldPack": 41,
+    "storyBible": 74,
+    "approvedPlan": {
+      "id": "plan_3240e0b8bc124f38a4f39ae8d74c2abc",
+      "revision": 10,
+      "status": "approved"
+    },
+    "designReviewLeases": [],
+    "chapterRunLeases": [],
+    "productionWrites": 0,
+    "formalAcceptance": false
+  },
+  "implementationChanges": [],
+  "artifacts": {
+    "data/audit-runtimes/design78-recovery/characters-followup-cross-1-4__knowledge.json": "8f42ffbdec698f131ef6bd8aa3f2d9abb3b2671f1ccbe6a36c150674aa532b76",
+    "data/audit-runtimes/design78-recovery/characters-followup-cross-3-5__relationships.json": "b0f6029880ef7c623486720ae609b7d4fc1a771544c63a1ca97a98be8c92fb57",
+    "data/audit-runtimes/design78-recovery/check-segment-11-current-inputs.mjs": "81140553cf49fa93b7dfabbd5ef6ee2b00b9292ce5721009425eb23586be3516",
+    "data/audit-runtimes/design78-recovery/check-segment-11-followup-coverage.py": "9f23233a9303b48e3e8fdde4ecd30779ed6c63f3d6e0484c58eb186eac8d0885",
+    "data/audit-runtimes/design78-recovery/check-segment-11-production.py": "5e80ab2bcce79d68f0956409fa8c40e61c87817489de13667e2c429c01a5c2cd",
+    "data/audit-runtimes/design78-recovery/collect-segment-11.mjs": "e86229052db5935c9e8438dc294a525344a1c5b41fc5b53a06969bba043dd806",
+    "data/audit-runtimes/design78-recovery/continuation-1792862669987-84785.jsonl": "9a1edd520f6bd56e6b0961c480b349c7a07c91b0f1368fe8e154d986c9f86ded",
+    "data/audit-runtimes/design78-recovery/power-followup-batch-1__counters.json": "056dcf9cfcbb6c070d24c4a6e1e64be8f97643eddaf63021e97f09aa0dc24185",
+    "data/audit-runtimes/design78-recovery/power-followup-batch-2__tiers.json": "9e5f0470329699c91097c0edea33370cda3ff2128d4a7fe37a600b415bf8257e",
+    "data/audit-runtimes/design78-recovery/replay-segment-11.mjs": "2795bec1940ce6fc46b1f88cb6b891dce89fc79efbbed25de8f76d476f21fef4",
+    "data/audit-runtimes/design78-recovery/segment-11-characters-first-followup-before.json": "40cddefe07b82a78dc08c1251030ad4d6d16334cc1d1dd128d0079c7fa5c1f35",
+    "data/audit-runtimes/design78-recovery/segment-11-characters-followup-ui.png": "997159dc7030ae74842030f2202c18c6a10ee746b241108156e74ed649f3fa90",
+    "data/audit-runtimes/design78-recovery/segment-11-characters-followup-ui.txt": "6e169421f6ab274fd33df4b25b6f1525781b3a84797dc86e04fa0b6a636003d5",
+    "data/audit-runtimes/design78-recovery/segment-11-current-design-snapshot.json": "c438ac802bc8a32368f53ef4b6c35c18ec857f415f13b980bdaffd21af7e2b84",
+    "data/audit-runtimes/design78-recovery/segment-11-current-input-verification.json": "273bc3478ae425668a6e16a5913831e6a550173e8d8ae0efd2ff694099581f46",
+    "data/audit-runtimes/design78-recovery/segment-11-followup-coverage.json": "0d7d975d84f8b78fb1764103b5ec0c3bc71c5469676a00043b593194483c36e6",
+    "data/audit-runtimes/design78-recovery/segment-11-followup-input-verification.json": "f6a6f4a0a0471cdab58f7c748d87083a4c144696a1e8c70ddb5237d17b6b0750",
+    "data/audit-runtimes/design78-recovery/segment-11-power-first-followup-before.json": "462735dc06ed33da0f7d49bbcb4bebd329a92753dd5f94bdffc0c0ac1798babf",
+    "data/audit-runtimes/design78-recovery/segment-11-production-before.json": "e2378889c91b76699f42ce7ca64ba75b8cbbddacc32ff6feb589c31ee5a5915e",
+    "data/audit-runtimes/design78-recovery/segment-11-production-check.json": "5b84503db75fc425427f1621c5957421a28f19ee222de971258d799fe6734d9d",
+    "data/audit-runtimes/design78-recovery/segment-11-response-replay.json": "fbc03b92f96d04abbd050c66ae53a0ea46c6d2db66c53469be019f27749cb31b",
+    "data/audit-runtimes/design78-recovery/segment-11-stage-validation.json": "b0cca70253fb82c1e2086c06ada15b0113cd8d40f457da35d6c492f16e1ae4d0",
+    "data/audit-runtimes/design78-recovery/segment-11-story-first-followup-before.json": "5799c663f0e25f3a21252b544c4faf3cf429c374d2e34eae4f3a1b1b5e54ed2c",
+    "data/audit-runtimes/design78-recovery/segment-11-summary.json": "baa760b696d8bf5e6404a5f622c74fc7b89c7d72446fece860a76345ded72486",
+    "data/audit-runtimes/design78-recovery/story-followup-batch-1__opening.json": "2dadf4be0567981f210d80ccec59b275e450dbfce4b62b45c06b855f431fd80b",
+    "data/audit-runtimes/design78-recovery/story-followup-batch-1__payoff.json": "515ee0f55feffab27bd8187f789815354c8f5c2eb1ba4b4f979889ed4dfff2cd",
+    "data/audit-runtimes/design78-recovery/verify-segment-11-followups.py": "49e499b7fee6e4eb6126519ca715306e6160cc92ef949d71bd7f8192a973804e",
+    "data/audit-runtimes/design78-recovery/world-cross-2-6.json": "a66c1a5fd6e1c7f807eb9a04a7e13dbd077f73465119325f36088e0fa1586512",
+    "data/audit-runtimes/design78-recovery/world-cross-2-7.json": "2f0fcc70c8233de6d3b14aec476e3f72aa7695503e1c238cdefba79caf68fa77"
+  },
+  "limitations": [
+    "All four final content reviews remain incomplete. No prose or manuscript acceptance.",
+    "World local passes have no explicit resolution claims and do not clear earlier historical deferrals.",
+    "Opening progression does not replace pacing, growth, genre or synthesis review.",
+    "Current input equality, citation validity and offline replay do not prove semantic quality.",
+    "No response repair occurred; earlier citation-edit summary prompt change is not exercised.",
+    "No product code change or full repository test run in this segment."
+  ]
+}
