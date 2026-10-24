@@ -78,6 +78,7 @@ import {
   type DesignProvider,
   type PlanProvider,
   type WorkRepository,
+  type WorkSummary,
 } from '../../../packages/application/src/index.ts';
 import { BudgetExceededError, ModelTimeoutError, redactSecrets, UsageLedger } from '../../../packages/model-gateway/src/index.ts';
 import { PrismaWorkRepository } from '../../../packages/persistence/src/prisma-repository.ts';
@@ -225,7 +226,7 @@ function plannedChapterCount(work: Work): number {
   return work.storyBible?.volumes.reduce((sum, volume) => sum + volume.plannedChapterCount, 0) ?? 0;
 }
 
-function toWorkDto(work: Work): WorkDto {
+function toWorkDto(work: WorkSummary): WorkDto {
   return { id: work.id, title: work.title, stateRevision: work.stateRevision, constraintRevision: work.constraintRevision, covenant: work.covenant };
 }
 
@@ -523,14 +524,14 @@ export function createApiServer(dependencies: ApiDependencies = {}): { app: Fast
 
   app.get('/works/:workId', async (request) => {
     const { workId } = workParamSchema.parse(request.params);
-    const work = await repository.get(workId);
+    const work = await (repository.getWorkSummary ? repository.getWorkSummary(workId) : repository.get(workId));
     if (!work) throw new NotFoundError(`unknown work ${workId}`);
     return toWorkDto(work);
   });
 
   app.get('/works/:workId/design', async (request) => {
     const { workId } = workParamSchema.parse(request.params);
-    const work = await repository.get(workId);
+    const work = await (repository.getDesignSnapshot ? repository.getDesignSnapshot(workId) : repository.get(workId));
     if (!work) throw new NotFoundError(`unknown work ${workId}`);
     return { worldPack: work.worldPack, storyBible: work.storyBible, constraintRevision: work.constraintRevision, atomicCandidateSave: true };
   });

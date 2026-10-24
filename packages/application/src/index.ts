@@ -127,6 +127,9 @@ export interface WorkSummary {
 
 export interface WorkRepository {
   get(workId: string): Promise<Work | undefined>;
+  /** Current metadata/design reads need no chapter or assessment history. */
+  getWorkSummary?(workId: string): Promise<WorkSummary | undefined>;
+  getDesignSnapshot?(workId: string): Promise<Pick<Work, 'worldPack' | 'storyBible' | 'constraintRevision'> | undefined>;
   /** Read one saved assessment for evidence display, without loading a mutable Work. */
   getDesignReviewRun?(workId: string, runId: string): Promise<DesignReviewRun | undefined>;
   list(): Promise<WorkSummary[]>;

@@ -11,7 +11,7 @@ import type {
 } from '../../../novel-service-core/src/core.ts';
 import type { StoryBible, WorldPack } from '../../../novel-service-core/src/world.ts';
 import type { BookPlan, ChapterBrief, PlanReview, PlanRevision } from '../../../novel-service-core/src/planning.ts';
-import type { OutboxEvent, WorkRepository, WorkTransaction } from '../../application/src/index.ts';
+import type { OutboxEvent, WorkRepository, WorkSummary, WorkTransaction } from '../../application/src/index.ts';
 
 function readCovenant(raw: string | null | undefined) {
   if (!raw) return parseCovenant(undefined);
@@ -99,6 +99,21 @@ export class PrismaWorkRepository implements WorkRepository {
       constraintRevision: project.constraintRevision,
       covenant: readCovenant(project.covenant),
     }));
+  }
+
+  async getWorkSummary(workId: string): Promise<WorkSummary | undefined> {
+    const project = await this.prisma.project.findUnique({ where: { id: workId },
+      select: { id: true, title: true, stateRevision: true, constraintRevision: true, covenant: true },
+    });
+    return project ? { ...project, constraintRevision: project.constraintRevision ?? 0, covenant: readCovenant(project.covenant) } : undefined;
+  }
+
+  async getDesignSnapshot(workId: string): Promise<Pick<Work, 'worldPack' | 'storyBible' | 'constraintRevision'> | undefined> {
+    const project = await this.prisma.project.findUnique({ where: { id: workId },
+      select: { worldPack: true, storyBible: true, constraintRevision: true },
+    });
+    return project ? { worldPack: readJson<WorldPack>(project.worldPack), storyBible: readJson<StoryBible>(project.storyBible),
+      constraintRevision: project.constraintRevision ?? 0 } : undefined;
   }
 
   async getDesignReviewRun(workId: string, runId: string): Promise<DesignReviewRun | undefined> {
